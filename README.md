@@ -48,30 +48,43 @@ Mude o diretório atual para o diretório raíz do seu projeto e crie o arquivo 
 
 ```
 
-- Execute o Composer para que ele baixe as bibliotecas do CakePHP
+Execute o Composer para que ele baixe as bibliotecas do CakePHP
 
+```
 	php composer.phar install
 
-- Aguarde até todas o dowload de todos os arquivos estar completo, então execute o script de criação de projeto do CakePHP
+```
 
+Aguarde até todas o dowload de todos os arquivos estar completo, então execute o script de criação de projeto do CakePHP
+
+```
 	Vendor/bin/cake bake project .
 
-- Não se esqueça do ponto ao final do comando, que indica que o CakePHP precisa utilizar os arquivos base (skel) e replicar neste mesmo diretório;
-- Crie um arquivo `.gitignore` na raíz do seu projeto e adicione os seguintes caminhos (que não serão enviados ao Bitbucket)
+```
 
+Não se esqueça do ponto ao final do comando, que indica que o CakePHP precisa utilizar os arquivos base (skel) e replicar neste mesmo diretório;
+Crie um arquivo `.gitignore` na raíz do seu projeto e adicione os seguintes caminhos (que não serão enviados ao Bitbucket)
+
+```
 	Vendor/
 	composer.phar
 	Config/database.php
 	webroot/components
 
-- Crie um arquivo de configuração de caminhos do Bower na raíz do peojto, o `.bowerrc`, e adicione as seguintes linhas
+```
 
+Crie um arquivo de configuração de caminhos do Bower na raíz do peojto, o `.bowerrc`, e adicione as seguintes linhas
+
+```
 	{
 		"directory": "webroot/components"
 	}
 
-- Crie um arquivo de configuração dos pacotes do Bower, o `bower.json`, na raíz do seu projeto e adicione os seguintes pacotes
+```
 
+Crie um arquivo de configuração dos pacotes do Bower, o `bower.json`, na raíz do seu projeto e adicione os seguintes pacotes
+
+```
 	{
 		"name": "Evoke",
 		"dependencies": {
@@ -81,14 +94,22 @@ Mude o diretório atual para o diretório raíz do seu projeto e crie o arquivo 
 		}
 	}
 
-- Execute o bower na raíz do projeto
+```
 
+Execute o bower na raíz do projeto
+
+```
 	bower install
 
-- Execute os comandos de ADD e COMMIT do Git;
-- Agora basta executar os comando a seguir no terminal (ou Prompt de comando)
+```
 
+Execute os comandos de ADD e COMMIT do Git;
+Agora basta executar os comando a seguir no terminal (ou Prompt de comando)
+
+```
 	git update-index --assume-unchanged Config/core.php
 	git update-index --assume-unchanged tmp/
 
-- Desta forma, garantimos que estes arquivos irão para o repositório remoto, porém as modificações locais não serão consideradas.
+```
+
+Desta forma, garantimos que estes arquivos irão para o repositório remoto, porém as modificações locais não serão consideradas.
