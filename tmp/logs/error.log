@@ -27,3 +27,12 @@ Request URL: /evoke2014/r
 Stack Trace:
 #0 /home/msoledade/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-02-12 16:22:01 Error: [MissingControllerException] Controller class ErewrController could not be found.
+Exception Attributes: array (
+  'class' => 'ErewrController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/erewr
+Stack Trace:
+#0 /home/msoledade/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
