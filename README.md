@@ -103,8 +103,7 @@ Execute o bower na raíz do projeto
 
 ```
 
-Execute os comandos de ADD e COMMIT do Git;
-Agora basta executar os comando a seguir no terminal (ou Prompt de comando)
+Execute os comandos de Add e Commit do Git. Agora basta executar os comandos a seguir no terminal (ou Prompt de comando)
 
 ```
 	git update-index --assume-unchanged Config/core.php
