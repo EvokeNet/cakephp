@@ -5,22 +5,31 @@ O projeto Evoke utiliza CakePHP em sua fundação, sendo gerenciado pelo [Compos
 
 ## Instalação ##
 
-- Vá até o site do [Node.js] {http://nodejs.org, "Node.js"}, baixe o instalador e execute-o ou utilize o comando a seguir no terminal (ou Prompt de comando)
+Vá até o site do [Node.js] {http://nodejs.org, "Node.js"}, baixe o instalador e execute-o ou utilize o comando a seguir no terminal (ou Prompt de comando)
 
 ```
-    curl -sS https://getcomposer.org/installer | php
+	curl -sS https://getcomposer.org/installer | php
+
 ```
 
-- Caso você não tenha o cURL instalado, faça o comando a seguir ao invés do anterior
+Caso você não tenha o cURL instalado, faça o comando a seguir ao invés do anterior
 
-    php -r "readfile('https://getcomposer.org/installer');" | php
+```
+	php -r "readfile('https://getcomposer.org/installer');" | php
 
-- Instale o Bower utilizando o comando a seguir
+```
 
+Instale o Bower utilizando o comando a seguir
+
+```
 	sudo npm install -g bower
 
-- Mude o diretório atual para o diretório raíz do seu projeto e crie o arquivo `composer.json`
+```
 
+Mude o diretório atual para o diretório raíz do seu projeto e crie o arquivo `composer.json`
+
+```
+	
 	{
 		"name": "evoke",
 		"repositories": [
@@ -36,6 +45,8 @@ O projeto Evoke utiliza CakePHP em sua fundação, sendo gerenciado pelo [Compos
 			"vendor-dir": "Vendor/"
 		}
 	}
+
+```
 
 - Execute o Composer para que ele baixe as bibliotecas do CakePHP
 
