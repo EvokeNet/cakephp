@@ -56,7 +56,7 @@ Cache::config('default', array('engine' => 'File'));
  * Uncomment one of the lines below, as you need. Make sure you read the documentation on CakePlugin to use more
  * advanced ways of loading plugins
  *
- * CakePlugin::loadAll(); // Loads all plugins at once
+ * 
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
@@ -96,3 +96,9 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+require APP . '/Vendor/autoload.php';
+spl_autoload_unregister(array('App', 'load'));
+spl_autoload_register(array('App', 'load'), true, true);
+
+CakePlugin::loadAll();
