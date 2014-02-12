@@ -7,7 +7,9 @@ O projeto Evoke utiliza CakePHP em sua fundação, sendo gerenciado pelo [Compos
 
 - Vá até o site do [Node.js] {http://nodejs.org, "Node.js"}, baixe o instalador e execute-o ou utilize o comando a seguir no terminal (ou Prompt de comando)
 
+```
     curl -sS https://getcomposer.org/installer | php
+```
 
 - Caso você não tenha o cURL instalado, faça o comando a seguir ao invés do anterior
 
