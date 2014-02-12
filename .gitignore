@@ -1,4 +1,4 @@
 Vendor/
 composer.phar
-app/Config/database.php
-app/webroot/components
+Config/database.php
+webroot/components
