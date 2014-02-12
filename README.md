@@ -1,7 +1,7 @@
 Evoke Network - Guia de Instalação
 ==================================
 
-O projeto Evoke utiliza CakePHP em sua fundação, sendo gerenciado pelo [Composer] (https://getcomposer.org/, "Composer"). Os pacotes de frontend são gerenciados pelo [Bower] (http://bower.io/, "Bower"). O Bower roda sobre [Node.js] (http://nodejs.org/, "Node.js") e precisa do gerenciador de pacotes do Node - o NPM - para funcionar. Para realizar a instalação do ambiente de desenvolvimento em seu servidor, siga os passos abaixo.
+O projeto Evoke utiliza CakePHP em sua fundação, sendo gerenciado pelo [Composer](https://getcomposer.org/, "Composer"). Os pacotes de frontend são gerenciados pelo [Bower](http://bower.io/, "Bower"). O Bower roda sobre [Node.js](http://nodejs.org/, "Node.js") e precisa do gerenciador de pacotes do Node - o NPM - para funcionar. Para realizar a instalação do ambiente de desenvolvimento em seu servidor, siga os passos abaixo.
 
 ## Instalação ##
 
