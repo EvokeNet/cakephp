@@ -9,3 +9,21 @@ Stack Trace:
 #1 /home/msoledade/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(AppController), Object(CakeRequest), Object(CakeResponse))
 #2 /home/msoledade/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 {main}
+2014-02-12 14:04:37 Error: [MissingControllerException] Controller class Readme.mdController could not be found.
+Exception Attributes: array (
+  'class' => 'Readme.mdController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/readme.md
+Stack Trace:
+#0 /home/msoledade/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-12 14:04:41 Error: [MissingControllerException] Controller class RController could not be found.
+Exception Attributes: array (
+  'class' => 'RController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/r
+Stack Trace:
+#0 /home/msoledade/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
