@@ -9,7 +9,9 @@
     "require": {
         "pear-cakephp/cakephp": ">=2.4.0",
         "cakephp/debug_kit": "2.2.*",
-        "josegonzalez/cakephp-upload": "1.0.0"
+        "josegonzalez/cakephp-upload": "1.0.0",
+        "facebook/php-sdk": "v3.2.3",
+        "google/apiclient": "1.0.3-beta"
     },
     "config": {
         "vendor-dir": "Vendor/"
