@@ -1,5 +1,9 @@
 <?php
+require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
+
 App::uses('AppController', 'Controller');
+App::uses('HttpSocket', 'Network/Http');
+
 /**
  * Users Controller
  *
@@ -14,6 +18,66 @@ class UsersController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+
+/**
+* beforeFilter method
+*
+* @return void
+*/
+	public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('add', 'logout');
+    }
+
+/**
+ * login method
+ *
+ * @return void
+ */
+	public function login() {
+
+		$facebook = new Facebook(array(
+			'appId'  => Configure::read('fb_app_id'),
+			'secret' => Configure::read('fb_app_secret'),
+		));
+
+		if(isset($this->params['url']['code'])) {
+			$user = $facebook->getUser();
+
+			// Criar a lógica para gravar o usuário no BD aqui e realizamos o login
+			// Caso já exista, apenas procedemos com o login
+
+			if ($user) {
+				try {
+					$user_profile = $facebook->api('/me');
+				} catch (FacebookApiException $e) {
+					error_log($e);
+					$user = null;
+				}
+			}
+
+			echo '<img src="https://graph.facebook.com/'. $user .'/picture" />';
+
+			debug($user_profile);
+			die();
+
+		} else if ($this->Auth->login()) {
+			$this->redirect($this->Auth->redirect());
+		} else {
+			$fbLoginUrl = $facebook->getLoginUrl();
+			$this->set(compact('fbLoginUrl'));
+		}
+	}
+
+
+/**
+ * logout method
+ *
+ * @return void
+ */
+	public function logout() {
+		$this->redirect($this->Auth->logout());
+	}
 
 /**
  * index method

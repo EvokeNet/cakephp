@@ -20,33 +20,42 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('/components/foundation/css/foundation.min');
+		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
+		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
+		echo $this->Html->css('evoke');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-		echo $this->fetch('script');
+
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
-		<div id="content">
 
-			<?php echo $this->Session->flash(); ?>
+	<?php echo $this->Element('topbar'); ?>
 
-			<?php echo $this->fetch('content'); ?>
+	<section role="main">
+		<div class="row evoke margin top">
+			<div class="large-12 columns">
+				<?php echo $this->Session->flash(); ?>
+				<?php echo $this->fetch('content'); ?>
+			</div>
 		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
+	</section>
+
+	<footer class="evoke margin top-2">
+		<div class="row">
+			<div class="large-12 columns">
+				<?php echo $this->element('sql_dump'); ?>
+			</div>
 		</div>
-	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	</footer>
+
+	<?php echo $this->Html->script('/components/jquery/jquery.min') ?>
+	<?php echo $this->Html->script('/components/foundation/js/foundation.min') ?>
+	<?php echo $this->Html->script('evoke') ?>
+
+	<?php echo $this->fetch('script'); ?>
+
 </body>
 </html>

@@ -45,3 +45,980 @@ Request URL: /evoke/comments
 Stack Trace:
 #0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-02-14 14:27:26 Error: Fatal Error (4): syntax error, unexpected '(', expecting ')' in [/home/msoledade/www/evoke/Model/User.php, line 30]
+2014-02-14 14:27:26 Error: [FatalErrorException] syntax error, unexpected '(', expecting ')'
+Request URL: /evoke/users
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 30)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 30, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 30, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 14:40:47 Error: [MissingControllerException] Controller class AddController could not be found.
+Exception Attributes: array (
+  'class' => 'AddController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/add
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 14:41:21 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/login.ctp',
+)
+Request URL: /evoke/users/login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 14:41:33 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/login.ctp',
+)
+Request URL: /evoke/users/login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 14:41:42 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/login.ctp',
+)
+Request URL: /evoke/users/login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 14:59:22 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/components/foundation/css/foundation.min.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 14:59:42 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/components/foundation/css/foundation.min.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 14:59:42 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/components/foundation/css/foundation.min.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:00:47 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:00:47 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:02:50 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/js/evoke.js
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:02:50 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:02:50 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/js/evoke.js
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:02:54 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:02:54 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/js/evoke.js
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:25:56 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/js/evoke.js
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:25:56 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:28:10 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/js/evoke.js
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:28:10 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:29:14 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/js/evoke.js
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:29:14 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:32:22 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:32:22 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/js/evoke.js
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:32:45 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:32:45 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/js/evoke.js
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:35:13 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 15:35:13 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/js/evoke.js
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 16:28:27 Error: [MissingActionException] Action UsersController::fb_login() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'fb_login',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-02-14 16:34:55 Error: Fatal Error (1): Call to undefined method Facebook::get_user() in [/home/msoledade/www/evoke/Controller/UsersController.php, line 56]
+2014-02-14 16:34:55 Error: [FatalErrorException] Call to undefined method Facebook::get_user()
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 56)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 56, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 56, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 16:37:10 Error: Fatal Error (1): Call to undefined method Facebook::get_user() in [/home/msoledade/www/evoke/Controller/UsersController.php, line 58]
+2014-02-14 16:37:10 Error: [FatalErrorException] Call to undefined method Facebook::get_user()
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 58)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 58, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 58, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 16:38:15 Error: Fatal Error (1): Call to undefined method Facebook::get_loggedin_user() in [/home/msoledade/www/evoke/Controller/UsersController.php, line 58]
+2014-02-14 16:38:15 Error: [FatalErrorException] Call to undefined method Facebook::get_loggedin_user()
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 58)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 58, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 58, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 16:38:51 Error: Fatal Error (1): Call to undefined method Facebook::get_user() in [/home/msoledade/www/evoke/Controller/UsersController.php, line 59]
+2014-02-14 16:38:51 Error: [FatalErrorException] Call to undefined method Facebook::get_user()
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 59)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 59, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 59, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 16:39:10 Error: Fatal Error (1): Call to undefined method Facebook::get_user() in [/home/msoledade/www/evoke/Controller/UsersController.php, line 60]
+2014-02-14 16:39:10 Error: [FatalErrorException] Call to undefined method Facebook::get_user()
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 60)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 16:39:13 Error: Fatal Error (1): Call to undefined method Facebook::get_user() in [/home/msoledade/www/evoke/Controller/UsersController.php, line 60]
+2014-02-14 16:39:13 Error: [FatalErrorException] Call to undefined method Facebook::get_user()
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 60)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 16:39:28 Error: Fatal Error (1): Call to undefined method Facebook::get_user() in [/home/msoledade/www/evoke/Controller/UsersController.php, line 60]
+2014-02-14 16:39:28 Error: [FatalErrorException] Call to undefined method Facebook::get_user()
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 60)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 16:39:32 Error: Fatal Error (1): Call to undefined method Facebook::get_user() in [/home/msoledade/www/evoke/Controller/UsersController.php, line 60]
+2014-02-14 16:39:32 Error: [FatalErrorException] Call to undefined method Facebook::get_user()
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 60)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 16:39:39 Error: Fatal Error (1): Call to undefined method Facebook::get_user() in [/home/msoledade/www/evoke/Controller/UsersController.php, line 60]
+2014-02-14 16:39:39 Error: [FatalErrorException] Call to undefined method Facebook::get_user()
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 60)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 16:39:47 Error: Fatal Error (1): Call to undefined method Facebook::get_user() in [/home/msoledade/www/evoke/Controller/UsersController.php, line 60]
+2014-02-14 16:39:47 Error: [FatalErrorException] Call to undefined method Facebook::get_user()
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 60)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 16:40:44 Error: Fatal Error (1): Call to undefined method Facebook::get_user() in [/home/msoledade/www/evoke/Controller/UsersController.php, line 60]
+2014-02-14 16:40:44 Error: [FatalErrorException] Call to undefined method Facebook::get_user()
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 60)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 60, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 16:42:20 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 16:42:30 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 16:42:34 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 16:43:21 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 16:44:45 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 16:46:53 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 16:57:46 Error: Fatal Error (1): Call to a member function getUser() on a non-object in [/home/msoledade/www/evoke/Controller/UsersController.php, line 65]
+2014-02-14 16:57:46 Error: [FatalErrorException] Call to a member function getUser() on a non-object
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/home/msoledade...', 65)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/home/msoledade...', 65, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/home/msoledade...', 65, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 17:12:38 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 17:13:10 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 17:13:38 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 17:15:18 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/<!DOCTYPE html>
+<html lang="pt" id="facebook" class="no_js">
+<head><meta charset="utf-8" /><script>function envFlush(a){function b(c){for(var d in a)c[d]=a[d];}if(window.requireLazy){window.requireLazy(['Env'],b);}else{Env=window.Env||{};b(Env);}}envFlush({"lsd":"AVqdYP0y","ajaxpipe_token":"AXikbfD7KyQgGpA3","no_cookies":1,"lhsh":"7AQHWGU6Y","tracking_domain":"https:\/\/pixel.facebook.com","retry_ajax_on_network_error":"1"});</script><script>CavalryLogger=false;</script><noscript><meta http-equiv="refresh" content="0; URL=/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D&amp;_fb_noscript=1" /></noscript><meta name="robots" content="noodp, noydir" /><meta name="referrer" content="default" id="meta_referrer" /><link rel="alternate" media="handheld" href="https://www.facebook.com/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D" /><title>Erro</title>
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yU/r/KDKGNT94Er9.css" />
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y_/r/94Ykz5egJgT.css" />
+
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yb/r/2V1Y9XEQfvo.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yf/r/1ZfmouSchBI.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yH/r/cB0U8vA7lJF.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/SSR7KUin_bK.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/DpsatdQ68mO.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/UyremhRzlXC.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/-k9bkwUX5WY.js" crossorigin="anonymous"></script>
+  <script>requireLazy(["Bootloader"], function(Bootloader) {Bootloader.done(["musw6","+4cO9","t4k3N","mf6pP","iF9KR","4vv8\/"]);});</script><script>(require("ServerJSDefine")).handleDefines([["BootloaderConfig",[],{},329],["CurrentUserInitialData",[],{"id":"0"},270],["SiteData",[],{"revision":1123146,"tier":"","push_phase":"V3","pkg_cohort":"EXP1:DEFAULT","vip":"31.13.73.129"},317],["DTSGInitialData",[],{},258],["ISB",[],{},330],["LSD",[],{"token":"AVqdYP0y"},323],["BanzaiConfig",[],{"EXPIRY":86400000,"MAX_SIZE":10000,"MAX_WAIT":150000,"RESTORE_WAIT":150000,"blacklist":["time_spent"],"gks":{"adapterhooks":true,"boosted_pagelikes":true,"boosted_posts":true,"jslogger":true,"miny_compression":true,"time_spent_bit_array":true,"time_spent_debug":true,"useraction":true,"videos":true,"visibility_tracking":true,"vitals":true}},7]]);require("InitialJSLoader").handleServerJS({"require":[["markJSEnabled"],["lowerDomain"],["Primer"]]});</script></head><body class="dialog Locale_pt_BR"><div class="_li"><div class="mal pam uiBoxRed">The redirect_uri URL must be absolute</div></div>
+<script>Bootloader.setResourceMap({"8MFx8":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yU\/r\/KDKGNT94Er9.css"},"6WKjA":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y_\/r\/94Ykz5egJgT.css"},"8pU7f":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yV\/r\/iXI9q29HIYS.css"},"VDymv":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yf\/r\/h-yQvWfLyZG.css"},"WQ20c":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y9\/r\/5fL6GCPHNTK.css"}});Bootloader.setResourceMap({"U92KD":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yM\/r\/vhaVTa3BT8W.js"},"mf6pP":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yd\/r\/DpsatdQ68mO.js"},"xUw5z":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yN\/r\/neA88xQpvpf.js"},"musw6":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yf\/r\/1ZfmouSchBI.js"},"2YCCl":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yq\/r\/K5OqRxzsDg8.js"},"20549":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y1\/r\/2TQV7FevUi0.js"},"JKbB2":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yl\/r\/y1wXqR4yYaE.js"},"oE4Do":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yM\/r\/bYmP3yfBJQk.js"},"cNca2":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yJ\/r\/fqtbXiAt4AU.js"},"\/rNYe":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y5\/r\/m25m4Fz2Uxc.js"},"bwsMw":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y_\/r\/hwOyT9fmfZV.js"},"MT1v3":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y6\/r\/4QIydIcR3l2.js"},"ghXB0":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yu\/r\/1TqJxGgVXo1.js"},"pz8lu":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yx\/r\/UJHKL6Dt4Vd.js"},"Idzy0":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yF\/r\/G6f0rzJ8THj.js"},"RQpdT":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yv\/r\/zZtLAbD1oG1.js"},"POFeb":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yw\/r\/NO3BW8eJI3x.js"},"LOKvE":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yE\/r\/Ty8z4L12ww5.js"},"t4k3N":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yS\/r\/SSR7KUin_bK.js"},"wxq+C":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/ya\/r\/HtpiN0FHE1h.js"},"Rs18G":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yI\/r\/uO3qawLm1cS.js"},"6AU0l":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y-\/r\/N61K-l_-_zP.js"},"AtxWD":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yY\/r\/y5ZBemqsu_7.js"},"zyFOp":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yW\/r\/HUvB_EaiSlz.js"}});
+Bootloader.enableBootload({"React":{"resources":["U92KD","mf6pP"],"module":true},"ExceptionDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","2YCCl","20549"],"module":true},"AsyncDOM":{"resources":["mf6pP","JKbB2"],"module":true},"ConfirmationDialog":{"resources":["mf6pP","8MFx8","musw6","oE4Do"],"module":true},"Dialog":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"ErrorSignal":{"resources":["mf6pP","cNca2"],"module":true},"Event":{"resources":["mf6pP"],"module":true},"FbdDialogProvider":{"resources":["\/rNYe","mf6pP","bwsMw"],"module":true},"AsyncDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"AsyncRequest":{"resources":["mf6pP"],"module":true},"PhotoSnowlift":{"resources":["MT1v3","mf6pP","musw6","8MFx8","xUw5z","8pU7f","U92KD","ghXB0"],"module":true},"PhotoTagger":{"resources":["mf6pP","musw6","8MFx8","xUw5z","pz8lu","Idzy0","U92KD","MT1v3"],"module":true},"Live":{"resources":["mf6pP","JKbB2","U92KD"],"module":true},"PhotoTagApproval":{"resources":["mf6pP","MT1v3","Idzy0"],"module":true},"PhotoTags":{"resources":["mf6pP","MT1v3","8MFx8","Idzy0"],"module":true},"TagTokenizer":{"resources":["mf6pP","8pU7f","RQpdT","Idzy0","8MFx8","POFeb"],"module":true},"css:fb-photos-snowlift-fullscreen-css":{"resources":["VDymv"]},"SnowliftPicCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","LOKvE","U92KD","pz8lu","t4k3N","wxq+C"],"module":true},"PhotosButtonTooltips":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f","Rs18G"],"module":true},"VideoRotate":{"resources":["mf6pP","musw6","8MFx8","xUw5z","U92KD","6AU0l"],"module":true},"AsyncResponse":{"resources":["mf6pP"],"module":true},"PhotoPermalinkCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","U92KD","pz8lu","LOKvE","t4k3N"],"module":true},"PhotoInlineEditor":{"resources":["mf6pP","MT1v3","musw6","xUw5z","8MFx8","U92KD","pz8lu","Idzy0","POFeb","RQpdT","8pU7f","AtxWD"],"module":true},"Form":{"resources":["mf6pP","8MFx8","musw6"],"module":true},"SpotlightShareViewer":{"resources":["mf6pP","zyFOp"],"module":true},"Toggler":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"Tooltip":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"DOM":{"resources":["mf6pP"],"module":true},"Input":{"resources":["mf6pP","8MFx8"],"module":true},"trackReferrer":{"resources":[],"module":true},"DimensionTracking":{"resources":["mf6pP"],"module":true},"HighContrastMode":{"resources":["mf6pP"],"module":true},"DetectBrokenProxyCache":{"resources":["mf6pP"],"module":true}});</script>
+<script>require("InitialJSLoader").loadOnDOMContentReady([]);</script>
+<script>
+Bootloader.configurePage(["8MFx8","6WKjA"]);
+
+(require("ServerJSDefine")).handleDefines([["EagleEyeConfig",[],{"seed":"0wu9"},294],["TrackingConfig",[],{"domain":"https:\/\/pixel.facebook.com"},325],["TimeSpentConfig",[],{"0_delay":0,"0_timeout":8,"delay":200000,"timeout":64},142]]);require("InitialJSLoader").handleServerJS({"require":[["PostLoadJS","loadAndRequire",[],["DimensionTracking"]],["PostLoadJS","loadAndCall",[],["HighContrastMode","init",[{"isHCM":false,"spacerImage":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y4\/r\/-PAXP-deijE.gif"}]]],["PostLoadJS","loadAndCall",[],["DetectBrokenProxyCache","run",[0,"c_user"]]],["ScriptPath","set",[],["\/dialog\/oauth","a1f3c513"]],["ClickRefLogger"],["userAction","setUATypeConfig",[],[{"ua:e":false}]],["ScriptPathState","setUserURISampleRate",[],[0.0002]],["userAction","setCustomSampleConfig",[],[{"ua:n":{"test":{"ua_id":{"test":true}}},"ua:i":{"snowlift":{"action":{"open":true,"close":true}},"canvas":{"action":{"mouseover":true,"mouseout":true}}}}]],["UserActionHistory"],["ScriptPathLogger","startLogging",[],[]],["TimeSpentBitArrayLogger","init",[],[]]]});
+
+</script>.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/<!DOCTYPE html>
+<html lang="pt" id="facebook" class="no_js">
+<head><meta charset="utf-8" /><script>function envFlush(a){function b(c){for(var d in a)c[d]=a[d];}if(window.requireLazy){window.requireLazy([\'Env\'],b);}else{Env=window.Env||{};b(Env);}}envFlush({"lsd":"AVqdYP0y","ajaxpipe_token":"AXikbfD7KyQgGpA3","no_cookies":1,"lhsh":"7AQHWGU6Y","tracking_domain":"https:\\/\\/pixel.facebook.com","retry_ajax_on_network_error":"1"});</script><script>CavalryLogger=false;</script><noscript><meta http-equiv="refresh" content="0; URL=/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D&amp;_fb_noscript=1" /></noscript><meta name="robots" content="noodp, noydir" /><meta name="referrer" content="default" id="meta_referrer" /><link rel="alternate" media="handheld" href="https://www.facebook.com/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D" /><title>Erro</title>
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yU/r/KDKGNT94Er9.css" />
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y_/r/94Ykz5egJgT.css" />
+
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yb/r/2V1Y9XEQfvo.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yf/r/1ZfmouSchBI.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yH/r/cB0U8vA7lJF.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/SSR7KUin_bK.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/DpsatdQ68mO.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/UyremhRzlXC.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/-k9bkwUX5WY.js" crossorigin="anonymous"></script>
+  <script>requireLazy(["Bootloader"], function(Bootloader) {Bootloader.done(["musw6","+4cO9","t4k3N","mf6pP","iF9KR","4vv8\\/"]);});</script><script>(require("ServerJSDefine")).handleDefines([["BootloaderConfig",[],{},329],["CurrentUserInitialData",[],{"id":"0"},270],["SiteData",[],{"revision":1123146,"tier":"","push_phase":"V3","pkg_cohort":"EXP1:DEFAULT","vip":"31.13.73.129"},317],["DTSGInitialData",[],{},258],["ISB",[],{},330],["LSD",[],{"token":"AVqdYP0y"},323],["BanzaiConfig",[],{"EXPIRY":86400000,"MAX_SIZE":10000,"MAX_WAIT":150000,"RESTORE_WAIT":150000,"blacklist":["time_spent"],"gks":{"adapterhooks":true,"boosted_pagelikes":true,"boosted_posts":true,"jslogger":true,"miny_compression":true,"time_spent_bit_array":true,"time_spent_debug":true,"useraction":true,"videos":true,"visibility_tracking":true,"vitals":true}},7]]);require("InitialJSLoader").handleServerJS({"require":[["markJSEnabled"],["lowerDomain"],["Primer"]]});</script></head><body class="dialog Locale_pt_BR"><div class="_li"><div class="mal pam uiBoxRed">The redirect_uri URL must be absolute</div></div>
+<script>Bootloader.setResourceMap({"8MFx8":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yU\\/r\\/KDKGNT94Er9.css"},"6WKjA":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y_\\/r\\/94Ykz5egJgT.css"},"8pU7f":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yV\\/r\\/iXI9q29HIYS.css"},"VDymv":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yf\\/r\\/h-yQvWfLyZG.css"},"WQ20c":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y9\\/r\\/5fL6GCPHNTK.css"}});Bootloader.setResourceMap({"U92KD":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yM\\/r\\/vhaVTa3BT8W.js"},"mf6pP":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yd\\/r\\/DpsatdQ68mO.js"},"xUw5z":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yN\\/r\\/neA88xQpvpf.js"},"musw6":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yf\\/r\\/1ZfmouSchBI.js"},"2YCCl":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yq\\/r\\/K5OqRxzsDg8.js"},"20549":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y1\\/r\\/2TQV7FevUi0.js"},"JKbB2":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yl\\/r\\/y1wXqR4yYaE.js"},"oE4Do":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yM\\/r\\/bYmP3yfBJQk.js"},"cNca2":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yJ\\/r\\/fqtbXiAt4AU.js"},"\\/rNYe":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y5\\/r\\/m25m4Fz2Uxc.js"},"bwsMw":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y_\\/r\\/hwOyT9fmfZV.js"},"MT1v3":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y6\\/r\\/4QIydIcR3l2.js"},"ghXB0":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yu\\/r\\/1TqJxGgVXo1.js"},"pz8lu":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yx\\/r\\/UJHKL6Dt4Vd.js"},"Idzy0":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yF\\/r\\/G6f0rzJ8THj.js"},"RQpdT":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yv\\/r\\/zZtLAbD1oG1.js"},"POFeb":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yw\\/r\\/NO3BW8eJI3x.js"},"LOKvE":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yE\\/r\\/Ty8z4L12ww5.js"},"t4k3N":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yS\\/r\\/SSR7KUin_bK.js"},"wxq+C":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/ya\\/r\\/HtpiN0FHE1h.js"},"Rs18G":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yI\\/r\\/uO3qawLm1cS.js"},"6AU0l":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y-\\/r\\/N61K-l_-_zP.js"},"AtxWD":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yY\\/r\\/y5ZBemqsu_7.js"},"zyFOp":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yW\\/r\\/HUvB_EaiSlz.js"}});
+Bootloader.enableBootload({"React":{"resources":["U92KD","mf6pP"],"module":true},"ExceptionDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","2YCCl","20549"],"module":true},"AsyncDOM":{"resources":["mf6pP","JKbB2"],"module":true},"ConfirmationDialog":{"resources":["mf6pP","8MFx8","musw6","oE4Do"],"module":true},"Dialog":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"ErrorSignal":{"resources":["mf6pP","cNca2"],"module":true},"Event":{"resources":["mf6pP"],"module":true},"FbdDialogProvider":{"resources":["\\/rNYe","mf6pP","bwsMw"],"module":true},"AsyncDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"AsyncRequest":{"resources":["mf6pP"],"module":true},"PhotoSnowlift":{"resources":["MT1v3","mf6pP","musw6","8MFx8","xUw5z","8pU7f","U92KD","ghXB0"],"module":true},"PhotoTagger":{"resources":["mf6pP","musw6","8MFx8","xUw5z","pz8lu","Idzy0","U92KD","MT1v3"],"module":true},"Live":{"resources":["mf6pP","JKbB2","U92KD"],"module":true},"PhotoTagApproval":{"resources":["mf6pP","MT1v3","Idzy0"],"module":true},"PhotoTags":{"resources":["mf6pP","MT1v3","8MFx8","Idzy0"],"module":true},"TagTokenizer":{"resources":["mf6pP","8pU7f","RQpdT","Idzy0","8MFx8","POFeb"],"module":true},"css:fb-photos-snowlift-fullscreen-css":{"resources":["VDymv"]},"SnowliftPicCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","LOKvE","U92KD","pz8lu","t4k3N","wxq+C"],"module":true},"PhotosButtonTooltips":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f","Rs18G"],"module":true},"VideoRotate":{"resources":["mf6pP","musw6","8MFx8","xUw5z","U92KD","6AU0l"],"module":true},"AsyncResponse":{"resources":["mf6pP"],"module":true},"PhotoPermalinkCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","U92KD","pz8lu","LOKvE","t4k3N"],"module":true},"PhotoInlineEditor":{"resources":["mf6pP","MT1v3","musw6","xUw5z","8MFx8","U92KD","pz8lu","Idzy0","POFeb","RQpdT","8pU7f","AtxWD"],"module":true},"Form":{"resources":["mf6pP","8MFx8","musw6"],"module":true},"SpotlightShareViewer":{"resources":["mf6pP","zyFOp"],"module":true},"Toggler":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"Tooltip":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"DOM":{"resources":["mf6pP"],"module":true},"Input":{"resources":["mf6pP","8MFx8"],"module":true},"trackReferrer":{"resources":[],"module":true},"DimensionTracking":{"resources":["mf6pP"],"module":true},"HighContrastMode":{"resources":["mf6pP"],"module":true},"DetectBrokenProxyCache":{"resources":["mf6pP"],"module":true}});</script>
+<script>require("InitialJSLoader").loadOnDOMContentReady([]);</script>
+<script>
+Bootloader.configurePage(["8MFx8","6WKjA"]);
+
+(require("ServerJSDefine")).handleDefines([["EagleEyeConfig",[],{"seed":"0wu9"},294],["TrackingConfig",[],{"domain":"https:\\/\\/pixel.facebook.com"},325],["TimeSpentConfig",[],{"0_delay":0,"0_timeout":8,"delay":200000,"timeout":64},142]]);require("InitialJSLoader").handleServerJS({"require":[["PostLoadJS","loadAndRequire",[],["DimensionTracking"]],["PostLoadJS","loadAndCall",[],["HighContrastMode","init",[{"isHCM":false,"spacerImage":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y4\\/r\\/-PAXP-deijE.gif"}]]],["PostLoadJS","loadAndCall",[],["DetectBrokenProxyCache","run",[0,"c_user"]]],["ScriptPath","set",[],["\\/dialog\\/oauth","a1f3c513"]],["ClickRefLogger"],["userAction","setUATypeConfig",[],[{"ua:e":false}]],["ScriptPathState","setUserURISampleRate",[],[0.0002]],["userAction","setCustomSampleConfig",[],[{"ua:n":{"test":{"ua_id":{"test":true}}},"ua:i":{"snowlift":{"action":{"open":true,"close":true}},"canvas":{"action":{"mouseover":true,"mouseout":true}}}}]],["UserActionHistory"],["ScriptPathLogger","startLogging",[],[]],["TimeSpentBitArrayLogger","init",[],[]]]});
+
+</script>.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(Object(HttpSocketResponse))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(Object(HttpSocketResponse), NULL)
+#2 /home/msoledade/www/evoke/Controller/UsersController.php(63): Controller->render(Object(HttpSocketResponse))
+#3 [internal function]: UsersController->fb_login()
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#7 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2014-02-14 17:15:54 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/ajax.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/ajax.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName('ajax')
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render('ajax', Object(HttpSocketResponse))
+#2 /home/msoledade/www/evoke/Controller/UsersController.php(63): Controller->render('ajax', Object(HttpSocketResponse))
+#3 [internal function]: UsersController->fb_login()
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#7 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#8 {main}
+2014-02-14 17:16:30 Error: [MissingLayoutException] Layout file "/home/msoledade/www/evoke/View/Layouts/<!DOCTYPE html>
+<html lang="pt" id="facebook" class="no_js">
+<head><meta charset="utf-8" /><script>function envFlush(a){function b(c){for(var d in a)c[d]=a[d];}if(window.requireLazy){window.requireLazy(['Env'],b);}else{Env=window.Env||{};b(Env);}}envFlush({"lsd":"AVol6aAf","ajaxpipe_token":"AXikbfD7KyQgGpA3","no_cookies":1,"lhsh":"_AQEhTvEq","tracking_domain":"https:\/\/pixel.facebook.com","retry_ajax_on_network_error":"1"});</script><script>CavalryLogger=false;</script><noscript><meta http-equiv="refresh" content="0; URL=/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D&amp;_fb_noscript=1" /></noscript><meta name="robots" content="noodp, noydir" /><meta name="referrer" content="default" id="meta_referrer" /><link rel="alternate" media="handheld" href="https://www.facebook.com/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D" /><title>Erro</title>
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yU/r/KDKGNT94Er9.css" />
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y_/r/94Ykz5egJgT.css" />
+
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yb/r/2V1Y9XEQfvo.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yf/r/1ZfmouSchBI.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yH/r/cB0U8vA7lJF.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/SSR7KUin_bK.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/DpsatdQ68mO.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/UyremhRzlXC.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/-k9bkwUX5WY.js" crossorigin="anonymous"></script>
+  <script>requireLazy(["Bootloader"], function(Bootloader) {Bootloader.done(["musw6","+4cO9","t4k3N","mf6pP","iF9KR","4vv8\/"]);});</script><script>(require("ServerJSDefine")).handleDefines([["BootloaderConfig",[],{},329],["CurrentUserInitialData",[],{"id":"0"},270],["SiteData",[],{"revision":1123146,"tier":"","push_phase":"V3","pkg_cohort":"EXP1:DEFAULT","vip":"31.13.73.49"},317],["DTSGInitialData",[],{},258],["ISB",[],{},330],["LSD",[],{"token":"AVol6aAf"},323],["BanzaiConfig",[],{"EXPIRY":86400000,"MAX_SIZE":10000,"MAX_WAIT":150000,"RESTORE_WAIT":150000,"blacklist":["time_spent"],"gks":{"adapterhooks":true,"boosted_pagelikes":true,"boosted_posts":true,"jslogger":true,"miny_compression":true,"time_spent_bit_array":true,"time_spent_debug":true,"useraction":true,"videos":true,"visibility_tracking":true,"vitals":true}},7]]);require("InitialJSLoader").handleServerJS({"require":[["markJSEnabled"],["lowerDomain"],["Primer"]]});</script></head><body class="dialog Locale_pt_BR"><div class="_li"><div class="mal pam uiBoxRed">The redirect_uri URL must be absolute</div></div>
+<script>Bootloader.setResourceMap({"8MFx8":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yU\/r\/KDKGNT94Er9.css"},"6WKjA":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y_\/r\/94Ykz5egJgT.css"},"8pU7f":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yV\/r\/iXI9q29HIYS.css"},"VDymv":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yf\/r\/h-yQvWfLyZG.css"},"WQ20c":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y9\/r\/5fL6GCPHNTK.css"}});Bootloader.setResourceMap({"U92KD":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yM\/r\/vhaVTa3BT8W.js"},"mf6pP":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yd\/r\/DpsatdQ68mO.js"},"xUw5z":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yN\/r\/neA88xQpvpf.js"},"musw6":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yf\/r\/1ZfmouSchBI.js"},"2YCCl":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yq\/r\/K5OqRxzsDg8.js"},"20549":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y1\/r\/2TQV7FevUi0.js"},"JKbB2":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yl\/r\/y1wXqR4yYaE.js"},"oE4Do":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yM\/r\/bYmP3yfBJQk.js"},"cNca2":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yJ\/r\/fqtbXiAt4AU.js"},"\/rNYe":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y5\/r\/m25m4Fz2Uxc.js"},"bwsMw":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y_\/r\/hwOyT9fmfZV.js"},"MT1v3":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y6\/r\/4QIydIcR3l2.js"},"ghXB0":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yu\/r\/1TqJxGgVXo1.js"},"pz8lu":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yx\/r\/UJHKL6Dt4Vd.js"},"Idzy0":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yF\/r\/G6f0rzJ8THj.js"},"RQpdT":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yv\/r\/zZtLAbD1oG1.js"},"POFeb":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yw\/r\/NO3BW8eJI3x.js"},"LOKvE":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yE\/r\/Ty8z4L12ww5.js"},"t4k3N":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yS\/r\/SSR7KUin_bK.js"},"wxq+C":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/ya\/r\/HtpiN0FHE1h.js"},"Rs18G":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yI\/r\/uO3qawLm1cS.js"},"6AU0l":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y-\/r\/N61K-l_-_zP.js"},"AtxWD":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yY\/r\/y5ZBemqsu_7.js"},"zyFOp":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yW\/r\/HUvB_EaiSlz.js"}});
+Bootloader.enableBootload({"React":{"resources":["U92KD","mf6pP"],"module":true},"ExceptionDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","2YCCl","20549"],"module":true},"AsyncDOM":{"resources":["mf6pP","JKbB2"],"module":true},"ConfirmationDialog":{"resources":["mf6pP","8MFx8","musw6","oE4Do"],"module":true},"Dialog":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"ErrorSignal":{"resources":["mf6pP","cNca2"],"module":true},"Event":{"resources":["mf6pP"],"module":true},"FbdDialogProvider":{"resources":["\/rNYe","mf6pP","bwsMw"],"module":true},"AsyncDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"AsyncRequest":{"resources":["mf6pP"],"module":true},"PhotoSnowlift":{"resources":["MT1v3","mf6pP","musw6","8MFx8","xUw5z","8pU7f","U92KD","ghXB0"],"module":true},"PhotoTagger":{"resources":["mf6pP","musw6","8MFx8","xUw5z","pz8lu","Idzy0","U92KD","MT1v3"],"module":true},"Live":{"resources":["mf6pP","JKbB2","U92KD"],"module":true},"PhotoTagApproval":{"resources":["mf6pP","MT1v3","Idzy0"],"module":true},"PhotoTags":{"resources":["mf6pP","MT1v3","8MFx8","Idzy0"],"module":true},"TagTokenizer":{"resources":["mf6pP","8pU7f","RQpdT","Idzy0","8MFx8","POFeb"],"module":true},"css:fb-photos-snowlift-fullscreen-css":{"resources":["VDymv"]},"SnowliftPicCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","LOKvE","U92KD","pz8lu","t4k3N","wxq+C"],"module":true},"PhotosButtonTooltips":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f","Rs18G"],"module":true},"VideoRotate":{"resources":["mf6pP","musw6","8MFx8","xUw5z","U92KD","6AU0l"],"module":true},"AsyncResponse":{"resources":["mf6pP"],"module":true},"PhotoPermalinkCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","U92KD","pz8lu","LOKvE","t4k3N"],"module":true},"PhotoInlineEditor":{"resources":["mf6pP","MT1v3","musw6","xUw5z","8MFx8","U92KD","pz8lu","Idzy0","POFeb","RQpdT","8pU7f","AtxWD"],"module":true},"Form":{"resources":["mf6pP","8MFx8","musw6"],"module":true},"SpotlightShareViewer":{"resources":["mf6pP","zyFOp"],"module":true},"Toggler":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"Tooltip":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"DOM":{"resources":["mf6pP"],"module":true},"Input":{"resources":["mf6pP","8MFx8"],"module":true},"trackReferrer":{"resources":[],"module":true},"DimensionTracking":{"resources":["mf6pP"],"module":true},"HighContrastMode":{"resources":["mf6pP"],"module":true},"DetectBrokenProxyCache":{"resources":["mf6pP"],"module":true}});</script>
+<script>require("InitialJSLoader").loadOnDOMContentReady([]);</script>
+<script>
+Bootloader.configurePage(["8MFx8","6WKjA"]);
+
+(require("ServerJSDefine")).handleDefines([["EagleEyeConfig",[],{"seed":"0Etd"},294],["TrackingConfig",[],{"domain":"https:\/\/pixel.facebook.com"},325],["TimeSpentConfig",[],{"0_delay":0,"0_timeout":8,"delay":200000,"timeout":64},142]]);require("InitialJSLoader").handleServerJS({"require":[["PostLoadJS","loadAndRequire",[],["DimensionTracking"]],["PostLoadJS","loadAndCall",[],["HighContrastMode","init",[{"isHCM":false,"spacerImage":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y4\/r\/-PAXP-deijE.gif"}]]],["PostLoadJS","loadAndCall",[],["DetectBrokenProxyCache","run",[0,"c_user"]]],["ScriptPath","set",[],["\/dialog\/oauth","a1f3c513"]],["ClickRefLogger"],["userAction","setUATypeConfig",[],[{"ua:e":false}]],["ScriptPathState","setUserURISampleRate",[],[0.0002]],["userAction","setCustomSampleConfig",[],[{"ua:n":{"test":{"ua_id":{"test":true}}},"ua:i":{"snowlift":{"action":{"open":true,"close":true}},"canvas":{"action":{"mouseover":true,"mouseout":true}}}}]],["UserActionHistory"],["ScriptPathLogger","startLogging",[],[]],["TimeSpentBitArrayLogger","init",[],[]]]});
+
+</script>.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Layouts/<!DOCTYPE html>
+<html lang="pt" id="facebook" class="no_js">
+<head><meta charset="utf-8" /><script>function envFlush(a){function b(c){for(var d in a)c[d]=a[d];}if(window.requireLazy){window.requireLazy([\'Env\'],b);}else{Env=window.Env||{};b(Env);}}envFlush({"lsd":"AVol6aAf","ajaxpipe_token":"AXikbfD7KyQgGpA3","no_cookies":1,"lhsh":"_AQEhTvEq","tracking_domain":"https:\\/\\/pixel.facebook.com","retry_ajax_on_network_error":"1"});</script><script>CavalryLogger=false;</script><noscript><meta http-equiv="refresh" content="0; URL=/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D&amp;_fb_noscript=1" /></noscript><meta name="robots" content="noodp, noydir" /><meta name="referrer" content="default" id="meta_referrer" /><link rel="alternate" media="handheld" href="https://www.facebook.com/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D" /><title>Erro</title>
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yU/r/KDKGNT94Er9.css" />
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y_/r/94Ykz5egJgT.css" />
+
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yb/r/2V1Y9XEQfvo.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yf/r/1ZfmouSchBI.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yH/r/cB0U8vA7lJF.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/SSR7KUin_bK.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/DpsatdQ68mO.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/UyremhRzlXC.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/-k9bkwUX5WY.js" crossorigin="anonymous"></script>
+  <script>requireLazy(["Bootloader"], function(Bootloader) {Bootloader.done(["musw6","+4cO9","t4k3N","mf6pP","iF9KR","4vv8\\/"]);});</script><script>(require("ServerJSDefine")).handleDefines([["BootloaderConfig",[],{},329],["CurrentUserInitialData",[],{"id":"0"},270],["SiteData",[],{"revision":1123146,"tier":"","push_phase":"V3","pkg_cohort":"EXP1:DEFAULT","vip":"31.13.73.49"},317],["DTSGInitialData",[],{},258],["ISB",[],{},330],["LSD",[],{"token":"AVol6aAf"},323],["BanzaiConfig",[],{"EXPIRY":86400000,"MAX_SIZE":10000,"MAX_WAIT":150000,"RESTORE_WAIT":150000,"blacklist":["time_spent"],"gks":{"adapterhooks":true,"boosted_pagelikes":true,"boosted_posts":true,"jslogger":true,"miny_compression":true,"time_spent_bit_array":true,"time_spent_debug":true,"useraction":true,"videos":true,"visibility_tracking":true,"vitals":true}},7]]);require("InitialJSLoader").handleServerJS({"require":[["markJSEnabled"],["lowerDomain"],["Primer"]]});</script></head><body class="dialog Locale_pt_BR"><div class="_li"><div class="mal pam uiBoxRed">The redirect_uri URL must be absolute</div></div>
+<script>Bootloader.setResourceMap({"8MFx8":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yU\\/r\\/KDKGNT94Er9.css"},"6WKjA":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y_\\/r\\/94Ykz5egJgT.css"},"8pU7f":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yV\\/r\\/iXI9q29HIYS.css"},"VDymv":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yf\\/r\\/h-yQvWfLyZG.css"},"WQ20c":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y9\\/r\\/5fL6GCPHNTK.css"}});Bootloader.setResourceMap({"U92KD":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yM\\/r\\/vhaVTa3BT8W.js"},"mf6pP":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yd\\/r\\/DpsatdQ68mO.js"},"xUw5z":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yN\\/r\\/neA88xQpvpf.js"},"musw6":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yf\\/r\\/1ZfmouSchBI.js"},"2YCCl":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yq\\/r\\/K5OqRxzsDg8.js"},"20549":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y1\\/r\\/2TQV7FevUi0.js"},"JKbB2":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yl\\/r\\/y1wXqR4yYaE.js"},"oE4Do":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yM\\/r\\/bYmP3yfBJQk.js"},"cNca2":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yJ\\/r\\/fqtbXiAt4AU.js"},"\\/rNYe":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y5\\/r\\/m25m4Fz2Uxc.js"},"bwsMw":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y_\\/r\\/hwOyT9fmfZV.js"},"MT1v3":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y6\\/r\\/4QIydIcR3l2.js"},"ghXB0":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yu\\/r\\/1TqJxGgVXo1.js"},"pz8lu":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yx\\/r\\/UJHKL6Dt4Vd.js"},"Idzy0":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yF\\/r\\/G6f0rzJ8THj.js"},"RQpdT":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yv\\/r\\/zZtLAbD1oG1.js"},"POFeb":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yw\\/r\\/NO3BW8eJI3x.js"},"LOKvE":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yE\\/r\\/Ty8z4L12ww5.js"},"t4k3N":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yS\\/r\\/SSR7KUin_bK.js"},"wxq+C":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/ya\\/r\\/HtpiN0FHE1h.js"},"Rs18G":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yI\\/r\\/uO3qawLm1cS.js"},"6AU0l":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y-\\/r\\/N61K-l_-_zP.js"},"AtxWD":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yY\\/r\\/y5ZBemqsu_7.js"},"zyFOp":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yW\\/r\\/HUvB_EaiSlz.js"}});
+Bootloader.enableBootload({"React":{"resources":["U92KD","mf6pP"],"module":true},"ExceptionDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","2YCCl","20549"],"module":true},"AsyncDOM":{"resources":["mf6pP","JKbB2"],"module":true},"ConfirmationDialog":{"resources":["mf6pP","8MFx8","musw6","oE4Do"],"module":true},"Dialog":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"ErrorSignal":{"resources":["mf6pP","cNca2"],"module":true},"Event":{"resources":["mf6pP"],"module":true},"FbdDialogProvider":{"resources":["\\/rNYe","mf6pP","bwsMw"],"module":true},"AsyncDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"AsyncRequest":{"resources":["mf6pP"],"module":true},"PhotoSnowlift":{"resources":["MT1v3","mf6pP","musw6","8MFx8","xUw5z","8pU7f","U92KD","ghXB0"],"module":true},"PhotoTagger":{"resources":["mf6pP","musw6","8MFx8","xUw5z","pz8lu","Idzy0","U92KD","MT1v3"],"module":true},"Live":{"resources":["mf6pP","JKbB2","U92KD"],"module":true},"PhotoTagApproval":{"resources":["mf6pP","MT1v3","Idzy0"],"module":true},"PhotoTags":{"resources":["mf6pP","MT1v3","8MFx8","Idzy0"],"module":true},"TagTokenizer":{"resources":["mf6pP","8pU7f","RQpdT","Idzy0","8MFx8","POFeb"],"module":true},"css:fb-photos-snowlift-fullscreen-css":{"resources":["VDymv"]},"SnowliftPicCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","LOKvE","U92KD","pz8lu","t4k3N","wxq+C"],"module":true},"PhotosButtonTooltips":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f","Rs18G"],"module":true},"VideoRotate":{"resources":["mf6pP","musw6","8MFx8","xUw5z","U92KD","6AU0l"],"module":true},"AsyncResponse":{"resources":["mf6pP"],"module":true},"PhotoPermalinkCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","U92KD","pz8lu","LOKvE","t4k3N"],"module":true},"PhotoInlineEditor":{"resources":["mf6pP","MT1v3","musw6","xUw5z","8MFx8","U92KD","pz8lu","Idzy0","POFeb","RQpdT","8pU7f","AtxWD"],"module":true},"Form":{"resources":["mf6pP","8MFx8","musw6"],"module":true},"SpotlightShareViewer":{"resources":["mf6pP","zyFOp"],"module":true},"Toggler":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"Tooltip":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"DOM":{"resources":["mf6pP"],"module":true},"Input":{"resources":["mf6pP","8MFx8"],"module":true},"trackReferrer":{"resources":[],"module":true},"DimensionTracking":{"resources":["mf6pP"],"module":true},"HighContrastMode":{"resources":["mf6pP"],"module":true},"DetectBrokenProxyCache":{"resources":["mf6pP"],"module":true}});</script>
+<script>require("InitialJSLoader").loadOnDOMContentReady([]);</script>
+<script>
+Bootloader.configurePage(["8MFx8","6WKjA"]);
+
+(require("ServerJSDefine")).handleDefines([["EagleEyeConfig",[],{"seed":"0Etd"},294],["TrackingConfig",[],{"domain":"https:\\/\\/pixel.facebook.com"},325],["TimeSpentConfig",[],{"0_delay":0,"0_timeout":8,"delay":200000,"timeout":64},142]]);require("InitialJSLoader").handleServerJS({"require":[["PostLoadJS","loadAndRequire",[],["DimensionTracking"]],["PostLoadJS","loadAndCall",[],["HighContrastMode","init",[{"isHCM":false,"spacerImage":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y4\\/r\\/-PAXP-deijE.gif"}]]],["PostLoadJS","loadAndCall",[],["DetectBrokenProxyCache","run",[0,"c_user"]]],["ScriptPath","set",[],["\\/dialog\\/oauth","a1f3c513"]],["ClickRefLogger"],["userAction","setUATypeConfig",[],[{"ua:e":false}]],["ScriptPathState","setUserURISampleRate",[],[0.0002]],["userAction","setCustomSampleConfig",[],[{"ua:n":{"test":{"ua_id":{"test":true}}},"ua:i":{"snowlift":{"action":{"open":true,"close":true}},"canvas":{"action":{"mouseover":true,"mouseout":true}}}}]],["UserActionHistory"],["ScriptPathLogger","startLogging",[],[]],["TimeSpentBitArrayLogger","init",[],[]]]});
+
+</script>.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(498): View->_getLayoutFileName(Object(HttpSocketResponse))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(468): View->renderLayout('', Object(HttpSocketResponse))
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render('fb_prompt', Object(HttpSocketResponse))
+#3 /home/msoledade/www/evoke/Controller/UsersController.php(63): Controller->render('fb_prompt', Object(HttpSocketResponse))
+#4 [internal function]: UsersController->fb_login()
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#8 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2014-02-14 17:21:10 Error: [MissingLayoutException] Layout file "/home/msoledade/www/evoke/View/Layouts/<!DOCTYPE html>
+<html lang="pt" id="facebook" class="no_js">
+<head><meta charset="utf-8" /><script>function envFlush(a){function b(c){for(var d in a)c[d]=a[d];}if(window.requireLazy){window.requireLazy(['Env'],b);}else{Env=window.Env||{};b(Env);}}envFlush({"lsd":"AVokXsFW","ajaxpipe_token":"AXikbfD7KyQgGpA3","no_cookies":1,"lhsh":"QAQG9Qt3l","tracking_domain":"https:\/\/pixel.facebook.com","retry_ajax_on_network_error":"1"});</script><script>CavalryLogger=false;</script><noscript><meta http-equiv="refresh" content="0; URL=/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D&amp;_fb_noscript=1" /></noscript><meta name="robots" content="noodp, noydir" /><meta name="referrer" content="default" id="meta_referrer" /><link rel="alternate" media="handheld" href="https://www.facebook.com/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D" /><title>Erro</title>
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yU/r/KDKGNT94Er9.css" />
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y_/r/94Ykz5egJgT.css" />
+
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yb/r/2V1Y9XEQfvo.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yf/r/1ZfmouSchBI.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yH/r/cB0U8vA7lJF.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/SSR7KUin_bK.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/DpsatdQ68mO.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/UyremhRzlXC.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/-k9bkwUX5WY.js" crossorigin="anonymous"></script>
+  <script>requireLazy(["Bootloader"], function(Bootloader) {Bootloader.done(["musw6","+4cO9","t4k3N","mf6pP","iF9KR","4vv8\/"]);});</script><script>(require("ServerJSDefine")).handleDefines([["BootloaderConfig",[],{},329],["CurrentUserInitialData",[],{"id":"0"},270],["SiteData",[],{"revision":1123146,"tier":"","push_phase":"V3","pkg_cohort":"EXP1:DEFAULT","vip":"31.13.73.97"},317],["DTSGInitialData",[],{},258],["ISB",[],{},330],["LSD",[],{"token":"AVokXsFW"},323],["BanzaiConfig",[],{"EXPIRY":86400000,"MAX_SIZE":10000,"MAX_WAIT":150000,"RESTORE_WAIT":150000,"blacklist":["time_spent"],"gks":{"adapterhooks":true,"boosted_pagelikes":true,"boosted_posts":true,"jslogger":true,"miny_compression":true,"time_spent_bit_array":true,"time_spent_debug":true,"useraction":true,"videos":true,"visibility_tracking":true,"vitals":true}},7]]);require("InitialJSLoader").handleServerJS({"require":[["markJSEnabled"],["lowerDomain"],["Primer"]]});</script></head><body class="dialog Locale_pt_BR"><div class="_li"><div class="mal pam uiBoxRed">The redirect_uri URL must be absolute</div></div>
+<script>Bootloader.setResourceMap({"8MFx8":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yU\/r\/KDKGNT94Er9.css"},"6WKjA":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y_\/r\/94Ykz5egJgT.css"},"8pU7f":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yV\/r\/iXI9q29HIYS.css"},"VDymv":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yf\/r\/h-yQvWfLyZG.css"},"WQ20c":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y9\/r\/5fL6GCPHNTK.css"}});Bootloader.setResourceMap({"U92KD":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yM\/r\/vhaVTa3BT8W.js"},"mf6pP":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yd\/r\/DpsatdQ68mO.js"},"xUw5z":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yN\/r\/neA88xQpvpf.js"},"musw6":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yf\/r\/1ZfmouSchBI.js"},"2YCCl":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yq\/r\/K5OqRxzsDg8.js"},"20549":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y1\/r\/2TQV7FevUi0.js"},"JKbB2":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yl\/r\/y1wXqR4yYaE.js"},"oE4Do":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yM\/r\/bYmP3yfBJQk.js"},"cNca2":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yJ\/r\/fqtbXiAt4AU.js"},"\/rNYe":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y5\/r\/m25m4Fz2Uxc.js"},"bwsMw":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y_\/r\/hwOyT9fmfZV.js"},"MT1v3":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y6\/r\/4QIydIcR3l2.js"},"ghXB0":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yu\/r\/1TqJxGgVXo1.js"},"pz8lu":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yx\/r\/UJHKL6Dt4Vd.js"},"Idzy0":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yF\/r\/G6f0rzJ8THj.js"},"RQpdT":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yv\/r\/zZtLAbD1oG1.js"},"POFeb":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yw\/r\/NO3BW8eJI3x.js"},"LOKvE":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yE\/r\/Ty8z4L12ww5.js"},"t4k3N":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yS\/r\/SSR7KUin_bK.js"},"wxq+C":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/ya\/r\/HtpiN0FHE1h.js"},"Rs18G":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yI\/r\/uO3qawLm1cS.js"},"6AU0l":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y-\/r\/N61K-l_-_zP.js"},"AtxWD":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yY\/r\/y5ZBemqsu_7.js"},"zyFOp":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yW\/r\/HUvB_EaiSlz.js"}});
+Bootloader.enableBootload({"React":{"resources":["U92KD","mf6pP"],"module":true},"ExceptionDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","2YCCl","20549"],"module":true},"AsyncDOM":{"resources":["mf6pP","JKbB2"],"module":true},"ConfirmationDialog":{"resources":["mf6pP","8MFx8","musw6","oE4Do"],"module":true},"Dialog":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"ErrorSignal":{"resources":["mf6pP","cNca2"],"module":true},"Event":{"resources":["mf6pP"],"module":true},"FbdDialogProvider":{"resources":["\/rNYe","mf6pP","bwsMw"],"module":true},"AsyncDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"AsyncRequest":{"resources":["mf6pP"],"module":true},"PhotoSnowlift":{"resources":["MT1v3","mf6pP","musw6","8MFx8","xUw5z","8pU7f","U92KD","ghXB0"],"module":true},"PhotoTagger":{"resources":["mf6pP","musw6","8MFx8","xUw5z","pz8lu","Idzy0","U92KD","MT1v3"],"module":true},"Live":{"resources":["mf6pP","JKbB2","U92KD"],"module":true},"PhotoTagApproval":{"resources":["mf6pP","MT1v3","Idzy0"],"module":true},"PhotoTags":{"resources":["mf6pP","MT1v3","8MFx8","Idzy0"],"module":true},"TagTokenizer":{"resources":["mf6pP","8pU7f","RQpdT","Idzy0","8MFx8","POFeb"],"module":true},"css:fb-photos-snowlift-fullscreen-css":{"resources":["VDymv"]},"SnowliftPicCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","LOKvE","U92KD","pz8lu","t4k3N","wxq+C"],"module":true},"PhotosButtonTooltips":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f","Rs18G"],"module":true},"VideoRotate":{"resources":["mf6pP","musw6","8MFx8","xUw5z","U92KD","6AU0l"],"module":true},"AsyncResponse":{"resources":["mf6pP"],"module":true},"PhotoPermalinkCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","U92KD","pz8lu","LOKvE","t4k3N"],"module":true},"PhotoInlineEditor":{"resources":["mf6pP","MT1v3","musw6","xUw5z","8MFx8","U92KD","pz8lu","Idzy0","POFeb","RQpdT","8pU7f","AtxWD"],"module":true},"Form":{"resources":["mf6pP","8MFx8","musw6"],"module":true},"SpotlightShareViewer":{"resources":["mf6pP","zyFOp"],"module":true},"Toggler":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"Tooltip":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"DOM":{"resources":["mf6pP"],"module":true},"Input":{"resources":["mf6pP","8MFx8"],"module":true},"trackReferrer":{"resources":[],"module":true},"DimensionTracking":{"resources":["mf6pP"],"module":true},"HighContrastMode":{"resources":["mf6pP"],"module":true},"DetectBrokenProxyCache":{"resources":["mf6pP"],"module":true}});</script>
+<script>require("InitialJSLoader").loadOnDOMContentReady([]);</script>
+<script>
+Bootloader.configurePage(["8MFx8","6WKjA"]);
+
+(require("ServerJSDefine")).handleDefines([["EagleEyeConfig",[],{"seed":"08LC"},294],["TrackingConfig",[],{"domain":"https:\/\/pixel.facebook.com"},325],["TimeSpentConfig",[],{"0_delay":0,"0_timeout":8,"delay":200000,"timeout":64},142]]);require("InitialJSLoader").handleServerJS({"require":[["PostLoadJS","loadAndRequire",[],["DimensionTracking"]],["PostLoadJS","loadAndCall",[],["HighContrastMode","init",[{"isHCM":false,"spacerImage":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y4\/r\/-PAXP-deijE.gif"}]]],["PostLoadJS","loadAndCall",[],["DetectBrokenProxyCache","run",[0,"c_user"]]],["ScriptPath","set",[],["\/dialog\/oauth","a1f3c513"]],["ClickRefLogger"],["userAction","setUATypeConfig",[],[{"ua:e":false}]],["ScriptPathState","setUserURISampleRate",[],[0.0002]],["userAction","setCustomSampleConfig",[],[{"ua:n":{"test":{"ua_id":{"test":true}}},"ua:i":{"snowlift":{"action":{"open":true,"close":true}},"canvas":{"action":{"mouseover":true,"mouseout":true}}}}]],["UserActionHistory"],["ScriptPathLogger","startLogging",[],[]],["TimeSpentBitArrayLogger","init",[],[]]]});
+
+</script>.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Layouts/<!DOCTYPE html>
+<html lang="pt" id="facebook" class="no_js">
+<head><meta charset="utf-8" /><script>function envFlush(a){function b(c){for(var d in a)c[d]=a[d];}if(window.requireLazy){window.requireLazy([\'Env\'],b);}else{Env=window.Env||{};b(Env);}}envFlush({"lsd":"AVokXsFW","ajaxpipe_token":"AXikbfD7KyQgGpA3","no_cookies":1,"lhsh":"QAQG9Qt3l","tracking_domain":"https:\\/\\/pixel.facebook.com","retry_ajax_on_network_error":"1"});</script><script>CavalryLogger=false;</script><noscript><meta http-equiv="refresh" content="0; URL=/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D&amp;_fb_noscript=1" /></noscript><meta name="robots" content="noodp, noydir" /><meta name="referrer" content="default" id="meta_referrer" /><link rel="alternate" media="handheld" href="https://www.facebook.com/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D" /><title>Erro</title>
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yU/r/KDKGNT94Er9.css" />
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y_/r/94Ykz5egJgT.css" />
+
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yb/r/2V1Y9XEQfvo.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yf/r/1ZfmouSchBI.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yH/r/cB0U8vA7lJF.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/SSR7KUin_bK.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/DpsatdQ68mO.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/UyremhRzlXC.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/-k9bkwUX5WY.js" crossorigin="anonymous"></script>
+  <script>requireLazy(["Bootloader"], function(Bootloader) {Bootloader.done(["musw6","+4cO9","t4k3N","mf6pP","iF9KR","4vv8\\/"]);});</script><script>(require("ServerJSDefine")).handleDefines([["BootloaderConfig",[],{},329],["CurrentUserInitialData",[],{"id":"0"},270],["SiteData",[],{"revision":1123146,"tier":"","push_phase":"V3","pkg_cohort":"EXP1:DEFAULT","vip":"31.13.73.97"},317],["DTSGInitialData",[],{},258],["ISB",[],{},330],["LSD",[],{"token":"AVokXsFW"},323],["BanzaiConfig",[],{"EXPIRY":86400000,"MAX_SIZE":10000,"MAX_WAIT":150000,"RESTORE_WAIT":150000,"blacklist":["time_spent"],"gks":{"adapterhooks":true,"boosted_pagelikes":true,"boosted_posts":true,"jslogger":true,"miny_compression":true,"time_spent_bit_array":true,"time_spent_debug":true,"useraction":true,"videos":true,"visibility_tracking":true,"vitals":true}},7]]);require("InitialJSLoader").handleServerJS({"require":[["markJSEnabled"],["lowerDomain"],["Primer"]]});</script></head><body class="dialog Locale_pt_BR"><div class="_li"><div class="mal pam uiBoxRed">The redirect_uri URL must be absolute</div></div>
+<script>Bootloader.setResourceMap({"8MFx8":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yU\\/r\\/KDKGNT94Er9.css"},"6WKjA":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y_\\/r\\/94Ykz5egJgT.css"},"8pU7f":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yV\\/r\\/iXI9q29HIYS.css"},"VDymv":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yf\\/r\\/h-yQvWfLyZG.css"},"WQ20c":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y9\\/r\\/5fL6GCPHNTK.css"}});Bootloader.setResourceMap({"U92KD":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yM\\/r\\/vhaVTa3BT8W.js"},"mf6pP":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yd\\/r\\/DpsatdQ68mO.js"},"xUw5z":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yN\\/r\\/neA88xQpvpf.js"},"musw6":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yf\\/r\\/1ZfmouSchBI.js"},"2YCCl":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yq\\/r\\/K5OqRxzsDg8.js"},"20549":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y1\\/r\\/2TQV7FevUi0.js"},"JKbB2":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yl\\/r\\/y1wXqR4yYaE.js"},"oE4Do":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yM\\/r\\/bYmP3yfBJQk.js"},"cNca2":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yJ\\/r\\/fqtbXiAt4AU.js"},"\\/rNYe":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y5\\/r\\/m25m4Fz2Uxc.js"},"bwsMw":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y_\\/r\\/hwOyT9fmfZV.js"},"MT1v3":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y6\\/r\\/4QIydIcR3l2.js"},"ghXB0":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yu\\/r\\/1TqJxGgVXo1.js"},"pz8lu":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yx\\/r\\/UJHKL6Dt4Vd.js"},"Idzy0":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yF\\/r\\/G6f0rzJ8THj.js"},"RQpdT":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yv\\/r\\/zZtLAbD1oG1.js"},"POFeb":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yw\\/r\\/NO3BW8eJI3x.js"},"LOKvE":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yE\\/r\\/Ty8z4L12ww5.js"},"t4k3N":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yS\\/r\\/SSR7KUin_bK.js"},"wxq+C":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/ya\\/r\\/HtpiN0FHE1h.js"},"Rs18G":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yI\\/r\\/uO3qawLm1cS.js"},"6AU0l":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y-\\/r\\/N61K-l_-_zP.js"},"AtxWD":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yY\\/r\\/y5ZBemqsu_7.js"},"zyFOp":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yW\\/r\\/HUvB_EaiSlz.js"}});
+Bootloader.enableBootload({"React":{"resources":["U92KD","mf6pP"],"module":true},"ExceptionDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","2YCCl","20549"],"module":true},"AsyncDOM":{"resources":["mf6pP","JKbB2"],"module":true},"ConfirmationDialog":{"resources":["mf6pP","8MFx8","musw6","oE4Do"],"module":true},"Dialog":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"ErrorSignal":{"resources":["mf6pP","cNca2"],"module":true},"Event":{"resources":["mf6pP"],"module":true},"FbdDialogProvider":{"resources":["\\/rNYe","mf6pP","bwsMw"],"module":true},"AsyncDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"AsyncRequest":{"resources":["mf6pP"],"module":true},"PhotoSnowlift":{"resources":["MT1v3","mf6pP","musw6","8MFx8","xUw5z","8pU7f","U92KD","ghXB0"],"module":true},"PhotoTagger":{"resources":["mf6pP","musw6","8MFx8","xUw5z","pz8lu","Idzy0","U92KD","MT1v3"],"module":true},"Live":{"resources":["mf6pP","JKbB2","U92KD"],"module":true},"PhotoTagApproval":{"resources":["mf6pP","MT1v3","Idzy0"],"module":true},"PhotoTags":{"resources":["mf6pP","MT1v3","8MFx8","Idzy0"],"module":true},"TagTokenizer":{"resources":["mf6pP","8pU7f","RQpdT","Idzy0","8MFx8","POFeb"],"module":true},"css:fb-photos-snowlift-fullscreen-css":{"resources":["VDymv"]},"SnowliftPicCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","LOKvE","U92KD","pz8lu","t4k3N","wxq+C"],"module":true},"PhotosButtonTooltips":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f","Rs18G"],"module":true},"VideoRotate":{"resources":["mf6pP","musw6","8MFx8","xUw5z","U92KD","6AU0l"],"module":true},"AsyncResponse":{"resources":["mf6pP"],"module":true},"PhotoPermalinkCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","U92KD","pz8lu","LOKvE","t4k3N"],"module":true},"PhotoInlineEditor":{"resources":["mf6pP","MT1v3","musw6","xUw5z","8MFx8","U92KD","pz8lu","Idzy0","POFeb","RQpdT","8pU7f","AtxWD"],"module":true},"Form":{"resources":["mf6pP","8MFx8","musw6"],"module":true},"SpotlightShareViewer":{"resources":["mf6pP","zyFOp"],"module":true},"Toggler":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"Tooltip":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"DOM":{"resources":["mf6pP"],"module":true},"Input":{"resources":["mf6pP","8MFx8"],"module":true},"trackReferrer":{"resources":[],"module":true},"DimensionTracking":{"resources":["mf6pP"],"module":true},"HighContrastMode":{"resources":["mf6pP"],"module":true},"DetectBrokenProxyCache":{"resources":["mf6pP"],"module":true}});</script>
+<script>require("InitialJSLoader").loadOnDOMContentReady([]);</script>
+<script>
+Bootloader.configurePage(["8MFx8","6WKjA"]);
+
+(require("ServerJSDefine")).handleDefines([["EagleEyeConfig",[],{"seed":"08LC"},294],["TrackingConfig",[],{"domain":"https:\\/\\/pixel.facebook.com"},325],["TimeSpentConfig",[],{"0_delay":0,"0_timeout":8,"delay":200000,"timeout":64},142]]);require("InitialJSLoader").handleServerJS({"require":[["PostLoadJS","loadAndRequire",[],["DimensionTracking"]],["PostLoadJS","loadAndCall",[],["HighContrastMode","init",[{"isHCM":false,"spacerImage":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y4\\/r\\/-PAXP-deijE.gif"}]]],["PostLoadJS","loadAndCall",[],["DetectBrokenProxyCache","run",[0,"c_user"]]],["ScriptPath","set",[],["\\/dialog\\/oauth","a1f3c513"]],["ClickRefLogger"],["userAction","setUATypeConfig",[],[{"ua:e":false}]],["ScriptPathState","setUserURISampleRate",[],[0.0002]],["userAction","setCustomSampleConfig",[],[{"ua:n":{"test":{"ua_id":{"test":true}}},"ua:i":{"snowlift":{"action":{"open":true,"close":true}},"canvas":{"action":{"mouseover":true,"mouseout":true}}}}]],["UserActionHistory"],["ScriptPathLogger","startLogging",[],[]],["TimeSpentBitArrayLogger","init",[],[]]]});
+
+</script>.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(498): View->_getLayoutFileName(Object(HttpSocketResponse))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(468): View->renderLayout('', Object(HttpSocketResponse))
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render('fb_login', Object(HttpSocketResponse))
+#3 /home/msoledade/www/evoke/Controller/UsersController.php(63): Controller->render('fb_login', Object(HttpSocketResponse))
+#4 [internal function]: UsersController->fb_login()
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#8 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2014-02-14 17:22:36 Error: [MissingLayoutException] Layout file "/home/msoledade/www/evoke/View/Layouts/<!DOCTYPE html>
+<html lang="pt" id="facebook" class="no_js">
+<head><meta charset="utf-8" /><script>function envFlush(a){function b(c){for(var d in a)c[d]=a[d];}if(window.requireLazy){window.requireLazy(['Env'],b);}else{Env=window.Env||{};b(Env);}}envFlush({"lsd":"AVpkkGgp","ajaxpipe_token":"AXikbfD7KyQgGpA3","no_cookies":1,"lhsh":"3AQHrz4YZ","tracking_domain":"https:\/\/pixel.facebook.com","retry_ajax_on_network_error":"1"});</script><script>CavalryLogger=false;</script><noscript><meta http-equiv="refresh" content="0; URL=/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D&amp;_fb_noscript=1" /></noscript><meta name="robots" content="noodp, noydir" /><meta name="referrer" content="default" id="meta_referrer" /><link rel="alternate" media="handheld" href="https://www.facebook.com/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D" /><title>Erro</title>
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yU/r/KDKGNT94Er9.css" />
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y_/r/94Ykz5egJgT.css" />
+
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yb/r/2V1Y9XEQfvo.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yf/r/1ZfmouSchBI.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yH/r/cB0U8vA7lJF.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/SSR7KUin_bK.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/DpsatdQ68mO.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/UyremhRzlXC.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/-k9bkwUX5WY.js" crossorigin="anonymous"></script>
+  <script>requireLazy(["Bootloader"], function(Bootloader) {Bootloader.done(["musw6","+4cO9","t4k3N","mf6pP","iF9KR","4vv8\/"]);});</script><script>(require("ServerJSDefine")).handleDefines([["BootloaderConfig",[],{},329],["CurrentUserInitialData",[],{"id":"0"},270],["SiteData",[],{"revision":1123146,"tier":"","push_phase":"V3","pkg_cohort":"EXP1:DEFAULT","vip":"31.13.73.65"},317],["DTSGInitialData",[],{},258],["ISB",[],{},330],["LSD",[],{"token":"AVpkkGgp"},323],["BanzaiConfig",[],{"EXPIRY":86400000,"MAX_SIZE":10000,"MAX_WAIT":150000,"RESTORE_WAIT":150000,"blacklist":["time_spent"],"gks":{"adapterhooks":true,"boosted_pagelikes":true,"boosted_posts":true,"jslogger":true,"miny_compression":true,"time_spent_bit_array":true,"time_spent_debug":true,"useraction":true,"videos":true,"visibility_tracking":true,"vitals":true}},7]]);require("InitialJSLoader").handleServerJS({"require":[["markJSEnabled"],["lowerDomain"],["Primer"]]});</script></head><body class="dialog Locale_pt_BR"><div class="_li"><div class="mal pam uiBoxRed">The redirect_uri URL must be absolute</div></div>
+<script>Bootloader.setResourceMap({"8MFx8":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yU\/r\/KDKGNT94Er9.css"},"6WKjA":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y_\/r\/94Ykz5egJgT.css"},"8pU7f":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yV\/r\/iXI9q29HIYS.css"},"VDymv":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yf\/r\/h-yQvWfLyZG.css"},"WQ20c":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y9\/r\/5fL6GCPHNTK.css"}});Bootloader.setResourceMap({"U92KD":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yM\/r\/vhaVTa3BT8W.js"},"mf6pP":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yd\/r\/DpsatdQ68mO.js"},"xUw5z":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yN\/r\/neA88xQpvpf.js"},"musw6":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yf\/r\/1ZfmouSchBI.js"},"2YCCl":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yq\/r\/K5OqRxzsDg8.js"},"20549":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y1\/r\/2TQV7FevUi0.js"},"JKbB2":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yl\/r\/y1wXqR4yYaE.js"},"oE4Do":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yM\/r\/bYmP3yfBJQk.js"},"cNca2":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yJ\/r\/fqtbXiAt4AU.js"},"\/rNYe":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y5\/r\/m25m4Fz2Uxc.js"},"bwsMw":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y_\/r\/hwOyT9fmfZV.js"},"MT1v3":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y6\/r\/4QIydIcR3l2.js"},"ghXB0":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yu\/r\/1TqJxGgVXo1.js"},"pz8lu":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yx\/r\/UJHKL6Dt4Vd.js"},"Idzy0":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yF\/r\/G6f0rzJ8THj.js"},"RQpdT":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yv\/r\/zZtLAbD1oG1.js"},"POFeb":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yw\/r\/NO3BW8eJI3x.js"},"LOKvE":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yE\/r\/Ty8z4L12ww5.js"},"t4k3N":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yS\/r\/SSR7KUin_bK.js"},"wxq+C":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/ya\/r\/HtpiN0FHE1h.js"},"Rs18G":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yI\/r\/uO3qawLm1cS.js"},"6AU0l":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y-\/r\/N61K-l_-_zP.js"},"AtxWD":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yY\/r\/y5ZBemqsu_7.js"},"zyFOp":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yW\/r\/HUvB_EaiSlz.js"}});
+Bootloader.enableBootload({"React":{"resources":["U92KD","mf6pP"],"module":true},"ExceptionDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","2YCCl","20549"],"module":true},"AsyncDOM":{"resources":["mf6pP","JKbB2"],"module":true},"ConfirmationDialog":{"resources":["mf6pP","8MFx8","musw6","oE4Do"],"module":true},"Dialog":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"ErrorSignal":{"resources":["mf6pP","cNca2"],"module":true},"Event":{"resources":["mf6pP"],"module":true},"FbdDialogProvider":{"resources":["\/rNYe","mf6pP","bwsMw"],"module":true},"AsyncDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"AsyncRequest":{"resources":["mf6pP"],"module":true},"PhotoSnowlift":{"resources":["MT1v3","mf6pP","musw6","8MFx8","xUw5z","8pU7f","U92KD","ghXB0"],"module":true},"PhotoTagger":{"resources":["mf6pP","musw6","8MFx8","xUw5z","pz8lu","Idzy0","U92KD","MT1v3"],"module":true},"Live":{"resources":["mf6pP","JKbB2","U92KD"],"module":true},"PhotoTagApproval":{"resources":["mf6pP","MT1v3","Idzy0"],"module":true},"PhotoTags":{"resources":["mf6pP","MT1v3","8MFx8","Idzy0"],"module":true},"TagTokenizer":{"resources":["mf6pP","8pU7f","RQpdT","Idzy0","8MFx8","POFeb"],"module":true},"css:fb-photos-snowlift-fullscreen-css":{"resources":["VDymv"]},"SnowliftPicCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","LOKvE","U92KD","pz8lu","t4k3N","wxq+C"],"module":true},"PhotosButtonTooltips":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f","Rs18G"],"module":true},"VideoRotate":{"resources":["mf6pP","musw6","8MFx8","xUw5z","U92KD","6AU0l"],"module":true},"AsyncResponse":{"resources":["mf6pP"],"module":true},"PhotoPermalinkCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","U92KD","pz8lu","LOKvE","t4k3N"],"module":true},"PhotoInlineEditor":{"resources":["mf6pP","MT1v3","musw6","xUw5z","8MFx8","U92KD","pz8lu","Idzy0","POFeb","RQpdT","8pU7f","AtxWD"],"module":true},"Form":{"resources":["mf6pP","8MFx8","musw6"],"module":true},"SpotlightShareViewer":{"resources":["mf6pP","zyFOp"],"module":true},"Toggler":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"Tooltip":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"DOM":{"resources":["mf6pP"],"module":true},"Input":{"resources":["mf6pP","8MFx8"],"module":true},"trackReferrer":{"resources":[],"module":true},"DimensionTracking":{"resources":["mf6pP"],"module":true},"HighContrastMode":{"resources":["mf6pP"],"module":true},"DetectBrokenProxyCache":{"resources":["mf6pP"],"module":true}});</script>
+<script>require("InitialJSLoader").loadOnDOMContentReady([]);</script>
+<script>
+Bootloader.configurePage(["8MFx8","6WKjA"]);
+
+(require("ServerJSDefine")).handleDefines([["EagleEyeConfig",[],{"seed":"0Er2"},294],["TrackingConfig",[],{"domain":"https:\/\/pixel.facebook.com"},325],["TimeSpentConfig",[],{"0_delay":0,"0_timeout":8,"delay":200000,"timeout":64},142]]);require("InitialJSLoader").handleServerJS({"require":[["PostLoadJS","loadAndRequire",[],["DimensionTracking"]],["PostLoadJS","loadAndCall",[],["HighContrastMode","init",[{"isHCM":false,"spacerImage":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y4\/r\/-PAXP-deijE.gif"}]]],["PostLoadJS","loadAndCall",[],["DetectBrokenProxyCache","run",[0,"c_user"]]],["ScriptPath","set",[],["\/dialog\/oauth","a1f3c513"]],["ClickRefLogger"],["userAction","setUATypeConfig",[],[{"ua:e":false}]],["ScriptPathState","setUserURISampleRate",[],[0.0002]],["userAction","setCustomSampleConfig",[],[{"ua:n":{"test":{"ua_id":{"test":true}}},"ua:i":{"snowlift":{"action":{"open":true,"close":true}},"canvas":{"action":{"mouseover":true,"mouseout":true}}}}]],["UserActionHistory"],["ScriptPathLogger","startLogging",[],[]],["TimeSpentBitArrayLogger","init",[],[]]]});
+
+</script>.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Layouts/<!DOCTYPE html>
+<html lang="pt" id="facebook" class="no_js">
+<head><meta charset="utf-8" /><script>function envFlush(a){function b(c){for(var d in a)c[d]=a[d];}if(window.requireLazy){window.requireLazy([\'Env\'],b);}else{Env=window.Env||{};b(Env);}}envFlush({"lsd":"AVpkkGgp","ajaxpipe_token":"AXikbfD7KyQgGpA3","no_cookies":1,"lhsh":"3AQHrz4YZ","tracking_domain":"https:\\/\\/pixel.facebook.com","retry_ajax_on_network_error":"1"});</script><script>CavalryLogger=false;</script><noscript><meta http-equiv="refresh" content="0; URL=/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D&amp;_fb_noscript=1" /></noscript><meta name="robots" content="noodp, noydir" /><meta name="referrer" content="default" id="meta_referrer" /><link rel="alternate" media="handheld" href="https://www.facebook.com/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D" /><title>Erro</title>
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yU/r/KDKGNT94Er9.css" />
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y_/r/94Ykz5egJgT.css" />
+
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yb/r/2V1Y9XEQfvo.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yf/r/1ZfmouSchBI.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yH/r/cB0U8vA7lJF.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/SSR7KUin_bK.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/DpsatdQ68mO.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/UyremhRzlXC.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/-k9bkwUX5WY.js" crossorigin="anonymous"></script>
+  <script>requireLazy(["Bootloader"], function(Bootloader) {Bootloader.done(["musw6","+4cO9","t4k3N","mf6pP","iF9KR","4vv8\\/"]);});</script><script>(require("ServerJSDefine")).handleDefines([["BootloaderConfig",[],{},329],["CurrentUserInitialData",[],{"id":"0"},270],["SiteData",[],{"revision":1123146,"tier":"","push_phase":"V3","pkg_cohort":"EXP1:DEFAULT","vip":"31.13.73.65"},317],["DTSGInitialData",[],{},258],["ISB",[],{},330],["LSD",[],{"token":"AVpkkGgp"},323],["BanzaiConfig",[],{"EXPIRY":86400000,"MAX_SIZE":10000,"MAX_WAIT":150000,"RESTORE_WAIT":150000,"blacklist":["time_spent"],"gks":{"adapterhooks":true,"boosted_pagelikes":true,"boosted_posts":true,"jslogger":true,"miny_compression":true,"time_spent_bit_array":true,"time_spent_debug":true,"useraction":true,"videos":true,"visibility_tracking":true,"vitals":true}},7]]);require("InitialJSLoader").handleServerJS({"require":[["markJSEnabled"],["lowerDomain"],["Primer"]]});</script></head><body class="dialog Locale_pt_BR"><div class="_li"><div class="mal pam uiBoxRed">The redirect_uri URL must be absolute</div></div>
+<script>Bootloader.setResourceMap({"8MFx8":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yU\\/r\\/KDKGNT94Er9.css"},"6WKjA":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y_\\/r\\/94Ykz5egJgT.css"},"8pU7f":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yV\\/r\\/iXI9q29HIYS.css"},"VDymv":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yf\\/r\\/h-yQvWfLyZG.css"},"WQ20c":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y9\\/r\\/5fL6GCPHNTK.css"}});Bootloader.setResourceMap({"U92KD":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yM\\/r\\/vhaVTa3BT8W.js"},"mf6pP":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yd\\/r\\/DpsatdQ68mO.js"},"xUw5z":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yN\\/r\\/neA88xQpvpf.js"},"musw6":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yf\\/r\\/1ZfmouSchBI.js"},"2YCCl":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yq\\/r\\/K5OqRxzsDg8.js"},"20549":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y1\\/r\\/2TQV7FevUi0.js"},"JKbB2":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yl\\/r\\/y1wXqR4yYaE.js"},"oE4Do":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yM\\/r\\/bYmP3yfBJQk.js"},"cNca2":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yJ\\/r\\/fqtbXiAt4AU.js"},"\\/rNYe":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y5\\/r\\/m25m4Fz2Uxc.js"},"bwsMw":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y_\\/r\\/hwOyT9fmfZV.js"},"MT1v3":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y6\\/r\\/4QIydIcR3l2.js"},"ghXB0":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yu\\/r\\/1TqJxGgVXo1.js"},"pz8lu":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yx\\/r\\/UJHKL6Dt4Vd.js"},"Idzy0":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yF\\/r\\/G6f0rzJ8THj.js"},"RQpdT":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yv\\/r\\/zZtLAbD1oG1.js"},"POFeb":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yw\\/r\\/NO3BW8eJI3x.js"},"LOKvE":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yE\\/r\\/Ty8z4L12ww5.js"},"t4k3N":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yS\\/r\\/SSR7KUin_bK.js"},"wxq+C":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/ya\\/r\\/HtpiN0FHE1h.js"},"Rs18G":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yI\\/r\\/uO3qawLm1cS.js"},"6AU0l":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y-\\/r\\/N61K-l_-_zP.js"},"AtxWD":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yY\\/r\\/y5ZBemqsu_7.js"},"zyFOp":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yW\\/r\\/HUvB_EaiSlz.js"}});
+Bootloader.enableBootload({"React":{"resources":["U92KD","mf6pP"],"module":true},"ExceptionDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","2YCCl","20549"],"module":true},"AsyncDOM":{"resources":["mf6pP","JKbB2"],"module":true},"ConfirmationDialog":{"resources":["mf6pP","8MFx8","musw6","oE4Do"],"module":true},"Dialog":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"ErrorSignal":{"resources":["mf6pP","cNca2"],"module":true},"Event":{"resources":["mf6pP"],"module":true},"FbdDialogProvider":{"resources":["\\/rNYe","mf6pP","bwsMw"],"module":true},"AsyncDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"AsyncRequest":{"resources":["mf6pP"],"module":true},"PhotoSnowlift":{"resources":["MT1v3","mf6pP","musw6","8MFx8","xUw5z","8pU7f","U92KD","ghXB0"],"module":true},"PhotoTagger":{"resources":["mf6pP","musw6","8MFx8","xUw5z","pz8lu","Idzy0","U92KD","MT1v3"],"module":true},"Live":{"resources":["mf6pP","JKbB2","U92KD"],"module":true},"PhotoTagApproval":{"resources":["mf6pP","MT1v3","Idzy0"],"module":true},"PhotoTags":{"resources":["mf6pP","MT1v3","8MFx8","Idzy0"],"module":true},"TagTokenizer":{"resources":["mf6pP","8pU7f","RQpdT","Idzy0","8MFx8","POFeb"],"module":true},"css:fb-photos-snowlift-fullscreen-css":{"resources":["VDymv"]},"SnowliftPicCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","LOKvE","U92KD","pz8lu","t4k3N","wxq+C"],"module":true},"PhotosButtonTooltips":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f","Rs18G"],"module":true},"VideoRotate":{"resources":["mf6pP","musw6","8MFx8","xUw5z","U92KD","6AU0l"],"module":true},"AsyncResponse":{"resources":["mf6pP"],"module":true},"PhotoPermalinkCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","U92KD","pz8lu","LOKvE","t4k3N"],"module":true},"PhotoInlineEditor":{"resources":["mf6pP","MT1v3","musw6","xUw5z","8MFx8","U92KD","pz8lu","Idzy0","POFeb","RQpdT","8pU7f","AtxWD"],"module":true},"Form":{"resources":["mf6pP","8MFx8","musw6"],"module":true},"SpotlightShareViewer":{"resources":["mf6pP","zyFOp"],"module":true},"Toggler":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"Tooltip":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"DOM":{"resources":["mf6pP"],"module":true},"Input":{"resources":["mf6pP","8MFx8"],"module":true},"trackReferrer":{"resources":[],"module":true},"DimensionTracking":{"resources":["mf6pP"],"module":true},"HighContrastMode":{"resources":["mf6pP"],"module":true},"DetectBrokenProxyCache":{"resources":["mf6pP"],"module":true}});</script>
+<script>require("InitialJSLoader").loadOnDOMContentReady([]);</script>
+<script>
+Bootloader.configurePage(["8MFx8","6WKjA"]);
+
+(require("ServerJSDefine")).handleDefines([["EagleEyeConfig",[],{"seed":"0Er2"},294],["TrackingConfig",[],{"domain":"https:\\/\\/pixel.facebook.com"},325],["TimeSpentConfig",[],{"0_delay":0,"0_timeout":8,"delay":200000,"timeout":64},142]]);require("InitialJSLoader").handleServerJS({"require":[["PostLoadJS","loadAndRequire",[],["DimensionTracking"]],["PostLoadJS","loadAndCall",[],["HighContrastMode","init",[{"isHCM":false,"spacerImage":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y4\\/r\\/-PAXP-deijE.gif"}]]],["PostLoadJS","loadAndCall",[],["DetectBrokenProxyCache","run",[0,"c_user"]]],["ScriptPath","set",[],["\\/dialog\\/oauth","a1f3c513"]],["ClickRefLogger"],["userAction","setUATypeConfig",[],[{"ua:e":false}]],["ScriptPathState","setUserURISampleRate",[],[0.0002]],["userAction","setCustomSampleConfig",[],[{"ua:n":{"test":{"ua_id":{"test":true}}},"ua:i":{"snowlift":{"action":{"open":true,"close":true}},"canvas":{"action":{"mouseover":true,"mouseout":true}}}}]],["UserActionHistory"],["ScriptPathLogger","startLogging",[],[]],["TimeSpentBitArrayLogger","init",[],[]]]});
+
+</script>.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(498): View->_getLayoutFileName(Object(HttpSocketResponse))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(468): View->renderLayout('', Object(HttpSocketResponse))
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render('fb_login', Object(HttpSocketResponse))
+#3 /home/msoledade/www/evoke/Controller/UsersController.php(62): Controller->render('fb_login', Object(HttpSocketResponse))
+#4 [internal function]: UsersController->fb_login()
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#8 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2014-02-14 17:23:39 Error: [MissingLayoutException] Layout file "/home/msoledade/www/evoke/View/Layouts/<!DOCTYPE html>
+<html lang="pt" id="facebook" class="no_js">
+<head><meta charset="utf-8" /><script>function envFlush(a){function b(c){for(var d in a)c[d]=a[d];}if(window.requireLazy){window.requireLazy(['Env'],b);}else{Env=window.Env||{};b(Env);}}envFlush({"lsd":"AVq3lF0w","ajaxpipe_token":"AXikbfD7KyQgGpA3","no_cookies":1,"lhsh":"OAQG4BcKR","tracking_domain":"https:\/\/pixel.facebook.com","retry_ajax_on_network_error":"1"});</script><script>CavalryLogger=false;</script><noscript><meta http-equiv="refresh" content="0; URL=/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D&amp;_fb_noscript=1" /></noscript><meta name="robots" content="noodp, noydir" /><meta name="referrer" content="default" id="meta_referrer" /><link rel="alternate" media="handheld" href="https://www.facebook.com/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D" /><title>Erro</title>
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yU/r/KDKGNT94Er9.css" />
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y_/r/94Ykz5egJgT.css" />
+
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yb/r/2V1Y9XEQfvo.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yf/r/1ZfmouSchBI.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yH/r/cB0U8vA7lJF.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/SSR7KUin_bK.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/DpsatdQ68mO.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/UyremhRzlXC.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/-k9bkwUX5WY.js" crossorigin="anonymous"></script>
+  <script>requireLazy(["Bootloader"], function(Bootloader) {Bootloader.done(["musw6","+4cO9","t4k3N","mf6pP","iF9KR","4vv8\/"]);});</script><script>(require("ServerJSDefine")).handleDefines([["BootloaderConfig",[],{},329],["CurrentUserInitialData",[],{"id":"0"},270],["SiteData",[],{"revision":1123146,"tier":"","push_phase":"V3","pkg_cohort":"EXP1:DEFAULT","vip":"31.13.73.65"},317],["DTSGInitialData",[],{},258],["ISB",[],{},330],["LSD",[],{"token":"AVq3lF0w"},323],["BanzaiConfig",[],{"EXPIRY":86400000,"MAX_SIZE":10000,"MAX_WAIT":150000,"RESTORE_WAIT":150000,"blacklist":["time_spent"],"gks":{"adapterhooks":true,"boosted_pagelikes":true,"boosted_posts":true,"jslogger":true,"miny_compression":true,"time_spent_bit_array":true,"time_spent_debug":true,"useraction":true,"videos":true,"visibility_tracking":true,"vitals":true}},7]]);require("InitialJSLoader").handleServerJS({"require":[["markJSEnabled"],["lowerDomain"],["Primer"]]});</script></head><body class="dialog Locale_pt_BR"><div class="_li"><div class="mal pam uiBoxRed">The redirect_uri URL must be absolute</div></div>
+<script>Bootloader.setResourceMap({"8MFx8":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yU\/r\/KDKGNT94Er9.css"},"6WKjA":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y_\/r\/94Ykz5egJgT.css"},"8pU7f":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yV\/r\/iXI9q29HIYS.css"},"VDymv":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yf\/r\/h-yQvWfLyZG.css"},"WQ20c":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y9\/r\/5fL6GCPHNTK.css"}});Bootloader.setResourceMap({"U92KD":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yM\/r\/vhaVTa3BT8W.js"},"mf6pP":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yd\/r\/DpsatdQ68mO.js"},"xUw5z":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yN\/r\/neA88xQpvpf.js"},"musw6":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yf\/r\/1ZfmouSchBI.js"},"2YCCl":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yq\/r\/K5OqRxzsDg8.js"},"20549":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y1\/r\/2TQV7FevUi0.js"},"JKbB2":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yl\/r\/y1wXqR4yYaE.js"},"oE4Do":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yM\/r\/bYmP3yfBJQk.js"},"cNca2":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yJ\/r\/fqtbXiAt4AU.js"},"\/rNYe":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y5\/r\/m25m4Fz2Uxc.js"},"bwsMw":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y_\/r\/hwOyT9fmfZV.js"},"MT1v3":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y6\/r\/4QIydIcR3l2.js"},"ghXB0":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yu\/r\/1TqJxGgVXo1.js"},"pz8lu":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yx\/r\/UJHKL6Dt4Vd.js"},"Idzy0":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yF\/r\/G6f0rzJ8THj.js"},"RQpdT":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yv\/r\/zZtLAbD1oG1.js"},"POFeb":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yw\/r\/NO3BW8eJI3x.js"},"LOKvE":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yE\/r\/Ty8z4L12ww5.js"},"t4k3N":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yS\/r\/SSR7KUin_bK.js"},"wxq+C":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/ya\/r\/HtpiN0FHE1h.js"},"Rs18G":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yI\/r\/uO3qawLm1cS.js"},"6AU0l":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y-\/r\/N61K-l_-_zP.js"},"AtxWD":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yY\/r\/y5ZBemqsu_7.js"},"zyFOp":{"type":"js","crossOrigin":1,"src":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/yW\/r\/HUvB_EaiSlz.js"}});
+Bootloader.enableBootload({"React":{"resources":["U92KD","mf6pP"],"module":true},"ExceptionDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","2YCCl","20549"],"module":true},"AsyncDOM":{"resources":["mf6pP","JKbB2"],"module":true},"ConfirmationDialog":{"resources":["mf6pP","8MFx8","musw6","oE4Do"],"module":true},"Dialog":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"ErrorSignal":{"resources":["mf6pP","cNca2"],"module":true},"Event":{"resources":["mf6pP"],"module":true},"FbdDialogProvider":{"resources":["\/rNYe","mf6pP","bwsMw"],"module":true},"AsyncDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"AsyncRequest":{"resources":["mf6pP"],"module":true},"PhotoSnowlift":{"resources":["MT1v3","mf6pP","musw6","8MFx8","xUw5z","8pU7f","U92KD","ghXB0"],"module":true},"PhotoTagger":{"resources":["mf6pP","musw6","8MFx8","xUw5z","pz8lu","Idzy0","U92KD","MT1v3"],"module":true},"Live":{"resources":["mf6pP","JKbB2","U92KD"],"module":true},"PhotoTagApproval":{"resources":["mf6pP","MT1v3","Idzy0"],"module":true},"PhotoTags":{"resources":["mf6pP","MT1v3","8MFx8","Idzy0"],"module":true},"TagTokenizer":{"resources":["mf6pP","8pU7f","RQpdT","Idzy0","8MFx8","POFeb"],"module":true},"css:fb-photos-snowlift-fullscreen-css":{"resources":["VDymv"]},"SnowliftPicCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","LOKvE","U92KD","pz8lu","t4k3N","wxq+C"],"module":true},"PhotosButtonTooltips":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f","Rs18G"],"module":true},"VideoRotate":{"resources":["mf6pP","musw6","8MFx8","xUw5z","U92KD","6AU0l"],"module":true},"AsyncResponse":{"resources":["mf6pP"],"module":true},"PhotoPermalinkCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","U92KD","pz8lu","LOKvE","t4k3N"],"module":true},"PhotoInlineEditor":{"resources":["mf6pP","MT1v3","musw6","xUw5z","8MFx8","U92KD","pz8lu","Idzy0","POFeb","RQpdT","8pU7f","AtxWD"],"module":true},"Form":{"resources":["mf6pP","8MFx8","musw6"],"module":true},"SpotlightShareViewer":{"resources":["mf6pP","zyFOp"],"module":true},"Toggler":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"Tooltip":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"DOM":{"resources":["mf6pP"],"module":true},"Input":{"resources":["mf6pP","8MFx8"],"module":true},"trackReferrer":{"resources":[],"module":true},"DimensionTracking":{"resources":["mf6pP"],"module":true},"HighContrastMode":{"resources":["mf6pP"],"module":true},"DetectBrokenProxyCache":{"resources":["mf6pP"],"module":true}});</script>
+<script>require("InitialJSLoader").loadOnDOMContentReady([]);</script>
+<script>
+Bootloader.configurePage(["8MFx8","6WKjA"]);
+
+(require("ServerJSDefine")).handleDefines([["EagleEyeConfig",[],{"seed":"0T22"},294],["TrackingConfig",[],{"domain":"https:\/\/pixel.facebook.com"},325],["TimeSpentConfig",[],{"0_delay":0,"0_timeout":8,"delay":200000,"timeout":64},142]]);require("InitialJSLoader").handleServerJS({"require":[["PostLoadJS","loadAndRequire",[],["DimensionTracking"]],["PostLoadJS","loadAndCall",[],["HighContrastMode","init",[{"isHCM":false,"spacerImage":"https:\/\/fbstatic-a.akamaihd.net\/rsrc.php\/v2\/y4\/r\/-PAXP-deijE.gif"}]]],["PostLoadJS","loadAndCall",[],["DetectBrokenProxyCache","run",[0,"c_user"]]],["ScriptPath","set",[],["\/dialog\/oauth","a1f3c513"]],["ClickRefLogger"],["userAction","setUATypeConfig",[],[{"ua:e":false}]],["ScriptPathState","setUserURISampleRate",[],[0.0002]],["userAction","setCustomSampleConfig",[],[{"ua:n":{"test":{"ua_id":{"test":true}}},"ua:i":{"snowlift":{"action":{"open":true,"close":true}},"canvas":{"action":{"mouseover":true,"mouseout":true}}}}]],["UserActionHistory"],["ScriptPathLogger","startLogging",[],[]],["TimeSpentBitArrayLogger","init",[],[]]]});
+
+</script>.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Layouts/<!DOCTYPE html>
+<html lang="pt" id="facebook" class="no_js">
+<head><meta charset="utf-8" /><script>function envFlush(a){function b(c){for(var d in a)c[d]=a[d];}if(window.requireLazy){window.requireLazy([\'Env\'],b);}else{Env=window.Env||{};b(Env);}}envFlush({"lsd":"AVq3lF0w","ajaxpipe_token":"AXikbfD7KyQgGpA3","no_cookies":1,"lhsh":"OAQG4BcKR","tracking_domain":"https:\\/\\/pixel.facebook.com","retry_ajax_on_network_error":"1"});</script><script>CavalryLogger=false;</script><noscript><meta http-equiv="refresh" content="0; URL=/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D&amp;_fb_noscript=1" /></noscript><meta name="robots" content="noodp, noydir" /><meta name="referrer" content="default" id="meta_referrer" /><link rel="alternate" media="handheld" href="https://www.facebook.com/dialog/oauth?client_id=%7B%24appId%7D&amp;redirect_uri=%7B%24redirectURI%7D" /><title>Erro</title>
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yU/r/KDKGNT94Er9.css" />
+    <link type="text/css" rel="stylesheet" href="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y_/r/94Ykz5egJgT.css" />
+
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yb/r/2V1Y9XEQfvo.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yf/r/1ZfmouSchBI.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yH/r/cB0U8vA7lJF.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/SSR7KUin_bK.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/DpsatdQ68mO.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/UyremhRzlXC.js" crossorigin="anonymous"></script>
+    <script src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yS/r/-k9bkwUX5WY.js" crossorigin="anonymous"></script>
+  <script>requireLazy(["Bootloader"], function(Bootloader) {Bootloader.done(["musw6","+4cO9","t4k3N","mf6pP","iF9KR","4vv8\\/"]);});</script><script>(require("ServerJSDefine")).handleDefines([["BootloaderConfig",[],{},329],["CurrentUserInitialData",[],{"id":"0"},270],["SiteData",[],{"revision":1123146,"tier":"","push_phase":"V3","pkg_cohort":"EXP1:DEFAULT","vip":"31.13.73.65"},317],["DTSGInitialData",[],{},258],["ISB",[],{},330],["LSD",[],{"token":"AVq3lF0w"},323],["BanzaiConfig",[],{"EXPIRY":86400000,"MAX_SIZE":10000,"MAX_WAIT":150000,"RESTORE_WAIT":150000,"blacklist":["time_spent"],"gks":{"adapterhooks":true,"boosted_pagelikes":true,"boosted_posts":true,"jslogger":true,"miny_compression":true,"time_spent_bit_array":true,"time_spent_debug":true,"useraction":true,"videos":true,"visibility_tracking":true,"vitals":true}},7]]);require("InitialJSLoader").handleServerJS({"require":[["markJSEnabled"],["lowerDomain"],["Primer"]]});</script></head><body class="dialog Locale_pt_BR"><div class="_li"><div class="mal pam uiBoxRed">The redirect_uri URL must be absolute</div></div>
+<script>Bootloader.setResourceMap({"8MFx8":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yU\\/r\\/KDKGNT94Er9.css"},"6WKjA":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y_\\/r\\/94Ykz5egJgT.css"},"8pU7f":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yV\\/r\\/iXI9q29HIYS.css"},"VDymv":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yf\\/r\\/h-yQvWfLyZG.css"},"WQ20c":{"type":"css","permanent":1,"crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y9\\/r\\/5fL6GCPHNTK.css"}});Bootloader.setResourceMap({"U92KD":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yM\\/r\\/vhaVTa3BT8W.js"},"mf6pP":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yd\\/r\\/DpsatdQ68mO.js"},"xUw5z":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yN\\/r\\/neA88xQpvpf.js"},"musw6":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yf\\/r\\/1ZfmouSchBI.js"},"2YCCl":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yq\\/r\\/K5OqRxzsDg8.js"},"20549":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y1\\/r\\/2TQV7FevUi0.js"},"JKbB2":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yl\\/r\\/y1wXqR4yYaE.js"},"oE4Do":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yM\\/r\\/bYmP3yfBJQk.js"},"cNca2":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yJ\\/r\\/fqtbXiAt4AU.js"},"\\/rNYe":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y5\\/r\\/m25m4Fz2Uxc.js"},"bwsMw":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y_\\/r\\/hwOyT9fmfZV.js"},"MT1v3":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y6\\/r\\/4QIydIcR3l2.js"},"ghXB0":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yu\\/r\\/1TqJxGgVXo1.js"},"pz8lu":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yx\\/r\\/UJHKL6Dt4Vd.js"},"Idzy0":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yF\\/r\\/G6f0rzJ8THj.js"},"RQpdT":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yv\\/r\\/zZtLAbD1oG1.js"},"POFeb":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yw\\/r\\/NO3BW8eJI3x.js"},"LOKvE":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yE\\/r\\/Ty8z4L12ww5.js"},"t4k3N":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yS\\/r\\/SSR7KUin_bK.js"},"wxq+C":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/ya\\/r\\/HtpiN0FHE1h.js"},"Rs18G":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yI\\/r\\/uO3qawLm1cS.js"},"6AU0l":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y-\\/r\\/N61K-l_-_zP.js"},"AtxWD":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yY\\/r\\/y5ZBemqsu_7.js"},"zyFOp":{"type":"js","crossOrigin":1,"src":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/yW\\/r\\/HUvB_EaiSlz.js"}});
+Bootloader.enableBootload({"React":{"resources":["U92KD","mf6pP"],"module":true},"ExceptionDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","2YCCl","20549"],"module":true},"AsyncDOM":{"resources":["mf6pP","JKbB2"],"module":true},"ConfirmationDialog":{"resources":["mf6pP","8MFx8","musw6","oE4Do"],"module":true},"Dialog":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"ErrorSignal":{"resources":["mf6pP","cNca2"],"module":true},"Event":{"resources":["mf6pP"],"module":true},"FbdDialogProvider":{"resources":["\\/rNYe","mf6pP","bwsMw"],"module":true},"AsyncDialog":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"AsyncRequest":{"resources":["mf6pP"],"module":true},"PhotoSnowlift":{"resources":["MT1v3","mf6pP","musw6","8MFx8","xUw5z","8pU7f","U92KD","ghXB0"],"module":true},"PhotoTagger":{"resources":["mf6pP","musw6","8MFx8","xUw5z","pz8lu","Idzy0","U92KD","MT1v3"],"module":true},"Live":{"resources":["mf6pP","JKbB2","U92KD"],"module":true},"PhotoTagApproval":{"resources":["mf6pP","MT1v3","Idzy0"],"module":true},"PhotoTags":{"resources":["mf6pP","MT1v3","8MFx8","Idzy0"],"module":true},"TagTokenizer":{"resources":["mf6pP","8pU7f","RQpdT","Idzy0","8MFx8","POFeb"],"module":true},"css:fb-photos-snowlift-fullscreen-css":{"resources":["VDymv"]},"SnowliftPicCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","LOKvE","U92KD","pz8lu","t4k3N","wxq+C"],"module":true},"PhotosButtonTooltips":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f","Rs18G"],"module":true},"VideoRotate":{"resources":["mf6pP","musw6","8MFx8","xUw5z","U92KD","6AU0l"],"module":true},"AsyncResponse":{"resources":["mf6pP"],"module":true},"PhotoPermalinkCropper":{"resources":["mf6pP","musw6","8MFx8","xUw5z","Idzy0","MT1v3","WQ20c","U92KD","pz8lu","LOKvE","t4k3N"],"module":true},"PhotoInlineEditor":{"resources":["mf6pP","MT1v3","musw6","xUw5z","8MFx8","U92KD","pz8lu","Idzy0","POFeb","RQpdT","8pU7f","AtxWD"],"module":true},"Form":{"resources":["mf6pP","8MFx8","musw6"],"module":true},"SpotlightShareViewer":{"resources":["mf6pP","zyFOp"],"module":true},"Toggler":{"resources":["mf6pP","musw6","8MFx8","xUw5z"],"module":true},"Tooltip":{"resources":["mf6pP","xUw5z","musw6","8MFx8","U92KD","8pU7f"],"module":true},"DOM":{"resources":["mf6pP"],"module":true},"Input":{"resources":["mf6pP","8MFx8"],"module":true},"trackReferrer":{"resources":[],"module":true},"DimensionTracking":{"resources":["mf6pP"],"module":true},"HighContrastMode":{"resources":["mf6pP"],"module":true},"DetectBrokenProxyCache":{"resources":["mf6pP"],"module":true}});</script>
+<script>require("InitialJSLoader").loadOnDOMContentReady([]);</script>
+<script>
+Bootloader.configurePage(["8MFx8","6WKjA"]);
+
+(require("ServerJSDefine")).handleDefines([["EagleEyeConfig",[],{"seed":"0T22"},294],["TrackingConfig",[],{"domain":"https:\\/\\/pixel.facebook.com"},325],["TimeSpentConfig",[],{"0_delay":0,"0_timeout":8,"delay":200000,"timeout":64},142]]);require("InitialJSLoader").handleServerJS({"require":[["PostLoadJS","loadAndRequire",[],["DimensionTracking"]],["PostLoadJS","loadAndCall",[],["HighContrastMode","init",[{"isHCM":false,"spacerImage":"https:\\/\\/fbstatic-a.akamaihd.net\\/rsrc.php\\/v2\\/y4\\/r\\/-PAXP-deijE.gif"}]]],["PostLoadJS","loadAndCall",[],["DetectBrokenProxyCache","run",[0,"c_user"]]],["ScriptPath","set",[],["\\/dialog\\/oauth","a1f3c513"]],["ClickRefLogger"],["userAction","setUATypeConfig",[],[{"ua:e":false}]],["ScriptPathState","setUserURISampleRate",[],[0.0002]],["userAction","setCustomSampleConfig",[],[{"ua:n":{"test":{"ua_id":{"test":true}}},"ua:i":{"snowlift":{"action":{"open":true,"close":true}},"canvas":{"action":{"mouseover":true,"mouseout":true}}}}]],["UserActionHistory"],["ScriptPathLogger","startLogging",[],[]],["TimeSpentBitArrayLogger","init",[],[]]]});
+
+</script>.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(498): View->_getLayoutFileName(Object(HttpSocketResponse))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(468): View->renderLayout('', Object(HttpSocketResponse))
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render('fb_login', Object(HttpSocketResponse))
+#3 /home/msoledade/www/evoke/Controller/UsersController.php(63): Controller->render('fb_login', Object(HttpSocketResponse))
+#4 [internal function]: UsersController->fb_login()
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#8 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2014-02-14 17:37:28 Error: Fatal Error (64): Cannot redeclare class Facebook in [/home/msoledade/www/evoke/Vendor/facebook/php-sdk/src/facebook.php, line 0]
+2014-02-14 17:37:28 Error: [FatalErrorException] Cannot redeclare class Facebook
+Request URL: /evoke/users/login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', '/home/msoledade...', 0)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', '/home/msoledade...', 0, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', '/home/msoledade...', 0, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 17:38:24 Error: Fatal Error (64): Cannot redeclare class Facebook in [/home/msoledade/www/evoke/Vendor/facebook/php-sdk/src/facebook.php, line 0]
+2014-02-14 17:38:24 Error: [FatalErrorException] Cannot redeclare class Facebook
+Request URL: /evoke/users/login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'Cannot redeclar...', '/home/msoledade...', 0)
+#1 [internal function]: ErrorHandler::handleError(64, 'Cannot redeclar...', '/home/msoledade...', 0, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 64, 'Cannot redeclar...', '/home/msoledade...', 0, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 17:54:55 Error: [NotFoundException] Invalid user
+Request URL: /evoke/users/view
+Stack Trace:
+#0 [internal function]: UsersController->view()
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 17:58:43 Error: [NotFoundException] Invalid user
+Request URL: /evoke/users/view
+Stack Trace:
+#0 [internal function]: UsersController->view()
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 18:13:59 Error: [MissingActionException] Action UsersController::login]() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'login]',
+)
+Request URL: /evoke/users/login]
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-02-14 18:21:30 Error: Fatal Error (4): syntax error, unexpected '{' in [/home/msoledade/www/evoke/Controller/Component/Auth/FbAuthenticate.php, line 13]
+2014-02-14 18:21:30 Error: [FatalErrorException] syntax error, unexpected '{'
+Request URL: /evoke/users/login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 13)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 13, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 13, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 18:33:41 Error: Fatal Error (4): syntax error, unexpected '{' in [/home/msoledade/www/evoke/Controller/UsersController.php, line 50]
+2014-02-14 18:33:41 Error: [FatalErrorException] syntax error, unexpected '{'
+Request URL: /evoke/users/index?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=53c2e829930dce12f38a71fb73316ab8
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 50)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 50, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 50, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 18:33:47 Error: Fatal Error (4): syntax error, unexpected '{' in [/home/msoledade/www/evoke/Controller/UsersController.php, line 50]
+2014-02-14 18:33:47 Error: [FatalErrorException] syntax error, unexpected '{'
+Request URL: /evoke/users/login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 50)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 50, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 50, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 18:46:15 Error: Fatal Error (1): Call to protected method BaseFacebook::getUserAccessToken() from context 'UsersController' in [/home/msoledade/www/evoke/Controller/UsersController.php, line 57]
+2014-02-14 18:46:15 Error: [FatalErrorException] Call to protected method BaseFacebook::getUserAccessToken() from context 'UsersController'
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to protect...', '/home/msoledade...', 57)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to protect...', '/home/msoledade...', 57, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to protect...', '/home/msoledade...', 57, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 18:48:18 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 18:49:03 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 18:49:39 Error: Fatal Error (1): Call to protected method BaseFacebook::getCode() from context 'UsersController' in [/home/msoledade/www/evoke/Controller/UsersController.php, line 59]
+2014-02-14 18:49:39 Error: [FatalErrorException] Call to protected method BaseFacebook::getCode() from context 'UsersController'
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to protect...', '/home/msoledade...', 59)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to protect...', '/home/msoledade...', 59, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to protect...', '/home/msoledade...', 59, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 18:50:01 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/Users/fb_login.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/Users/fb_login.ctp',
+)
+Request URL: /evoke/users/fb_login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-14 19:00:34 Error: [MissingControllerException] Controller class Controller could not be found.
+Exception Attributes: array (
+  'class' => 'Controller',
+  'plugin' => NULL,
+)
+Request URL: /evoke/avascript=window.open(https://www.facebook.com/dialog/oauth?client_id=666636333396015&redirect_uri=http%3A%2F%2Fb.local%2Fevoke%2Fusers%2Flogin&state=3f961a6b29f317d8e75febceb4ef9443&sdk=php-sdk-3.2.3%29
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 19:00:48 Error: [MissingControllerException] Controller class Controller could not be found.
+Exception Attributes: array (
+  'class' => 'Controller',
+  'plugin' => NULL,
+)
+Request URL: /evoke/avascript='window.open(https://www.facebook.com/dialog/oauth?client_id=666636333396015&redirect_uri=http%3A%2F%2Fb.local%2Fevoke%2Fusers%2Flogin&state=3f961a6b29f317d8e75febceb4ef9443&sdk=php-sdk-3.2.3%29%27
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 19:01:40 Error: [MissingControllerException] Controller class Controller could not be found.
+Exception Attributes: array (
+  'class' => 'Controller',
+  'plugin' => NULL,
+)
+Request URL: /evoke/avascript='window.open('https://www.facebook.com/dialog/oauth?client_id=666636333396015&redirect_uri=http%3A%2F%2Fb.local%2Fevoke%2Fusers%2Flogin&state=3f961a6b29f317d8e75febceb4ef9443&sdk=php-sdk-3.2.3%27%29%27
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 19:01:49 Error: [MissingControllerException] Controller class Controller could not be found.
+Exception Attributes: array (
+  'class' => 'Controller',
+  'plugin' => NULL,
+)
+Request URL: /evoke/avascript=window.open('https://www.facebook.com/dialog/oauth?client_id=666636333396015&redirect_uri=http%3A%2F%2Fb.local%2Fevoke%2Fusers%2Flogin&state=3f961a6b29f317d8e75febceb4ef9443&sdk=php-sdk-3.2.3%27%29
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

@@ -1,0 +1,38 @@
+/* GENERAL STYLES */
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+
+*, html, body,
+button, div, p, span, a,
+.button
+{
+	font-family: 'Droid Sans', 'Helvetica', 'Arial', sans-serif;
+	-webkit-text-stroke: 0.1px;
+	-webkit-font-smoothing: antialiased;
+}
+
+.evoke.bg-topbar {
+	background: #333333;
+}
+
+.evoke.margin.top {
+	margin-top: 1em;
+}
+
+.evoke.margin.top-2 {
+	margin-top: 2em;
+}
+
+.evoke a.button {
+	color: #fff;
+}
+
+.evoke.panel p,
+.evoke.panel h1,
+.evoke.panel h2,
+.evoke.panel h3,
+.evoke.panel h4,
+.evoke.panel h5,
+.evoke.panel h6 {
+	color: #fff;
+}
