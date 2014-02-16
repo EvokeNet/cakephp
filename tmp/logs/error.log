@@ -1022,3 +1022,488 @@ Request URL: /evoke/avascript=window.open('https://www.facebook.com/dialog/oauth
 Stack Trace:
 #0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-02-16 03:17:10 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 03:48:32 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 04:38:57 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 04:48:13 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 04:49:12 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 04:49:17 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 04:49:58 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 04:50:07 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 04:50:33 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 04:51:53 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 05:25:32 Error: Fatal Error (4): syntax error, unexpected ')' in [/Applications/MAMP/htdocs/evoke/Controller/UsersController.php, line 69]
+2014-02-16 05:25:32 Error: [FatalErrorException] syntax error, unexpected ')'
+Request URL: /evoke/users/login?code=AQAHwFsB-shyouooDGzI1w2XxjVxTjcK8gGX2MH09aN1iTdgkPQ-U30ZtXYci2_BpbkbyaCsQ6eREiLsXDpMwIARNufuM2gyM5r9MI_OfQQIkC6UfAX4adcPMrLv7ULlvQm8xa6nYXgvth6_InckbatQDLySYZGqYWalxpmBNDFIL9C6luwvt-CkerCJyBVGgzX9dSpiCOF_gk8whQaiWH5zpADXGN-lTsRG2NNTNgWfCs4fMmvBg4jUOEPLGExcyc5Uq4rEJQcV5-suQHjlKZabP7p8o_9Q9apl_hl6tD6vDwddP-ksx4OdUz9YS8prUPo&state=2111c1ddb7d867384867b50cce34aefa
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/Applications/M...', 69)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/Applications/M...', 69, Array)
+#2 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/Applications/M...', 69, Array)
+#3 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-16 05:25:32 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 05:26:08 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'name' cannot be null
+Request URL: /evoke/users/login?code=AQAHwFsB-shyouooDGzI1w2XxjVxTjcK8gGX2MH09aN1iTdgkPQ-U30ZtXYci2_BpbkbyaCsQ6eREiLsXDpMwIARNufuM2gyM5r9MI_OfQQIkC6UfAX4adcPMrLv7ULlvQm8xa6nYXgvth6_InckbatQDLySYZGqYWalxpmBNDFIL9C6luwvt-CkerCJyBVGgzX9dSpiCOF_gk8whQaiWH5zpADXGN-lTsRG2NNTNgWfCs4fMmvBg4jUOEPLGExcyc5Uq4rEJQcV5-suQHjlKZabP7p8o_9Q9apl_hl6tD6vDwddP-ksx4OdUz9YS8prUPo&state=2111c1ddb7d867384867b50cce34aefa
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('INSERT INTO `ev...', Array)
+#2 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1004): DboSource->execute('INSERT INTO `ev...')
+#3 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(1832): DboSource->create(Object(User), Array, Array)
+#4 /Applications/MAMP/htdocs/evoke/Controller/UsersController.php(71): Model->save(Array)
+#5 [internal function]: UsersController->login()
+#6 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-16 05:26:08 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 05:28:20 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 05:28:58 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 05:29:05 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 05:29:19 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 05:29:42 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:21:34 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:21:57 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:33:27 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:33:58 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:34:30 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:34:54 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:35:09 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:35:55 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:36:39 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:37:26 Error: [MissingHelperException] Helper class AuthHelper could not be found.
+Exception Attributes: array (
+  'class' => 'AuthHelper',
+  'plugin' => false,
+)
+Request URL: /evoke/users/dashboard
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Auth')
+#1 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Auth')
+#2 /Applications/MAMP/htdocs/evoke/View/Users/dashboard.ctp(3): View->__get('Auth')
+#3 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/Applications/M...')
+#4 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/Applications/M...', Array)
+#5 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/Applications/M...')
+#6 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-16 23:37:26 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:37:43 Error: Fatal Error (1): Allowed memory size of 33554432 bytes exhausted (tried to allocate 2638830 bytes) in [/Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Debugger.php, line 562]
+2014-02-16 23:37:43 Error: [FatalErrorException] Allowed memory size of 33554432 bytes exhausted (tried to allocate 2638830 bytes)
+Request URL: /evoke/users/dashboard
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', '/Applications/M...', 562)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', '/Applications/M...', 562, Array)
+#2 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', '/Applications/M...', 562, Array)
+#3 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-16 23:37:43 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:37:51 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:38:12 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:38:21 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:38:58 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:39:03 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:39:57 Error: Fatal Error (4): syntax error, unexpected '$this' (T_VARIABLE) in [/Applications/MAMP/htdocs/evoke/Controller/UsersController.php, line 124]
+2014-02-16 23:39:57 Error: [FatalErrorException] syntax error, unexpected '$this' (T_VARIABLE)
+Request URL: /evoke/users/dashboard
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/Applications/M...', 124)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/Applications/M...', 124, Array)
+#2 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/Applications/M...', 124, Array)
+#3 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-16 23:39:57 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:40:09 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:41:05 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:42:04 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:42:05 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:42:51 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:42:51 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/src/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:42:57 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/src/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:42:57 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/src/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:43:07 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/src/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:43:07 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/src/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:43:11 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/src/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:43:11 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/src/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-16 23:43:14 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/src/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

@@ -32,15 +32,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 </head>
 <body>
 
-	<?php echo $this->Element('topbar'); ?>
-
 	<section role="main">
-		<div class="row evoke margin top">
-			<div class="large-12 columns">
-				<?php echo $this->Session->flash(); ?>
-				<?php echo $this->fetch('content'); ?>
-			</div>
-		</div>
+		<?php echo $this->Session->flash(); ?>
+		<?php echo $this->fetch('content'); ?>
 	</section>
 
 	<footer class="evoke margin top-2">
@@ -51,7 +45,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		</div>
 	</footer>
 
-	<?php echo $this->Html->script('/components/jquery/jquery.min') ?>
+	<?php echo $this->Html->script('/components/jquery/dist/jquery.min') ?>
 	<?php echo $this->Html->script('/components/foundation/js/foundation.min') ?>
 	<?php echo $this->Html->script('evoke') ?>
 

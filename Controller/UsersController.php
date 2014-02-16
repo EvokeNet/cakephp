@@ -42,24 +42,49 @@ class UsersController extends AppController {
 		));
 
 		if(isset($this->params['url']['code'])) {
-			$user = $facebook->getUser();
+			$userFbData = $facebook->getUser();
 
-			// Criar a lógica para gravar o usuário no BD aqui e realizamos o login
-			// Caso já exista, apenas procedemos com o login
+			if ($userFbData) {
 
-			if ($user) {
 				try {
 					$user_profile = $facebook->api('/me');
 				} catch (FacebookApiException $e) {
 					error_log($e);
-					$user = null;
+					$userFbData = null;
 				}
+
+				if(!$user = $this->User->find('first', array('conditions' => array('facebook_id' => $user_profile['id'])))) {
+
+					// User does not exist in DB, so we are going to create
+
+					$this->User->create();
+					$user['User']['facebook_id'] = $user_profile['id'];
+					$user['User']['name'] = $user_profile['name'];
+					$user['User']['sex'] = $user_profile['gender'];
+					$user['User']['login'] = $user_profile['username'];
+					$user['User']['password'] = sha1($user_profile['id']);
+					$user['User']['facebook'] = $user_profile['link'];
+
+					if($this->User->save($user)) {
+						$this->Session->setFlash(__('Agent connected successfuly!'), 'success');
+						$this->Auth->login($user);
+						$this->redirect(array('action' => 'dashboard'));
+					} else {
+						$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
+						$this->redirect(array('action' => 'login'));
+					}
+
+				} else {
+
+					// User exists, so we just force login
+					// TODO: check if any data changed since last Facebook login, then update in our table
+
+					$this->Auth->login($user);
+					$this->redirect(array('action' => 'dashboard'));
+
+				}
+				
 			}
-
-			echo '<img src="https://graph.facebook.com/'. $user .'/picture" />';
-
-			debug($user_profile);
-			die();
 
 		} else if ($this->Auth->login()) {
 			$this->redirect($this->Auth->redirect());
@@ -87,6 +112,16 @@ class UsersController extends AppController {
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
+	}
+
+/**
+ * dashboard method
+ *
+ * @return void
+ */
+	public function dashboard() {
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$this->set('username', $username);
 	}
 
 /**
