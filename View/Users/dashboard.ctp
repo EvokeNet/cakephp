@@ -31,8 +31,11 @@
 
 <?php $this->end(); ?>
 
-<div class="row">
-	<div class="large-12 columns">
-		<h1>Dashboard</h1>
+
+<section class="evoke margin top-2">
+	<div class="row">
+		<div class="large-12 columns">
+			<h1>Dashboard</h1>
+		</div>
 	</div>
-</div>
+</section>

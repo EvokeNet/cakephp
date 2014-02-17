@@ -7,15 +7,14 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  */
 
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
+$title = __('Evoke Network');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
+		<?php echo $title; ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
@@ -45,7 +44,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		</div>
 	</footer>
 
-	<?php echo $this->Html->script('/components/jquery/dist/jquery.min') ?>
+	<?php echo $this->Html->script('/components/jquery/jquery.min') ?>
 	<?php echo $this->Html->script('/components/foundation/js/foundation.min') ?>
 	<?php echo $this->Html->script('evoke') ?>
 
