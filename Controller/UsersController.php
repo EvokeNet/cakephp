@@ -42,7 +42,7 @@ class UsersController extends AppController {
 	public function login() {
 
 		$facebook = new Facebook(array(
-			'appId'  => Configure::read('fb_app_id'),
+			'appId' => Configure::read('fb_app_id'),
 			'secret' => Configure::read('fb_app_secret'),
 		));
 
@@ -71,7 +71,6 @@ class UsersController extends AppController {
 					$user['User']['facebook'] = $user_profile['link'];
 
 					if($this->User->save($user)) {
-						$this->Session->setFlash(__('Agent connected successfuly!'), 'success');
 						$this->Auth->login($user);
 						$this->redirect(array('action' => 'dashboard'));
 					} else {
@@ -128,7 +127,7 @@ class UsersController extends AppController {
  */
 	public function dashboard() {
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set('username', $username);
+		$this->set(compact('username'));
 	}
 
 /**
