@@ -1,5 +1,13 @@
 <?php
+
 App::uses('AppController', 'Controller');
+
+require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
+
+App::uses('AppController', 'Controller');
+App::uses('HttpSocket', 'Network/Http');
+
+
 /**
  * Users Controller
  *
@@ -16,6 +24,93 @@ class UsersController extends AppController {
 	public $components = array('Paginator');
 
 /**
+*
+* beforeFilter method
+*
+* @return void
+*/
+	public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('add', 'logout');
+    }
+
+/**
+ * login method
+ *
+ * @return void
+ */
+	public function login() {
+
+		$facebook = new Facebook(array(
+			'appId'  => Configure::read('fb_app_id'),
+			'secret' => Configure::read('fb_app_secret'),
+		));
+
+		if(isset($this->params['url']['code'])) {
+			$userFbData = $facebook->getUser();
+
+			if ($userFbData) {
+
+				try {
+					$user_profile = $facebook->api('/me');
+				} catch (FacebookApiException $e) {
+					error_log($e);
+					$userFbData = null;
+				}
+
+				if(!$user = $this->User->find('first', array('conditions' => array('facebook_id' => $user_profile['id'])))) {
+
+					// User does not exist in DB, so we are going to create
+
+					$this->User->create();
+					$user['User']['facebook_id'] = $user_profile['id'];
+					$user['User']['name'] = $user_profile['name'];
+					$user['User']['sex'] = $user_profile['gender'];
+					$user['User']['login'] = $user_profile['username'];
+					$user['User']['password'] = sha1($user_profile['id']);
+					$user['User']['facebook'] = $user_profile['link'];
+
+					if($this->User->save($user)) {
+						$this->Session->setFlash(__('Agent connected successfuly!'), 'success');
+						$this->Auth->login($user);
+						$this->redirect(array('action' => 'dashboard'));
+					} else {
+						$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
+						$this->redirect(array('action' => 'login'));
+					}
+
+				} else {
+
+					// User exists, so we just force login
+					// TODO: check if any data changed since last Facebook login, then update in our table
+
+					$this->Auth->login($user);
+					$this->redirect(array('action' => 'dashboard'));
+
+				}
+				
+			}
+
+		} else if ($this->Auth->login()) {
+			$this->redirect($this->Auth->redirect());
+		} else {
+			$fbLoginUrl = $facebook->getLoginUrl();
+			$this->set(compact('fbLoginUrl'));
+		}
+	}
+
+
+/**
+ * logout method
+ *
+ * @return void
+ */
+	public function logout() {
+		$this->redirect($this->Auth->logout());
+	}
+
+/**
+*
  * index method
  *
  * @return void
@@ -26,6 +121,18 @@ class UsersController extends AppController {
 	}
 
 /**
+ *
+ * dashboard method
+ *
+ * @return void
+ */
+	public function dashboard() {
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$this->set('username', $username);
+	}
+
+/**
+ *
  * view method
  *
  * @throws NotFoundException

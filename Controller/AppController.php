@@ -22,4 +22,28 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+
+/**
+ * Components
+ *
+ * @var array
+ */	
+	 public $components = array(
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array('controller' => 'users', 'action' => 'dashboard'),
+            'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
+        )
+    );
+
+/**
+ * beforeFilter method
+ *
+ * @return void
+ */
+	public function beforeFilter() {
+        $this->Auth->allow('add', 'fb_login');
+    }
+
 }
