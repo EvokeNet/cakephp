@@ -21,6 +21,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('missions');
+		echo $this->Html->css(array('/webroot/components/foundation/css/foundation.min'),'stylesheet', array('inline' => false ));
+
+		echo $this->Html->script('/webroot/components/jquery/jquery.min');
+		echo $this->Html->script('/webroot/components/foundation/js/foundation.min');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -47,6 +52,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			?>
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>

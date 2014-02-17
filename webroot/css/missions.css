@@ -1,0 +1,38 @@
+@charset "utf-8";
+/**
+ *
+ * Evidence CSS for CakePHP
+ *
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @package       app.webroot.css
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+
+.evidences h1{
+	font-size:2.0em;
+	margin-bottom:10px;
+}
+
+.evidences h6{
+	color:#b7b7b7;
+}
+
+.evidences p{
+	margin: 30px 0px 50px 0px;
+}
+
+.evidences a{
+	color: #ccc;
+}
+
+.evidences a:hover{
+	color: #ccc;
+}

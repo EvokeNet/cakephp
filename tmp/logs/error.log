@@ -36,3 +36,1699 @@ Request URL: /evoke2014/erewr
 Stack Trace:
 #0 /home/msoledade/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-02-13 16:48:48 Error: [MissingControllerException] Controller class EvidencesController could not be found.
+Exception Attributes: array (
+  'class' => 'EvidencesController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/evidences
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-13 17:29:39 Error: Fatal Error (4): syntax error, unexpected T_ECHO in [/srv/www/evoke2014/View/Missions/view.ctp, line 2]
+2014-02-13 17:29:39 Error: [FatalErrorException] syntax error, unexpected T_ECHO
+Request URL: /evoke2014/missions/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 2)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 2, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 2, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-13 18:14:58 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/js/components/foundation/js/foundation.js
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-13 18:14:58 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/css/components/foundation/css/foundation.min.css
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-13 18:15:49 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/js/components/foundation/js/foundation.js
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-13 18:15:56 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/css/webroot/components/foundation/css/foundation.min.css
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-13 18:15:56 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/js/components/foundation/js/foundation.js
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-13 18:16:13 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/js/components/foundation/js/foundation.js
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-13 18:52:53 Error: [MissingHelperException] Helper class UserHelper could not be found.
+Exception Attributes: array (
+  'class' => 'UserHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/missions/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('User')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('User')
+#2 /srv/www/evoke2014/View/Missions/view.ctp(21): View->__get('User')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(MissionsController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 18:55:22 Error: [MissingHelperException] Helper class UserHelper could not be found.
+Exception Attributes: array (
+  'class' => 'UserHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/missions/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('User')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('User')
+#2 /srv/www/evoke2014/View/Missions/view.ctp(21): View->__get('User')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(MissionsController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 18:55:24 Error: [MissingHelperException] Helper class UserHelper could not be found.
+Exception Attributes: array (
+  'class' => 'UserHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/missions/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('User')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('User')
+#2 /srv/www/evoke2014/View/Missions/view.ctp(21): View->__get('User')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(MissionsController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 18:55:33 Error: [MissingHelperException] Helper class UserHelper could not be found.
+Exception Attributes: array (
+  'class' => 'UserHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/missions/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('User')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('User')
+#2 /srv/www/evoke2014/View/Missions/view.ctp(21): View->__get('User')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(MissionsController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 18:59:17 Error: [MissingHelperException] Helper class AuthHelper could not be found.
+Exception Attributes: array (
+  'class' => 'AuthHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/missions/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Auth')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Auth')
+#2 /srv/www/evoke2014/View/Missions/view.ctp(21): View->__get('Auth')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(MissionsController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 18:59:39 Error: [MissingHelperException] Helper class AuthHelper could not be found.
+Exception Attributes: array (
+  'class' => 'AuthHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/missions/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Auth')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Auth')
+#2 /srv/www/evoke2014/View/Missions/view.ctp(21): View->__get('Auth')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(MissionsController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 19:48:38 Error: [MissingHelperException] Helper class UserHelper could not be found.
+Exception Attributes: array (
+  'class' => 'UserHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/missions/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('User')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('User')
+#2 /srv/www/evoke2014/View/Missions/view.ctp(21): View->__get('User')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(MissionsController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 19:54:04 Error: [MissingHelperException] Helper class ArticleHelper could not be found.
+Exception Attributes: array (
+  'class' => 'ArticleHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/missions/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Article')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Article')
+#2 /srv/www/evoke2014/View/Missions/view.ctp(21): View->__get('Article')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(MissionsController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 19:54:12 Error: [MissingHelperException] Helper class ArticleHelper could not be found.
+Exception Attributes: array (
+  'class' => 'ArticleHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/missions/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Article')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Article')
+#2 /srv/www/evoke2014/View/Missions/view.ctp(21): View->__get('Article')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(MissionsController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 20:00:11 Error: [MissingControllerException] Controller class CommentsController could not be found.
+Exception Attributes: array (
+  'class' => 'CommentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/comments/add
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-13 21:58:17 Error: [MissingControllerException] Controller class CommentsController could not be found.
+Exception Attributes: array (
+  'class' => 'CommentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/comments/add
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-13 22:38:53 Error: [NotFoundException] Invalid evidence
+Request URL: /evoke2014/evidences/view
+Stack Trace:
+#0 [internal function]: EvidencesController->view()
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#4 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-13 23:09:15 Error: [MissingHelperException] Helper class CommentHelper could not be found.
+Exception Attributes: array (
+  'class' => 'CommentHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Comment')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Comment')
+#2 /srv/www/evoke2014/View/Evidences/view.ctp(12): View->__get('Comment')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 23:10:28 Error: [MissingHelperException] Helper class CommentHelper could not be found.
+Exception Attributes: array (
+  'class' => 'CommentHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Comment')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Comment')
+#2 /srv/www/evoke2014/View/Evidences/view.ctp(12): View->__get('Comment')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 23:12:14 Error: [MissingHelperException] Helper class CommentHelper could not be found.
+Exception Attributes: array (
+  'class' => 'CommentHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Comment')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Comment')
+#2 /srv/www/evoke2014/View/Evidences/view.ctp(12): View->__get('Comment')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 23:14:22 Error: Fatal Error (1): Call to a member function getUserById() on a non-object in [/srv/www/evoke2014/View/Evidences/view.ctp, line 12]
+2014-02-13 23:14:22 Error: [FatalErrorException] Call to a member function getUserById() on a non-object
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 12)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 12, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 12, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-13 23:24:46 Error: Fatal Error (1): Call to a member function find() on a non-object in [/srv/www/evoke2014/Controller/CommentsController.php, line 62]
+2014-02-13 23:24:46 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 62)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 62, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 62, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-13 23:24:47 Error: Fatal Error (1): Call to a member function find() on a non-object in [/srv/www/evoke2014/Controller/CommentsController.php, line 62]
+2014-02-13 23:24:47 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke2014/comments/view/2
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 62)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 62, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 62, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-13 23:25:01 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Comment'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Comment...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Comment...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Comment...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(Comment), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(62): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:25:10 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'User'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Comment...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Comment...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Comment...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(Comment), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(62): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:25:16 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Comment...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Comment...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Comment...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(Comment), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(62): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:27:10 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Comment...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Comment...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Comment...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(Comment), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(62): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:29:41 Error: Fatal Error (1): Call to a member function find() on a non-object in [/srv/www/evoke2014/Controller/CommentsController.php, line 62]
+2014-02-13 23:29:41 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 62)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 62, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 62, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-13 23:29:46 Error: Fatal Error (1): Call to a member function find() on a non-object in [/srv/www/evoke2014/Controller/CommentsController.php, line 62]
+2014-02-13 23:29:46 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 62)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 62, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 62, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-13 23:30:07 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Comment.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(62): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:30:30 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Comment.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(60): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:30:35 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Comment.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(60): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:30:39 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Comment.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(60): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:30:50 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Comment.user_id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(60): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:31:47 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'User'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(60): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:33:53 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'User'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(60): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:34:47 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'User'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(60): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-13 23:36:15 Error: [MissingHelperException] Helper class CommentHelper could not be found.
+Exception Attributes: array (
+  'class' => 'CommentHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Comment')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Comment')
+#2 /srv/www/evoke2014/View/Evidences/view.ctp(20): View->__get('Comment')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 23:43:52 Error: [MissingHelperException] Helper class CommentHelper could not be found.
+Exception Attributes: array (
+  'class' => 'CommentHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Comment')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Comment')
+#2 /srv/www/evoke2014/View/Evidences/view.ctp(13): View->__get('Comment')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 23:44:24 Error: [MissingHelperException] Helper class CommentHelper could not be found.
+Exception Attributes: array (
+  'class' => 'CommentHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Comment')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Comment')
+#2 /srv/www/evoke2014/View/Evidences/view.ctp(13): View->__get('Comment')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 23:44:27 Error: [MissingHelperException] Helper class CommentHelper could not be found.
+Exception Attributes: array (
+  'class' => 'CommentHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Comment')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Comment')
+#2 /srv/www/evoke2014/View/Evidences/view.ctp(13): View->__get('Comment')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-13 23:44:45 Error: Fatal Error (1): Call to a member function find() on a non-object in [/srv/www/evoke2014/View/Evidences/view.ctp, line 13]
+2014-02-13 23:44:45 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 13)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 13, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 13, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-13 23:45:18 Error: Fatal Error (1): Call to a member function find() on a non-object in [/srv/www/evoke2014/View/Evidences/view.ctp, line 13]
+2014-02-13 23:45:18 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 13)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 13, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 13, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-13 23:55:22 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'User'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(61): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 00:00:11 Error: Fatal Error (4): syntax error, unexpected T_IS_EQUAL, expecting ')' in [/srv/www/evoke2014/Model/Comment.php, line 36]
+2014-02-14 00:00:11 Error: [FatalErrorException] syntax error, unexpected T_IS_EQUAL, expecting ')'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 36)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 36, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 36, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 00:00:24 Error: Fatal Error (4): syntax error, unexpected T_IS_EQUAL, expecting ')' in [/srv/www/evoke2014/Model/Comment.php, line 36]
+2014-02-14 00:00:24 Error: [FatalErrorException] syntax error, unexpected T_IS_EQUAL, expecting ')'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 36)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 36, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 36, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 00:00:29 Error: Fatal Error (4): syntax error, unexpected T_IS_EQUAL, expecting ')' in [/srv/www/evoke2014/Model/Comment.php, line 36]
+2014-02-14 00:00:29 Error: [FatalErrorException] syntax error, unexpected T_IS_EQUAL, expecting ')'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 36)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 36, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 36, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 00:03:06 Error: [MissingHelperException] Helper class CommentHelper could not be found.
+Exception Attributes: array (
+  'class' => 'CommentHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Comment')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Comment')
+#2 /srv/www/evoke2014/View/Comments/view.ctp(36): View->__get('Comment')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-14 00:03:39 Error: Fatal Error (1): Call to a member function getUser() on a non-object in [/srv/www/evoke2014/View/Comments/view.ctp, line 36]
+2014-02-14 00:03:39 Error: [FatalErrorException] Call to a member function getUser() on a non-object
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 36)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 36, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 36, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 00:03:52 Error: Fatal Error (1): Call to a member function getUser() on a non-object in [/srv/www/evoke2014/View/Comments/view.ctp, line 36]
+2014-02-14 00:03:52 Error: [FatalErrorException] Call to a member function getUser() on a non-object
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 36)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 36, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 36, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 00:13:48 Error: [MissingControllerException] Controller class AdminMissionsController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminMissionsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/admin_missions
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 00:14:15 Error: [MissingControllerException] Controller class AdminmissionsController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminmissionsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/adminmissions
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 00:14:18 Error: [MissingControllerException] Controller class AdminMissionsController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminMissionsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/adminMissions
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 00:16:33 Error: [MissingControllerException] Controller class MissionIssuesController could not be found.
+Exception Attributes: array (
+  'class' => 'MissionIssuesController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/mission_issues/add
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-14 00:42:53 Error: Fatal Error (1): Call to a member function find() on a non-object in [/srv/www/evoke2014/Controller/MissionsController.php, line 39]
+2014-02-14 00:42:53 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke2014/missions
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 39)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 39, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 39, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 00:43:08 Error: Fatal Error (1): Call to a member function find() on a non-object in [/srv/www/evoke2014/Controller/MissionsController.php, line 39]
+2014-02-14 00:43:08 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke2014/missions
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 39)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 39, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 39, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 01:05:19 Error: Fatal Error (4): syntax error, unexpected ',', expecting ')' in [/srv/www/evoke2014/Controller/CommentsController.php, line 46]
+2014-02-14 01:05:19 Error: [FatalErrorException] syntax error, unexpected ',', expecting ')'
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 46)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 46, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 46, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 01:05:24 Error: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'evoke.join_table' doesn't exist
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(58): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:05:48 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Comment.id' in 'on clause'
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(59): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:06:46 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Comment.user_id' in 'on clause'
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(55): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:10:41 Error: [PDOException] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'evoke.join_table' doesn't exist
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(58): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:10:47 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'on clause'
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(61): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:14:35 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Comment.primaryKey' in 'on clause'
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(61): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:16:58 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'on clause'
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(61): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:18:18 Error: Fatal Error (4): syntax error, unexpected ';', expecting ')' in [/srv/www/evoke2014/Controller/CommentsController.php, line 57]
+2014-02-14 01:18:18 Error: [FatalErrorException] syntax error, unexpected ';', expecting ')'
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 57)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 57, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 57, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 01:20:22 Error: Fatal Error (4): syntax error, unexpected ')' in [/srv/www/evoke2014/Controller/CommentsController.php, line 57]
+2014-02-14 01:20:22 Error: [FatalErrorException] syntax error, unexpected ')'
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 57)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 57, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 57, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 01:20:34 Error: Fatal Error (4): syntax error, unexpected ')' in [/srv/www/evoke2014/Controller/CommentsController.php, line 57]
+2014-02-14 01:20:34 Error: [FatalErrorException] syntax error, unexpected ')'
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 57)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 57, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 57, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 01:20:36 Error: Fatal Error (4): syntax error, unexpected ')' in [/srv/www/evoke2014/Controller/CommentsController.php, line 57]
+2014-02-14 01:20:36 Error: [FatalErrorException] syntax error, unexpected ')'
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 57)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 57, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 57, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 01:27:59 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'belongsTo' at line 1
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('belongsTo', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('belongsTo', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(609): DboSource->fetchAll('belongsTo', Array, Array)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(800): DboSource->query('belongsTo', Array, Object(Comment))
+#5 /srv/www/evoke2014/Controller/CommentsController.php(43): Model->__call('belongsTo', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(43): Comment->belongsTo('user')
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:31:40 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BelongsTo' at line 1
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('BelongsTo', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('BelongsTo', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(609): DboSource->fetchAll('BelongsTo', Array, Array)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(800): DboSource->query('BelongsTo', Array, Object(Comment))
+#5 /srv/www/evoke2014/Controller/CommentsController.php(43): Model->__call('BelongsTo', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(43): Comment->BelongsTo('user')
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:31:42 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BelongsTo' at line 1
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('BelongsTo', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('BelongsTo', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(609): DboSource->fetchAll('BelongsTo', Array, Array)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(800): DboSource->query('BelongsTo', Array, Object(Comment))
+#5 /srv/www/evoke2014/Controller/CommentsController.php(43): Model->__call('BelongsTo', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(43): Comment->BelongsTo('user')
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:31:44 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BelongsTo' at line 1
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('BelongsTo', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('BelongsTo', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(609): DboSource->fetchAll('BelongsTo', Array, Array)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(800): DboSource->query('BelongsTo', Array, Object(Comment))
+#5 /srv/www/evoke2014/Controller/CommentsController.php(43): Model->__call('BelongsTo', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(43): Comment->BelongsTo('user')
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:31:50 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BelongsTo' at line 1
+Request URL: /evoke2014/comments/view/3
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('BelongsTo', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('BelongsTo', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(609): DboSource->fetchAll('BelongsTo', Array, Array)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(800): DboSource->query('BelongsTo', Array, Object(Comment))
+#5 /srv/www/evoke2014/Controller/CommentsController.php(43): Model->__call('BelongsTo', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(43): Comment->BelongsTo()
+#7 [internal function]: CommentsController->view('3')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:35:41 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.user_id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(62): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:37:46 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'id' in on clause is ambiguous
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(62): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:48:49 Error: Fatal Error (4): syntax error, unexpected ';' in [/srv/www/evoke2014/Controller/CommentsController.php, line 58]
+2014-02-14 01:48:49 Error: [FatalErrorException] syntax error, unexpected ';'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 58)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 58, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 58, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 01:50:41 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'where clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(58): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:50:51 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Comment.user_id' in 'where clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(58): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:51:25 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Comment.user_id' in 'where clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(58): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:54:00 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(73): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:54:46 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Comment.user_id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(73): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:55:40 Error: Fatal Error (1): Call to a member function getColumnTypes() on a non-object in [/srv/www/evoke2014/Controller/CommentsController.php, line 58]
+2014-02-14 01:55:40 Error: [FatalErrorException] Call to a member function getColumnTypes() on a non-object
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 58)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 58, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 58, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 01:55:49 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(81): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:56:30 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(81): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:56:51 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(81): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:56:56 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(81): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:57:43 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(81): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:58:01 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(81): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:58:14 Error: Fatal Error (1): Cannot use object of type Comment as array in [/srv/www/evoke2014/Controller/CommentsController.php, line 58]
+2014-02-14 01:58:14 Error: [FatalErrorException] Cannot use object of type Comment as array
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Cannot use obje...', '/srv/www/evoke2...', 58)
+#1 [internal function]: ErrorHandler::handleError(1, 'Cannot use obje...', '/srv/www/evoke2...', 58, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Cannot use obje...', '/srv/www/evoke2...', 58, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 01:58:57 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(81): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:59:04 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(81): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:59:12 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(81): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 01:59:18 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(81): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:00:23 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(89): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:00:53 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(89): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:01:10 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(89): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:01:30 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(89): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:01:36 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(89): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:01:46 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(89): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:03:53 Error: [MissingHelperException] Helper class CommentHelper could not be found.
+Exception Attributes: array (
+  'class' => 'CommentHelper',
+  'plugin' => false,
+)
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Comment')
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Comment')
+#2 /srv/www/evoke2014/View/Evidences/view.ctp(13): View->__get('Comment')
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/srv/www/evoke2...')
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/srv/www/evoke2...', Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/srv/www/evoke2...')
+#6 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#9 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-14 02:04:07 Error: Fatal Error (1): Call to a member function find() on a non-object in [/srv/www/evoke2014/View/Evidences/view.ctp, line 13]
+2014-02-14 02:04:07 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 13)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 13, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 13, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 02:09:40 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(89): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:10:09 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'CommentUser.id' in 'on clause'
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/CommentsController.php(89): Model->find('all', Array)
+#7 [internal function]: CommentsController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(CommentsController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(CommentsController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:10:23 Error: Fatal Error (4): syntax error, unexpected T_PUBLIC in [/srv/www/evoke2014/Controller/CommentsController.php, line 98]
+2014-02-14 02:10:23 Error: [FatalErrorException] syntax error, unexpected T_PUBLIC
+Request URL: /evoke2014/comments/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 98)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 98, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 98, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 02:18:23 Error: Fatal Error (4): syntax error, unexpected T_DOUBLE_ARROW, expecting ')' in [/srv/www/evoke2014/Controller/EvidencesController.php, line 49]
+2014-02-14 02:18:23 Error: [FatalErrorException] syntax error, unexpected T_DOUBLE_ARROW, expecting ')'
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/srv/www/evoke2...', 49)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/srv/www/evoke2...', 49, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/srv/www/evoke2...', 49, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 02:18:39 Error: Fatal Error (1): Call to a member function find() on a non-object in [/srv/www/evoke2014/Controller/EvidencesController.php, line 60]
+2014-02-14 02:18:39 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/srv/www/evoke2...', 60)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/srv/www/evoke2...', 60, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/srv/www/evoke2...', 60, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-14 02:20:06 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Comment'
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Comment...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Comment...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Comment...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(Comment), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/EvidencesController.php(60): Model->find('all', Array)
+#7 [internal function]: EvidencesController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:20:16 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Comment'
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Comment...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Comment...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Comment...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(Comment), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/EvidencesController.php(54): Model->find('all', Array)
+#7 [internal function]: EvidencesController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:23:14 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Evidence.id' in 'where clause'
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#6 /srv/www/evoke2014/Controller/EvidencesController.php(61): Model->find('first', Array)
+#7 [internal function]: EvidencesController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:23:44 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Evidence.id' in 'where clause'
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/EvidencesController.php(61): Model->find('all', Array)
+#7 [internal function]: EvidencesController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:41:50 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'on clause'
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/EvidencesController.php(60): Model->find('all', Array)
+#7 [internal function]: EvidencesController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:52:39 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Evidence.id' in 'where clause'
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/EvidencesController.php(60): Model->find('all', Array)
+#7 [internal function]: EvidencesController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:52:53 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Evidence.id' in 'where clause'
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/EvidencesController.php(60): Model->find('all', Array)
+#7 [internal function]: EvidencesController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 02:53:06 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Evidence.id' in 'where clause'
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/EvidencesController.php(60): Model->find('all', Array)
+#7 [internal function]: EvidencesController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 03:00:35 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-1 inner JOIN `evoke`.`comments` AS `Comment` ON (`Comment`.`evidence_id` = '1')' at line 1
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/EvidencesController.php(61): Model->find('all', Array)
+#7 [internal function]: EvidencesController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 03:09:49 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Evidence.id' in 'on clause'
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/EvidencesController.php(60): Model->find('all', Array)
+#7 [internal function]: EvidencesController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-14 03:10:14 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Evidence.id' in 'on clause'
+Request URL: /evoke2014/evidences/view/1
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /srv/www/evoke2014/Controller/EvidencesController.php(60): Model->find('all', Array)
+#7 [internal function]: EvidencesController->view('1')
+#8 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(EvidencesController), Array)
+#9 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(EvidencesController), Object(CakeRequest), Object(CakeResponse))
+#11 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
