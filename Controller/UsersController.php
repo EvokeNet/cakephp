@@ -19,6 +19,8 @@ class UsersController extends AppController {
  */
 	public $components = array('Paginator');
 
+	public $uses = array('User', 'Friend');
+
 /**
 * beforeFilter method
 *
@@ -39,12 +41,18 @@ class UsersController extends AppController {
 		$facebook = new Facebook(array(
 			'appId' => Configure::read('fb_app_id'),
 			'secret' => Configure::read('fb_app_secret'),
+			'allowSignedRequest' => false,
+			
 		));
 
 		if(isset($this->params['url']['code'])) {
-			$userFbData = $facebook->getUser();
 
-			if ($userFbData) {
+			$token = $facebook->getAccessToken();
+
+			if (!empty($token)) {
+
+				$userFbData = $facebook->getUser();
+				$user_profile = '';
 
 				try {
 					$user_profile = $facebook->api('/me');
@@ -53,20 +61,23 @@ class UsersController extends AppController {
 					$userFbData = null;
 				}
 
-				if(!$user = $this->User->find('first', array('conditions' => array('facebook_id' => $user_profile['id'])))) {
+				$user = $this->User->find('first', array('conditions' => array('facebook_id' => $user_profile['id'])));
+
+				if(empty($user)) {
 
 					// User does not exist in DB, so we are going to create
 
 					$this->User->create();
 					$user['User']['facebook_id'] = $user_profile['id'];
+					$user['User']['facebook_token'] = $token;
 					$user['User']['name'] = $user_profile['name'];
 					$user['User']['sex'] = $user_profile['gender'];
 					$user['User']['login'] = $user_profile['username'];
-					$user['User']['password'] = sha1($user_profile['id']);
 					$user['User']['facebook'] = $user_profile['link'];
 
 					if($this->User->save($user)) {
 						$this->Auth->login($user);
+						// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
 						$this->redirect(array('action' => 'dashboard'));
 					} else {
 						$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
@@ -78,7 +89,13 @@ class UsersController extends AppController {
 					// User exists, so we just force login
 					// TODO: check if any data changed since last Facebook login, then update in our table
 
+					// We need to update the Facebook token, once web tokens are short-term only
+					$this->User->id = $user['User']['id'];
+					$this->User->set('facebook_token', $token);
+					$this->User->save();
+
 					$this->Auth->login($user);
+					// $this->Session->write('Auth.User.id', $user['User']['id']);
 					$this->redirect(array('action' => 'dashboard'));
 
 				}
@@ -124,6 +141,23 @@ class UsersController extends AppController {
 	}
 
 /**
+ * add_friend method
+ *
+ * @return void
+ */
+	public function add_friend($user_to = null) {
+		$this->request->data['User']['id'] = $this->Session->read('Auth.User.User.id');
+		$this->request->data['Friend']['id'] = $user_to;
+
+		if($this->User->saveAll($this->request->data)) {
+			$this->redirect(array('action' => 'view', $user_to));
+		} else {
+			$this->redirect(array('action' => 'view', $user_to));
+		}
+
+	}
+
+/**
  * view method
  *
  * @throws NotFoundException
@@ -131,11 +165,36 @@ class UsersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$flags = array(
+			'_self' => false,
+			'_friended' => false
+		);
+		$user_from = $this->Session->read('Auth.User.User.id');
+
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
+		
+		$user = $this->User->read(null, $id);
+
+		$friendship = $this->User->find('first', array(
+			'contain' => array(
+				'Friend' => array(
+					'conditions' => array(
+						'user_from' => $user_from,
+						'user_to' => $id
+					)
+				)
+			)
+		));
+
+		if($user['User']['id'] == $user_from) {
+			$flags['_self'] = true;
+		} else if(!empty($friendship)) {
+			$flags['_friended'] = true;
+		}
+
+		$this->set(compact('user', 'flags'));
 	}
 
 /**

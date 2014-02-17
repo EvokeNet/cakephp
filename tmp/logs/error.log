@@ -1532,3 +1532,692 @@ Stack Trace:
 #10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
 #11 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #12 {main}
+2014-02-17 14:58:14 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 14:58:41 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 14:58:51 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 14:59:11 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:00:21 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:00:21 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/users.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:00:35 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/users.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:00:35 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:01:49 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/users.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:01:49 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:02:03 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/users.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:02:03 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:03:00 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:03:00 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/users.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:03:14 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/users.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:03:14 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:05:34 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/users.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:05:34 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:06:03 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:06:49 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/users.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 15:06:49 Error: [MissingControllerException] Controller class HomeController could not be found.
+Exception Attributes: array (
+  'class' => 'HomeController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/home/msoledade/www/evoke/webroot/css/evoke.css
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 17:27:01 Error: Fatal Error (4): syntax error, unexpected ''UserFrom'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in [/home/msoledade/www/evoke/Model/User.php, line 150]
+2014-02-17 17:27:01 Error: [FatalErrorException] syntax error, unexpected ''UserFrom'' (T_CONSTANT_ENCAPSED_STRING), expecting ')'
+Request URL: /evoke/users/login
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 150)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 150, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 150, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 17:28:10 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friendship'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friendship', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 17:30:33 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friendship'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friendship', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 17:30:37 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friendship'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friendship', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 17:33:41 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friendship'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friendship', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 17:33:55 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friendship'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friendship', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 17:46:10 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friendship'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friendship', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 17:46:14 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friendship'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friendship', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 17:46:31 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friendship'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friendship', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 17:46:43 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friendship'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friendship', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 17:47:16 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friendship'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friendship', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 17:50:09 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friendship'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friendship', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 17:52:51 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1066 Not unique table/alias: 'Friend'
+Request URL: /evoke/users/login?code=AQA6d5IWUYjaix0NRsGFIi9UnYVV1FrX5IG-8HyhtsumJ1TzWXqj0uZzGnsbIQxHOwkTiM_hqTIHNxz__s14yALJsF3-PIFRJokqklK4YNHSZ0qtJYi--GLNECQt8fvxGtmeXkKU1fXHJangcLOJZMWkX2IoWKPnCdXaJ0G6vSa8so-D5RR7o0POZ_o183KJNQVw3qNQnEN17c83m9k4hydMC-2DnXptQ1Ky9_kxXtTo35exisO8RNW2j-Udi-Rc3tNvpGHgH501SlzyAY9z8mruxUzh1MGC8sIP3DpHltMceE6LUdhv_S37KsncVc_xYpU&state=9d64fc4ac5a46c7639f6cb091f9d1e1a
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friend`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friend`...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1251): DboSource->fetchAll('SELECT `Friend`...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1112): DboSource->queryAssociation(Object(User), Object(User), 'hasAndBelongsTo...', 'Friend', Array, Array, true, Array, 0, Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(58): Model->find('first', Array)
+#8 [internal function]: UsersController->login()
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-17 18:05:38 Error: Fatal Error (4): syntax error, unexpected '?>', expecting ':' in [/home/msoledade/www/evoke/View/Users/view.ctp, line 51]
+2014-02-17 18:05:38 Error: [FatalErrorException] syntax error, unexpected '?>', expecting ':'
+Request URL: /evoke/users/view/1
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 51)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 51, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 51, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 18:05:54 Error: Fatal Error (4): syntax error, unexpected '?>', expecting ':' in [/home/msoledade/www/evoke/View/Users/view.ctp, line 51]
+2014-02-17 18:05:54 Error: [FatalErrorException] syntax error, unexpected '?>', expecting ':'
+Request URL: /evoke/users/view/1
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 51)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 51, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 51, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 18:08:39 Error: [NotFoundException] Invalid user
+Request URL: /evoke/users/edit
+Stack Trace:
+#0 [internal function]: UsersController->edit()
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-17 18:09:00 Error: Fatal Error (4): syntax error, unexpected '[', expecting variable (T_VARIABLE) or '$' in [/home/msoledade/www/evoke/View/Users/view.ctp, line 48]
+2014-02-17 18:09:00 Error: [FatalErrorException] syntax error, unexpected '[', expecting variable (T_VARIABLE) or '$'
+Request URL: /evoke/users/view/1
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 48)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 48, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 48, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 18:09:27 Error: Fatal Error (4): syntax error, unexpected '[', expecting variable (T_VARIABLE) or '$' in [/home/msoledade/www/evoke/View/Users/view.ctp, line 48]
+2014-02-17 18:09:27 Error: [FatalErrorException] syntax error, unexpected '[', expecting variable (T_VARIABLE) or '$'
+Request URL: /evoke/users/view/1
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 48)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 48, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 48, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 18:09:43 Error: Fatal Error (4): syntax error, unexpected '[', expecting variable (T_VARIABLE) or '$' in [/home/msoledade/www/evoke/View/Users/view.ctp, line 48]
+2014-02-17 18:09:43 Error: [FatalErrorException] syntax error, unexpected '[', expecting variable (T_VARIABLE) or '$'
+Request URL: /evoke/users/view/1
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 48)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 48, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 48, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 18:41:01 Error: Fatal Error (1): Allowed memory size of 134217728 bytes exhausted (tried to allocate 48204213 bytes) in [/home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Debugger.php, line 610]
+2014-02-17 18:41:01 Error: [FatalErrorException] Allowed memory size of 134217728 bytes exhausted (tried to allocate 48204213 bytes)
+Request URL: /evoke/users/dashboard
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Allowed memory ...', '/home/msoledade...', 610)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', '/home/msoledade...', 610, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', '/home/msoledade...', 610, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 18:53:24 Error: [MissingHelperException] Helper class AuthHelper could not be found.
+Exception Attributes: array (
+  'class' => 'AuthHelper',
+  'plugin' => false,
+)
+Request URL: /evoke/users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/HelperCollection.php(63): HelperCollection->load('Auth')
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(818): HelperCollection->__isset('Auth')
+#2 /home/msoledade/www/evoke/View/Users/view.ctp(34): View->__get('Auth')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(929): include('/home/msoledade...')
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(891): View->_evaluate('/home/msoledade...', Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(460): View->_render('/home/msoledade...')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-17 19:03:21 Error: Fatal Error (4): syntax error, unexpected ';' in [/home/msoledade/www/evoke/View/Users/add.ctp, line 9]
+2014-02-17 19:03:21 Error: [FatalErrorException] syntax error, unexpected ';'
+Request URL: /evoke/users/add
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 9)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 9, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 9, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 19:13:39 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_from'
+Request URL: /evoke/users/add_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(2923): PDOStatement->execute()
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2014): DboSource->insertMulti(Object(AppModel), Array, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(1845): Model->_saveMulti(Array, false, Object(Mysql))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2392): Model->save(Array, Array)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2178): Model->saveAssociated(Array, Array)
+#5 /home/msoledade/www/evoke/Controller/UsersController.php(152): Model->saveAll(Array)
+#6 [internal function]: UsersController->add_friend('4')
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#10 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2014-02-17 19:14:35 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_from'
+Request URL: /evoke/users/add_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(2923): PDOStatement->execute()
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2014): DboSource->insertMulti(Object(AppModel), Array, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(1845): Model->_saveMulti(Array, false, Object(Mysql))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2392): Model->save(Array, Array)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2178): Model->saveAssociated(Array, Array)
+#5 /home/msoledade/www/evoke/Controller/UsersController.php(152): Model->saveAll(Array)
+#6 [internal function]: UsersController->add_friend('4')
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#10 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2014-02-17 19:14:51 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_from'
+Request URL: /evoke/users/add_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(2923): PDOStatement->execute()
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2014): DboSource->insertMulti(Object(AppModel), Array, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(1845): Model->_saveMulti(Array, false, Object(Mysql))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2392): Model->save(Array, Array)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2178): Model->saveAssociated(Array, Array)
+#5 /home/msoledade/www/evoke/Controller/UsersController.php(154): Model->saveAll(Array)
+#6 [internal function]: UsersController->add_friend('4')
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#10 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2014-02-17 19:15:01 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_from'
+Request URL: /evoke/users/add_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(2923): PDOStatement->execute()
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2014): DboSource->insertMulti(Object(AppModel), Array, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(1845): Model->_saveMulti(Array, false, Object(Mysql))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2392): Model->save(Array, Array)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2178): Model->saveAssociated(Array, Array)
+#5 /home/msoledade/www/evoke/Controller/UsersController.php(154): Model->saveAll(Array)
+#6 [internal function]: UsersController->add_friend('4')
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#10 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2014-02-17 19:15:18 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '0' for key 'user_from'
+Request URL: /evoke/users/add_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(2923): PDOStatement->execute()
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2014): DboSource->insertMulti(Object(AppModel), Array, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(1845): Model->_saveMulti(Array, false, Object(Mysql))
+#3 /home/msoledade/www/evoke/Controller/UsersController.php(154): Model->save(Array)
+#4 [internal function]: UsersController->add_friend('4')
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#8 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#9 {main}
+2014-02-17 19:20:46 Error: Fatal Error (4): syntax error, unexpected ';' in [/home/msoledade/www/evoke/Controller/UsersController.php, line 155]
+2014-02-17 19:20:46 Error: [FatalErrorException] syntax error, unexpected ';'
+Request URL: /evoke/users/add_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 155)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 155, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 155, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 19:42:13 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_from' in 'where clause'
+Request URL: /evoke/users/view/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#6 /home/msoledade/www/evoke/Controller/UsersController.php(183): Model->find('first', Array)
+#7 [internal function]: UsersController->view('4')
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#11 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-17 19:42:54 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_from' in 'where clause'
+Request URL: /evoke/users/view/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friend`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friend`...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Friend`...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#6 /home/msoledade/www/evoke/Controller/UsersController.php(183): Model->find('first', Array)
+#7 [internal function]: UsersController->view('4')
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#11 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-17 19:43:10 Error: Fatal Error (1): Call to a member function find() on a non-object in [/home/msoledade/www/evoke/Controller/UsersController.php, line 178]
+2014-02-17 19:43:10 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke/users/view/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/home/msoledade...', 178)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/home/msoledade...', 178, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/home/msoledade...', 178, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 19:43:42 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_from' in 'where clause'
+Request URL: /evoke/users/view/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friend`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friend`...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Friend`...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#6 /home/msoledade/www/evoke/Controller/UsersController.php(185): Model->find('first', Array)
+#7 [internal function]: UsersController->view('4')
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#11 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-17 19:44:26 Error: Fatal Error (1): Call to a member function find() on a non-object in [/home/msoledade/www/evoke/Controller/UsersController.php, line 180]
+2014-02-17 19:44:26 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke/users/view/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/home/msoledade...', 180)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/home/msoledade...', 180, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/home/msoledade...', 180, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 19:46:34 Error: Fatal Error (4): syntax error, unexpected 'if' (T_IF), expecting ':' in [/home/msoledade/www/evoke/View/Users/view.ctp, line 49]
+2014-02-17 19:46:34 Error: [FatalErrorException] syntax error, unexpected 'if' (T_IF), expecting ':'
+Request URL: /evoke/users/view/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 49)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 49, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 49, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 19:47:05 Error: [NotFoundException] Invalid user
+Request URL: /evoke/users/view/6
+Stack Trace:
+#0 [internal function]: UsersController->view('6')
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-17 19:47:52 Error: [NotFoundException] Invalid user
+Request URL: /evoke/users/view/2
+Stack Trace:
+#0 [internal function]: UsersController->view('2')
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-17 19:52:11 Error: Fatal Error (4): syntax error, unexpected ';' in [/home/msoledade/www/evoke/View/Users/view.ctp, line 9]
+2014-02-17 19:52:11 Error: [FatalErrorException] syntax error, unexpected ';'
+Request URL: /evoke/users/view/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 9)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 9, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 9, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
