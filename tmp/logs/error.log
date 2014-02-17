@@ -1,0 +1,38 @@
+2014-02-17 12:58:39 Error: Fatal Error (64): require() [http://php.net/function.require]: Failed opening required '/srv/www/evoke2014/Vendor/facebook/php-sdk/src/facebook.php' (include_path='/srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP:.:/usr/share/php:/usr/share/pear') in [/srv/www/evoke2014/Controller/UsersController.php, line 5]
+2014-02-17 12:58:39 Error: [FatalErrorException] require() [http://php.net/function.require]: Failed opening required '/srv/www/evoke2014/Vendor/facebook/php-sdk/src/facebook.php' (include_path='/srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP:.:/usr/share/php:/usr/share/pear')
+Request URL: /evoke2014/users/login
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'require() [http...', '/srv/www/evoke2...', 5)
+#1 [internal function]: ErrorHandler::handleError(64, 'require() [http...', '/srv/www/evoke2...', 5, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 64, 'require() [http...', '/srv/www/evoke2...', 5, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 12:58:40 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/components/jquery/dist/jquery.min.js
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-17 12:59:21 Error: Fatal Error (64): require() [http://php.net/function.require]: Failed opening required '/srv/www/evoke2014/Vendor/facebook/php-sdk/src/facebook.php' (include_path='/srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP:.:/usr/share/php:/usr/share/pear') in [/srv/www/evoke2014/Controller/UsersController.php, line 5]
+2014-02-17 12:59:21 Error: [FatalErrorException] require() [http://php.net/function.require]: Failed opening required '/srv/www/evoke2014/Vendor/facebook/php-sdk/src/facebook.php' (include_path='/srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP:.:/usr/share/php:/usr/share/pear')
+Request URL: /evoke2014/users/login
+Stack Trace:
+#0 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(64, 'require() [http...', '/srv/www/evoke2...', 5)
+#1 [internal function]: ErrorHandler::handleError(64, 'require() [http...', '/srv/www/evoke2...', 5, Array)
+#2 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 64, 'require() [http...', '/srv/www/evoke2...', 5, Array)
+#3 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-17 12:59:21 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke2014/components/jquery/dist/jquery.min.js
+Stack Trace:
+#0 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
