@@ -19,11 +19,6 @@ $title = __('Evoke Network');
 	<?php
 		echo $this->Html->meta('icon');
 
-
-		echo $this->Html->css('cake.generic');
-		echo $this->Html->css('missions');
-		echo $this->Html->css(array('/webroot/components/foundation/css/foundation.min'),'stylesheet', array('inline' => false ));
-
 		echo $this->Html->script('/webroot/components/jquery/jquery.min');
 		echo $this->Html->script('/webroot/components/foundation/js/foundation.min');
 
@@ -31,6 +26,8 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
 		echo $this->Html->css('evoke');
+		echo $this->Html->css('missions');
+		echo $this->Html->css('users');
 
 
 		echo $this->fetch('meta');
@@ -51,10 +48,6 @@ $title = __('Evoke Network');
 				<?php echo $this->element('sql_dump'); ?>
 			</div>
 		</div>
-
-	</div>
-	<?php //echo $this->element('sql_dump'); ?>
-
 	</footer>
 
 	<?php echo $this->Html->script('/components/jquery/jquery.min') ?>

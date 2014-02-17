@@ -39,25 +39,25 @@ class EvidencesController extends AppController {
 		$options = array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id));
 		$this->set('evidence', $this->Evidence->find('first', $options));
 
-		$option=array('fields' => array('name'), 'joins' => array(
+		$option = array('joins' => array(
 				array(
 				    'table' => 'comments',
 				    'alias' => 'Comment',
 				    'type' => 'inner',
 				    'foreignKey' => true,
-				    'conditions'=> array('Comment.evidence_id' => $id)
+				    'conditions'=> array('Comment.evidence_id' => $id),
 				),
 				array(
 				    'table' => 'users',
 				    'alias' => 'CommentUser',
 				    'type' => 'inner',
 				    'foreignKey' => true,
-				    'conditions'=> array('CommentUser.id = Comment.user_id'),
+				    'conditions'=> array('Comment.user_id = CommentUser.id'),
 				),           
 		     )  
 		);
 
-		debug($this->Evidence->Comment->User->find('all', $option));
+		$this->set('usernames', $this->Evidence->Comment->User->find('all', $option));
 	}
 
 /**

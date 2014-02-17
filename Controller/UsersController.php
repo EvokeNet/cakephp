@@ -1,11 +1,8 @@
 <?php
 
-App::uses('AppController', 'Controller');
-
 require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
 
 App::uses('AppController', 'Controller');
-App::uses('HttpSocket', 'Network/Http');
 
 
 /**
@@ -128,6 +125,39 @@ class UsersController extends AppController {
 	public function dashboard() {
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
 		$this->set(compact('username'));
+		$this->set('evidence', $this->User->Evidence->find('all'));
+		//$this->set('missionissues', $this->User->Evidence->Mission->MissionIssue->find('all'));
+
+		// $option = array('joins' => array(
+		// 		array(
+		// 		    'table' => 'mission_issues',
+		// 		    'alias' => 'MissionIssue',
+		// 		    'type' => 'inner',
+		// 		    'foreignKey' => true,
+		// 		    'conditions'=> array(''),
+		// 		),
+		// 		array(
+		// 		    'table' => 'issues',
+		// 		    'alias' => 'AllIssue',
+		// 		    'type' => 'inner',
+		// 		    'foreignKey' => true,
+		// 		    'conditions'=> array('AllIssue.id = MissionIssue.issue_id'),
+		// 		),           
+		//      )  
+		// );
+
+		$this->loadModel('Mission');
+		$missions = $this->Mission->find('all', array('limit' => 3));
+		$this->set(compact('missions'));
+
+		$this->loadModel('Issue');
+		$issues = $this->Issue->find('all');
+		$this->set(compact('issues'));
+
+		$this->loadModel('MissionIssue');
+		$missionissues = $this->MissionIssue->find('all');
+		$this->set(compact('missionissues'));
+
 	}
 
 /**

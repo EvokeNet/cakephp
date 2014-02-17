@@ -1,27 +1,46 @@
+<?php
 
+	$comments_count = ' ('.count($evidence['Comment']). ') ';
+
+?>
 	<div class="row evidences">
-	  <div class="small-6 large-2 columns">
-	 	<?php echo $this->Html->link($evidence['User']['name'], array('controller' => 'users', 'action' => 'view', $evidence['User']['id'])); ?>
+	  <div class="small-6 large-2 columns bio">
+	 	<?php echo $this->Html->link(__('Agent ').$evidence['User']['name'], array('controller' => 'users', 'action' => 'view', $evidence['User']['id']));?>
+	 	<p><?php echo $evidence['User']['biography'] ?></p>
+	 	<hr class="sexy_line" />
 	  </div>
 	  <div class="small-6 large-8 columns">
 	  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
 	  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
 	  	<p><?php echo h($evidence['Evidence']['content']); ?></p>
-	  	<h1><?php echo __('Share a Thought');?></h1>
+
+	  	<p><?php //foreach($usernames as $u){ echo h($u['User']['name']);}?></p>
+
+	  	<h1><?php echo __('Share a Thought').$comments_count; ?></h1>
 	  	<?php //debug($evidence);?>
 	  	<?php foreach ($evidence['Comment'] as $comment): ?>
-	  		<div>
+	  		<div class = "comment">
 				<tr>
-					<td><?php echo $comment['user_id']; ?></td>
-					<td><?php echo $comment['content']; ?></td>
-					<td><?php echo $comment['created']; ?></td>
+					<td>
+					<?php 
+					foreach($usernames as $u):
+			  			if($u['User']['id'] == $comment['user_id']):?>
+
+			  			<h5><?php echo (__('Agent ').$u['User']['name']); break;?></h5>
+			  		<?php endif; endforeach; ?>
+
+					<h6><?php echo date('F j, Y', strtotime($comment['created'])); ?></h6>
+
+					<p><?php echo $comment['content']; ?></p>
+					<hr class="sexy_line" />
+
+					</td>
 				</tr>
 			</div>
 		<?php endforeach; ?>
 	  </div>
 	  <div class="small-12 large-2 columns">
-	  	<button><?php echo __('Share on Facebook'); ?></button>
-	  	<button><?php echo $this->Html->link(__('New Comment'), array('controller' => 'comments', 'action' => 'add')); ?> </button>
+	  	<button><?php echo $this->Html->link(__('Comment').$comments_count, array('controller' => 'comments', 'action' => 'add')); ?> </button>
 	  </div>
 	</div>
 
