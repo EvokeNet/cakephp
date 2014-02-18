@@ -1,0 +1,119 @@
+.clearfix()
+{
+	.ie7 &
+	{
+		*zoom			:1;
+	}
+	  
+	&:before, &:after
+	{
+		display			:table;
+		content			:"";
+	}
+	
+	&:after
+	{
+		clear			:both;
+	}
+}
+
+.opacity(@opacity)
+{
+	opacity							:@opacity;	
+	@msopacity						:@opacity * 100;	
+	filter							:~"alpha(opacity=@{msopacity})";
+}
+
+.transition(@prop, @transition)
+{
+  -webkit-transition				:~"-webkit-@{prop}" @transition;
+     -moz-transition				:~"-moz-@{prop}" @transition;
+      -ms-transition				:~"-ms-@{prop}" @transition;
+       -o-transition				:~"-o-@{prop}" @transition;
+          transition				:@prop @transition;
+}
+
+fieldset
+{
+	.stars
+	{
+		@star_size		:30px;
+		@star_number	:5;
+		
+		background		:url("https://dl.dropboxusercontent.com/u/683504/www.codepen.io/stars.png") repeat-x 0 0;
+		width			:@star_size * @star_number;
+    margin:0 auto;
+		.clearfix();
+	
+		input[type="radio"]
+		{
+			position	:absolute;
+			.opacity(0);
+			
+			.starX (@index) when (@index > 0)
+			{
+				&.star-@{index}:checked
+				{
+					~ span
+					{
+						width		:((100 / @star_number) * @index) + 0%;
+					}
+				}
+				.starX(@index - 1);
+			}
+			
+			.starX(@star_number);			
+		}
+	
+		label
+		{
+			display			:block;
+			width			:@star_size;
+			height			:@star_size;
+			margin			:0!important;
+			padding			:0!important;
+			text-indent		:-999em;
+			float:left;
+			position:relative;
+			z-index:10;
+			background:transparent!important;
+      cursor: pointer;
+			
+			&:hover
+			{
+				~ span
+				{
+					background-position	:0 -@star_size;
+				}
+			}
+			
+			.starX (@index) when (@index > 0)
+			{
+				&.star-@{index}:hover
+				{
+					~ span
+					{
+						width		:((100 / @star_number) * @index) + 0%!important;
+					}
+				}
+				.starX(@index - 1);
+			}
+			
+			.starX(@star_number);			
+		}
+		
+		span
+		{
+			display		:block;
+			height		:@star_size;
+			width		:0;
+      position:relative;
+      top:0;
+      left:0;
+      height:@star_size;
+			background	:url("https://dl.dropboxusercontent.com/u/683504/www.codepen.io/stars.png") repeat-x 0 -(@star_size * 2);
+			
+			.transition(width, 0.5s);
+		}
+	}
+}

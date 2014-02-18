@@ -28,6 +28,7 @@ $title = __('Evoke Network');
 		echo $this->Html->css('evoke');
 		echo $this->Html->css('missions');
 		echo $this->Html->css('users');
+		echo $this->Html->css('votes');
 
 
 		echo $this->fetch('meta');

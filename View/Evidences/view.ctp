@@ -30,8 +30,38 @@
 	  </div>
 	  <div class="small-12 large-2 columns">
 	  	<button><?php echo $this->Html->link(__('Comment').$comments_count, array('controller' => 'comments', 'action' => 'add')); ?> </button>
+	  	<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div>
+	  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
+	  	<button><a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a></button>
 	  </div>
 	</div>
+
+<div id="myModal" class="reveal-modal tiny" data-reveal>
+  <h2>Awesome. I have it.</h2>
+  <?php echo $this->element('votes');?>
+  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="fb-root"></div>
+
+<script>
+//Facebook Share button script
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//Google Share button script
+(function() {
+	var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	po.src = 'https://apis.google.com/js/platform.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
+</script>
 
 <!-- <div class="evidences view">
 <h2><?php echo __('Evidence'); ?></h2>

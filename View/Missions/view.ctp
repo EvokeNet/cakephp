@@ -9,7 +9,7 @@
 
 	<div class = "missionblock"><a href="" data-reveal-id="<?= $quest['id'] ?>" data-reveal><?php echo $quest['title'];?></a></div>
 
-	<div id="<?= $quest['id'] ?>" class="reveal-modal" data-reveal>
+	<div id="<?= $quest['id'] ?>" class="reveal-modal small" data-reveal>
 	  <h2><?php echo $quest['title'];?></h2>
 	  <p class="lead"><?php echo $quest['description'];?></p>
 	  <!-- <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->

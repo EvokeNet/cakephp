@@ -31,7 +31,6 @@
 
 <?php $this->end(); ?>
 
-
 <section class="evoke margin top-2">
 	<div class="row">
 		<div class="large-12 columns">
@@ -100,11 +99,12 @@
 
 			  <!-- Lists all issues -->
 		    	<?php foreach($issues as $i):?>
-		    		<div><?php echo $i['Issue']['name']; ?></div>
+		    		<div>
+		    		<?php echo $this->Html->link($i['Issue']['name'], array('controller' => 'users', 'action' => 'dashboardIssue', $i['Issue']['id']));?></div>
 	    		<?php endforeach; ?>
 
 	    		<!-- Button redirects to listing mission issues page -->
-	    		<div><button><?php echo $this->Html->link(__('See All Issues'), array('controller' => 'issues', 'action' => 'index'));?></button></div>
+	    		<div><button><?php echo $this->Html->link(__('See All Issues'), array('controller' => 'missions', 'action' => 'index'));?></button></div>
 
 			  </div>
 
@@ -129,15 +129,15 @@
 </section>
 
 <script>
-  $('#myTabs').on('toggled', function (event, tab) {
-    console.log(tab);
-  });
+	$('#myTabs').on('toggled', function (event, tab) {
+		console.log(tab);
+	});
 
-  $(document).on('before-height-change', function(){
-  // do something before the height changes
-});
+	$(document).on('before-height-change', function(){
+	// do something before the height changes
+	});
 
-$(document).on('after-height-change', function(){
-  // do something after the height changes
-});
+	$(document).on('after-height-change', function(){
+	// do something after the height changes
+	});
 </script>
