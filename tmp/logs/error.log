@@ -2221,3 +2221,638 @@ Stack Trace:
 #3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2014-02-18 12:31:23 Error: Fatal Error (4): syntax error, unexpected ';' in [/home/msoledade/www/evoke/Controller/UsersController.php, line 173]
+2014-02-18 12:31:23 Error: [FatalErrorException] syntax error, unexpected ';'
+Request URL: /evoke/users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 173)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 173, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 173, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-18 12:31:38 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Friend.user_from' in 'where clause'
+Request URL: /evoke/users/remove_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friend`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friend`...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('4')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 12:32:43 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Friend.user_from' in 'where clause'
+Request URL: /evoke/users/remove_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `User` F...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `User` F...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('4')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 12:33:13 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'contain' in 'where clause'
+Request URL: /evoke/users/remove_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT DISTINCT...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT DISTINCT...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT DISTINCT...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2709): Model->find('all', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array)
+#8 [internal function]: UsersController->remove_friend('4')
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-18 13:34:12 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'contain' in 'where clause'
+Request URL: /evoke/users/remove_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT DISTINCT...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT DISTINCT...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT DISTINCT...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2709): Model->find('all', Array)
+#7 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array)
+#8 [internal function]: UsersController->remove_friend('4')
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-18 13:44:40 Error: Fatal Error (4): syntax error, unexpected '{' in [/home/msoledade/www/evoke/Controller/UsersController.php, line 175]
+2014-02-18 13:44:40 Error: [FatalErrorException] syntax error, unexpected '{'
+Request URL: /evoke/users/view/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 175)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 175, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 175, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-18 13:44:50 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `User` F...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `User` F...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(175): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('4')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 13:45:47 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'where clause'
+Request URL: /evoke/users/remove_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(AppModel), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2675): Model->find('all', Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2571): Model->_deleteLinks(Array)
+#8 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->delete(Array)
+#9 [internal function]: UsersController->remove_friend('4')
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#12 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#13 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2014-02-18 13:46:03 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `User` F...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `User` F...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('4')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 13:46:15 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friend`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friend`...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('4')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 13:48:37 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friend`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friend`...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('4')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 13:48:57 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `User` F...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `User` F...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('4')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 13:57:40 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/4
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `User` F...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `User` F...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('4')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:09:47 Error: [NotFoundException] Invalid user
+Request URL: /evoke/users/view/4
+Stack Trace:
+#0 [internal function]: UsersController->view('4')
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-18 15:11:39 Error: [MissingActionException] Action UsersController::logn() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'logn',
+)
+Request URL: /evoke/users/logn
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-02-18 15:13:42 Error: [NotFoundException] Invalid user
+Request URL: /evoke/users/view/6
+Stack Trace:
+#0 [internal function]: UsersController->view('6')
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-18 15:13:46 Error: [NotFoundException] Invalid user
+Request URL: /evoke/users/view/4
+Stack Trace:
+#0 [internal function]: UsersController->view('4')
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-18 15:19:17 Error: [NotFoundException] Invalid user
+Request URL: /evoke/users/view/3
+Stack Trace:
+#0 [internal function]: UsersController->view('3')
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-18 15:22:00 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(AppModel), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2675): Model->find('all', Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2571): Model->_deleteLinks(Array)
+#8 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->delete(Array, false)
+#9 [internal function]: UsersController->remove_friend('7')
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#12 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#13 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2014-02-18 15:22:11 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(AppModel), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2675): Model->find('all', Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2571): Model->_deleteLinks(Array)
+#8 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->delete(Array)
+#9 [internal function]: UsersController->remove_friend('7')
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#12 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#13 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2014-02-18 15:22:46 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `Friends...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Friends...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(AppModel), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2675): Model->find('all', Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2571): Model->_deleteLinks(Array)
+#8 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->delete(Array, false)
+#9 [internal function]: UsersController->remove_friend('7')
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#12 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#13 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2014-02-18 15:24:10 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `User` F...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `User` F...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:24:59 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friend`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friend`...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:26:21 Error: Fatal Error (1): Call to a member function deleteAll() on a non-object in [/home/msoledade/www/evoke/Controller/UsersController.php, line 173]
+2014-02-18 15:26:21 Error: [FatalErrorException] Call to a member function deleteAll() on a non-object
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/home/msoledade...', 173)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/home/msoledade...', 173, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/home/msoledade...', 173, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-18 15:26:33 Error: Fatal Error (1): Call to a member function deleteAll() on a non-object in [/home/msoledade/www/evoke/Controller/UsersController.php, line 173]
+2014-02-18 15:26:33 Error: [FatalErrorException] Call to a member function deleteAll() on a non-object
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/home/msoledade...', 173)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/home/msoledade...', 173, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/home/msoledade...', 173, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-18 15:26:45 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `User` F...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `User` F...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:37:06 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:37:30 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:37:55 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'FriendsUser' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:39:31 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:40:53 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Friend' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:42:10 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:42:28 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:42:33 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:43:09 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'FriendsUser' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:43:18 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `User` F...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `User` F...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(User), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:43:25 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:43:38 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'FriendsUser' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:43:50 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:44:01 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Friend' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-02-18 15:52:18 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '7' for key 'user_to'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(2923): PDOStatement->execute()
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2014): DboSource->insertMulti(Object(AppModel), Array, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(1845): Model->_saveMulti(Array, '8', Object(Mysql))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2392): Model->save(Array, NULL)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2178): Model->saveAssociated(Array, NULL)
+#5 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->saveAll(Array, false)
+#6 [internal function]: UsersController->remove_friend('7')
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#10 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2014-02-18 15:59:33 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '7' for key 'user_to'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(2923): PDOStatement->execute()
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2014): DboSource->insertMulti(Object(AppModel), Array, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(1845): Model->_saveMulti(Array, '9', Object(Mysql))
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2392): Model->save(Array, NULL)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2178): Model->saveAssociated(Array, NULL)
+#5 /home/msoledade/www/evoke/Controller/UsersController.php(173): Model->saveAll(Array, false)
+#6 [internal function]: UsersController->remove_friend('7')
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#10 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2014-02-18 16:07:05 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Friend.id' in 'field list'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Controller/UsersController.php(184): Model->find('all', Array)
+#7 [internal function]: UsersController->remove_friend('7')
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#11 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-18 16:07:19 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'FriendsUser.id' in 'field list'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Controller/UsersController.php(184): Model->find('all', Array)
+#7 [internal function]: UsersController->remove_friend('7')
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#11 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-18 16:07:29 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User.Friend.id' in 'field list'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Controller/UsersController.php(184): Model->find('all', Array)
+#7 [internal function]: UsersController->remove_friend('7')
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#11 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-02-18 16:40:41 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'FriendsUser' in 'where clause'
+Request URL: /evoke/users/remove_friend/7
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('DELETE `Friends...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php(440): DboSource->execute('DELETE `Friends...')
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2702): Mysql->delete(Object(AppModel), Array)
+#4 /home/msoledade/www/evoke/Controller/UsersController.php(174): Model->deleteAll(Array, false)
+#5 [internal function]: UsersController->remove_friend('7')
+#6 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}

@@ -48,7 +48,7 @@ $title = __('Evoke Network');
 	<footer class="evoke margin top-2">
 		<div class="row">
 			<div class="large-12 columns">
-				<?php //echo $this->element('sql_dump'); ?>
+				<!-- TODO: standard footer -->
 			</div>
 		</div>
 	</footer>

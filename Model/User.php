@@ -149,7 +149,7 @@ class User extends AppModel {
 		)
 	);
 
-	var $hasAndBelongsToMany = array(
+	public $hasAndBelongsToMany = array(
 		'Friend' => array(
 			'className' => 'User',
 			'joinTable' => 'friends_users',

@@ -143,13 +143,34 @@ class UsersController extends AppController {
 /**
  * add_friend method
  *
+ * We are using here the HABTM relationship (Has And Belongs To Many, N <-> N approach), in which
+ * we created a relationship from model User to itselft, using friends table as join table,
+ * which holds two user's id and the DATETIME created to keep track of a friendship start.
+ *
  * @return void
  */
 	public function add_friend($user_to = null) {
 		$this->request->data['User']['id'] = $this->Session->read('Auth.User.User.id');
 		$this->request->data['Friend']['id'] = $user_to;
 
-		if($this->User->saveAll($this->request->data)) {
+		if($result = $this->User->saveAll($this->request->data)) {
+			$this->redirect(array('action' => 'view', $user_to));
+		} else {
+			$this->redirect(array('action' => 'view', $user_to));
+		}
+
+	}
+
+/**
+ * remove_friend method
+ *
+ * @return void
+ */
+	public function remove_friend($user_to = null) {
+
+		$user_from = $this->Session->read('Auth.User.User.id');
+
+		if($this->User->FriendsUser->deleteAll(array('FriendsUser.user_from' => $user_from, 'FriendsUser.user_to' => $user_to))) {
 			$this->redirect(array('action' => 'view', $user_to));
 		} else {
 			$this->redirect(array('action' => 'view', $user_to));
@@ -177,7 +198,10 @@ class UsersController extends AppController {
 		
 		$user = $this->User->read(null, $id);
 
-		$friendship = $this->User->find('first', array(
+		$userFriends = $this->User->find('first', array(
+			'conditions' => array(
+				'User.id' => $user_from
+			),
 			'contain' => array(
 				'Friend' => array(
 					'conditions' => array(
@@ -188,9 +212,11 @@ class UsersController extends AppController {
 			)
 		));
 
+		$friendship = $userFriends['Friend'];
+
 		if($user['User']['id'] == $user_from) {
 			$flags['_self'] = true;
-		} else if(!empty($friendship)) {
+		} else if(isset($friendship) && !empty($friendship)) {
 			$flags['_friended'] = true;
 		}
 
