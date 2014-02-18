@@ -36,28 +36,34 @@ class EvidencesController extends AppController {
 		if (!$this->Evidence->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
+		
 		$options = array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id));
 		$this->set('evidence', $this->Evidence->find('first', $options));
 
-		$option = array('joins' => array(
-				array(
-				    'table' => 'comments',
-				    'alias' => 'Comment',
-				    'type' => 'inner',
-				    'foreignKey' => true,
-				    'conditions'=> array('Comment.evidence_id' => $id),
-				),
-				array(
-				    'table' => 'users',
-				    'alias' => 'CommentUser',
-				    'type' => 'inner',
-				    'foreignKey' => true,
-				    'conditions'=> array('Comment.user_id = CommentUser.id'),
-				),           
-		     )  
-		);
+		$opt = array('conditions' => array('Comment.evidence_id' => $id));
+		$this->set("comment", $this->Evidence->Comment->find('all', $opt));
 
-		$this->set('usernames', $this->Evidence->Comment->User->find('all', $option));
+		// $option = array('joins' => array(
+		// 		array(
+		// 		    'table' => 'comments',
+		// 		    'alias' => 'Comment',
+		// 		    'type' => 'inner',
+		// 		    'foreignKey' => true,
+		// 		    'conditions'=> array('Comment.evidence_id' => $id),
+		// 		),
+		// 		array(
+		// 		    'table' => 'users',
+		// 		    'alias' => 'CommentUser',
+		// 		    'type' => 'inner',
+		// 		    'foreignKey' => true,
+		// 		    'conditions'=> array('Comment.user_id = CommentUser.id'),
+		// 		),           
+		//      )  
+		// );
+
+		// // debug($this->Evidence->Comment->User->find('all', $option));
+		// // die();
+		// $this->set('usernames', $this->Evidence->Comment->User->find('all', $option));
 	}
 
 /**

@@ -32,27 +32,4 @@ class Comment extends AppModel {
 			'order' => ''
 		)
 	);
-
-	public function getUser($id){
-
-		$option=array(             
-        'joins' =>
-				array(
-				array(
-				    'table' => 'comments',
-				    'alias' => 'Comment',
-				    'type' => 'inner',
-				    'conditions'=> array("Comment." . $this->Comment->primaryKey => $id)
-				),
-				array(
-				    'table' => 'users',
-				    'alias' => 'CommentUser',
-				    'type' => 'inner',
-				    'conditions'=> array("Comment.user_id = CommentUser.id")
-				),           
-		     )  
-		);
-
-		return $this->Comment->User->find('all', $option);
-	}
 }

@@ -1,7 +1,46 @@
-<?php foreach ($missions as $mission): ?>
-	<h2><?php echo $this->Html->link(__($mission['Mission']['title']), array('action' => 'view', $mission['Mission']['id'])); ?></h2>
-	<p><?php echo h($mission['Mission']['description']); ?></p>
-<?php endforeach; ?>
+<div class = "issues">
+	
+	<h1><?php //echo __('Mission Under Issues: ').$missionissues[0]['Issue']['name'];?></h1>
+	
+	<?php
+
+	$title = $missionissues[0]['Issue']['name'];
+
+	foreach($issues as $i):?>
+
+		<!-- Print the category's name -->
+		<h1><?php echo __('Mission Under Issues: ').$i['Issue']['name'];?></h1>
+	
+		<?php foreach($missionissues as $m):
+		//If the mission belongs to that category, it is printed
+			if($i['Issue']['name'] == $m['Issue']['name']):?>
+				<h2><?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'])); ?></h2>
+				<p><?php echo $m['Mission']['description'];?></p>
+			<?php endif;
+
+		endforeach;
+	endforeach; ?>
+	
+</div>
+
+<?php //foreach ($missions as $mission): ?>
+	<!-- <h2><?php echo $this->Html->link(__($mission['Mission']['title']), array('action' => 'view', $mission['Mission']['id'])); ?></h2>
+	<p><?php echo h($mission['Mission']['description']); ?></p> -->
+<?php //endforeach; ?>
+
+<?php //foreach($missionissues as $m):?>
+	<!-- <div>
+		<?php if($title != $m['Issue']['name']):
+			$title = $m['Issue']['name'];?>
+			<h1><?php echo __('Mission Under Issues: ').$title;?></h1>
+		<?php endif;?>
+	
+		<div>
+			<h2><?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'])); ?></h2>
+			<p><?php echo $m['Mission']['description'];?></p>
+		</div>
+	</div> -->
+<?php //endforeach; ?>
 
 <!-- <div class="missions index">
 	<h2><?php echo __('Missions'); ?></h2>

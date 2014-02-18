@@ -31,7 +31,7 @@ class Mission extends AppModel {
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
+			'order' => 'created DESC',
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',

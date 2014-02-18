@@ -49,12 +49,16 @@
 				    		<?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?>
 				    		<p><?php echo substr($e['Evidence']['content'], 0, 200);?></p>
 				
+							<!-- Prints the issue related to each mission -->
 		    				<?php foreach($missionissues as $mi): 
-			    				if($e['Mission']['id'] == $mi['Mission']['id']):?> 
-			    					<h5><?php echo $mi['Issue']['name']; echo ' | '.date('F j, Y', strtotime($e['Evidence']['created'])); ?></h5>
-			    					<?php echo count($e['Comment']);?>
+			    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
+			    				<div class="row">
+								  <div class="large-8 columns"><?php echo $mi['Issue']['name']; echo ' | '.date('F j, Y', strtotime($e['Evidence']['created'])); ?></div>
+								  <div class="large-4 columns"><?php echo count($e['Comment']);?></div>
+								</div> 
 			    				<?php break; endif;
 		    				endforeach;?>
+
 			    		</div>
 			    		<hr class="sexy_line" />
 			    	<?php endforeach; ?>
@@ -63,7 +67,27 @@
 			    <p>Second panel content goes here...</p>
 			  </div>
 			  <div class="content" id="panel2-3">
-			    <p>Third panel content goes here...</p>
+			    <?php foreach($evidence as $e): 
+			    	if($userid == $e['Evidence']['user_id']):?>
+			    		<div class = "users_evidences">
+				    		<?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?>
+				    		<p><?php echo substr($e['Evidence']['content'], 0, 200);?></p>
+				
+							<!-- Prints the issue related to each mission -->
+		    				<?php foreach($missionissues as $mi): 
+			    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
+			    				<div class="row">
+								  <div class="large-8 columns"><?php echo $mi['Issue']['name']; echo ' | '.date('F j, Y', strtotime($e['Evidence']['created'])); ?></div>
+								  <div class="large-4 columns"><?php echo count($e['Comment']);?></div>
+								</div> 
+			    				<?php break; endif;
+		    				endforeach;?>
+
+			    		</div>
+			    		<hr class="sexy_line" />
+		    		<?php endif;
+			    endforeach;
+			    ?>
 			  </div>
 			</div>
 
@@ -76,7 +100,7 @@
 
 			  <!-- Lists all issues -->
 		    	<?php foreach($issues as $i):?>
-		    		<?php echo $i['Issue']['name']; ?>
+		    		<div><?php echo $i['Issue']['name']; ?></div>
 	    		<?php endforeach; ?>
 
 	    		<!-- Button redirects to listing mission issues page -->
@@ -108,4 +132,12 @@
   $('#myTabs').on('toggled', function (event, tab) {
     console.log(tab);
   });
+
+  $(document).on('before-height-change', function(){
+  // do something before the height changes
+});
+
+$(document).on('after-height-change', function(){
+  // do something after the height changes
+});
 </script>

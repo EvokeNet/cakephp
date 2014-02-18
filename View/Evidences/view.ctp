@@ -1,6 +1,6 @@
 <?php
 
-	$comments_count = ' ('.count($evidence['Comment']). ') ';
+	$comments_count = ' ('.count($comment). ') ';
 
 ?>
 	<div class="row evidences">
@@ -13,27 +13,16 @@
 	  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
 	  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
 	  	<p><?php echo h($evidence['Evidence']['content']); ?></p>
-
-	  	<p><?php //foreach($usernames as $u){ echo h($u['User']['name']);}?></p>
-
+	  	
 	  	<h1><?php echo __('Share a Thought').$comments_count; ?></h1>
-	  	<?php //debug($evidence);?>
-	  	<?php foreach ($evidence['Comment'] as $comment): ?>
+	  	<?php foreach ($comment as $c): ?>
 	  		<div class = "comment">
 				<tr>
 					<td>
-					<?php 
-					foreach($usernames as $u):
-			  			if($u['User']['id'] == $comment['user_id']):?>
-
-			  			<h5><?php echo (__('Agent ').$u['User']['name']); break;?></h5>
-			  		<?php endif; endforeach; ?>
-
-					<h6><?php echo date('F j, Y', strtotime($comment['created'])); ?></h6>
-
-					<p><?php echo $comment['content']; ?></p>
-					<hr class="sexy_line" />
-
+						<h5><?php echo (__('Agent ').$c['User']['name']); ?></h5>
+						<h6><?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h6>
+						<p><?php echo $c['Comment']['content']; ?></p>
+						<hr class="sexy_line" />
 					</td>
 				</tr>
 			</div>

@@ -24,9 +24,9 @@ class IssuesController extends AppController {
 		$this->Issue->recursive = 0;
 		$this->set('issues', $this->Paginator->paginate());
 
-		$this->loadModel('MissionIssue');
-		$missionissues = $this->MissionIssue->find('all', array('group' => 'MissionIssue.mission_id',));
-		$this->set(compact('missionissues'));
+		// $this->loadModel('MissionIssue');
+		// $missionissues = $this->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id',));
+		// $this->set(compact('missionissues'));
 	}
 
 /**

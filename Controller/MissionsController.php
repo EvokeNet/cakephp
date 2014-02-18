@@ -21,8 +21,17 @@ class MissionsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Mission->recursive = 0;
-		$this->set('missions', $this->Paginator->paginate());
+		// $this->Mission->recursive = 0;
+		// $this->set('missions', $this->Paginator->paginate());
+
+		$this->loadModel('MissionIssue');
+		$missionissues = $this->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id',));
+		$this->set(compact('missionissues'));
+
+		$this->loadModel('Issue');
+		$issues = $this->Issue->find('all');
+		$this->set(compact('issues'));
+		//$this->set('mission', $this->Mission->find('all'));
 	}
 
 /**
@@ -38,6 +47,9 @@ class MissionsController extends AppController {
 		}
 		$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
 		$this->set('mission', $this->Mission->find('first', $options));
+
+		// $opt = array('order' => array('Evidence.created DESC'), 'conditions' => array('Evidence.mission_id' =>$id));
+		// $this->set('evidence', $this->Mission->Evidence->find('all', $opt));
 	}
 
 /**

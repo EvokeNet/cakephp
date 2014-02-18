@@ -1,38 +1,37 @@
-<h2><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
+<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
 
 <h2><?php echo __('Mission Brief'); ?></h2>
-<p><?php echo h($mission['Mission']['description']); ?></p>
+<h4><?php echo h($mission['Mission']['description']); ?></h4>
 
 <h2><?php echo __('Quests: '); echo h($mission['Mission']['title']); ?></h2>
 
 <?php foreach ($mission['Quest'] as $quest): ?>
-	<p><?php echo $this->Html->link(($quest['title']), array('controller' => 'quests', 'action' => 'view', $quest['id'])); ?><p>
+
+	<div class = "missionblock"><a href="" data-reveal-id="<?= $quest['id'] ?>" data-reveal><?php echo $quest['title'];?></a></div>
+
+	<div id="<?= $quest['id'] ?>" class="reveal-modal" data-reveal>
+	  <h2><?php echo $quest['title'];?></h2>
+	  <p class="lead"><?php echo $quest['description'];?></p>
+	  <!-- <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+
 <?php endforeach; ?>
 
 <h2><?php echo __('Discussions: '); echo h($mission['Mission']['title']); ?></h2>
 
-<?php foreach ($mission['Evidence'] as $evidence): ?>
-	<p><?php echo $this->Html->link(($evidence['title']), array('controller' => 'evidences', 'action' => 'view', $evidence['id'])); ?></p>
-<?php endforeach; ?>
-
-<!-- <dl class="tabs" data-tab>
-  <dd class="active"><a href="#panel2-1">Tab 1</a></dd>
-  <dd><a href="#panel2-2">Tab 2</a></dd>
-  <dd><a href="#panel2-3">Tab 3</a></dd>
-  <dd><a href="#panel2-4">Tab 4</a></dd>
+<dl class="tabs" data-tab>
+  <dd class="active"><a href="#panel2-1"><?php echo __('Most Voted');?></a></dd>
+  <dd><a href="#panel2-2"><?php echo __('Most Recent');?></a></dd>
 </dl>
 <div class="tabs-content">
   <div class="content active" id="panel2-1">
     <p>First panel content goes here...</p>
   </div>
   <div class="content" id="panel2-2">
-    <p>Second panel content goes here...</p>
-  </div>
-  <div class="content" id="panel2-3">
-    <p>Third panel content goes here...</p>
-  </div>
-  <div class="content" id="panel2-4">
-    <p>Fourth panel content goes here...</p>
+    <?php foreach ($mission['Evidence'] as $evidence): ?>
+		<h4><?php echo $this->Html->link(($evidence['title']), array('controller' => 'evidences', 'action' => 'view', $evidence['id'])); ?></h4>
+	<?php endforeach; ?>
   </div>
 </div>
 
@@ -41,9 +40,9 @@
     console.log(tab);
   });
 </script>
- -->
+
 <!-- <div class="related">
-	<h3><?php echo __('Related Evidences'); ?></h3>
+	<h4><?php echo __('Related Evidences'); ?></h4>
 	<?php if (!empty($mission['Evidence'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -84,7 +83,7 @@
 	</div>
 </div>
 <div class="related">
-	<h3><?php echo __('Related Mission Issues'); ?></h3>
+	<h4><?php echo __('Related Mission Issues'); ?></h4>
 	<?php if (!empty($mission['MissionIssue'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -115,7 +114,7 @@
 	</div>
 </div>
 <div class="related">
-	<h3><?php echo __('Related Quests'); ?></h3>
+	<h4><?php echo __('Related Quests'); ?></h4>
 	<?php if (!empty($mission['Quest'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>

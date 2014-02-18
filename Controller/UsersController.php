@@ -125,26 +125,33 @@ class UsersController extends AppController {
 	public function dashboard() {
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
 		$this->set(compact('username'));
-		$this->set('evidence', $this->User->Evidence->find('all'));
+
+		$userid = $this->Session->read('Auth.User.User.id');
+		$this->set(compact('userid'));
+
+		$opt = array('order' => array('Evidence.created DESC'));
+		$this->set('evidence', $this->User->Evidence->find('all', $opt));
 		//$this->set('missionissues', $this->User->Evidence->Mission->MissionIssue->find('all'));
 
 		// $option = array('joins' => array(
 		// 		array(
-		// 		    'table' => 'mission_issues',
-		// 		    'alias' => 'MissionIssue',
+		// 		    'table' => 'evidences',
+		// 		    'alias' => 'Evidences',
 		// 		    'type' => 'inner',
 		// 		    'foreignKey' => true,
 		// 		    'conditions'=> array(''),
 		// 		),
 		// 		array(
-		// 		    'table' => 'issues',
-		// 		    'alias' => 'AllIssue',
+		// 		    'table' => 'mission_issues',
+		// 		    'alias' => 'MissionIssues',
 		// 		    'type' => 'inner',
 		// 		    'foreignKey' => true,
-		// 		    'conditions'=> array('AllIssue.id = MissionIssue.issue_id'),
-		// 		),           
+		// 		    'conditions'=> array('MissionIssues.mission_id = Evidences.mission_id'),
+		// 		),          
 		//      )  
 		// );
+
+		//$this->set('evidence', $this->User->Evidence->find('all', $option));
 
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all', array('limit' => 3));
@@ -156,6 +163,8 @@ class UsersController extends AppController {
 
 		$this->loadModel('MissionIssue');
 		$missionissues = $this->MissionIssue->find('all');
+		// debug($missionissues);
+		// die();
 		$this->set(compact('missionissues'));
 
 	}
