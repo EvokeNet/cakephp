@@ -33,3 +33,7 @@
 .users_missions p{
 	margin-top:10px;
 }
+
+.dashboard{
+	max-width:95%;
+}

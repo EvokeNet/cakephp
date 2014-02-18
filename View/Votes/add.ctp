@@ -6,7 +6,6 @@
 		echo $this->Form->input('evidence_id');
 		echo $this->Form->input('user_id');
 		echo $this->Form->input('value', array(
-		    'div' => 'stars',
 		    'type' => 'radio',
 		    'options' => array(1, 2, 3, 4, 5),
 		));

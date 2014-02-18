@@ -32,8 +32,8 @@
 <?php $this->end(); ?>
 
 <section class="evoke margin top-2">
-	<div class="row">
-		<div class="large-12 columns">
+	<div class="row dashboard">
+		<div class="large-8 columns">
 			<h1>Dashboard</h1>
 
 			<dl class="tabs" data-tab>
@@ -127,17 +127,3 @@
 		</div>
 	</div>
 </section>
-
-<script>
-	$('#myTabs').on('toggled', function (event, tab) {
-		console.log(tab);
-	});
-
-	$(document).on('before-height-change', function(){
-	// do something before the height changes
-	});
-
-	$(document).on('after-height-change', function(){
-	// do something after the height changes
-	});
-</script>

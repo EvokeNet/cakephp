@@ -45,7 +45,7 @@ class VotesController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($evidence_id = null) {
 		if ($this->request->is('post')) {
 			$this->Vote->create();
 			if ($this->Vote->save($this->request->data)) {
@@ -71,6 +71,7 @@ class VotesController extends AppController {
 		if (!$this->Vote->exists($id)) {
 			throw new NotFoundException(__('Invalid vote'));
 		}
+		
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Vote->save($this->request->data)) {
 				$this->Session->setFlash(__('The vote has been saved.'));

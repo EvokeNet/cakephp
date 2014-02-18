@@ -43,6 +43,13 @@ class EvidencesController extends AppController {
 		$opt = array('conditions' => array('Comment.evidence_id' => $id));
 		$this->set("comment", $this->Evidence->Comment->find('all', $opt));
 
+		$userid = $this->Session->read('Auth.User.User.id');
+		$this->set(compact('userid'));
+
+		$this->loadModel('Vote');
+		$opt = array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $userid));
+		$this->set("vote", $this->Vote->find('first', $opt));
+
 		// $option = array('joins' => array(
 		// 		array(
 		// 		    'table' => 'comments',

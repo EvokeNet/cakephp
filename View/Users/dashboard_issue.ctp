@@ -31,10 +31,9 @@
 
 <?php $this->end(); ?>
 
-
 <section class="evoke margin top-2">
-	<div class="row">
-		<div class="large-12 columns">
+	<div class="row dashboard">
+		<div class="large-8 columns">
 			<h1>Dashboard</h1>
 
 			<dl class="tabs" data-tab>
@@ -102,7 +101,7 @@
 		    	<h2><?php if(isset($missionissue[0])) echo __('Missions under Issue: ').$missionissue[0]['Issue']['name']; else echo __('No missions'); ?></h2>
 		    	
 		    	<?php foreach($missionissue as $mi): ?>
-		    		<h3><?php echo $mi['Mission']['title']; ?></h3>
+		    		<h3><?php echo $this->Html->link($mi['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mi['Mission']['id']));?></h3>
 		    		<p><?php echo $mi['Mission']['description']; ?></p>
 		    	<?php endforeach; ?>
 
@@ -133,17 +132,3 @@
 		</div>
 	</div>
 </section>
-
-<script>
-  $('#myTabs').on('toggled', function (event, tab) {
-    console.log(tab);
-  });
-
-  $(document).on('before-height-change', function(){
-	  // do something before the height changes
-	});
-
-	$(document).on('after-height-change', function(){
-	  // do something after the height changes
-	});
-</script>
