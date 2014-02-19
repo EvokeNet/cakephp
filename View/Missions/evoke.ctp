@@ -40,8 +40,8 @@
 	  	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 		  <a class="unavailable" href="#"><?php echo __('Mission: ').$mission['Mission']['title']; ?></a>
 		  <?php echo $this->Html->link(__('Learn'), array('controller' => 'missions', 'action' => 'learn', $mission['Mission']['id']));?>
-		  <?php echo $this->Html->link(__('Act'), array('controller' => 'missions', 'action' => 'act', $mission['Mission']['id']));?>
 		  <?php echo $this->Html->link(__('Imagine'), array('controller' => 'missions', 'action' => 'imagine', $mission['Mission']['id']));?>
+		  <?php echo $this->Html->link(__('Act'), array('controller' => 'missions', 'action' => 'act', $mission['Mission']['id']));?>
 		  <a class="current" href="#"><?php echo __('Evoke');?></a>
 		</nav>
 
@@ -67,7 +67,7 @@
 
 		<div class="row">
 		  <div class="medium-9 columns">
-		  	<h2><?php echo __('Discussions: ').$mission['Mission']['title']; ?></h2>
+		  	<h2><?php echo __('Projects: ').$mission['Mission']['title']; ?></h2>
 
 			<dl class="tabs" data-tab>
 			  <dd class="active"><a href="#panel2-1"><?php echo __('Most Voted');?></a></dd>

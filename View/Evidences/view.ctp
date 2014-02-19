@@ -34,7 +34,7 @@
 <?php $this->end(); ?>
 
 <section class="evoke margin top-2">
-	<nav class="breadcrumbs dashboard_breadcrumbs">
+	<nav class="breadcrumbs">
 	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 	  <a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>
 	  <?php echo $this->Html->link(__('Learn'), array('controller' => 'missions', 'action' => 'learn', $evidence['Mission']['id']));?>

@@ -112,7 +112,7 @@
 		  		<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;Activity 2</li>
 		  		<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;Activity 3</li>
 		  	</ul>
-		  	<button><?php echo $this->Html->link(__('Go to Act ->'), array('controller' => 'missions', 'action' => 'act', $mission['Mission']['id']));?></button>
+		  	<button><?php echo $this->Html->link(__('Go to Imagine ->'), array('controller' => 'missions', 'action' => 'imagine', $mission['Mission']['id']));?></button>
 		  </div>
 		</div>
 

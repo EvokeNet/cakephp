@@ -33,6 +33,7 @@
 <?php $this->end(); ?>
 
 <section class="evoke margin top-2">
+
   <div class="row evoke-max-width">
     <div class="medium-9 columns">
     <h1><?php echo __('Leadercloud');?></h1>
@@ -57,7 +58,7 @@
           <p>Fourth panel content goes here...</p>
         </div>
         <div class="content" id="panel2-5">
-          <p>Fourth panel content goes here...</p>
+          <p>Fifth panel content goes here...</p>
         </div>
       </div>
     </div>

@@ -40,16 +40,10 @@
 	  	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 		  <a class="unavailable" href="#"><?php echo __('Mission: ').$mission['Mission']['title']; ?></a>
 		  <?php echo $this->Html->link(__('Learn'), array('controller' => 'missions', 'action' => 'learn', $mission['Mission']['id']));?>
-		  <?php echo $this->Html->link(__('Act'), array('controller' => 'missions', 'action' => 'act', $mission['Mission']['id']));?>
 		  <a class="current" href="#"><?php echo __('Imagine');?></a>
 		</nav>
 
 	  	<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
-
-	  	<div class="row">
-		  <div class="small-7 columns"><h5><?php echo __('Lastest Projects'); ?></h5></div>
-		  <div class="small-5 columns"><h5><?php echo __('Successfully Launched Projects'); ?></h5></div>
-		</div>
 
 		<h2><?php echo __('Quests: '); echo h($mission['Mission']['title']); ?></h2>
 
@@ -66,7 +60,7 @@
 
 		<div class="row">
 		  <div class="medium-9 columns">
-		  	<h2><?php echo __('Prototypes: ').$mission['Mission']['title']; ?></h2>
+		  	<h2><?php echo __('Discussions: ').$mission['Mission']['title']; ?></h2>
 			<dl class="tabs" data-tab>
 			  <dd class="active"><a href="#panel2-1"><?php echo __('Most Voted');?></a></dd>
 			  <dd><a href="#panel2-2"><?php echo __('Most Recent');?></a></dd>
@@ -100,7 +94,15 @@
 		  </div>
 		  <div class="medium-3 columns">
 		  	<h2><?php echo __('To-do list');?></h2>
-		  	<button><?php echo $this->Html->link(__('Go to Evoke ->'), array('controller' => 'missions', 'action' => 'evoke', $mission['Mission']['id']));?></button>
+		  	<ul>
+		  		<?php foreach ($mission['Quest'] as $quest): ?>
+					<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;<?php echo __('Quest: ').$quest['title'];?></li>
+				<?php endforeach; ?>
+		  		<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;Acitivty 1</li>
+		  		<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;Activity 2</li>
+		  		<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;Activity 3</li>
+		  	</ul>
+		  	<button><?php echo $this->Html->link(__('Go to Act ->'), array('controller' => 'missions', 'action' => 'act', $mission['Mission']['id']));?></button>
 		  </div>
 		</div>
 
