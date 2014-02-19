@@ -5,11 +5,11 @@ App::uses('AppModel', 'Model');
  *
  * @property Comment $Comment
  * @property Evidence $Evidence
- * @property Group $Group
  * @property Point $Point
  * @property UserBadge $UserBadge
  * @property UserOrganization $UserOrganization
  * @property Vote $Vote
+ * @property Group $Group
  */
 class User extends AppModel {
 
@@ -38,7 +38,8 @@ class User extends AppModel {
         )
     );
 
-/**
+
+ /**
  * beforeSave method
  *
  * @return void
@@ -71,19 +72,6 @@ class User extends AppModel {
 		),
 		'Evidence' => array(
 			'className' => 'Evidence',
-			'foreignKey' => 'user_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Group' => array(
-			'className' => 'Group',
 			'foreignKey' => 'user_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -149,7 +137,26 @@ class User extends AppModel {
 		)
 	);
 
+
+/**
+ * hasAndBelongsToMany associations
+ *
+ * @var array
+ */
 	public $hasAndBelongsToMany = array(
+		'Group' => array(
+			'className' => 'Group',
+			'joinTable' => 'groups_users',
+			'foreignKey' => 'user_id',
+			'associationForeignKey' => 'group_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+		),
 		'Friend' => array(
 			'className' => 'User',
 			'joinTable' => 'friends_users',

@@ -2856,3 +2856,302 @@ Stack Trace:
 #8 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
 #9 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #10 {main}
+2014-02-18 19:24:00 Error: [MissingActionException] Action UsersController::evokations() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'evokations',
+)
+Request URL: /evoke/users/evokations
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-02-18 19:25:12 Error: [MissingActionException] Action UsersController::evokations() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'evokations',
+)
+Request URL: /evoke/users/evokations
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-02-18 19:25:24 Error: [MissingActionException] Action UsersController::evokations() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'evokations',
+)
+Request URL: /evoke/users/evokations
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-02-18 19:25:39 Error: [MissingControllerException] Controller class GroupsController could not be found.
+Exception Attributes: array (
+  'class' => 'GroupsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/groups
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-18 19:50:16 Error: [MissingControllerException] Controller class GroupsController could not be found.
+Exception Attributes: array (
+  'class' => 'GroupsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/groups/
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-18 19:50:20 Error: [MissingControllerException] Controller class GroupsController could not be found.
+Exception Attributes: array (
+  'class' => 'GroupsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/groups/
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-19 12:05:37 Error: [MissingActionException] Action UsersController::groups() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'groups',
+)
+Request URL: /evoke/users/groups
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-02-19 15:12:48 Error: [MissingActionException] Action UsersController::evokations() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'evokations',
+)
+Request URL: /evoke/users/evokations
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-02-19 15:26:20 Error: [MissingControllerException] Controller class GroupsController could not be found.
+Exception Attributes: array (
+  'class' => 'GroupsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/groups/
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-19 15:49:23 Error: [MissingActionException] Action UsersController::groupsusers() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'groupsusers',
+)
+Request URL: /evoke/users/groupsusers
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-02-19 15:50:06 Error: [MissingActionException] Action UsersController::groupsusers() could not be found.
+Exception Attributes: array (
+  'controller' => 'UsersController',
+  'action' => 'groupsusers',
+)
+Request URL: /evoke/users/groupsusers
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-02-19 15:50:11 Error: [MissingControllerException] Controller class GroupsusersController could not be found.
+Exception Attributes: array (
+  'class' => 'GroupsusersController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/groupsusers
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-19 15:50:16 Error: [MissingControllerException] Controller class GroupusersController could not be found.
+Exception Attributes: array (
+  'class' => 'GroupusersController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/groupusers
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-19 15:50:21 Error: [MissingControllerException] Controller class GroupsusersController could not be found.
+Exception Attributes: array (
+  'class' => 'GroupsusersController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/groupsusers
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-19 15:50:59 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/GroupsUsers/index.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/GroupsUsers/index.ctp',
+)
+Request URL: /evoke/groups_users
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(GroupsUsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-19 15:51:03 Error: [MissingControllerException] Controller class GroupsusersController could not be found.
+Exception Attributes: array (
+  'class' => 'GroupsusersController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/groupsusers
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-19 15:51:12 Error: [MissingViewException] View file "/home/msoledade/www/evoke/View/GroupsUsers/index.ctp" is missing.
+Exception Attributes: array (
+  'file' => '/home/msoledade/www/evoke/View/GroupsUsers/index.ctp',
+)
+Request URL: /evoke/groups_users
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php(457): View->_getViewFileName(NULL)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(952): View->render(NULL, NULL)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(192): Controller->render()
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(GroupsUsersController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-02-19 15:51:46 Error: [MissingControllerException] Controller class GroupsController could not be found.
+Exception Attributes: array (
+  'class' => 'GroupsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/groups/add
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-19 16:41:01 Error: Fatal Error (1): Call to undefined method GroupsUsersController::getGroupAndUsers() in [/home/msoledade/www/evoke/Controller/GroupsUsersController.php, line 36]
+2014-02-19 16:41:01 Error: [FatalErrorException] Call to undefined method GroupsUsersController::getGroupAndUsers()
+Request URL: /evoke/groups_users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', '/home/msoledade...', 36)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', '/home/msoledade...', 36, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', '/home/msoledade...', 36, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-19 16:43:49 Error: Fatal Error (1): Call to a member function find() on a non-object in [/home/msoledade/www/evoke/Model/GroupsUser.php, line 13]
+2014-02-19 16:43:49 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke/groups_users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/home/msoledade...', 13)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/home/msoledade...', 13, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/home/msoledade...', 13, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-19 16:44:49 Error: Fatal Error (4): syntax error, unexpected ''conditions'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in [/home/msoledade/www/evoke/Model/GroupsUser.php, line 16]
+2014-02-19 16:44:49 Error: [FatalErrorException] syntax error, unexpected ''conditions'' (T_CONSTANT_ENCAPSED_STRING), expecting ')'
+Request URL: /evoke/groups_users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 16)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 16, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 16, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-19 16:45:28 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Group' at line 1
+Request URL: /evoke/groups_users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(GroupsUser), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Model/GroupsUser.php(19): Model->find('all', Array)
+#7 /home/msoledade/www/evoke/Controller/GroupsUsersController.php(36): GroupsUser->getGroupAndUsers('3')
+#8 [internal function]: GroupsUsersController->view('3')
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(GroupsUsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(GroupsUsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-19 16:50:16 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User.id' in 'field list'
+Request URL: /evoke/groups_users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(Group), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Model/GroupsUser.php(19): Model->find('all', Array)
+#7 /home/msoledade/www/evoke/Controller/GroupsUsersController.php(36): GroupsUser->getGroupAndUsers('3')
+#8 [internal function]: GroupsUsersController->view('3')
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(GroupsUsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(GroupsUsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-19 16:50:55 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User.id' in 'field list'
+Request URL: /evoke/groups_users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(Group), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Model/GroupsUser.php(18): Model->find('all', Array)
+#7 /home/msoledade/www/evoke/Controller/GroupsUsersController.php(36): GroupsUser->getGroupAndUsers('3')
+#8 [internal function]: GroupsUsersController->view('3')
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(GroupsUsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(GroupsUsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-19 16:51:21 Error: Fatal Error (1): Call to a member function find() on a non-object in [/home/msoledade/www/evoke/Model/GroupsUser.php, line 13]
+2014-02-19 16:51:21 Error: [FatalErrorException] Call to a member function find() on a non-object
+Request URL: /evoke/groups_users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/home/msoledade...', 13)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/home/msoledade...', 13, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/home/msoledade...', 13, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-19 16:51:44 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'User.id' in 'field list'
+Request URL: /evoke/groups_users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(458): PDOStatement->execute(Array)
+#1 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(424): DboSource->_execute('SELECT `User`.`...', Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(665): DboSource->execute('SELECT `User`.`...', Array, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `User`.`...', false)
+#4 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(Group), Array)
+#5 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('all', Array)
+#6 /home/msoledade/www/evoke/Model/GroupsUser.php(18): Model->find('all', Array)
+#7 /home/msoledade/www/evoke/Controller/GroupsUsersController.php(36): GroupsUser->getGroupAndUsers('3')
+#8 [internal function]: GroupsUsersController->view('3')
+#9 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(GroupsUsersController), Array)
+#10 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#11 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(GroupsUsersController), Object(CakeRequest), Object(CakeResponse))
+#12 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-02-19 19:13:31 Error: [MissingControllerException] Controller class GroupUsersController could not be found.
+Exception Attributes: array (
+  'class' => 'GroupUsersController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/group_users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
