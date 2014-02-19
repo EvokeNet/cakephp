@@ -1,0 +1,18 @@
+/* STYLES FOR GROUPS, EVOKATIONS AND PROJECT SPACE */
+
+.evoke.chat {
+	height: 100% !important;
+	border-right: 1px solid #ccc;
+}
+
+.evoke.toolbar {
+	height: 100% !important;
+	border-left: 1px solid #ccc;
+}
+
+.evoke.project.page {
+	border: 1px solid #ccc;
+	cursor: text;
+	height: 300px;
+	padding: 10px;
+}

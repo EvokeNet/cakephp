@@ -12,7 +12,14 @@
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.app.config
@@ -201,6 +208,7 @@ Configure::write('Routing.prefixes', array('admin'));
 /**
  * A random string used in security hashing methods.
  */
+
 	Configure::write('Security.salt', '74fe547a73a7b5fd7048e4a3ee950ac75d27c8ec');
 
 /**
@@ -246,6 +254,14 @@ Configure::write('Routing.prefixes', array('admin'));
  * to fix the date & time related errors.
  */
 	//date_default_timezone_set('UTC');
+
+/**
+ * `Config.timezone` is available in which you can set users' timezone string.
+ * If a method of CakeTime class is called with $timezone parameter as null and `Config.timezone` is set,
+ * then the value of `Config.timezone` will be used. This feature allows you to set users' timezone just
+ * once instead of passing it each time in function calls.
+ */
+	//Configure::write('Config.timezone', 'Europe/Paris')
 
 /**
  *
@@ -299,8 +315,59 @@ Configure::write('Routing.prefixes', array('admin'));
  * 		'compress' => false, // [optional] compress data in Memcache (slower, but uses less memory)
  *	));
  *
+ *  Wincache (http://php.net/wincache)
+ *
+ * 	 Cache::config('default', array(
+ *		'engine' => 'Wincache', //[required]
+ *		'duration' => 3600, //[optional]
+ *		'probability' => 100, //[optional]
+ *		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
+ *	));
+ */
+
+/**
+ * Configure the cache handlers that CakePHP will use for internal
+ * metadata like class maps, and model schema.
+ *
+ * By default File is used, but for improved performance you should use APC.
+ *
+ * Note: 'default' and other application caches should be configured in app/Config/bootstrap.php.
+ *       Please check the comments in bootstrap.php for more info on the cache engines available
+ *       and their settings.
+ */
+$engine = 'File';
+
+// In development mode, caches should expire quickly.
+$duration = '+999 days';
+if (Configure::read('debug') > 0) {
+	$duration = '+10 seconds';
+}
+
+// Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
+$prefix = 'myapp_';
+
+/**
+ * Configure the cache used for general framework caching. Path information,
+ * object listings, and translation cache files are stored with this configuration.
+ */
+Cache::config('_cake_core_', array(
+	'engine' => $engine,
+	'prefix' => $prefix . 'cake_core_',
+	'path' => CACHE . 'persistent' . DS,
+	'serialize' => ($engine === 'File'),
+	'duration' => $duration
+));
+
+/**
+ * Configure the cache for model and datasource caches. This cache configuration
+ * is used to store schema descriptions, and table listings in connections.
  */
 	Cache::config('default', array('engine' => 'File'));
 
 	Configure::write('fb_app_id', '666636333396015');
 	Configure::write('fb_app_secret', '8f56121cd2840b321cf64d8aa156f3ce');
+
+Configure::write('fb_app_id', '666636333396015');
+Configure::write('fb_app_secret', '8f56121cd2840b321cf64d8aa156f3ce');
+Configure::write('fb_app_requests', '');
+

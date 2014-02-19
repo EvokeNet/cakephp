@@ -1,19 +1,27 @@
 /* GENERAL STYLES */
 
-@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
 
 *, html, body,
 button, div, p, span, a,
 .button
 {
-	font-family: 'Droid Sans', 'Helvetica', 'Arial', sans-serif;
+	font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
 	-webkit-text-stroke: 0.1px;
 	-webkit-font-smoothing: antialiased;
+}
+
+/* OVERRIDES STANDARD ROW WIDTH */
+.row.full-width {
+    width: 100%;
+    max-width: 100%;
 }
 
 .evoke.bg-topbar {
 	background: #333333;
 }
+
+/* SPACINGS, MARGINS, PADDINGS */
 
 .evoke.margin.top {
 	margin-top: 1em;
@@ -23,8 +31,28 @@ button, div, p, span, a,
 	margin-top: 2em;
 }
 
+.evoke.margin.left {
+	margin-left: 1em;
+}
+
+.evoke.margin.left-2 {
+	margin-left: 2em;
+}
+
+.evoke.margin.bottom {
+	margin-bottom: 1em;
+}
+
+
 .evoke a.button {
 	color: #fff;
+}
+
+.evoke.button {
+	max-height: 2.5em;
+	line-height: 0;
+	padding-top: 1.25em;
+	padding-bottom: 1.25em;
 }
 
 .evoke.panel p,
@@ -35,4 +63,22 @@ button, div, p, span, a,
 .evoke.panel h5,
 .evoke.panel h6 {
 	color: #fff;
+}
+
+.evoke.clearfix {
+	clear: both;
+}
+
+.evoke.typeface.thin {
+	font-family: 'Open Sans Light', 'Helvetica Neue', 'Arial', sans-serif;
+	font-weight: lighter;
+}
+
+.evoke.typeface.strong {
+	font-family: 'Open Sans Bold', 'Helvetica', 'Arial', sans-serif;
+	font-weight: bolder;
+}
+
+.evoke.paragraph {
+	line-height: 100%/1.618;
 }

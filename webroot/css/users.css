@@ -37,3 +37,19 @@
 .dashboard{
 	max-width:95%;
 }
+/* USERS CONTROLLER STYLES */
+
+.evoke.profile.picture.wrapper {
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+}
+
+.evoke.profile.picture {
+	width: 100%;
+	height: auto;
+}
+
+.evoke.profile.info {
+	max-width: 60%;
+}

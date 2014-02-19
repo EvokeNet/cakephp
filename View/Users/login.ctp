@@ -53,10 +53,10 @@
 		</div>
 
 		<div class="large-6 columns evoke margin top-2">
-			<a href="<?php echo $fbLoginUrl; ?>" class="evoke button expand bg-blue"><i class="fa fa-facebook">
+			<a href="<?php echo $fbLoginUrl; ?>" class="button expand bg-blue"><i class="fa fa-facebook">
 				</i> Login with Facebook
 			</a>
-			<a href="<?php echo $this->Html->url(array('action' => 'google_login')); ?>" class="evoke button expand bg-red">
+			<a href="<?php echo $this->Html->url(array('action' => 'google_login')); ?>" class="button expand bg-red">
 				<i class="fa fa-google-plus"></i> Login with Google
 			</a>
 		</div>
