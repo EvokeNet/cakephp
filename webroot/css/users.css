@@ -2,18 +2,23 @@
 	padding:10px 0px;
 }
 
-.users_evidences a{
+/*.users_evidences a{
 	font-size:1.8em;
 	font-weight:bold;
 	color:#373737;
+}*/
+
+.dashboard nav{
+	border: none;
+	background: none;
 }
 
-.users_evidences p{
+.dashboard p{
 	color:#373737;
 	margin-top:15px;
 }
 
-.users_evidences h5{
+.dashboard h5{
 	color:#b7b7b7;
 	display:inline;
 }
@@ -34,9 +39,6 @@
 	margin-top:10px;
 }
 
-.dashboard{
-	max-width:95%;
-}
 /* USERS CONTROLLER STYLES */
 
 .evoke.profile.picture.wrapper {

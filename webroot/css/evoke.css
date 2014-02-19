@@ -82,3 +82,11 @@ button, div, p, span, a,
 .evoke.paragraph {
 	line-height: 100%/1.618;
 }
+
+.evoke-max-width{
+	max-width: none;
+}
+
+.name h1{
+	color:#FFF;
+}

@@ -40,54 +40,6 @@ class CommentsController extends AppController {
 		$options = array('conditions' => array('Comment.' . $this->Comment->primaryKey => $id));
 		$this->set('comment', $this->Comment->find('first', $options));
 
-	// 	$array = $this->Comment->find('first', $options);
-
-	// 	$array = Set::extract('/0/Comment', $array);
-	// 	pr($array);
-
-	// 	$field_names = array_keys($array[0]['Comment']);
-	// 	pr($field_names);
-
-	// 	$ops = $this->Comment->bindModel(array
- //        (
- //            'belongsTo' => array
- //            (
- //                'User' => array
- //                (
- //                    'foreignKey' => false,
- //                    'conditions' => array
- //                    (
- //                        'User.id = Comment.user_id'
- //                    )
- //                )
- //            )
- //        ));
-
-	// 	var_dump($this->Comment->user_id);
-
- //        debug($this->Comment->User->find('all',array('contain'=>'User.id = Comment.user_id')));
-
-	// 	$com = $this->set('comment', $this->Comment->find('first', $options));
-	// 	$option=array(             
- //        'joins' =>
-	// 			array(
-	// 			array(
-	// 			    'table' => 'comments',
-	// 			    'alias' => 'Comment',
-	// 			    'type' => 'inner',
-	// 			    'conditions'=> array("CommentUser.id = Comment.user_id")
-	// 			),
-	// 			array(
-	// 			    'table' => 'users',
-	// 			    'alias' => 'CommentUser',
-	// 			    'type' => 'inner',
-	// 			    'conditions'=> array("CommentUser.id = Comment.user_id")
-	// 			),           
-	// 	     )  
-	// 	);
-
-	// 	debug($this->Comment->User->find('all', $option));
-
 	}
 
 /**
@@ -100,7 +52,7 @@ class CommentsController extends AppController {
 			$this->Comment->create();
 			if ($this->Comment->save($this->request->data)) {
 				$this->Session->setFlash(__('The comment has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'evidences', 'action' => 'view', $this->request->data['Comment']['evidence_id']));
 			} else {
 				$this->Session->setFlash(__('The comment could not be saved. Please, try again.'));
 			}

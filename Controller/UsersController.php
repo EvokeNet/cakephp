@@ -80,7 +80,7 @@ class UsersController extends AppController {
 					if($this->User->save($user)) {
 						$this->Auth->login($user);
 						// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
-						$this->redirect(array('action' => 'dashboard'));
+						$this->redirect(array('action' => 'dashboard', $this->User->id));
 					} else {
 						$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
 						$this->redirect(array('action' => 'login'));
@@ -98,7 +98,7 @@ class UsersController extends AppController {
 
 					$this->Auth->login($user);
 					// $this->Session->write('Auth.User.id', $user['User']['id']);
-					$this->redirect(array('action' => 'dashboard'));
+					$this->redirect(array('action' => 'dashboard', $this->User->id));
 
 				}
 				
@@ -160,9 +160,17 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function dashboard() {
+	public function dashboard($id = null) {
+
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
 		$this->set(compact('username'));
+
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
+		$this->set(compact('user'));
 
 		$userid = $this->Session->read('Auth.User.User.id');
 		$this->set(compact('userid'));
@@ -191,7 +199,15 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function dashboardIssue($id = null) {
+	public function dashboardByIssue($user_id = null, $id = null) {
+
+		if (!$this->User->exists($user_id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_id)));
+		$this->set(compact('user'));
+
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
 		$this->set(compact('username'));
 

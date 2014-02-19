@@ -36,6 +36,12 @@ class EvidencesController extends AppController {
 		if (!$this->Evidence->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
+
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$this->set(compact('username'));
+		
+		$userid = $this->Session->read('Auth.User.User.id');
+		$this->set(compact('userid'));
 		
 		$options = array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id));
 		$this->set('evidence', $this->Evidence->find('first', $options));
@@ -50,27 +56,6 @@ class EvidencesController extends AppController {
 		$opt = array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $userid));
 		$this->set("vote", $this->Vote->find('first', $opt));
 
-		// $option = array('joins' => array(
-		// 		array(
-		// 		    'table' => 'comments',
-		// 		    'alias' => 'Comment',
-		// 		    'type' => 'inner',
-		// 		    'foreignKey' => true,
-		// 		    'conditions'=> array('Comment.evidence_id' => $id),
-		// 		),
-		// 		array(
-		// 		    'table' => 'users',
-		// 		    'alias' => 'CommentUser',
-		// 		    'type' => 'inner',
-		// 		    'foreignKey' => true,
-		// 		    'conditions'=> array('Comment.user_id = CommentUser.id'),
-		// 		),           
-		//      )  
-		// );
-
-		// // debug($this->Evidence->Comment->User->find('all', $option));
-		// // die();
-		// $this->set('usernames', $this->Evidence->Comment->User->find('all', $option));
 	}
 
 /**
@@ -83,7 +68,7 @@ class EvidencesController extends AppController {
 			$this->Evidence->create();
 			if ($this->Evidence->save($this->request->data)) {
 				$this->Session->setFlash(__('The evidence has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'view', $this->Evidence->id));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}
