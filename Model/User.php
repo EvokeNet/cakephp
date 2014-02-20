@@ -117,6 +117,19 @@ class User extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'UserIssue' => array(
+			'className' => 'UserIssue',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'UserOrganization' => array(
 			'className' => 'UserOrganization',
 			'foreignKey' => 'user_id',
