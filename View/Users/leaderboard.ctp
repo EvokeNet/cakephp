@@ -47,6 +47,13 @@
       <div class="tabs-content">
         <div class="content active" id="panel2-1">
           <p>First panel content goes here...</p>
+          <?php echo $this->Html->link(__('Rank'), array('controller' => 'users', 'action' => 'logout')); ?>
+          <div class="row">
+            <div class="large-3 columns"><?php echo $this->Html->link(__('Rank'), array('controller' => 'users', 'action' => 'logout')); ?></div>
+            <div class="large-6 columns"><?php echo $this->Html->link(__('Rank'), array('controller' => 'users', 'action' => 'logout')); ?></div>
+            <div class="large-3 columns"><?php echo $this->Html->link(__('Rank'), array('controller' => 'users', 'action' => 'logout')); ?></div>
+          </div>
+          
         </div>
         <div class="content" id="panel2-2">
           <p>Second panel content goes here...</p>
