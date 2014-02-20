@@ -3155,3 +3155,12 @@ Request URL: /evoke/group_users/view/3
 Stack Trace:
 #0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-02-20 11:53:40 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/js/evokations.js
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
