@@ -25,19 +25,12 @@ class MissionsController extends AppController {
 		$this->set('missions', $this->Paginator->paginate());
 
 		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
-
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
-
-		$this->loadModel('MissionIssue');
-		$missionissues = $this->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id',));
-		$this->set(compact('missionissues'));
+		$missionissues = $this->Mission->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id'));
 
 		$this->loadModel('Issue');
 		$issues = $this->Issue->find('all');
-		$this->set(compact('issues'));
-		//$this->set('mission', $this->Mission->find('all'));
+		$this->set(compact('userid', 'username', 'missionissues', 'issues'));
 	}
 
 /**
@@ -47,25 +40,25 @@ class MissionsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
+	public function view($id = null, $phase_number = null) {
 		if (!$this->Mission->exists($id)) {
 			throw new NotFoundException(__('Invalid mission'));
 		}
 
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
+		$missionPhases = $this->Mission->MissionPhase->find('all', array('conditions' => array('MissionPhase.mission_id' => $id)));
+
+		if($phase_number > count($missionPhases))
+			throw new NotFoundException('Invalid phase');
+
+		$missionPhase = $this->Mission->MissionPhase->find('first', array('conditions' => array('MissionPhase.mission_id' => $id, 'MissionPhase.position' => $phase_number)));
 
 		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
-
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
 		$evidences = $this->Mission->getEvidences($id);
-		$this->set('evidences', $evidences);
-
+		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
 		$missionIssues = $this->Mission->getMissionIssues($id);
-		$this->set('missionIssues', $missionIssues);
-		
-		$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
-		$this->set('mission', $this->Mission->find('first', $options));
+
+		$this->set(compact('userid', 'username', 'evidences', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase'));
 	}
 
 /**
@@ -83,112 +76,8 @@ class MissionsController extends AppController {
 				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
 			}
 		}
-		$groups = $this->Mission->Group->find('list');		
-		$this->set(compact("groups"));
-	}
-
-/**
- * learn phase method
- *
- * @return void
- */
-	public function learn($id = null) {
-		if (!$this->Mission->exists($id)) {
-			throw new NotFoundException(__('Invalid mission'));
-		}
-
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
-
-		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
-
-		$evidences = $this->Mission->getEvidences($id);
-		$this->set('evidences', $evidences);
-
-		$missionIssues = $this->Mission->getMissionIssues($id);
-		$this->set('missionIssues', $missionIssues);
-		
-		$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
-		$this->set('mission', $this->Mission->find('first', $options));
-	}
-
-/**
- * act phase method
- *
- * @return void
- */
-	public function act($id = null) {
-		if (!$this->Mission->exists($id)) {
-			throw new NotFoundException(__('Invalid mission'));
-		}
-
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
-
-		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
-
-		$evidences = $this->Mission->getEvidences($id);
-		$this->set('evidences', $evidences);
-
-		$missionIssues = $this->Mission->getMissionIssues($id);
-		$this->set('missionIssues', $missionIssues);
-		
-		$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
-		$this->set('mission', $this->Mission->find('first', $options));
-	}
-
-/**
- * imagine phase method
- *
- * @return void
- */
-	public function imagine($id = null) {
-		if (!$this->Mission->exists($id)) {
-			throw new NotFoundException(__('Invalid mission'));
-		}
-
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
-
-		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
-
-		$evidences = $this->Mission->getEvidences($id);
-		$this->set('evidences', $evidences);
-
-		$missionIssues = $this->Mission->getMissionIssues($id);
-		$this->set('missionIssues', $missionIssues);
-		
-		$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
-		$this->set('mission', $this->Mission->find('first', $options));
-	}
-
-/**
- * evoke phase method
- *
- * @return void
- */
-	public function evoke($id = null) {
-		if (!$this->Mission->exists($id)) {
-			throw new NotFoundException(__('Invalid mission'));
-		}
-
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
-
-		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
-
-		$evidences = $this->Mission->getEvidences($id);
-		$this->set('evidences', $evidences);
-
-		$missionIssues = $this->Mission->getMissionIssues($id);
-		$this->set('missionIssues', $missionIssues);
-		
-		$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
-		$this->set('mission', $this->Mission->find('first', $options));
+		$missions = $this->Mission->find('list');		
+		$this->set(compact("missions"));
 	}
 
 /**

@@ -33,14 +33,14 @@
 <?php $this->end(); ?>
 
 <section class="evoke margin top-2">
-	<div class="row evoke-max-width dashboard">
+	<div class="row dashboard">
 		<div class="medium-9 columns">
 			<h1><?php echo __('Dashboard');?></h1>
 
 			<nav class="breadcrumbs dashboard_breadcrumbs">
 			  <a class="unavailable" href="#"><?php echo __('Dashboard ');?></a>
 			  <?php echo $this->Html->link($user['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?>
-			  <a class="current" href="#"><?php echo __('Issue: ').$missionissue[0]['Issue']['name'];?></a>
+			  <a class="current" href="#"><?php if($missionissue) echo __('Issue: ').$missionissue[0]['Issue']['name'];?></a>
 			</nav>
 
 			<dl class="tabs" data-tab>
@@ -88,7 +88,7 @@
 		    	<h2><?php if(isset($missionissue[0])) echo __('Missions under Issue: ').$missionissue[0]['Issue']['name']; else echo __('No missions'); ?></h2>
 		    	
 		    	<?php foreach($missionissue as $mi): ?>
-		    		<h3><?php echo $this->Html->link($mi['Mission']['title'], array('controller' => 'missions', 'action' => 'learn', $mi['Mission']['id']));?></h3>
+		    		<h3><?php echo $this->Html->link($mi['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mi['Mission']['id']));?></h3>
 		    		<p><?php echo $mi['Mission']['description']; ?></p>
 		    	<?php endforeach; ?>
 
@@ -103,7 +103,7 @@
 			  <!-- Lists maximum 5 missions -->
 			    <?php foreach($missions as $m):?>
 			    	<div class = "dashboard-missions">
-		    			<?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'learn', $m['Mission']['id']));?>
+		    			<?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $m['Mission']['id']));?>
 		    			<p><?php echo $m['Mission']['description']; ?></p>
 		    		</div>
 	    		<?php endforeach; ?>

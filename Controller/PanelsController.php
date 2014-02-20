@@ -13,13 +13,13 @@ class PanelsController extends AppController {
 	public function index(){
 		//teste
 
-		$ruser = $this->Auth->user('role_id');//precisa ser arrumado, está causando o redirecionamento automatico para a pagina panels
+		//$ruser = $this->Auth->user('role_id');//precisa ser arrumado, está causando o redirecionamento automatico para a pagina panels
 
 		//para debug 
-     	$this->set("ruser",$ruser);
+     	//$this->set("ruser",$ruser);
 
      	//verificando a permissão do usuário, coloquei na veriavel para debug
-		$this->set("teste",$this->Acl->check(array('model' => 'Role', 'foreign_key' => $ruser), 'controllers/Panels'));	
+		//$this->set("teste",$this->Acl->check(array('model' => 'Role', 'foreign_key' => $ruser), 'controllers/Panels'));	
      	
 
 		//carrega infos do usuário

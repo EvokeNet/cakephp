@@ -34,15 +34,15 @@
 <?php $this->end(); ?>
 
 <section class="evoke margin top-2">
-	<nav class="breadcrumbs">
-	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
-	  <a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>
-	  <?php echo $this->Html->link(__('Learn'), array('controller' => 'missions', 'action' => 'learn', $evidence['Mission']['id']));?>
-	  <a class="unavailable" href="#"><?php echo __('Discussions'); ?></a>
-	  <a class="current" href="#"><?php echo $evidence['Evidence']['title'];?></a>
-	</nav>
+	<div class="row">
 
-	<div class="row evoke-max-width">
+	  <nav class="breadcrumbs">
+		<?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
+		<a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>
+		<?php echo $this->Html->link(__('View'), array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id']));?>
+		<a class="unavailable" href="#"><?php echo __('Discussions'); ?></a>
+		<a class="current" href="#"><?php echo $evidence['Evidence']['title'];?></a>
+	  </nav>
 	  <div class="small-6 large-2 columns">
 	 	<?php echo $this->Html->link(__('Agent ').$evidence['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']));?>
 	 	<p><?php echo $evidence['User']['biography'] ?></p>
@@ -71,13 +71,13 @@
 	  	<div>
 	  		<!-- Facebook share button -->			
 			<div id="fb-root"></div>
-	  		<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div></br>
+	  		<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div><br>
 		  	
 		  	<!-- Google Plus share button -->
-		  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div></br>
+		  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
 		  
 		  	<!-- Voting lightbox button -->
-		  	<a href="#" data-reveal-id="myModalVote" data-reveal><button><?php echo __('Vote');?></button></a></br>
+		  	<a href="#" data-reveal-id="myModalVote" data-reveal><button><?php echo __('Vote');?></button></a>
 		  	<!-- Commenting lightbox button -->
 		  	<a href="#" data-reveal-id="myModalComment" data-reveal><button><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<?php echo __('Comment').$comments_count;?></button></a>
 		</div>

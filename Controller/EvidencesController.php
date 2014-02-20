@@ -38,23 +38,25 @@ class EvidencesController extends AppController {
 		}
 
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
+		//$this->set(compact('username'));
 		
 		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
+		//$this->set(compact('username', 'userid'));
 		
-		$options = array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id));
-		$this->set('evidence', $this->Evidence->find('first', $options));
+		//$options = array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id));
+		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
+		//$this->set('evidence', $this->Evidence->find('first', $options));
 
-		$opt = array('conditions' => array('Comment.evidence_id' => $id));
-		$this->set("comment", $this->Evidence->Comment->find('all', $opt));
+		//$options_one = array('conditions' => array('Comment.evidence_id' => $id));
+		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
+		//$this->set("comment", $this->Evidence->Comment->find('all', $opt));
 
-		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
+		//$this->loadModel('Vote');
+		//$options_two = array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $userid));
+		$vote = $this->Evidence->Vote->find('first', array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $userid)));
+		//$this->set("vote", $this->Evidence->Vote->find('first', $opt));
 
-		$this->loadModel('Vote');
-		$opt = array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $userid));
-		$this->set("vote", $this->Vote->find('first', $opt));
+		$this->set(compact('userid', 'username', 'evidence', 'comment', 'vote'));
 
 	}
 

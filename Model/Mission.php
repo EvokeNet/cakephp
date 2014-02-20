@@ -3,9 +3,9 @@ App::uses('AppModel', 'Model');
 /**
  * Mission Model
  *
- * @property Group $Group
  * @property Evidence $Evidence
  * @property MissionIssue $MissionIssue
+ * @property MissionPhase $MissionPhase
  * @property Quest $Quest
  */
 class Mission extends AppModel {
@@ -17,8 +17,7 @@ class Mission extends AppModel {
  */
 	public $displayField = 'title';
 
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+//The Associations below have been created with all possible keys, those that are not needed can be removed
 	
 	public function getMissions() {
 		return $this->find('all');
@@ -51,22 +50,7 @@ class Mission extends AppModel {
 		));
 	}
 
-
-
-/**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'Group' => array(
-			'className' => 'Group',
-			'foreignKey' => 'group_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
  * hasMany associations
@@ -89,6 +73,19 @@ class Mission extends AppModel {
 		),
 		'MissionIssue' => array(
 			'className' => 'MissionIssue',
+			'foreignKey' => 'mission_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'MissionPhase' => array(
+			'className' => 'MissionPhase',
 			'foreignKey' => 'mission_id',
 			'dependent' => false,
 			'conditions' => '',

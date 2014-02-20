@@ -33,7 +33,7 @@
 <?php $this->end(); ?>
 
 <section class="evoke margin top-2">
-	<div class="row evoke-max-width">
+	<div class="row">
 		<div class="medium-9 columns">
 			<h1><?php echo __('Dashboard');?></h1>
 
@@ -65,7 +65,7 @@
 							  <div class="large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
 							</div> 
 		    				<?php break; endif;
-	    				endforeach;?>
+    					endforeach;?>
 
 		    		<hr class="sexy_line" />
 		    	<?php endforeach; ?>
@@ -100,7 +100,7 @@
 			  <!-- Lists maximum 5 missions -->
 			    <?php foreach($missions as $m):?>
 			    	<div class = "dashboard-missions">
-		    			<?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'learn', $m['Mission']['id']));?>
+		    			<?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $m['Mission']['id']));?>
 		    			<p><?php echo $m['Mission']['description']; ?></p>
 		    		</div>
 	    		<?php endforeach; ?>

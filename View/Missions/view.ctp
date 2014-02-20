@@ -33,7 +33,7 @@
 <?php $this->end(); ?>
 
 <section class="evoke margin top-2">
-	<div class="row evoke-max-width">
+	<div class="row">
 	  <div class="small-11 small-centered columns">
 
 	  	<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
@@ -93,6 +93,12 @@
 		  </div>
 		  <div class="medium-3 columns">
 		  	<h2><?php echo __('To-do list');?></h2>
+		  	<ul>
+				<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;Acitivty 1</li>
+		  		<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;Activity 2</li>
+		  		<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;Activity 3</li>
+		  	</ul>
+		  	<button><?php echo $this->Html->link(__('Go to Imagine ->'), array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id']));?></button>
 		  </div>
 		</div>
 

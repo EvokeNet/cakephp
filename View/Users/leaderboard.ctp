@@ -34,7 +34,7 @@
 
 <section class="evoke margin top-2">
 
-  <div class="row evoke-max-width">
+  <div class="row">
     <div class="medium-9 columns">
     <h1><?php echo __('Leadercloud');?></h1>
       <dl class="tabs" data-tab>
