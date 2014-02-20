@@ -47,13 +47,20 @@ class UserIssuesController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->UserIssue->create();
-			if ($this->UserIssue->save($this->request->data)) {
-				$this->Session->setFlash(__('The user issue has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The user issue could not be saved. Please, try again.'));
-			}
+			// debug($this->request->data);
+			// die();
+			$status = false;
+			$user = $this->request->data['UserIssue']['user_id'];
+			foreach ($this->request->data['UserIssue']['issue_id'] as $a) {
+		        $this->UserIssue->create();
+		        $insertData = array('user_id' => $user, 'issue_id' => $a);
+		        $status = $this->UserIssue->save($insertData);
+		        if(!$status) {$this->Session->setFlash(__('The user issue could not be saved. Please, try again.')); break;}
+		    } 
+	        
+	        if($status) $this->Session->setFlash(__('The user issue has been saved.'));
+		    
+		    return $this->redirect(array('action' => 'index'));
 		}
 		$users = $this->UserIssue->User->find('list');
 		$issues = $this->UserIssue->Issue->find('list');

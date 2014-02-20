@@ -372,10 +372,41 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
+
+		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+		$user = $this->User->find('first', $options);
+		$this->set(compact('user'));
+
+		//$this->loadModel('UserIssue');
+
+		$issues = $this->User->UserIssue->Issue->find('list');
+		$this->set(compact('issues'));
+
+		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
+		$this->set(compact('selectedIssues'));
+
 		if ($this->request->is(array('post', 'put'))) {
+			if (!empty($this->request->data)) {
+				// $status = false;
+
+				//Code snippet to save the array containing the issues
+				$user = $this->request->data['User']['id'];
+				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	        
+			        $insertData = array('user_id' => $user, 'issue_id' => $a);
+
+			        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $id, 'UserIssue.issue_id' => $a)));
+			        if(!$exists) $this->User->UserIssue->saveAssociated($insertData);
+			        // if(!$status) {$this->Session->setFlash(__('The user issue could not be saved. Please, try again.')); break;}
+			        // else if($status) $this->Session->setFlash(__('The user issue has been saved.'));
+			    } 
+		        
+		        // if($status) $this->Session->setFlash(__('The user issue has been saved.'));
+		        // if(!$status) {$this->Session->setFlash(__('The user issue could not be saved. Please, try again.')); }
+				//$this->User->saveAssociated($this->request->data);
+			}
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'dashboard'));
+				return $this->redirect(array('action' => 'dashboard', $id));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}

@@ -14,9 +14,10 @@
 	margin-top:20px;
 }
 
-.dashboard{
-	max-width:95%;
+.edit-user-issues{
+	float:left;
 }
+
 /* USERS CONTROLLER STYLES */
 
 .evoke.profile.picture.wrapper {
