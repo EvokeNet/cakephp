@@ -41,7 +41,7 @@ function initialize(file) {
 		url: WEBROOT + "groups_users/storeFileInfo",
 		data: {'group_id': group_id, 'gdrive_file_id': gdrive_file_id, 'title': title, 'abstract': abstract },
 		success: function(id) {
-			$("evokation_id").val(id);
+			$("evokation_id").value = id;
 			console.log('projeto criado no bd');
 		},
 		error: function(msg) {
