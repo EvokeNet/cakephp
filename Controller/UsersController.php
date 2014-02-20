@@ -388,7 +388,9 @@ class UsersController extends AppController {
 				$user = $this->request->data['User']['id'];
 				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	        
 			        $insertData = array('user_id' => $user, 'issue_id' => $a);
-			        $status = $this->User->UserIssue->saveAssociated($insertData);
+
+			        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $id, 'UserIssue.issue_id' => $a)));
+			        if(!$exists) $this->User->UserIssue->saveAssociated($insertData);
 			        // if(!$status) {$this->Session->setFlash(__('The user issue could not be saved. Please, try again.')); break;}
 			        // else if($status) $this->Session->setFlash(__('The user issue has been saved.'));
 			    } 
