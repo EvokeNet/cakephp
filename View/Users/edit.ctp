@@ -10,7 +10,7 @@
 				echo $this->Form->input('name');
 				echo $this->Form->input('username');
 				echo $this->Form->input('password');
-				echo $this->Form->input('birthdate', array('required' => true));
+				echo $this->Form->input('birthdate', array('type' => 'date', 'required' => true));
 				//echo $this->Form->input('sex');
 				echo $this->Form->input('sex', array(
 					'type' => 'select',
@@ -23,7 +23,7 @@
 				echo $this->Form->input('website');
 				echo $this->Form->input('blog');
 				//echo $this->Form->hidden('UserIssue.user_id', array('value' => $user['User']['id']));
-				echo $this->Form->input('UserIssue.issue_id', array('type' => 'select', 'multiple' => 'checkbox', 'selected' => $selectedIssues));
+				echo $this->Form->input('UserIssue.issue_id', array('class' => 'edit-user-issues', 'type' => 'select', 'multiple' => 'checkbox', 'selected' => $selectedIssues));
 			?>
 			</fieldset>
 		<?php echo $this->Form->end(__('Submit')); ?>
