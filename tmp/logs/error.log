@@ -3164,3 +3164,23 @@ Request URL: /evoke/js/evokations.js
 Stack Trace:
 #0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-02-21 15:37:15 Error: Fatal Error (4): syntax error, unexpected ';' in [/home/msoledade/www/evoke/View/GroupsUsers/view.ctp, line 119]
+2014-02-21 15:37:15 Error: [FatalErrorException] syntax error, unexpected ';'
+Request URL: /evoke/groups_users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 119)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 119, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 119, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-02-21 15:37:28 Error: Fatal Error (4): syntax error, unexpected ';' in [/home/msoledade/www/evoke/View/GroupsUsers/view.ctp, line 119]
+2014-02-21 15:37:28 Error: [FatalErrorException] syntax error, unexpected ';'
+Request URL: /evoke/groups_users/view/3
+Stack Trace:
+#0 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Error/ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/msoledade...', 119)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/msoledade...', 119, Array)
+#2 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(929): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/msoledade...', 119, Array)
+#3 /home/msoledade/www/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/App.php(902): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
