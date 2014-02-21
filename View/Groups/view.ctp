@@ -1,4 +1,45 @@
-<div class="groups view">
+<?php  
+	$this->extend('/Common/topbar');
+	$this->start('menu');
+?>
+
+<nav class="top-bar" data-topbar>
+	<ul class="title-area">
+		<li class="name">
+			<h1><?php echo __('Agent ').$username[0]; ?></h1>
+		</li>
+		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+	</ul>
+
+	<section class="top-bar-section">
+		<!-- Right Nav Section -->
+		<ul class="right">
+			<li class="has-dropdown">
+				<a href="#">Settings</a>
+				<ul class="dropdown">
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
+					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
+				</ul>
+			</li>
+		</ul>
+
+		<!-- Left Nav Section -->
+		<ul class="left">
+			<li><a href="#"><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></a></li>
+		</ul>
+	</section>
+</nav>
+
+<?php $this->end(); ?>
+
+<?php
+
+	foreach($groupsUsers as $m){
+		echo $m['User']['name'];
+	}
+?>
+
+<!-- <div class="groups view">
 <h2><?php echo __('Group'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
@@ -142,4 +183,4 @@
 			<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		</ul>
 	</div>
-</div>
+</div> -->

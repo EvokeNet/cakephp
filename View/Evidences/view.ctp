@@ -77,9 +77,9 @@
 		  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
 		  
 		  	<!-- Voting lightbox button -->
-		  	<a href="#" data-reveal-id="myModalVote" data-reveal><button><?php echo __('Vote');?></button></a>
+		  	<a href="#" class="button" data-reveal-id="myModalVote" data-reveal><?php echo __('Vote');?></a>
 		  	<!-- Commenting lightbox button -->
-		  	<a href="#" data-reveal-id="myModalComment" data-reveal><button><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<?php echo __('Comment').$comments_count;?></button></a>
+		  	<a href="#" class="button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<?php echo __('Comment').$comments_count;?></a>
 		</div>
 	  </div>
 	</div>

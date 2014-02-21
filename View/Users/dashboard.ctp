@@ -74,7 +74,7 @@
 	    		<?php endforeach; ?>
 
 	    		<!-- Button redirects to listing mission issues page -->
-	    		</br><button><?php echo $this->Html->link(__('See All Issues'), array('controller' => 'missions', 'action' => 'index'));?></button>
+	    		</br><a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class = "button"><?php echo __('See All Issues');?></a>
 
 			  </div>
 
@@ -89,7 +89,7 @@
 	    		<?php endforeach; ?>
 
 	    		<!-- Button redirects to listing mission page -->
-	    		</br><button><?php echo $this->Html->link(__('See All Missions'), array('controller' => 'missions', 'action' => 'index'));?></button>
+	    		</br><a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class = "button"><?php echo __('See All Missions');?></a>
 
 			  </div>
 			</div>

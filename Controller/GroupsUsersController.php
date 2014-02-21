@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
 
 /**
@@ -28,10 +29,11 @@ class GroupsUsersController extends AppController {
 
 		$userid = $this->Session->read('Auth.User.User.id');
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
 
-		$this->set(compact('userid', 'username', 'groups'));
+		$this->set(compact('user', 'userid', 'username', 'groups'));
 	}
 
 /**
@@ -170,24 +172,74 @@ class GroupsUsersController extends AppController {
 		}
 	}
 
+// /**
+//  * add method
+//  *
+//  * @return void
+//  */
+// 	public function add() {
+// 		if ($this->request->is('post')) {
+// 			$this->GroupsUser->create();
+// 			if ($this->GroupsUser->save($this->request->data)) {
+// 				$this->Session->setFlash(__('The groups user has been saved.'));
+// 				return $this->redirect(array('action' => 'index'));
+// 			} else {
+// 				$this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
+// 			}
+// 		}
+// 		$users = $this->GroupsUser->User->find('list');
+// 		$groups = $this->GroupsUser->Group->find('list');
+// 		$this->set(compact('users', 'groups'));
+// 	}
+
 /**
  * add method
  *
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
-			$this->GroupsUser->create();
-			if ($this->GroupsUser->save($this->request->data)) {
-				$this->Session->setFlash(__('The groups user has been saved.'));
+		
+		$insertData = array('user_id' => $this->params['url']['arg'], 'group_id' => $this->params['url']['arg2']);
+
+		$exists = $this->GroupsUser->find('first', array('conditions' => array('GroupsUser.user_id' => $this->params['url']['arg'], 'GroupsUser.group_id' => $this->params['url']['arg2'])));
+
+		if(!$exists){
+	        if($this->GroupsUser->save($insertData)){
+	        	$this->Session->setFlash(__('The groups user has been saved.'));
 				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
-			}
+	        } else $this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
+		} else {
+			$this->Session->setFlash(__('This user already belongs to this group.'));
+			return $this->redirect(array('action' => 'index'));
 		}
-		$users = $this->GroupsUser->User->find('list');
-		$groups = $this->GroupsUser->Group->find('list');
-		$this->set(compact('users', 'groups'));
+	}
+
+/**
+ * send method
+ *
+ * @return void
+ */
+	public function send($id, $group_id){
+		$userid = $this->Session->read('Auth.User.User.id');
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		
+		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
+
+		$receiver = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $id)));
+
+		$group = $this->GroupsUser->Group->find('first', array('conditions' => array('Group.id' => $group_id)));
+
+		$Email = new CakeEmail('smtp');
+		$Email->from(array($receiver['User']['email'] => $receiver['User']['name']));
+		$Email->to($sender['User']['email']);
+		$Email->subject(__('Evoke - Request to join group'));
+		$Email->emailFormat('html');
+		$Email->template('group', 'group');
+		$Email->viewVars(array('sender' => $sender, 'receiver' => $receiver, 'group' => $group));
+		$Email->send();
+		$this->Session->setFlash(__('The email was sent'));
+		$this->redirect(array('action' => 'index'));
+	
 	}
 
 /**

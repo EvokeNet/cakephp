@@ -61,8 +61,8 @@
 		    	<?php endforeach; ?>
 
 	    		<!-- Button redirects to listing mission issues page -->
-				</br><button><?php echo $this->Html->link(__('Go back to Issues'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));?></button>
-				<button><?php echo $this->Html->link(__('See All Missions'), array('controller' => 'missions', 'action' => 'index'));?></button>
+				</br><a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?>" class = "button"><?php echo __('Go back to Issues');?></a>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class = "button"><?php echo __('See All Missions');?></a>
 
 			  </div>
 
@@ -77,7 +77,7 @@
 	    		<?php endforeach; ?>
 
 	    		<!-- Button redirects to listing mission page -->
-	    		</br><button><?php echo $this->Html->link(__('See All Missions'), array('controller' => 'missions', 'action' => 'index'));?></button>
+	    		</br><a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class = "button"><?php echo __('See All Missions');?></a>
 
 			  </div>
 			</div>

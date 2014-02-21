@@ -45,7 +45,7 @@
 				<?php foreach($missionissues as $m):
 				//If the mission belongs to that category, it is printed
 					if($i['Issue']['name'] == $m['Issue']['name']):?>
-						<h2><?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'])); ?></h2>
+						<h2><?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1)); ?></h2>
 						<p><?php echo $m['Mission']['description'];?></p>
 						<hr class="sexy_line" />
 
