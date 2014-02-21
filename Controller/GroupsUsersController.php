@@ -25,6 +25,13 @@ class GroupsUsersController extends AppController {
 	public function index() {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
+
+		$userid = $this->Session->read('Auth.User.User.id');
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+
+		$groups = $this->GroupsUser->Group->find('all');
+
+		$this->set(compact('userid', 'username', 'groups'));
 	}
 
 /**

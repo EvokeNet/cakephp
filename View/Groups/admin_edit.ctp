@@ -4,8 +4,9 @@
 		<legend><?php echo __('Admin Edit Group'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
+		echo $this->Form->input('title');
 		echo $this->Form->input('user_id');
-		echo $this->Form->input('evokation_id');
+		echo $this->Form->input('User');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

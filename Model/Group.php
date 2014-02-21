@@ -3,6 +3,7 @@ App::uses('AppModel', 'Model');
 /**
  * Group Model
  *
+ * @property User $User
  * @property Evokation $Evokation
  * @property User $User
  */
@@ -16,11 +17,26 @@ class Group extends AppModel {
 	public $displayField = 'title';
 
 
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
 	public function getGroups() {
 		return $this->find('all');
 	}
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 
 /**
  * hasMany associations

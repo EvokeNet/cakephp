@@ -3,8 +3,8 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<th><?php echo $this->Paginator->sort('title'); ?></th>
 			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('evokation_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -12,11 +12,9 @@
 	<?php foreach ($groups as $group): ?>
 	<tr>
 		<td><?php echo h($group['Group']['id']); ?>&nbsp;</td>
+		<td><?php echo h($group['Group']['title']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($group['User']['name'], array('controller' => 'users', 'action' => 'view', $group['User']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($group['Evokation']['title'], array('controller' => 'evokations', 'action' => 'view', $group['Evokation']['id'])); ?>
 		</td>
 		<td><?php echo h($group['Group']['created']); ?>&nbsp;</td>
 		<td><?php echo h($group['Group']['modified']); ?>&nbsp;</td>
