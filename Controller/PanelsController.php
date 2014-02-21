@@ -16,19 +16,19 @@ class PanelsController extends AppController {
 */
 	public function index() {
 		//test to get user data from proper index
-		if(is_null($this->Session->read('Auth.User.role_id'))) {
-			$current_role = $this->Session->read('Auth.User.User.role_id');
-			$current_id = $this->Session->read('Auth.User.User.id');
-		}else{
-			$current_role = $this->Session->read('Auth.User.role_id');
-			$current_id = $this->Session->read('Auth.User.id');
-		}
+		// if(is_null($this->Session->read('Auth.User.role_id'))) {
+		// 	$current_role = $this->Session->read('Auth.User.User.role_id');
+		// 	$current_id = $this->Session->read('Auth.User.User.id');
+		// }else{
+		// 	$current_role = $this->Session->read('Auth.User.role_id');
+		// 	$current_id = $this->Session->read('Auth.User.id');
+		// }
 		
-		//checking Acl permission
-		if(!$this->Access->check($current_role,'controllers/Panels')) {
-			$this->Session->setFlash(__("You don't have permission to access this area."));	
-			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $current_id));
-		}
+		// //checking Acl permission
+		// if(!$this->Access->check($current_role,'controllers/Panels')) {
+		// 	$this->Session->setFlash(__("You don't have permission to access this area."));	
+		// 	$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $current_id));
+		// }
 		
 		//carrega infos do usuário
 		$this->loadInfo();
@@ -60,12 +60,5 @@ class PanelsController extends AppController {
 	}
 
 
-	public function loadInfo(){
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
-
-		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
-	}
 }
 ?>
