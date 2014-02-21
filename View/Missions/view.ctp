@@ -80,7 +80,7 @@
 			</dl>
 			<div class="tabs-content">
 			  <div class="content active" id="panel2-1">
-			    <button><?php echo $this->Html->link(__('Add Discussion'), array('controller' => 'evidences', 'action' => 'add')); ?></button>
+			    <a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'add')); ?>" class = "button"><?php echo __('Add Discussion');?></a>
 			  </div>
 			  <div class="content" id="panel2-2">
 			    	<?php
@@ -102,7 +102,7 @@
 		    		
 		    		<hr class="sexy_line" />
 		    	<?php endforeach; ?>
-				<button><?php $mission_id = $mission['Mission']['id']; echo $this->Html->link(__('Add Discussion'), array('controller' => 'evidences', 'action' => 'add', 'mission_ide' => $mission_id)); ?></button>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'add', 'mission_ide' => $mission['Mission']['id'])); ?>" class = "button"><?php echo __('Add Discussion');?></a>
 			  </div>
 			</div>
 		  </div>
@@ -127,11 +127,11 @@
 
 		  	<?php if(isset($nextMP)){ ?>
 
-		  	<button><?php echo $this->Html->link(sprintf(__('Go to %s  ->'), $nextMP['Phase']['name']), array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position']));?></button>
+		  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button"><?php echo sprintf(__('Go to %s  ->'), $nextMP['Phase']['name']);?></a>
 
 		  	<?php } if(isset($prevMP)) {?>
 
-		  	<button><?php echo $this->Html->link(sprintf(__('<-  Go back to %s'), $prevMP['Phase']['name']), array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));?></button>
+		  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position'])); ?>" class = "button"><?php echo sprintf(__('<-  Go back to %s'), $prevMP['Phase']['name']);?></a>
 
 		  	<?php } ?>
 

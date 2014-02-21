@@ -46,16 +46,17 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 
-	public $smtp = array(
+		public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('site@localhost' => 'My Site'),
-		'host' => 'localhost',
-		'port' => 25,
+		'from' => array('rejapur@gmail.com' => 'Meu Email'),
+		'host' => 'ssl://smtp.gmail.com',
+		'port' => 465,
 		'timeout' => 30,
-		'username' => 'user',
-		'password' => 'secret',
+		'username' => 'rejapur@gmail.com',
+		'password' => '123456',
 		'client' => null,
 		'log' => false,
+		// 'tls' => true
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);

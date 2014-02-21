@@ -24,6 +24,14 @@ class GroupsController extends AppController {
 	public function index() {
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->Paginator->paginate());
+
+		$userid = $this->Session->read('Auth.User.User.id');
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $userid)));
+
+		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $userid)));
+
+		$this->set(compact('user', 'userid', 'username', 'myGroups'));
 	}
 
 /**
@@ -39,6 +47,14 @@ class GroupsController extends AppController {
 		}
 		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
 		$this->set('group', $this->Group->find('first', $options));
+
+		$userid = $this->Session->read('Auth.User.User.id');
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $userid)));
+
+		$groupsUsers = $this->Group->GroupsUser->find('all');
+
+		$this->set(compact('user', 'userid', 'username', 'groupsUsers'));
 	}
 
 /**
