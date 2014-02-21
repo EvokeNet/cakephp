@@ -24,12 +24,10 @@ $title = __('Evoke Network');
 
 		echo $this->Html->meta('icon');
 
-
 		echo $this->Html->css('/components/foundation/css/foundation.min');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
 		echo $this->Html->css('evoke');
-
 
 		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
 			echo $this->Html->css($cssInclude);
@@ -55,11 +53,11 @@ $title = __('Evoke Network');
 		</div>
 	</footer>
 
-	<?php echo $this->Html->script('/components/jquery/dist/jquery.min'); ?>
-	<?php echo $this->Html->script('/components/foundation/js/foundation.min'); ?>
-	<?php echo $this->Html->script('evoke') ?>
-
-	<?php echo $this->fetch('script'); ?>
-	
+	<?php
+		echo $this->Html->script('/components/jquery/dist/jquery.min');
+		echo $this->Html->script('/components/foundation/js/foundation.min');
+		echo $this->Html->script('evoke');
+		echo $this->fetch('script'); 
+	?>
 </body>
 </html>

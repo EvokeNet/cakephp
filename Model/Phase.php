@@ -56,7 +56,7 @@ class Phase extends AppModel {
 		endforeach;
 
 	}
-	
+
 /**
  * belongsTo associations
  *
@@ -73,6 +73,7 @@ class Phase extends AppModel {
 	);
 
 /**
+ *
  * hasMany associations
  *
  * @var array

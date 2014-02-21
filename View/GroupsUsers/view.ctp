@@ -31,6 +31,10 @@
 
 <?php $this->end(); ?>
 
+<!-- Medium Editor CSS -->
+<?php echo $this->Html->css('/components/medium-editor/dist/css/medium-editor'); ?>
+<?php echo $this->Html->css('/components/medium-editor/dist/css/themes/default'); ?>
+
 <section class="evoke margin top">
 	<div class="row full-width">
 		<aside>
@@ -98,8 +102,12 @@
 				));
 			 ?>
 
-			<textarea id="evokation" class="evoke project page" contenteditable="true"></textarea>
-			<!-- End of the Evokation page -->
+			<textarea id="evokation_txt" class="hidden"></textarea>
+
+			<a class="button" contenteditable="false" href="#"><i class="fa fa-img"></i></a>
+			<div id="evokation_div" class="evoke project page" contenteditable="true" data-placeholder=" "></div>
+			
+			<!--/ Evokation page -->
 
 		</div>
 
@@ -107,8 +115,8 @@
 			<div class="large-2 columns evoke toolbar">
 				<h6 class="subheader"><?php echo __('MEMBERS'); ?></h6>
 				<ul class="no-bullet">
-					<?php foreach ($group['User'] as $user): ?>
-						<li><?php echo $user['name']; ?></li>
+					<?php foreach ($users as $user): ?>
+						<li><?php echo $user['User']['name']; ?></li>
 					<?php endforeach ?>
 				</ul>
 
@@ -151,6 +159,6 @@
 	</script>
 <?php endif; ?>
 
-<?php echo $this->Html->script('/components/ckeditor/ckeditor', array('inline' => false)); ?>
+<?php echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min', array('inline' => false)); ?>
 <?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('evokation', array('inline' => false)); ?>

@@ -34,6 +34,7 @@
 <section class="evoke margin top-2">
 	<div class="row evoke max-width">
 		<div class="large-12 columns">
+			<h1>Admin Panel</h1>
 			<dl class="tabs" data-tab>
 				<dd class="active"><a href="#organizations">Organizations</a></dd>
 				<dd><a href="#missions">Missions</a></dd>
@@ -45,7 +46,30 @@
 			<div class="tabs-content">
 				<div class="content active" id="organizations">
 					<p>
-						<?php echo $this->Html->Link('+ organizations', array('controller' => 'organizations', 'action' => 'add'), array( 'class' => 'button'));?>
+						<?php echo $this->Form->submit('+ Organizations', array('id' => 'new_org', 'class' => 'button small')); ?>
+						<div id="orgsForm">
+							<?php echo $this->Form->create('Organization', array(
+ 							   		'url' => array(
+ 							   			'controller' => 'panels',
+ 							   			'action' => 'add_org')
+									)); ?>
+							<fieldset>
+								<legend><?php echo __('Add Organization'); ?></legend>
+								<?php
+									echo $this->Form->input('name');
+									echo $this->Form->input('birthdate');
+									echo $this->Form->input('description');
+									echo $this->Form->input('website');
+									echo $this->Form->input('facebook');
+									echo $this->Form->input('twitter');
+									echo $this->Form->input('blog');
+								?>
+							</fieldset>
+							<button class="button small" type="submit">
+								<?php echo __('Add') ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
+						</div>
 						<table>				
 							<?php foreach ($organizations as $organization) { ?>
 								<tr>
@@ -60,7 +84,8 @@
 					<div class="large-4 columns filter">
 			  			<fieldset>
 			    			<legend>Issues</legend>
-			    			 <ul id="filters">
+			    			<?php echo $this->Form->submit('+ Issues', array('id' => 'new_issue', 'class' => 'button tiny')); ?>
+			    			<ul id="filters">
 			    			 	<?php foreach ($issues as $issue) { ?>
 							    	<li>
 							        	<input type="checkbox" checked="true" value="issue_<?php echo $issue['Issue']['id'];?>" id="filter-issue_<?php echo $issue['Issue']['id'];?>" />
@@ -73,16 +98,36 @@
 						</fieldset>
 					</div>
 					<div class="large-5 columns filteredContent">
+						<!-- issues' hidden add form -->
+						<div id="issuesForm">
+							<?php echo $this->Form->create('Issue', array(
+ 							   		'url' => array(
+ 							   			'controller' => 'panels',
+ 							   			'action' => 'add_issue')
+									)); ?>
+								<fieldset>
+									<legend><?php echo __('Add Issue'); ?></legend>
+								<?php
+									//echo $this->Form->input('parent_id');
+									echo $this->Form->input('name');
+									echo $this->Form->input('slug');
+								?>
+								</fieldset>
+							<button class="button small" type="submit">
+								<?php echo __('Add'); ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
+						</div>
+
 						<ul class="button-group">
-				  			<li><?php echo $this->Html->Link('+ missions', array('controller' => 'missions', 'action' => 'add'), array( 'class' => 'button'));?></li>
-				  			<li><?php echo $this->Html->Link('+ issues', array('controller' => 'issues', 'action' => 'add'), array( 'class' => 'button'));?></li>
+				  			<li><?php echo $this->Html->Link('+ missions', array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?></li>
 				  		</ul>
 				  		<table>
 					  		<?php foreach ($missions_issues as $mi) { ?>
 					  			<!-- colocar paginação -->
 								<tr class="<?php foreach ($mi['MissionIssue'] as $i) echo ' issue_'.$i['issue_id'];?>">
 									<td><?php echo $this->Html->Link($mi['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mi['Mission']['id'])); ?></td>
-									<td><?php echo $this->Html->Link('edit', array('controller' => 'missions', 'action' => 'edit', $mi['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
+									<td><?php echo $this->Html->Link('edit', array('controller' => 'panels', 'action' => 'edit_mission', $mi['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
 								</tr>
 							<?php }?>	
 						</table>
@@ -93,7 +138,27 @@
 				</div>
 				<div class="content" id="badges">
 					<p>
-						<?php echo $this->Html->Link('+ badges', array('controller' => 'badges', 'action' => 'add'), array( 'class' => 'button'));?>
+						<?php echo $this->Form->submit('+ Badges', array('id' => 'new_badge', 'class' => 'button small')); ?>
+						<div id="badgesForm">
+							<?php echo $this->Form->create('Badge', array(
+ 							   		'url' => array(
+ 							   			'controller' => 'panels',
+ 							   			'action' => 'add_badge')
+									)); ?>
+								<fieldset>
+									<legend><?php echo __('Add Badge'); ?></legend>
+								<?php
+									echo $this->Form->input('name');
+									echo $this->Form->input('description');
+									//echo $this->Form->input('trigger');
+								?>
+								</fieldset>
+							<button class="button small" type="submit">
+								<?php echo __('Add') ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
+						</div>
+
 						<table>				
 							<?php foreach ($badges as $badge) { ?>
 								<tr>
@@ -164,5 +229,41 @@
 	            $("." + $(this).val()).hide();
 	        }
 	 	});
+	});
+</script>
+
+
+<!-- hide and show '+ orgs', '+ badges', '+ issues' forms -->
+<script type="text/javascript">
+	$( document ).ready(function() {
+  		$("#orgsForm").hide();
+  		<?php //foreach ($organizations as $organization) echo  '$("#edit_org_'. $organization['Organization']['id'].'").hide();'; ?>
+
+  		$("#badgesForm").hide();
+  		$("#issuesForm").hide();
+	});
+	
+	$("#new_org").click(function() {
+	   	if($("#orgsForm").is(":visible")) {
+	   		$("#orgsForm").hide();	
+	   	} else {
+	   		$("#orgsForm").fadeTo("slow", 1);
+	   	}
+	});
+
+	$("#new_badge").click(function() {
+	   	if($("#badgesForm").is(":visible")) {
+	   		$("#badgesForm").hide();	
+	   	} else {
+	   		$("#badgesForm").fadeTo("slow", 1);
+	   	}
+	});
+
+	$("#new_issue").click(function() {
+	   	if($("#issuesForm").is(":visible")) {
+	   		$("#issuesForm").hide();	
+	   	} else {
+	   		$("#issuesForm").fadeTo("slow", 1);
+	   	}
 	});
 </script>
