@@ -21,6 +21,11 @@
 			<?php echo $this->Html->link($quest['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $quest['Mission']['id'])); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Phase'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($quest['Phase']['name'], array('controller' => 'phases', 'action' => 'view', $quest['Phase']['id'])); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo h($quest['Quest']['created']); ?>
@@ -42,6 +47,8 @@
 		<li><?php echo $this->Html->link(__('New Quest'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Missions'), array('controller' => 'missions', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Mission'), array('controller' => 'missions', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Phases'), array('controller' => 'phases', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Phase'), array('controller' => 'phases', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Evidences'), array('controller' => 'evidences', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Evidence'), array('controller' => 'evidences', 'action' => 'add')); ?> </li>
 	</ul>
@@ -57,6 +64,7 @@
 		<th><?php echo __('User Id'); ?></th>
 		<th><?php echo __('Quest Id'); ?></th>
 		<th><?php echo __('Mission Id'); ?></th>
+		<th><?php echo __('Phase Id'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
@@ -69,6 +77,7 @@
 			<td><?php echo $evidence['user_id']; ?></td>
 			<td><?php echo $evidence['quest_id']; ?></td>
 			<td><?php echo $evidence['mission_id']; ?></td>
+			<td><?php echo $evidence['phase_id']; ?></td>
 			<td><?php echo $evidence['created']; ?></td>
 			<td><?php echo $evidence['modified']; ?></td>
 			<td class="actions">

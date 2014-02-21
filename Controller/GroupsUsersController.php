@@ -25,6 +25,13 @@ class GroupsUsersController extends AppController {
 	public function index() {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
+
+		$userid = $this->Session->read('Auth.User.User.id');
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+
+		$groups = $this->GroupsUser->Group->find('all');
+
+		$this->set(compact('userid', 'username', 'groups'));
 	}
 
 /**
@@ -127,12 +134,10 @@ class GroupsUsersController extends AppController {
 
 		if ($this->request->is('ajax')) {
 
-			$this->loadModel('Evokation');
-
 			if(isset($this->request->data['id'])) {
-				$ev = $this->Evokation->read(null, $this->request->data['id']);
-				debug($this->request->data['id']);
-				die();
+
+				$this->loadModel('Evokation');
+				$this->Evokation->read(null, $this->request->data['id']);
 				$this->Evokation->set('title', $this->request->data['title']);
 				$this->Evokation->set('abstract', $this->request->data['abstract']);
 				
@@ -143,6 +148,7 @@ class GroupsUsersController extends AppController {
 				}
 
 			} else {
+				$this->loadModel('Evokation');
 				$this->Evokation->create();
 				$this->request->data['Evokation']['gdrive_file_id'] = $this->request->data['gdrive_file_id'];
 				$this->request->data['Evokation']['title'] = $this->request->data['title'];

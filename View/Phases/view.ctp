@@ -26,6 +26,11 @@
 			<?php echo h($phase['Phase']['position']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Type'); ?></dt>
+		<dd>
+			<?php echo h($phase['Phase']['type']); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo h($phase['Phase']['created']); ?>

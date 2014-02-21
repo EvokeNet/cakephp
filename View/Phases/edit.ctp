@@ -8,6 +8,7 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('mission_id');
 		echo $this->Form->input('position');
+		echo $this->Form->input('type', array('type' => 'radio', 'options' => array(__('Discussion'), __('Project')), 'legend' => '', 'before' => '<label for = "PhaseType">Type</label>'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

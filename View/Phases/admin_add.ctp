@@ -7,6 +7,7 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('mission_id');
 		echo $this->Form->input('position');
+		echo $this->Form->input('type');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

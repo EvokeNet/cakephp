@@ -7,6 +7,7 @@
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('mission_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('position'); ?></th>
+			<th><?php echo $this->Paginator->sort('type'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -20,6 +21,7 @@
 			<?php echo $this->Html->link($phase['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $phase['Mission']['id'])); ?>
 		</td>
 		<td><?php echo h($phase['Phase']['position']); ?>&nbsp;</td>
+		<td><?php echo h($phase['Phase']['type']); ?>&nbsp;</td>
 		<td><?php echo h($phase['Phase']['created']); ?>&nbsp;</td>
 		<td><?php echo h($phase['Phase']['modified']); ?>&nbsp;</td>
 		<td class="actions">

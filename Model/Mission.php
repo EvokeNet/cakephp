@@ -5,6 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property Evidence $Evidence
  * @property MissionIssue $MissionIssue
+ * @property Phase $Phase
  * @property Quest $Quest
  */
 class Mission extends AppModel {

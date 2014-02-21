@@ -10,7 +10,6 @@ class PanelsController extends AppController {
 	public $components = array('Paginator','Access');
 	public $uses = array('User', 'Organization', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Quest');
 
-
 /**
 *
 * beforeFilter method
@@ -45,6 +44,7 @@ class PanelsController extends AppController {
 * Loads basic informations from database to local variables to be shown in the administrator's panel
 */
 	public function index() {
+
 		//carrega infos do usuário
 		$this->loadInfo();
 
@@ -76,6 +76,7 @@ class PanelsController extends AppController {
 		
 		$this->set(compact('organizations','issues','badges','roles','users','groups','missions_issues', 'parentIssues'));
 	}
+
 
 
 	public function loadInfo() {

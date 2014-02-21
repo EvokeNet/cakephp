@@ -6,6 +6,7 @@ App::uses('AppModel', 'Model');
  * @property User $User
  * @property Quest $Quest
  * @property Mission $Mission
+ * @property Phase $Phase
  * @property Comment $Comment
  * @property Vote $Vote
  */
@@ -44,6 +45,13 @@ class Evidence extends AppModel {
 		'Mission' => array(
 			'className' => 'Mission',
 			'foreignKey' => 'mission_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Phase' => array(
+			'className' => 'Phase',
+			'foreignKey' => 'phase_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

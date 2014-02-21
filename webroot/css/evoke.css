@@ -103,7 +103,3 @@ button, div, p, span, a,
     background: black;
     background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
 }
-
-li {
-	list-style:none;
-}

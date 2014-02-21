@@ -24,23 +24,12 @@ $title = __('Evoke Network');
 
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->script('/webroot/components/jquery/jquery.min');
-		echo $this->Html->script('/webroot/components/foundation/js/foundation.min');
-
-		echo $this->Html->script('facebook_share');
-		echo $this->Html->script('google_share');
-		echo $this->Html->script('foundation_tabs');
-		//echo $this->Html->script('issue_filter');
 
 		echo $this->Html->css('/components/foundation/css/foundation.min');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
 		echo $this->Html->css('evoke');
 
-		echo $this->Html->css('evidences');
-		echo $this->Html->css('missions');
-		echo $this->Html->css('users');
-		echo $this->Html->css('votes');
 
 		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
 			echo $this->Html->css($cssInclude);
