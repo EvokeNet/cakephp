@@ -83,8 +83,7 @@ class MissionsController extends AppController {
 				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
 			}
 		}
-		$groups = $this->Mission->Group->find('list');		
-		$this->set(compact("groups"));
+		//$this->set(compact("groups"));
 	}
 
 /**
@@ -237,7 +236,8 @@ class MissionsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The mission could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		//returning to the admin panels
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));	
 	}
 
 /**

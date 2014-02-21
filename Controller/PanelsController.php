@@ -7,52 +7,78 @@ class PanelsController extends AppController {
 *
 * @var array
 */
-	public $components = array('Paginator');
+	public $components = array('Paginator','Access');
+	public $uses = array('User', 'Organization', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Quest');
 
 
-	public function index(){
-		//teste
+/**
+*
+* beforeFilter method
+*
+* @return void
+*/
+	public function beforeFilter() {
+        parent::beforeFilter();
+        //test to get user data from proper index
+		if(is_null($this->Session->read('Auth.User.role_id'))) {
+			$current_role = $this->Session->read('Auth.User.User.role_id');
+			$current_id = $this->Session->read('Auth.User.User.id');
+		}else{
+			$current_role = $this->Session->read('Auth.User.role_id');
+			$current_id = $this->Session->read('Auth.User.id');
+		}
+		
+		//there was some problem in retrieving user's info concerning his/her role : send him home
+		if(!isset($current_role) || is_null($current_role)) {
+			$this->redirect(array('controller' => 'users', 'action' => 'login'));
+		}
 
-		$ruser = $this->Auth->user('role_id');//precisa ser arrumado, está causando o redirecionamento automatico para a pagina panels
-
-		//para debug 
-     	$this->set("ruser",$ruser);
-
-     	//verificando a permissão do usuário, coloquei na veriavel para debug
-		$this->set("teste",$this->Acl->check(array('model' => 'Role', 'foreign_key' => $ruser), 'controllers/Panels'));	
-     	
-
+		//checking Acl permission
+		if(!$this->Access->check($current_role,'controllers/Panels')) {
+			$this->Session->setFlash(__("You don't have permission to access this area."));	
+			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $current_id));
+		}
+    }
+	
+/*
+* index method
+* Loads basic informations from database to local variables to be shown in the administrator's panel
+*/
+	public function index() {
 		//carrega infos do usuário
 		$this->loadInfo();
 
-		//carrega as orgs
-		$this->organizations();
+		//$this->loadModel('Organization');
+		$organizations = $this->Organization->getOrganizations();
 		
-		//carrega as issues
-		$issues = $this->issues();
+		//$this->loadModel('Issue');
+		$issues = $this->Issue->getIssues();
+		
+		//$this->loadModel('Badge');
+		$badges = $this->Badge->getBadges();
+		
+		//$this->loadModel('Role');
+		$roles = $this->Role->getRoles();
+				
+		//$this->loadModel('User');
+		$users = $this->User->getUsers();
+		
+		//$this->loadModel('Group');
+		$groups = $this->Group->getGroups();
+		
+		//$this->loadModel('MissionIssue');
+		$missions_issues = $this->MissionIssue->Mission->find('all', array(
+			'order' => array('Mission.title ASC'))
+		);
 
-		//cria matriz de relação entre issues e missions		
-		$this->missionsIssues($issues);
-
-		//carrega as badges
-		$this->badges();
-
-		//carrega os roles
-		$roles = $this->roles();
-
-		//carrega os users.. 
-		$users = $this->users();
-
-		$this->usersRole($roles, $users);
-
-
-		//carrega os groups.. (para colocar nas estatisticas)
-		$this->groups();
+		//needed to issues' add form
+		$parentIssues = $this->Issue->ParentIssue->find('list');
+		
+		$this->set(compact('organizations','issues','badges','roles','users','groups','missions_issues', 'parentIssues'));
 	}
 
 
-	public function loadInfo(){
-		//carrega infos da sessão do user
+	public function loadInfo() {
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
 		$this->set(compact('username'));
 
@@ -60,101 +86,336 @@ class PanelsController extends AppController {
 		$this->set(compact('userid'));
 	}
 
-	public function groups(){
-		//carregando groups
-		$this->loadModel('Group');
-		$groups = $this->Group->getGroups();
-		$this->set('groups', $groups);
-	}
+/*
+* add_mission method
+* adds a new mission via admin panel, setting its issue and phases 
+*/
+	public function add_mission($id = null, $args = 'mission') {
+		
+		$mission_tag = $this->defineCurrentTab('mission', $args);
+		$phases_tag = $this->defineCurrentTab('phase', $args);
+		$quests_tag = $this->defineCurrentTab('quest', $args);
+		$badges_tag = $this->defineCurrentTab('badge', $args);
+		$points_tag = $this->defineCurrentTab('point', $args);
 
-	public function roles(){
-		//carregando roles
-		$this->loadModel('Role');
-		$roles = $this->Role->getRoles();
-		$this->set('roles', $roles);
-		return $roles;
-	}
+		//list of issues to be loaded at the combo box..
+		$issues = $this->Issue->find('list');
 
-	public function users(){
-		//carregando users
-		$this->loadModel('User');
-		$users = $this->User->getUsers();
-		$this->set('users', $users);
-		return $users;
-	}
+		//list of phases to be shown at the 'add phases to a mission' scenario..
+		$phases = $this->Phase->find('all', array(
+			'conditions' => array(
+				'mission_id' => $id
+			),
+			'order' => array(
+				'Phase.position'
+			)
+		));
 
 
-	public function usersRole($roles, $users){
+		$mission = null;
+
+		if ($this->request->is('post')) {
 			
-		$matrixU = null;	
-		$usersR = null;
-		
-		foreach ($roles as $role) {
-			$k = 0;
-			foreach ($users as $user) {
-				if($user['User']['role_id']==$role['Role']['id']){
-					$matrixU[$role['Role']['id']][$k] = $user;
-					$k++;	
+			if(!$this->Mission->exists($id)) {
+				//it's a new mission, so let's add it..
+				$this->Mission->create();
+				if ($mission = $this->Mission->save($this->request->data)) {
+					$id = $mission['Mission']['id'];
+					//saves the issue related to it..
+					$this->request->data['MissionIssue']['mission_id'] = $id;
+					if($this->MissionIssue->save($this->request->data)) {
+						$this->Session->setFlash(__('mission issue saved'));
+						
+						//redirects to the same page, but with the tab phase active
+						$this->redirect(array('action' => 'add_mission', $id, 'phase'));
+					} else {
+						$this->Session->setFlash(__('mission issue failed saving.'));
+					}
+				} else {
+					$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
 				}
-			}	
+			} else {
+				//it already exists, so let's save any alterations and move on..
+				$this->Mission->id = $id;
+				if ($this->Mission->save($this->request->data)) {
+					$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+					
+					//saves the issue related to it..
+					$this->request->data['MissionIssue']['mission_id'] = $id;
+					$this->MissionIssue->id = $this->MissionIssue->find('first', array('conditions' => array('mission_id' => $id)));
+					if($this->MissionIssue->save($this->request->data)) {
+						$this->Session->setFlash(__('mission issue saved'));
+
+						//redirects to the same page, but with the tab phase active
+						$this->redirect(array('action' => 'add_mission', $id, 'phase'));
+					} else {
+						$this->Session->setFlash(__('mission issue failed saving.'));
+					}
+				} else {
+					$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
+				}
+			}
+		} else{
+			//it could be a request from one of the other tabs
+			if(!is_null($id) && $args == 'phase'){
+				//sets variable mission to be the mission being added now..
+				$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+			}
+			if(!is_null($id) && $args == 'mission'){
+				//sets variable mission to be the mission being added now..
+				$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+			}
+		}
+		$this->set(compact('mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'phases'))	;
+	}
+
+/*
+* edit_mission method
+* edit an existing mission via admin panel, setting its issue and phases 
+*/
+	public function edit_mission($id = null, $args = 'mission') {
+		
+		$mission_tag = $this->defineCurrentTab('mission', $args);
+		$phases_tag = $this->defineCurrentTab('phase', $args);
+		$quests_tag = $this->defineCurrentTab('quest', $args);
+		$badges_tag = $this->defineCurrentTab('badge', $args);
+		$points_tag = $this->defineCurrentTab('point', $args);
+
+		//list of issues to be loaded at the combo box..
+		$issues = $this->Issue->find('list');
+
+		//list of phases to be shown at the 'add phases to a mission' scenario..
+		$phases = $this->Phase->find('all', array(
+			'conditions' => array(
+				'mission_id' => $id
+			),
+			'order' => array(
+				'Phase.position'
+			)
+		));
+
+
+		$mission = null;
+
+		if ($this->request->is('post')) {
+			
+			if($this->Mission->exists($id)) {
+				//it already exists, so let's save any alterations and move on..
+				$this->Mission->id = $id;
+				if ($this->Mission->save($this->request->data)) {
+					$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+					
+					//saves the issue related to it..
+					$this->request->data['MissionIssue']['mission_id'] = $id;
+					$this->MissionIssue->id = $this->MissionIssue->find('first', array('conditions' => array('mission_id' => $id)));
+					if($this->MissionIssue->save($this->request->data)) {
+						$this->Session->setFlash(__('mission issue saved'));
+
+						//redirects to the same page, but with the tab phase active
+						$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+					} else {
+						$this->Session->setFlash(__('mission issue failed saving.'));
+					}
+				} else {
+					$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
+				}
+			} else{
+				//you shouldn't be here, go back to the admin panel
+				$this->redirect(array('action' => 'index'));
+			}
+		} else{
+			//you shouldn't be here, go back to the admin panel
+			if(is_null($id)) $this->redirect(array('action' => 'index'));
+			//it could be a request from one of the other tabs
+			if(!is_null($id) && $args == 'phase'){
+				//sets variable mission to be the mission being added now..
+				$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+			}
+			if(!is_null($id) && $args == 'mission'){
+				//sets variable mission to be the mission being added now..
+				$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+			}
+		}
+		$this->set(compact('mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'phases'))	;
+	}
+
+
+/*
+* add_phase method
+* adds a new phase to the 'current-adding' mission  
+*/
+	function add_phase($id, $origin = 'add_mission') {
+		if ($this->request->is('post')) {
+			$this->request->data['Phase']['mission_id'] = $id;
+			if($this->Phase->save($this->request->data)){
+				$this->Session->setFlash(__('phase saved.'));
+				//if it came from add mission, go back to it, else...
+				if($origin == 'add_mission')
+					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
+				else 
+					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+			} else {
+				$this->Session->setFlash(__('mission issue failed saving.'));
+			}
+		} else {
+			$this->redirect(array('action' => 'index'));
 		}
 		
-		
-		$this->set('matrixU', $matrixU);
-
 	}
 
-
-	public function missionsIssues($issues){
-		//cria matriz de issue X missions
-		
-		//carrega o model de relacao issue e mission
-		$this->loadModel('MissionIssue');
-		$matrix = null;	
-		//para cada issue...
-		foreach ($issues as $issue) {
-			//carrega todas as missions (v[]) do issue (x) na variavel matriz[] na posicao x
-			$matrix[$issue['Issue']['name']] = $this->MissionIssue->getMissionsFromIssue($issue['Issue']['id']);
+/*
+* add_quest method
+* adds a new quest to the specific phase of the 'current-adding' mission  
+*/
+	public function add_quest($id, $origin = 'add_mission'){
+		if ($this->request->is('post')) {
+			$this->Quest->create();
+			if ($this->Quest->save($this->request->data)) {
+				$this->Session->setFlash(__('The quest has been saved.'));
+				//if it came from add mission, go back to it, else...
+				if($origin == 'add_mission')
+					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
+				else 
+					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+			} else {
+				$this->Session->setFlash(__('The quest could not be saved. Please, try again.'));
+			}
+		} else {
+			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('matrix', $matrix);
 
 	}
 
-	public function organizations(){
-		//carregando as orgs
-		$this->loadModel('Organization');
-		$organizations = $this->Organization->getOrganizations();
-		$this->set('organizations', $organizations);
+
+/*
+* edit_quest method
+* edits a quest of the specific phase of the 'current-adding' mission  
+*/
+	public function edit_quest($id, $quest_id, $origin = 'add_mission'){
+		if ($this->request->is(array('post', 'put'))) {
+			$this->Quest->id = $quest_id;
+			if ($this->Quest->save($this->request->data)) {
+				$this->Session->setFlash(__('The quest has been saved.'));
+				//if it came from add mission, go back to it, else...
+				if($origin == 'add_mission')
+					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
+				else 
+					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+			} else {
+				$this->Session->setFlash(__('The quest could not be saved. Please, try again.'));
+			}
+		} else {
+			$this->redirect(array('action' => 'index'));
+		}
+
+	}
+
+/*
+* delete_quest method
+* deletes a quest of the specific phase of the 'current-adding' mission  
+*/
+	public function delete_quest($id, $quest_id, $origin = 'add_mission'){
+		$this->Quest->id = $quest_id;
+		if (!$this->Quest->exists()) {
+			throw new NotFoundException(__('Invalid quest'));
+		}
+		//$this->request->onlyAllow('post', 'delete');
+		if ($this->Quest->delete()) {
+			$this->Session->setFlash(__('The quest has been deleted.'));
+			//if it came from add mission, go back to it, else...
+				if($origin == 'add_mission')
+					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
+				else 
+					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+		} else {
+			$this->Session->setFlash(__('The quest could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('action' => 'index'));
 	}
 
 
-	public function issues(){
-		//carregando as issues
-		$this->loadModel('Issue');
-		$issues = $this->Issue->getIssues();
-		$this->set('issues', $issues);
-		return $issues;
+/*
+* delete_phase method
+* deletes a phase of the 'current-adding' mission  
+*/
+	public function delete_phase($id, $phase_id, $origin = 'add_mission'){
+		$this->Phase->id = $id;
+		if (!$this->Phase->exists()) {
+			throw new NotFoundException(__('Invalid phase'));
+		}
+		//$this->request->onlyAllow('post', 'delete');
+		if ($this->Phase->delete()) {
+			$this->Session->setFlash(__('The phase has been deleted.'));
+			//if it came from add mission, go back to it, else...
+				if($origin == 'add_mission')
+					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
+				else 
+					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+		} else {
+			$this->Session->setFlash(__('The phase could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('action' => 'index'));
 	}
 
-	/*
-	public function missions(){
-		//carregando as missions
-		$this->loadModel('Mission');
-		$missions = $this->Mission->getMissions();
-		$this->set('missions', $missions);
-
-	}
-	*/
-
-	public function badges(){
-		//carrega todas as badges	
-		$this->loadModel('Badge');
-		$badges = $this->Badge->getBadges();
-		$this->set('badges', $badges);
+/*
+* defineCurrentTab method
+* auxiliary method to help with defining which tab is to be active on 'add mission' panel
+*/
+	public function defineCurrentTab($expected, $income) {
+		if($expected == $income) {
+			return 'active';
+		} else{
+			return '';
+		}
 	}
 
+/*
+* add_org method
+* adds an organization via admin panel and returns to it
+*/
+	public function add_org() {
+		if ($this->request->is('post')) {
+			$this->Organization->create();
+			if ($this->Organization->save($this->request->data)) {
+				$this->Session->setFlash(__('The organization has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
+			}
+		}
+	}
+
+/*
+* add_issue method
+* adds an issue via admin panel and returns to it
+*/
+	public function add_issue() {
+		if ($this->request->is('post')) {
+			$this->Issue->create();
+			if ($this->Issue->save($this->request->data)) {
+				$this->Session->setFlash(__('The issue has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
+			}
+		}
+	}
 
 
-
+/*
+* add_badge method
+* adds a badge via admin panel and returns to it
+*/
+	public function add_badge() {
+		if ($this->request->is('post')) {
+			$this->Badge->create();
+			if ($this->Badge->save($this->request->data)) {
+				$this->Session->setFlash(__('The badge has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
+			}
+		}
+	}
 
 }

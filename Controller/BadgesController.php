@@ -13,7 +13,7 @@ class BadgesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator','Access');
 
 /**
  * index method
@@ -46,6 +46,23 @@ class BadgesController extends AppController {
  * @return void
  */
 	public function add() {
+		/*
+		//test to get user data from proper index
+		if(is_null($this->Session->read('Auth.User.role_id'))) {
+			$current_role = $this->Session->read('Auth.User.User.role_id');
+			$current_id = $this->Session->read('Auth.User.User.id');
+		}else{
+			$current_role = $this->Session->read('Auth.User.role_id');
+			$current_id = $this->Session->read('Auth.User.id');
+		}
+		
+		//checking Acl permission
+		if(!$this->Access->check($current_role,'controllers/Badges',"add")) {
+			$this->Session->setFlash(__("You don't have permission to access this area."));	
+			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $current_id));
+		}
+		*/
+
 		if ($this->request->is('post')) {
 			$this->Badge->create();
 			if ($this->Badge->save($this->request->data)) {
@@ -65,6 +82,22 @@ class BadgesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		/*
+		//test to get user data from proper index
+		if(is_null($this->Session->read('Auth.User.role_id'))) {
+			$current_role = $this->Session->read('Auth.User.User.role_id');
+			$current_id = $this->Session->read('Auth.User.User.id');
+		}else{
+			$current_role = $this->Session->read('Auth.User.role_id');
+			$current_id = $this->Session->read('Auth.User.id');
+		}
+		
+		//checking Acl permission
+		if(!$this->Access->check($current_role,'controllers/Badges',"edit")) {
+			$this->Session->setFlash(__("You don't have permission to access this area."));	
+			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $current_id));
+		}*/
+
 		if (!$this->Badge->exists($id)) {
 			throw new NotFoundException(__('Invalid badge'));
 		}
@@ -89,6 +122,22 @@ class BadgesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		/*
+		//test to get user data from proper index
+		if(is_null($this->Session->read('Auth.User.role_id'))) {
+			$current_role = $this->Session->read('Auth.User.User.role_id');
+			$current_id = $this->Session->read('Auth.User.User.id');
+		}else{
+			$current_role = $this->Session->read('Auth.User.role_id');
+			$current_id = $this->Session->read('Auth.User.id');
+		}
+		
+		//checking Acl permission
+		if(!$this->Access->check($current_role,'controllers/Badges',"delete")) {
+			$this->Session->setFlash(__("You don't have permission to access this area."));	
+			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $current_id));
+		}*/
+
 		$this->Badge->id = $id;
 		if (!$this->Badge->exists()) {
 			throw new NotFoundException(__('Invalid badge'));
@@ -99,7 +148,8 @@ class BadgesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The badge could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		//returning to the admin panel
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));
 	}
 
 /**

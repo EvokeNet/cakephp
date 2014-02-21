@@ -8,6 +8,7 @@
 			echo $this->Form->input('name', array('required' => true));
 			echo $this->Form->input('username');
 			echo $this->Form->input('password');
+			echo $this->Form->input('role_id');//retirar depois..
 		?>
 		</fieldset>
 	<?php echo $this->Form->end(__('Submit')); ?>

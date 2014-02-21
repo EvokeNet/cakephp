@@ -30,8 +30,6 @@ class UsersController extends AppController {
 	public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add', 'logout', 'register');
-        //$this->Auth->allowedActions = array('*');
-
     }
 
 /**
@@ -153,6 +151,8 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
 		}
+		$roles = $this->User->Role->find('list');		
+		$this->set(compact("roles"));
 	}
 
 /**

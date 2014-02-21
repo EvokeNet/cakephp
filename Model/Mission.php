@@ -3,7 +3,6 @@ App::uses('AppModel', 'Model');
 /**
  * Mission Model
  *
- * @property Group $Group
  * @property Evidence $Evidence
  * @property MissionIssue $MissionIssue
  * @property Quest $Quest
@@ -51,23 +50,6 @@ class Mission extends AppModel {
 		));
 	}
 
-
-
-/**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'Group' => array(
-			'className' => 'Group',
-			'foreignKey' => 'group_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
-
 /**
  * hasMany associations
  *
@@ -89,6 +71,19 @@ class Mission extends AppModel {
 		),
 		'MissionIssue' => array(
 			'className' => 'MissionIssue',
+			'foreignKey' => 'mission_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Phase' => array(
+			'className' => 'Phase',
 			'foreignKey' => 'mission_id',
 			'dependent' => false,
 			'conditions' => '',
