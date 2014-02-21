@@ -5,7 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property Evidence $Evidence
  * @property MissionIssue $MissionIssue
- * @property MissionPhase $MissionPhase
+ * @property Phase $Phase
  * @property Quest $Quest
  */
 class Mission extends AppModel {
@@ -17,7 +17,8 @@ class Mission extends AppModel {
  */
 	public $displayField = 'title';
 
-//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	
 	public function getMissions() {
 		return $this->find('all');
@@ -82,8 +83,8 @@ class Mission extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'MissionPhase' => array(
-			'className' => 'MissionPhase',
+		'Phase' => array(
+			'className' => 'Phase',
 			'foreignKey' => 'mission_id',
 			'dependent' => false,
 			'conditions' => '',

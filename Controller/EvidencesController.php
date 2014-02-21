@@ -5,6 +5,7 @@ App::uses('AppController', 'Controller');
  *
  * @property Evidence $Evidence
  * @property PaginatorComponent $Paginator
+ * @property SessionComponent $Session
  */
 class EvidencesController extends AppController {
 
@@ -13,7 +14,7 @@ class EvidencesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Session');
 
 /**
  * index method
@@ -38,26 +39,11 @@ class EvidencesController extends AppController {
 		}
 
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		//$this->set(compact('username'));
-		
 		$userid = $this->Session->read('Auth.User.User.id');
-		//$this->set(compact('username', 'userid'));
-		
-		//$options = array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id));
 		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
-		//$this->set('evidence', $this->Evidence->find('first', $options));
-
-		//$options_one = array('conditions' => array('Comment.evidence_id' => $id));
 		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
-		//$this->set("comment", $this->Evidence->Comment->find('all', $opt));
-
-		//$this->loadModel('Vote');
-		//$options_two = array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $userid));
 		$vote = $this->Evidence->Vote->find('first', array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $userid)));
-		//$this->set("vote", $this->Evidence->Vote->find('first', $opt));
-
 		$this->set(compact('userid', 'username', 'evidence', 'comment', 'vote'));
-
 	}
 
 /**
@@ -70,7 +56,7 @@ class EvidencesController extends AppController {
 			$this->Evidence->create();
 			if ($this->Evidence->save($this->request->data)) {
 				$this->Session->setFlash(__('The evidence has been saved.'));
-				return $this->redirect(array('action' => 'view', $this->Evidence->id));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}
@@ -78,7 +64,8 @@ class EvidencesController extends AppController {
 		$users = $this->Evidence->User->find('list');
 		$quests = $this->Evidence->Quest->find('list');
 		$missions = $this->Evidence->Mission->find('list');
-		$this->set(compact('users', 'quests', 'missions'));
+		$phases = $this->Evidence->Phase->find('list');
+		$this->set(compact('users', 'quests', 'missions', 'phases'));
 	}
 
 /**
@@ -106,7 +93,8 @@ class EvidencesController extends AppController {
 		$users = $this->Evidence->User->find('list');
 		$quests = $this->Evidence->Quest->find('list');
 		$missions = $this->Evidence->Mission->find('list');
-		$this->set(compact('users', 'quests', 'missions'));
+		$phases = $this->Evidence->Phase->find('list');
+		$this->set(compact('users', 'quests', 'missions', 'phases'));
 	}
 
 /**
@@ -173,7 +161,8 @@ class EvidencesController extends AppController {
 		$users = $this->Evidence->User->find('list');
 		$quests = $this->Evidence->Quest->find('list');
 		$missions = $this->Evidence->Mission->find('list');
-		$this->set(compact('users', 'quests', 'missions'));
+		$phases = $this->Evidence->Phase->find('list');
+		$this->set(compact('users', 'quests', 'missions', 'phases'));
 	}
 
 /**
@@ -201,7 +190,8 @@ class EvidencesController extends AppController {
 		$users = $this->Evidence->User->find('list');
 		$quests = $this->Evidence->Quest->find('list');
 		$missions = $this->Evidence->Mission->find('list');
-		$this->set(compact('users', 'quests', 'missions'));
+		$phases = $this->Evidence->Phase->find('list');
+		$this->set(compact('users', 'quests', 'missions', 'phases'));
 	}
 
 /**

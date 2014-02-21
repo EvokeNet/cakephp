@@ -4,7 +4,7 @@ App::uses('AppModel', 'Model');
  * Quest Model
  *
  * @property Mission $Mission
- * @property MissionPhase $MissionPhase
+ * @property Phase $Phase
  * @property Evidence $Evidence
  */
 class Quest extends AppModel {
@@ -32,9 +32,9 @@ class Quest extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'MissionPhase' => array(
-			'className' => 'MissionPhase',
-			'foreignKey' => 'mission_phase_id',
+		'Phase' => array(
+			'className' => 'Phase',
+			'foreignKey' => 'phase_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

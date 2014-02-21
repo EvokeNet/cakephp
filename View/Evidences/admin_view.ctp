@@ -31,6 +31,11 @@
 			<?php echo $this->Html->link($evidence['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'])); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Phase'); ?></dt>
+		<dd>
+			<?php echo $this->Html->link($evidence['Phase']['name'], array('controller' => 'phases', 'action' => 'view', $evidence['Phase']['id'])); ?>
+			&nbsp;
+		</dd>
 		<dt><?php echo __('Created'); ?></dt>
 		<dd>
 			<?php echo h($evidence['Evidence']['created']); ?>
@@ -56,6 +61,8 @@
 		<li><?php echo $this->Html->link(__('New Quest'), array('controller' => 'quests', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Missions'), array('controller' => 'missions', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Mission'), array('controller' => 'missions', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Phases'), array('controller' => 'phases', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Phase'), array('controller' => 'phases', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Comments'), array('controller' => 'comments', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Comment'), array('controller' => 'comments', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Votes'), array('controller' => 'votes', 'action' => 'index')); ?> </li>
@@ -70,6 +77,7 @@
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Evidence Id'); ?></th>
 		<th><?php echo __('User Id'); ?></th>
+		<th><?php echo __('Content'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
@@ -79,6 +87,7 @@
 			<td><?php echo $comment['id']; ?></td>
 			<td><?php echo $comment['evidence_id']; ?></td>
 			<td><?php echo $comment['user_id']; ?></td>
+			<td><?php echo $comment['content']; ?></td>
 			<td><?php echo $comment['created']; ?></td>
 			<td><?php echo $comment['modified']; ?></td>
 			<td class="actions">
@@ -105,6 +114,7 @@
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Evidence Id'); ?></th>
 		<th><?php echo __('User Id'); ?></th>
+		<th><?php echo __('Value'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
@@ -114,6 +124,7 @@
 			<td><?php echo $vote['id']; ?></td>
 			<td><?php echo $vote['evidence_id']; ?></td>
 			<td><?php echo $vote['user_id']; ?></td>
+			<td><?php echo $vote['value']; ?></td>
 			<td><?php echo $vote['created']; ?></td>
 			<td><?php echo $vote['modified']; ?></td>
 			<td class="actions">

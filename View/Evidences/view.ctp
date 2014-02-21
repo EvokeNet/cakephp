@@ -39,7 +39,7 @@
 	  <nav class="breadcrumbs">
 		<?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 		<a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>
-		<?php echo $this->Html->link(__('View'), array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id']));?>
+		<?php echo $this->Html->link($evidence['Phase']['name'], array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'], $evidence['Phase']['position']));?>
 		<a class="unavailable" href="#"><?php echo __('Discussions'); ?></a>
 		<a class="current" href="#"><?php echo $evidence['Evidence']['title'];?></a>
 	  </nav>

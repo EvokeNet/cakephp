@@ -8,6 +8,7 @@
 			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('quest_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('mission_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('phase_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -25,6 +26,9 @@
 		</td>
 		<td>
 			<?php echo $this->Html->link($evidence['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($evidence['Phase']['name'], array('controller' => 'phases', 'action' => 'view', $evidence['Phase']['id'])); ?>
 		</td>
 		<td><?php echo h($evidence['Evidence']['created']); ?>&nbsp;</td>
 		<td><?php echo h($evidence['Evidence']['modified']); ?>&nbsp;</td>
@@ -60,6 +64,8 @@
 		<li><?php echo $this->Html->link(__('New Quest'), array('controller' => 'quests', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Missions'), array('controller' => 'missions', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Mission'), array('controller' => 'missions', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Phases'), array('controller' => 'phases', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Phase'), array('controller' => 'phases', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Comments'), array('controller' => 'comments', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Comment'), array('controller' => 'comments', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Votes'), array('controller' => 'votes', 'action' => 'index')); ?> </li>

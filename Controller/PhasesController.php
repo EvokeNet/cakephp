@@ -56,6 +56,8 @@ class PhasesController extends AppController {
 				$this->Session->setFlash(__('The phase could not be saved. Please, try again.'));
 			}
 		}
+		$missions = $this->Phase->Mission->find('list');
+		$this->set(compact('missions'));
 	}
 
 /**
@@ -80,6 +82,8 @@ class PhasesController extends AppController {
 			$options = array('conditions' => array('Phase.' . $this->Phase->primaryKey => $id));
 			$this->request->data = $this->Phase->find('first', $options);
 		}
+		$missions = $this->Phase->Mission->find('list');
+		$this->set(compact('missions'));
 	}
 
 /**
@@ -143,6 +147,8 @@ class PhasesController extends AppController {
 				$this->Session->setFlash(__('The phase could not be saved. Please, try again.'));
 			}
 		}
+		$missions = $this->Phase->Mission->find('list');
+		$this->set(compact('missions'));
 	}
 
 /**
@@ -167,6 +173,8 @@ class PhasesController extends AppController {
 			$options = array('conditions' => array('Phase.' . $this->Phase->primaryKey => $id));
 			$this->request->data = $this->Phase->find('first', $options);
 		}
+		$missions = $this->Phase->Mission->find('list');
+		$this->set(compact('missions'));
 	}
 
 /**

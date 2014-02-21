@@ -45,20 +45,23 @@ class MissionsController extends AppController {
 			throw new NotFoundException(__('Invalid mission'));
 		}
 
-		$missionPhases = $this->Mission->MissionPhase->find('all', array('conditions' => array('MissionPhase.mission_id' => $id)));
+		$missionPhases = $this->Mission->Phase->find('all', array('conditions' => array('Phase.mission_id' => $id), 'order' => 'Phase.position'));
 
 		if($phase_number > count($missionPhases))
 			throw new NotFoundException('Invalid phase');
 
-		$missionPhase = $this->Mission->MissionPhase->find('first', array('conditions' => array('MissionPhase.mission_id' => $id, 'MissionPhase.position' => $phase_number)));
+		$missionPhase = $this->Mission->Phase->find('first', array('conditions' => array('Phase.mission_id' => $id, 'Phase.position' => $phase_number)));
+		$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
+		$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);
 
 		$userid = $this->Session->read('Auth.User.User.id');
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
 		$evidences = $this->Mission->getEvidences($id);
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
 		$missionIssues = $this->Mission->getMissionIssues($id);
+		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 
-		$this->set(compact('userid', 'username', 'evidences', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase'));
+		$this->set(compact('userid', 'username', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP'));
 	}
 
 /**

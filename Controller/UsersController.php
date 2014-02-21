@@ -170,16 +170,19 @@ class UsersController extends AppController {
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
 
+		$this->loadModel('Evokation');
+		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));
+
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all');
 
 		$this->loadModel('MissionIssue');
 		$missionissues = $this->MissionIssue->find('all');
 
-		$this->loadModel('Issue');
-		$issues = $this->Issue->find('all');
+		//$this->loadModel('Issue');
+		$issues = $this->MissionIssue->Issue->find('all');
 
-		$this->set(compact('user', 'userid', 'username', 'evidence', 'missions', 'missionissues', 'issues'));
+		$this->set(compact('user', 'userid', 'username', 'evidence', 'evokations', 'missions', 'missionissues', 'issues'));
 
 	}
 
@@ -208,10 +211,12 @@ class UsersController extends AppController {
 
 		$this->loadModel('MissionIssue');
 		$missionissues = $this->MissionIssue->find('all');
+
+		$issue = $this->MissionIssue->Issue->find('first', array('conditions' => array('Issue.id' => $id)));
 		
 		$missionissue = $this->MissionIssue->find('all', array('conditions' => array('MissionIssue.issue_id' => $id)));
 
-		$this->set(compact('user', 'userid', 'username', 'evidence', 'missions', 'missionissues', 'missionissue'));
+		$this->set(compact('user', 'userid', 'username', 'evidence', 'issue', 'missions', 'missionissues', 'missionissue'));
 
 	}
 

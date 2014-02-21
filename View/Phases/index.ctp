@@ -5,6 +5,9 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
+			<th><?php echo $this->Paginator->sort('mission_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('position'); ?></th>
+			<th><?php echo $this->Paginator->sort('type'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -14,6 +17,11 @@
 		<td><?php echo h($phase['Phase']['id']); ?>&nbsp;</td>
 		<td><?php echo h($phase['Phase']['name']); ?>&nbsp;</td>
 		<td><?php echo h($phase['Phase']['description']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($phase['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $phase['Mission']['id'])); ?>
+		</td>
+		<td><?php echo h($phase['Phase']['position']); ?>&nbsp;</td>
+		<td><?php echo h($phase['Phase']['type']); ?>&nbsp;</td>
 		<td><?php echo h($phase['Phase']['created']); ?>&nbsp;</td>
 		<td><?php echo h($phase['Phase']['modified']); ?>&nbsp;</td>
 		<td class="actions">
@@ -42,5 +50,7 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Phase'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Missions'), array('controller' => 'missions', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Mission'), array('controller' => 'missions', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
