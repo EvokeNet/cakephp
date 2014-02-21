@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
 
 /**

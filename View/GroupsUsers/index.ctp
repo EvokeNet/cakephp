@@ -40,7 +40,7 @@
 	  			foreach($groups as $group):?>
 	  				<h4><?php echo sprintf(__('Group %s'), $group['Group']['title']); ?></h4>
 				  	<h6><?php echo sprintf(__('Group Owner: %s'), $group['User']['name']); ?></h6>
-				  	<button><?php echo $this->Html->link(__('Join group'), array('controller' => 'groups', 'action' => 'add')); ?></button>
+				  	<button><?php echo $this->Html->link(__('Join group'), array('controller' => 'groupsUsers', 'action' => 'add')); ?></button>
 				  	<hr class="sexy_line" />
   				<?php endforeach;
   			?>
