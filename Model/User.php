@@ -21,6 +21,9 @@ class User extends AppModel {
 	public $displayField = 'name';
 
 
+
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
 	public $name = 'User';
 
     public $validate = array(
@@ -50,6 +53,7 @@ class User extends AppModel {
 		}
 		return true;
 	}
+
 
 /**
  * hasMany associations

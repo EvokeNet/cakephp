@@ -1,0 +1,90 @@
+@charset "utf-8";
+/**
+ *
+ * Evidence CSS for CakePHP
+ *
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @package       app.webroot.css
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+
+.evidences{
+	max-width:none;
+}
+
+.evidences h1{
+	font-size:2.0em;
+	margin-bottom:15px;
+}
+
+.evidences h6{
+	color:#b7b7b7;
+}
+
+.evidences p{
+	margin: 30px 0px 50px 0px;
+}
+
+.evidences a{
+	color: #ffffff;
+}
+/*
+.evidences a:hover{
+	color: #b7b7b7;
+}*/
+
+.bio a{
+	color: #373737;
+	font-weight:bold;
+	float:right;
+}
+
+.bio p{
+	color: #373737;
+	margin: 20px 0px;
+	text-align:right;
+}
+
+/*.comment p{
+	border-bottom: 2px solid #373737;
+	padding-bottom:30px;
+}*/
+
+.comment h5{
+	color: #373737;
+	font-size:1.4em;
+}
+
+.comment h6{
+	color: #b7b7b7;
+	font-size:0.9em;
+}
+
+.sexy_line { 
+    margin: 25px 0;
+    height: 1px;
+    border: 0;
+    background: black;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+}
+
+.missionblock{
+	width: 250px;
+	text-align: center;
+	padding: 20px 0px;
+	border: 2px solid #000;
+	margin-right: 20px;
+	display: inline-block;
+}
+
+.buttons div{
+	margin: 20px;
+}

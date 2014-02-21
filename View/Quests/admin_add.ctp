@@ -1,0 +1,23 @@
+<div class="quests form">
+<?php echo $this->Form->create('Quest'); ?>
+	<fieldset>
+		<legend><?php echo __('Admin Add Quest'); ?></legend>
+	<?php
+		echo $this->Form->input('title');
+		echo $this->Form->input('description');
+		echo $this->Form->input('mission_id');
+	?>
+	</fieldset>
+<?php echo $this->Form->end(__('Submit')); ?>
+</div>
+<div class="actions">
+	<h3><?php echo __('Actions'); ?></h3>
+	<ul>
+
+		<li><?php echo $this->Html->link(__('List Quests'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Missions'), array('controller' => 'missions', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Mission'), array('controller' => 'missions', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Evidences'), array('controller' => 'evidences', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Evidence'), array('controller' => 'evidences', 'action' => 'add')); ?> </li>
+	</ul>
+</div>

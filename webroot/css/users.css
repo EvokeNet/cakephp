@@ -13,4 +13,43 @@
 
 .evoke.profile.info {
 	max-width: 60%;
+=======
+.users_evidences{
+	padding:10px 0px;
+}
+
+.users_evidences a{
+	font-size:1.8em;
+	font-weight:bold;
+	color:#373737;
+}
+
+.users_evidences p{
+	color:#373737;
+	margin-top:15px;
+}
+
+.users_evidences h5{
+	color:#b7b7b7;
+	display:inline;
+}
+
+.users_missions{
+	border: 1px solid #373737;
+	padding: 10px 20px;
+	margin-bottom: 20px;
+}
+
+.users_missions a{
+	font-size:1.7em;
+	font-weight: bold;
+	color: #373737;
+}
+
+.users_missions p{
+	margin-top:10px;
+}
+
+.dashboard{
+	max-width:95%;
 }

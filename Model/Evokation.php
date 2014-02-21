@@ -18,17 +18,25 @@ class Evokation extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * belongsTo associations
+ * hasMany associations
  *
  * @var array
  */
-	public $belongsTo = array(
+	public $hasMany = array(
 		'Group' => array(
 			'className' => 'Group',
-			'foreignKey' => 'group_id',
+			'foreignKey' => 'evokation_id',
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => ''
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
+
+>>>>>>> 3699c3c309863ef801baf7c86a7711016fdcaf03
 }

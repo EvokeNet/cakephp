@@ -1,8 +1,9 @@
 <?php
+
 require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
 
 App::uses('AppController', 'Controller');
-App::uses('HttpSocket', 'Network/Http');
+
 
 /**
  * Users Controller
@@ -22,6 +23,7 @@ class UsersController extends AppController {
 	public $uses = array('User', 'Friend');
 
 /**
+*
 * beforeFilter method
 *
 * @return void
@@ -121,6 +123,7 @@ class UsersController extends AppController {
 	}
 
 /**
+*
  * index method
  *
  * @return void
@@ -131,6 +134,7 @@ class UsersController extends AppController {
 	}
 
 /**
+ *
  * dashboard method
  *
  * @return void
@@ -138,6 +142,59 @@ class UsersController extends AppController {
 	public function dashboard() {
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
 		$this->set(compact('username'));
+
+		$userid = $this->Session->read('Auth.User.User.id');
+		$this->set(compact('userid'));
+
+		$opt = array('order' => array('Evidence.created DESC'));
+		$evidence = $this->User->Evidence->find('all', $opt);
+		$this->set(compact('evidence'));
+		
+		$this->loadModel('Mission');
+		$missions = $this->Mission->find('all', array('limit' => 3));
+		$this->set(compact('missions'));
+
+		$this->loadModel('Issue');
+		$issues = $this->Issue->find('all');
+		$this->set(compact('issues'));
+
+		$this->loadModel('MissionIssue');
+		$missionissues = $this->MissionIssue->find('all');
+		$this->set(compact('missionissues'));
+
+	}
+
+/**
+ *
+ * dashboard issue
+ *
+ * @return void
+ */
+	public function dashboardIssue($id = null) {
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$this->set(compact('username'));
+
+		$userid = $this->Session->read('Auth.User.User.id');
+		$this->set(compact('userid'));
+
+		$opt = array('order' => array('Evidence.created DESC'));
+		$evidence = $this->User->Evidence->find('all', $opt);
+		$this->set(compact('evidence'));
+
+		$this->loadModel('Mission');
+		$missions = $this->Mission->find('all', array('limit' => 3));
+		$this->set(compact('missions'));
+
+		$this->loadModel('MissionIssue');
+		$missionissues = $this->MissionIssue->find('all');
+		$this->set(compact('missionissues'));
+
+		$this->loadModel('MissionIssue');
+		$missionissue = $this->MissionIssue->find('all', array('conditions' => array('MissionIssue.issue_id' => $id)));
+		$this->set(compact('missionissue'));
+		// debug($missionissues);
+		// die();
+
 	}
 
 /**
