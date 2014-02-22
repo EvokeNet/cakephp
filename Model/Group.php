@@ -5,6 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property User $User
  * @property Evokation $Evokation
+ * @property GroupRequest $GroupRequest
  * @property User $User
  */
 class Group extends AppModel {
@@ -46,6 +47,32 @@ class Group extends AppModel {
 	public $hasMany = array(
 		'Evokation' => array(
 			'className' => 'Evokation',
+			'foreignKey' => 'group_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'GroupsUser' => array(
+			'className' => 'GroupsUser',
+			'foreignKey' => 'group_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'GroupRequest' => array(
+			'className' => 'GroupRequest',
 			'foreignKey' => 'group_id',
 			'dependent' => false,
 			'conditions' => '',

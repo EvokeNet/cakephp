@@ -1,29 +1,31 @@
-<div class="groupsUsers index">
-	<h2><?php echo __('Groups Users'); ?></h2>
+<div class="groupRequests index">
+	<h2><?php echo __('Group Requests'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('group_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('status'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	<?php foreach ($groupsUsers as $groupsUser): ?>
+	<?php foreach ($groupRequests as $groupRequest): ?>
 	<tr>
-		<td><?php echo h($groupsUser['GroupsUser']['id']); ?>&nbsp;</td>
+		<td><?php echo h($groupRequest['GroupRequest']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($groupsUser['User']['name'], array('controller' => 'users', 'action' => 'view', $groupsUser['User']['id'])); ?>
+			<?php echo $this->Html->link($groupRequest['User']['name'], array('controller' => 'users', 'action' => 'view', $groupRequest['User']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($groupsUser['Group']['title'], array('controller' => 'groups', 'action' => 'view', $groupsUser['Group']['id'])); ?>
+			<?php echo $this->Html->link($groupRequest['Group']['title'], array('controller' => 'groups', 'action' => 'view', $groupRequest['Group']['id'])); ?>
 		</td>
-		<td><?php echo h($groupsUser['GroupsUser']['created']); ?>&nbsp;</td>
-		<td><?php echo h($groupsUser['GroupsUser']['modified']); ?>&nbsp;</td>
+		<td><?php echo h($groupRequest['GroupRequest']['status']); ?>&nbsp;</td>
+		<td><?php echo h($groupRequest['GroupRequest']['created']); ?>&nbsp;</td>
+		<td><?php echo h($groupRequest['GroupRequest']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $groupsUser['GroupsUser']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $groupsUser['GroupsUser']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $groupsUser['GroupsUser']['id']), null, __('Are you sure you want to delete # %s?', $groupsUser['GroupsUser']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $groupRequest['GroupRequest']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $groupRequest['GroupRequest']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $groupRequest['GroupRequest']['id']), null, __('Are you sure you want to delete # %s?', $groupRequest['GroupRequest']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -45,7 +47,7 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Groups User'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New Group Request'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
