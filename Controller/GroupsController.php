@@ -50,11 +50,11 @@ class GroupsController extends AppController {
 
 		$userid = $this->Session->read('Auth.User.User.id');
 		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $userid)));
+		$users = $this->Group->User->find('all');
 
 		$groupsUsers = $this->Group->GroupsUser->find('all');
 
-		$this->set(compact('user', 'userid', 'username', 'groupsUsers'));
+		$this->set(compact('users', 'userid', 'username', 'groupsUsers'));
 	}
 
 /**
