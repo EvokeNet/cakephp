@@ -9,3 +9,10 @@
 	height: 100% !important;
 	border-left: 1px solid #ccc;
 }
+
+.evoke.project.page {
+	border: 1px solid #ccc;
+	cursor: text;
+	height: 300px;
+	padding: 10px;
+}
