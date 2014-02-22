@@ -32,12 +32,23 @@
 
 <?php $this->end(); ?>
 
-<?php
-
-	foreach($groupsUsers as $m){
-		echo $m['User']['name'];
-	}
-?>
+<div class="row evoke">
+  <div class="small-11 small-centered columns">
+  	<h1><?php echo sprintf(__('Group %s'), $group['Group']['title']);?></h1>
+  	<h3><?php echo __('Members');?></h3>
+  	<ul>
+	<?php
+		foreach($groupsUsers as $g){
+			foreach($users as $u){
+				if($g['GroupsUser']['user_id'] == $u['User']['id']){?>
+					<li><?php echo $u['User']['name'];?></li>
+				<?php }
+			}
+		}
+	?>
+	</ul>
+  </div>
+</div>
 
 <!-- <div class="groups view">
 <h2><?php echo __('Group'); ?></h2>
