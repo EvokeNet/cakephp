@@ -16,6 +16,8 @@ class EvidencesController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+	public $user = null;
+
 /**
  * index method
  *
@@ -38,12 +40,13 @@ class EvidencesController extends AppController {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
 
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$userid = $this->Session->read('Auth.User.User.id');
+		$user_data = $this->getUserData();
+		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
 		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
 		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
-		$vote = $this->Evidence->Vote->find('first', array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $userid)));
-		$this->set(compact('userid', 'username', 'evidence', 'comment', 'vote'));
+		$vote = $this->Evidence->Vote->find('first', array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $user_data['id'])));
+		$this->set(compact('user', 'evidence', 'comment', 'vote'));
 	}
 
 /**
@@ -51,12 +54,7 @@ class EvidencesController extends AppController {
  *
  * @return void
  */
-	public function add($user_id, $mission_id, $phase_id) {
-
-		$userid = $this->Session->read('Auth.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.name'));
-		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $userid)));
-
+	public function add($mission_id, $phase_id) {
 		if ($this->request->is('post')) {
 			$this->Evidence->create();
 			if ($this->Evidence->save($this->request->data)) {
@@ -67,11 +65,12 @@ class EvidencesController extends AppController {
 			}
 		}
 
-		$users = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $user_id)));
+		$user_data = $this->getUserData();
+		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 		$quests = $this->Evidence->Quest->find('list');
-		$missions = $this->Evidence->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
-		$phases = $this->Evidence->Phase->find('first', array('conditions' => array('Phase.id' => $phase_id)));
-		$this->set(compact('users', 'quests', 'missions', 'phases', 'user', 'userid', 'username'));
+		$mission = $this->Evidence->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
+		$phase = $this->Evidence->Phase->find('first', array('conditions' => array('Phase.id' => $phase_id)));
+		$this->set(compact('user', 'quests', 'mission', 'phase'));
 	}
 
 /**
@@ -86,10 +85,6 @@ class EvidencesController extends AppController {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
 
-		$userid = $this->Session->read('Auth.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.name'));
-		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $userid)));
-
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Evidence->save($this->request->data)) {
 				$this->Session->setFlash(__('The evidence has been saved.'));
@@ -101,11 +96,14 @@ class EvidencesController extends AppController {
 			$options = array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id));
 			$this->request->data = $this->Evidence->find('first', $options);
 		}
+
+		$user_data = $this->getUserData();
+		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 		$users = $this->Evidence->User->find('list');
 		$quests = $this->Evidence->Quest->find('list');
 		$missions = $this->Evidence->Mission->find('list');
 		$phases = $this->Evidence->Phase->find('list');
-		$this->set(compact('user', 'userid', 'username', 'users', 'quests', 'missions', 'phases'));
+		$this->set(compact('user', 'users', 'quests', 'missions', 'phases'));
 	}
 
 /**

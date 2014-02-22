@@ -1,4 +1,4 @@
-<?php  
+<?php
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 ?>
@@ -6,7 +6,7 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo __('Agent ').$username[0]; ?></h1>
+			<h1><?php echo $user['User']['name']; ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
@@ -17,7 +17,7 @@
 			<li class="has-dropdown">
 				<a href="#">Settings</a>
 				<ul class="dropdown">
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li>
 					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
@@ -25,7 +25,7 @@
 
 		<!-- Left Nav Section -->
 		<ul class="left">
-			<li><a href="#"><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></a></li>
+			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li>
 		</ul>
 	</section>
 </nav>
@@ -52,7 +52,7 @@
 						    <li><a class = "button" href = "<?php echo $this->Html->url(array('action' => 'view', $group['Group']['id'])); ?>"><?php echo __('View');?></a></li>
 						  </ul>
 						  <ul class="button-group">
-						    <li><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $userid, $group['Group']['id'])); ?>" class = "button"><?php echo __('Send request to join');?></a></li>
+						    <li><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $user['User']['id'], $group['Group']['id'])); ?>" class = "button"><?php echo __('Send request to join');?></a></li>
 						  </ul>
 						</div>
 

@@ -124,7 +124,10 @@ class GroupsUsersController extends AppController {
 			$this->request->data = $evokation;
 		}
 
-		$this->set(compact('group', 'users'));
+		$user_data = $this->getUserData();
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
+		$this->set(compact('group', 'users', 'user'));
 
 	}
 

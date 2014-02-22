@@ -16,6 +16,8 @@ class GroupsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+	public $user = null;
+
 /**
  * index method
  *
@@ -25,13 +27,12 @@ class GroupsController extends AppController {
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->Paginator->paginate());
 
-		$userid = $this->Session->read('Auth.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.name'));
-		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $userid)));
+		$user_data = $this->getUserData();
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
-		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $userid)));
+		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $user_data['id'])));
 
-		$this->set(compact('user', 'userid', 'username', 'myGroups'));
+		$this->set(compact('user', 'myGroups'));
 	}
 
 /**
@@ -45,22 +46,22 @@ class GroupsController extends AppController {
 		if (!$this->Group->exists($id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
+
 		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
 		$this->set('group', $this->Group->find('first', $options));
 
-		$userid = $this->Session->read('Auth.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.name'));
-		//$users = $this->Group->User->find('all');
+		$user_data = $this->getUserData();
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
 		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.group_id' => $id)));
 
 		$groupsRequestsPending = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status = 0')));
 
-		$groupsRequests = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status' => array(0, 1))));
+		$groupsRequests = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status' => array(1, 2))));
 
-		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $userid)));
+		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $user_data['id'])));
 
-		$this->set(compact('userRequest', 'users', 'userid', 'username', 'groupsUsers', 'groupsRequests', 'groupsRequestsPending'));
+		$this->set(compact('user', 'userRequest', 'groupsUsers', 'groupsRequests', 'groupsRequestsPending'));
 	}
 
 /**

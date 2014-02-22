@@ -6,7 +6,7 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo __('Agent ').$username[0]; ?></h1>
+			<h1><?php echo $user['User']['name']; ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
@@ -17,7 +17,7 @@
 			<li class="has-dropdown">
 				<a href="#">Settings</a>
 				<ul class="dropdown">
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li>
 					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
@@ -25,7 +25,7 @@
 
 		<!-- Left Nav Section -->
 		<ul class="left">
-			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></li>
+			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li>
 		</ul>
 	</section>
 </nav>
@@ -103,7 +103,7 @@
 		    	<?php endforeach; ?>
 			  </div>
 			</div>
-			<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $userid, $mission['Mission']['id'], $missionPhase['Phase']['id'])); ?>" class = "button"><?php echo __('Add Discussion');?></a>
+			<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $mission['Mission']['id'], $missionPhase['Phase']['id'])); ?>" class = "button"><?php echo __('Add Discussion');?></a>
 		  </div>
 		  <div class="medium-3 columns">
 		  	<h2><?php echo __('To-do list');?></h2>

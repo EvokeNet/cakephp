@@ -1,13 +1,13 @@
-<?php  
+<?php
 	$this->extend('/Common/topbar');
 	$this->start('menu');
-	$comments_count = ' ('.count($comment). ') ';
+	$comments_count = sprintf(' (%s) ', count($comment));
 ?>
 
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo __('Agent ').$username[0]; ?></h1>
+			<h1><?php echo $user['User']['name']; ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
@@ -18,7 +18,7 @@
 			<li class="has-dropdown">
 				<a href="#">Settings</a>
 				<ul class="dropdown">
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li>
 					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
@@ -26,7 +26,7 @@
 
 		<!-- Left Nav Section -->
 		<ul class="left">
-			<li><a href="#"><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></a></li>
+			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li>
 		</ul>
 	</section>
 </nav>
@@ -89,15 +89,15 @@
 	<!-- Lightbox for voting form -->
 	<div id="myModalVote" class="reveal-modal tiny" data-reveal>
 	  <?php 
-		if(!$vote) echo $this->element('vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $userid));
-		else echo $this->element('see_vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $userid, 'vote_id' => $vote['Vote']['id'], 'vote_value' => $vote['Vote']['value']));
+		if(!$vote) echo $this->element('vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id']));
+		else echo $this->element('see_vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'], 'vote_id' => $vote['Vote']['id'], 'vote_value' => $vote['Vote']['value']));
 	  ?>
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>
 
 	<!-- Lightbox for commenting form -->
 	<div id="myModalComment" class="reveal-modal tiny" data-reveal>
-	  <?php echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $userid)); ?>
+	  <?php echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'])); ?>
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>
 </section>

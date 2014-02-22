@@ -28,7 +28,7 @@ class AppController extends Controller {
  *
  * @var array
  */	
-	 public $components = array(
+	public $components = array(
         'Session',
         'Auth' => array(
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
@@ -36,6 +36,8 @@ class AppController extends Controller {
         'DebugKit.Toolbar',
         'Acl'
     );
+
+    public $user = null;
 
 /**
  * beforeFilter method
@@ -48,4 +50,18 @@ class AppController extends Controller {
         $cuser = $this->Auth->user();
     }
 
+    public function getUserData(){
+        $c_user = array();
+
+        if(is_null($this->Session->read('Auth.User.role_id'))) {
+            $c_user['role_id'] = $this->Session->read('Auth.User.User.role_id');
+            $c_user['id'] = $this->Session->read('Auth.User.User.id');
+            $c_user['name'] = $this->Session->read('Auth.User.User.name');
+        } else{
+            $c_user['role_id'] = $this->Session->read('Auth.User.role_id');
+            $c_user['id'] = $this->Session->read('Auth.User.id');
+            $c_user['name'] = $this->Session->read('Auth.User.name');
+        }
+        return $c_user;
+    }
 }

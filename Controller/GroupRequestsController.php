@@ -131,8 +131,8 @@ class GroupRequestsController extends AppController {
 		//Update request status
     	$request = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $user_id, 'GroupRequest.group_id' => $group_id)));
     	if($request){
-    		$this->GroupsUser->Group->GroupRequest->id = $request['GroupRequest']['id'];
-    		$this->GroupsUser->Group->GroupRequest->save(array('status' => 2));
+    		$this->GroupRequest->id = $request['GroupRequest']['id'];
+    		$this->GroupRequest->save(array('status' => 2));
     		$this->Session->setFlash(__('The request was declined'));
     		return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
     	} else {
