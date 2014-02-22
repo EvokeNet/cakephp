@@ -41,7 +41,7 @@
 				<dd><a href="#levels">Levels</a></dd>
 				<dd><a href="#badges">Badges</a></dd>
 				<dd><a href="#users">Users</a></dd>
-				<dd><a href="#estatistics">Estatistics</a></dd>
+				<dd><a href="#estatistics">Statistics</a></dd>
 			</dl>
 			<div class="tabs-content">
 				<div class="content active" id="organizations">
@@ -197,7 +197,7 @@
 					</div>
 				</div>
 				<div class="content" id="estatistics">
-					<p>Some estatistics to view..</p>
+					<p>Some statistics to view..</p>
 					<p><?php echo "Users: " . sizeof($users);?></p>
 					<p><?php echo "Groups: " . sizeof($groups);?></p>
 					<p><?php echo "Organizations: " . sizeof($organizations);?></p>

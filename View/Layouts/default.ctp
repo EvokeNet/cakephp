@@ -7,57 +7,46 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  */
 
-$title = __('Evoke Network');
+$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $title; ?>
+		<?php echo $cakeDescription ?>:
+		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
-
-		$cssInclude = strtolower($this->name);
-		$cssFileName = strtolower($this->name).'.css';
-		$cssBaseUrl = Configure::read('App.cssBaseUrl');
-
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('/components/foundation/css/foundation.min');
-		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
-		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
-		echo $this->Html->css('evoke');
-
-		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
-			echo $this->Html->css($cssInclude);
-		}
+		echo $this->Html->css('cake.generic');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
-
+		echo $this->fetch('script');
 	?>
 </head>
 <body>
-
-	<section role="main">
-		<?php echo $this->Session->flash(); ?>
-		<?php echo $this->fetch('content'); ?>
-	</section>
-
-	<footer class="evoke margin top-2">
-		<div class="row">
-			<div class="large-12 columns">
-				<!-- TODO: standard footer -->
-			</div>
+	<div id="container">
+		<div id="header">
+			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
 		</div>
-	</footer>
+		<div id="content">
 
-	<?php
-		echo $this->Html->script('/components/jquery/dist/jquery.min');
-		echo $this->Html->script('/components/foundation/js/foundation.min');
-		echo $this->Html->script('evoke');
-		echo $this->fetch('script'); 
-	?>
+			<?php echo $this->Session->flash(); ?>
+
+			<?php echo $this->fetch('content'); ?>
+		</div>
+		<div id="footer">
+			<?php echo $this->Html->link(
+					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
+					'http://www.cakephp.org/',
+					array('target' => '_blank', 'escape' => false)
+				);
+			?>
+		</div>
+	</div>
+	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
