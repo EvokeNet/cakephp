@@ -76,6 +76,8 @@
 		  	<!-- Google Plus share button -->
 		  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
 		  
+		  	<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button"><?php echo __('Edit Discussion');?></a>
+
 		  	<!-- Voting lightbox button -->
 		  	<a href="#" class="button" data-reveal-id="myModalVote" data-reveal><?php echo __('Vote');?></a>
 		  	<!-- Commenting lightbox button -->

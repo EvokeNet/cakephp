@@ -51,21 +51,27 @@ class EvidencesController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($user_id, $mission_id, $phase_id) {
+
+		$userid = $this->Session->read('Auth.User.id');
+		$username = explode(' ', $this->Session->read('Auth.User.name'));
+		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $userid)));
+
 		if ($this->request->is('post')) {
 			$this->Evidence->create();
 			if ($this->Evidence->save($this->request->data)) {
 				$this->Session->setFlash(__('The evidence has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'view', $this->Evidence->id));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Evidence->User->find('list');
+
+		$users = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $user_id)));
 		$quests = $this->Evidence->Quest->find('list');
-		$missions = $this->Evidence->Mission->find('list');
-		$phases = $this->Evidence->Phase->find('list');
-		$this->set(compact('users', 'quests', 'missions', 'phases'));
+		$missions = $this->Evidence->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
+		$phases = $this->Evidence->Phase->find('first', array('conditions' => array('Phase.id' => $phase_id)));
+		$this->set(compact('users', 'quests', 'missions', 'phases', 'user', 'userid', 'username'));
 	}
 
 /**
@@ -79,10 +85,15 @@ class EvidencesController extends AppController {
 		if (!$this->Evidence->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
+
+		$userid = $this->Session->read('Auth.User.id');
+		$username = explode(' ', $this->Session->read('Auth.User.name'));
+		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $userid)));
+
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Evidence->save($this->request->data)) {
 				$this->Session->setFlash(__('The evidence has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'view', $this->Evidence->id));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}
@@ -94,7 +105,7 @@ class EvidencesController extends AppController {
 		$quests = $this->Evidence->Quest->find('list');
 		$missions = $this->Evidence->Mission->find('list');
 		$phases = $this->Evidence->Phase->find('list');
-		$this->set(compact('users', 'quests', 'missions', 'phases'));
+		$this->set(compact('user', 'userid', 'username', 'users', 'quests', 'missions', 'phases'));
 	}
 
 /**

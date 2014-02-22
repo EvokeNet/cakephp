@@ -54,8 +54,8 @@ class MissionsController extends AppController {
 		$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
 		$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);
 
-		$userid = $this->Session->read('Auth.User.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$userid = $this->Session->read('Auth.User.id');
+		$username = explode(' ', $this->Session->read('Auth.User.name'));
 		$evidences = $this->Mission->getEvidences($id);
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
 		$missionIssues = $this->Mission->getMissionIssues($id);

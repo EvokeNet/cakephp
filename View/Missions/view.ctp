@@ -80,7 +80,6 @@
 			</dl>
 			<div class="tabs-content">
 			  <div class="content active" id="panel2-1">
-			    <a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'add')); ?>" class = "button"><?php echo __('Add Discussion');?></a>
 			  </div>
 			  <div class="content" id="panel2-2">
 			    	<?php
@@ -102,9 +101,9 @@
 		    		
 		    		<hr class="sexy_line" />
 		    	<?php endforeach; ?>
-				<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'add', 'mission_ide' => $mission['Mission']['id'])); ?>" class = "button"><?php echo __('Add Discussion');?></a>
 			  </div>
 			</div>
+			<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $userid, $mission['Mission']['id'], $missionPhase['Phase']['id'])); ?>" class = "button"><?php echo __('Add Discussion');?></a>
 		  </div>
 		  <div class="medium-3 columns">
 		  	<h2><?php echo __('To-do list');?></h2>

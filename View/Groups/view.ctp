@@ -38,7 +38,7 @@
 <section class="evoke margin top-2">
 	<div class="row">
 	  <div class="small-11 small-centered columns">
-	  	<h1><?php echo sprintf(__('Group %s'), $group['Group']['title']); echo $userid;?></h1>
+	  	<h1><?php echo sprintf(__('Group %s'), $group['Group']['title']);?></h1>
 	  	<?php if(!$userRequest):?>
 		  	<a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $userid, $group['Group']['id'])); ?>" class = "button"><?php echo __('Send request to join');?></a>
 		<?php endif;?>
