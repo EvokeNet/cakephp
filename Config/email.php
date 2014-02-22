@@ -48,15 +48,16 @@ class EmailConfig {
 
 		public $smtp = array(
 		'transport' => 'Smtp',
-		'from' => array('rejapur@gmail.com' => 'Meu Email'),
-		'host' => 'ssl://smtp.gmail.com',
+		//'from' => array('no-reply@quanti.ca' => 'Meu Email'),
+		'from' => 'no-reply@quanti.ca',
+		'host' => 'ssl://email-smtp.us-east-1.amazonaws.com',
 		'port' => 465,
 		'timeout' => 30,
-		'username' => 'rejapur@gmail.com',
-		'password' => '123456',
+		'username' => 'AKIAJCP36EDOUFDTZFGA',
+		'password' => 'Al+guuYjHmB7DqY4Z136VI6Yp3160vlhZ48hMZhLaX0u',
 		'client' => null,
 		'log' => false,
-		// 'tls' => true
+		//'tls' => true
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);
