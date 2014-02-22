@@ -3155,3 +3155,114 @@ Request URL: /evoke/group_users/view/3
 Stack Trace:
 #0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2014-02-20 04:22:42 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-20 04:24:52 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-20 04:25:02 Error: [MissingTableException] Table groups_users for model GroupsUser was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'groups_users',
+  'class' => 'GroupsUser',
+  'ds' => 'default',
+)
+Request URL: /evoke/users/login?code=AQC8kc4VI3I2yB2nOcYfC9p5N2Vi0--8J2n-Eml6Xzo9Ogw-02jctDJ6eTwQW36WU8oLQpWmKT5wNvI1hkmmaPT5gYez5-mLPLWvPduuJnbFow-bjv6zNp5hKT1GB8L6TBlvICYDSdXwzb7PdxjCW-UfT8nUtY2mtFmj978i0JUs8jeNixy4mLLDZjehH2b03iyPRWLqaZ7-jMdSssRn1Lv88iojOQXVmjuWa7bD38zfJ1zn2_WuRdYmHAYEOdcWZwut9mLqLB6-U1lmbZ4wooRivxN8rmpe2Gxl4vUto6vI5-OfCf2_4Bn87uFns6s3_CY&state=fae04adcf6ff62c7277e9ad43583860f
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(3498): Model->setSource('groups_users')
+#1 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(1355): Model->getDataSource()
+#2 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(864): Model->schema()
+#3 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(892): Model->__isset('GroupsUser')
+#4 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(3574): Model->__get('GroupsUser')
+#5 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1592): Model->joinModel('GroupsUser', Array)
+#6 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1068): DboSource->generateAssociationQuery(Object(User), Object(Group), 'hasAndBelongsTo...', 'Group', Array, Array, false, NULL)
+#7 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#8 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#9 /Applications/MAMP/htdocs/evoke/Controller/UsersController.php(64): Model->find('first', Array)
+#10 [internal function]: UsersController->login()
+#11 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#12 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#13 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#14 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-02-20 04:25:03 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-22 23:31:30 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-22 23:31:36 Error: [MissingTableException] Table groups_users for model GroupsUser was not found in datasource default.
+Exception Attributes: array (
+  'table' => 'groups_users',
+  'class' => 'GroupsUser',
+  'ds' => 'default',
+)
+Request URL: /evoke/users/login?code=AQDa00Olx5yHTM78axmHcBg_RVTwIs-zDHM5vu9M8tjvBGrk2nnEEjj1VjadDRy4pJNjFO822balQw8KhSNJhMfUUgtWxV8JpAeXQrji2nq-BDmjP4eSdhlM6HUpSbqusjzPb5Wkx5qi7CqRxoNCWpi_MtdW9TBynU2EbsnP-gCLCNSsehFlXAHCfUmouXqGmw4YpaO8UOaRiQ9GxrqVZKf-2vFyZpj1fyB81d6cdDR1JqhWzTr7ze7nsQDhUerYc3b6OWB4mwVcBXqhmrkjumGxZXOJlbVJvIK40vdOrHg3-gnPMUMqLUXCjmDGG5y9G3E&state=40b82a69c82fda0d8ffbb2a8755d4b97
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(3498): Model->setSource('groups_users')
+#1 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(1355): Model->getDataSource()
+#2 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(864): Model->schema()
+#3 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(892): Model->__isset('GroupsUser')
+#4 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(3574): Model->__get('GroupsUser')
+#5 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1592): Model->joinModel('GroupsUser', Array)
+#6 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php(1068): DboSource->generateAssociationQuery(Object(User), Object(Group), 'hasAndBelongsTo...', 'Group', Array, Array, false, NULL)
+#7 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2902): DboSource->read(Object(User), Array)
+#8 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php(2874): Model->_readDataSource('first', Array)
+#9 /Applications/MAMP/htdocs/evoke/Controller/UsersController.php(64): Model->find('first', Array)
+#10 [internal function]: UsersController->login()
+#11 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#12 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(185): Controller->invokeAction(Object(CakeRequest))
+#13 /Applications/MAMP/htdocs/evoke/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(160): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
+#14 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-02-22 23:31:36 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-22 23:34:54 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-02-22 23:35:05 Error: [MissingControllerException] Controller class ComponentsController could not be found.
+Exception Attributes: array (
+  'class' => 'ComponentsController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/components/jquery/jquery.min.js
+Stack Trace:
+#0 /Applications/MAMP/htdocs/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
