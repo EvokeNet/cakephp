@@ -38,8 +38,9 @@
 	<div class="row">
 	  <div class="small-11 small-centered columns">
 	  	<h1><?php echo sprintf(__('Group %s'), $group['Group']['title']);?></h1>
+	  	<!-- <a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $group['User']['id'], $group['Group']['id'])); ?>" class = "button"><?php echo __('Send request to join');?></a> -->
 	  	<?php if(!$userRequest):?>
-		  	<a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $user['User']['id'], $group['Group']['id'])); ?>" class = "button"><?php echo __('Send request to join');?></a>
+		  	<a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $group['User']['id'], $group['Group']['id'])); ?>" class = "button"><?php echo __('Send request to join');?></a>
 		<?php endif;?>
 	  	<h3><?php echo sprintf(__('Group Owner: %s', $group['User']['name']));?></h3>
 	  	<h3><?php echo sprintf(__('Members (%s)', $countMembers));?></h3>

@@ -200,7 +200,7 @@ class GroupsUsersController extends AppController {
  *
  * @return void
  */
-	public function add($uid, $gid) {
+	public function add($uid = null, $gid = null) {
 		
 		if($uid)
 			$user_id = $uid;
@@ -242,19 +242,19 @@ class GroupsUsersController extends AppController {
  */
 	public function send($id, $group_id){
 
-		$userid = $this->Session->read('Auth.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.name'));
+		$user_data = $this->getUserData();
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 		
-		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
+		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
-		$receiver = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $id)));
+		$recipient = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $id)));
 
 		$group = $this->GroupsUser->Group->find('first', array('conditions' => array('Group.id' => $group_id)));
 
 		/* Adds requests */
 		$this->loadModel('GroupRequest');
-		$insertData = array('user_id' => $userid, 'group_id' => $group_id);
-		$exists = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $userid, 'GroupRequest.group_id' => $group_id)));
+		$insertData = array('user_id' => $user_data['id'], 'group_id' => $group_id);
+		$exists = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $user_data['id'], 'GroupRequest.group_id' => $group_id)));
 
 		if(!$exists){
 	        if($this->GroupRequest->save($insertData)){
@@ -265,15 +265,15 @@ class GroupsUsersController extends AppController {
 		}
 
 		$Email = new CakeEmail('smtp');
-		$Email->from(array($receiver['User']['email'] => $receiver['User']['name']));
-		$Email->to($sender['User']['email']);
+		//$Email->from(array('no-reply@quanti.ca' => $sender['User']['name']));
+		$Email->to($recipient['User']['email']);
 		$Email->subject(__('Evoke - Request to join group'));
 		$Email->emailFormat('html');
 		$Email->template('group', 'group');
-		$Email->viewVars(array('sender' => $sender, 'receiver' => $receiver, 'group' => $group));
+		$Email->viewVars(array('sender' => $sender, 'recipient' => $recipient, 'group' => $group));
 		$Email->send();
 		$this->Session->setFlash(__('The email was sent'));
-		$this->redirect(array('action' => 'index'));
+		$this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
 	
 	}
 

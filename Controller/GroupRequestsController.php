@@ -116,7 +116,7 @@ class GroupRequestsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function decline($uid, $gid) {
+	public function decline($uid = null, $gid = null) {
 		
 		if($uid)
 			$user_id = $uid;

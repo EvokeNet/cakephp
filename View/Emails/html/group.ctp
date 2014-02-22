@@ -15,7 +15,8 @@
 		</td>
     </tr>
     <tr>
-      <td><button style = "margin: 50px 0px 30px 0px"><a href="<?php echo $_SERVER['SERVER_NAME'].'/evoke/groupsUsers/add/?arg='.$sender['User']['id'].'&arg2='.$group['Group']['id']; ?>"><?php echo __('Add User');?></a></button></td>
+      <td><button style = "margin: 50px 0px 30px 0px"><a href="<?php echo $_SERVER['SERVER_NAME'].'/evoke/groupsUsers/add/?arg='.$sender['User']['id'].'&arg2='.$group['Group']['id']; ?>"><?php echo __('Accept User');?></a></button></td>
+      <td><button style = "margin: 50px 0px 30px 0px"><a href="<?php echo $_SERVER['SERVER_NAME'].'/evoke/groupRequests/decline/?arg='.$sender['User']['id'].'&arg2='.$group['Group']['id']; ?>"><?php echo __('Decline User');?></a></button></td>
     </tr>
   </tbody>
 </table>
