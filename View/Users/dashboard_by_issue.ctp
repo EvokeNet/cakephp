@@ -60,7 +60,7 @@
 			    	//Lists all projects and evidences
 		    		foreach($evidence as $e):?>
 			    		<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
-			    		<p><?php echo substr($e['Evidence']['content'], 0, 100);?></p>
+			    		<p><?php echo substr(strip_tags($e['Evidence']['content']), 0, 90);?></p>
 			
 						<!-- Prints the issue related to each mission -->
 	    				<?php foreach($missionIssues as $mi): 

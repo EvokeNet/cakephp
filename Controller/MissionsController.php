@@ -5,7 +5,6 @@ App::uses('AppController', 'Controller');
  *
  * @property Mission $Mission
  * @property PaginatorComponent $Paginator
- * @property SessionComponent $Session
  */
 class MissionsController extends AppController {
 
@@ -14,26 +13,9 @@ class MissionsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Access');
+	public $components = array('Paginator');
 
 	public $user = null;
-
-	public function beforeFilter() {
-        parent::beforeFilter();
-        //test to get user data from proper index
-		$this->user = $this->Auth->user();
-		
-		//there was some problem in retrieving user's info concerning his/her role : send him home
-		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
-			$this->redirect(array('controller' => 'users', 'action' => 'login'));
-		}
-
-		//checking Acl permission
-		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
-			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
-			$this->redirect($this->referer());
-		}
-    }
 
 /**
  * index method
@@ -45,7 +27,7 @@ class MissionsController extends AppController {
 		$this->set('missions', $this->Paginator->paginate());
 
 		$this->loadModel('User');
-		$user_data = $this->Auth->user();
+		$user_data = $this->getUserData();
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
 		$missionIssues = $this->Mission->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id'));
@@ -78,7 +60,7 @@ class MissionsController extends AppController {
 		$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);
 
 		$this->loadModel('User');
-		$user_data = $this->Auth->user();
+		$user_data = $this->getUserData();
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
 		$evidences = $this->Mission->getEvidences($id);
@@ -149,7 +131,7 @@ class MissionsController extends AppController {
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Mission->delete()) {
 			$this->Session->setFlash(__('The mission has been deleted.'));
-			
+
 			//deletar todos os registros de missions_issue referentes a esse issue
 			$this->loadModel('MissionIssue');
 			$this->MissionIssue->deleteAll(array('mission_id = '.$id));
@@ -157,7 +139,8 @@ class MissionsController extends AppController {
 			$this->Session->setFlash(__('The mission could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panels
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'missions'));	}
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));	
+	}
 
 /**
  * admin_index method

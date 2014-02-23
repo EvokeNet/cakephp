@@ -30,7 +30,7 @@
 
 <?php $this->end(); ?>
 
-<section class="margin top-2">
+<section class="evoke margin top-2">
 	<div class="row">
 		<div class="large-6 columns">
 			<div class="users form">
@@ -46,15 +46,14 @@
 					<button class="button" type="submit">
 						<?php echo __('Login') ?>
 					</button>
+					<?php echo $this->Form->end(); ?>
 					<button class="button secondary">
 						<?php echo $this->Html->link(__('Sign Up'), array('controller' => 'users', 'action' => 'register'));?>
 					</button>
-					<?php echo $this->Form->end(); ?>
-
 			</div>
 		</div>
 
-		<div class="large-6 columns margin top-2">
+		<div class="large-6 columns evoke margin top-2">
 			<a href="<?php echo $fbLoginUrl; ?>" class="evoke button expand bg-blue"><i class="fa fa-facebook">
 				</i> Login with Facebook
 			</a>

@@ -24,7 +24,6 @@
         "paulredmond/chosen-cakephp": "*"
     },
     "config": {
-        "vendor-dir": "Vendor/",
-        "preferred-install": "source"
+        "vendor-dir": "Vendor/"
     }
 }

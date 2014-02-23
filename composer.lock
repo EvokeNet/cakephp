@@ -6,85 +6,6 @@
     "hash": "bec766db8fd87116148e37d71819439f",
     "packages": [
         {
-            "name": "burzum/cakephp-imagine-plugin",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/burzum/cakephp-imagine-plugin.git",
-                "reference": "fb6462c2cc86ffe2bee7d29bccecc21bb5622a5e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/burzum/cakephp-imagine-plugin/zipball/fb6462c2cc86ffe2bee7d29bccecc21bb5622a5e",
-                "reference": "fb6462c2cc86ffe2bee7d29bccecc21bb5622a5e",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "*",
-                "imagine/imagine": "*",
-                "php": ">=5.3.2"
-            },
-            "type": "cakephp-plugin",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Florian Krämer",
-                    "homepage": "http://florian-kraemer.net",
-                    "role": "Author"
-                }
-            ],
-            "description": "Imagine Plugin for CakePHP",
-            "homepage": "https://github.com/burzum/cakephp-imagine-plugin",
-            "keywords": [
-                "cakephp",
-                "image",
-                "image-processing",
-                "media"
-            ],
-            "time": "2013-12-26 21:16:36"
-        },
-        {
-            "name": "cakedc/migrations",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/CakeDC/migrations.git",
-                "reference": "4406d5d3911767737af481365e9adee1f23652f9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/CakeDC/migrations/zipball/4406d5d3911767737af481365e9adee1f23652f9",
-                "reference": "4406d5d3911767737af481365e9adee1f23652f9",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "*",
-                "php": ">=5.2.8"
-            },
-            "type": "cakephp-plugin",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cake Development Corporation",
-                    "email": "team@cakedc.com",
-                    "homepage": "http://cakedc.com"
-                }
-            ],
-            "description": "Migrations Plugin for CakePHP",
-            "homepage": "http://cakedc.com",
-            "keywords": [
-                "cakephp",
-                "migrations"
-            ],
-            "time": "2014-03-04 12:17:57"
-        },
-        {
             "name": "cakephp/debug_kit",
             "version": "2.2.3",
             "source": {
@@ -301,58 +222,6 @@
             "time": "2014-01-30 21:36:57"
         },
         {
-            "name": "imagine/imagine",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/avalanche123/Imagine.git",
-                "reference": "f64ec666baaa800edcbf237db41121a569230709"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/f64ec666baaa800edcbf237db41121a569230709",
-                "reference": "f64ec666baaa800edcbf237db41121a569230709",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "sami/sami": "dev-master"
-            },
-            "suggest": {
-                "ext-gd": "to use the GD implementation",
-                "ext-gmagick": "to use the Gmagick implementation",
-                "ext-imagick": "to use the Imagick implementation"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Imagine": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bulat Shakirzyanov",
-                    "email": "mallluhuct@gmail.com",
-                    "homepage": "http://avalanche123.com"
-                }
-            ],
-            "description": "Image processing for PHP 5.3",
-            "homepage": "http://imagine.readthedocs.org/",
-            "keywords": [
-                "drawing",
-                "graphics",
-                "image manipulation",
-                "image processing"
-            ],
-            "time": "2013-07-10 17:25:36"
-        },
-        {
             "name": "josegonzalez/cakephp-upload",
             "version": "1.0.0",
             "source": {
@@ -517,89 +386,6 @@
             "time": "2013-09-20 09:33:52"
         },
         {
-            "name": "knplabs/gaufrette",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/KnpLabs/Gaufrette.git",
-                "reference": "338febb0137b971152363fe184cfb6f01871e665"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/338febb0137b971152363fe184cfb6f01871e665",
-                "reference": "338febb0137b971152363fe184cfb6f01871e665",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "amazonwebservices/aws-sdk-for-php": "1.5.*",
-                "aws/aws-sdk-php": "~2",
-                "doctrine/dbal": ">=2.3",
-                "dropbox-php/dropbox-php": "*",
-                "herzult/php-ssh": "*",
-                "microsoft/windowsazure": "dev-master",
-                "mikey179/vfsstream": "~1.2.0",
-                "phpseclib/phpseclib": "dev-master",
-                "phpspec/phpspec": "2.0.*",
-                "phpunit/phpunit": "3.7.*",
-                "rackspace/php-cloudfiles": "*",
-                "rackspace/php-opencloud": "1.9.*"
-            },
-            "suggest": {
-                "amazonwebservices/aws-sdk-for-php": "to use the legacy Amazon S3 adapters",
-                "aws/aws-sdk-php": "to use the Amazon S3 adapter",
-                "doctrine/dbal": "to use the Doctrine DBAL adapter",
-                "dropbox-php/dropbox-php": "to use the Dropbox adapter",
-                "ext-apc": "to use the APC adapter",
-                "ext-curl": "*",
-                "ext-fileinfo": "This extension is used to automatically detect the content-type of a file in the AwsS3, OpenCloud, and AzureBlogStorage adapters",
-                "ext-mbstring": "*",
-                "ext-mongo": "*",
-                "ext-zip": "to use the Zip adapter",
-                "herzult/php-ssh": "to use SFtp adapter",
-                "knplabs/knp-gaufrette-bundle": "to use with Symfony2",
-                "microsoft/windowsazure": "to use Microsoft Azure Blob Storage adapter",
-                "phpseclib/phpseclib": "to user PhpseclibSftp adapter",
-                "rackspace/php-opencloud": "to use Opencloud adapter"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Gaufrette": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "The contributors",
-                    "homepage": "http://github.com/knplabs/Gaufrette/contributors"
-                },
-                {
-                    "name": "KnpLabs Team",
-                    "homepage": "http://knplabs.com"
-                }
-            ],
-            "description": "PHP5 library that provides a filesystem abstraction layer",
-            "homepage": "http://knplabs.com",
-            "keywords": [
-                "abstraction",
-                "file",
-                "filesystem",
-                "media"
-            ],
-            "time": "2014-03-05 19:58:17"
-        },
-        {
             "name": "markstory/acl_extras",
             "version": "dev-master",
             "source": {
@@ -724,11 +510,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "google/apiclient": 10,
-        "markstory/acl_extras": 20,
-        "burzum/cakephp-imagine-plugin": 20,
-        "cakedc/migrations": 20,
-        "knplabs/gaufrette": 20,
-        "imagine/imagine": 20
+        "markstory/acl_extras": 20
     },
     "platform": [
 

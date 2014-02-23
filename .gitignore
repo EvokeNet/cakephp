@@ -4,4 +4,3 @@ Config/database.php
 webroot/components
 Plugin/
 tmp/
-webroot/index.php

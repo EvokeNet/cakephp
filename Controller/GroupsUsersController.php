@@ -2,8 +2,6 @@
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
-App::uses('Folder', 'Utility');
-App::uses('File', 'Utility');
 
 /**
  * GroupsUsers Controller
@@ -28,9 +26,9 @@ class GroupsUsersController extends AppController {
 	public function index() {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
-		
-		$userid = $this->Auth->user('User.id');
-		$username = explode(' ', $this->Auth->user('User.name'));
+
+		$userid = $this->Session->read('Auth.User.User.id');
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
@@ -39,13 +37,13 @@ class GroupsUsersController extends AppController {
 	}
 
 /**
- * edit method
+ * view method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function edit($group_id = null) {
+	public function view($group_id = null) {
 
 		$this->loadModel('Setting');
 		$gAuth = new GoogleAuthentication(
@@ -126,8 +124,8 @@ class GroupsUsersController extends AppController {
 			$this->request->data = $evokation;
 		}
 
-		$user_data = $this->Auth->user();
-		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['User']['id'])));
+		$user_data = $this->getUserData();
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
 		$this->set(compact('group', 'users', 'user'));
 
@@ -224,7 +222,7 @@ class GroupsUsersController extends AppController {
  */
 	public function send($id, $group_id){
 
-		$user_data = $this->Auth->user();
+		$user_data = $this->getUserData();
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 		
 		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
@@ -266,7 +264,7 @@ class GroupsUsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit2($id = null) {
+	public function edit($id = null) {
 		if (!$this->GroupsUser->exists($id)) {
 			throw new NotFoundException(__('Invalid groups user'));
 		}

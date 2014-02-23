@@ -47,6 +47,8 @@ class UserIssuesController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			// debug($this->request->data);
+			// die();
 			$status = false;
 			$user = $this->request->data['UserIssue']['user_id'];
 			foreach ($this->request->data['UserIssue']['issue_id'] as $a) {

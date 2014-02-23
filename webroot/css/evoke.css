@@ -32,60 +32,63 @@ button, div, p, span, a,
 
 /* SPACINGS, MARGINS, PADDINGS */
 
-.evoke .margin.top {
+.evoke.margin.top {
 	margin-top: 1em;
 }
 
-.evoke .margin.top-2 {
+.evoke.margin.top-2 {
 	margin-top: 2em;
 }
 
-.evoke .margin.left {
+.evoke.margin.left {
 	margin-left: 1em;
 }
 
-.evoke .margin.left-2 {
+.evoke.margin.left-2 {
 	margin-left: 2em;
 }
 
-.evoke .margin.bottom {
+.evoke.margin.bottom {
 	margin-bottom: 1em;
 }
 
 
 .evoke a.button {
-	color: #ffffff;
-}
-
-.evoke a.button.secondary {
-	color: #111111;
-}
-
-.evoke .panel p,
-.evoke .panel h1,
-.evoke .panel h2,
-.evoke .panel h3,
-.evoke .panel h4,
-.evoke .panel h5,
-.evoke .panel h6 {
 	color: #fff;
 }
 
-.evoke .clearfix {
+.evoke.button {
+	max-height: 2.5em;
+	line-height: 0;
+	padding-top: 1.25em;
+	padding-bottom: 1.25em;
+}
+
+.evoke.panel p,
+.evoke.panel h1,
+.evoke.panel h2,
+.evoke.panel h3,
+.evoke.panel h4,
+.evoke.panel h5,
+.evoke.panel h6 {
+	color: #fff;
+}
+
+.evoke.clearfix {
 	clear: both;
 }
 
-.evoke .typeface.thin {
+.evoke.typeface.thin {
 	font-family: 'Open Sans Light', 'Helvetica Neue', 'Arial', sans-serif;
 	font-weight: lighter;
 }
 
-.evoke .typeface.strong {
+.evoke.typeface.strong {
 	font-family: 'Open Sans Bold', 'Helvetica', 'Arial', sans-serif;
 	font-weight: bolder;
 }
 
-.evoke .paragraph {
+.evoke.paragraph {
 	line-height: 100%/1.618;
 }
 
@@ -93,12 +96,12 @@ button, div, p, span, a,
 	max-width: none;
 }
 
-.evoke nav {
+.evoke nav{
 	border: none;
 	background: none;
 }
 
-.name h1 {
+.name h1{
 	color:#FFF;
 }
 

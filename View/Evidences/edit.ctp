@@ -37,7 +37,7 @@
 		<div class="small-11 small-centered columns">
 			<div class="evidences form">
 			<?php echo $this->Form->create('Evidence'); ?>
-				<?php echo __('Write Here Your Evidence'); ?>
+				<?php echo __('Edit Evidence'); ?>
 				<?php
 					echo $this->Form->input('id');
 					echo $this->Form->input('title');
@@ -47,6 +47,7 @@
 					echo $this->Form->hidden('mission_id');
 					echo $this->Form->hidden('phase_id');
 					echo $this->Media->ckeditor('content', array('label' => 'Content'));
+					//echo $this->Media->iframe('Evidence', $this->request->data['Evidence']['id']);
 				?>
 			<?php echo $this->Form->end(__('Submit')); ?>
 			</div>
