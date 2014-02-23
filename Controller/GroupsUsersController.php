@@ -27,8 +27,9 @@ class GroupsUsersController extends AppController {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
 
-		$userid = $this->Session->read('Auth.User.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$userid = $this->getUserId();
+		$username = explode(' ', $this->getUserName());
+
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
@@ -124,8 +125,8 @@ class GroupsUsersController extends AppController {
 			$this->request->data = $evokation;
 		}
 
-		$user_data = $this->getUserData();
-		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$this->set(compact('group', 'users', 'user'));
 
@@ -176,6 +177,67 @@ class GroupsUsersController extends AppController {
 	}
 
 /**
+ * storeFileId method
+ *
+ * AJAX call to store the fileID from Google Drive in the Database and
+ * use it in further calls in document updating.
+ *
+ * @return boolean TRUE if succeeded, FALSE otherwise
+ */
+	public function store_image() {
+		$this->autoRender = false;
+
+		if ($this->request->is('ajax')) {
+
+			$type = pathinfo($this->request->data['Evokation']['image_uploader']['tmp_name'], PATHINFO_EXTENSION);
+
+			if(!in_array($type, array('jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'bmp', 'BMP'))) {
+
+				$dir = $this->webroot . 'uploads' . DS . $this->getUserId() . $this->request->data['Evokation']['id'];
+
+				if (!file_exists($dir) and !is_dir($dir)) {
+
+					$folder = new Folder();
+					if($folder->create($dir)) {
+						$filename = $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
+						if(move_uploaded_file($this->request->data['Evokation']['image_uploader']['tmp_name'], $filename)) {
+							return $this->Html->image($filename);
+						} else {
+							return false;
+						}
+					}
+
+				} else {
+					return false;
+				}
+			}
+			// $data = file_get_contents($this->request->data['image_uploader']['tmp_name']);
+			// $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+		}
+	}
+
+// /**
+//  * add method
+//  *
+//  * @return void
+//  */
+// 	public function add() {
+// 		if ($this->request->is('post')) {
+// 			$this->GroupsUser->create();
+// 			if ($this->GroupsUser->save($this->request->data)) {
+// 				$this->Session->setFlash(__('The groups user has been saved.'));
+// 				return $this->redirect(array('action' => 'index'));
+// 			} else {
+// 				$this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
+// 			}
+// 		}
+// 		$users = $this->GroupsUser->User->find('list');
+// 		$groups = $this->GroupsUser->Group->find('list');
+// 		$this->set(compact('users', 'groups'));
+// 	}
+
+
+/**
  * add method
  *
  * @return void
@@ -222,10 +284,9 @@ class GroupsUsersController extends AppController {
  */
 	public function send($id, $group_id){
 
-		$user_data = $this->getUserData();
-		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 		
-		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$recipient = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $id)));
 
@@ -233,8 +294,8 @@ class GroupsUsersController extends AppController {
 
 		/* Adds requests */
 		$this->loadModel('GroupRequest');
-		$insertData = array('user_id' => $user_data['id'], 'group_id' => $group_id);
-		$exists = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $user_data['id'], 'GroupRequest.group_id' => $group_id)));
+		$insertData = array('user_id' => $this->getUserId(), 'group_id' => $group_id);
+		$exists = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $this->getUserId(), 'GroupRequest.group_id' => $group_id)));
 
 		if(!$exists){
 	        if($this->GroupRequest->save($insertData)){

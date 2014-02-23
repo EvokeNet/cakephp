@@ -24,10 +24,20 @@ $title = __('Evoke Network');
 
 		echo $this->Html->meta('icon');
 
+<<<<<<< HEAD
 		echo $this->Html->css('tagsinput');
 		echo $this->Html->css('/components/chosen/chosen');
 		echo $this->Html->css('/components/tagmanager/tagmanager');
 		echo $this->Html->css('/components/bootstrap-tagsinput/bootstrap-tagsinput');
+=======
+		echo $this->Html->script('/webroot/components/jquery/jquery.min');
+		echo $this->Html->script('/webroot/components/foundation/js/foundation.min');
+
+		echo $this->Html->script('facebook_share');
+		echo $this->Html->script('google_share');
+		echo $this->Html->script('foundation_tabs');
+
+>>>>>>> 6580eca106b204456b88e62813d87ce66225a5b8
 		echo $this->Html->css('/components/foundation/css/foundation.min');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');

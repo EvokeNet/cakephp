@@ -42,8 +42,7 @@ class EvidencesController extends AppController {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
 
-		$user_data = $this->getUserData();
-		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
 		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
@@ -57,11 +56,12 @@ class EvidencesController extends AppController {
  * @return void
  */
 	public function add($mission_id, $phase_id) {
-		
-		$user_data = $this->getUserData();
-		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
-		$insertData = array('user_id' => $user_data['id'], 'mission_id' => $mission_id, 'phase_id' => $phase_id); 
+		
+
+		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$insertData = array('user_id' => $this->getUserId(), 'mission_id' => $mission_id, 'phase_id' => $phase_id); 
 
 		$this->Evidence->create();
 		if ($this->Evidence->save($insertData)) {
@@ -70,6 +70,7 @@ class EvidencesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 		}
+
 	}
 
 /**
@@ -96,8 +97,9 @@ class EvidencesController extends AppController {
 			$this->request->data = $this->Evidence->find('first', $options);
 		}
 
-		$user_data = $this->getUserData();
-		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
+		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
 		$users = $this->Evidence->User->find('list');
 		$quests = $this->Evidence->Quest->find('list');
 		$missions = $this->Evidence->Mission->find('list');

@@ -54,22 +54,42 @@ class AppController extends Controller {
         $cuser = $this->Auth->user();
     }
 
-    public function getUserData(){
-        $c_user = array();
 
-        if(is_null($this->Session->read('Auth.User.role_id'))) {
-            $c_user['role_id'] = $this->Session->read('Auth.User.User.role_id');
-            $c_user['id'] = $this->Session->read('Auth.User.User.id');
-            $c_user['name'] = $this->Session->read('Auth.User.User.name');
-        } else{
-            $c_user['role_id'] = $this->Session->read('Auth.User.role_id');
-            $c_user['id'] = $this->Session->read('Auth.User.id');
-            $c_user['name'] = $this->Session->read('Auth.User.name');
-        }
-        return $c_user;
-    }
+    // public function getUserData(){
+    //     $c_user = array();
+
+    //     if(is_null($this->Session->read('Auth.User.role_id'))) {
+    //         $c_user['role_id'] = $this->Session->read('Auth.User.User.role_id');
+    //         $c_user['id'] = $this->Session->read('Auth.User.User.id');
+    //         $c_user['name'] = $this->Session->read('Auth.User.User.name');
+    //     } else{
+    //         $c_user['role_id'] = $this->Session->read('Auth.User.role_id');
+    //         $c_user['id'] = $this->Session->read('Auth.User.id');
+    //         $c_user['name'] = $this->Session->read('Auth.User.name');
+    //     }
+    //     return $c_user;
+    // }
 
     public function canUploadMedias($model, $id){
         return true;
     }
+
+    public function getUserId(){
+        $currentuser = $this->Auth->user();
+        if(isset($currentuser['id'])) return $currentuser['id'];
+        return $currentuser['User']['id'];
+    }
+
+    public function getUserName(){
+        $currentuser = $this->Auth->user();
+        if(isset($currentuser['name'])) return $currentuser['name'];
+        return $currentuser['User']['name'];   
+    }
+
+    public function getUserRole(){
+        $currentuser = $this->Auth->user();
+        if(isset($currentuser['role_id'])) return $currentuser['role_id'];
+        return $currentuser['User']['role_id'];
+    }
+
 }

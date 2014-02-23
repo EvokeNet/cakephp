@@ -18,15 +18,13 @@ class PanelsController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
-        //test to get user data from proper index
-		if(is_null($this->Session->read('Auth.User.role_id'))) {
-			$current_role = $this->Session->read('Auth.User.User.role_id');
-			$current_id = $this->Session->read('Auth.User.User.id');
-		}else{
-			$current_role = $this->Session->read('Auth.User.role_id');
-			$current_id = $this->Session->read('Auth.User.id');
-		}
-		
+
+        $this->user = array();
+        //get user data into public var
+		$this->user['role_id'] = $this->getUserRole();
+		$this->user['id'] = $this->getUserId();
+		$this->user['name'] = $this->getUserName();
+
 		//there was some problem in retrieving user's info concerning his/her role : send him home
 		if(!isset($current_role) || is_null($current_role)) {
 			$this->redirect(array('controller' => 'users', 'action' => 'login'));
@@ -37,7 +35,7 @@ class PanelsController extends AppController {
 			$this->Session->setFlash(__("You don't have permission to access this area."));	
 			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $current_id));
 		}
-    }
+	}
 	
 /*
 * index method
