@@ -13,7 +13,25 @@ class IssuesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Access', 'Session');
+
+
+	public function beforeFilter() {
+        parent::beforeFilter();
+        //test to get user data from proper index
+		$this->user = $this->Auth->user();
+		
+		//there was some problem in retrieving user's info concerning his/her role : send him home
+		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
+			$this->redirect(array('controller' => 'users', 'action' => 'login'));
+		}
+
+		//checking Acl permission
+		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
+			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
+			$this->redirect($this->referer());
+		}
+    }
 
 /**
  * index method
@@ -23,10 +41,6 @@ class IssuesController extends AppController {
 	public function index() {
 		$this->Issue->recursive = 0;
 		$this->set('issues', $this->Paginator->paginate());
-
-		// $this->loadModel('MissionIssue');
-		// $missionissues = $this->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id',));
-		// $this->set(compact('missionissues'));
 	}
 
 /**
@@ -81,6 +95,8 @@ class IssuesController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
 			}
+			//returning to the admin panel
+			return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'missions'));
 		} else {
 			$options = array('conditions' => array('Issue.' . $this->Issue->primaryKey => $id));
 			$this->request->data = $this->Issue->find('first', $options);
@@ -112,7 +128,7 @@ class IssuesController extends AppController {
 			$this->Session->setFlash(__('The issue could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panel
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'missions'));
 	}
 
 /**

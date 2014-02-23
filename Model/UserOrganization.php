@@ -1,12 +1,19 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * GroupRequest Model
+ * UserOrganization Model
  *
  * @property User $User
- * @property Group $Group
+ * @property Organization $Organization
  */
-class GroupRequest extends AppModel {
+class UserOrganization extends AppModel {
+
+/**
+ * Display field
+ *
+ * @var string
+ */
+	public $displayField = 'id';
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -24,9 +31,9 @@ class GroupRequest extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Group' => array(
-			'className' => 'Group',
-			'foreignKey' => 'group_id',
+		'Organization' => array(
+			'className' => 'Organization',
+			'foreignKey' => 'organization_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

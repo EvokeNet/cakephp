@@ -49,8 +49,9 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter() {
+        $user_id = $this->Auth->user('User.id');
         $this->Auth->allow('add', 'fb_login', 'index', 'view');
-        $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
+        $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard', $user_id);
         $cuser = $this->Auth->user();
     }
 
@@ -72,4 +73,5 @@ class AppController extends Controller {
     public function canUploadMedias($model, $id){
         return true;
     }
+
 }

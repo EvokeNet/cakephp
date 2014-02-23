@@ -16,9 +16,9 @@ class Issue extends AppModel {
 	public $displayField = 'name';
 
 
-	public function getIssues(){
+	public function getIssues($order = "Issue.name"){
 		return $this->find('all', array(
-			'order' => array('Issue.name ASC')
+			'order' => array($order.' ASC')
 			));
 	}
 

@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * GroupRequest Model
+ * UserMission Model
  *
  * @property User $User
- * @property Group $Group
+ * @property Mission $Mission
  */
-class GroupRequest extends AppModel {
+class UserMission extends AppModel {
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -24,9 +24,9 @@ class GroupRequest extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Group' => array(
-			'className' => 'Group',
-			'foreignKey' => 'group_id',
+		'Mission' => array(
+			'className' => 'Mission',
+			'foreignKey' => 'mission_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

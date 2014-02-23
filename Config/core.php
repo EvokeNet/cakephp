@@ -368,6 +368,7 @@ Cache::config('_cake_model_', array(
 	'duration' => $duration
 ));
 
+
 Configure::write('fb_app_id', '666636333396015');
 Configure::write('fb_app_secret', '8f56121cd2840b321cf64d8aa156f3ce');
 Configure::write('fb_app_requests', '');
