@@ -8,8 +8,7 @@ html, body {
 
 *, html, body,
 button, div, p, span, a,
-.button
-{
+.button{
 	font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
 	-webkit-text-stroke: 0.1px;
 	-webkit-font-smoothing: antialiased;
@@ -27,7 +26,11 @@ button, div, p, span, a,
 }
 
 .evoke.bg-topbar {
-	background: #333333;
+	background: #1f8cb2;
+}
+
+.evoke.top-bar-section li:not(.has-form) a:not(.button){
+	background: #1f8cb2;
 }
 
 /* SPACINGS, MARGINS, PADDINGS */
@@ -52,9 +55,55 @@ button, div, p, span, a,
 	margin-bottom: 1em;
 }
 
+.evoke.padding.top-2 {
+	padding-top: 2em;
+}
+
+.evoke.dashboard{
+	background: url('../img/bg.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+/*.evoke.agent-tag{
+	background-image: url('../img/agent_tag.png');
+	background-repeat: no-repeat;
+	height:auto;
+	width:auto;
+}*/
+
+.evoke.agent-tag h5{
+	position: absolute;
+	top: 40%;
+	left: 40%;
+}
+
+.evoke.agent-tag img.tag{
+	width:100%;
+}
+
+.evoke.agent-tag img.agent-picture{
+	position: absolute;
+	top: 31%;
+	/* right: 50%; */
+	left: 12%;
+	width: 23%;
+	height: 50%;
+}
 
 .evoke a.button {
-	color: #fff;
+	background: #1f8cb2;
+	color: #ffffff;
+	font-size: 0.9em;
+	border-radius: 5px;
+	padding: 0.4em 2em;
+	margin-right: 10px;
+	border-right: 3px solid #125167;
+	border-bottom: 3px solid #125167;
 }
 
 .evoke.button {
@@ -111,4 +160,28 @@ button, div, p, span, a,
     border: 0;
     background: black;
     background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+}
+
+.evoke.tabs{
+	background-color: #f1f1f1;
+	padding: 0.7em;
+	border-radius: 20px;
+	border: 1px solid #bb5660;
+}
+
+.evoke.tabs dd.active a{
+	background: #bb5660;
+	/*border-left: 3px solid #88363c;
+	border-top: 3px solid #88363c;*/
+}
+
+.evoke.tabs dd>a{
+	background: #1f8cb2;
+	color: #ffffff;
+	font-size: 0.9em;
+	border-radius: 5px;
+	padding: 0.4em 0.9em;
+	margin-right: 10px;
+	/*border-right: 3px solid #125167;
+	border-bottom: 3px solid #125167;*/
 }

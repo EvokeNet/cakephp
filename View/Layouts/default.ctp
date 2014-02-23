@@ -24,7 +24,6 @@ $title = __('Evoke Network');
 
 		echo $this->Html->meta('icon');
 
-
 		echo $this->Html->css('/components/foundation/css/foundation.min');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
@@ -55,11 +54,7 @@ $title = __('Evoke Network');
 	</footer>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 	<?php
-		echo $this->Html->script('tagsinput');
-		echo $this->Html->script('/components/chosen/chosen.jquery');
-		echo $this->Html->script('/components/tagmanager/tagmanager');
-		echo $this->Html->script('/components/bootstrap-tagsinput/bootstrap-tagsinput');
-		echo $this->Html->script('/components/bootstrap-tagsinput/bootstrap-tagsinput-angular');
+
 		echo $this->Html->script('/components/jquery/jquery.min');
 		echo $this->Html->script('/components/foundation/js/foundation.min');
 		echo $this->Html->script('evoke');

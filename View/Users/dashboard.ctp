@@ -11,7 +11,7 @@
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
 
-	<section class="top-bar-section">
+	<section class="evoke top-bar-section">
 		<!-- Right Nav Section -->
 		<ul class="right">
 			<li class="has-dropdown">
@@ -32,8 +32,8 @@
 
 <?php $this->end(); ?>
 
-<section class="evoke margin top-2">
-	<div class="row">
+<section class="evoke dashboard padding top-2">
+	<div class="row evoke-max-width">
 		<div class="medium-9 columns">
 			<h1><?php echo __('Dashboard');?></h1>
 
@@ -48,7 +48,43 @@
 				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'delete', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Unfollow this user');?></a>
 			<?php endif; ?>
 
-			<dl class="tabs" data-tab>
+			<dl class="tabs evoke" data-tab>
+			  <dd class="active"><a href="#panel12-1"><?php echo __('Issues');?></a></dd>
+			  <dd><a href="#panel12-2"><?php echo __('All Missions');?></a></dd>
+			</dl>
+			<div class="tabs-content">
+			  <div class="content active" id="panel12-1">
+
+			  <img src = '../img/shelves.png' alt = ""/>
+			  <!-- Lists all issues -->
+		    	<?php foreach($issues as $i):?>
+		    		<div>
+		    		<?php echo $this->Html->link($i['Issue']['name'], array('controller' => 'users', 'action' => 'dashboardByIssue', $user['User']['id'], $i['Issue']['id']));?></div>
+	    		<?php endforeach; ?>
+
+	    		<!-- Button redirects to listing mission issues page -->
+	    		<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class = "button"><?php echo __('See All Issues');?></a>
+
+			  </div>
+
+			  <div class="content" id="panel12-2">
+
+			  <!-- Lists maximum 5 missions -->
+			    <?php foreach($missions as $m):?>
+			    	<div class = "dashboard-missions">
+		    			<?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>
+		    			<p><?php echo $m['Mission']['description']; ?></p>
+		    		</div>
+	    		<?php endforeach; ?>
+
+	    		<!-- Button redirects to listing mission page -->
+	    		<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class = "button"><?php echo __('See All Missions');?></a>
+
+			  </div>
+			</div>
+
+			<dl class="tabs evoke" data-tab>
+			  <dd>Evoke Panel</dd>
 			  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
 			  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
 			  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
@@ -126,41 +162,21 @@
 			  </div>
 			</div>
 
-			<h2><?php echo __('Choose a Mission');?></h2>
-			<dl class="tabs" data-tab>
-			  <dd class="active"><a href="#panel12-1"><?php echo __('Issues');?></a></dd>
-			  <dd><a href="#panel12-2"><?php echo __('All Missions');?></a></dd>
-			</dl>
-			<div class="tabs-content">
-			  <div class="content active" id="panel12-1">
+		</div>
+		<div class="medium-3 columns">
+			
+			<div class = "evoke agent-tag">
 
-			  <!-- Lists all issues -->
-		    	<?php foreach($issues as $i):?>
-		    		<div>
-		    		<?php echo $this->Html->link($i['Issue']['name'], array('controller' => 'users', 'action' => 'dashboardByIssue', $user['User']['id'], $i['Issue']['id']));?></div>
-	    		<?php endforeach; ?>
+				<img src = '../img/agent_tag.png' alt = "" class = "tag"/>
+				
+				<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ" class = "agent-picture" />
+				<h5>Agent</h5>
 
-	    		<!-- Button redirects to listing mission issues page -->
-	    		</br><a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class = "button"><?php echo __('See All Issues');?></a>
-
-			  </div>
-
-			  <div class="content" id="panel12-2">
-
-			  <!-- Lists maximum 5 missions -->
-			    <?php foreach($missions as $m):?>
-			    	<div class = "dashboard-missions">
-		    			<?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>
-		    			<p><?php echo $m['Mission']['description']; ?></p>
-		    		</div>
-	    		<?php endforeach; ?>
-
-	    		<!-- Button redirects to listing mission page -->
-	    		</br><a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class = "button"><?php echo __('See All Missions');?></a>
-
-			  </div>
 			</div>
-
 		</div>
 	</div>
 </section>
+
+<script>
+	$('#carousel').elastislide();
+</script>
