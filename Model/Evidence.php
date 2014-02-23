@@ -25,7 +25,7 @@ class Evidence extends AppModel {
         'Media.Media' => array(
             // You can set up the path where your medias will be saved (optional)
             'path' => 'img/uploads/%y/%m/%f',
-            'extensions' => array('jpg', 'png', 'avi')
+            'extensions' => array('jpg', 'png', 'avi', 'mp4')
         )
     );
 

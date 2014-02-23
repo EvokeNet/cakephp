@@ -170,7 +170,8 @@ class UsersController extends AppController {
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
-		$user_data = $this->getUserData();
+		$user_data = $this->Auth->user();//$this->getUserData();
+		//debug($user_data);
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $id, 'UserFriend.friend_id' => $user_data['id'])));
