@@ -37,6 +37,10 @@ class AppController extends Controller {
         'Acl'
     );
 
+    public $helpers = array(
+        'Chosen.Chosen', 'Media.Media'
+    );
+
     public $user = null;
 
 /**
@@ -63,5 +67,9 @@ class AppController extends Controller {
             $c_user['name'] = $this->Session->read('Auth.User.name');
         }
         return $c_user;
+    }
+
+    public function canUploadMedias($model, $id){
+        return true;
     }
 }

@@ -4,7 +4,11 @@
 		<legend><?php echo __('Add Evidence Tag'); ?></legend>
 	<?php
 		echo $this->Form->input('evidence_id');
-		echo $this->Form->input('tag_id');
+		echo $this->Chosen->select(
+		    'tag_id',
+		    array(1, 2),
+		    array('data-placeholder' => '', 'multiple' => true, 'class' => 'chzn-select', 'default' => 1)
+		);
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

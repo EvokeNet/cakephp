@@ -41,11 +41,13 @@
 				<?php
 					echo $this->Form->input('id');
 					echo $this->Form->input('title');
-					echo $this->Form->input('content');
+					//echo $this->Form->input('content');
 					echo $this->Form->hidden('user_id');
 					echo $this->Form->input('quest_id', array('empty' => true));
 					echo $this->Form->hidden('mission_id');
 					echo $this->Form->hidden('phase_id');
+					echo $this->Media->ckeditor('content', array('label' => 'Content'));
+					//echo $this->Media->iframe('Evidence', $this->request->data['Evidence']['id']);
 				?>
 			<?php echo $this->Form->end(__('Submit')); ?>
 			</div>

@@ -192,12 +192,21 @@ class UsersController extends AppController {
 		        'alias' => 'Evokations',
 		        'type' => 'inner',
 		        'conditions' => array(
-		            'EvokationFollowers.evokation_id = Evokations.id'
+		            'Evokations.id = EvokationFollowers.evokation_id'
+		        )
+		    ),
+		    array('table' => 'groups',
+		        'alias' => 'Groups',
+		        'type' => 'inner',
+		        'conditions' => array(
+		            'Evokations.group_id = Group.id'
 		        )
 		    )
 		);
 
-		$evokationsFollowing = $this->Evokation->find('all', $options['joins']);
+		$evokationsFollowing = $this->User->EvokationFollower->find('all');
+		//debug($evokationsFollowing);
+		//die();
 
 		$options2['joins'] = array(
 		    array('table' => 'groups_users',
@@ -216,7 +225,8 @@ class UsersController extends AppController {
 		    )
 		);
 
-		$myEvokations = $this->Evokation->find('all', $options['joins']);
+		$myEvokations = $this->Evokation->find('all', $options2['joins']);
+		//debug($myEvokations);
 
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all');
