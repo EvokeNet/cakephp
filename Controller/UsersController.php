@@ -174,7 +174,7 @@ class UsersController extends AppController {
 		//debug($user_data);
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
-		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $id, 'UserFriend.friend_id' => $user_data['id'])));
+		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $user_data['id'], 'UserFriend.friend_id' => $id)));
 
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
 
