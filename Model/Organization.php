@@ -1,10 +1,10 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Badge Model
+ * Organization Model
  *
  */
-class Badge extends AppModel {
+class Organization extends AppModel {
 
 /**
  * Display field
@@ -13,7 +13,7 @@ class Badge extends AppModel {
  */
 	public $displayField = 'name';
 
-	public function getBadges() {
+	public function getOrganizations(){
 		return $this->find('all');
 	}
 }

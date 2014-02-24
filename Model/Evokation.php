@@ -38,5 +38,4 @@ class Evokation extends AppModel {
 		)
 	);
 
->>>>>>> 3699c3c309863ef801baf7c86a7711016fdcaf03
 }

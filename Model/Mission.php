@@ -17,6 +17,10 @@ class Mission extends AppModel {
 	public $displayField = 'title';
 
 
+	public function getMissions() {
+		return $this->find('all');
+	}
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**

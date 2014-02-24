@@ -9,19 +9,6 @@ App::uses('AppModel', 'Model');
 class Group extends AppModel {
 
 /**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'title';
-
-=======
- * @property User $User
- * @property Evokation $Evokation
- */
-class Group extends AppModel {
-
-/**
  * hasMany associations
  *
  * @var array

@@ -200,20 +200,12 @@ Configure::write('Routing.prefixes', array('admin'));
 /**
  * A random string used in security hashing methods.
  */
-<<<<<<< HEAD
-	Configure::write('Security.salt', 'ZrovEDPtNjAPmZX71iG1eWVCFMEJm7yzAjynkgbb');
-=======
 	Configure::write('Security.salt', '74fe547a73a7b5fd7048e4a3ee950ac75d27c8ec');
->>>>>>> 3699c3c309863ef801baf7c86a7711016fdcaf03
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-<<<<<<< HEAD
-	Configure::write('Security.cipherSeed', '104953088666953443223955490473');
-=======
 	Configure::write('Security.cipherSeed', '353865393630643863356465346338');
->>>>>>> 3699c3c309863ef801baf7c86a7711016fdcaf03
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
@@ -314,7 +306,6 @@ Configure::write('Routing.prefixes', array('admin'));
  * 		'compress' => false, // [optional] compress data in Memcache (slower, but uses less memory)
  *	));
  *
-<<<<<<< HEAD
  *  Wincache (http://php.net/wincache)
  *
  * 	 Cache::config('default', array(
@@ -361,16 +352,10 @@ Cache::config('_cake_core_', array(
 /**
  * Configure the cache for model and datasource caches. This cache configuration
  * is used to store schema descriptions, and table listings in connections.
-=======
->>>>>>> 3699c3c309863ef801baf7c86a7711016fdcaf03
  */
 	Cache::config('default', array('engine' => 'File'));
 
-<<<<<<< HEAD
+
 Configure::write('fb_app_id', '666636333396015');
 Configure::write('fb_app_secret', '8f56121cd2840b321cf64d8aa156f3ce');
 Configure::write('fb_app_requests', '');
-=======
-	Configure::write('fb_app_id', '666636333396015');
-	Configure::write('fb_app_secret', '8f56121cd2840b321cf64d8aa156f3ce');
->>>>>>> 3699c3c309863ef801baf7c86a7711016fdcaf03
