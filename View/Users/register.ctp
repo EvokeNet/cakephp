@@ -43,7 +43,7 @@
 					echo $this->Form->input('password');
 				?>
 			<?php //echo $this->Form->end(__('Submit')); ?>
-			<button class="evoke button" type="submit"><?php echo __('Submit') ?></button>
+			<button class="evoke button general" type="submit"><?php echo __('Submit') ?></button>
 		</div>
 	  </div>
 	</div>

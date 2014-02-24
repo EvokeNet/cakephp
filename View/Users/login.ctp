@@ -32,11 +32,11 @@
 
 <section class="evoke login-bg">
 	<div class="row">
-		<div class="medium-6 columns">
-			
+		<div class="medium-7 columns">
+			<img src = '/evoke/webroot/img/bar.png' alt = "" style = "position: absolute; top: -17px;">
 		</div>
 
-		<div class="medium-6 columns">
+		<div class="medium-5 columns">
 			<img src = '/evoke/webroot/img/login_tag.png' alt = "" style = "width: 450px;">
 			<div class = "evoke login-tag">
 
@@ -45,11 +45,11 @@
 				<div class = "evoke top-border">
 					<h4><?php echo __('Sign up');?></h4>
 
-					<a href="<?php echo $fbLoginUrl; ?>" class="evoke button facebook login"><?php echo __('Sign in with Facebook');?></a>
-					<a href="<?php echo $this->Html->url(array('action' => 'google_login')); ?>" class="evoke button google login"><?php echo __('Sign in with Google');?></a>
-					<a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'register'));?>" class="evoke button signup login"><?php echo __('Create EVOKE account');?></a>
+					<a href="<?php echo $fbLoginUrl; ?>" class="evoke button facebook login"><i class="fa fa-facebook fa-2x" style = "position: absolute; top: 10px; left: 15px;"></i><?php echo __('Sign in with Facebook');?></a>
+					<a href="<?php echo $this->Html->url(array('action' => 'google_login')); ?>" class="evoke button google login"><img src = '/evoke/webroot/img/evoke_g-login.png' alt = "" style = "position: absolute; left: 4px; top: 5px;"><?php echo __('Sign in with Google');?></a>
+					<a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'register'));?>" class="evoke button signup login"><img src = '/evoke/webroot/img/evoke_e-login.png' style = "position: absolute; left: 0; top: 3px;"><?php echo __('Create EVOKE account');?></a>
 				</div>
-
+<!-- <i class="fa fa-google-plus fa-2x" style = "position: absolute; top: 10px; left: 20px;"></i> -->
 				<div class="evoke users form top-border bottom-border">
 					<?php echo $this->Session->flash('auth'); ?>
 					<?php echo $this->Form->create('User'); ?>
@@ -59,9 +59,10 @@
 								echo $this->Form->input('username', array('label' => false));
 								echo $this->Form->input('password', array('label' => false));
 							?>
-						<button class="evoke button" type="submit">
-							<?php echo __('Sign in') ?>
+						<button class="evoke button general" type="submit">
+							<?php echo __('Sign in'); ?>
 						</button>
+						<a href = "" style = "display: inline; font-size: 0.7em; color: #454545;"><?php echo __('Forgot your password?');?></a>
 						<?php echo $this->Form->end(); ?>
 				</div>
 
