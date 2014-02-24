@@ -97,17 +97,6 @@ button, div, p, span, a,
 	background-size: cover;
 }
 
-.evoke.login-bg{
-	background: url('../img/login_bg.png');
-	background-repeat: no-repeat;
-	/*background-size: 100%;*/
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	/*height:700px;*/
-}
-
 .evoke.agent-tag{
 	background-image: url('../img/agent_tag.png');
 	background-repeat: no-repeat;
@@ -226,39 +215,6 @@ button, div, p, span, a,
 	background-image: linear-gradient(to bottom, #1B7C9D 0%, #125167 100%);
 	padding: 15px 10px;
 	margin-bottom: 3px;
-}
-
-.evoke.login-tag{
-	position: absolute;
-	bottom: 185px;
-	left: 20%;
-	width: 60%;
-}
-
-.evoke.login-tag h3{
-	padding:5px 0px;
-	font-weight: bold;
-}
-
-.evoke.login-tag h4{
-	padding-bottom:5px;
-	font-weight: bold;
-	font-size:1.2em;
-}
-
-.evoke.register-tag{
-	bottom:300px;
-	left: 18%;
-}
-
-.evoke.top-border{
-	border-top: 2px solid #a7a7a7;
-	/*padding-top: 10px;*/
-}
-
-.evoke.bottom-border{
-	border-bottom: 2px solid #a7a7a7;
-	/*padding-top: 10px;*/
 }
 
 .evoke.evidence-list ul{

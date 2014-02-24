@@ -23,25 +23,12 @@ $title = __('Evoke Network');
 		$cssBaseUrl = Configure::read('App.cssBaseUrl');
 
 		echo $this->Html->meta('icon');
+		
+		echo $this->Html->css('/components/foundation/css/foundation.min');
+		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
+		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
 
-		//echo $this->Html->css('/components/jcarousel/examples/basic/jcarousel.basic');
-		//echo $this->Html->css('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
-		echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
-		echo $this->Html->css('/webroot/components/tinycarousel/examples/responsive/tinycarousel');
-		echo $this->Html->css('/webroot/components/foundation/css/foundation.min');
-		echo $this->Html->css('/webroot/components/mrmrs-colors/css/colors.min');
-		echo $this->Html->css('/webroot/components/font-awesome/css/font-awesome.min');
 		echo $this->Html->css('evoke');
-		//echo $this->Html->css('slide');
-
-
-		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js");
-		echo $this->Html->script('/components/jquery/jquery.min');
-		echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel');
-		echo $this->Html->script('/components/tinycarousel/lib/jquery.tinycarousel');
-		//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
-		//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
-		echo $this->Html->script('/webroot/components/jcarousel/examples/responsive/jcarousel.responsive');
 
 		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
 			echo $this->Html->css($cssInclude);
@@ -55,7 +42,7 @@ $title = __('Evoke Network');
 <body>
 
 	<section role="main evoke body">
-		<?php echo $this->Session->flash(); ?>
+		<?php //echo $this->Session->flash(); ?>
 		<?php echo $this->fetch('content'); ?>
 	</section>
 
@@ -70,10 +57,10 @@ $title = __('Evoke Network');
 	
 	<?php
 
-
-		echo $this->Html->script('/webroot/components/foundation/js/foundation.min');
+		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js");
+		echo $this->Html->script('/components/jquery/jquery.min');
+		echo $this->Html->script('/components/foundation/js/foundation.min');
 		echo $this->Html->script('evoke');
-		//echo $this->Html->script('slide');
 		echo $this->fetch('script'); 
 	?>
 </body>

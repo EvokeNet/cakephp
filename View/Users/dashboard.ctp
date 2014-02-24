@@ -1,4 +1,8 @@
 <?php
+	//echo $this->Html->css('/components/jcarousel/examples/basic/jcarousel.basic');
+	//echo $this->Html->css('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
+	echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
+
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 ?>
@@ -33,14 +37,8 @@
 <?php $this->end(); ?>
 
 <section class="evoke dashboard padding top-2">
-	<div class="row evoke-max-width">
-		<div class="medium-8 columns">
-			<!-- <h1><?php echo __('Dashboard');?></h1>
-
-			<nav class="breadcrumbs">
-			  <a class="unavailable" href="#"><?php echo __('Dashboard ');?></a>
-			  <a class="current" href="#"><?php echo $user['User']['name'];?></a>
-			</nav> -->
+	<div class="row full-width">
+		<div class="small-8 medium-8 large-8 columns">
 
 			<?php if(!$is_friend AND ($users['User']['id'] != $user['User']['id'])):?>
 				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'add', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Follow this user');?></a>
@@ -51,6 +49,27 @@
 			<img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;">
 			<div class = "evoke titles"><h4><?php echo __('CHOOSE A MISSION');?></h4></div>
 
+			<div class="wrapper">
+	            <div class="jcarousel-wrapper">
+	                <div class="jcarousel">
+	                    <ul>
+	                        <?php foreach($missions as $m):?>
+	                        	<li><img src="/evoke/webroot/img/evoke_folder.png" alt="Image 1" style = "margin: 5px auto;"/>
+					    			<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>"><?php echo $m['Mission']['title'];?></a></li>
+				    		<?php endforeach; ?>
+	                    </ul>
+
+	                </div>
+
+	             	<a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+        			<a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+	                <!-- <p class="jcarousel-pagination"></p> -->
+	            </div>
+	            <img src="/evoke/webroot/img/shelves.png" alt="Image 1" style = "width: 100%; margin-top: -200px">
+	        </div>
+
+<!-- 
 			<script type="text/javascript">
 				$(document).ready(function()
 				{
@@ -74,7 +93,7 @@
 				</div>
 				<a class="buttons next" href="#">&#62;</a>
 				<img src="/evoke/webroot/img/shelves.png" style = "width:100%"/>
-			</div>
+			</div> -->
 
 			<img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;">
 			<dl class="tabs evoke titles" data-tab>
@@ -175,17 +194,15 @@
 			</div>
 
 		</div>
-		<div class="medium-4 columns">
+		<div class="small-4 medium-4 large-4 columns">
 			
 			<img src = '/evoke/webroot/img/agent_tag.png' alt = ""/>
 			
-
+			<!-- <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ"/> -->
+			<!-- <img src = '../img/agent_tag.png' alt = "" class = "tag"/>
 			
-				<!-- <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ"/> -->
-				<!-- <img src = '../img/agent_tag.png' alt = "" class = "tag"/>
-				
-				<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ" class = "agent-picture" />
-				<h5>Agent</h5> -->
+			<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ" class = "agent-picture" />
+			<h5>Agent</h5> -->
 
 			<img src = '/evoke/webroot/img/bar.png' alt = "" style = "margin-top: 230px; position: absolute; left: 45%;"/>
 			<div class = "evoke titles"><h4><?php echo __('ALLIES');?></h4></div><div class = "evoke screen-box allies"></div>
@@ -200,7 +217,13 @@
 	</div>
 </section>
 
-<script>
-//$('.jcarousel').jcarousel('scroll', '3');
+<?php
+	echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel');
+	//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
+	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
+	echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive');
+?>
 
+<script>
+	$('.jcarousel').jcarousel('scroll', '3');
 </script>
