@@ -30,6 +30,11 @@ button, div, p, span, a,
 	background: #1f8cb2;
 }
 
+.evoke.login-bg-topbar {
+	background: #0d0d10;
+	height: 250px;
+}
+
 .evoke.top-bar-section li:not(.has-form) a:not(.button){
 	background: #1f8cb2;
 }
@@ -87,6 +92,17 @@ button, div, p, span, a,
 	background-size: cover;
 }
 
+.evoke.login-bg{
+	background: url('../img/login_bg.png');
+	background-repeat: no-repeat;
+	/*background-size: 100%;*/
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	/*height:700px;*/
+}
+
 .evoke.agent-tag{
 	background-image: url('../img/agent_tag.png');
 	background-repeat: no-repeat;
@@ -123,6 +139,39 @@ button, div, p, span, a,
 	/*overflow: scroll;*/
 }
 
+.evoke.allies{
+	height:300px;
+	margin-bottom:30px;
+	z-index: 1;
+	position: relative;
+}
+
+.evoke.feed{
+	height:400px;
+	z-index: 1;
+	position: relative;
+}
+
+.evoke.badges{
+	height:200px;
+	z-index: 1;
+	position: relative;
+}
+
+.evoke.panel{
+	height: 550px;
+	overflow: scroll;
+	overflow-x: hidden;
+	z-index: 1;
+	position: relative;
+}
+
+.evoke.leadercloud{
+	height:500px;
+	z-index: 1;
+	position: relative;
+}
+
 .evoke.tabs-content > .content.active {
 	width: 100%;
 }
@@ -130,6 +179,10 @@ button, div, p, span, a,
 .evoke.screen-box{
 	background-color: #363636;
 	border: 20px solid #000000;
+	margin: 20px 0px 50px 0px;
+	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 }
 
 .evoke.shelve{
@@ -174,19 +227,50 @@ button, div, p, span, a,
 	color: #ba5660;
 }
 
+.evoke.login-tag{
+	position: absolute;
+	bottom: 250px;
+	left: 17%;
+	width: 60%;
+}
+
+.evoke.login-tag h3{
+	padding:5px 0px;
+	font-weight: bold;
+}
+
+.evoke.login-tag h4{
+	padding-bottom:5px;
+	font-weight: bold;
+}
+
+.evoke.register-tag{
+	bottom:300px;
+}
+
+.evoke.top-border{
+	border-top: 2px solid #a7a7a7;
+	padding-top: 10px;
+}
+
+.evoke.bottom-border{
+	border-bottom: 2px solid #a7a7a7;
+	padding-top: 10px;
+}
+
 .evoke.evidence-list ul{
 	list-style-type: none;
 }
 
 .evoke a.button {
-	background: #1f8cb2;
+	/*background: #1f8cb2;
 	color: #ffffff;
 	font-size: 0.9em;
 	border-radius: 5px;
 	padding: 0.4em 2em;
 	margin-right: 10px;
 	border-right: 3px solid #125167;
-	border-bottom: 3px solid #125167;
+	border-bottom: 3px solid #125167;*/
 }
 
 .evoke.button {
@@ -194,7 +278,37 @@ button, div, p, span, a,
 	line-height: 0;
 	padding-top: 1.25em;
 	padding-bottom: 1.25em;
+	color: #ffffff;
 }
+
+.evoke a.button.google{
+	background:#c43c1d;
+}
+
+.evoke a.button.facebook{
+	background:#4a6fa7;
+}
+
+.evoke a.button.signup{
+	background:#1f8cb2;
+}
+
+.evoke a.button.login{
+	width: 260px;
+	border-radius: 7px;
+	border-radius: ;
+	padding: 1.50em 0em;
+	margin-left:20px;
+}
+
+
+/*.evoke.button {
+	max-height: 2.5em;
+	line-height: 0;
+	padding-top: 1.25em;
+	padding-bottom: 1.25em;
+}*/
+
 
 .evoke.panel p,
 .evoke.panel h1,
@@ -237,19 +351,21 @@ button, div, p, span, a,
 	color:#FFF;
 }
 
-.sexy_line { 
+/*.sexy_line { 
     margin: 25px 0;
     height: 1px;
     border: 0;
     background: black;
     background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-}
+}*/
 
-.evoke.tabs{
+.evoke.titles{
 	background-color: #f1f1f1;
 	padding: 0.7em;
 	border-radius: 20px;
 	border: 1px solid #bb5660;
+	z-index: 1;
+	position: relative;
 }
 
 .evoke.tabs dd.active a{

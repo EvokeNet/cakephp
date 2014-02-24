@@ -58,7 +58,7 @@ $title = __('Evoke Network');
 	<footer class="evoke footer">
 		<div class="row">
 			<div class="large-12 columns">
-				<img src = '../img/world_bank.png' alt = "" class = "evoke world-bank-icon"/>
+				<!-- <img src = '/evoke/webroot/img/world_bank.png' alt = "" class = "evoke world-bank-icon"/> -->
 				<!-- TODO: standard footer -->
 			</div>
 		</div>

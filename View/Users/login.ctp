@@ -1,10 +1,10 @@
 <?php
-	$this->extend('/Common/topbar');
+	$this->extend('/Common/login-topbar');
 	$this->start('menu');
 ?>
 
 <nav class="top-bar" data-topbar>
-	<ul class="title-area">
+	<!-- <ul class="title-area">
 		<li class="name">
 			<h1><a href="#"><?php echo _('Evoke Network'); ?></a></h1>
 		</li>
@@ -25,41 +25,47 @@
 		<ul class="left">
 			<li><a href="#"><?php echo __('What is Evoke?') ?></a></li>
 		</ul>
-	</section>
+	</section> -->
 </nav>
 
 <?php $this->end(); ?>
 
-<section class="evoke margin top-2">
+<section class="evoke login-bg">
 	<div class="row">
-		<div class="large-6 columns">
-			<div class="users form">
-				<?php echo $this->Session->flash('auth'); ?>
-				<?php echo $this->Form->create('User'); ?>
-					<fieldset>
-						<legend><?php echo __('Please enter your username and password'); ?></legend>
-						<?php 
-							echo $this->Form->input('username');
-							echo $this->Form->input('password');
-						?>
-					</fieldset>
-					<button class="button" type="submit">
-						<?php echo __('Login') ?>
-					</button>
-					<?php echo $this->Form->end(); ?>
-					<button class="button secondary">
-						<?php echo $this->Html->link(__('Sign Up'), array('controller' => 'users', 'action' => 'register'));?>
-					</button>
-			</div>
+		<div class="medium-6 columns">
+			
 		</div>
 
-		<div class="large-6 columns evoke margin top-2">
-			<a href="<?php echo $fbLoginUrl; ?>" class="evoke button expand bg-blue"><i class="fa fa-facebook">
-				</i> Login with Facebook
-			</a>
-			<a href="<?php echo $this->Html->url(array('action' => 'google_login')); ?>" class="evoke button expand bg-red">
-				<i class="fa fa-google-plus"></i> Login with Google
-			</a>
+		<div class="medium-6 columns">
+			<img src = '/evoke/webroot/img/login_tag.png' alt = "" style = "width: 450px;">
+			<div class = "evoke login-tag">
+
+			<h3><?php echo __('Evoke Panel Login');?></h3>
+
+				<div class = "evoke top-border">
+					<h4><?php echo __('Sign up');?></h4>
+
+					<a href="<?php echo $fbLoginUrl; ?>" class="evoke button facebook login"><?php echo __('Sign in with Facebook');?></a>
+					<a href="<?php echo $this->Html->url(array('action' => 'google_login')); ?>" class="evoke button google login"><?php echo __('Sign in with Google');?></a>
+					<a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'register'));?>" class="evoke button signup login"><?php echo __('Create EVOKE account');?></a>
+				</div>
+
+				<div class="evoke users form top-border bottom-border">
+					<?php echo $this->Session->flash('auth'); ?>
+					<?php echo $this->Form->create('User'); ?>
+							<!-- <legend><?php echo __('Please enter your username and password'); ?></legend> -->
+							<h4><?php echo __('Sign in');?></h4>
+							<?php 
+								echo $this->Form->input('username', array('label' => false));
+								echo $this->Form->input('password', array('label' => false));
+							?>
+						<button class="evoke button" type="submit">
+							<?php echo __('Sign in') ?>
+						</button>
+						<?php echo $this->Form->end(); ?>
+				</div>
+
+			</div>
 		</div>
 	</div>
 </section>

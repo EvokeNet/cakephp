@@ -36,7 +36,7 @@
 
 <section class="evoke dashboard padding top-2">
 	<div class="row evoke-max-width">
-		<div class="medium-9 columns">
+		<div class="medium-8 columns">
 			<h1><?php echo __('Dashboard');?></h1>
 
 			<nav class="breadcrumbs">
@@ -50,29 +50,28 @@
 				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'delete', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Unfollow this user');?></a>
 			<?php endif; ?>
 
-			<dl class="tabs evoke" data-tab>
+			<img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;">
+			<dl class="tabs evoke titles" data-tab style= "width: 60%; left: 20%;">
+			  <dd> Choose a missions </dd>
 			  <dd class="active"><a href="#panel12-1"><?php echo __('Issues');?></a></dd>
 			  <dd><a href="#panel12-2"><?php echo __('All Missions');?></a></dd>
 			</dl>
+
 			<div class="evoke tabs-content">
 			  <div class="content active" id="panel12-1">
 
 					<div class="wrapper">
-			            <h1>Responsive Carousel</h1>
-			            
-
-			            <p>This example shows how to implement a responsive carousel. Resize the browser window to see the effect.</p>
-
+			            <!-- <img src="../img/shelves.png" alt="Image 1" style = "width:100%; margin-top:-250px"> -->
 			            <div class="jcarousel-wrapper">
 			                <div class="jcarousel">
 			                    <ul>
-			                        <li><img src="../img/folder.png" alt="Image 1"></li>
-			                        <li><img src="../img/folder.png" alt="Image 1"></li>
-			                        <li><img src="../img/folder.png" alt="Image 1"></li>
-			                        <li><img src="../img/folder.png" alt="Image 1"></li>
-			                        <li><img src="../img/folder.png" alt="Image 1"></li>
-			                        <li><img src="../img/folder.png" alt="Image 1"></li>
+			                        
+			                        <?php foreach($issues as $i):?>
+						    		<li><img src="/evoke/webroot/img/folder.png" alt="Image 1">
+						    		<?php echo $this->Html->link($i['Issue']['name'], array('controller' => 'users', 'action' => 'dashboardByIssue', $user['User']['id'], $i['Issue']['id']));?></li>
+					    		<?php endforeach; ?>
 			                    </ul>
+
 			                </div>
 
 			                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
@@ -80,8 +79,10 @@
 
 			                <!-- <p class="jcarousel-pagination"></p> -->
 			            </div>
+
 			        </div>
 			        
+
 		            <!-- <div class="evoke jcarousel-wrapper">
 		                <div class="jcarousel">
 		                    <ul>
@@ -118,13 +119,16 @@
 			  </div>
 			</div>
 
-			<dl class="tabs evoke" data-tab>
+			<img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;">
+			<dl class="tabs evoke titles" data-tab>
 			  <dd>Evoke Panel</dd>
 			  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
 			  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
 			  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
 			</dl>
-			<div class="evoke tabs-content screen-box">
+
+			<!-- <img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;"> -->
+			<div class="evoke tabs-content screen-box panel">
 			  <div class="content active" id="panel2-1">
 		    	<?php 
 		    		//Lists all projects and evidences
@@ -201,33 +205,63 @@
 			  </div>
 			</div>
 
-		</div>
-		<div class="medium-3 columns">
+			<div class="evoke tabs-content screen-box leadercloud">
+				<div class="row">
+					<div class="medium-6 columns">
+						<img src = '/evoke/webroot/img/small_bar.png' alt = "" style = "position: relative; top: 42px; left: -70px;">
+						<div class = "evoke titles">Leadercloud</div>
+					</div>
+					<div class="medium-6 columns">
+						<dl class="tabs evoke" data-tab>
+							<dd class="active"><a href="#panel22-1"><?php echo __('All Projects and Evidences');?></a></dd>
+							<dd><a href="#panel22-2"><?php echo __('Projects I Follow');?></a></dd>
+						</dl>
+
+						<div class="evoke tabs-content">
+							<div class="content active" id="panel2-1">
+							</div>
+							<div class="content" id="panel22-2">
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- <dl class="tabs evoke titles" data-tab>
+			  <dd>Leadercloud</dd>
+			  <dd class="active"><a href="#panel22-1"><?php echo __('All Projects and Evidences');?></a></dd>
+			  <dd><a href="#panel22-2"><?php echo __('Projects I Follow');?></a></dd>
+			</dl>
 			
-			<div class = "evoke agent-tag">
+			<img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;">
+			<div class="evoke tabs-content screen-box leadercloud">
+			  <div class="content active" id="panel2-1">
+			  </div>
+			  <div class="content" id="panel22-2">
+			  </div>
+			</div> -->
+
+		</div>
+		<div class="medium-4 columns">
+			
+			<img src = '/evoke/webroot/img/agent_tag.png' alt = "" class = "tag"/>
+
+			
 				<!-- <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ"/> -->
 				<!-- <img src = '../img/agent_tag.png' alt = "" class = "tag"/>
 				
 				<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ" class = "agent-picture" />
 				<h5>Agent</h5> -->
 
-			</div>
-			<div class = "evoke agent-tag">
-				<!-- <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ"/> -->
-				<!-- <img src = '../img/agent_tag.png' alt = "" class = "tag"/>
-				
-				<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ" class = "agent-picture" />
-				<h5>Agent</h5> -->
-
-			</div>
-			<div class = "evoke agent-tag">
-				<!-- <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ"/> -->
-				<!-- <img src = '../img/agent_tag.png' alt = "" class = "tag"/>
-				
-				<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ" class = "agent-picture" />
-				<h5>Agent</h5> -->
-
-			</div>	
+			<img src = '/evoke/webroot/img/bar.png' alt = "" style = "margin-top: 230px; position: absolute; left: 45%;"/>
+			<h4 class = "evoke titles">EVOKE ALLIES</h4><div class = "evoke screen-box allies"></div>
+			<img src = '/evoke/webroot/img/bar.png' alt = "" style = "position: absolute; left: 45%;"/>
+			<h4 class = "evoke titles">EVOKE FEED</h4><div class = "evoke screen-box feed"></div>
+			<img src = '/evoke/webroot/img/bar.png' alt = "" style = "margin-top: -100px; position: absolute; left: 45%;"/>
+			<h4 class = "evoke titles">EVOKE BADGES</h4><div class = "evoke screen-box badges"></div>
+			<div><img src = '/evoke/webroot/img/bar.png' alt = "" style = "position: relative; left: 45%; margin: -70px 0px -20px 0px;"/></div>
+			<div><img src = '/evoke/webroot/img/parabolic.png' alt = "" style = "position: absolute; left: 35%; margin: -335px 0px 0px 0px;"/></div>
+			
 		</div>
 	</div>
 </section>
