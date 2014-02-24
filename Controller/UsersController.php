@@ -30,7 +30,7 @@ class UsersController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'logout');
+        $this->Auth->allow('add', 'logout', 'register');
     }
 
 /**
@@ -131,6 +131,27 @@ class UsersController extends AppController {
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
+	}
+
+/**
+ *
+ * register method
+ *
+ * @return void
+ */
+	public function register() {
+		if ($this->request->is('post')) {
+			$this->User->create();
+			if ($this->User->save($this->request->data)) {
+				$user = $this->User->save($this->request->data);
+				$this->Session->setFlash(__('The user has been saved.'));
+				$this->Auth->login($user);
+				return $this->redirect(array('action' => 'edit', $this->User->id));
+				//return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		}
 	}
 
 /**
@@ -311,7 +332,7 @@ class UsersController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'dashboard'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}

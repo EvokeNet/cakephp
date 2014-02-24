@@ -38,17 +38,17 @@
 				<?php echo $this->Form->create('User'); ?>
 					<fieldset>
 						<legend><?php echo __('Please enter your username and password'); ?></legend>
-						<?php echo $this->Form->input('username');
+						<?php echo $this->Form->input('login');
 							echo $this->Form->input('password');
 						?>
 					</fieldset>
 					<button class="button" type="submit">
 						<?php echo __('Login') ?>
 					</button>
+					<?php echo $this->Form->end(); ?>
 					<button class="button secondary">
-						<?php echo __('Cancel'); ?>
+						<?php echo $this->Html->link(__('Sign Up'), array('controller' => 'users', 'action' => 'register'));?>
 					</button>
-				<?php echo $this->Form->end(); ?>
 			</div>
 		</div>
 

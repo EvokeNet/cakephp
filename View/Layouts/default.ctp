@@ -35,11 +35,15 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
 		echo $this->Html->css('evoke');
-		
+
+		echo $this->Html->css('missions');
+		echo $this->Html->css('users');
+		echo $this->Html->css('votes');
+
 		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
 			echo $this->Html->css($cssInclude);
 		}
-		
+
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 

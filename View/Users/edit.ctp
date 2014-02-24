@@ -30,28 +30,34 @@
 </nav>
 
 <?php $this->end(); ?>
-
 <section>
-	<div class="row">
-		<div class="large-12 columns">
-			<?php echo $this->Form->create('User'); ?>
+<div class="row">
+	<div class="small-6 large-centered columns">
+		<div class="users form">
+		<?php echo $this->Form->create('User'); ?>
 			<fieldset>
-				<legend><?php echo __('Editing profile'); ?></legend>
-				<?php
-					echo $this->Form->input('id');
-					echo $this->Form->input('name');
-					echo $this->Form->input('birthdate');
-					echo $this->Form->input('sex', array('type' => 'select', 'options' => array(0 => 'Female', 1 => 'Male')));
-					echo $this->Form->input('biography');
-					echo $this->Form->input('facebook');
-					echo $this->Form->input('twitter');
-					echo $this->Form->input('instagram');
-					echo $this->Form->input('website');
-					echo $this->Form->input('blog');
-				?>
-				</fieldset>
-				<button type="submit" class="button expand"><?php echo __('Save'); ?></button>
-			<?php echo $this->Form->end(); ?>
+				<legend><?php echo __('Edit User'); ?></legend>
+			<?php
+				echo $this->Form->input('id');
+				echo $this->Form->input('name');
+				echo $this->Form->input('login');
+				echo $this->Form->input('password');
+				echo $this->Form->input('birthdate', array('required' => true));
+				//echo $this->Form->input('sex');
+				echo $this->Form->input('sex', array(
+					'type' => 'select',
+				    'options' => array('male', 'female'),
+				));
+				echo $this->Form->input('biography', array('required' => true));
+				echo $this->Form->input('facebook');
+				echo $this->Form->input('twitter');
+				echo $this->Form->input('instagram');
+				echo $this->Form->input('website');
+				echo $this->Form->input('blog');
+			?>
+			</fieldset>
+		<?php echo $this->Form->end(__('Submit')); ?>
 		</div>
 	</div>
+</div>
 </section>

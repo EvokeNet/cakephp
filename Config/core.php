@@ -4,6 +4,14 @@
  *
  * Use it to configure core behavior of Cake.
  *
+ * PHP versions 4 and 5
+ *
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * Redistributions of files must retain the above copyright notice.
+ *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
@@ -355,7 +363,5 @@ Cache::config('_cake_core_', array(
  */
 	Cache::config('default', array('engine' => 'File'));
 
-
-Configure::write('fb_app_id', '666636333396015');
-Configure::write('fb_app_secret', '8f56121cd2840b321cf64d8aa156f3ce');
-Configure::write('fb_app_requests', '');
+	Configure::write('fb_app_id', '666636333396015');
+	Configure::write('fb_app_secret', '8f56121cd2840b321cf64d8aa156f3ce');

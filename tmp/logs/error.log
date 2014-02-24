@@ -2544,7 +2544,6 @@ Request URL: /evoke/js/evokations.js
 Stack Trace:
 #0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
-=======
 2014-02-17 13:46:06 Error: [Exception] Facebook needs the CURL PHP extension.
 Request URL: /evoke2014/users/login
 Stack Trace:

@@ -32,7 +32,15 @@
 	</div>
 	<div class="content" id="badges">
 		<p>
-			<!-- chamar o view badges_panel -->
+			<?php echo $this->Html->Link('Add new badges!', array('controller' => 'badges', 'action' => 'add'));?>
+			<table>				
+			<?php foreach ($badges as $badge) { ?>
+				<tr>
+					<td><?php echo $this->Html->Link($badge['Badge']['name'], array('controller' => 'badges', 'action' => 'view', $badge['Badge']['id'])); ?></td>
+					<td><?php echo $this->Html->Link('edit', array('controller' => 'badges', 'action' => 'edit', $badge['Badge']['id'])) . " " . $this->Form->PostLink('delete', array('controller' => 'badges', 'action' => 'delete', $badge['Badge']['id'])); ?></td>
+				</tr>
+			<?php }	?>
+			</table>
 		</p>
 	</div>
 	<div class="content" id="panel2-3">

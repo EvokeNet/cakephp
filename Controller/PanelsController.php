@@ -11,12 +11,20 @@ class PanelsController extends AppController {
 
 
 	public function index(){
+		$this->organizations();
+		$this->missions();
+		$this->badges();
+	}
+
+
+	public function organizations(){
 		//carregando as orgs
 		$this->loadModel('Organization');
 		$organizations = $this->Organization->getOrganizations();
 		$this->set('organizations', $organizations);		
+	}
 
-
+	public function missions(){
 		//carregando as missions
 		$this->loadModel('Mission');
 		$missions = $this->Mission->getMissions();
@@ -24,11 +32,10 @@ class PanelsController extends AppController {
 
 	}
 
-
 	public function badges(){
 		//carrega todas as badges	
 		$this->loadModel('Badge');
-		$badges = $this->Badges->getBadges();
+		$badges = $this->Badge->getBadges();
 		$this->set('badges', $badges);
 	}
 
