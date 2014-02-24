@@ -239,9 +239,9 @@ var authorizeWithPopup = function() {
   try {
     var stateObj = JSON.parse(stateParam);
     return stateObj;
-} catch(e) {
-    return null;
-}
+  } catch(e) {
+      return null;
+  }
 }
 
 
