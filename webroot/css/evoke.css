@@ -4,6 +4,7 @@
 
 html, body {
 	font: 100%/1.618 sans-serif;
+	overflow-x: hidden;
 }
 
 *, html, body,
@@ -35,6 +36,10 @@ button, div, p, span, a,
 
 /* SPACINGS, MARGINS, PADDINGS */
 
+.evoke.columns {
+	width: auto;
+}
+
 .evoke.margin.top {
 	margin-top: 1em;
 }
@@ -59,6 +64,19 @@ button, div, p, span, a,
 	padding-top: 2em;
 }
 
+.evoke.footer{
+	background: #000000 url('../img/footer.png') no-repeat bottom;
+	background-repeat: no-repeat bottom left;
+	background-size: 100% 30%;
+	height: 200px;
+}
+
+.evoke.world-bank-icon{
+	position: absolute;
+	top: 130px;
+	left: 40%;
+}
+
 .evoke.dashboard{
 	background: url('../img/bg.jpg');
 	background-repeat: no-repeat;
@@ -69,12 +87,13 @@ button, div, p, span, a,
 	background-size: cover;
 }
 
-/*.evoke.agent-tag{
+.evoke.agent-tag{
 	background-image: url('../img/agent_tag.png');
 	background-repeat: no-repeat;
-	height:auto;
+	background-size: 100% auto;
+	height:250px;
 	width:auto;
-}*/
+}
 
 .evoke.agent-tag h5{
 	position: absolute;
@@ -93,6 +112,70 @@ button, div, p, span, a,
 	left: 12%;
 	width: 23%;
 	height: 50%;
+}
+
+.evoke.tabs-content{
+	margin-top: 30px;
+	padding: 5px 30px;
+	/*height: 700px;
+	overflow-y: scroll;
+	overflow-x: hidden;*/
+	/*overflow: scroll;*/
+}
+
+.evoke.tabs-content > .content.active {
+	width: 100%;
+}
+
+.evoke.screen-box{
+	background-color: #363636;
+	border: 20px solid #000000;
+}
+
+.evoke.shelve{
+	background-image: url('../img/shelves.png');
+	background-repeat: no-repeat;
+	background-size: 12% 100%;
+	height:220px;
+	width:1000px;
+	margin-top: 70px;
+}
+
+.evoke.folders{
+	margin-left:50px;
+}
+
+.evoke.folder{
+	background-image: url('../img/folder.png');
+	background-repeat: no-repeat;
+	height:230px;
+	float: left;
+	width: 230px;
+}
+
+.evoke.evidence-list{
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* Opera */ 
+	background-image: -o-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1B7C9D), color-stop(1, #125167));
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to bottom, #1B7C9D 0%, #125167 100%);
+	padding: 15px 10px;
+	margin-bottom: 3px;
+}
+
+.evoke.evidence-list h2{
+	color: #ba5660;
+}
+
+.evoke.evidence-list ul{
+	list-style-type: none;
 }
 
 .evoke a.button {

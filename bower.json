@@ -5,6 +5,7 @@
     "font-awesome": "v4.0.3",
     "mrmrs-colors": "master",
     "medium-editor": "master",
-    "medium-editor-insert-plugin": "git://github.com/orthes/medium-editor-insert-plugin.git"
+    "medium-editor-insert-plugin": "git://github.com/orthes/medium-editor-insert-plugin.git",
+    "jcarousel": "git://github.com/jsor/jcarousel"
   }
 }

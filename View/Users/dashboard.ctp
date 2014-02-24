@@ -2,7 +2,9 @@
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 ?>
-
+<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.css" media="all" />
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
@@ -52,18 +54,51 @@
 			  <dd class="active"><a href="#panel12-1"><?php echo __('Issues');?></a></dd>
 			  <dd><a href="#panel12-2"><?php echo __('All Missions');?></a></dd>
 			</dl>
-			<div class="tabs-content">
+			<div class="evoke tabs-content">
 			  <div class="content active" id="panel12-1">
 
-			  <img src = '../img/shelves.png' alt = ""/>
-			  <!-- Lists all issues -->
-		    	<?php foreach($issues as $i):?>
-		    		<div>
-		    		<?php echo $this->Html->link($i['Issue']['name'], array('controller' => 'users', 'action' => 'dashboardByIssue', $user['User']['id'], $i['Issue']['id']));?></div>
-	    		<?php endforeach; ?>
+					<div class="wrapper">
+			            <h1>Responsive Carousel</h1>
+			            
 
-	    		<!-- Button redirects to listing mission issues page -->
-	    		<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class = "button"><?php echo __('See All Issues');?></a>
+			            <p>This example shows how to implement a responsive carousel. Resize the browser window to see the effect.</p>
+
+			            <div class="jcarousel-wrapper">
+			                <div class="jcarousel">
+			                    <ul>
+			                        <li><img src="../img/folder.png" alt="Image 1"></li>
+			                        <li><img src="../img/folder.png" alt="Image 1"></li>
+			                        <li><img src="../img/folder.png" alt="Image 1"></li>
+			                        <li><img src="../img/folder.png" alt="Image 1"></li>
+			                        <li><img src="../img/folder.png" alt="Image 1"></li>
+			                        <li><img src="../img/folder.png" alt="Image 1"></li>
+			                    </ul>
+			                </div>
+
+			                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+			                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+			                <!-- <p class="jcarousel-pagination"></p> -->
+			            </div>
+			        </div>
+			        
+		            <!-- <div class="evoke jcarousel-wrapper">
+		                <div class="jcarousel">
+		                    <ul>
+		                        <li><img src="../img/folder.png" alt="Image 1"></li>
+		                        <li><img src="../img/folder.png" alt="Image 2"></li>
+		                        <li><img src="../img/folder.png" alt="Image 3"></li>
+		                        <li><img src="../img/folder.png" alt="Image 4"></li>
+		                        <li><img src="../img/folder.png" alt="Image 5"></li>
+		                        <li><img src="../img/folder.png" alt="Image 6"></li>
+		                    </ul>
+		                </div>
+
+		                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+		                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+		            </div> -->
+		            <!-- <img src="../img/shelves.png" alt="Image 1"> -->
 
 			  </div>
 
@@ -89,27 +124,31 @@
 			  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
 			  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
 			</dl>
-			<div class="tabs-content">
+			<div class="evoke tabs-content screen-box">
 			  <div class="content active" id="panel2-1">
 		    	<?php 
 		    		//Lists all projects and evidences
-		    		foreach($evidence as $e):?>
-			    		<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
-			    		<p><?php echo substr(strip_tags($e['Evidence']['content']), 0, 90);?></p>
-			
-						<!-- Prints the issue related to each mission -->
-	    				<?php foreach($missionIssues as $mi): 
-		    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
-		    				<div class="row">
-							  <div class="large-10 columns">
-							  <?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));
-							  echo ' | '.$mi['Issue']['name'].' | '.date('F j, Y', strtotime($e['Evidence']['created'])); ?></div>
-							  <div class="large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
-							</div> 
-		    				<?php break; endif;
-    					endforeach;?>
+		    		foreach($evidence as $e): ?>
 
-		    		<hr class="sexy_line" />
+		    		<div class="row evoke evidence-list">
+					  <div class="evoke large-2 columns"><h6><?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));?></h6></div>
+					  <div class="evoke large-8 columns"><h2><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h2></div>
+					  
+					  <div class="evoke large-2 columns">
+
+					  	<?php foreach($missionIssues as $mi): 
+		    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
+
+		    				<ul>
+			    				<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</li>
+			    				<li><?php echo $mi['Issue']['name']; ?></li>
+			    				<li><?php echo date('F j, Y', strtotime($e['Evidence']['created'])); ?></li>
+		    				</ul>
+							
+	    				<?php break; endif; endforeach;?>
+
+					  </div>
+					</div>
 
 		    	<?php endforeach; 
 
@@ -124,7 +163,7 @@
 						  <a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $users['User']['id'])); ?>" class = "button"><?php echo __('Follow');?></a>
 						</div>
 
-						<hr class="sexy_line" />
+						<!-- <hr class="sexy_line" /> -->
 
 		    	<?php endforeach;?>
 			  </div>
@@ -166,17 +205,33 @@
 		<div class="medium-3 columns">
 			
 			<div class = "evoke agent-tag">
-
-				<img src = '../img/agent_tag.png' alt = "" class = "tag"/>
+				<!-- <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ"/> -->
+				<!-- <img src = '../img/agent_tag.png' alt = "" class = "tag"/>
 				
 				<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ" class = "agent-picture" />
-				<h5>Agent</h5>
+				<h5>Agent</h5> -->
 
 			</div>
+			<div class = "evoke agent-tag">
+				<!-- <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ"/> -->
+				<!-- <img src = '../img/agent_tag.png' alt = "" class = "tag"/>
+				
+				<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ" class = "agent-picture" />
+				<h5>Agent</h5> -->
+
+			</div>
+			<div class = "evoke agent-tag">
+				<!-- <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ"/> -->
+				<!-- <img src = '../img/agent_tag.png' alt = "" class = "tag"/>
+				
+				<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ" class = "agent-picture" />
+				<h5>Agent</h5> -->
+
+			</div>	
 		</div>
 	</div>
 </section>
 
 <script>
-	$('#carousel').elastislide();
+$('.jcarousel').jcarousel('scroll', '3');
 </script>
