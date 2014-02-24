@@ -81,6 +81,10 @@
             								'value' => $mission['MissionIssue']['issue_id'] //as we are, for now, restricting the amount of issues per mission to 1
             							));
 									}
+									echo $this->Form->input('organization_id', array(
+											'options' => $organizations,
+											'value' => $mission['Mission']['organization_id']
+									));
 								} else {
 									echo '<legend> Add Mission </legend>'; 
 									echo $this->Form->input('title');
@@ -90,6 +94,9 @@
 									echo $this->Form->input('MissionIssue.issue_id', array(
             							'options' => $issues
             						));
+            						echo $this->Form->input('organization_id', array(
+											'options' => $organizations
+									));
 								}
 							?>
 						</fieldset>
@@ -125,7 +132,8 @@
 								<?php echo $this->Html->Link('go back', array('controller' => 'panels', 'action' => 'add_mission', $id, 'mission')); ?>
 							</button>
 					</div>
-					<?php foreach ($phases as $phase) { ?>
+					<?php 
+					foreach ($phases as $phase) { ?>
 
 							<table class="large-8 columns">
 								<thead>
@@ -134,8 +142,8 @@
 											<?php echo 'Phase: ' . $phase['Phase']['name'];?>
 										</td>
 										<td>
-											<!-- Voting lightbox button -->
-				  							<a href="#" data-reveal-id="myModalQuest" data-reveal><?php echo __('+ Quest');?></a> | delete
+											<!-- lightbox to add quest to certain phase -->
+				  							<a href="#" data-reveal-id="myModalQuest-<?php echo $phase['Phase']['id']; ?>" data-reveal><?php echo __('+ Quest');?></a> | <?php echo $this->Form->PostLink('delete', array('controller' => 'panels', 'action' => 'delete_phase', $id, $phase['Phase']['id'], 'add_mission'));?>
 										</td>
 									</tr>
 								</thead>
@@ -144,27 +152,18 @@
 										<td colspan="2">
 											<!-- list the already existing quests under this phase -->
 											<?php 
-												foreach ($phase['Quest'] as $quest) { ?>
+												foreach ($phase['Quest'] as $quest) { 
+													//debug($quest);
+													echo $this->Html->Link('['.$quest['title'].'] ', array('controller' => 'panels', 'action' => 'quest', $phase['Phase']['id'], $id, $quest['id']));
 													
-													<a href="#" data-reveal-id="myModalQuest<?php echo $quest['id']; ?>" data-reveal>[<?php echo $quest['title']; ?>]</a>
-													
-												<?php }	?>
+												}	?>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<?php foreach ($phase['Quest'] as $quest) { ?>
-								<!-- Lightbox for adding quest to phase form -->
-								<div id="myModalQuest<?php echo $quest['id']; ?>" class="reveal-modal tiny" data-reveal>
-									<?php 
-										echo $this->element('edit_quest', array('phase_id' => $phase['Phase']['id'], 'mission_id' => $id, 'me' => $quest));
-									?>
-									<a class="close-reveal-modal">&#215;</a>
-								</div>
-							<?php }	?>
 
 							<!-- Lightbox for adding quest to phase form -->
-							<div id="myModalQuest" class="reveal-modal tiny" data-reveal>
+							<div id="myModalQuest-<?php echo $phase['Phase']['id']; ?>" class="reveal-modal tiny" data-reveal>
 								<?php 
 									echo $this->element('add_quest', array('phase_id' => $phase['Phase']['id'], 'mission_id' => $id));
 								?>

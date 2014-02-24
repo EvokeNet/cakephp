@@ -57,10 +57,11 @@ $title = __('Evoke Network');
 	
 	<?php
 
-		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js");
 		echo $this->Html->script('/components/jquery/jquery.min');
+		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js");
 		echo $this->Html->script('/components/foundation/js/foundation.min');
 		echo $this->Html->script('evoke');
+
 		echo $this->fetch('script'); 
 	?>
 </body>

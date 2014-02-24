@@ -1,20 +1,20 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Quest Model
+ * Question Model
  *
- * @property Mission $Mission
- * @property Phase $Phase
- * @property Evidence $Evidence
+ * @property Questionnaire $Questionnaire
+ * @property Answer $Answer
+ * @property UserAnswer $UserAnswer
  */
-class Quest extends AppModel {
+class Question extends AppModel {
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'title';
+	public $displayField = 'description';
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -25,16 +25,9 @@ class Quest extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Mission' => array(
-			'className' => 'Mission',
-			'foreignKey' => 'mission_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Phase' => array(
-			'className' => 'Phase',
-			'foreignKey' => 'phase_id',
+		'Questionnaire' => array(
+			'className' => 'Questionnaire',
+			'foreignKey' => 'questionnaire_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -47,9 +40,22 @@ class Quest extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Evidence' => array(
-			'className' => 'Evidence',
-			'foreignKey' => 'quest_id',
+		'Answer' => array(
+			'className' => 'Answer',
+			'foreignKey' => 'question_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'UserAnswer' => array(
+			'className' => 'UserAnswer',
+			'foreignKey' => 'question_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -62,20 +68,4 @@ class Quest extends AppModel {
 		)
 	);
 
-//
-	public $hasOne = array(
-		'Questionnaire' => array(
-			'className' => 'Questionnaire',
-			'foreignKey' => 'quest_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
 }
