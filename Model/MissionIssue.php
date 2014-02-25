@@ -9,8 +9,27 @@ App::uses('AppModel', 'Model');
 class MissionIssue extends AppModel {
 
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
+	//get all missions related to a given issue
+	public function getMissionsFromIssue($issue_id = null){
+		return $this->find('all', array(
+			'conditions' => array(
+				'Issue.id' => $issue_id
+			)
+		));
+	}
+
+
+	//get all issues related to a given mission
+	public function getIssuesFromMission($mission_id = null){
+		return $this->find('all', array(
+			'conditions' => array(
+				'Mission.id' => $mission_id
+			)
+		));
+	}
+
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
 /**
  * belongsTo associations
  *

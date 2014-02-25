@@ -16,6 +16,10 @@ class Issue extends AppModel {
 	public $displayField = 'name';
 
 
+	public function getIssues(){
+		return $this->find('all');
+	}
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**

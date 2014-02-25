@@ -77,8 +77,8 @@
 			<h1 class="evoke typeface strong"><small><?php echo __('Group'); ?> </small><?php echo $group['Group']['title']; ?></h1>
 
 			<!-- THE EVOKATION PAGE -->
-			<button id="authorizeButton" class="button" disabled>You must authorize</button>
-			<div id="evokation" class="evoke project page" contenteditable="true"></div>
+			<!-- <button id="authorizeButton" class="button" disabled>You must authorize</button> -->
+			<textarea id="evokation" class="evoke project page"></textarea>
 
 
 		</div>
@@ -116,7 +116,7 @@
 	</div>
 </section>
 
-<?php echo $this->Html->script('/components/ckeditor/ckeditor', array('inline' => false)); ?>
+<?php //echo $this->Html->script('/components/ckeditor/ckeditor', array('inline' => false)); ?>
 <?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('realtime-client-utils', array('inline' => false)); ?>
 <?php echo $this->Html->script('evokation', array('inline' => false)); ?>

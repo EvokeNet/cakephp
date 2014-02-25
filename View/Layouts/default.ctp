@@ -64,7 +64,7 @@ $title = __('Evoke Network');
 		</div>
 	</footer>
 
-	<?php echo $this->Html->script('/components/jquery/jquery.min'); ?>
+	<?php echo $this->Html->script('/components/jquery/dist/jquery.min'); ?>
 	<?php echo $this->Html->script('/components/foundation/js/foundation.min'); ?>
 	<?php echo $this->Html->script('evoke') ?>
 
