@@ -127,7 +127,7 @@ button, div, p, span, a,
 	font-size: 0.65em;
 }
 
-.evoke.dashboard{
+.evoke.background{
 	background: url('../img/bg.jpg');
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -325,7 +325,8 @@ button, div, p, span, a,
 	border: 1px solid #bb5660;
 	z-index: 1;
 	position: relative;
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
+	display:inline-block;
 }
 
 .evoke.titles h4{

@@ -16,7 +16,7 @@
 			<img src = '/evoke/webroot/img/evoke-69.png' alt = "" class = "evoke login padding-bottom">
 
 			<div class="row full-width">
-				<div class="small-12 medium-8 large-4 small-centered large-uncentered columns" id = "login-columns">
+				<div class="small-12 medium-9 large-4 small-centered large-uncentered columns" id = "login-columns">
 					<h4><?php echo __('Evoke Panel Login');?></h4>
 
 					<div class = "evoke login top-border">

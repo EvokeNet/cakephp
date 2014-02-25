@@ -127,3 +127,31 @@
 	bottom:300px;
 	left: 18%;
 }
+
+.evoke.horizontal_bar{
+	max-width: 45%;
+	margin-right: -10px;
+}
+
+.evoke.vertical_bar img{
+	/*max-height: 70%;*/
+	position: absolute;
+	max-height: 100%;
+	/*top: 0;*/
+}
+
+.evoke.vertical_bar img.top-height{
+	top: 0;
+}
+
+.evoke.vertical_bar img.top-height-two{
+	top:-60px;
+}
+
+.evoke.dashboard{
+	bottom:0;
+}
+
+.evoke.dashboard.text-align{
+	text-align: center;
+}

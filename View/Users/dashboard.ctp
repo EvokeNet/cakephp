@@ -3,6 +3,8 @@
 	//echo $this->Html->css('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
 	echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
 
+	echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
+
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 ?>
@@ -36,7 +38,7 @@
 
 <?php $this->end(); ?>
 
-<section class="evoke dashboard padding top-2">
+<section class="evoke background padding top-2">
 	<div class="row full-width">
 		<div class="medium-9 columns">
 
@@ -46,7 +48,7 @@
 				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'delete', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Unfollow this user');?></a>
 			<?php endif; ?>
 
-			<img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;">
+			<img src = '/evoke/webroot/img/horizontal_bar.png' class = "evoke horizontal_bar">
 			<div class = "evoke titles"><h4><?php echo __('CHOOSE A MISSION');?></h4></div>
 
 			<div class="wrapper">
@@ -71,7 +73,7 @@
 					  	<div class="small-11 large-centered columns">
 					  		<a href="#" class="jcarousel-control-prev">&lsaquo;</a>
         					<a href="#" class="jcarousel-control-next">&rsaquo;</a>
-					  		<img src="/evoke/webroot/img/shelves.png" alt="Image 1" style = "width: 100%; margin-top: -200px">
+					  		<img src="/evoke/webroot/img/shelve150.png" alt="Image 1">
 						</div>
 					</div>
 	                <!-- <p class="jcarousel-pagination"></p> -->
@@ -79,33 +81,25 @@
 	            
 	        </div>
 
-<!-- 
-			<script type="text/javascript">
-				$(document).ready(function()
-				{
-					$('#slider1').tinycarousel();
-				});
-			</script>
+	        <!-- <div id="scrollbar1"><div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+	            <div class="viewport">
+	                 <div class="overview">
+	                    <h3>Magnis dis parturient montes</h3>
+	                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae velit at velit pretium sodales. Maecenas egestas imperdiet mauris, vel elementum turpis iaculis eu. Duis egestas augue quis ante ornare eu tincidunt magna interdum. Vestibulum posuere risus non ipsum sollicitudin quis viverra ante feugiat. Pellentesque non faucibus lorem. Nunc tincidunt diam nec risus ornare quis porttitor enim pretium. Ut adipiscing tempor massa, a ullamcorper massa bibendum at. Suspendisse potenti. In vestibulum enim orci, nec consequat turpis. Suspendisse sit amet tellus a quam volutpat porta. Mauris ornare augue ut diam tincidunt elementum. Vivamus commodo dapibus est, a gravida lorem pharetra eu. Maecenas ultrices cursus tellus sed congue. Cras nec nulla erat.</p>
 
-			<div id="slider1">
-				<a class="buttons prev" href="#">&#60;</a>
-				<div class="viewport">
-					<ul class="overview">
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-					</ul>
-				</div>
-				<a class="buttons next" href="#">&#62;</a>
-				<img src="/evoke/webroot/img/shelves.png" style = "width:100%"/>
-			</div> -->
+	                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque eget mauris libero. Nulla sit amet felis in sem posuere laoreet ut quis elit. Aenean mauris massa, pretium non bibendum eget, elementum sed nibh. Nulla ac felis et purus adipiscing rutrum. Pellentesque a bibendum sapien. Vivamus erat quam, gravida sed ultricies ac, scelerisque sed velit. Integer mollis urna sit amet ligula aliquam ac sodales arcu euismod. Fusce fermentum augue in nulla cursus non fermentum lorem semper. Quisque eu auctor lacus. Donec justo justo, mollis vel tempor vitae, consequat eget velit.</p>
 
-			<img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;">
+	                    <p>Vivamus sed tellus quis orci dignissim scelerisque nec vitae est. Duis et elit ipsum. Aliquam pharetra auctor felis tempus tempor. Vivamus turpis dui, sollicitudin eget rhoncus in, luctus vel felis. Curabitur ultricies dictum justo at luctus. Nullam et quam et massa eleifend sollicitudin. Nulla mauris purus, sagittis id egestas eu, pellentesque et mi. Donec bibendum cursus nisi eget consequat. Nunc sit amet commodo metus. Integer consectetur lacus ac libero adipiscing ut tristique est viverra. Maecenas quam nibh, molestie nec pretium interdum, porta vitae magna. Maecenas at ligula eget neque imperdiet faucibus malesuada sed ipsum. Nulla auctor ligula sed nisl adipiscing vulputate. Curabitur ut ligula sed velit pharetra fringilla. Cras eu luctus est. Aliquam ac urna dui, eu rhoncus nibh. Nam id leo nisi, vel viverra nunc. Duis egestas pellentesque lectus, a placerat dolor egestas in. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec vitae ipsum non est iaculis suscipit.</p>
+
+	                    <h3>Adipiscing risus </h3>
+	                    <p>Quisque vel felis ligula. Cras viverra sapien auctor ante porta a tincidunt quam pulvinar. Nunc facilisis, enim id volutpat sodales, leo ipsum accumsan diam, eu adipiscing risus nisi eu quam. Ut in tortor vitae elit condimentum posuere vel et erat. Duis at fringilla dolor. Vivamus sem tellus, porttitor non imperdiet et, rutrum id nisl. Nunc semper facilisis porta. Curabitur ornare metus nec sapien molestie in mattis lorem ullamcorper. Ut congue, purus ac suscipit suscipit, magna diam sodales metus, tincidunt imperdiet diam odio non diam. Ut mollis lobortis vulputate. Nam tortor tortor, dictum sit amet porttitor sit amet, faucibus eu sem. Curabitur aliquam nisl sed est semper a fringilla velit porta. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum in sapien id nulla volutpat sodales ac bibendum magna. Cras sollicitudin, massa at sodales sodales, lacus tortor vestibulum massa, eu consequat dui nulla et ipsum.</p>
+
+	                    <p>Aliquam accumsan aliquam urna, id vulputate ante posuere eu. Nullam pretium convallis tincidunt. Duis vitae odio arcu, ut fringilla enim. Nam ante eros, vestibulum sit amet rhoncus et, vehicula quis tellus. Curabitur sed iaculis odio. Praesent vitae ligula id tortor ornare luctus. Integer placerat urna non ligula sollicitudin vestibulum. Nunc vestibulum auctor massa, at varius nibh scelerisque eget. Aliquam convallis, nunc non laoreet mollis, neque est mattis nisl, nec accumsan velit nunc ut arcu. Donec quis est mauris, eu auctor nulla. Fusce leo diam, tempus a varius sit amet, auctor ac metus. Nam turpis nulla, fermentum in rhoncus et, auctor id sem. Aliquam id libero eu neque elementum lobortis nec et odio.</p>
+	                </div>
+	            </div>
+	        </div> -->
+
+			<img src = '/evoke/webroot/img/horizontal_bar.png' class = "evoke horizontal_bar">
 			<dl class="tabs evoke titles" data-tab>
 			  <dd><h4><?php echo __('EVOKE PANEL');?></h4></dd>
 			  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
@@ -197,7 +191,7 @@
 			  </div>
 			</div>
 
-			<img src = '/evoke/webroot/img/small_bar.png' alt = "" style = "position: relative; top: 42px; left: -70px;">
+			<img src = '/evoke/webroot/img/horizontal_bar.png' class = "evoke horizontal_bar">
 			<div class = "evoke titles"><h4><?php echo __('LEADERCLOUD');?></h4></div>
 			<div class="evoke tabs-content screen-box leadercloud">
 
@@ -206,7 +200,7 @@
 		</div>
 		<div class="medium-3 columns">
 			
-			<img src = '/evoke/webroot/img/agentag120.png' alt = ""/>
+			<div class = "evoke dashboard text-align"><img src = '/evoke/webroot/img/agentag120.png' alt = ""/></div>
 			
 			<!-- <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ"/> -->
 			<!-- <img src = '../img/agent_tag.png' alt = "" class = "tag"/>
@@ -214,15 +208,57 @@
 			<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ" class = "agent-picture" />
 			<h5>Agent</h5> -->
 
-			<img src = '/evoke/webroot/img/bar.png' alt = "" style = "margin-top: 230px; position: absolute; left: 45%;"/>
-			<div class = "evoke titles"><h4><?php echo __('ALLIES');?></h4></div><div class = "evoke screen-box allies"></div>
-			<img src = '/evoke/webroot/img/bar.png' alt = "" style = "position: absolute; left: 45%;"/>
+			<!-- <div style = "position:relative">
+				<div class = "evoke dashboard text-align"><h4 class = "evoke titles"><?php echo __('ALLIES');?> See all</h4></div>
+				<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/hb.png'/></div>
+				<div class = "evoke screen-box allies"></div>
+				<div class = "evoke dashboard text-align"><img src = '/evoke/webroot/img/hb.png' style = "bottom:0; position: absolute;
+max-height: 100%;"/></div>
+				<div class = "evoke dashboard text-align"><h4 class = "evoke titles"><?php echo __('FEED');?> See all</h4></div>
+			</div>
+			 -->
+			
+			<div>
+			<div style = "position:relative">
+				<div class = "evoke dashboard text-align"><h4 class = "evoke titles"><?php echo __('ALLIES');?> See all</h4></div>
+				<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/hb.png' class= "top-height"/></div>
+				<div class = "evoke screen-box allies"></div>
+
+			</div>
+			
+			<div style = "position:relative">
+				<div class = "evoke dashboard text-align"><h4 class = "evoke titles"><?php echo __('FEED');?> See all</h4></div>
+				<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/hb.png' class= "top-height-two"/></div>
+				<div class = "evoke screen-box allies"></div>
+			</div>
+
+			<div style = "position:relative">
+				<div class = "evoke dashboard text-align"><h4 class = "evoke titles"><?php echo __('BADGES');?> See all</h4></div>
+				<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/hb.png' class= "top-height-two"/></div>
+				<div class = "evoke screen-box allies"></div>
+			</div>
+
+			<div style = "position:relative">
+				<img src = '/evoke/webroot/img/hb.png'/>
+			</div>
+			</div>
+
+			
+			
+
+			<!-- <div style = "position:relative">
+				<div class = "evoke dashboard text-align"><h4 class = "evoke titles"><?php echo __('BADGES');?> See all</h4></div>
+				<div><img src = '/evoke/webroot/img/bar.png'/></div>
+				<div class = "evoke screen-box allies"></div>
+			</div> -->
+		
+			<!-- <img src = '/evoke/webroot/img/bar.png' alt = "" style = "position: absolute; left: 45%;"/>
 			<div class = "evoke titles"><h4><?php echo __('FEED');?></h4></div><div class = "evoke screen-box feed"></div>
 			<img src = '/evoke/webroot/img/bar.png' alt = "" style = "margin-top: -100px; position: absolute; left: 45%;"/>
 			<div class = "evoke titles"><h4><?php echo __('BADGES');?></h4></div></h4><div class = "evoke screen-box badges"></div>
 			<div><img src = '/evoke/webroot/img/bar.png' alt = "" style = "position: relative; left: 45%; margin: -70px 0px -20px 0px;"/></div>
 			<div><img src = '/evoke/webroot/img/parabolic.png' alt = "" style = "position: absolute; left: 35%; margin: -335px 0px 0px 0px;"/></div>
-			
+			 -->
 		</div>
 	</div>
 </section>
@@ -235,10 +271,15 @@
 	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
 	echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
 
+	echo $this->Html->script('/components/tinyscrollbar/lib/jquery.tinyscrollbar', array('inline' => false));
+
 ?>
 
 <script>
-	$( '#carousel' ).elastislide();
 
 	$('.jcarousel').jcarousel('scroll', '3');
+
+	$(document).ready(function(){
+	    $("#scrollbar1").tinyscrollbar();
+	});
 </script>
