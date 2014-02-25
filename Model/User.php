@@ -54,6 +54,10 @@ class User extends AppModel {
 		return true;
 	}
 
+	function hashPasswords($data) {
+        return Security::hash($data,'md5',false);
+    }
+
 
 /**
  * hasMany associations

@@ -6,7 +6,7 @@
 			<legend><?php echo __('Register'); ?></legend>
 		<?php
 			echo $this->Form->input('name', array('required' => true));
-			echo $this->Form->input('login');
+			echo $this->Form->input('username');
 			echo $this->Form->input('password');
 		?>
 		</fieldset>
