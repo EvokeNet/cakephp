@@ -1,3 +1,37 @@
+<?php
+	$this->extend('/Common/topbar');
+	$this->start('menu');
+?>
+
+<nav class="top-bar" data-topbar>
+	<ul class="title-area">
+		<li class="name">
+			<h1><a href="#">Agent <?php echo $username[0]; ?></a></h1>
+		</li>
+		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+	</ul>
+
+	<section class="top-bar-section">
+		<!-- Right Nav Section -->
+		<ul class="right">
+			<li class="has-dropdown">
+				<a href="#">Settings</a>
+				<ul class="dropdown">
+					<li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>">Sign out</a></li>
+				</ul>
+			</li>
+		</ul>
+
+		<!-- Left Nav Section -->
+		<ul class="left">
+			<li><a href="#">Admin Panel</a></li>
+		</ul>
+	</section>
+</nav>
+
+<?php $this->end(); ?>
+
+
 <dl class="tabs" data-tab>
 	<dd class="active"><a href="#organizations">Organizations</a></dd>
 	<dd><a href="#missions">Missions</a></dd>
@@ -7,6 +41,9 @@
 </dl>
 <div class="tabs-content">
 	<div class="content active" id="organizations">
+		<p>
+			<?php echo $this->Html->Link('Add new organizations!', array('controller' => 'organizations', 'action' => 'add'));?>
+		</p>
 		<p>
 			<table>				
 				<?php foreach ($organizations as $organization) { ?>
@@ -65,6 +102,11 @@
 	</div>
 	<div class="content" id="estatistics">
 		<p>Some estatistics to view..</p>
+		<p><?php echo "Users: " . sizeof($users);?></p>
+		<p><?php echo "Groups: " . sizeof($groups);?></p>
+		<p><?php echo "Organizations: " . sizeof($organizations);?></p>
+		<p><?php echo "Badges won: "."/".sizeof($badges);?></p>
+		<p>AND MORE!</p>
 	</div>
 </div>
 
