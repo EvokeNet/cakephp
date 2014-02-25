@@ -104,6 +104,10 @@ class IssuesController extends AppController {
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Issue->delete()) {
 			$this->Session->setFlash(__('The issue has been deleted.'));
+
+			//deletar todos os registros de missions_issue referentes a esse issue
+			$this->loadModel('MissionIssue');
+			$this->MissionIssue->deleteAll(array('issue_id = '.$id));
 		} else {
 			$this->Session->setFlash(__('The issue could not be deleted. Please, try again.'));
 		}
