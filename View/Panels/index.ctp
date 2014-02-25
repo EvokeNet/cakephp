@@ -42,14 +42,13 @@
 <div class="tabs-content">
 	<div class="content active" id="organizations">
 		<p>
-			<?php echo $this->Html->Link('Add new organizations!', array('controller' => 'organizations', 'action' => 'add'));?>
-		</p>
-		<p>
+			<?php echo $this->Html->Link('+ organizations', array('controller' => 'organizations', 'action' => 'add'), array( 'class' => 'button'));?>
+
 			<table>				
 				<?php foreach ($organizations as $organization) { ?>
 					<tr>
 						<td><?php echo $this->Html->Link($organization['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organization['Organization']['id'])); ?></td>
-						<td><?php echo $this->Html->Link('edit', array('controller' => 'organizations', 'action' => 'edit', $organization['Organization']['id'])) . " " . $this->Form->PostLink('delete', array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id'])); ?></td>
+						<td><?php echo $this->Html->Link('edit', array('controller' => 'organizations', 'action' => 'edit', $organization['Organization']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert')); ?></td>
 					</tr>
 				<?php }	?>
 			</table>
@@ -57,29 +56,29 @@
 	</div>
 	<div class="content" id="missions">
 		<p>
-			<?php echo $this->Html->Link('Add new missions!', array('controller' => 'missions', 'action' => 'add')) . " | " . 
-				$this->Html->Link('Add new issues!', array('controller' => 'issues', 'action' => 'add'));?>
-		</p>
-		<p>
+			<ul class="button-group">
+  				<li><?php echo $this->Html->Link('+ missions', array('controller' => 'missions', 'action' => 'add'), array( 'class' => 'button'));?></li>
+  				<li><?php echo $this->Html->Link('+ issues', array('controller' => 'issues', 'action' => 'add'), array( 'class' => 'button'));?></li>
+  			</ul>
+			 
 			<?php foreach ($issues as $issue) { 
 				$issue_missions = $matrix[$issue['Issue']['name']]; ?>
 
 				<table>
-					<tr>
-						<td><?php echo $issue['Issue']['name']; ?></td>
-						<td><?php echo $this->Html->Link('[edit]', array('controller' => 'issues', 'action' => 'edit', $issue['Issue']['id'])) . " " . $this->Form->PostLink('[delete]', array('controller' => 'issues', 'action' => 'delete', $issue['Issue']['id'])); ?></td> 
-					</tr>
-					<tr>
-						<td colspan='3'>
-							<table>				
-								<?php foreach ($issue_missions as $mission) { ?>
-									<tr>
-										<td><?php echo $this->Html->Link($mission['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'])); ?></td>
-										<td><?php echo $this->Html->Link('[edit]', array('controller' => 'missions', 'action' => 'edit', $mission['Mission']['id'])) . " " . $this->Form->PostLink('[delete]', array('controller' => 'missions', 'action' => 'delete', $mission['Mission']['id'])); ?></td>
-									</tr>
-								<?php }	?>
-							</table>
-						</td>
+					<thead>
+						<tr>
+							<th><?php echo $issue['Issue']['name']; ?></th>
+							<th><?php echo $this->Html->Link('edit', array('controller' => 'issues', 'action' => 'edit', $issue['Issue']['id']), array( 'class' => 'button small')) . $this->Form->PostLink('delete', array('controller' => 'issues', 'action' => 'delete', $issue['Issue']['id']), array( 'class' => 'button small alert')); ?></th> 
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($issue_missions as $mission) { ?>
+							<tr>
+								<td><?php echo $this->Html->Link($mission['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'])); ?></td>
+								<td><?php echo $this->Html->Link('edit', array('controller' => 'missions', 'action' => 'edit', $mission['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'missions', 'action' => 'delete', $mission['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
+							</tr>
+						<?php }	?>
+					</tbody>
 				</table>
 			<?php }	?>
 		</p>
@@ -89,12 +88,12 @@
 	</div>
 	<div class="content" id="badges">
 		<p>
-			<?php echo $this->Html->Link('Add new badges!', array('controller' => 'badges', 'action' => 'add'));?>
+			<?php echo $this->Html->Link('+ badges', array('controller' => 'badges', 'action' => 'add'), array( 'class' => 'button'));?>
 			<table>				
 			<?php foreach ($badges as $badge) { ?>
 				<tr>
 					<td><?php echo $this->Html->Link($badge['Badge']['name'], array('controller' => 'badges', 'action' => 'view', $badge['Badge']['id'])); ?></td>
-					<td><?php echo $this->Html->Link('edit', array('controller' => 'badges', 'action' => 'edit', $badge['Badge']['id'])) . " " . $this->Form->PostLink('delete', array('controller' => 'badges', 'action' => 'delete', $badge['Badge']['id'])); ?></td>
+					<td><?php echo $this->Html->Link('edit', array('controller' => 'badges', 'action' => 'edit', $badge['Badge']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'badges', 'action' => 'delete', $badge['Badge']['id']), array( 'class' => 'button tiny alert')); ?></td>
 				</tr>
 			<?php }	?>
 			</table>
