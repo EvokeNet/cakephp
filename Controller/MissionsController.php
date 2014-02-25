@@ -108,6 +108,10 @@ class MissionsController extends AppController {
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Mission->delete()) {
 			$this->Session->setFlash(__('The mission has been deleted.'));
+
+			//deletar todos os registros de missions_issue referentes a esse issue
+			$this->loadModel('MissionIssue');
+			$this->MissionIssue->deleteAll(array('mission_id = '.$id));
 		} else {
 			$this->Session->setFlash(__('The mission could not be deleted. Please, try again.'));
 		}
