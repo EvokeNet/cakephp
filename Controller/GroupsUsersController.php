@@ -1,5 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
+APP::uses('GoogleAuthentication', 'Lib');
+
 /**
  * GroupsUsers Controller
  *
@@ -33,6 +35,16 @@ class GroupsUsersController extends AppController {
  * @return void
  */
 	public function view($group_id = null) {
+		$gAuth = new GoogleAuthentication(
+			Configure::read('google_client_id'),
+			Configure::read('google_client_secret'),
+			Configure::read('google_api_key')
+		);
+
+		$token = $gAuth->authorize();
+		
+		debug($token);
+		die();
 		$group = $this->GroupsUser->getGroupAndUsers($group_id);
 		$this->set('group', $group);
 	}

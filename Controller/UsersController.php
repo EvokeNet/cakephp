@@ -2,7 +2,6 @@
 require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
 
 App::uses('AppController', 'Controller');
-App::uses('HttpSocket', 'Network/Http');
 
 /**
  * Users Controller
