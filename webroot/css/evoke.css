@@ -24,7 +24,7 @@
 
 html, body {
 	font: 100%/1.618 sans-serif;
-	overflow-x: hidden;
+	/*overflow-x: hidden;*/
 }
 
 *, html, body,
@@ -191,39 +191,6 @@ button, div, p, span, a,
 	/*overflow: scroll;*/
 }
 
-.evoke.allies{
-	height:300px;
-	margin-bottom:30px;
-	z-index: 1;
-	position: relative;
-}
-
-.evoke.feed{
-	height:400px;
-	z-index: 1;
-	position: relative;
-}
-
-.evoke.badges{
-	height:200px;
-	z-index: 1;
-	position: relative;
-}
-
-.evoke.panel{
-	height: 550px;
-	overflow: scroll;
-	overflow-x: hidden;
-	z-index: 1;
-	position: relative;
-}
-
-.evoke.leadercloud{
-	height:500px;
-	z-index: 1;
-	position: relative;
-}
-
 .evoke.tabs-content > .content.active {
 	width: 100%;
 }
@@ -235,27 +202,6 @@ button, div, p, span, a,
 	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
-}
-
-.evoke.evidence-list{
-	/* IE10 Consumer Preview */ 
-	background-image: -ms-linear-gradient(top, #1B7C9D 0%, #125167 100%);
-	/* Mozilla Firefox */ 
-	background-image: -moz-linear-gradient(top, #1B7C9D 0%, #125167 100%);
-	/* Opera */ 
-	background-image: -o-linear-gradient(top, #1B7C9D 0%, #125167 100%);
-	/* Webkit (Safari/Chrome 10) */ 
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1B7C9D), color-stop(1, #125167));
-	/* Webkit (Chrome 11+) */ 
-	background-image: -webkit-linear-gradient(top, #1B7C9D 0%, #125167 100%);
-	/* W3C Markup, IE10 Release Preview */ 
-	background-image: linear-gradient(to bottom, #1B7C9D 0%, #125167 100%);
-	padding: 15px 10px;
-	margin-bottom: 3px;
-}
-
-.evoke.evidence-list ul{
-	list-style-type: none;
 }
 
 .evoke.button.general {
@@ -303,21 +249,42 @@ button, div, p, span, a,
 	border-bottom: 3px solid #125167;*/
 }
 
-.evoke.leaderboard.tabs dd.active a{
-	background: none;
-	font-size:1.5em;
-	padding: 10px;
+.evoke.evidence{
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* Opera */ 
+	background-image: -o-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1B7C9D), color-stop(1, #125167));
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to bottom, #1B7C9D 0%, #125167 100%);
+	padding: 20px 5px 10px;
+	margin-bottom: 5px;
 }
 
-.evoke.leaderboard.tabs dd>a{
-	background: none;
+.evoke.evidence a{
+	font-color: #fff;
 }
 
-/*.evoke.leaderboard.tabs dd>a:hover{
-	background: none;
-	font-size:1.5em;
-	padding: 10px;
-}*/
+.evoke.evidence ul{
+	list-style-type: none;
+}
+
+.evoke.evidence a{
+	color:#fff; 
+}
+
+.evoke.evidence li{
+	text-align: center;  
+}
+
+.evoke.evokation.follow{
+	margin-top:20px;
+}
 
 .evoke.parabolic{
 	position: absolute; 

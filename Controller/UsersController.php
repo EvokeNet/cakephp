@@ -199,52 +199,71 @@ class UsersController extends AppController {
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));
 
-		$options['joins'] = array(
-		    array('table' => 'evokation_followers',
-		        'alias' => 'EvokationFollowers',
-		        'type' => 'inner',
-		        'conditions' => array(
-		            'EvokationFollowers.user_id' => $id
-		        )
-		    ),
-		    array('table' => 'evokations',
-		        'alias' => 'Evokations',
-		        'type' => 'inner',
-		        'conditions' => array(
-		            'Evokations.id = EvokationFollowers.evokation_id'
-		        )
-		    ),
-		    array('table' => 'groups',
-		        'alias' => 'Groups',
-		        'type' => 'inner',
-		        'conditions' => array(
-		            'Evokations.group_id = Group.id'
-		        )
-		    )
-		);
+		$this->loadModel('Group');
+		$groups = $this->Group->find('all', array('joins' => array(
+        array(
+            'table' => 'groups_users',
+            'alias' => 'GroupsUsers',
+            'type' => 'INNER',
+            'conditions' => array(
+                'GroupsUsers.user_id' => $id
+            )
+        ), array(
+            'table' => 'groups',
+            'alias' => 'Groups',
+            'type' => 'INNER',
+            'conditions' => array(
+                'Groups.id = GroupsUsers.group_id'
+            )
+        )
+    )));
+		//debug($groups);
+		// $options['joins'] = array(
+		//     array('table' => 'evokation_followers',
+		//         'alias' => 'EvokationFollowers',
+		//         'type' => 'inner',
+		//         'conditions' => array(
+		//             'EvokationFollowers.user_id' => $id
+		//         )
+		//     ),
+		//     array('table' => 'evokations',
+		//         'alias' => 'Evokations',
+		//         'type' => 'inner',
+		//         'conditions' => array(
+		//             'Evokations.id = EvokationFollowers.evokation_id'
+		//         )
+		//     ),
+		//     array('table' => 'groups',
+		//         'alias' => 'Groups',
+		//         'type' => 'inner',
+		//         'conditions' => array(
+		//             'Evokations.group_id = Group.id'
+		//         )
+		//     )
+		// );
 
-		$evokationsFollowing = $this->User->EvokationFollower->find('all');
-		//debug($evokationsFollowing);
-		//die();
+		// $evokationsFollowing = $this->User->EvokationFollower->find('all');
+		// debug($evokationsFollowing);
+		// //die();
 
-		$options2['joins'] = array(
-		    array('table' => 'groups_users',
-		        'alias' => 'GroupsUsers',
-		        'type' => 'inner',
-		        'conditions' => array(
-		            'GroupsUsers.user_id' => $id
-		        )
-		    ),
-		    array('table' => 'evokations',
-		        'alias' => 'Evokations',
-		        'type' => 'inner',
-		        'conditions' => array(
-		            'Evokations.group_id = GroupsUsers.group_id'
-		        )
-		    )
-		);
+		// $options2['joins'] = array(
+		//     array('table' => 'groups_users',
+		//         'alias' => 'GroupsUsers',
+		//         'type' => 'inner',
+		//         'conditions' => array(
+		//             'GroupsUsers.user_id' => $id
+		//         )
+		//     ),
+		//     array('table' => 'evokations',
+		//         'alias' => 'Evokations',
+		//         'type' => 'inner',
+		//         'conditions' => array(
+		//             'Evokations.group_id = GroupsUsers.group_id'
+		//         )
+		//     )
+		// );
 
-		$myEvokations = $this->Evokation->find('all', $options2['joins']);
+		// $myEvokations = $this->Evokation->find('all', $options2['joins']);
 		//debug($myEvokations);
 
 		$this->loadModel('Mission');

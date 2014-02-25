@@ -51,7 +51,7 @@
 			<img src = '/evoke/webroot/img/horizontal_bar.png' class = "evoke dashboard horizontal_bar">
 			<div class = "evoke titles"><h4><?php echo __('CHOOSE A MISSION');?></h4></div>
 
-			<div class="wrapper" style = "position:relative">
+			<div class = "evoke dashboard position">
 	            <div class="jcarousel-wrapper">
 
 	            	<div class="row">
@@ -59,9 +59,10 @@
 					  	<div class="jcarousel">
 		                    <ul>
 		                        <?php foreach($missions as $m):?>
-		                        	<li>
-		                        		<img src="/evoke/webroot/img/evoke_folder.png" alt="Image 1"/>
-		                        		<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>"><?php echo $m['Mission']['title'];?></a>
+		                        	<li class = "evoke dashboard position">
+		                        		<!-- <div class = "folderss"><div><a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>"><?php echo $m['Mission']['title'];?></a></div></div> -->
+		                        		<img src="/evoke/webroot/img/evoke_folder.png" width = "70%;"/>
+		                        		<div class = "evoke dashboard folders"><a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>"><?php echo $m['Mission']['title'];?></a></div>
 		                        	</li>
 					    		<?php endforeach; ?>
 		                    </ul>
@@ -71,7 +72,7 @@
 	                
         			<a href="#" class="jcarousel-control-prev">&lsaquo;</a>
 					<a href="#" class="jcarousel-control-next">&rsaquo;</a>
-			  		<img src="/evoke/webroot/img/shelve150.png" alt="Image 1">
+			  		<img src="/evoke/webroot/img/shelve150.png" style = "width:100%; margin-top:-100px">
 
 	            </div>
 	        </div>
@@ -86,53 +87,63 @@
 
 				<!-- <img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;"> -->
 				<img src = '/evoke/webroot/img/horizontal_bar.png' class = "screen_bar">
-				<div class="evoke tabs-content screen-box panel">
+				<div class="evoke tabs-content screen-box dashboard panel">
 				  <div class="content active" id="panel2-1">
 			    	<?php 
 			    		//Lists all projects and evidences
 			    		foreach($evidence as $e): ?>
 
-			    		<div class="row evoke evidence-list">
-						  <div class="evoke large-2 columns"><h6><?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));?></h6></div>
-						  <div class="evoke large-8 columns"><h2><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h2></div>
-						  
-						  <div class="evoke large-2 columns">
+			    		<div class="row evoke dashboard evidence">
+							<div class="medium-2 columns">
+						  		<div class = "evoke dashboard text-align">
+						  			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
+						  			<h6><?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));?></h6>
+						  		</div>
+				  			</div>
 
-						  	<?php foreach($missionIssues as $mi): 
-			    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
+							<div class="medium-8 columns">
+								<h2><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h2>
+							</div>
 
-			    				<ul>
-				    				<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</li>
-				    				<li><?php echo $mi['Issue']['name']; ?></li>
-				    				<li><?php echo date('F j, Y', strtotime($e['Evidence']['created'])); ?></li>
-			    				</ul>
-								
-		    				<?php break; endif; endforeach;?>
+							<div class="medium-2 columns">
+								<div>
+									<?php foreach($missionIssues as $mi): 
+									if($e['Mission']['id'] == $mi['Mission']['id']):?>
 
-						  </div>
+									<ul>
+										<li><i class="fa fa-comment-o fa-horizontal fa-2x"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-2x"></i>&nbsp;</li>
+										<li><?php echo $mi['Issue']['name']; ?></li>
+										<li><?php echo date('F j, Y', strtotime($e['Evidence']['created'])); ?></li>
+									</ul>
+									
+								<?php break; endif; endforeach;?>
+								</div>
+							</div>	
 						</div>
 
 			    	<?php endforeach; 
 
 			    		foreach($evokations as $e):?>
 
-			    		<div class="row evoke evidence-list">
-						  <div class="evoke large-2 columns"><h6><?php echo $this->Html->link($e['Group']['title'], array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])); ?></h6></div>
+			    		<div class="row evoke evidence">
+							<div class="medium-2 columns">
+						  		<div style = "text-align:center"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/><h6><?php echo $this->Html->link($e['Group']['title'], array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])); ?></h6></div>
+				  			</div>
 
-						  <div class="evoke large-8 columns">
-						  	<h2><?php echo $this->Html->link($e['Evokation']['title'], array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?></h2>
-						  	<p><?php echo substr($e['Evokation']['abstract'], 0, 100);?></p>
-					  		</div>
-						  
-						  <div class="evoke large-2 columns">
+							<div class="medium-8 columns">
+								<h2><?php echo $this->Html->link($e['Evokation']['title'], array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?></h2>
+							</div>
 
-						  <ul>
-						  <li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</li>
-						  <li><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $users['User']['id'])); ?>" class = "evoke button general"><?php echo __('Follow');?></a></li>
-		    				</ul>
-
-						  </div>
+							<div class="medium-2 columns">
+								<div>
+									<ul>
+								  		<li><i class="fa fa-comment-o fa-horizontal fa-2x"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-2x"></i>&nbsp;</li>
+								  		<li><div class = "evoke evokation follow"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $users['User']['id'])); ?>" class = "evoke button general"><?php echo __('Follow');?></a></div></li>
+				    				</ul>
+								</div>
+							</div>	
 						</div>
+
 			    	<?php endforeach;?>
 				  </div>
 				  <div class="content" id="panel2-2">
@@ -171,18 +182,36 @@
 				<div class = "evoke titles"><h4><?php echo __('LEADERCLOUD');?></h4></div>
 
 				<img src = '/evoke/webroot/img/horizontal_bar.png' class = "screen_bar">
-				<div class="evoke tabs-content screen-box leadercloud"></div>
+				<div class="evoke tabs-content screen-box dashboard leadercloud"></div>
 			</div>
 
 		</div>
 
 		<div class="medium-3 columns">
 			
-			<div class = "evoke dashboard text-align position"><img src = '/evoke/webroot/img/agentag120.png' alt = ""/>
-				<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "position:absolute;top:25%"/>
-				<div class="row">
-				  <div class="medium-6 columns"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"/></div>
-				  <div class="medium-6 columns">10 columns</div>
+		<!-- <div class = "evoke agent_tag">
+			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "width: 100%;"/>
+		</div> -->
+
+			<div class = "evoke dashboard text-align position"><img src = '/evoke/webroot/img/agentag120.png' class = "evoke dashboard agent_tag"/>
+				<div class = "evoke dashboard agent position">
+					<div class="row">
+					  <!-- <div class="small-5 columns"><img src='/evoke/webroot/img/IMG_20140116_065202.jpg' style = "max-height: 200px;"/></div> -->
+					  <div class="small-5 columns"><img src='/evoke/webroot/img/Leslie_Knope.png' style = "max-height: 200px;"/></div>
+					  <div class="small-7 columns">
+					  <div class = "evoke dashboard agent info">
+					  	<h5><?php echo $user['User']['name']; ?></h5>
+					  	<h6><?php echo __('Level');?>&nbsp;&nbsp;&nbsp;<div style = "color: #1f8cb2; display: inline; font-size: 1.8em; font-family: 'AlegreyaRegular';"><?php echo 10;?></div>
+					  		<div class="evoke dashboard progress small-9 large-9 round">
+							  <span class="meter" style="width: 50%"></span>
+							</div>
+						</h6>
+
+					  	<h6><?php echo __('Points');?>&nbsp;&nbsp;<div style = "color: #1f8cb2; display: inline; font-size: 1.8em; font-family: 'AlegreyaRegular';"><?php echo 12345678;?></div></h6>
+					  	</div>
+					  </div>
+					</div>
+					
 				</div>
 			</div>
 			
