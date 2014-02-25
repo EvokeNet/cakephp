@@ -55,33 +55,42 @@
 		</p>
 	</div>
 	<div class="content" id="missions">
-		<p>
-			<ul class="button-group">
-  				<li><?php echo $this->Html->Link('+ missions', array('controller' => 'missions', 'action' => 'add'), array( 'class' => 'button'));?></li>
-  				<li><?php echo $this->Html->Link('+ issues', array('controller' => 'issues', 'action' => 'add'), array( 'class' => 'button'));?></li>
-  			</ul>
-			 
-			<?php foreach ($issues as $issue) { 
-				$issue_missions = $matrix[$issue['Issue']['name']]; ?>
+		<form class="left" id="filter">
+  			<fieldset>
+    			<legend>Filter</legend>
+    			<!-- fazer iteração para ter uma checkbox para cada issue e tbm js para mostrar/esconder issues -->
+    			<input type="checkbox" id="x"><label for="x">issue teste</label>
+    		</fieldset>
+		</form>
+		<div class="right">
+			<p>
+				<ul class="button-group">
+	  				<li><?php echo $this->Html->Link('+ missions', array('controller' => 'missions', 'action' => 'add'), array( 'class' => 'button'));?></li>
+	  				<li><?php echo $this->Html->Link('+ issues', array('controller' => 'issues', 'action' => 'add'), array( 'class' => 'button'));?></li>
+	  			</ul>
+				 
+				<?php foreach ($issues as $issue) { 
+					$issue_missions = $matrix[$issue['Issue']['name']]; ?>
 
-				<table>
-					<thead>
-						<tr>
-							<th><?php echo $issue['Issue']['name']; ?></th>
-							<th><?php echo $this->Html->Link('edit', array('controller' => 'issues', 'action' => 'edit', $issue['Issue']['id']), array( 'class' => 'button small')) . $this->Form->PostLink('delete', array('controller' => 'issues', 'action' => 'delete', $issue['Issue']['id']), array( 'class' => 'button small alert')); ?></th> 
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach ($issue_missions as $mission) { ?>
+					<table>
+						<thead>
 							<tr>
-								<td><?php echo $this->Html->Link($mission['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'])); ?></td>
-								<td><?php echo $this->Html->Link('edit', array('controller' => 'missions', 'action' => 'edit', $mission['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'missions', 'action' => 'delete', $mission['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
+								<th><?php echo $issue['Issue']['name']; ?></th>
+								<th><?php echo $this->Html->Link('edit', array('controller' => 'issues', 'action' => 'edit', $issue['Issue']['id']), array( 'class' => 'button small')) . $this->Form->PostLink('delete', array('controller' => 'issues', 'action' => 'delete', $issue['Issue']['id']), array( 'class' => 'button small alert')); ?></th> 
 							</tr>
-						<?php }	?>
-					</tbody>
-				</table>
-			<?php }	?>
-		</p>
+						</thead>
+						<tbody>
+							<?php foreach ($issue_missions as $mission) { ?>
+								<tr>
+									<td><?php echo $this->Html->Link($mission['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'])); ?></td>
+									<td><?php echo $this->Html->Link('edit', array('controller' => 'missions', 'action' => 'edit', $mission['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'missions', 'action' => 'delete', $mission['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
+								</tr>
+							<?php }	?>
+						</tbody>
+					</table>
+				<?php }	?>
+			</p>
+		</div>
 	</div>
 	<div class="content" id="levels">
 		<p>Not defined.. levels details go here.</p>
