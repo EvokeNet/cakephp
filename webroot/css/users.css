@@ -47,8 +47,9 @@
 
 #login-columns{
 	position: absolute;
-	top: 50px;
-	left: 30px;
+	top: 60px;
+	left: 40px;
+	width: 280px;
 }
 
 .columns h4{
@@ -108,7 +109,7 @@
 
 .evoke.login.bottom-border{
 	border-bottom: 2px solid #a7a7a7;
-	/*padding-top: 10px;*/
+	padding-bottom:10px;
 }
 
 .evoke.login.password{
@@ -123,35 +124,52 @@
 	left: 50%;
 }
 
-.evoke.register-tag{
-	bottom:300px;
-	left: 18%;
-}
-
-.evoke.horizontal_bar{
+.evoke.dashboard.horizontal_bar{
 	max-width: 45%;
-	margin-right: -10px;
+	margin: -5px -15px 0px;
 }
 
-.evoke.vertical_bar img{
+.evoke.dashboard.horizontal_bar.margin-top{
+	margin-top:-50px;
+}
+
+.evoke.dashboard.vertical_bar img{
 	/*max-height: 70%;*/
 	position: absolute;
 	max-height: 100%;
 	/*top: 0;*/
 }
 
-.evoke.vertical_bar img.top-height{
+.evoke.dashboard.vertical_bar img.top-height{
 	top: 0;
 }
 
-.evoke.vertical_bar img.top-height-two{
+.evoke.dashboard.vertical_bar img.top-height-two{
 	top:-60px;
-}
-
-.evoke.dashboard{
-	bottom:0;
 }
 
 .evoke.dashboard.text-align{
 	text-align: center;
+}
+
+.evoke.dashboard.position{
+	position:relative;
+}
+
+.evoke.dashboard.margin{
+	margin-top:30px;
+}
+
+.display-inline{
+	display: inline;
+}
+
+.screen_bar{
+	position: absolute;
+	top: 50%;
+	left: -15px;
+}
+
+.badges_bar{
+	margin: -60px 0px -7px 0px;
 }
