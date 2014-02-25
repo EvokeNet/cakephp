@@ -7,6 +7,21 @@
     src: url('../css/font/SaucerBB.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'AlegreyaRegular';
+    src: url('../css/font/AlegreyaSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'AlegreyaBold';
+    src: url('../css/font/AlegreyaSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'AlegreyaItalic';
+    src: url('../css/font/AlegreyaSans-Italic.ttf') format('truetype');
+}
+
 html, body {
 	font: 100%/1.618 sans-serif;
 	overflow-x: hidden;
@@ -33,11 +48,6 @@ button, div, p, span, a,
 
 .evoke.bg-topbar {
 	background: #1f8cb2;
-}
-
-.evoke.login-bg-topbar {
-	background: #0d0d10;
-	height: 250px;
 }
 
 .evoke.top-bar-section li:not(.has-form) a:not(.button){
@@ -81,10 +91,40 @@ button, div, p, span, a,
 	height: 200px;
 }
 
-.evoke.world-bank-icon{
+.evoke.footer img{
+	display: block;
+	margin: 0px auto;
+}
+
+.evoke.icon.margin-top{
+	margin-top: 40px;
+}
+
+.evoke.heading{
+	color: #8f8f8f;
+	font-family: 'AlegreyaRegular';
+}
+
+.terms{
+	font-size: 1.0em;
+	text-align: center;
+	margin: 20px 0px 35px 0px;
+}
+
+.evoke-logo{
+	position: absolute;
+	left: 45%;
+	top: 30px;
+}
+
+.wb img{
 	position: absolute;
 	top: 130px;
 	left: 40%;
+}
+
+.message{
+	font-size: 0.65em;
 }
 
 .evoke.dashboard{
@@ -240,36 +280,6 @@ button, div, p, span, a,
 	color: #ffffff;
 }
 
-.evoke a.button.google{
-	background:#c43c1d;
-}
-
-.evoke a.button.facebook{
-	background:#4a6fa7;
-}
-
-.evoke a.button.signup{
-	background:#1f8cb2;
-}
-
-.evoke a.button.login{
-	width: 240px;
-	border-radius: 7px;
-	border-radius: ;
-	padding: 1.50em 0em;
-	margin-left: 5px;
-	/*margin-left:20px;*/
-}
-
-
-/*.evoke.button {
-	max-height: 2.5em;
-	line-height: 0;
-	padding-top: 1.25em;
-	padding-bottom: 1.25em;
-}*/
-
-
 .evoke.panel p,
 .evoke.panel h1,
 .evoke.panel h2,
@@ -298,10 +308,6 @@ button, div, p, span, a,
 	line-height: 100%/1.618;
 }
 
-.evoke-max-width{
-	max-width: none;
-}
-
 .evoke nav{
 	border: none;
 	background: none;
@@ -311,13 +317,6 @@ button, div, p, span, a,
 	color:#FFF;
 }
 
-/*.sexy_line { 
-    margin: 25px 0;
-    height: 1px;
-    border: 0;
-    background: black;
-    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-}*/
 
 .evoke.titles{
 	background-color: #f1f1f1;

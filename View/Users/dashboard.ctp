@@ -38,7 +38,7 @@
 
 <section class="evoke dashboard padding top-2">
 	<div class="row full-width">
-		<div class="small-8 medium-8 large-8 columns">
+		<div class="medium-9 columns">
 
 			<?php if(!$is_friend AND ($users['User']['id'] != $user['User']['id'])):?>
 				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'add', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Follow this user');?></a>
@@ -51,22 +51,32 @@
 
 			<div class="wrapper">
 	            <div class="jcarousel-wrapper">
-	                <div class="jcarousel">
-	                    <ul>
-	                        <?php foreach($missions as $m):?>
-	                        	<li><img src="/evoke/webroot/img/evoke_folder.png" alt="Image 1" style = "margin: 5px auto;"/>
-					    			<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>"><?php echo $m['Mission']['title'];?></a></li>
-				    		<?php endforeach; ?>
-	                    </ul>
 
-	                </div>
-
-	             	<a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-        			<a href="#" class="jcarousel-control-next">&rsaquo;</a>
-
+	            	<div class="row">
+					  <div class="small-9 large-centered columns">
+					  	<div class="jcarousel">
+		                    <ul>
+		                        <?php foreach($missions as $m):?>
+		                        	<li>
+		                        		<img src="/evoke/webroot/img/evoke_folder.png" alt="Image 1"/>
+		                        		<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>"><?php echo $m['Mission']['title'];?></a>
+		                        	</li>
+					    		<?php endforeach; ?>
+		                    </ul>
+		                </div>
+					  </div>
+					</div>
+	                
+        			<div class="row">
+					  	<div class="small-11 large-centered columns">
+					  		<a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+        					<a href="#" class="jcarousel-control-next">&rsaquo;</a>
+					  		<img src="/evoke/webroot/img/shelves.png" alt="Image 1" style = "width: 100%; margin-top: -200px">
+						</div>
+					</div>
 	                <!-- <p class="jcarousel-pagination"></p> -->
 	            </div>
-	            <img src="/evoke/webroot/img/shelves.png" alt="Image 1" style = "width: 100%; margin-top: -200px">
+	            
 	        </div>
 
 <!-- 
@@ -194,9 +204,9 @@
 			</div>
 
 		</div>
-		<div class="small-4 medium-4 large-4 columns">
+		<div class="medium-3 columns">
 			
-			<img src = '/evoke/webroot/img/agent_tag.png' alt = ""/>
+			<img src = '/evoke/webroot/img/agentag120.png' alt = ""/>
 			
 			<!-- <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQkcXs-qFPpoDX2Yh7A6IMRtoNvLRa-Fj_MKaIBal92xgo--7DDyQ"/> -->
 			<!-- <img src = '../img/agent_tag.png' alt = "" class = "tag"/>
@@ -218,12 +228,17 @@
 </section>
 
 <?php
-	echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel');
+
+	echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
+	echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel', array('inline' => false));
 	//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
 	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
-	echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive');
+	echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
+
 ?>
 
 <script>
+	$( '#carousel' ).elastislide();
+
 	$('.jcarousel').jcarousel('scroll', '3');
 </script>
