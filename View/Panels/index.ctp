@@ -60,13 +60,13 @@
 				</div>
 				<div class="content" id="missions">
 										
-					<form id="filter" class="large-5 columns left">
+					<form id="filter" class="left">
 			  			<fieldset>
 			    			<legend>Filter</legend>
 			    			 <ul id="filters">
 			    			 	<?php foreach ($issues as $issue) { ?>
 							    	<li>
-							        	<input type="checkbox" value="<?php echo $issue['Issue']['slug'];?>" id="filter-<?php echo $issue['Issue']['slug'];?>" />
+							        	<input type="checkbox" checked="true" value="<?php echo $issue['Issue']['slug'];?>" id="filter-<?php echo $issue['Issue']['slug'];?>" />
 							        	<label for="filter-<?php echo $issue['Issue']['slug'];?>"><?php echo $issue['Issue']['name'];?></label>
 							    	</li>
 							    <?php } ?>
@@ -75,7 +75,7 @@
 						</fieldset>
 					</form>
 
-					<div class="large-9 columns right">
+					<div class="right">
 						<p>
 							<ul class="button-group">
 				  				<li><?php echo $this->Html->Link('+ missions', array('controller' => 'missions', 'action' => 'add'), array( 'class' => 'button'));?></li>
