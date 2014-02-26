@@ -44,6 +44,7 @@
 			</dl>
 			<div class="tabs-content">
 				<div class="content active" id="organizations">
+
 					<p>
 						<?php echo $this->Html->Link('+ organizations', array('controller' => 'organizations', 'action' => 'add'), array( 'class' => 'button'));?>
 
