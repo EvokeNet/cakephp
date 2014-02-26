@@ -76,6 +76,8 @@
 
 		<?php endforeach; ?>
 
+		<div class = "post-it"></div>
+
 		<div class="row">
 		  <div class="medium-9 columns">
 		  	<h2><?php echo __('Discussions: ').$mission['Mission']['title']; ?></h2>

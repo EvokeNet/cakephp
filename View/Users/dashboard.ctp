@@ -22,9 +22,9 @@
 
 		<!-- Right Nav Section -->
 		<ul class="right">
-			<li><img src='/evoke/webroot/img/Leslie_Knope.png' style = "max-height: 50px; max-width: 50px;margin-right: 10px;margin-top: 3px;"/></li>
+			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src='/evoke/webroot/img/Leslie_Knope.png' class = "evoke top-bar icon"/></a></li>
 			<li class="name">
-				<h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1>
+				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1></a>
 			</li>
 			<li class="has-dropdown">
 				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
@@ -76,7 +76,6 @@
 		                        		<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>">
 			                        		<img src="/evoke/webroot/img/evoke_folder.png" width = "90%;"/>
 			                        		<span class = "evoke dashboard folders"><?php echo $m['Mission']['title'];?></span>
-											<div style = "margin-bottom:20px"></div>
 		                        		</a>
 		                        	</li>
 					    		<?php endforeach; ?>
@@ -87,7 +86,7 @@
 	                
         			<a href="#" class="jcarousel-control-prev">&lsaquo;</a>
 					<a href="#" class="jcarousel-control-next">&rsaquo;</a>
-			  		<img src="/evoke/webroot/img/shelve150.png" style = "width:100%; margin-top:-100px"/>
+			  		<img src="/evoke/webroot/img/shelve150.png" class = "evoke dashboard shelve"/>
 
 	            </div>
 	        </div>
@@ -100,7 +99,6 @@
 				  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
 				</dl>
 
-				<!-- <img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;"> -->
 				<img src = '/evoke/webroot/img/horizontal_bar.png' class = "screen_bar">
 				<div class="evoke tabs-content screen-box dashboard panel">
 				  <div class="content active" id="panel2-1">
@@ -142,7 +140,7 @@
 
 			    		<div class="row evoke evidence">
 							<div class="medium-2 columns">
-						  		<div style = "text-align:center"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/><h6><?php echo $this->Html->link($e['Group']['title'], array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])); ?></h6></div>
+						  		<div class = "evoke dashboard text-align"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/><h6><?php echo $this->Html->link($e['Group']['title'], array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])); ?></h6></div>
 				  			</div>
 							<div class="medium-8 columns">
 								<h2><?php echo $this->Html->link($e['Evokation']['title'], array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?></h2>
@@ -203,27 +201,25 @@
 
 		<div class="medium-3 columns">
 
-			<div class = "evoke dashboard text-align position"><img src = '/evoke/webroot/img/agentag120.png'/>
-				<div class = "evoke dashboard agent position">
-					<div class="row">
-					  <!-- <div class="small-5 columns"><img src='/evoke/webroot/img/IMG_20140116_065202.jpg' style = "max-height: 200px;"/></div> -->
-					  <div class="small-5 columns"><img src='/evoke/webroot/img/Leslie_Knope.png' style = "max-height: 200px; max-width: 120px; width: 100%;"/></div>
-					  <div class="small-7 columns">
-					  <div class = "evoke dashboard agent info">
-					  	<h6 style = "font-size: 0.6vw; color: #a2a2a2;"><?php echo strtoupper(__("Evoke Agent"));?></h6>
-					  	<h5><?php echo $user['User']['name']; ?></h5>
-					  	<h6><?php echo __('Level');?>&nbsp;&nbsp;&nbsp;<div style = "color: #1f8cb2; display: inline; font-size: 1.8em; font-family: 'AlegreyaRegular';"><?php echo 10;?></div>
-					  		<div class="evoke dashboard progress small-9 large-9 round">
+			<div class = "evoke dashboard tag">
+				<img src='/evoke/webroot/img/chip105.png' width = "100%"/>
+
+				<div class="row">
+					  <div class="small-4 columns"><a href = '/evoke/webroot/img/Leslie_Knope.png'><img src='/evoke/webroot/img/Leslie_Knope.png' class = "evoke dashboard user_pic"/></a></div>
+					  <div class="small-8 columns">
+					  	<div class = "evoke dashboard agent info">
+					  		<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
+					  		<h4><?php echo $user['User']['name']; ?></h4>
+					  		<h5><?php echo __('Level');?>&nbsp;&nbsp;&nbsp;<div><?php echo 10;?></div></h5>
+							<div class="evoke dashboard progress small-9 large-9 round">
 							  <span class="meter" style="width: 50%"></span>
 							</div>
-						</h6>
 
-					  	<h6><?php echo __('Points');?>&nbsp;&nbsp;<div style = "color: #1f8cb2; display: inline; font-size: 1.8em; font-family: 'AlegreyaRegular';"><?php echo 12345678;?></div></h6>
+							<h5><?php echo __('Points');?>&nbsp;&nbsp;<div><?php echo 12345678;?></div></h5>
 					  	</div>
 					  </div>
-					</div>
-					
 				</div>
+
 			</div>
 			
 			<div class = "evoke dashboard position margin">
