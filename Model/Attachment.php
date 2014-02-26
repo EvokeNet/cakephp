@@ -27,6 +27,10 @@ class Attachment extends AppModel {
         'Quest' => array(
             'className' => 'Quest',
             'foreignKey' => 'foreign_key',
+        ),
+        'Mission' => array(
+            'className' => 'Mission',
+            'foreignKey' => 'foreign_key',
         )
     );
 }

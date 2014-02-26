@@ -135,6 +135,11 @@ class MissionsController extends AppController {
 			)
 		));
 
+		$mission_img = null;
+		if(!is_null($id)){
+			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
+		}
+
 		$this->loadModel('Evidence');
 		$my_evidences = $this->Evidence->find('all', array(
 			'order' => array('Evidence.title ASC'),
@@ -145,7 +150,7 @@ class MissionsController extends AppController {
 		));
 
 		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
-			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by'));
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img'));
 	}
 
 /**

@@ -211,6 +211,7 @@ class PanelsController extends AppController {
 		$quests_tag = $this->defineCurrentTab('quest', $args);
 		$badges_tag = $this->defineCurrentTab('badge', $args);
 		$points_tag = $this->defineCurrentTab('point', $args);
+		$dossier_tag = $this->defineCurrentTab('dossier', $args);
 
 		//loading infos to be shown at top bar
 		$username = explode(' ', $this->user['name']);
@@ -230,6 +231,10 @@ class PanelsController extends AppController {
 			)
 		));
 
+		$mission_img = null;
+		if(!is_null($id)){
+			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
+		}
 
 		if($this->user['role_id'] == 1){
 			$flags = array(
@@ -273,12 +278,14 @@ class PanelsController extends AppController {
 
 		$mission = null;
 
+
 		if ($this->request->is('post')) {
 			
 			if(!$this->Mission->exists($id)) {
 				//it's a new mission, so let's add it..
-				$this->Mission->create();
-				if ($mission = $this->Mission->save($this->request->data)) {
+				//$this->Mission->create();
+				if ($mission = $this->Mission->createWithAttachments($this->request->data)) {
+					
 					$id = $mission['Mission']['id'];
 					//saves the issue related to it..
 					$this->request->data['MissionIssue']['mission_id'] = $id;
@@ -294,9 +301,16 @@ class PanelsController extends AppController {
 					$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
 				}
 			} else {
+				//first, check if he sended another img for the mission...
+				if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
+					//he did not send an image, unset the 'Attachment' so it doesn't cause trouble
+					$data = $this->request->data;
+					unset($data['Attachment']);
+					$this->request->data = $data;
+				}
+
 				//it already exists, so let's save any alterations and move on..
-				$this->Mission->id = $id;
-				if ($this->Mission->save($this->request->data)) {
+				if ($this->Mission->createWithAttachments($this->request->data, true, $id)) {
 					$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 					
 					//saves the issue related to it..
@@ -315,6 +329,7 @@ class PanelsController extends AppController {
 				}
 			}
 		} else{
+			
 			//it could be a request from one of the other tabs
 			if(!is_null($id) && $args == 'phase'){
 				//sets variable mission to be the mission being added now..
@@ -325,8 +340,8 @@ class PanelsController extends AppController {
 				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 		}
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
-			'organizations', 'phases', 'questionnaires', 'answers'));
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img'));
 	}
 
 /*
@@ -340,6 +355,7 @@ class PanelsController extends AppController {
 		$quests_tag = $this->defineCurrentTab('quest', $args);
 		$badges_tag = $this->defineCurrentTab('badge', $args);
 		$points_tag = $this->defineCurrentTab('point', $args);
+		$dossier_tag = $this->defineCurrentTab('dossier', $args);
 
 		//loading infos to be shown at top bar
 		$username = explode(' ', $this->user['name']);
@@ -360,6 +376,10 @@ class PanelsController extends AppController {
 			)
 		));
 
+		$mission_img = null;
+		if(!is_null($id)){
+			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
+		}
 
 		if($this->user['role_id'] == 1){
 			$flags = array(
@@ -387,9 +407,11 @@ class PanelsController extends AppController {
 			));
 
 			$my_orgs_id = array();
+			$my_orgs_id2 = array();
 			$k = 0;
 			foreach ($my_orgs as $my_org) {
 				$my_orgs_id[$k] = array('Organization.id' => $my_org['Organization']['id']);
+				$my_orgs_id2[$k] = array('Mission.organization_id' => $my_org['Organization']['id']);
 				$k++;
 			}
 
@@ -404,7 +426,7 @@ class PanelsController extends AppController {
 			$smth = $this->Mission->find('first', array(
 				'conditions' => array(
 					'Mission.id' => $id,
-					'OR' => $my_orgs_id
+					'OR' => $my_orgs_id2
 				)
 			));
 			if(empty($smth)) $this->redirect(array('action' => 'index'));
@@ -416,10 +438,17 @@ class PanelsController extends AppController {
 		if ($this->request->is('post')) {
 			
 			if($this->Mission->exists($id)) {
-				
+				//first, check if he sended another img for the mission...
+				if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
+					//he did not send an image, unset the 'Attachment' so it doesn't cause trouble
+					$data = $this->request->data;
+					unset($data['Attachment']);
+					$this->request->data = $data;
+				}
+
 				//it already exists, so let's save any alterations and move on..
-				$this->Mission->id = $id;
-				if ($this->Mission->save($this->request->data)) {
+				//$this->Mission->id = $id;
+				if ($this->Mission->createWithAttachments($this->request->data, true, $id)) {
 					$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 					
 					//saves the issue related to it..
@@ -453,8 +482,8 @@ class PanelsController extends AppController {
 				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 		}
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
-			'organizations', 'phases', 'questionnaires', 'answers'));
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img'));
 	}
 
 

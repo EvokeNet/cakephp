@@ -32,13 +32,14 @@
 
 <?php $this->end(); ?>
 
-<section class="evoke margin top-2">
-	<div class="row evoke max-width">
+<section class="margin top-2">
+	<div class="row max-width">
 		<div class="large-12 columns">
 			<h1><?= __('Mission') ?><?php echo ': ' . $mission['Mission']['title']; ?></h1>
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
 				<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= __('Phases') ?></a></dd>
+				<dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= __('Mission Dossier') ?></a></dd>
 				<dd class="<?php echo $badges_tag ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
 				<dd class="<?php echo $points_tag ?>"><a href="#points"><?= __('Points') ?></a></dd>
 			</dl>
@@ -50,16 +51,22 @@
 							echo $this->Form->create('Mission', array(
  							   		'url' => array(
  							   			'controller' => 'panels',
- 							   			'action' => 'edit_mission', $id)
-									)
-								);
+ 							   			'action' => 'edit_mission', $id
+ 							   		),
+ 							   		'enctype' => 'multipart/form-data'
+							));
 						?>
 						<fieldset>
 							<?php
 								echo '<legend>' . __('Edit Mission'). '</legend>'; 
 								echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title')));
 								echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description')));
-								echo $this->Form->input('image', 'label' => __('Image'));
+								if(!is_null($mission_img)) :
+									echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
+									echo '<div class="input file"><label for="Attachment0Attachment">Change Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
+								else :
+									echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
+								endif;
 								echo $this->Form->hidden('form_type', array('value' => 'mission'));
 								if(isset($mission['MissionIssue'][0]['issue_id'])) {
 									echo $this->Form->input('MissionIssue.issue_id', array(
@@ -152,6 +159,11 @@
 					<?php }?>
 
 				</div>
+				<div class="content <?php echo $dossier_tag ?>" id="dossier">
+					<p>
+						Mission dossier
+					</p>
+				</div>
 				<div class="content <?php echo $badges_tag ?>" id="badges">
 					<p>
 						badges related to the mission
@@ -164,9 +176,7 @@
 				</div>
 			</div>
 			<!-- encerrar tudo -->
-			<button class="button">
-				<?php echo $this->Html->Link(__('Return to Admin Panel'), array('controller' => 'panels', 'action' => 'index')); ?>	
-			</button>
+			<?php echo $this->Html->Link(__('Return to Admin Panel'), array('controller' => 'panels', 'action' => 'index'), array( 'class' => 'button small')); ?>	
 		</div>
 	</div>
 </section>

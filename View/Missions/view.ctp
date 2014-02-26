@@ -51,6 +51,13 @@
 		  <a class="current" href="#"><?php echo $missionPhase['Phase']['name'];?></a>
 		</nav>
 
+		<?php
+			if(!is_null($mission_img)) :
+				echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
+			else :
+				echo '<h4>Nenhuma img definida, mostrar uma padrao</h4>';
+			endif;
+		?>
 	  	<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
 	  	<h4><?php echo __('Created by: '); echo $this->Html->Link($organized_by['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organized_by['Organization']['id'])); ?></h4>
 		<h2><?php echo __('Mission Brief'); ?></h2>
