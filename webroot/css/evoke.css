@@ -96,6 +96,10 @@ button, div, p, span, a,
 	margin: 5px 0px 10px 10px;
 }
 
+.has-dropdown i{
+	margin-top: 10px;
+}
+
 .right .name h1{
 	font-family: 'AlegreyaRegular';
 	font-size: 1.2em;
@@ -279,18 +283,6 @@ button, div, p, span, a,
 	height:220px;
 	width:1000px;
 	margin-top: 70px;
-}
-
-.evoke .folders{
-	margin-left:50px;
-}
-
-.evoke .folder{
-	background-image: url('../img/folder.png');
-	background-repeat: no-repeat;
-	height:230px;
-	float: left;
-	width: 230px;
 }
 
 .evoke .evidence-list{

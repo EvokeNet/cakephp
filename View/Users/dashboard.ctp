@@ -1,7 +1,8 @@
 <?php
 	//echo $this->Html->css('/components/jcarousel/examples/basic/jcarousel.basic');
 	//echo $this->Html->css('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
-	echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
+	echo $this->Html->css('jcarousel');
+	//echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
 
 	echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
 
@@ -21,6 +22,7 @@
 
 		<!-- Right Nav Section -->
 		<ul class="right">
+			<li><img src='/evoke/webroot/img/Leslie_Knope.png' style = "max-height: 50px; max-width: 50px;margin-right: 10px;margin-top: 3px;"/></li>
 			<li class="name">
 				<h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1>
 			</li>
@@ -71,8 +73,11 @@
 		                    <ul>
 		                        <?php foreach($missions as $m):?>
 		                        	<li class = "evoke dashboard position">
-		                        		<img src="/evoke/webroot/img/evoke_folder.png" width = "70%;"/>
-		                        		<div class = "evoke dashboard folders"><a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>"><?php echo $m['Mission']['title'];?></a></div>
+		                        		<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>">
+			                        		<img src="/evoke/webroot/img/evoke_folder.png" width = "90%;"/>
+			                        		<span class = "evoke dashboard folders"><?php echo $m['Mission']['title'];?></span>
+											<div style = "margin-bottom:20px"></div>
+		                        		</a>
 		                        	</li>
 					    		<?php endforeach; ?>
 		                    </ul>
@@ -82,14 +87,14 @@
 	                
         			<a href="#" class="jcarousel-control-prev">&lsaquo;</a>
 					<a href="#" class="jcarousel-control-next">&rsaquo;</a>
-			  		<img src="/evoke/webroot/img/shelve150.png" style = "width:100%; margin-top:-100px">
+			  		<img src="/evoke/webroot/img/shelve150.png" style = "width:100%; margin-top:-100px"/>
 
 	            </div>
 	        </div>
 
 			<div class = "evoke dashboard position">
 				<dl class="tabs evoke titles" data-tab>
-				  <dd><h4><?php echo __('EVOKE PANEL');?></h4></dd>
+				  <dd><h4><?php echo strtoupper(__('Projects and Evidences'));?></h4></dd>
 				  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
 				  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
 				  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
@@ -139,7 +144,6 @@
 							<div class="medium-2 columns">
 						  		<div style = "text-align:center"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/><h6><?php echo $this->Html->link($e['Group']['title'], array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])); ?></h6></div>
 				  			</div>
-
 							<div class="medium-8 columns">
 								<h2><?php echo $this->Html->link($e['Evokation']['title'], array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?></h2>
 							</div>
@@ -198,10 +202,6 @@
 		</div>
 
 		<div class="medium-3 columns">
-			
-		<!-- <div class = "evoke agent_tag">
-			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "width: 100%;"/>
-		</div> -->
 
 			<div class = "evoke dashboard text-align position"><img src = '/evoke/webroot/img/agentag120.png'/>
 				<div class = "evoke dashboard agent position">
