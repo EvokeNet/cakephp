@@ -24,6 +24,31 @@ class Mission extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
+ * getEvidences function returns evidences that belong to the selected mission
+ *
+ */
+	public function getEvidences($id = null) {
+		return $this->Evidence->find('all', array(
+			'conditions' => array(
+				'Evidence.mission_id' => $id
+			),
+			'order' => array('Evidence.created DESC'),
+	));
+}
+
+/**
+ * getMissionIssues returns the issues for the selected mission
+ *
+ */
+	public function getMissionIssues($id = null) {
+		return $this->MissionIssue->find('all', array(
+			'conditions' => array(
+				'MissionIssue.mission_id' => $id
+			)
+	));
+}
+
+/**
  * hasMany associations
  *
  * @var array
