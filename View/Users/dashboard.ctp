@@ -12,19 +12,23 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo $users['User']['name']; ?></h1>
+			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $users['User']['id'])); ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
 
 	<section class="evoke top-bar-section">
+
 		<!-- Right Nav Section -->
 		<ul class="right">
+			<li class="name">
+				<h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1>
+			</li>
 			<li class="has-dropdown">
-				<a href="#"><?= __('Settings') ?></a>
+				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
 				<ul class="dropdown">
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $users['User']['id'])); ?></li>
-					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
+					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $users['User']['id'])); ?></h1></li>
+					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
 				</ul>
 			</li>
 			<li>
@@ -38,10 +42,8 @@
 			</li>
 		</ul>
 
-		<!-- Left Nav Section -->
-		<ul class="left">
-			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $users['User']['id'])); ?></li>
-		</ul>
+		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
+
 	</section>
 </nav>
 
@@ -69,7 +71,6 @@
 		                    <ul>
 		                        <?php foreach($missions as $m):?>
 		                        	<li class = "evoke dashboard position">
-		                        		<!-- <div class = "folderss"><div><a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>"><?php echo $m['Mission']['title'];?></a></div></div> -->
 		                        		<img src="/evoke/webroot/img/evoke_folder.png" width = "70%;"/>
 		                        		<div class = "evoke dashboard folders"><a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>"><?php echo $m['Mission']['title'];?></a></div>
 		                        	</li>
@@ -202,13 +203,14 @@
 			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "width: 100%;"/>
 		</div> -->
 
-			<div class = "evoke dashboard text-align position"><img src = '/evoke/webroot/img/agentag120.png' class = "evoke dashboard agent_tag"/>
+			<div class = "evoke dashboard text-align position"><img src = '/evoke/webroot/img/agentag120.png'/>
 				<div class = "evoke dashboard agent position">
 					<div class="row">
 					  <!-- <div class="small-5 columns"><img src='/evoke/webroot/img/IMG_20140116_065202.jpg' style = "max-height: 200px;"/></div> -->
-					  <div class="small-5 columns"><img src='/evoke/webroot/img/Leslie_Knope.png' style = "max-height: 200px;"/></div>
+					  <div class="small-5 columns"><img src='/evoke/webroot/img/Leslie_Knope.png' style = "max-height: 200px; max-width: 120px; width: 100%;"/></div>
 					  <div class="small-7 columns">
 					  <div class = "evoke dashboard agent info">
+					  	<h6 style = "font-size: 0.6vw; color: #a2a2a2;"><?php echo strtoupper(__("Evoke Agent"));?></h6>
 					  	<h5><?php echo $user['User']['name']; ?></h5>
 					  	<h6><?php echo __('Level');?>&nbsp;&nbsp;&nbsp;<div style = "color: #1f8cb2; display: inline; font-size: 1.8em; font-family: 'AlegreyaRegular';"><?php echo 10;?></div>
 					  		<div class="evoke dashboard progress small-9 large-9 round">
@@ -232,7 +234,7 @@
 							<a href = "" class = "evoke button general"><?php echo __('See All');?></a>
 							</div>
 					</div>
-					<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/hb.png' class= "top-height"/></div>
+					<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/vertical_bar.png' class= "top-height"/></div>
 					<div class = "evoke screen-box allies"></div>
 
 				</div>
@@ -244,7 +246,7 @@
 							<a href = "" class = "evoke button general"><?php echo __('See All');?></a>
 						</div>
 					</div>
-					<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/hb.png' class= "top-height-two"/></div>
+					<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/vertical_bar.png' class= "top-height-two"/></div>
 					<div class = "evoke screen-box allies"></div>
 				</div>
 
@@ -255,12 +257,12 @@
 							<a href = "" class = "evoke button general"><?php echo __('See All');?></a>
 						</div>
 					</div>
-					<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/hb.png' class= "top-height-two"/></div>
+					<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/vertical_bar.png' class= "top-height-two"/></div>
 					<div class = "evoke screen-box allies"></div>
 				</div>
 
 				<div class = "evoke dashboard text-align position">
-					<img src = '/evoke/webroot/img/hb.png' class = "badges_bar"/>
+					<img src = '/evoke/webroot/img/vertical_bar.png' class = "badges_bar"/>
 				</div>
 
 			</div>
