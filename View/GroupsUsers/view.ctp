@@ -116,6 +116,9 @@
 	</div>
 </section>
 
+<script type="text/javascript">
+	var access_token = <?php echo $this->Session->read('access_token'); ?>
+</script>
 <?php //echo $this->Html->script('/components/ckeditor/ckeditor', array('inline' => false)); ?>
 <?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('evokation', array('inline' => false)); ?>

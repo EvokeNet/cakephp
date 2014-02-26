@@ -7,3 +7,5 @@
 // 	// });
 
 // });
+
+console.log(access_token);
