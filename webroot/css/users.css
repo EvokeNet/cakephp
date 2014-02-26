@@ -134,10 +134,6 @@
 	margin-top:-50px;
 }
 
-.evoke.dashboard.horizontal_bar.left{
-	margin: 8px -110px 0px;
-}
-
 .evoke.dashboard.horizontal_bar.absolute-right{
 	position: absolute; 
 	top: 25%;
@@ -156,10 +152,6 @@
 
 .evoke.dashboard.vertical_bar img.top-height-two{
 	top:-60px;
-}
-
-.evoke.dashboard.text-align{
-	text-align: center;
 }
 
 .evoke.dashboard.position{

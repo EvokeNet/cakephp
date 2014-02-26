@@ -56,7 +56,7 @@
 	<div class="row full-width">
 	  	<div class="large-5 columns">
 		  	<div class = "evoke dashboard position">
-				<img src = '/evoke/webroot/img/small_bar.png' class = "evoke dashboard horizontal_bar left">
+				<img src = '/evoke/webroot/img/small_bar.png' class = "evoke horizontal_bar left">
 				<div class = "evoke titles"><h4><?php echo sprintf(__("Agent's %s Dashboard"), $user['User']['name']);?></h4></div>
 			</div>
 		</div>
@@ -106,7 +106,7 @@
 					<i class="fa fa-twitter-square fa-2x"></i>
 				</div>
 
-				<div class = "evoke dashboard text-align">
+				<div class = "evoke text-align">
 					<?php if(!$is_friend AND ($users['User']['id'] != $user['User']['id'])):?>
 						<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'add', $users['User']['id'], $user['User']['id'])); ?>" class = "button general"><?php echo __('Follow this agent');?></a>
 					<?php elseif($is_friend AND ($users['User']['id'] != $user['User']['id'])): ?>
@@ -118,29 +118,29 @@
 
 			<div class = "evoke dashboard position margin">
 				<div class = "evoke dashboard position">
-					<div class = "evoke dashboard text-align">
+					<div class = "evoke text-align">
 							<div class = "evoke titles">
 							<h4 class = "display-inline"><?php echo __('ALLIES');?></h4>
 							<a href = "" class = "evoke button general"><?php echo __('See All');?></a>
 							</div>
 					</div>
-					<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/vertical_bar.png' class= "top-height"/></div>
+					<div class = "evoke text-align vertical_bar"><img src = '/evoke/webroot/img/vertical_bar.png' class= "top-height"/></div>
 					<div class = "evoke screen-box allies"></div>
 
 				</div>
 
 				<div class = "evoke dashboard position">
-					<div class = "evoke dashboard text-align">
+					<div class = "evoke text-align">
 						<div class = "evoke titles">
 							<h4 class = "display-inline"><?php echo __('BADGES');?></h4>
 							<a href = "" class = "evoke button general"><?php echo __('See All');?></a>
 						</div>
 					</div>
-					<div class = "evoke dashboard text-align vertical_bar"><img src = '/evoke/webroot/img/vertical_bar.png' class= "top-height-two"/></div>
+					<div class = "evoke text-align vertical_bar"><img src = '/evoke/webroot/img/vertical_bar.png' class= "top-height-two"/></div>
 					<div class = "evoke screen-box allies"></div>
 				</div>
 
-				<div class = "evoke dashboard text-align position">
+				<div class = "evoke text-align position">
 					<img src = '/evoke/webroot/img/vertical_bar.png' class = "badges_bar"/>
 				</div>
 
@@ -157,7 +157,7 @@
 
 			    		<div class="row evoke dashboard evidence">
 							<div class="medium-2 columns">
-						  		<div class = "evoke dashboard text-align">
+						  		<div class = "evoke text-align">
 						  			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
 						  			<h6><?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));?></h6>
 						  		</div>
@@ -189,7 +189,7 @@
 
 			    		<div class="row evoke evidence">
 							<div class="medium-2 columns">
-						  		<div class = "evoke dashboard text-align"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/><h6><?php echo $this->Html->link($e['Group']['title'], array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])); ?></h6></div>
+						  		<div class = "evoke text-align"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/><h6><?php echo $this->Html->link($e['Group']['title'], array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])); ?></h6></div>
 				  			</div>
 							<div class="medium-8 columns">
 								<h2><?php echo $this->Html->link($e['Evokation']['title'], array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?></h2>

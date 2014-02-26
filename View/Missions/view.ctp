@@ -32,7 +32,7 @@
 
 <?php $this->end(); ?>
 
-<section class="evoke margin top-2">
+<section class="evoke background padding top-2">
 	<div class="row evoke missions">
 	  <div class="small-11 small-centered columns">
 
@@ -75,8 +75,6 @@
 			</div>
 
 		<?php endforeach; ?>
-
-		<div class = "post-it"></div>
 
 		<div class="row">
 		  <div class="medium-9 columns">
