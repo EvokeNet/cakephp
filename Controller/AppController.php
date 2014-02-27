@@ -44,6 +44,7 @@ class AppController extends Controller {
  */
 	public function beforeFilter() {
         $this->Auth->allow('add', 'fb_login', 'index', 'view');
+        
     }
 
 }
