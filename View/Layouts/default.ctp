@@ -70,7 +70,6 @@ $title = __('Evoke Network');
 	<?php echo $this->Html->script('evoke') ?>
 
 	<?php echo $this->fetch('script'); ?>
-
-
+	
 </body>
 </html>

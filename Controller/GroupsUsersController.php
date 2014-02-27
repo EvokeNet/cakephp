@@ -1,6 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
-APP::uses('GoogleAuthentication', 'Lib');
+APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
 
 /**
  * GroupsUsers Controller
@@ -35,18 +35,69 @@ class GroupsUsersController extends AppController {
  * @return void
  */
 	public function view($group_id = null) {
+
+		$this->loadModel('Setting');
 		$gAuth = new GoogleAuthentication(
 			Configure::read('google_client_id'),
 			Configure::read('google_client_secret'),
 			Configure::read('google_api_key')
 		);
 
-		$token = $gAuth->authorize();
-		
-		debug($token);
-		die();
+		$setting_access_token = $this->Setting->find('first', array(
+			'conditions'=> array(
+				'Setting.key' => 'google_auth_access_token'
+			)
+		));
+
+		$setting_refresh_token = $this->Setting->find('first', array(
+			'conditions'=> array(
+				'Setting.key' => 'google_auth_refresh_token'
+			)
+		));
+
+		if(empty($setting_refresh_token)) {
+			$token = $gAuth->authorize();
+
+			if(!empty($token)) {
+
+				$setting = array();
+
+				$this->Setting->create();
+				$setting['Setting']['key'] = 'google_auth_refresh_token';
+				$setting['Setting']['value'] = $token;
+				$this->Setting->save($setting);
+
+				$this->Setting->create();
+				$setting['Setting']['key'] = 'google_auth_access_token';
+				$setting['Setting']['value'] = $token;
+				$this->Setting->save($setting);
+
+				$this->Session->write('access_token', $token);
+
+			}
+		} else {
+
+			$access_token = $setting_access_token['Setting']['value'];
+			$refresh_token = $setting_refresh_token['Setting']['value'];
+
+			$token = $gAuth->authorize($access_token, $refresh_token);
+
+			if (!empty($token)) {
+				$setting = $this->Setting->find('first', array(
+					'conditions' => array(
+						'key' => 'google_auth_access_token'
+					)
+				));
+				$this->Setting->id = $setting['Setting']['id'];
+				$this->Setting->set('value', $token);
+				$this->Setting->save();
+			}
+			$this->Session->write('access_token', $token);
+		}
+
 		$group = $this->GroupsUser->getGroupAndUsers($group_id);
 		$this->set('group', $group);
+
 	}
 
 /**

@@ -23,9 +23,8 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-
 /**
- * Components
+ * Global Components
  *
  * @var array
  */	
