@@ -87,6 +87,23 @@ button, div, p, span, a,
 	max-width: none;
 }
 
+.evoke nav{
+	border: none;
+	background: none;
+}
+
 .name h1{
 	color:#FFF;
+}
+
+.sexy_line { 
+    margin: 25px 0;
+    height: 1px;
+    border: 0;
+    background: black;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+}
+
+li {
+	list-style:none;
 }

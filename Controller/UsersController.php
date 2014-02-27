@@ -195,6 +195,9 @@ class UsersController extends AppController {
 /**
  *
  * dashboard issue
+ * @throws NotFoundException
+ * @param string $id
+ * @param string $user_id
  *
  * @return void
  */
@@ -230,6 +233,22 @@ class UsersController extends AppController {
 		$this->set(compact('missionissue'));
 		// debug($missionissues);
 		// die();
+
+	}
+
+/**
+ *
+ * leaderboard
+ *
+ * @return void
+ */
+	public function leaderboard() {
+
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$this->set(compact('username'));
+
+		$userid = $this->Session->read('Auth.User.User.id');
+		$this->set(compact('userid'));
 
 	}
 
@@ -290,6 +309,9 @@ class UsersController extends AppController {
 		}
 		
 		$user = $this->User->read(null, $id);
+
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$this->set(compact('username'));
 
 		$userFriends = $this->User->find('first', array(
 			'conditions' => array(

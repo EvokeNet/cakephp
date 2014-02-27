@@ -17,7 +17,8 @@
 			<li class="has-dropdown">
 				<a href="#">Settings</a>
 				<ul class="dropdown">
-					<li><a href="<?php echo $this->Html->url(array('action' => 'logout')); ?>">Sign out</a></li>
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
+					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
 		</ul>

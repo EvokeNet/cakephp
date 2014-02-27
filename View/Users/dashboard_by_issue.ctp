@@ -17,7 +17,8 @@
 			<li class="has-dropdown">
 				<a href="#">Settings</a>
 				<ul class="dropdown">
-					<li><a href="<?php echo $this->Html->url(array('action' => 'logout')); ?>">Sign out</a></li>
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
+					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
 		</ul>
@@ -39,7 +40,7 @@
 			<nav class="breadcrumbs dashboard_breadcrumbs">
 			  <a class="unavailable" href="#"><?php echo __('Dashboard ');?></a>
 			  <?php echo $this->Html->link($user['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?>
-			  <a class="current" href="#"><?php echo $missionissue[0]['Issue']['name'];?></a>
+			  <a class="current" href="#"><?php echo __('Issue: ').$missionissue[0]['Issue']['name'];?></a>
 			</nav>
 
 			<dl class="tabs" data-tab>
@@ -49,26 +50,26 @@
 			</dl>
 			<div class="tabs-content">
 			  <div class="content active" id="panel2-1">
-			    	<?php 
-				    	//Lists all projects and evidences
-			    		foreach($evidence as $e):?>
-				    		<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
-				    		<p><?php echo substr($e['Evidence']['content'], 0, 200);?></p>
-				
-							<!-- Prints the issue related to each mission -->
-		    				<?php foreach($missionissues as $mi): 
-			    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
-			    				<div class="row">
-								  <div class="large-8 columns">
-								  <?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));
-								  echo ' | '.$mi['Issue']['name'].' | '.date('F j, Y', strtotime($e['Evidence']['created'])); ?></div>
-								  <div class="large-4 columns"><?php echo count($e['Comment']);?></div>
-								</div> 
-			    				<?php break; endif;
-		    				endforeach;?>
+		    	<?php 
+			    	//Lists all projects and evidences
+		    		foreach($evidence as $e):?>
+			    		<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
+			    		<p><?php echo substr($e['Evidence']['content'], 0, 200);?></p>
+			
+						<!-- Prints the issue related to each mission -->
+	    				<?php foreach($missionissues as $mi): 
+		    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
+		    				<div class="row">
+							  <div class="large-10 columns">
+							  <?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));
+							  echo ' | '.$mi['Issue']['name'].' | '.date('F j, Y', strtotime($e['Evidence']['created'])); ?></div>
+							  <div class="large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
+							</div> 
+		    				<?php break; endif;
+	    				endforeach;?>
 
-			    		<hr class="sexy_line" />
-			    	<?php endforeach; ?>
+		    		<hr class="sexy_line" />
+		    	<?php endforeach; ?>
 			  </div>
 			  <div class="content" id="panel2-2">
 			  </div>
@@ -92,10 +93,8 @@
 		    	<?php endforeach; ?>
 
 	    		<!-- Button redirects to listing mission issues page -->
-	    		<div>
-					<button><?php echo $this->Html->link(__('Go back to Issues'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));?></button>
-					<button><?php echo $this->Html->link(__('See All Missions'), array('controller' => 'missions', 'action' => 'index'));?></button>
-				</div>
+				</br><button><?php echo $this->Html->link(__('Go back to Issues'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));?></button>
+				<button><?php echo $this->Html->link(__('See All Missions'), array('controller' => 'missions', 'action' => 'index'));?></button>
 
 			  </div>
 
@@ -103,14 +102,14 @@
 
 			  <!-- Lists maximum 5 missions -->
 			    <?php foreach($missions as $m):?>
-			    	<div class = "users_missions">
+			    	<div class = "dashboard-missions">
 		    			<?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'learn', $m['Mission']['id']));?>
 		    			<p><?php echo $m['Mission']['description']; ?></p>
 		    		</div>
 	    		<?php endforeach; ?>
 
 	    		<!-- Button redirects to listing mission page -->
-	    		<div><button><?php echo $this->Html->link(__('See All Missions'), array('controller' => 'missions', 'action' => 'index'));?></button></div>
+	    		</br><button><?php echo $this->Html->link(__('See All Missions'), array('controller' => 'missions', 'action' => 'index'));?></button>
 
 			  </div>
 			</div>

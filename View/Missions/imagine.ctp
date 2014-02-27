@@ -17,7 +17,8 @@
 			<li class="has-dropdown">
 				<a href="#">Settings</a>
 				<ul class="dropdown">
-					<li><a href="<?php echo $this->Html->url(array('action' => 'logout')); ?>">Sign out</a></li>
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
+					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
 		</ul>
@@ -35,23 +36,19 @@
 	<div class="row evoke-max-width">
 	  <div class="small-11 small-centered columns">
 
-	  	<nav class="breadcrumbs dashboard_breadcrumbs">
+	  	<nav class="breadcrumbs">
 	  	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 		  <a class="unavailable" href="#"><?php echo __('Mission: ').$mission['Mission']['title']; ?></a>
 		  <?php echo $this->Html->link(__('Learn'), array('controller' => 'missions', 'action' => 'learn', $mission['Mission']['id']));?>
-		  <?php echo $this->Html->link(__('Act'), array('controller' => 'missions', 'action' => 'act', $mission['Mission']['id']));?>
 		  <a class="current" href="#"><?php echo __('Imagine');?></a>
 		</nav>
 
 	  	<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
-		<h2><?php echo __('Mission Brief'); ?></h2>
-		<h4><?php echo h($mission['Mission']['description']); ?></h4>
 
 		<h2><?php echo __('Quests: '); echo h($mission['Mission']['title']); ?></h2>
 
 		<?php foreach ($mission['Quest'] as $quest): ?>
-
-			<div class = "missionblock"><a href="" data-reveal-id="<?= $quest['id'] ?>" data-reveal><?php echo $quest['title'];?></a></div>
+			<a href="" data-reveal-id="<?= $quest['id'] ?>" data-reveal><?php echo $quest['title'];?></a></br></br>
 
 			<div id="<?= $quest['id'] ?>" class="reveal-modal small" data-reveal>
 			  <h2><?php echo $quest['title'];?></h2>
@@ -59,13 +56,11 @@
 			  <!-- <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
 			  <a class="close-reveal-modal">&#215;</a>
 			</div>
-
 		<?php endforeach; ?>
 
 		<div class="row">
 		  <div class="medium-9 columns">
 		  	<h2><?php echo __('Discussions: ').$mission['Mission']['title']; ?></h2>
-
 			<dl class="tabs" data-tab>
 			  <dd class="active"><a href="#panel2-1"><?php echo __('Most Voted');?></a></dd>
 			  <dd><a href="#panel2-2"><?php echo __('Most Recent');?></a></dd>
@@ -75,23 +70,22 @@
 			    <button><?php echo $this->Html->link(__('Add Discussion'), array('controller' => 'evidences', 'action' => 'add')); ?></button>
 			  </div>
 			  <div class="content" id="panel2-2">
-			    	<?php
-			    		foreach($evidences as $e):?>
-				    		<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
-				    		<p><?php echo substr($e['Evidence']['content'], 0, 200);?></p>
-				
-							<!-- Prints the issue related to each mission -->
-		    				<?php foreach($missionIssues as $mi): 
-			    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
-			    				<div class="row">
-								  <div class="large-8 columns">
-								  <?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));
-								  echo ' | '.$mi['Issue']['name'].' | '.date('F j, Y', strtotime($e['Evidence']['created'])); ?></div>
-								  <div class="large-4 columns"><?php echo count($e['Comment']);?></div>
-								</div> 
-			    				<?php break; endif;
-		    				endforeach;?>
-		    		
+		    	<?php
+		    		foreach($evidences as $e):?>
+			    		<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
+			    		<p><?php echo substr($e['Evidence']['content'], 0, 200);?></p>
+			
+						<!-- Prints the issue related to each mission -->
+	    				<?php foreach($missionIssues as $mi): 
+		    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
+		    				<div class="row">
+							  <div class="large-10 columns">
+							  <?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));
+							  echo ' | '.$mi['Issue']['name'].' | '.date('F j, Y', strtotime($e['Evidence']['created'])); ?></div>
+							  <div class="large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
+							</div> 
+		    				<?php break; endif;
+	    				endforeach;?>
 		    		<hr class="sexy_line" />
 		    	<?php endforeach; ?>
 				<button><?php echo $this->Html->link(__('Add Discussion'), array('controller' => 'evidences', 'action' => 'add')); ?></button>
@@ -100,7 +94,15 @@
 		  </div>
 		  <div class="medium-3 columns">
 		  	<h2><?php echo __('To-do list');?></h2>
-		  	<button><?php echo $this->Html->link(__('Go to Evoke ->'), array('controller' => 'missions', 'action' => 'evoke', $mission['Mission']['id']));?></button>
+		  	<ul>
+		  		<?php foreach ($mission['Quest'] as $quest): ?>
+					<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;<?php echo __('Quest: ').$quest['title'];?></li>
+				<?php endforeach; ?>
+		  		<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;Acitivty 1</li>
+		  		<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;Activity 2</li>
+		  		<li><i class="fa fa-square-o"></i>&nbsp;&nbsp;Activity 3</li>
+		  	</ul>
+		  	<button><?php echo $this->Html->link(__('Go to Act ->'), array('controller' => 'missions', 'action' => 'act', $mission['Mission']['id']));?></button>
 		  </div>
 		</div>
 

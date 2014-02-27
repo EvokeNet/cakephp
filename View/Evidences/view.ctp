@@ -1,9 +1,7 @@
 <?php  
-
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 	$comments_count = ' ('.count($comment). ') ';
-
 ?>
 
 <nav class="top-bar" data-topbar>
@@ -20,7 +18,8 @@
 			<li class="has-dropdown">
 				<a href="#">Settings</a>
 				<ul class="dropdown">
-					<li><a href="<?php echo $this->Html->url(array('action' => 'logout')); ?>">Sign out</a></li>
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
+					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
 		</ul>
@@ -35,7 +34,7 @@
 <?php $this->end(); ?>
 
 <section class="evoke margin top-2">
-	<nav class="breadcrumbs dashboard_breadcrumbs">
+	<nav class="breadcrumbs">
 	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 	  <a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>
 	  <?php echo $this->Html->link(__('Learn'), array('controller' => 'missions', 'action' => 'learn', $evidence['Mission']['id']));?>
@@ -43,9 +42,9 @@
 	  <a class="current" href="#"><?php echo $evidence['Evidence']['title'];?></a>
 	</nav>
 
-	<div class="row evidences">
-	  <div class="small-6 large-2 columns bio">
-	 	<?php echo $this->Html->link(__('Agent ').$evidence['User']['name'], array('controller' => 'users', 'action' => 'view', $evidence['User']['id']));?>
+	<div class="row evoke-max-width">
+	  <div class="small-6 large-2 columns">
+	 	<?php echo $this->Html->link(__('Agent ').$evidence['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']));?>
 	 	<p><?php echo $evidence['User']['biography'] ?></p>
 	 	<hr class="sexy_line" />
 	  </div>
@@ -54,34 +53,33 @@
 	  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
 	  	<p><?php echo h($evidence['Evidence']['content']); ?></p>
 	  	
-	  	<h1><?php echo __('Share a Thought').$comments_count; ?></h1>
+	  	<h2><?php echo __('Share a Thought').$comments_count; ?></h2>
 	  	<?php foreach ($comment as $c): ?>
-	  		<div class = "comment">
+	  		<div>
 				<tr>
-					<td>
-						<h5><?php echo (__('Agent ').$c['User']['name']); ?></h5>
-						<h6><?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h6>
-						<p><?php echo $c['Comment']['content']; ?></p>
-						<hr class="sexy_line" />
-					</td>
+				<td>
+					<h4><?php echo (__('Agent ').$c['User']['name']); ?></h4>
+					<h6><?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h6>
+					<p><?php echo $c['Comment']['content']; ?></p>
+					<hr class="sexy_line" />
+				</td>
 				</tr>
 			</div>
 		<?php endforeach; ?>
 	  </div>
 	  <div class="small-12 large-2 columns">
-
 	  	<div>
-			<div>
-				<div id="fb-root"></div>
-		  		<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div>
-		  	</div>
-
-		  	<div>
-		  		<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
-		  	</div>
-
-		  	<div><a href="#" data-reveal-id="myModalVote" data-reveal><button><?php echo __('Vote');?></button></a></div>
-		  	<div><a href="#" data-reveal-id="myModalComment" data-reveal><button><?php echo __('Comment').$comments_count;?></button></a></div>
+	  		<!-- Facebook share button -->			
+			<div id="fb-root"></div>
+	  		<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div></br>
+		  	
+		  	<!-- Google Plus share button -->
+		  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div></br>
+		  
+		  	<!-- Voting lightbox button -->
+		  	<a href="#" data-reveal-id="myModalVote" data-reveal><button><?php echo __('Vote');?></button></a></br>
+		  	<!-- Commenting lightbox button -->
+		  	<a href="#" data-reveal-id="myModalComment" data-reveal><button><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<?php echo __('Comment').$comments_count;?></button></a>
 		</div>
 	  </div>
 	</div>
@@ -97,9 +95,7 @@
 
 	<!-- Lightbox for commenting form -->
 	<div id="myModalComment" class="reveal-modal tiny" data-reveal>
-	  <?php 
-		echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $userid));
-	  ?>
+	  <?php echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $userid)); ?>
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>
 </section>

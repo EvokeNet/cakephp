@@ -6,7 +6,7 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><a href="#">Agent <?php echo explode(' ', $this->Session->read('Auth.User.User.name'))[0]; ?></a></h1>
+			<h1><?php echo __('Agent ').$username[0]; ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
