@@ -117,7 +117,9 @@
 </section>
 
 <script type="text/javascript">
-	var access_token = <?php echo $this->Session->read('access_token'); ?>
+	var ACCESS_TOKEN = <?php echo $this->Session->read('access_token'); ?>;
+	var CLIENT_ID = "<?php echo Configure::read('google_client_id'); ?>";
+	var FILE_ID = "<?php echo (!empty($file_id) ? $file_id : false); ?>";
 </script>
 <?php //echo $this->Html->script('/components/ckeditor/ckeditor', array('inline' => false)); ?>
 <?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>

@@ -1,32 +1,46 @@
-// $(document).ready(function() {
+var file;
+var groupNameTag = document.getElementById("groupname");
+var groupName = groupNameTag.textContent || groupNameTag.innerText;
 
-// 	// Start CKEditor
-// 	// CKEDITOR.disableAutoInline = true;
-// 	// CKEDITOR.replace('evokation', {
-// 	// 	customConfig: 'custom/ckeditor_config.js'
-// 	// });
+gapi.load("auth:client,drive-realtime,drive-share", createOrLoadDocument);
 
-// });
+function createOrLoadDocument() {
+	gapi.auth.setToken(ACCESS_TOKEN);
 
-// console.log(access_token);
-gapi.load("auth:client,drive-realtime,drive-share", initialize);
-
-function initialize() {
-	var fileId;
-	var groupName = document.getElementById("groupname");
-	
 	gapi.client.load('drive', 'v2', function() {
-		fileId = gapi.client.drive.files.insert({
-			'resource': {
-				mimeType: 'application/vnd.google-apps.drive-sdk',
-				title: 'Evokation - ' + groupName
-			}
-	    });
+
+		if (FILE_ID) {
+
+		} else {
+			gapi.client.drive.files.insert({
+				'resource': {
+					mimeType: 'text/html',
+					title: 'Evokation - ' + groupName
+				}
+		    }).execute(initialize);
+		}
+		
+	});
+}
+
+function initialize(file) {
+	gapi.client.load('drive', 'v2', function() {
+
+		gapi.drive.realtime.load(file.id, onFileLoaded, initializeModel);
+
 	});
 
-    gapi.client.load('drive', 'v2', function() {
-		gapi.drive.realtime.load(fileId, onFileLoaded, initializeModel);
-	});
+	// $.ajax({
+	// 	type: "POST",
+	// 	url: "",
+	// 	data: {},
+	// 	success: function() {
+
+	// 	},
+	// 	error: function() {
+			
+	// 	}
+	// });
 
 }
 
@@ -38,5 +52,10 @@ function initializeModel(model) {
 function onFileLoaded(doc) {
 	var text = doc.getModel().getRoot().get("text");
 	var evokation = document.getElementById("evokation");
-	gapi.drive.realtime.databinding.bindString(string, evokation);
+
+	gapi.client.load('drive', 'v2', function() {
+
+		gapi.drive.realtime.databinding.bindString(text, evokation);
+
+	});
 }
