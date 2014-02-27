@@ -74,7 +74,7 @@
 		</aside>
 
 		<div class="large-8 columns evoke">
-			<h1 class="evoke typeface strong"><small><?php echo __('Group'); ?> </small><?php echo $group['Group']['title']; ?></h1>
+			<h1 class="evoke typeface strong" id="groupname"><small><?php echo __('Group'); ?> </small><?php echo $group['Group']['title']; ?></h1>
 
 			<!-- THE EVOKATION PAGE -->
 			<!-- <button id="authorizeButton" class="button" disabled>You must authorize</button> -->

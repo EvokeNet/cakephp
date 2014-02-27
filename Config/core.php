@@ -216,8 +216,11 @@ Configure::write('Routing.prefixes', array('admin'));
  *
  */
 	Configure::write('Session', array(
-		'defaults' => 'php'
+		'defaults' => 'php',
+		'timeout' => 4320,
+		'cookie' => 'evoke'
 	));
+
 
 /**
  * A random string used in security hashing methods.
@@ -275,7 +278,7 @@ Configure::write('Routing.prefixes', array('admin'));
  * then the value of `Config.timezone` will be used. This feature allows you to set users' timezone just
  * once instead of passing it each time in function calls.
  */
-	//Configure::write('Config.timezone', 'Europe/Paris')
+	Configure::write('Config.timezone', 'America/Sao_Paulo');
 
 /**
  *
