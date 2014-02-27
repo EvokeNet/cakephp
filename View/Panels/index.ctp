@@ -1,4 +1,3 @@
-
 <?php
 	$this->extend('/Common/topbar');
 	$this->start('menu');
@@ -30,16 +29,17 @@
 	</section>
 </nav>
 
-<?php $this->end(); ?>
+<?php $this->end();?>
 
 <section class="evoke margin top-2">
-	<div class="row">
-		<div class="large-14 columns">
+	<div class="row evoke max-width">
+		<div class="large-12 columns">
 			<dl class="tabs" data-tab>
 				<dd class="active"><a href="#organizations">Organizations</a></dd>
 				<dd><a href="#missions">Missions</a></dd>
 				<dd><a href="#levels">Levels</a></dd>
 				<dd><a href="#badges">Badges</a></dd>
+				<dd><a href="#users">Users</a></dd>
 				<dd><a href="#estatistics">Estatistics</a></dd>
 			</dl>
 			<div class="tabs-content">
@@ -58,54 +58,60 @@
 						</table>
 					</p>
 				</div>
-				<div class="content" id="missions">
+				<div class="content large-12 columns" id="missions">
 										
-					<form id="filter" class="left">
+					<div class="large-3 columns filter">
 			  			<fieldset>
 			    			<legend>Filter</legend>
 			    			 <ul id="filters">
 			    			 	<?php foreach ($issues as $issue) { ?>
 							    	<li>
-							        	<input type="checkbox" checked="true" value="<?php echo $issue['Issue']['slug'];?>" id="filter-<?php echo $issue['Issue']['slug'];?>" />
-							        	<label for="filter-<?php echo $issue['Issue']['slug'];?>"><?php echo $issue['Issue']['name'];?></label>
+							        	<input type="checkbox" checked="true" value="issue_<?php echo $issue['Issue']['id'];?>" id="filter-issue_<?php echo $issue['Issue']['id'];?>" />
+							        	<label for="filter-issue_<?php echo $issue['Issue']['id'];?>"><?php echo $issue['Issue']['name'];?></label>
 							    	</li>
 							    <?php } ?>
 							</ul>
 
 						</fieldset>
-					</form>
+					</div>
 
-					<div class="right">
-						<p>
-							<ul class="button-group">
-				  				<li><?php echo $this->Html->Link('+ missions', array('controller' => 'missions', 'action' => 'add'), array( 'class' => 'button'));?></li>
-				  				<li><?php echo $this->Html->Link('+ issues', array('controller' => 'issues', 'action' => 'add'), array( 'class' => 'button'));?></li>
-				  			</ul>
+					<div class="large-6 columns filteredContent">
+						<ul class="button-group">
+				  			<li><?php echo $this->Html->Link('+ missions', array('controller' => 'missions', 'action' => 'add'), array( 'class' => 'button'));?></li>
+				  			<li><?php echo $this->Html->Link('+ issues', array('controller' => 'issues', 'action' => 'add'), array( 'class' => 'button'));?></li>
+				  		</ul>
+				  		
+				  		<?php foreach ($issues as $issue) { 
+				  			$issue_missions = $matrix[$issue['Issue']['name']];
 				  			
-				  			<?php foreach ($issues as $issue) { 
-				  				$issue_missions = $matrix[$issue['Issue']['name']];
-				  					
-				  			?>
-
-								<table class ="<?php echo $issue['Issue']['slug'];?>">
-									<thead>
-										<tr>
-											<th><?php echo $issue['Issue']['name']; ?></th>
-											<th><?php echo $this->Html->Link('edit', array('controller' => 'issues', 'action' => 'edit', $issue['Issue']['id']), array( 'class' => 'button small')) . $this->Form->PostLink('delete', array('controller' => 'issues', 'action' => 'delete', $issue['Issue']['id']), array( 'class' => 'button small alert')); ?></th> 
-										</tr>
-									</thead>
-									<tbody>
-										<?php foreach ($issue_missions as $mission) { ?>
-											<tr>
-												<td><?php echo $this->Html->Link($mission['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'])); ?></td>
-												<td><?php echo $this->Html->Link('edit', array('controller' => 'missions', 'action' => 'edit', $mission['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'missions', 'action' => 'delete', $mission['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
-											</tr>
-										<?php }	?>
-									</tbody>
-								</table>
-							<?php }?>
+				  		?>
+				  			<!-- colocar paginação -->
 							
-						</p>
+							<table class ="issue_<?php echo $issue['Issue']['id'];?> ">
+								<thead>
+									<tr>
+										<th><?php echo $issue['Issue']['name']; ?></th>
+										<th text-align="right"><?php echo $this->Html->Link('edit', array('controller' => 'issues', 'action' => 'edit', $issue['Issue']['id']), array( 'class' => 'button small')) . $this->Form->PostLink('delete', array('controller' => 'issues', 'action' => 'delete', $issue['Issue']['id']), array( 'class' => 'button small alert')); ?></th> 
+									</tr>
+								</thead>
+								<tbody>
+									<?php 
+										if(count($issue_missions) == 0){?>
+											<tr>
+												<td colspan='2'>No missions yet..</td>
+											</tr>
+										<?php }
+										else
+											foreach ($issue_missions as $mission) { ?>
+												<tr>
+													<td><?php echo $this->Html->Link($mission['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'])); ?></td>
+													<td><?php echo $this->Html->Link('edit', array('controller' => 'missions', 'action' => 'edit', $mission['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'missions', 'action' => 'delete', $mission['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
+												</tr>
+											<?php }	?>
+								</tbody>
+							</table>
+
+						<?php }?>	
 					</div>
 				</div>
 				<div class="content" id="levels">
@@ -124,6 +130,14 @@
 						</table>
 					</p>
 				</div>
+				<div class="content" id="users">
+					<!-- colocar paginação -->
+					<?php 
+						foreach ($users as $user) {
+							echo $user['User']['name'];
+						}
+					?>
+				</div>
 				<div class="content" id="estatistics">
 					<p>Some estatistics to view..</p>
 					<p><?php echo "Users: " . sizeof($users);?></p>
@@ -137,19 +151,16 @@
 	</div>
 </section>
 
-
-
-
-
+<!-- script de filtragem das issues -->
 <script>
-$("#filters :checkbox").click(function() {
-       <?php foreach ($issues as $issue) {
-       		echo "$('." . $issue['Issue']['slug'] . "').hide();";
-       };?>
-       $(".issue1").hide();
-       $("#filters :checkbox:checked").each(function() {
-           $("." + $(this).val()).show();
-       });
-    });
-    
+	$("#filters :checkbox").click(function() {
+	   	$("#filters :checkbox").each(function() {
+	       	if($(this).is(':checked')) {
+	            $("." + $(this).val()).fadeTo("slow", 1);
+			} else {
+	            //$("." + $(this).val()).fadeTo("slow", 0);
+	            $("." + $(this).val()).hide();
+	        }
+	 	});
+	});
 </script>
