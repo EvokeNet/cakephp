@@ -29,6 +29,11 @@ class Role extends AppModel {
 	function parentNode() {
 	    return null;
 	}
+
+
+	public function getRoles(){
+		return $this->find('all');
+	}
 /**
  * hasMany associations
  *

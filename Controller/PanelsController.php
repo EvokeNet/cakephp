@@ -26,8 +26,14 @@ class PanelsController extends AppController {
 		//carrega as badges
 		$this->badges();
 
-		//carrega os users.. (para colocar nas estatisticas)
-		$this->users();
+		//carrega os roles
+		$roles = $this->roles();
+
+		//carrega os users.. 
+		$users = $this->users();
+
+		$this->usersRole($roles, $users);
+
 
 		//carrega os groups.. (para colocar nas estatisticas)
 		$this->groups();
@@ -50,12 +56,43 @@ class PanelsController extends AppController {
 		$this->set('groups', $groups);
 	}
 
+	public function roles(){
+		//carregando roles
+		$this->loadModel('Role');
+		$roles = $this->Role->getRoles();
+		$this->set('roles', $roles);
+		return $roles;
+	}
+
 	public function users(){
 		//carregando users
 		$this->loadModel('User');
 		$users = $this->User->getUsers();
 		$this->set('users', $users);
+		return $users;
 	}
+
+
+	public function usersRole($roles, $users){
+			
+		$matrixU = null;	
+		$usersR = null;
+		
+		foreach ($roles as $role) {
+			$k = 0;
+			foreach ($users as $user) {
+				if($user['User']['role_id']==$role['Role']['id']){
+					$matrixU[$role['Role']['id']][$k] = $user;
+					$k++;	
+				}
+			}	
+		}
+		
+		
+		$this->set('matrixU', $matrixU);
+
+	}
+
 
 	public function missionsIssues($issues){
 		//cria matriz de issue X missions
