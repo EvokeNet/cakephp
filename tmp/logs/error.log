@@ -2557,3 +2557,12 @@ Stack Trace:
 #7 /srv/www/evoke2014/Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Dispatcher.php(151): Dispatcher->_getController(Object(CakeRequest), Object(CakeResponse))
 #8 /srv/www/evoke2014/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #9 {main}
+2014-02-28 16:59:04 Error: [MissingControllerException] Controller class WebrootController could not be found.
+Exception Attributes: array (
+  'class' => 'WebrootController',
+  'plugin' => NULL,
+)
+Request URL: /evoke/webroot/components/jquery/jquery.min.js
+Stack Trace:
+#0 /home/msoledade/www/evoke/webroot/index.php(99): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
