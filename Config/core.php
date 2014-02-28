@@ -116,7 +116,7 @@
  * Web path to the CSS files directory under webroot.
  * If not set defaults to 'css/'
  */
-	//Configure::write('App.cssBaseUrl', 'css/');
+	Configure::write('App.cssBaseUrl', 'css/');
 
 /**
  * Web path to the js files directory under webroot.
@@ -140,7 +140,7 @@
  *	`manager_index()` and `/manager/controller/index`
  *
  */
-	//Configure::write('Routing.prefixes', array('admin'));
+	Configure::write('Routing.prefixes', array('admin'));
 
 /**
  * Turn off all caching application-wide.
