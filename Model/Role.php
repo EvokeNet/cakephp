@@ -12,7 +12,7 @@ class Role extends AppModel {
  *
  * @var mixed False or table name
  */
-	public $useTable = 'role';
+	public $useTable = 'roles';
 
 /**
  * Display field
