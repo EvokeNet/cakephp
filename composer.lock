@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "5ae271b34c27b300acef2d0898003ed5",
+    "hash": "bfa9798afebbb54e05be5b6b3c08b0e0",
     "packages": [
         {
             "name": "cakephp/debug_kit",
@@ -56,16 +56,16 @@
         },
         {
             "name": "composer/installers",
-            "version": "v1.0.11",
+            "version": "v1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "9a1fd4e191beaa5cab79c05f923d8bcdd01b4e94"
+                "reference": "4127333b03e8b4c08d081958548aae5419d1a2fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/9a1fd4e191beaa5cab79c05f923d8bcdd01b4e94",
-                "reference": "9a1fd4e191beaa5cab79c05f923d8bcdd01b4e94",
+                "url": "https://api.github.com/repos/composer/installers/zipball/4127333b03e8b4c08d081958548aae5419d1a2fa",
+                "reference": "4127333b03e8b4c08d081958548aae5419d1a2fa",
                 "shasum": ""
             },
             "replace": {
@@ -106,6 +106,7 @@
                 "Hurad",
                 "MODX Evo",
                 "OXID",
+                "WolfCMS",
                 "agl",
                 "annotatecms",
                 "cakephp",
@@ -135,7 +136,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2014-02-12 21:21:55"
+            "time": "2014-02-24 04:21:34"
         },
         {
             "name": "facebook/php-sdk",
@@ -385,6 +386,47 @@
             "time": "2013-09-20 09:33:52"
         },
         {
+            "name": "markstory/acl_extras",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/markstory/acl_extras.git",
+                "reference": "f136d970e347c8dda77e2fc278727beafec7aaf9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/markstory/acl_extras/zipball/f136d970e347c8dda77e2fc278727beafec7aaf9",
+                "reference": "f136d970e347c8dda77e2fc278727beafec7aaf9",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "php": ">=5.2.17"
+            },
+            "type": "cakephp-plugin",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Story",
+                    "homepage": "http://mark-story.com",
+                    "role": "Author"
+                }
+            ],
+            "description": "Additional tools for managing DB ACL in CakePHP applications.",
+            "homepage": "https://github.com/markstory/acl_extras",
+            "keywords": [
+                "acl",
+                "cakephp"
+            ],
+            "support": {
+                "issues": "https://github.com/markstory/acl_extras/issues",
+                "source": "https://github.com/markstory/acl_extras"
+            },
+            "time": "2013-10-26 00:34:46"
+        },
+        {
             "name": "pear-pear.cakephp.org/CakePHP",
             "version": "2.4.5",
             "dist": {
@@ -419,7 +461,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "google/apiclient": 10
+        "google/apiclient": 10,
+        "markstory/acl_extras": 20
     },
     "platform": [
 
