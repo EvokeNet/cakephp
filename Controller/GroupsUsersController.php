@@ -96,8 +96,63 @@ class GroupsUsersController extends AppController {
 		}
 
 		$group = $this->GroupsUser->getGroupAndUsers($group_id);
-		$this->set('group', $group);
 
+		$this->loadModel('Evokation');
+		$this->Evokation->recursive = -1;
+
+		$evokation = $this->Evokation->find('first', array(
+			'conditions' => array(
+				'Evokation.group_id' => $group_id
+			)
+		));
+
+		if(!empty($evokation)) {
+			$this->request->data = $evokation;
+		}
+
+		$this->set(compact('group'));
+
+	}
+
+/**
+ * storeFileId method
+ *
+ * AJAX call to store the fileID from Google Drive in the Database and
+ * use it in further calls in document updating.
+ *
+ * @return boolean TRUE if succeeded, FALSE otherwise
+ */
+	public function storeFileInfo() {
+		if ($this->request->is('ajax')) {
+
+			$this->loadModel('Evokation');
+
+			if($this->request->data['id']) {
+				$this->Evokation->read($this->request->data['id']);
+				$this->Evokation->set('title', $this->request->data['title']);
+				$this->Evokation->set('abstract', $this->request->data['abstract']);
+				
+				if ($this->Evokation->save()) {
+					return true;
+				} else {
+					return false;
+				}
+
+			} else {
+				$this->Evokation->create();
+				$this->request->data['Evokation']['gdrive_file_id'] = $this->request->data['gdrive_file_id'];
+				$this->request->data['Evokation']['title'] = $this->request->data['title'];
+				$this->request->data['Evokation']['group_id'] = $this->request->data['group_id'];
+				$this->request->data['Evokation']['abstract'] = $this->request->data['abstract'];
+
+				if($this->Evokation->save($this->request->data)) {
+					return $this->Evokation->id;
+				} else {
+					return false;
+				}
+
+			}
+		}
 	}
 
 /**
