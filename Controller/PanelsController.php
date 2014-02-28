@@ -10,12 +10,6 @@ class PanelsController extends AppController {
 	public $components = array('Paginator');
 
 
-	public function beforeFilter() {
-        parent::beforeFilter();
-        $this->Auth->deny();
-
-    }
-
 	public function index(){
 		//carrega infos do usuário
 		$this->loadInfo();
