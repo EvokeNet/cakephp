@@ -131,6 +131,7 @@ Configure::write('Routing.prefixes', array('admin'));
  * the cake shell command: cake schema create Sessions
  *
  */
+
 	Configure::write('Session.save', 'php');
 
 /**
@@ -177,7 +178,7 @@ Configure::write('Routing.prefixes', array('admin'));
  * Session time out time (in seconds).
  * Actual value depends on 'Security.level' setting.
  */
-	Configure::write('Session.timeout', '120');
+	Configure::write('Session.timeout', '259200');
 
 /**
  * If set to false, sessions are not automatically started.
@@ -204,6 +205,7 @@ Configure::write('Routing.prefixes', array('admin'));
  * 'Security.level' is set to 'high'.
  */
 	Configure::write('Security.level', 'medium');
+
 
 /**
  * A random string used in security hashing methods.
@@ -260,7 +262,7 @@ Configure::write('Routing.prefixes', array('admin'));
  * then the value of `Config.timezone` will be used. This feature allows you to set users' timezone just
  * once instead of passing it each time in function calls.
  */
-	//Configure::write('Config.timezone', 'Europe/Paris')
+	Configure::write('Config.timezone', 'America/Sao_Paulo');
 
 /**
  *

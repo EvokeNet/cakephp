@@ -74,12 +74,32 @@
 		</aside>
 
 		<div class="large-8 columns evoke">
-			<h1 class="evoke typeface strong"><small><?php echo __('Group'); ?> </small><?php echo $group['Group']['title']; ?></h1>
+			<h1 class="evoke typeface strong" id="groupname"><small><?php echo __('Group'); ?> </small><?php echo $group['Group']['title']; ?></h1>
 
-			<!-- THE EVOKATION PAGE -->
-			<!-- <button id="authorizeButton" class="button" disabled>You must authorize</button> -->
+			<!-- The Evokation project, with data from de DB and from Google Drive -->
+			<?php
+				// The field Evokation.id will exist after the project is created
+				echo $this->Form->input('Evokation.id', array(
+					'id' => 'evokation_id'
+				));
+				echo $this->Form->input('Group.id', array(
+					'id' => 'evokation_group',
+					'value' => $group['Group']['id']
+				));
+				echo $this->Form->input('Evokation.title', array(
+					'label' => '',
+					'id' => 'evokation_title',
+					'placeholder' => __('Your Evokation title')
+				));
+				echo $this->Form->input('Evokation.abstract', array(
+					'label' => '',
+					'id' => 'evokation_abstract',
+					'placeholder' => __('Your Evokation abstract')
+				));
+			 ?>
+
 			<textarea id="evokation" class="evoke project page"></textarea>
-
+			<!-- End of the Evokation page -->
 
 		</div>
 
@@ -92,7 +112,7 @@
 					<?php endforeach ?>
 				</ul>
 
-				<button class="button expand"><?php echo __('Save Evokation Draft'); ?></button>
+				<button class="button expand" id="evokation_draft_button"><?php echo __('Save Evokation Draft'); ?></button>
 				<button class="button expand disabled"><?php echo __('Send Final Evokation'); ?></button>
 
 				<h6 class="subheader"><?php echo __('RELATED DOCUMENTS'); ?></h6>
@@ -117,7 +137,10 @@
 </section>
 
 <script type="text/javascript">
-	var access_token = <?php echo $this->Session->read('access_token'); ?>
+	var WEBROOT  = <?php echo $this->webroot; ?>;
+	var ACCESS_TOKEN = <?php echo $this->Session->read('access_token'); ?>;
+	var CLIENT_ID = "<?php echo Configure::read('google_client_id'); ?>";
+	var FILE_ID = "<?php echo (!empty($evokation['Evokation']['gdrive_file_id']) ? $evokation['Evokation']['gdrive_file_id'] : false); ?>";
 </script>
 <?php //echo $this->Html->script('/components/ckeditor/ckeditor', array('inline' => false)); ?>
 <?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
