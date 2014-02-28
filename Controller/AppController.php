@@ -45,6 +45,11 @@ class AppController extends Controller {
 	public function beforeFilter() {
         $this->Auth->allow('add', 'fb_login', 'index', 'view');
         
+            //Configure AuthComponent
+        //$this->Auth->authorize = 'actions';
+        //$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
+        //$this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
+        //$this->Auth->loginRedirect = array('controller' => 'posts', 'action' => 'add');
     }
 
 }

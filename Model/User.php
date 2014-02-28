@@ -45,6 +45,7 @@ class User extends AppModel {
         ),
     );
 
+    
     var $actsAs = array('Acl' => array('requester'));
  
 	function parentNode() {

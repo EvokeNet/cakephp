@@ -60,7 +60,7 @@
 				</div>
 				<div class="content large-12 columns" id="missions">
 										
-					<div class="large-3 columns filter">
+					<div class="large-4 columns filter">
 			  			<fieldset>
 			    			<legend>Issues</legend>
 			    			 <ul id="filters">
@@ -75,7 +75,7 @@
 						</fieldset>
 					</div>
 
-					<div class="large-6 columns filteredContent">
+					<div class="large-5 columns filteredContent">
 						<ul class="button-group">
 				  			<li><?php echo $this->Html->Link('+ missions', array('controller' => 'missions', 'action' => 'add'), array( 'class' => 'button'));?></li>
 				  			<li><?php echo $this->Html->Link('+ issues', array('controller' => 'issues', 'action' => 'add'), array( 'class' => 'button'));?></li>
