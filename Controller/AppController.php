@@ -34,7 +34,8 @@ class AppController extends Controller {
             'loginRedirect' => array('controller' => 'users', 'action' => 'dashboard'),
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
         ),
-        'DebugKit.Toolbar'
+        'DebugKit.Toolbar',
+        'Acl'
     );
 
 /**
@@ -45,6 +46,8 @@ class AppController extends Controller {
 	public function beforeFilter() {
         $this->Auth->allow('add', 'fb_login', 'index', 'view');
         
+        $cuser = $this->Auth->user();
+        //$this->set("cuser",$cuser);
             //Configure AuthComponent
         //$this->Auth->authorize = 'actions';
         //$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');

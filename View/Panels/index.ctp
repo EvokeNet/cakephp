@@ -1,4 +1,8 @@
 <?php
+	echo $teste;
+	echo $ruser;
+
+
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 ?>
