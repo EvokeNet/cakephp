@@ -123,12 +123,16 @@ class GroupsUsersController extends AppController {
  * @return boolean TRUE if succeeded, FALSE otherwise
  */
 	public function storeFileInfo() {
+		$this->autoRender = false;
+
 		if ($this->request->is('ajax')) {
 
 			$this->loadModel('Evokation');
 
-			if($this->request->data['id']) {
-				$this->Evokation->read($this->request->data['id']);
+			if(isset($this->request->data['id'])) {
+				$ev = $this->Evokation->read(null, $this->request->data['id']);
+				debug($this->request->data['id']);
+				die();
 				$this->Evokation->set('title', $this->request->data['title']);
 				$this->Evokation->set('abstract', $this->request->data['abstract']);
 				
