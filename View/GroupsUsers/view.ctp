@@ -140,9 +140,18 @@
 	var WEBROOT  = <?php echo $this->webroot; ?>;
 	var ACCESS_TOKEN = <?php echo $this->Session->read('access_token'); ?>;
 	var CLIENT_ID = "<?php echo Configure::read('google_client_id'); ?>";
-	var FILE_ID = "<?php echo (!empty($evokation['Evokation']['gdrive_file_id']) ? $evokation['Evokation']['gdrive_file_id'] : false); ?>";
 </script>
-<?php //echo $this->Html->script('/components/ckeditor/ckeditor', array('inline' => false)); ?>
+<?php if (!empty($this->request->data['Evokation'])): ?>
+	<script type="text/javascript">
+		var FILE_ID = "<?php echo $this->request->data['Evokation']['gdrive_file_id']; ?>";
+	</script>
+<?php else: ?>
+	<script type="text/javascript">
+		var FILE_ID = false;
+	</script>
+<?php endif; ?>
+
+<?php echo $this->Html->script('/components/ckeditor/ckeditor', array('inline' => false)); ?>
 <?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('realtime-client-utils', array('inline' => false)); ?>
 <?php echo $this->Html->script('evokation', array('inline' => false)); ?>

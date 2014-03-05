@@ -127,12 +127,10 @@ class GroupsUsersController extends AppController {
 
 		if ($this->request->is('ajax')) {
 
-			$this->loadModel('Evokation');
-
 			if(isset($this->request->data['id'])) {
-				$ev = $this->Evokation->read(null, $this->request->data['id']);
-				debug($this->request->data['id']);
-				die();
+
+				$this->loadModel('Evokation');
+				$this->Evokation->read(null, $this->request->data['id']);
 				$this->Evokation->set('title', $this->request->data['title']);
 				$this->Evokation->set('abstract', $this->request->data['abstract']);
 				
@@ -143,6 +141,7 @@ class GroupsUsersController extends AppController {
 				}
 
 			} else {
+				$this->loadModel('Evokation');
 				$this->Evokation->create();
 				$this->request->data['Evokation']['gdrive_file_id'] = $this->request->data['gdrive_file_id'];
 				$this->request->data['Evokation']['title'] = $this->request->data['title'];
