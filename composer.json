@@ -4,6 +4,10 @@
         {
             "type": "pear",
             "url": "http://pear.cakephp.org"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/markstory/acl_extras"
         }
     ],
     "require": {
@@ -11,7 +15,8 @@
         "cakephp/debug_kit": "2.2.*",
         "josegonzalez/cakephp-upload": "1.0.0",
         "facebook/php-sdk": "v3.2.3",
-        "google/apiclient": "1.0.3-beta"
+        "google/apiclient": "1.0.3-beta",
+        "markstory/acl_extras": "dev-master"
     },
     "config": {
         "vendor-dir": "Vendor/"

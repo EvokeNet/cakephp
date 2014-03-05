@@ -11,6 +11,17 @@ class PanelsController extends AppController {
 
 
 	public function index(){
+		//teste
+
+		$ruser = $this->Auth->user('role_id');//precisa ser arrumado, está causando o redirecionamento automatico para a pagina panels
+
+		//para debug 
+     	$this->set("ruser",$ruser);
+
+     	//verificando a permissão do usuário, coloquei na veriavel para debug
+		$this->set("teste",$this->Acl->check(array('model' => 'Role', 'foreign_key' => $ruser), 'controllers/Panels'));	
+     	
+
 		//carrega infos do usuário
 		$this->loadInfo();
 
@@ -26,8 +37,14 @@ class PanelsController extends AppController {
 		//carrega as badges
 		$this->badges();
 
-		//carrega os users.. (para colocar nas estatisticas)
-		$this->users();
+		//carrega os roles
+		$roles = $this->roles();
+
+		//carrega os users.. 
+		$users = $this->users();
+
+		$this->usersRole($roles, $users);
+
 
 		//carrega os groups.. (para colocar nas estatisticas)
 		$this->groups();
@@ -50,12 +67,43 @@ class PanelsController extends AppController {
 		$this->set('groups', $groups);
 	}
 
+	public function roles(){
+		//carregando roles
+		$this->loadModel('Role');
+		$roles = $this->Role->getRoles();
+		$this->set('roles', $roles);
+		return $roles;
+	}
+
 	public function users(){
 		//carregando users
 		$this->loadModel('User');
 		$users = $this->User->getUsers();
 		$this->set('users', $users);
+		return $users;
 	}
+
+
+	public function usersRole($roles, $users){
+			
+		$matrixU = null;	
+		$usersR = null;
+		
+		foreach ($roles as $role) {
+			$k = 0;
+			foreach ($users as $user) {
+				if($user['User']['role_id']==$role['Role']['id']){
+					$matrixU[$role['Role']['id']][$k] = $user;
+					$k++;	
+				}
+			}	
+		}
+		
+		
+		$this->set('matrixU', $matrixU);
+
+	}
+
 
 	public function missionsIssues($issues){
 		//cria matriz de issue X missions

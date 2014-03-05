@@ -3,6 +3,7 @@ App::uses('AppModel', 'Model');
 /**
  * User Model
  *
+ * @property Role $Role
  * @property Comment $Comment
  * @property Evidence $Evidence
  * @property Point $Point
@@ -21,16 +22,16 @@ class User extends AppModel {
 	public $displayField = 'name';
 
 
+
 	public function getUsers() {
 		return $this->find('all');
 	}
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	public $name = 'User';
 
     public $validate = array(
-        'login' => array(
+        'username' => array(
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'A username is required'
@@ -43,6 +44,24 @@ class User extends AppModel {
             )
         ),
     );
+
+    
+    var $actsAs = array('Acl' => array('requester'));
+ 
+	function parentNode() {
+	    if (!$this->id && empty($this->data)) {
+	        return null;
+	    }
+	    $data = $this->data;
+	    if (empty($this->data)) {
+	        $data = $this->read();
+	    }
+	    if (!$data['User']['role_id']) {
+	        return null;
+	    } else {
+	        return array('Role' => array('id' => $data['User']['role_id']));
+	    }
+	}
 
 
  /**
@@ -60,7 +79,24 @@ class User extends AppModel {
 	function hashPasswords($data) {
         return Security::hash($data,'md5',false);
     }
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
+
+
+/**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Role' => array(
+			'className' => 'Role',
+			'foreignKey' => 'role_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 
 /**
  * hasMany associations
@@ -109,6 +145,19 @@ class User extends AppModel {
 		),
 		'UserBadge' => array(
 			'className' => 'UserBadge',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'UserIssue' => array(
+			'className' => 'UserIssue',
 			'foreignKey' => 'user_id',
 			'dependent' => false,
 			'conditions' => '',

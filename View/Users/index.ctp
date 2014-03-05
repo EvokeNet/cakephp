@@ -7,7 +7,7 @@
 			<th><?php echo $this->Paginator->sort('birthdate'); ?></th>
 			<th><?php echo $this->Paginator->sort('sex'); ?></th>
 			<th><?php echo $this->Paginator->sort('biography'); ?></th>
-			<th><?php echo $this->Paginator->sort('login'); ?></th>
+			<th><?php echo $this->Paginator->sort('username'); ?></th>
 			<th><?php echo $this->Paginator->sort('password'); ?></th>
 			<th><?php echo $this->Paginator->sort('facebook'); ?></th>
 			<th><?php echo $this->Paginator->sort('twitter'); ?></th>
@@ -16,6 +16,7 @@
 			<th><?php echo $this->Paginator->sort('blog'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
+			<th><?php echo $this->Paginator->sort('role'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($users as $user): ?>
@@ -25,7 +26,7 @@
 		<td><?php echo h($user['User']['birthdate']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['sex']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['biography']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['login']); ?>&nbsp;</td>
+		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['facebook']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['twitter']); ?>&nbsp;</td>
@@ -34,6 +35,7 @@
 		<td><?php echo h($user['User']['blog']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
+		<td><?php echo h($user['User']['role_id']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>

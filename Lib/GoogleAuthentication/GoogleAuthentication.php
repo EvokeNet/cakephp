@@ -23,7 +23,7 @@ class GoogleAuthentication {
         $client->setClientId($this->CLIENT_ID);
         $client->setClientSecret($this->CLIENT_SECRET);
         $client->setDeveloperKey($this->API_KEY);
-        $client->setAccessType('offline');
+        // $client->setAccessType('offline');
         $client->setApprovalPrompt('force');
         $client->setRedirectUri('http://localhost/evoke/groups_users/view/3');
 
@@ -37,7 +37,8 @@ class GoogleAuthentication {
         if(!empty($access_token)) {
             $client->setAccessToken($access_token);
             if ($client->isAccessTokenExpired()) {
-                $token = $client->refreshToken($refreshToken);
+                $client->refreshToken(json_decode($refresh_token)->refresh_token);
+                $token = $client->getAccessToken();
                 $client->setAccessToken($token);
                 return $token;
             } else {

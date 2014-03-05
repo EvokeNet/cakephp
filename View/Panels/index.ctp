@@ -1,4 +1,8 @@
 <?php
+	echo $teste;
+	echo $ruser;
+
+
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 ?>
@@ -60,9 +64,9 @@
 				</div>
 				<div class="content large-12 columns" id="missions">
 										
-					<div class="large-3 columns filter">
+					<div class="large-4 columns filter">
 			  			<fieldset>
-			    			<legend>Filter</legend>
+			    			<legend>Issues</legend>
 			    			 <ul id="filters">
 			    			 	<?php foreach ($issues as $issue) { ?>
 							    	<li>
@@ -75,7 +79,7 @@
 						</fieldset>
 					</div>
 
-					<div class="large-6 columns filteredContent">
+					<div class="large-5 columns filteredContent">
 						<ul class="button-group">
 				  			<li><?php echo $this->Html->Link('+ missions', array('controller' => 'missions', 'action' => 'add'), array( 'class' => 'button'));?></li>
 				  			<li><?php echo $this->Html->Link('+ issues', array('controller' => 'issues', 'action' => 'add'), array( 'class' => 'button'));?></li>
@@ -131,12 +135,56 @@
 					</p>
 				</div>
 				<div class="content" id="users">
-					<!-- colocar paginação -->
-					<?php 
-						foreach ($users as $user) {
-							echo $user['User']['name'];
-						}
-					?>
+					
+					<div class="large-3 columns filter">
+			  			<fieldset>
+			    			<legend>Roles</legend>
+			    			 <ul id="filters2">
+			    			 	<?php foreach ($roles as $role) { ?>
+							    	<li>
+							        	<input type="checkbox" checked="true" value="role_<?php echo $role['Role']['id'];?>" id="filter-role_<?php echo $role['Role']['id'];?>" />
+							        	<label for="filter-role_<?php echo $role['Role']['id'];?>"><?php echo $role['Role']['name'];?></label>
+							    	</li>
+							    <?php } ?>
+							</ul>
+
+						</fieldset>
+					</div>
+
+					<div class="large-6 columns filteredContent">
+						<?php foreach ($roles as $role) { 
+				  			
+				  		?>
+				  			<!-- colocar paginação -->
+							
+							<table class ="role_<?php echo $role['Role']['id'];?> ">
+								<thead>
+									<tr>
+										<th><?php echo $role['Role']['name']; ?></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php 
+										if(count($matrixU[$role['Role']['id']]) == 0){?>
+											<tr>
+												<td colspan='2'>No users playing this yet..</td>
+											</tr>
+										<?php }
+										else 
+											for ($i = 0; $i < count($matrixU[$role['Role']['id']]); $i++) {
+											 	
+											 ?>
+												<tr>
+													<td><?php echo $matrixU[$role['Role']['id']][$i]['User']['name'];?></td>
+												</tr>
+											<?php }	?>
+								</tbody>
+							</table>
+
+						<?php }?>	
+					</div>
+					
+
 				</div>
 				<div class="content" id="estatistics">
 					<p>Some estatistics to view..</p>
@@ -155,6 +203,17 @@
 <script>
 	$("#filters :checkbox").click(function() {
 	   	$("#filters :checkbox").each(function() {
+	       	if($(this).is(':checked')) {
+	            $("." + $(this).val()).fadeTo("slow", 1);
+			} else {
+	            //$("." + $(this).val()).fadeTo("slow", 0);
+	            $("." + $(this).val()).hide();
+	        }
+	 	});
+	});
+
+	$("#filters2 :checkbox").click(function() {
+	   	$("#filters2 :checkbox").each(function() {
 	       	if($(this).is(':checked')) {
 	            $("." + $(this).val()).fadeTo("slow", 1);
 			} else {
