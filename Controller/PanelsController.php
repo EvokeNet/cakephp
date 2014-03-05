@@ -10,7 +10,7 @@ class PanelsController extends AppController {
 	public $components = array('Paginator');
 
 
-	public function index(){
+	public function index() {
 		//teste
 
 		$ruser = $this->Auth->user('role_id');//precisa ser arrumado, está causando o redirecionamento automatico para a pagina panels
