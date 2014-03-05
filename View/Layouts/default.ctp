@@ -30,6 +30,7 @@ $title = __('Evoke Network');
 		echo $this->Html->script('facebook_share');
 		echo $this->Html->script('google_share');
 		echo $this->Html->script('foundation_tabs');
+		//echo $this->Html->script('issue_filter');
 
 		echo $this->Html->css('/components/foundation/css/foundation.min');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');

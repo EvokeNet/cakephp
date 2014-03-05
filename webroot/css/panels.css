@@ -1,0 +1,15 @@
+table, th, td{
+	border: none;
+	vertical-align: middle;
+	background-color: #fff;
+}
+.filter{
+	margin-left: 1em;
+}
+
+.filteredContent{
+	margin-top: 1em;
+	float: right;
+
+}
+
