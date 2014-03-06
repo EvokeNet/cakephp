@@ -98,7 +98,7 @@
 				));
 			 ?>
 
-			<textarea id="evokation" class="evoke project page"></textarea>
+			<textarea id="evokation" class="evoke project page" contenteditable="true"></textarea>
 			<!-- End of the Evokation page -->
 
 		</div>
@@ -153,5 +153,4 @@
 
 <?php echo $this->Html->script('/components/ckeditor/ckeditor', array('inline' => false)); ?>
 <?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
-<?php echo $this->Html->script('realtime-client-utils', array('inline' => false)); ?>
 <?php echo $this->Html->script('evokation', array('inline' => false)); ?>

@@ -4,16 +4,6 @@ var groupName = groupNameTag.textContent || groupNameTag.innerText;
 
 gapi.load("auth:client,drive-realtime,drive-share", createOrLoadDocument);
 
-CKEDITOR.replace('evokation', {
-	toolbar: 'Basic',
-	uiColor: '#ffffff',
-	on: {
-		change: function() {
-			$("#evokation").val(CKEDITOR.instances.evokation.getData());
-		}
-	}
-});
-
 function createOrLoadDocument() {
 	gapi.auth.setToken(ACCESS_TOKEN);
 
@@ -73,10 +63,15 @@ function onFileLoaded(doc) {
 	gapi.client.load('drive', 'v2', function() {
 		gapi.drive.realtime.databinding.bindString(text, evokation);
 
-		CKEDITOR.instances.evokation.setData(text);
+		loadCKEDITOR(text);
 
-		var updateEditor = function(e) {
-			CKEDITOR.instances.evokation.setData(text);
+		var updateEditor = function(event) {
+			var editor = CKEDITOR.instances.evokation;
+			if(!event.isLocal) {
+				var ranges = editor.getSelection().getRanges();
+				editor.setData(text.getText());
+				editor.getSelection().selectRanges(ranges);
+			}
 		};
 
 		text.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, updateEditor);
@@ -84,6 +79,20 @@ function onFileLoaded(doc) {
 
 	});
 
+}
+
+function loadCKEDITOR(text) {
+	CKEDITOR.replace('evokation', {
+		toolbar: 'Basic',
+		uiColor: '#ffffff',
+		on: {
+			change: function() {
+				text.setText(CKEDITOR.instances.evokation.getData());
+			}
+		}
+	});
+
+	CKEDITOR.instances.evokation.setData(text.getText());
 }
 
 /**
