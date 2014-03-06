@@ -3,7 +3,6 @@ App::uses('AppModel', 'Model');
 /**
  * Mission Model
  *
- * @property Group $Group
  * @property Evidence $Evidence
  * @property MissionIssue $MissionIssue
  * @property Quest $Quest

@@ -136,7 +136,7 @@
 					<p><?php echo "Users: " . sizeof($users);?></p>
 					<p><?php echo "Groups: " . sizeof($groups);?></p>
 					<p><?php echo "Organizations: " . sizeof($organizations);?></p>
-					<p><?php echo "Badges won: "."/".sizeof($badges);?></p>
+					<p><?php echo "Badges: ".sizeof($badges);?></p>
 					<p>AND MORE!</p>
 				</div>
 			</div>
@@ -144,7 +144,7 @@
 	</div>
 </section>
 
-<!-- issues & roles filtering script -->
+<!-- issues & roles' filtering script -->
 <script type="text/javascript">
 	$("#filters :checkbox").click(function() {
 	   	$("#filters :checkbox").each(function() {
