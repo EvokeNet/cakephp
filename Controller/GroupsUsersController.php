@@ -96,6 +96,11 @@ class GroupsUsersController extends AppController {
 		}
 
 		$group = $this->GroupsUser->getGroupAndUsers($group_id);
+		$users = $this->GroupsUser->find('all', array(
+			'conditions' => array(
+				'GroupsUser.group_id' => $group_id
+			)
+		));
 
 		$this->loadModel('Evokation');
 		$this->Evokation->recursive = -1;
@@ -110,7 +115,7 @@ class GroupsUsersController extends AppController {
 			$this->request->data = $evokation;
 		}
 
-		$this->set(compact('group'));
+		$this->set(compact('group', 'users'));
 
 	}
 

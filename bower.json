@@ -4,6 +4,6 @@
     "foundation": "5.0.3",
     "font-awesome": "v4.0.3",
     "mrmrs-colors": "master",
-    "ckeditor": "#stable/standard"
+    "medium-editor": "master"
   }
 }
