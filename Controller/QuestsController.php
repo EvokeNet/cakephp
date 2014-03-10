@@ -5,6 +5,7 @@ App::uses('AppController', 'Controller');
  *
  * @property Quest $Quest
  * @property PaginatorComponent $Paginator
+ * @property SessionComponent $Session
  */
 class QuestsController extends AppController {
 
@@ -13,7 +14,7 @@ class QuestsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Session');
 
 /**
  * index method
@@ -56,7 +57,8 @@ class QuestsController extends AppController {
 			}
 		}
 		$missions = $this->Quest->Mission->find('list');
-		$this->set(compact('missions'));
+		$phases = $this->Quest->Phase->find('list');
+		$this->set(compact('missions', 'phases'));
 	}
 
 /**
@@ -82,7 +84,8 @@ class QuestsController extends AppController {
 			$this->request->data = $this->Quest->find('first', $options);
 		}
 		$missions = $this->Quest->Mission->find('list');
-		$this->set(compact('missions'));
+		$phases = $this->Quest->Phase->find('list');
+		$this->set(compact('missions', 'phases'));
 	}
 
 /**
@@ -147,7 +150,8 @@ class QuestsController extends AppController {
 			}
 		}
 		$missions = $this->Quest->Mission->find('list');
-		$this->set(compact('missions'));
+		$phases = $this->Quest->Phase->find('list');
+		$this->set(compact('missions', 'phases'));
 	}
 
 /**
@@ -173,7 +177,8 @@ class QuestsController extends AppController {
 			$this->request->data = $this->Quest->find('first', $options);
 		}
 		$missions = $this->Quest->Mission->find('list');
-		$this->set(compact('missions'));
+		$phases = $this->Quest->Phase->find('list');
+		$this->set(compact('missions', 'phases'));
 	}
 
 /**

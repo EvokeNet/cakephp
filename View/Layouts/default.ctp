@@ -57,9 +57,6 @@ $title = __('Evoke Network');
 		echo $this->Html->script('/components/jquery/dist/jquery.min');
 		echo $this->Html->script('/components/foundation/js/foundation.min');
 		echo $this->Html->script('evoke');
-		// echo $this->Html->script('facebook_share');
-		// echo $this->Html->script('google_share');
-		// echo $this->Html->script('foundation_tabs');
 		echo $this->fetch('script'); 
 	?>
 </body>

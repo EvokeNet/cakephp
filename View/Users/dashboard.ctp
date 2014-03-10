@@ -1,39 +1,7 @@
-<?php
-	$this->extend('/Common/topbar');
-	$this->start('menu');
-?>
-
-<nav class="top-bar" data-topbar>
-	<ul class="title-area">
-		<li class="name">
-			<h1><?php echo __('Agent ').$username[0]; ?></h1>
-		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-	</ul>
-
-	<section class="top-bar-section">
-		<!-- Right Nav Section -->
-		<ul class="right">
-			<li class="has-dropdown">
-				<a href="#">Settings</a>
-				<ul class="dropdown">
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
-					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
-				</ul>
-			</li>
-		</ul>
-
-		<!-- Left Nav Section -->
-		<ul class="left">
-			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></li>
-		</ul>
-	</section>
-</nav>
-
-<?php $this->end(); ?>
+<?php echo $this->element('header', array("userid" => $userid, "username" => $username[0])); ?>
 
 <section class="evoke margin top-2">
-	<div class="row evoke-max-width">
+	<div class="row">
 		<div class="medium-9 columns">
 			<h1><?php echo __('Dashboard');?></h1>
 
@@ -53,7 +21,7 @@
 		    		//Lists all projects and evidences
 		    		foreach($evidence as $e):?>
 			    		<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
-			    		<p><?php echo substr($e['Evidence']['content'], 0, 200);?></p>
+			    		<p><?php echo substr($e['Evidence']['content'], 0, 90);?></p>
 			
 						<!-- Prints the issue related to each mission -->
 	    				<?php foreach($missionissues as $mi): 
@@ -65,10 +33,25 @@
 							  <div class="large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
 							</div> 
 		    				<?php break; endif;
-	    				endforeach;?>
+    					endforeach;?>
 
 		    		<hr class="sexy_line" />
-		    	<?php endforeach; ?>
+
+		    	<?php endforeach; 
+
+		    		foreach($evokations as $e):?>
+		    			<h4><?php echo $this->Html->link($e['Evokation']['title'], array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?></h4>
+			    		<p><?php echo substr($e['Evokation']['abstract'], 0, 100);?></p>
+			    		
+			    		<div class="row">
+						  <div class="large-10 columns">
+						  <?php echo $this->Html->link($e['Group']['title'], array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])).' | Issue | '. date('F j, Y', strtotime($e['Evokation']['created'])); ?></div>
+						  <div class="large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php //echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
+						</div>
+
+						<hr class="sexy_line" />
+
+		    	<?php endforeach;?>
 			  </div>
 			  <div class="content" id="panel2-2">
 			  </div>
@@ -100,7 +83,7 @@
 			  <!-- Lists maximum 5 missions -->
 			    <?php foreach($missions as $m):?>
 			    	<div class = "dashboard-missions">
-		    			<?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'learn', $m['Mission']['id']));?>
+		    			<?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>
 		    			<p><?php echo $m['Mission']['description']; ?></p>
 		    		</div>
 	    		<?php endforeach; ?>

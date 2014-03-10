@@ -11,7 +11,7 @@ function createOrLoadDocument() {
 
 		if (FILE_ID) {
 			gapi.client.load('drive', 'v2', function() {
-				gapi.drive.realtime.load(FILE_ID, onFileLoaded, initializeModel);
+				gapi.drive.realtime.load(FILE_ID, onFileLoaded);
 			});
 
 		} else {
@@ -41,7 +41,7 @@ function initialize(file) {
 		url: WEBROOT + "groups_users/storeFileInfo",
 		data: {'group_id': group_id, 'gdrive_file_id': gdrive_file_id, 'title': title, 'abstract': abstract },
 		success: function(id) {
-			$("evokation_id").val(id);
+			$("#evokation_id").val(id);
 			console.log('projeto criado no bd');
 		},
 		error: function(msg) {
@@ -62,7 +62,37 @@ function onFileLoaded(doc) {
 
 	gapi.client.load('drive', 'v2', function() {
 		gapi.drive.realtime.databinding.bindString(text, evokation);
+
+		loadCKEDITOR(text);
+
+		var updateEditor = function(event) {
+			var editor = CKEDITOR.instances.evokation;
+			if(!event.isLocal) {
+				var ranges = editor.getSelection().getRanges();
+				editor.setData(text.getText());
+				editor.getSelection().selectRanges(ranges);
+			}
+		};
+
+		text.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, updateEditor);
+	 	text.addEventListener(gapi.drive.realtime.EventType.TEXT_DELETED, updateEditor);
+
 	});
+
+}
+
+function loadCKEDITOR(text) {
+	CKEDITOR.replace('evokation', {
+		toolbar: 'Basic',
+		uiColor: '#ffffff',
+		on: {
+			change: function() {
+				text.setText(CKEDITOR.instances.evokation.getData());
+			}
+		}
+	});
+
+	CKEDITOR.instances.evokation.setData(text.getText());
 }
 
 /**

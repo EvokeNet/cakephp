@@ -30,8 +30,6 @@ class UsersController extends AppController {
 	public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add', 'logout', 'register');
-        //$this->Auth->allowedActions = array('*');
-
     }
 
 /**
@@ -153,6 +151,8 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
 		}
+		$roles = $this->User->Role->find('list');		
+		$this->set(compact("roles"));
 	}
 
 /**
@@ -167,30 +167,24 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
-
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
-		$this->set(compact('user'));
-
 		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
 
-		$opt = array('order' => array('Evidence.created DESC'));
-		$evidence = $this->User->Evidence->find('all', $opt);
-		$this->set(compact('evidence'));
-		
+		$this->loadModel('Evokation');
+		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));
+
 		$this->loadModel('Mission');
-		$missions = $this->Mission->find('all', array('limit' => 3));
-		$this->set(compact('missions'));
-
-		$this->loadModel('Issue');
-		$issues = $this->Issue->find('all');
-		$this->set(compact('issues'));
+		$missions = $this->Mission->find('all');
 
 		$this->loadModel('MissionIssue');
 		$missionissues = $this->MissionIssue->find('all');
-		$this->set(compact('missionissues'));
+
+		//$this->loadModel('Issue');
+		$issues = $this->MissionIssue->Issue->find('all');
+
+		$this->set(compact('user', 'userid', 'username', 'evidence', 'evokations', 'missions', 'missionissues', 'issues'));
 
 	}
 
@@ -210,31 +204,21 @@ class UsersController extends AppController {
 		}
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_id)));
-		$this->set(compact('user'));
-
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
-
 		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
-
-		$opt = array('order' => array('Evidence.created DESC'));
-		$evidence = $this->User->Evidence->find('all', $opt);
-		$this->set(compact('evidence'));
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
 
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all', array('limit' => 3));
-		$this->set(compact('missions'));
 
 		$this->loadModel('MissionIssue');
 		$missionissues = $this->MissionIssue->find('all');
-		$this->set(compact('missionissues'));
 
-		$this->loadModel('MissionIssue');
+		$issue = $this->MissionIssue->Issue->find('first', array('conditions' => array('Issue.id' => $id)));
+		
 		$missionissue = $this->MissionIssue->find('all', array('conditions' => array('MissionIssue.issue_id' => $id)));
-		$this->set(compact('missionissue'));
-		// debug($missionissues);
-		// die();
+
+		$this->set(compact('user', 'userid', 'username', 'evidence', 'issue', 'missions', 'missionissues', 'missionissue'));
 
 	}
 
@@ -246,11 +230,12 @@ class UsersController extends AppController {
  */
 	public function leaderboard() {
 
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
-
 		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
+
+		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		//$this->set(compact('username'));
+
+		$this->set(compact('userid', 'username'));
 
 	}
 
@@ -386,30 +371,27 @@ class UsersController extends AppController {
 		$this->set(compact('selectedIssues'));
 
 		if ($this->request->is(array('post', 'put'))) {
+			
 			if (!empty($this->request->data)) {
-				// $status = false;
 
-				//Code snippet to save the array containing the issues
 				$user = $this->request->data['User']['id'];
-				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	        
+
+				$this->User->UserIssue->deleteAll(array('UserIssue.user_id' => $user), false);
+
+				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
 			        $insertData = array('user_id' => $user, 'issue_id' => $a);
 
 			        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $id, 'UserIssue.issue_id' => $a)));
 			        if(!$exists) $this->User->UserIssue->saveAssociated($insertData);
-			        // if(!$status) {$this->Session->setFlash(__('The user issue could not be saved. Please, try again.')); break;}
-			        // else if($status) $this->Session->setFlash(__('The user issue has been saved.'));
-			    } 
+			    }
+
+			    if ($this->User->save($this->request->data)) {
+					$this->Session->setFlash(__('The user has been saved.'));
+					return $this->redirect(array('action' => 'dashboard', $id));
+				} 
 		        
-		        // if($status) $this->Session->setFlash(__('The user issue has been saved.'));
-		        // if(!$status) {$this->Session->setFlash(__('The user issue could not be saved. Please, try again.')); }
-				//$this->User->saveAssociated($this->request->data);
-			}
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'dashboard', $id));
-			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-			}
+			} else $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);

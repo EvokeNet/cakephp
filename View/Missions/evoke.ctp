@@ -33,15 +33,13 @@
 <?php $this->end(); ?>
 
 <section class="evoke margin top-2">
-	<div class="row evoke-max-width">
+	<div class="row">
 	  <div class="small-11 small-centered columns">
 
 	  	<nav class="breadcrumbs">
 	  	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 		  <a class="unavailable" href="#"><?php echo __('Mission: ').$mission['Mission']['title']; ?></a>
-		  <?php echo $this->Html->link(__('Learn'), array('controller' => 'missions', 'action' => 'learn', $mission['Mission']['id']));?>
-		  <?php echo $this->Html->link(__('Imagine'), array('controller' => 'missions', 'action' => 'imagine', $mission['Mission']['id']));?>
-		  <?php echo $this->Html->link(__('Act'), array('controller' => 'missions', 'action' => 'act', $mission['Mission']['id']));?>
+		  <?php echo $this->Html->link(__('View'), array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id']));?>
 		  <a class="current" href="#"><?php echo __('Evoke');?></a>
 		</nav>
 

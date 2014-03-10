@@ -15,3 +15,7 @@
  * @package       app.webroot.css
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
+ .evoke.missions li {
+	list-style:none;
+}

@@ -99,7 +99,8 @@ class OrganizationsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		//returning to the admin panel
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));
 	}
 
 /**

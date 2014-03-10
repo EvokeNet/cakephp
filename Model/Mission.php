@@ -3,9 +3,9 @@ App::uses('AppModel', 'Model');
 /**
  * Mission Model
  *
- * @property Group $Group
  * @property Evidence $Evidence
  * @property MissionIssue $MissionIssue
+ * @property Phase $Phase
  * @property Quest $Quest
  */
 class Mission extends AppModel {
@@ -51,7 +51,6 @@ class Mission extends AppModel {
 		));
 	}
 
-
 /**
  * hasMany associations
  *
@@ -73,6 +72,19 @@ class Mission extends AppModel {
 		),
 		'MissionIssue' => array(
 			'className' => 'MissionIssue',
+			'foreignKey' => 'mission_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Phase' => array(
+			'className' => 'Phase',
 			'foreignKey' => 'mission_id',
 			'dependent' => false,
 			'conditions' => '',
