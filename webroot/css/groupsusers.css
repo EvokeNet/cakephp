@@ -23,12 +23,25 @@
 .evoke.project.page b,
 .evoke.project.page i,
 .evoke.project.page p,
-.evoke.project.page h3,
-.evoke.project.page h4,
 .evoke.project.page span,
 .evoke.project.page span a {
 	color: #111;
 	font-family: 'Lora', serif;
+	font-size: 1.05em !important;
+	-webkit-text-stroke: 0.1px;
+}
+
+.evoke.project.page h3 {
+	color: #111;
+	font-family: 'Lora', serif;
+	font-size: 2em !important;
+	-webkit-text-stroke: 0.1px;
+}
+
+.evoke.project.page h4 {
+	color: #111;
+	font-family: 'Lora', serif;
+	font-size: 1.5em !important;
 	-webkit-text-stroke: 0.1px;
 }
 
@@ -40,4 +53,13 @@
 .evoke.project.page ol li {
 	list-style: decimal;
 	margin-left: 1em;
+}
+
+.evoke.project.page blockquote {
+	border-left: 3px solid #dddddd;
+	font-family: 'Lora', serif;
+	font-size: 1.05em !important;
+	font-style: italic;
+	margin-left: 1rem;
+	padding: 0 1.25rem 0 1.0875rem;
 }

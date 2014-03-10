@@ -2,8 +2,8 @@ var file;
 var groupNameTag = document.getElementById("groupname");
 var groupName = groupNameTag.textContent || groupNameTag.innerText;
 var editor = new MediumEditor('#evokation_div', {
-	buttons: ['bold', 'italic', 'anchor', 'header1', 'header2', 'unorderedlist', 'orderedlist'],
 	targetBlank: true
+	buttons: ['bold', 'italic', 'anchor', 'quote', 'header1', 'header2', 'unorderedlist', 'orderedlist']
 });
 
 gapi.load("auth:client,drive-realtime,drive-share", createOrLoadDocument);
