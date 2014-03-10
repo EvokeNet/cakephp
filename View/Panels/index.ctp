@@ -53,19 +53,22 @@
  							   			'controller' => 'panels',
  							   			'action' => 'add_org')
 									)); ?>
-								<fieldset>
-									<legend><?php echo __('Add Organization'); ?></legend>
+							<fieldset>
+								<legend><?php echo __('Add Organization'); ?></legend>
 								<?php
 									echo $this->Form->input('name');
 									echo $this->Form->input('birthdate');
 									echo $this->Form->input('description');
 									echo $this->Form->input('website');
-									echo $this->Form->input('facerbook');
+									echo $this->Form->input('facebook');
 									echo $this->Form->input('twitter');
 									echo $this->Form->input('blog');
 								?>
-								</fieldset>
-							<?php echo $this->Form->end(__('Submit')); ?>
+							</fieldset>
+							<button class="button small" type="submit">
+								<?php echo __('Add') ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
 						</div>
 						<table>				
 							<?php foreach ($organizations as $organization) { ?>
@@ -73,28 +76,6 @@
 									<td><?php echo $this->Html->Link($organization['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organization['Organization']['id'])); ?></td>
 									<td><?php echo $this->Html->Link('edit', array('controller' => 'organizations', 'action' => 'edit', $organization['Organization']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert')); ?></td>
 								</tr>
-								<!-- <tr id="edit_org_<?php echo $organization['Organization']['id']; ?>"> 
-									<td colspan = "2">
-									<?php echo $this->Form->create('Organization', array(
- 							   			'url' => array(
- 							   				'controller' => 'panels',
- 							   				'action' => 'edit_org')
-										)); ?>
-										 <fieldset>
-											<legend><?php echo 'Edit '.$organization['Organization']['name']; ?></legend> 
-										<?php
-											echo $this->Form->input('name', array('value' => $organization['Organization']['name']));
-											echo $this->Form->input('birthdate', array('value' => $organization['Organization']['birthdate']));
-											echo $this->Form->input('description', array('value' => $organization['Organization']['description']));
-											echo $this->Form->input('website', array('value' => $organization['Organization']['website']));
-											echo $this->Form->input('facerbook', array('value' => $organization['Organization']['facerbook']));
-											echo $this->Form->input('twitter', array('value' => $organization['Organization']['twitter']));
-											echo $this->Form->input('blog', array('value' => $organization['Organization']['blog']));
-										?>
-										 </fieldset> 
-									<?php echo $this->Form->end(__('Submit')); ?>
-									</td>
-								</tr>-->
 							<?php }	?>
 						</table>
 					</p>
@@ -127,24 +108,26 @@
 								<fieldset>
 									<legend><?php echo __('Add Issue'); ?></legend>
 								<?php
-									echo $this->Form->input('parent_id');
+									//echo $this->Form->input('parent_id');
 									echo $this->Form->input('name');
 									echo $this->Form->input('slug');
 								?>
 								</fieldset>
-							<?php echo $this->Form->end(__('Submit')); ?>
+							<button class="button small" type="submit">
+								<?php echo __('Add'); ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
 						</div>
 
 						<ul class="button-group">
 				  			<li><?php echo $this->Html->Link('+ missions', array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?></li>
-				  			<!-- <li><?php echo $this->Html->Link('+ issues', array('controller' => 'issues', 'action' => 'add'), array( 'class' => 'button'));?></li> -->
 				  		</ul>
 				  		<table>
 					  		<?php foreach ($missions_issues as $mi) { ?>
 					  			<!-- colocar paginação -->
 								<tr class="<?php foreach ($mi['MissionIssue'] as $i) echo ' issue_'.$i['issue_id'];?>">
 									<td><?php echo $this->Html->Link($mi['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mi['Mission']['id'])); ?></td>
-									<td><?php echo $this->Html->Link('edit', array('controller' => 'missions', 'action' => 'edit', $mi['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
+									<td><?php echo $this->Html->Link('edit', array('controller' => 'panels', 'action' => 'edit_mission', $mi['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
 								</tr>
 							<?php }?>	
 						</table>
@@ -167,10 +150,13 @@
 								<?php
 									echo $this->Form->input('name');
 									echo $this->Form->input('description');
-									echo $this->Form->input('trigger');
+									//echo $this->Form->input('trigger');
 								?>
 								</fieldset>
-							<?php echo $this->Form->end(__('Submit')); ?>
+							<button class="button small" type="submit">
+								<?php echo __('Add') ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
 						</div>
 
 						<table>				

@@ -34,7 +34,7 @@
 <section class="evoke margin top-2">
 	<div class="row evoke max-width">
 		<div class="large-12 columns">
-			<h1>Creating Mission<?php if(isset($id) && !is_null($id)) : echo ': ' . $mission['Mission']['title']; endif;?></h1>
+			<h1>Mission<?php echo ': ' . $mission['Mission']['title']; ?></h1>
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission">Mission form</a></dd>
 				<dd class="<?php echo $phases_tag ?>"><a href="#phases">Phases</a></dd>
@@ -46,49 +46,29 @@
 					<div class="form">
 
 						<?php 
-							if(isset($id) && !is_null($id)) {
-								echo $this->Form->create('Mission', array(
+							echo $this->Form->create('Mission', array(
  							   		'url' => array(
  							   			'controller' => 'panels',
- 							   			'action' => 'add_mission', $id)
+ 							   			'action' => 'edit_mission', $id)
 									)
 								);
-							} else {
-								echo $this->Form->create('Mission', array(
- 							   		'url' => array(
- 							   			'controller' => 'panels',
- 							   			'action' => 'add_mission')
-									)
-								);
-							} 
 						?>
 						<fieldset>
 							<?php
-								if(isset($id) && !is_null($id)) {
-									echo '<legend> Edit Mission </legend>'; 
-									echo $this->Form->input('title', array('value' => $mission['Mission']['title']));
-									echo $this->Form->input('description', array('value' => $mission['Mission']['description']));
-									echo $this->Form->input('image');
-									echo $this->Form->hidden('form_type', array('value' => 'mission'));
-									if(isset($mission['MissionIssue'][0]['issue_id'])) {
-										echo $this->Form->input('MissionIssue.issue_id', array(
-            								'options' => $issues,
-            								'value' => $mission['MissionIssue'][0]['issue_id'] //as we are, for now, restricting the amount of issues per mission to 1
-            							));
-									} else {
-										echo $this->Form->input('MissionIssue.issue_id', array(
-            								'options' => $issues,
-            								'value' => $mission['MissionIssue']['issue_id'] //as we are, for now, restricting the amount of issues per mission to 1
-            							));
-									}
-								} else {
-									echo '<legend> Add Mission </legend>'; 
-									echo $this->Form->input('title');
-									echo $this->Form->input('description');
-									echo $this->Form->input('image');
-									echo $this->Form->hidden('form_type', array('value' => 'mission'));
+								echo '<legend> Edit Mission </legend>'; 
+								echo $this->Form->input('title', array('value' => $mission['Mission']['title']));
+								echo $this->Form->input('description', array('value' => $mission['Mission']['description']));
+								echo $this->Form->input('image');
+								echo $this->Form->hidden('form_type', array('value' => 'mission'));
+								if(isset($mission['MissionIssue'][0]['issue_id'])) {
 									echo $this->Form->input('MissionIssue.issue_id', array(
-            							'options' => $issues
+            							'options' => $issues,
+            							'value' => $mission['MissionIssue'][0]['issue_id'] //as we are, for now, restricting the amount of issues per mission to 1
+            						));
+								} else {
+									echo $this->Form->input('MissionIssue.issue_id', array(
+            							'options' => $issues,
+            							'value' => $mission['MissionIssue']['issue_id'] //as we are, for now, restricting the amount of issues per mission to 1
             						));
 								}
 							?>
@@ -104,7 +84,7 @@
 						<?php echo $this->Form->create('Phase', array(
  							   		'url' => array(
  							   			'controller' => 'panels',
- 							   			'action' => 'add_phase', $id)
+ 							   			'action' => 'add_phase', $id, 'edit_mission')
 									)
 								); ?>
 							<fieldset>
@@ -157,7 +137,7 @@
 								<!-- Lightbox for adding quest to phase form -->
 								<div id="myModalQuest<?php echo $quest['id']; ?>" class="reveal-modal tiny" data-reveal>
 									<?php 
-										echo $this->element('edit_quest', array('phase_id' => $phase['Phase']['id'], 'mission_id' => $id, 'me' => $quest));
+										echo $this->element('edit_quest', array('phase_id' => $phase['Phase']['id'], 'mission_id' => $id, 'me' => $quest, 'origin' => 'edit_mission'));
 									?>
 									<a class="close-reveal-modal">&#215;</a>
 								</div>
@@ -166,7 +146,7 @@
 							<!-- Lightbox for adding quest to phase form -->
 							<div id="myModalQuest" class="reveal-modal tiny" data-reveal>
 								<?php 
-									echo $this->element('add_quest', array('phase_id' => $phase['Phase']['id'], 'mission_id' => $id));
+									echo $this->element('add_quest', array('phase_id' => $phase['Phase']['id'], 'mission_id' => $id, 'origin' => 'edit_mission'));
 								?>
 								<a class="close-reveal-modal">&#215;</a>
 							</div>
