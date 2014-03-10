@@ -63,3 +63,8 @@
 	margin-left: 1rem;
 	padding: 0 1.25rem 0 1.0875rem;
 }
+
+.image_uploader_button {
+	position: absolute;
+	z-index: 999;
+}

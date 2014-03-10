@@ -31,6 +31,7 @@
 
 <?php $this->end(); ?>
 
+<!-- Medium Editor CSS -->
 <?php echo $this->Html->css('/components/medium-editor/dist/css/medium-editor'); ?>
 <?php echo $this->Html->css('/components/medium-editor/dist/css/themes/default'); ?>
 
@@ -102,7 +103,10 @@
 			 ?>
 
 			<textarea id="evokation_txt" class="hidden"></textarea>
+
+			<a class="button" contenteditable="false" href="#"><i class="fa fa-img"></i></a>
 			<div id="evokation_div" class="evoke project page" contenteditable="true" data-placeholder=" "></div>
+			
 			<!--/ Evokation page -->
 
 		</div>

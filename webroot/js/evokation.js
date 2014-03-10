@@ -1,10 +1,12 @@
 var file;
 var groupNameTag = document.getElementById("groupname");
 var groupName = groupNameTag.textContent || groupNameTag.innerText;
+
 var editor = new MediumEditor('#evokation_div', {
 	buttons: ['bold', 'italic', 'anchor', 'quote', 'header1', 'header2', 'unorderedlist', 'orderedlist'],
 	targetBlank: true
 });
+
 
 gapi.load("auth:client,drive-realtime,drive-share", createOrLoadDocument);
 
@@ -83,7 +85,6 @@ function onFileLoaded(doc) {
 }
 
 function realtimeTick(text) {
-
 	$("#evokation_div").html(text.getText());
 	$("#evokation_div").on('input', function() {
 	 	text.setText($(this).html());
