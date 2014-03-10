@@ -8,7 +8,7 @@ class PanelsController extends AppController {
 * @var array
 */
 	public $components = array('Paginator','Access');
-	public $uses = array('User', 'Organization', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission','Phase');
+	public $uses = array('User', 'Organization', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Quest');
 
 
 /**
@@ -28,6 +28,11 @@ class PanelsController extends AppController {
 			$current_id = $this->Session->read('Auth.User.id');
 		}
 		
+		//there was some problem in retrieving user's info concerning his/her role : send him home
+		if(!isset($current_role) || is_null($current_role)) {
+			$this->redirect(array('controller' => 'users', 'action' => 'login'));
+		}
+
 		//checking Acl permission
 		if(!$this->Access->check($current_role,'controllers/Panels')) {
 			$this->Session->setFlash(__("You don't have permission to access this area."));	
@@ -40,7 +45,6 @@ class PanelsController extends AppController {
 * Loads basic informations from database to local variables to be shown in the administrator's panel
 */
 	public function index() {
-		
 		//carrega infos do usuário
 		$this->loadInfo();
 
@@ -100,7 +104,10 @@ class PanelsController extends AppController {
 		//list of phases to be shown at the 'add phases to a mission' scenario..
 		$phases = $this->Phase->find('all', array(
 			'conditions' => array(
-			'mission_id' => $id
+				'mission_id' => $id
+			),
+			'order' => array(
+				'Phase.position'
 			)
 		));
 
@@ -118,10 +125,9 @@ class PanelsController extends AppController {
 					$this->request->data['MissionIssue']['mission_id'] = $id;
 					if($this->MissionIssue->save($this->request->data)) {
 						$this->Session->setFlash(__('mission issue saved'));
-						/* this will be inserted afterwards so we can focus on the next tab of the add mission panel
-						$phases_tag = 'active';
-						$mission_tag = 'inactive';
-						*/
+						
+						//redirects to the same page, but with the tab phase active
+						$this->redirect(array('action' => 'add_mission', $id, 'phase'));
 					} else {
 						$this->Session->setFlash(__('mission issue failed saving.'));
 					}
@@ -139,6 +145,9 @@ class PanelsController extends AppController {
 					$this->MissionIssue->id = $this->MissionIssue->find('first', array('conditions' => array('mission_id' => $id)));
 					if($this->MissionIssue->save($this->request->data)) {
 						$this->Session->setFlash(__('mission issue saved'));
+
+						//redirects to the same page, but with the tab phase active
+						$this->redirect(array('action' => 'add_mission', $id, 'phase'));
 					} else {
 						$this->Session->setFlash(__('mission issue failed saving.'));
 					}
@@ -174,6 +183,25 @@ class PanelsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		
+	}
+
+/*
+* add_quest method
+* adds a new quest to the specific phase of the 'current-adding' mission  
+*/
+	public function add_quest($id){
+		if ($this->request->is('post')) {
+			$this->Quest->create();
+			if ($this->Quest->save($this->request->data)) {
+				$this->Session->setFlash(__('The quest has been saved.'));
+				$this->redirect(array('action' => 'add_mission', $id, 'phase'));
+			} else {
+				$this->Session->setFlash(__('The quest could not be saved. Please, try again.'));
+			}
+		} else {
+			$this->redirect(array('action' => 'index'));
+		}
+
 	}
 
 /*

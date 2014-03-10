@@ -50,13 +50,6 @@ class Mission extends AppModel {
 		));
 	}
 
-
-
-/**
- * belongsTo associations
- *
- * @var array
- */
 /**
  * hasMany associations
  *

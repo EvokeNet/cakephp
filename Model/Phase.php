@@ -31,4 +31,27 @@ class Phase extends AppModel {
 			'order' => ''
 		)
 	);
+
+	/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'Quest' => array(
+			'className' => 'Quest',
+			'foreignKey' => 'phase_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
+
 }

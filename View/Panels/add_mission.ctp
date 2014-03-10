@@ -34,7 +34,7 @@
 <section class="evoke margin top-2">
 	<div class="row evoke max-width">
 		<div class="large-12 columns">
-			<h1>Creating Mission: <?php if(isset($id) && !is_null($id)) : echo $mission['Mission']['title']; endif;?></h1>
+			<h1>Creating Mission<?php if(isset($id) && !is_null($id)) : echo ': ' . $mission['Mission']['title']; endif;?></h1>
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission">Mission form</a></dd>
 				<dd class="<?php echo $phases_tag ?>"><a href="#phases">Phases</a></dd>
@@ -121,15 +121,44 @@
 						?>
 					</div>
 
-					<table>
+					
 						<?php foreach ($phases as $phase) { ?>
-							<tr>
-								<td>
-									<?php echo $phase['Phase']['name']; ?>
-								</td>
+
+							<table class="large-8 columns">
+								<thead>
+									<tr>
+										<td>
+											<?php echo 'Phase: ' . $phase['Phase']['name'];?>
+										</td>
+										<td>
+											<!-- Voting lightbox button -->
+				  							<a href="#" data-reveal-id="myModalQuest" data-reveal><?php echo __('+ Quest');?></a> | [delete]
+										</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="2">
+											<!-- list the already existing quests under this phase -->
+											<?php 
+												foreach ($phase['Quest'] as $quest) {
+													echo '['. $quest['title'] .'] ';
+												}
+											?>
+										</td>
+									</tr>
+								</tbody>
 							</tr>
+
+							<!-- Lightbox for adding quest to phase form -->
+							<div id="myModalQuest" class="reveal-modal tiny" data-reveal>
+								<?php 
+									echo $this->element('add_quest', array('phase_id' => $phase['Phase']['id'], 'mission_id' => $id));
+								?>
+								<a class="close-reveal-modal">&#215;</a>
+							</div>
+							</table>
 						<?php }?>
-					</table>
 
 				</div>
 				<div class="content" id="badges">
