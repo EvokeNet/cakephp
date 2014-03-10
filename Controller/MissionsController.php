@@ -83,7 +83,7 @@ class MissionsController extends AppController {
 				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
 			}
 		}
-		$this->set(compact("groups"));
+		//$this->set(compact("groups"));
 	}
 
 /**

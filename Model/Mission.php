@@ -89,6 +89,19 @@ class Mission extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'Phase' => array(
+			'className' => 'Phase',
+			'foreignKey' => 'mission_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Quest' => array(
 			'className' => 'Quest',
 			'foreignKey' => 'mission_id',
