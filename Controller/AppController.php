@@ -43,8 +43,15 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter() {
+
+        if (is_null($this->Session->read('Auth.User.role_id'))) {
+            $user_id = $this->Session->read('Auth.User.User.id');
+        } else {
+            $user_id = $this->Session->read('Auth.User.id');
+        }
+
         $this->Auth->allow('add', 'fb_login', 'index', 'view');
-        $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
+        $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard', $user_id);
         $cuser = $this->Auth->user();
     }
 
