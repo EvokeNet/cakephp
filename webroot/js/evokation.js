@@ -73,7 +73,9 @@ function onFileLoaded(doc) {
 
 		var updateEditor = function(event) {
 			if(!event.isLocal) {
+				var sel = saveSelection();
 				$("#evokation_div").html(text.getText());
+				restoreSelection(sel);
 			}
 		};
 
@@ -133,3 +135,36 @@ $("#add_image").click(function(e) {
 
 });
 
+var saveSelection, restoreSelection;
+if (window.getSelection) {
+    // IE 9 and non-IE
+    saveSelection = function() {
+        var sel = window.getSelection(), ranges = [];
+        if (sel.rangeCount) {
+            for (var i = 0, len = sel.rangeCount; i < len; ++i) {
+                ranges.push(sel.getRangeAt(i));
+            }
+        }
+        return ranges;
+    };
+
+    restoreSelection = function(savedSelection) {
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        for (var i = 0, len = savedSelection.length; i < len; ++i) {
+            sel.addRange(savedSelection[i]);
+        }
+    };
+} else if (document.selection && document.selection.createRange) {
+    // IE <= 8
+    saveSelection = function() {
+        var sel = document.selection;
+        return (sel.type != "None") ? sel.createRange() : null;
+    };
+
+    restoreSelection = function(savedSelection) {
+        if (savedSelection) {
+            savedSelection.select();
+        }
+    };
+}
