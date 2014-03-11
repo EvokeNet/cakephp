@@ -92,6 +92,11 @@ function realtimeTick(text) {
 }
 
 /**
+*	jQuery handlers
+*
+**/
+
+/**
 * This AJAX call updates the title and abstract fields of an existing
 * document in the database, given the Id.
 *
@@ -102,6 +107,7 @@ $("#evokation_draft_button").click(function(){
 	var abstract = $("#evokation_abstract").val();
 
 	$.ajax({
+		dataType: 'text',
 		type: "POST",
 		url: WEBROOT + "groups_users/storeFileInfo",
 		data: { 'id': id, 'title': title, 'abstract': abstract },
@@ -113,3 +119,17 @@ $("#evokation_draft_button").click(function(){
 		}
 	});
 });
+
+$("#add_image").click(function(e) {
+	e.stopPropagation();
+
+	var element = document.querySelector("#evokation_div");
+	var range = rangy.createRange();
+	range.selectNodeContents(element);
+	var sel = rangy.getSelection();
+	sel.setSingleRange(range);
+
+	console.log(sel.focusOffset);
+
+});
+

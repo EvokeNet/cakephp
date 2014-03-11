@@ -39,12 +39,12 @@
 	<div class="row full-width">
 		<aside>
 			<div class="large-2 columns evoke chat">
-				<h6 class="subheader"><?php echo __('ASSETS'); ?></h6>
+				<h6 class="subheader"><?php echo __('DOSSIER'); ?></h6>
 				
 				<!-- Here are the related resources, limited to 4 -->
 				<dl class="accordion evoke margin top bottom" data-accordion>
 					<dd>
-						<a href="#panel1">Accordion 1</a>
+						<a href="#panel1">Document 1</a>
 						<div id="panel1" class="content active">
 							<p>
 								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -54,7 +54,7 @@
 						</div>
 					</dd>
 					<dd>
-						<a href="#panel2">Accordion 2</a>
+						<a href="#panel2">Document 2</a>
 						<div id="panel2" class="content">
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -62,7 +62,7 @@
 						</div>
 					</dd>
 					<dd>
-						<a href="#panel3">Accordion 2</a>
+						<a href="#panel3">Document 3</a>
 						<div id="panel3" class="content">
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -77,7 +77,7 @@
 			</div>
 		</aside>
 
-		<div class="large-8 columns evoke">
+		<div class="large-8 columns">
 			<h1 class="evoke typeface strong" id="groupname"><small><?php echo __('Group'); ?> </small><?php echo $group['Group']['title']; ?></h1>
 
 			<!-- The Evokation project, with data from de DB and from Google Drive -->
@@ -104,8 +104,25 @@
 
 			<textarea id="evokation_txt" class="hidden"></textarea>
 
-			<a class="button" contenteditable="false" href="#"><i class="fa fa-img"></i></a>
-			<div id="evokation_div" class="evoke project page" contenteditable="true" data-placeholder=" "></div>
+			<div class="editor">
+
+				<!-- Add images -->
+				<a class="button circle bg-teal" id="add_image">
+					<i class="fa fa-camera fa-2x"></i>
+				</a>
+
+				<!-- Add videos -->
+				<a class="button circle bg-maroon" id="add_video" href="#">
+					<i class="fa fa-youtube-play fa-2x"></i>
+				</a>
+
+				<!-- Add audio -->
+				<a class="button circle bg-olive" id="add_audio" href="#">
+					<i class="fa fa-music fa-2x"></i>
+				</a>
+
+				<div id="evokation_div" class="evoke project page" contenteditable="true" data-placeholder=" "></div>
+			</div>
 			
 			<!--/ Evokation page -->
 
@@ -160,5 +177,6 @@
 <?php endif; ?>
 
 <?php echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min', array('inline' => false)); ?>
+<?php echo $this->Html->script('/components/rangy/index.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('evokation', array('inline' => false)); ?>

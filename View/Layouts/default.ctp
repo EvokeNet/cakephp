@@ -38,7 +38,7 @@ $title = __('Evoke Network');
 
 	?>
 </head>
-<body>
+<body class="evoke">
 
 	<section role="main">
 		<?php echo $this->Session->flash(); ?>
@@ -54,7 +54,7 @@ $title = __('Evoke Network');
 	</footer>
 
 	<?php
-		echo $this->Html->script('/components/jquery/dist/jquery.min');
+		echo $this->Html->script('/components/jquery/jquery.min');
 		echo $this->Html->script('/components/foundation/js/foundation.min');
 		echo $this->Html->script('evoke');
 		echo $this->fetch('script'); 
