@@ -162,7 +162,7 @@
 </section>
 
 <script type="text/javascript">
-	var WEBROOT  = <?php echo $this->webroot; ?>;
+	var WEBROOT  = "<?php echo $this->webroot; ?>";
 	var ACCESS_TOKEN = <?php echo $this->Session->read('access_token'); ?>;
 	var CLIENT_ID = "<?php echo Configure::read('google_client_id'); ?>";
 </script>
