@@ -163,6 +163,14 @@ class UsersController extends AppController {
  */
 	public function dashboard($id = null) {
 
+		if(empty($id)) {
+			if (is_null($this->Session->read('Auth.User.id'))) {
+	            $id = $this->Session->read('Auth.User.User.id');
+	        } else {
+	            $id = $this->Session->read('Auth.User.id');
+	        }
+		}
+
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
