@@ -7,7 +7,6 @@ var editor = new MediumEditor('#evokation_div', {
 	targetBlank: true
 });
 
-
 gapi.load("auth:client,drive-realtime,drive-share", createOrLoadDocument);
 
 function createOrLoadDocument() {
@@ -73,9 +72,9 @@ function onFileLoaded(doc) {
 
 		var updateEditor = function(event) {
 			if(!event.isLocal) {
-				var sel = saveSelection();
+				var sel = rangy.saveSelection();
 				$("#evokation_div").html(text.getText());
-				restoreSelection(sel);
+				rangy.restoreSelection(sel);
 			}
 		};
 
