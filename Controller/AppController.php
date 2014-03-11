@@ -44,7 +44,7 @@ class AppController extends Controller {
  */
 	public function beforeFilter() {
 
-        if (is_null($this->Session->read('Auth.User.role_id'))) {
+        if (empty($this->Session->read('Auth.User.id'))) {
             $user_id = $this->Session->read('Auth.User.User.id');
         } else {
             $user_id = $this->Session->read('Auth.User.id');
