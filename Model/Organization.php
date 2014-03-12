@@ -13,7 +13,9 @@ class Organization extends AppModel {
  */
 	public $displayField = 'name';
 
-	public function getOrganizations(){
-		return $this->find('all');
+	public function getOrganizations($order = 'Organization.name'){
+		return $this->find('all', array(
+			'order' => array($order.' ASC'))
+		);
 	}
 }
