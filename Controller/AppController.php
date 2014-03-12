@@ -22,37 +22,4 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-
-/**
- * Global Components
- *
- * @var array
- */	
-	 public $components = array(
-        'Session',
-        'Auth' => array(
-            'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
-        ),
-        'DebugKit.Toolbar',
-        'Acl'
-    );
-
-/**
- * beforeFilter method
- *
- * @return void
- */
-	public function beforeFilter() {
-
-        if (is_null($this->Session->read('Auth.User.id'))) {
-            $user_id = $this->Session->read('Auth.User.User.id');
-        } else {
-            $user_id = $this->Session->read('Auth.User.id');
-        }
-
-        $this->Auth->allow('add', 'fb_login', 'index', 'view');
-        $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard', $user_id);
-        $cuser = $this->Auth->user();
-    }
-
 }
