@@ -404,6 +404,29 @@ class PanelsController extends AppController {
 		}
 	}
 
+/**
+ * delete method
+ * deletes an issue via admin panel and returns to it
+ */
+	public function delete_issue($id = null) {
+		$this->Issue->id = $id;
+		if (!$this->Issue->exists()) {
+			throw new NotFoundException(__('Invalid issue'));
+		}
+		//$this->request->onlyAllow('post', 'delete');
+		if ($this->Issue->delete()) {
+			$this->Session->setFlash(__('The issue has been deleted.'));
+
+			//deletar todos os registros de missions_issue referentes a esse issue
+			$this->loadModel('MissionIssue');
+			$this->MissionIssue->deleteAll(array('issue_id = '.$id));
+
+			return $this->redirect(array('action' => 'index', 'missions'));
+		} else {
+			$this->Session->setFlash(__('The issue could not be deleted. Please, try again.'));
+		}
+	}
+
 
 /*
 * add_badge method

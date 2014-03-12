@@ -91,8 +91,9 @@
 							    	<li>
 							        	<input type="checkbox" checked="true" value="issue_<?php echo $issue['Issue']['id'];?>" id="filter-issue_<?php echo $issue['Issue']['id'];?>" />
 							        	<label for="filter-issue_<?php echo $issue['Issue']['id'];?>">
-							        		<?php echo $issue['Issue']['name'];?>
+							        		<?php echo $issue['Issue']['name']; ?>
 							        	</label>
+							        	<?php echo $this->Form->PostLink('delete', array('controller' => 'panels', 'action' => 'delete_issue', $issue['Issue']['id']));?>
 							    	</li>
 							    <?php } ?>
 							</ul>
