@@ -20,26 +20,36 @@ class PanelsController extends AppController {
 	public function beforeFilter() {
         parent::beforeFilter();
         //test to get user data from proper index
-		if(is_null($this->Session->read('Auth.User.role_id'))) {
-			$current_role = $this->Session->read('Auth.User.User.role_id');
-			$current_id = $this->Session->read('Auth.User.User.id');
-		}else{
-			$current_role = $this->Session->read('Auth.User.role_id');
-			$current_id = $this->Session->read('Auth.User.id');
-		}
+		$this->user = $this->getUserData();
 		
 		//there was some problem in retrieving user's info concerning his/her role : send him home
-		if(!isset($current_role) || is_null($current_role)) {
+		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
 			$this->redirect(array('controller' => 'users', 'action' => 'login'));
 		}
 
 		//checking Acl permission
-		if(!$this->Access->check($current_role,'controllers/Panels')) {
-			$this->Session->setFlash(__("You don't have permission to access this area."));	
-			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $current_id));
+		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
+			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
+			$this->redirect($this->referer());
 		}
+
     }
 	
+
+    function getUserData(){
+    	$c_user = array();
+    	if(is_null($this->Session->read('Auth.User.role_id'))) {
+			$c_user['role_id'] = $this->Session->read('Auth.User.User.role_id');
+			$c_user['id'] = $this->Session->read('Auth.User.User.id');
+			$c_user['name'] = $this->Session->read('Auth.User.User.name');
+		}else{
+			$c_user['role_id'] = $this->Session->read('Auth.User.role_id');
+			$c_user['id'] = $this->Session->read('Auth.User.id');
+			$c_user['name'] = $this->Session->read('Auth.User.name');
+		}
+		return $c_user;
+    }
+
 /*
 * index method
 * Loads basic informations from database to local variables to be shown in the administrator's panel
@@ -53,8 +63,9 @@ class PanelsController extends AppController {
 		$media_tab = $this->defineCurrentTab('media', $args);
 		$statistics_tab = $this->defineCurrentTab('statistics', $args);
 
-		//carrega infos do usuário
-		$this->loadInfo();
+		//loading infos to be shown at top bar
+		$username = explode(' ', $this->user['name']);
+		$userid = $this->user['id'];
 
 		$organizations = $this->Organization->getOrganizations();
 		
@@ -75,18 +86,8 @@ class PanelsController extends AppController {
 		//needed to issues' add form
 		$parentIssues = $this->Issue->ParentIssue->find('list');
 		
-		$this->set(compact('organizations','issues','badges','roles','users','groups','missions_issues', 'parentIssues', 
+		$this->set(compact('username', 'userid', 'organizations','issues','badges','roles','users','groups','missions_issues', 'parentIssues', 
 			'organizations_tab', 'missions_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
-	}
-
-
-
-	public function loadInfo() {
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$this->set(compact('username'));
-
-		$userid = $this->Session->read('Auth.User.User.id');
-		$this->set(compact('userid'));
 	}
 
 /*
@@ -443,5 +444,4 @@ class PanelsController extends AppController {
 			}
 		}
 	}
-
 }
