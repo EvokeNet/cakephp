@@ -75,6 +75,8 @@ class OrganizationsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
+			//returning to the admin panel
+			return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'organizations'));
 		} else {
 			$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
 			$this->request->data = $this->Organization->find('first', $options);
@@ -100,7 +102,7 @@ class OrganizationsController extends AppController {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panel
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'organizations'));
 	}
 
 /**

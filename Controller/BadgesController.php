@@ -108,6 +108,8 @@ class BadgesController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
 			}
+			//returning to the admin panel
+			return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'badges'));
 		} else {
 			$options = array('conditions' => array('Badge.' . $this->Badge->primaryKey => $id));
 			$this->request->data = $this->Badge->find('first', $options);
@@ -149,7 +151,7 @@ class BadgesController extends AppController {
 			$this->Session->setFlash(__('The badge could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panel
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'badges'));
 	}
 
 /**

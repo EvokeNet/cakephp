@@ -36,15 +36,16 @@
 		<div class="large-12 columns">
 			<h1>Admin Panel</h1>
 			<dl class="tabs" data-tab>
-				<dd class="active"><a href="#organizations">Organizations</a></dd>
-				<dd><a href="#missions">Missions</a></dd>
-				<dd><a href="#levels">Levels</a></dd>
-				<dd><a href="#badges">Badges</a></dd>
-				<dd><a href="#users">Users</a></dd>
-				<dd><a href="#estatistics">Statistics</a></dd>
+				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations">Organizations</a></dd>
+				<dd class="<?php echo $missions_tab; ?>"><a href="#missions">Missions</a></dd>
+				<dd class="<?php echo $levels_tab; ?>"><a href="#levels">Levels</a></dd>
+				<dd class="<?php echo $badges_tab; ?>"><a href="#badges">Badges</a></dd>
+				<dd class="<?php echo $users_tab; ?>"><a href="#users">Users</a></dd>
+				<dd class="<?php echo $media_tab; ?>"><a href="#media">Media</a></dd>
+				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics">Statistics</a></dd>
 			</dl>
 			<div class="tabs-content">
-				<div class="content active" id="organizations">
+				<div class="content <?php echo $organizations_tab; ?>" id="organizations">
 					<p>
 						<?php echo $this->Form->submit('+ Organizations', array('id' => 'new_org', 'class' => 'button small')); ?>
 						<div id="orgsForm">
@@ -80,7 +81,7 @@
 						</table>
 					</p>
 				</div>
-				<div class="content large-12 columns" id="missions">
+				<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
 					<div class="large-4 columns filter">
 			  			<fieldset>
 			    			<legend>Issues</legend>
@@ -133,10 +134,10 @@
 						</table>
 					</div>
 				</div>
-				<div class="content" id="levels">
+				<div class="content <?php echo $levels_tab; ?>" id="levels">
 					<p>Not defined.. levels details go here.</p>
 				</div>
-				<div class="content" id="badges">
+				<div class="content <?php echo $badges_tab; ?>" id="badges">
 					<p>
 						<?php echo $this->Form->submit('+ Badges', array('id' => 'new_badge', 'class' => 'button small')); ?>
 						<div id="badgesForm">
@@ -169,7 +170,7 @@
 						</table>
 					</p>
 				</div>
-				<div class="content" id="users">
+				<div class="content <?php echo $users_tab; ?>" id="users">
 					<div class="large-4 columns filter">
 			  			<fieldset>
 			    			<legend>Roles</legend>
@@ -196,7 +197,10 @@
 						</table>
 					</div>
 				</div>
-				<div class="content" id="estatistics">
+				<div class="content <?php echo $media_tab; ?>" id="media">
+					<p>Upload videos/images and choose actions that triggers them...</p>
+				</div>
+				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
 					<p>Some statistics to view..</p>
 					<p><?php echo "Users: " . sizeof($users);?></p>
 					<p><?php echo "Groups: " . sizeof($groups);?></p>

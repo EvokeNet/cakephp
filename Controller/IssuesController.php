@@ -81,6 +81,8 @@ class IssuesController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
 			}
+			//returning to the admin panel
+			return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'missions'));
 		} else {
 			$options = array('conditions' => array('Issue.' . $this->Issue->primaryKey => $id));
 			$this->request->data = $this->Issue->find('first', $options);
@@ -112,7 +114,7 @@ class IssuesController extends AppController {
 			$this->Session->setFlash(__('The issue could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panel
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'missions'));
 	}
 
 /**

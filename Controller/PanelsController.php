@@ -9,6 +9,7 @@ class PanelsController extends AppController {
 */
 	public $components = array('Paginator','Access');
 	public $uses = array('User', 'Organization', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Quest');
+	public $user = null;
 
 /**
 *
@@ -43,30 +44,30 @@ class PanelsController extends AppController {
 * index method
 * Loads basic informations from database to local variables to be shown in the administrator's panel
 */
-	public function index() {
-		
+	public function index($args = 'organizations') {
+		$organizations_tab = $this->defineCurrentTab('organizations', $args);
+		$missions_tab = $this->defineCurrentTab('missions', $args);
+		$levels_tab = $this->defineCurrentTab('levels', $args);
+		$badges_tab = $this->defineCurrentTab('badges', $args);
+		$users_tab = $this->defineCurrentTab('users', $args);
+		$media_tab = $this->defineCurrentTab('media', $args);
+		$statistics_tab = $this->defineCurrentTab('statistics', $args);
+
 		//carrega infos do usuário
 		$this->loadInfo();
 
-		//$this->loadModel('Organization');
 		$organizations = $this->Organization->getOrganizations();
 		
-		//$this->loadModel('Issue');
 		$issues = $this->Issue->getIssues();
 		
-		//$this->loadModel('Badge');
 		$badges = $this->Badge->getBadges();
 		
-		//$this->loadModel('Role');
 		$roles = $this->Role->getRoles();
 				
-		//$this->loadModel('User');
 		$users = $this->User->getUsers();
 		
-		//$this->loadModel('Group');
 		$groups = $this->Group->getGroups();
 		
-		//$this->loadModel('MissionIssue');
 		$missions_issues = $this->MissionIssue->Mission->find('all', array(
 			'order' => array('Mission.title ASC'))
 		);
@@ -74,7 +75,8 @@ class PanelsController extends AppController {
 		//needed to issues' add form
 		$parentIssues = $this->Issue->ParentIssue->find('list');
 		
-		$this->set(compact('organizations','issues','badges','roles','users','groups','missions_issues', 'parentIssues'));
+		$this->set(compact('organizations','issues','badges','roles','users','groups','missions_issues', 'parentIssues', 
+			'organizations_tab', 'missions_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
 	}
 
 
@@ -379,7 +381,7 @@ class PanelsController extends AppController {
 			$this->Organization->create();
 			if ($this->Organization->save($this->request->data)) {
 				$this->Session->setFlash(__('The organization has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index', 'organizations'));
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
@@ -395,7 +397,7 @@ class PanelsController extends AppController {
 			$this->Issue->create();
 			if ($this->Issue->save($this->request->data)) {
 				$this->Session->setFlash(__('The issue has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index', 'missions'));
 			} else {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
 			}
@@ -412,7 +414,7 @@ class PanelsController extends AppController {
 			$this->Badge->create();
 			if ($this->Badge->save($this->request->data)) {
 				$this->Session->setFlash(__('The badge has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index', 'badges'));
 			} else {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
 			}
