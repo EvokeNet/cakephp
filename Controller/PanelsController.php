@@ -44,7 +44,7 @@ class PanelsController extends AppController {
 * Loads basic informations from database to local variables to be shown in the administrator's panel
 */
 	public function index() {
-
+		
 		//carrega infos do usuário
 		$this->loadInfo();
 
@@ -340,7 +340,7 @@ class PanelsController extends AppController {
 * deletes a phase of the 'current-adding' mission  
 */
 	public function delete_phase($id, $phase_id, $origin = 'add_mission'){
-		$this->Phase->id = $id;
+		$this->Phase->id = $phase_id;
 		if (!$this->Phase->exists()) {
 			throw new NotFoundException(__('Invalid phase'));
 		}

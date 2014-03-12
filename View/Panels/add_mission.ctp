@@ -134,8 +134,8 @@
 											<?php echo 'Phase: ' . $phase['Phase']['name'];?>
 										</td>
 										<td>
-											<!-- Voting lightbox button -->
-				  							<a href="#" data-reveal-id="myModalQuest" data-reveal><?php echo __('+ Quest');?></a> | delete
+											<!-- lightbox to add quest to certain phase -->
+				  							<a href="#" data-reveal-id="myModalQuest-<?php echo $phase['Phase']['id']; ?>" data-reveal><?php echo __('+ Quest');?></a> | <?php echo $this->Form->PostLink('delete', array('controller' => 'panels', 'action' => 'delete_phase', $id, $phase['Phase']['id'], 'add_mission'));?>
 										</td>
 									</tr>
 								</thead>
@@ -164,7 +164,7 @@
 							<?php }	?>
 
 							<!-- Lightbox for adding quest to phase form -->
-							<div id="myModalQuest" class="reveal-modal tiny" data-reveal>
+							<div id="myModalQuest-<?php echo $phase['Phase']['id']; ?>" class="reveal-modal tiny" data-reveal>
 								<?php 
 									echo $this->element('add_quest', array('phase_id' => $phase['Phase']['id'], 'mission_id' => $id));
 								?>
