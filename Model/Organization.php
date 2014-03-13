@@ -27,15 +27,6 @@ class Organization extends AppModel {
  *
  * @var array
  */
-	public $belongsTo = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
 
 /**
  * hasMany associations
@@ -45,6 +36,19 @@ class Organization extends AppModel {
 	public $hasMany = array(
 		'Mission' => array(
 			'className' => 'Mission',
+			'foreignKey' => 'organization_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'UserOrganization' => array(
+			'className' => 'UserOrganization',
 			'foreignKey' => 'organization_id',
 			'dependent' => false,
 			'conditions' => '',

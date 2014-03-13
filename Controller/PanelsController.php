@@ -8,7 +8,7 @@ class PanelsController extends AppController {
 * @var array
 */
 	public $components = array('Paginator','Access');
-	public $uses = array('User', 'Organization', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Quest');
+	public $uses = array('User', 'Organization', 'UserOrganization', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Quest');
 	public $user = null;
 
 /**
@@ -53,39 +53,90 @@ class PanelsController extends AppController {
 		$userid = $this->user['id'];
 		$userrole = $this->user['role_id'];
 
-		//if you're admin, return all organizations/missions/badges..
-		if($userrole == 1)	{
-			$organizations = $this->Organization->getOrganizations(array(
-															'order' => array(
-																'Organization.name ASC'
-															)
-														)
-													);
-		} else {
-			//else, return your own
-			$organizations = $this->Organization->getOrganizations(array(
-															'order' => array(
-																'Organization.name ASC'
-															),
-															'conditions' => array(
-																array(
-																	'Organization.user_id' => $userid
-																)
-															)
-														)
-													);
-		}
-
+		//loading things that are independent from user role (admin/manager)
 		$issues = $this->Issue->getIssues();
-		
-		$badges = $this->Badge->getBadges();
-		
+
+		//needed to issues' add form
+		$parentIssues = $this->Issue->ParentIssue->find('list');
+
 		$roles = $this->Role->getRoles();
 				
 		$all_users = $this->User->getUsers();
 		
 		$groups = $this->Group->getGroups();
 
+
+		//loading things that differ from perspective
+		//admin will have access to all data
+		//while manager will see only what belongs to him/his organizations
+		if($userrole == 1)	{
+			//setting flag to refer from the view..
+			$flags = array(
+				'_admin' => true,
+			);
+			
+			$organizations = $this->Organization->getOrganizations(array(
+				'order' => array(
+					'Organization.name ASC'
+				)
+			));
+
+			$badges = $this->Badge->getBadges(array(
+				'order' => array(
+					'Badge.name ASC'
+				)
+			));
+
+			$missions_issues = $this->MissionIssue->Mission->find('all', array(
+				'order' => array(
+					'Mission.title ASC'
+				)
+			));
+
+		} else {
+			$flags = array(
+				'_admin' => false,
+			);
+
+			$organizations = $this->Organization->UserOrganization->find('all', array(
+				'order' => array(
+					'Organization.name ASC'
+				),
+				'conditions' => array(
+					array(
+						'UserOrganization.user_id' => $userid
+					)
+				)
+			));
+			
+			//variable to track the id's of all organizations I own and set it as OR condition when finding things that belong to my orgs
+			$my_orgs_id = array();
+			$k = 0;
+			foreach ($organizations as $org) {
+				$my_orgs_id[$k] = array('organization_id' => $org['Organization']['id']);
+				$k++;
+			}
+
+			$missions_issues = $this->MissionIssue->Mission->find('all', array(
+				'order' => array(
+					'Mission.title ASC'
+				),
+				'conditions' => array(
+					'OR' => $my_orgs_id
+				)
+			));
+
+			$badges = $this->Badge->getBadges(array(
+				'order' => array(
+					'Badge.name ASC'
+				)/*,
+				'conditions' => array(
+					'OR' => $my_orgs_id
+				)*/
+			));
+
+		}
+		
 		//array that contains all the possible owners of an organization
 		$users = $this->User->find('list', array(
 			'conditions' => array(
@@ -94,16 +145,9 @@ class PanelsController extends AppController {
             			array('role_id' => 2) //or a manager one
         			)
 			)
-		));
+		));		
 		
-		$missions_issues = $this->MissionIssue->Mission->find('all', array(
-			'order' => array('Mission.title ASC'))
-		);
-
-		//needed to issues' add form
-		$parentIssues = $this->Issue->ParentIssue->find('list');
-		
-		$this->set(compact('username', 'userid', 'userrole', 'organizations','issues','badges','roles','users','groups', 'all_users','missions_issues', 'parentIssues', 
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'organizations','issues','badges','roles','users','groups', 'all_users','missions_issues', 'parentIssues', 
 			'organizations_tab', 'missions_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
 	}
 
@@ -132,6 +176,45 @@ class PanelsController extends AppController {
 			)
 		));
 
+		if($this->user['role_id'] == 1){
+			$flags = array(
+				'_admin' => true 
+			);
+
+			//as admin, he can set any organization as responsable for this mission
+			$organizations = $this->Organization->find('list', array(
+				'order' => array(
+					'Organization.name ASC'
+				)
+			));
+		} else {
+			$flags = array(
+				'_admin' => false 
+			);
+
+			//the possible organizations to be responsable for this mission are his own
+			$my_orgs = $this->UserOrganization->find('all', array(
+				'conditions' => array(
+					array(
+						'UserOrganization.user_id' => $this->user['id']
+					)
+				)
+			));
+
+			$my_orgs_id = array();
+			$k = 0;
+			foreach ($my_orgs as $my_org) {
+				$my_orgs_id[$k] = array('id' => $my_org['Organization']['id']);
+				$k++;
+			}
+
+			$organizations = $this->Organization->find('list', array(
+				'order' => array('Organization.name ASC'),
+				'conditions' => array(
+					'OR' => $my_orgs_id
+				)
+			));
+		}
 
 		$mission = null;
 
@@ -159,7 +242,7 @@ class PanelsController extends AppController {
 				//it already exists, so let's save any alterations and move on..
 				$this->Mission->id = $id;
 				if ($this->Mission->save($this->request->data)) {
-					$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+					$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 					
 					//saves the issue related to it..
 					$this->request->data['MissionIssue']['mission_id'] = $id;
@@ -180,14 +263,14 @@ class PanelsController extends AppController {
 			//it could be a request from one of the other tabs
 			if(!is_null($id) && $args == 'phase'){
 				//sets variable mission to be the mission being added now..
-				$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 			if(!is_null($id) && $args == 'mission'){
 				//sets variable mission to be the mission being added now..
-				$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 		}
-		$this->set(compact('mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'phases'))	;
+		$this->set(compact('flags', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'organizations', 'phases'))	;
 	}
 
 /*
@@ -215,16 +298,66 @@ class PanelsController extends AppController {
 			)
 		));
 
+		if($this->user['role_id'] == 1){
+			$flags = array(
+				'_admin' => true 
+			);
+
+			//as admin, he can set any organization as responsable for this mission
+			$organizations = $this->Organization->find('list', array(
+				'order' => array(
+					'Organization.name ASC'
+				)
+			));
+		} else {
+			$flags = array(
+				'_admin' => false 
+			);
+
+			//the possible organizations to be responsable for this mission are his own
+			$my_orgs = $this->UserOrganization->find('all', array(
+				'conditions' => array(
+					array(
+						'UserOrganization.user_id' => $this->user['id']
+					)
+				)
+			));
+
+			$my_orgs_id = array();
+			$k = 0;
+			foreach ($my_orgs as $my_org) {
+				$my_orgs_id[$k] = array('Organization.id' => $my_org['Organization']['id']);
+				$k++;
+			}
+
+			$organizations = $this->Organization->find('list', array(
+				'order' => array('Organization.name ASC'),
+				'conditions' => array(
+					'OR' => $my_orgs_id
+				)
+			));
+
+			//check if I am allowed to edit this!
+			$smth = $this->Mission->find('first', array(
+				'conditions' => array(
+					'Mission.id' => $id,
+					'OR' => $my_orgs_id
+				)
+			));
+			if(empty($smth)) $this->redirect(array('action' => 'index'));
+			
+		}
 
 		$mission = null;
 
 		if ($this->request->is('post')) {
 			
 			if($this->Mission->exists($id)) {
+				
 				//it already exists, so let's save any alterations and move on..
 				$this->Mission->id = $id;
 				if ($this->Mission->save($this->request->data)) {
-					$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+					$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 					
 					//saves the issue related to it..
 					$this->request->data['MissionIssue']['mission_id'] = $id;
@@ -250,14 +383,14 @@ class PanelsController extends AppController {
 			//it could be a request from one of the other tabs
 			if(!is_null($id) && $args == 'phase'){
 				//sets variable mission to be the mission being added now..
-				$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 			if(!is_null($id) && $args == 'mission'){
 				//sets variable mission to be the mission being added now..
-				$mission = $this->Mission->find('first', array('conditions' => array('id' => $id)));
+				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 		}
-		$this->set(compact('mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'phases'))	;
+		$this->set(compact('flags', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'organizations', 'phases'))	;
 	}
 
 
@@ -397,10 +530,45 @@ class PanelsController extends AppController {
 	public function add_org() {
 		if ($this->request->is('post')) {
 			$this->Organization->create();
-			$this->Organization->user_id = $this->request->data['User.id']; 
+			
 			if ($this->Organization->save($this->request->data)) {
-				
-				$this->Session->setFlash(__('The organization has been saved.'));
+
+				//saving owner of the recently added org
+				$id = $this->Organization->id;
+				$this->request->data['UserOrganization']['organization_id'] = $id;
+
+				//if there was more than one owner:
+				if(isset($this->request->data['UserOrganization']['users_id'])) {
+					
+					//save one by one at UserOrganization
+					$tmp = $this->request->data['UserOrganization']['users_id'];
+					foreach ($tmp as $userdata) {
+						$this->request->data = array();
+						$this->request->data['UserOrganization']['organization_id'] = $id;
+						$this->request->data['UserOrganization']['user_id'] = $userdata;
+						
+						$this->UserOrganization->create();
+						if(!$this->UserOrganization->save($this->request->data)) {
+							$this->Session->setFlash(__('The organization has been saved without owner.'));
+							return $this->redirect(array('action' => 'index', 'organizations'));
+						}
+
+					}
+					$this->Session->setFlash(__('The organization has been saved.'));
+					return $this->redirect(array('action' => 'index', 'organizations'));					
+					
+				} else {
+					//there's only one, save him
+					if($this->UserOrganization->save($this->request->data)) {
+						$this->Session->setFlash(__('user organization saved'));
+
+						$this->Session->setFlash(__('The organization has been saved.'));
+						return $this->redirect(array('action' => 'index', 'organizations'));
+					}
+				}
+
+				//something went wrong
+				$this->Session->setFlash(__('The organization has been saved without owner.'));
 				return $this->redirect(array('action' => 'index', 'organizations'));
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));

@@ -71,6 +71,10 @@
             							'value' => $mission['MissionIssue']['issue_id'] //as we are, for now, restricting the amount of issues per mission to 1
             						));
 								}
+								echo $this->Form->input('organization_id', array(
+											'options' => $organizations,
+											'value' => $mission['Mission']['organization_id']
+								));
 							?>
 						</fieldset>
 						<button class="button small" type="submit">

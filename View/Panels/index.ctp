@@ -64,15 +64,15 @@
 									echo $this->Form->input('facebook');
 									echo $this->Form->input('twitter');
 									echo $this->Form->input('blog');
-									if($userrole == 1) {
+									if($flags['_admin']) {
 										//if its an admin, use $possible_managers..
-										echo $this->Form->input('user_id', array(
-											'options' => $users
-
+										echo $this->Form->input('UserOrganization.users_id', array(
+											'options' => $users,
+											'multiple' => 'checkbox'
 										));
 									} else {
 										//else use my id
-										echo $this->Form->hidden('user_id', array('value' => $userid));
+										echo $this->Form->hidden('UserOrganization.user_id', array('value' => $userid));
 									}
 									
 								?>
@@ -96,7 +96,7 @@
 					<div class="large-4 columns filter">
 			  			<fieldset>
 			    			<legend>Issues</legend>
-			    			<?php echo $this->Form->submit('+ Issues', array('id' => 'new_issue', 'class' => 'button tiny')); ?>
+			    			<?php if($flags['_admin']) echo $this->Form->submit('+ Issues', array('id' => 'new_issue', 'class' => 'button tiny')); ?>
 			    			<ul id="filters">
 			    			 	<?php foreach ($issues as $issue) { ?>
 							    	<li>
@@ -104,7 +104,7 @@
 							        	<label for="filter-issue_<?php echo $issue['Issue']['id'];?>">
 							        		<?php echo $issue['Issue']['name']; ?>
 							        	</label>
-							        	<?php echo $this->Form->PostLink('delete', array('controller' => 'panels', 'action' => 'delete_issue', $issue['Issue']['id']));?>
+							        	<?php if($flags['_admin']) echo $this->Form->PostLink('delete', array('controller' => 'panels', 'action' => 'delete_issue', $issue['Issue']['id']));?>
 							    	</li>
 							    <?php } ?>
 							</ul>

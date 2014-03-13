@@ -6,11 +6,6 @@
 			<?php echo h($organization['Organization']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('User'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($organization['User']['name'], array('controller' => 'users', 'action' => 'view', $organization['User']['id'])); ?>
-			&nbsp;
-		</dd>
 		<dt><?php echo __('Name'); ?></dt>
 		<dd>
 			<?php echo h($organization['Organization']['name']); ?>

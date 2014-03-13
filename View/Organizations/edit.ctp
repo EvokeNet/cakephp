@@ -4,7 +4,6 @@
 		<legend><?php echo __('Edit Organization'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('user_id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('birthdate');
 		echo $this->Form->input('description');
@@ -12,6 +11,7 @@
 		echo $this->Form->input('facerbook');
 		echo $this->Form->input('twitter');
 		echo $this->Form->input('blog');
+		echo 'not editing owners of the org for now';
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

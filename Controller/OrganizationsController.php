@@ -15,6 +15,7 @@ class OrganizationsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
+	public $uses = array('Organization', 'UserOrganization', 'User');
 
 /**
  * index method
@@ -74,8 +75,8 @@ class OrganizationsController extends AppController {
 
 		//check to see if the user is owner of the organization or an admin one..
 		$user = $this->getUserData();
-		$org = $this->Organization->find('first', array('conditions' => array('Organization.id' => $id)));
-		if($org['Organization']['user_id'] != $user['id'] && $user['role_id'] != 1){
+		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id)));
+		if($org['UserOrganization']['user_id'] != $user['id'] && $user['role_id'] != 1){
 			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
 			$this->redirect($this->referer());
 		}
@@ -93,10 +94,10 @@ class OrganizationsController extends AppController {
 			$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
 			$this->request->data = $this->Organization->find('first', $options);
 		}
-
-		if($user['role_id'] != 1) $users = $this->Organization->User->find('list', array('conditions' => array('User.id' => $user['id'])));
+		/*
+		if($user['role_id'] != 1) $users = $this->Organization->UserOrganization->User->find('list', array('conditions' => array('User.id' => $user['id'])));
 		else $users = $this->Organization->User->find('list');
-		$this->set(compact('users'));
+		$this->set(compact('users'));*/
 	}
 
 /**
@@ -114,14 +115,14 @@ class OrganizationsController extends AppController {
 
 		//check to see if the user is owner of the organization or an admin one..
 		$user = $this->getUserData();
-		$org = $this->Organization->find('first', array('conditions' => array('Organization.id' => $id)));
-		if($org['Organization']['user_id'] != $user['id'] && $user['role_id'] != 1){
+		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id)));
+		if($org['UserOrganization']['user_id'] != $user['id'] && $user['role_id'] != 1){
 			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
 			$this->redirect($this->referer());
 		}
 
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Organization->delete()) {
+		if ($this->UserOrganization->deleteAll(array('UserOrganization.organization_id' => $id)) && $this->Organization->delete()) {
 			$this->Session->setFlash(__('The organization has been deleted.'));
 			//returning to the admin panel
 			return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'organizations'));

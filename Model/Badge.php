@@ -13,9 +13,7 @@ class Badge extends AppModel {
  */
 	public $displayField = 'name';
 
-	public function getBadges($order = "Badge.name"){
-		return $this->find('all', array(
-			'order' => array($order.' ASC')
-			));
+	public function getBadges($options = null){
+		return $this->find('all', $options);
 	}
 }

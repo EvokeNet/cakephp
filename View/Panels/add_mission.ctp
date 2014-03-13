@@ -81,6 +81,10 @@
             								'value' => $mission['MissionIssue']['issue_id'] //as we are, for now, restricting the amount of issues per mission to 1
             							));
 									}
+									echo $this->Form->input('organization_id', array(
+											'options' => $organizations,
+											'value' => $mission['Mission']['organization_id']
+									));
 								} else {
 									echo '<legend> Add Mission </legend>'; 
 									echo $this->Form->input('title');
@@ -90,6 +94,9 @@
 									echo $this->Form->input('MissionIssue.issue_id', array(
             							'options' => $issues
             						));
+            						echo $this->Form->input('organization_id', array(
+											'options' => $organizations
+									));
 								}
 							?>
 						</fieldset>
