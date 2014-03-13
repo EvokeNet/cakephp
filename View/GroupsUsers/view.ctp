@@ -118,7 +118,7 @@
 				</a>
 
 				<!-- Add documents -->
-				<a class="button circle bg-orange tip-top" data-tooltip title="Add document">
+				<a class="button circle bg-orange tip-top" data-tooltip data-reveal-id="document_modal" data-reveal title="Add document">
 					<i class="fa fa-file-o fa-2x"></i>
 				</a>
 
@@ -138,6 +138,15 @@
 			<!--/ Evokation page -->
 
 		</div>
+
+		<!-- Modals -->
+
+		<div id="document_modal" class="reveal-modal" data-reveal>
+			<?php echo $this->Element('add_document'); ?>
+			<a class="close-reveal-modal">&#215;</a>
+		</div>
+
+		<!--/ Modal -->
 
 		<aside>
 			<div class="large-2 columns evoke toolbar">
