@@ -5,6 +5,7 @@ App::uses('AppController', 'Controller');
  *
  * @property Mission $Mission
  * @property PaginatorComponent $Paginator
+ * @property SessionComponent $Session
  */
 class MissionsController extends AppController {
 
@@ -13,7 +14,7 @@ class MissionsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Session');
 
 	public $user = null;
 
@@ -131,7 +132,7 @@ class MissionsController extends AppController {
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Mission->delete()) {
 			$this->Session->setFlash(__('The mission has been deleted.'));
-
+			
 			//deletar todos os registros de missions_issue referentes a esse issue
 			$this->loadModel('MissionIssue');
 			$this->MissionIssue->deleteAll(array('mission_id = '.$id));
@@ -139,8 +140,7 @@ class MissionsController extends AppController {
 			$this->Session->setFlash(__('The mission could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panels
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));	
-	}
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));	}
 
 /**
  * admin_index method

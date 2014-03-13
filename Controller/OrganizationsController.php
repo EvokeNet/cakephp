@@ -5,6 +5,7 @@ App::uses('AppController', 'Controller');
  *
  * @property Organization $Organization
  * @property PaginatorComponent $Paginator
+ * @property SessionComponent $Session
  */
 class OrganizationsController extends AppController {
 
@@ -13,7 +14,7 @@ class OrganizationsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Session');
 
 /**
  * index method
@@ -55,6 +56,8 @@ class OrganizationsController extends AppController {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
 		}
+		$users = $this->Organization->User->find('list');
+		$this->set(compact('users'));
 	}
 
 /**
@@ -71,16 +74,18 @@ class OrganizationsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Organization->save($this->request->data)) {
 				$this->Session->setFlash(__('The organization has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				
+				//returning to the admin panel
+				return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'organizations'));
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
-			//returning to the admin panel
-			return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'organizations'));
 		} else {
 			$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
 			$this->request->data = $this->Organization->find('first', $options);
 		}
+		$users = $this->Organization->User->find('list');
+		$this->set(compact('users'));
 	}
 
 /**
@@ -98,94 +103,8 @@ class OrganizationsController extends AppController {
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Organization->delete()) {
 			$this->Session->setFlash(__('The organization has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
-		}
-		//returning to the admin panel
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'organizations'));
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->Organization->recursive = 0;
-		$this->set('organizations', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Organization->exists($id)) {
-			throw new NotFoundException(__('Invalid organization'));
-		}
-		$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
-		$this->set('organization', $this->Organization->find('first', $options));
-	}
-
-/**
- * admin_add method
- *
- * @return void
- */
-	public function admin_add() {
-		if ($this->request->is('post')) {
-			$this->Organization->create();
-			if ($this->Organization->save($this->request->data)) {
-				$this->Session->setFlash(__('The organization has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
-			}
-		}
-	}
-
-/**
- * admin_edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_edit($id = null) {
-		if (!$this->Organization->exists($id)) {
-			throw new NotFoundException(__('Invalid organization'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Organization->save($this->request->data)) {
-				$this->Session->setFlash(__('The organization has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
-			$this->request->data = $this->Organization->find('first', $options);
-		}
-	}
-
-/**
- * admin_delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_delete($id = null) {
-		$this->Organization->id = $id;
-		if (!$this->Organization->exists()) {
-			throw new NotFoundException(__('Invalid organization'));
-		}
-		$this->request->onlyAllow('post', 'delete');
-		if ($this->Organization->delete()) {
-			$this->Session->setFlash(__('The organization has been deleted.'));
+			//returning to the admin panel
+			return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'organizations'));
 		} else {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
 		}
