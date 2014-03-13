@@ -15,6 +15,8 @@ class MissionsController extends AppController {
  */
 	public $components = array('Paginator');
 
+	public $user = null;
+
 /**
  * index method
  *
@@ -24,13 +26,16 @@ class MissionsController extends AppController {
 		$this->Mission->recursive = 0;
 		$this->set('missions', $this->Paginator->paginate());
 
-		$userid = $this->Session->read('Auth.User.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$missionissues = $this->Mission->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id'));
+		$this->loadModel('User');
+		$user_data = $this->getUserData();
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
+		$missionIssues = $this->Mission->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id'));
 
 		$this->loadModel('Issue');
 		$issues = $this->Issue->find('all');
-		$this->set(compact('userid', 'username', 'missionissues', 'issues'));
+
+		$this->set(compact('user', 'missionIssues', 'issues'));
 	}
 
 /**
@@ -54,14 +59,16 @@ class MissionsController extends AppController {
 		$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
 		$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);
 
-		$userid = $this->Session->read('Auth.User.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$this->loadModel('User');
+		$user_data = $this->getUserData();
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
 		$evidences = $this->Mission->getEvidences($id);
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
 		$missionIssues = $this->Mission->getMissionIssues($id);
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 
-		$this->set(compact('userid', 'username', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP'));
+		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP'));
 	}
 
 /**

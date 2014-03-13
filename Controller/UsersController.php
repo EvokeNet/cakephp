@@ -21,6 +21,8 @@ class UsersController extends AppController {
 
 	public $uses = array('User', 'Friend');
 
+	public $user = null;
+
 /**
 *
 * beforeFilter method
@@ -79,10 +81,10 @@ class UsersController extends AppController {
 					if($this->User->save($user)) {
 						$this->Auth->login($user);
 						// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
-						$this->redirect(array('action' => 'dashboard', $this->User->id));
+						return $this->redirect(array('action' => 'dashboard', $this->User->id));
 					} else {
 						$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
-						$this->redirect(array('action' => 'login'));
+						return $this->redirect(array('action' => 'login'));
 					}
 
 				} else {
@@ -97,14 +99,14 @@ class UsersController extends AppController {
 
 					$this->Auth->login($user);
 					// $this->Session->write('Auth.User.id', $user['User']['id']);
-					$this->redirect(array('action' => 'dashboard', $this->User->id));
+					return $this->redirect(array('action' => 'dashboard', $this->User->id));
 
 				}
 				
 			}
 
 		} else if ($this->Auth->login()) {
-			$this->redirect($this->Auth->redirect());
+			return $this->redirect($this->Auth->redirect());
 		} else {
 			$fbLoginUrl = $facebook->getLoginUrl();
 			$this->set(compact('fbLoginUrl'));
@@ -176,8 +178,7 @@ class UsersController extends AppController {
 		}
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
-		$userid = $this->Session->read('Auth.User.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
 
 		$this->loadModel('Evokation');
@@ -185,14 +186,10 @@ class UsersController extends AppController {
 
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all');
+		$missionIssues = $this->Mission->MissionIssue->find('all');
+		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
-		$this->loadModel('MissionIssue');
-		$missionissues = $this->MissionIssue->find('all');
-
-		//$this->loadModel('Issue');
-		$issues = $this->MissionIssue->Issue->find('all');
-
-		$this->set(compact('user', 'userid', 'username', 'evidence', 'evokations', 'missions', 'missionissues', 'issues'));
+		$this->set(compact('user', 'evidence', 'evokations', 'missions', 'missionIssues', 'issues'));
 
 	}
 
@@ -206,27 +203,21 @@ class UsersController extends AppController {
  * @return void
  */
 	public function dashboardByIssue($user_id = null, $id = null) {
-
 		if (!$this->User->exists($user_id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_id)));
-		$userid = $this->Session->read('Auth.User.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
 
 		$this->loadModel('Mission');
-		$missions = $this->Mission->find('all', array('limit' => 3));
+		$missions = $this->Mission->find('all');
+		$issue = $this->Mission->MissionIssue->Issue->find('first', array('conditions' => array('Issue.id' => $id)));
+		$missionIssues = $this->Mission->MissionIssue->find('all');
+		$missionIssue = $this->Mission->MissionIssue->find('all', array('conditions' => array('MissionIssue.issue_id' => $id)));
 
-		$this->loadModel('MissionIssue');
-		$missionissues = $this->MissionIssue->find('all');
-
-		$issue = $this->MissionIssue->Issue->find('first', array('conditions' => array('Issue.id' => $id)));
-		
-		$missionissue = $this->MissionIssue->find('all', array('conditions' => array('MissionIssue.issue_id' => $id)));
-
-		$this->set(compact('user', 'userid', 'username', 'evidence', 'issue', 'missions', 'missionissues', 'missionissue'));
+		$this->set(compact('user', 'evidence', 'issue', 'missions', 'missionIssues', 'missionIssue'));
 
 	}
 
