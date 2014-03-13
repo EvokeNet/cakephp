@@ -7,6 +7,8 @@
     "medium-editor": "master",
     "medium-editor-insert-plugin": "git://github.com/orthes/medium-editor-insert-plugin.git",
     "rangy": "http://rangy.googlecode.com/svn/trunk/currentrelease/rangy-core.js",
-    "jquery-form": "http://malsup.github.com/min/jquery.form.min.js"
+    "jquery-form": "http://malsup.github.com/min/jquery.form.min.js",
+    "jquery-ui": "~1.10.4",
+    "jquery-annotation": "https://github.com/flipbit/jquery-image-annotate.git"
   }
 }

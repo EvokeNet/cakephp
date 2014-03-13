@@ -114,6 +114,29 @@ function insertHtmlAtCursor(html) {
     }
 }
 
+
+/**
+*	Document callbacks
+*
+**/
+
+function setResizableImages() {
+	$("#evokation_div img").each(function() {
+		var width, height;
+
+		$(this).resizable({
+			aspectRatio: 1,
+			containment: "#evokation_div",
+			stop: function(event, ui) {
+				$(this).width = $(event.target).width;
+				$(this).height = $(event.target).height;
+				console.log(ui.width, ui.height);
+				TEXT.setText($("#evokation_div").html());
+			}
+		});
+	});
+}
+
 /**
 *	jQuery handlers
 *
@@ -165,9 +188,7 @@ $("#image_uploader").change(function() {
 		});
 		$("#image_form").submit();
 	}
-})
-
-
+});
 
 
 $("#x").click(function(e) {
@@ -182,37 +203,3 @@ $("#x").click(function(e) {
 	console.log(sel.focusOffset);
 
 });
-
-var saveSelection, restoreSelection;
-if (window.getSelection) {
-    // IE 9 and non-IE
-    saveSelection = function() {
-        var sel = window.getSelection(), ranges = [];
-        if (sel.rangeCount) {
-            for (var i = 0, len = sel.rangeCount; i < len; ++i) {
-                ranges.push(sel.getRangeAt(i));
-            }
-        }
-        return ranges;
-    };
-
-    restoreSelection = function(savedSelection) {
-        var sel = window.getSelection();
-        sel.removeAllRanges();
-        for (var i = 0, len = savedSelection.length; i < len; ++i) {
-            sel.addRange(savedSelection[i]);
-        }
-    };
-} else if (document.selection && document.selection.createRange) {
-    // IE <= 8
-    saveSelection = function() {
-        var sel = document.selection;
-        return (sel.type != "None") ? sel.createRange() : null;
-    };
-
-    restoreSelection = function(savedSelection) {
-        if (savedSelection) {
-            savedSelection.select();
-        }
-    };
-}

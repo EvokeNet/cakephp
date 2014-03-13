@@ -33,8 +33,10 @@
 <?php $this->end(); ?>
 
 <!-- Medium Editor CSS -->
+<?php echo $this->Html->css('/components/jquery-ui/themes/base/minified/jquery-ui.min'); ?>
 <?php echo $this->Html->css('/components/medium-editor/dist/css/medium-editor'); ?>
 <?php echo $this->Html->css('/components/medium-editor/dist/css/themes/default'); ?>
+<?php echo $this->Html->css('/components/jquery-annotation/css/annotation'); ?>
 
 <section class="evoke margin top">
 	<div class="row full-width">
@@ -185,8 +187,10 @@
 	</script>
 <?php endif; ?>
 
+<?php echo $this->Html->script('/components/jquery-ui/ui/minified/jquery-ui.min', array('inline' => false)); ?>
 <?php echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min', array('inline' => false)); ?>
 <?php echo $this->Html->script('/components/rangy/index.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('/components/jquery-form/index.js', array('inline' => false)); ?>
+<?php echo $this->Html->script('/components/jquery-annotation/js/jquery.annotate', array('inline' => false)); ?>
 <?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('evokation', array('inline' => false)); ?>
