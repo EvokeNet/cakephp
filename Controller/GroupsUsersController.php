@@ -175,6 +175,27 @@ class GroupsUsersController extends AppController {
 		}
 	}
 
+
+/**
+ * storeFileId method
+ *
+ * AJAX call to store the fileID from Google Drive in the Database and
+ * use it in further calls in document updating.
+ *
+ * @return boolean TRUE if succeeded, FALSE otherwise
+ */
+	public function store_image() {
+		$this->autoRender = false;
+
+		if ($this->request->is('ajax')) {
+			$type = pathinfo($this->request->data['image_uploader']['tmp_name'], PATHINFO_EXTENSION);
+			$data = file_get_contents($this->request->data['image_uploader']['tmp_name']);
+			$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+			return $base64;
+		}
+	}
+
 // /**
 //  * add method
 //  *

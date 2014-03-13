@@ -7,6 +7,8 @@ var editor = new MediumEditor('#evokation_div', {
 	targetBlank: true
 });
 
+var TEXT; // global object that contains the collaborative model
+
 gapi.load("auth:client,drive-realtime,drive-share", createOrLoadDocument);
 
 function createOrLoadDocument() {
@@ -62,34 +64,54 @@ function initializeModel(model) {
 }
 
 function onFileLoaded(doc) {
-	var text = doc.getModel().getRoot().get("text");
+	TEXT = doc.getModel().getRoot().get("text");
 	var evokation = document.getElementById("evokation_txt");
 
 	gapi.client.load('drive', 'v2', function() {
-		gapi.drive.realtime.databinding.bindString(text, evokation);
+		gapi.drive.realtime.databinding.bindString(TEXT, evokation);
 
-		realtimeTick(text);
+		realtimeTick();
 
 		var updateEditor = function(event) {
 			if(!event.isLocal) {
-				var sel = rangy.saveSelection();
-				$("#evokation_div").html(text.getText());
-				rangy.restoreSelection(sel);
+				// var sel = rangy.saveSelection();
+				$("#evokation_div").html(TEXT.getText());
+				// rangy.restoreSelection(sel);
 			}
 		};
 
-		text.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, updateEditor);
-	 	text.addEventListener(gapi.drive.realtime.EventType.TEXT_DELETED, updateEditor);
+		TEXT.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, updateEditor);
+	 	TEXT.addEventListener(gapi.drive.realtime.EventType.TEXT_DELETED, updateEditor);
 
 	});
 
 }
 
-function realtimeTick(text) {
-	$("#evokation_div").html(text.getText());
+function realtimeTick() {
+	$("#evokation_div").html(TEXT.getText());
 	$("#evokation_div").on('input', function() {
-	 	text.setText($(this).html());
+	 	TEXT.setText($(this).html());
 	});
+}
+
+function insertHtmlAtCursor(html) {
+    var sel, range;
+    if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+
+            var spinner = document.createElement('span');
+            spinner.innerHTML = html;
+
+            console.log(spinner);
+
+            range.insertNode( spinner );
+        }
+    } else if (document.selection && document.selection.createRange) {
+        document.selection.createRange().innerHtml = html;
+    }
 }
 
 /**
@@ -121,7 +143,34 @@ $("#evokation_draft_button").click(function(){
 	});
 });
 
-$("#add_image").click(function(e) {
+
+$("#image_uploader").change(function() {
+	if($(this).val() !== '') {
+		$("#image_form").ajaxForm({
+			beforeSend: function() {
+				// insertHtmlAtCursor('<i class="fa fa-spinner fa-spin" contenteditable="false"></i>');
+			},
+			uploadProgress: function(event, position, total, percentComplete) {
+				// insertHtmlAtCursor(percentComplete);
+			},
+			success: function(msg) {
+				var image = '<img src="' + msg + '" />';
+				insertHtmlAtCursor(image);
+				TEXT.setText($("#evokation_div").html());
+			},
+			complete: function(xhr) {
+				console.log('completed');
+				console.log(xhr.responseText);
+			}
+		});
+		$("#image_form").submit();
+	}
+})
+
+
+
+
+$("#x").click(function(e) {
 	e.stopPropagation();
 
 	var element = document.querySelector("#evokation_div");

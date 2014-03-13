@@ -70,6 +70,10 @@
 	padding: 0 1.25rem 0 1.0875rem;
 }
 
+.evoke .project.page i.fa {
+	font-family: 'FontAwesome';
+}
+
 .evoke .button.circle {
 	border-radius: 50%;
 	height: 4rem;
@@ -82,7 +86,17 @@
 	padding-top: 1rem;
 }
 
-.image_uploader_button {
+
+#add_image input.image_upload {
+	cursor: pointer;
+	display: block;
 	position: absolute;
-	z-index: 999;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	filter: alpha(opacity=0);
 }

@@ -6,7 +6,7 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo $user['User']['name']; ?></h1>
+			<!-- <h1><?php echo $user['User']['name']; ?></h1> -->
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
@@ -17,7 +17,7 @@
 			<li class="has-dropdown">
 				<a href="#">Settings</a>
 				<ul class="dropdown">
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li>
+					<!-- <li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li> -->
 					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
@@ -25,7 +25,7 @@
 
 		<!-- Left Nav Section -->
 		<ul class="left">
-			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li>
+			<!-- <li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li> -->
 		</ul>
 	</section>
 </nav>
@@ -108,17 +108,25 @@
 			<div class="editor">
 
 				<!-- Add images -->
-				<a class="button circle bg-teal" id="add_image">
+				<a class="button circle bg-teal tip-top" id="add_image" data-tooltip title="Add image">
+					<form id="image_form" action="<?php echo $this->webroot ?>groups_users/store_image" method="post" enctype="multipart/form-data">
+						<input type="file" name="data[image_uploader]" id="image_uploader" class="image_upload">
+					</form>
 					<i class="fa fa-camera fa-2x"></i>
 				</a>
 
+				<!-- Add documents -->
+				<a class="button circle bg-orange tip-top" data-tooltip title="Add document">
+					<i class="fa fa-file-o fa-2x"></i>
+				</a>
+
 				<!-- Add videos -->
-				<a class="button circle bg-maroon" id="add_video" href="#">
+				<a class="button circle bg-maroon tip-top" id="add_video" data-tooltip title="Add video">
 					<i class="fa fa-youtube-play fa-2x"></i>
 				</a>
 
 				<!-- Add audio -->
-				<a class="button circle bg-olive" id="add_audio" href="#">
+				<a class="button circle bg-olive tip-top" id="add_audio" data-tooltip title="Add audio">
 					<i class="fa fa-music fa-2x"></i>
 				</a>
 
@@ -179,5 +187,6 @@
 
 <?php echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min', array('inline' => false)); ?>
 <?php echo $this->Html->script('/components/rangy/index.js', array('inline' => false)); ?>
+<?php echo $this->Html->script('/components/jquery-form/index.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('evokation', array('inline' => false)); ?>
