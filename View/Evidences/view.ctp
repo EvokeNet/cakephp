@@ -1,13 +1,13 @@
-<?php  
+<?php
 	$this->extend('/Common/topbar');
 	$this->start('menu');
-	$comments_count = ' ('.count($comment). ') ';
+	$comments_count = sprintf(' (%s) ', count($comment));
 ?>
 
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo __('Agent ').$username[0]; ?></h1>
+			<h1><?php echo $user['User']['name']; ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
@@ -18,7 +18,7 @@
 			<li class="has-dropdown">
 				<a href="#">Settings</a>
 				<ul class="dropdown">
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li>
 					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
@@ -26,7 +26,7 @@
 
 		<!-- Left Nav Section -->
 		<ul class="left">
-			<li><a href="#"><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></a></li>
+			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li>
 		</ul>
 	</section>
 </nav>
@@ -76,10 +76,12 @@
 		  	<!-- Google Plus share button -->
 		  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
 		  
+		  	<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button"><?php echo __('Edit Discussion');?></a>
+
 		  	<!-- Voting lightbox button -->
-		  	<a href="#" data-reveal-id="myModalVote" data-reveal><button><?php echo __('Vote');?></button></a>
+		  	<a href="#" class="button" data-reveal-id="myModalVote" data-reveal><?php echo __('Vote');?></a>
 		  	<!-- Commenting lightbox button -->
-		  	<a href="#" data-reveal-id="myModalComment" data-reveal><button><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<?php echo __('Comment').$comments_count;?></button></a>
+		  	<a href="#" class="button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<?php echo __('Comment').$comments_count;?></a>
 		</div>
 	  </div>
 	</div>
@@ -87,15 +89,15 @@
 	<!-- Lightbox for voting form -->
 	<div id="myModalVote" class="reveal-modal tiny" data-reveal>
 	  <?php 
-		if(!$vote) echo $this->element('vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $userid));
-		else echo $this->element('see_vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $userid, 'vote_id' => $vote['Vote']['id'], 'vote_value' => $vote['Vote']['value']));
+		if(!$vote) echo $this->element('vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id']));
+		else echo $this->element('see_vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'], 'vote_id' => $vote['Vote']['id'], 'vote_value' => $vote['Vote']['value']));
 	  ?>
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>
 
 	<!-- Lightbox for commenting form -->
 	<div id="myModalComment" class="reveal-modal tiny" data-reveal>
-	  <?php echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $userid)); ?>
+	  <?php echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'])); ?>
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>
 </section>

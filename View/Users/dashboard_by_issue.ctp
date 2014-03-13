@@ -1,4 +1,36 @@
-<?php echo $this->element('header', array("userid" => $userid, "username" => $username[0])); ?>
+<?php
+	$this->extend('/Common/topbar');
+	$this->start('menu');
+?>
+
+<nav class="top-bar" data-topbar>
+	<ul class="title-area">
+		<li class="name">
+			<h1><?php echo $user['User']['name']; ?></h1>
+		</li>
+		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+	</ul>
+
+	<section class="top-bar-section">
+		<!-- Right Nav Section -->
+		<ul class="right">
+			<li class="has-dropdown">
+				<a href="#">Settings</a>
+				<ul class="dropdown">
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li>
+					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
+				</ul>
+			</li>
+		</ul>
+
+		<!-- Left Nav Section -->
+		<ul class="left">
+			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li>
+		</ul>
+	</section>
+</nav>
+
+<?php $this->end(); ?>
 
 <section class="evoke margin top-2">
 	<div class="row dashboard">
@@ -8,7 +40,7 @@
 			<nav class="breadcrumbs dashboard_breadcrumbs">
 			  <a class="unavailable" href="#"><?php echo __('Dashboard ');?></a>
 			  <?php echo $this->Html->link($user['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?>
-			  <a class="current" href="#"><?php if($missionissue) echo __('Issue: ').$missionissue[0]['Issue']['name']; else echo __('Issue: ').$issue['Issue']['name'];?></a>
+			  <a class="current" href="#"><?php if($missionIssue) echo __('Issue: ').$missionIssue[0]['Issue']['name']; else echo __('Issue: ').$issue['Issue']['name'];?></a>
 			</nav>
 
 			<dl class="tabs" data-tab>
@@ -25,7 +57,7 @@
 			    		<p><?php echo substr($e['Evidence']['content'], 0, 100);?></p>
 			
 						<!-- Prints the issue related to each mission -->
-	    				<?php foreach($missionissues as $mi): 
+	    				<?php foreach($missionIssues as $mi): 
 		    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
 		    				<div class="row">
 							  <div class="large-10 columns">
@@ -53,16 +85,16 @@
 			  <div class="content active" id="panel12-1">
 
 			  <!-- Lists all issues -->
-		    	<h2><?php if(isset($missionissue[0])) echo __('Missions under Issue: ').$missionissue[0]['Issue']['name']; else echo sprintf(__('No missions under issue %s'), $issue['Issue']['name']); ?></h2>
+		    	<h2><?php if(isset($missionIssue[0])) echo __('Missions under Issue: ').$missionIssue[0]['Issue']['name']; else echo sprintf(__('No missions under issue %s'), $issue['Issue']['name']); ?></h2>
 		    	
-		    	<?php foreach($missionissue as $mi): ?>
+		    	<?php foreach($missionIssue as $mi): ?>
 		    		<h3><?php echo $this->Html->link($mi['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mi['Mission']['id'], 1));?></h3>
 		    		<p><?php echo $mi['Mission']['description']; ?></p>
 		    	<?php endforeach; ?>
 
 	    		<!-- Button redirects to listing mission issues page -->
-				</br><button><?php echo $this->Html->link(__('Go back to Issues'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));?></button>
-				<button><?php echo $this->Html->link(__('See All Missions'), array('controller' => 'missions', 'action' => 'index'));?></button>
+				</br><a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?>" class = "button"><?php echo __('Go back to Issues');?></a>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class = "button"><?php echo __('See All Missions');?></a>
 
 			  </div>
 
@@ -77,7 +109,7 @@
 	    		<?php endforeach; ?>
 
 	    		<!-- Button redirects to listing mission page -->
-	    		</br><button><?php echo $this->Html->link(__('See All Missions'), array('controller' => 'missions', 'action' => 'index'));?></button>
+	    		</br><a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class = "button"><?php echo __('See All Missions');?></a>
 
 			  </div>
 			</div>

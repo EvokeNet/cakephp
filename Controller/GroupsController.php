@@ -16,6 +16,8 @@ class GroupsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+	public $user = null;
+
 /**
  * index method
  *
@@ -24,6 +26,13 @@ class GroupsController extends AppController {
 	public function index() {
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->Paginator->paginate());
+
+		$user_data = $this->getUserData();
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
+		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $user_data['id'])));
+
+		$this->set(compact('user', 'myGroups'));
 	}
 
 /**
@@ -37,8 +46,22 @@ class GroupsController extends AppController {
 		if (!$this->Group->exists($id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
+
 		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
 		$this->set('group', $this->Group->find('first', $options));
+
+		$user_data = $this->getUserData();
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
+		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.group_id' => $id)));
+
+		$groupsRequestsPending = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status = 0')));
+
+		$groupsRequests = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status' => array(1, 2))));
+
+		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $user_data['id'])));
+
+		$this->set(compact('user', 'userRequest', 'groupsUsers', 'groupsRequests', 'groupsRequestsPending'));
 	}
 
 /**
