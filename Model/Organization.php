@@ -17,10 +17,8 @@ class Organization extends AppModel {
 
 
 
-	public function getOrganizations($order = 'Organization.name'){
-		return $this->find('all', array(
-			'order' => array($order.' ASC'))
-		);
+	public function getOrganizations($options = null){
+		return $this->find('all', $options);
 	}
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

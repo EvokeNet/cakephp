@@ -35,21 +35,6 @@ class PanelsController extends AppController {
 
     }
 	
-
-    function getUserData(){
-    	$c_user = array();
-    	if(is_null($this->Session->read('Auth.User.role_id'))) {
-			$c_user['role_id'] = $this->Session->read('Auth.User.User.role_id');
-			$c_user['id'] = $this->Session->read('Auth.User.User.id');
-			$c_user['name'] = $this->Session->read('Auth.User.User.name');
-		}else{
-			$c_user['role_id'] = $this->Session->read('Auth.User.role_id');
-			$c_user['id'] = $this->Session->read('Auth.User.id');
-			$c_user['name'] = $this->Session->read('Auth.User.name');
-		}
-		return $c_user;
-    }
-
 /*
 * index method
 * Loads basic informations from database to local variables to be shown in the administrator's panel
@@ -66,18 +51,50 @@ class PanelsController extends AppController {
 		//loading infos to be shown at top bar
 		$username = explode(' ', $this->user['name']);
 		$userid = $this->user['id'];
+		$userrole = $this->user['role_id'];
 
-		$organizations = $this->Organization->getOrganizations();
-		
+		//if you're admin, return all organizations/missions/badges..
+		if($userrole == 1)	{
+			$organizations = $this->Organization->getOrganizations(array(
+															'order' => array(
+																'Organization.name ASC'
+															)
+														)
+													);
+		} else {
+			//else, return your own
+			$organizations = $this->Organization->getOrganizations(array(
+															'order' => array(
+																'Organization.name ASC'
+															),
+															'conditions' => array(
+																array(
+																	'Organization.user_id' => $userid
+																)
+															)
+														)
+													);
+		}
+
 		$issues = $this->Issue->getIssues();
 		
 		$badges = $this->Badge->getBadges();
 		
 		$roles = $this->Role->getRoles();
 				
-		$users = $this->User->getUsers();
+		$all_users = $this->User->getUsers();
 		
 		$groups = $this->Group->getGroups();
+
+		//array that contains all the possible owners of an organization
+		$users = $this->User->find('list', array(
+			'conditions' => array(
+					'OR' => array( //to be an organization manager you either need.. 
+            			array('role_id' => 1), //an admin account..
+            			array('role_id' => 2) //or a manager one
+        			)
+			)
+		));
 		
 		$missions_issues = $this->MissionIssue->Mission->find('all', array(
 			'order' => array('Mission.title ASC'))
@@ -86,7 +103,7 @@ class PanelsController extends AppController {
 		//needed to issues' add form
 		$parentIssues = $this->Issue->ParentIssue->find('list');
 		
-		$this->set(compact('username', 'userid', 'organizations','issues','badges','roles','users','groups','missions_issues', 'parentIssues', 
+		$this->set(compact('username', 'userid', 'userrole', 'organizations','issues','badges','roles','users','groups', 'all_users','missions_issues', 'parentIssues', 
 			'organizations_tab', 'missions_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
 	}
 
@@ -380,7 +397,9 @@ class PanelsController extends AppController {
 	public function add_org() {
 		if ($this->request->is('post')) {
 			$this->Organization->create();
+			$this->Organization->user_id = $this->request->data['User.id']; 
 			if ($this->Organization->save($this->request->data)) {
+				
 				$this->Session->setFlash(__('The organization has been saved.'));
 				return $this->redirect(array('action' => 'index', 'organizations'));
 			} else {

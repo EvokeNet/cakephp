@@ -64,6 +64,17 @@
 									echo $this->Form->input('facebook');
 									echo $this->Form->input('twitter');
 									echo $this->Form->input('blog');
+									if($userrole == 1) {
+										//if its an admin, use $possible_managers..
+										echo $this->Form->input('user_id', array(
+											'options' => $users
+
+										));
+									} else {
+										//else use my id
+										echo $this->Form->hidden('user_id', array('value' => $userid));
+									}
+									
 								?>
 							</fieldset>
 							<button class="button small" type="submit">
@@ -190,7 +201,7 @@
 					<div class="large-5 columns filteredContent">
 						<table>
 							<!-- colocar paginação -->
-							<?php foreach ($users as $user) { ?>
+							<?php foreach ($all_users as $user) { ?>
 								<tr class="role_<?php echo $user['User']['role_id'];?> ">
 									<td><?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?></td>
 								</tr>
@@ -203,7 +214,7 @@
 				</div>
 				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
 					<p>Some statistics to view..</p>
-					<p><?php echo "Users: " . sizeof($users);?></p>
+					<p><?php echo "Users: " . sizeof($all_users);?></p>
 					<p><?php echo "Groups: " . sizeof($groups);?></p>
 					<p><?php echo "Organizations: " . sizeof($organizations);?></p>
 					<p><?php echo "Badges: ".sizeof($badges);?></p>

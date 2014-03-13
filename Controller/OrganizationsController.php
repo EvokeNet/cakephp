@@ -71,6 +71,15 @@ class OrganizationsController extends AppController {
 		if (!$this->Organization->exists($id)) {
 			throw new NotFoundException(__('Invalid organization'));
 		}
+
+		//check to see if the user is owner of the organization or an admin one..
+		$user = $this->getUserData();
+		$org = $this->Organization->find('first', array('conditions' => array('Organization.id' => $id)));
+		if($org['Organization']['user_id'] != $user['id'] && $user['role_id'] != 1){
+			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
+			$this->redirect($this->referer());
+		}
+
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Organization->save($this->request->data)) {
 				$this->Session->setFlash(__('The organization has been saved.'));
@@ -84,7 +93,9 @@ class OrganizationsController extends AppController {
 			$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
 			$this->request->data = $this->Organization->find('first', $options);
 		}
-		$users = $this->Organization->User->find('list');
+
+		if($user['role_id'] != 1) $users = $this->Organization->User->find('list', array('conditions' => array('User.id' => $user['id'])));
+		else $users = $this->Organization->User->find('list');
 		$this->set(compact('users'));
 	}
 
@@ -100,6 +111,15 @@ class OrganizationsController extends AppController {
 		if (!$this->Organization->exists()) {
 			throw new NotFoundException(__('Invalid organization'));
 		}
+
+		//check to see if the user is owner of the organization or an admin one..
+		$user = $this->getUserData();
+		$org = $this->Organization->find('first', array('conditions' => array('Organization.id' => $id)));
+		if($org['Organization']['user_id'] != $user['id'] && $user['role_id'] != 1){
+			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
+			$this->redirect($this->referer());
+		}
+
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Organization->delete()) {
 			$this->Session->setFlash(__('The organization has been deleted.'));
