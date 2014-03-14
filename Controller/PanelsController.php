@@ -32,7 +32,6 @@ class PanelsController extends AppController {
 			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
 			$this->redirect($this->referer());
 		}
-
     }
 	
 /*
@@ -65,7 +64,6 @@ class PanelsController extends AppController {
 		
 		$groups = $this->Group->getGroups();
 
-
 		//loading things that differ from perspective
 		//admin will have access to all data
 		//while manager will see only what belongs to him/his organizations
@@ -79,6 +77,10 @@ class PanelsController extends AppController {
 				'order' => array(
 					'Organization.name ASC'
 				)
+			));
+
+			$organizations_list = $this->Organization->find('list', array(
+				'order' => array('Organization.name ASC')
 			));
 
 			$badges = $this->Badge->getBadges(array(
@@ -98,7 +100,7 @@ class PanelsController extends AppController {
 				'_admin' => false,
 			);
 
-			$organizations = $this->Organization->UserOrganization->find('all', array(
+			$my_organizations = $this->Organization->UserOrganization->find('all', array(
 				'order' => array(
 					'Organization.name ASC'
 				),
@@ -110,29 +112,49 @@ class PanelsController extends AppController {
 			));
 			
 			//variable to track the id's of all organizations I own and set it as OR condition when finding things that belong to my orgs
-			$my_orgs_id = array();
+			$my_orgs_id1 = array();
+			$my_orgs_id2 = array();
 			$k = 0;
-			foreach ($organizations as $org) {
-				$my_orgs_id[$k] = array('organization_id' => $org['Organization']['id']);
+			foreach ($my_organizations as $org) {
+				$my_orgs_id1[$k] = array('organization_id' => $org['Organization']['id']);
+				$my_orgs_id2[$k] = array('id' => $org['Organization']['id']);
 				$k++;
 			}
+
+			$organizations_list = $this->Organization->find('list', array(
+				'order' => array(
+					'Organization.name ASC'
+				),
+				'conditions' => array(
+					'OR' => $my_orgs_id2
+				)
+			));
+
+			$organizations = $this->Organization->getOrganizations(array(
+				'order' => array(
+					'Organization.name ASC'
+				),
+				'conditions' => array(
+					'OR' => $my_orgs_id2
+				)
+			));
 
 			$missions_issues = $this->MissionIssue->Mission->find('all', array(
 				'order' => array(
 					'Mission.title ASC'
 				),
 				'conditions' => array(
-					'OR' => $my_orgs_id
+					'OR' => $my_orgs_id1
 				)
 			));
 
 			$badges = $this->Badge->getBadges(array(
 				'order' => array(
 					'Badge.name ASC'
-				)/*,
+				),
 				'conditions' => array(
-					'OR' => $my_orgs_id
-				)*/
+					'OR' => $my_orgs_id1
+				)
 			));
 
 		}
@@ -147,7 +169,7 @@ class PanelsController extends AppController {
 			)
 		));		
 		
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'organizations','issues','badges','roles','users','groups', 'all_users','missions_issues', 'parentIssues', 
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'organizations', 'organizations_list', 'issues','badges','roles','users','groups', 'all_users','missions_issues', 'parentIssues', 
 			'organizations_tab', 'missions_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
 	}
 
@@ -414,7 +436,6 @@ class PanelsController extends AppController {
 		} else {
 			$this->redirect(array('action' => 'index'));
 		}
-		
 	}
 
 /*
@@ -469,22 +490,24 @@ class PanelsController extends AppController {
 * deletes a quest of the specific phase of the 'current-adding' mission  
 */
 	public function delete_quest($id, $quest_id, $origin = 'add_mission'){
-		$this->Quest->id = $quest_id;
-		if (!$this->Quest->exists()) {
-			throw new NotFoundException(__('Invalid quest'));
+		if ($this->request->is('post')) {
+			$this->Quest->id = $quest_id;
+			if (!$this->Quest->exists()) {
+				throw new NotFoundException(__('Invalid quest'));
+			}
+			//$this->request->onlyAllow('post', 'delete');
+			if ($this->Quest->delete()) {
+				$this->Session->setFlash(__('The quest has been deleted.'));
+				//if it came from add mission, go back to it, else...
+					if($origin == 'add_mission')
+						$this->redirect(array('action' => 'add_mission', $id, 'phase'));
+					else 
+						$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+			} else {
+				$this->Session->setFlash(__('The quest could not be deleted. Please, try again.'));
+			}
+			return $this->redirect(array('action' => 'index'));
 		}
-		//$this->request->onlyAllow('post', 'delete');
-		if ($this->Quest->delete()) {
-			$this->Session->setFlash(__('The quest has been deleted.'));
-			//if it came from add mission, go back to it, else...
-				if($origin == 'add_mission')
-					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
-				else 
-					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
-		} else {
-			$this->Session->setFlash(__('The quest could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
 	}
 
 
@@ -493,22 +516,24 @@ class PanelsController extends AppController {
 * deletes a phase of the 'current-adding' mission  
 */
 	public function delete_phase($id, $phase_id, $origin = 'add_mission'){
-		$this->Phase->id = $phase_id;
-		if (!$this->Phase->exists()) {
-			throw new NotFoundException(__('Invalid phase'));
+		if ($this->request->is('post')) {
+			$this->Phase->id = $phase_id;
+			if (!$this->Phase->exists()) {
+				throw new NotFoundException(__('Invalid phase'));
+			}
+			//$this->request->onlyAllow('post', 'delete');
+			if ($this->Phase->delete()) {
+				$this->Session->setFlash(__('The phase has been deleted.'));
+				//if it came from add mission, go back to it, else...
+					if($origin == 'add_mission')
+						$this->redirect(array('action' => 'add_mission', $id, 'phase'));
+					else 
+						$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+			} else {
+				$this->Session->setFlash(__('The phase could not be deleted. Please, try again.'));
+			}
+			return $this->redirect(array('action' => 'index'));
 		}
-		//$this->request->onlyAllow('post', 'delete');
-		if ($this->Phase->delete()) {
-			$this->Session->setFlash(__('The phase has been deleted.'));
-			//if it came from add mission, go back to it, else...
-				if($origin == 'add_mission')
-					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
-				else 
-					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
-		} else {
-			$this->Session->setFlash(__('The phase could not be deleted. Please, try again.'));
-		}
-		return $this->redirect(array('action' => 'index'));
 	}
 
 /*
@@ -597,21 +622,23 @@ class PanelsController extends AppController {
  * deletes an issue via admin panel and returns to it
  */
 	public function delete_issue($id = null) {
-		$this->Issue->id = $id;
-		if (!$this->Issue->exists()) {
-			throw new NotFoundException(__('Invalid issue'));
-		}
-		//$this->request->onlyAllow('post', 'delete');
-		if ($this->Issue->delete()) {
-			$this->Session->setFlash(__('The issue has been deleted.'));
+		if ($this->request->is('post')) {
+			$this->Issue->id = $id;
+			if (!$this->Issue->exists()) {
+				throw new NotFoundException(__('Invalid issue'));
+			}
+			//$this->request->onlyAllow('post', 'delete');
+			if ($this->Issue->delete()) {
+				$this->Session->setFlash(__('The issue has been deleted.'));
 
-			//deletar todos os registros de missions_issue referentes a esse issue
-			$this->loadModel('MissionIssue');
-			$this->MissionIssue->deleteAll(array('issue_id = '.$id));
+				//deletar todos os registros de missions_issue referentes a esse issue
+				$this->loadModel('MissionIssue');
+				$this->MissionIssue->deleteAll(array('issue_id = '.$id));
 
-			return $this->redirect(array('action' => 'index', 'missions'));
-		} else {
-			$this->Session->setFlash(__('The issue could not be deleted. Please, try again.'));
+				return $this->redirect(array('action' => 'index', 'missions'));
+			} else {
+				$this->Session->setFlash(__('The issue could not be deleted. Please, try again.'));
+			}
 		}
 	}
 

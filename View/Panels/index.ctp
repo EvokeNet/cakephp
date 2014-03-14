@@ -163,7 +163,9 @@
 								<?php
 									echo $this->Form->input('name');
 									echo $this->Form->input('description');
-									//echo $this->Form->input('trigger');
+									echo $this->Form->input('organization_id', array(
+												'options' => $organizations_list
+									));
 								?>
 								</fieldset>
 							<button class="button small" type="submit">
