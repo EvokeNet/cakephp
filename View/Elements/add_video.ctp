@@ -1,4 +1,4 @@
-<h3>Add document</h3>
+<h3>Add video</h3>
 
 <?php
 
@@ -6,23 +6,28 @@
 		echo $this->Form->input('title', array(
 			'label' => '',
 			'type' => 'text',
-			'placeholder' => 'Insert document title here'
+			'placeholder' => 'Insert video title here'
 		));
-		echo $this->Form->input('description', array(
+		echo $this->Form->input('embed', array(
 			'label' => '',
 			'type' => 'textarea',
-			'placeholder' => 'Insert document description here'
+			'placeholder' => 'Insert video <embed> code here'
 		));
+		echo $this->Html->tag(
+			'span',
+			'or',
+			array('class' => 'text-center')
+		);
 		echo $this->Form->input('video', array(
 			'label' => '',
 			'type' => 'file',
 			'class' => 'hidden',
-			'id' => 'document_upload'
+			'id' => 'video_upload'
 		));
 		echo $this->Html->link(
 			'Pick a file',
 			'#',
-			array('class' => 'button secondary black file btn', 'id' => 'f_document_upload')
+			array('class' => 'button secondary black file btn', 'id' => 'f_video_upload')
 		);
 		echo $this->Html->tag(
 			'div',
@@ -40,11 +45,11 @@
 
 <script type="text/javascript">
 
-	$("#f_document_upload, .f_file_path").click(function() {
-		$("#document_upload").click();
+	$("#f_video_upload, .f_file_path").click(function() {
+		$("#video_upload").click();
 	});
 
-	$("#document_upload").change(function() {
+	$("#video_upload").change(function() {
 		if($(this).val !== '') {
 			var filename = $(this).val().split('\\');
 			if(filename[2]) {

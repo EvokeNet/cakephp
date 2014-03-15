@@ -123,7 +123,7 @@
 				</a>
 
 				<!-- Add videos -->
-				<a class="button circle bg-maroon tip-top" id="add_video" data-tooltip title="Add video">
+				<a class="button circle bg-maroon tip-top" id="add_video" data-tooltip data-reveal-id="video_modal" data-reveal title="Add video">
 					<i class="fa fa-youtube-play fa-2x"></i>
 				</a>
 
@@ -141,8 +141,13 @@
 
 		<!-- Modals -->
 
-		<div id="document_modal" class="reveal-modal" data-reveal>
+		<div id="document_modal" class="reveal-modal small" data-reveal>
 			<?php echo $this->Element('add_document'); ?>
+			<a class="close-reveal-modal">&#215;</a>
+		</div>
+
+		<div id="video_modal" class="reveal-modal small" data-reveal>
+			<?php echo $this->Element('add_video'); ?>
 			<a class="close-reveal-modal">&#215;</a>
 		</div>
 
@@ -198,8 +203,7 @@
 
 <?php echo $this->Html->script('/components/jquery-ui/ui/minified/jquery-ui.min', array('inline' => false)); ?>
 <?php echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min', array('inline' => false)); ?>
-<?php echo $this->Html->script('/components/rangy/index.js', array('inline' => false)); ?>
+<?php //echo $this->Html->script('/components/rangy/index.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('/components/jquery-form/index.js', array('inline' => false)); ?>
-<?php echo $this->Html->script('/components/jquery-annotation/js/jquery.annotate', array('inline' => false)); ?>
 <?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('evokation', array('inline' => false)); ?>

@@ -54,19 +54,12 @@ button, div, p, span, a,
 
 
 .evoke a.button {
-	color: #fff;
+	color: #ffffff;
 }
 
-.evoke .button.secondary a {
+.evoke a.button.secondary {
 	color: #111111;
 }
-
-/*.evoke.button {
-	max-height: 2.5em;
-	line-height: 0;
-	padding-top: 1.25em;
-	padding-bottom: 1.25em;
-}*/
 
 .evoke .panel p,
 .evoke .panel h1,

@@ -83,6 +83,8 @@ function onFileLoaded(doc) {
 		TEXT.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, updateEditor);
 	 	TEXT.addEventListener(gapi.drive.realtime.EventType.TEXT_DELETED, updateEditor);
 
+	 	setDraggableElements();
+
 	});
 
 }
@@ -102,12 +104,9 @@ function insertHtmlAtCursor(html) {
             range = sel.getRangeAt(0);
             range.deleteContents();
 
-            var spinner = document.createElement('span');
-            spinner.innerHTML = html;
+            document.createElement(html);
 
-            console.log(spinner);
-
-            range.insertNode( spinner );
+            range.insertNode( html );
         }
     } else if (document.selection && document.selection.createRange) {
         document.selection.createRange().innerHtml = html;
@@ -134,6 +133,12 @@ function setResizableImages() {
 				TEXT.setText($("#evokation_div").html());
 			}
 		});
+	});
+}
+
+function setDraggableElements() {
+	$("#evokation_div img").each(function() {
+		$(this).draggable();
 	});
 }
 
