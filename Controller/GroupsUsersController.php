@@ -127,7 +127,7 @@ class GroupsUsersController extends AppController {
 		}
 
 		$user_data = $this->Auth->user();
-		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['User']['id'])));
 
 		$this->set(compact('group', 'users', 'user'));
 
