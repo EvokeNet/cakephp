@@ -36,15 +36,16 @@
 		<div class="large-12 columns">
 			<h1>Admin Panel</h1>
 			<dl class="tabs" data-tab>
-				<dd class="active"><a href="#organizations">Organizations</a></dd>
-				<dd><a href="#missions">Missions</a></dd>
-				<dd><a href="#levels">Levels</a></dd>
-				<dd><a href="#badges">Badges</a></dd>
-				<dd><a href="#users">Users</a></dd>
-				<dd><a href="#estatistics">Statistics</a></dd>
+				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations">Organizations</a></dd>
+				<dd class="<?php echo $missions_tab; ?>"><a href="#missions">Missions</a></dd>
+				<?php if($flags['_admin']) echo '<dd class="<?php echo $levels_tab; ?>"><a href="#levels">Levels</a></dd>'; ?>
+				<dd class="<?php echo $badges_tab; ?>"><a href="#badges">Badges</a></dd>
+				<dd class="<?php echo $users_tab; ?>"><a href="#users">Users</a></dd>
+				<?php if($flags['_admin']) echo '<dd class="<?php echo $media_tab; ?>"><a href="#media">Media</a></dd>'; ?>
+				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics">Statistics</a></dd>
 			</dl>
 			<div class="tabs-content">
-				<div class="content active" id="organizations">
+				<div class="content <?php echo $organizations_tab; ?>" id="organizations">
 					<p>
 						<?php echo $this->Form->submit('+ Organizations', array('id' => 'new_org', 'class' => 'button small')); ?>
 						<div id="orgsForm">
@@ -63,6 +64,17 @@
 									echo $this->Form->input('facebook');
 									echo $this->Form->input('twitter');
 									echo $this->Form->input('blog');
+									if($flags['_admin']) {
+										//if its an admin, use $possible_managers..
+										echo $this->Form->input('UserOrganization.users_id', array(
+											'options' => $users,
+											'multiple' => 'checkbox'
+										));
+									} else {
+										//else use my id
+										echo $this->Form->hidden('UserOrganization.user_id', array('value' => $userid));
+									}
+									
 								?>
 							</fieldset>
 							<button class="button small" type="submit">
@@ -80,18 +92,19 @@
 						</table>
 					</p>
 				</div>
-				<div class="content large-12 columns" id="missions">
+				<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
 					<div class="large-4 columns filter">
 			  			<fieldset>
 			    			<legend>Issues</legend>
-			    			<?php echo $this->Form->submit('+ Issues', array('id' => 'new_issue', 'class' => 'button tiny')); ?>
+			    			<?php if($flags['_admin']) echo $this->Form->submit('+ Issues', array('id' => 'new_issue', 'class' => 'button tiny')); ?>
 			    			<ul id="filters">
 			    			 	<?php foreach ($issues as $issue) { ?>
 							    	<li>
 							        	<input type="checkbox" checked="true" value="issue_<?php echo $issue['Issue']['id'];?>" id="filter-issue_<?php echo $issue['Issue']['id'];?>" />
 							        	<label for="filter-issue_<?php echo $issue['Issue']['id'];?>">
-							        		<?php echo $issue['Issue']['name'];?>
+							        		<?php echo $issue['Issue']['name']; ?>
 							        	</label>
+							        	<?php if($flags['_admin']) echo $this->Form->PostLink('delete', array('controller' => 'panels', 'action' => 'delete_issue', $issue['Issue']['id']));?>
 							    	</li>
 							    <?php } ?>
 							</ul>
@@ -133,10 +146,10 @@
 						</table>
 					</div>
 				</div>
-				<div class="content" id="levels">
+				<div class="content <?php echo $levels_tab; ?>" id="levels">
 					<p>Not defined.. levels details go here.</p>
 				</div>
-				<div class="content" id="badges">
+				<div class="content <?php echo $badges_tab; ?>" id="badges">
 					<p>
 						<?php echo $this->Form->submit('+ Badges', array('id' => 'new_badge', 'class' => 'button small')); ?>
 						<div id="badgesForm">
@@ -150,7 +163,9 @@
 								<?php
 									echo $this->Form->input('name');
 									echo $this->Form->input('description');
-									//echo $this->Form->input('trigger');
+									echo $this->Form->input('organization_id', array(
+												'options' => $organizations_list
+									));
 								?>
 								</fieldset>
 							<button class="button small" type="submit">
@@ -169,36 +184,77 @@
 						</table>
 					</p>
 				</div>
-				<div class="content" id="users">
-					<div class="large-4 columns filter">
+				<div class="content <?php echo $users_tab; ?>" id="users">
+					<div class="large-5 columns filter">
 			  			<fieldset>
-			    			<legend>Roles</legend>
-			    			 <ul id="filters2">
-			    			 	<?php foreach ($roles as $role) { ?>
-							    	<li>
-							        	<input type="checkbox" checked="true" value="role_<?php echo $role['Role']['id'];?>" id="filter-role_<?php echo $role['Role']['id'];?>" />
-							        	<label for="filter-role_<?php echo $role['Role']['id'];?>">
-							        		<?php echo $role['Role']['name'];?>
-							        	</label>
-							    	</li>
-							    <?php } ?>
+			    			<?php 
+			    				if($flags['_admin']) {
+					    	?>
+					    			<legend>Roles</legend>
+			    			 		<ul id="filters2">
+					    	<?php 
+					    			foreach ($roles as $role) { 
+					    	?>
+								    	<li>
+								        	<input type="checkbox" checked="true" value="role_<?php echo $role['Role']['id'];?>" id="filter-role_<?php echo $role['Role']['id'];?>" />
+								        	<label for="filter-role_<?php echo $role['Role']['id'];?>">
+								        		<?php echo $role['Role']['name'];?>
+								        	</label>
+								    	</li>
+							<?php
+							   		}
+							  	} else {
+							?>
+					    			<legend>My missions</legend>
+			    			 		<ul id="filters2">
+					    	<?php    	
+							   		foreach ($missions_issues as $mission) {
+							?>
+										<li>
+								        	<input type="checkbox" checked="true" value="mission_<?php echo $mission['Mission']['id'];?>" id="filter-mission_<?php echo $mission['Mission']['id'];?>" />
+								        	<label for="filter-mission_<?php echo $mission['Mission']['id'];?>">
+								        		<?php echo $mission['Mission']['title'];?>
+								        	</label>
+								    	</li>
+							<?php
+							   		}
+							   	} 
+							?>
 							</ul>
 						</fieldset>
 					</div>
 					<div class="large-5 columns filteredContent">
 						<table>
 							<!-- colocar paginação -->
-							<?php foreach ($users as $user) { ?>
-								<tr class="role_<?php echo $user['User']['role_id'];?> ">
-									<td><?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?></td>
-								</tr>
-							<?php }	?>
+							<?php
+								if($flags['_admin']) {
+									foreach ($all_users as $user) { 
+							?>
+										<tr class="role_<?php echo $user['User']['role_id'];?> ">
+											<td><?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?></td>
+										</tr>
+							<?php
+									}
+								} else {
+									foreach ($users_of_my_missions as $user) {
+							?>
+										<!-- colocar paginação & filtragem por missions -->
+										<tr class="mission_<?php echo $user['UserMission']['mission_id'];?> ">
+											<td><?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?></td>
+										</tr>
+							<?php
+									}
+								}
+							?>
 						</table>
 					</div>
 				</div>
-				<div class="content" id="estatistics">
+				<div class="content <?php echo $media_tab; ?>" id="media">
+					<p>Upload videos/images and choose actions that triggers them...</p>
+				</div>
+				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
 					<p>Some statistics to view..</p>
-					<p><?php echo "Users: " . sizeof($users);?></p>
+					<p><?php echo "Users: " . sizeof($all_users);?></p>
 					<p><?php echo "Groups: " . sizeof($groups);?></p>
 					<p><?php echo "Organizations: " . sizeof($organizations);?></p>
 					<p><?php echo "Badges: ".sizeof($badges);?></p>

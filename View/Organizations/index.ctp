@@ -3,6 +3,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('birthdate'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
@@ -15,6 +16,9 @@
 	<?php foreach ($organizations as $organization): ?>
 	<tr>
 		<td><?php echo h($organization['Organization']['id']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($organization['User']['name'], array('controller' => 'users', 'action' => 'view', $organization['User']['id'])); ?>
+		</td>
 		<td><?php echo h($organization['Organization']['name']); ?>&nbsp;</td>
 		<td><?php echo h($organization['Organization']['birthdate']); ?>&nbsp;</td>
 		<td><?php echo h($organization['Organization']['description']); ?>&nbsp;</td>
@@ -48,5 +52,9 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Organization'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Missions'), array('controller' => 'missions', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Mission'), array('controller' => 'missions', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

@@ -28,9 +28,9 @@ class GroupsUsersController extends AppController {
 	public function index() {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
-
-		$userid = $this->Session->read('Auth.User.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		
+		$userid = $this->Auth->user('User.id');
+		$username = explode(' ', $this->Auth->user('User.name'));
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
@@ -126,7 +126,7 @@ class GroupsUsersController extends AppController {
 			$this->request->data = $evokation;
 		}
 
-		$user_data = $this->getUserData();
+		$user_data = $this->Auth->user();
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
 		$this->set(compact('group', 'users', 'user'));
@@ -285,7 +285,7 @@ class GroupsUsersController extends AppController {
  */
 	public function send($id, $group_id){
 
-		$user_data = $this->getUserData();
+		$user_data = $this->Auth->user();
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 		
 		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));

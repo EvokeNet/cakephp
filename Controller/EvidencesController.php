@@ -40,7 +40,7 @@ class EvidencesController extends AppController {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
 
-		$user_data = $this->getUserData();
+		$user_data = $this->Auth->user();
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
 		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
@@ -65,7 +65,7 @@ class EvidencesController extends AppController {
 			}
 		}
 
-		$user_data = $this->getUserData();
+		$user_data = $this->Auth->user();
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 		$quests = $this->Evidence->Quest->find('list');
 		$mission = $this->Evidence->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
@@ -97,7 +97,7 @@ class EvidencesController extends AppController {
 			$this->request->data = $this->Evidence->find('first', $options);
 		}
 
-		$user_data = $this->getUserData();
+		$user_data = $this->Auth->user();
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 		$users = $this->Evidence->User->find('list');
 		$quests = $this->Evidence->Quest->find('list');
