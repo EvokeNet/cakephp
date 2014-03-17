@@ -43,7 +43,7 @@ class GroupsUsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($group_id = null) {
+	public function edit($group_id = null) {
 
 		$this->loadModel('Setting');
 		$gAuth = new GoogleAuthentication(
@@ -305,7 +305,7 @@ class GroupsUsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit2($id = null) {
 		if (!$this->GroupsUser->exists($id)) {
 			throw new NotFoundException(__('Invalid groups user'));
 		}

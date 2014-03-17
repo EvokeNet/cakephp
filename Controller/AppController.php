@@ -46,8 +46,10 @@ class AppController extends Controller {
  */
 	public function beforeFilter() {
         $this->Auth->allow('add', 'fb_login', 'index', 'view', 'store_image');
-        $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard', $this->Session->read('Auth.User.User.id'));
-        $cuser = $this->Auth->user();
+        $this->Auth->loginRedirect = array(
+            'controller' => 'users',
+            'action' => 'dashboard', $this->Auth->user('User.id')
+        );
     }
 
     public function getUserData(){
