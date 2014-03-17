@@ -31,8 +31,10 @@ class Role extends AppModel {
 	}
 
 
-	public function getRoles(){
-		return $this->find('all');
+	public function getRoles($order = "Role.name"){
+		return $this->find('all', array(
+			'order' => array($order.' ASC')
+			));
 	}
 /**
  * hasMany associations

@@ -1,22 +1,20 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Badge Model
+ * UserOrganization Model
  *
+ * @property User $User
  * @property Organization $Organization
  */
-class Badge extends AppModel {
+class UserOrganization extends AppModel {
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'name';
+	public $displayField = 'id';
 
-	public function getBadges($options = null){
-		return $this->find('all', $options);
-	}
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -26,6 +24,13 @@ class Badge extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Organization' => array(
 			'className' => 'Organization',
 			'foreignKey' => 'organization_id',

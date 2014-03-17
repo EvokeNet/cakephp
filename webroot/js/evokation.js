@@ -78,7 +78,7 @@ function onFileLoaded(doc) {
 				var editor = $("#evokation_div")[0];
 				var sel = saveSelection(editor);
 				$("#evokation_div").html(TEXT.getText());
-				restoreSelection(editor, sel);
+				restoreSelection(editor, sel, event.text.length);
 			}
 		};
 
@@ -214,10 +214,10 @@ if (window.getSelection && document.createRange) {
         }
     };
 
-    restoreSelection = function(containerEl, savedSel) {
+    restoreSelection = function(containerEl, savedSel, offset) {
         var doc = containerEl.ownerDocument, win = doc.defaultView;
         var charIndex = 0, range = doc.createRange();
-        range.setStart(containerEl, 0);
+        range.setStart(containerEl, 0 + offset);
         range.collapse(true);
         var nodeStack = [containerEl], node, foundStart = false, stop = false;
 
@@ -260,12 +260,12 @@ if (window.getSelection && document.createRange) {
         }
     };
 
-    restoreSelection = function(containerEl, savedSel) {
+    restoreSelection = function(containerEl, savedSel, offset) {
         var doc = containerEl.ownerDocument, win = doc.defaultView || doc.parentWindow;
         var textRange = doc.body.createTextRange();
         textRange.moveToElementText(containerEl);
         textRange.collapse(true);
-        textRange.moveEnd("character", savedSel.end);
+        textRange.moveEnd("character", savedSel.end + offset);
         textRange.moveStart("character", savedSel.start);
         textRange.select();
     };
