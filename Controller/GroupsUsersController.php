@@ -2,6 +2,8 @@
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
+App::uses('Folder', 'Utility');
+App::uses('File', 'Utility');
 
 /**
  * GroupsUsers Controller
@@ -37,7 +39,7 @@ class GroupsUsersController extends AppController {
 	}
 
 /**
- * view method
+ * edit method
  *
  * @throws NotFoundException
  * @param string $id
@@ -188,11 +190,31 @@ class GroupsUsersController extends AppController {
 		$this->autoRender = false;
 
 		if ($this->request->is('ajax')) {
-			$type = pathinfo($this->request->data['image_uploader']['tmp_name'], PATHINFO_EXTENSION);
-			$data = file_get_contents($this->request->data['image_uploader']['tmp_name']);
-			$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
-			return $base64;
+			$type = pathinfo($this->request->data['Evokation']['image_uploader']['tmp_name'], PATHINFO_EXTENSION);
+
+			if(!in_array($type, array('jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'bmp', 'BMP'))) {
+
+				$dir = $this->webroot . 'uploads' . DS . $this->Auth->user('User.id') . $this->request->data['Evokation']['id'];
+
+				if (!file_exists($dir) and !is_dir($dir)) {
+
+					$folder = new Folder();
+					if($folder->create($dir)) {
+						$filename = $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
+						if(move_uploaded_file($this->request->data['Evokation']['image_uploader']['tmp_name'], $filename)) {
+							return $this->Html->image($filename);
+						} else {
+							return false;
+						}
+					}
+
+				} else {
+					return false;
+				}
+			}
+			// $data = file_get_contents($this->request->data['image_uploader']['tmp_name']);
+			// $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 		}
 	}
 

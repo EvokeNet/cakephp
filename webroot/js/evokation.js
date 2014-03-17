@@ -64,6 +64,7 @@ function initializeModel(model) {
 }
 
 function onFileLoaded(doc) {
+
 	TEXT = doc.getModel().getRoot().get("text");
 	var evokation = document.getElementById("evokation_txt");
 
@@ -74,9 +75,10 @@ function onFileLoaded(doc) {
 
 		var updateEditor = function(event) {
 			if(!event.isLocal) {
-				// var sel = rangy.saveSelection();
+				var editor = $("#evokation_div")[0];
+				var sel = saveSelection(editor);
 				$("#evokation_div").html(TEXT.getText());
-				// rangy.restoreSelection(sel);
+				restoreSelection(editor, sel);
 			}
 		};
 
@@ -182,9 +184,10 @@ $("#image_uploader").change(function() {
 				// insertHtmlAtCursor(percentComplete);
 			},
 			success: function(msg) {
-				var image = '<img src="' + msg + '" />';
-				insertHtmlAtCursor(image);
-				TEXT.setText($("#evokation_div").html());
+				// var image = '<img src="' + msg + '" />';
+				// insertHtmlAtCursor(image);
+				// TEXT.setText($("#evokation_div").html());
+				console.log(msg);
 			},
 			complete: function(xhr) {
 				console.log('completed');
@@ -195,16 +198,75 @@ $("#image_uploader").change(function() {
 	}
 });
 
+var saveSelection, restoreSelection;
+if (window.getSelection && document.createRange) {
+    saveSelection = function(containerEl) {
+        var doc = containerEl.ownerDocument, win = doc.defaultView;
+        var range = win.getSelection().getRangeAt(0);
+        var preSelectionRange = range.cloneRange();
+        preSelectionRange.selectNodeContents(containerEl);
+        preSelectionRange.setEnd(range.startContainer, range.startOffset);
+        var start = preSelectionRange.toString().length;
 
-$("#x").click(function(e) {
-	e.stopPropagation();
+        return {
+            start: start,
+            end: start + range.toString().length
+        }
+    };
 
-	var element = document.querySelector("#evokation_div");
-	var range = rangy.createRange();
-	range.selectNodeContents(element);
-	var sel = rangy.getSelection();
-	sel.setSingleRange(range);
+    restoreSelection = function(containerEl, savedSel) {
+        var doc = containerEl.ownerDocument, win = doc.defaultView;
+        var charIndex = 0, range = doc.createRange();
+        range.setStart(containerEl, 0);
+        range.collapse(true);
+        var nodeStack = [containerEl], node, foundStart = false, stop = false;
 
-	console.log(sel.focusOffset);
+        while (!stop && (node = nodeStack.pop())) {
+            if (node.nodeType == 3) {
+                var nextCharIndex = charIndex + node.length;
+                if (!foundStart && savedSel.start >= charIndex && savedSel.start <= nextCharIndex) {
+                    range.setStart(node, savedSel.start - charIndex);
+                    foundStart = true;
+                }
+                if (foundStart && savedSel.end >= charIndex && savedSel.end <= nextCharIndex) {
+                    range.setEnd(node, savedSel.end - charIndex);
+                    stop = true;
+                }
+                charIndex = nextCharIndex;
+            } else {
+                var i = node.childNodes.length;
+                while (i--) {
+                    nodeStack.push(node.childNodes[i]);
+                }
+            }
+        }
 
-});
+        var sel = win.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
+} else if (document.selection) {
+    saveSelection = function(containerEl) {
+        var doc = containerEl.ownerDocument, win = doc.defaultView || doc.parentWindow;
+        var selectedTextRange = doc.selection.createRange();
+        var preSelectionTextRange = doc.body.createTextRange();
+        preSelectionTextRange.moveToElementText(containerEl);
+        preSelectionTextRange.setEndPoint("EndToStart", selectedTextRange);
+        var start = preSelectionTextRange.text.length;
+
+        return {
+            start: start,
+            end: start + selectedTextRange.text.length
+        }
+    };
+
+    restoreSelection = function(containerEl, savedSel) {
+        var doc = containerEl.ownerDocument, win = doc.defaultView || doc.parentWindow;
+        var textRange = doc.body.createTextRange();
+        textRange.moveToElementText(containerEl);
+        textRange.collapse(true);
+        textRange.moveEnd("character", savedSel.end);
+        textRange.moveStart("character", savedSel.start);
+        textRange.select();
+    };
+}

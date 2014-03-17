@@ -112,7 +112,12 @@
 				<!-- Add images -->
 				<a class="button circle bg-teal tip-top" id="add_image" data-tooltip title="Add image">
 					<form id="image_form" action="<?php echo $this->webroot ?>groups_users/store_image" method="post" enctype="multipart/form-data">
-						<input type="file" name="data[image_uploader]" id="image_uploader" class="image_upload">
+						<input type="file" name="data[Evokation][image_uploader]" id="image_uploader" class="image_upload">
+						<?php
+							echo $this->Form->input('Evokation.id', array(
+								'type' => 'hidden'
+							));
+						?>
 					</form>
 					<i class="fa fa-camera fa-2x"></i>
 				</a>
