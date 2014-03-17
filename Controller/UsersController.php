@@ -166,11 +166,7 @@ class UsersController extends AppController {
 	public function dashboard($id = null) {
 
 		if(empty($id)) {
-			if (is_null($this->Session->read('Auth.User.id'))) {
-	            $id = $this->Session->read('Auth.User.User.id');
-	        } else {
-	            $id = $this->Session->read('Auth.User.id');
-	        }
+			$id = $this->Auth->user('User.id');
 		}
 
 		if (!$this->User->exists($id)) {
@@ -229,11 +225,10 @@ class UsersController extends AppController {
  */
 	public function leaderboard() {
 
-		$userid = $this->Session->read('Auth.User.User.id');
+		$userid = $this->Auth->user('User.id');
 
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		//$this->set(compact('username'));
-
+		$username = explode(' ', $id = $this->Auth->user('User.name'));
+		
 		$this->set(compact('userid', 'username'));
 
 	}
@@ -248,7 +243,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add_friend($user_to = null) {
-		$this->request->data['User']['id'] = $this->Session->read('Auth.User.User.id');
+		$this->request->data['User']['id'] = $this->Auth->user('User.id');;
 		$this->request->data['Friend']['id'] = $user_to;
 
 		if($result = $this->User->saveAll($this->request->data)) {
@@ -266,7 +261,7 @@ class UsersController extends AppController {
  */
 	public function remove_friend($user_to = null) {
 
-		$user_from = $this->Session->read('Auth.User.User.id');
+		$user_from = $this->Auth->user('User.id');
 
 		if($this->User->FriendsUser->deleteAll(array('FriendsUser.user_from' => $user_from, 'FriendsUser.user_to' => $user_to))) {
 			$this->redirect(array('action' => 'view', $user_to));
@@ -288,7 +283,7 @@ class UsersController extends AppController {
 			'_self' => false,
 			'_friended' => false
 		);
-		$user_from = $this->Session->read('Auth.User.User.id');
+		$user_from = $this->Auth->user('User.id');
 
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
@@ -296,7 +291,7 @@ class UsersController extends AppController {
 		
 		$user = $this->User->read(null, $id);
 
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		$username = explode(' ', $this->Auth->user('User.name'));
 		$this->set(compact('username'));
 
 		$userFriends = $this->User->find('first', array(

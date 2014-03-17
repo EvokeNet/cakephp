@@ -74,7 +74,7 @@ class OrganizationsController extends AppController {
 		}
 
 		//check to see if the user is owner of the organization or an admin one..
-		$user = $this->getUserData();
+		$user = $this->Auth->user();
 		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id)));
 		if($org['UserOrganization']['user_id'] != $user['id'] && $user['role_id'] != 1){
 			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
@@ -114,7 +114,7 @@ class OrganizationsController extends AppController {
 		}
 
 		//check to see if the user is owner of the organization or an admin one..
-		$user = $this->getUserData();
+		$user = $this->Auth->user();
 		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id)));
 		if($org['UserOrganization']['user_id'] != $user['id'] && $user['role_id'] != 1){
 			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
@@ -130,4 +130,5 @@ class OrganizationsController extends AppController {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

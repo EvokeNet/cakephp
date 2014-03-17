@@ -27,7 +27,7 @@ class GroupsController extends AppController {
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->Paginator->paginate());
 
-		$user_data = $this->getUserData();
+		$user_data = $this->Auth->user();
 		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
 		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $user_data['id'])));
@@ -50,7 +50,7 @@ class GroupsController extends AppController {
 		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
 		$this->set('group', $this->Group->find('first', $options));
 
-		$user_data = $this->getUserData();
+		$user_data = $this->Auth->user();
 		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
 		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.group_id' => $id)));

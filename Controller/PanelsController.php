@@ -19,9 +19,10 @@ class PanelsController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
-        //test to get user data from proper index
-		$this->user = $this->getUserData();
-		
+        
+        //get user data into public var
+		$this->user = $this->Auth->user();
+				
 		//there was some problem in retrieving user's info concerning his/her role : send him home
 		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
 			$this->redirect(array('controller' => 'users', 'action' => 'login'));

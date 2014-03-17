@@ -28,7 +28,7 @@ class MissionsController extends AppController {
 		$this->set('missions', $this->Paginator->paginate());
 
 		$this->loadModel('User');
-		$user_data = $this->getUserData();
+		$user_data = $this->Auth->user();
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
 		$missionIssues = $this->Mission->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id'));
@@ -61,7 +61,7 @@ class MissionsController extends AppController {
 		$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);
 
 		$this->loadModel('User');
-		$user_data = $this->getUserData();
+		$user_data = $this->Auth->user();
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
 
 		$evidences = $this->Mission->getEvidences($id);
