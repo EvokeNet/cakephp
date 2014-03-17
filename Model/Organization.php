@@ -34,6 +34,19 @@ class Organization extends AppModel {
  * @var array
  */
 	public $hasMany = array(
+		'Badge' => array(
+			'className' => 'Badge',
+			'foreignKey' => 'organization_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Mission' => array(
 			'className' => 'Mission',
 			'foreignKey' => 'organization_id',

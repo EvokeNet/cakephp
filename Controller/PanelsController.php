@@ -8,7 +8,7 @@ class PanelsController extends AppController {
 * @var array
 */
 	public $components = array('Paginator','Access');
-	public $uses = array('User', 'Organization', 'UserOrganization', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Quest');
+	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Quest');
 	public $user = null;
 
 /**
@@ -95,6 +95,8 @@ class PanelsController extends AppController {
 				)
 			));
 
+			$users_of_my_missions = null;
+
 		} else {
 			$flags = array(
 				'_admin' => false,
@@ -139,14 +141,6 @@ class PanelsController extends AppController {
 				)
 			));
 
-			$missions_issues = $this->MissionIssue->Mission->find('all', array(
-				'order' => array(
-					'Mission.title ASC'
-				),
-				'conditions' => array(
-					'OR' => $my_orgs_id1
-				)
-			));
 
 			$badges = $this->Badge->getBadges(array(
 				'order' => array(
@@ -157,10 +151,35 @@ class PanelsController extends AppController {
 				)
 			));
 
+			$missions_issues = $this->MissionIssue->Mission->find('all', array(
+				'order' => array(
+					'Mission.title ASC'
+				),
+				'conditions' => array(
+					'OR' => $my_orgs_id1
+				)
+			));
+
+			$my_missions_id = array();
+			$k = 0;
+			foreach ($missions_issues as $my_mission) {
+				$my_missions_id[$k] = array('mission_id' => $my_mission['Mission']['id']);
+				$k++;
+			}
+
+			$users_of_my_missions = $this->User->UserMission->find('all', array(
+				'order' => array(
+					'User.name ASC'
+				),
+				'conditions' => array(
+					'OR' => $my_orgs_id1
+				)
+			));
+
 		}
 		
 		//array that contains all the possible owners of an organization
-		$users = $this->User->find('list', array(
+		$possible_managers = $this->User->find('list', array(
 			'conditions' => array(
 					'OR' => array( //to be an organization manager you either need.. 
             			array('role_id' => 1), //an admin account..
@@ -169,7 +188,8 @@ class PanelsController extends AppController {
 			)
 		));		
 		
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'organizations', 'organizations_list', 'issues','badges','roles','users','groups', 'all_users','missions_issues', 'parentIssues', 
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'organizations', 'organizations_list', 'issues','badges','roles','possible_managers','groups', 
+			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues',
 			'organizations_tab', 'missions_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
 	}
 
