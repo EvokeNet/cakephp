@@ -13,7 +13,25 @@ class IssuesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Access', 'Session');
+
+
+	public function beforeFilter() {
+        parent::beforeFilter();
+        //test to get user data from proper index
+		$this->user = $this->Auth->user();
+		
+		//there was some problem in retrieving user's info concerning his/her role : send him home
+		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
+			$this->redirect(array('controller' => 'users', 'action' => 'login'));
+		}
+
+		//checking Acl permission
+		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
+			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
+			$this->redirect($this->referer());
+		}
+    }
 
 /**
  * index method

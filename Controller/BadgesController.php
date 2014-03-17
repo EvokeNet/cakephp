@@ -17,16 +17,6 @@ class BadgesController extends AppController {
 	public $components = array('Paginator', 'Session', 'Access');
 	public $uses = array('Badge', 'UserOrganization', 'Organization');
 
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Badge->recursive = 0;
-		$this->set('badges', $this->Paginator->paginate());
-	}
-
 	public function beforeFilter() {
         parent::beforeFilter();
         //test to get user data from proper index
@@ -43,6 +33,16 @@ class BadgesController extends AppController {
 			$this->redirect($this->referer());
 		}
     }
+
+/**
+ * index method
+ *
+ * @return void
+ */
+	public function index() {
+		$this->Badge->recursive = 0;
+		$this->set('badges', $this->Paginator->paginate());
+	}
 
 /**
  * view method

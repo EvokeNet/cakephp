@@ -28,7 +28,7 @@ class GroupsUsersController extends AppController {
 		$this->set('groupsUsers', $this->Paginator->paginate());
 		
 		$userid = $this->Auth->user('User.id');
-		$username = explode(' ', $this->Auth->user('User.name'););
+		$username = explode(' ', $this->Auth->user('User.name'));
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
