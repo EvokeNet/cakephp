@@ -9,7 +9,6 @@
 				echo $this->Form->input('id');
 				echo $this->Form->input('name');
 				echo $this->Form->input('username');
-				echo $this->Form->input('password');
 				echo $this->Form->input('email', array('type' => 'email', 'required' => true));
 				echo $this->Form->input('birthdate', array('type' => 'date', 'required' => true));
 				echo $this->Form->input('sex', array('type' => 'radio', 'options' => array(__('male'), __('female')), 'legend' => '', 'before' => '<label for = "UserSex">Sex</label>'));

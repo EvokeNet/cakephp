@@ -20,8 +20,12 @@ class OrganizationsController extends AppController {
 
 	public function beforeFilter() {
         parent::beforeFilter();
-        //test to get user data from proper index
-		$this->user = $this->Auth->user();
+        
+        $this->user = array();
+        //get user data into public var
+		$this->user['role_id'] = $this->getUserRole();
+		$this->user['id'] = $this->getUserId();
+		$this->user['name'] = $this->getUserName();
 		
 		//there was some problem in retrieving user's info concerning his/her role : send him home
 		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
@@ -92,7 +96,6 @@ class OrganizationsController extends AppController {
 		}
 
 		//check to see if the user is owner of the organization or an admin one..
-		$user = $this->Auth->user();
 		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id)));
 		if($org['UserOrganization']['user_id'] != $user['id'] && $user['role_id'] != 1){
 			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
@@ -132,7 +135,6 @@ class OrganizationsController extends AppController {
 		}
 
 		//check to see if the user is owner of the organization or an admin one..
-		$user = $this->Auth->user();
 		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id)));
 		if($org['UserOrganization']['user_id'] != $user['id'] && $user['role_id'] != 1){
 			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
