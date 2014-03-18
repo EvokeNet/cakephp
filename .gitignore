@@ -2,5 +2,6 @@ Vendor/
 composer.phar
 Config/database.php
 webroot/components
+webroot/uploads/*
 Plugin/
 tmp/
