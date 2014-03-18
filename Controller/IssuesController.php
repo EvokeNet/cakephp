@@ -14,7 +14,7 @@ class IssuesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Access', 'Session');
-
+	public $user = null;
 
 	public function beforeFilter() {
         parent::beforeFilter();

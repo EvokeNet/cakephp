@@ -15,6 +15,7 @@ class UserOrganizationsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session', 'Access');
+	public $user = null;
 
 	public function beforeFilter() {
         parent::beforeFilter();

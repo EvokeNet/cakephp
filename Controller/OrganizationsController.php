@@ -16,6 +16,7 @@ class OrganizationsController extends AppController {
  */
 	public $components = array('Paginator', 'Session', 'Access');
 	public $uses = array('Organization', 'UserOrganization', 'User');
+	public $user = null;
 
 	public function beforeFilter() {
         parent::beforeFilter();

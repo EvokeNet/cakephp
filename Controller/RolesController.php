@@ -13,8 +13,8 @@ class RolesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
-
+	public $components = array('Paginator', 'Access');
+	public $user = null;
 
 	public function beforeFilter() {
         parent::beforeFilter();

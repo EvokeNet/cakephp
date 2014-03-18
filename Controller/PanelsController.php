@@ -33,7 +33,7 @@ class PanelsController extends AppController {
 			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
 			$this->redirect($this->referer());
 		}
-    }
+	}
 	
 /*
 * index method

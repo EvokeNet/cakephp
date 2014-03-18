@@ -29,8 +29,9 @@ class GroupsUsersController extends AppController {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
 		
-		$userid = $this->Auth->user('User.id');
-		$username = explode(' ', $this->Auth->user('User.name'));
+		$user_data = $this->Auth->user();
+		$userid = $user_data['id'];
+		$username = explode(' ', $user_data['name']);
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
@@ -195,7 +196,8 @@ class GroupsUsersController extends AppController {
 
 			if(!in_array($type, array('jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'bmp', 'BMP'))) {
 
-				$dir = $this->webroot . 'uploads' . DS . $this->Auth->user('User.id') . $this->request->data['Evokation']['id'];
+				$user_data = $this->Auth->user();
+				$dir = $this->webroot . 'uploads' . DS . $user_data['id'] . $this->request->data['Evokation']['id'];
 
 				if (!file_exists($dir) and !is_dir($dir)) {
 

@@ -16,6 +16,7 @@ class BadgesController extends AppController {
  */
 	public $components = array('Paginator', 'Session', 'Access');
 	public $uses = array('Badge', 'UserOrganization', 'Organization');
+	public $user = null;
 
 	public function beforeFilter() {
         parent::beforeFilter();

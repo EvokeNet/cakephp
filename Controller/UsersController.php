@@ -164,6 +164,10 @@ class UsersController extends AppController {
  * @return void
  */
 	public function dashboard($id = null) {
+		if(is_null($id)){
+			//send him to his on dashboard
+
+		}
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -220,9 +224,11 @@ class UsersController extends AppController {
  */
 	public function leaderboard() {
 
-		$userid = $this->Auth->user('User.id');
+		$user = $this->Auth->user();
+		
+		$userid = $user['id'];
 
-		$username = explode(' ', $id = $this->Auth->user('User.name'));
+		$username = explode(' ', $user['name']);
 		
 		$this->set(compact('userid', 'username'));
 
@@ -238,7 +244,9 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add_friend($user_to = null) {
-		$this->request->data['User']['id'] = $this->Auth->user('User.id');;
+		$user = $this->Auth->user();
+
+		$this->request->data['User']['id'] = $user['id'];
 		$this->request->data['Friend']['id'] = $user_to;
 
 		if($result = $this->User->saveAll($this->request->data)) {
@@ -256,7 +264,8 @@ class UsersController extends AppController {
  */
 	public function remove_friend($user_to = null) {
 
-		$user_from = $this->Auth->user('User.id');
+		$user_from = $this->Auth->user();
+		$user_from = $user_from['id'];
 
 		if($this->User->FriendsUser->deleteAll(array('FriendsUser.user_from' => $user_from, 'FriendsUser.user_to' => $user_to))) {
 			$this->redirect(array('action' => 'view', $user_to));
@@ -278,15 +287,22 @@ class UsersController extends AppController {
 			'_self' => false,
 			'_friended' => false
 		);
-		$user_from = $this->Auth->user('User.id');
+
+		$me = $this->Auth->user();
+		$user_from = $me['id'];
 
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		
+
 		$user = $this->User->read(null, $id);
 
-		$username = explode(' ', $this->Auth->user('User.name'));
+		//check if it's myself, if it is, send to dashboard
+		if($user_from == $id) {
+			$this->redirect(array('action' => 'dashboard', $id));
+		}
+
+		$username = explode(' ', $me['name']);
 		$this->set(compact('username'));
 
 		$userFriends = $this->User->find('first', array(
