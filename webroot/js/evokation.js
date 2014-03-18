@@ -75,10 +75,11 @@ function onFileLoaded(doc) {
 
 		var updateEditor = function(event) {
 			if(!event.isLocal) {
-				var editor = $("#evokation_div")[0];
-				var sel = saveSelection(editor);
-				$("#evokation_div").html(TEXT.getText());
-				restoreSelection(editor, sel, event.text.length);
+				var element = $("#evokation_div")[0];
+				updateText(element, event.index, event.text.length);
+				// var sel = saveSelection(editor);
+				// $("#evokation_div").html(TEXT.getText());
+				// restoreSelection(editor, sel);
 			}
 		};
 
@@ -98,7 +99,31 @@ function realtimeTick() {
 	});
 }
 
+function updateText(element, position, size) {
+	var isActive = (element === document.activeElement);
+
+	if(isActive) {
+		var value = TEXT.getText();
+		var sel = saveSelection(element);
+
+		var selectionStart = sel.start;
+		var selectionEnd = sel.end;
+
+		if (position <= selectionStart) {
+			selectionStart += size;
+		}
+		if (position < selectionEnd) {
+			selectionEnd += size;
+		}
+		if (selectionEnd < selectionStart) {
+			selectionEnd = selectionStart;
+		}
+		element.restoreSelection(selectionEnd);
+	}
+}
+
 function insertHtmlAtCursor(html) {
+
     var sel, range;
     if (window.getSelection) {
         sel = window.getSelection();
@@ -106,43 +131,17 @@ function insertHtmlAtCursor(html) {
             range = sel.getRangeAt(0);
             range.deleteContents();
 
-            document.createElement(html);
+            var span = document.createElement('span');
+            span.innerHTML = html;
+            console.log(span);
 
-            range.insertNode( html );
+            range.insertNode( span );
         }
     } else if (document.selection && document.selection.createRange) {
         document.selection.createRange().innerHtml = html;
     }
 }
 
-
-/**
-*	Document callbacks
-*
-**/
-
-function setResizableImages() {
-	$("#evokation_div img").each(function() {
-		var width, height;
-
-		$(this).resizable({
-			aspectRatio: 1,
-			containment: "#evokation_div",
-			stop: function(event, ui) {
-				$(this).width = $(event.target).width;
-				$(this).height = $(event.target).height;
-				console.log(ui.width, ui.height);
-				TEXT.setText($("#evokation_div").html());
-			}
-		});
-	});
-}
-
-function setDraggableElements() {
-	$("#evokation_div img").each(function() {
-		$(this).draggable();
-	});
-}
 
 /**
 *	jQuery handlers
@@ -184,19 +183,24 @@ $("#image_uploader").change(function() {
 				// insertHtmlAtCursor(percentComplete);
 			},
 			success: function(msg) {
-				// var image = '<img src="' + msg + '" />';
-				// insertHtmlAtCursor(image);
-				// TEXT.setText($("#evokation_div").html());
-				console.log(msg);
+				var element = $("#evokation_div");
+				insertHtmlAtCursor(msg);
+				TEXT.setText(element.html());
 			},
 			complete: function(xhr) {
 				console.log('completed');
-				console.log(xhr.responseText);
 			}
 		});
 		$("#image_form").submit();
 	}
 });
+
+
+
+/**
+*	Support functions to manage caret
+*
+**/
 
 var saveSelection, restoreSelection;
 if (window.getSelection && document.createRange) {
@@ -214,10 +218,10 @@ if (window.getSelection && document.createRange) {
         }
     };
 
-    restoreSelection = function(containerEl, savedSel, offset) {
+    restoreSelection = function(containerEl, savedSel) {
         var doc = containerEl.ownerDocument, win = doc.defaultView;
         var charIndex = 0, range = doc.createRange();
-        range.setStart(containerEl, 0 + offset);
+        range.setStart(containerEl, 0);
         range.collapse(true);
         var nodeStack = [containerEl], node, foundStart = false, stop = false;
 
@@ -260,12 +264,12 @@ if (window.getSelection && document.createRange) {
         }
     };
 
-    restoreSelection = function(containerEl, savedSel, offset) {
+    restoreSelection = function(containerEl, savedSel) {
         var doc = containerEl.ownerDocument, win = doc.defaultView || doc.parentWindow;
         var textRange = doc.body.createTextRange();
         textRange.moveToElementText(containerEl);
         textRange.collapse(true);
-        textRange.moveEnd("character", savedSel.end + offset);
+        textRange.moveEnd("character", savedSel.end);
         textRange.moveStart("character", savedSel.start);
         textRange.select();
     };
