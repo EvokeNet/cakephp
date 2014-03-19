@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "116d9a8962ad41e5aaf73ab1edc36503",
+    "hash": "bec766db8fd87116148e37d71819439f",
     "packages": [
         {
             "name": "burzum/cakephp-imagine-plugin",
@@ -639,6 +639,54 @@
                 "source": "https://github.com/markstory/acl_extras"
             },
             "time": "2013-10-26 00:34:46"
+        },
+        {
+            "name": "paulredmond/chosen-cakephp",
+            "version": "2.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paulredmond/chosen-cakephp.git",
+                "reference": "505b5a7a9d68214c9f77a82d00bde5103c715832"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paulredmond/chosen-cakephp/zipball/505b5a7a9d68214c9f77a82d00bde5103c715832",
+                "reference": "505b5a7a9d68214c9f77a82d00bde5103c715832",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "1.*",
+                "php": ">=5.2.6"
+            },
+            "type": "cakephp-plugin",
+            "extra": {
+                "installer-name": "Chosen"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Redmond",
+                    "email": "paulrredmond@gmail.com"
+                },
+                {
+                    "name": "Harvest HQ",
+                    "homepage": "http://harvesthq.github.com/chosen"
+                },
+                {
+                    "name": "Github Contributors",
+                    "homepage": "https://github.com/paulredmond/chosen-cakephp/graphs/contributors"
+                }
+            ],
+            "description": "Chosen CakePHP plugin for CakePHP 2",
+            "homepage": "https://github.com/paulredmond/chosen-cakephp",
+            "keywords": [
+                "cakephp",
+                "plugin"
+            ],
+            "time": "2013-05-11 22:25:45"
         },
         {
             "name": "pear-pear.cakephp.org/CakePHP",

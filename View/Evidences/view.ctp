@@ -51,7 +51,7 @@
 	  <div class="small-6 large-8 columns">
 	  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
 	  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
-	  	<p><?php echo h($evidence['Evidence']['content']); ?></p>
+	  	<p><?php echo urldecode($evidence['Evidence']['content']); ?></p>
 	  	
 	  	<h2><?php echo __('Share a Thought').$comments_count; ?></h2>
 	  	<?php foreach ($comment as $c): ?>

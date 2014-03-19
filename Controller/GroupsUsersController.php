@@ -176,7 +176,6 @@ class GroupsUsersController extends AppController {
 		}
 	}
 
-
 /**
  * storeFileId method
  *
@@ -457,4 +456,5 @@ class GroupsUsersController extends AppController {
 			$this->Session->setFlash(__('The groups user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

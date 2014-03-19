@@ -37,6 +37,12 @@ class AppController extends Controller {
         'Acl'
     );
 
+    public $helpers = array(
+        'Chosen.Chosen', 'Media.Media'
+    );
+
+    public $user = null;
+
 /**
  * beforeFilter method
  *
@@ -49,22 +55,25 @@ class AppController extends Controller {
         $cuser = $this->Auth->user();
     }
 
-    public function getUserId(){
+    public function getUserId() {
         $currentuser = $this->Auth->user();
         if(isset($currentuser['id'])) return $currentuser['id'];
         return $currentuser['User']['id'];
     }
 
-    public function getUserName(){
+    public function getUserName() {
         $currentuser = $this->Auth->user();
         if(isset($currentuser['name'])) return $currentuser['name'];
         return $currentuser['User']['name'];   
     }
 
-    public function getUserRole(){
+    public function getUserRole() {
         $currentuser = $this->Auth->user();
         if(isset($currentuser['role_id'])) return $currentuser['role_id'];
         return $currentuser['User']['role_id'];
     }
 
+    public function canUploadMedias($model, $id) {
+        return true;
+    }
 }

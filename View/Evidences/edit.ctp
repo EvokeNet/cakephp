@@ -37,15 +37,16 @@
 		<div class="small-11 small-centered columns">
 			<div class="evidences form">
 			<?php echo $this->Form->create('Evidence'); ?>
-				<?php echo __('Edit Evidence'); ?>
+				<?php echo __('Write Here Your Evidence'); ?>
 				<?php
 					echo $this->Form->input('id');
 					echo $this->Form->input('title');
-					echo $this->Form->input('content');
+					//echo $this->Form->input('content');
 					echo $this->Form->hidden('user_id');
 					echo $this->Form->input('quest_id', array('empty' => true));
 					echo $this->Form->hidden('mission_id');
 					echo $this->Form->hidden('phase_id');
+					echo $this->Media->ckeditor('content', array('label' => 'Content'));
 				?>
 			<?php echo $this->Form->end(__('Submit')); ?>
 			</div>
