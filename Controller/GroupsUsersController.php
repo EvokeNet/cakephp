@@ -205,7 +205,8 @@ class GroupsUsersController extends AppController {
 				$filename = WWW_ROOT . $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
 				if(move_uploaded_file($this->request->data['Evokation']['image_uploader']['tmp_name'], $filename)) {
 					$url = $this->webroot . $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
-					return '<img src="' . $url . '" />';
+					$size = getimagesize($filename);
+					return '<img src="' . $url . '" width="100%" data-size="' .$size[0]. '"/>';
 				} else {
 					return false;
 				}

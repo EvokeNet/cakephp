@@ -76,9 +76,9 @@ function onFileLoaded(doc) {
 		var updateEditor = function(event) {
 			if(!event.isLocal) {
 				var element = $("#evokation_div")[0];
-				updateText(element, event.index, event.text.length);
+				// updateText(element, event.index, event.text.length);
 				// var sel = saveSelection(editor);
-				// $("#evokation_div").html(TEXT.getText());
+				$("#evokation_div").html(TEXT.getText());
 				// restoreSelection(editor, sel);
 			}
 		};
@@ -118,6 +118,7 @@ function updateText(element, position, size) {
 		if (selectionEnd < selectionStart) {
 			selectionEnd = selectionStart;
 		}
+		element.html(TEXT.getText());
 		element.restoreSelection(selectionEnd);
 	}
 }
@@ -145,23 +146,37 @@ function insertHtmlAtCursor(html) {
 
 function setButtons(element) {
 	var images = element.find('.image');
-	var buttonGroup = $('<ul class="button-group"></ul>');
-	var resizeButton = $('<li><button class="button tiny bg-black white"><i class="fa fa-arrows-alt"></i></button></li>');
-	var deleteButton = $('<li><button class="button tiny bg-black white"><i class="fa fa-trash-o"></i></button></li>');
+	var buttonGroup = $('<ul/>', {
+		class: "button-group"
+	});
+	var deleteButton = $('<li/>');
+	var trashIcon = $('<i/>', {
+		class: "fa fa-trash-o"
+	});
 
-	buttonGroup.append(resizeButton);
-	buttonGroup.append(deleteButton);
+	if (parseInt(element.width) >= element.attr('data-size')) {
+		var resizeButton = $('<li><button class="button tiny bg-black white"><i class="fa fa-arrows-alt"></i></button></li>');
+	} else {
+		var resizeButton = $('<li><button class="button tiny bg-black white"><i class="fa fa-compress"></i></button></li>');
+	};
 
 	for (var i = images.length - 1; i >= 0; i--) {
-		// TODO check if button already inserted
-		// if(!$(images[i]).find('.button')) {
+		if($(images[i]).children('.button').length <= 0) {
+			var delButton = $('<button/>', {
+				class: "button tiny bg-black white",
+				id: "btn_delete",
+				'data-parent': 'image'+i
+			});
+
+			delButton.append(trashIcon);
+			deleteButton.append(delButton);
+			buttonGroup.append(resizeButton, deleteButton);
+
+			$(images[i]).attr('id', 'image'+i);
 			$(images[i]).append(buttonGroup);
-		// }
+		 }
 	};
 	
-	element.on('hover', function() {
-		$(this).children('.button').toggleClass('hide');
-	});
 }
 
 
@@ -216,6 +231,18 @@ $("#image_uploader").change(function() {
 		});
 		$("#image_form").submit();
 	}
+});
+
+/**
+*	Image controls triggers
+*	
+*	These are the image controls triggers for buttons RESIZE, DELETE and MOVE
+**/
+$(document).on('click', '#btn_delete', function(event) {
+	var id = '#' + $(this).attr('data-parent');
+	$(this).remove();
+	$(id).remove();
+	TEXT.setText($("#evokation_div").html());
 });
 
 
