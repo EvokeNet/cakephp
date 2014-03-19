@@ -29,8 +29,8 @@ class GroupsUsersController extends AppController {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
 		
-		$userid = $this->Auth->user('User.id');
-		$username = explode(' ', $this->Auth->user('User.name'));
+		$userid = $this->getUserId();
+		$username = explode(' ', $this->getUserName());
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
@@ -126,8 +126,7 @@ class GroupsUsersController extends AppController {
 			$this->request->data = $evokation;
 		}
 
-		$user_data = $this->Auth->user();
-		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['User']['id'])));
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$this->set(compact('group', 'users', 'user'));
 
@@ -265,10 +264,9 @@ class GroupsUsersController extends AppController {
  */
 	public function send($id, $group_id){
 
-		$user_data = $this->Auth->user();
-		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 		
-		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$recipient = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $id)));
 
@@ -276,8 +274,8 @@ class GroupsUsersController extends AppController {
 
 		/* Adds requests */
 		$this->loadModel('GroupRequest');
-		$insertData = array('user_id' => $user_data['id'], 'group_id' => $group_id);
-		$exists = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $user_data['id'], 'GroupRequest.group_id' => $group_id)));
+		$insertData = array('user_id' => $this->getUserId(), 'group_id' => $group_id);
+		$exists = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $this->getUserId(), 'GroupRequest.group_id' => $group_id)));
 
 		if(!$exists){
 	        if($this->GroupRequest->save($insertData)){

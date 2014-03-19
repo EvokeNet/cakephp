@@ -48,4 +48,23 @@ class AppController extends Controller {
         $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard', $user_id);
         $cuser = $this->Auth->user();
     }
+
+    public function getUserId(){
+        $currentuser = $this->Auth->user();
+        if(isset($currentuser['id'])) return $currentuser['id'];
+        return $currentuser['User']['id'];
+    }
+
+    public function getUserName(){
+        $currentuser = $this->Auth->user();
+        if(isset($currentuser['name'])) return $currentuser['name'];
+        return $currentuser['User']['name'];   
+    }
+
+    public function getUserRole(){
+        $currentuser = $this->Auth->user();
+        if(isset($currentuser['role_id'])) return $currentuser['role_id'];
+        return $currentuser['User']['role_id'];
+    }
+
 }

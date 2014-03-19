@@ -15,13 +15,16 @@ class MissionsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session', 'Access');
-
 	public $user = null;
 
 	public function beforeFilter() {
         parent::beforeFilter();
-        //test to get user data from proper index
-		$this->user = $this->Auth->user();
+        
+        $this->user = array();
+        //get user data into public var
+		$this->user['role_id'] = $this->getUserRole();
+		$this->user['id'] = $this->getUserId();
+		$this->user['name'] = $this->getUserName();
 		
 		//there was some problem in retrieving user's info concerning his/her role : send him home
 		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
@@ -45,8 +48,7 @@ class MissionsController extends AppController {
 		$this->set('missions', $this->Paginator->paginate());
 
 		$this->loadModel('User');
-		$user_data = $this->Auth->user();
-		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$missionIssues = $this->Mission->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id'));
 
@@ -78,8 +80,7 @@ class MissionsController extends AppController {
 		$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);
 
 		$this->loadModel('User');
-		$user_data = $this->Auth->user();
-		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$evidences = $this->Mission->getEvidences($id);
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));

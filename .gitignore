@@ -5,3 +5,4 @@ webroot/components
 webroot/uploads/*
 Plugin/
 tmp/
+webroot/index.php

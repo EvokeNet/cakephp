@@ -20,9 +20,12 @@ class PanelsController extends AppController {
 	public function beforeFilter() {
         parent::beforeFilter();
         
+        $this->user = array();
         //get user data into public var
-		$this->user = $this->Auth->user();
-				
+		$this->user['role_id'] = $this->getUserRole();
+		$this->user['id'] = $this->getUserId();
+		$this->user['name'] = $this->getUserName();
+
 		//there was some problem in retrieving user's info concerning his/her role : send him home
 		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
 			$this->redirect(array('controller' => 'users', 'action' => 'login'));
@@ -33,7 +36,7 @@ class PanelsController extends AppController {
 			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
 			$this->redirect($this->referer());
 		}
-    }
+	}
 	
 /*
 * index method
