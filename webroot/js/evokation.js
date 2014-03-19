@@ -86,7 +86,7 @@ function onFileLoaded(doc) {
 		TEXT.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, updateEditor);
 	 	TEXT.addEventListener(gapi.drive.realtime.EventType.TEXT_DELETED, updateEditor);
 
-	 	setDraggableElements();
+	 	setButtons($("#evokation_div"));
 
 	});
 
@@ -132,14 +132,36 @@ function insertHtmlAtCursor(html) {
             range.deleteContents();
 
             var span = document.createElement('span');
+            span.className = 'image';
+            span.setAttribute("contenteditable", false);
             span.innerHTML = html;
-            console.log(span);
 
             range.insertNode( span );
         }
     } else if (document.selection && document.selection.createRange) {
         document.selection.createRange().innerHtml = html;
     }
+}
+
+function setButtons(element) {
+	var images = element.find('.image');
+	var buttonGroup = $('<ul class="button-group"></ul>');
+	var resizeButton = $('<li><button class="button tiny bg-black white"><i class="fa fa-arrows-alt"></i></button></li>');
+	var deleteButton = $('<li><button class="button tiny bg-black white"><i class="fa fa-trash-o"></i></button></li>');
+
+	buttonGroup.append(resizeButton);
+	buttonGroup.append(deleteButton);
+
+	for (var i = images.length - 1; i >= 0; i--) {
+		// TODO check if button already inserted
+		// if(!$(images[i]).find('.button')) {
+			$(images[i]).append(buttonGroup);
+		// }
+	};
+	
+	element.on('hover', function() {
+		$(this).children('.button').toggleClass('hide');
+	});
 }
 
 
@@ -185,6 +207,7 @@ $("#image_uploader").change(function() {
 			success: function(msg) {
 				var element = $("#evokation_div");
 				insertHtmlAtCursor(msg);
+				setButtons(element);
 				TEXT.setText(element.html());
 			},
 			complete: function(xhr) {

@@ -71,7 +71,13 @@
 }
 
 .evoke .project.page i.fa {
+	color: inherit;
 	font-family: 'FontAwesome';
+}
+
+.evoke .project.page ul.button-group li {
+	list-style: none;
+	margin: inherit;
 }
 
 .evoke .button.circle {
@@ -111,4 +117,27 @@
 	margin-left: 1rem;
 	margin-top: 1rem;
 	position: relative;
+}
+
+/* EDITOR STYLES */
+
+span.image {
+	cursor: pointer;
+	display: inline-block;
+	height: auto;
+	position: relative;
+	width: auto;
+	overflow: hidden;
+}
+
+span.image ul.button-group {
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	display: none;
+	z-index: 999;
+}
+
+span.image:hover ul.button-group {
+	display: block;
 }
