@@ -2,8 +2,6 @@
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
-App::uses('Folder', 'Utility');
-App::uses('File', 'Utility');
 
 /**
  * GroupsUsers Controller
@@ -28,9 +26,10 @@ class GroupsUsersController extends AppController {
 	public function index() {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
-		
+
 		$userid = $this->getUserId();
 		$username = explode(' ', $this->getUserName());
+
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
@@ -39,13 +38,13 @@ class GroupsUsersController extends AppController {
 	}
 
 /**
- * edit method
+ * view method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function edit($group_id = null) {
+	public function view($group_id = null) {
 
 		$this->loadModel('Setting');
 		$gAuth = new GoogleAuthentication(
@@ -125,6 +124,7 @@ class GroupsUsersController extends AppController {
 		if(!empty($evokation)) {
 			$this->request->data = $evokation;
 		}
+
 
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
@@ -324,7 +324,7 @@ class GroupsUsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit2($id = null) {
+	public function edit($id = null) {
 		if (!$this->GroupsUser->exists($id)) {
 			throw new NotFoundException(__('Invalid groups user'));
 		}

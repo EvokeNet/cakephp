@@ -35,6 +35,7 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/components/chosen/chosen');
 		echo $this->Html->css('/components/tagmanager/tagmanager');
 		echo $this->Html->css('/components/bootstrap-tagsinput/bootstrap-tagsinput');
+
 		echo $this->Html->css('/components/foundation/css/foundation.min');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');

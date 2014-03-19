@@ -13,6 +13,7 @@ class IssuesController extends AppController {
  *
  * @var array
  */
+
 	public $components = array('Paginator', 'Access', 'Session');
 	public $user = null;
 
@@ -45,6 +46,10 @@ class IssuesController extends AppController {
 	public function index() {
 		$this->Issue->recursive = 0;
 		$this->set('issues', $this->Paginator->paginate());
+
+		// $this->loadModel('MissionIssue');
+		// $missionissues = $this->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id',));
+		// $this->set(compact('missionissues'));
 	}
 
 /**
@@ -99,8 +104,6 @@ class IssuesController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
 			}
-			//returning to the admin panel
-			return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'missions'));
 		} else {
 			$options = array('conditions' => array('Issue.' . $this->Issue->primaryKey => $id));
 			$this->request->data = $this->Issue->find('first', $options);
@@ -132,7 +135,7 @@ class IssuesController extends AppController {
 			$this->Session->setFlash(__('The issue could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panel
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'missions'));
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));
 	}
 
 /**

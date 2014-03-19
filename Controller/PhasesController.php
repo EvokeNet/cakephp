@@ -14,6 +14,7 @@ class PhasesController extends AppController {
  *
  * @var array
  */
+
 	public $components = array('Paginator', 'Session', 'Access');
 	public $user = null;
 

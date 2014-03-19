@@ -52,13 +52,11 @@ class UserFriendsController extends AppController {
 		}
 
 		$insertData = array('user_id' => $id, 'friend_id' => $friend_id);
-		$insertDataReverse = array('user_id' => $friend_id, 'friend_id' => $id); 
 
 		$exists = $this->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $id, 'UserFriend.friend_id' => $friend_id)));
-		$existsReverse = $this->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $friend_id, 'UserFriend.friend_id' => $id)));
 
 		if(!$exists){
-	        if($this->UserFriend->saveAll($insertData) AND $this->UserFriend->saveAll($insertDataReverse)){
+	        if($this->UserFriend->saveAll($insertData)){
 	        	$this->Session->setFlash(__('The friendship has been saved.'));
 	        }  else $this->Session->setFlash(__('The friendship could not be saved. Please, try again.'));
 		} else {

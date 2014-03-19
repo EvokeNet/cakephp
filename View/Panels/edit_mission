@@ -115,7 +115,7 @@
 										</td>
 										<td>
 											<!-- Voting lightbox button -->
-				  							<a href="#" data-reveal-id="myModalQuest" data-reveal><?php echo __('+ Quest');?></a> | delete
+				  							<a href="#" data-reveal-id="myModalQuest" data-reveal><?php echo __('+ Quest');?></a> | [delete]
 										</td>
 									</tr>
 								</thead>

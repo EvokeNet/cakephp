@@ -3,23 +3,17 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('organization_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('trigger'); ?></th>
-			<th><?php echo $this->Paginator->sort('language'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($badges as $badge): ?>
 	<tr>
 		<td><?php echo h($badge['Badge']['id']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($badge['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $badge['Organization']['id'])); ?>
-		</td>
 		<td><?php echo h($badge['Badge']['name']); ?>&nbsp;</td>
 		<td><?php echo h($badge['Badge']['description']); ?>&nbsp;</td>
 		<td><?php echo h($badge['Badge']['trigger']); ?>&nbsp;</td>
-		<td><?php echo h($badge['Badge']['language']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $badge['Badge']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $badge['Badge']['id'])); ?>
@@ -46,7 +40,5 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Badge'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Organizations'), array('controller' => 'organizations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Organization'), array('controller' => 'organizations', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
