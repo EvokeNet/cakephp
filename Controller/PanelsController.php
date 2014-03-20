@@ -211,6 +211,11 @@ class PanelsController extends AppController {
 		$badges_tag = $this->defineCurrentTab('badge', $args);
 		$points_tag = $this->defineCurrentTab('point', $args);
 
+		//loading infos to be shown at top bar
+		$username = explode(' ', $this->user['name']);
+		$userid = $this->user['id'];
+		$userrole = $this->user['role_id'];
+
 		//list of issues to be loaded at the combo box..
 		$issues = $this->Issue->find('list');
 
@@ -318,7 +323,7 @@ class PanelsController extends AppController {
 				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 		}
-		$this->set(compact('flags', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'organizations', 'phases'))	;
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'organizations', 'phases'))	;
 	}
 
 /*
@@ -332,6 +337,12 @@ class PanelsController extends AppController {
 		$quests_tag = $this->defineCurrentTab('quest', $args);
 		$badges_tag = $this->defineCurrentTab('badge', $args);
 		$points_tag = $this->defineCurrentTab('point', $args);
+
+		//loading infos to be shown at top bar
+		$username = explode(' ', $this->user['name']);
+		$userid = $this->user['id'];
+		$userrole = $this->user['role_id'];
+
 
 		//list of issues to be loaded at the combo box..
 		$issues = $this->Issue->find('list');
@@ -438,7 +449,7 @@ class PanelsController extends AppController {
 				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 		}
-		$this->set(compact('flags', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'organizations', 'phases'))	;
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'organizations', 'phases'))	;
 	}
 
 

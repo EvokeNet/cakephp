@@ -46,8 +46,7 @@
 			</dl>
 			<div class="tabs-content">
 				<div class="content <?php echo $organizations_tab; ?>" id="organizations">
-					<p>
-						<?php echo $this->Form->submit('+ Organizations', array('id' => 'new_org', 'class' => 'button small')); ?>
+					<?php echo $this->Form->submit('+ Organizations', array('id' => 'new_org', 'class' => 'button small')); ?>
 						<div id="orgsForm">
 							<?php echo $this->Form->create('Organization', array(
  							   		'url' => array(
@@ -67,7 +66,7 @@
 									if($flags['_admin']) {
 										//if its an admin, use $possible_managers..
 										echo $this->Form->input('UserOrganization.users_id', array(
-											'options' => $users,
+											'options' => $possible_managers,
 											'multiple' => 'checkbox'
 										));
 									} else {
@@ -82,15 +81,15 @@
 							</button>
 							<?php echo $this->Form->end(); ?>
 						</div>
-						<table>				
+
+						<table class="paginated">
 							<?php foreach ($organizations as $organization) { ?>
 								<tr>
 									<td><?php echo $this->Html->Link($organization['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organization['Organization']['id'])); ?></td>
 									<td><?php echo $this->Html->Link('edit', array('controller' => 'organizations', 'action' => 'edit', $organization['Organization']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert')); ?></td>
-								</tr>
+									</tr>
 							<?php }	?>
-						</table>
-					</p>
+						</table>					
 				</div>
 				<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
 					<div class="large-4 columns filter">
@@ -295,7 +294,31 @@
 	</div>
 </section>
 
-
+<!-- pagination scheme for org -->
+<script type="text/javascript">
+	$('table.paginated').each(function() {
+	    var currentPage = 0;
+	    var numPerPage = 2;
+	    var $table = $(this);
+	    $table.bind('repaginate', function() {
+	        $table.find('tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+	    });
+	    $table.trigger('repaginate');
+	    var numRows = $table.find('tr').length;
+	    var numPages = Math.ceil(numRows / numPerPage);
+	    var $pager = $('<div class="pager"></div>');
+	    for (var page = 0; page < numPages; page++) {
+	        $('<span class="page-number"></span>').text(page + 1).bind('click', {
+	            newPage: page
+	        }, function(event) {
+	            currentPage = event.data['newPage'];
+	            $table.trigger('repaginate');
+	            $(this).addClass('active').siblings().removeClass('active');
+	        }).appendTo($pager).addClass('clickable');
+	    }
+	    $pager.insertBefore($table).find('span.page-number:first').addClass('active');
+	});
+</script>
 
 <!-- issues & roles' filtering script -->
 <script type="text/javascript">
@@ -342,7 +365,6 @@
 	});
 
 </script>
-
 
 <!-- hide and show '+ orgs', '+ badges', '+ issues' forms -->
 <script type="text/javascript">
