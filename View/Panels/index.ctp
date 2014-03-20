@@ -185,7 +185,7 @@
 					</p>
 				</div>
 				<div class="content <?php echo $users_tab; ?>" id="users">
-					<div class="large-6 columns filter evoke">
+					<div class="large-5 columns filter evoke">
 			  			<fieldset>
 			    			<?php 
 			    				if($flags['_admin']) {
@@ -223,7 +223,7 @@
 							</ul>
 						</fieldset>
 					</div>
-					<div class="large-5 columns filteredContent evoke">
+					<div class="large-6 columns filteredContent evoke">
 						<input placeholder="Search user" id="box" type="text" /> 
 						<ul class='userList'>
 							<!-- colocar paginação -->
@@ -232,8 +232,37 @@
 									foreach ($all_users as $user) { 
 							?>
 										<li class="role_<?php echo $user['User']['role_id'];?> <?php echo str_replace(' ', '', $user['User']['name']); ?> shownR shownN">
-											<?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
+											<?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])) . ' | ' . "<a href='#' data-reveal-id='user-". $user['User']['id'] ."' data-reveal>" . __('permissions') . "</a>" ; ?>
 										</li>
+
+										<!-- Lightbox for editing user role -->
+										<div id="user-<?php echo $user['User']['id']; ?>" class="reveal-modal tiny" data-reveal>
+											<?php 
+												echo $this->Form->create('User', array(
+											 		'url' => array(
+											 			'controller' => 'panels',
+											 			'action' => 'edit_user_role', 
+											 			$user['User']['id']
+											 		)
+												));
+											 ?>
+											<fieldset>
+												<legend><?php echo __('Change role: '. $user['User']['name']); ?></legend>
+											<?php
+												echo $this->Form->hidden('id', array('value' => $user['User']['id']));
+												echo $this->Form->input('role_id', array(
+													'options' => $roles_list,
+													'value' => $user['User']['role_id']
+												));
+												
+											?>
+												</fieldset>
+												<button class="button tiny" type="submit">
+													<?php echo __('Confirm')?>
+												</button>
+												<?php echo $this->Form->end(); ?>
+											<a class="close-reveal-modal">&#215;</a>
+										</div>
 							<?php
 									}
 								} else {
@@ -299,7 +328,6 @@
    		valThis.replace(' ', '');
     	$('.userList>li').each(function(){
     		var text = $(this).attr('class').split(' ')[1].toLowerCase();
-    		//alert(valThis + ' = ' + text + ' ?');
 	        if(text.indexOf(valThis) > -1) {
 	        	if($(this).hasClass('shownR')) {//only show if its supposed to be seen by role
 	        		$(this).show();

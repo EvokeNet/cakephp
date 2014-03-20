@@ -62,6 +62,8 @@ class PanelsController extends AppController {
 		//needed to issues' add form
 		$parentIssues = $this->Issue->ParentIssue->find('list');
 
+		$roles_list = $this->Role->find('list');
+
 		$roles = $this->Role->getRoles();
 				
 		$all_users = $this->User->getUsers();
@@ -192,7 +194,7 @@ class PanelsController extends AppController {
 			)
 		));		
 		
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'organizations', 'organizations_list', 'issues','badges','roles','possible_managers','groups', 
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues',
 			'organizations_tab', 'missions_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
 	}
@@ -679,6 +681,22 @@ class PanelsController extends AppController {
 				return $this->redirect(array('action' => 'index', 'badges'));
 			} else {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
+			}
+		}
+	}
+
+	public function edit_user_role($id = null){
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			
+			if (!empty($this->request->data)) {
+			    
+			    if ($this->User->save($this->request->data)) {
+			    	$this->Session->setFlash(__('The user role has been saved.'));
+					return $this->redirect(array('action' => 'index', 'users'));
+			    }
 			}
 		}
 	}
