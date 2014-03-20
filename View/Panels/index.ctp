@@ -185,7 +185,7 @@
 					</p>
 				</div>
 				<div class="content <?php echo $users_tab; ?>" id="users">
-					<div class="large-5 columns filter">
+					<div class="large-6 columns filter evoke">
 			  			<fieldset>
 			    			<?php 
 			    				if($flags['_admin']) {
@@ -223,30 +223,31 @@
 							</ul>
 						</fieldset>
 					</div>
-					<div class="large-5 columns filteredContent">
-						<table>
+					<div class="large-5 columns filteredContent evoke">
+						<input placeholder="Search user" id="box" type="text" /> 
+						<ul class='userList'>
 							<!-- colocar paginação -->
 							<?php
 								if($flags['_admin']) {
 									foreach ($all_users as $user) { 
 							?>
-										<tr class="role_<?php echo $user['User']['role_id'];?> ">
-											<td><?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?></td>
-										</tr>
+										<li class="role_<?php echo $user['User']['role_id'];?> <?php echo str_replace(' ', '', $user['User']['name']); ?> shownR shownN">
+											<?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
+										</li>
 							<?php
 									}
 								} else {
 									foreach ($users_of_my_missions as $user) {
 							?>
 										<!-- colocar paginação & filtragem por missions -->
-										<tr class="mission_<?php echo $user['UserMission']['mission_id'];?> ">
-											<td><?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?></td>
-										</tr>
+										<li class="mission_<?php echo $user['UserMission']['mission_id'];?> <?php echo str_replace(' ', '', $user['User']['name']); ?> shownR shownN">
+											<?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
+										</li>
 							<?php
 									}
 								}
 							?>
-						</table>
+						</ul>
 					</div>
 				</div>
 				<div class="content <?php echo $media_tab; ?>" id="media">
@@ -265,6 +266,8 @@
 	</div>
 </section>
 
+
+
 <!-- issues & roles' filtering script -->
 <script type="text/javascript">
 	$("#filters :checkbox").click(function() {
@@ -278,14 +281,38 @@
 	});
 
 	$("#filters2 :checkbox").click(function() {
+		$('#box').val('');
 	   	$("#filters2 :checkbox").each(function() {
 	       	if($(this).is(':checked')) {
-	            $("." + $(this).val()).fadeTo("slow", 1);
+   				$("." + $(this).val()).fadeTo("slow", 1);
+		        $("." + $(this).val()).addClass("shownR");
 			} else {
-	            $("." + $(this).val()).hide();
+				$("." + $(this).val()).hide();
+	            $("." + $(this).val()).removeClass("shownR");
 	        }
 	 	});
 	});
+
+	//filter by name
+	$('#box').keyup(function(){
+   		var valThis = $(this).val().toLowerCase();
+   		valThis.replace(' ', '');
+    	$('.userList>li').each(function(){
+    		var text = $(this).attr('class').split(' ')[1].toLowerCase();
+    		//alert(valThis + ' = ' + text + ' ?');
+	        if(text.indexOf(valThis) > -1) {
+	        	if($(this).hasClass('shownR')) {//only show if its supposed to be seen by role
+	        		$(this).show();
+	        		$(this).addClass('shownN');
+		        }
+	        } else {
+	        	$(this).hide();
+	        	//remove shownN
+	        	$(this).removeClass('shownN');
+	        } 
+   		});
+	});
+
 </script>
 
 
