@@ -33,7 +33,7 @@
 
 <section class="evoke margin top-2">
 	<div class="row evoke max-width">
-		<div class="large-12 columns">
+		<div class="large-12 columns evoke">
 			<h1>Admin Panel</h1>
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations">Organizations</a></dd>
@@ -230,7 +230,7 @@
 								if($flags['_admin']) {
 									foreach ($all_users as $user) { 
 							?>
-										<li class="role_<?php echo $user['User']['role_id'];?> <?php echo str_replace(' ', '', $user['User']['name']); ?> shownR shownN">
+										<li class="role_<?php echo $user['User']['role_id'];?> <?php echo str_replace(' ', '_', $user['User']['name']); ?> shownR shownN">
 											<?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])) . ' | ' . "<a href='#' data-reveal-id='user-". $user['User']['id'] ."' data-reveal>" . __('permissions') . "</a>" ; ?>
 										</li>
 
@@ -268,7 +268,7 @@
 									foreach ($users_of_my_missions as $user) {
 							?>
 										<!-- colocar paginação & filtragem por missions -->
-										<li class="mission_<?php echo $user['UserMission']['mission_id'];?> <?php echo str_replace(' ', '', $user['User']['name']); ?> shownR shownN">
+										<li class="mission_<?php echo $user['UserMission']['mission_id'];?> <?php echo str_replace(' ', '_', $user['User']['name']); ?> shownR shownN">
 											<?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
 										</li>
 							<?php
@@ -348,9 +348,10 @@
 	//filter by name
 	$('#box').keyup(function(){
    		var valThis = $(this).val().toLowerCase();
-   		valThis.replace(' ', '');
+   		valThis = valThis.replace(/\s/g, '_');
     	$('.userList>li').each(function(){
     		var text = $(this).attr('class').split(' ')[1].toLowerCase();
+    		//alert(valThis + " e " + text);
 	        if(text.indexOf(valThis) > -1) {
 	        	if($(this).hasClass('shownR')) {//only show if its supposed to be seen by role
 	        		$(this).show();
