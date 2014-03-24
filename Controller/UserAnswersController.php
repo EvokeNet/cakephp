@@ -48,13 +48,20 @@ class UserAnswersController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			debug($this->request->data);
+			/*foreach ($this->request->data['UserAnswer'] as $data) {
+				if(isset($data['description'])){
+					//its an essay
+				}
+			}
+
 			$this->UserAnswer->create();
 			if ($this->UserAnswer->save($this->request->data)) {
 				$this->Session->setFlash(__('The user answer has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user answer could not be saved. Please, try again.'));
-			}
+			}*/
 		}
 		$users = $this->UserAnswer->User->find('list');
 		$questions = $this->UserAnswer->Question->find('list');

@@ -62,9 +62,7 @@
 			<div class = "missionblock"><a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal><?php echo $q['Quest']['title'];?></a></div>
 
 			<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal small" data-reveal>
-			  <h2><?php echo $q['Quest']['title'];?></h2>
-			  <p class="lead"><?php echo $q['Quest']['description'];?></p>
-			  <!-- <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
+			  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers));?>
 			  <a class="close-reveal-modal">&#215;</a>
 			</div>
 

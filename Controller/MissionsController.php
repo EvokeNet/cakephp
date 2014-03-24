@@ -89,7 +89,14 @@ class MissionsController extends AppController {
 		$missionIssues = $this->Mission->getMissionIssues($id);
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 
-		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP'));
+		//needed to be able to display and edit a quest's questionnaire
+		$this->loadModel('Questionnaire');
+		$questionnaires = $this->Questionnaire->find('all');
+		$this->loadModel('Answer');
+		$answers = $this->Answer->find('all');
+
+		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
+			'questionnaires', 'answers'));
 	}
 
 /**
