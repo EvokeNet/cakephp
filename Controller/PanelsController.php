@@ -8,7 +8,8 @@ class PanelsController extends AppController {
 * @var array
 */
 	public $components = array('Paginator','Access');
-	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Quest');
+	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 
+		'Quest', 'Questionnaire', 'Question', 'Answer');
 	public $user = null;
 
 /**
@@ -229,6 +230,7 @@ class PanelsController extends AppController {
 			)
 		));
 
+
 		if($this->user['role_id'] == 1){
 			$flags = array(
 				'_admin' => true 
@@ -323,7 +325,8 @@ class PanelsController extends AppController {
 				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 		}
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'organizations', 'phases'))	;
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
+			'organizations', 'phases', 'questionnaires', 'answers'));
 	}
 
 /*
@@ -356,6 +359,7 @@ class PanelsController extends AppController {
 				'Phase.position'
 			)
 		));
+
 
 		if($this->user['role_id'] == 1){
 			$flags = array(
@@ -449,7 +453,8 @@ class PanelsController extends AppController {
 				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 		}
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'organizations', 'phases'))	;
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
+			'organizations', 'phases', 'questionnaires', 'answers'));
 	}
 
 
@@ -481,9 +486,53 @@ class PanelsController extends AppController {
 */
 	public function add_quest($id, $origin = 'add_mission'){
 		if ($this->request->is('post')) {
+			
+			
 			$this->Quest->create();
 			if ($this->Quest->save($this->request->data)) {
 				$this->Session->setFlash(__('The quest has been saved.'));
+				
+				$quest_id = $this->Quest->id;
+				//now checking to see if it were a questionnarie type quest (type = 1)
+				if($this->request->data['Quest']['type'] == 1) {
+					//create a questionnaire..
+					$questionnaire_data = array("Questionnaire" => array("quest_id" => $quest_id));
+					$this->Questionnaire->create();
+					if ($this->Questionnaire->save($questionnaire_data)) {
+						$this->Session->setFlash(__('The questionnaire has been saved.'));
+
+						$questionnaire_id = $this->Questionnaire->id;
+						
+						foreach ($this->request->data['Questions'] as $question) {
+							//create questions
+							$question['questionnaire_id'] = $questionnaire_id;
+							$this->Question->create();
+							if ($this->Question->save($question)) {
+								$this->Session->setFlash(__('The question has been saved.'));
+								
+								$question_id = $this->Question->id;
+								//if there are possible answers to this question, add them
+								if(isset($question['Answer'])) {
+									foreach ($question['Answer'] as $answer) {
+										//create question answer for each question
+										$answer['question_id'] = $question_id;
+										$this->Answer->create();
+										if ($this->Answer->save($answer)) {
+											$this->Session->setFlash(__('The answer has been saved.'));
+										} else {
+											$this->Session->setFlash(__('The answer could not be saved. Please, try again.'));
+										}
+									}
+								}
+							} else {
+								$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
+							}
+						}
+					} else {
+						$this->Session->setFlash(__('The questionnaire could not be saved. Please, try again.'));
+					}
+				}
+
 				//if it came from add mission, go back to it, else...
 				if($origin == 'add_mission')
 					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
@@ -507,7 +556,52 @@ class PanelsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Quest->id = $quest_id;
 			if ($this->Quest->save($this->request->data)) {
-				$this->Session->setFlash(__('The quest has been saved.'));
+				//$this->Session->setFlash(__('The quest has been saved.'));
+				
+				//now checking to see if it were a questionnarie type quest (type = 1)
+				if($this->request->data['Quest']['type'] == 1) {
+					//destroy previous questionnaire of this quest and all other subjects
+					$this->destroyQuestionnaire($quest_id);
+
+					//create a questionnaire..
+					$questionnaire_data = array("Questionnaire" => array("quest_id" => $quest_id));
+					$this->Questionnaire->create();
+					if ($this->Questionnaire->save($questionnaire_data)) {
+						$this->Session->setFlash(__('The questionnaire has been saved.'));
+
+						$questionnaire_id = $this->Questionnaire->id;
+						
+						foreach ($this->request->data['Questions'] as $question) {
+							//create questions
+							$question['questionnaire_id'] = $questionnaire_id;
+							$this->Question->create();
+							if ($this->Question->save($question)) {
+								$this->Session->setFlash(__('The question has been saved.'));
+								
+								$question_id = $this->Question->id;
+								//if there are possible answers to this question, add them
+								if(isset($question['Answer'])) {
+									foreach ($question['Answer'] as $answer) {
+										//create question answer for each question
+										$answer['question_id'] = $question_id;
+										$this->Answer->create();
+										if ($this->Answer->save($answer)) {
+											$this->Session->setFlash(__('The answer has been saved.'));
+										} else {
+											$this->Session->setFlash(__('The answer could not be saved. Please, try again.'));
+										}
+									}
+								}
+							} else {
+								$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
+							}
+						}
+					} else {
+						$this->Session->setFlash(__('The questionnaire could not be saved. Please, try again.'));
+					}
+				} //else $this->Session->setFlash(__('duude.'));
+
+
 				//if it came from add mission, go back to it, else...
 				if($origin == 'add_mission')
 					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
@@ -523,6 +617,66 @@ class PanelsController extends AppController {
 	}
 
 /*
+* destroyQuestionnaire method
+* erases all related data from the questionnaire desired
+*/
+
+	public function destroyQuestionnaire($quest_id = null) {
+		if(!$quest_id) return;
+		$questionnaire = $this->Questionnaire->find('first', array(
+			'conditions' => array(
+				'quest_id' => $quest_id
+			)
+		));
+		$id = $questionnaire['Questionnaire']['id'];
+		$this->Questionnaire->id = $id;
+
+		if ($this->Questionnaire->delete()) {
+			$this->Session->setFlash(__('The questionnaire has been deleted.'));
+			
+			//now, find all the questions related to it...
+			$questions = $this->Question->find('all', array(
+				'conditions' => array(
+					'questionnaire_id' => $id
+				)
+			));
+
+			//and delete them..
+			foreach ($questions as $question) {
+				$question_id = $question['Question']['id'];
+				$this->Question->id = $question_id;
+
+				if ($this->Question->delete()) {
+					$this->Session->setFlash(__('The question has been deleted.'));
+					
+					//and dont forget its answers!
+					$answers = $this->Answer->find('all', array(
+						'conditions' => array(
+							'question_id' => $question_id
+						)
+					));
+					foreach ($answers as $answer) {
+						$answer_id = $answer['Answer']['id'];
+						$this->Answer->id = $answer_id;
+						if ($this->Answer->delete()) {
+							$this->Session->setFlash(__('The answer has been deleted.'));
+						} else {
+							$this->Session->setFlash(__('The answer could not be deleted. Please, try again.'));
+						}
+					}
+
+				} else {
+					$this->Session->setFlash(__('The question could not be deleted. Please, try again.'));
+				}
+			}
+
+		} else {
+			$this->Session->setFlash(__('The questionnaire could not be deleted. Please, try again.'));
+		}
+	}
+
+
+/*
 * delete_quest method
 * deletes a quest of the specific phase of the 'current-adding' mission  
 */
@@ -535,6 +689,13 @@ class PanelsController extends AppController {
 			//$this->request->onlyAllow('post', 'delete');
 			if ($this->Quest->delete()) {
 				$this->Session->setFlash(__('The quest has been deleted.'));
+				
+				//now checking to see if it were a questionnarie type quest (type = 1)
+				if($this->Quest->type == 1) {
+					//destroy previous questionnaire of this quest and all other subjects
+					$this->destroyQuestionnaire($quest_id);
+				}
+
 				//if it came from add mission, go back to it, else...
 					if($origin == 'add_mission')
 						$this->redirect(array('action' => 'add_mission', $id, 'phase'));
@@ -547,6 +708,21 @@ class PanelsController extends AppController {
 		}
 	}
 
+	public function quest($phase_id, $mission_id, $id, $origin = null) {
+		$me = $this->Quest->find('first', array(
+			'conditions' => array(
+				'Quest.id' => $id
+			)
+		));
+
+
+		//needed to be able to display and edit a quest's questionnaire
+		$questionnaires = $this->Questionnaire->find('all');
+		$answers = $this->Answer->find('all');
+
+
+		$this->set(compact('phase_id', 'mission_id', 'me', 'questionnaires', 'answers', 'origin'));
+	}
 
 /*
 * delete_phase method

@@ -160,7 +160,7 @@ class MissionsController extends AppController {
 			$this->Session->setFlash(__('The mission could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panels
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));	
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'missions'));	
 	}
 
 /**

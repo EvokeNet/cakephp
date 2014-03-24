@@ -128,25 +128,14 @@
 										<td colspan="2">
 											<!-- list the already existing quests under this phase -->
 											<?php 
-												foreach ($phase['Quest'] as $quest) { ?>
-													
-													<a href="#" data-reveal-id="myModalQuest<?php echo $quest['id']; ?>" data-reveal>[<?php echo $quest['title']; ?>]</a>
-													
-												<?php }	?>
+												foreach ($phase['Quest'] as $quest) { 
+													echo $this->Html->Link('['.$quest['title'].'] ', array('controller' => 'panels', 'action' => 'quest', $phase['Phase']['id'], $id, $quest['id'], 'edit_mission'));
+
+												 }	?>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<?php foreach ($phase['Quest'] as $quest) { ?>
-								<!-- Lightbox for adding quest to phase form -->
-								<div id="myModalQuest<?php echo $quest['id']; ?>" class="reveal-modal tiny" data-reveal>
-									<?php 
-										echo $this->element('edit_quest', array('phase_id' => $phase['Phase']['id'], 'mission_id' => $id, 'me' => $quest, 'origin' => 'edit_mission'));
-									?>
-									<a class="close-reveal-modal">&#215;</a>
-								</div>
-							<?php }	?>
-
 							<!-- Lightbox for adding quest to phase form -->
 							<div id="myModalQuest-<?php echo $phase['Phase']['id']; ?>" class="reveal-modal tiny" data-reveal>
 								<?php 
