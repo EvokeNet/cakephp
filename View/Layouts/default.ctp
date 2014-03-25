@@ -24,17 +24,7 @@ $title = __('Evoke Network');
 
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->script('/webroot/components/jquery/jquery.min');
-		echo $this->Html->script('/webroot/components/foundation/js/foundation.min');
-
-		echo $this->Html->script('facebook_share');
-		echo $this->Html->script('google_share');
-		echo $this->Html->script('foundation_tabs');
-
-		echo $this->Html->css('tagsinput');
-		echo $this->Html->css('/components/chosen/chosen');
-		echo $this->Html->css('/components/tagmanager/tagmanager');
-		echo $this->Html->css('/components/bootstrap-tagsinput/bootstrap-tagsinput');
+		echo $this->Html->script('/components/jquery/jquery.min');//
 
 		echo $this->Html->css('/components/foundation/css/foundation.min');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
@@ -65,16 +55,12 @@ $title = __('Evoke Network');
 			</div>
 		</div>
 	</footer>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 	<?php
 		echo $this->Html->script('/components/jquery/jquery.min');
-		echo $this->Html->script('tagsinput');
-		echo $this->Html->script('/components/chosen/chosen.jquery');
-		echo $this->Html->script('/components/bootstrap-tagsinput/bootstrap-tagsinput');
-		echo $this->Html->script('/components/bootstrap-tagsinput/bootstrap-tagsinput-angular');
-		
+		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js");
 		echo $this->Html->script('/components/foundation/js/foundation.min');
 		echo $this->Html->script('evoke');
+		
 		echo $this->fetch('script'); 
 	?>
 </body>

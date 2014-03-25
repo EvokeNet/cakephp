@@ -94,9 +94,16 @@ class MissionsController extends AppController {
 		$questionnaires = $this->Questionnaire->find('all');
 		$this->loadModel('Answer');
 		$answers = $this->Answer->find('all');
+		$this->loadModel('UserAnswer');
+		$previous_answers = $this->UserAnswer->find('all', array(
+			'conditions' => array(
+				'user_id' => $this->getUserId()
+			)
+		));
+
 
 		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
-			'questionnaires', 'answers'));
+			'questionnaires', 'answers', 'previous_answers'));
 	}
 
 /**

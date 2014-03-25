@@ -295,5 +295,7 @@
 		</div>
 	</div>
 </section>
+
 <?php 
-echo $this->Html->script('panels'); ?>
+	echo $this->Html->script('panels');
+?>
