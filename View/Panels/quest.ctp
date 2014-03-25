@@ -110,7 +110,14 @@
 
 	<?php 
 			}
-		}
+		} else {
+            echo "<label>Attachments</label>";
+            echo "<ul>";
+            foreach ($attachments as $media) {
+                echo '<li><img src="' . $this->webroot.'files/attachment/attachment/'.$media['Attachment']['dir'].'/thumb_'.$media['Attachment']['attachment'] . '"/></li><br>';
+            }
+            echo "</ul>";
+        }
 	?>
 	</fieldset>
 	<button class="button tiny" type="submit">

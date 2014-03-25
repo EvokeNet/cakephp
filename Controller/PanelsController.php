@@ -9,7 +9,7 @@ class PanelsController extends AppController {
 */
 	public $components = array('Paginator','Access');
 	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 
-		'Quest', 'Questionnaire', 'Question', 'Answer');
+		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment');
 	public $user = null;
 
 /**
@@ -488,8 +488,8 @@ class PanelsController extends AppController {
 		if ($this->request->is('post')) {
 			
 			
-			$this->Quest->create();
-			if ($this->Quest->save($this->request->data)) {
+			//$this->Quest->create();
+			if ($this->Quest->createWithAttachments($this->request->data)) {
 				$this->Session->setFlash(__('The quest has been saved.'));
 				
 				$quest_id = $this->Quest->id;
@@ -531,6 +531,10 @@ class PanelsController extends AppController {
 					} else {
 						$this->Session->setFlash(__('The questionnaire could not be saved. Please, try again.'));
 					}
+				} else {
+					//there are, possibly, many files to manage
+					//debug($this->request->data);
+					//$this->redirect(array('action' => 'edit_quest', $id, $quest_id, $origin));
 				}
 
 				//if it came from add mission, go back to it, else...
@@ -720,8 +724,14 @@ class PanelsController extends AppController {
 		$questionnaires = $this->Questionnaire->find('all');
 		$answers = $this->Answer->find('all');
 
+		$attachments = $this->Attachment->find('all', array(
+			'conditions' => array(
+				'Attachment.model' => 'Quest',
+				'Attachment.foreign_key' => $id
+			)
+		));
 
-		$this->set(compact('phase_id', 'mission_id', 'me', 'questionnaires', 'answers', 'origin'));
+		$this->set(compact('phase_id', 'mission_id', 'me', 'questionnaires', 'answers', 'origin', 'attachments'));
 	}
 
 /*
