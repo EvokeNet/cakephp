@@ -108,7 +108,9 @@ class UsersController extends AppController {
 			}
 
 		} else if ($this->Auth->login()) {
+
 			return $this->redirect(array('action' => 'dashboard'));
+
 		} else {
 			$fbLoginUrl = $facebook->getLoginUrl();
 			$this->set(compact('fbLoginUrl'));
@@ -185,17 +187,72 @@ class UsersController extends AppController {
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
+		$user_data = $this->Auth->user();
+		//debug($user_data);
+		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
+
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
+		//debug($evidence);
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));
+
+		$options['joins'] = array(
+		    array('table' => 'evokation_followers',
+		        'alias' => 'EvokationFollowers',
+		        'type' => 'inner',
+		        'conditions' => array(
+		            'EvokationFollowers.user_id' => $id
+		        )
+		    ),
+		    array('table' => 'evokations',
+		        'alias' => 'Evokations',
+		        'type' => 'inner',
+		        'conditions' => array(
+		            'Evokations.id = EvokationFollowers.evokation_id'
+		        )
+		    ),
+		    array('table' => 'groups',
+		        'alias' => 'Groups',
+		        'type' => 'inner',
+		        'conditions' => array(
+		            'Evokations.group_id = Group.id'
+		        )
+		    )
+		);
+
+		$evokationsFollowing = $this->User->EvokationFollower->find('all');
+		//debug($evokationsFollowing);
+		//die();
+
+		$options2['joins'] = array(
+		    array('table' => 'groups_users',
+		        'alias' => 'GroupsUsers',
+		        'type' => 'inner',
+		        'conditions' => array(
+		            'GroupsUsers.user_id' => $id
+		        )
+		    ),
+		    array('table' => 'evokations',
+		        'alias' => 'Evokations',
+		        'type' => 'inner',
+		        'conditions' => array(
+		            'Evokations.group_id = GroupsUsers.group_id'
+		        )
+		    )
+		);
+
+		$myEvokations = $this->Evokation->find('all', $options2['joins']);
+		//debug($myEvokations);
 
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all');
 		$missionIssues = $this->Mission->MissionIssue->find('all');
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
-		$this->set(compact('user', 'evidence', 'evokations', 'missions', 'missionIssues', 'issues'));
+		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 'missionIssues', 'issues'));
 
 	}
 
@@ -215,6 +272,11 @@ class UsersController extends AppController {
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_id)));
 
+		$user_data = $this->getUserData();
+		$users = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
+		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $id, 'UserFriend.friend_id' => $user_data['id'])));
+
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
 
 		$this->loadModel('Mission');
@@ -223,7 +285,7 @@ class UsersController extends AppController {
 		$missionIssues = $this->Mission->MissionIssue->find('all');
 		$missionIssue = $this->Mission->MissionIssue->find('all', array('conditions' => array('MissionIssue.issue_id' => $id)));
 
-		$this->set(compact('user', 'evidence', 'issue', 'missions', 'missionIssues', 'missionIssue'));
+		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'issue', 'missions', 'missionIssues', 'missionIssue'));
 
 	}
 
@@ -253,6 +315,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add_friend($user_to = null) {
+
 		
 		$this->request->data['User']['id'] = $this->getUserId();
 		$this->request->data['Friend']['id'] = $user_to;
@@ -295,6 +358,7 @@ class UsersController extends AppController {
 			'_friended' => false
 		);
 
+
 		$user_from = $this->getUserId();
 
 		if (!$this->User->exists($id)) {
@@ -303,12 +367,14 @@ class UsersController extends AppController {
 
 		$user = $this->User->read(null, $id);
 
+
 		//check if it's myself, if it is, send to dashboard
 		if($user_from == $id) {
 			$this->redirect(array('action' => 'dashboard', $id));
 		}
 
 		$username = explode(' ', $this->getUserName());
+
 		$this->set(compact('username'));
 
 		$userFriends = $this->User->find('first', array(
@@ -373,6 +439,7 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 
+
 		//check to see if user is an admin
 		//if so, he can edit whoever he likes
 		//otherwise, you are not allowed to edit agents but
@@ -402,21 +469,25 @@ class UsersController extends AppController {
 			if (!empty($this->request->data)) {
 				$this->request->data['User']['role_id'] = $user['User']['role_id'];
 
+
 				$userid = $this->request->data['User']['id'];
 
 				$this->User->UserIssue->deleteAll(array('UserIssue.user_id' => $userid), false);
 
 				/*foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
 			        $insertData = array('user_id' => $user, 'issue_id' => $a);
+>>>>>>> 6580eca106b204456b88e62813d87ce66225a5b8
 
 			        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $id, 'UserIssue.issue_id' => $a)));
 			        if(!$exists) $this->User->UserIssue->saveAssociated($insertData);
 			    }*/
 			    
 			    if ($this->User->save($this->request->data)) {
+
 			    	$this->Auth->login($user);
 			    	$this->Session->setFlash(__('The user has been saved.'));
 					return $this->redirect(array('action' => 'dashboard'));
+
 				} 
 		        
 			} else $this->Session->setFlash(__('The user could not be saved. Please, try again.'));

@@ -7,7 +7,6 @@ var editor = new MediumEditor('#evokation_div', {
 	targetBlank: true
 });
 
-var TEXT; // global object that contains the collaborative model
 
 gapi.load("auth:client,drive-realtime,drive-share", createOrLoadDocument);
 
@@ -64,14 +63,13 @@ function initializeModel(model) {
 }
 
 function onFileLoaded(doc) {
-
-	TEXT = doc.getModel().getRoot().get("text");
+	var text = doc.getModel().getRoot().get("text");
 	var evokation = document.getElementById("evokation_txt");
 
 	gapi.client.load('drive', 'v2', function() {
-		gapi.drive.realtime.databinding.bindString(TEXT, evokation);
+		gapi.drive.realtime.databinding.bindString(text, evokation);
 
-		realtimeTick();
+		realtimeTick(text);
 
 		var updateEditor = function(event) {
 			if(!event.isLocal) {
@@ -92,10 +90,10 @@ function onFileLoaded(doc) {
 
 }
 
-function realtimeTick() {
-	$("#evokation_div").html(TEXT.getText());
+function realtimeTick(text) {
+	$("#evokation_div").html(text.getText());
 	$("#evokation_div").on('input', function() {
-	 	TEXT.setText($(this).html());
+	 	text.setText($(this).html());
 	});
 }
 
@@ -185,6 +183,7 @@ function setButtons(element) {
 *
 **/
 
+
 /**
 * This AJAX call updates the title and abstract fields of an existing
 * document in the database, given the Id.
@@ -196,7 +195,6 @@ $("#evokation_draft_button").click(function(){
 	var abstract = $("#evokation_abstract").val();
 
 	$.ajax({
-		dataType: 'text',
 		type: "POST",
 		url: WEBROOT + "groups_users/storeFileInfo",
 		data: { 'id': id, 'title': title, 'abstract': abstract },

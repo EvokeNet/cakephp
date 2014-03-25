@@ -37,16 +37,41 @@ class AppController extends Controller {
         'Acl'
     );
 
+    public $helpers = array(
+        'Chosen.Chosen', 'Media.Media'
+    );
+
+    public $user = null;
+
 /**
  * beforeFilter method
  *
  * @return void
  */
 	public function beforeFilter() {
-        $user_id = $this->Auth->user('User.id');
         $this->Auth->allow('add', 'fb_login', 'index', 'view');
-        $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard', $user_id);
+        $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
         $cuser = $this->Auth->user();
+    }
+
+
+    // public function getUserData(){
+    //     $c_user = array();
+
+    //     if(is_null($this->Session->read('Auth.User.role_id'))) {
+    //         $c_user['role_id'] = $this->Session->read('Auth.User.User.role_id');
+    //         $c_user['id'] = $this->Session->read('Auth.User.User.id');
+    //         $c_user['name'] = $this->Session->read('Auth.User.User.name');
+    //     } else{
+    //         $c_user['role_id'] = $this->Session->read('Auth.User.role_id');
+    //         $c_user['id'] = $this->Session->read('Auth.User.id');
+    //         $c_user['name'] = $this->Session->read('Auth.User.name');
+    //     }
+    //     return $c_user;
+    // }
+
+    public function canUploadMedias($model, $id){
+        return true;
     }
 
     public function getUserId(){

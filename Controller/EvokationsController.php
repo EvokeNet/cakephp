@@ -41,6 +41,21 @@ class EvokationsController extends AppController {
 	}
 
 /**
+ * view draft method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function viewDraft($id = null) {
+		if (!$this->Evokation->exists($id)) {
+			throw new NotFoundException(__('Invalid evokation'));
+		}
+		$options = array('conditions' => array('Evokation.' . $this->Evokation->primaryKey => $id));
+		$this->set('evokation', $this->Evokation->find('first', $options));
+	}
+
+/**
  * add method
  *
  * @return void

@@ -8,6 +8,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/markstory/acl_extras"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Grafikart/CakePHP-Media"
         }
     ],
     "require": {
@@ -17,9 +21,9 @@
         "facebook/php-sdk": "v3.2.3",
         "google/apiclient": "1.0.3-beta",
         "markstory/acl_extras": "dev-master",
+        "paulredmond/chosen-cakephp": "*"
     },
     "config": {
-        "vendor-dir": "Vendor/",
-        "preferred-install": "source"
+        "vendor-dir": "Vendor/"
     }
 }

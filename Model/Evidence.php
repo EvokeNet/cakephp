@@ -8,6 +8,7 @@ App::uses('AppModel', 'Model');
  * @property Mission $Mission
  * @property Phase $Phase
  * @property Comment $Comment
+ * @property EvidenceTag $EvidenceTag
  * @property Vote $Vote
  */
 class Evidence extends AppModel {
@@ -18,6 +19,15 @@ class Evidence extends AppModel {
  * @var string
  */
 	public $displayField = 'title';
+
+	public $actsAs = array(
+        'Containable',
+        'Media.Media' => array(
+            // You can set up the path where your medias will be saved (optional)
+            'path' => 'img/uploads/%y/%m/%f',
+            'extensions' => array('jpg', 'png', 'avi', 'mp4')
+        )
+    );
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -66,6 +76,19 @@ class Evidence extends AppModel {
 	public $hasMany = array(
 		'Comment' => array(
 			'className' => 'Comment',
+			'foreignKey' => 'evidence_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'EvidenceTag' => array(
+			'className' => 'EvidenceTag',
 			'foreignKey' => 'evidence_id',
 			'dependent' => false,
 			'conditions' => '',

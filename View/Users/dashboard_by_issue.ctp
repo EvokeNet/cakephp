@@ -6,7 +6,7 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo $user['User']['name']; ?></h1>
+			<h1><?php echo $users['User']['name']; ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
@@ -17,7 +17,7 @@
 			<li class="has-dropdown">
 				<a href="#">Settings</a>
 				<ul class="dropdown">
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li>
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $users['User']['id'])); ?></li>
 					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
@@ -25,7 +25,7 @@
 
 		<!-- Left Nav Section -->
 		<ul class="left">
-			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li>
+			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $users['User']['id'])); ?></li>
 		</ul>
 	</section>
 </nav>
@@ -43,9 +43,15 @@
 			  <a class="current" href="#"><?php if($missionIssue) echo __('Issue: ').$missionIssue[0]['Issue']['name']; else echo __('Issue: ').$issue['Issue']['name'];?></a>
 			</nav>
 
+			<?php if(!$is_friend AND ($users['User']['id'] != $user['User']['id'])):?>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'add', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Follow this user');?></a>
+			<?php else: ?>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'delete', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Unfollow this user');?></a>
+			<?php endif; ?>
+
 			<dl class="tabs" data-tab>
 			  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
-			  <dd><a href="#panel2-2"><?php echo __('Projects and Evidences I Follow');?></a></dd>
+			  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
 			  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
 			</dl>
 			<div class="tabs-content">
@@ -54,7 +60,7 @@
 			    	//Lists all projects and evidences
 		    		foreach($evidence as $e):?>
 			    		<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
-			    		<p><?php echo substr($e['Evidence']['content'], 0, 100);?></p>
+			    		<p><?php echo substr(strip_tags($e['Evidence']['content']), 0, 90);?></p>
 			
 						<!-- Prints the issue related to each mission -->
 	    				<?php foreach($missionIssues as $mi): 

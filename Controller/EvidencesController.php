@@ -18,6 +18,8 @@ class EvidencesController extends AppController {
 
 	public $user = null;
 
+	public $helpers = array('Media.Media');
+
 /**
  * index method
  *
@@ -54,21 +56,21 @@ class EvidencesController extends AppController {
  * @return void
  */
 	public function add($mission_id, $phase_id) {
-		if ($this->request->is('post')) {
-			$this->Evidence->create();
-			if ($this->Evidence->save($this->request->data)) {
-				$this->Session->setFlash(__('The evidence has been saved.'));
-				return $this->redirect(array('action' => 'view', $this->Evidence->id));
-			} else {
-				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
-			}
-		}
+
+		
 
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-		$quests = $this->Evidence->Quest->find('list');
-		$mission = $this->Evidence->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
-		$phase = $this->Evidence->Phase->find('first', array('conditions' => array('Phase.id' => $phase_id)));
-		$this->set(compact('user', 'quests', 'mission', 'phase'));
+
+		$insertData = array('user_id' => $this->getUserId(), 'mission_id' => $mission_id, 'phase_id' => $phase_id); 
+
+		$this->Evidence->create();
+		if ($this->Evidence->save($insertData)) {
+			$this->Session->setFlash(__('The evidence has been saved.'));
+			return $this->redirect(array('action' => 'edit', $this->Evidence->id));
+		} else {
+			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
+		}
+
 	}
 
 /**
@@ -95,7 +97,9 @@ class EvidencesController extends AppController {
 			$this->request->data = $this->Evidence->find('first', $options);
 		}
 
+
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
 		$users = $this->Evidence->User->find('list');
 		$quests = $this->Evidence->Quest->find('list');
 		$missions = $this->Evidence->Mission->find('list');

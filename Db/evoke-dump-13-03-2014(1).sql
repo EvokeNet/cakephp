@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 13/03/2014 às 18h58min
+-- Tempo de Geração: 22/02/2014 às 12h24min
 -- Versão do Servidor: 5.5.35
 -- Versão do PHP: 5.3.10-1ubuntu3.9
 
@@ -35,14 +35,14 @@ CREATE TABLE IF NOT EXISTS `acos` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=414 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=386 ;
 
 --
 -- Extraindo dados da tabela `acos`
 --
 
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(192, NULL, NULL, NULL, 'controllers', 1, 390),
+(192, NULL, NULL, NULL, 'controllers', 1, 388),
 (193, 192, NULL, NULL, 'Badges', 2, 23),
 (194, 193, NULL, NULL, 'index', 3, 4),
 (195, 193, NULL, NULL, 'view', 5, 6),
@@ -99,7 +99,7 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (246, 238, NULL, NULL, 'admin_add', 107, 108),
 (247, 238, NULL, NULL, 'admin_edit', 109, 110),
 (248, 238, NULL, NULL, 'admin_delete', 111, 112),
-(249, 192, NULL, NULL, 'GroupsUsers', 114, 139),
+(249, 192, NULL, NULL, 'GroupsUsers', 114, 137),
 (250, 249, NULL, NULL, 'index', 115, 116),
 (251, 249, NULL, NULL, 'view', 117, 118),
 (252, 249, NULL, NULL, 'storeFileInfo', 119, 120),
@@ -111,146 +111,131 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (258, 249, NULL, NULL, 'admin_add', 131, 132),
 (259, 249, NULL, NULL, 'admin_edit', 133, 134),
 (260, 249, NULL, NULL, 'admin_delete', 135, 136),
-(261, 192, NULL, NULL, 'Issues', 140, 161),
-(262, 261, NULL, NULL, 'index', 141, 142),
-(263, 261, NULL, NULL, 'view', 143, 144),
-(264, 261, NULL, NULL, 'add', 145, 146),
-(265, 261, NULL, NULL, 'edit', 147, 148),
-(266, 261, NULL, NULL, 'delete', 149, 150),
-(267, 261, NULL, NULL, 'admin_index', 151, 152),
-(268, 261, NULL, NULL, 'admin_view', 153, 154),
-(269, 261, NULL, NULL, 'admin_add', 155, 156),
-(270, 261, NULL, NULL, 'admin_edit', 157, 158),
-(271, 261, NULL, NULL, 'admin_delete', 159, 160),
-(272, 192, NULL, NULL, 'MissionIssues', 162, 183),
-(273, 272, NULL, NULL, 'index', 163, 164),
-(274, 272, NULL, NULL, 'view', 165, 166),
-(275, 272, NULL, NULL, 'add', 167, 168),
-(276, 272, NULL, NULL, 'edit', 169, 170),
-(277, 272, NULL, NULL, 'delete', 171, 172),
-(278, 272, NULL, NULL, 'admin_index', 173, 174),
-(279, 272, NULL, NULL, 'admin_view', 175, 176),
-(280, 272, NULL, NULL, 'admin_add', 177, 178),
-(281, 272, NULL, NULL, 'admin_edit', 179, 180),
-(282, 272, NULL, NULL, 'admin_delete', 181, 182),
-(283, 192, NULL, NULL, 'Missions', 184, 205),
-(284, 283, NULL, NULL, 'index', 185, 186),
-(285, 283, NULL, NULL, 'view', 187, 188),
-(286, 283, NULL, NULL, 'add', 189, 190),
-(291, 283, NULL, NULL, 'edit', 191, 192),
-(292, 283, NULL, NULL, 'delete', 193, 194),
-(293, 283, NULL, NULL, 'admin_index', 195, 196),
-(294, 283, NULL, NULL, 'admin_view', 197, 198),
-(295, 283, NULL, NULL, 'admin_add', 199, 200),
-(296, 283, NULL, NULL, 'admin_edit', 201, 202),
-(297, 283, NULL, NULL, 'admin_delete', 203, 204),
-(298, 192, NULL, NULL, 'Organizations', 206, 227),
-(299, 298, NULL, NULL, 'index', 207, 208),
-(300, 298, NULL, NULL, 'view', 209, 210),
-(301, 298, NULL, NULL, 'add', 211, 212),
-(302, 298, NULL, NULL, 'edit', 213, 214),
-(303, 298, NULL, NULL, 'delete', 215, 216),
-(304, 298, NULL, NULL, 'admin_index', 217, 218),
-(305, 298, NULL, NULL, 'admin_view', 219, 220),
-(306, 298, NULL, NULL, 'admin_add', 221, 222),
-(307, 298, NULL, NULL, 'admin_edit', 223, 224),
-(308, 298, NULL, NULL, 'admin_delete', 225, 226),
-(309, 192, NULL, NULL, 'Pages', 228, 231),
-(310, 309, NULL, NULL, 'display', 229, 230),
-(311, 192, NULL, NULL, 'Panels', 232, 261),
-(312, 311, NULL, NULL, 'index', 233, 234),
-(322, 192, NULL, NULL, 'Quests', 262, 283),
-(323, 322, NULL, NULL, 'index', 263, 264),
-(324, 322, NULL, NULL, 'view', 265, 266),
-(325, 322, NULL, NULL, 'add', 267, 268),
-(326, 322, NULL, NULL, 'edit', 269, 270),
-(327, 322, NULL, NULL, 'delete', 271, 272),
-(328, 322, NULL, NULL, 'admin_index', 273, 274),
-(329, 322, NULL, NULL, 'admin_view', 275, 276),
-(330, 322, NULL, NULL, 'admin_add', 277, 278),
-(331, 322, NULL, NULL, 'admin_edit', 279, 280),
-(332, 322, NULL, NULL, 'admin_delete', 281, 282),
-(333, 192, NULL, NULL, 'Roles', 284, 295),
-(334, 333, NULL, NULL, 'index', 285, 286),
-(335, 333, NULL, NULL, 'view', 287, 288),
-(336, 333, NULL, NULL, 'add', 289, 290),
-(337, 333, NULL, NULL, 'edit', 291, 292),
-(338, 333, NULL, NULL, 'delete', 293, 294),
-(339, 192, NULL, NULL, 'UserIssues', 296, 317),
-(340, 339, NULL, NULL, 'index', 297, 298),
-(341, 339, NULL, NULL, 'view', 299, 300),
-(342, 339, NULL, NULL, 'add', 301, 302),
-(343, 339, NULL, NULL, 'edit', 303, 304),
-(344, 339, NULL, NULL, 'delete', 305, 306),
-(345, 339, NULL, NULL, 'admin_index', 307, 308),
-(346, 339, NULL, NULL, 'admin_view', 309, 310),
-(347, 339, NULL, NULL, 'admin_add', 311, 312),
-(348, 339, NULL, NULL, 'admin_edit', 313, 314),
-(349, 339, NULL, NULL, 'admin_delete', 315, 316),
-(350, 192, NULL, NULL, 'Users', 318, 355),
-(351, 350, NULL, NULL, 'login', 319, 320),
-(352, 350, NULL, NULL, 'logout', 321, 322),
-(353, 350, NULL, NULL, 'index', 323, 324),
-(354, 350, NULL, NULL, 'register', 325, 326),
-(355, 350, NULL, NULL, 'dashboard', 327, 328),
-(356, 350, NULL, NULL, 'dashboardByIssue', 329, 330),
-(357, 350, NULL, NULL, 'leaderboard', 331, 332),
-(358, 350, NULL, NULL, 'add_friend', 333, 334),
-(359, 350, NULL, NULL, 'remove_friend', 335, 336),
-(360, 350, NULL, NULL, 'view', 337, 338),
-(361, 350, NULL, NULL, 'add', 339, 340),
-(362, 350, NULL, NULL, 'edit', 341, 342),
-(363, 350, NULL, NULL, 'delete', 343, 344),
-(364, 350, NULL, NULL, 'admin_index', 345, 346),
-(365, 350, NULL, NULL, 'admin_view', 347, 348),
-(366, 350, NULL, NULL, 'admin_add', 349, 350),
-(367, 350, NULL, NULL, 'admin_edit', 351, 352),
-(368, 350, NULL, NULL, 'admin_delete', 353, 354),
-(369, 192, NULL, NULL, 'Votes', 356, 377),
-(370, 369, NULL, NULL, 'index', 357, 358),
-(371, 369, NULL, NULL, 'view', 359, 360),
-(372, 369, NULL, NULL, 'add', 361, 362),
-(373, 369, NULL, NULL, 'edit', 363, 364),
-(374, 369, NULL, NULL, 'delete', 365, 366),
-(375, 369, NULL, NULL, 'admin_index', 367, 368),
-(376, 369, NULL, NULL, 'admin_view', 369, 370),
-(377, 369, NULL, NULL, 'admin_add', 371, 372),
-(378, 369, NULL, NULL, 'admin_edit', 373, 374),
-(379, 369, NULL, NULL, 'admin_delete', 375, 376),
-(380, 192, NULL, NULL, 'AclExtras', 378, 379),
-(381, 192, NULL, NULL, 'DebugKit', 380, 387),
-(382, 381, NULL, NULL, 'ToolbarAccess', 381, 386),
-(383, 382, NULL, NULL, 'history_state', 382, 383),
-(384, 382, NULL, NULL, 'sql_explain', 384, 385),
-(385, 192, NULL, NULL, 'Upload', 388, 389),
-(386, NULL, NULL, NULL, 'controllers', 391, 392),
-(387, NULL, NULL, NULL, 'controllers', 393, 394),
-(388, NULL, NULL, NULL, 'controllers', 395, 418),
-(389, 249, NULL, NULL, 'send', 137, 138),
-(390, 311, NULL, NULL, 'add_mission', 235, 236),
-(391, 311, NULL, NULL, 'edit_mission', 237, 238),
-(392, 311, NULL, NULL, 'add_phase', 239, 240),
-(393, 311, NULL, NULL, 'add_quest', 241, 242),
-(394, 311, NULL, NULL, 'edit_quest', 243, 244),
-(395, 311, NULL, NULL, 'delete_quest', 245, 246),
-(396, 311, NULL, NULL, 'delete_phase', 247, 248),
-(397, 311, NULL, NULL, 'defineCurrentTab', 249, 250),
-(398, 311, NULL, NULL, 'add_org', 251, 252),
-(399, 311, NULL, NULL, 'add_issue', 253, 254),
-(400, 311, NULL, NULL, 'delete_issue', 255, 256),
-(401, 311, NULL, NULL, 'add_badge', 257, 258),
-(402, 388, NULL, NULL, 'Phases', 396, 417),
-(403, 402, NULL, NULL, 'index', 397, 398),
-(404, 402, NULL, NULL, 'view', 399, 400),
-(405, 402, NULL, NULL, 'add', 401, 402),
-(406, 402, NULL, NULL, 'edit', 403, 404),
-(407, 402, NULL, NULL, 'delete', 405, 406),
-(408, 402, NULL, NULL, 'admin_index', 407, 408),
-(409, 402, NULL, NULL, 'admin_view', 409, 410),
-(410, 402, NULL, NULL, 'admin_add', 411, 412),
-(411, 402, NULL, NULL, 'admin_edit', 413, 414),
-(412, 402, NULL, NULL, 'admin_delete', 415, 416),
-(413, 311, NULL, NULL, 'getUserData', 259, 260);
+(261, 192, NULL, NULL, 'Issues', 138, 159),
+(262, 261, NULL, NULL, 'index', 139, 140),
+(263, 261, NULL, NULL, 'view', 141, 142),
+(264, 261, NULL, NULL, 'add', 143, 144),
+(265, 261, NULL, NULL, 'edit', 145, 146),
+(266, 261, NULL, NULL, 'delete', 147, 148),
+(267, 261, NULL, NULL, 'admin_index', 149, 150),
+(268, 261, NULL, NULL, 'admin_view', 151, 152),
+(269, 261, NULL, NULL, 'admin_add', 153, 154),
+(270, 261, NULL, NULL, 'admin_edit', 155, 156),
+(271, 261, NULL, NULL, 'admin_delete', 157, 158),
+(272, 192, NULL, NULL, 'MissionIssues', 160, 181),
+(273, 272, NULL, NULL, 'index', 161, 162),
+(274, 272, NULL, NULL, 'view', 163, 164),
+(275, 272, NULL, NULL, 'add', 165, 166),
+(276, 272, NULL, NULL, 'edit', 167, 168),
+(277, 272, NULL, NULL, 'delete', 169, 170),
+(278, 272, NULL, NULL, 'admin_index', 171, 172),
+(279, 272, NULL, NULL, 'admin_view', 173, 174),
+(280, 272, NULL, NULL, 'admin_add', 175, 176),
+(281, 272, NULL, NULL, 'admin_edit', 177, 178),
+(282, 272, NULL, NULL, 'admin_delete', 179, 180),
+(283, 192, NULL, NULL, 'Missions', 182, 211),
+(284, 283, NULL, NULL, 'index', 183, 184),
+(285, 283, NULL, NULL, 'view', 185, 186),
+(286, 283, NULL, NULL, 'add', 187, 188),
+(287, 283, NULL, NULL, 'learn', 189, 190),
+(288, 283, NULL, NULL, 'act', 191, 192),
+(289, 283, NULL, NULL, 'imagine', 193, 194),
+(290, 283, NULL, NULL, 'evoke', 195, 196),
+(291, 283, NULL, NULL, 'edit', 197, 198),
+(292, 283, NULL, NULL, 'delete', 199, 200),
+(293, 283, NULL, NULL, 'admin_index', 201, 202),
+(294, 283, NULL, NULL, 'admin_view', 203, 204),
+(295, 283, NULL, NULL, 'admin_add', 205, 206),
+(296, 283, NULL, NULL, 'admin_edit', 207, 208),
+(297, 283, NULL, NULL, 'admin_delete', 209, 210),
+(298, 192, NULL, NULL, 'Organizations', 212, 233),
+(299, 298, NULL, NULL, 'index', 213, 214),
+(300, 298, NULL, NULL, 'view', 215, 216),
+(301, 298, NULL, NULL, 'add', 217, 218),
+(302, 298, NULL, NULL, 'edit', 219, 220),
+(303, 298, NULL, NULL, 'delete', 221, 222),
+(304, 298, NULL, NULL, 'admin_index', 223, 224),
+(305, 298, NULL, NULL, 'admin_view', 225, 226),
+(306, 298, NULL, NULL, 'admin_add', 227, 228),
+(307, 298, NULL, NULL, 'admin_edit', 229, 230),
+(308, 298, NULL, NULL, 'admin_delete', 231, 232),
+(309, 192, NULL, NULL, 'Pages', 234, 237),
+(310, 309, NULL, NULL, 'display', 235, 236),
+(311, 192, NULL, NULL, 'Panels', 238, 259),
+(312, 311, NULL, NULL, 'index', 239, 240),
+(313, 311, NULL, NULL, 'loadInfo', 241, 242),
+(314, 311, NULL, NULL, 'groups', 243, 244),
+(315, 311, NULL, NULL, 'roles', 245, 246),
+(316, 311, NULL, NULL, 'users', 247, 248),
+(317, 311, NULL, NULL, 'usersRole', 249, 250),
+(318, 311, NULL, NULL, 'missionsIssues', 251, 252),
+(319, 311, NULL, NULL, 'organizations', 253, 254),
+(320, 311, NULL, NULL, 'issues', 255, 256),
+(321, 311, NULL, NULL, 'badges', 257, 258),
+(322, 192, NULL, NULL, 'Quests', 260, 281),
+(323, 322, NULL, NULL, 'index', 261, 262),
+(324, 322, NULL, NULL, 'view', 263, 264),
+(325, 322, NULL, NULL, 'add', 265, 266),
+(326, 322, NULL, NULL, 'edit', 267, 268),
+(327, 322, NULL, NULL, 'delete', 269, 270),
+(328, 322, NULL, NULL, 'admin_index', 271, 272),
+(329, 322, NULL, NULL, 'admin_view', 273, 274),
+(330, 322, NULL, NULL, 'admin_add', 275, 276),
+(331, 322, NULL, NULL, 'admin_edit', 277, 278),
+(332, 322, NULL, NULL, 'admin_delete', 279, 280),
+(333, 192, NULL, NULL, 'Roles', 282, 293),
+(334, 333, NULL, NULL, 'index', 283, 284),
+(335, 333, NULL, NULL, 'view', 285, 286),
+(336, 333, NULL, NULL, 'add', 287, 288),
+(337, 333, NULL, NULL, 'edit', 289, 290),
+(338, 333, NULL, NULL, 'delete', 291, 292),
+(339, 192, NULL, NULL, 'UserIssues', 294, 315),
+(340, 339, NULL, NULL, 'index', 295, 296),
+(341, 339, NULL, NULL, 'view', 297, 298),
+(342, 339, NULL, NULL, 'add', 299, 300),
+(343, 339, NULL, NULL, 'edit', 301, 302),
+(344, 339, NULL, NULL, 'delete', 303, 304),
+(345, 339, NULL, NULL, 'admin_index', 305, 306),
+(346, 339, NULL, NULL, 'admin_view', 307, 308),
+(347, 339, NULL, NULL, 'admin_add', 309, 310),
+(348, 339, NULL, NULL, 'admin_edit', 311, 312),
+(349, 339, NULL, NULL, 'admin_delete', 313, 314),
+(350, 192, NULL, NULL, 'Users', 316, 353),
+(351, 350, NULL, NULL, 'login', 317, 318),
+(352, 350, NULL, NULL, 'logout', 319, 320),
+(353, 350, NULL, NULL, 'index', 321, 322),
+(354, 350, NULL, NULL, 'register', 323, 324),
+(355, 350, NULL, NULL, 'dashboard', 325, 326),
+(356, 350, NULL, NULL, 'dashboardByIssue', 327, 328),
+(357, 350, NULL, NULL, 'leaderboard', 329, 330),
+(358, 350, NULL, NULL, 'add_friend', 331, 332),
+(359, 350, NULL, NULL, 'remove_friend', 333, 334),
+(360, 350, NULL, NULL, 'view', 335, 336),
+(361, 350, NULL, NULL, 'add', 337, 338),
+(362, 350, NULL, NULL, 'edit', 339, 340),
+(363, 350, NULL, NULL, 'delete', 341, 342),
+(364, 350, NULL, NULL, 'admin_index', 343, 344),
+(365, 350, NULL, NULL, 'admin_view', 345, 346),
+(366, 350, NULL, NULL, 'admin_add', 347, 348),
+(367, 350, NULL, NULL, 'admin_edit', 349, 350),
+(368, 350, NULL, NULL, 'admin_delete', 351, 352),
+(369, 192, NULL, NULL, 'Votes', 354, 375),
+(370, 369, NULL, NULL, 'index', 355, 356),
+(371, 369, NULL, NULL, 'view', 357, 358),
+(372, 369, NULL, NULL, 'add', 359, 360),
+(373, 369, NULL, NULL, 'edit', 361, 362),
+(374, 369, NULL, NULL, 'delete', 363, 364),
+(375, 369, NULL, NULL, 'admin_index', 365, 366),
+(376, 369, NULL, NULL, 'admin_view', 367, 368),
+(377, 369, NULL, NULL, 'admin_add', 369, 370),
+(378, 369, NULL, NULL, 'admin_edit', 371, 372),
+(379, 369, NULL, NULL, 'admin_delete', 373, 374),
+(380, 192, NULL, NULL, 'AclExtras', 376, 377),
+(381, 192, NULL, NULL, 'DebugKit', 378, 385),
+(382, 381, NULL, NULL, 'ToolbarAccess', 379, 384),
+(383, 382, NULL, NULL, 'history_state', 380, 381),
+(384, 382, NULL, NULL, 'sql_explain', 382, 383),
+(385, 192, NULL, NULL, 'Upload', 386, 387);
 
 -- --------------------------------------------------------
 
@@ -274,13 +259,16 @@ CREATE TABLE IF NOT EXISTS `aros` (
 --
 
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, 'Role', 1, NULL, 1, 10),
-(2, NULL, 'Role', 2, NULL, 11, 16),
-(3, NULL, 'Role', 3, NULL, 17, 24),
-(7, NULL, 'Role', 4, NULL, 25, 26),
-(9, 1, 'User', 5, NULL, 8, 9),
-(10, 2, 'User', 6, NULL, 14, 15),
-(11, 3, 'User', 7, NULL, 22, 23);
+(1, NULL, 'Role', 1, 'Administrator', 1, 8),
+(2, NULL, 'Role', 2, 'Manager', 9, 12),
+(3, NULL, 'Role', 3, 'User', 13, 16),
+(4, NULL, 'User', 1, NULL, 19, 20),
+(5, NULL, 'User', 2, NULL, 17, 18),
+(6, NULL, 'User', 3, NULL, 21, 22),
+(8, NULL, 'User', 5, NULL, 23, 24),
+(9, NULL, 'User', 6, NULL, 25, 26),
+(10, NULL, 'User', 7, NULL, 27, 28),
+(11, NULL, 'User', 8, NULL, 29, 30);
 
 -- --------------------------------------------------------
 
@@ -298,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   `_delete` varchar(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `ARO_ACO_KEY` (`aro_id`,`aco_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
 -- Extraindo dados da tabela `aros_acos`
@@ -330,32 +318,7 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 (23, 2, 156, '1', '1', '1', '1'),
 (24, 3, 156, '1', '1', '1', '1'),
 (25, 1, 311, '1', '1', '1', '1'),
-(26, 1, 193, '1', '1', '1', '1'),
-(27, 2, 311, '1', '1', '1', '1'),
-(28, 1, 388, '1', '1', '1', '1'),
-(29, 3, 311, '-1', '-1', '-1', '-1'),
-(30, 7, 311, '-1', '-1', '-1', '-1'),
-(31, 2, 390, '1', '1', '1', '1'),
-(32, 2, 391, '1', '1', '1', '1'),
-(33, 2, 312, '1', '1', '1', '1'),
-(34, 2, 398, '1', '1', '1', '1'),
-(35, 2, 392, '1', '1', '1', '1'),
-(36, 2, 396, '1', '1', '1', '1'),
-(37, 2, 393, '1', '1', '1', '1'),
-(38, 2, 394, '1', '1', '1', '1'),
-(39, 2, 395, '1', '1', '1', '1'),
-(40, 2, 399, '-1', '-1', '-1', '-1'),
-(41, 2, 400, '-1', '-1', '-1', '-1'),
-(42, 2, 401, '1', '1', '1', '1'),
-(43, 3, 193, '-1', '-1', '-1', '-1'),
-(44, 3, 195, '1', '1', '1', '1'),
-(45, 7, 193, '-1', '-1', '-1', '-1'),
-(46, 3, 194, '1', '1', '1', '1'),
-(47, 7, 194, '1', '1', '1', '1'),
-(48, 7, 195, '1', '1', '1', '1'),
-(49, 2, 193, '-1', '-1', '-1', '-1'),
-(50, 2, 194, '1', '1', '1', '1'),
-(51, 2, 195, '1', '1', '1', '1');
+(26, 1, 193, '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -389,15 +352,7 @@ CREATE TABLE IF NOT EXISTS `badges` (
   `trigger` varchar(120) NOT NULL,
   `language` varchar(120) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Extraindo dados da tabela `badges`
---
-
-INSERT INTO `badges` (`id`, `name`, `description`, `trigger`, `language`) VALUES
-(1, 'cakistaPHP', 'voce sabe mexer com o cake', '', NULL),
-(2, 'paginatorPHP', '', '', NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -455,7 +410,14 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `comments`
+--
+
+INSERT INTO `comments` (`id`, `evidence_id`, `user_id`, `content`, `created`, `modified`) VALUES
+(1, 1, 6, 'dew', '2014-02-22 03:08:34', '2014-02-22 03:08:34');
 
 -- --------------------------------------------------------
 
@@ -492,7 +454,36 @@ CREATE TABLE IF NOT EXISTS `evidences` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Extraindo dados da tabela `evidences`
+--
+
+INSERT INTO `evidences` (`id`, `title`, `content`, `user_id`, `quest_id`, `mission_id`, `phase_id`, `created`, `modified`) VALUES
+(1, 'New Evidence', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lobortis luctus metus et dapibus. Suspendisse faucibus interdum viverra. Aliquam purus est, accumsan vel eros quis, ultricies fringilla nunc. Fusce id leo adipiscing nisi semper ullamcorper. Aliquam iaculis dolor in risus commodo, sit amet dictum magna venenatis. Ut tristique sed diam eu dapibus. Vestibulum lorem magna, ultricies nec cursus eget, ornare id purus.', 3, NULL, 1, 1, '2014-02-21 01:53:33', '2014-02-21 07:06:07'),
+(4, 'jkhk', '', 1, 2, 1, 1, '2014-02-21 09:29:01', '2014-02-21 09:29:01'),
+(8, 're', '', 6, NULL, 1, 1, '2014-02-22 01:54:58', '2014-02-22 01:57:49'),
+(9, 'oi', 'yay', 6, NULL, 1, 1, '2014-02-22 01:59:18', '2014-02-22 02:05:37'),
+(10, 'New', 'Newe', 6, NULL, 1, 1, '2014-02-22 03:13:36', '2014-02-22 03:18:29'),
+(11, '', '', 6, NULL, 1, 1, '2014-02-22 12:00:03', '2014-02-22 12:00:03'),
+(12, '', '', 6, NULL, 1, 1, '2014-02-22 12:00:13', '2014-02-22 12:00:13'),
+(13, '', '', 6, NULL, 1, 1, '2014-02-22 12:00:16', '2014-02-22 12:00:16');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `evidence_tags`
+--
+
+CREATE TABLE IF NOT EXISTS `evidence_tags` (
+  `id` int(16) unsigned NOT NULL AUTO_INCREMENT,
+  `evidence_id` int(16) unsigned NOT NULL,
+  `tag_id` int(16) unsigned NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -510,31 +501,51 @@ CREATE TABLE IF NOT EXISTS `evokations` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Extraindo dados da tabela `evokations`
 --
 
 INSERT INTO `evokations` (`id`, `group_id`, `gdrive_file_id`, `title`, `abstract`, `language`, `created`, `modified`) VALUES
-(18, 3, '0B9uWvehaHYz2aWdjdmRfZWZLR0E', 'tmp_title', 'tmp_abstract', NULL, '2014-02-28 19:36:00', '2014-02-28 19:36:00'),
-(19, 3, '0B9uWvehaHYz2NUVrVHNSSUV4WjA', 'tmp_title', 'tmp_abstract', NULL, '2014-02-28 19:47:42', '2014-02-28 19:47:42');
+(24, 6, NULL, 'Pawnee Evokation', 'Pawnee Evokation is the greatest', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `friends_users`
+-- Estrutura da tabela `evokation_followers`
 --
 
-CREATE TABLE IF NOT EXISTS `friends_users` (
+CREATE TABLE IF NOT EXISTS `evokation_followers` (
   `id` int(16) unsigned NOT NULL AUTO_INCREMENT,
-  `user_from` int(16) unsigned NOT NULL,
-  `user_to` int(16) unsigned NOT NULL,
+  `user_id` int(16) unsigned NOT NULL,
+  `evokation_id` int(16) unsigned NOT NULL,
   `created` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_from` (`user_from`),
-  UNIQUE KEY `user_to` (`user_to`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `evokation_followers`
+--
+
+INSERT INTO `evokation_followers` (`id`, `user_id`, `evokation_id`, `created`, `modified`) VALUES
+(2, 6, 24, '2014-02-22 09:32:08', '2014-02-22 09:32:08');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `evokation_tags`
+--
+
+CREATE TABLE IF NOT EXISTS `evokation_tags` (
+  `id` int(16) unsigned NOT NULL AUTO_INCREMENT,
+  `evokation_id` int(16) unsigned NOT NULL,
+  `tag_id` int(16) unsigned NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -549,7 +560,15 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Extraindo dados da tabela `groups`
+--
+
+INSERT INTO `groups` (`id`, `title`, `user_id`, `created`, `modified`) VALUES
+(6, 'Pawnee', 3, '2014-02-21 10:39:03', '2014-02-21 10:39:03'),
+(7, 'Eagleton', 1, '2014-03-11 00:00:00', '2014-03-11 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -564,7 +583,16 @@ CREATE TABLE IF NOT EXISTS `groups_users` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+
+--
+-- Extraindo dados da tabela `groups_users`
+--
+
+INSERT INTO `groups_users` (`id`, `user_id`, `group_id`, `created`, `modified`) VALUES
+(13, 3, 6, '2014-02-21 20:00:24', '2014-02-21 20:00:24'),
+(14, 1, 6, '2014-03-11 00:00:00', '2014-03-11 00:00:00'),
+(18, 6, 6, '2014-02-21 23:45:49', '2014-02-21 23:45:49');
 
 -- --------------------------------------------------------
 
@@ -582,6 +610,14 @@ CREATE TABLE IF NOT EXISTS `group_requests` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
+--
+-- Extraindo dados da tabela `group_requests`
+--
+
+INSERT INTO `group_requests` (`id`, `user_id`, `group_id`, `status`, `created`, `modified`) VALUES
+(1, 6, 6, 1, '2014-02-21 22:57:28', '2014-02-21 23:45:49'),
+(6, 8, 6, 2, '2014-02-22 05:03:17', '2014-02-22 05:03:54');
+
 -- --------------------------------------------------------
 
 --
@@ -597,7 +633,7 @@ CREATE TABLE IF NOT EXISTS `issues` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Extraindo dados da tabela `issues`
@@ -606,7 +642,7 @@ CREATE TABLE IF NOT EXISTS `issues` (
 INSERT INTO `issues` (`id`, `parent_id`, `name`, `slug`, `language`, `created`, `modified`) VALUES
 (1, NULL, 'Water', 'water', NULL, '2014-03-05 15:38:10', '2014-03-05 15:38:10'),
 (2, NULL, 'Economy', 'economy', NULL, '2014-03-05 15:38:28', '2014-03-05 15:38:28'),
-(4, NULL, 'Hunger', 'hunger', NULL, '2014-03-10 12:35:09', '2014-03-10 12:35:09');
+(3, NULL, 'Health', 'health', NULL, '2014-03-05 15:38:40', '2014-03-05 15:38:40');
 
 -- --------------------------------------------------------
 
@@ -616,7 +652,6 @@ INSERT INTO `issues` (`id`, `parent_id`, `name`, `slug`, `language`, `created`, 
 
 CREATE TABLE IF NOT EXISTS `missions` (
   `id` int(16) NOT NULL AUTO_INCREMENT,
-  `organization_id` int(16) unsigned NOT NULL,
   `title` varchar(120) CHARACTER SET utf8 NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
   `image` varchar(120) DEFAULT NULL,
@@ -624,15 +659,15 @@ CREATE TABLE IF NOT EXISTS `missions` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=95 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Extraindo dados da tabela `missions`
 --
 
-INSERT INTO `missions` (`id`, `organization_id`, `title`, `description`, `image`, `language`, `created`, `modified`) VALUES
-(93, 48, 'asda', '', '', NULL, '2014-03-13 18:37:06', '2014-03-13 18:38:12'),
-(94, 46, 'aisad', '', '', NULL, '2014-03-13 18:49:30', '2014-03-13 18:49:30');
+INSERT INTO `missions` (`id`, `title`, `description`, `image`, `language`, `created`, `modified`) VALUES
+(1, 'Loren Mission', 'some mission', NULL, NULL, NULL, NULL),
+(2, 'Quantica', 'mission quantica', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -645,16 +680,17 @@ CREATE TABLE IF NOT EXISTS `mission_issues` (
   `mission_id` int(16) unsigned NOT NULL,
   `issue_id` int(16) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Extraindo dados da tabela `mission_issues`
 --
 
 INSERT INTO `mission_issues` (`id`, `mission_id`, `issue_id`) VALUES
-(54, 92, 1),
-(55, 93, 1),
-(56, 94, 1);
+(1, 1, 2),
+(2, 2, 1),
+(3, 2, 2),
+(4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -672,16 +708,7 @@ CREATE TABLE IF NOT EXISTS `organizations` (
   `twitter` varchar(120) DEFAULT NULL,
   `blog` varchar(120) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
-
---
--- Extraindo dados da tabela `organizations`
---
-
-INSERT INTO `organizations` (`id`, `name`, `birthdate`, `description`, `website`, `facerbook`, `twitter`, `blog`) VALUES
-(44, 'nossa org', '2014-03-13', '', '', NULL, '', ''),
-(46, 'sódeadmin', '2014-03-13', '', '', NULL, '', ''),
-(48, 'mais uma', '2014-03-13', '', '', NULL, '', '');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -699,21 +726,16 @@ CREATE TABLE IF NOT EXISTS `phases` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Extraindo dados da tabela `phases`
 --
 
 INSERT INTO `phases` (`id`, `name`, `description`, `mission_id`, `position`, `type`, `created`, `modified`) VALUES
-(3, 'fase batatas', '', 78, 1, 0, '2014-03-10 11:26:33', '2014-03-10 11:26:33'),
-(13, 'fase intro', '', 85, 1, 0, '2014-03-10 14:45:29', '2014-03-10 14:45:29'),
-(16, 'radioactive', '', 89, 1, 0, '2014-03-10 16:11:52', '2014-03-10 16:11:52'),
-(17, 'asd', '', 90, 1, 0, '2014-03-10 16:53:46', '2014-03-10 16:53:46'),
-(18, 'aushduasd', '', 89, 2, 0, '2014-03-10 17:22:13', '2014-03-10 17:22:13'),
-(21, 'fase1', 'dsa', 91, 1, 0, '2014-03-12 14:39:17', '2014-03-12 14:39:17'),
-(22, 'asuid', 'asd', 91, 1, 0, '2014-03-12 14:43:16', '2014-03-12 14:43:16'),
-(23, 'fase cebola', '', 78, 2, 0, '2014-03-12 14:49:56', '2014-03-12 14:49:56');
+(1, 'Phase 1', '', 1, 1, 1, '2014-02-20 23:44:02', '2014-02-21 08:13:48'),
+(2, 'Phase 2', '', 1, 2, 1, '2014-02-20 23:44:12', '2014-02-21 08:18:16'),
+(3, 'Phase 3', '', 1, 3, 0, '2014-02-20 23:44:24', '2014-02-21 03:43:12');
 
 -- --------------------------------------------------------
 
@@ -743,32 +765,15 @@ CREATE TABLE IF NOT EXISTS `quests` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Extraindo dados da tabela `quests`
 --
 
 INSERT INTO `quests` (`id`, `title`, `description`, `mission_id`, `phase_id`, `created`, `modified`) VALUES
-(1, 'primeira quest', 'rookgaard', 82, 9, '2014-03-10 14:23:54', '2014-03-10 14:23:54'),
-(2, '1st quest', '', 83, 10, '2014-03-10 14:37:36', '2014-03-10 14:37:36'),
-(3, 'quest 4', '', 84, 12, '2014-03-10 14:41:38', '2014-03-10 14:41:38'),
-(4, 'quest rook', '', 85, 13, '2014-03-10 14:45:41', '2014-03-10 14:45:41'),
-(5, 'quest main', '', 85, 13, '2014-03-10 14:49:58', '2014-03-10 14:49:58'),
-(6, 'adsjo', 'asd', 86, 14, '2014-03-10 15:26:10', '2014-03-10 15:26:10'),
-(7, 'okaok', 'ads', 86, 14, '2014-03-10 15:32:31', '2014-03-10 15:32:31'),
-(9, 'intro', '', 89, 16, '2014-03-10 16:11:59', '2014-03-10 16:11:59'),
-(10, 'chorus', '', 89, 16, '2014-03-10 16:12:04', '2014-03-10 16:12:04'),
-(11, 'verse', '', 89, 16, '2014-03-10 16:12:11', '2014-03-10 16:12:11'),
-(13, 'alguma', '', 90, 17, '2014-03-10 16:56:47', '2014-03-10 16:56:47'),
-(15, 'adsadsa2', 'e', 91, 21, '2014-03-12 14:39:30', '2014-03-12 14:39:41'),
-(16, 'ad', '21', 91, 21, '2014-03-12 14:43:23', '2014-03-12 14:43:23'),
-(17, 'fd', '', 91, 21, '2014-03-12 14:45:49', '2014-03-12 14:45:49'),
-(18, 'batata', '', 78, 3, '2014-03-12 14:49:33', '2014-03-12 14:49:33'),
-(19, 'queijo', '', 78, 3, '2014-03-12 14:49:41', '2014-03-12 14:49:41'),
-(20, 'bacon', '', 78, 3, '2014-03-12 14:49:48', '2014-03-12 14:49:48'),
-(22, 'cebola', '', 78, 23, '2014-03-12 14:52:02', '2014-03-12 14:52:02'),
-(23, 'molho', '', 78, 23, '2014-03-12 14:52:22', '2014-03-12 14:52:22');
+(1, 'Quest One', '', 1, 1, '2014-02-21 08:52:41', '2014-02-21 08:52:41'),
+(2, 'Quest Ow', '', 1, 1, '2014-02-21 08:52:53', '2014-02-21 08:52:53');
 
 -- --------------------------------------------------------
 
@@ -780,7 +785,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(16) NOT NULL AUTO_INCREMENT,
   `name` varchar(120) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Extraindo dados da tabela `roles`
@@ -789,8 +794,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 INSERT INTO `roles` (`id`, `name`) VALUES
 (1, 'Administrator'),
 (2, 'Manager'),
-(3, 'User'),
-(4, 'Mentor');
+(3, 'User');
 
 -- --------------------------------------------------------
 
@@ -813,7 +817,22 @@ CREATE TABLE IF NOT EXISTS `settings` (
 
 INSERT INTO `settings` (`id`, `key`, `value`, `created`, `modified`) VALUES
 (18, 'google_auth_refresh_token', '{"access_token":"ya29.1.AADtN_XZrVOpuli9ZfeMcOz7RA8kVMdVjEOHFzjngx7RI365LVPnFm4wgRFYhY4","token_type":"Bearer","expires_in":3600,"id_token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY2MDNhODlhNzQ0OGEyMjM5MDcxZjI4YTk3MzViNjUwNWM2YWJjYTgifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiY2lkIjoiMjY1MDUyODEyNTA2LWtsMTVlaTZidjg0OTNlNHNiN3V1MzFua3N1b3I5cjEwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXpwIjoiMjY1MDUyODEyNTA2LWtsMTVlaTZidjg0OTNlNHNiN3V1MzFua3N1b3I5cjEwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwidG9rZW5faGFzaCI6ImhYZjJzUVV5c1Zma09GbHpIbmtKMkEiLCJhdF9oYXNoIjoiaFhmMnNRVXlzVmZrT0Zsekhua0oyQSIsImlkIjoiMTAzMDM3NDEwNzcwNjc5MjMzNTYzIiwic3ViIjoiMTAzMDM3NDEwNzcwNjc5MjMzNTYzIiwiYXVkIjoiMjY1MDUyODEyNTA2LWtsMTVlaTZidjg0OTNlNHNiN3V1MzFua3N1b3I5cjEwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiZW1haWwiOiJtc29sZWRhZGVAcXVhbnRpLmNhIiwiaGQiOiJxdWFudGkuY2EiLCJ2ZXJpZmllZF9lbWFpbCI6InRydWUiLCJlbWFpbF92ZXJpZmllZCI6InRydWUiLCJpYXQiOjEzOTM1MjQyNTUsImV4cCI6MTM5MzUyODE1NX0.c9WNn8ubqvqkVxJpcpW_Xs9xWhbZ_HHdP6_ROM7uUi81UvQEQXlmckCluf46GR4MLIrMKyejhgoYp5kD0uRo8zel5lFu7ucaZTCAZHT1C5wMniYPzhuVonlWazwX19MefJhDR67pEa6xKUFpA5IhlnvAvTLRT0-_v2aCiODr-CQ","refresh_token":"1\\/hF_NMUf2qVGOip0lzm15Bluw48dK5-7M4Q4TBXMqYnc","created":1393524537}', '2014-02-27 15:08:57', '2014-02-27 15:08:57'),
-(19, 'google_auth_access_token', '{"access_token":"ya29.1.AADtN_XkZEMDx2JYvC66rskr0z2CuWnv84uZ_w87CJpLWadCJ1m9Zj2H0qCncs5v","token_type":"Bearer","expires_in":3600,"id_token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY2MDNhODlhNzQ0OGEyMjM5MDcxZjI4YTk3MzViNjUwNWM2YWJjYTgifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiY2lkIjoiMjY1MDUyODEyNTA2LWtsMTVlaTZidjg0OTNlNHNiN3V1MzFua3N1b3I5cjEwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXpwIjoiMjY1MDUyODEyNTA2LWtsMTVlaTZidjg0OTNlNHNiN3V1MzFua3N1b3I5cjEwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwidG9rZW5faGFzaCI6ImhYZjJzUVV5c1Zma09GbHpIbmtKMkEiLCJhdF9oYXNoIjoiaFhmMnNRVXlzVmZrT0Zsekhua0oyQSIsImlkIjoiMTAzMDM3NDEwNzcwNjc5MjMzNTYzIiwic3ViIjoiMTAzMDM3NDEwNzcwNjc5MjMzNTYzIiwiYXVkIjoiMjY1MDUyODEyNTA2LWtsMTVlaTZidjg0OTNlNHNiN3V1MzFua3N1b3I5cjEwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiZW1haWwiOiJtc29sZWRhZGVAcXVhbnRpLmNhIiwiaGQiOiJxdWFudGkuY2EiLCJ2ZXJpZmllZF9lbWFpbCI6InRydWUiLCJlbWFpbF92ZXJpZmllZCI6InRydWUiLCJpYXQiOjEzOTM1MjQyNTUsImV4cCI6MTM5MzUyODE1NX0.c9WNn8ubqvqkVxJpcpW_Xs9xWhbZ_HHdP6_ROM7uUi81UvQEQXlmckCluf46GR4MLIrMKyejhgoYp5kD0uRo8zel5lFu7ucaZTCAZHT1C5wMniYPzhuVonlWazwX19MefJhDR67pEa6xKUFpA5IhlnvAvTLRT0-_v2aCiODr-CQ","refresh_token":"1\\/hF_NMUf2qVGOip0lzm15Bluw48dK5-7M4Q4TBXMqYnc","created":1393625384}', '2014-02-27 15:08:57', '2014-02-28 19:47:39');
+(19, 'google_auth_access_token', '{"access_token":"ya29.1.AADtN_XkZEMDx2JYvC66rskr0z2CuWnv84uZ_w87CJpLWadCJ1m9Zj2H0qCncs5v","token_type":"Bearer","expires_in":3600,"id_token":"eyJhbGciOiJSUzI1NiIsImtpZCI6ImY2MDNhODlhNzQ0OGEyMjM5MDcxZjI4YTk3MzViNjUwNWM2YWJjYTgifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiY2lkIjoiMjY1MDUyODEyNTA2LWtsMTVlaTZidjg0OTNlNHNiN3V1MzFua3N1b3I5cjEwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXpwIjoiMjY1MDUyODEyNTA2LWtsMTVlaTZidjg0OTNlNHNiN3V1MzFua3N1b3I5cjEwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwidG9rZW5faGFzaCI6ImhYZjJzUVV5c1Zma09GbHpIbmtKMkEiLCJhdF9oYXNoIjoiaFhmMnNRVXlzVmZrT0Zsekhua0oyQSIsImlkIjoiMTAzMDM3NDEwNzcwNjc5MjMzNTYzIiwic3ViIjoiMTAzMDM3NDEwNzcwNjc5MjMzNTYzIiwiYXVkIjoiMjY1MDUyODEyNTA2LWtsMTVlaTZidjg0OTNlNHNiN3V1MzFua3N1b3I5cjEwLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiZW1haWwiOiJtc29sZWRhZGVAcXVhbnRpLmNhIiwiaGQiOiJxdWFudGkuY2EiLCJ2ZXJpZmllZF9lbWFpbCI6InRydWUiLCJlbWFpbF92ZXJpZmllZCI6InRydWUiLCJpYXQiOjEzOTM1MjQyNTUsImV4cCI6MTM5MzUyODE1NX0.c9WNn8ubqvqkVxJpcpW_Xs9xWhbZ_HHdP6_ROM7uUi81UvQEQXlmckCluf46GR4MLIrMKyejhgoYp5kD0uRo8zel5lFu7ucaZTCAZHT1C5wMniYPzhuVonlWazwX19MefJhDR67pEa6xKUFpA5IhlnvAvTLRT0-_v2aCiODr-CQ","refresh_token":"1\\/hF_NMUf2qVGOip0lzm15Bluw48dK5-7M4Q4TBXMqYnc","created":1393625384}', '2014-02-27 15:08:57', '2014-02-22 13:31:37');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tags`
+--
+
+CREATE TABLE IF NOT EXISTS `tags` (
+  `id` int(16) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(120) NOT NULL,
+  `instances` int(11) NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -829,7 +848,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` varchar(120) CHARACTER SET utf8 NOT NULL,
   `birthdate` date NOT NULL,
   `email` varchar(120) DEFAULT NULL,
-  `sex` tinyint(1) NOT NULL,
+  `sex` tinyint(2) NOT NULL,
   `biography` text CHARACTER SET utf8 NOT NULL,
   `username` varchar(120) NOT NULL,
   `password` varchar(120) NOT NULL,
@@ -841,16 +860,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Extraindo dados da tabela `users`
 --
 
 INSERT INTO `users` (`id`, `role_id`, `facebook_id`, `facebook_token`, `name`, `birthdate`, `email`, `sex`, `biography`, `username`, `password`, `facebook`, `twitter`, `instagram`, `website`, `blog`, `created`, `modified`) VALUES
-(5, 1, NULL, NULL, 'admin alexandre', '0000-00-00', NULL, 0, '', 'root', '39c3730c51df48f65defc5a94dbd1312df8ebb05', NULL, NULL, NULL, NULL, NULL, '2014-03-07 15:33:33', '2014-03-07 15:33:33'),
-(6, 2, NULL, NULL, 'MyManager', '0000-00-00', NULL, 0, '', 'manager', 'cdeeae3ed8f20ad05252bd6dcf6fa20af7d82901', NULL, NULL, NULL, NULL, NULL, '2014-03-12 11:37:29', '2014-03-12 11:37:29'),
-(7, 3, '100001280484261', 'CAAJeTV3YsC8BAOMvG1npNZCJnDZAuWoL7Xk1vRXxHZAKrfhiZCTcDbCRrwSiZA3jUgejyiu5h8lorQ0cPhhQwrIkH2kt3Np5fV6SqB3V7P99egQ3km1MX6E4N22TEwuaZAE7rTQhFF2ftno0ZCHKrDo8508dgOHbck4O7XrO3CYckZBtTLJ6U7ZCfssgZCbLC3GiMZD', 'Alexandre Rossi Alvares', '0000-00-00', NULL, 1, '', '', '', 'https://www.facebook.com/alerossialvares', NULL, NULL, NULL, NULL, '2014-03-12 12:04:19', '2014-03-12 12:04:19');
+(1, 3, '100001280484261', 'CAAJeTV3YsC8BANSI4W7xYD35n5mG3DZBvZB0H4PofqOauOyZBAJYNBzByRxnHsU5HozaYOGF0YJy5iNTLY04T6cD96dH7TfKCszKvDjlNDxhLJxgWzqW7BPCQCauBimWJQIZAE2dAGvdOyG4IkmDwoS8JAlyMSof5HqxcHfZBFOjZBBA0FpWyLtqktpozw2vcZD', 'Alexandre Rossi Alvares', '0000-00-00', NULL, 1, '', '', '', 'https://www.facebook.com/alerossialvares', NULL, NULL, NULL, NULL, '2014-03-06 12:46:26', '2014-03-06 15:21:17'),
+(2, 1, NULL, NULL, 'Ale Admin', '0000-00-00', NULL, 0, '', 'root', '39c3730c51df48f65defc5a94dbd1312df8ebb05', NULL, NULL, NULL, NULL, NULL, '2014-03-06 12:47:22', '2014-03-06 12:47:22'),
+(3, 3, '100002031279809', 'CAAJeTV3YsC8BAKmHJwzTfCiRoATKriJPZBkz38gf5kRLXAZAvuFndk94snnka2jNWxZBiCux7qZB9CWDPv3tKV4yrkPigdT73DdZAUv3i4rO8m6BYhGvayULaHWVM10q60MBeqroRvKc80BLc5hriDRZCVnjfkZBKlRfSZADXuAzC42cFGIyULrsObvK9k2pRm0ZD', 'Renata Japur', '2034-01-01', 'rejapur@gmail.com', 1, 'Praesent porttitor tellus ut lobortis pulvinar. Fusce euismod nec ipsum a volutpat. Cras scelerisque imperdiet sem, non sagittis sem. Etiam lacinia turpis nec dictum aliquam. Praesent varius luctus mi pharetra sodales. Mauris mollis, enim sed venenatis rhoncus, purus augue auctor justo, sit amet luctus nibh nunc vel tellus. Etiam ornare nec lectus eu mattis. Quisque sed bibendum lectus. Pellentesque ac elit a sapien feugiat tristique dignissim vel metus. Vestibulum in velit ut metus sodales pulvinar faucibus vitae lacus. Nullam vulputate in risus non dictum. Sed at arcu diam. Nullam vitae odio nec felis varius vestibulum id ut urna. Curabitur eget vestibulum ipsum. Praesent sed velit id tellus imperdiet tempor. Vivamus ante nisl, condimentum ut elit eu, tincidunt mattis tellus.', 'rjapur', '28fc81c281fc91ded27f310e4adcd2e7c584ca11', 'https://www.facebook.com/renata.japur', '', '', '', '', '2014-02-20 20:54:19', '2014-02-21 20:05:03'),
+(5, 1, NULL, NULL, 'Re Japur', '2034-01-01', 'rjapur@quanti.ca', 0, 'oi', 'rjapur', '62484e8cb37e84ce630b9f6cd1a17cc181e9172a', '', '', '', '', '', '2014-02-21 16:04:17', '2014-02-21 16:04:33'),
+(6, 1, NULL, NULL, 'Leslie Knope', '2034-01-01', 'rjapur@quanti.ca', 0, 'lorem ipsum amet', 'leslie.knope', '85938a39a9df6ecb59b8725d78912135a624befc', '', '', '', '', '', '2014-02-21 21:25:35', '2014-02-21 21:26:04'),
+(7, 1, NULL, NULL, 'Tom Haverford', '2034-01-01', 'rjapur@quanti.ca', 0, 'oi', 'tom.haverford', 'd630ba60d332de9cae9e5169e6e36a57a5520d07', '', '', '', '', '', '2014-02-21 23:30:21', '2014-02-21 23:30:39'),
+(8, 1, NULL, NULL, 'Ron Swanson', '2034-01-01', 'japur.renata@gmail.com', 0, 'ron swanson', 'ron.swanson', 'd2284a7e09d3721c6ac391a43bccdcf86d4a27d5', '', '', '', '', '', '2014-02-22 00:45:17', '2014-02-22 04:16:55');
 
 -- --------------------------------------------------------
 
@@ -866,6 +889,29 @@ CREATE TABLE IF NOT EXISTS `user_badges` (
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `user_friends`
+--
+
+CREATE TABLE IF NOT EXISTS `user_friends` (
+  `id` int(16) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(16) unsigned NOT NULL,
+  `friend_id` int(16) unsigned NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+
+--
+-- Extraindo dados da tabela `user_friends`
+--
+
+INSERT INTO `user_friends` (`id`, `user_id`, `friend_id`, `created`, `modified`) VALUES
+(13, 6, 8, '2014-02-22 08:53:40', '2014-02-22 08:53:40'),
+(14, 8, 6, '2014-02-22 08:53:40', '2014-02-22 08:53:40');
 
 -- --------------------------------------------------------
 
@@ -893,17 +939,7 @@ CREATE TABLE IF NOT EXISTS `user_organizations` (
   `user_id` int(16) unsigned NOT NULL,
   `organization_id` int(16) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
-
---
--- Extraindo dados da tabela `user_organizations`
---
-
-INSERT INTO `user_organizations` (`id`, `user_id`, `organization_id`) VALUES
-(10, 5, 44),
-(11, 6, 44),
-(13, 5, 46),
-(15, 6, 48);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -919,7 +955,15 @@ CREATE TABLE IF NOT EXISTS `votes` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `votes`
+--
+
+INSERT INTO `votes` (`id`, `evidence_id`, `user_id`, `value`, `created`, `modified`) VALUES
+(1, 1, 3, 4, '2014-02-21 08:36:38', '2014-02-21 08:36:38'),
+(2, 1, 6, 2, '2014-02-22 03:08:26', '2014-02-22 03:08:26');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

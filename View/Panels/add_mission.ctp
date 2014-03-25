@@ -81,10 +81,6 @@
             								'value' => $mission['MissionIssue']['issue_id'] //as we are, for now, restricting the amount of issues per mission to 1
             							));
 									}
-									echo $this->Form->input('organization_id', array(
-											'options' => $organizations,
-											'value' => $mission['Mission']['organization_id']
-									));
 								} else {
 									echo '<legend> Add Mission </legend>'; 
 									echo $this->Form->input('title');
@@ -94,9 +90,6 @@
 									echo $this->Form->input('MissionIssue.issue_id', array(
             							'options' => $issues
             						));
-            						echo $this->Form->input('organization_id', array(
-											'options' => $organizations
-									));
 								}
 							?>
 						</fieldset>
@@ -141,8 +134,8 @@
 											<?php echo 'Phase: ' . $phase['Phase']['name'];?>
 										</td>
 										<td>
-											<!-- lightbox to add quest to certain phase -->
-				  							<a href="#" data-reveal-id="myModalQuest-<?php echo $phase['Phase']['id']; ?>" data-reveal><?php echo __('+ Quest');?></a> | <?php echo $this->Form->PostLink('delete', array('controller' => 'panels', 'action' => 'delete_phase', $id, $phase['Phase']['id'], 'add_mission'));?>
+											<!-- Voting lightbox button -->
+				  							<a href="#" data-reveal-id="myModalQuest" data-reveal><?php echo __('+ Quest');?></a> | delete
 										</td>
 									</tr>
 								</thead>
@@ -171,7 +164,7 @@
 							<?php }	?>
 
 							<!-- Lightbox for adding quest to phase form -->
-							<div id="myModalQuest-<?php echo $phase['Phase']['id']; ?>" class="reveal-modal tiny" data-reveal>
+							<div id="myModalQuest" class="reveal-modal tiny" data-reveal>
 								<?php 
 									echo $this->element('add_quest', array('phase_id' => $phase['Phase']['id'], 'mission_id' => $id));
 								?>

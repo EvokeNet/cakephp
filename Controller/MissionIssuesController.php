@@ -13,6 +13,7 @@ class MissionIssuesController extends AppController {
  *
  * @var array
  */
+
 	public $components = array('Paginator', 'Access');
 	public $user = null;
 
