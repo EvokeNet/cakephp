@@ -194,6 +194,7 @@ class UsersController extends AppController {
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
 
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
+		//debug($evidence);
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));

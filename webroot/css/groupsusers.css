@@ -64,6 +64,78 @@
 	padding: 0 1.25rem 0 1.0875rem;
 }
 
+.evoke .project.page i.fa {
+	color: inherit;
+	font-family: 'FontAwesome';
+}
+
+.evoke .project.page ul.button-group li {
+	list-style: none;
+	margin: inherit;
+}
+
+.evoke .button.circle {
+	border-radius: 50%;
+	height: 4rem;
+	margin-right: 0.5rem;
+	padding: 0;
+	width: 4rem;
+}
+
+.evoke .button.circle i {
+	padding-top: 1rem;
+}
+
+
+.evoke #add_image input.image_upload {
+	cursor: pointer;
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	filter: alpha(opacity=0);
+}
+
+.evoke .file.btn {
+	float: left;
+	position: relative;
+}
+
+.evoke .file.path {
+	float: left;
+	margin-left: 1rem;
+	margin-top: 1rem;
+	position: relative;
+}
+
+/* EDITOR STYLES */
+
+span.image {
+	cursor: pointer;
+	display: inline-block;
+	height: auto;
+	position: relative;
+	width: auto;
+	overflow: hidden;
+}
+
+span.image ul.button-group {
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	display: none;
+	z-index: 999;
+}
+
+span.image:hover ul.button-group {
+	display: block;
+}
+
 .image_uploader_button {
 	position: absolute;
 	z-index: 999;

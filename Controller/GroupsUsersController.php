@@ -199,48 +199,29 @@ class GroupsUsersController extends AppController {
 
 			if(!in_array($type, array('jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'bmp', 'BMP'))) {
 
-				$dir = $this->webroot . 'uploads' . DS . $this->getUserId() . $this->request->data['Evokation']['id'];
-
+				$dir = 'uploads' . DS . $this->request->data['Evokation']['id'] . DS . $this->Auth->user('User.id');
 				if (!file_exists($dir) and !is_dir($dir)) {
-
 					$folder = new Folder();
-					if($folder->create($dir)) {
-						$filename = $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
-						if(move_uploaded_file($this->request->data['Evokation']['image_uploader']['tmp_name'], $filename)) {
-							return $this->Html->image($filename);
-						} else {
-							return false;
-						}
+					if(!$folder->create($dir)) {
+						return false;
 					}
+				} 
 
+				$filename = WWW_ROOT . $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
+				if(move_uploaded_file($this->request->data['Evokation']['image_uploader']['tmp_name'], $filename)) {
+					$url = $this->webroot . $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
+					$size = getimagesize($filename);
+					return '<img src="' . $url . '" width="100%" data-size="' .$size[0]. '"/>';
 				} else {
 					return false;
 				}
+
 			}
 			// $data = file_get_contents($this->request->data['image_uploader']['tmp_name']);
 			// $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 		}
 	}
 
-// /**
-//  * add method
-//  *
-//  * @return void
-//  */
-// 	public function add() {
-// 		if ($this->request->is('post')) {
-// 			$this->GroupsUser->create();
-// 			if ($this->GroupsUser->save($this->request->data)) {
-// 				$this->Session->setFlash(__('The groups user has been saved.'));
-// 				return $this->redirect(array('action' => 'index'));
-// 			} else {
-// 				$this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
-// 			}
-// 		}
-// 		$users = $this->GroupsUser->User->find('list');
-// 		$groups = $this->GroupsUser->Group->find('list');
-// 		$this->set(compact('users', 'groups'));
-// 	}
 
 /**
  * add method
