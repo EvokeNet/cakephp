@@ -25,27 +25,9 @@ $title = __('Evoke Network');
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
-		echo $this->Html->css('/webroot/components/tinycarousel/examples/responsive/tinycarousel');
-		echo $this->Html->css('/webroot/components/foundation/css/foundation.min');
-		echo $this->Html->css('/webroot/components/mrmrs-colors/css/colors.min');
-		echo $this->Html->css('/webroot/components/font-awesome/css/font-awesome.min');
-
-		echo $this->Html->script('/webroot/components/jquery/jquery.min');
-		echo $this->Html->script('/webroot/components/foundation/js/foundation.min');
-
-		echo $this->Html->script('facebook_share');
-		echo $this->Html->script('google_share');
-		echo $this->Html->script('foundation_tabs');
-
-		echo $this->Html->css('tagsinput');
-		echo $this->Html->css('/components/chosen/chosen');
-		echo $this->Html->css('/components/tagmanager/tagmanager');
-		echo $this->Html->css('/components/bootstrap-tagsinput/bootstrap-tagsinput');
-
 		echo $this->Html->css('/components/foundation/css/foundation.min');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
-
 		echo $this->Html->css('evoke');
 
 
@@ -76,22 +58,12 @@ $title = __('Evoke Network');
 	
 	<?php
 
-		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js");
-		echo $this->Html->script('/webroot/components/foundation/js/foundation.min');
-
 		echo $this->Html->script('/components/jquery/jquery.min');
-		echo $this->Html->script('tagsinput');
-
-		echo $this->Html->script('/components/chosen/chosen.jquery');
-		echo $this->Html->script('/components/bootstrap-tagsinput/bootstrap-tagsinput');
-		echo $this->Html->script('/components/bootstrap-tagsinput/bootstrap-tagsinput-angular');
-		
+		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js");
 		echo $this->Html->script('/components/foundation/js/foundation.min');
-		echo $this->Html->script('evoke');
-
 		echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel');
-		echo $this->Html->script('/components/tinycarousel/lib/jquery.tinycarousel');
-		echo $this->Html->script('/webroot/components/jcarousel/examples/responsive/jcarousel.responsive');
+		echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive');
+		echo $this->Html->script('evoke');
 		
 		echo $this->fetch('script'); 
 	?>

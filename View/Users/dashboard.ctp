@@ -51,31 +51,6 @@
 			<img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;">
 			<div class = "evoke titles"><h4><?php echo __('CHOOSE A MISSION');?></h4></div>
 
-			<script type="text/javascript">
-				$(document).ready(function()
-				{
-					$('#slider1').tinycarousel();
-				});
-			</script>
-
-			<div id="slider1">
-				<a class="buttons prev" href="#">&#60;</a>
-				<div class="viewport">
-					<ul class="overview">
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-						<li><img src="/evoke/webroot/img/evoke_folder.png" /></li>
-					</ul>
-				</div>
-				<a class="buttons next" href="#">&#62;</a>
-				<img src="/evoke/webroot/img/shelves.png" style = "width:100%"/>
-			</div>
-
 			<img src = '/evoke/webroot/img/horizontal_bar.png' alt = "" style = "margin-bottom: -75px; margin-left: -15px;">
 			<dl class="tabs evoke titles" data-tab>
 			  <dd><h4><?php echo __('EVOKE PANEL');?></h4></dd>
