@@ -56,9 +56,6 @@ class EvidencesController extends AppController {
  * @return void
  */
 	public function add($mission_id, $phase_id) {
-
-		
-
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$insertData = array('user_id' => $this->getUserId(), 'mission_id' => $mission_id, 'phase_id' => $phase_id); 
@@ -70,7 +67,6 @@ class EvidencesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 		}
-
 	}
 
 /**
@@ -223,4 +219,5 @@ class EvidencesController extends AppController {
 			$this->Session->setFlash(__('The evidence could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

@@ -111,6 +111,12 @@ class GroupsUsersController extends AppController {
 				'GroupsUser.group_id' => $group_id
 			)
 		));
+		
+		//check to see if i am part of the group (and allowed to edit it)
+		$me = $this->getUserId();
+		if(!$this->isMember($me, $group_id) && !$this->isOwner($me, $group_id)) {
+			$this->Session->setFlash(__('This should be substituted by the outsider view of the project, since you are not a member of this group. '));
+		}
 
 		$this->loadModel('Evokation');
 		$this->Evokation->recursive = -1;
@@ -215,7 +221,6 @@ class GroupsUsersController extends AppController {
 			// $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 		}
 	}
-
 
 
 /**
@@ -347,6 +352,36 @@ class GroupsUsersController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
+
+	public function isMember($user_id = null, $id = null){
+		if(!$user_id || !$id) return false;
+		$users = $this->GroupsUser->find('all', array(
+			'conditions' => array(
+				'GroupsUser.group_id' => $id
+			)
+		));
+
+		foreach ($users as $usr) {
+				if($usr['User']['id'] == $user_id) return true;
+		}
+		return false;
+	}
+
+	public function isOwner($user_id = null, $id = null){
+		if(!$user_id || !$id) return false;
+		$this->loadModel('Group');
+		$group = $this->Group->find('first', array(
+			'conditions' => array(
+				'user_id' => $user_id,
+				'Group.id' => $id
+			)
+		));
+
+		if(empty($group)) return false;
+		return true;
+	}
+
+
 /**
  * admin_index method
  *
@@ -438,4 +473,5 @@ class GroupsUsersController extends AppController {
 			$this->Session->setFlash(__('The groups user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

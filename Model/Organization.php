@@ -13,7 +13,49 @@ class Organization extends AppModel {
  */
 	public $displayField = 'name';
 
-	public function getOrganizations(){
-		return $this->find('all');
+	public function getOrganizations($options = null){
+		return $this->find('all', $options);
 	}
+
+	public $hasMany = array(
+		'Badge' => array(
+			'className' => 'Badge',
+			'foreignKey' => 'organization_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Mission' => array(
+			'className' => 'Mission',
+			'foreignKey' => 'organization_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'UserOrganization' => array(
+			'className' => 'UserOrganization',
+			'foreignKey' => 'organization_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
 }

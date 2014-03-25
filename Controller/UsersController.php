@@ -296,13 +296,11 @@ class UsersController extends AppController {
  * @return void
  */
 	public function leaderboard() {
-
 		$userid = $this->getUserId();
 
 		$username = explode(' ', $this->getUserName());
 		
 		$this->set(compact('userid', 'username'));
-
 	}
 
 /**
@@ -619,4 +617,5 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

@@ -42,24 +42,47 @@ class GroupsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$me = $this->getUserId();
+
+		$flags = array(
+			'_owner' => false,
+			'_member' => false
+		);
+
 		if (!$this->Group->exists($id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
 
 		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
-		$this->set('group', $this->Group->find('first', $options));
+		$group = $this->Group->find('first', $options);
 
-		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $me)));
 
 		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.group_id' => $id)));
+
+		
+		//check to see if i am the owner
+		if($this->isOwner($me, $id)) {
+			$flags['_owner'] = true;
+			$flags['_member'] = true;
+		} else {
+			//i am not the owner... am i at least part of the group?
+			if($this->isMember($me, $id)) {
+				$flags['_member'] = true;
+			}
+		}
+
+		// debug($flags);
+		// debug($group);
+		// debug($me);
 
 		$groupsRequestsPending = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status = 0')));
 
 		$groupsRequests = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status' => array(1, 2))));
 
-		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $user_data['id'])));
+		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $me)));
 
-		$this->set(compact('user', 'userRequest', 'groupsUsers', 'groupsRequests', 'groupsRequestsPending'));
+		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'groupsRequests', 'groupsRequestsPending', 'flags'));
 	}
 
 /**
@@ -93,6 +116,14 @@ class GroupsController extends AppController {
 		if (!$this->Group->exists($id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
+		
+		$me = $this->getUserId();
+		if(!$this->isOwner($me, $id)) {
+			$this->Session->setFlash(__('Only the group owner is allowed to delete it.'));
+			return $this->redirect($this->referer());
+		}
+
+
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Group->save($this->request->data)) {
 				$this->Session->setFlash(__('The group has been saved.'));
@@ -121,6 +152,15 @@ class GroupsController extends AppController {
 		if (!$this->Group->exists()) {
 			throw new NotFoundException(__('Invalid group'));
 		}
+
+		//checking to see if i own this group
+		$me = $this->getUserId();
+		if(!$this->isOwner($me, $id)) {
+			$this->Session->setFlash(__('Only the group owner is allowed to delete it.'));
+			return $this->redirect($this->referer());
+		}
+
+
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Group->delete()) {
 			$this->Session->setFlash(__('The group has been deleted.'));
@@ -128,6 +168,35 @@ class GroupsController extends AppController {
 			$this->Session->setFlash(__('The group could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+	public function isMember($user_id = null, $id = null){
+		if(!$user_id || !$id) return false;
+		$this->loadModel('GroupsUser');
+		$users = $this->GroupsUser->find('all', array(
+			'conditions' => array(
+				'GroupsUser.group_id' => $id
+			)
+		));
+
+		foreach ($users as $usr) {
+				if($usr['User']['id'] == $user_id) return true;
+		}
+		return false;
+	}
+
+	public function isOwner($user_id = null, $id = null){
+		if(!$user_id || !$id) return false;
+		
+		$group = $this->Group->find('first', array(
+			'conditions' => array(
+				'user_id' => $user_id,
+				'Group.id' => $id
+			)
+		));
+
+		if(empty($group)) return false;
+		return true;
 	}
 
 /**
