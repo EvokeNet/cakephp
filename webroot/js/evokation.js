@@ -2,11 +2,13 @@ var file;
 var groupNameTag = document.getElementById("groupname");
 var groupName = groupNameTag.textContent || groupNameTag.innerText;
 
-var editor = new MediumEditor('#evokation_div', {
-	buttons: ['bold', 'italic', 'anchor', 'quote', 'header1', 'header2', 'unorderedlist', 'orderedlist'],
-	targetBlank: true
-});
+// var editor = new MediumEditor('#evokation_div', {
+// 	buttons: ['bold', 'italic', 'anchor', 'quote', 'header1', 'header2', 'unorderedlist', 'orderedlist'],
+// 	targetBlank: true
+// });
 
+var TEXT; // global object that contains the collaborative model
+var KB = new Kibo();
 
 gapi.load("auth:client,drive-realtime,drive-share", createOrLoadDocument);
 
@@ -63,21 +65,19 @@ function initializeModel(model) {
 }
 
 function onFileLoaded(doc) {
-	var text = doc.getModel().getRoot().get("text");
+
+	TEXT = doc.getModel().getRoot().get("text");
 	var evokation = document.getElementById("evokation_txt");
 
 	gapi.client.load('drive', 'v2', function() {
-		gapi.drive.realtime.databinding.bindString(text, evokation);
+		gapi.drive.realtime.databinding.bindString(TEXT, evokation);
 
-		realtimeTick(text);
+		realtimeTick();
 
 		var updateEditor = function(event) {
 			if(!event.isLocal) {
-				var element = $("#evokation_div")[0];
-				// updateText(element, event.index, event.text.length);
-				// var sel = saveSelection(editor);
-				$("#evokation_div").html(TEXT.getText());
-				// restoreSelection(editor, sel);
+				var editor = $("#evokation_div");
+				editor.html(TEXT.getText());
 			}
 		};
 
@@ -90,35 +90,11 @@ function onFileLoaded(doc) {
 
 }
 
-function realtimeTick(text) {
-	$("#evokation_div").html(text.getText());
+function realtimeTick() {
+	$("#evokation_div").html(TEXT.getText());
 	$("#evokation_div").on('input', function() {
-	 	text.setText($(this).html());
+	 	TEXT.setText($(this).html());
 	});
-}
-
-function updateText(element, position, size) {
-	var isActive = (element === document.activeElement);
-
-	if(isActive) {
-		var value = TEXT.getText();
-		var sel = saveSelection(element);
-
-		var selectionStart = sel.start;
-		var selectionEnd = sel.end;
-
-		if (position <= selectionStart) {
-			selectionStart += size;
-		}
-		if (position < selectionEnd) {
-			selectionEnd += size;
-		}
-		if (selectionEnd < selectionStart) {
-			selectionEnd = selectionStart;
-		}
-		element.html(TEXT.getText());
-		element.restoreSelection(selectionEnd);
-	}
 }
 
 function insertHtmlAtCursor(html) {
@@ -183,7 +159,6 @@ function setButtons(element) {
 *
 **/
 
-
 /**
 * This AJAX call updates the title and abstract fields of an existing
 * document in the database, given the Id.
@@ -195,6 +170,7 @@ $("#evokation_draft_button").click(function(){
 	var abstract = $("#evokation_abstract").val();
 
 	$.ajax({
+		dataType: 'text',
 		type: "POST",
 		url: WEBROOT + "groups_users/storeFileInfo",
 		data: { 'id': id, 'title': title, 'abstract': abstract },
@@ -207,7 +183,7 @@ $("#evokation_draft_button").click(function(){
 	});
 });
 
-
+// Upload image
 $("#image_uploader").change(function() {
 	if($(this).val() !== '') {
 		$("#image_form").ajaxForm({
@@ -231,11 +207,7 @@ $("#image_uploader").change(function() {
 	}
 });
 
-/**
-*	Image controls triggers
-*	
-*	These are the image controls triggers for buttons RESIZE, DELETE and MOVE
-**/
+// Image buttons
 $(document).on('click', '#btn_delete', function(event) {
 	var id = '#' + $(this).attr('data-parent');
 	$(this).remove();
@@ -243,82 +215,62 @@ $(document).on('click', '#btn_delete', function(event) {
 	TEXT.setText($("#evokation_div").html());
 });
 
+var caret = $('<span/>', {
+	class: 'caret'
+});
+var line = $('<p/>');
+var editor = $("#evokation_div");
+
+editor.append(caret);
+
+$(document).on({
+	click: function(e) {
+		if(e.target.tagName == 'P') {
+			console.log(e.pageX - e.offsetX);
+			if($(".caret").length > 0) {
+				// caret.insertAfter(e.target);
+				caret.css({
+					'left': e.pageX
+				});
+				caret.show();
+			} else {
+				// caret.insertAfter(e.target);
+				caret.css({
+					'left': e.pageX
+				});
+				caret.show();
+			}
+		}
+		// $('.caret').blink(800);
+	},
+	keydown: function(e) {
+		switch(KB.lastKey()) {
+			case 'backspace':
+				e.preventDefault();
+				break;
+			case 'end':
+				e.preventDefault();
+				break;
+			case 'page_up':
+				e.preventDefault();
+				break;
+			case 'page_down':
+				e.preventDefault();
+				break;
+			case 'home':
+				e.preventDefault();
+				break;
+			case 'enter':
+				line.insertAfter(caret);
+				break;
+		}
+	}
 
 
-/**
-*	Support functions to manage caret
-*
-**/
 
-var saveSelection, restoreSelection;
-if (window.getSelection && document.createRange) {
-    saveSelection = function(containerEl) {
-        var doc = containerEl.ownerDocument, win = doc.defaultView;
-        var range = win.getSelection().getRangeAt(0);
-        var preSelectionRange = range.cloneRange();
-        preSelectionRange.selectNodeContents(containerEl);
-        preSelectionRange.setEnd(range.startContainer, range.startOffset);
-        var start = preSelectionRange.toString().length;
+}, '#evokation_div, body');
 
-        return {
-            start: start,
-            end: start + range.toString().length
-        }
-    };
-
-    restoreSelection = function(containerEl, savedSel) {
-        var doc = containerEl.ownerDocument, win = doc.defaultView;
-        var charIndex = 0, range = doc.createRange();
-        range.setStart(containerEl, 0);
-        range.collapse(true);
-        var nodeStack = [containerEl], node, foundStart = false, stop = false;
-
-        while (!stop && (node = nodeStack.pop())) {
-            if (node.nodeType == 3) {
-                var nextCharIndex = charIndex + node.length;
-                if (!foundStart && savedSel.start >= charIndex && savedSel.start <= nextCharIndex) {
-                    range.setStart(node, savedSel.start - charIndex);
-                    foundStart = true;
-                }
-                if (foundStart && savedSel.end >= charIndex && savedSel.end <= nextCharIndex) {
-                    range.setEnd(node, savedSel.end - charIndex);
-                    stop = true;
-                }
-                charIndex = nextCharIndex;
-            } else {
-                var i = node.childNodes.length;
-                while (i--) {
-                    nodeStack.push(node.childNodes[i]);
-                }
-            }
-        }
-
-        var sel = win.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
-    }
-} else if (document.selection) {
-    saveSelection = function(containerEl) {
-        var doc = containerEl.ownerDocument, win = doc.defaultView || doc.parentWindow;
-        var selectedTextRange = doc.selection.createRange();
-        var preSelectionTextRange = doc.body.createTextRange();
-        preSelectionTextRange.moveToElementText(containerEl);
-        preSelectionTextRange.setEndPoint("EndToStart", selectedTextRange);
-        var start = preSelectionTextRange.text.length;
-
-        return {
-            start: start,
-            end: start + selectedTextRange.text.length
-        }
-    };
-
-    restoreSelection = function(containerEl, savedSel) {
-        var doc = containerEl.ownerDocument, win = doc.defaultView || doc.parentWindow;
-        var textRange = doc.body.createTextRange();
-        textRange.moveToElementText(containerEl);
-        textRange.collapse(true);
-        textRange.moveEnd("character", savedSel.end);
-        textRange.moveStart("character", savedSel.start);
-        textRange.select();
-    };
-}
+// Caret blink effect
+// $.fn.blink = function (speed) {
+//     window.setInterval($(this).toggle(), speed);
+// };

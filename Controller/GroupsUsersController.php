@@ -2,6 +2,8 @@
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
+App::uses('Folder', 'Utility');
+App::uses('File', 'Utility');
 
 /**
  * GroupsUsers Controller
@@ -26,10 +28,9 @@ class GroupsUsersController extends AppController {
 	public function index() {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
-
+		
 		$userid = $this->getUserId();
 		$username = explode(' ', $this->getUserName());
-
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
@@ -38,13 +39,13 @@ class GroupsUsersController extends AppController {
 	}
 
 /**
- * view method
+ * edit method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function view($group_id = null) {
+	public function edit($group_id = null) {
 
 		$this->loadModel('Setting');
 		$gAuth = new GoogleAuthentication(
@@ -111,12 +112,6 @@ class GroupsUsersController extends AppController {
 				'GroupsUser.group_id' => $group_id
 			)
 		));
-		
-		//check to see if i am part of the group (and allowed to edit it)
-		$me = $this->getUserId();
-		if(!$this->isMember($me, $group_id) && !$this->isOwner($me, $group_id)) {
-			$this->Session->setFlash(__('This should be substituted by the outsider view of the project, since you are not a member of this group. '));
-		}
 
 		$this->loadModel('Evokation');
 		$this->Evokation->recursive = -1;
@@ -130,7 +125,6 @@ class GroupsUsersController extends AppController {
 		if(!empty($evokation)) {
 			$this->request->data = $evokation;
 		}
-
 
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
@@ -181,6 +175,7 @@ class GroupsUsersController extends AppController {
 			}
 		}
 	}
+
 
 /**
  * storeFileId method
@@ -311,7 +306,7 @@ class GroupsUsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit2($id = null) {
 		if (!$this->GroupsUser->exists($id)) {
 			throw new NotFoundException(__('Invalid groups user'));
 		}
@@ -351,36 +346,6 @@ class GroupsUsersController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
-
-	public function isMember($user_id = null, $id = null){
-		if(!$user_id || !$id) return false;
-		$users = $this->GroupsUser->find('all', array(
-			'conditions' => array(
-				'GroupsUser.group_id' => $id
-			)
-		));
-
-		foreach ($users as $usr) {
-				if($usr['User']['id'] == $user_id) return true;
-		}
-		return false;
-	}
-
-	public function isOwner($user_id = null, $id = null){
-		if(!$user_id || !$id) return false;
-		$this->loadModel('Group');
-		$group = $this->Group->find('first', array(
-			'conditions' => array(
-				'user_id' => $user_id,
-				'Group.id' => $id
-			)
-		));
-
-		if(empty($group)) return false;
-		return true;
-	}
-
 
 /**
  * admin_index method
@@ -473,5 +438,4 @@ class GroupsUsersController extends AppController {
 			$this->Session->setFlash(__('The groups user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}
-}
+	}}

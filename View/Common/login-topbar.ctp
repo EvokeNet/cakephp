@@ -1,4 +1,4 @@
-<section class="evoke login-bg-topbar">
+<section class="login-bg-topbar">
 	<div class="row">
 		<div class="large-12 columns">
 			<?php echo $this->fetch('menu'); ?>
