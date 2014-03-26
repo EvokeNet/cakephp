@@ -99,6 +99,19 @@
 			</button>
 		<?php
 			echo $this->Form->end();
+	} else {
+		//not a questionnaire, check if there are attachments to show
+		echo '<div>';
+		foreach ($attachments as $attachment) {
+			echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$attachment['Attachment']['dir'].'/thumb_'.$attachment['Attachment']['attachment'] . '"/>';
+			echo '<span>  </span>';
+		}
+		echo '</div>';
+
+		echo '<br>';
+		echo '<a href = "'. $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $mission['Mission']['id'], $missionPhase['Phase']['id'], $q['Quest']['id'])) . '" class = "button">' . __('Add Discussion') . '</a>';
+
+	
 	}
 ?>
 <!-- <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->

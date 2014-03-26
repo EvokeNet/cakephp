@@ -13,7 +13,7 @@
 	<?php
 		echo $this->Form->input('title');
 		echo $this->Form->input('description');
-		echo $this->Form->radio('type', array(1 => 'Questionnaire', 2 => 'Media'), array('id' => 'questtype'));//
+		echo $this->Form->radio('type', array(1 => 'Questionnaire', 2 => 'Evidence'), array('id' => 'questtype'));//
 		echo $this->Form->hidden('mission_id', array('value' => $mission_id));
 		echo $this->Form->hidden('phase_id', array('value' => $phase_id));
 	?>
@@ -63,12 +63,7 @@
         <div class="spacer40"></div>
 </div>
 <div id="media" style="display:none">
-    <div id="fileInputHolder">
-        <?php
-            echo $this->Form->input('Attachment.0.attachment', array('type' => 'file', 'label' => 'Media File'));
-            echo $this->Form->input('Attachment.0.model', array('type' => 'hidden', 'value' => 'Quest'));
-        ?>
-    </div>
+    <div id="fileInputHolder"></div>
     <button id="newFile" class="button tiny">
         + File
     </button>

@@ -43,7 +43,7 @@
 					echo $this->Form->input('title');
 					//echo $this->Form->input('content');
 					echo $this->Form->hidden('user_id');
-					echo $this->Form->input('quest_id', array('empty' => true));
+					//echo $this->Form->input('quest_id', array('empty' => true));
 					echo $this->Form->hidden('mission_id');
 					echo $this->Form->hidden('phase_id');
 					echo $this->Media->ckeditor('content', array('label' => 'Content'));

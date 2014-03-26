@@ -489,7 +489,7 @@ class PanelsController extends AppController {
 			
 			
 			//$this->Quest->create();
-			if ($this->Quest->createWithAttachments($this->request->data)) {
+			if ($this->Quest->createWithAttachments($this->request->data)) {//used to create quest with medias in it!
 				$this->Session->setFlash(__('The quest has been saved.'));
 				
 				$quest_id = $this->Quest->id;
@@ -542,6 +542,7 @@ class PanelsController extends AppController {
 					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
 				else 
 					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+
 			} else {
 				$this->Session->setFlash(__('The quest could not be saved. Please, try again.'));
 			}
@@ -559,7 +560,14 @@ class PanelsController extends AppController {
 	public function edit_quest($id, $quest_id, $origin = 'add_mission'){
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Quest->id = $quest_id;
-			if ($this->Quest->save($this->request->data)) {
+			
+			//saves it supporting the addition of new images
+			if ($this->Quest->createWithAttachments($this->request->data, true, $quest_id)) {
+				
+				//check to see if there are img/files that are no loner to be related to the quest...
+				if(isset($this->request->data['Attachment']['Old'])) {
+					$this->destroyAttachments($this->request->data['Attachment']['Old']);
+				}
 				//$this->Session->setFlash(__('The quest has been saved.'));
 				
 				//now checking to see if it were a questionnarie type quest (type = 1)
@@ -611,6 +619,7 @@ class PanelsController extends AppController {
 					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
 				else 
 					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+			
 			} else {
 				$this->Session->setFlash(__('The quest could not be saved. Please, try again.'));
 			}
@@ -618,6 +627,29 @@ class PanelsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 
+	}
+
+
+/*
+* destroyAttachments method
+* erases (only from database) all related attachments from the desired quest
+*/
+
+	public function destroyAttachments($data){
+		//iterate received array and check if attachment is meant to desapear
+		foreach ($data as $d) {
+			if(!strpos($d['id'], 'NO-')) {
+				//good to go, lets erase it..
+				$this->Attachment->id = $d['id'];
+				$a['Attachment']['model'] = null;
+				$a['Attachment']['foreign_key'] = null;
+				if ($this->Attachment->save($a)) {
+					$this->Session->setFlash(__('The attachment has been deleted.'));
+				} else {
+					$this->Session->setFlash(__('The attachment could not be deleted. Please, try again.'));
+				}
+			}
+		}
 	}
 
 /*

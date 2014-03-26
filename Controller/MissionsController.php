@@ -73,8 +73,11 @@ class MissionsController extends AppController {
 
 		$missionPhases = $this->Mission->Phase->find('all', array('conditions' => array('Phase.mission_id' => $id), 'order' => 'Phase.position'));
 
-		if($phase_number > count($missionPhases))
-			throw new NotFoundException('Invalid phase');
+		if($phase_number > count($missionPhases)) {
+			//throw new NotFoundException('Invalid phase');
+			$this->Session->setFlash(__("This mission/phase does not exist!"));
+			$this->redirect($this->referer());
+		}
 
 		$missionPhase = $this->Mission->Phase->find('first', array('conditions' => array('Phase.mission_id' => $id, 'Phase.position' => $phase_number)));
 		$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
@@ -85,13 +88,29 @@ class MissionsController extends AppController {
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$evidences = $this->Mission->getEvidences($id);
+
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
 		$missionIssues = $this->Mission->getMissionIssues($id);
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 
+		//retrieving all ids from quests of this mission..
+		$my_quests_id = array();
+		$my_quests_id2 = array();
+		$k = 0;
+		foreach ($quests as $quest) {
+			$my_quests_id[$k] = array('quest_id' => $quest['Quest']['id']);
+			$my_quests_id2[$k] = array('foreign_key' => $quest['Quest']['id'], 'model' => 'Quest'); //'specials condiditions to search in the Attachment database'
+			$k++;
+		}
+
 		//needed to be able to display and edit a quest's questionnaire
 		$this->loadModel('Questionnaire');
-		$questionnaires = $this->Questionnaire->find('all');
+		$questionnaires = $this->Questionnaire->find('all', array(
+			'conditions' => array(
+				'OR' => $my_quests_id
+			)
+		));
+
 		$this->loadModel('Answer');
 		$answers = $this->Answer->find('all');
 		$this->loadModel('UserAnswer');
@@ -101,9 +120,25 @@ class MissionsController extends AppController {
 			)
 		));
 
+		//needed to be able to display quests' media..
+		$this->loadModel('Attachment');
+		$attachments = $this->Attachment->find('all', array(
+			'conditions' => array(
+				'OR' => $my_quests_id2
+			)
+		));
+
+		$this->loadModel('Evidence');
+		$my_evidences = $this->Evidence->find('all', array(
+			'order' => array('Evidence.title ASC'),
+			'conditions' => array(
+				'user_id' => $this->getUserId(),
+				'OR' => $my_quests_id
+			)
+		));
 
 		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
-			'questionnaires', 'answers', 'previous_answers'));
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences'));
 	}
 
 /**

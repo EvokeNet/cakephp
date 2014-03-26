@@ -16,11 +16,12 @@ class Quest extends AppModel {
  */
 	public $displayField = 'title';
 
-	public function createWithAttachments($data) {
+	public function createWithAttachments($data, $hasPrev = false, $id = null) {
         // Sanitize your images before adding them
         $images = array();
-        if (!empty($data['Attachment'][0])) {
-            foreach ($data['Attachment'] as $i => $image) {
+        if (!empty($data['Attachment'][0]) || !empty($data['Attachment'][1])) {
+        	foreach ($data['Attachment'] as $i => $image) {
+                if($i == 'Old') continue; //if its an already existing attachment, ignore it
                 if (is_array($data['Attachment'][$i])) {
                     // Force setting the `model` field to this model
                     $image['model'] = 'Quest';
@@ -37,7 +38,11 @@ class Quest extends AppModel {
         $data['Attachment'] = $images;
 
         // Try to save the data using Model::saveAll()
-        $this->create();
+        if(!$hasPrev) $this->create();
+        else {
+        	$this->id = $id;
+        	$data['Quest']['id'] = $id;
+        }
         if ($this->saveAll($data)) {
             return true;
         }
