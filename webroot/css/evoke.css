@@ -7,6 +7,21 @@
     src: url('../css/font/SaucerBB.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'AlegreyaRegular';
+    src: url('../css/font/AlegreyaSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'AlegreyaBold';
+    src: url('../css/font/AlegreyaSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'AlegreyaItalic';
+    src: url('../css/font/AlegreyaSans-Italic.ttf') format('truetype');
+}
+
 html, body {
 	font: 100%/1.618 sans-serif;
 	overflow-x: hidden;
@@ -77,7 +92,33 @@ button, div, p, span, a,
 	height: 200px;
 }
 
-.evoke .world-bank-icon{
+.evoke.footer img{
+	display: block;
+	margin: 0px auto;
+}
+
+.evoke.icon.margin-top{
+	margin-top: 40px;
+}
+
+.evoke.heading{
+	color: #8f8f8f;
+	font-family: 'AlegreyaRegular';
+}
+
+.terms{
+	font-size: 1.0em;
+	text-align: center;
+	margin: 20px 0px 35px 0px;
+}
+
+.evoke-logo{
+	position: absolute;
+	left: 45%;
+	top: 30px;
+}
+
+.wb img{
 	position: absolute;
 	top: 130px;
 	left: 40%;
@@ -93,15 +134,19 @@ button, div, p, span, a,
 	background-size: cover;
 }
 
-.evoke .login-bg{
-	background: url('../img/login_bg.png');
+
+.message {
+	font-size: 0.65em;
+}
+
+.evoke.background{
+	background: url('../img/bg.jpg');
 	background-repeat: no-repeat;
-	/*background-size: 100%;*/
+	background-size: 100%;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	/*height:700px;*/
 }
 
 .evoke .agent-tag{
@@ -338,7 +383,7 @@ button, div, p, span, a,
 	line-height: 100%/1.618;
 }
 
-.evoke -max-width{
+.evoke .max-width {
 	max-width: none;
 }
 
@@ -351,13 +396,6 @@ button, div, p, span, a,
 	color:#FFF;
 }
 
-/*.sexy_line { 
-    margin: 25px 0;
-    height: 1px;
-    border: 0;
-    background: black;
-    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
-}*/
 
 .evoke .titles{
 	background-color: #f1f1f1;
@@ -366,7 +404,8 @@ button, div, p, span, a,
 	border: 1px solid #bb5660;
 	z-index: 1;
 	position: relative;
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
+	display:inline-block;
 }
 
 .evoke .titles h4{

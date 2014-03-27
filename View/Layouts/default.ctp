@@ -24,12 +24,13 @@ $title = __('Evoke Network');
 
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
+		echo $this->Html->script('/components/jquery/jquery.min');//
+
 		echo $this->Html->css('/components/foundation/css/foundation.min');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
-		echo $this->Html->css('evoke');
 
+		echo $this->Html->css('evoke');
 
 		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
 			echo $this->Html->css($cssInclude);
@@ -44,18 +45,31 @@ $title = __('Evoke Network');
 
 	<section role="main body">
 		<?php echo $this->Session->flash(); ?>
+
 		<?php echo $this->fetch('content'); ?>
 	</section>
 
 	<footer class="footer margin top-2">
 		<div class="row">
 			<div class="large-12 columns">
-				<!-- <img src = '/evoke/webroot/img/world_bank.png' alt = "" class = "evoke world-bank-icon"/> -->
+				<div class="row">
+				  <div class="small-5 small-centered columns">
+				  
+				  	<img src = '/evoke/webroot/img/evoke_icon_footer.png' alt = "" class = "evoke icon margin-top"/>
+				  	<h6 class = "evoke heading terms">2014 &nbsp;&nbsp; EVOKE | Report an issue | Terms of Service</h6>
+					<img src = '/evoke/webroot/img/wblogo.png' alt = ""/>
+					
+				  </div>
+				</div>
+				<!-- <div class = "evoke-logo">
+					<img src = '/evoke/webroot/img/evoke_icon_footer.png' alt = ""/>
+					<div>20142014201420142014</div>
+				</div>
+				<div class = "wb"><img src = '/evoke/webroot/img/world_bank.png' alt = ""/></div> -->
 				<!-- TODO: standard footer -->
 			</div>
 		</div>
 	</footer>
-	
 	<?php
 
 		echo $this->Html->script('/components/jquery/jquery.min.js');
@@ -65,7 +79,7 @@ $title = __('Evoke Network');
 		echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel.js', array('inline' => false));
 		echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive.js', array('inline' => false));
 		echo $this->Html->script('evoke');
-		
+
 		echo $this->fetch('script'); 
 	?>
 </body>

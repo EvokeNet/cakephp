@@ -23,10 +23,33 @@
 
 		foreach ($my_questionnaire['Question'] as $question) {
 			if($question['type'] == 'essay'){
-				//just show him a text area with the question description as the label
-				echo $this->Form->input($question['id'].'][description', array('label' => $question['description']));
+				//check to see if user had already answered it
+				$my_answer = null;
+				foreach ($previous_answers as $previous) {
+					if($previous['UserAnswer']['question_id'] == $question['id']) {
+						$my_answer = $previous;
+						break;
+					}
+				}
+				//if so, show him his previous answer
+				if($my_answer) {
+					echo $this->Form->input($question['id'].'][description', array('label' => $question['description'], 'value' => $my_answer['UserAnswer']['description']));
+				} else {
+					//else, just show him a text area with the question description as the label
+					echo $this->Form->input($question['id'].'][description', array('label' => $question['description']));
+				}
+				echo $this->Form->hidden($question['id'].'][question_id', array('value' => $question['id']));
 			}
 			if($question['type'] == 'single-choice'){
+				//check to see if user had already answered it
+				$my_answer = null;
+				foreach ($previous_answers as $previous) {
+					if($previous['UserAnswer']['question_id'] == $question['id']) {
+						$my_answer = $previous;
+						break;
+					}
+				}
+
 				//show him the question description followed by radio buttons
 				$possible_answers = array();
 				foreach ($answers as $a) {
@@ -34,9 +57,24 @@
 						$possible_answers[$a['Answer']['id']] = $a['Answer']['description'];
 					}
 				}
-				echo $this->Form->input($question['id'].'][answer_id', array('type' => 'radio', 'options' => $possible_answers, 'legend' => $question['description']));
+
+				//check to see if he already answered that, if so, check the coresponding radio
+				if($my_answer) {
+					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'radio', 'options' => $possible_answers, 'default' => $my_answer['UserAnswer']['answer_id'], 'legend' => $question['description']));
+				} else {
+					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'radio', 'options' => $possible_answers, 'legend' => $question['description']));
+				}
+				echo $this->Form->hidden($question['id'].'][question_id', array('value' => $question['id']));
 			}
 			if($question['type'] == 'multiple-choice'){
+				//check to see if user had already answered it
+				$my_answer = null;
+				foreach ($previous_answers as $previous) {
+					if($previous['UserAnswer']['question_id'] == $question['id']) {
+						$my_answer[$previous['UserAnswer']['answer_id']] = $previous['UserAnswer']['answer_id'];
+					}
+				}
+
 				//show him the question description followed by checkboxes
 				$possible_answers = array();
 				foreach ($answers as $a) {
@@ -44,7 +82,15 @@
 						$possible_answers[$a['Answer']['id']] = $a['Answer']['description'];
 					}
 				}
-				echo $this->Form->input($question['id'].'][][answer_id', array('type' => 'select', 'multiple' => 'checkbox', 'options' => $possible_answers, 'legend' => '', 'label' => '', 'before' => '<fieldset>' . $question['description'], 'after' => '</fieldset>'));
+
+				echo $this->Form->hidden($question['id'].'][question_id', array('value' => $question['id']));
+				//check to see if he already answered that, if so, check the coresponding radio
+				if($my_answer) {
+					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'select', 'multiple' => 'checkbox', 'options' => $possible_answers, 'selected' => $my_answer, 'legend' => '', 'label' => '', 'before' => '<fieldset>' . $question['description'], 'after' => '</fieldset>'));	
+				} else {
+					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'select', 'multiple' => 'checkbox', 'options' => $possible_answers, 'legend' => '', 'label' => '', 'before' => '<fieldset>' . $question['description'], 'after' => '</fieldset>'));
+				}
+				
 			}
 		}
 		?>
@@ -53,7 +99,18 @@
 			</button>
 		<?php
 			echo $this->Form->end();
+	} else {
+		//not a questionnaire, check if there are attachments to show
+		echo '<div>';
+		foreach ($attachments as $attachment) {
+			echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$attachment['Attachment']['dir'].'/thumb_'.$attachment['Attachment']['attachment'] . '"/>';
+			echo '<span>  </span>';
+		}
+		echo '</div>';
+
+		echo '<br>';
+		echo '<a href = "'. $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $mission['Mission']['id'], $missionPhase['Phase']['id'], $q['Quest']['id'])) . '" class = "button">' . __('Add Discussion') . '</a>';
+
+	
 	}
-?>
-<!-- <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
-			  
+?>			  

@@ -3,9 +3,10 @@
 	echo $this->Form->create('Quest', array(
  							   		'url' => array(
  							   			'controller' => 'panels',
- 							   			'action' => 'edit_quest', $mission_id, $me['Quest']['id'], $origin)
-									)
-								); ?>
+ 							   			'action' => 'edit_quest', $mission_id, $me['Quest']['id'], $origin
+                                    ),
+									'enctype' => 'multipart/form-data'
+								)); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Quest'); ?></legend>
 	<?php
@@ -110,20 +111,40 @@
 
 	<?php 
 			}
-		}
+		} else {
+            echo "<label>".__('Attachments'). "</label>";
+            echo '<div id="fileInputHolder">';
+            echo "<ul>";
+            $k = 0;
+            foreach ($attachments as $media) {
+                echo "<li>";
+                echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $media['Attachment']['attachment'] .'</label>';
+                
+                echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $media['Attachment']['id'] .'">';
+                echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$media['Attachment']['dir'].'/thumb_'.$media['Attachment']['attachment'] . '"/>';
+
+                echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
+
+                $k++;
+            }
+            echo "</ul>";
+            echo '</div>';
+            echo '<button id="newFile" class="button tiny">+ File</button>';
+        }
 	?>
 	</fieldset>
 	<button class="button tiny" type="submit">
-		<?php echo __('Add Quest')?>
+		<?php echo __('Save Quest')?>
 	</button>
 	<?php echo $this->Form->end(); ?>
 	<button class="button alert small">
-		<?php echo $this->Form->PostLink('delete', array('controller' => 'panels', 'action' => 'delete_quest', $mission_id, $me['Quest']['id'], $origin));?>
+		<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_quest', $mission_id, $me['Quest']['id'], $origin));?>
 	</button>
 
     <?php echo $this->Html->script('survey'); ?>
+    <?php echo $this->Html->script('quest_attachments'); ?>
 
-    <!-- necessary to add remove function to the already existing questions -->
+    <!-- necessary function to add remove the already existing questions -->
     <script type="text/javascript">
 
         <?php
@@ -133,6 +154,15 @@
                 echo "$('#". $i ."').click(function() {
                         $('#". $i ."').parent('div.survey-question').remove();
                     });";
+
+                echo "$('#-". $i ."').click(function() {
+                        var attId = $('#Attachmentprev-". $i ."Id').val().replace('NO-', '');
+                        $('#img-". $i ."').remove();
+                        $('#label-". $i ."').remove();
+                        $('#Attachmentprev-". $i ."Id').val(attId);
+                        $('#-". $i ."').remove();
+                        return false;
+                    });";                
         }?>
     
     </script>

@@ -8,4 +8,4 @@
 		echo $this->Form->input('content', array('label' => false));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('Send')); ?>

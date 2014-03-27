@@ -14,4 +14,4 @@
 		));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('Send vote')); ?>

@@ -48,25 +48,68 @@ class UserAnswersController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
-			debug($this->request->data);
-			/*foreach ($this->request->data['UserAnswer'] as $data) {
+			//iterate all answers of this questionnaire
+			foreach ($this->request->data['UserAnswer'] as $data) {
 				if(isset($data['description'])){
 					//its an essay
+					$insert_data = array('description' => $data['description'], 'answer_id' => null, 'question_id' => $data['question_id'], 'user_id' => $this->getUserId());
+					$this->insertAnswer($insert_data);
+				} 
+				if(isset($data['answer_id'])) {
+					if(is_array($data['answer_id'])) {
+						//its multiple-choice
+						$insert_data = array('description' => null, 'question_id' => $data['question_id'], 'user_id' => $this->getUserId());
+						$k = 1;
+						foreach ($data['answer_id'] as $answer) {
+							$insert_data['answer_id'] = $answer;
+							$this->insertAnswer($insert_data, $k);
+							$k++;
+						}
+					} else {
+						//its a single-choice
+						$insert_data = array('description' => null, 'answer_id' => $data['answer_id'], 'question_id' => $data['question_id'], 'user_id' => $this->getUserId());
+						$this->insertAnswer($insert_data);
+					}
 				}
 			}
-
-			$this->UserAnswer->create();
-			if ($this->UserAnswer->save($this->request->data)) {
-				$this->Session->setFlash(__('The user answer has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The user answer could not be saved. Please, try again.'));
-			}*/
+			return $this->redirect($this->referer());
 		}
 		$users = $this->UserAnswer->User->find('list');
 		$questions = $this->UserAnswer->Question->find('list');
 		$answers = $this->UserAnswer->Answer->find('list');
 		$this->set(compact('users', 'questions', 'answers'));
+	}
+
+	public function insertAnswer($data, $control = 1) {
+		//check if user had already answered such questions, if so, delete them...
+		if($control == 1) $this->checkPreviousAnswers($data['question_id']);
+
+		$this->UserAnswer->create();
+		if ($this->UserAnswer->save($data)) {
+			$this->Session->setFlash(__('The user answer has been saved.'));
+		} else {
+			$this->Session->setFlash(__('The user answer could not be saved. Please, try again.'));
+		}
+	}
+
+	public function checkPreviousAnswers($question_id = null) {
+		//check to see if this user had already answered this question..
+		$previous_answers = $this->UserAnswer->find('all', array(
+			'conditions' => array(
+				'UserAnswer.question_id' => $question_id,
+				'user_id' => $this->getUserId()
+			)
+		));
+
+		//for every answer found to this question, erase it
+		foreach ($previous_answers as $previous_answer) {
+			$this->UserAnswer->id = $previous_answer['UserAnswer']['id'];
+			if ($this->UserAnswer->delete()) {
+				$this->Session->setFlash(__('The user answer has been deleted.'));
+			} else {
+				$this->Session->setFlash(__('The user answer could not be deleted. Please, try again.'));
+			}
+		}
 	}
 
 /**
