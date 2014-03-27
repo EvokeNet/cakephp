@@ -27,6 +27,15 @@
 					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
+			<li>
+				<?php
+					/*
+					echo $this->Form->create('', array('controller' => 'app', 'action'=>'changeLang'));
+					echo $this->Form->hidden('language', array('value'=>'pt'));
+					echo $this->Form->end('Port');
+					*/
+				?>
+			</li>
 		</ul>
 
 		<!-- Left Nav Section -->

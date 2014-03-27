@@ -56,7 +56,7 @@ $title = __('Evoke Network');
 				  <div class="small-5 small-centered columns">
 				  
 				  	<img src = '/evoke/webroot/img/evoke_icon_footer.png' alt = "" class = "evoke icon margin-top"/>
-				  	<h6 class = "evoke heading terms">2014 &nbsp;&nbsp; EVOKE | Report an issue | Terms of Service</h6>
+				  	<h6 class = "evoke heading terms">2014 &nbsp;&nbsp; EVOKE | <?= __('Report an issue') ?> | <?= __('Terms of Service') ?></h6>
 					<img src = '/evoke/webroot/img/wblogo.png' alt = ""/>
 					
 				  </div>

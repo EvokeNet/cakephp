@@ -42,6 +42,7 @@ class AppController extends Controller {
     );
 
     public $user = null;
+    public $lang = null;
 
 /**
  * beforeFilter method
@@ -51,7 +52,23 @@ class AppController extends Controller {
 	public function beforeFilter() {
         $this->Auth->allow('add', 'fb_login', 'index', 'view');
         $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
+
+        if(is_null($this->lang)) {
+            $languageHeader = $this->request->header('Accept-language');
+            $languageHeader = explode(';', $languageHeader, 2);
+            $userLanguage   = explode(',', $languageHeader[0]);
+            $this->Session->write('Config.language', $userLanguage[0]);
+            $this->lang = $userLanguage[0];
+        }
+
         $cuser = $this->Auth->user();
+    }
+
+    public function changeLang($newLang = null) {
+        if(!$newLang) return;
+        $this->Session->write('Config.language', $newLang);
+        $this->lang = $newLang;
+        $this->redirect(array('action' => 'dashboard'));
     }
 
     public function getUserId() {
