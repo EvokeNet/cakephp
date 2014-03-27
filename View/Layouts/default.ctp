@@ -58,12 +58,12 @@ $title = __('Evoke Network');
 	
 	<?php
 
-		echo $this->Html->script('/components/jquery/jquery.min');
-		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js");
-		echo $this->Html->script('/components/modernizr/modernizr');
-		echo $this->Html->script('/components/foundation/js/foundation.min');
-		echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel');
-		echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive');
+		echo $this->Html->script('/components/jquery/jquery.min.js');
+		echo $this->Html->script('/components/foundation/js/foundation.min.js');
+		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+		echo $this->Html->script('/components/modernizr/modernizr.js', array('inline' => false));
+		echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel.js', array('inline' => false));
+		echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive.js', array('inline' => false));
 		echo $this->Html->script('evoke');
 		
 		echo $this->fetch('script'); 

@@ -25,7 +25,7 @@ function createOrLoadDocument() {
 		} else {
 			gapi.client.drive.files.insert({
 				'resource': {
-					mimeType: 'text/html',
+					mimeType: 'application/vnd.google-apps',
 					title: 'Evokation - ' + groupName
 				}
 		    }).execute(initialize);

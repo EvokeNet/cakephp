@@ -34,9 +34,8 @@
 
 <!-- Medium Editor CSS -->
 <?php echo $this->Html->css('/components/jquery-ui/themes/base/minified/jquery-ui.min'); ?>
-<?php echo $this->Html->css('/components/medium-editor/dist/css/medium-editor'); ?>
-<?php echo $this->Html->css('/components/medium-editor/dist/css/themes/default'); ?>
-<?php echo $this->Html->css('/components/jquery-annotation/css/annotation'); ?>
+<?php //echo $this->Html->css('/components/medium-editor/dist/css/medium-editor'); ?>
+<?php //echo $this->Html->css('/components/medium-editor/dist/css/themes/default'); ?>
 
 <section class="margin top">
 	<div class="row full-width">
@@ -105,11 +104,12 @@
 				));
 			 ?>
 
-			<textarea id="evokation_txt" class="hidden"></textarea>
+			 <iframe src="<?php echo $embedLink; ?>" width="100%" height="1000px" frameborder="0"></iframe>
+
+			<!-- <textarea id="evokation_txt" class="hidden"></textarea>
 
 			<div class="editor">
 
-				<!-- Add images -->
 				<a class="button circle bg-teal tip-top" id="add_image" data-tooltip title="Add image">
 					<form id="image_form" action="<?php echo $this->webroot ?>groups_users/store_image" method="post" enctype="multipart/form-data">
 						<input type="file" name="data[Evokation][image_uploader]" id="image_uploader" class="image_upload">
@@ -122,30 +122,25 @@
 					<i class="fa fa-camera fa-2x"></i>
 				</a>
 
-				<!-- Add documents -->
 				<a class="button circle bg-orange tip-top" data-tooltip data-reveal-id="document_modal" data-reveal title="Add document">
 					<i class="fa fa-file-o fa-2x"></i>
 				</a>
 
-				<!-- Add videos -->
 				<a class="button circle bg-maroon tip-top" id="add_video" data-tooltip data-reveal-id="video_modal" data-reveal title="Add video">
 					<i class="fa fa-youtube-play fa-2x"></i>
 				</a>
 
-				<!-- Add audio -->
 				<a class="button circle bg-olive tip-top" id="add_audio" data-tooltip title="Add audio">
 					<i class="fa fa-music fa-2x"></i>
 				</a>
 
 				<div id="evokation_div" class="project page" data-placeholder=""></div>
-			</div>
+			</div> -->
 			
-			<!--/ Evokation page -->
 
 		</div>
 
-		<!-- Modals -->
-
+		<!--
 		<div id="document_modal" class="reveal-modal small" data-reveal>
 			<?php echo $this->Element('add_document'); ?>
 			<a class="close-reveal-modal">&#215;</a>
@@ -154,9 +149,7 @@
 		<div id="video_modal" class="reveal-modal small" data-reveal>
 			<?php echo $this->Element('add_video'); ?>
 			<a class="close-reveal-modal">&#215;</a>
-		</div>
-
-		<!--/ Modal -->
+		</div> -->
 
 		<aside>
 			<div class="large-2 columns toolbar">
@@ -190,7 +183,7 @@
 		</aside>
 	</div>
 </section>
-
+<!--
 <script type="text/javascript">
 	var WEBROOT  = "<?php echo $this->webroot; ?>";
 	var ACCESS_TOKEN = <?php echo $this->Session->read('access_token'); ?>;
@@ -205,9 +198,10 @@
 		var FILE_ID = false;
 	</script>
 <?php endif; ?>
+-->
 
 <?php //echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min', array('inline' => false)); ?>
-<?php echo $this->Html->script('/components/kibo/kibo.js', array('inline' => false)); ?>
-<?php echo $this->Html->script('/components/jquery-form/index.js', array('inline' => false)); ?>
-<?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
-<?php echo $this->Html->script('evokation', array('inline' => false)); ?>
+<?php //echo $this->Html->script('/components/kibo/kibo.js', array('inline' => false)); ?>
+<?php //echo $this->Html->script('/components/jquery-form/index.js', array('inline' => false)); ?>
+<?php //echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
+<?php //echo $this->Html->script('evokation', array('inline' => false)); ?>

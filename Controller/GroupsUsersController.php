@@ -5,6 +5,10 @@ APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
 App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
 
+use Google\Client;
+use Google\Service\Drive;
+
+
 /**
  * GroupsUsers Controller
  *
@@ -122,13 +126,57 @@ class GroupsUsersController extends AppController {
 			)
 		));
 
-		if(!empty($evokation)) {
-			$this->request->data = $evokation;
-		}
-
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$this->set(compact('group', 'users', 'user'));
+		if (!empty($evokation['Evokation']['gdrive_file_id'])) {
+
+			$client = new Google_Client();
+			$client->setAccessToken($access_token);
+			$drive = new Google_Service_Drive($client);
+
+			$file = $drive->files->get($evokation['Evokation']['gdrive_file_id']);
+
+			$embedLink = $file->alternateLink;
+
+		} else {
+
+			$client = new Google_Client();
+			$client->setAccessToken($access_token);
+			$drive = new Google_Service_Drive($client);
+			
+			$file = new Google_Service_Drive_DriveFile;
+			$file->setTitle('Evokation - Group ' . $group['Group']['title']);
+			$file->setDescription('Evokation collaborative file.');
+			$file->setMimeType('text/html');
+
+			$parent = new Google_Service_Drive_ParentReference();
+			$parent->setId(Configure::read('gdrive_evoke_folder_id'));
+			$file->setParents(array($parent));
+			
+			$createdFile = $drive->files->insert($file, array(
+				'convert' => 'true',
+				'mimeType' => 'text/html',
+				'uploadType' => 'multipart',
+				'data' => 'Your Evokation goes here'
+			));
+
+			$evokation = array();
+			$evokation['Evokation']['group_id'] = $group['Group']['id'];
+			$evokation['Evokation']['gdrive_file_id'] = $createdFile->id;
+			$evokation['Evokation']['title'] = 'Your title goes here';
+			$evokation['Evokation']['abstract'] = 'Your abstract goes here';
+			$evokation['Evokation']['language'] = $this->Session->read('Config.language');
+
+			$this->Evokation->create();
+			$this->Evokation->save($evokation);
+
+			$embedLink = $createdFile->embedLink;
+
+		}
+		
+		$this->request->data = $evokation;
+
+		$this->set(compact('group', 'users', 'user', 'embedLink'));
 
 	}
 
