@@ -113,6 +113,4 @@
 
 	
 	}
-?>
-<!-- <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
-			  
+?>			  

@@ -15,7 +15,7 @@
 		<!-- Right Nav Section -->
 		<ul class="right">
 			<li class="has-dropdown">
-				<a href="#">Settings</a>
+				<a href="#"><?= __('Settings') ?></a>
 				<ul class="dropdown">
 					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li>
 					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
@@ -52,6 +52,7 @@
 		</nav>
 
 	  	<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
+	  	<h4><?php echo __('Created by: '); echo $this->Html->Link($organized_by['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organized_by['Organization']['id'])); ?></h4>
 		<h2><?php echo __('Mission Brief'); ?></h2>
 		<h4><?php echo h($mission['Mission']['description']); ?></h4>
 
@@ -114,7 +115,7 @@
 				<?php foreach($quests as $q):
 					$evidence_exists = false;
 					//if it was an 'evidence' type quest
-					foreach($evidences as $e):
+					foreach($my_evidences as $e):
 						if($q['Quest']['id'] == $e['Quest']['id']) {$evidence_exists = true; break;}
 					endforeach;
 

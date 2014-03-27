@@ -15,7 +15,7 @@
 		<!-- Right Nav Section -->
 		<ul class="right">
 			<li class="has-dropdown">
-				<a href="#">Settings</a>
+				<a href="#"><?= __('Settings') ?></a>
 				<ul class="dropdown">
 					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $users['User']['id'])); ?></li>
 					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
@@ -44,9 +44,9 @@
 			</nav>
 
 			<?php if(!$is_friend AND ($users['User']['id'] != $user['User']['id'])):?>
-				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'add', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Follow this user');?></a>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'add', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Follow this agent');?></a>
 			<?php else: ?>
-				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'delete', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Unfollow this user');?></a>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'delete', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Unfollow this agent');?></a>
 			<?php endif; ?>
 
 			<dl class="tabs" data-tab>

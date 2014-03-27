@@ -9,7 +9,7 @@
                                 'enctype' => 'multipart/form-data'
 							)); ?>
 	<fieldset>
-		<legend><?php echo __('Add Quest'); ?></legend>
+		<legend><?php echo __('Add a Quest'); ?></legend>
 	<?php
 		echo $this->Form->input('title');
 		echo $this->Form->input('description');

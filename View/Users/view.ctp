@@ -15,7 +15,7 @@
 		<!-- Right Nav Section -->
 		<ul class="right">
 			<li class="has-dropdown">
-				<a href="#">Settings</a>
+				<a href="#"><?= __('Settings') ?></a>
 				<ul class="dropdown">
 					<li><a href="<?php echo $this->Html->url(array('action' => 'logout')); ?>">Sign out</a></li>
 				</ul>
@@ -24,7 +24,7 @@
 
 		<!-- Left Nav Section -->
 		<ul class="left">
-			<li><a href="#">Dashboard</a></li>
+			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></li>
 		</ul>
 	</section>
 </nav>

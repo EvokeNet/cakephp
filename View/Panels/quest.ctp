@@ -112,7 +112,7 @@
 	<?php 
 			}
 		} else {
-            echo "<label>Attachments</label>";
+            echo "<label>".__('Attachments'). "</label>";
             echo '<div id="fileInputHolder">';
             echo "<ul>";
             $k = 0;
@@ -138,13 +138,13 @@
 	</button>
 	<?php echo $this->Form->end(); ?>
 	<button class="button alert small">
-		<?php echo $this->Form->PostLink('delete', array('controller' => 'panels', 'action' => 'delete_quest', $mission_id, $me['Quest']['id'], $origin));?>
+		<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_quest', $mission_id, $me['Quest']['id'], $origin));?>
 	</button>
 
     <?php echo $this->Html->script('survey'); ?>
     <?php echo $this->Html->script('quest_attachments'); ?>
 
-    <!-- necessary to add remove function to the already existing questions -->
+    <!-- necessary function to add remove the already existing questions -->
     <script type="text/javascript">
 
         <?php

@@ -12,15 +12,15 @@
 	  	<div class="row full-width">
 			<div class="small-4 medium-8 large-4 small-centered columns" style = "margin-top: -600px;">
 			  	<div class="evoke users form top-border bottom-border">
-			  		<h4 class = "evoke bottom-border"><?php echo __('Evoke Register');?></h4>
+			  		<h4 class = "evoke bottom-border"><?php echo __('Evoke Registration');?></h4>
 					<?php echo $this->Form->create('User'); ?>
 						<?php
-							echo $this->Form->input('name', array('required' => true));
-							echo $this->Form->input('username');
-							echo $this->Form->input('password');
+							echo $this->Form->input('name', array('required' => true, 'label' => __('Name')));
+							echo $this->Form->input('username', array('label' => __('Username')));
+							echo $this->Form->input('password', array('label' => __('Password')));
 						?>
 					<?php //echo $this->Form->end(__('Submit')); ?>
-					<button class="evoke button general" type="submit"><?php echo __('Submit') ?></button>
+					<button class="evoke button general" type="submit"><?php echo __('Register') ?></button>
 				</div>
 			</div>
 		</div>
