@@ -24,7 +24,7 @@
 
 html, body {
 	font: 100%/1.618 sans-serif;
-	overflow-x: hidden;
+	/*overflow-x: hidden;*/
 }
 
 *, html, body,
@@ -396,6 +396,39 @@ button, div, p, span, a,
 	color:#FFF;
 }
 
+.evoke.tabs-content{
+	margin-top: 30px;
+	padding: 5px 30px;
+	/*height: 700px;
+	overflow-y: scroll;
+	overflow-x: hidden;*/
+	/*overflow: scroll;*/
+}
+
+.evoke.tabs-content > .content.active {
+	width: 100%;
+}
+
+.evoke.screen-box{
+	background-color: #363636;
+	border: 20px solid #000000;
+	margin: 20px 0px 50px 0px;
+	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+}
+
+.evoke.button.general {
+	background: #1f8cb2;
+	color: #ffffff;
+	font-size: 0.9em;
+	border-radius: 5px;
+	/*padding: 0.4em 2em;*/
+	/*margin-right: 10px;*/
+	margin-bottom: 0;
+	border-right: 3px solid #125167;
+	border-bottom: 3px solid #125167;
+}
 
 .evoke .titles{
 	background-color: #f1f1f1;
@@ -430,6 +463,7 @@ button, div, p, span, a,
 	border-bottom: 3px solid #125167;*/
 }
 
+<<<<<<< HEAD
 .evoke .leaderboard.tabs dd.active a{
 	background: none;
 	font-size:1.5em;
@@ -446,3 +480,45 @@ button, div, p, span, a,
 	padding: 10px;
 }*/
 
+.evoke.evidence{
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* Opera */ 
+	background-image: -o-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1B7C9D), color-stop(1, #125167));
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(top, #1B7C9D 0%, #125167 100%);
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to bottom, #1B7C9D 0%, #125167 100%);
+	padding: 20px 5px 10px;
+	margin-bottom: 5px;
+}
+
+.evoke.evidence a{
+	font-color: #fff;
+}
+
+.evoke.evidence ul{
+	list-style-type: none;
+}
+
+.evoke.evidence a{
+	color:#fff; 
+}
+
+.evoke.evidence li{
+	text-align: center;  
+}
+
+.evoke.evokation.follow{
+	margin-top:20px;
+}
+
+.evoke.parabolic{
+	position: absolute; 
+	bottom: 185px; 
+	right: 0;
+}
