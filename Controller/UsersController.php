@@ -32,6 +32,15 @@ class UsersController extends AppController {
 	public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('add', 'logout', 'register');
+
+        /*if($this->action == 'changeLang') {
+            foreach ($this->request->data as $key => $value) {
+                //$this->changeLang($value['language']);
+                $this->Session->write('Config.language', $value['language']);
+                $this->action = 'dashboard';
+                $this->dashboard();
+            }
+        }*/
     }
 
 /**
@@ -148,7 +157,7 @@ class UsersController extends AppController {
 		//check to see if logged in
 		if(!is_null($this->Auth->user())) 
 			return $this->redirect(array('action' => 'dashboard'));
-			
+		
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -173,6 +182,7 @@ class UsersController extends AppController {
  */
 	public function dashboard($id = null) {
 		$me = $this->getUserId();
+		//$this->changeLang('pt');
 		if(is_null($id)){
 			//send him to his on dashboard
 			$id = $me;
