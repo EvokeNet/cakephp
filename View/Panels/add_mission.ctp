@@ -64,7 +64,7 @@
  							   			'controller' => 'panels',
  							   			'action' => 'add_mission', $id
  							   		),
-									'enctype' => 'multipart/form-data'					
+									'enctype' => 'multipart/form-data'
 								));
 							} else {
 								echo $this->Form->create('Mission', array(
@@ -82,7 +82,8 @@
 									echo '<legend>' . __('Edit Mission') .'</legend>'; 
 									echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title')));
 									echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description')));
-									if(!is_null($mission_img)) :
+									if(!is_null($mission_img) && !empty($mission_img)) :
+										//debug($mission_img);
 										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
 										echo '<div class="input file"><label for="Attachment0Attachment">Change Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 									else :
@@ -199,8 +200,50 @@
 				<div class="content <?php echo $dossier_tag ?>" id="dossier">
 					<h4>
 						<?= __('Create a dossier by adding files that might be useful for agents to complete this mission!') ?>
-
 					</h4>
+					<?php 
+						echo $this->Form->create('Dossier', array(
+ 						   		'url' => array(
+ 						   			'controller' => 'panels',
+ 						   			'action' => 'dossier', $id
+ 						   		),
+ 						   		'enctype' => 'multipart/form-data'
+						));
+
+						echo $this->Form->hidden('mission_id', array('value' => $id));
+						if(!empty($dossier) && !is_null($dossier)) {
+							echo $this->Form->hidden('id', array('value' => $dossier['Dossier']['id']));
+						}
+
+						echo "<label>".__('Attachments'). "</label>";
+			            echo '<div id="fileInputHolder">';
+			            echo "<ul>";
+
+			            if(!is_null($dossier) && !empty($dossier)) {
+							$k = 0;
+							foreach ($dossier_files as $file) {
+				                echo "<li>";
+				                echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $file['Attachment']['attachment'] .'</label>';
+				                
+				                echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $file['Attachment']['id'] .'">';
+				                echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/thumb_'.$file['Attachment']['attachment'] . '"/>';
+
+				                echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
+
+				                $k++;
+				            }
+						} else {
+							echo "nothing yet..";
+						}
+
+			            echo "</ul>";
+			            echo '</div>';
+			            echo '<button id="newFile" class="button tiny">+ File</button>';
+			            echo '<br><br>';
+
+			            echo '<button class="button small" type="submit">'. __('Save dossier') . '</button>';
+						echo $this->Form->end();
+					?>
 				</div>
 				<div class="content <?php echo $badges_tag ?>" id="badges">
 					<p>
@@ -214,7 +257,28 @@
 				</div>
 			</div>
 			<!-- encerrar tudo -->
-			<?php echo $this->Html->Link(__('Return to Admin Panel'), array('controller' => 'panels', 'action' => 'index'), array( 'class' => 'button small')); ?>	
+			<?php echo $this->Html->Link(__('Return to Admin Panel'), array('controller' => 'panels', 'action' => 'index', 'missions'), array( 'class' => 'button small')); ?>	
 		</div>
 	</div>
 </section>
+
+<?php echo $this->Html->script('quest_attachments'); ?>
+
+    <!-- necessary function to add remove the already existing questions -->
+    <script type="text/javascript">
+
+        <?php
+            $i = 0;
+            for($i=0; $i<$k;$i++) {
+        
+                echo "$('#-". $i ."').click(function() {
+                        var attId = $('#Attachmentprev-". $i ."Id').val().replace('NO-', '');
+                        $('#img-". $i ."').remove();
+                        $('#label-". $i ."').remove();
+                        $('#Attachmentprev-". $i ."Id').val(attId);
+                        $('#-". $i ."').remove();
+                        return false;
+                    });";                
+        }?>
+    
+    </script>

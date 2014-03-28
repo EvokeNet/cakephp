@@ -9,7 +9,7 @@ class PanelsController extends AppController {
 */
 	public $components = array('Paginator','Access');
 	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 
-		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment');
+		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier');
 	public $user = null;
 
 /**
@@ -231,9 +231,20 @@ class PanelsController extends AppController {
 			)
 		));
 
+		//retrieving mission img
 		$mission_img = null;
 		if(!is_null($id)){
 			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
+		}
+
+		$dossier_files = null;
+		$dossier = null;
+		//checking to see if i already have a dossier and, if so, if I already have files attached to it
+		if(!is_null($id)){
+			$dossier = $this->Dossier->find('first', array('conditions' => array('Dossier.mission_id' => $id)));
+			if(!is_null($dossier) && !empty($dossier)) {
+				$dossier_files = $this->Attachment->find('all', array('conditions' => array('Model' => 'Dossier', 'foreign_key' => $dossier['Dossier']['id'])));
+			}
 		}
 
 		if($this->user['role_id'] == 1){
@@ -282,6 +293,12 @@ class PanelsController extends AppController {
 		if ($this->request->is('post')) {
 			
 			if(!$this->Mission->exists($id)) {
+				if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
+					//he did not send an image, unset the 'Attachment' so it doesn't cause trouble
+					$data = $this->request->data;
+					unset($data['Attachment']);
+					$this->request->data = $data;
+				}
 				//it's a new mission, so let's add it..
 				//$this->Mission->create();
 				if ($mission = $this->Mission->createWithAttachments($this->request->data)) {
@@ -331,6 +348,10 @@ class PanelsController extends AppController {
 		} else{
 			
 			//it could be a request from one of the other tabs
+			if(!is_null($id) && $args == 'dossier'){
+				//sets variable mission to be the mission being added now..
+				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
+			}
 			if(!is_null($id) && $args == 'phase'){
 				//sets variable mission to be the mission being added now..
 				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
@@ -341,7 +362,7 @@ class PanelsController extends AppController {
 			}
 		}
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
-			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img'));
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files'));
 	}
 
 /*
@@ -379,6 +400,16 @@ class PanelsController extends AppController {
 		$mission_img = null;
 		if(!is_null($id)){
 			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
+		}
+
+		$dossier_files = null;
+		$dossier = null;
+		//checking to see if i already have a dossier and, if so, if I already have files attached to it
+		if(!is_null($id)){
+			$dossier = $this->Dossier->find('first', array('conditions' => array('Dossier.mission_id' => $id)));
+			if(!is_null($dossier) && !empty($dossier)) {
+				$dossier_files = $this->Attachment->find('all', array('conditions' => array('Model' => 'Dossier', 'foreign_key' => $dossier['Dossier']['id'])));
+			}
 		}
 
 		if($this->user['role_id'] == 1){
@@ -483,9 +514,44 @@ class PanelsController extends AppController {
 			}
 		}
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
-			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img'));
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files'));
 	}
 
+
+	function dossier($id, $dossier_id = null, $origin = 'add_mission') {
+		if ($this->request->is('post')) {
+			if($dossier_id == null) {
+				if($this->Dossier->createWithAttachments($this->request->data)) {
+					$this->Session->setFlash(__('The mission dossier has been updated.'));
+
+					if(isset($this->request->data['Attachment']['Old'])) {
+						$this->destroyAttachments($this->request->data['Attachment']['Old']);
+					}
+				} else {
+					$this->Session->setFlash(__('Problem while updating the dossier.'));
+				}
+			} else {
+				if($this->Dossier->createWithAttachments($this->request->data, true, $dossier_id)) {
+					$this->Session->setFlash(__('The mission dossier has been updated.'));
+
+					//check to see if there are img/files that are no loner to be related to the quest...
+					if(isset($this->request->data['Attachment']['Old'])) {
+						$this->destroyAttachments($this->request->data['Attachment']['Old']);
+					}
+				} else {
+					$this->Session->setFlash(__('Problem while updating the dossier.'));
+				}
+			}
+
+			if($origin == 'add_mission')
+				$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
+			else 
+				$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
+
+		} else {
+			$this->redirect(array('action' => 'index'));
+		}
+	}
 
 /*
 * add_phase method
@@ -508,6 +574,8 @@ class PanelsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 	}
+
+
 
 /*
 * add_quest method
