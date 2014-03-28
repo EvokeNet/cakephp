@@ -22,6 +22,16 @@
     src: url('../css/font/AlegreyaSans-Italic.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'AmaticSC-Regular';
+    src: url('../css/font/AmaticSC-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'AmaticSC-Bold';
+    src: url('../css/font/AmaticSC-Bold.ttf') format('truetype');
+}
+
 html, body {
 	font: 100%/1.618 sans-serif;
 	/*overflow-x: hidden;*/
@@ -52,11 +62,58 @@ button, div, p, span, a,
 
 .evoke .login-bg-topbar {
 	background: #0d0d10;
-	height: 250px;
+	padding-top:80px;
+	/*height: 250px;*/
+}
+
+.evoke .login-bg-topbar h1{
+	color: #FFF;
+	font-family: 'SBB';
+	line-height: 0.8em;
+	font-size: 9em;
+	text-align: center;
+}
+
+.evoke .login-bg-topbar h6{
+	text-align: center;
+	font-family: 'AlegreyaRegular';
+	font-size: 1.85em;
+	margin-bottom: 30px;
+	color: #848485;
+}
+
+.evoke .top-bar-section ul{
+	background: #1f8cb2;
 }
 
 .evoke .top-bar-section li:not(.has-form) a:not(.button){
 	background: #1f8cb2;
+}
+
+.top-bar .name h1 a{
+	font-family:'SBB';
+	font-size: 2.5em;
+	margin: 5px 0px 10px 10px;
+}
+
+.right .name h1{
+	font-family: 'AlegreyaRegular';
+	font-size: 1.2em;
+	/*font-size: 2.5em;
+	margin: 5px 0px 10px 10px;*/
+}
+
+.dropdown h1{
+	font-family: 'AlegreyaRegular';
+	font-size: 0.9em;
+}
+
+.evoke.top-bar-section h3{
+	font-family: 'SBB';
+	font-size: 1.5em;
+	color: #FFF;
+	padding-top: 8px;
+	text-align: center;
 }
 
 /* SPACINGS, MARGINS, PADDINGS */
@@ -92,48 +149,32 @@ button, div, p, span, a,
 	height: 200px;
 }
 
-.evoke.footer img{
+/*.evoke.footer img{
 	display: block;
 	margin: 0px auto;
+}*/
+
+.footer h2{
+	color: #FFF;
+	font-family: 'SBB';
+	line-height: 0.9em;
+	text-align: center;
 }
 
-.evoke.icon.margin-top{
+.footer h6{
+	color: #d5d5d5;
+	font-family: 'AlegreyaRegular';
+	text-align: center;
+}
+
+.evoke.footer-margin-top{
 	margin-top: 40px;
 }
 
-.evoke.heading{
-	color: #8f8f8f;
-	font-family: 'AlegreyaRegular';
-}
-
-.terms{
-	font-size: 1.0em;
+.evoke.footer-world-bank{
+	margin-top: 48px; 
 	text-align: center;
-	margin: 20px 0px 35px 0px;
 }
-
-.evoke-logo{
-	position: absolute;
-	left: 45%;
-	top: 30px;
-}
-
-.wb img{
-	position: absolute;
-	top: 130px;
-	left: 40%;
-}
-
-.evoke .dashboard{
-	background: url('../img/bg.jpg');
-	background-repeat: no-repeat;
-	background-size: 100%;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-}
-
 
 .message {
 	font-size: 0.65em;

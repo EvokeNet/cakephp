@@ -39,27 +39,28 @@
 	/*height:700px;*/
 }
 
-.welcome{
+/*.welcome{
 	text-align: center;
 	font-size: 1.7em;
 	margin-bottom: 30px;
-}
+}*/
 
 #login-columns{
 	position: absolute;
 	top: 60px;
 	left: 40px;
-	width: 280px;
+	width: 270px;
 }
 
 .columns h4{
 	font-family: 'SBB';
-	font-size: 1.25em;
+	/*font-size: 1.25em;*/
+	text-align: center;
 }
 
 .columns h5{
 	font-family: 'AlegreyaBold';
-	font-size: 1.25em;
+	font-size: 1.4em;
 }
 
 .evoke.login.padding-bottom{
@@ -157,13 +158,13 @@
 }
 
 .evoke.dashboard.margin{
-	margin-top:90px;
+	margin-top:50px;
 }
  
 .evoke.dashboard.agent_tag{
 	position: relative; 
 	height:100%; 
-	min-height:300px
+	min-height:250px;
 }
 
 .evoke.dashboard.agent.position{
@@ -174,23 +175,27 @@
 }
 
 .evoke.dashboard.agent.info{
-	color:#000;
-	font-weight:bold;
-	float:left;
-	width: 80%;
+	/*color:#000;*/
+	/*font-weight:bold;*/
+	/*float:left;*/
+	/*width: 80%;*/
 	/*clear:both;*/
 }
 
 .evoke.dashboard.agent.info h5{
-	font-size: 2.0em;
+	/*font-size: 2.0em;*/
+	font-size: 1.5vw;
 	font-weight:bold;
+	line-height: 1.0em;
 	float:left;
 	clear:both;
 	font-family: 'AlegreyaRegular';
 }
 
 .evoke.dashboard.agent.info h6{
-	font-size: 1.2em;
+	/*font-size: 1.2em;*/
+	font-size:1.0vw;
+	line-height: 1.0em;
 	font-weight:bold;
 	text-align: start;
 	font-family: 'AlegreyaRegular';
@@ -200,8 +205,10 @@
 
 .evoke.dashboard.progress{
 	background-color: #252525;
-	width: 100%;
+	width: 90%;
 	padding:0;
+	height: 0.8rem;
+	margin-top: 10px;
 }
 
 .evoke.dashboard.leadercloud{
@@ -248,10 +255,16 @@
 }
 
 .badges_bar{
-	margin: -60px 0px -7px 0px;
+	margin: -40px 0px 0px 30px;
 }
 
 .evoke.dashboard.folders{
 	margin-top: -30px;
 	margin-left: 20px;
+}
+
+.evoke.dashboard.folders a{
+	font-family: 'AlegreyaRegular';
+	color: #1a1a1a;
+	font-size: 1.3em;
 }

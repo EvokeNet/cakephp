@@ -24,7 +24,7 @@ $title = __('Evoke Network');
 
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->script('/components/jquery/jquery.min');//
+		echo $this->Html->script('/components/jquery/jquery.min');
 
 		echo $this->Html->css('/components/foundation/css/foundation.min');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
@@ -49,24 +49,20 @@ $title = __('Evoke Network');
 		<?php echo $this->fetch('content'); ?>
 	</section>
 
-	<footer class="footer margin top-2">
+	<footer class="footer">
 		<div class="row">
 			<div class="large-12 columns">
 				<div class="row">
 				  <div class="small-5 small-centered columns">
 				  
-				  	<img src = '/evoke/webroot/img/evoke_icon_footer.png' alt = "" class = "evoke icon margin-top"/>
-				  	<h6 class = "evoke heading terms">2014 &nbsp;&nbsp; EVOKE | <?= __('Report an issue') ?> | <?= __('Terms of Service') ?></h6>
-					<img src = '/evoke/webroot/img/wblogo.png' alt = ""/>
+				  	<div class = "evoke footer-margin-top">
+					  	<h2><?php echo strtoupper(__('Evoke'));?></h2>
+					  	<h6>2014 &nbsp;&nbsp; EVOKE | <?= __('Report an issue') ?> | <?= __('Terms of Service') ?></h6>
+						<div class = "evoke footer-world-bank"><img src = '/evoke/webroot/img/wblogo.png' alt = ""/></div>
+					</div>
 					
 				  </div>
 				</div>
-				<!-- <div class = "evoke-logo">
-					<img src = '/evoke/webroot/img/evoke_icon_footer.png' alt = ""/>
-					<div>20142014201420142014</div>
-				</div>
-				<div class = "wb"><img src = '/evoke/webroot/img/world_bank.png' alt = ""/></div> -->
-				<!-- TODO: standard footer -->
 			</div>
 		</div>
 	</footer>
@@ -76,8 +72,6 @@ $title = __('Evoke Network');
 		echo $this->Html->script('/components/foundation/js/foundation.min.js');
 		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
 		echo $this->Html->script('/components/modernizr/modernizr.js', array('inline' => false));
-		echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel.js', array('inline' => false));
-		echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive.js', array('inline' => false));
 		echo $this->Html->script('evoke');
 
 		echo $this->fetch('script'); 
