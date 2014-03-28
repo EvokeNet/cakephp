@@ -53,16 +53,18 @@
 								echo $this->Form->create('Mission', array(
  							   		'url' => array(
  							   			'controller' => 'panels',
- 							   			'action' => 'add_mission', $id)
-									)
-								);
+ 							   			'action' => 'add_mission', $id
+ 							   		),
+									'enctype' => 'multipart/form-data'					
+								));
 							} else {
 								echo $this->Form->create('Mission', array(
  							   		'url' => array(
  							   			'controller' => 'panels',
- 							   			'action' => 'add_mission')
-									)
-								);
+ 							   			'action' => 'add_mission'
+ 							   		),
+ 							   		'enctype' => 'multipart/form-data'
+								));
 							} 
 						?>
 						<fieldset>
@@ -71,7 +73,12 @@
 									echo '<legend>' . __('Edit Mission') .'</legend>'; 
 									echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title')));
 									echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description')));
-									echo $this->Form->input('image', array('label' => __('Image')));
+									if(!is_null($mission_img)) :
+										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
+										echo '<div class="input file"><label for="Attachment0Attachment">Change Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
+									else :
+										echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
+									endif;
 									echo $this->Form->hidden('form_type', array('value' => 'mission'));
 									if(isset($mission['MissionIssue'][0]['issue_id'])) {
 										echo $this->Form->input('MissionIssue.issue_id', array(
@@ -95,7 +102,7 @@
 									echo '<legend>'. __('Add a Mission') . '</legend>'; 
 									echo $this->Form->input('title', array('label' => __('Title')));
 									echo $this->Form->input('description', array('label' => __('Description')));
-									echo $this->Form->input('image', array('label' => __('Image')));
+									echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 									echo $this->Form->hidden('form_type', array('value' => 'mission'));
 									echo $this->Form->input('MissionIssue.issue_id', array(
             							'options' => $issues
@@ -181,9 +188,10 @@
 
 				</div>
 				<div class="content <?php echo $dossier_tag ?>" id="dossier">
-					<p>
-						Mission Dossier
-					</p>
+					<h4>
+						<?= __('Create a dossier by adding files that might be useful for agents to complete this mission!') ?>
+
+					</h4>
 				</div>
 				<div class="content <?php echo $badges_tag ?>" id="badges">
 					<p>
@@ -197,9 +205,7 @@
 				</div>
 			</div>
 			<!-- encerrar tudo -->
-			<button class="button">
-				<?php echo $this->Html->Link(__('Return to Admin Panel'), array('controller' => 'panels', 'action' => 'index')); ?>	
-			</button>
+			<?php echo $this->Html->Link(__('Return to Admin Panel'), array('controller' => 'panels', 'action' => 'index'), array( 'class' => 'button small')); ?>	
 		</div>
 	</div>
 </section>

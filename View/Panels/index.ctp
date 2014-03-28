@@ -32,9 +32,9 @@
 
 <?php $this->end(); ?>
 
-<section class="evoke margin top-2">
-	<div class="row evoke max-width">
-		<div class="large-12 columns evoke">
+<section class="margin top-2">
+	<div class="row max-width">
+		<div class="large-12 columns">
 			<h1><?= __('Admin Panel') ?></h1>
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><?= __('Organizations') ?></a></dd>
@@ -187,7 +187,7 @@
 					</p>
 				</div>
 				<div class="content <?php echo $users_tab; ?>" id="users">
-					<div class="large-5 columns filter evoke">
+					<div class="large-5 columns filter">
 			  			<fieldset>
 			    			<?php 
 			    				if($flags['_admin']) {
@@ -225,7 +225,7 @@
 							</ul>
 						</fieldset>
 					</div>
-					<div class="large-6 columns filteredContent evoke">
+					<div class="large-6 columns filteredContent">
 						<input placeholder="<?= __('Search by name') ?>..." id="box" type="text" /> 
 						<ul class='userList'>
 							<!-- colocar paginação -->
