@@ -40,6 +40,7 @@
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
 				<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= __('Phases') ?></a></dd>
+				<dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= __('Mission Dossier') ?></a></dd>
 				<dd class="<?php echo $badges_tag ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
 				<dd class="<?php echo $points_tag ?>"><a href="#points"><?= __('Points') ?></a></dd>
 			</dl>
@@ -178,6 +179,11 @@
 
 					<?php }?>
 
+				</div>
+				<div class="content <?php echo $dossier_tag ?>" id="dossier">
+					<p>
+						Mission Dossier
+					</p>
 				</div>
 				<div class="content <?php echo $badges_tag ?>" id="badges">
 					<p>

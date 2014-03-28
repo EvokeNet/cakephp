@@ -32,8 +32,6 @@
 
 <?php $this->end(); ?>
 
-	
-?>
 <section class="evoke margin top-2">
 	<div class="row evoke max-width">
 		<div class="large-12 columns evoke">
