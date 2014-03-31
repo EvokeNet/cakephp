@@ -127,6 +127,13 @@ class MissionsController extends AppController {
 			)
 		));
 
+		$this->loadModel('Dossier');
+		$dossier = $this->Dossier->find('first', array(
+			'conditions' => array(
+				'mission_id' => $id
+			)
+		));
+
 		//needed to be able to display quests' media..
 		$this->loadModel('Attachment');
 		$attachments = $this->Attachment->find('all', array(
@@ -140,6 +147,15 @@ class MissionsController extends AppController {
 			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
 		}
 
+
+		//dossier files
+		$dossier_files = $this->Attachment->find('all', array(
+			'conditions' => array(
+				'Attachment.foreign_key' => $dossier['Dossier']['id'],
+				'Attachment.model' => 'Dossier'
+			)
+		));
+
 		$this->loadModel('Evidence');
 		$my_evidences = $this->Evidence->find('all', array(
 			'order' => array('Evidence.title ASC'),
@@ -149,8 +165,10 @@ class MissionsController extends AppController {
 			)
 		));
 
+
+
 		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
-			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img'));
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img', 'dossier_files'));
 	}
 
 /**
