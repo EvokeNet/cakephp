@@ -11,7 +11,7 @@
 	border-left: 1px solid #ccc;
 }
 
-.evoke .project.page {
+/*.evoke .project.page {
 	border: 1px solid #ccc;
 	box-shadow: 0 0 5px 0 #eeeeee;
 	cursor: text;
@@ -112,11 +112,11 @@
 	margin-left: 1rem;
 	margin-top: 1rem;
 	position: relative;
-}
+}*/
 
 /* EDITOR STYLES */
 
-span.image {
+/*span.image {
 	cursor: pointer;
 	display: inline-block;
 	height: auto;
@@ -151,7 +151,7 @@ span.image:hover ul.button-group {
 	left: 0;
 	z-index: 999;
 }
-
+*/
 .hide {
 	display: none;
 }

@@ -104,10 +104,12 @@
 				));
 			 ?>
 
-			 <iframe src="<?php echo $embedLink; ?>" width="100%" height="1000px" frameborder="0"></iframe>
+			 <!-- <iframe src="<?php echo $embedLink; ?>" width="100%" height="1000px" frameborder="0"></iframe> -->
 
-			<!-- <textarea id="evokation_txt" class="hidden"></textarea>
-
+			<textarea id="evokation_txt" class="hidden"></textarea>
+			<div id="evokation_div" class="project page" data-placeholder=""></div>
+			
+			<!--
 			<div class="editor">
 
 				<a class="button circle bg-teal tip-top" id="add_image" data-tooltip title="Add image">
@@ -135,7 +137,7 @@
 				</a>
 
 				<div id="evokation_div" class="project page" data-placeholder=""></div>
-			</div> -->
+			</div>
 			
 
 		</div>
@@ -150,6 +152,7 @@
 			<?php echo $this->Element('add_video'); ?>
 			<a class="close-reveal-modal">&#215;</a>
 		</div> -->
+	</div>
 
 		<aside>
 			<div class="large-2 columns toolbar">
@@ -199,6 +202,10 @@
 	</script>
 <?php endif; ?>
 -->
+
+<?php echo $this->Html->script('/components/etherpad/js/etherpad.js', array('inline' => false)); ?>
+<?php echo $this->Html->script('evokation', array('inline' => false)); ?>
+
 
 <?php //echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min', array('inline' => false)); ?>
 <?php //echo $this->Html->script('/components/kibo/kibo.js', array('inline' => false)); ?>

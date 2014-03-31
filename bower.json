@@ -8,6 +8,7 @@
     "medium-editor-insert-plugin": "git://github.com/orthes/medium-editor-insert-plugin.git",
     "jcarousel": "git://github.com/jsor/jcarousel",
     "kibo": "git://github.com/marquete/kibo",
-    "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar"
+    "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar",
+    "etherpad": "git://github.com/ether/etherpad-lite-jquery-plugin.git"
   }
 }
