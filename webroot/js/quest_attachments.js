@@ -19,6 +19,7 @@
         return false;
     });
 
+
     function deleteDiv(id){
         $('#'+id).remove();
         qtd--;

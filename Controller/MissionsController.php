@@ -74,7 +74,6 @@ class MissionsController extends AppController {
 		$missionPhases = $this->Mission->Phase->find('all', array('conditions' => array('Phase.mission_id' => $id), 'order' => 'Phase.position'));
 
 		if($phase_number > count($missionPhases)) {
-			//throw new NotFoundException('Invalid phase');
 			$this->Session->setFlash(__("This mission/phase does not exist!"));
 			$this->redirect($this->referer());
 		}
@@ -106,7 +105,7 @@ class MissionsController extends AppController {
 		$k = 0;
 		foreach ($quests as $quest) {
 			$my_quests_id[$k] = array('quest_id' => $quest['Quest']['id']);
-			$my_quests_id2[$k] = array('foreign_key' => $quest['Quest']['id'], 'model' => 'Quest'); //'specials condiditions to search in the Attachment database'
+			$my_quests_id2[$k] = array('foreign_key' => $quest['Quest']['id'], 'model' => 'Quest'); //specials condiditions to search in the Attachment database'
 			$k++;
 		}
 
@@ -147,7 +146,6 @@ class MissionsController extends AppController {
 			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
 		}
 
-
 		//dossier files
 		$dossier_files = $this->Attachment->find('all', array(
 			'conditions' => array(
@@ -165,55 +163,8 @@ class MissionsController extends AppController {
 			)
 		));
 
-
-
 		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img', 'dossier_files'));
-	}
-
-/**
- * add method
- *
- * @return void
- */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->Mission->create();
-			if ($this->Mission->save($this->request->data)) {
-				$this->Session->setFlash(__('The mission has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
-			}
-		}
-
-		$missions = $this->Mission->find('list');		
-		$this->set(compact("missions"));
-
-	}
-
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function edit($id = null) {
-		if (!$this->Mission->exists($id)) {
-			throw new NotFoundException(__('Invalid mission'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Mission->save($this->request->data)) {
-				$this->Session->setFlash(__('The mission has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
-			$this->request->data = $this->Mission->find('first', $options);
-		}
 	}
 
 /**
