@@ -168,9 +168,9 @@ class MissionsController extends AppController {
 		));
 
 		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
-			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img'));
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img', 'dossier_files'));
 
-		$this->render('view_discussion');
+		//$this->render('view_discussion');
 	}
 
 /**

@@ -1,4 +1,10 @@
 <?php
+	//echo $this->Html->css('/components/jcarousel/examples/basic/jcarousel.basic');
+	//echo $this->Html->css('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
+	echo $this->Html->css('jcarousel');
+	//echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
+
+	echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 ?>
@@ -40,7 +46,7 @@
 
 </nav>
 
-<?php $this->end(); ?>
+<?php $this->end();?>
 
 <section class="evoke background padding top-2">
 	<div class="row evoke missions">
@@ -69,7 +75,7 @@
 			endif;
 		?>
 	  	<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
-	  	<h4><?php echo __('Created by: '); echo $this->Html->Link($organized_by['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organized_by['Organization']['id'])); ?></h4>
+	  	<!-- <h4><?php echo __('Created by: '); echo $this->Html->Link($organized_by['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organized_by['Organization']['id'])); ?></h4> -->
 		<h2><?php echo __('Mission Brief'); ?></h2>
 		<h4><?php echo h($mission['Mission']['description']); ?></h4>
 
