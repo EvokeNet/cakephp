@@ -481,6 +481,7 @@ class PanelsController extends AppController {
 */
 	public function add_quest($id, $origin = 'add_mission'){
 		if ($this->request->is('post')) {
+			//debug($this->request->data);
 			$this->Quest->create();
 			if ($this->Quest->save($this->request->data)) {
 				$this->Session->setFlash(__('The quest has been saved.'));
