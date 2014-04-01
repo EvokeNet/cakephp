@@ -6,3 +6,4 @@ webroot/uploads/*
 webroot/files/*
 Plugin/
 tmp/
+dbv/data/meta/revision
