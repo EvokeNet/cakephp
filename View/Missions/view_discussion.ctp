@@ -115,7 +115,7 @@
 			  <div class="content active" id="panel2-1">
 				<?php 
 					//Lists all projects and evidences
-					foreach($evidence as $e): ?>
+					foreach($evidences as $e): ?>
 
 					<div class="row evoke dashboard evidence">
 						<div class="medium-2 columns">
