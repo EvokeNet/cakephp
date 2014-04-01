@@ -54,8 +54,8 @@
 
 .columns h4{
 	font-family: 'SBB';
-	/*font-size: 1.25em;*/
 	text-align: center;
+	font-size: 1.2vw;
 }
 
 .columns h5{
@@ -134,6 +134,11 @@
 	margin-top:-50px;
 }
 
+.evoke.dashboard.horizontal_bar.absolute-right{
+	position: absolute; 
+	top: 25%;
+}
+
 .evoke.dashboard.vertical_bar img{
 	/*max-height: 70%;*/
 	position: absolute;
@@ -149,16 +154,17 @@
 	top:-60px;
 }
 
-.evoke.dashboard.text-align{
-	text-align: center;
-}
-
 .evoke.dashboard.position{
 	position:relative;
 }
 
 .evoke.dashboard.margin{
 	margin-top:50px;
+}
+
+.evoke.dashboard.shelve{
+	width:100%; 
+	margin-top:-100px
 }
  
 .evoke.dashboard.agent_tag{
@@ -180,11 +186,11 @@
 	/*float:left;*/
 	/*width: 80%;*/
 	/*clear:both;*/
+	padding: 10px 20px;
 }
 
-.evoke.dashboard.agent.info h5{
-	/*font-size: 2.0em;*/
-	font-size: 1.5vw;
+.evoke.dashboard.agent.info h4{
+	font-size: 2.0vw;
 	font-weight:bold;
 	line-height: 1.0em;
 	float:left;
@@ -192,15 +198,53 @@
 	font-family: 'AlegreyaRegular';
 }
 
-.evoke.dashboard.agent.info h6{
-	/*font-size: 1.2em;*/
+.evoke.dashboard.agent.info h5{
 	font-size:1.0vw;
+	line-height: 1.5em;
+	font-weight:bold;
+	text-align: start;
+	font-family: 'AlegreyaRegular';
+	clear: left;
+}
+
+.evoke.dashboard.agent.info h5 div{
+	color: #1f8cb2; 
+	display: inline; 
+	font-weight:bold;
+	font-size: 2.0vw;
+	font-family: 'AlegreyaRegular';
+}
+
+.evoke.dashboard.agent.info h6{
+	font-size: 0.6vw; 
+	color: #a2a2a2;
 	line-height: 1.0em;
 	font-weight:bold;
 	text-align: start;
 	font-family: 'AlegreyaRegular';
-	/*float:left;
-	clear:both;*/
+	clear: left;
+}
+
+.evoke.dashboard.agent-data{
+	text-align: center; 
+	width: 90%; 
+	margin: 20px auto; 
+	border-bottom: 1px solid #a7a7a7;
+}
+
+.evoke.dashboard.agent-data i{
+	color:#999999; 
+	padding-bottom:20px
+}
+
+.evoke.dashboard.agent-data p{
+	padding: 20px 0px 5px;
+	font-family: 'AlegreyaRegular';
+	font-size: 1.1vw;
+}
+
+.evoke.dashboard.agent-data.border-top{
+	border-top: 1px solid #a7a7a7;
 }
 
 .evoke.dashboard.progress{
@@ -259,12 +303,47 @@
 }
 
 .evoke.dashboard.folders{
-	margin-top: -30px;
-	margin-left: 20px;
+	font-family: 'AlegreyaRegular';
+	position: absolute; 
+	top: 70%; 
+	font-size: 1.0vw; 
+	text-align: center; 
+	width: 83%;
+	color: #1d1d1d;
 }
 
-.evoke.dashboard.folders a{
-	font-family: 'AlegreyaRegular';
-	color: #1a1a1a;
-	font-size: 1.3em;
+/*** Alternative Dashboard ***/
+
+.evoke.dashboard.tag{
+	background-color:#fff;
+	border:5px solid #000;
+	border-radius:20px;
+	max-width:550px;
+	margin: 0px auto;
+	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	overflow:hidden;
+}
+
+.evoke.dashboard.tag-padding{
+	padding: 10px 10px 0px 0px;
+}
+
+.evoke.dashboard.position.panel-margin{
+	margin-right: 100px;
+}
+
+.evoke.dashboard.titles-right{
+	text-align: end;
+}
+
+.evoke.dashboard.small-bar{
+	margin: 0px -80px;
+}
+
+.evoke.dashboard.user_pic{
+	max-height: 150px; 
+	/*max-width: 120px;*/ 
+	margin:10px 20px;
 }

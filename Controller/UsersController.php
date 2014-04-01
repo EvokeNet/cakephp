@@ -184,7 +184,7 @@ class UsersController extends AppController {
 		}
 
 		if($id != $me) {
-			$this->Session->setFlash(__('Viewing dashboard of another agent. Needs changes in informations to be displayed.'));
+			//$this->Session->setFlash(__('Viewing dashboard of another agent. Needs changes in informations to be displayed.'));
 		}
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
@@ -275,6 +275,10 @@ class UsersController extends AppController {
 
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 'missionIssues', 'issues'));
 
+		if($id == $this->getUserId())
+			$this->render('dashboard');
+		else
+			$this->render('dashboard_alternative');
 	}
 
 /**

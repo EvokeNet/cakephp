@@ -93,11 +93,11 @@ class MissionsController extends AppController {
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 
 		$this->loadModel('Organization');
-		$organized_by = $this->Organization->find('first', array(
-			'conditions' => array(
-				'Organization.id' => $mission['Mission']['organization_id']
-			)
-		));
+		// $organized_by = $this->Organization->find('first', array(
+		// 	'conditions' => array(
+		// 		'Organization.id' => $mission['Mission']['organization_id']
+		// 	)
+		// ));
 		
 		//retrieving all ids from quests of this mission..
 		$my_quests_id = array();
@@ -168,6 +168,54 @@ class MissionsController extends AppController {
 		));
 
 		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img'));
+
+		$this->render('view_discussion');
+	}
+
+/**
+ * add method
+ *
+ * @return void
+ */
+	public function add() {
+		if ($this->request->is('post')) {
+			$this->Mission->create();
+			if ($this->Mission->save($this->request->data)) {
+				$this->Session->setFlash(__('The mission has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
+			}
+		}
+
+		$missions = $this->Mission->find('list');		
+		$this->set(compact("missions"));
+
+	}
+
+/**
+ * edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function edit($id = null) {
+		if (!$this->Mission->exists($id)) {
+			throw new NotFoundException(__('Invalid mission'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Mission->save($this->request->data)) {
+				$this->Session->setFlash(__('The mission has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
+			$this->request->data = $this->Mission->find('first', $options);
+		}
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img', 'dossier_files'));
 	}
 

@@ -42,7 +42,7 @@
 
 <?php $this->end(); ?>
 
-<section class="evoke margin top-2">
+<section class="evoke background padding top-2">
 	<div class="row evoke missions">
 	  <div class="small-11 small-centered columns">
 
