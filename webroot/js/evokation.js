@@ -2,11 +2,13 @@ var file;
 var groupNameTag = document.getElementById("groupname");
 var groupName = groupNameTag.textContent || groupNameTag.innerText;
 
-var editor = new MediumEditor('#evokation_div', {
-	buttons: ['bold', 'italic', 'anchor', 'quote', 'header1', 'header2', 'unorderedlist', 'orderedlist'],
-	targetBlank: true
-});
+// var editor = new MediumEditor('#evokation_div', {
+// 	buttons: ['bold', 'italic', 'anchor', 'quote', 'header1', 'header2', 'unorderedlist', 'orderedlist'],
+// 	targetBlank: true
+// });
 
+var TEXT; // global object that contains the collaborative model
+var KB = new Kibo();
 
 gapi.load("auth:client,drive-realtime,drive-share", createOrLoadDocument);
 
@@ -23,7 +25,7 @@ function createOrLoadDocument() {
 		} else {
 			gapi.client.drive.files.insert({
 				'resource': {
-					mimeType: 'text/html',
+					mimeType: 'application/vnd.google-apps',
 					title: 'Evokation - ' + groupName
 				}
 		    }).execute(initialize);
@@ -63,33 +65,99 @@ function initializeModel(model) {
 }
 
 function onFileLoaded(doc) {
-	var text = doc.getModel().getRoot().get("text");
+
+	TEXT = doc.getModel().getRoot().get("text");
 	var evokation = document.getElementById("evokation_txt");
 
 	gapi.client.load('drive', 'v2', function() {
-		gapi.drive.realtime.databinding.bindString(text, evokation);
+		gapi.drive.realtime.databinding.bindString(TEXT, evokation);
 
-		realtimeTick(text);
+		realtimeTick();
 
 		var updateEditor = function(event) {
 			if(!event.isLocal) {
-				$("#evokation_div").html(text.getText());
+				var editor = $("#evokation_div");
+				editor.html(TEXT.getText());
 			}
 		};
 
-		text.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, updateEditor);
-	 	text.addEventListener(gapi.drive.realtime.EventType.TEXT_DELETED, updateEditor);
+		TEXT.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, updateEditor);
+	 	TEXT.addEventListener(gapi.drive.realtime.EventType.TEXT_DELETED, updateEditor);
+
+	 	setButtons($("#evokation_div"));
 
 	});
 
 }
 
-function realtimeTick(text) {
-	$("#evokation_div").html(text.getText());
+function realtimeTick() {
+	$("#evokation_div").html(TEXT.getText());
 	$("#evokation_div").on('input', function() {
-	 	text.setText($(this).html());
+	 	TEXT.setText($(this).html());
 	});
 }
+
+function insertHtmlAtCursor(html) {
+
+    var sel, range;
+    if (window.getSelection) {
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+
+            var span = document.createElement('span');
+            span.className = 'image';
+            span.setAttribute("contenteditable", false);
+            span.innerHTML = html;
+
+            range.insertNode( span );
+        }
+    } else if (document.selection && document.selection.createRange) {
+        document.selection.createRange().innerHtml = html;
+    }
+}
+
+function setButtons(element) {
+	var images = element.find('.image');
+	var buttonGroup = $('<ul/>', {
+		class: "button-group"
+	});
+	var deleteButton = $('<li/>');
+	var trashIcon = $('<i/>', {
+		class: "fa fa-trash-o"
+	});
+
+	if (parseInt(element.width) >= element.attr('data-size')) {
+		var resizeButton = $('<li><button class="button tiny bg-black white"><i class="fa fa-arrows-alt"></i></button></li>');
+	} else {
+		var resizeButton = $('<li><button class="button tiny bg-black white"><i class="fa fa-compress"></i></button></li>');
+	};
+
+	for (var i = images.length - 1; i >= 0; i--) {
+		if($(images[i]).children('.button').length <= 0) {
+			var delButton = $('<button/>', {
+				class: "button tiny bg-black white",
+				id: "btn_delete",
+				'data-parent': 'image'+i
+			});
+
+			delButton.append(trashIcon);
+			deleteButton.append(delButton);
+			buttonGroup.append(resizeButton, deleteButton);
+
+			$(images[i]).attr('id', 'image'+i);
+			$(images[i]).append(buttonGroup);
+		 }
+	};
+	
+}
+
+
+/**
+*	jQuery handlers
+*
+**/
 
 /**
 * This AJAX call updates the title and abstract fields of an existing
@@ -102,6 +170,7 @@ $("#evokation_draft_button").click(function(){
 	var abstract = $("#evokation_abstract").val();
 
 	$.ajax({
+		dataType: 'text',
 		type: "POST",
 		url: WEBROOT + "groups_users/storeFileInfo",
 		data: { 'id': id, 'title': title, 'abstract': abstract },
@@ -113,3 +182,95 @@ $("#evokation_draft_button").click(function(){
 		}
 	});
 });
+
+// Upload image
+$("#image_uploader").change(function() {
+	if($(this).val() !== '') {
+		$("#image_form").ajaxForm({
+			beforeSend: function() {
+				// insertHtmlAtCursor('<i class="fa fa-spinner fa-spin" contenteditable="false"></i>');
+			},
+			uploadProgress: function(event, position, total, percentComplete) {
+				// insertHtmlAtCursor(percentComplete);
+			},
+			success: function(msg) {
+				var element = $("#evokation_div");
+				insertHtmlAtCursor(msg);
+				setButtons(element);
+				TEXT.setText(element.html());
+			},
+			complete: function(xhr) {
+				console.log('completed');
+			}
+		});
+		$("#image_form").submit();
+	}
+});
+
+// Image buttons
+$(document).on('click', '#btn_delete', function(event) {
+	var id = '#' + $(this).attr('data-parent');
+	$(this).remove();
+	$(id).remove();
+	TEXT.setText($("#evokation_div").html());
+});
+
+var caret = $('<span/>', {
+	class: 'caret'
+});
+var line = $('<p/>');
+var editor = $("#evokation_div");
+
+editor.append(caret);
+
+$(document).on({
+	click: function(e) {
+		if(e.target.tagName == 'P') {
+			console.log(e.pageX - e.offsetX);
+			if($(".caret").length > 0) {
+				// caret.insertAfter(e.target);
+				caret.css({
+					'left': e.pageX
+				});
+				caret.show();
+			} else {
+				// caret.insertAfter(e.target);
+				caret.css({
+					'left': e.pageX
+				});
+				caret.show();
+			}
+		}
+		// $('.caret').blink(800);
+	},
+	keydown: function(e) {
+		switch(KB.lastKey()) {
+			case 'backspace':
+				e.preventDefault();
+				break;
+			case 'end':
+				e.preventDefault();
+				break;
+			case 'page_up':
+				e.preventDefault();
+				break;
+			case 'page_down':
+				e.preventDefault();
+				break;
+			case 'home':
+				e.preventDefault();
+				break;
+			case 'enter':
+				line.insertAfter(caret);
+				break;
+		}
+	}
+
+
+
+}, '#evokation_div, body');
+
+// Caret blink effect
+// $.fn.blink = function (speed) {
+//     window.setInterval($(this).toggle(), speed);
+// };

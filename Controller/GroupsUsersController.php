@@ -2,6 +2,12 @@
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
+App::uses('Folder', 'Utility');
+App::uses('File', 'Utility');
+
+use Google\Client;
+use Google\Service\Drive;
+
 
 /**
  * GroupsUsers Controller
@@ -26,10 +32,9 @@ class GroupsUsersController extends AppController {
 	public function index() {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
-
+		
 		$userid = $this->getUserId();
 		$username = explode(' ', $this->getUserName());
-
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
@@ -38,13 +43,13 @@ class GroupsUsersController extends AppController {
 	}
 
 /**
- * view method
+ * edit method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function view($group_id = null) {
+	public function edit($group_id = null) {
 
 		$this->loadModel('Setting');
 		$gAuth = new GoogleAuthentication(
@@ -111,12 +116,6 @@ class GroupsUsersController extends AppController {
 				'GroupsUser.group_id' => $group_id
 			)
 		));
-		
-		//check to see if i am part of the group (and allowed to edit it)
-		$me = $this->getUserId();
-		if(!$this->isMember($me, $group_id) && !$this->isOwner($me, $group_id)) {
-			$this->Session->setFlash(__('This should be substituted by the outsider view of the project, since you are not a member of this group. '));
-		}
 
 		$this->loadModel('Evokation');
 		$this->Evokation->recursive = -1;
@@ -127,14 +126,57 @@ class GroupsUsersController extends AppController {
 			)
 		));
 
-		if(!empty($evokation)) {
-			$this->request->data = $evokation;
-		}
-
-
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$this->set(compact('group', 'users', 'user'));
+		if (!empty($evokation['Evokation']['gdrive_file_id'])) {
+
+			$client = new Google_Client();
+			$client->setAccessToken($access_token);
+			$drive = new Google_Service_Drive($client);
+
+			$file = $drive->files->get($evokation['Evokation']['gdrive_file_id']);
+
+			$embedLink = $file->alternateLink;
+
+		} else {
+
+			$client = new Google_Client();
+			$client->setAccessToken($access_token);
+			$drive = new Google_Service_Drive($client);
+			
+			$file = new Google_Service_Drive_DriveFile;
+			$file->setTitle('Evokation - Group ' . $group['Group']['title']);
+			$file->setDescription('Evokation collaborative file.');
+			$file->setMimeType('text/html');
+
+			$parent = new Google_Service_Drive_ParentReference();
+			$parent->setId(Configure::read('gdrive_evoke_folder_id'));
+			$file->setParents(array($parent));
+			
+			$createdFile = $drive->files->insert($file, array(
+				'convert' => 'true',
+				'mimeType' => 'text/html',
+				'uploadType' => 'multipart',
+				'data' => 'Your Evokation goes here'
+			));
+
+			$evokation = array();
+			$evokation['Evokation']['group_id'] = $group['Group']['id'];
+			$evokation['Evokation']['gdrive_file_id'] = $createdFile->id;
+			$evokation['Evokation']['title'] = 'Your title goes here';
+			$evokation['Evokation']['abstract'] = 'Your abstract goes here';
+			$evokation['Evokation']['language'] = $this->Session->read('Config.language');
+
+			$this->Evokation->create();
+			$this->Evokation->save($evokation);
+
+			$embedLink = $createdFile->embedLink;
+
+		}
+		
+		$this->request->data = $evokation;
+
+		$this->set(compact('group', 'users', 'user', 'embedLink'));
 
 	}
 
@@ -182,6 +224,7 @@ class GroupsUsersController extends AppController {
 		}
 	}
 
+
 /**
  * storeFileId method
  *
@@ -199,48 +242,29 @@ class GroupsUsersController extends AppController {
 
 			if(!in_array($type, array('jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'bmp', 'BMP'))) {
 
-				$dir = $this->webroot . 'uploads' . DS . $this->getUserId() . $this->request->data['Evokation']['id'];
-
+				$dir = 'uploads' . DS . $this->request->data['Evokation']['id'] . DS . $this->Auth->user('User.id');
 				if (!file_exists($dir) and !is_dir($dir)) {
-
 					$folder = new Folder();
-					if($folder->create($dir)) {
-						$filename = $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
-						if(move_uploaded_file($this->request->data['Evokation']['image_uploader']['tmp_name'], $filename)) {
-							return $this->Html->image($filename);
-						} else {
-							return false;
-						}
+					if(!$folder->create($dir)) {
+						return false;
 					}
+				} 
 
+				$filename = WWW_ROOT . $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
+				if(move_uploaded_file($this->request->data['Evokation']['image_uploader']['tmp_name'], $filename)) {
+					$url = $this->webroot . $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
+					$size = getimagesize($filename);
+					return '<img src="' . $url . '" width="100%" data-size="' .$size[0]. '"/>';
 				} else {
 					return false;
 				}
+
 			}
 			// $data = file_get_contents($this->request->data['image_uploader']['tmp_name']);
 			// $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 		}
 	}
 
-// /**
-//  * add method
-//  *
-//  * @return void
-//  */
-// 	public function add() {
-// 		if ($this->request->is('post')) {
-// 			$this->GroupsUser->create();
-// 			if ($this->GroupsUser->save($this->request->data)) {
-// 				$this->Session->setFlash(__('The groups user has been saved.'));
-// 				return $this->redirect(array('action' => 'index'));
-// 			} else {
-// 				$this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
-// 			}
-// 		}
-// 		$users = $this->GroupsUser->User->find('list');
-// 		$groups = $this->GroupsUser->Group->find('list');
-// 		$this->set(compact('users', 'groups'));
-// 	}
 
 /**
  * add method
@@ -330,7 +354,7 @@ class GroupsUsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit2($id = null) {
 		if (!$this->GroupsUser->exists($id)) {
 			throw new NotFoundException(__('Invalid groups user'));
 		}
@@ -370,36 +394,6 @@ class GroupsUsersController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
-
-	public function isMember($user_id = null, $id = null){
-		if(!$user_id || !$id) return false;
-		$users = $this->GroupsUser->find('all', array(
-			'conditions' => array(
-				'GroupsUser.group_id' => $id
-			)
-		));
-
-		foreach ($users as $usr) {
-				if($usr['User']['id'] == $user_id) return true;
-		}
-		return false;
-	}
-
-	public function isOwner($user_id = null, $id = null){
-		if(!$user_id || !$id) return false;
-		$this->loadModel('Group');
-		$group = $this->Group->find('first', array(
-			'conditions' => array(
-				'user_id' => $user_id,
-				'Group.id' => $id
-			)
-		));
-
-		if(empty($group)) return false;
-		return true;
-	}
-
 
 /**
  * admin_index method
@@ -492,5 +486,4 @@ class GroupsUsersController extends AppController {
 			$this->Session->setFlash(__('The groups user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}
-}
+	}}

@@ -6,26 +6,36 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo __('Agent ').$username[0]; ?></h1>
+			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
 
-	<section class="top-bar-section">
+	<section class="evoke top-bar-section">
+
 		<!-- Right Nav Section -->
 		<ul class="right">
+			<li class="name">
+				<h1><?= sprintf(__('Hi %s'), $user['User']['name']) ?></h1>
+			</li>
 			<li class="has-dropdown">
-				<a href="#">Settings</a>
+				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
 				<ul class="dropdown">
-					<li><a href="<?php echo $this->Html->url(array('action' => 'logout')); ?>">Sign out</a></li>
+					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></h1></li>
+					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
+				</ul>
+			</li>
+			<li  class="has-dropdown">
+				<a href="#"><?= __('Language') ?></a>
+				<ul class="dropdown">
+					<li><?= $this->Html->link(__('English'), array('action'=>'changeLanguage', 'en')) ?></li>
+					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
 				</ul>
 			</li>
 		</ul>
 
-		<!-- Left Nav Section -->
-		<ul class="left">
-			<li><a href="#">Dashboard</a></li>
-		</ul>
+		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
+
 	</section>
 </nav>
 

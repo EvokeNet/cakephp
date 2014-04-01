@@ -42,6 +42,7 @@ class AppController extends Controller {
     );
 
     public $user = null;
+    public $lang = null;
 
 /**
  * beforeFilter method
@@ -51,7 +52,50 @@ class AppController extends Controller {
 	public function beforeFilter() {
         $this->Auth->allow('add', 'fb_login', 'index', 'view');
         $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
+
         $cuser = $this->Auth->user();
+
+        $this->_checkBrowserLanguage();
+    }
+
+    /**
+     * Read the browser language and sets the website language to it if available. 
+     * 
+     */
+    protected function _checkBrowserLanguage(){
+        if(!$this->Session->check('Config.language')){
+             
+            //checking the 1st favorite language of the user's browser 
+            $languageHeader = $this->request->header('Accept-language');
+            $languageHeader = substr($languageHeader, 0, 2);
+             
+            //available languages
+            switch ($languageHeader){
+                case "en":
+                    $this->Session->write('Config.language', 'en');
+                    break;
+                case "es":
+                    $this->Session->write('Config.language', 'es');
+                    break;
+                default:
+                    $this->Session->write('Config.language', 'en');
+            }
+        }
+    }
+
+    public function changeLanguage($lang){
+        if(!empty($lang)){
+            if($lang == 'es'){
+                $this->Session->write('Config.language', 'es');
+            }
+ 
+            if($lang == 'en'){
+                $this->Session->write('Config.language', 'en');
+            }
+ 
+            //in order to redirect the user to the page from which it was called
+            $this->redirect($this->referer());
+        }
     }
 
     public function getUserId() {

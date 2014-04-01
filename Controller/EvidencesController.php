@@ -55,10 +55,25 @@ class EvidencesController extends AppController {
  *
  * @return void
  */
-	public function add($mission_id, $phase_id) {
+	public function add($mission_id, $phase_id, $quest_id = null) {
+		if(!$quest_id) {
+			$this->$redirect($this->referer());
+		}
+		//checking if quest exists..
+		$this->loadModel('Quest');
+		$quest = $this->Quest->find('first', array(
+			'conditions' => array(
+				'Quest.id' => $quest_id
+			)
+		));
+
+		if(empty($quest)) {
+			$this->$redirect($this->referer());
+		}
+
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$insertData = array('user_id' => $this->getUserId(), 'mission_id' => $mission_id, 'phase_id' => $phase_id); 
+		$insertData = array('user_id' => $this->getUserId(), 'mission_id' => $mission_id, 'phase_id' => $phase_id, 'quest_id' => $quest_id); 
 
 		$this->Evidence->create();
 		if ($this->Evidence->save($insertData)) {
@@ -80,11 +95,12 @@ class EvidencesController extends AppController {
 		if (!$this->Evidence->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
+		$me = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $id)));
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Evidence->save($this->request->data)) {
 				$this->Session->setFlash(__('The evidence has been saved.'));
-				return $this->redirect(array('action' => 'view', $this->Evidence->id));
+				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], $me['Phase']['position']));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}
