@@ -558,3 +558,15 @@ button, div, p, span, a,
 	/*margin-right: 10px;*/
 	/*margin-top: 3px;*/
 }
+
+.evoke.position{
+	position:relative;
+}
+
+.evoke.horizontal_bar.left{
+	margin: 8px -110px 0px;
+}
+
+.evoke.text-align{
+	text-align: center;
+}

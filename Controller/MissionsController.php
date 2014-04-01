@@ -94,11 +94,11 @@ class MissionsController extends AppController {
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 
 		$this->loadModel('Organization');
-		$organized_by = $this->Organization->find('first', array(
-			'conditions' => array(
-				'Organization.id' => $mission['Mission']['organization_id']
-			)
-		));
+		// $organized_by = $this->Organization->find('first', array(
+		// 	'conditions' => array(
+		// 		'Organization.id' => $mission['Mission']['organization_id']
+		// 	)
+		// ));
 		
 		//retrieving all ids from quests of this mission..
 		$my_quests_id = array();
@@ -151,6 +151,8 @@ class MissionsController extends AppController {
 
 		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img'));
+
+		$this->render('view_discussion');
 	}
 
 /**

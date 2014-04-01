@@ -278,7 +278,6 @@
 	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
 	echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
 
-	echo $this->Html->script('/components/tinyscrollbar/lib/jquery.tinyscrollbar', array('inline' => false));
 
 ?>
 
@@ -286,7 +285,4 @@
 
 	$('.jcarousel').jcarousel('scroll', '3');
 
-	$(document).ready(function(){
-	    $("#scrollbar1").tinyscrollbar();
-	});
 </script>
