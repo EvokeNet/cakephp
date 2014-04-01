@@ -74,7 +74,6 @@ class MissionsController extends AppController {
 		$missionPhases = $this->Mission->Phase->find('all', array('conditions' => array('Phase.mission_id' => $id), 'order' => 'Phase.position'));
 
 		if($phase_number > count($missionPhases)) {
-			//throw new NotFoundException('Invalid phase');
 			$this->Session->setFlash(__("This mission/phase does not exist!"));
 			$this->redirect($this->referer());
 		}
@@ -106,7 +105,7 @@ class MissionsController extends AppController {
 		$k = 0;
 		foreach ($quests as $quest) {
 			$my_quests_id[$k] = array('quest_id' => $quest['Quest']['id']);
-			$my_quests_id2[$k] = array('foreign_key' => $quest['Quest']['id'], 'model' => 'Quest'); //'specials condiditions to search in the Attachment database'
+			$my_quests_id2[$k] = array('foreign_key' => $quest['Quest']['id'], 'model' => 'Quest'); //specials condiditions to search in the Attachment database'
 			$k++;
 		}
 
@@ -127,6 +126,13 @@ class MissionsController extends AppController {
 			)
 		));
 
+		$this->loadModel('Dossier');
+		$dossier = $this->Dossier->find('first', array(
+			'conditions' => array(
+				'mission_id' => $id
+			)
+		));
+
 		//needed to be able to display quests' media..
 		$this->loadModel('Attachment');
 		$attachments = $this->Attachment->find('all', array(
@@ -139,6 +145,14 @@ class MissionsController extends AppController {
 		if(!is_null($id)){
 			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
 		}
+
+		//dossier files
+		$dossier_files = $this->Attachment->find('all', array(
+			'conditions' => array(
+				'Attachment.foreign_key' => $dossier['Dossier']['id'],
+				'Attachment.model' => 'Dossier'
+			)
+		));
 
 		$this->loadModel('Evidence');
 		$my_evidences = $this->Evidence->find('all', array(
@@ -198,6 +212,7 @@ class MissionsController extends AppController {
 			$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
 			$this->request->data = $this->Mission->find('first', $options);
 		}
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img', 'dossier_files'));
 	}
 
 /**

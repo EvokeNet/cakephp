@@ -6,28 +6,38 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo $user['User']['name']; ?></h1>
+			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
 
-	<section class="top-bar-section">
+	<section class="evoke top-bar-section">
+
 		<!-- Right Nav Section -->
 		<ul class="right">
+			<li class="name">
+				<h1><?= sprintf(__('Hi %s'), $user['User']['name']) ?></h1>
+			</li>
 			<li class="has-dropdown">
-				<a href="#"><?= __('Settings') ?></a>
+				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
 				<ul class="dropdown">
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li>
-					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
+					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></h1></li>
+					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
+				</ul>
+			</li>
+			<li  class="has-dropdown">
+				<a href="#"><?= __('Language') ?></a>
+				<ul class="dropdown">
+					<li><?= $this->Html->link(__('English'), array('action'=>'changeLanguage', 'en')) ?></li>
+					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
 				</ul>
 			</li>
 		</ul>
 
-		<!-- Left Nav Section -->
-		<ul class="left">
-			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li>
-		</ul>
+		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
+
 	</section>
+
 </nav>
 
 <?php $this->end(); ?>
@@ -62,6 +72,15 @@
 	  	<h4><?php echo __('Created by: '); echo $this->Html->Link($organized_by['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organized_by['Organization']['id'])); ?></h4>
 		<h2><?php echo __('Mission Brief'); ?></h2>
 		<h4><?php echo h($mission['Mission']['description']); ?></h4>
+
+		<h4><?= __('Mission Dossier')?></h4>
+		<div>
+			<?php 
+				foreach ($dossier_files as $file) {
+					echo $file['Attachment']['attachment'];
+				}
+			?>
+		</div>
 
 		<h2><?php echo __('Quests: '); echo h($mission['Mission']['title']); ?></h2>
 

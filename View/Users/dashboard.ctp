@@ -33,14 +33,12 @@
 					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
 				</ul>
 			</li>
-			<li>
-				<?php
-					/*
-					echo $this->Form->create('', array('controller' => 'app', 'action'=>'changeLang'));
-					echo $this->Form->hidden('language', array('value'=>'pt'));
-					echo $this->Form->end('Port');
-					*/
-				?>
+			<li  class="has-dropdown">
+				<a href="#"><?= __('Language') ?></a>
+				<ul class="dropdown">
+					<li><?= $this->Html->link(__('English'), array('action'=>'changeLanguage', 'en')) ?></li>
+					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
+				</ul>
 			</li>
 		</ul>
 

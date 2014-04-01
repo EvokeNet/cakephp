@@ -154,7 +154,20 @@ class Mission extends AppModel {
 	            'conditions' => array(
 	                'Attachment.model' => 'Mission',
 	            ),
-	    )
+	    ),
+	    'Dossier' => array(
+			'className' => 'Dossier',
+			'foreignKey' => 'mission_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
 	);
 
 

@@ -31,17 +31,9 @@ class UsersController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'logout', 'register');
-
-        /*if($this->action == 'changeLang') {
-            foreach ($this->request->data as $key => $value) {
-                //$this->changeLang($value['language']);
-                $this->Session->write('Config.language', $value['language']);
-                $this->action = 'dashboard';
-                $this->dashboard();
-            }
-        }*/
+        $this->Auth->allow('add', 'logout', 'register');        
     }
+
 
 /**
  * login method

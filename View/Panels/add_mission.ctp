@@ -6,27 +6,36 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo $username[0]; ?></h1>
+			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
 
-	<section class="top-bar-section">
+	<section class="evoke top-bar-section">
+
 		<!-- Right Nav Section -->
 		<ul class="right">
+			<li class="name">
+				<h1><?= sprintf(__('Hi %s'), $username[0]) ?></h1>
+			</li>
 			<li class="has-dropdown">
-				<a href="#"><?= __('Settings') ?></a>
+				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
 				<ul class="dropdown">
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
-					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
+					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></h1></li>
+					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
+				</ul>
+			</li>
+			<li  class="has-dropdown">
+				<a href="#"><?= __('Language') ?></a>
+				<ul class="dropdown">
+					<li><?= $this->Html->link(__('English'), array('action'=>'changeLanguage', 'en')) ?></li>
+					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
 				</ul>
 			</li>
 		</ul>
 
-		<!-- Left Nav Section -->
-		<ul class="left">
-			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></li>
-		</ul>
+		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
+
 	</section>
 </nav>
 
@@ -39,13 +48,15 @@
 			<h1><?= __('Creating Mission')?><?php if(isset($id) && !is_null($id)) : echo ': ' . $mission['Mission']['title']; endif;?></h1>
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
-				<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= __('Phases') ?></a></dd>
-				<dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= __('Mission Dossier') ?></a></dd>
-				<dd class="<?php echo $badges_tag ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
-				<dd class="<?php echo $points_tag ?>"><a href="#points"><?= __('Points') ?></a></dd>
+				<?php if(isset($id) && !is_null($id)) : ?>
+					<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= __('Phases') ?></a></dd>
+					<dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= __('Mission Dossier') ?></a></dd>
+					<dd class="<?php echo $badges_tag ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
+					<dd class="<?php echo $points_tag ?>"><a href="#points"><?= __('Points') ?></a></dd>
+				<?php endif; ?>
 			</dl>
 			<div class="tabs-content">
-				<div class="content <?php echo $mission_tag ?> content large-10 columns" id="mission">
+				<div class="content <?php echo $mission_tag ?> large-10 columns" id="mission">
 					<div class="form">
 
 						<?php 
@@ -55,7 +66,7 @@
  							   			'controller' => 'panels',
  							   			'action' => 'add_mission', $id
  							   		),
-									'enctype' => 'multipart/form-data'					
+									'enctype' => 'multipart/form-data'
 								));
 							} else {
 								echo $this->Form->create('Mission', array(
@@ -71,9 +82,9 @@
 							<?php
 								if(isset($id) && !is_null($id)) {
 									echo '<legend>' . __('Edit Mission') .'</legend>'; 
-									echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title')));
-									echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description')));
-									if(!is_null($mission_img)) :
+									echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title'), 'required' => true));
+									echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description'), 'required' => true));
+									if(!is_null($mission_img) && !empty($mission_img)) :
 										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
 										echo '<div class="input file"><label for="Attachment0Attachment">Change Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 									else :
@@ -100,8 +111,8 @@
 									));
 								} else {
 									echo '<legend>'. __('Add a Mission') . '</legend>'; 
-									echo $this->Form->input('title', array('label' => __('Title')));
-									echo $this->Form->input('description', array('label' => __('Description')));
+									echo $this->Form->input('title', array('label' => __('Title'), 'required' => true));
+									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
 									echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 									echo $this->Form->hidden('form_type', array('value' => 'mission'));
 									echo $this->Form->input('MissionIssue.issue_id', array(
@@ -121,34 +132,11 @@
 					</div>
 				</div>
 				<div class="content <?php echo $phases_tag ?> large-10 columns" id="phases">
-					<div class="phases form">
-						<?php echo $this->Form->create('Phase', array(
- 							   		'url' => array(
- 							   			'controller' => 'panels',
- 							   			'action' => 'add_phase', $id)
-									)
-								); ?>
-							<fieldset>
-								<legend><?php echo __('Add a Phase'); ?></legend>
-							<?php
-								echo $this->Form->input('name', array('label' => __('Name')));
-								echo $this->Form->input('description', array('label' => __('Description')));
-								echo $this->Form->hidden('mission_id', array('value' => $id));
-								echo $this->Form->hidden('form_type', array('value' => 'phase'));
-								echo $this->Form->input('position');
-							?>
-							</fieldset>
-							<button class="button small" type="submit">
-								<?php echo __('Add') ?>
-							</button>
-							<?php echo $this->Form->end(); ?>
-							<button class="button secondary small">
-								<?php echo $this->Html->Link(__('Back'), array('controller' => 'panels', 'action' => 'add_mission', $id, 'mission')); ?>
-							</button>
-					</div>
-					<?php 
-					foreach ($phases as $phase) { ?>
-
+					<div class="large-9 columns">
+						<?php if(empty($phases)) :
+							echo '<h4>' . __('Your mission will not be accessible until it has at least one phase.') . '</h4>';
+						else :
+							foreach ($phases as $phase) : ?>
 							<table class="large-8 columns">
 								<thead>
 									<tr>
@@ -157,7 +145,7 @@
 										</td>
 										<td>
 											<!-- lightbox to add quest to certain phase -->
-				  							<a href="#" data-reveal-id="myModalQuest-<?php echo $phase['Phase']['id']; ?>" data-reveal><?php echo __('Add a Quest');?></a> | <?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_phase', $id, $phase['Phase']['id'], 'add_mission'));?>
+					  						<a href="#" data-reveal-id="myModalQuest-<?php echo $phase['Phase']['id']; ?>" data-reveal><?php echo __('Add a Quest');?></a> | <?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_phase', $id, $phase['Phase']['id'], 'add_mission'));?>
 										</td>
 									</tr>
 								</thead>
@@ -182,16 +170,96 @@
 								?>
 								<a class="close-reveal-modal">&#215;</a>
 							</div>
-
-
-					<?php }?>
-
+						<?php endforeach; ?>
+						<?php endif; ?>
+					</div>
+					<div class="large-9 columns">
+						<button class="button small" href="#" data-reveal-id="myModalPhase" data-reveal><?php echo __('Add a Phase');?></button>
+						<!-- <button class="button secondary small">
+							<?php echo $this->Html->Link(__('Back'), array('controller' => 'panels', 'action' => 'add_mission', $id, 'mission')); ?>
+						</button> -->		
+					</div>
+					<div id="myModalPhase" class="phases form reveal-modal tiny" data-reveal>
+						<?php echo $this->Form->create('Phase', array(
+ 							   		'url' => array(
+ 							   			'controller' => 'panels',
+ 							   			'action' => 'add_phase', $id)
+									)
+								); ?>
+							<fieldset>
+								<legend><?php echo __('Add a Phase'); ?></legend>
+							<?php
+								echo $this->Form->input('name', array('label' => __('Name')));
+								echo $this->Form->input('description', array('label' => __('Description')));
+								echo $this->Form->hidden('mission_id', array('value' => $id));
+								echo $this->Form->hidden('form_type', array('value' => 'phase'));
+								echo $this->Form->input('position');
+							?>
+							</fieldset>
+							<button class="button small" type="submit">
+								<?php echo __('Add') ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
+							<a class="close-reveal-modal">&#215;</a>
+					</div>
 				</div>
 				<div class="content <?php echo $dossier_tag ?>" id="dossier">
 					<h4>
 						<?= __('Create a dossier by adding files that might be useful for agents to complete this mission!') ?>
-
 					</h4>
+					<?php 
+						if(!empty($dossier) && !is_null($dossier)) {
+						
+							echo $this->Form->create('Dossier', array(
+	 						   		'url' => array(
+	 						   			'controller' => 'panels',
+	 						   			'action' => 'dossier', $id, $dossier['Dossier']['id'] 
+	 						   		),
+	 						   		'enctype' => 'multipart/form-data'
+							));
+						} else {
+							echo $this->Form->create('Dossier', array(
+	 						   		'url' => array(
+	 						   			'controller' => 'panels',
+	 						   			'action' => 'dossier', $id
+	 						   		),
+	 						   		'enctype' => 'multipart/form-data'
+							));
+						}
+						echo $this->Form->hidden('mission_id', array('value' => $id));
+						if(!empty($dossier) && !is_null($dossier)) {
+							echo $this->Form->hidden('id', array('value' => $dossier['Dossier']['id']));
+						}
+
+						echo "<label>".__('Attachments'). "</label>";
+			            echo '<div id="fileInputHolderD">';
+			            echo "<ul>";
+
+			            if(!is_null($dossier) && !empty($dossier)) {
+							$k = 0;
+							foreach ($dossier_files as $file) {
+				                echo "<li>";
+				                echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $file['Attachment']['attachment'] .'</label>';
+				                
+				                echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $file['Attachment']['id'] .'">';
+				                echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/thumb_'.$file['Attachment']['attachment'] . '"/>';
+
+				                echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
+
+				                $k++;
+				            }
+						} else {
+							echo "nothing yet..";
+						}
+
+			            echo "</ul>";
+			            echo '</div>';
+			            echo '<button href="#" id="newFileD" class="button tiny">+ File</button>';
+			            echo '<br><br>';
+
+			            echo '<button class="button small" type="submit">'. __('Save dossier') . '</button>';
+						echo $this->Form->end();
+					?>
 				</div>
 				<div class="content <?php echo $badges_tag ?>" id="badges">
 					<p>
@@ -205,7 +273,39 @@
 				</div>
 			</div>
 			<!-- encerrar tudo -->
-			<?php echo $this->Html->Link(__('Return to Admin Panel'), array('controller' => 'panels', 'action' => 'index'), array( 'class' => 'button small')); ?>	
+			<?php 
+				if((empty($phases) || is_null($phases)) && isset($id) && !is_null($id)):?>
+					<button class="button small" href="#" data-reveal-id="myModalExit" data-reveal><?php echo __('Return to Admin Panel');?></button>
+					<div id="myModalExit" class="reveal-modal tiny" data-reveal>
+						<h4><?= __('Are you sure you want to exit to Admin Panel?') ?></h4>
+						<p><?= __('Your mission has no Phase and, therefore, will not be displayed to other agents. Please add a Phase to your mission!') ?></p>
+						<br><br>
+						<?= $this->Html->Link(__('Stay in this page'), array('controller' => 'panels', 'action' => 'add_mission', $id), array( 'class' => 'button small')); ?>
+						<?= $this->Html->Link(__('Exit anyway'), array('controller' => 'panels', 'action' => 'index', 'missions'), array( 'class' => 'button small alert')); ?>
+						<a class="close-reveal-modal">&#215;</a>
+					</div>
+				<?php else :
+					echo $this->Html->Link(__('Return to Admin Panel'), array('controller' => 'panels', 'action' => 'index', 'missions'), array( 'class' => 'button small')); 
+				endif; ?>
 		</div>
 	</div>
 </section>
+
+<?php echo $this->Html->script('dossier_attachments'); ?>
+
+    <!-- necessary function to add remove the already existing questions -->
+    <script type="text/javascript">
+    	<?php 
+        	$i = 0;
+	        for($i=0; $i<$k;$i++) {
+	            echo "$('#-". $i ."').click(function() {
+	                var attId = $('#Attachmentprev-". $i ."Id').val().replace('NO-', '');
+	                $('#img-". $i ."').remove();
+	                $('#label-". $i ."').remove();
+	                $('#Attachmentprev-". $i ."Id').val(attId);
+	                $('#-". $i ."').remove();
+	                return false;
+	        	    });";
+        	}
+        ?>
+    </script>
