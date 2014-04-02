@@ -641,8 +641,10 @@ button, div, p, span, a,
 	font-size: 1.2vw;
 	margin: 0;
 	padding: 0.8em 1em;
-	height: 65px;
-	min-width: 200px;
+	/*height: 65px;
+	min-width: 200px;*/
+	height: 2.6vw;
+	min-width: 8vw;
 	text-align: start;
 }
 
@@ -665,6 +667,13 @@ button, div, p, span, a,
 .evoke.button-bg{
 	background-color:#fff;
 	border-radius:10px;
-	width: 80%;
+	/*width: 80%;*/
 	margin: 20px auto;
+}
+
+.evoke.button-bg span{
+	margin-left: 5%;
+	font-size: 1.2vw;
+	color: #666666;
+	font-weight: bold;
 }

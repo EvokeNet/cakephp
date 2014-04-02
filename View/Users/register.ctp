@@ -7,7 +7,7 @@
 <section class="evoke login background">
 	<div class="row full-width">
 	  <div class="small-12 medium-6 large-5 small-centered columns">
-	  	<img src = '/evoke/webroot/img/evoke-69.png' alt = "" style = "margin: 0px auto; display: block; margin-bottom: 50px;">
+	  	<img src = '<?= $this->webroot.'/img/evoke-69.png' ?>' alt = "" style = "margin: 0px auto; display: block; margin-bottom: 50px;">
 
 	  	<div class="row full-width">
 			<div class="small-4 medium-8 large-4 small-centered columns" style = "margin-top: -600px;">
