@@ -86,7 +86,13 @@ class MissionsController extends AppController {
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$evidences = $this->Mission->getEvidences($id);
+		//$evidences = $this->Mission->getEvidences($id);
+
+		$evidences = $this->Mission->Evidence->find('all', array('order' => array('Evidence.created DESC')));
+		//debug($evidence);
+
+		$this->loadModel('Evokation');
+		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));
 
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
 		$missionIssues = $this->Mission->getMissionIssues($id);
@@ -185,7 +191,15 @@ class MissionsController extends AppController {
 		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup'));
 
-		//$this->render('view_discussion');
+		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'users', 'organized_by', 'mission_img'));
+
+		if($missionPhase['Phase']['type'] == 0)
+			$this->render('view_discussion');
+		else
+			$this->render('view_project');
 	}
 
 /**
@@ -231,6 +245,7 @@ class MissionsController extends AppController {
 			$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
 			$this->request->data = $this->Mission->find('first', $options);
 		}
+
 	}
 
 /**

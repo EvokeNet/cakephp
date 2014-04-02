@@ -249,14 +249,6 @@ button, div, p, span, a,
 	position: relative;
 }
 
-.evoke .panel{
-	height: 550px;
-	overflow: scroll;
-	overflow-x: hidden;
-	z-index: 1;
-	position: relative;
-}
-
 .evoke .leadercloud{
 	height:500px;
 	z-index: 1;
@@ -274,6 +266,22 @@ button, div, p, span, a,
 	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+}
+
+.evoke .panel{
+	height: 550px;
+	overflow: scroll;
+	overflow-x: hidden;
+	z-index: 1;
+	position: relative;
+}
+
+.evoke .screen-box-height{
+	height: 550px;
+	overflow: scroll;
+	overflow-x: hidden;
+	z-index: 1;
+	position: relative;
 }
 
 .evoke .evidence-list{
@@ -339,6 +347,11 @@ button, div, p, span, a,
 	margin-right: 10px;
 	border-right: 3px solid #125167;
 	border-bottom: 3px solid #125167;
+}
+
+.evoke .button.general.green{
+	background-color: #20c475;
+	border-right: 3px solid #137244;
 }
 
 .evoke .button {
@@ -516,24 +529,30 @@ button, div, p, span, a,
 	background-image: -webkit-linear-gradient(top, #1B7C9D 0%, #125167 100%);
 	/* W3C Markup, IE10 Release Preview */ 
 	background-image: linear-gradient(to bottom, #1B7C9D 0%, #125167 100%);
-	padding: 20px 5px 10px;
-	margin-bottom: 5px;
-}
-
-.evoke.evidence a{
-	font-color: #fff;
-}
-
-.evoke.evidence ul{
-	list-style-type: none;
+	/*padding: 20px 5px 10px;*/
+	padding: 20px 5px 0px;
+	margin-bottom: 2px;
 }
 
 .evoke.evidence a{
 	color:#fff; 
+	font-family: 'AlegreyaRegular';
 }
 
-.evoke.evidence li{
-	text-align: center;  
+.evoke.evidence h1{
+	font-family: 'AlegreyaRegular';
+	font-size:2.0vw;
+}
+
+.evoke.evidence h6{
+	font-family: 'AlegreyaRegular';
+	font-size: 1.2vw;
+}
+
+.evoke.evidence ul{
+	list-style-type: none;
+	margin-left:0;
+	color:#fff;
 }
 
 .evoke.evokation.follow{
@@ -569,4 +588,12 @@ button, div, p, span, a,
 
 .evoke.text-align{
 	text-align: center;
+}
+
+.evoke.evidence-icons{
+	margin-bottom: 5px;
+}
+
+.evoke.evidence-icons.social i{
+	color:#fff;
 }
