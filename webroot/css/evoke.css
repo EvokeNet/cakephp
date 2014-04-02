@@ -516,7 +516,7 @@ button, div, p, span, a,
 	padding: 10px;
 }*/
 
-.evoke.evidence{
+.evoke.evidence.blue-box{
 	/* IE10 Consumer Preview */ 
 	background-image: -ms-linear-gradient(top, #1B7C9D 0%, #125167 100%);
 	/* Mozilla Firefox */ 
@@ -534,25 +534,52 @@ button, div, p, span, a,
 	margin-bottom: 2px;
 }
 
-.evoke.evidence a{
+.evoke.evidence.blue-box a{
 	color:#fff; 
 	font-family: 'AlegreyaRegular';
 }
 
-.evoke.evidence h1{
+.evoke.evidence.blue-box h1{
 	font-family: 'AlegreyaRegular';
 	font-size:2.0vw;
 }
 
-.evoke.evidence h6{
+.evoke.evidence.blue-box h6{
 	font-family: 'AlegreyaRegular';
 	font-size: 1.2vw;
 }
 
-.evoke.evidence ul{
+.evoke.evidence.blue-box ul{
 	list-style-type: none;
 	margin-left:0;
 	color:#fff;
+}
+
+/* Titles with bar right aligned */
+
+.evoke.titles-right{
+	text-align: end;
+}
+
+.evoke.titles-right h4{
+	font-size: 1.2vw;
+}
+
+.evoke.small-bar{
+	/*margin: 0px -60px;*/
+	margin: 0px -28px;
+}
+
+.evoke.titles-left{
+	text-align: start;
+}
+
+.evoke.titles-left h4{
+	font-size: 1.2vw;
+}
+
+.evoke.medium-bar{
+	margin: 0px -160px;
 }
 
 .evoke.evokation.follow{
@@ -583,7 +610,7 @@ button, div, p, span, a,
 }
 
 .evoke.horizontal_bar.left{
-	margin: 8px -110px 0px;
+	margin: 8px -80px 0px;
 }
 
 .evoke.text-align{
@@ -596,4 +623,48 @@ button, div, p, span, a,
 
 .evoke.evidence-icons.social i{
 	color:#fff;
+}
+
+.evoke.button.like-button{
+	/*border-radius:10px;
+	-webkit-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	-moz-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	font-size:1.2vw;
+	margin:0;
+	padding:0.8em 1em;*/
+
+	border-radius: 10px;
+	-webkit-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	-moz-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	font-size: 1.2vw;
+	margin: 0;
+	padding: 0.8em 1em;
+	height: 65px;
+	min-width: 200px;
+	text-align: start;
+}
+
+.evoke.button.like-button h6{
+	border-left: 2px solid #63afc9;
+	color: #ffffff;
+	font-size: 1.2vw;
+	display: inline;
+	padding-left: 10px;
+}
+
+.evoke.button.like-button.comment-button{
+	background-color:#c65862;
+}
+
+.evoke.button.like-button.comment-button h6{
+	border-left:2px solid #d78a91;
+}
+
+.evoke.button-bg{
+	background-color:#fff;
+	border-radius:10px;
+	width: 80%;
+	margin: 20px auto;
 }

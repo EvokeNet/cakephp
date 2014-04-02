@@ -48,7 +48,7 @@
 	  </div>
 	  <div class="large-6 columns">
 	  		<div class = "evoke position">
-	  			<div class = "evoke text-align"><img src = '/evoke/webroot/img/hqnored.png' width="60%"></div>
+	  			<div class = "evoke text-align"><img src = '<?= $this->webroot.'/img/hqnored.png' ?>' width="60%"></div>
 	  		
 	  			<div class = "evoke ribbon-position">
 			  		<div class="ribbon-wrapper">
@@ -69,8 +69,7 @@
 	
 
 	<div class = "evoke position">
-		<img src = '/evoke/webroot/img/small_bar.png' class = "evoke horizontal_bar left">
-		<div class = "evoke titles"><h4><?php echo strtoupper(__('Mission Activities'));?></h4></div>
+		<?= $this->element('left_titlebar', array('title' => __('Mission Activities'))) ?>
 	</div>
 
 	<div class="jcarousel-wrapper carousel-width">
@@ -108,7 +107,7 @@
     <div class="row full-width">
 	  <div class="large-8 columns">
 	  	<div class = "evoke position">
-			<img src = '/evoke/webroot/img/small_bar.png' class = "evoke horizontal_bar left">
+			<img src = '<?= $this->webroot.'/img/small_bar.png' ?>' class = "evoke horizontal_bar left">
 			<dl class="tabs evoke titles" data-tab>
 				  <dd><h4><?php echo strtoupper(__('Discussions'));?></h4></dd>
 				  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('Most Voted'))?></a></dd>
@@ -118,48 +117,11 @@
 			<div class="evoke tabs-content screen-box dashboard panel">
 			  <div class="content active" id="panel2-1">
 				<?php 
-					//Lists all projects and evidences
-					foreach($evidences as $e): ?>
-
-					<div class="row evoke evidence">
-							<div class="medium-2 columns">
-						  		<div class = "evoke dashboard text-align">
-						  			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
-
-						  			<a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));?>">
-									<h6><?= $e['User']['name']?></h6>
-									</a>
-						  		</div>
-				  			</div>
-
-							<div class="medium-8 columns">
-								<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?>">
-								<h1><?= $e['Evidence']['title']?></h1>
-								</a>
-							</div>
-
-							<div class="medium-2 columns">
-								<div>
-									<?php foreach($missionIssues as $mi): 
-									if($e['Mission']['id'] == $mi['Mission']['id']):?>
-
-									<div class = "evoke evidence-icons"><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?></div>
-
-									<div class = "evoke evidence-icons"><h6><?= $mi['Issue']['name'] ?></h6></div>
-
-									<div class = "evoke evidence-icons"><h6><?= date('F j, Y', strtotime($e['Evidence']['created'])) ?></h6></div>
-									<!-- <ul>
-										<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?></li>
-										<li><h6><?= $mi['Issue']['name'] ?></h6></li>
-										<li><h6><?= date('F j, Y', strtotime($e['Evidence']['created'])) ?></h6></li>
-									</ul> -->
-									
-								<?php break; endif; endforeach;?>
-								</div>
-							</div>	
-						</div>
-
-				<?php endforeach; ?>
+		    		//Lists all projects and evidences
+		    		foreach($evidences as $e): 
+		    				echo $this->element('evidence_blue_box', array('e' => $e)); 
+		    		endforeach; 
+	    		?>
 			  </div>
 			  <div class="content" id="panel2-2">
 			  </div>
@@ -170,7 +132,7 @@
 	  		
 
 		<div class = "evoke position" style = "margin: 0px 1%;">
-			<img src = '/evoke/webroot/img/espiral.png' style = " width: 100%;">
+			<img src = '<?= $this->webroot.'/img/espiral.png' ?>' style = " width: 100%;">
 			<div class = "evoke todo-list">
 				<div class = "evoke todo-list content">
 					<h1><?= strtoupper(__('To-Do List')) ?></h1>
