@@ -67,8 +67,12 @@ class GroupsUsersController extends AppController {
 			)
 		));
 
-		if(!empty($evokation)) {
+		if (!empty($evokation)) {
 			$this->request->data = $evokation;
+		}
+
+		if ($response->getCode() == 0) {
+			
 		}
 
 		$this->set(compact('group', 'users'));
