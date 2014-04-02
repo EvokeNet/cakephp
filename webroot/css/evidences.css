@@ -44,6 +44,14 @@
 	padding: 20px 0px;
 }
 
+.evoke.evidence-tag i{
+	color:#999999;
+}
+
+.evoke.evidence.margin-button{
+	margin-top:40px;
+}
+
 .evoke.evidence-share{
 	background-color: #273141;
 	opacity: 0.7;

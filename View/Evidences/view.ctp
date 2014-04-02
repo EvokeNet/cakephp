@@ -58,15 +58,15 @@
 
 	  <div class="medium-2 large-2 columns">
 	  	<div class="evoke evidence-tag text-align">
-	  		<img src='<?= $this->webroot.'/img/Leslie_Knope.png' ?>' style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
+	  		<img src='<?= $this->webroot.'img/Leslie_Knope.png' ?>' style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
 		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1>
 		 	
 		 	<p><?php echo $evidence['User']['biography'] ?></p>
-		 	<i class="fa fa-facebook-square fa-lg"></i>&nbsp;
-			<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
-			<i class="fa fa-twitter-square fa-lg"></i>
+		 	<i class="fa fa-facebook-square fa-2x"></i>&nbsp;
+			<i class="fa fa-google-plus-square fa-2x"></i>&nbsp;
+			<i class="fa fa-twitter-square fa-2x"></i>
 
-			<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button"><?php echo __('Edit Discussion');?></a>
+			<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button"><?php echo __('Edit Discussion');?></a></div>
 	 	</div>
 	  </div>
 	  <div class="medium-8 large-8 columns">
@@ -79,18 +79,10 @@
 
 		  	<?php echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
 
-		  	<?php foreach ($comment as $c): ?>
-		  		<div>
-					<tr>
-					<td>
-						<h4><?php echo (__('Agent ').$c['User']['name']); ?></h4>
-						<h6><?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h6>
-						<p><?php echo $c['Comment']['content']; ?></p>
-						<hr class="sexy_line" />
-					</td>
-					</tr>
-				</div>
-			<?php endforeach; ?>
+		  	<?php foreach ($comment as $c): 
+					echo $this->element('comment_box', array('c' => $c));
+	  			endforeach; 
+  			?>
 		</div>
 	  </div>
 	  <div class="medium-2 large-2 columns">
@@ -116,10 +108,10 @@
 		<div class = "evoke evidence-share">
 		  	
 			<!-- Voting lightbox button -->
-		  	<div class = "evoke button-bg"><a href="#" class="evoke button like-button" data-reveal-id="myModalVote" data-reveal><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></a><span><?= count($comment) ?></span></div>
+		  	<div class = "evoke button-bg"><a href="#" class="evoke button like-button" data-reveal-id="myModalVote" data-reveal><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></a></div>
 
 		  	<!-- Commenting lightbox button -->
-		  	<div class = "evoke button-bg"><a href="#" class="evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Comment');?></h6></a></div>
+		  	<div class = "evoke button-bg"><a href="#" class="evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Comment');?></h6></a><span><?= count($comment) ?></span></div>
 			
 		</div>
 

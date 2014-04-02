@@ -22,7 +22,7 @@
 
 		<!-- Right Nav Section -->
 		<ul class="right">
-			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src='<?= $this->webroot.'/img/Leslie_Knope.png' ?>' class = "evoke top-bar icon"/></a></li>
+			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src='<?= $this->webroot.'img/Leslie_Knope.png' ?>' class = "evoke top-bar icon"/></a></li>
 			<li class="name">
 				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1></a>
 			</li>
@@ -68,7 +68,7 @@
 					  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
 					  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
 					</dl>
-					<img src = '<?= $this->webroot.'/img/small_bar.png' ?>' class = "evoke dashboard horizontal_bar absolute-right">
+					<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke dashboard horizontal_bar absolute-right">
 				</div>
 			</div>
 		</div>
@@ -77,10 +77,10 @@
 	<div class="row full-width">
 		<div class="medium-3 columns">
 			<div class = "evoke dashboard tag">
-				<img src='<?= $this->webroot.'/img/chip105.png' ?>' width = "100%"/>
+				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%"/>
 
 				<div class="row">
-					  <div class="small-4 columns"><a href = '<?= $this->webroot.'/img/ron_swanson.jpg' ?>'><img src='<?= $this->webroot.'/img/ron_swanson.jpg' ?>' class = "evoke dashboard user_pic"/></a></div>
+					  <div class="small-4 columns"><a href = '<?= $this->webroot.'img/ron_swanson.jpg' ?>'><img src='<?= $this->webroot.'img/ron_swanson.jpg' ?>' class = "evoke dashboard user_pic"/></a></div>
 					  <div class="small-8 columns evoke dashboard tag-padding">
 						<div class = "evoke dashboard agent info">
 							<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
@@ -124,7 +124,7 @@
 							<a href = "" class = "evoke button general"><?php echo __('See All');?></a>
 						</div>
 
-						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'/img/vertical_bar.png' ?>' class= "top-height"/></div>
+						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height"/></div>
 					</div>
 
 					<div class = "evoke screen-box allies"></div>
@@ -138,13 +138,13 @@
 							<a href = "" class = "evoke button general"><?php echo __('See All');?></a>
 						</div>
 
-						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'/img/vertical_bar.png' ?>' class= "top-height-two"/></div>
+						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height-two"/></div>
 					</div>
 					<div class = "evoke screen-box allies"></div>
 				</div>
 
 				<div class = "evoke text-align position">
-					<img src = '<?= $this->webroot.'/img/vertical_bar.png' ?>' class = "badges_bar"/>
+					<img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class = "badges_bar"/>
 				</div>
 
 			</div>
@@ -196,6 +196,6 @@
 		</div>
 	</div>
 
-	<img src = '<?= $this->webroot.'/img/parabolic_left.png' ?>' class = "evoke parabolic_left"/>
+	<img src = '<?= $this->webroot.'img/parabolic_left.png' ?>' class = "evoke parabolic_left"/>
 
 </section>
