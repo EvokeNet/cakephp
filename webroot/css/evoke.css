@@ -194,6 +194,16 @@ button, div, p, span, a,
 	background-size: cover;
 }
 
+.evoke.background-gray{
+	background: url('../img/bg-gray.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
 .evoke .agent-tag{
 	background-image: url('../img/agent_tag.png');
 	background-repeat: no-repeat;
@@ -676,4 +686,23 @@ button, div, p, span, a,
 	font-size: 1.2vw;
 	color: #666666;
 	font-weight: bold;
+}
+
+.evoke.comment-box{
+	background-color:#dfdfdf;
+	padding: 20px 30px;
+	margin-top: 10px;
+	border-radius: 5px;
+}
+
+.evoke.comment-box h4, h6, p{
+	font-family: 'AlegreyaRegular';
+}
+
+.evoke.comment-box h4, p{
+	font-size:1.1vw;
+}
+
+.evoke.comment-box h6{
+	font-size:0.9vw;
 }
