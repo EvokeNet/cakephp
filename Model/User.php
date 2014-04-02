@@ -4,12 +4,15 @@ App::uses('AppModel', 'Model');
  * User Model
  *
  * @property Role $Role
+ * @property Facebook $Facebook
  * @property Comment $Comment
  * @property Evidence $Evidence
+ * @property EvokationFollower $EvokationFollower
  * @property GroupRequest $GroupRequest
  * @property Group $Group
  * @property Point $Point
  * @property UserBadge $UserBadge
+ * @property UserFriend $UserFriend
  * @property UserIssue $UserIssue
  * @property UserOrganization $UserOrganization
  * @property Vote $Vote
@@ -79,6 +82,11 @@ class User extends AppModel {
 		if (isset($this->data[$this->alias]['password'])) {
 			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
 		}
+
+	    if(!empty($this->data['User']['tmp_password'])) {
+            $this->data['User']['password'] = AuthComponent::password($this->data['User']['tmp_password']); 
+        }
+     
 		return true;
 	}
 
@@ -98,7 +106,7 @@ class User extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
 	);
 
 /**
@@ -122,6 +130,19 @@ class User extends AppModel {
 		),
 		'Evidence' => array(
 			'className' => 'Evidence',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'EvokationFollower' => array(
+			'className' => 'EvokationFollower',
 			'foreignKey' => 'user_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -174,6 +195,19 @@ class User extends AppModel {
 		),
 		'UserBadge' => array(
 			'className' => 'UserBadge',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'UserFriend' => array(
+			'className' => 'UserFriend',
 			'foreignKey' => 'user_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -259,13 +293,19 @@ class User extends AppModel {
 			'offset' => '',
 			'finderQuery' => '',
 		),
-		'Friend' => array(
-			'className' => 'User',
-			'joinTable' => 'friends_users',
-			'foreignKey' => 'user_from',
-			'associationForeignKey' => 'user_to',
-			'unique' => true
-		)
+		// 'UserFriend' => array(
+		// 	'className' => 'UserFriend',
+		// 	'joinTable' => 'user_friends',
+		// 	'foreignKey' => 'user_id',
+		// 	'associationForeignKey' => 'friend_id',
+		// 	'unique' => 'keepExisting',
+		// 	'conditions' => '',
+		// 	'fields' => '',
+		// 	'order' => '',
+		// 	'limit' => '',
+		// 	'offset' => '',
+		// 	'finderQuery' => '',
+		// )
 	);
 
 }

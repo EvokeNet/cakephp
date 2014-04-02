@@ -20,8 +20,8 @@ class Group extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-	public function getGroups() {
-		return $this->find('all');
+	public function getGroups($options = null) {
+		return $this->find('all', $options);
 	}
 	
 /**
@@ -33,6 +33,13 @@ class Group extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Mission' => array(
+			'className' => 'Mission',
+			'foreignKey' => 'mission_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

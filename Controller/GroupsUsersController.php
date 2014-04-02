@@ -5,6 +5,10 @@ APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
 App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
 
+use Google\Client;
+use Google\Service\Drive;
+
+
 /**
  * GroupsUsers Controller
  *
@@ -29,8 +33,8 @@ class GroupsUsersController extends AppController {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
 		
-		$userid = $this->Auth->user('User.id');
-		$username = explode(' ', $this->Auth->user('User.name'));
+		$userid = $this->getUserId();
+		$username = explode(' ', $this->getUserName());
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
@@ -122,14 +126,57 @@ class GroupsUsersController extends AppController {
 			)
 		));
 
-		if(!empty($evokation)) {
-			$this->request->data = $evokation;
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		if (!empty($evokation['Evokation']['gdrive_file_id'])) {
+
+			$client = new Google_Client();
+			$client->setAccessToken($access_token);
+			$drive = new Google_Service_Drive($client);
+
+			$file = $drive->files->get($evokation['Evokation']['gdrive_file_id']);
+
+			$embedLink = $file->alternateLink;
+
+		} else {
+
+			$client = new Google_Client();
+			$client->setAccessToken($access_token);
+			$drive = new Google_Service_Drive($client);
+			
+			$file = new Google_Service_Drive_DriveFile;
+			$file->setTitle('Evokation - Group ' . $group['Group']['title']);
+			$file->setDescription('Evokation collaborative file.');
+			$file->setMimeType('text/html');
+
+			$parent = new Google_Service_Drive_ParentReference();
+			$parent->setId(Configure::read('gdrive_evoke_folder_id'));
+			$file->setParents(array($parent));
+			
+			$createdFile = $drive->files->insert($file, array(
+				'convert' => 'true',
+				'mimeType' => 'text/html',
+				'uploadType' => 'multipart',
+				'data' => 'Your Evokation goes here'
+			));
+
+			$evokation = array();
+			$evokation['Evokation']['group_id'] = $group['Group']['id'];
+			$evokation['Evokation']['gdrive_file_id'] = $createdFile->id;
+			$evokation['Evokation']['title'] = 'Your title goes here';
+			$evokation['Evokation']['abstract'] = 'Your abstract goes here';
+			$evokation['Evokation']['language'] = $this->Session->read('Config.language');
+
+			$this->Evokation->create();
+			$this->Evokation->save($evokation);
+
+			$embedLink = $createdFile->embedLink;
+
 		}
+		
+		$this->request->data = $evokation;
 
-		$user_data = $this->Auth->user();
-		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['User']['id'])));
-
-		$this->set(compact('group', 'users', 'user'));
+		$this->set(compact('group', 'users', 'user', 'embedLink'));
 
 	}
 
@@ -195,48 +242,29 @@ class GroupsUsersController extends AppController {
 
 			if(!in_array($type, array('jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'bmp', 'BMP'))) {
 
-				$dir = $this->webroot . 'uploads' . DS . $this->Auth->user('User.id') . $this->request->data['Evokation']['id'];
-
+				$dir = 'uploads' . DS . $this->request->data['Evokation']['id'] . DS . $this->Auth->user('User.id');
 				if (!file_exists($dir) and !is_dir($dir)) {
-
 					$folder = new Folder();
-					if($folder->create($dir)) {
-						$filename = $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
-						if(move_uploaded_file($this->request->data['Evokation']['image_uploader']['tmp_name'], $filename)) {
-							return $this->Html->image($filename);
-						} else {
-							return false;
-						}
+					if(!$folder->create($dir)) {
+						return false;
 					}
+				} 
 
+				$filename = WWW_ROOT . $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
+				if(move_uploaded_file($this->request->data['Evokation']['image_uploader']['tmp_name'], $filename)) {
+					$url = $this->webroot . $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
+					$size = getimagesize($filename);
+					return '<img src="' . $url . '" width="100%" data-size="' .$size[0]. '"/>';
 				} else {
 					return false;
 				}
+
 			}
 			// $data = file_get_contents($this->request->data['image_uploader']['tmp_name']);
 			// $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 		}
 	}
 
-// /**
-//  * add method
-//  *
-//  * @return void
-//  */
-// 	public function add() {
-// 		if ($this->request->is('post')) {
-// 			$this->GroupsUser->create();
-// 			if ($this->GroupsUser->save($this->request->data)) {
-// 				$this->Session->setFlash(__('The groups user has been saved.'));
-// 				return $this->redirect(array('action' => 'index'));
-// 			} else {
-// 				$this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
-// 			}
-// 		}
-// 		$users = $this->GroupsUser->User->find('list');
-// 		$groups = $this->GroupsUser->Group->find('list');
-// 		$this->set(compact('users', 'groups'));
-// 	}
 
 /**
  * add method
@@ -285,10 +313,9 @@ class GroupsUsersController extends AppController {
  */
 	public function send($id, $group_id){
 
-		$user_data = $this->Auth->user();
-		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 		
-		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$recipient = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $id)));
 
@@ -296,8 +323,8 @@ class GroupsUsersController extends AppController {
 
 		/* Adds requests */
 		$this->loadModel('GroupRequest');
-		$insertData = array('user_id' => $user_data['id'], 'group_id' => $group_id);
-		$exists = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $user_data['id'], 'GroupRequest.group_id' => $group_id)));
+		$insertData = array('user_id' => $this->getUserId(), 'group_id' => $group_id);
+		$exists = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $this->getUserId(), 'GroupRequest.group_id' => $group_id)));
 
 		if(!$exists){
 	        if($this->GroupRequest->save($insertData)){

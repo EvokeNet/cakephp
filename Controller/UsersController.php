@@ -31,8 +31,9 @@ class UsersController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'logout', 'register');
+        $this->Auth->allow('add', 'logout', 'register');        
     }
+
 
 /**
  * login method
@@ -40,7 +41,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function login() {
-
+		//debug($this->Auth);
 		$facebook = new Facebook(array(
 			'appId' => Configure::read('fb_app_id'),
 			'secret' => Configure::read('fb_app_secret'),
@@ -79,9 +80,10 @@ class UsersController extends AppController {
 					$user['User']['facebook'] = $user_profile['link'];
 
 					if($this->User->save($user)) {
+						$user['User']['id'] = $this->User->id;
 						$this->Auth->login($user);
 						// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
-						return $this->redirect(array('action' => 'dashboard', $this->User->id));
+						return $this->redirect(array('action' => 'dashboard'));
 					} else {
 						$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
 						return $this->redirect(array('action' => 'login'));
@@ -97,16 +99,19 @@ class UsersController extends AppController {
 					$this->User->set('facebook_token', $token);
 					$this->User->save();
 
+					$user['User']['id'] = $this->User->id;
 					$this->Auth->login($user);
 					// $this->Session->write('Auth.User.id', $user['User']['id']);
-					return $this->redirect(array('action' => 'dashboard', $this->User->id));
+					return $this->redirect(array('action' => 'dashboard'));
 
 				}
 				
 			}
 
 		} else if ($this->Auth->login()) {
-			return $this->redirect($this->Auth->redirect());
+
+			return $this->redirect(array('action' => 'dashboard'));
+
 		} else {
 			$fbLoginUrl = $facebook->getLoginUrl();
 			$this->set(compact('fbLoginUrl'));
@@ -141,6 +146,10 @@ class UsersController extends AppController {
  * @return void
  */
 	public function register() {
+		//check to see if logged in
+		if(!is_null($this->Auth->user())) 
+			return $this->redirect(array('action' => 'dashboard'));
+		
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -164,24 +173,128 @@ class UsersController extends AppController {
  * @return void
  */
 	public function dashboard($id = null) {
+		$me = $this->getUserId();
+		//$this->changeLang('pt');
+		if(is_null($id)){
+			//send him to his on dashboard
+			$id = $me;
+		}
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 
+		if($id != $me) {
+			//$this->Session->setFlash(__('Viewing dashboard of another agent. Needs changes in informations to be displayed.'));
+		}
+
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
+		$user_data = $this->Auth->user();
+		//debug($user_data);
+		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
+
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
+		//debug($evidence);
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));
 
+		$this->loadModel('Group');
+		$groups = $this->Group->find('all', array('joins' => array(
+        array(
+            'table' => 'groups_users',
+            'alias' => 'GroupsUsers',
+            'type' => 'INNER',
+            'conditions' => array(
+                'GroupsUsers.user_id' => $id
+            )
+        ), array(
+            'table' => 'groups',
+            'alias' => 'Groups',
+            'type' => 'INNER',
+            'conditions' => array(
+                'Groups.id = GroupsUsers.group_id'
+            )
+        )
+    )));
+		//debug($groups);
+		// $options['joins'] = array(
+		//     array('table' => 'evokation_followers',
+		//         'alias' => 'EvokationFollowers',
+		//         'type' => 'inner',
+		//         'conditions' => array(
+		//             'EvokationFollowers.user_id' => $id
+		//         )
+		//     ),
+		//     array('table' => 'evokations',
+		//         'alias' => 'Evokations',
+		//         'type' => 'inner',
+		//         'conditions' => array(
+		//             'Evokations.id = EvokationFollowers.evokation_id'
+		//         )
+		//     ),
+		//     array('table' => 'groups',
+		//         'alias' => 'Groups',
+		//         'type' => 'inner',
+		//         'conditions' => array(
+		//             'Evokations.group_id = Group.id'
+		//         )
+		//     )
+		// );
+
+		// $evokationsFollowing = $this->User->EvokationFollower->find('all');
+		// debug($evokationsFollowing);
+		// //die();
+
+		// $options2['joins'] = array(
+		//     array('table' => 'groups_users',
+		//         'alias' => 'GroupsUsers',
+		//         'type' => 'inner',
+		//         'conditions' => array(
+		//             'GroupsUsers.user_id' => $id
+		//         )
+		//     ),
+		//     array('table' => 'evokations',
+		//         'alias' => 'Evokations',
+		//         'type' => 'inner',
+		//         'conditions' => array(
+		//             'Evokations.group_id = GroupsUsers.group_id'
+		//         )
+		//     )
+		// );
+
+		// $myEvokations = $this->Evokation->find('all', $options2['joins']);
+		//debug($myEvokations);
+
 		$this->loadModel('Mission');
-		$missions = $this->Mission->find('all');
+		$missions = $this->Mission->find('all', array(
+			'order' => array('Mission.id DESC')
+		));
+
+		$mission_ids = array();
+		foreach ($missions as $mission) {
+			$mission_ids[] = array('Attachment.foreign_key' => $mission['Mission']['id'], 'Attachment.model' => 'Mission');
+		}
+
+		$this->loadModel('Attachment');
+		$imgs = $this->Attachment->find('all', array(
+			'order' => array('Attachment.foreign_key DESC'),
+			'conditions' => array(
+				'OR' => $mission_ids
+			)
+		));
+
 		$missionIssues = $this->Mission->MissionIssue->find('all');
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
-		$this->set(compact('user', 'evidence', 'evokations', 'missions', 'missionIssues', 'issues'));
+		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 'missionIssues', 'issues', 'imgs'));
 
+		if($id == $this->getUserId())
+			$this->render('dashboard');
+		else
+			$this->render('dashboard_alternative');
 	}
 
 /**
@@ -200,6 +313,11 @@ class UsersController extends AppController {
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_id)));
 
+		$user_data = $this->getUserData();
+		$users = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
+		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $id, 'UserFriend.friend_id' => $user_data['id'])));
+
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
 
 		$this->loadModel('Mission');
@@ -208,7 +326,7 @@ class UsersController extends AppController {
 		$missionIssues = $this->Mission->MissionIssue->find('all');
 		$missionIssue = $this->Mission->MissionIssue->find('all', array('conditions' => array('MissionIssue.issue_id' => $id)));
 
-		$this->set(compact('user', 'evidence', 'issue', 'missions', 'missionIssues', 'missionIssue'));
+		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'issue', 'missions', 'missionIssues', 'missionIssue'));
 
 	}
 
@@ -219,13 +337,11 @@ class UsersController extends AppController {
  * @return void
  */
 	public function leaderboard() {
+		$userid = $this->getUserId();
 
-		$userid = $this->Auth->user('User.id');
-
-		$username = explode(' ', $id = $this->Auth->user('User.name'));
+		$username = explode(' ', $this->getUserName());
 		
 		$this->set(compact('userid', 'username'));
-
 	}
 
 /**
@@ -238,7 +354,9 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add_friend($user_to = null) {
-		$this->request->data['User']['id'] = $this->Auth->user('User.id');;
+
+		
+		$this->request->data['User']['id'] = $this->getUserId();
 		$this->request->data['Friend']['id'] = $user_to;
 
 		if($result = $this->User->saveAll($this->request->data)) {
@@ -256,7 +374,7 @@ class UsersController extends AppController {
  */
 	public function remove_friend($user_to = null) {
 
-		$user_from = $this->Auth->user('User.id');
+		$user_from = $this->getUserId();
 
 		if($this->User->FriendsUser->deleteAll(array('FriendsUser.user_from' => $user_from, 'FriendsUser.user_to' => $user_to))) {
 			$this->redirect(array('action' => 'view', $user_to));
@@ -278,15 +396,24 @@ class UsersController extends AppController {
 			'_self' => false,
 			'_friended' => false
 		);
-		$user_from = $this->Auth->user('User.id');
+
+
+		$user_from = $this->getUserId();
 
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-		
+
 		$user = $this->User->read(null, $id);
 
-		$username = explode(' ', $this->Auth->user('User.name'));
+
+		//check if it's myself, if it is, send to dashboard
+		if($user_from == $id) {
+			$this->redirect(array('action' => 'dashboard', $id));
+		}
+
+		$username = explode(' ', $this->getUserName());
+
 		$this->set(compact('username'));
 
 		$userFriends = $this->User->find('first', array(
@@ -343,9 +470,26 @@ class UsersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		if(is_null($id)){
+			$id = $this->getUserId();
+		}
+
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
+
+
+		//check to see if user is an admin
+		//if so, he can edit whoever he likes
+		//otherwise, you are not allowed to edit agents but
+		// yourself and will be redirected home
+		if($this->getUserRole() != 1) {
+			if($id != $this->getUserId()) {
+				$this->Session->setFlash(__("You can't edit other users. Permission denied."));	
+				$this->redirect($this->referer());
+			}
+		}
+
 
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$user = $this->User->find('first', $options);
@@ -362,21 +506,27 @@ class UsersController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			
 			if (!empty($this->request->data)) {
+				$this->request->data['User']['role_id'] = $user['User']['role_id'];
 
-				$user = $this->request->data['User']['id'];
 
-				$this->User->UserIssue->deleteAll(array('UserIssue.user_id' => $user), false);
+				$userid = $this->request->data['User']['id'];
 
-				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
+				$this->User->UserIssue->deleteAll(array('UserIssue.user_id' => $userid), false);
+
+				/*foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
 			        $insertData = array('user_id' => $user, 'issue_id' => $a);
+>>>>>>> 6580eca106b204456b88e62813d87ce66225a5b8
 
 			        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $id, 'UserIssue.issue_id' => $a)));
 			        if(!$exists) $this->User->UserIssue->saveAssociated($insertData);
-			    }
-
+			    }*/
+			    
 			    if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash(__('The user has been saved.'));
-					return $this->redirect(array('action' => 'dashboard', $id));
+
+			    	$this->Auth->login($user);
+			    	$this->Session->setFlash(__('The user has been saved.'));
+					return $this->redirect(array('action' => 'dashboard'));
+
 				} 
 		        
 			} else $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
@@ -395,6 +545,21 @@ class UsersController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		if(is_null($id)){
+			$id = $this->getUserId();
+		}
+
+		//check to see if user is an admin
+		//if so, he can delete whoever he likes
+		//otherwise, you are not allowed to edit agents but
+		// yourself and will be redirected home
+		if($this->getUserRole() != 1) {
+			if($id != $this->getUserId()) {
+				$this->Session->setFlash(__("You can't delete other users. Permission denied."));	
+				$this->redirect($this->referer());
+			}
+		}
+
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
@@ -493,4 +658,5 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

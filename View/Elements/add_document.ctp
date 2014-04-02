@@ -6,12 +6,12 @@
 		echo $this->Form->input('title', array(
 			'label' => '',
 			'type' => 'text',
-			'placeholder' => 'Insert document title here'
+			'placeholder' => __('Insert document title here')
 		));
 		echo $this->Form->input('description', array(
 			'label' => '',
 			'type' => 'textarea',
-			'placeholder' => 'Insert document description here'
+			'placeholder' => __('Insert document description here')
 		));
 		echo $this->Form->input('video', array(
 			'label' => '',
@@ -20,13 +20,13 @@
 			'id' => 'document_upload'
 		));
 		echo $this->Html->link(
-			'Pick a file',
+			__('Pick a file'),
 			'#',
 			array('class' => 'button secondary black file btn', 'id' => 'f_document_upload')
 		);
 		echo $this->Html->tag(
 			'div',
-			'Select a file from your computer',
+			__('Select a file from your computer'),
 			array('class' => 'file path gray f_file_path')
 		);
 	echo $this->Form->end(array(
@@ -58,7 +58,7 @@
 	$(document).on('closed', '[data-reveal]', function () {
 		var modal = $(this);
 		modal.children('form').trigger("reset");
-		$(".f_file_path").html("Select a file from your computer");
+		$(".f_file_path").html("<?= __('Select a file from your computer') ?>");
 	});
 
 </script>

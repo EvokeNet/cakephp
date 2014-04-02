@@ -6,97 +6,114 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><a href="#">Agent <?php echo $username[0]; ?></a></h1>
+			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
 
-	<section class="top-bar-section">
+	<section class="evoke top-bar-section">
+
 		<!-- Right Nav Section -->
 		<ul class="right">
+			<li class="name">
+				<h1><?= sprintf(__('Hi %s'), $username[0]) ?></h1>
+			</li>
 			<li class="has-dropdown">
-				<a href="#">Settings</a>
+				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
 				<ul class="dropdown">
-					<li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>">Sign out</a></li>
+					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></h1></li>
+					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
+				</ul>
+			</li>
+			<li  class="has-dropdown">
+				<a href="#"><?= __('Language') ?></a>
+				<ul class="dropdown">
+					<li><?= $this->Html->link(__('English'), array('action'=>'changeLanguage', 'en')) ?></li>
+					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
 				</ul>
 			</li>
 		</ul>
 
-		<!-- Left Nav Section -->
-		<ul class="left">
-			<li><a href="#">Dashboard</a></li>
-		</ul>
+		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
+
 	</section>
 </nav>
 
-<?php $this->end();?>
+<?php $this->end(); ?>
 
-<section class="evoke margin top-2">
-	<div class="row evoke max-width">
+<section class="margin top-2">
+	<div class="row max-width">
 		<div class="large-12 columns">
-			<h1>Admin Panel</h1>
+			<h1><?= __('Admin Panel') ?></h1>
 			<dl class="tabs" data-tab>
-				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations">Organizations</a></dd>
-				<dd class="<?php echo $missions_tab; ?>"><a href="#missions">Missions</a></dd>
-				<?php if($flags['_admin']) echo '<dd class="<?php echo $levels_tab; ?>"><a href="#levels">Levels</a></dd>'; ?>
-				<dd class="<?php echo $badges_tab; ?>"><a href="#badges">Badges</a></dd>
-				<dd class="<?php echo $users_tab; ?>"><a href="#users">Users</a></dd>
-				<?php if($flags['_admin']) echo '<dd class="<?php echo $media_tab; ?>"><a href="#media">Media</a></dd>'; ?>
-				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics">Statistics</a></dd>
+				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><?= __('Organizations') ?></a></dd>
+				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><?= __('Missions') ?></a></dd>
+				<?php if($flags['_admin']) echo '<dd class="<?php echo $levels_tab; ?>"><a href="#levels">'.__('Levels').'</a></dd>'; ?>
+				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
+				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
+				<?php if($flags['_admin']) echo '<dd class="<?php echo $media_tab; ?>"><a href="#media">'.__('Media').'</a></dd>'; ?>
+				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><?= __('Statistics') ?></a></dd>
 			</dl>
 			<div class="tabs-content">
 				<div class="content <?php echo $organizations_tab; ?>" id="organizations">
-					<p>
-						<?php echo $this->Form->submit('+ Organizations', array('id' => 'new_org', 'class' => 'button small')); ?>
-						<div id="orgsForm">
-							<?php echo $this->Form->create('Organization', array(
- 							   		'url' => array(
- 							   			'controller' => 'panels',
- 							   			'action' => 'add_org')
-									)); ?>
-							<fieldset>
-								<legend><?php echo __('Add Organization'); ?></legend>
-								<?php
-									echo $this->Form->input('name');
-									echo $this->Form->input('birthdate');
-									echo $this->Form->input('description');
-									echo $this->Form->input('website');
-									echo $this->Form->input('facebook');
-									echo $this->Form->input('twitter');
-									echo $this->Form->input('blog');
-									if($flags['_admin']) {
-										//if its an admin, use $possible_managers..
-										echo $this->Form->input('UserOrganization.users_id', array(
-											'options' => $users,
-											'multiple' => 'checkbox'
-										));
-									} else {
-										//else use my id
-										echo $this->Form->hidden('UserOrganization.user_id', array('value' => $userid));
-									}
-									
-								?>
-							</fieldset>
-							<button class="button small" type="submit">
-								<?php echo __('Add') ?>
-							</button>
-							<?php echo $this->Form->end(); ?>
-						</div>
-						<table>				
-							<?php foreach ($organizations as $organization) { ?>
-								<tr>
-									<td><?php echo $this->Html->Link($organization['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organization['Organization']['id'])); ?></td>
-									<td><?php echo $this->Html->Link('edit', array('controller' => 'organizations', 'action' => 'edit', $organization['Organization']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert')); ?></td>
+					<?php
+						if($flags['_admin']) :
+							echo '<h4>'. __('Organizations in EVOKE:') .'</h4>';
+						else :
+							echo '<h4>'. __('My organizations in EVOKE:') .'</h4>';
+						endif;
+					?>
+					<table class="paginated">
+						<?php foreach ($organizations as $organization) { ?>
+							<tr>
+								<td><?php echo $this->Html->Link($organization['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organization['Organization']['id'])); ?></td>
+								<td><?php echo $this->Html->Link(__('Edit'), array('controller' => 'organizations', 'action' => 'edit', $organization['Organization']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink(__('Delete'), array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert')); ?></td>
 								</tr>
-							<?php }	?>
-						</table>
-					</p>
+						<?php }	?>
+					</table>
+
+					<button class="button small" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></button>
+					<div id="myModalOrganization" class="reveal-modal tiny" data-reveal>
+						<?php echo $this->Form->create('Organization', array(
+ 						   		'url' => array(
+ 						   			'controller' => 'panels',
+ 						   			'action' => 'add_org')
+								)); ?>
+						<fieldset>
+							<legend><?php echo __('Add an Organization'); ?></legend>
+							<?php
+								echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
+								echo $this->Form->input('birthdate', array('label' => __('Birthdate')));
+								echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+								echo $this->Form->input('website', array('label' => __('Website')));
+								echo $this->Form->input('facebook');
+								echo $this->Form->input('twitter');
+								echo $this->Form->input('blog');
+								if($flags['_admin']) {
+									//if its an admin, use $possible_managers..
+									echo $this->Form->input('UserOrganization.users_id', array(
+										'label' => __('Possible Managers'),
+										'options' => $possible_managers,
+										'multiple' => 'checkbox',
+										'required' => true
+									));
+								} else {
+									//else use my id
+									echo $this->Form->hidden('UserOrganization.user_id', array('value' => $userid));
+								}				
+							?>
+						</fieldset>
+						<button class="button small" type="submit">
+							<?php echo __('Add') ?>
+						</button>
+						<?php echo $this->Form->end(); ?>
+						<a class="close-reveal-modal">&#215;</a>
+					</div>
 				</div>
 				<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
-					<div class="large-4 columns filter">
+					<div class="large-2 columns filter">
 			  			<fieldset>
-			    			<legend>Issues</legend>
-			    			<?php if($flags['_admin']) echo $this->Form->submit('+ Issues', array('id' => 'new_issue', 'class' => 'button tiny')); ?>
+			    			<legend><?= __('Issues') ?></legend>
 			    			<ul id="filters">
 			    			 	<?php foreach ($issues as $issue) { ?>
 							    	<li>
@@ -104,45 +121,46 @@
 							        	<label for="filter-issue_<?php echo $issue['Issue']['id'];?>">
 							        		<?php echo $issue['Issue']['name']; ?>
 							        	</label>
-							        	<?php if($flags['_admin']) echo $this->Form->PostLink('delete', array('controller' => 'panels', 'action' => 'delete_issue', $issue['Issue']['id']));?>
+							        	<?php if($flags['_admin']) echo $this->Form->PostLink('[x]', array('controller' => 'panels', 'action' => 'delete_issue', $issue['Issue']['id']));?>
 							    	</li>
 							    <?php } ?>
 							</ul>
+
+			    			<?php if($flags['_admin']) : ?>
+			    				<button class="button tiny" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></button>
+			    				<div id="myModalIssue" class="reveal-modal tiny" data-reveal>
+									<?php echo $this->Form->create('Issue', array(
+		 							   		'url' => array(
+		 							   			'controller' => 'panels',
+		 							   			'action' => 'add_issue')
+											)); ?>
+									<fieldset>
+										<legend><?php echo __('Add an Issue'); ?></legend>
+										<?php
+											//echo $this->Form->input('parent_id');
+											echo $this->Form->input('name', array('label' => __('Name')));
+											echo $this->Form->input('slug', array('label' => __('Slug')));
+										?>
+									</fieldset>
+									<button class="button small" type="submit">
+										<?php echo __('Add'); ?>
+									</button>
+									<?php echo $this->Form->end(); ?>
+									<a class="close-reveal-modal">&#215;</a>
+								</div>
+			    			<?php endif; ?>
 						</fieldset>
 					</div>
-					<div class="large-5 columns filteredContent">
-						<!-- issues' hidden add form -->
-						<div id="issuesForm">
-							<?php echo $this->Form->create('Issue', array(
- 							   		'url' => array(
- 							   			'controller' => 'panels',
- 							   			'action' => 'add_issue')
-									)); ?>
-								<fieldset>
-									<legend><?php echo __('Add Issue'); ?></legend>
-								<?php
-									//echo $this->Form->input('parent_id');
-									echo $this->Form->input('name');
-									echo $this->Form->input('slug');
-								?>
-								</fieldset>
-							<button class="button small" type="submit">
-								<?php echo __('Add'); ?>
-							</button>
-							<?php echo $this->Form->end(); ?>
-						</div>
-
-						<ul class="button-group">
-				  			<li><?php echo $this->Html->Link('+ missions', array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?></li>
-				  		</ul>
-				  		<table>
-					  		<?php foreach ($missions_issues as $mi) { ?>
+					<div class="large-8 columns filteredContent">
+						<?php echo $this->Html->Link(__('Add new Mission'), array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?>
+				  		<table> <!-- class="paginated"> -->
+					  		<?php foreach ($missions_issues as $mi) : ?>
 					  			<!-- colocar paginação -->
 								<tr class="<?php foreach ($mi['MissionIssue'] as $i) echo ' issue_'.$i['issue_id'];?>">
-									<td><?php echo $this->Html->Link($mi['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mi['Mission']['id'])); ?></td>
-									<td><?php echo $this->Html->Link('edit', array('controller' => 'panels', 'action' => 'edit_mission', $mi['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
+									<td><?php echo $this->Html->Link($mi['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mi['Mission']['id'], 1)); ?></td>
+									<td><?php echo $this->Html->Link(__('Edit'), array('controller' => 'panels', 'action' => 'edit_mission', $mi['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink(__('Delete'), array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
 								</tr>
-							<?php }?>	
+							<?php endforeach; ?>
 						</table>
 					</div>
 				</div>
@@ -150,176 +168,132 @@
 					<p>Not defined.. levels details go here.</p>
 				</div>
 				<div class="content <?php echo $badges_tab; ?>" id="badges">
-					<p>
-						<?php echo $this->Form->submit('+ Badges', array('id' => 'new_badge', 'class' => 'button small')); ?>
-						<div id="badgesForm">
-							<?php echo $this->Form->create('Badge', array(
- 							   		'url' => array(
- 							   			'controller' => 'panels',
- 							   			'action' => 'add_badge')
-									)); ?>
-								<fieldset>
-									<legend><?php echo __('Add Badge'); ?></legend>
-								<?php
-									echo $this->Form->input('name');
-									echo $this->Form->input('description');
-									echo $this->Form->input('organization_id', array(
-												'options' => $organizations_list
-									));
-								?>
-								</fieldset>
-							<button class="button small" type="submit">
-								<?php echo __('Add') ?>
-							</button>
-							<?php echo $this->Form->end(); ?>
-						</div>
-
-						<table>				
-							<?php foreach ($badges as $badge) { ?>
-								<tr>
-									<td><?php echo $this->Html->Link($badge['Badge']['name'], array('controller' => 'badges', 'action' => 'view', $badge['Badge']['id'])); ?></td>
-									<td><?php echo $this->Html->Link('edit', array('controller' => 'badges', 'action' => 'edit', $badge['Badge']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink('delete', array('controller' => 'badges', 'action' => 'delete', $badge['Badge']['id']), array( 'class' => 'button tiny alert')); ?></td>
-								</tr>
-							<?php }	?>
-						</table>
-					</p>
+					<button class="button small" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></button>
+					<div id="myModalBadge" class="reveal-modal tiny" data-reveal>
+						<?php echo $this->Form->create('Badge', array(
+ 						   		'url' => array(
+ 						   			'controller' => 'panels',
+ 						   			'action' => 'add_badge')
+								)); ?>
+							<fieldset>
+								<legend><?php echo __('Add a Badge'); ?></legend>
+							<?php
+								echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
+								echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+								echo $this->Form->input('organization_id', array(
+									'label' => __('Organization'),
+									'options' => $organizations_list
+								));
+							?>
+							</fieldset>
+						<button class="button small" type="submit">
+							<?php echo __('Add') ?>
+						</button>
+						<?php echo $this->Form->end(); ?>
+						<a class="close-reveal-modal">&#215;</a>
+					</div>
+					<table class="paginated">
+						<?php foreach ($badges as $badge) : ?>
+							<tr>
+								<td><?php echo $this->Html->Link($badge['Badge']['name'], array('controller' => 'badges', 'action' => 'view', $badge['Badge']['id'])); ?></td>
+								<td><?php echo $this->Html->Link(__('Edit'), array('controller' => 'badges', 'action' => 'edit', $badge['Badge']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink(__('Delete'), array('controller' => 'badges', 'action' => 'delete', $badge['Badge']['id']), array( 'class' => 'button tiny alert')); ?></td>
+							</tr>
+						<?php endforeach; ?>
+					</table>
 				</div>
 				<div class="content <?php echo $users_tab; ?>" id="users">
-					<div class="large-5 columns filter">
+					<div class="large-2 columns filter">
 			  			<fieldset>
-			    			<?php 
-			    				if($flags['_admin']) {
-					    	?>
-					    			<legend>Roles</legend>
-			    			 		<ul id="filters2">
-					    	<?php 
-					    			foreach ($roles as $role) { 
-					    	?>
-								    	<li>
-								        	<input type="checkbox" checked="true" value="role_<?php echo $role['Role']['id'];?>" id="filter-role_<?php echo $role['Role']['id'];?>" />
-								        	<label for="filter-role_<?php echo $role['Role']['id'];?>">
-								        		<?php echo $role['Role']['name'];?>
-								        	</label>
-								    	</li>
-							<?php
-							   		}
-							  	} else {
-							?>
-					    			<legend>My missions</legend>
-			    			 		<ul id="filters2">
-					    	<?php    	
-							   		foreach ($missions_issues as $mission) {
-							?>
-										<li>
-								        	<input type="checkbox" checked="true" value="mission_<?php echo $mission['Mission']['id'];?>" id="filter-mission_<?php echo $mission['Mission']['id'];?>" />
-								        	<label for="filter-mission_<?php echo $mission['Mission']['id'];?>">
-								        		<?php echo $mission['Mission']['title'];?>
-								        	</label>
-								    	</li>
-							<?php
-							   		}
-							   	} 
-							?>
+			    			<?php if($flags['_admin']) : ?>
+					    		<legend><?= __('Roles') ?></legend>
+			    			 	<ul id="filters2">
+					    		<?php foreach ($roles as $role) : ?>
+								    <li>
+								       	<input type="checkbox" checked="true" value="role_<?php echo $role['Role']['id'];?>" id="filter-role_<?php echo $role['Role']['id'];?>" />
+								       	<label for="filter-role_<?php echo $role['Role']['id'];?>">
+								       		<?php echo $role['Role']['name'];?>
+								       	</label>
+								    </li>
+							<?php endforeach; ?>
+							<?php else : ?>
+					    		<legend><?= __('My Missions') ?></legend>
+			    			 	<ul id="filters2">
+					    		<?php foreach ($missions_issues as $mission) : ?>
+									<li>
+								       	<input type="checkbox" checked="true" value="mission_<?php echo $mission['Mission']['id'];?>" id="filter-mission_<?php echo $mission['Mission']['id'];?>" />
+								       	<label for="filter-mission_<?php echo $mission['Mission']['id'];?>">
+								       		<?php echo $mission['Mission']['title'];?>
+								       	</label>
+								    </li>
+								<?php endforeach; ?>
+							<?php endif; ?>
 							</ul>
 						</fieldset>
 					</div>
-					<div class="large-5 columns filteredContent">
-						<table>
+					<div class="large-8 columns filteredContent">
+						<input placeholder="<?= __('Search by name') ?>..." id="box" type="text" /> 
+						<ul class='userList'>
 							<!-- colocar paginação -->
-							<?php
-								if($flags['_admin']) {
-									foreach ($all_users as $user) { 
-							?>
-										<tr class="role_<?php echo $user['User']['role_id'];?> ">
-											<td><?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?></td>
-										</tr>
-							<?php
-									}
-								} else {
-									foreach ($users_of_my_missions as $user) {
-							?>
-										<!-- colocar paginação & filtragem por missions -->
-										<tr class="mission_<?php echo $user['UserMission']['mission_id'];?> ">
-											<td><?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?></td>
-										</tr>
-							<?php
-									}
-								}
-							?>
-						</table>
+							<?php if($flags['_admin']) :
+								foreach ($all_users as $user) : ?>
+									<li class="role_<?php echo $user['User']['role_id'];?> <?php echo str_replace(' ', '_', $user['User']['name']); ?> shownR shownN">
+										<?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])) . ' | ' . "<a href='#' data-reveal-id='user-". $user['User']['id'] ."' data-reveal>" . __('permissions') . "</a>" ; ?>
+									</li>
+
+									<!-- Lightbox for editing user role -->
+									<div id="user-<?php echo $user['User']['id']; ?>" class="reveal-modal tiny" data-reveal>
+										<?php 
+											echo $this->Form->create('User', array(
+										 		'url' => array(
+										 			'controller' => 'panels',
+										 			'action' => 'edit_user_role', 
+										 			$user['User']['id']
+										 		)
+											));
+										 ?>
+										<fieldset>
+											<legend><?php echo __('Change role') .': '. $user['User']['name']; ?></legend>
+										<?php
+											echo $this->Form->hidden('id', array('value' => $user['User']['id']));
+											echo $this->Form->input('role_id', array(
+												'label' => __('Role'),
+												'options' => $roles_list,
+												'value' => $user['User']['role_id']
+											));
+										?>
+										</fieldset>
+											<button class="button tiny" type="submit">
+												<?php echo __('Save Changes')?>
+											</button>
+											<?php echo $this->Form->end(); ?>
+										<a class="close-reveal-modal">&#215;</a>
+									</div>
+								<?php endforeach; ?>
+							<?php else :
+									foreach ($users_of_my_missions as $user) : ?>
+										<!-- colocar paginação -->
+										<li class="mission_<?php echo $user['UserMission']['mission_id'];?> <?php echo str_replace(' ', '_', $user['User']['name']); ?> shownR shownN">
+											<?php echo $this->Html->Link($user['User']['name'], array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
+										</li>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</ul>
 					</div>
 				</div>
 				<div class="content <?php echo $media_tab; ?>" id="media">
 					<p>Upload videos/images and choose actions that triggers them...</p>
 				</div>
 				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
-					<p>Some statistics to view..</p>
-					<p><?php echo "Users: " . sizeof($all_users);?></p>
-					<p><?php echo "Groups: " . sizeof($groups);?></p>
-					<p><?php echo "Organizations: " . sizeof($organizations);?></p>
-					<p><?php echo "Badges: ".sizeof($badges);?></p>
+					<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>
+					<p><?php echo __('Groups') . ": " . sizeof($groups);?></p>
+					<p><?php echo __('Organizations') . ": " . sizeof($organizations);?></p>
+					<p><?php echo __('Badges') . ": ".sizeof($badges);?></p>
 					<p>AND MORE!</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-<!-- issues & roles' filtering script -->
-<script type="text/javascript">
-	$("#filters :checkbox").click(function() {
-	   	$("#filters :checkbox").each(function() {
-	       	if($(this).is(':checked')) {
-	            $("." + $(this).val()).fadeTo("slow", 1);
-			} else {
-	            $("." + $(this).val()).hide();
-	        }
-	 	});
-	});
-
-	$("#filters2 :checkbox").click(function() {
-	   	$("#filters2 :checkbox").each(function() {
-	       	if($(this).is(':checked')) {
-	            $("." + $(this).val()).fadeTo("slow", 1);
-			} else {
-	            $("." + $(this).val()).hide();
-	        }
-	 	});
-	});
-</script>
-
-
-<!-- hide and show '+ orgs', '+ badges', '+ issues' forms -->
-<script type="text/javascript">
-	$( document ).ready(function() {
-  		$("#orgsForm").hide();
-  		<?php //foreach ($organizations as $organization) echo  '$("#edit_org_'. $organization['Organization']['id'].'").hide();'; ?>
-
-  		$("#badgesForm").hide();
-  		$("#issuesForm").hide();
-	});
-	
-	$("#new_org").click(function() {
-	   	if($("#orgsForm").is(":visible")) {
-	   		$("#orgsForm").hide();	
-	   	} else {
-	   		$("#orgsForm").fadeTo("slow", 1);
-	   	}
-	});
-
-	$("#new_badge").click(function() {
-	   	if($("#badgesForm").is(":visible")) {
-	   		$("#badgesForm").hide();	
-	   	} else {
-	   		$("#badgesForm").fadeTo("slow", 1);
-	   	}
-	});
-
-	$("#new_issue").click(function() {
-	   	if($("#issuesForm").is(":visible")) {
-	   		$("#issuesForm").hide();	
-	   	} else {
-	   		$("#issuesForm").fadeTo("slow", 1);
-	   	}
-	});
-</script>
+<?php 
+	echo $this->Html->script('panels');
+?>

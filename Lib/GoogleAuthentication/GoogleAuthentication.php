@@ -14,7 +14,7 @@ class GoogleAuthentication {
         $this->CLIENT_ID = $client_id;
         $this->CLIENT_SECRET = $client_secret;
         $this->API_KEY = $api_key;
-        $this->REDIRECT_URI = 'http://localhost/evoke/groups_users/view/3';
+        $this->REDIRECT_URI = 'http://localhost/evoke/groups_users/edit/1';
     }
     
     public function authorize($access_token = null, $refresh_token = null) {
@@ -25,7 +25,7 @@ class GoogleAuthentication {
         $client->setDeveloperKey($this->API_KEY);
         // $client->setAccessType('offline');
         $client->setApprovalPrompt('force');
-        $client->setRedirectUri('http://localhost/evoke/groups_users/view/3');
+        $client->setRedirectUri('http://localhost/evoke/groups_users/edit/1');
 
         $drive = new Google_Service_Drive($client);
         $client->addScope(Google_Service_Drive::DRIVE_FILE);

@@ -34,18 +34,17 @@
 
 <!-- Medium Editor CSS -->
 <?php echo $this->Html->css('/components/jquery-ui/themes/base/minified/jquery-ui.min'); ?>
-<?php echo $this->Html->css('/components/medium-editor/dist/css/medium-editor'); ?>
-<?php echo $this->Html->css('/components/medium-editor/dist/css/themes/default'); ?>
-<?php echo $this->Html->css('/components/jquery-annotation/css/annotation'); ?>
+<?php //echo $this->Html->css('/components/medium-editor/dist/css/medium-editor'); ?>
+<?php //echo $this->Html->css('/components/medium-editor/dist/css/themes/default'); ?>
 
-<section class="evoke margin top">
+<section class="margin top">
 	<div class="row full-width">
 		<aside>
-			<div class="large-2 columns evoke chat">
+			<div class="large-2 columns chat">
 				<h6 class="subheader"><?php echo __('DOSSIER'); ?></h6>
 				
 				<!-- Here are the related resources, limited to 4 -->
-				<dl class="accordion evoke margin top bottom" data-accordion>
+				<dl class="accordion margin top bottom" data-accordion>
 					<dd>
 						<a href="#panel1">Document 1</a>
 						<div id="panel1" class="content active">
@@ -81,7 +80,7 @@
 		</aside>
 
 		<div class="large-8 columns">
-			<h1 class="evoke typeface strong" id="groupname"><small><?php echo __('Group'); ?> </small><?php echo $group['Group']['title']; ?></h1>
+			<h1 class="typeface strong" id="groupname"><small><?php echo __('Group'); ?> </small><?php echo $group['Group']['title']; ?></h1>
 
 			<!-- The Evokation project, with data from de DB and from Google Drive -->
 			<?php
@@ -105,11 +104,14 @@
 				));
 			 ?>
 
-			<textarea id="evokation_txt" class="hidden"></textarea>
+			 <!-- <iframe src="<?php echo $embedLink; ?>" width="100%" height="1000px" frameborder="0"></iframe> -->
 
+			<textarea id="evokation_txt" class="hidden"></textarea>
+			<div id="evokation_div" class="project page" data-placeholder=""></div>
+			
+			<!--
 			<div class="editor">
 
-				<!-- Add images -->
 				<a class="button circle bg-teal tip-top" id="add_image" data-tooltip title="Add image">
 					<form id="image_form" action="<?php echo $this->webroot ?>groups_users/store_image" method="post" enctype="multipart/form-data">
 						<input type="file" name="data[Evokation][image_uploader]" id="image_uploader" class="image_upload">
@@ -122,30 +124,25 @@
 					<i class="fa fa-camera fa-2x"></i>
 				</a>
 
-				<!-- Add documents -->
 				<a class="button circle bg-orange tip-top" data-tooltip data-reveal-id="document_modal" data-reveal title="Add document">
 					<i class="fa fa-file-o fa-2x"></i>
 				</a>
 
-				<!-- Add videos -->
 				<a class="button circle bg-maroon tip-top" id="add_video" data-tooltip data-reveal-id="video_modal" data-reveal title="Add video">
 					<i class="fa fa-youtube-play fa-2x"></i>
 				</a>
 
-				<!-- Add audio -->
 				<a class="button circle bg-olive tip-top" id="add_audio" data-tooltip title="Add audio">
 					<i class="fa fa-music fa-2x"></i>
 				</a>
 
-				<div id="evokation_div" class="evoke project page" contenteditable="true" data-placeholder=" "></div>
+				<div id="evokation_div" class="project page" data-placeholder=""></div>
 			</div>
 			
-			<!--/ Evokation page -->
 
 		</div>
 
-		<!-- Modals -->
-
+		<!--
 		<div id="document_modal" class="reveal-modal small" data-reveal>
 			<?php echo $this->Element('add_document'); ?>
 			<a class="close-reveal-modal">&#215;</a>
@@ -154,12 +151,11 @@
 		<div id="video_modal" class="reveal-modal small" data-reveal>
 			<?php echo $this->Element('add_video'); ?>
 			<a class="close-reveal-modal">&#215;</a>
-		</div>
-
-		<!--/ Modal -->
+		</div> -->
+	</div>
 
 		<aside>
-			<div class="large-2 columns evoke toolbar">
+			<div class="large-2 columns toolbar">
 				<h6 class="subheader"><?php echo __('MEMBERS'); ?></h6>
 				<ul class="no-bullet">
 					<?php foreach ($users as $user): ?>
@@ -190,7 +186,7 @@
 		</aside>
 	</div>
 </section>
-
+<!--
 <script type="text/javascript">
 	var WEBROOT  = "<?php echo $this->webroot; ?>";
 	var ACCESS_TOKEN = <?php echo $this->Session->read('access_token'); ?>;
@@ -205,10 +201,14 @@
 		var FILE_ID = false;
 	</script>
 <?php endif; ?>
+-->
 
-<?php echo $this->Html->script('/components/jquery-ui/ui/minified/jquery-ui.min', array('inline' => false)); ?>
-<?php echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min', array('inline' => false)); ?>
-<?php //echo $this->Html->script('/components/rangy/index.js', array('inline' => false)); ?>
-<?php echo $this->Html->script('/components/jquery-form/index.js', array('inline' => false)); ?>
-<?php echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
+<?php echo $this->Html->script('/components/etherpad/js/etherpad.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('evokation', array('inline' => false)); ?>
+
+
+<?php //echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min', array('inline' => false)); ?>
+<?php //echo $this->Html->script('/components/kibo/kibo.js', array('inline' => false)); ?>
+<?php //echo $this->Html->script('/components/jquery-form/index.js', array('inline' => false)); ?>
+<?php //echo $this->Html->script('https://apis.google.com/js/api.js', array('inline' => false)); ?>
+<?php //echo $this->Html->script('evokation', array('inline' => false)); ?>

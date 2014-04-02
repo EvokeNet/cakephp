@@ -3,86 +3,47 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "116d9a8962ad41e5aaf73ab1edc36503",
+    "hash": "12432e0b90757cd5a414f0bc4aad7247",
     "packages": [
         {
-            "name": "burzum/cakephp-imagine-plugin",
+            "name": "0x46616c6b/etherpad-lite-client",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/burzum/cakephp-imagine-plugin.git",
-                "reference": "fb6462c2cc86ffe2bee7d29bccecc21bb5622a5e"
+                "url": "https://github.com/0x46616c6b/etherpad-lite-client.git",
+                "reference": "fa2f0fd185097bed6b371c2422c705d6a5d6f258"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/burzum/cakephp-imagine-plugin/zipball/fb6462c2cc86ffe2bee7d29bccecc21bb5622a5e",
-                "reference": "fb6462c2cc86ffe2bee7d29bccecc21bb5622a5e",
+                "url": "https://api.github.com/repos/0x46616c6b/etherpad-lite-client/zipball/fa2f0fd185097bed6b371c2422c705d6a5d6f258",
+                "reference": "fa2f0fd185097bed6b371c2422c705d6a5d6f258",
                 "shasum": ""
             },
             "require": {
-                "composer/installers": "*",
-                "imagine/imagine": "*",
-                "php": ">=5.3.2"
+                "guzzle/guzzle": "~3.7",
+                "php": ">=5.3.3"
             },
-            "type": "cakephp-plugin",
+            "require-dev": {
+                "phpunit/phpunit": "*@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "EtherpadLite": "src/"
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "GPL-3.0"
             ],
             "authors": [
                 {
-                    "name": "Florian Krämer",
-                    "homepage": "http://florian-kraemer.net",
-                    "role": "Author"
+                    "name": "Louis Miller",
+                    "email": "louis@systemli.org"
                 }
             ],
-            "description": "Imagine Plugin for CakePHP",
-            "homepage": "https://github.com/burzum/cakephp-imagine-plugin",
-            "keywords": [
-                "cakephp",
-                "image",
-                "image-processing",
-                "media"
-            ],
-            "time": "2013-12-26 21:16:36"
-        },
-        {
-            "name": "cakedc/migrations",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/CakeDC/migrations.git",
-                "reference": "4406d5d3911767737af481365e9adee1f23652f9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/CakeDC/migrations/zipball/4406d5d3911767737af481365e9adee1f23652f9",
-                "reference": "4406d5d3911767737af481365e9adee1f23652f9",
-                "shasum": ""
-            },
-            "require": {
-                "composer/installers": "*",
-                "php": ">=5.2.8"
-            },
-            "type": "cakephp-plugin",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cake Development Corporation",
-                    "email": "team@cakedc.com",
-                    "homepage": "http://cakedc.com"
-                }
-            ],
-            "description": "Migrations Plugin for CakePHP",
-            "homepage": "http://cakedc.com",
-            "keywords": [
-                "cakephp",
-                "migrations"
-            ],
-            "time": "2014-03-04 12:17:57"
+            "description": "PHP Client for Etherpad Lite",
+            "time": "2014-03-10 07:38:59"
         },
         {
             "name": "cakephp/debug_kit",
@@ -132,6 +93,39 @@
                 "kit"
             ],
             "time": "2014-02-01 21:15:24"
+        },
+        {
+            "name": "ceeram/CakePdf",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ceeram/CakePdf.git",
+                "reference": "a25c45d6d725825def006d678e34bc91828780ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ceeram/CakePdf/zipball/a25c45d6d725825def006d678e34bc91828780ca",
+                "reference": "a25c45d6d725825def006d678e34bc91828780ca",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "cakephp-plugin",
+            "extra": {
+                "installer-name": "CakePdf"
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "CakePHP plugin for creating and/or rendering Pdf, several Pdf engines supported.",
+            "homepage": "http://github.com/ceeram/CakePdf",
+            "support": {
+                "source": "https://github.com/ceeram/CakePdf/tree/1.0.1",
+                "issues": "https://github.com/ceeram/CakePdf/issues"
+            },
+            "time": "2013-09-05 22:13:06"
         },
         {
             "name": "composer/installers",
@@ -301,34 +295,67 @@
             "time": "2014-01-30 21:36:57"
         },
         {
-            "name": "imagine/imagine",
-            "version": "dev-master",
+            "name": "guzzle/guzzle",
+            "version": "v3.8.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/avalanche123/Imagine.git",
-                "reference": "f64ec666baaa800edcbf237db41121a569230709"
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/f64ec666baaa800edcbf237db41121a569230709",
-                "reference": "f64ec666baaa800edcbf237db41121a569230709",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "ext-curl": "*",
+                "php": ">=5.3.3",
+                "symfony/event-dispatcher": ">=2.1"
+            },
+            "replace": {
+                "guzzle/batch": "self.version",
+                "guzzle/cache": "self.version",
+                "guzzle/common": "self.version",
+                "guzzle/http": "self.version",
+                "guzzle/inflection": "self.version",
+                "guzzle/iterator": "self.version",
+                "guzzle/log": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/plugin": "self.version",
+                "guzzle/plugin-async": "self.version",
+                "guzzle/plugin-backoff": "self.version",
+                "guzzle/plugin-cache": "self.version",
+                "guzzle/plugin-cookie": "self.version",
+                "guzzle/plugin-curlauth": "self.version",
+                "guzzle/plugin-error-response": "self.version",
+                "guzzle/plugin-history": "self.version",
+                "guzzle/plugin-log": "self.version",
+                "guzzle/plugin-md5": "self.version",
+                "guzzle/plugin-mock": "self.version",
+                "guzzle/plugin-oauth": "self.version",
+                "guzzle/service": "self.version",
+                "guzzle/stream": "self.version"
             },
             "require-dev": {
-                "sami/sami": "dev-master"
-            },
-            "suggest": {
-                "ext-gd": "to use the GD implementation",
-                "ext-gmagick": "to use the Gmagick implementation",
-                "ext-imagick": "to use the Imagick implementation"
+                "doctrine/cache": "*",
+                "monolog/monolog": "1.*",
+                "phpunit/phpunit": "3.7.*",
+                "psr/log": "1.0.*",
+                "symfony/class-loader": "*",
+                "zendframework/zend-cache": "<2.3",
+                "zendframework/zend-log": "<2.3"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.8-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Imagine": "lib/"
+                    "Guzzle": "src/",
+                    "Guzzle\\Tests": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -337,20 +364,27 @@
             ],
             "authors": [
                 {
-                    "name": "Bulat Shakirzyanov",
-                    "email": "mallluhuct@gmail.com",
-                    "homepage": "http://avalanche123.com"
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Guzzle Community",
+                    "homepage": "https://github.com/guzzle/guzzle/contributors"
                 }
             ],
-            "description": "Image processing for PHP 5.3",
-            "homepage": "http://imagine.readthedocs.org/",
+            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "homepage": "http://guzzlephp.org/",
             "keywords": [
-                "drawing",
-                "graphics",
-                "image manipulation",
-                "image processing"
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
             ],
-            "time": "2013-07-10 17:25:36"
+            "time": "2014-01-28 22:29:15"
         },
         {
             "name": "josegonzalez/cakephp-upload",
@@ -517,89 +551,6 @@
             "time": "2013-09-20 09:33:52"
         },
         {
-            "name": "knplabs/gaufrette",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/KnpLabs/Gaufrette.git",
-                "reference": "338febb0137b971152363fe184cfb6f01871e665"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/338febb0137b971152363fe184cfb6f01871e665",
-                "reference": "338febb0137b971152363fe184cfb6f01871e665",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "amazonwebservices/aws-sdk-for-php": "1.5.*",
-                "aws/aws-sdk-php": "~2",
-                "doctrine/dbal": ">=2.3",
-                "dropbox-php/dropbox-php": "*",
-                "herzult/php-ssh": "*",
-                "microsoft/windowsazure": "dev-master",
-                "mikey179/vfsstream": "~1.2.0",
-                "phpseclib/phpseclib": "dev-master",
-                "phpspec/phpspec": "2.0.*",
-                "phpunit/phpunit": "3.7.*",
-                "rackspace/php-cloudfiles": "*",
-                "rackspace/php-opencloud": "1.9.*"
-            },
-            "suggest": {
-                "amazonwebservices/aws-sdk-for-php": "to use the legacy Amazon S3 adapters",
-                "aws/aws-sdk-php": "to use the Amazon S3 adapter",
-                "doctrine/dbal": "to use the Doctrine DBAL adapter",
-                "dropbox-php/dropbox-php": "to use the Dropbox adapter",
-                "ext-apc": "to use the APC adapter",
-                "ext-curl": "*",
-                "ext-fileinfo": "This extension is used to automatically detect the content-type of a file in the AwsS3, OpenCloud, and AzureBlogStorage adapters",
-                "ext-mbstring": "*",
-                "ext-mongo": "*",
-                "ext-zip": "to use the Zip adapter",
-                "herzult/php-ssh": "to use SFtp adapter",
-                "knplabs/knp-gaufrette-bundle": "to use with Symfony2",
-                "microsoft/windowsazure": "to use Microsoft Azure Blob Storage adapter",
-                "phpseclib/phpseclib": "to user PhpseclibSftp adapter",
-                "rackspace/php-opencloud": "to use Opencloud adapter"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Gaufrette": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "The contributors",
-                    "homepage": "http://github.com/knplabs/Gaufrette/contributors"
-                },
-                {
-                    "name": "KnpLabs Team",
-                    "homepage": "http://knplabs.com"
-                }
-            ],
-            "description": "PHP5 library that provides a filesystem abstraction layer",
-            "homepage": "http://knplabs.com",
-            "keywords": [
-                "abstraction",
-                "file",
-                "filesystem",
-                "media"
-            ],
-            "time": "2014-03-05 19:58:17"
-        },
-        {
             "name": "markstory/acl_extras",
             "version": "dev-master",
             "source": {
@@ -641,6 +592,54 @@
             "time": "2013-10-26 00:34:46"
         },
         {
+            "name": "paulredmond/chosen-cakephp",
+            "version": "2.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paulredmond/chosen-cakephp.git",
+                "reference": "505b5a7a9d68214c9f77a82d00bde5103c715832"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paulredmond/chosen-cakephp/zipball/505b5a7a9d68214c9f77a82d00bde5103c715832",
+                "reference": "505b5a7a9d68214c9f77a82d00bde5103c715832",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "1.*",
+                "php": ">=5.2.6"
+            },
+            "type": "cakephp-plugin",
+            "extra": {
+                "installer-name": "Chosen"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Redmond",
+                    "email": "paulrredmond@gmail.com"
+                },
+                {
+                    "name": "Harvest HQ",
+                    "homepage": "http://harvesthq.github.com/chosen"
+                },
+                {
+                    "name": "Github Contributors",
+                    "homepage": "https://github.com/paulredmond/chosen-cakephp/graphs/contributors"
+                }
+            ],
+            "description": "Chosen CakePHP plugin for CakePHP 2",
+            "homepage": "https://github.com/paulredmond/chosen-cakephp",
+            "keywords": [
+                "cakephp",
+                "plugin"
+            ],
+            "time": "2013-05-11 22:25:45"
+        },
+        {
             "name": "pear-pear.cakephp.org/CakePHP",
             "version": "2.4.6",
             "dist": {
@@ -665,6 +664,62 @@
                 "/"
             ],
             "description": "CakePHP is an application development framework for PHP 5.2+"
+        },
+        {
+            "name": "symfony/event-dispatcher",
+            "version": "v2.4.2",
+            "target-dir": "Symfony/Component/EventDispatcher",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/EventDispatcher.git",
+                "reference": "4708b8cd41984a5ba29fe7dd40716f7f761ac501"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/4708b8cd41984a5ba29fe7dd40716f7f761ac501",
+                "reference": "4708b8cd41984a5ba29fe7dd40716f7f761ac501",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/dependency-injection": "~2.0"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "",
+                "symfony/http-kernel": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\EventDispatcher\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "http://symfony.com",
+            "time": "2014-02-11 13:52:09"
         }
     ],
     "packages-dev": [
@@ -677,10 +732,7 @@
     "stability-flags": {
         "google/apiclient": 10,
         "markstory/acl_extras": 20,
-        "burzum/cakephp-imagine-plugin": 20,
-        "cakedc/migrations": 20,
-        "knplabs/gaufrette": 20,
-        "imagine/imagine": 20
+        "0x46616c6b/etherpad-lite-client": 20
     },
     "platform": [
 

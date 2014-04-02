@@ -5,7 +5,6 @@ App::uses('AppController', 'Controller');
  *
  * @property Organization $Organization
  * @property PaginatorComponent $Paginator
- * @property SessionComponent $Session
  */
 class OrganizationsController extends AppController {
 
@@ -14,13 +13,19 @@ class OrganizationsController extends AppController {
  *
  * @var array
  */
+
 	public $components = array('Paginator', 'Session', 'Access');
 	public $uses = array('Organization', 'UserOrganization', 'User');
+	public $user = null;
 
 	public function beforeFilter() {
         parent::beforeFilter();
-        //test to get user data from proper index
-		$this->user = $this->Auth->user();
+        
+        $this->user = array();
+        //get user data into public var
+		$this->user['role_id'] = $this->getUserRole();
+		$this->user['id'] = $this->getUserId();
+		$this->user['name'] = $this->getUserName();
 		
 		//there was some problem in retrieving user's info concerning his/her role : send him home
 		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
@@ -74,8 +79,6 @@ class OrganizationsController extends AppController {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Organization->User->find('list');
-		$this->set(compact('users'));
 	}
 
 /**
@@ -89,11 +92,9 @@ class OrganizationsController extends AppController {
 		if (!$this->Organization->exists($id)) {
 			throw new NotFoundException(__('Invalid organization'));
 		}
-
 		//check to see if the user is owner of the organization or an admin one..
-		$user = $this->Auth->user();
-		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id)));
-		if($org['UserOrganization']['user_id'] != $user['id'] && $user['role_id'] != 1){
+		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id, 'UserOrganization.user_id' => $user['id'])));
+		if(empty($org) && $user['role_id'] != 1){
 			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
 			$this->redirect($this->referer());
 		}
@@ -101,9 +102,7 @@ class OrganizationsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Organization->save($this->request->data)) {
 				$this->Session->setFlash(__('The organization has been saved.'));
-				
-				//returning to the admin panel
-				return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'organizations'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
@@ -111,10 +110,6 @@ class OrganizationsController extends AppController {
 			$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
 			$this->request->data = $this->Organization->find('first', $options);
 		}
-		/*
-		if($user['role_id'] != 1) $users = $this->Organization->UserOrganization->User->find('list', array('conditions' => array('User.id' => $user['id'])));
-		else $users = $this->Organization->User->find('list');
-		$this->set(compact('users'));*/
 	}
 
 /**
@@ -130,22 +125,20 @@ class OrganizationsController extends AppController {
 			throw new NotFoundException(__('Invalid organization'));
 		}
 
-		//check to see if the user is owner of the organization or an admin one..
-		$user = $this->Auth->user();
-		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id)));
-		if($org['UserOrganization']['user_id'] != $user['id'] && $user['role_id'] != 1){
+		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id, 'UserOrganization.user_id' => $user['id'])));
+		if(empty($org) && $user['role_id'] != 1){
 			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
 			$this->redirect($this->referer());
 		}
 
+
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->UserOrganization->deleteAll(array('UserOrganization.organization_id' => $id)) && $this->Organization->delete()) {
+		if ($this->Organization->delete()) {
 			$this->Session->setFlash(__('The organization has been deleted.'));
-			//returning to the admin panel
-			return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'organizations'));
 		} else {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		//returning to the admin panel
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));
 	}
 }

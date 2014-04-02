@@ -17,6 +17,10 @@ class GroupsUser extends AppModel {
 		));
 	}
 
+	public function belongsToGroup($group_id = null, $user_id = null){
+		return $this->GroupsUser->find('first', array('conditions' => array('GroupsUser.group_id' => $group_id, 'GroupsUser.user_id' => $user_id)));
+	}
+
 /**
  * belongsTo associations
  *

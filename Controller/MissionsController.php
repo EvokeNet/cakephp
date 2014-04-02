@@ -5,7 +5,6 @@ App::uses('AppController', 'Controller');
  *
  * @property Mission $Mission
  * @property PaginatorComponent $Paginator
- * @property SessionComponent $Session
  */
 class MissionsController extends AppController {
 
@@ -14,14 +13,18 @@ class MissionsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session', 'Access');
 
+	public $components = array('Paginator', 'Session', 'Access');
 	public $user = null;
 
 	public function beforeFilter() {
         parent::beforeFilter();
-        //test to get user data from proper index
-		$this->user = $this->Auth->user();
+        
+        $this->user = array();
+        //get user data into public var
+		$this->user['role_id'] = $this->getUserRole();
+		$this->user['id'] = $this->getUserId();
+		$this->user['name'] = $this->getUserName();
 		
 		//there was some problem in retrieving user's info concerning his/her role : send him home
 		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
@@ -45,8 +48,8 @@ class MissionsController extends AppController {
 		$this->set('missions', $this->Paginator->paginate());
 
 		$this->loadModel('User');
-		$user_data = $this->Auth->user();
-		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$missionIssues = $this->Mission->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id'));
 
@@ -70,23 +73,119 @@ class MissionsController extends AppController {
 
 		$missionPhases = $this->Mission->Phase->find('all', array('conditions' => array('Phase.mission_id' => $id), 'order' => 'Phase.position'));
 
-		if($phase_number > count($missionPhases))
-			throw new NotFoundException('Invalid phase');
+		if($phase_number > count($missionPhases)) {
+			$this->Session->setFlash(__("This mission/phase does not exist!"));
+			$this->redirect($this->referer());
+		}
 
 		$missionPhase = $this->Mission->Phase->find('first', array('conditions' => array('Phase.mission_id' => $id, 'Phase.position' => $phase_number)));
 		$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
 		$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);
 
 		$this->loadModel('User');
-		$user_data = $this->Auth->user();
-		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$evidences = $this->Mission->getEvidences($id);
+
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
 		$missionIssues = $this->Mission->getMissionIssues($id);
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 
-		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP'));
+		$hasGroup = false;
+		//check to see if user has entered a group of this mission..
+		foreach ($mission['Group'] as $group) {
+			if($group['user_id'] == $this->getUserId()) {
+				$hasGroup = true;
+				break;
+			}
+
+			$this->loadModel('GroupsUser');
+			$groupsuser = $this->GroupsUser->find('all', array(
+				'conditions' => array(
+					'GroupsUser.group_id' => $group['id']
+				)
+			));
+			foreach ($groupsuser as $member) {
+				if($member['GroupsUser']['user_id'] == $this->getUserId()) {
+					$hasGroup = true;
+					break;
+				}
+			}
+		}
+
+		//retrieving all ids from quests of this mission..
+		$my_quests_id = array();
+		$my_quests_id2 = array();
+		$k = 0;
+		foreach ($quests as $quest) {
+			$my_quests_id[$k] = array('quest_id' => $quest['Quest']['id']);
+			$my_quests_id2[$k] = array('foreign_key' => $quest['Quest']['id'], 'model' => 'Quest'); //specials condiditions to search in the Attachment database'
+			$k++;
+		}
+
+		//needed to be able to display and edit a quest's questionnaire
+		$this->loadModel('Questionnaire');
+		$questionnaires = $this->Questionnaire->find('all', array(
+			'conditions' => array(
+				'OR' => $my_quests_id
+			)
+		));
+
+		$this->loadModel('Answer');
+		$answers = $this->Answer->find('all');
+		$this->loadModel('UserAnswer');
+		$previous_answers = $this->UserAnswer->find('all', array(
+			'conditions' => array(
+				'user_id' => $this->getUserId()
+			)
+		));
+
+		$this->loadModel('Dossier');
+		$dossier = $this->Dossier->find('first', array(
+			'conditions' => array(
+				'mission_id' => $id
+			)
+		));
+
+		//needed to be able to display quests' media..
+		$this->loadModel('Attachment');
+		$attachments = $this->Attachment->find('all', array(
+			'conditions' => array(
+				'OR' => $my_quests_id2
+			)
+		));
+
+		$mission_img = null;
+		if(!is_null($id)){
+			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
+		}
+
+		if(!empty($dossier)) {
+			//dossier files
+			$dossier_files = $this->Attachment->find('all', array(
+				'conditions' => array(
+					'Attachment.foreign_key' => $dossier['Dossier']['id'],
+					'Attachment.model' => 'Dossier'
+				)
+			));
+		} else {
+			$dossier_files = array();
+		}
+
+		$this->loadModel('Evidence');
+		$my_evidences = $this->Evidence->find('all', array(
+			'order' => array('Evidence.title ASC'),
+			'conditions' => array(
+				'user_id' => $this->getUserId(),
+				'OR' => $my_quests_id
+			)
+		));
+
+		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup'));
+
+		//$this->render('view_discussion');
 	}
 
 /**
@@ -149,7 +248,7 @@ class MissionsController extends AppController {
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Mission->delete()) {
 			$this->Session->setFlash(__('The mission has been deleted.'));
-			
+
 			//deletar todos os registros de missions_issue referentes a esse issue
 			$this->loadModel('MissionIssue');
 			$this->MissionIssue->deleteAll(array('mission_id = '.$id));
@@ -157,7 +256,8 @@ class MissionsController extends AppController {
 			$this->Session->setFlash(__('The mission could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panels
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'missions'));	}
+		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'missions'));	
+	}
 
 /**
  * admin_index method
