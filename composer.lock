@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "cb3e1e2e368b87052984ef0abe857adc",
+    "hash": "e6866f47bc03767a73d3dd012e3dc1c8",
     "packages": [
         {
             "name": "0x46616c6b/etherpad-lite-client",
@@ -93,6 +93,39 @@
                 "kit"
             ],
             "time": "2014-02-01 21:15:24"
+        },
+        {
+            "name": "ceeram/CakePdf",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ceeram/CakePdf.git",
+                "reference": "a25c45d6d725825def006d678e34bc91828780ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ceeram/CakePdf/zipball/a25c45d6d725825def006d678e34bc91828780ca",
+                "reference": "a25c45d6d725825def006d678e34bc91828780ca",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "cakephp-plugin",
+            "extra": {
+                "installer-name": "CakePdf"
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "CakePHP plugin for creating and/or rendering Pdf, several Pdf engines supported.",
+            "homepage": "http://github.com/ceeram/CakePdf",
+            "support": {
+                "source": "https://github.com/ceeram/CakePdf/tree/1.0.1",
+                "issues": "https://github.com/ceeram/CakePdf/issues"
+            },
+            "time": "2013-09-05 22:13:06"
         },
         {
             "name": "composer/installers",

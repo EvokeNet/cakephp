@@ -109,8 +109,22 @@
 		echo '</div>';
 
 		echo '<br>';
-		echo '<a href = "'. $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $mission['Mission']['id'], $missionPhase['Phase']['id'], $q['Quest']['id'])) . '" class = "button">' . __('Add Discussion') . '</a>';
 
-	
+		//check the correct type of quest!
+		//its a normal evidence type quest
+		if($q['Quest']['type'] == 2) { 
+			echo '<a href = "'. $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $mission['Mission']['id'], $missionPhase['Phase']['id'], $q['Quest']['id'])) . '" class = "button">' . __('Add Discussion') . '</a>';
+		}
+
+		//its a group type of quest
+		if($q['Quest']['type'] == 3) { 
+			echo '<a href = "'. $this->Html->url(array('controller' => 'groups', 'action' => 'by_mission', $mission['Mission']['id'])) .'" class = "button">' . __('Join/Create a group!') . '</a>';
+		}
+
+		//its an evokation type of quest
+		if($q['Quest']['type'] == 4) { 
+			echo '<a href = "'. $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $mission['Mission']['id'], $missionPhase['Phase']['id'], $q['Quest']['id'], true)) . '" class = "button">' . __('Add Evokation') . '</a>';
+		}
+
 	}
 ?>			  

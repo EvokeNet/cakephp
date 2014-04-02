@@ -35,6 +35,10 @@ class Attachment extends AppModel {
         'Dossier' => array(
             'className' => 'Dossier',
             'foreignKey' => 'foreign_key',
+        ),
+        'Evidence' => array(
+            'className' => 'Evidence',
+            'foreignKey' => 'foreign_key',
         )
     );
 }

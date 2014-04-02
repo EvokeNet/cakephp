@@ -46,7 +46,7 @@ class EvidencesController extends AppController {
 
 		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
 		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
-		$vote = $this->Evidence->Vote->find('first', array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $user_data['id'])));
+		$vote = $this->Evidence->Vote->find('first', array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $this->getUserId())));
 		$this->set(compact('user', 'evidence', 'comment', 'vote'));
 	}
 
@@ -55,7 +55,7 @@ class EvidencesController extends AppController {
  *
  * @return void
  */
-	public function add($mission_id, $phase_id, $quest_id = null) {
+	public function add($mission_id, $phase_id, $quest_id = null, $evokation = false) {
 		if(!$quest_id) {
 			$this->$redirect($this->referer());
 		}
@@ -73,7 +73,11 @@ class EvidencesController extends AppController {
 
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
+
 		$insertData = array('user_id' => $this->getUserId(), 'mission_id' => $mission_id, 'phase_id' => $phase_id, 'quest_id' => $quest_id); 
+
+		if($evokation) $insertData['evokation'] = '1';
+		else $insertData['evokation'] = '0';
 
 		$this->Evidence->create();
 		if ($this->Evidence->save($insertData)) {
@@ -97,8 +101,20 @@ class EvidencesController extends AppController {
 		}
 		$me = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $id)));
 
+		if($me['Evidence']['user_id'] != $this->getUserId()) {
+			//debug($me);
+			$this->Session->setFlash(__('You have no permission to edit an evidence that does not belong to you.'));
+			$this->redirect($this->referer());
+		}
+
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Evidence->save($this->request->data)) {
+			if ($this->Evidence->createWithAttachments($this->request->data, true, $id)) {
+				
+				//check to see if there are img/files that are no loner to be related to the quest...
+				if(isset($this->request->data['Attachment']['Old'])) {
+					$this->destroyAttachments($this->request->data['Attachment']['Old']);
+				}
+
 				$this->Session->setFlash(__('The evidence has been saved.'));
 				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], $me['Phase']['position']));
 			} else {
@@ -116,8 +132,36 @@ class EvidencesController extends AppController {
 		$quests = $this->Evidence->Quest->find('list');
 		$missions = $this->Evidence->Mission->find('list');
 		$phases = $this->Evidence->Phase->find('list');
-		$this->set(compact('user', 'users', 'quests', 'missions', 'phases'));
+
+		$this->loadModel('Attachment');
+		$attachments = $this->Attachment->find('all', array(
+			'conditions' => array(
+				'Attachment.foreign_key' => $me['Evidence']['id'],
+				'Attachment.model' => 'Evidence'
+			)
+		));
+
+		$this->set(compact('user', 'users', 'quests', 'missions', 'phases', 'attachments'));
 	}
+
+	public function destroyAttachments($data){
+		//iterate received array and check if attachment is meant to desapear
+		foreach ($data as $d) {
+			if(!strpos($d['id'], 'NO-')) {
+				//good to go, lets erase it..
+				$this->loadModel('Attachment');
+				$this->Attachment->id = $d['id'];
+				$a['Attachment']['model'] = null;
+				$a['Attachment']['foreign_key'] = null;
+				if ($this->Attachment->save($a)) {
+					$this->Session->setFlash(__('The attachment has been deleted.'));
+				} else {
+					$this->Session->setFlash(__('The attachment could not be deleted. Please, try again.'));
+				}
+			}
+		}
+	}
+
 
 /**
  * delete method
