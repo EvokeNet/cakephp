@@ -45,8 +45,8 @@
 	<div class="row">
 		<div class="small-11 small-centered columns">
 			<div class="evidences form">
+			<div class = "evoke evidence-body edit">
 			<?php echo $this->Form->create('Evidence'); ?>
-				<?php echo __('Edit Evidence'); ?>
 				<?php
 					echo $this->Form->input('id');
 					echo $this->Form->input('title', array('label' => __('Title')));
@@ -58,7 +58,9 @@
 					echo $this->Media->ckeditor('content', array('label' => __('Content')));
 					//echo $this->Media->iframe('Evidence', $this->request->data['Evidence']['id']);
 				?>
-			<?php echo $this->Form->end(__('Save Evidence')); ?>
+			<?php //echo $this->Form->end(__('Save Evidence')); ?>
+			<div class = "evoke titles-right"><button type="submit" class= "evoke button general submit-button-margin"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save Evidence')) ?></button></div>
+			</div>
 			</div>
 		</div>
 	</div>

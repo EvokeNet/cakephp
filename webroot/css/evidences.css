@@ -67,14 +67,22 @@
 	border-radius: 20px;
 }
 
-.evoke.evidence-body h1{
+.evoke.evidence-body.view h1{
 	font-size: 4.0vw;
 	font-family: 'AlegreyaBold';
 	line-height: 1.0em;
 }
 
-.evoke.evidence-body span{
+.evoke.evidence-body.view span{
 	font-size: 1.3vw!important;
 	font-family: 'AlegreyaRegular'!important;
 	line-height: 1.5em!important;
+}
+
+.evoke.evidence-body.edit{
+	margin-bottom:100px;
+}
+
+.evoke.button.submit-button-margin{
+	margin-top:20px;
 }

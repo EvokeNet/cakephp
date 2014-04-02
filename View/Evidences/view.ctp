@@ -70,10 +70,10 @@
 	 	</div>
 	  </div>
 	  <div class="medium-8 large-8 columns">
-	 	<div class = "evoke evidence-body">
+	 	<div class = "evoke evidence-body view">
 		  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
 		  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
-		  	<p><?php echo urldecode($evidence['Evidence']['content']); ?></p>
+		  	<?php echo urldecode($evidence['Evidence']['content']); ?>
 		  	
 		  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
 
