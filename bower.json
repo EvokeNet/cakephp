@@ -10,8 +10,5 @@
     "kibo": "git://github.com/marquete/kibo",
     "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar",
     "etherpad": "git://github.com/ether/etherpad-lite-jquery-plugin.git"
-  },
-  "resolutions": {
-    "medium-editor": "master"
   }
 }

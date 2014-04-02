@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "12432e0b90757cd5a414f0bc4aad7247",
+    "hash": "e6866f47bc03767a73d3dd012e3dc1c8",
     "packages": [
         {
             "name": "0x46616c6b/etherpad-lite-client",

@@ -116,7 +116,7 @@
  * Web path to the CSS files directory under webroot.
  * If not set defaults to 'css/'
  */
-	//Configure::write('App.cssBaseUrl', 'css/');
+	Configure::write('App.cssBaseUrl', 'css/');
 
 /**
  * Web path to the js files directory under webroot.
@@ -140,7 +140,8 @@
  *	`manager_index()` and `/manager/controller/index`
  *
  */
-	//Configure::write('Routing.prefixes', array('admin'));
+	Configure::write('Routing.prefixes', array('admin'));
+
 
 /**
  * Turn off all caching application-wide.
@@ -212,11 +213,13 @@
 
 /**
  * A random string used in security hashing methods.
- */	Configure::write('Security.salt', '08c86649352e68ebc060a8ca88f5b22174f5782c');
+ */
+	Configure::write('Security.salt', '74fe547a73a7b5fd7048e4a3ee950ac75d27c8ec');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
- */	Configure::write('Security.cipherSeed', '353839326237366235356331643931');
+ */
+	Configure::write('Security.cipherSeed', '353865393630643863356465346338');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
@@ -364,3 +367,12 @@ Cache::config('_cake_model_', array(
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
 ));
+
+Configure::write('fb_app_id', '666636333396015');
+Configure::write('fb_app_secret', '8f56121cd2840b321cf64d8aa156f3ce');
+Configure::write('fb_app_requests', '');
+
+Configure::write('google_client_id', '265052812506-kl15ei6bv8493e4sb7uu31nksuor9r10.apps.googleusercontent.com');
+Configure::write('google_client_secret', '_KQyo6D35Rj-J1yvXzSnsB2Q');
+Configure::write('google_api_key', 'AIzaSyAM6hwjQEhFy4pxOlgl-zXDhP_o8x0KATc');
+Configure::write('gdrive_evoke_folder_id', '0B9uWvehaHYz2YmtTVjR6WTNLTkU');

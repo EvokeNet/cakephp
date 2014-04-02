@@ -145,6 +145,9 @@
 		  	<h2><?php echo __('To-do list');?></h2>
 		  	<ul>
 				<?php foreach($quests as $q):
+					//only add to checklist quests that are mandatory
+					if($q['Quest']['mandatory'] != 1) continue;
+					
 					$evidence_exists = false;
 					//if it was an 'evidence' type quest
 					foreach($my_evidences as $e):
