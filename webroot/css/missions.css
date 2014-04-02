@@ -20,125 +20,10 @@
 	list-style:none;
 }
 
-.post-it {
-	background:#fefabc; 
-	padding:15px; 
-	font-size:15px; 
-	color: #000; 
-	width:200px; 
-
-	-moz-transform: rotate(7deg);
-	-webkit-transform: rotate(7deg);
-	-o-transform: rotate(7deg);
-	-ms-transform: rotate(7deg);
-	transform: rotate(7deg);
-
-	box-shadow: 0px 4px 6px #333;
-	-moz-box-shadow: 0px 4px 6px #333;
-	-webkit-box-shadow: 0px 4px 6px #333;
-
-}
-
 .evoke.ribbon-position{
 	position: absolute;
 	bottom: 40px;
 	left: 29.6%;
-}
-
-/* ribbon style */
-
- .ribbon-wrapper {
-	position: relative;
-}
-  .ribbon-front {
-	background-color: #c65862;	
-	/*height: 60px;*/
-	/*width: 210px;*/
-	position: relative;
-	left:-40px;
-	z-index: 2;
-	border-bottom-right-radius: 30px;
-	border-top-right-radius: 30px;
-	display: inline-block;
-	padding: 20px 40px;
-	color: #FFF;
-	font-size: 1.2vw;
-}
-
-  .ribbon-front,
-  .ribbon-back-left,
-  .ribbon-back-right
-{
-	-moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
-	-khtml-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
-	-webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
-	-o-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
-}
-
-  .ribbon-edge-topleft,
-  .ribbon-edge-topright,
-  .ribbon-edge-bottomleft,
-  .ribbon-edge-bottomright {
-	position: absolute;
-	z-index: 1;
-	border-style:solid;
-	height:0px;
-	width:0px;
-}
-
-  .ribbon-edge-topleft,
-  .ribbon-edge-topright {
-}
-
-  .ribbon-edge-bottomleft,
-  .ribbon-edge-bottomright {
-	top: 60px;
-}
-
-  .ribbon-edge-topleft,
-  .ribbon-edge-bottomleft {
-	left: -40px;
-	border-color: transparent #691a21 transparent transparent;
-}
-
-  .ribbon-edge-topleft {
-	top: -29px;
-	border-width: 30px 40px 0 0;
-}
-  .ribbon-edge-bottomleft {
-	border-width: 0 40px 0px 0;
-}
-
-  .ribbon-edge-topright,
-  .ribbon-edge-bottomright {
-	left: 150px;
-	border-color: transparent transparent transparent #691a21;
-}
-
-  .ribbon-edge-topright {
-	top: 0px;
-	border-width: 0px 0 0 20px;
-}
-  .ribbon-edge-bottomright {
-	border-width: 0 0 0px 20px;
-}
-
-  .ribbon-back-left {
-	position: absolute;
-	top: -30px;
-	left: 0px;
-	width: 0px;
-	height: 60px;
-		z-index: 0;
-}
-
-  .ribbon-back-right {
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	width: 0px;
-	height: 60px;
-		z-index: 0;
 }
 
 /* Sticky note */
@@ -199,4 +84,77 @@
 	color:#000;
 	font-family: 'AmaticSC-Regular';
 	font-size:2.5vw;
+}
+
+.evoke.missions.data{
+	margin-left: 50px;
+}
+
+.evoke.missions.data h1{
+	font-family: 'AlegreyaBold';
+	color:#fff;
+}
+
+.evoke.missions.data p{
+	font-family: 'AlegreyaRegular';
+	color:#fff;
+}
+
+.evoke.adjust-row{
+	margin-left: 0;
+	margin-right: 0; 
+}
+
+.evoke.evokation-pink-border{
+	border: 3px solid #c65862;
+	padding: 20px 0px 10px;
+	margin-bottom: 30px;
+}
+
+.evoke.evokation-green-border{
+	border: 3px solid #20c475;
+	padding: 20px 0px 10px;
+	margin-bottom: 30px;
+}
+
+.evoke.mission.evokation{
+	background-color:#fff;
+	padding: 20px 5px 0px;
+	margin-bottom: 2px;
+}
+
+.evoke.mission.evokation ul{
+	list-style-type: none;
+	margin-left:0;
+	color:#fff;
+}
+
+.evoke.mission.evokation a, h1, h6{
+	color:#333333; 
+	font-family: 'AlegreyaRegular';
+}
+
+.evoke.mission.evokation h1{
+	font-size:2.0vw;
+	color:#ba5660;
+}
+
+.evoke.mission.evokation h6{
+	font-size: 1.2vw;
+}
+
+.evoke.mission.evokation.bg-red{
+	background-color:#c65862;
+}
+
+.evoke.mission.evokation.bg-red a{
+	color:#fff; 
+}
+
+.evoke.mission.evokation.bg-red h1{
+	color:#fff; 
+}
+
+.evoke.mission.evokation.bg-red h6{
+	color:#fff; 
 }

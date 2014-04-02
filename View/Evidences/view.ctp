@@ -1,4 +1,9 @@
 <?php
+
+	echo $this->Html->css('jcarousel');
+	echo $this->Html->css('sticky_note');
+	echo $this->Html->css('ribbon');
+
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 	$comments_count = sprintf(' (%s) ', count($comment));
@@ -7,25 +12,26 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $users['User']['id'])); ?></h1>
+			<h1><?php echo $user['User']['name']; ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
 
-	<section class="evoke top-bar-section">
-
+	<section class="top-bar-section">
 		<!-- Right Nav Section -->
 		<ul class="right">
-			<li class="name">
-				<h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1>
-			</li>
 			<li class="has-dropdown">
-				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
+				<a href="#"><?= __('Settings') ?></a>
 				<ul class="dropdown">
-					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $users['User']['id'])); ?></h1></li>
-					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
+					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li>
+					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
 				</ul>
 			</li>
+		</ul>
+
+		<!-- Left Nav Section -->
+		<ul class="left">
+			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li>
 			<li  class="has-dropdown">
 				<a href="#"><?= __('Language') ?></a>
 				<ul class="dropdown">
@@ -34,16 +40,13 @@
 				</ul>
 			</li>
 		</ul>
-
-		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
-
 	</section>
 </nav>
 
 <?php $this->end(); ?>
 
-<section class="evoke margin top-2">
-	<div class="row">
+<section class="evoke background padding top-2">
+	<div class="row full-width">
 
 	  <nav class="breadcrumbs">
 		<?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
@@ -52,32 +55,47 @@
 		<a class="unavailable" href="#"><?php echo __('Discussions'); ?></a>
 		<a class="current" href="#"><?php echo $evidence['Evidence']['title'];?></a>
 	  </nav>
-	  <div class="small-6 large-2 columns">
-	 	<?php echo $this->Html->link(__('Agent ').$evidence['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']));?>
-	 	<p><?php echo $evidence['User']['biography'] ?></p>
-	 	<hr class="sexy_line" />
+
+	  <div class="medium-2 large-2 columns">
+	  	<div class="evoke evidence-tag text-align">
+	  		<img src='/evoke/webroot/img/Leslie_Knope.png' style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
+		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1>
+		 	
+		 	<p><?php echo $evidence['User']['biography'] ?></p>
+		 	<i class="fa fa-facebook-square fa-lg"></i>&nbsp;
+			<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
+			<i class="fa fa-twitter-square fa-lg"></i>
+	 	</div>
 	  </div>
-	  <div class="small-6 large-8 columns">
-	  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
-	  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
-	  	<p><?php echo urldecode($evidence['Evidence']['content']); ?></p>
-	  	
-	  	<h2><?php echo __('Share a Thought').$comments_count; ?></h2>
-	  	<?php foreach ($comment as $c): ?>
-	  		<div>
-				<tr>
-				<td>
-					<h4><?php echo (__('Agent ').$c['User']['name']); ?></h4>
-					<h6><?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h6>
-					<p><?php echo $c['Comment']['content']; ?></p>
-					<hr class="sexy_line" />
-				</td>
-				</tr>
-			</div>
-		<?php endforeach; ?>
+	  <div class="medium-8 large-8 columns">
+	 	<div class = "evoke evidence-body">
+		  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
+		  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
+		  	<p><?php echo urldecode($evidence['Evidence']['content']); ?></p>
+		  	
+		  	<h2><?php echo __('Share a Thought').$comments_count; ?></h2>
+		  	<?php foreach ($comment as $c): ?>
+		  		<div>
+					<tr>
+					<td>
+						<h4><?php echo (__('Agent ').$c['User']['name']); ?></h4>
+						<h6><?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h6>
+						<p><?php echo $c['Comment']['content']; ?></p>
+						<hr class="sexy_line" />
+					</td>
+					</tr>
+				</div>
+			<?php endforeach; ?>
+		</div>
 	  </div>
-	  <div class="small-12 large-2 columns">
+	  <div class="medium-2 large-2 columns">
+	  	<div class = "evoke dashboard position">
+					<div class = "evoke dashboard titles-right">
+						<div class = "evoke titles"><h4><?php echo strtoupper(__('Leadercloud'));?></h4></div>
+					</div>
+				</div>
 	  	<div>
+	  	<div class = "evoke evidence-share">
 	  		<!-- Facebook share button -->			
 			<div id="fb-root"></div>
 	  		<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div><br>
@@ -91,6 +109,7 @@
 		  	<a href="#" class="button" data-reveal-id="myModalVote" data-reveal><?php echo __('Vote');?></a>
 		  	<!-- Commenting lightbox button -->
 		  	<a href="#" class="button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<?php echo __('Comment').$comments_count;?></a>
+		</div>
 		</div>
 	  </div>
 	</div>
