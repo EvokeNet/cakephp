@@ -6,7 +6,7 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $users['User']['id'])); ?></h1>
+			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
@@ -16,12 +16,12 @@
 		<!-- Right Nav Section -->
 		<ul class="right">
 			<li class="name">
-				<h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1>
+				<h1><?= sprintf(__('Hi %s'), $user['User']['name']) ?></h1>
 			</li>
 			<li class="has-dropdown">
 				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
 				<ul class="dropdown">
-					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $users['User']['id'])); ?></h1></li>
+					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></h1></li>
 					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
 				</ul>
 			</li>
@@ -45,7 +45,7 @@
 	<div class="row">
 		<div class="small-11 small-centered columns">
 			<div class="evidences form">
-			<?php echo $this->Form->create('Evidence'); ?>
+			<?php echo $this->Form->create('Evidence', array('enctype' => 'multipart/form-data')); ?>
 				<?php echo __('Edit Evidence'); ?>
 				<?php
 					echo $this->Form->input('id');
@@ -57,9 +57,46 @@
 					echo $this->Form->hidden('phase_id');
 					echo $this->Media->ckeditor('content', array('label' => __('Content')));
 					//echo $this->Media->iframe('Evidence', $this->request->data['Evidence']['id']);
+
+					echo "<label>".__('Attachments'). "</label>";
+		            echo '<div id="fileInputHolder">';
+		            echo "<ul>";
+		            $k = 0;
+		            foreach ($attachments as $media) {
+		                echo "<li>";
+		                echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $media['Attachment']['attachment'] .'</label>';
+		                
+		                echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $media['Attachment']['id'] .'">';
+		                echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$media['Attachment']['dir'].'/thumb_'.$media['Attachment']['attachment'] . '"/>';
+
+		                echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
+
+		                $k++;
+		            }
+		            echo "</ul>";
+		            echo '</div>';
+		            echo '<button id="newFile" class="button tiny">+ File</button>';
 				?>
 			<?php echo $this->Form->end(__('Save Evidence')); ?>
 			</div>
 		</div>
 	</div>
 </section>
+<?php echo $this->Html->script('quest_attachments'); ?>
+<script type="text/javascript">
+
+        <?php
+            $i = 0;
+            for($i=0; $i<$k;$i++) {
+        
+                echo "$('#-". $i ."').click(function() {
+                        var attId = $('#Attachmentprev-". $i ."Id').val().replace('NO-', '');
+                        $('#img-". $i ."').remove();
+                        $('#label-". $i ."').remove();
+                        $('#Attachmentprev-". $i ."Id').val(attId);
+                        $('#-". $i ."').remove();
+                        return false;
+                    });";                
+        }?>
+    
+    </script>

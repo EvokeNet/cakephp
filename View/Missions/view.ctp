@@ -158,6 +158,13 @@
 						}
 					endforeach;
 
+					//if its a group type quest, check to see if user owns or belongs to a group of this mission
+					if($q['Quest']['type'] == 3) {
+						if($hasGroup) {
+							$evidence_exists = true;
+						}
+					}
+
 					//debug($previous_answers);
 					if($evidence_exists):?>
 						<li><i class="fa fa-check-square-o"></i>&nbsp;&nbsp;<?php echo $q['Quest']['title'];?></li>
