@@ -111,7 +111,7 @@
 					</div>
 				</div>
 				<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
-					<div class="large-2 columns filter">
+					<!-- <div class="large-2 columns filter">
 			  			<fieldset>
 			    			<legend><?= __('Issues') ?></legend>
 			    			<ul id="filters">
@@ -153,16 +153,17 @@
 					</div>
 					<div class="large-8 columns filteredContent">
 						<?php echo $this->Html->Link(__('Add new Mission'), array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?>
-				  		<table> <!-- class="paginated"> -->
+				  		<table> 
 					  		<?php foreach ($missions_issues as $mi) : ?>
-					  			<!-- colocar paginação -->
+					  			
 								<tr class="<?php foreach ($mi['MissionIssue'] as $i) echo ' issue_'.$i['issue_id'];?>">
 									<td><?php echo $this->Html->Link($mi['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mi['Mission']['id'], 1)); ?></td>
 									<td><?php echo $this->Html->Link(__('Edit'), array('controller' => 'panels', 'action' => 'edit_mission', $mi['Mission']['id']), array( 'class' => 'button tiny')) . $this->Form->PostLink(__('Delete'), array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert')); ?></td>
 								</tr>
 							<?php endforeach; ?>
 						</table>
-					</div>
+					</div> -->
+					<div id="MissionsHolder" style="width:auto"></div>
 				</div>
 				<div class="content <?php echo $levels_tab; ?>" id="levels">
 					<p>Not defined.. levels details go here.</p>
@@ -294,6 +295,211 @@
 		</div>
 	</div>
 </section>
+
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js" type="text/javascript"></script> -->
+
+
+    
 <?php 
+	echo $this->Html->script('/components/jquery/jquery.min.js');
+	echo $this->Html->script('/components/foundation/js/foundation.min.js');
+	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+
 	echo $this->Html->script('panels');
 ?>
+<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>
+<link rel='stylesheet' href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"/>
+<?php
+	echo $this->Html->script('jquery.watable');
+?>
+
+<script type="text/javascript">
+    $(document).ready( function() {
+
+        //An example with all options.
+         var waTableMissions= $('#MissionsHolder').WATable({
+            debug:true,                 //Prints some debug info to console
+            pageSize: 10,                //Initial pagesize
+            transition: 'slide',       //Type of transition when paging (bounce, fade, flip, rotate, scroll, slide).Requires https://github.com/daneden/animate.css.
+            transitionDuration: 0.2,    //Duration of transition in seconds.
+            filter: true,               //Show filter fields
+            pageSizes: [10,50,100],  //Set custom pageSizes. Leave empty array to hide button.
+            hidePagerOnEmpty: true,     //Removes the pager if data is empty.
+            preFill: false, //true,              //Initially fills the table with empty rows (as many as the pagesize).
+            types: {                    //Following are some specific properties related to the data types
+                string: {
+                    //filterTooltip: "Giggedi..."    //What to say in tooltip when hoovering filter fields. Set false to remove.
+                    //placeHolder: "Type here..."    //What to say in placeholder filter fields. Set false for empty.
+                },
+                number: {
+                    decimals: 1   //Sets decimal precision for float types
+                },
+                bool: {
+                    //filterTooltip: false
+                },
+                date: {
+                  utc: true,            //Show time as universal time, ie without timezones.
+                  //format: 'yy/dd/MM',   //The format. See all possible formats here http://arshaw.com/xdate/#Formatting.
+                  datePicker: true      //Requires "Datepicker for Bootstrap" plugin (http://www.eyecon.ro/bootstrap-datepicker).
+                }
+            },
+            tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
+                console.log('table created'); //data.table holds the html table element.
+                console.log(data);            //'this' keyword also holds the html table element.
+            },
+            rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
+                console.log('row clicked');   //data.event holds the original jQuery event.
+                console.log(data);            //data.row holds the underlying row you supplied.
+                                              //data.column holds the underlying column you supplied.
+                                              //data.checked is true if row is checked.
+                                              //'this' keyword holds the clicked element.
+                if ( $(this).hasClass('userId') ) {
+                  data.event.preventDefault();
+                  alert('You clicked userId: ' + data.row.userId);
+                }
+            },
+            columnClicked: function(data) {    //Fires when a column is clicked
+              console.log('column clicked');  //data.event holds the original jQuery event
+              console.log(data);              //data.column holds the underlying column you supplied
+                                              //data.descending is true when sorted descending (duh)
+            },
+            pageChanged: function(data) {      //Fires when manually changing page
+              console.log('page changed');    //data.event holds the original jQuery event
+              console.log(data);              //data.page holds the new page index
+            },
+            pageSizeChanged: function(data) {  //Fires when manually changing pagesize
+              console.log('pagesize changed');//data.event holds teh original event
+              console.log(data);              //data.pageSize holds the new pagesize
+            }
+        }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
+
+        //Generate some data
+        var data = getData();
+        waTableMissions.setData(data);  //Sets the data.
+        //waTable.setData(data, true); //Sets the data but prevents any previously set columns from being overwritten
+        //waTable.setData(data, false, false); //Sets the data and prevents any previously checked rows from being reset
+
+        var allRows = waTableMissions.getData(false); //Gets the data you previously set.
+        var checkedRows = waTableMissions.getData(true); //Gets the data you previously set, but with checked rows only.
+        var filteredRows = waTableMissions.getData(false, true); //Gets the data you previously set, but with filtered rows only.
+
+        var pageSize = waTableMissions.option("pageSize"); //Get option
+        //waTable.option("pageSize", pageSize); //Set option
+
+    });
+
+    //Generates some data. This step is of course normally done by your web server.
+    function getData() {
+
+        //First define the columns
+        var cols = {
+            userRole: {
+                index: 1, //The order this column should appear in the table
+                type: "string", //The type. Possible are string, number, bool, date(in milliseconds).
+                friendly: "Issue",  //Name that will be used in header. Can also be any html as shown here.
+                format: "<a href='role.com' class='userId' target='_blank'>{0}</a>",  //Used to format the data anything you want. Use {0} as placeholder for the actual data.
+                //unique: true,  //This is required if you want checkable rows, or to use the rowClicked callback. Be certain the values are really unique or weird things will happen.
+                sortOrder: "asc", //Data will initially be sorted by this column. Possible are "asc" or "desc"
+                tooltip: "This column has an initial filter", //Show some additional info about column
+                placeHolder: "Search by issue" //Overrides default placeholder and placeholder specified in data types(row 34).
+                //filter: "1..400" //Set initial filter.
+            },
+            name: {
+                index: 2,
+                type: "string",
+                friendly: "Title",
+                format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
+                tooltip: "This column has a custom placeholder", //Show some additional info about column
+                placeHolder: "Search by title" //Overrides default placeholder and placeholder specified in data types(row 34).
+            }
+        };
+
+
+        <?php 
+	    	$mission_titles_array = "";
+	    	foreach ($missions_issues as $mi) 
+	    		$mission_titles_array .= '"'. $mi['Mission']['title'] .'", ';
+	    	$mission_titles_array = substr($mission_titles_array, 0, strlen($mission_titles_array) - 2);
+	    ?>
+    
+	    <?php 
+	    	$mission_ids_array = "";
+	    	foreach ($missions_issues as $mi) 
+	    		$mission_ids_array .= '"'. $mi['Mission']['id'] .'", ';
+	    	$mission_ids_array = substr($mission_ids_array, 0, strlen($mission_ids_array) - 2);
+	    ?>
+
+    	<?php 
+	    	$mission_issues_array = "";
+	    	$mission_issues_id_array = "";
+	    	foreach ($issues as $issue) 
+	    	 	foreach ($missions_issues as $mi)
+	    			foreach ($mi['MissionIssue'] as $i) 
+	    				if($issue['Issue']['id'] == $i['issue_id']) {
+	    					$mission_issues_array .= '"'. $issue['Issue']['name'] .'", ';
+	    					$mission_issues_id_array .= '"'. $issue['Issue']['id'] .'", ';
+	    				}
+	    	$mission_issues_array = substr($mission_issues_array, 0, strlen($mission_issues_array) - 2);
+    		$mission_issues_id_array = substr($mission_issues_id_array, 0, strlen($mission_issues_id_array) - 2);
+    	?>
+        /*
+          Create the actual data.
+          Whats worth mentioning is that you can use a 'format' property just as in the column definition,
+          but on a row level. See below on how we create a weightFormat property. This will be used when rendering the weight column.
+          Also, you can pre-check rows with the 'checked' property and prevent rows from being checkable with the 'checkable' property.
+        */
+        var rows = [];
+        var i = 1;
+        while(i <= <?php echo sizeof($missions_issues); ?>)
+        {
+            //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var doc = {
+                userRole: missionIssue(i-1),//"user",//GET ROLE OF USER
+                userRoleFormat: "<a href='issues/view/"+ missionIssueId(i-1) +"' class='userId' target='_blank'>{0}</a>",
+                name: missionName(i-1),
+                nameFormat: "<a href='missions/view/"+ missionId(i-1) +"/1' class='name' target='_blank'>{0}</a>" + missionButtons(i-1)
+            };
+            rows.push(doc);
+            i++;
+        }
+
+        //Create the returning object. Besides cols and rows, you can also pass any other object you would need later on.
+        var data = {
+            cols: cols,
+            rows: rows,
+            otherStuff: {
+                thatIMight: 1,
+                needLater: true
+            }
+        };
+
+        return data;
+    }
+        
+    var issueName = new Array(<?php echo $mission_issues_array ?>);
+    var issueId = new Array(<?php echo $mission_issues_id_array ?>);
+    var missionsId = new Array(<?php echo $mission_ids_array ?>);
+    var missionsTitle = new Array(<?php echo $mission_titles_array ?>);
+
+    function missionId(i) {
+        return missionsId[i];
+    }
+
+    function missionName(i) {
+        return missionsTitle[i];
+    }
+
+    function missionIssue(i) {
+    	return issueName[i];
+    }
+
+    function missionIssueId(i) {
+    	return issueId[i];
+    }
+
+    function missionButtons(i) {
+    	return "<a href='panels/edit_mission/"+ missionsId[i] +"' class='button tiny'>Edit</a>";
+    }
+
+    
+</script>
