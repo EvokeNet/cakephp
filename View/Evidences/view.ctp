@@ -58,13 +58,15 @@
 
 	  <div class="medium-2 large-2 columns">
 	  	<div class="evoke evidence-tag text-align">
-	  		<img src='/evoke/webroot/img/Leslie_Knope.png' style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
+	  		<img src='<?= $this->webroot.'/img/Leslie_Knope.png' ?>' style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
 		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1>
 		 	
 		 	<p><?php echo $evidence['User']['biography'] ?></p>
 		 	<i class="fa fa-facebook-square fa-lg"></i>&nbsp;
 			<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
 			<i class="fa fa-twitter-square fa-lg"></i>
+
+			<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button"><?php echo __('Edit Discussion');?></a>
 	 	</div>
 	  </div>
 	  <div class="medium-8 large-8 columns">
@@ -90,27 +92,34 @@
 	  </div>
 	  <div class="medium-2 large-2 columns">
 	  	<div class = "evoke dashboard position">
-					<div class = "evoke dashboard titles-right">
-						<div class = "evoke titles"><h4><?php echo strtoupper(__('Leadercloud'));?></h4></div>
-					</div>
-				</div>
-	  	<div>
-	  	<div class = "evoke evidence-share">
-	  		<!-- Facebook share button -->			
-			<div id="fb-root"></div>
-	  		<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div><br>
-		  	
-		  	<!-- Google Plus share button -->
-		  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
-		  
-		  	<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button"><?php echo __('Edit Discussion');?></a>
+			<?php echo $this->element('right_titlebar', array('title' => (__('Share')))); ?>
+		</div>
 
-		  	<!-- Voting lightbox button -->
-		  	<a href="#" class="button" data-reveal-id="myModalVote" data-reveal><?php echo __('Vote');?></a>
-		  	<!-- Commenting lightbox button -->
-		  	<a href="#" class="button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<?php echo __('Comment').$comments_count;?></a>
+	  	<div class = "evoke evidence-share">
+		  	<div style = "position:relative;">
+		  		<!-- Facebook share button -->			
+				<div id="fb-root"></div>
+		  		<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div><br>
+			  	
+			  	<!-- Google Plus share button -->
+			  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
+			</div>
 		</div>
+
+		<div class = "evoke dashboard position">
+			<?php echo $this->element('right_titlebar', array('title' => (__('Rating')))); ?>
 		</div>
+
+		<div>
+		  	
+			<!-- Voting lightbox button -->
+			  	<div class = "evoke button-bg"><a href="#" class="evoke button like-button" data-reveal-id="myModalVote" data-reveal><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></a><p><?= count($comment) ?></p></div>
+
+			  	<!-- Commenting lightbox button -->
+			  	<div class = "evoke button-bg"><a href="#" class="evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Comment');?></h6></a></div>
+			
+		</div>
+
 	  </div>
 	</div>
 

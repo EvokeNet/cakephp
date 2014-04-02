@@ -88,16 +88,18 @@
 
 .evoke.missions.data{
 	margin-left: 50px;
-}
-
-.evoke.missions.data h1{
 	font-family: 'AlegreyaBold';
 	color:#fff;
 }
 
-.evoke.missions.data p{
-	font-family: 'AlegreyaRegular';
+.evoke.missions.data h1{
+	font-size:3.0vw;
 	color:#fff;
+	font-family: 'AlegreyaBold';
+}
+
+.evoke.missions.data p{
+	font-size:1.2vw;
 }
 
 .evoke.adjust-row{

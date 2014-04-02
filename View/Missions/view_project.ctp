@@ -118,7 +118,7 @@
 	</div>
 
 	<div class = "evoke position">
-		<img src = '/evoke/webroot/img/small_bar.png' class = "evoke horizontal_bar left">
+		<img src = '<?= $this->webroot.'/img/small_bar.png' ?>' class = "evoke horizontal_bar left">
 		<div class = "evoke titles"><h4><?php echo strtoupper(__('Mission Activities'));?></h4></div>
 	</div>
 
@@ -157,7 +157,7 @@
     <div class="row full-width">
 	  <div class="large-8 columns">
 	  	<div class = "evoke position">
-			<img src = '/evoke/webroot/img/small_bar.png' class = "evoke horizontal_bar left">
+			<img src = '<?= $this->webroot.'/img/small_bar.png' ?>' class = "evoke horizontal_bar left">
 			<dl class="tabs evoke titles" data-tab>
 				  <dd><h4><?php echo strtoupper(__('Discussions'));?></h4></dd>
 				  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('Most Voted'))?></a></dd>
@@ -210,7 +210,7 @@
 	  		
 
 		<div class = "evoke position" style = "margin: 0px 1%;">
-			<img src = '/evoke/webroot/img/espiral.png' style = " width: 100%;">
+			<img src = '<?= $this->webroot.'/img/espiral.png' ?>' style = " width: 100%;">
 			<div class = "evoke todo-list">
 				<div class = "evoke todo-list content">
 					<h1><?= strtoupper(__('To-Do List')) ?></h1>
