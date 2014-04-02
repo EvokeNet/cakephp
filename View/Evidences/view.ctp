@@ -75,7 +75,10 @@
 		  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
 		  	<p><?php echo urldecode($evidence['Evidence']['content']); ?></p>
 		  	
-		  	<h2><?php echo __('Share a Thought').$comments_count; ?></h2>
+		  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
+
+		  	<?php echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
+
 		  	<?php foreach ($comment as $c): ?>
 		  		<div>
 					<tr>
@@ -96,27 +99,27 @@
 		</div>
 
 	  	<div class = "evoke evidence-share">
-		  	<div style = "position:relative;">
-		  		<!-- Facebook share button -->			
-				<div id="fb-root"></div>
-		  		<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div><br>
-			  	
-			  	<!-- Google Plus share button -->
-			  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
-			</div>
+		  
+	  		<!-- Facebook share button -->			
+			<div id="fb-root"></div>
+	  		<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div><br>
+		  	
+		  	<!-- Google Plus share button -->
+		  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
+			
 		</div>
 
 		<div class = "evoke dashboard position">
 			<?php echo $this->element('right_titlebar', array('title' => (__('Rating')))); ?>
 		</div>
 
-		<div>
+		<div class = "evoke evidence-share">
 		  	
 			<!-- Voting lightbox button -->
-			  	<div class = "evoke button-bg"><a href="#" class="evoke button like-button" data-reveal-id="myModalVote" data-reveal><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></a><p><?= count($comment) ?></p></div>
+		  	<div class = "evoke button-bg"><a href="#" class="evoke button like-button" data-reveal-id="myModalVote" data-reveal><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></a><span><?= count($comment) ?></span></div>
 
-			  	<!-- Commenting lightbox button -->
-			  	<div class = "evoke button-bg"><a href="#" class="evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Comment');?></h6></a></div>
+		  	<!-- Commenting lightbox button -->
+		  	<div class = "evoke button-bg"><a href="#" class="evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Comment');?></h6></a></div>
 			
 		</div>
 
@@ -138,3 +141,12 @@
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>
 </section>
+
+<?php
+
+	echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
+	echo $this->Html->script('facebook_share', array('inline' => false));
+	echo $this->Html->script('google_share', array('inline' => false));
+
+
+?>
