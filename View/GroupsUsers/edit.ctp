@@ -33,7 +33,7 @@
 <?php $this->end(); ?>
 
 <!-- Medium Editor CSS -->
-<?php echo $this->Html->css('/components/jquery-ui/themes/base/minified/jquery-ui.min'); ?>
+<?php //echo $this->Html->css('/components/jquery-ui/themes/base/minified/jquery-ui.min'); ?>
 <?php //echo $this->Html->css('/components/medium-editor/dist/css/medium-editor'); ?>
 <?php //echo $this->Html->css('/components/medium-editor/dist/css/themes/default'); ?>
 
