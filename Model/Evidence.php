@@ -147,6 +147,19 @@ class Evidence extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'Like' => array(
+			'className' => 'Like',
+			'foreignKey' => 'evidence_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Attachment' => array(
 	            'className' => 'Attachment',
 	            'foreignKey' => 'foreign_key',
