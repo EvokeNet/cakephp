@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * EvokationFollower Model
+ * Like Model
  *
+ * @property Evidence $Evidence
  * @property User $User
- * @property Evokation $Evokation
  */
-class EvokationFollower extends AppModel {
+class Like extends AppModel {
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -17,16 +17,16 @@ class EvokationFollower extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
+		'Evidence' => array(
+			'className' => 'Evidence',
+			'foreignKey' => 'evidence_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Evokation' => array(
-			'className' => 'Evokation',
-			'foreignKey' => 'evokation_id',
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

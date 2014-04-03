@@ -93,8 +93,8 @@ class OrganizationsController extends AppController {
 			throw new NotFoundException(__('Invalid organization'));
 		}
 		//check to see if the user is owner of the organization or an admin one..
-		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id, 'UserOrganization.user_id' => $user['id'])));
-		if(empty($org) && $user['role_id'] != 1){
+		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id, 'UserOrganization.user_id' => $this->user['id'])));
+		if(empty($org) && $this->user['role_id'] != 1){
 			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
 			$this->redirect($this->referer());
 		}
@@ -125,8 +125,8 @@ class OrganizationsController extends AppController {
 			throw new NotFoundException(__('Invalid organization'));
 		}
 
-		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id, 'UserOrganization.user_id' => $user['id'])));
-		if(empty($org) && $user['role_id'] != 1){
+		$org = $this->Organization->UserOrganization->find('first', array('conditions' => array('UserOrganization.organization_id' => $id, 'UserOrganization.user_id' => $this->getUserId())));
+		if(empty($org) && $this->getUserRole() != 1){
 			$this->Session->setFlash(__('You dont have permission to edit this organization.'));
 			$this->redirect($this->referer());
 		}
