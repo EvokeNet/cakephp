@@ -1099,7 +1099,7 @@
 
     function missionButtons(i) {
     	var str = "'deleteMission" + missionsId[i] + "'";
-    	return '<a href="panels/edit_mission/'+ missionsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="/evoke/panels/edit_mission/'+ missionsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
 

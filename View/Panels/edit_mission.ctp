@@ -119,7 +119,7 @@
 										</td>
 										<td>
 											<!-- lightbox to add quest to certain phase -->
-					  						<a href="#" data-reveal-id="myModalQuest-<?php echo $phase['Phase']['id']; ?>" data-reveal><?php echo __('Add a Quest');?></a> | <?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_phase', $id, $phase['Phase']['id'], 'add_mission'));?>
+					  						<a href="#" data-reveal-id="myModalQuest" onclick="document.getElementById('phase').setAttribute('value', '<?php echo $phase['Phase']['id']; ?>')" data-reveal><?php echo __('Add a Quest');?></a> | <?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_phase', $id, $phase['Phase']['id'], 'add_mission'));?>
 										</td>
 									</tr>
 								</thead>
@@ -136,14 +136,7 @@
 									</tr>
 								</tbody>
 							</table>
-
-							<!-- Lightbox for adding quest to phase form -->
-							<div id="myModalQuest-<?php echo $phase['Phase']['id']; ?>" class="reveal-modal tiny" data-reveal>
-								<?php 
-									echo $this->element('add_quest', array('phase_id' => $phase['Phase']['id'], 'mission_id' => $id));
-								?>
-								<a class="close-reveal-modal">&#215;</a>
-							</div>
+							<br>
 						<?php endforeach; ?>
 						<?php endif; ?>
 					</div>
@@ -166,8 +159,10 @@
 								echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
 								echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
 								echo $this->Form->hidden('mission_id', array('value' => $id));
+								echo $this->Form->radio('type', array(0 => 'Discussion', 1 => 'Project'), array('required' => true));
+								echo $this->Form->radio('show_dossier', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => 1));
 								echo $this->Form->hidden('form_type', array('value' => 'phase'));
-								echo $this->Form->input('position');
+								echo $this->Form->input('position', array('required' => true));
 							?>
 							</fieldset>
 							<button class="button small" type="submit">
@@ -175,6 +170,15 @@
 							</button>
 							<?php echo $this->Form->end(); ?>
 							<a class="close-reveal-modal">&#215;</a>
+					</div>
+
+
+					<!-- Lightbox for adding quest to phase form -->
+					<div id="myModalQuest" class="reveal-modal tiny" data-reveal>
+						<?php 
+							echo $this->element('add_quest', array('mission_id' => $id, 'origin' => 'edit_mission'));
+						?>
+						<a class="close-reveal-modal">&#215;</a>
 					</div>
 				</div>
 				<div class="content <?php echo $dossier_tag ?>" id="dossier">
