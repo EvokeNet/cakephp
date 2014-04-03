@@ -190,7 +190,10 @@ class MissionsController extends AppController {
 
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
+		$this->loadModel('EvokationFollower');
+		//$evokationsFollowing = $this->Evokation->EvokationFollower->find('all', array('conditions' => array('EvokationFollower.mission_id' => $id, 'EvokationFollower.user_id' => $this->getUserId())));
+
+		$this->set(compact('user', 'evidences', 'evokationsFollowing', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup'));
 
 		if($missionPhase['Phase']['type'] == 0)
