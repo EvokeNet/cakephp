@@ -60,6 +60,10 @@ button, div, p, span, a,
 	background: #1f8cb2;
 }
 
+.evoke .divider{
+	height:50px!important;
+}
+
 .evoke .login-bg-topbar {
 	background: #0d0d10;
 	padding-top:80px;
@@ -90,6 +94,10 @@ button, div, p, span, a,
 	background: #1f8cb2;
 }
 
+.evoke .top-bar-section h2{
+	background: #1f8cb2;
+}
+
 .top-bar .name h1 a{
 	font-family:'SBB';
 	font-size: 2.5em;
@@ -112,12 +120,33 @@ button, div, p, span, a,
 	font-size: 0.9em;
 }
 
-.evoke.top-bar-section h3{
+.evoke.dashboard.top-bar-section h3{
 	font-family: 'SBB';
 	font-size: 1.5em;
 	color: #FFF;
 	padding-top: 8px;
 	text-align: center;
+}
+
+.evoke.top-bar-section h3, h4, h5{
+	font-family: 'AlegreyaRegular';
+	display: inline;
+	color: #FFF;
+}
+
+.evoke.top-bar-section h3 a{
+	font-size: 1.0em;
+	color: #FFF;
+	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
+}
+
+.evoke.top-bar-section h4{
+	font-size:2.0em;
+	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
+}
+
+.evoke.top-bar-section h5{
+	font-size:1.2em;
 }
 
 /* SPACINGS, MARGINS, PADDINGS */
@@ -194,6 +223,37 @@ button, div, p, span, a,
 	background-size: cover;
 }
 
+.evoke.background-gray{
+	background: url('../img/bg-gray.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.evoke.top-bar.progress{
+	background-color: #252525;
+	width: 90%;
+	padding:0;
+	height: 0.8rem;
+	border:0;
+	/*margin-top: 10px;*/
+}
+
+.evoke.top-bar-padding{
+	padding: 0px 30px;
+}
+
+.evoke.top-bar-padding.bar{
+	padding-top: 2.0%;
+}
+
+.evoke.top-bar.meter{
+	background-color: #c65862;
+}
+
 .evoke .agent-tag{
 	background-image: url('../img/agent_tag.png');
 	background-repeat: no-repeat;
@@ -249,14 +309,6 @@ button, div, p, span, a,
 	position: relative;
 }
 
-.evoke .panel{
-	height: 550px;
-	overflow: scroll;
-	overflow-x: hidden;
-	z-index: 1;
-	position: relative;
-}
-
 .evoke .leadercloud{
 	height:500px;
 	z-index: 1;
@@ -274,6 +326,22 @@ button, div, p, span, a,
 	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+}
+
+.evoke .panel{
+	height: 550px;
+	overflow: scroll;
+	overflow-x: hidden;
+	z-index: 1;
+	position: relative;
+}
+
+.evoke .screen-box-height{
+	height: 550px;
+	overflow: scroll;
+	overflow-x: hidden;
+	z-index: 1;
+	position: relative;
 }
 
 .evoke .evidence-list{
@@ -339,6 +407,11 @@ button, div, p, span, a,
 	margin-right: 10px;
 	border-right: 3px solid #125167;
 	border-bottom: 3px solid #125167;
+}
+
+.evoke .button.general.green{
+	background-color: #20c475;
+	border-right: 3px solid #137244;
 }
 
 .evoke .button {
@@ -465,6 +538,34 @@ button, div, p, span, a,
 	display:inline-block;
 }
 
+.evoke.titles-ajust{
+	margin-right: -5px;
+}
+
+.evoke.small-bar-size{
+	/*width: 10%;*/
+}
+
+.evoke.lightbox-bg{
+	background-color: #000; 
+	border: 1px solid #ba5660;
+}
+
+.evoke.lightbox-bg h1{
+	color: #fff;
+	font-family: 'AlegreyaBold';
+	margin-bottom:30px;
+}
+
+.evoke.tabs-small-bar-size{
+	margin-top:-3.5%;
+	width: 12%;
+}
+
+.columns.padding-right{
+	padding-right:0;
+}
+
 .evoke .titles h4{
 	font-family: 'SBB';
 	margin: 0px 40px 0px 20px;
@@ -487,6 +588,65 @@ button, div, p, span, a,
 	border-bottom: 3px solid #125167;*/
 }
 
+.evoke .icons.tabs{
+	float: right;
+	width: auto;
+	margin-top: -440px;
+	margin-right: 80px;
+	position: relative;
+}
+
+.evoke .icons.tabs dd>a{
+	font-size:1.0em;
+}
+
+.evoke .icons.tabs dd.active a{
+	margin-bottom: 20px!important;
+}
+
+.evoke .icons.tabs dd>a{
+	margin-bottom: 20px!important;
+}
+
+.evoke .icons.tabs-content{
+	background-color: #fff;
+	width: 310px;
+	height: 275px;
+	padding: 0;
+	float: right;
+	margin-top: -440px;
+	margin-right: 200px;
+	position: relative;
+	overflow: scroll;
+	overflow-x: hidden;
+	-webkit-box-shadow: 8px 0px 20px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 8px 0px 20px 0px rgba(0,0,0,0.75);
+	box-shadow: 8px 0px 20px 0px rgba(0,0,0,0.75);
+}
+
+.evoke .icons.tabs-content li{
+	text-align:start;
+}
+
+.evoke .icons.tabs-content p, a{
+	font-size:1.2em;
+	text-align: start;
+	padding: 0px 5px;
+	color:#306f78;
+	font-family: 'AlegreyaBold';
+}
+
+.evoke .icons.tabs-content a{
+	color:#306f78;
+}
+
+.evoke .icons.tabs-content h1{
+	font-size:2.2em;
+	text-align: start;
+	padding: 20px 5px 0px;
+	font-family: 'AmaticSC-Bold';
+}
+
 .evoke .leaderboard.tabs dd.active a{
 	background: none;
 	font-size:1.5em;
@@ -503,7 +663,7 @@ button, div, p, span, a,
 	padding: 10px;
 }*/
 
-.evoke.evidence{
+.evoke.evidence.blue-box{
 	/* IE10 Consumer Preview */ 
 	background-image: -ms-linear-gradient(top, #1B7C9D 0%, #125167 100%);
 	/* Mozilla Firefox */ 
@@ -516,24 +676,57 @@ button, div, p, span, a,
 	background-image: -webkit-linear-gradient(top, #1B7C9D 0%, #125167 100%);
 	/* W3C Markup, IE10 Release Preview */ 
 	background-image: linear-gradient(to bottom, #1B7C9D 0%, #125167 100%);
-	padding: 20px 5px 10px;
-	margin-bottom: 5px;
+	/*padding: 20px 5px 10px;*/
+	padding: 20px 5px 0px;
+	margin-bottom: 2px;
 }
 
-.evoke.evidence a{
-	font-color: #fff;
-}
-
-.evoke.evidence ul{
-	list-style-type: none;
-}
-
-.evoke.evidence a{
+.evoke.evidence.blue-box a{
 	color:#fff; 
+	font-family: 'AlegreyaRegular';
 }
 
-.evoke.evidence li{
-	text-align: center;  
+.evoke.evidence.blue-box h1{
+	font-family: 'AlegreyaRegular';
+	font-size:2.0vw;
+}
+
+.evoke.evidence.blue-box h6{
+	font-family: 'AlegreyaRegular';
+	font-size: 1.2vw;
+}
+
+.evoke.evidence.blue-box ul{
+	list-style-type: none;
+	margin-left:0;
+	color:#fff;
+}
+
+/* Titles with bar right aligned */
+
+.evoke.titles-right{
+	text-align: end;
+}
+
+.evoke.titles-right h4{
+	font-size: 1.2vw;
+}
+
+.evoke.small-bar{
+	/*margin: 0px -60px;*/
+	margin: 0px -28px;
+}
+
+.evoke.titles-left{
+	text-align: start;
+}
+
+.evoke.titles-left h4{
+	font-size: 1.2vw;
+}
+
+.evoke.medium-bar{
+	margin: 0px -160px;
 }
 
 .evoke.evokation.follow{
@@ -555,8 +748,7 @@ button, div, p, span, a,
 .evoke.top-bar.icon{
 	max-height: 50px; 
 	max-width: 70px; 
-	/*margin-right: 10px;*/
-	/*margin-top: 3px;*/
+	margin-top:3px;
 }
 
 .evoke.position{
@@ -564,9 +756,97 @@ button, div, p, span, a,
 }
 
 .evoke.horizontal_bar.left{
-	margin: 8px -110px 0px;
+	margin: 8px -80px 0px;
 }
 
 .evoke.text-align{
 	text-align: center;
+}
+
+.evoke.evidence-icons{
+	margin-bottom: 5px;
+}
+
+.evoke.evidence-icons.social i{
+	color:#fff;
+}
+
+.evoke.button.like-button{
+	/*border-radius:10px;
+	-webkit-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	-moz-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	font-size:1.2vw;
+	margin:0;
+	padding:0.8em 1em;*/
+
+	border-radius: 10px;
+	-webkit-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	-moz-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	font-size: 1.2vw;
+	margin: 0;
+	padding: 0.8em 1em;
+	/*height: 65px;
+	min-width: 200px;*/
+	height: 2.6vw;
+	min-width: 8vw;
+	text-align: start;
+}
+
+.evoke.button.like-button h6{
+	border-left: 2px solid #63afc9;
+	color: #ffffff;
+	font-size: 1.2vw;
+	display: inline;
+	padding-left: 10px;
+}
+
+.evoke.button.like-button a{
+	border-left: 2px solid #63afc9;
+	color: #ffffff;
+	font-size: 1.2vw;
+	display: inline;
+	padding-left: 10px;
+}
+
+.evoke.button.like-button.comment-button{
+	background-color:#c65862;
+}
+
+.evoke.button.like-button.comment-button h6{
+	border-left:2px solid #d78a91;
+}
+
+.evoke.button-bg{
+	background-color:#fff;
+	border-radius:10px;
+	/*width: 80%;*/
+	margin: 20px auto;
+}
+
+.evoke.button-bg span{
+	margin-left: 5%;
+	font-size: 1.2vw;
+	color: #666666;
+	font-weight: bold;
+}
+
+.evoke.comment-box{
+	background-color:#dfdfdf;
+	padding: 20px 30px;
+	margin-top: 10px;
+	border-radius: 5px;
+}
+
+.evoke.comment-box h4, h6, p{
+	font-family: 'AlegreyaRegular';
+}
+
+.evoke.comment-box h4, p{
+	font-size:1.1vw;
+}
+
+.evoke.comment-box h6{
+	font-size:0.9vw;
 }

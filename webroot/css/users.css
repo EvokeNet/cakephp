@@ -146,11 +146,11 @@
 	/*top: 0;*/
 }
 
-.evoke.dashboard.vertical_bar img.top-height{
+.evoke.dashboard.vertical_bar .top-height{
 	top: 0;
 }
 
-.evoke.dashboard.vertical_bar img.top-height-two{
+.evoke.dashboard.vertical_bar .top-height-two{
 	top:-60px;
 }
 
@@ -252,7 +252,7 @@
 	width: 90%;
 	padding:0;
 	height: 0.8rem;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 }
 
 .evoke.dashboard.leadercloud{
@@ -332,14 +332,6 @@
 
 .evoke.dashboard.position.panel-margin{
 	margin-right: 100px;
-}
-
-.evoke.dashboard.titles-right{
-	text-align: end;
-}
-
-.evoke.dashboard.small-bar{
-	margin: 0px -80px;
 }
 
 .evoke.dashboard.user_pic{

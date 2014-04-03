@@ -16,41 +16,74 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-/*.evidences h1{
-	font-size:2.0em;
-	margin-bottom:15px;
+.evoke.evidence-tag{
+	background-color:#efefef;
+	border:1px solid #000;
+	border-radius:10px;
 }
 
-.evidences h6{
-	color:#b7b7b7;
+.evoke.evidence-tag-border{
+	border-bottom: 2px solid #a7a7a7;
+	padding-bottom:10px;
 }
 
-.evidences p{
-	margin: 30px 0px 50px 0px;
+.evoke.evidence-tag h1{
+	color: #000;
+	font-size:2.0vw;
+	font-family: 'AlegreyaBold';
 }
 
-.evidences a{
-	color: #ffffff;
-}*/
-
-/*.bio a{
-	color: #373737;
-	font-weight:bold;
-	float:right;
+.evoke.evidence-tag p{
+	font-family: 'AlegreyaRegular';
+	color: #393939;
+	text-align: center;
+	width: 90%;
+	margin: 20px auto;
+	border-bottom: 1px solid #a7a7a7;
+	border-top: 1px solid #a7a7a7;
+	padding: 20px 0px;
 }
 
-.bio p{
-	color: #373737;
-	margin: 20px 0px;
-	text-align:right;
-}*/
-
-/*.comment h5{
-	color: #373737;
-	font-size:1.4em;
+.evoke.evidence-tag i{
+	color:#999999;
 }
 
-.comment h6{
-	color: #b7b7b7;
-	font-size:0.9em;
-}*/
+.evoke.evidence.margin-button{
+	margin-top:40px;
+}
+
+.evoke.evidence-share{
+	/*background-color: #273141;
+	opacity: 0.7;*/
+	background-color: rgba(39,49,65,0.5);
+	border-radius: 20px;
+	padding: 20px;
+	margin: 30px 0px;
+}
+
+.evoke.evidence-body{
+	background-color: #fff;
+	border: 2px solid #a7a7a7;
+	padding: 30px 50px;
+	border-radius: 20px;
+}
+
+.evoke.evidence-body.view h1{
+	font-size: 4.0vw;
+	font-family: 'AlegreyaBold';
+	line-height: 1.0em;
+}
+
+.evoke.evidence-body.view span{
+	font-size: 1.3vw!important;
+	font-family: 'AlegreyaRegular'!important;
+	line-height: 1.5em!important;
+}
+
+.evoke.evidence-body.edit{
+	margin-bottom:100px;
+}
+
+.evoke.button.submit-button-margin{
+	margin-top:20px;
+}

@@ -41,12 +41,16 @@
 
 <?php $this->end(); ?>
 
-<section class="evoke margin top-2">
+<section class="evoke background-gray padding top-2">
 	<div class="row">
 		<div class="small-11 small-centered columns">
 			<div class="evidences form">
+
+			<div class = "evoke evidence-body edit">
+
 			<?php echo $this->Form->create('Evidence', array('enctype' => 'multipart/form-data')); ?>
 				<?php echo __('Edit Evidence'); ?>
+
 				<?php
 					echo $this->Form->input('id');
 					echo $this->Form->input('title', array('label' => __('Title')));
@@ -77,7 +81,9 @@
 		            echo '</div>';
 		            echo '<button id="newFile" class="button tiny">+ File</button>';
 				?>
-			<?php echo $this->Form->end(__('Save Evidence')); ?>
+			<?php //echo $this->Form->end(__('Save Evidence')); ?>
+			<div class = "evoke titles-right"><button type="submit" class= "evoke button general submit-button-margin"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save Evidence')) ?></button></div>
+			</div>
 			</div>
 		</div>
 	</div>
