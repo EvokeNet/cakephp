@@ -63,7 +63,7 @@
 						<?php foreach ($organizations as $organization) { ?>
 								<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert', 'id' => 'orgsDelete'.$organization['Organization']['id'], 'style' => 'display:none' )); ?>
 						<?php }	?>
-					
+
 						<button class="button" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></button>
 						<div id="myModalOrganization" class="reveal-modal tiny" data-reveal>
 							<?php echo $this->Form->create('Organization', array(
@@ -853,9 +853,12 @@
 
 
         <?php 
+        	$badges_size = 0;
 	    	$badges_titles_array = "";
 	    	$badges_ids_array = "";
 	    	foreach ($badges as $badge) :
+	    		if($badge['Badge']['id'] == "") continue;
+	    		$badges_size++;
 	    		$badges_titles_array .= '"'. $badge['Badge']['name'] .'", ';
 	    		$badges_ids_array .= '"'. $badge['Badge']['id'] .'", ';
 	    	endforeach;
@@ -866,12 +869,14 @@
     	<?php 
 	    	$orgs_names_array = "";
 	    	$orgs_id_array = "";
-	    	foreach ($badges as $b) 
+	    	foreach ($badges as $b) {
+	    	 	if($b['Badge']['id'] == "") continue;
 	    	 	foreach ($organizations as $org) 
 	    			if($org['Organization']['id'] == $b['Badge']['organization_id']) {
 	    				$orgs_names_array .= '"'. $org['Organization']['name'] .'", ';
 	    				$orgs_id_array .= '"'. $org['Organization']['id'] .'", ';
 	    			}
+	    	}
 	    	$orgs_names_array = substr($orgs_names_array, 0, strlen($orgs_names_array) - 2);
     		$orgs_id_array = substr($orgs_id_array, 0, strlen($orgs_id_array) - 2);
     	?>
@@ -883,7 +888,7 @@
         */
         var rows = [];
         var i = 1;
-        while(i <= <?php echo sizeof($badges); ?>)
+        while(i <= <?php echo $badges_size; ?>)
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
             var doc = {
@@ -925,9 +930,12 @@
 
 
         <?php 
+        	$orgs_size = 0;
 	    	$orgs_array = "";
 	    	$orgsids_array = "";
 	    	foreach ($organizations as $o) :
+	    		if($o['Organization']['id'] == "") continue;
+	    		$orgs_size++;
 	    		$orgs_array .= '"'. $o['Organization']['name'] .'", ';
 	    		$orgsids_array .= '"'. $o['Organization']['id'] .'", ';
 	    	endforeach;
@@ -943,12 +951,12 @@
         */
         var rows = [];
         var i = 1;
-        while(i <= <?php echo sizeof($organizations); ?>)
+        while(i <= <?php echo $orgs_size; ?>)
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
             var doc = {
                 name: orgsName[i-1],
-                nameFormat: "<a href='/evoke/organizations/view/"+ orgsId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + orgsButtons(i-1)
+                nameFormat: "<a href='/evoke/organizations/view/"+ orgsId[i-1] +"' class='name' target='_blank'>{0}</a>:     " + orgsButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -983,9 +991,12 @@
 
 
         <?php 
+        	$issues_size = 0;
 	    	$issues_array = "";
 	    	$issueids_array = "";
 	    	foreach ($issues as $issue) :
+	    		if($issue['Issue']['id'] == "") continue;
+	    		$issues_size++;
 	    		$issues_array .= '"'. $issue['Issue']['name'] .'", ';
 	    		$issueids_array .= '"'. $issue['Issue']['id'] .'", ';
 	    	endforeach;
@@ -1001,7 +1012,7 @@
         */
         var rows = [];
         var i = 1;
-        while(i <= <?php echo sizeof($issues); ?>)
+        while(i <= <?php echo $issues_size; ?>)
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
             var doc = {
