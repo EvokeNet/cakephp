@@ -1,6 +1,6 @@
 <div class="row evoke evidence blue-box">
-	<div class="medium-2 columns">
-  		<div class = "evoke dashboard text-align">
+	<div class="medium-1 columns">
+  		<div class = "evoke text-align">
   			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
   			<!-- <h6><?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));?></h6> -->
 
@@ -8,9 +8,9 @@
 			<h6><?= $e['User']['name']?></h6>
 			</a>
   		</div>
-		</div>
+	</div>
 
-	<div class="medium-8 columns">
+	<div class="medium-9 columns">
 		<!-- <h1><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h1> -->
 
 		<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?>">
