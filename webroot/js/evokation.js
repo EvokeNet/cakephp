@@ -1,5 +1,7 @@
 $('#evokation_div').pad({
-	'host': 'http://localhost:9001',
+	'host': 'http://198.50.155.101:2222',
 	'padId':'testando',
-	'height': 1000
+	'height': 1000,
+	'showControls': true,
+	'noColors': true
 });

@@ -167,7 +167,6 @@ class MissionsController extends AppController {
 			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
 		}
 
-
 		if(!empty($dossier)) {
 			//dossier files
 			$dossier_files = $this->Attachment->find('all', array(
@@ -198,7 +197,6 @@ class MissionsController extends AppController {
 			$this->render('view_discussion');
 		else
 			$this->render('view_project');
-
 	}
 
 /**

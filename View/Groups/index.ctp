@@ -64,11 +64,17 @@
 			  </div>
 			  <div class="content" id="panel2-2">
 			    <?php
-		  			foreach($myevokations as $e):
-	  					echo $this->element('evokation_red_box', array('e' => $e));
+		  			foreach($myGroups as $e):
+	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
 	  			endforeach;?>
 			  </div>
-			  <div class = "content" id="panel2-3"></div>
+			  <div class = "content" id="panel2-3">
+			  	<?php
+		  			foreach($groupsIBelong as $e):
+		  				echo $e['Group']['name'];
+	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
+	  			endforeach;?>
+			  </div>
 			</div>
 			<?php if(isset($mission)): ?>
 				<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'add', $mission['Mission']['id'])); ?>" class = "button"><?php echo __('Create a group');?></a>

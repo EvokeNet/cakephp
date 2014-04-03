@@ -113,7 +113,7 @@
 			    		endforeach; 
 
 			    		foreach($evokations as $e):
-			    			echo $this->element('evokation_box', array('e' => $e));
+			    			echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
 						endforeach;?>
 				  </div>
 				  <div class="content" id="panel2-2">

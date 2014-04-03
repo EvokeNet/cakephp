@@ -1,12 +1,9 @@
 <?php
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
-APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
-App::uses('Folder', 'Utility');
-App::uses('File', 'Utility');
 
-use Google\Client;
-use Google\Service\Drive;
+use EtherpadLite\Client;
+use EtherpadLite\Request;
 
 
 /**
@@ -51,66 +48,11 @@ class GroupsUsersController extends AppController {
  */
 	public function edit($group_id = null) {
 
-		$this->loadModel('Setting');
-		$gAuth = new GoogleAuthentication(
-			Configure::read('google_client_id'),
-			Configure::read('google_client_secret'),
-			Configure::read('google_api_key')
-		);
-
-		$setting_access_token = $this->Setting->find('first', array(
-			'conditions'=> array(
-				'Setting.key' => 'google_auth_access_token'
-			)
-		));
-
-		$setting_refresh_token = $this->Setting->find('first', array(
-			'conditions'=> array(
-				'Setting.key' => 'google_auth_refresh_token'
-			)
-		));
-
-		if(empty($setting_refresh_token)) {
-			$token = $gAuth->authorize();
-
-			if(!empty($token)) {
-
-				$setting = array();
-
-				$this->Setting->create();
-				$setting['Setting']['key'] = 'google_auth_refresh_token';
-				$setting['Setting']['value'] = $token;
-				$this->Setting->save($setting);
-
-				$this->Setting->create();
-				$setting['Setting']['key'] = 'google_auth_access_token';
-				$setting['Setting']['value'] = $token;
-				$this->Setting->save($setting);
-
-				$this->Session->write('access_token', $token);
-
-			}
-		} else {
-
-			$access_token = $setting_access_token['Setting']['value'];
-			$refresh_token = $setting_refresh_token['Setting']['value'];
-
-			$token = $gAuth->authorize($access_token, $refresh_token);
-
-			if (!empty($token)) {
-				$setting = $this->Setting->find('first', array(
-					'conditions' => array(
-						'key' => 'google_auth_access_token'
-					)
-				));
-				$this->Setting->id = $setting['Setting']['id'];
-				$this->Setting->set('value', $token);
-				$this->Setting->save();
-			}
-			$this->Session->write('access_token', $token);
-		}
+		$apikey = Configure::read('etherpad_api_key');
+		$client = new Client($apikey, 'http://198.50.155.101:2222');
 
 		$group = $this->GroupsUser->getGroupAndUsers($group_id);
+		
 		$users = $this->GroupsUser->find('all', array(
 			'conditions' => array(
 				'GroupsUser.group_id' => $group_id
@@ -118,65 +60,22 @@ class GroupsUsersController extends AppController {
 		));
 
 		$this->loadModel('Evokation');
-		$this->Evokation->recursive = -1;
-
 		$evokation = $this->Evokation->find('first', array(
 			'conditions' => array(
-				'Evokation.group_id' => $group_id
+				'group_id' => $group_id
 			)
 		));
 
-		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-		if (!empty($evokation['Evokation']['gdrive_file_id'])) {
-
-			$client = new Google_Client();
-			$client->setAccessToken($access_token);
-			$drive = new Google_Service_Drive($client);
-
-			$file = $drive->files->get($evokation['Evokation']['gdrive_file_id']);
-
-			$embedLink = $file->alternateLink;
-
-		} else {
-
-			$client = new Google_Client();
-			$client->setAccessToken($access_token);
-			$drive = new Google_Service_Drive($client);
-			
-			$file = new Google_Service_Drive_DriveFile;
-			$file->setTitle('Evokation - Group ' . $group['Group']['title']);
-			$file->setDescription('Evokation collaborative file.');
-			$file->setMimeType('text/html');
-
-			$parent = new Google_Service_Drive_ParentReference();
-			$parent->setId(Configure::read('gdrive_evoke_folder_id'));
-			$file->setParents(array($parent));
-			
-			$createdFile = $drive->files->insert($file, array(
-				'convert' => 'true',
-				'mimeType' => 'text/html',
-				'uploadType' => 'multipart',
-				'data' => 'Your Evokation goes here'
-			));
-
-			$evokation = array();
-			$evokation['Evokation']['group_id'] = $group['Group']['id'];
-			$evokation['Evokation']['gdrive_file_id'] = $createdFile->id;
-			$evokation['Evokation']['title'] = 'Your title goes here';
-			$evokation['Evokation']['abstract'] = 'Your abstract goes here';
-			$evokation['Evokation']['language'] = $this->Session->read('Config.language');
-
-			$this->Evokation->create();
-			$this->Evokation->save($evokation);
-
-			$embedLink = $createdFile->embedLink;
-
+		if (!empty($evokation)) {
+			$this->request->data = $evokation;
 		}
-		
-		$this->request->data = $evokation;
 
-		$this->set(compact('group', 'users', 'user', 'embedLink'));
+		$response = $client->checkToken();
+		if ($response->getCode() == 0) {
+			
+		}
+
+		$this->set(compact('group', 'users'));
 
 	}
 
@@ -343,7 +242,7 @@ class GroupsUsersController extends AppController {
 		$Email->viewVars(array('sender' => $sender, 'recipient' => $recipient, 'group' => $group));
 		$Email->send();
 		$this->Session->setFlash(__('The email was sent'));
-		$this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
+		$this->redirect(array('controller' => 'groups', 'action' => 'index', $group['Group']['mission_id']));
 	
 	}
 

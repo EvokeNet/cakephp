@@ -10,9 +10,7 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-
 			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></h1>
-
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>

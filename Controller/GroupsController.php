@@ -33,10 +33,13 @@ class GroupsController extends AppController {
 
 		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
 
+
 		$groups_id = array();
+		$groupsBelongs = array();
 
 		foreach($groups as $group):
 			array_push($groups_id, array('Evokation.group_id' => $group['Group']['id']));
+			array_push($groupsBelongs, array('GroupsUser.group_id' => $group['Group']['id'], 'GroupsUser.user_id' => $this->getUserId()));
 		endforeach;
 
 		//retrieve all organizations I am part of as a list to be displayed in a combobox
@@ -49,12 +52,22 @@ class GroupsController extends AppController {
 			)
 		));
 
+		//retrieve all organizations I am part of as a list to be displayed in a combobox
+		$groupsIBelong = $this->Group->GroupsUser->find('all', array(
+			'order' => array(
+				'GroupsUser.created DESC'
+			),
+			'conditions' => array(
+				'OR' => $groupsBelongs
+			)
+		));
+
 		$myGroups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id, 'Group.user_id' => $this->getUserId())));
 
 		$mygroups_id = array();
 
-		foreach($myGroups as $group):
-			array_push($mygroups_id, array('Evokation.group_id' => $group['Group']['id']));
+		foreach($myGroups as $g):
+			array_push($mygroups_id, array('Evokation.group_id' => $g['Group']['id']));
 		endforeach;
 
 		//retrieve all organizations I am part of as a list to be displayed in a combobox
@@ -67,7 +80,7 @@ class GroupsController extends AppController {
 			)
 		));
 
-		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations'));
+		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong'));
 	}
 
 
