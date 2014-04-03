@@ -36,6 +36,13 @@ class Group extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Mission' => array(
+			'className' => 'Mission',
+			'foreignKey' => 'mission_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

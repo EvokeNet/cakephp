@@ -269,11 +269,27 @@ class UsersController extends AppController {
 		//debug($myEvokations);
 
 		$this->loadModel('Mission');
-		$missions = $this->Mission->find('all');
+		$missions = $this->Mission->find('all', array(
+			'order' => array('Mission.id DESC')
+		));
+
+		$mission_ids = array();
+		foreach ($missions as $mission) {
+			$mission_ids[] = array('Attachment.foreign_key' => $mission['Mission']['id'], 'Attachment.model' => 'Mission');
+		}
+
+		$this->loadModel('Attachment');
+		$imgs = $this->Attachment->find('all', array(
+			'order' => array('Attachment.foreign_key DESC'),
+			'conditions' => array(
+				'OR' => $mission_ids
+			)
+		));
+
 		$missionIssues = $this->Mission->MissionIssue->find('all');
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
-		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 'missionIssues', 'issues'));
+		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 'missionIssues', 'issues', 'imgs'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');

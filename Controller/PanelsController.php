@@ -46,6 +46,7 @@ class PanelsController extends AppController {
 	public function index($args = 'organizations') {
 		$organizations_tab = $this->defineCurrentTab('organizations', $args);
 		$missions_tab = $this->defineCurrentTab('missions', $args);
+		$issues_tab = $this->defineCurrentTab('issues', $args);
 		$levels_tab = $this->defineCurrentTab('levels', $args);
 		$badges_tab = $this->defineCurrentTab('badges', $args);
 		$users_tab = $this->defineCurrentTab('users', $args);
@@ -191,7 +192,7 @@ class PanelsController extends AppController {
 		
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues',
-			'organizations_tab', 'missions_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
+			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
 	}
 
 /*
@@ -955,7 +956,7 @@ class PanelsController extends AppController {
 			$this->Issue->create();
 			if ($this->Issue->save($this->request->data)) {
 				$this->Session->setFlash(__('The issue has been saved.'));
-				return $this->redirect(array('action' => 'index', 'missions'));
+				return $this->redirect(array('action' => 'index', 'issues'));
 			} else {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
 			}
@@ -981,7 +982,7 @@ class PanelsController extends AppController {
 				$this->loadModel('MissionIssue');
 				$this->MissionIssue->deleteAll(array('issue_id = '.$id));
 
-				return $this->redirect(array('action' => 'index', 'missions'));
+				return $this->redirect(array('action' => 'index', 'issues'));
 			} else {
 				$this->Session->setFlash(__('The issue could not be deleted. Please, try again.'));
 			}

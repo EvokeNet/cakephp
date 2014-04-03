@@ -6,7 +6,7 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $users['User']['id'])); ?></h1>
+			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
@@ -16,12 +16,12 @@
 		<!-- Right Nav Section -->
 		<ul class="right">
 			<li class="name">
-				<h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1>
+				<h1><?= sprintf(__('Hi %s'), $user['User']['name']) ?></h1>
 			</li>
 			<li class="has-dropdown">
 				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
 				<ul class="dropdown">
-					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $users['User']['id'])); ?></h1></li>
+					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></h1></li>
 					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
 				</ul>
 			</li>
@@ -45,6 +45,7 @@
 	<?= $this->element('left_titlebar', array('title' => __('Evokations'))) ?>
 	<div class="row full-width">
 		<div class="small-6 small-centered columns">
+
 			<dl class="tabs" data-tab>
 			  <dd class="active"><a href="#panel2-1"><?php echo __('Evokation Teams');?></a></dd>
 			  <dd><a href="#panel2-2"><?php echo __('My Evokation Teams');?></a></dd>
@@ -109,7 +110,11 @@
 	  			?>
 			  </div>
 			</div>
-			<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'add')); ?>" class = "button"><?php echo __('Create a group');?></a>
+			<?php if(isset($mission)): ?>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'add', $mission['Mission']['id'])); ?>" class = "button"><?php echo __('Create a group');?></a>
+			<?php else : ?>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'add')); ?>" class = "button"><?php echo __('Create a group');?></a>
+			<?php endif; ?>
 		</div>
 	</div>
 </section>

@@ -11,9 +11,11 @@
 	<fieldset>
 		<legend><?php echo __('Add a Quest'); ?></legend>
 	<?php
+
 		echo $this->Form->input('title', array('required' => true));
 		echo $this->Form->input('description', array('required' => true));
-		echo $this->Form->radio('type', array(1 => 'Questionnaire', 2 => 'Evidence'), array('id' => 'questtype', 'required' => true));//
+        echo $this->Form->radio('mandatory', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => 1));//
+		echo $this->Form->radio('type', array(1 => 'Questionnaire', 2 => 'Evidence', 3 => 'Group', 4 => 'Evokation'), array('id' => 'questtype', 'required' => true));//
 		echo $this->Form->hidden('mission_id', array('value' => $mission_id));
 		echo $this->Form->hidden('phase_id', array('value' => $phase_id));
 	?>

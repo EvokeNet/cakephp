@@ -98,13 +98,28 @@ class MissionsController extends AppController {
 		$missionIssues = $this->Mission->getMissionIssues($id);
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 
-		$this->loadModel('Organization');
-		// $organized_by = $this->Organization->find('first', array(
-		// 	'conditions' => array(
-		// 		'Organization.id' => $mission['Mission']['organization_id']
-		// 	)
-		// ));
-		
+		$hasGroup = false;
+		//check to see if user has entered a group of this mission..
+		foreach ($mission['Group'] as $group) {
+			if($group['user_id'] == $this->getUserId()) {
+				$hasGroup = true;
+				break;
+			}
+
+			$this->loadModel('GroupsUser');
+			$groupsuser = $this->GroupsUser->find('all', array(
+				'conditions' => array(
+					'GroupsUser.group_id' => $group['id']
+				)
+			));
+			foreach ($groupsuser as $member) {
+				if($member['GroupsUser']['user_id'] == $this->getUserId()) {
+					$hasGroup = true;
+					break;
+				}
+			}
+		}
+
 		//retrieving all ids from quests of this mission..
 		$my_quests_id = array();
 		$my_quests_id2 = array();
@@ -152,13 +167,18 @@ class MissionsController extends AppController {
 			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
 		}
 
-		//dossier files
-		// $dossier_files = $this->Attachment->find('all', array(
-		// 	'conditions' => array(
-		// 		'Attachment.foreign_key' => $dossier['Dossier']['id'],
-		// 		'Attachment.model' => 'Dossier'
-		// 	)
-		// ));
+
+		if(!empty($dossier)) {
+			//dossier files
+			$dossier_files = $this->Attachment->find('all', array(
+				'conditions' => array(
+					'Attachment.foreign_key' => $dossier['Dossier']['id'],
+					'Attachment.model' => 'Dossier'
+				)
+			));
+		} else {
+			$dossier_files = array();
+		}
 
 		$this->loadModel('Evidence');
 		$my_evidences = $this->Evidence->find('all', array(
@@ -172,12 +192,13 @@ class MissionsController extends AppController {
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
-			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'users', 'organized_by', 'mission_img'));
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup'));
 
 		if($missionPhase['Phase']['type'] == 0)
 			$this->render('view_discussion');
 		else
 			$this->render('view_project');
+
 	}
 
 /**
@@ -223,7 +244,10 @@ class MissionsController extends AppController {
 			$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
 			$this->request->data = $this->Mission->find('first', $options);
 		}
+<<<<<<< HEAD
 			//'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img', 'dossier_files'));
+=======
+>>>>>>> 96dd11aa090effea4e1ee4eeaa3b6065c5239f1c
 	}
 
 /**

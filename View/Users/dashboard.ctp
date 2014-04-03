@@ -73,6 +73,12 @@
 		                        		<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>">
 			                        		<img src='<?= $this->webroot.'img/evoke_folder.png' ?>' width = "90%;"/>
 			                        		<span class = "evoke dashboard folders"><?php echo $m['Mission']['title'];?></span>
+			                        		<?php foreach ($imgs as $img) : ?>
+			                        			<?php 
+			                        				if($m['Mission']['id'] == $img['Attachment']['foreign_key'])
+			                        					echo '<span>TEM IMG</span>';
+			                        			?>
+			                        		<?php endforeach; ?>
 		                        		</a>
 		                        	</li>
 					    		<?php endforeach; ?>

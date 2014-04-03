@@ -33,10 +33,10 @@
 				}
 				//if so, show him his previous answer
 				if($my_answer) {
-					echo $this->Form->input($question['id'].'][description', array('label' => $question['description'], 'value' => $my_answer['UserAnswer']['description']));
+					echo $this->Form->input($question['id'].'][description', array('label' => $question['description'], 'value' => $my_answer['UserAnswer']['description'], 'required' => true));
 				} else {
 					//else, just show him a text area with the question description as the label
-					echo $this->Form->input($question['id'].'][description', array('label' => $question['description']));
+					echo $this->Form->input($question['id'].'][description', array('label' => $question['description'], 'required' => true));
 				}
 				echo $this->Form->hidden($question['id'].'][question_id', array('value' => $question['id']));
 			}
@@ -60,9 +60,9 @@
 
 				//check to see if he already answered that, if so, check the coresponding radio
 				if($my_answer) {
-					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'radio', 'options' => $possible_answers, 'default' => $my_answer['UserAnswer']['answer_id'], 'legend' => $question['description']));
+					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'radio', 'options' => $possible_answers, 'default' => $my_answer['UserAnswer']['answer_id'], 'legend' => $question['description'], 'required' => true));
 				} else {
-					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'radio', 'options' => $possible_answers, 'legend' => $question['description']));
+					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'radio', 'options' => $possible_answers, 'legend' => $question['description'], 'required' => true));
 				}
 				echo $this->Form->hidden($question['id'].'][question_id', array('value' => $question['id']));
 			}
@@ -86,9 +86,9 @@
 				echo $this->Form->hidden($question['id'].'][question_id', array('value' => $question['id']));
 				//check to see if he already answered that, if so, check the coresponding radio
 				if($my_answer) {
-					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'select', 'multiple' => 'checkbox', 'options' => $possible_answers, 'selected' => $my_answer, 'legend' => '', 'label' => '', 'before' => '<fieldset>' . $question['description'], 'after' => '</fieldset>'));	
+					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'select', 'multiple' => 'checkbox', 'options' => $possible_answers, 'selected' => $my_answer, 'legend' => '', 'label' => '', 'before' => '<fieldset>' . $question['description'], 'after' => '</fieldset>', 'required' => true));	
 				} else {
-					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'select', 'multiple' => 'checkbox', 'options' => $possible_answers, 'legend' => '', 'label' => '', 'before' => '<fieldset>' . $question['description'], 'after' => '</fieldset>'));
+					echo $this->Form->input($question['id'].'][answer_id', array('type' => 'select', 'multiple' => 'checkbox', 'options' => $possible_answers, 'legend' => '', 'label' => '', 'before' => '<fieldset>' . $question['description'], 'after' => '</fieldset>', 'required' => true));
 				}
 				
 			}
@@ -109,8 +109,22 @@
 		echo '</div>';
 
 		echo '<br>';
-		echo '<a href = "'. $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $mission['Mission']['id'], $missionPhase['Phase']['id'], $q['Quest']['id'])) . '" class = "button">' . __('Add Discussion') . '</a>';
 
-	
+		//check the correct type of quest!
+		//its a normal evidence type quest
+		if($q['Quest']['type'] == 2) { 
+			echo '<a href = "'. $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $mission['Mission']['id'], $missionPhase['Phase']['id'], $q['Quest']['id'])) . '" class = "button">' . __('Add Discussion') . '</a>';
+		}
+
+		//its a group type of quest
+		if($q['Quest']['type'] == 3) { 
+			echo '<a href = "'. $this->Html->url(array('controller' => 'groups', 'action' => 'by_mission', $mission['Mission']['id'])) .'" class = "button">' . __('Join/Create a group!') . '</a>';
+		}
+
+		//its an evokation type of quest
+		if($q['Quest']['type'] == 4) { 
+			echo '<a href = "'. $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $mission['Mission']['id'], $missionPhase['Phase']['id'], $q['Quest']['id'], true)) . '" class = "button">' . __('Add Evokation') . '</a>';
+		}
+
 	}
 ?>			  

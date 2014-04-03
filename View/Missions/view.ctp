@@ -1,4 +1,10 @@
 <?php
+	//echo $this->Html->css('/components/jcarousel/examples/basic/jcarousel.basic');
+	//echo $this->Html->css('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
+	echo $this->Html->css('jcarousel');
+	//echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
+
+	echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 ?>
@@ -40,7 +46,7 @@
 
 </nav>
 
-<?php $this->end(); ?>
+<?php $this->end();?>
 
 <section class="evoke background padding top-2">
 	<div class="row evoke missions">
@@ -62,14 +68,14 @@
 		</nav>
 
 		<?php
-			if(!is_null($mission_img)) :
+			if(!is_null($mission_img) && !empty($mission_img)) :
 				echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
 			else :
 				echo '<h4>Nenhuma img definida, mostrar uma padrao</h4>';
 			endif;
 		?>
 	  	<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
-	  	<h4><?php echo __('Created by: '); echo $this->Html->Link($organized_by['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organized_by['Organization']['id'])); ?></h4>
+	  	<!-- <h4><?php echo __('Created by: '); echo $this->Html->Link($organized_by['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organized_by['Organization']['id'])); ?></h4> -->
 		<h2><?php echo __('Mission Brief'); ?></h2>
 		<h4><?php echo h($mission['Mission']['description']); ?></h4>
 
@@ -139,6 +145,9 @@
 		  	<h2><?php echo __('To-do list');?></h2>
 		  	<ul>
 				<?php foreach($quests as $q):
+					//only add to checklist quests that are mandatory
+					if($q['Quest']['mandatory'] != 1) continue;
+					
 					$evidence_exists = false;
 					//if it was an 'evidence' type quest
 					foreach($my_evidences as $e):
@@ -151,6 +160,13 @@
 							if($q['Quest']['id'] == $questionnaire['Quest']['id'] && $questionnaire['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {$evidence_exists = true; break;}
 						}
 					endforeach;
+
+					//if its a group type quest, check to see if user owns or belongs to a group of this mission
+					if($q['Quest']['type'] == 3) {
+						if($hasGroup) {
+							$evidence_exists = true;
+						}
+					}
 
 					//debug($previous_answers);
 					if($evidence_exists):?>

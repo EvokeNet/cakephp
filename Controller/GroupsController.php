@@ -36,6 +36,31 @@ class GroupsController extends AppController {
 		$this->set(compact('users', 'myGroups', 'evokations'));
 	}
 
+
+	public function by_mission($mission_id = null) {
+		if(is_null($mission_id)) {
+			$this->redirect(array('action' => 'index'));
+		}
+
+		$this->loadModel('Mission');
+		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
+		
+		if(empty($mission)) {
+			$this->redirect(array('action' => 'index'));	
+		}
+
+
+		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
+
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
+
+		$this->set(compact('user', 'myGroups', 'groups', 'mission'));
+
+		$this->render('index');
+	}
+
 /**
  * view method
  *
@@ -74,9 +99,6 @@ class GroupsController extends AppController {
 			}
 		}
 
-		// debug($flags);
-		// debug($group);
-		// debug($me);
 
 		$groupsRequestsPending = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status = 0')));
 
@@ -92,7 +114,7 @@ class GroupsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($mission_id = null) {
 		if ($this->request->is('post')) {
 			$this->Group->create();
 			if ($this->Group->save($this->request->data)) {
@@ -102,9 +124,22 @@ class GroupsController extends AppController {
 				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
 			}
 		}
+
+
+		$this->loadModel('Mission');
+		$missions = $this->Mission->find('list');
+
+		if(!is_null($mission_id)) {
+			$tmp = $this->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
+			if(!empty($tmp)) {
+				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
+			}
+		}
+
+		$userid = $this->getUserId();
 		$users = $this->Group->User->find('list');
 		$evokations = $this->Group->Evokation->find('list');
-		$this->set(compact('users', 'evokations'));
+		$this->set(compact('users', 'userid', 'evokations', 'mission', 'missions'));
 	}
 
 /**
