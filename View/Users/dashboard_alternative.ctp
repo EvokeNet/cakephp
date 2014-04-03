@@ -59,16 +59,19 @@
 				<?= $this->element('left_titlebar', array('title' => __(sprintf(__("Agent's %s Dashboard"), $user['User']['name'])))) ?>
 			</div>
 		</div>
-	  	<div class="large-7 columns">
-		  	<div class = "evoke dashboard position panel-margin">
+	  	<div class="large-7 columns padding-right">
+		  	<div class = "evoke dashboard position">
 		  		<div class = "evoke titles-right">
-			  		<dl class="tabs evoke titles" data-tab>
-					  <dd><h4><?php echo strtoupper(__('Projects and Evidences'));?></h4></dd>
-					  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
-					  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
-					  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
-					</dl>
-					<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke dashboard horizontal_bar absolute-right">
+		  			<div class = "evoke titles titles-ajust">
+				  		<dl class="tabs" data-tab>
+						  <dd><h4><?php echo strtoupper(__('Projects and Evidences'));?></h4></dd>
+						  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
+						  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
+						  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
+						</dl>
+					</div>
+					<!-- <img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke dashboard horizontal_bar absolute-right"> -->
+					<img src = '<?= $this->webroot.'img/smallbar.png' ?>' class = "evoke tabs-small-bar-size">
 				</div>
 			</div>
 		</div>
@@ -150,7 +153,7 @@
 			</div>
 
 		</div>
-		<div class="medium-9 columns">
+		<div class="medium-9 columns padding-right">
 
 			<div class="evoke tabs-content screen-box dashboard panel">
 				  <div class="content active" id="panel2-1">
@@ -183,7 +186,7 @@
 
 				<div class = "evoke dashboard position">
 					<?php echo $this->element('right_titlebar', array('title' => (__('Leadercloud')))); ?>
-				
+
 					<div class = "evoke screen-box allies"></div>
 				</div>
 

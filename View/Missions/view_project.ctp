@@ -94,9 +94,7 @@
 						</div>
 
 						<div class="medium-7 columns">
-							<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?>">
-								<h1><?= $e['Evokation']['title']?></h1>
-							</a>
+							<h1><?= $e['Evokation']['title']?></h1>
 						</div>
 						<div class="medium-3 columns">
 							
@@ -106,7 +104,7 @@
 									<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
 									<i class="fa fa-twitter-square fa-lg"></i>
 								</div>
-								<a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $users['User']['id'])); ?>" class = "evoke button general green"><?php echo __('View this project');?></a>
+								<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?>" class = "evoke button general green"><?php echo __('View this project');?></a>
 		    				</div>
 
 						</div>
@@ -117,15 +115,18 @@
 		  </div>
 	</div>
 
-	<div class = "evoke position">
+	<!-- <div class = "evoke position">
 		<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke horizontal_bar left">
 		<div class = "evoke titles"><h4><?php echo strtoupper(__('Mission Activities'));?></h4></div>
-	</div>
+	</div> -->
 
-	<div class="jcarousel-wrapper carousel-width">
 
-    	<div class="row full-width">
-		  <div class="small-11 large-centered columns">
+  	<?= $this->element('left_titlebar', array('title' => __('Mission Activities'))) ?>
+
+	<div class="row full-width">
+	  <div class="large-6 columns">
+	  	<div class="jcarousel-wrapper carousel-width">
+
 		  	<div class="jcarousel sticky">
                 <ul>
                     <?php foreach ($quests as $q): ?>
@@ -146,13 +147,45 @@
 					<?php endforeach; ?>
                 </ul>
             </div>
-		  </div>
-		</div>
         
 		<a href="#" class="jcarousel-control-prev">&lsaquo;</a>
 		<a href="#" class="jcarousel-control-next">&rsaquo;</a>
 
-    </div>
+	    </div>
+	  </div>
+	  <div class="large-6 columns padding-right">
+	  	<div class = "evoke titles-right">
+	  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>
+	  		<div>
+	  		<dl class="tabs vertical evoke icons" data-tab>
+			  <dd class="active"><a href="#panel31a"><i class="fa fa-file-text fa-2x"></i></a></dd>
+			  <dd><a href="#panel32a"><i class="fa fa-link fa-2x"></i></a></dd>
+			  <dd><a href="#panel33a"><i class="fa fa-picture-o fa-2x"></i></a></dd>
+			  <dd><a href="#panel34a"><i class="fa fa-video-camera fa-2x"></i></a></dd>
+			</dl>
+			<div class="tabs-content vertical evoke icons">
+			  <div class="content active" id="panel31a">
+			  	<h1><?= __('Mission Dossier: Files')?></h1>
+			    <p>Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.Panel 1 content goes here.</p>
+			  </div>
+			  <div class="content" id="panel32a">
+			  	<h1><?= __('Mission Dossier: Links')?></h1>
+			    <p>Panel 2 content goes here.</p>
+			  </div>
+			  <div class="content" id="panel33a">
+			    <h1><?= __('Mission Dossier: Pictures')?></h1>
+			    <p>Panel 3 content goes here.</p>
+			  </div>
+			  <div class="content" id="panel34a">
+			    <h1><?= __('Mission Dossier: Videos')?></h1>
+			    <p>Panel 4 content goes here.</p>
+			  </div>
+			</div>
+			</div>
+
+  		</div>
+	  </div>
+	</div>
 
     <div class="row full-width">
 	  <div class="large-8 columns">

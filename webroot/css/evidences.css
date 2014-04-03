@@ -53,8 +53,9 @@
 }
 
 .evoke.evidence-share{
-	background-color: #273141;
-	opacity: 0.7;
+	/*background-color: #273141;
+	opacity: 0.7;*/
+	background-color: rgba(39,49,65,0.5);
 	border-radius: 20px;
 	padding: 20px;
 	margin: 30px 0px;
