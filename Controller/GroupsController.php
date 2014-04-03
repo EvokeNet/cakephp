@@ -23,17 +23,51 @@ class GroupsController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function index($mission_id = null) {
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->Paginator->paginate());
 
-		$users = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
+		$mission = $this->Group->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
 
-		$evokations = $this->Group->Evokation->find('all', array('order' => array('Evokation.created DESC')));
+		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
 
-		$this->set(compact('users', 'myGroups', 'evokations'));
+		$groups_id = array();
+
+		foreach($groups as $group):
+			array_push($groups_id, array('Evokation.group_id' => $group['Group']['id']));
+		endforeach;
+
+		//retrieve all organizations I am part of as a list to be displayed in a combobox
+		$evokations = $this->Group->Evokation->find('all', array(
+			'order' => array(
+				'Evokation.created DESC'
+			),
+			'conditions' => array(
+				'OR' => $groups_id
+			)
+		));
+
+		$myGroups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id, 'Group.user_id' => $this->getUserId())));
+
+		$mygroups_id = array();
+
+		foreach($myGroups as $group):
+			array_push($mygroups_id, array('Evokation.group_id' => $group['Group']['id']));
+		endforeach;
+
+		//retrieve all organizations I am part of as a list to be displayed in a combobox
+		$myevokations = $this->Group->Evokation->find('all', array(
+			'order' => array(
+				'Evokation.created DESC'
+			),
+			'conditions' => array(
+				'OR' => $mygroups_id
+			)
+		));
+
+		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations'));
 	}
 
 
