@@ -130,8 +130,8 @@ button, div, p, span, a,
 
 .evoke.top-bar-section h3, h4, h5{
 	font-family: 'AlegreyaRegular';
-	display: inline;
-	color: #FFF;
+	/*display: inline;
+	color: #FFF;*/
 }
 
 .evoke.top-bar-section h3 a{
