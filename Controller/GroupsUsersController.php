@@ -3,6 +3,7 @@ App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 
 use EtherpadLite\Client;
+use EtherpadLite\Request;
 
 
 /**
@@ -50,8 +51,6 @@ class GroupsUsersController extends AppController {
 		$apikey = Configure::read('etherpad_api_key');
 		$client = new Client($apikey, 'http://localhost:9001');
 
-		$response = $client->checkToken();
-
 		$group = $this->GroupsUser->getGroupAndUsers($group_id);
 		
 		$users = $this->GroupsUser->find('all', array(
@@ -71,6 +70,7 @@ class GroupsUsersController extends AppController {
 			$this->request->data = $evokation;
 		}
 
+		$response = $client->checkToken();
 		if ($response->getCode() == 0) {
 			
 		}
