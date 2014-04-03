@@ -54,7 +54,10 @@
 				<?php endif; ?>	
 				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
 				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
-				<?php if($flags['_admin']) echo '<dd class="<?php echo $media_tab; ?>"><a href="#media">'.__('Media').'</a></dd>'; ?>
+				<?php if($flags['_admin']) : ?>
+					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Media') ?></a></dd>
+					<dd class="<?php echo '$settings_tab'; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
+				<?php endif; ?>	
 				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><?= __('Statistics') ?></a></dd>
 			</dl>
 			<div class="tabs-content">
@@ -223,6 +226,9 @@
 				</div>
 				<div class="content <?php echo $media_tab; ?>" id="media">
 					<p>Upload videos/images and choose actions that triggers them...</p>
+				</div>
+				<div class="content <?php echo '$settings_tab'; ?>" id="settings">
+					<p>General settings</p>
 				</div>
 				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
 					<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>
