@@ -49,7 +49,7 @@ class GroupsUsersController extends AppController {
 	public function edit($group_id = null) {
 
 		$apikey = Configure::read('etherpad_api_key');
-		$client = new Client($apikey, 'http://localhost:9001');
+		$client = new Client($apikey, 'http://localhost:2222');
 
 		$group = $this->GroupsUser->getGroupAndUsers($group_id);
 		
