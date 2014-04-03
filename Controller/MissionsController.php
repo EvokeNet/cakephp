@@ -244,10 +244,9 @@ class MissionsController extends AppController {
 			$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
 			$this->request->data = $this->Mission->find('first', $options);
 		}
-<<<<<<< HEAD
+
 			//'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img', 'dossier_files'));
-=======
->>>>>>> 96dd11aa090effea4e1ee4eeaa3b6065c5239f1c
+
 	}
 
 /**
