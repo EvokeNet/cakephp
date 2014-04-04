@@ -1,1 +1,1 @@
-﻿ALTER TABLE `attachments` CHANGE `model` VARCHAR( 20 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL , CHANGE   `foreign_key` INT( 16 ) NULL;
+﻿ALTER TABLE `attachments` CHANGE `model` VARCHAR( 20 ) CHARACTER SET `latin1` COLLATE `latin1_swedish_ci` NULL , CHANGE `foreign_key` INT( 16 ) NULL;
