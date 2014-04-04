@@ -244,7 +244,7 @@ class UsersController extends AppController {
 		//     )
 		// );
 
-		// $evokationsFollowing = $this->User->EvokationFollower->find('all');
+		$evokationsFollowing = $this->User->EvokationFollower->find('all');
 		// debug($evokationsFollowing);
 		// //die();
 

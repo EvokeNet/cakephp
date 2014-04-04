@@ -46,7 +46,8 @@ class EvokationFollowersController extends AppController {
  *
  * @return void
  */
-	public function add($id = null, $user_id = null) {
+	public function add($id = null) {
+		$user_id = $this->getUserId();
 		if (!$this->EvokationFollower->Evokation->exists($id)) {
 			throw new NotFoundException(__('Evokation not found.'));
 		} else if (!$this->EvokationFollower->User->exists($user_id)) {
@@ -54,20 +55,26 @@ class EvokationFollowersController extends AppController {
 		}
 
 		$insertData = array('evokation_id' => $id, 'user_id' => $user_id); 
-
 		$exists = $this->EvokationFollower->find('first', array('conditions' => array('EvokationFollower.evokation_id' => $id, 'EvokationFollower.user_id' => $user_id)));
 
 		if(!$exists){
+			//let him follow..
 	        if($this->EvokationFollower->save($insertData)){
 	        	$this->Session->setFlash(__('You are now following the evokation.'));
-	        	return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user_id));
+	        	return $this->redirect(array('controller' => 'evokations', 'action' => 'view', $id));
 	        }  else{
 	        	$this->Session->setFlash(__('The following could not be saved. Please, try again.'));
 	        	return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user_id));
 	        } 
 		} else {
-			$this->Session->setFlash(__('You are already following the evokation.'));
-			return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user_id));
+			//he wants to unfollow..
+			$this->EvokationFollower->id = $exists['EvokationFollower']['id'];
+			if ($this->EvokationFollower->delete()) {
+				$this->Session->setFlash(__('You have unfollowed this evokation.'));
+				return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user_id));
+			} else {
+				$this->Session->setFlash(__('The evokation follower could not be deleted. Please, try again.'));
+			}
 		}
 
 	}
