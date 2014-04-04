@@ -73,7 +73,48 @@
 			else :
 				echo '<h4>Nenhuma img definida, mostrar uma padrao</h4>';
 			endif;
+
 		?>
+		
+
+		<!-- progress bars -->
+		<div class="large-12" style="background-color: 000">
+			<div>
+				<span>Mission Status: </span>
+				<span>
+					<?php 
+						$_completed = 0;
+						$_total = 0;
+						foreach ($missionPhases as $phase) {
+							$_completed += $completed[$phase['Phase']['id']];
+							$_total += $total[$phase['Phase']['id']];
+						}
+						echo (($_completed * 100)/$_total) . '%';
+					?>
+				</span>
+				<div class="large-8" style="float:right">
+					<?php	
+						$qtd = 100/sizeof($missionPhases);
+						foreach ($missionPhases as $phase) : ?>
+							<div style="width:<?= $qtd?>%; float:left">
+								<?php 
+									$phaseDone = "alert";
+									if((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) == 100)
+										$phaseDone = "success";
+								?>
+								<span><?= $phase['Phase']['name']?></span>
+								<div class="progress <?=$phaseDone ?> round" style="">
+									<span class="meter" style="width: <?php echo (($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) ?>%"></span>
+								</div>
+							</div>
+						<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+
 	  	<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
 	  	<!-- <h4><?php echo __('Created by: '); echo $this->Html->Link($organized_by['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $organized_by['Organization']['id'])); ?></h4> -->
 		<h2><?php echo __('Mission Brief'); ?></h2>

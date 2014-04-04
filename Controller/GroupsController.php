@@ -49,14 +49,15 @@ class GroupsController extends AppController {
 			$this->redirect(array('action' => 'index'));	
 		}
 
+		$evokations = $this->Group->Evokation->find('all', array('order' => array('Evokation.created DESC'), 'conditions' => array('Group.mission_id' => $mission_id)));
 
 		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
 
-		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		$users = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
 
-		$this->set(compact('user', 'myGroups', 'groups', 'mission'));
+		$this->set(compact('users', 'myGroups', 'groups', 'mission', 'evokations'));
 
 		$this->render('index');
 	}

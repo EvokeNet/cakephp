@@ -98,6 +98,7 @@ class MissionsController extends AppController {
 		$missionIssues = $this->Mission->getMissionIssues($id);
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 
+		
 		$hasGroup = false;
 		//check to see if user has entered a group of this mission..
 		foreach ($mission['Group'] as $group) {
@@ -189,15 +190,70 @@ class MissionsController extends AppController {
 			)
 		));
 
+		//checking number of mandatory quests per phase and number of completed ones..
+		$all_mandatory_quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.mandatory' => 1)));
+
+		$tmp = 0;
+		$total = array();
+		$completed = array();
+		foreach ($all_mandatory_quests as $quest) {
+			$tmp = $quest['Quest']['phase_id'];
+			if(isset($total[$tmp]))
+				$total[$tmp]++;
+			else 
+				$total[$tmp] = 1;
+
+			$done = false;
+			//if it was an 'evidence' type quest
+			foreach($my_evidences as $e):
+				if($quest['Quest']['id'] == $e['Quest']['id']) {
+					$done = true; 
+					break;
+				}
+			endforeach;
+
+			//if it was a questionnaire type quest
+			//theres only one
+			if($quest['Questionnaire']['id'] != "") {
+				foreach ($previous_answers as $previous_answer) {
+					if($quest['Quest']['id'] == $quest['Questionnaire']['quest_id'] && $quest['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {
+						$done = true; 
+						break;
+					}
+				}
+			}
+			
+
+			//if its a group type quest, check to see if user owns or belongs to a group of this mission
+			if($quest['Quest']['type'] == 3) {
+				if($hasGroup) {
+					$done = true;
+				}
+			}
+
+			if($done){
+				if(isset($completed[$tmp]))
+					$completed[$tmp]++;
+				else
+					$completed[$tmp] = 1;
+			} else {
+				if(!isset($completed[$tmp]))
+					$completed[$tmp] = 0;
+			} 
+		}
+
+
+
+
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
-			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup'));
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed'));
 
-		if($missionPhase['Phase']['type'] == 0)
+		/*if($missionPhase['Phase']['type'] == 0)
 			$this->render('view_discussion');
 		else
-			$this->render('view_project');
+			$this->render('view_project');*/
 
 	}
 
