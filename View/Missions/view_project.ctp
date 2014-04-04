@@ -24,15 +24,18 @@
 			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src='<?= $this->webroot.'img/Leslie_Knope.png' ?>' class = "evoke top-bar icon"/></a></li>
 			
 			<li class = "name">
-				<h3><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><?= $users['User']['name'] ?></a></h3>
+				<h3><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>" class = "evoke top-bar-name"><?= $users['User']['name'] ?></a></h3>
 			</li>
 
 			<li class="evoke divider"></li>
+
+			<li class = "evoke top-bar-level"><h5><?= __('Points') ?>&nbsp;&nbsp;&nbsp;<span>120</span></h5></li>
 
 			<!-- <li class = "evoke top-bar-padding"><h5><?= __('Points') ?></h5>&nbsp;&nbsp;<h4>8</h4></li> -->
 
 			<li class="evoke divider"></li>
 
+			<li class = "evoke top-bar-level"><h5><?= __('Level') ?>&nbsp;&nbsp;&nbsp;<span>21</span></h5></li>
 			<!-- <li class = "evoke top-bar-padding"><h5><?= __('Level') ?></h5>&nbsp;&nbsp;<h4>8</h4></li> -->
 			
 			<li class="evoke divider"></li>
@@ -80,7 +83,7 @@
 		  <div class="large-6 columns">
 		  	<div class = "evoke evokation-pink-border full-width">
 			  	<?php foreach($evokations as $e):
-			  		echo $this->element('evokation_box', array('e' => $e));
+			  		echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
 	  			endforeach;?>
 			</div>
 		  </div>

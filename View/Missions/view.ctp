@@ -85,7 +85,11 @@
 					<?php 
 						$_completed = 0;
 						$_total = 0;
+						$valid_phases = 0;
 						foreach ($missionPhases as $phase) {
+							if(!isset($total[$phase['Phase']['id']]))
+								continue;
+							$valid_phases++;
 							$_completed += $completed[$phase['Phase']['id']];
 							$_total += $total[$phase['Phase']['id']];
 						}
@@ -94,8 +98,11 @@
 				</span>
 				<div class="large-8" style="float:right">
 					<?php	
-						$qtd = 100/sizeof($missionPhases);
-						foreach ($missionPhases as $phase) : ?>
+						$qtd = 100/$valid_phases;//sizeof($missionPhases);
+						foreach ($missionPhases as $phase):
+							if((!isset($total[$phase['Phase']['id']]))) continue;
+							if(($total[$phase['Phase']['id']] == 0)) continue;
+							?>
 							<div style="width:<?= $qtd?>%; float:left">
 								<?php 
 									$phaseDone = "alert";

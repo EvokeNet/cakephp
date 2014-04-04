@@ -64,6 +64,28 @@ button, div, p, span, a,
 	height:50px!important;
 }
 
+.evoke.top-bar-name{
+	font-family: 'AlegreyaBold';
+	color:#fff;
+	font-size:0.9em;
+	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
+}
+
+.evoke.top-bar-level h5{
+	font-family: 'AlegreyaBold';
+	color: #fff;
+	font-size: 1.2em;
+	padding: 0px 20px;
+	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
+}
+
+.evoke.top-bar-level span{
+	font-family: 'AlegreyaRegular';
+	color: #fff;
+	font-size: 1.5em;
+	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
+}
+
 .evoke .login-bg-topbar {
 	background: #0d0d10;
 	padding-top:80px;
@@ -134,11 +156,11 @@ button, div, p, span, a,
 	color: #FFF;*/
 }
 
-.evoke.top-bar-section h3 a{
+/*.evoke.top-bar-section h3 a{
 	font-size: 1.0em;
 	color: #FFF;
 	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
-}
+}*/
 
 .evoke.top-bar-section h4{
 	font-size:2.0em;
@@ -146,7 +168,7 @@ button, div, p, span, a,
 }
 
 .evoke.top-bar-section h5{
-	font-size:1.2em;
+	/*font-size:1.2em;*/
 }
 
 /* SPACINGS, MARGINS, PADDINGS */
@@ -631,14 +653,6 @@ button, div, p, span, a,
 
 .evoke .icons.tabs-content li{
 	text-align:start;
-}
-
-.evoke .icons.tabs-content p, a{
-	/*font-size:1.2em;
-	text-align: start;
-	padding: 0px 5px;
-	color:#306f78;
-	font-family: 'AlegreyaBold';*/
 }
 
 .evoke .icons.tabs-content a{
