@@ -103,16 +103,17 @@
 				</dl>
 
 				<img src = '<?= $this->webroot.'img/horizontal_bar.png' ?>' class = "screen_bar">
-				<div class="evoke tabs-content screen-box dashboard panel">
+				<div class="evoke tabs-content screen-box dashboard panel margin">
 				  <div class="content active" id="panel2-1">
 			    	<?php 
 			    		//Lists all projects and evidences
 			    		foreach($evidence as $e): 
-			    				echo $this->element('evidence_blue_box', array('e' => $e)); 
+			    				//echo $this->element('evidence_blue_box', array('e' => $e)); 
+			    				echo $this->element('evidence_box', array('e' => $e)); 
 			    		endforeach; 
 
 			    		foreach($evokations as $e):
-			    			echo $this->element('evokation_blue_box', array('e' => $e));
+			    			echo $this->element('evokation_box', array('e' => $e));
 						endforeach;?>
 				  </div>
 				  <div class="content" id="panel2-2">
@@ -152,7 +153,7 @@
 				<div class = "evoke titles"><h4><?php echo __('LEADERCLOUD');?></h4></div> -->
 
 				<img src = '<?= $this->webroot.'img/horizontal_bar.png' ?>' class = "screen_bar">
-				<div class="evoke tabs-content screen-box dashboard leadercloud"></div>
+				<div class="evoke tabs-content screen-box dashboard leadercloud margin"></div>
 			</div>
 
 		</div>
@@ -205,7 +206,7 @@
 
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height-two"/></div>
 					</div>
-					<div class = "evoke screen-box allies"></div>
+					<div class = "evoke screen-box feed"></div>
 				</div>
 
 				<div class = "evoke dashboard position">
@@ -217,7 +218,7 @@
 
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height-two"/></div>
 					</div>
-					<div class = "evoke screen-box allies"></div>
+					<div class = "evoke screen-box badges"></div>
 				</div>
 
 				<div class = "evoke text-align position">

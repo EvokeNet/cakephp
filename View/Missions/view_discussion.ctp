@@ -29,11 +29,11 @@
 
 			<li class="evoke divider"></li>
 
-			<li class = "evoke top-bar-padding"><h5><?= __('Points') ?></h5>&nbsp;&nbsp;<h4>8</h4></li>
+			<!-- <li class = "evoke top-bar-padding"><h5><?= __('Points') ?></h5>&nbsp;&nbsp;<h4>8</h4></li> -->
 
 			<li class="evoke divider"></li>
 
-			<li class = "evoke top-bar-padding"><h5><?= __('Level') ?></h5>&nbsp;&nbsp;<h4>8</h4></li>
+			<!-- <li class = "evoke top-bar-padding"><h5><?= __('Level') ?></h5>&nbsp;&nbsp;<h4>8</h4></li> -->
 			
 			<li class="evoke divider"></li>
 
@@ -145,16 +145,16 @@
 			<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke horizontal_bar left">
 			<dl class="tabs evoke titles" data-tab>
 				  <dd><h4><?php echo strtoupper(__('Discussions'));?></h4></dd>
-				  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('Most Voted'))?></a></dd>
+				  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('Most Liked'))?></a></dd>
 				  <dd><a href="#panel2-2"><?= strtoupper(__('Most Recent'))?></a></dd>
 			</dl>
 
-			<div class="evoke tabs-content screen-box dashboard panel">
+			<div class="evoke tabs-content screen-box dashboard panel margin">
 			  <div class="content active" id="panel2-1">
 				<?php 
 		    		//Lists all projects and evidences
 		    		foreach($evidences as $e): 
-		    				echo $this->element('evidence_blue_box', array('e' => $e)); 
+		    				echo $this->element('evidence_box', array('e' => $e)); 
 		    		endforeach; 
 	    		?>
 			  </div>
