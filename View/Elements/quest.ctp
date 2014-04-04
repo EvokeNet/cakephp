@@ -16,7 +16,7 @@
 		echo $this->Form->create('UserAnswer', array(
  							   		'url' => array(
  							   			'controller' => 'UserAnswers',
- 							   			'action' => 'add')
+ 							   			'action' => 'add', $q['Quest']['mission_id'])
 									)
 								); 
 	

@@ -84,7 +84,8 @@ class EvidencesController extends AppController {
 		$this->Evidence->create();
 		if ($this->Evidence->save($insertData)) {
 			$this->Session->setFlash(__('The evidence has been saved.'));
-			//user has created a quest, so if he doesnt exist in 'usersmissions', add him now!
+			
+			//user has completed a quest, so if he doesnt exist in 'usersmissions', add him now!
 			$this->loadModel('UserMission');
 			$is_in = $this->UserMission->find('first', array('conditions' => array('UserMission.user_id' => $this->getUserId(), 'UserMission.mission_id' => $mission_id)));
 			if(empty($is_in)) {
@@ -132,7 +133,7 @@ class EvidencesController extends AppController {
 				}
 
 				$this->Session->setFlash(__('The evidence has been saved.'));
-				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], $me['Phase']['position']));
+				return $this->redirect(array('controller' => 'evidences', 'action' => 'view', $me['Evidence']['id']));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}
