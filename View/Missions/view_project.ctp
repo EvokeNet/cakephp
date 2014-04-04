@@ -79,72 +79,16 @@
 	<div class="row full-width">
 		  <div class="large-6 columns">
 		  	<div class = "evoke evokation-pink-border full-width">
-			  	<?php foreach($evokations as $e):?>
-					<div class="row full-width evoke mission evokation adjust-row">
-			  			
-			  			<div class="medium-2 columns">
-
-			  				<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
-						  		
-						  	<div class = "evoke text-align">
-					  			<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?>">
-									<h6><?= $e['Group']['title']?></h6>
-								</a>
-							</div>
-							
-						</div>
-
-						<div class="medium-7 columns">
-							<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['Group']['id']));?>"><h1>
-							<?= $e['Evokation']['title']?></h1></a>
-						</div>
-						<div class="medium-3 columns">
-							
-							<div class = "evoke text-align">
-								<div class = "evoke evidence-icons"><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
-								<a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $users['User']['id'])); ?>" class = "evoke button general"><?php echo __('Follow');?></a>
-		    				</div>
-
-						</div>
-					</div>
-				<?php endforeach;?>
+			  	<?php foreach($evokations as $e):
+			  		echo $this->element('evokation_box', array('e' => $e));
+	  			endforeach;?>
 			</div>
 		  </div>
 		  <div class="large-6 columns">
-		  	
 		  	<div class = "evoke evokation-green-border full-width">
-			  	<?php foreach($evokations as $e):?>
-					<div class="row full-width evoke mission evokation bg-red adjust-row">
-			  			
-			  			<div class="medium-2 columns">
-
-			  				<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
-						  		
-						  	<div class = "evoke text-align">
-						  		<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['Group']['id']));?>">
-									<h6><?= $e['Group']['title']?></h6>
-								</a>
-							</div>
-							
-						</div>
-
-						<div class="medium-7 columns">
-							<h1><?= $e['Evokation']['title']?></h1>
-						</div>
-						<div class="medium-3 columns">
-							
-							<div class = "evoke text-align">
-								<div class = "evoke evidence-icons social">
-									<i class="fa fa-facebook-square fa-lg"></i>&nbsp;
-									<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
-									<i class="fa fa-twitter-square fa-lg"></i>
-								</div>
-								<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?>" class = "evoke button general green"><?php echo __('View this project');?></a>
-		    				</div>
-
-						</div>
-					</div>
-				<?php endforeach;?>
+			  	<?php foreach($evokations as $e):
+			  		echo $this->element('evokation_red_box', array('e' => $e));
+		  		endforeach;?>
 			</div>
 
 		  </div>
@@ -293,7 +237,7 @@
 	  	<div class = "evoke position">
 			<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke horizontal_bar left">
 			<dl class="tabs evoke titles" data-tab>
-				  <dd><h4><?php echo strtoupper(__('Discussions'));?></h4></dd>
+				  <dd><h4><?php echo strtoupper(__('Projects'));?></h4></dd>
 				  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('Most Voted'))?></a></dd>
 				  <dd><a href="#panel2-2"><?= strtoupper(__('Most Recent'))?></a></dd>
 			</dl>
@@ -301,39 +245,9 @@
 			<div class="evoke tabs-content screen-box dashboard panel">
 			  <div class="content active" id="panel2-1">
 				<?php
-					foreach($evokations as $e):?>
-
-			    		<div class="row evoke evidence">
-							<div class="medium-2 columns">
-						  		<div class = "evoke dashboard text-align">
-						  			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
-						  			
-
-						  			<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['Group']['id']));?>">
-									<h6><?= $e['Group']['title']?></h6>
-									</a>
-
-					  			</div>
-				  			</div>
-							<div class="medium-8 columns">
-
-								<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?>">
-								<h1><?= $e['Evokation']['title']?></h1>
-								</a>
-
-							</div>
-
-							<div class="medium-2 columns">
-								<div>
-									<ul>
-								  		<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</li>
-								  		<li><div class = "evoke evokation follow"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $users['User']['id'])); ?>" class = "evoke button general"><?php echo __('Follow');?></a></div></li>
-				    				</ul>
-								</div>
-							</div>	
-						</div>
-
-			    	<?php endforeach;?>
+					foreach($evokations as $e):
+						echo $this->element('evokation_box', array('e' => $e));
+					endforeach;?>
 			  </div>
 			  <div class="content" id="panel2-2">
 			  </div>

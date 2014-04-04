@@ -155,16 +155,16 @@
 		</div>
 		<div class="medium-9 columns padding-right">
 
-			<div class="evoke tabs-content screen-box dashboard panel">
+			<div class="evoke tabs-content screen-box dashboard panel margin">
 				  <div class="content active" id="panel2-1">
 			    	<?php 
 			    	//Lists all projects and evidences
 			    		foreach($evidence as $e): 
-			    				echo $this->element('evidence_blue_box', array('e' => $e)); 
+			    				echo $this->element('evidence_box', array('e' => $e)); 
 			    		endforeach; 
 
 			    		foreach($evokations as $e):
-			    			echo $this->element('evokation_blue_box', array('e' => $e));
+			    			echo $this->element('evokation_box', array('e' => $e));
 						endforeach;
 					?>
 				  </div>
@@ -187,14 +187,14 @@
 				<div class = "evoke dashboard position">
 					<?php echo $this->element('right_titlebar', array('title' => (__('Leadercloud')))); ?>
 
-					<div class = "evoke screen-box allies"></div>
+					<div class = "evoke screen-box allies margin"></div>
 				</div>
 
 				<div class = "evoke dashboard position">
 				
 					<?php echo $this->element('right_titlebar', array('title' => (__('Feed')))); ?>
 
-					<div class = "evoke screen-box allies"></div>
+					<div class = "evoke screen-box allies margin"></div>
 				</div>
 		</div>
 	</div>
