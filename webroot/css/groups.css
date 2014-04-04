@@ -1,0 +1,8 @@
+.evoke.groups.box-size{
+	height:800px;
+	margin-bottom:30px;
+	z-index: 1;
+	position: relative;
+	overflow: scroll;
+	overflow-x: hidden;
+}

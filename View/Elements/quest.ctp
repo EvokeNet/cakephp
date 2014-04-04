@@ -33,7 +33,7 @@
 				}
 				//if so, show him his previous answer
 				if($my_answer) {
-					echo $this->Form->input($question['id'].'][description', array('label' => $question['description'], 'value' => $my_answer['UserAnswer']['description'], 'required' => true));
+					echo $this->Form->input($question['id'].'][description', array('label' => $question['description'], 'value' => $my_answer['UserAnswer']['description'], 'required' => true, 'type' => 'textarea'));
 				} else {
 					//else, just show him a text area with the question description as the label
 					echo $this->Form->input($question['id'].'][description', array('label' => $question['description'], 'required' => true));

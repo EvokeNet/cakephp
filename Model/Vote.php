@@ -17,9 +17,9 @@ class Vote extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Evidence' => array(
-			'className' => 'Evidence',
-			'foreignKey' => 'evidence_id',
+		'Evokation' => array(
+			'className' => 'Evokation',
+			'foreignKey' => 'evokation_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

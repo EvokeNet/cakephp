@@ -408,7 +408,7 @@ button, div, p, span, a,
 	color: #ffffff;
 	font-size: 0.9em;
 	border-radius: 5px;
-	/*padding: 0.4em 2em;*/
+	padding: 0.4em 2em;
 	margin-right: 10px;
 	border-right: 3px solid #125167;
 	border-bottom: 3px solid #125167;
@@ -421,7 +421,7 @@ button, div, p, span, a,
 
 .evoke .button {
 	/*max-height: 2.5em;*/
-	line-height: 0;
+	/*line-height: 0;*/
 	padding-top: 1.25em;
 	padding-bottom: 1.25em;
 	color: #ffffff;
