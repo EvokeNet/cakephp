@@ -15,10 +15,10 @@
 		<li class="name">
 			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $users['User']['id'])); ?></h1>
 		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+		<!-- <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li> -->
 	</ul>
 
-	<section class="evoke top-bar-section">
+	<section class="evoke dashboard top-bar-section">
 
 		<!-- Right Nav Section -->
 		<ul class="right">
@@ -76,7 +76,7 @@
 			                        		<?php foreach ($imgs as $img) : ?>
 			                        			<?php 
 			                        				if($m['Mission']['id'] == $img['Attachment']['foreign_key'])
-			                        					echo '<span>TEM IMG</span>';
+			                        					//echo '<span>TEM IMG</span>';
 			                        			?>
 			                        		<?php endforeach; ?>
 		                        		</a>

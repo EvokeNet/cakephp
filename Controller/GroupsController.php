@@ -27,11 +27,13 @@ class GroupsController extends AppController {
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->Paginator->paginate());
 
-		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		$users = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
 
-		$this->set(compact('user', 'myGroups'));
+		$evokations = $this->Group->Evokation->find('all', array('order' => array('Evokation.created DESC')));
+
+		$this->set(compact('users', 'myGroups', 'evokations'));
 	}
 
 

@@ -188,13 +188,10 @@ class MissionsController extends AppController {
 			)
 		));
 
-		$this->set(compact('user', 'evidences', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
-			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup'));
-
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
-			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'users', 'organized_by', 'mission_img'));
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup'));
 
 		if($missionPhase['Phase']['type'] == 0)
 			$this->render('view_discussion');
@@ -245,6 +242,8 @@ class MissionsController extends AppController {
 			$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
 			$this->request->data = $this->Mission->find('first', $options);
 		}
+
+			//'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'organized_by', 'mission_img', 'dossier_files'));
 
 	}
 

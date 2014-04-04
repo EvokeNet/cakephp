@@ -26,26 +26,6 @@
 	left: 29.6%;
 }
 
-/* Sticky note */
-
-.note {
-    width: 160px;
-    height: 160px;
-    box-shadow: 0 3px 6px rgba(0,0,0,.25);
-    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.25);
-    -moz-box-shadow: 0 3px 6px rgba(0,0,0,.25);
-    float: left;
-    margin: 8px;
-    border: 1px solid rgba(0,0,0,.25);
-}
- 
-.sticky1 {
-    transform: rotate(-3.5deg);
-    -webkit-transform: rotate(-3.5deg);
-    -moz-transform: rotate(-3.5deg);
-    background-color: #CBFAFA;
-}
-
 .evoke.todo-list{
 	background-color:#e4e3dd;
 	margin-top: -8%;
