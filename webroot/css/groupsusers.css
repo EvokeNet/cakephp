@@ -75,13 +75,6 @@
 	margin: inherit;
 }
 
-.evoke .button.circle {
-	border-radius: 50%;
-	height: 4rem;
-	margin-right: 0.5rem;
-	padding: 0;
-	width: 4rem;
-}
 
 .evoke .button.circle i {
 	padding-top: 1rem;
@@ -154,4 +147,17 @@ span.image:hover ul.button-group {
 */
 .hide {
 	display: none;
+}
+
+.evoke .image.circle {
+	border-radius: 50%;
+	height: 4rem;
+	margin-right: 0.5rem;
+	padding: 0;
+	width: 4rem;
+	overflow: hidden;
+}
+
+.evoke .image.circle img {
+	width: 100%;
 }
