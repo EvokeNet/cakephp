@@ -46,8 +46,24 @@ class UserAnswersController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($mission_id) {
 		if ($this->request->is('post')) {
+			
+			//user has completed a quest, so if he doesnt exist in 'usersmissions', add him now!
+			$this->loadModel('UserMission');
+			$is_in = $this->UserMission->find('first', array('conditions' => array('UserMission.user_id' => $this->getUserId(), 'UserMission.mission_id' => $mission_id)));
+			if(empty($is_in)) {
+				$this->UserMission->create();
+				$data['UserMission']['user_id'] = $this->getUserId();
+				$data['UserMission']['mission_id'] = $mission_id;
+
+				if ($this->UserMission->save($data)) {
+					$this->Session->setFlash(__('The user mission has been saved.'));
+				} else {
+					$this->Session->setFlash(__('The user mission could not be saved. Please, try again.'));
+				}
+			}
+
 			//iterate all answers of this questionnaire
 			foreach ($this->request->data['UserAnswer'] as $data) {
 				if(isset($data['description'])){
