@@ -119,8 +119,15 @@
 
 		<div class = "evoke evidence-share">
 		  	
+		  	<!-- like button -->
+		  	<?php if(empty($like)) : ?>
+		  		<div  onClick="location.href='/evoke/likes/like/<?php echo $evidence['Evidence']['id']; ?>'" class="evoke button-bg"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div><span><?= count($likes) ?></span></div>
+			<?php else : ?>
+				<div  onClick="location.href='/evoke/likes/like/<?php echo $evidence['Evidence']['id']; ?>'" class="evoke button-bg"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Unlike');?></h6></div><span><?= count($likes) ?></span></div>
+			<?php endif; ?>
+
 			<!-- Voting lightbox button -->
-		  	<div class = "evoke button-bg"><div class="evoke button like-button" data-reveal-id="myModalVote" data-reveal><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div></div>
+		  	<!-- <div class = "evoke button-bg"><div class="evoke button like-button" data-reveal-id="myModalVote" data-reveal><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div></div> -->
 
 		  	<!-- Commenting lightbox button -->
 		  	<div class = "evoke button-bg"><div class="evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Comment');?></h6></div><span><?= count($comment) ?></span></div>
@@ -134,8 +141,8 @@
 <!-- Lightbox for voting form -->
 <div id="myModalVote" class="reveal-modal tiny" data-reveal>
   <?php 
-	if(!$vote) echo $this->element('vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id']));
-	else echo $this->element('see_vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'], 'vote_id' => $vote['Vote']['id'], 'vote_value' => $vote['Vote']['value']));
+	// if(!$vote) echo $this->element('vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id']));
+	// else echo $this->element('see_vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'], 'vote_id' => $vote['Vote']['id'], 'vote_value' => $vote['Vote']['value']));
   ?>
   <a class="close-reveal-modal">&#215;</a>
 </div>

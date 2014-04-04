@@ -47,7 +47,9 @@ class EvidencesController extends AppController {
 		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
 		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
 		$vote = $this->Evidence->Vote->find('first', array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $this->getUserId())));
-		$this->set(compact('user', 'evidence', 'comment', 'vote'));
+		$like = $this->Evidence->Like->find('first', array('conditions' => array('Like.evidence_id' => $id, 'Like.user_id' => $this->getUserId())));
+		$likes = $this->Evidence->Like->find('all', array('conditions' => array('Like.evidence_id' => $id)));
+		$this->set(compact('user', 'evidence', 'comment', 'vote', 'like', 'likes'));
 	}
 
 /**
@@ -82,6 +84,20 @@ class EvidencesController extends AppController {
 		$this->Evidence->create();
 		if ($this->Evidence->save($insertData)) {
 			$this->Session->setFlash(__('The evidence has been saved.'));
+			//user has created a quest, so if he doesnt exist in 'usersmissions', add him now!
+			$this->loadModel('UserMission');
+			$is_in = $this->UserMission->find('first', array('conditions' => array('UserMission.user_id' => $this->getUserId(), 'UserMission.mission_id' => $mission_id)));
+			if(empty($is_in)) {
+				$this->UserMission->create();
+				$data['UserMission']['user_id'] = $this->getUserId();
+				$data['UserMission']['mission_id'] = $mission_id;
+
+				if ($this->UserMission->save($data)) {
+					$this->Session->setFlash(__('The user mission has been saved.'));
+				} else {
+					$this->Session->setFlash(__('The user mission could not be saved. Please, try again.'));
+				}
+			}
 			return $this->redirect(array('action' => 'edit', $this->Evidence->id));
 		} else {
 			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
