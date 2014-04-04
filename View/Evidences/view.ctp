@@ -72,7 +72,9 @@
 			<i class="fa fa-google-plus-square fa-2x"></i>&nbsp;
 			<i class="fa fa-twitter-square fa-2x"></i>
 
-			<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button"><?php echo __('Edit Discussion');?></a></div>
+			<?php if($evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
+				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button"><?php echo __('Edit Discussion');?></a></div>
+			<?php endif; ?>
 	 	</div>
 	  </div>
 	  <div class="medium-8 large-8 columns">
