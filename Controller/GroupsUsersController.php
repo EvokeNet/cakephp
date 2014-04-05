@@ -123,13 +123,33 @@ class GroupsUsersController extends AppController {
 							$setting['Setting']['value'] = $sessionID;
 							$this->Setting->save($setting);
 
+						} else {
+							$sessionResponse = $client->getSessionInfo($sessionID['Setting']['value']);
+							$sessionResponse = $sessionResponse->getData();
+							$sessionTime = $sessionResponse['validUntil'];
+
+							if ($sessionTime <= strtotime('-1 second')) {
+								$client->deleteSession($sessionID['Setting']['value']);
+
+								$sessionResponse = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
+								$sessionID = $sessionResponse->getData();
+								$sessionID = $sessionID['sessionID'];
+
+								$this->Setting->read(null, $setting['Setting']['id']);
+								$this->Setting->set('value', $sessionID);
+								$this->Setting->save();
+
+							}
+
 						}
 
 					}
 
 				}
 
-				debug($sessionID);
+				$a = $client->listSessionsOfGroup($padGroupID);
+				debug($a);
+				die();
 
 			}
 		}
