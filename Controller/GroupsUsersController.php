@@ -147,10 +147,6 @@ class GroupsUsersController extends AppController {
 
 				}
 
-				$a = $client->listSessionsOfGroup($padGroupID);
-				debug($a);
-				die();
-
 			}
 		}
 
