@@ -114,35 +114,25 @@
 
 			    		foreach($evokations as $e):
 			    			echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
-						endforeach;?>
+						endforeach;
+					?>
 				  </div>
 				  <div class="content" id="panel2-2">
 		    		<?php 
-			    		foreach($evokationsFollowing as $e):?>
-			    			<h4><?php echo $this->Html->link($e['Evokation']['title'], array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?></h4>
-				    		<p><?php echo substr($e['Evokation']['abstract'], 0, 100);?></p>
-				    		
-				    		<div class="row">
-							  <div class="large-10 columns">
-							  <?php echo ' | Issue | '. date('F j, Y', strtotime($e['Evokation']['created'])); ?></div>
-							  <div class="large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php //echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
-							</div>
-
-			    	<?php endforeach;?>
+		    			foreach($evokations as $e):
+			    			foreach($evokationsFollowing as $following)
+			    				if($e['Evokation']['id'] == $following['Evokation']['id']) {
+			    					echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));		
+			    				}
+			    		endforeach;
+			    	?>
 				  </div>
 				  <div class="content" id="panel2-3">
 				  	<?php 
-			    		foreach($myEvokations as $e):?>
-			    			<h4><?php echo $this->Html->link($e['Evokation']['title'], array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?></h4>
-				    		<p><?php echo substr($e['Evokation']['abstract'], 0, 100);?></p>
-				    		
-				    		<div class="row">
-							  <div class="large-10 columns">
-							  <?php echo $this->Html->link($e['Group']['title'], array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])).' | Issue | '. date('F j, Y', strtotime($e['Evokation']['created'])); ?></div>
-							  <div class="large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php //echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
-							</div>
-
-			    	<?php endforeach;?>
+			    		foreach($myEvokations as $e):
+			    			echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+			    		endforeach;
+			    	?>
 				  </div>
 				</div>
 			</div>
