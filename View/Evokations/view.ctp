@@ -32,7 +32,7 @@
 			<i class="fa fa-twitter-square fa-2x"></i>
 
 			<?php if($can_edit) : ?>
-				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'edit', $evokation['Evokation']['id'])); ?>" class = "button"><?php echo __('Edit Project');?></a></div>
+				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $evokation['Evokation']['group_id'])); ?>" class = "button"><?php echo __('Edit Project');?></a></div>
 			<?php else : ?>
 				<?php if($Follows) :?>
 					<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $evokation['Evokation']['id'])); ?>" class = "button"><?php echo __('Unfollow');?></a></div>
