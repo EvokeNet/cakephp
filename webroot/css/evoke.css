@@ -839,9 +839,9 @@ button, div, p, span, a,
 }
 
 .evoke.top-bar.icon{
-	max-height: 50px; 
+	max-height: 40px; 
 	max-width: 70px; 
-	margin-top:3px;
+	/*margin-top:3px;*/
 }
 
 .evoke.position{

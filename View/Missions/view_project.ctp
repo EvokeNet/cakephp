@@ -46,7 +46,7 @@
   	<?= $this->element('left_titlebar', array('title' => __('Mission Activities'))) ?>
 
 	<div class="row full-width">
-	  <div class="large-6 columns">
+	  <div class="large-7 columns">
 	  	<div class="jcarousel-wrapper carousel-width">
 
 		  	<div class="jcarousel sticky">
@@ -54,14 +54,14 @@
                     <?php foreach ($quests as $q): ?>
 
 						<li>
-							<div class = "missionblock" style = "text-align: center;">
+							<div class = "missionblock postit">
 								<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-								<span><?php echo $q['Quest']['title'];?></span>
+								<h1><?php echo $q['Quest']['title'];?></h1>
 								</a>
 							</div>
 						</li>
 
-						<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal small" data-reveal>
+						<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large" data-reveal>
 						  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
 						  <a class="close-reveal-modal">&#215;</a>
 						</div>
@@ -75,7 +75,7 @@
 
 	    </div>
 	  </div>
-	  <div class="large-6 columns padding-right">
+	  <div class="large-5 columns padding-right">
 	  	<div class = "evoke titles-right">
 	  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>
 	  		<div>

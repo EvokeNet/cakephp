@@ -50,22 +50,23 @@
 	</div>
 
 	<div class="row full-width">
-	  <div class="large-6 columns">
+	  <div class="large-7 columns padding">
 	  	<div class="jcarousel-wrapper carousel-width">
 
-		  	<div class="jcarousel sticky">
+		  	<div class="jcarousel">
                 <ul>
                     <?php foreach ($quests as $q): ?>
 
 						<li>
-							<div class = "missionblock" style = "text-align: center;">
+							<div class = "missionblock postit">
 								<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-								<span><?php echo $q['Quest']['title'];?></span>
+								<h1><?= $q['Quest']['title'] ?></h1>
+								<p><?= $q['Quest']['description'] ?>
 								</a>
 							</div>
 						</li>
 
-						<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal small" data-reveal>
+						<div id="<?= $q['Quest']['id'] ?>" class="evoke quests lightbox reveal-modal" data-reveal>
 						  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
 						  <a class="close-reveal-modal">&#215;</a>
 						</div>
@@ -79,7 +80,7 @@
 
 	    </div>
 	  </div>
-	  <div class="large-6 columns padding-right">
+	  <div class="large-5 columns padding-right">
 	  	<div class = "evoke titles-right">
 	  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>
 	  		<div>
@@ -271,7 +272,8 @@
 	echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel', array('inline' => false));
 	//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
 	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
-	echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
+	//echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
+	echo $this->Html->script('jcarousel_missions', array('inline' => false));
 
 ?>
 

@@ -22,7 +22,7 @@
 
 		<!-- Right Nav Section -->
 		<ul class="right">
-			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src='<?= $this->webroot.'img/Leslie_Knope.png' ?>' class = "evoke top-bar icon"/></a></li>
+			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke top-bar icon"/></a></li>
 			<li class="name">
 				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1></a>
 			</li>
@@ -83,7 +83,7 @@
 				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%"/>
 
 				<div class="row">
-					  <div class="small-4 columns"><a href = '<?= $this->webroot.'img/ron_swanson.jpg' ?>'><img src='<?= $this->webroot.'img/ron_swanson.jpg' ?>' class = "evoke dashboard user_pic"/></a></div>
+					  <div class="small-4 columns"><a href = "https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
 					  <div class="small-8 columns evoke dashboard tag-padding">
 						<div class = "evoke dashboard agent info">
 							<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
