@@ -8,7 +8,9 @@
 ?>
 
 <section class="evoke background padding top-2">
+	<?php if(isset($mission['Mission'])) : ?>
 	<?= $this->element('left_titlebar', array('title' => sprintf(__('Evokation Teams: %s'), $mission['Mission']['title']))) ?>
+	<?php endif; ?>
 	<div class="row full-width">
 		<div class="small-8 small-centered columns">
 
@@ -22,30 +24,45 @@
 			  	<?php
 		  			foreach($groups as $e):
 	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
-	  			endforeach;?>
+	  				endforeach;
+	  			?>
 			   <!--  <?php
 		  			foreach($evokations as $e):
 	  					echo $this->element('evokation_red_box', array('e' => $e));
-	  			endforeach;?> -->
+	  				endforeach;
+	  			?> -->
 			  </div>
 			  <div class="content" id="panel2-2">
 			    <?php
 		  			foreach($myGroups as $e):
 	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
-	  			endforeach;?>
+	  				endforeach;
+	  			?>
 			  </div>
 			  <div class = "content" id="panel2-3">
 			  	<?php
 		  			foreach($groupsIBelong as $e):
-		  				echo $e['Group']['name'];
 	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
-	  			endforeach;?>
+	  				endforeach;
+	  			?>
 			  </div>
 			</div>
-			<?php if(isset($mission)): ?>
-				<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'add', $mission['Mission']['id'])); ?>" class = "button"><?php echo __('Create a group');?></a>
+			<?php if(isset($mission['Mission'])): ?>
+				<a class="button" href="" data-reveal-id="newGroup" data-reveal>
+					<span><?php echo __('Create a group');?></span>
+				</a>
+				<div id="newGroup" class="reveal-modal small" data-reveal>
+					<?= $this->element('add_group', array('mission' => $mission, 'userid' => $user['User']['id']));?>
+					<a class="close-reveal-modal">&#215;</a>
+				</div>
 			<?php else : ?>
-				<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'add')); ?>" class = "button"><?php echo __('Create a group');?></a>
+				<a class="button" href="" data-reveal-id="newGroup" data-reveal>
+					<span><?php echo __('Create a group');?></span>
+				</a>
+				<div id="newGroup" class="reveal-modal small" data-reveal>
+					<?= $this->element('add_group', array('userid' => $user['User']['id']));?>
+					<a class="close-reveal-modal">&#215;</a>
+				</div>
 			<?php endif; ?>
 		</div>
 	</div>

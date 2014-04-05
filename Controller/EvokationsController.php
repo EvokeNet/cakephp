@@ -39,6 +39,7 @@ class EvokationsController extends AppController {
 		
 		$options = array('conditions' => array('Evokation.' . $this->Evokation->primaryKey => $id));
 		$evokation = $this->Evokation->find('first', $options);
+		$this->Evokation->id = $id;
 		$comment = $this->Evokation->Comment->find('all', array('conditions' => array('Comment.evokation_id' => $id)));
 		$vote = $this->Evokation->Vote->find('first', array('conditions' => array('Vote.evokation_id' => $id, 'Vote.user_id' => $this->getUserId())));
 		$votes = $this->Evokation->Vote->find('all', array('conditions' => array('Vote.evokation_id' => $id)));
@@ -53,7 +54,7 @@ class EvokationsController extends AppController {
 			if($member['User']['id'] == $this->getUserId()) $can_edit = true;
 		}
 
-		//$follows = $this->Evokation->EvokationFollower->find('first', array('conditions' => array('EvokationFollower.user_id' => $this->getUserId(), 'EvokationFollower.evokation_id' => $id)));
+		$follows = $this->Evokation->EvokationFollower->find('first', array('conditions' => array('EvokationFollower.user_id' => $this->getUserId(), 'EvokationFollower.evokation_id' => $id)));
 
 		$this->loadModel("User");
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
