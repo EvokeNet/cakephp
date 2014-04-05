@@ -79,14 +79,16 @@ class GroupsUsersController extends AppController {
 
 			if ($groupResponse->getCode() == 0) {
 
-				$padGroupID = $groupResponse->getData()['groupID'];
+				$padGroupID = $groupResponse->getData();
+				$padGroupID = $padGroupID['groupID'];
 
 				$padIDResponse = $client->createGroupPad($padGroupID, 'evokation');
 
 				if ($padIDResponse->getCode() == 1) {
 					$padID = $padGroupID . '$evokation';
 				} else {
-					$padID = $padIDResponse->getData()['padID'];
+					$padID = $padIDResponse->getData();
+					$padID = $padIDResponse['padID'];
 				}
 
 				$loggedInUser = $this->Auth->user();
@@ -101,7 +103,8 @@ class GroupsUsersController extends AppController {
 					$authorResponse = $client->createAuthorIfNotExistsFor($user['User']['id'], $user['User']['name']);
 					
 					if($authorResponse->getCode() == 0) {
-						$authorID = $authorResponse->getData()['authorID'];
+						$authorID = $authorResponse->getData();
+						$authorID = $authorID['authorID'];
 						// $session = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
 						$session = $client->listSessionsOfGroup($padGroupID);
 						debug($session);

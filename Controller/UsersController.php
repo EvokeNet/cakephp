@@ -201,6 +201,33 @@ class UsersController extends AppController {
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));
 
+		$evokationsFollowing = $this->User->EvokationFollower->find('all');
+
+		$myEvokations = array();
+		foreach ($evokations as $evokation) {
+			$mine = false;
+			if($evokation['Group']['user_id'] == $this->getUserId())
+				$mine = true;
+
+			$this->loadModel('Group');
+			$group_evokation = $this->Group->GroupsUser->find('first', array(
+				'conditions' => array(
+					'GroupsUser.group_id' => $evokation['Group']['id'],
+					'GroupsUser.user_id' => $this->getUserId()
+				)
+			));
+			
+			if(!empty($group_evokation))
+				$mine = true;
+
+			if($mine){
+				array_push($myEvokations, $evokation);
+			}
+				
+		}
+
+
+
 		$this->loadModel('Group');
 		$groups = $this->Group->find('all', array('joins' => array(
         array(
@@ -244,30 +271,6 @@ class UsersController extends AppController {
 		//     )
 		// );
 
-		$evokationsFollowing = $this->User->EvokationFollower->find('all');
-		// debug($evokationsFollowing);
-		// //die();
-
-		// $options2['joins'] = array(
-		//     array('table' => 'groups_users',
-		//         'alias' => 'GroupsUsers',
-		//         'type' => 'inner',
-		//         'conditions' => array(
-		//             'GroupsUsers.user_id' => $id
-		//         )
-		//     ),
-		//     array('table' => 'evokations',
-		//         'alias' => 'Evokations',
-		//         'type' => 'inner',
-		//         'conditions' => array(
-		//             'Evokations.group_id = GroupsUsers.group_id'
-		//         )
-		//     )
-		// );
-
-		// $myEvokations = $this->Evokation->find('all', $options2['joins']);
-		//debug($myEvokations);
-
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all', array(
 			'order' => array('Mission.id DESC')
@@ -289,7 +292,8 @@ class UsersController extends AppController {
 		$missionIssues = $this->Mission->MissionIssue->find('all');
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
-		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 'missionIssues', 'issues', 'imgs'));
+		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
+			'missionIssues', 'issues', 'imgs'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');

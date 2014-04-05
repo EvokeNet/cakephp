@@ -11,6 +11,7 @@
 		</div>
 	<div class="medium-8 columns">
 		<h1><?= $e['Group']['title']?></h1>
+		<h4><?= $e['Group']['description']?></h4>
 	</div>
 
 	<div class="medium-2 columns">
