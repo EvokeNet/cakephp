@@ -50,7 +50,7 @@ $title = __('Evoke Network');
 		<?php echo $this->fetch('content'); ?>
 	</section>
 
-	<footer class="footer">
+	<footer class="footer" id="footer">
 		<div class="row">
 			<div class="large-12 columns">
 				<div class="row">
@@ -74,6 +74,7 @@ $title = __('Evoke Network');
 		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
 		echo $this->Html->script('/components/modernizr/modernizr.js', array('inline' => false));
 		echo $this->Html->script('evoke');
+		echo $this->Html->script('footer_bind');
 
 		echo $this->fetch('script'); 
 	?>
