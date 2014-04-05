@@ -16,6 +16,9 @@
 	<div class = "evoke missions data">
   		<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
 	</div>
+
+	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
+	
 	<div class="row full-width">
 		  <div class="large-6 columns">
 		  	<div class = "evoke evokation-pink-border full-width">

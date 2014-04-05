@@ -13,7 +13,47 @@
 ?>
 
 <section class="evoke background padding top-2">
-	
+
+<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
+<!-- <div>
+	<span>Mission Status: </span>
+	<span>
+		<?php 
+			$_completed = 0;
+			$_total = 0;
+			$valid_phases = 0;
+			foreach ($missionPhases as $phase) {
+				if(!isset($total[$phase['Phase']['id']]))
+					continue;
+				$valid_phases++;
+				$_completed += $completed[$phase['Phase']['id']];
+				$_total += $total[$phase['Phase']['id']];
+			}
+			echo (($_completed * 100)/$_total) . '%';
+		?>
+	</span>
+	<div class="large-8" style="float:right">
+		<?php	
+			$qtd = 100/$valid_phases;//sizeof($missionPhases);
+			foreach ($missionPhases as $phase):
+				if((!isset($total[$phase['Phase']['id']]))) continue;
+				if(($total[$phase['Phase']['id']] == 0)) continue;
+				?>
+				<div style="width:<?= $qtd?>%; float:left">
+					<?php 
+						$phaseDone = "alert";
+						if((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) == 100)
+							$phaseDone = "success";
+					?>
+					<span><?= $phase['Phase']['name']?></span>
+					<div class="progress <?=$phaseDone ?> round" style="">
+						<span class="meter" style="width: <?php echo (($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) ?>%"></span>
+					</div>
+				</div>
+			<?php endforeach; ?>
+	</div>
+</div> -->
+
 	<div class="row full-width">
 	  <div class="large-6 columns">
 	  	<div class = "evoke missions data">
