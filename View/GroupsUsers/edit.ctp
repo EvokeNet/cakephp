@@ -50,7 +50,7 @@
 							</div>
 							
 						<?php endif ?>
-						<li><?php echo explode(' ', $user['User']['name'])[0]; ?></li>
+						<li><?php $test = explode(' ', $user['User']['name']); echo $test[0]; ?></li>
 					<?php endforeach ?>
 				</ul>
 

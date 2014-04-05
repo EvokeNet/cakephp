@@ -1,20 +1,16 @@
-<div class="row evoke evokation-red-box adjust-row">
+<div class="row evoke evokation-red-box">
 	<div class="medium-2 columns">
   		<div class = "evoke dashboard text-align">
   			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
 
   			<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['Group']['id']));?>">
-			<h6><?= $e['Group']['title']?></h6>
+			<h6><?= $e['Group']['created']?></h6>
 			</a>
 
+			</div>
 		</div>
-	</div>
 	<div class="medium-8 columns">
-
-		<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?>">
-		<h1><?= $e['Evokation']['title']?></h1>
-		</a>
-
+		<h1><?= $e['Group']['title']?></h1>
 	</div>
 
 	<div class="medium-2 columns">
@@ -24,7 +20,7 @@
 				<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
 				<i class="fa fa-twitter-square fa-lg"></i>
 			</div>
-			<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?>" class = "evoke button general green"><?php echo __('View this project');?></a>
+			<a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $user['User']['id'], $e['Group']['id'])); ?>" class = "button general green"><?php echo __('Send request to join');?></a>
 		</div>
 	</div>	
 </div>

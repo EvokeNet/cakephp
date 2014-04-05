@@ -280,7 +280,7 @@ class GroupsUsersController extends AppController {
 		$Email->viewVars(array('sender' => $sender, 'recipient' => $recipient, 'group' => $group));
 		$Email->send();
 		$this->Session->setFlash(__('The email was sent'));
-		$this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
+		$this->redirect(array('controller' => 'groups', 'action' => 'index', $group['Group']['mission_id']));
 	
 	}
 

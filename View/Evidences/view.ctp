@@ -5,49 +5,11 @@
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 	$comments_count = sprintf(' (%s) ', count($comment));
+
+	echo $this->element('header', array('user' => $user));
+	$this->end(); 
+
 ?>
-
-<nav class="top-bar" data-topbar>
-	<ul class="title-area">
-		<li class="name">
-			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></h1>
-		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-	</ul>
-
-	<section class="top-bar-section">
-		<!-- Right Nav Section -->
-		<ul class="right">
-			<li class="name">
-				<h1><?= sprintf(__('Hi %s'), $user['User']['name']) ?></h1>
-			</li>
-
-			<li class="has-dropdown">
-				<a href="#"><?= __('Settings') ?></a>
-				<ul class="dropdown">
-
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li>
-					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
-
-				</ul>
-			</li>
-		</ul>
-
-		<!-- Left Nav Section -->
-		<ul class="left">
-			<li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li>
-			<li  class="has-dropdown">
-				<a href="#"><?= __('Language') ?></a>
-				<ul class="dropdown">
-					<li><?= $this->Html->link(__('English'), array('action'=>'changeLanguage', 'en')) ?></li>
-					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
-				</ul>
-			</li>
-		</ul>
-	</section>
-</nav>
-
-<?php $this->end(); ?>
 
 <section class="evoke background padding top-2">
 	<div class="row full-width">
@@ -63,17 +25,19 @@
 	  <div class="medium-2 large-2 columns">
 	  	<div class="evoke evidence-tag text-align">
 	  		<img src='<?= $this->webroot.'img/Leslie_Knope.png' ?>' style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
-		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1>
+		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1></a>
 		 	
 		 	<p><?php echo $evidence['User']['biography'] ?></p>
 		 	<i class="fa fa-facebook-square fa-2x"></i>&nbsp;
 			<i class="fa fa-google-plus-square fa-2x"></i>&nbsp;
 			<i class="fa fa-twitter-square fa-2x"></i>
 
-			<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button"><?php echo __('Edit Discussion');?></a></div>
+			<?php if($evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
+				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button"><?php echo __('Edit Discussion');?></a></div>
+			<?php endif; ?>
 	 	</div>
 	  </div>
-	  <div class="medium-8 large-8 columns">
+	  <div class="medium-7 large-7 columns">
 	 	<div class = "evoke evidence-body view">
 		  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
 		  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
@@ -89,8 +53,8 @@
   			?>
 		</div>
 	  </div>
-	  <div class="medium-2 large-2 columns padding-right">
-	  	<div class = "evoke dashboard position">
+	  <div class="medium-3 large-3 columns padding-right">
+	  	<div class = "evoke position">
 			<?php echo $this->element('right_titlebar', array('title' => (__('Share')))); ?>
 		</div>
 
@@ -123,7 +87,7 @@
 		  	<?php if(empty($like)) : ?>
 		  		<div  onClick="location.href='/evoke/likes/like/<?php echo $evidence['Evidence']['id']; ?>'" class="evoke button-bg"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div><span><?= count($likes) ?></span></div>
 			<?php else : ?>
-				<div  onClick="location.href='/evoke/likes/like/<?php echo $evidence['Evidence']['id']; ?>'" class="evoke button-bg"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Unlike');?></h6></div><span><?= count($likes) ?></span></div>
+				<div  onClick="location.href='/evoke/likes/like/<?php echo $evidence['Evidence']['id']; ?>'" class="evoke button-bg"><div class="evoke button like-button"><i class="fa fa-heart fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Unlike');?></h6></div><span><?= count($likes) ?></span></div>
 			<?php endif; ?>
 
 			<!-- Voting lightbox button -->

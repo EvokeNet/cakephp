@@ -71,7 +71,7 @@ class EvokationFollowersController extends AppController {
 			$this->EvokationFollower->id = $exists['EvokationFollower']['id'];
 			if ($this->EvokationFollower->delete()) {
 				$this->Session->setFlash(__('You have unfollowed this evokation.'));
-				return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user_id));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The evokation follower could not be deleted. Please, try again.'));
 			}

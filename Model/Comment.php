@@ -24,6 +24,13 @@ class Comment extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+		'Evokation' => array(
+			'className' => 'Evokation',
+			'foreignKey' => 'evokation_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',

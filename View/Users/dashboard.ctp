@@ -24,7 +24,7 @@
 		<ul class="right">
 			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src='<?= $this->webroot.'img/Leslie_Knope.png' ?>' class = "evoke top-bar icon"/></a></li>
 			<li class="name">
-				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1></a>
+				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>" class = "evoke top-bar-name"><h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1></a>
 			</li>
 			<li class="has-dropdown">
 				<a href="#"><i class="fa fa-cog fa-2x"></i></a>

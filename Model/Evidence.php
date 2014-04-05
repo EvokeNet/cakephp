@@ -134,19 +134,6 @@ class Evidence extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Vote' => array(
-			'className' => 'Vote',
-			'foreignKey' => 'evidence_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'Like' => array(
 			'className' => 'Like',
 			'foreignKey' => 'evidence_id',

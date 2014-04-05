@@ -46,10 +46,9 @@ class EvidencesController extends AppController {
 
 		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
 		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
-		$vote = $this->Evidence->Vote->find('first', array('conditions' => array('Vote.evidence_id' => $id, 'Vote.user_id' => $this->getUserId())));
 		$like = $this->Evidence->Like->find('first', array('conditions' => array('Like.evidence_id' => $id, 'Like.user_id' => $this->getUserId())));
 		$likes = $this->Evidence->Like->find('all', array('conditions' => array('Like.evidence_id' => $id)));
-		$this->set(compact('user', 'evidence', 'comment', 'vote', 'like', 'likes'));
+		$this->set(compact('user', 'evidence', 'comment', 'like', 'likes'));
 	}
 
 /**

@@ -55,7 +55,7 @@
 .columns h4{
 	font-family: 'SBB';
 	text-align: center;
-	font-size: 1.2vw;
+	font-size: 1.5vw;
 }
 
 .columns h5{
@@ -70,7 +70,8 @@
 .evoke.login a.button{
 	width: 100%;
 	border-radius: 7px;
-	padding: 1.50em 0em;
+	/*padding: 1.50em 0em;*/
+	padding: 0.8em 0.8em;
 }
 
 .evoke.login a.button.facebook{

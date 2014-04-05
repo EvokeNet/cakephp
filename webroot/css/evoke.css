@@ -64,6 +64,28 @@ button, div, p, span, a,
 	height:50px!important;
 }
 
+.evoke.top-bar-name{
+	font-family: 'AlegreyaBold';
+	color:#fff;
+	font-size:0.9em;
+	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
+}
+
+.evoke.top-bar-level h5{
+	font-family: 'AlegreyaBold';
+	color: #fff;
+	font-size: 1.2em;
+	padding: 0px 20px;
+	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
+}
+
+.evoke.top-bar-level span{
+	font-family: 'AlegreyaRegular';
+	color: #fff;
+	font-size: 1.5em;
+	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
+}
+
 .evoke .login-bg-topbar {
 	background: #0d0d10;
 	padding-top:80px;
@@ -108,12 +130,10 @@ button, div, p, span, a,
 	margin-top: 10px;
 }
 
-.right .name h1{
+/*.right .name h1{
 	font-family: 'AlegreyaRegular';
 	font-size: 1.1vw;
-	/*font-size: 2.5em;
-	margin: 5px 0px 10px 10px;*/
-}
+}*/
 
 .dropdown h1{
 	font-family: 'AlegreyaRegular';
@@ -134,11 +154,11 @@ button, div, p, span, a,
 	color: #FFF;*/
 }
 
-.evoke.top-bar-section h3 a{
+/*.evoke.top-bar-section h3 a{
 	font-size: 1.0em;
 	color: #FFF;
 	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
-}
+}*/
 
 .evoke.top-bar-section h4{
 	font-size:2.0em;
@@ -146,7 +166,7 @@ button, div, p, span, a,
 }
 
 .evoke.top-bar-section h5{
-	font-size:1.2em;
+	/*font-size:1.2em;*/
 }
 
 /* SPACINGS, MARGINS, PADDINGS */
@@ -408,7 +428,7 @@ button, div, p, span, a,
 	color: #ffffff;
 	font-size: 0.9em;
 	border-radius: 5px;
-	/*padding: 0.4em 2em;*/
+	padding: 0.4em 2em;
 	margin-right: 10px;
 	border-right: 3px solid #125167;
 	border-bottom: 3px solid #125167;
@@ -421,7 +441,7 @@ button, div, p, span, a,
 
 .evoke .button {
 	/*max-height: 2.5em;*/
-	line-height: 0;
+	/*line-height: 0;*/
 	padding-top: 1.25em;
 	padding-bottom: 1.25em;
 	color: #ffffff;
@@ -633,14 +653,6 @@ button, div, p, span, a,
 	text-align:start;
 }
 
-.evoke .icons.tabs-content p, a{
-	/*font-size:1.2em;
-	text-align: start;
-	padding: 0px 5px;
-	color:#306f78;
-	font-family: 'AlegreyaBold';*/
-}
-
 .evoke .icons.tabs-content a{
 	color:#306f78;
 }
@@ -782,10 +794,11 @@ button, div, p, span, a,
 
 .evoke.titles-right{
 	text-align: end;
+	margin-bottom: 50px;
 }
 
 .evoke.titles-right h4{
-	font-size: 1.2vw;
+	font-size: 1.5vw;
 }
 
 .evoke.small-bar{
@@ -795,10 +808,11 @@ button, div, p, span, a,
 
 .evoke.titles-left{
 	text-align: start;
+	margin-bottom: 50px;
 }
 
 .evoke.titles-left h4{
-	font-size: 1.2vw;
+	font-size: 1.5vw;
 }
 
 .evoke.medium-bar{

@@ -33,7 +33,7 @@
 				}
 				//if so, show him his previous answer
 				if($my_answer) {
-					echo $this->Form->input($question['id'].'][description', array('label' => $question['description'], 'value' => $my_answer['UserAnswer']['description'], 'required' => true));
+					echo $this->Form->input($question['id'].'][description', array('label' => $question['description'], 'value' => $my_answer['UserAnswer']['description'], 'required' => true, 'type' => 'textarea'));
 				} else {
 					//else, just show him a text area with the question description as the label
 					echo $this->Form->input($question['id'].'][description', array('label' => $question['description'], 'required' => true));
@@ -118,7 +118,7 @@
 
 		//its a group type of quest
 		if($q['Quest']['type'] == 3) { 
-			echo '<a href = "'. $this->Html->url(array('controller' => 'groups', 'action' => 'by_mission', $mission['Mission']['id'])) .'" class = "button">' . __('Join/Create a group!') . '</a>';
+			echo '<a href = "'. $this->Html->url(array('controller' => 'groups', 'action' => 'index', $mission['Mission']['id'])) .'" class = "button">' . __('Join/Create a group!') . '</a>';
 		}
 
 		//its an evokation type of quest
