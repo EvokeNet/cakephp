@@ -29,6 +29,7 @@
 .evoke.todo-list{
 	background-color:#e4e3dd;
 	margin-top: -8%;
+	margin-bottom: 70px;
 }
 
 .evoke.todo-list.content{
@@ -48,12 +49,19 @@
 }
 
 .evoke.todo-list.content li{
-	font-family: 'AmaticSC-Regular';
 	padding: 20px 20px 10px;
 	margin: 0px auto;
-	font-size: 2.5vw;
 	border-bottom: 2px solid #a7a7a7;
 	width: 95%;
+}
+
+.evoke.todo-list.content li h2{
+	font-family: 'AmaticSC-Regular';
+	font-size: 2.5vw;
+}
+
+.evoke.item-complete{
+	background-color:#71e06f;
 }
 
 .carousel-width{
@@ -177,6 +185,12 @@
 
 .evoke.mission.circle-position{
 	float:left;
+}
+
+.evoke.mission.outer-circle{
+	position: absolute;
+	right: 85px;
+	top: 39px;
 }
 
 .evoke.mission.circle {
