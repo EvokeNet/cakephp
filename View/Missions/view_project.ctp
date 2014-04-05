@@ -18,7 +18,7 @@
 	</div>
 
 	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
-	
+
 	<div class="row full-width">
 		  <div class="large-6 columns">
 		  	<div class = "evoke evokation-pink-border full-width">
@@ -77,7 +77,7 @@
 	  </div>
 	  <div class="large-6 columns padding-right">
 	  	<div class = "evoke titles-right">
-	  		<img src = '<?= $this->webroot.'img/dossier.png' ?>' width = "600px">
+	  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>
 	  		<div>
 	  		<dl class="tabs vertical evoke icons" data-tab>
 			  <dd class="active"><a href="#panel31a"><i class="fa fa-file-text fa-2x"></i></a></dd>
@@ -206,15 +206,42 @@
 				<div class = "evoke todo-list content">
 					<h1><?= strtoupper(__('To-Do List')) ?></h1>
 					<ul>
-	                    <?php foreach ($quests as $q): ?>
+						<?php foreach($quests as $q):
+							//only add to checklist quests that are mandatory
+							if($q['Quest']['mandatory'] != 1) continue;
+							
+							$evidence_exists = false;
+							//if it was an 'evidence' type quest
+							foreach($my_evidences as $e):
+								if($q['Quest']['id'] == $e['Quest']['id']) {$evidence_exists = true; break;}
+							endforeach;
 
-							<li><?php echo $q['Quest']['title'];?></li>
+							//if it was a questionnaire type quest
+							foreach($questionnaires as $questionnaire):
+								foreach ($previous_answers as $previous_answer) {
+									if($q['Quest']['id'] == $questionnaire['Quest']['id'] && $questionnaire['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {$evidence_exists = true; break;}
+								}
+							endforeach;
 
-						<?php endforeach; ?>
-	                </ul>
+							//if its a group type quest, check to see if user owns or belongs to a group of this mission
+							if($q['Quest']['type'] == 3) {
+								if($hasGroup) {
+									$evidence_exists = true;
+								}
+							}
+
+							//debug($previous_answers);
+							if($evidence_exists):?>
+								<li><h2 class = "evoke item-complete"><?php echo $q['Quest']['title'];?></h2></li>
+							<?php else: ?>
+								<li><h2><?php echo $q['Quest']['title'];?></h2></li>
+							<?php endif; 
+
+						endforeach; ?>
+
+				  	</ul>
                 </div>
 			</div>
-			<!-- <img src = '/evoke/webroot/img/holdtwo.png' style = "position: absolute; top: 40%; right: -25px; width: 30%;"> -->
 		</div>
 
 		<?php if(isset($nextMP)){ ?>
