@@ -103,7 +103,8 @@ class GroupsUsersController extends AppController {
 					$authorResponse = $client->createAuthorIfNotExistsFor($user['User']['id'], $user['User']['name']);
 					
 					if($authorResponse->getCode() == 0) {
-						$authorID = $authorResponse->getData()['authorID'];
+						$authorID = $authorResponse->getData();
+						$authorID = $authorID['authorID'];
 						// $session = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
 						$session = $client->listSessionsOfGroup($padGroupID);
 						debug($session);
