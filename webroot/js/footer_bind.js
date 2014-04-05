@@ -6,7 +6,7 @@ $(window).bind("load", function () {
     height = height - footer.height();
     if (height > 0) {
         footer.css({
-            'margin-top': height + 'px'
+            'margin-top': (height + 2) + 'px'
         });
     }
 });
