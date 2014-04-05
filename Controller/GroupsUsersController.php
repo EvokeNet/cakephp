@@ -66,6 +66,7 @@ class GroupsUsersController extends AppController {
 			)
 		));
 
+
 		if (!empty($evokation)) {
 			$this->request->data = $evokation;
 		}
@@ -73,9 +74,46 @@ class GroupsUsersController extends AppController {
 		$response = $client->checkToken();
 		if ($response->getCode() == 0) {
 			
+			$groupId = $group['Group']['id'];
+			$groupResponse = $client->createGroupIfNotExistsFor($groupId);
+
+			if ($groupResponse->getCode() == 0) {
+
+				$padGroupID = $groupResponse->getData()['groupID'];
+
+				$padIDResponse = $client->createGroupPad($padGroupID, 'evokation');
+
+				if ($padIDResponse->getCode() == 1) {
+					$padID = $padGroupID . '$evokation';
+				} else {
+					$padID = $padIDResponse->getData()['padID'];
+				}
+
+				$loggedInUser = $this->Auth->user();
+				foreach ($users as $user) {
+					if($user['User']['id'] == $loggedInUser['User']['id']) {
+						$isAllowed = true;
+						break;
+					}
+				}
+
+				if ($isAllowed) {
+					$authorResponse = $client->createAuthorIfNotExistsFor($user['User']['id'], $user['User']['name']);
+					
+					if($authorResponse->getCode() == 0) {
+						$authorID = $authorResponse->getData()['authorID'];
+						// $session = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
+						$session = $client->listSessionsOfGroup($padGroupID);
+						debug($session);
+
+					}
+
+				}
+
+			}
 		}
 
-		$this->set(compact('group', 'users'));
+		$this->set(compact('group', 'users', 'padID'));
 
 	}
 
