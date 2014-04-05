@@ -258,10 +258,10 @@ class MissionsController extends AppController {
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed'));
 
 
-		// if($missionPhase['Phase']['type'] == 0)
-		// 	$this->render('view_discussion');
-		// else
-		// 	$this->render('view_project');
+		if($missionPhase['Phase']['type'] == 0)
+			$this->render('view_discussion');
+		else
+			$this->render('view_project');
 	}
 
 /**
