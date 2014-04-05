@@ -36,6 +36,7 @@ class EvokationsController extends AppController {
 		if (!$this->Evokation->exists($id)) {
 			throw new NotFoundException(__('Invalid evokation'));
 		}
+		
 		$options = array('conditions' => array('Evokation.' . $this->Evokation->primaryKey => $id));
 		$evokation = $this->Evokation->find('first', $options);
 		$comment = $this->Evokation->Comment->find('all', array('conditions' => array('Comment.evokation_id' => $id)));

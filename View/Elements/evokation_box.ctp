@@ -8,7 +8,7 @@
 	}
 ?>
 <div class="row evoke evokation-box adjust-row">
-	<div class="medium-1 columns">
+	<div class="medium-2 columns">
   		<div class = "evoke dashboard text-align">
   			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
 
@@ -18,7 +18,7 @@
 
 			</div>
 		</div>
-	<div class="medium-9 columns">
+	<div class="medium-8 columns">
 
 		<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?>">
 		<h1><?= $e['Evokation']['title']?></h1>

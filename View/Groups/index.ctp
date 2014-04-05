@@ -1,50 +1,16 @@
 <?php
 	$this->extend('/Common/topbar');
 	$this->start('menu');
+
+	echo $this->element('header', array('user' => $user));
+	$this->end(); 
+	
 ?>
 
-<nav class="top-bar" data-topbar>
-	<ul class="title-area">
-		<li class="name">
-			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $users['User']['id'])); ?></h1>
-		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-	</ul>
-
-	<section class="evoke top-bar-section">
-
-		<!-- Right Nav Section -->
-		<ul class="right">
-			<li class="name">
-				<h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1>
-			</li>
-			<li class="has-dropdown">
-				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
-				<ul class="dropdown">
-					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $users['User']['id'])); ?></h1></li>
-					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
-				</ul>
-			</li>
-			<li  class="has-dropdown">
-				<a href="#"><?= __('Language') ?></a>
-				<ul class="dropdown">
-					<li><?= $this->Html->link(__('English'), array('action'=>'changeLanguage', 'en')) ?></li>
-					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
-				</ul>
-			</li>
-		</ul>
-
-		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
-
-	</section>
-</nav>
-
-<?php $this->end(); ?>
-
 <section class="evoke background padding top-2">
-	<?= $this->element('left_titlebar', array('title' => __('Evokation Teams'))) ?>
+	<?= $this->element('left_titlebar', array('title' => sprintf(__('Evokation Teams: %s'), $mission['Mission']['title']))) ?>
 	<div class="row full-width">
-		<div class="small-6 small-centered columns">
+		<div class="small-8 small-centered columns">
 
 			<dl class="tabs" data-tab>
 			  <dd class="active"><a href="#panel2-1"><?php echo __('Evokation Teams');?></a></dd>

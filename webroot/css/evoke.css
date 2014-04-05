@@ -130,12 +130,10 @@ button, div, p, span, a,
 	margin-top: 10px;
 }
 
-.right .name h1{
+/*.right .name h1{
 	font-family: 'AlegreyaRegular';
 	font-size: 1.1vw;
-	/*font-size: 2.5em;
-	margin: 5px 0px 10px 10px;*/
-}
+}*/
 
 .dropdown h1{
 	font-family: 'AlegreyaRegular';
@@ -796,10 +794,11 @@ button, div, p, span, a,
 
 .evoke.titles-right{
 	text-align: end;
+	margin-bottom: 50px;
 }
 
 .evoke.titles-right h4{
-	font-size: 1.2vw;
+	font-size: 1.5vw;
 }
 
 .evoke.small-bar{
@@ -809,10 +808,11 @@ button, div, p, span, a,
 
 .evoke.titles-left{
 	text-align: start;
+	margin-bottom: 50px;
 }
 
 .evoke.titles-left h4{
-	font-size: 1.2vw;
+	font-size: 1.5vw;
 }
 
 .evoke.medium-bar{
