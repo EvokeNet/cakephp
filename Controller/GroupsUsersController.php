@@ -79,14 +79,16 @@ class GroupsUsersController extends AppController {
 
 			if ($groupResponse->getCode() == 0) {
 
-				$padGroupID = $groupResponse->getData()['groupID'];
+				$padGroupID = $groupResponse->getData();
+				$padGroupID = $padGroupID['groupID'];
 
 				$padIDResponse = $client->createGroupPad($padGroupID, 'evokation');
 
 				if ($padIDResponse->getCode() == 1) {
 					$padID = $padGroupID . '$evokation';
 				} else {
-					$padID = $padIDResponse->getData()['padID'];
+					$padID = $padIDResponse->getData();
+					$padID = $padIDResponse['padID'];
 				}
 
 				$loggedInUser = $this->Auth->user();
