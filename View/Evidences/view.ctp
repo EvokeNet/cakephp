@@ -25,7 +25,7 @@
 	  <div class="medium-2 large-2 columns">
 	  	<div class="evoke evidence-tag text-align">
 	  		<img src='<?= $this->webroot.'img/Leslie_Knope.png' ?>' style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
-		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1>
+		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1></a>
 		 	
 		 	<p><?php echo $evidence['User']['biography'] ?></p>
 		 	<i class="fa fa-facebook-square fa-2x"></i>&nbsp;
