@@ -60,15 +60,14 @@
 						<li>
 							<div class = "missionblock postit">
 								<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-								<h1><?= $q['Quest']['title'] ?></h1>
-								<p><?= $q['Quest']['description'] ?>
+								<h1><?= $q['Quest']['title']?></h1>
 								</a>
 							</div>
 						</li>
 
-						<div id="<?= $q['Quest']['id'] ?>" class="evoke quests lightbox reveal-modal" data-reveal>
+						<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke quests lightbox" data-reveal>
 						  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
-						  <a class="close-reveal-modal">&#215;</a>
+						  <a class="evoke mission close-reveal-modal">&#215;</a>
 						</div>
 
 					<?php endforeach; ?>

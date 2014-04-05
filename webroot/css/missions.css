@@ -264,4 +264,27 @@
 .evoke.quests.lightbox{
 	background-color: #000;
 	border: 1px solid #c65862;
+	width: 70%!important;
+}
+
+.evoke.quests.content h2{
+	color:#fff;
+	font-family: 'AlegreyaRegular';
+	font-size:3.0vw;
+	margin-bottom:20px;
+}
+
+.evoke.quests.content p{
+	color:#fff;
+	font-family: 'AlegreyaRegular';
+	font-size:1.5vw;
+}
+
+.evoke.mission.close-reveal-modal{
+	background-color: #19708e;
+	color: #000;
+	border-radius: 50%;
+	height: 25px;
+	width: 25px;
+	padding-left: 6px;
 }
