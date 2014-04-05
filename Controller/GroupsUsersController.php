@@ -105,13 +105,31 @@ class GroupsUsersController extends AppController {
 					if($authorResponse->getCode() == 0) {
 						$authorID = $authorResponse->getData();
 						$authorID = $authorID['authorID'];
-						// $session = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
-						$session = $client->listSessionsOfGroup($padGroupID);
-						debug($session);
+
+						$this->loadModel('Setting');
+						$sessionID = $this->Setting->find('first', array(
+							'conditions' => array(
+								'key' => 'evokation.'.$evokation['Evokation']['id']
+							)
+						));
+
+						if (empty($sessionID)) {
+							$sessionResponse = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
+							$sessionID = $sessionResponse->getData();
+							$sessionID = $sessionID['sessionID'];
+
+							$setting = array();
+							$setting['Setting']['key'] = 'evokation.'.$evokation['Evokation']['id'];
+							$setting['Setting']['value'] = $sessionID;
+							$this->Setting->save($setting);
+
+						}
 
 					}
 
 				}
+
+				debug($sessionID);
 
 			}
 		}
