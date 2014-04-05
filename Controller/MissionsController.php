@@ -195,27 +195,34 @@ class MissionsController extends AppController {
 		$tmp = 0;
 		$total = array();
 		$completed = array();
-		foreach ($all_mandatory_quests as $quest) {
-			$tmp = $quest['Quest']['phase_id'];
+		foreach ($all_mandatory_quests as $q) {
+			$tmp = $q['Quest']['phase_id'];
 			if(isset($total[$tmp]))
 				$total[$tmp]++;
 			else 
 				$total[$tmp] = 1;
 
 			$done = false;
+
+			$this->loadModel('Evidence');
+			$my_evidences_quest = $this->Evidence->find('all', array(
+				'order' => array('Evidence.title ASC'),
+				'conditions' => array(
+					'user_id' => $this->getUserId(),
+					'quest_id' => $q['Quest']['id']
+				)
+			));
 			//if it was an 'evidence' type quest
-			foreach($my_evidences as $e):
-				if($quest['Quest']['id'] == $e['Quest']['id']) {
-					$done = true; 
-					break;
-				}
-			endforeach;
+			if(!empty($my_evidences_quest)) {
+				$done = true; 
+			}
+			
 
 			//if it was a questionnaire type quest
 			//theres only one
-			if($quest['Questionnaire']['id'] != "") {
+			if($q['Questionnaire']['id'] != "") {
 				foreach ($previous_answers as $previous_answer) {
-					if($quest['Quest']['id'] == $quest['Questionnaire']['quest_id'] && $quest['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {
+					if($q['Quest']['id'] == $q['Questionnaire']['quest_id'] && $q['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {
 						$done = true; 
 						break;
 					}
@@ -224,7 +231,7 @@ class MissionsController extends AppController {
 			
 
 			//if its a group type quest, check to see if user owns or belongs to a group of this mission
-			if($quest['Quest']['type'] == 3) {
+			if($q['Quest']['type'] == 3) {
 				if($hasGroup) {
 					$done = true;
 				}
@@ -251,10 +258,10 @@ class MissionsController extends AppController {
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed'));
 
 
-		if($missionPhase['Phase']['type'] == 0)
-			$this->render('view_discussion');
-		else
-			$this->render('view_project');
+		// if($missionPhase['Phase']['type'] == 0)
+		// 	$this->render('view_discussion');
+		// else
+		// 	$this->render('view_project');
 	}
 
 /**
