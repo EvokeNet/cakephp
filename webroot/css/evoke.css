@@ -427,8 +427,10 @@ button, div, p, span, a,
 	background: #1f8cb2;
 	color: #ffffff;
 	font-size: 0.9em;
-	border-radius: 5px;
-	padding: 0.4em 2em;
+	/*border-radius: 5px;
+	padding: 0.4em 2em;*/
+	border-radius: 10px;
+	padding: 0.4em 1.5em 0.8em;
 	margin-right: 10px;
 	border-right: 3px solid #125167;
 	border-bottom: 3px solid #125167;
@@ -437,6 +439,7 @@ button, div, p, span, a,
 .evoke .button.general.green{
 	background-color: #20c475;
 	border-right: 3px solid #137244;
+	border-bottom: 3px solid #137244;
 }
 
 .evoke .button {
