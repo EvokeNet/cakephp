@@ -43,6 +43,7 @@
 					</div>
 				</div>
 			<?php endforeach; ?>
+			<div class = "evoke mission circle-position"><div class="evoke mission circle"></div></div>
 	  </div>
 	</div>
 </div>

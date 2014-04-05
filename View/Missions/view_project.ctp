@@ -18,7 +18,7 @@
 	</div>
 
 	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
-	
+
 	<div class="row full-width">
 		  <div class="large-6 columns">
 		  	<div class = "evoke evokation-pink-border full-width">
@@ -77,7 +77,7 @@
 	  </div>
 	  <div class="large-6 columns padding-right">
 	  	<div class = "evoke titles-right">
-	  		<img src = '<?= $this->webroot.'img/dossier.png' ?>' width = "600px">
+	  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>
 	  		<div>
 	  		<dl class="tabs vertical evoke icons" data-tab>
 			  <dd class="active"><a href="#panel31a"><i class="fa fa-file-text fa-2x"></i></a></dd>
