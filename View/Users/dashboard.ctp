@@ -211,8 +211,10 @@
 					<div class = "evoke screen-box badges"></div>
 				</div>
 
-				<div class = "evoke text-align position">
-					<img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class = "badges_bar"/>
+				<div class = "evoke dashboard position">
+					<div class = "evoke text-align">
+						<img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class = "badges_bar"/>
+					</div>
 				</div>
 
 			</div>

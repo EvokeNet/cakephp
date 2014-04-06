@@ -15,10 +15,10 @@
 		<li class="name">
 			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $users['User']['id'])); ?></h1>
 		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+		<!-- <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li> -->
 	</ul>
 
-	<section class="evoke top-bar-section">
+	<section class="evoke dashboard top-bar-section">
 
 		<!-- Right Nav Section -->
 		<ul class="right">
@@ -53,14 +53,11 @@
 
 <section class="evoke background padding top-2">
 	
-	<div class="row full-width">
-	  	<div class="large-5 columns">
-		  	<div class = "evoke dashboard position">
-				<?= $this->element('left_titlebar', array('title' => __(sprintf(__("Agent's %s Dashboard"), $user['User']['name'])))) ?>
-			</div>
-		</div>
-	  	<div class="large-7 columns padding-right">
-		  	<div class = "evoke dashboard position">
+	<div class = "evoke dashboard position">
+		<?= $this->element('left_titlebar', array('title' => __(sprintf(__("Agent's %s Dashboard"), $user['User']['name'])))) ?>
+	</div>
+
+	<div class = "evoke dashboard position">
 		  		<div class = "evoke titles-right">
 		  			<div class = "evoke titles titles-ajust">
 				  		<dl class="tabs" data-tab>
@@ -74,8 +71,6 @@
 					<img src = '<?= $this->webroot.'img/smallbar.png' ?>' class = "evoke tabs-small-bar-size">
 				</div>
 			</div>
-		</div>
-	</div>
 
 	<div class="row full-width">
 		<div class="medium-3 columns">
@@ -155,7 +150,7 @@
 		</div>
 		<div class="medium-9 columns padding-right">
 
-			<div class="evoke tabs-content screen-box dashboard panel margin">
+			<div class="evoke tabs-content screen-box dashboard panel">
 				  <div class="content active" id="panel2-1">
 			    	<?php 
 			    	//Lists all projects and evidences

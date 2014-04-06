@@ -142,7 +142,8 @@ button, div, p, span, a,
 
 .evoke.dashboard.top-bar-section h3{
 	font-family: 'SBB';
-	font-size: 1.5em;
+	/*font-size: 1.5em;*/
+	font-size: 1.5vw;
 	color: #FFF;
 	padding-top: 8px;
 	text-align: center;
@@ -578,6 +579,7 @@ button, div, p, span, a,
 
 .evoke.small-bar-size{
 	/*width: 10%;*/
+	width: 10vw;
 }
 
 .evoke.lightbox-bg{
@@ -803,7 +805,7 @@ button, div, p, span, a,
 
 .evoke.titles-right{
 	text-align: end;
-	margin-bottom: 50px;
+	/*margin-bottom: 50px;*/
 }
 
 .evoke.titles-right h4{
