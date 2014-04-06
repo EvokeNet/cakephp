@@ -61,10 +61,15 @@
 							</div>
 						</li>
 
-						<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large" data-reveal>
+						<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke quests lightbox" data-reveal>
+						  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
+						  <a class="evoke mission close-reveal-modal">&#215;</a>
+						</div>
+						
+						<!-- <div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large" data-reveal>
 						  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
 						  <a class="close-reveal-modal">&#215;</a>
-						</div>
+						</div> -->
 
 					<?php endforeach; ?>
                 </ul>
