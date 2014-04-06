@@ -73,12 +73,15 @@
 	  			<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-type="link"></div>
 	  			</div>
 	  		</div> -->
-
-	  		<div id="fb-root"></div>
-	  		<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-width="200" data-type="button"></div>
+	  		<div style = "margin-bottom:10px">
+		  		<div id="fb-root"></div>
+		  		<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-width="200" data-type="button"></div>
+	  		</div>
 		  	
 		  	<!-- Google Plus share button -->
-		  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
+		  	<div>
+		  		<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
+	  		</div>
 			
 		</div>
 
