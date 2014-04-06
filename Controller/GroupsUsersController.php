@@ -135,7 +135,10 @@ class GroupsUsersController extends AppController {
 								$sessionID = $sessionResponse->getData();
 								$sessionID = $sessionID['sessionID'];
 
-								$this->Setting->read(null, $setting['Setting']['id']);
+								debug($sessionID);
+								die();
+
+								$this->Setting->read(null, $sessionID);
 								$this->Setting->set('value', $sessionID);
 								$this->Setting->save();
 
