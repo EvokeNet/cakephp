@@ -871,14 +871,6 @@ button, div, p, span, a,
 }
 
 .evoke.button.like-button{
-	/*border-radius:10px;
-	-webkit-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
-	-moz-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
-	box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
-	font-size:1.2vw;
-	margin:0;
-	padding:0.8em 1em;*/
-
 	border-radius: 10px;
 	-webkit-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
 	-moz-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
@@ -886,11 +878,21 @@ button, div, p, span, a,
 	font-size: 1.2vw;
 	margin: 0;
 	padding: 0.8em 1em;
-	/*height: 65px;
-	min-width: 200px;*/
+	height: vw;
+	min-width: 10vw;
+	text-align: start;
+	/*border-radius: 10px;
+	-webkit-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	-moz-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	font-size: 1.2vw;
+	margin: 0;
+	padding: 0.8em 1em;
+	height: 65px;
+	min-width: 200px;
 	height: 2.6vw;
 	min-width: 8vw;
-	text-align: start;
+	text-align: start;*/
 }
 
 .evoke.button.like-button h6{
