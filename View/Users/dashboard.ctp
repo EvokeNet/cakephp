@@ -212,8 +212,8 @@
 				</div>
 
 				<div class = "evoke dashboard position">
-					<div class = "evoke text-align">
-						<img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class = "badges_bar"/>
+					<div class = "evoke dashboard bottom-bar">
+						<img src = '<?= $this->webroot.'img/vertical_bar.png' ?>'/>
 					</div>
 				</div>
 

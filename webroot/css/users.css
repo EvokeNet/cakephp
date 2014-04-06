@@ -350,3 +350,9 @@
 	/*max-width: 120px;*/ 
 	margin:10px 20px;
 }
+
+.evoke.dashboard.bottom-bar{
+	text-align: start;
+	margin-left: 50%;
+	margin-top: -15px;
+}
