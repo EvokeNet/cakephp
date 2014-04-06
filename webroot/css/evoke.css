@@ -442,6 +442,12 @@ button, div, p, span, a,
 	border-bottom: 3px solid #137244;
 }
 
+.evoke .button.general.red{
+	background-color: #bc5660;
+	border-right: 3px solid #82353b;
+	border-bottom: 3px solid #82353b;
+}
+
 .evoke .button {
 	/*max-height: 2.5em;*/
 	/*line-height: 0;*/

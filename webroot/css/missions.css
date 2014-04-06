@@ -218,6 +218,7 @@
 
 .postit {    
  	text-align: center;
+ 	cursor:pointer;
 	/* width: 275px; */
 	margin: 0px 50px;
 	/* min-height: 175px; */
