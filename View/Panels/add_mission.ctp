@@ -201,7 +201,7 @@
 					<!-- Lightbox for adding quest to phase form -->
 					<div id="myModalQuest" class="reveal-modal tiny" data-reveal>
 						<?php 
-							echo $this->element('add_quest', array('mission_id' => $id, 'id' => $newQuest['Quest']['id'], 'newQuest' => $newQuest));
+							echo $this->element('add_quest', array('mission_id' => $id));
 						?>
 						<a class="close-reveal-modal">&#215;</a>
 					</div>
