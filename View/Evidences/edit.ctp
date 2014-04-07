@@ -19,7 +19,7 @@
 
 				<?php
 					echo $this->Form->input('id');
-					echo $this->Form->input('title', array('label' => __('Title')));
+					echo $this->Form->input('title', array('label' => __('Title'), 'required' => true));
 					//echo $this->Form->input('content');
 					echo $this->Form->hidden('user_id');
 					//echo $this->Form->input('quest_id', array('empty' => true));
