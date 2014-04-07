@@ -1,0 +1,1 @@
+﻿ALTER TABLE `attachments` CHANGE `model` VARCHAR( 20 ) NULL , CHANGE `foreign_key` INT( 16 ) NULL;
