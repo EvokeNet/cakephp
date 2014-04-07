@@ -75,10 +75,13 @@
 			                        		<span class = "evoke dashboard folders"><?php echo $m['Mission']['title'];?></span>
 			                        		<?php foreach ($imgs as $img) : ?>
 			                        			<?php 
-			                        				if($m['Mission']['id'] == $img['Attachment']['foreign_key'])
-			                        					//echo '<span>TEM IMG</span>';
-			                        			?>
-			                        		<?php endforeach; ?>
+			                        				if($m['Mission']['id'] == $img['Attachment']['foreign_key']):
+			                        					$path = ' '.$this->webroot.'files/attachment/attachment/'.$img['Attachment']['dir'].'/thumb_'.$img['Attachment']['attachment'] . '';
+
+			                        					//echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';?>
+			                        					<img src = "<?= $path ?>" style = "position: absolute; top: 30%; left: 25%; width: 40%;"/>
+			                        			
+			                        		<?php endif; endforeach; ?>
 		                        		</a>
 		                        	</li>
 					    		<?php endforeach; ?>

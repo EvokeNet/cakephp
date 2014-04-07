@@ -14,7 +14,11 @@
 
 <section class="evoke background padding top-2">
 
-<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
+	<div class = "evoke position">
+		<?= $this->element('left_titlebar', array('title' => sprintf(__('Phase: %s'), $missionPhase['Phase']['name']))) ?>
+	</div>
+
+	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
 	<div class="row full-width">
 	  <div class="large-6 columns">
@@ -250,7 +254,7 @@
 
 		<?php if(isset($nextMP)){ ?>
 
-	  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right fa-2x"></i></a>
+	  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right fa-2x"></i></a> </br>
 
 	  	<?php } if(isset($prevMP)) {?>
 

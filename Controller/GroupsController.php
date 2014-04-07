@@ -33,12 +33,13 @@ class GroupsController extends AppController {
 
 		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
 
+		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
+
 		$groups_id = array();
-		$groupsBelongs = array();
 
 		foreach($groups as $group):
 			array_push($groups_id, array('Evokation.group_id' => $group['Group']['id']));
-			array_push($groupsBelongs, array('GroupsUser.group_id' => $group['Group']['id'], 'GroupsUser.user_id' => $this->getUserId()));
+			//array_push($groupsBelongs, array('GroupsUser.group_id' => $group['Group']['id'], 'GroupsUser.user_id' => $this->getUserId()));
 		endforeach;
 
 		//retrieve all organizations I am part of as a list to be displayed in a combobox
@@ -51,10 +52,16 @@ class GroupsController extends AppController {
 			)
 		));
 
+		$groupsBelongs = array();
+
+		foreach($groupsUsers as $group):
+			array_push($groupsBelongs, array('Group.id' => $group['GroupsUser']['group_id']));
+		endforeach;
+		
 		//retrieve all organizations I am part of as a list to be displayed in a combobox
-		$groupsIBelong = $this->Group->GroupsUser->find('all', array(
+		$groupsIBelong = $this->Group->find('all', array(
 			'order' => array(
-				'GroupsUser.created DESC'
+				'Group.created DESC'
 			),
 			'conditions' => array(
 				'OR' => $groupsBelongs

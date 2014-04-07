@@ -1,4 +1,4 @@
-<div class="row evoke evokation-red-box adjust-row">
+<div class="row evoke evokation-red-box">
 	<div class="medium-2 columns">
   		<div class = "evoke dashboard text-align">
   			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>

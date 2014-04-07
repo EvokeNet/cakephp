@@ -38,10 +38,10 @@
 	  <h1 style = "font-size:2.0em; color:#fff; font-weight:bold; font-family: 'AlegreyaRegular';"><?php echo sprintf(__('Hi %s', $user['User']['name']));?></h1>
 	  <h2 style = "font-size:1.5em; color:#fff; font-weight:bold; font-family: 'AlegreyaRegular';"><?php echo sprintf(__('You have one invite request for your group %s'), $e['Group']['title']);?></h2>
 
-	  <div style = "background-color:#fff; min-height: 150px; padding: 20px; border-radius: 10px; border: 2px solid #000; ">
-	    <div style = "position:relative; float:left"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"/></div>
+	  <div style = "background-color:#fff; min-height: 200px; padding: 20px; border-radius: 10px; border: 2px solid #000; ">
+	    <div style = "position:relative; float:left"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "max-height:150px"/></div>
 	    <div style = "margin-left: 160px;">
-	      <ul style = "list-style:none; font-family: 'AlegreyaRegular">
+	      <ul style = "list-style:none; font-family: 'AlegreyaRegular'; margin-left:50px">
 	        <li style = "font-family: 'AlegreyaRegular"><?php echo $user['User']['name'];?></li>
 	        <li style = "font-family: 'AlegreyaRegular"><?php echo $user['User']['email'];?></li>
 	        <li style = "font-family: 'AlegreyaRegular"><?php echo $user['User']['birthdate'];?></li>

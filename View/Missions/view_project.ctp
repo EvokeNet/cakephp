@@ -13,27 +13,33 @@
 ?>
 
 <section class="evoke background padding top-2">
-	<div class = "evoke missions data">
-  		<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
+
+	<div class = "evoke position">
+		<?= $this->element('left_titlebar', array('title' => sprintf(__('Phase: %s'), $missionPhase['Phase']['name']))) ?>
 	</div>
 
 	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
-	<div class="row full-width">
-		  <div class="large-6 columns">
-		  	<div class = "evoke evokation-pink-border full-width">
-			  	<?php foreach($evokations as $e):
-			  		echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
-	  			endforeach;?>
-			</div>
-		  </div>
-		  <div class="large-6 columns">
-		  	<div class = "evoke evokation-green-border full-width">
-			  	<?php foreach($evokations as $e):
-			  		echo $this->element('evokation_red_box', array('e' => $e));
-		  		endforeach;?>
-			</div>
+	<div class = "evoke missions data">
+  		<h1 style = "margin-bottom: 50px;"><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
+	</div>
 
+	<div class="row full-width">
+		  <div class="large-6 columns evoke mission pink">
+		  	<fieldset>
+			  	<legend><?= __('Latest Projects') ?></legend>
+			  	<?php foreach($evokations as $e):
+				  		echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+		  			endforeach;?>
+			</fieldset>
+		  </div>
+		  <div class="large-6 columns evoke mission green">
+		  	<fieldset>
+			  	<legend><?= __('Succefully Launched Projects') ?></legend>
+				  	<?php foreach($evokations as $e):
+				  		//echo $this->element('evokation_red_box', array('e' => $e));
+			  		endforeach;?>
+			</fieldset>
 		  </div>
 	</div>
 
@@ -42,22 +48,19 @@
 		<div class = "evoke titles"><h4><?php echo strtoupper(__('Mission Activities'));?></h4></div>
 	</div> -->
 
-
   	<?= $this->element('left_titlebar', array('title' => __('Mission Activities'))) ?>
 
 	<div class="row full-width">
-	  <div class="large-7 columns">
+	  <div class="large-7 columns padding">
 	  	<div class="jcarousel-wrapper carousel-width">
 
-		  	<div class="jcarousel sticky">
+		  	<div class="jcarousel">
                 <ul>
                     <?php foreach ($quests as $q): ?>
 
 						<li>
-							<div class = "missionblock postit">
-								<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-								<h1><?php echo $q['Quest']['title'];?></h1>
-								</a>
+							<div class = "missionblock postit" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+								<h1><?= $q['Quest']['title']?></h1>
 							</div>
 						</li>
 
@@ -65,11 +68,6 @@
 						  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
 						  <a class="evoke mission close-reveal-modal">&#215;</a>
 						</div>
-						
-						<!-- <div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large" data-reveal>
-						  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
-						  <a class="close-reveal-modal">&#215;</a>
-						</div> -->
 
 					<?php endforeach; ?>
                 </ul>
@@ -79,7 +77,7 @@
 		<a href="#" class="jcarousel-control-next">&rsaquo;</a>
 
 	    </div>
-	  </div>
+	  </div> 	
 	  <div class="large-5 columns padding-right">
 	  	<div class = "evoke titles-right">
 	  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>
@@ -251,7 +249,7 @@
 
 		<?php if(isset($nextMP)){ ?>
 
-	  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right fa-2x"></i></a>
+	  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right fa-2x"></i></a> </br>
 
 	  	<?php } if(isset($prevMP)) {?>
 
