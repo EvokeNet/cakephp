@@ -13,14 +13,8 @@
 ?>
 
 <section class="evoke background padding top-2">
-<<<<<<< HEAD
-	<div class = "evoke missions data">
-  		<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
-=======
-
 	<div class = "evoke position">
 		<?= $this->element('left_titlebar', array('title' => sprintf(__('Phase: %s'), $missionPhase['Phase']['name']))) ?>
->>>>>>> missions
 	</div>
 
 	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>

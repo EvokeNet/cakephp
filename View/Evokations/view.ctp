@@ -81,7 +81,8 @@
 		  	<!-- Google Plus share button -->
 		  	<div>
 		  		<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
-	  		</div>			
+	  		</div>
+			
 		</div>
 
 		<div class = "evoke dashboard position">

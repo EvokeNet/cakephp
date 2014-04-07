@@ -254,7 +254,7 @@
 			</div>
 		</div>
 
-		<?php if(isset($prevMP)){ ?>
+	  	<?php if(isset($prevMP)){ ?>
 
 	  		<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position'])); ?>" class = "button general green"><i class="fa fa-arrow-left fa-2x"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf(__('Go back to %s'), $prevMP['Phase']['name']);?></a> </br>
 
