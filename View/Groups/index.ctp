@@ -1,10 +1,9 @@
 <?php
 	$this->extend('/Common/topbar');
 	$this->start('menu');
-
 	echo $this->element('header', array('user' => $user));
 	$this->end(); 
-	
+
 ?>
 
 <section class="evoke background padding top-2">

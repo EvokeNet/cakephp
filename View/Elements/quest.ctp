@@ -1,5 +1,6 @@
+<div class = "evoke quests content">
 <h2><?php echo $q['Quest']['title'];?></h2>
-<p class="lead"><?php echo $q['Quest']['description'];?></p>
+<p><?php echo $q['Quest']['description'];?></p>
 <?php 
 	if($q['Quest']['type'] == 1) {
 		//it's, actually, a questionnaire
@@ -103,8 +104,10 @@
 		//not a questionnaire, check if there are attachments to show
 		echo '<div>';
 		foreach ($attachments as $attachment) {
-			echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$attachment['Attachment']['dir'].'/thumb_'.$attachment['Attachment']['attachment'] . '"/>';
-			echo '<span>  </span>';
+			if($attachment['Attachment']['attachment']):
+				echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$attachment['Attachment']['dir'].'/thumb_'.$attachment['Attachment']['attachment'] . '"/>';
+				echo '<span>  </span>';
+			endif;
 		}
 		echo '</div>';
 
@@ -128,3 +131,4 @@
 
 	}
 ?>			  
+</div>

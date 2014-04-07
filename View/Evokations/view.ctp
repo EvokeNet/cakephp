@@ -23,7 +23,7 @@
 
 	  <div class="medium-2 large-2 columns">
 	  	<div class="evoke evidence-tag text-align">
-	  		<img src='<?= $this->webroot.'img/Leslie_Knope.png' ?>' style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
+	  		<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
 		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']))?>"><h1><?= $group['Group']['title']?></h1>
 		 	
 		 	<!-- <p><?php echo $group['Group']['biography'] ?></p> -->
@@ -73,13 +73,15 @@
 	  			<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-type="link"></div>
 	  			</div>
 	  		</div> -->
-
-	  		<div id="fb-root"></div>
-	  		<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-width="200" data-type="button"></div>
+	  		<div style = "margin-bottom:10px">
+		  		<div id="fb-root"></div>
+		  		<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-width="200" data-type="button"></div>
+	  		</div>
 		  	
 		  	<!-- Google Plus share button -->
-		  	<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
-			
+		  	<div>
+		  		<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
+	  		</div>			
 		</div>
 
 		<div class = "evoke dashboard position">

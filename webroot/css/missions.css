@@ -65,10 +65,10 @@
 }
 
 .carousel-width{
-	width: 80%;
+	/*width: 80%;*/
 }
 
-.missionblock span{
+.missionblock h1{
 	color:#000;
 	font-family: 'AmaticSC-Regular';
 	font-size:2.5vw;
@@ -187,17 +187,13 @@
 	float:left;
 }
 
-.evoke.mission.outer-circle{
-	position: absolute;
-	right: 85px;
-	top: 39px;
-}
-
 .evoke.mission.circle {
 	border: 4px solid #252525;
 	border-radius: 50%;
 	width: 40px;
 	height: 40px;
+	padding-left: 5px;
+	padding-top: 2px;
 }
 
 .evoke.mission.circle.success{
@@ -214,4 +210,99 @@
 	/* position: absolute; */
 	/* width: 90%; */
 	text-align: end;
+}
+
+.columns.padding{
+	padding:0;
+}
+
+.postit {    
+ 	text-align: center;
+ 	cursor:pointer;
+	/* width: 275px; */
+	margin: 0px 50px;
+	/* min-height: 175px; */
+	/* max-height: 175px; */
+	/* padding-top: 35px; */
+	position: relative;
+	border: 1px solid #E8E8E8;
+	min-height:150px;
+	/*border-top: 60px solid #fdfd86;*/
+	/* font-family: 'Reenie Beanie'; */
+	/* font-size: 22px; */
+	/* border-bottom-right-radius: 60px 5px; */
+	/* display: inline-block; */
+	background: rgb(255,255,136);
+	background: -moz-linear-gradient(-45deg, rgba(255,255,136,1) 77%, rgba(255,255,214,1) 100%);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(77%,rgba(255,255,136,1)), color-stop(100%,rgba(255,255,214,1)));
+	background: -webkit-linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%);
+	background: -o-linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%);
+	background: -ms-linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%);
+	background: linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', endColorstr='#ffff88',GradientType=0 );
+}
+ 
+.postit:after {     
+   content: "";
+  position:absolute;
+  z-index:-1;
+  right:-0px; bottom:20px;
+  width:200px;
+  height: 25px;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow:2px 15px 5px rgba(0, 0, 0, 0.40);
+-moz-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+ -webkit-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+      -o-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+     -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+         transform: matrix(-1, -0.1, 0, 1, 0, 0);
+}
+
+.evoke.mission.quest-bg{
+	background-color:#000;
+}
+
+.evoke.quests.lightbox{
+	background-color: #000;
+	border: 1px solid #c65862;
+	width: 70%!important;
+}
+
+.evoke.quests.content h2{
+	color:#fff;
+	font-family: 'AlegreyaRegular';
+	font-size:3.0vw;
+	margin-bottom:20px;
+}
+
+.evoke.quests.content p{
+	color:#fff;
+	font-family: 'AlegreyaRegular';
+	font-size:1.5vw;
+}
+
+.evoke.mission.close-reveal-modal{
+	background-color: #19708e;
+	color: #000;
+	border-radius: 50%;
+	height: 25px;
+	width: 25px;
+	padding-left: 6px;
+}
+
+.evoke.mission.pink fieldset{
+	border: 3px solid #c65862;
+}
+
+.evoke.mission.green fieldset{
+	border: 3px solid #20c475;
+}
+
+.evoke.mission fieldset legend{
+	font-weight:normal;
+	background: none;
+	font-family: 'AlegreyaRegular';
+	color:#fff;
+	font-size:2.0vw;
+	text-align:center;
 }

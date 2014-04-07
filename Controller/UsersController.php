@@ -230,50 +230,26 @@ class UsersController extends AppController {
 
 		$this->loadModel('Group');
 		$groups = $this->Group->find('all', array('joins' => array(
-        array(
-            'table' => 'groups_users',
-            'alias' => 'GroupsUsers',
-            'type' => 'INNER',
-            'conditions' => array(
-                'GroupsUsers.user_id' => $id
-            )
-        ), array(
-            'table' => 'groups',
-            'alias' => 'Groups',
-            'type' => 'INNER',
-            'conditions' => array(
-                'Groups.id = GroupsUsers.group_id'
-            )
-        )
-    )));
-		//debug($groups);
-		// $options['joins'] = array(
-		//     array('table' => 'evokation_followers',
-		//         'alias' => 'EvokationFollowers',
-		//         'type' => 'inner',
-		//         'conditions' => array(
-		//             'EvokationFollowers.user_id' => $id
-		//         )
-		//     ),
-		//     array('table' => 'evokations',
-		//         'alias' => 'Evokations',
-		//         'type' => 'inner',
-		//         'conditions' => array(
-		//             'Evokations.id = EvokationFollowers.evokation_id'
-		//         )
-		//     ),
-		//     array('table' => 'groups',
-		//         'alias' => 'Groups',
-		//         'type' => 'inner',
-		//         'conditions' => array(
-		//             'Evokations.group_id = Group.id'
-		//         )
-		//     )
-		// );
+	        array(
+	            'table' => 'groups_users',
+	            'alias' => 'GroupsUsers',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'GroupsUsers.user_id' => $id
+	            )
+	        ), array(
+	            'table' => 'groups',
+	            'alias' => 'Groups',
+	            'type' => 'INNER',
+	            'conditions' => array(
+	                'Groups.id = GroupsUsers.group_id'
+	            )
+	        )
+	    )));
 
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all', array(
-			'order' => array('Mission.id DESC')
+			'order' => array('Mission.created')
 		));
 
 		$mission_ids = array();

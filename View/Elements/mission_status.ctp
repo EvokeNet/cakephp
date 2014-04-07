@@ -18,7 +18,10 @@
 		<h1><?= strtoupper(__('Mission Status')) ?></h1>&nbsp;&nbsp;
 		<span><?php echo round(($_completed * 100)/$_total).'%'; ?></span>
 	  </div>
-	  <div class="medium-8 columns">
+	  <div class="medium-9 columns">
+	  	<div class="row">
+		  <div class="small-11 columns padding">
+		  	<div>
 	  	<?php	
 			$qtd = 100/$valid_phases;//sizeof($missionPhases);
 			foreach ($missionPhases as $phase):
@@ -43,8 +46,15 @@
 					</div>
 				</div>
 			<?php endforeach; ?>
-			
+		</div>
+		  </div>
+		  <div class="small-1 columns padding">
+		  	<div class = "evoke position">
+				<h2 class = "evoke mission status"><?= strtoupper('Finish') ?></h2>
+				<div class="evoke mission circle"><i class="fa fa-flag-checkered fa-lg"></i></div> 
+			</div>
+		  </div>
+		</div>
 	  </div>
-	  <div class = "evoke position"><div class = "evoke mission outer-circle"><div class="evoke mission circle"></div></div></div>
 	</div>
 </div>

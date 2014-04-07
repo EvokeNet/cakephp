@@ -15,14 +15,14 @@
 		<li class="name">
 			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $users['User']['id'])); ?></h1>
 		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+		<!-- <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li> -->
 	</ul>
 
-	<section class="evoke top-bar-section">
+	<section class="evoke dashboard top-bar-section">
 
 		<!-- Right Nav Section -->
 		<ul class="right">
-			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src='<?= $this->webroot.'img/Leslie_Knope.png' ?>' class = "evoke top-bar icon"/></a></li>
+			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke top-bar icon"/></a></li>
 			<li class="name">
 				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1></a>
 			</li>
@@ -53,14 +53,11 @@
 
 <section class="evoke background padding top-2">
 	
-	<div class="row full-width">
-	  	<div class="large-5 columns">
-		  	<div class = "evoke dashboard position">
-				<?= $this->element('left_titlebar', array('title' => __(sprintf(__("Agent's %s Dashboard"), $user['User']['name'])))) ?>
-			</div>
-		</div>
-	  	<div class="large-7 columns padding-right">
-		  	<div class = "evoke dashboard position">
+	<div class = "evoke dashboard position">
+		<?= $this->element('left_titlebar', array('title' => __(sprintf(__("Agent's %s Dashboard"), $user['User']['name'])))) ?>
+	</div>
+
+	<div class = "evoke dashboard position">
 		  		<div class = "evoke titles-right">
 		  			<div class = "evoke titles titles-ajust">
 				  		<dl class="tabs" data-tab>
@@ -74,8 +71,6 @@
 					<img src = '<?= $this->webroot.'img/smallbar.png' ?>' class = "evoke tabs-small-bar-size">
 				</div>
 			</div>
-		</div>
-	</div>
 
 	<div class="row full-width">
 		<div class="medium-3 columns">
@@ -83,7 +78,7 @@
 				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%"/>
 
 				<div class="row">
-					  <div class="small-4 columns"><a href = '<?= $this->webroot.'img/ron_swanson.jpg' ?>'><img src='<?= $this->webroot.'img/ron_swanson.jpg' ?>' class = "evoke dashboard user_pic"/></a></div>
+					  <div class="small-4 columns"><a href = "https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
 					  <div class="small-8 columns evoke dashboard tag-padding">
 						<div class = "evoke dashboard agent info">
 							<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
@@ -155,7 +150,7 @@
 		</div>
 		<div class="medium-9 columns padding-right">
 
-			<div class="evoke tabs-content screen-box dashboard panel margin">
+			<div class="evoke tabs-content screen-box dashboard panel">
 				  <div class="content active" id="panel2-1">
 			    	<?php 
 			    	//Lists all projects and evidences

@@ -33,6 +33,7 @@ class GroupsController extends AppController {
 
 		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
 
+
 		$groups_id = array();
 		$groupsBelongs = array();
 

@@ -142,7 +142,8 @@ button, div, p, span, a,
 
 .evoke.dashboard.top-bar-section h3{
 	font-family: 'SBB';
-	font-size: 1.5em;
+	/*font-size: 1.5em;*/
+	font-size: 1.5vw;
 	color: #FFF;
 	padding-top: 8px;
 	text-align: center;
@@ -442,6 +443,12 @@ button, div, p, span, a,
 	border-bottom: 3px solid #137244;
 }
 
+.evoke .button.general.red{
+	background-color: #bc5660;
+	border-right: 3px solid #82353b;
+	border-bottom: 3px solid #82353b;
+}
+
 .evoke .button {
 	/*max-height: 2.5em;*/
 	/*line-height: 0;*/
@@ -572,6 +579,7 @@ button, div, p, span, a,
 
 .evoke.small-bar-size{
 	/*width: 10%;*/
+	width: 10vw;
 }
 
 .evoke.lightbox-bg{
@@ -797,7 +805,7 @@ button, div, p, span, a,
 
 .evoke.titles-right{
 	text-align: end;
-	margin-bottom: 50px;
+	/*margin-bottom: 50px;*/
 }
 
 .evoke.titles-right h4{
@@ -839,9 +847,9 @@ button, div, p, span, a,
 }
 
 .evoke.top-bar.icon{
-	max-height: 50px; 
+	max-height: 40px; 
 	max-width: 70px; 
-	margin-top:3px;
+	/*margin-top:3px;*/
 }
 
 .evoke.position{
@@ -865,14 +873,6 @@ button, div, p, span, a,
 }
 
 .evoke.button.like-button{
-	/*border-radius:10px;
-	-webkit-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
-	-moz-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
-	box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
-	font-size:1.2vw;
-	margin:0;
-	padding:0.8em 1em;*/
-
 	border-radius: 10px;
 	-webkit-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
 	-moz-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
@@ -880,11 +880,21 @@ button, div, p, span, a,
 	font-size: 1.2vw;
 	margin: 0;
 	padding: 0.8em 1em;
-	/*height: 65px;
-	min-width: 200px;*/
+	height: vw;
+	min-width: 10vw;
+	text-align: start;
+	/*border-radius: 10px;
+	-webkit-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	-moz-box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	box-shadow: 10px 0px 5px -4px rgba(219,219,219,1);
+	font-size: 1.2vw;
+	margin: 0;
+	padding: 0.8em 1em;
+	height: 65px;
+	min-width: 200px;
 	height: 2.6vw;
 	min-width: 8vw;
-	text-align: start;
+	text-align: start;*/
 }
 
 .evoke.button.like-button h6{
