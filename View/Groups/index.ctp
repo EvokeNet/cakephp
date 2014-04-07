@@ -1,117 +1,69 @@
-<?php  
+<?php
 	$this->extend('/Common/topbar');
 	$this->start('menu');
+
+	echo $this->element('header', array('user' => $user));
+	$this->end(); 
+
 ?>
 
-<nav class="top-bar" data-topbar>
-	<ul class="title-area">
-		<li class="name">
-			<h1><?php echo __('Agent ').$username[0]; ?></h1>
-		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-	</ul>
+<section class="evoke background padding top-2">
+	<?php if(isset($mission['Mission'])) : ?>
+	<?= $this->element('left_titlebar', array('title' => sprintf(__('Evokation Teams: %s'), $mission['Mission']['title']))) ?>
+	<?php endif; ?>
+	<div class="row full-width">
+		<div class="small-8 small-centered columns">
 
-	<section class="top-bar-section">
-		<!-- Right Nav Section -->
-		<ul class="right">
-			<li class="has-dropdown">
-				<a href="#">Settings</a>
-				<ul class="dropdown">
-					<li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></li>
-					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
-				</ul>
-			</li>
-		</ul>
-
-		<!-- Left Nav Section -->
-		<ul class="left">
-			<li><a href="#"><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></a></li>
-		</ul>
-	</section>
-</nav>
-
-<?php $this->end(); ?>
-
-<section class="evoke margin top-2">
-	<div class="row">
-		<div class="small-11 small-centered columns">
 			<dl class="tabs" data-tab>
-			  <dd class="active"><a href="#panel2-1"><?php echo __('Groups');?></a></dd>
-			  <dd><a href="#panel2-2"><?php echo __('My Groups');?></a></dd>
+			  <dd class="active"><a href="#panel2-1"><?php echo __('Evokation Teams');?></a></dd>
+			  <dd><a href="#panel2-2"><?php echo __('My Evokation Teams');?></a></dd>
+			  <dd><a href="#panel2-3"><?php echo __('Evokation Teams I Belong To');?></a></dd>
 			</dl>
-			<div class="tabs-content">
+			<div class="evoke tabs-content screen-box margin panel group box-size">
 			  <div class="content active" id="panel2-1">
-			    <?php
-		  			foreach($groups as $group):?>
-		  				<h4><?php echo sprintf(__('Group %s'), $group['Group']['title']); ?></h4>
-					  	<a class = "button" href = "<?php echo $this->Html->url(array('action' => 'view', $group['Group']['id'])); ?>"><?php echo __('View');?></a>
-					  	<hr class="sexy_line" />
-	  				<?php endforeach;
+			  	<?php
+		  			foreach($groups as $e):
+	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
+	  				endforeach;
 	  			?>
+			   <!--  <?php
+		  			foreach($evokations as $e):
+	  					echo $this->element('evokation_red_box', array('e' => $e));
+	  				endforeach;
+	  			?> -->
 			  </div>
 			  <div class="content" id="panel2-2">
 			    <?php
-		  			foreach($myGroups as $group):?>
-		  				<h4><?php echo sprintf(__('Group %s'), $group['Group']['title']); ?></h4>
-					  	<a class = "button" href = "<?php echo $this->Html->url(array('action' => 'view', $group['Group']['id'])); ?>"><?php echo __('View');?></a>
-					  	<hr class="sexy_line" />
-	  				<?php endforeach;
+		  			foreach($myGroups as $e):
+	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
+	  				endforeach;
+	  			?>
+			  </div>
+			  <div class = "content" id="panel2-3">
+			  	<?php
+		  			foreach($groupsIBelong as $e):
+	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
+	  				endforeach;
 	  			?>
 			  </div>
 			</div>
+			<?php if(isset($mission['Mission'])): ?>
+				<a class="button" href="" data-reveal-id="newGroup" data-reveal>
+					<span><?php echo __('Create a group');?></span>
+				</a>
+				<div id="newGroup" class="reveal-modal small" data-reveal>
+					<?= $this->element('add_group', array('mission' => $mission, 'userid' => $user['User']['id']));?>
+					<a class="close-reveal-modal">&#215;</a>
+				</div>
+			<?php else : ?>
+				<a class="button" href="" data-reveal-id="newGroup" data-reveal>
+					<span><?php echo __('Create a group');?></span>
+				</a>
+				<div id="newGroup" class="reveal-modal small" data-reveal>
+					<?= $this->element('add_group', array('userid' => $user['User']['id']));?>
+					<a class="close-reveal-modal">&#215;</a>
+				</div>
+			<?php endif; ?>
 		</div>
 	</div>
 </section>
-
-<!-- <div class="groups index">
-	<h2><?php echo __('Groups'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('title'); ?></th>
-			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($groups as $group): ?>
-	<tr>
-		<td><?php echo h($group['Group']['id']); ?>&nbsp;</td>
-		<td><?php echo h($group['Group']['title']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($group['User']['name'], array('controller' => 'users', 'action' => 'view', $group['User']['id'])); ?>
-		</td>
-		<td><?php echo h($group['Group']['created']); ?>&nbsp;</td>
-		<td><?php echo h($group['Group']['modified']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $group['Group']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $group['Group']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $group['Group']['id']), null, __('Are you sure you want to delete # %s?', $group['Group']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Group'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Evokations'), array('controller' => 'evokations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Evokation'), array('controller' => 'evokations', 'action' => 'add')); ?> </li>
-	</ul>
-</div> -->

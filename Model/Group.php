@@ -5,6 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property User $User
  * @property Evokation $Evokation
+ * @property GroupRequest $GroupRequest
  * @property User $User
  */
 class Group extends AppModel {
@@ -19,8 +20,8 @@ class Group extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-	public function getGroups() {
-		return $this->find('all');
+	public function getGroups($options = null) {
+		return $this->find('all', $options);
 	}
 	
 /**
@@ -35,6 +36,13 @@ class Group extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Mission' => array(
+			'className' => 'Mission',
+			'foreignKey' => 'mission_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 
@@ -46,6 +54,32 @@ class Group extends AppModel {
 	public $hasMany = array(
 		'Evokation' => array(
 			'className' => 'Evokation',
+			'foreignKey' => 'group_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'GroupsUser' => array(
+			'className' => 'GroupsUser',
+			'foreignKey' => 'group_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'GroupRequest' => array(
+			'className' => 'GroupRequest',
 			'foreignKey' => 'group_id',
 			'dependent' => false,
 			'conditions' => '',

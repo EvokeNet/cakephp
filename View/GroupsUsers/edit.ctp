@@ -1,24 +1,115 @@
-<div class="groupsUsers form">
-<?php echo $this->Form->create('GroupsUser'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Groups User'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('user_id');
-		echo $this->Form->input('group_id');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<?php
+	$this->extend('/Common/topbar');
+	$this->start('menu');
+?>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('GroupsUser.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('GroupsUser.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Groups Users'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?> </li>
+<nav class="top-bar" data-topbar>
+	<ul class="title-area">
+		<li class="name">
+			<!-- <h1><?php echo $user['User']['name']; ?></h1> -->
+		</li>
+		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 	</ul>
-</div>
+
+	<section class="top-bar-section">
+		<!-- Right Nav Section -->
+		<ul class="right">
+			<li class="has-dropdown">
+				<a href="#">Settings</a>
+				<ul class="dropdown">
+					<!-- <li><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></li> -->
+					<li><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></li>
+				</ul>
+			</li>
+		</ul>
+
+		<!-- Left Nav Section -->
+		<ul class="left">
+			<!-- <li><?php echo $this->Html->link(__('Dashboard'), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></li> -->
+		</ul>
+	</section>
+</nav>
+
+<?php $this->end(); ?>
+
+
+<section class="margin top">
+	<div class="row full-width">
+
+		<aside>
+			<div class="large-2 columns toolbar">
+				<h6 class="subheader"><?php echo __('MEMBERS'); ?></h6>
+				<ul class="no-bullet">
+					<?php foreach ($users as $user): ?>
+						<?php if ($user['User']['facebook_id']): ?>
+							
+							<div class="image circle">
+								<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])) ?>">
+									<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" />
+								</a>
+							</div>
+							
+						<?php endif ?>
+						<li><?php $test = explode(' ', $user['User']['name']); echo $test[0]; ?></li>
+					<?php endforeach ?>
+				</ul>
+
+
+				<H6 class="subheader"><?php echo __('ACTIONS'); ?></H6>
+				<button class="button expand" id="evokation_draft_button"><?php echo __('Publish to Network'); ?></button>
+				<button class="button expand disabled"><?php echo __('Send Final Evokation'); ?></button>
+
+				<h6 class="subheader"><?php echo __('EVOKATION PARTS'); ?></h6>
+				<ul class="no-bullet">
+					<li><a href="#">Document</a></li>
+					<li><a href="#">Document</a></li>
+					<li><a href="#">Document</a></li>
+					<li><a href="#">Document</a></li>
+				</ul>
+
+			</div>
+		</aside>
+
+
+		<div class="large-8 columns">
+			<h1 class="typeface strong" id="groupname"><small><?php echo __('Group'); ?> </small><?php echo $group['Group']['title']; ?></h1>
+
+			<!-- The Evokation project, with data from de DB and from Google Drive -->
+			<?php
+				// The field Evokation.id will exist after the project is created
+				echo $this->Form->input('Evokation.id', array(
+					'id' => 'evokation_id'
+				));
+				echo $this->Form->input('Group.id', array(
+					'id' => 'evokation_group',
+					'value' => $group['Group']['id']
+				));
+				echo $this->Form->input('Evokation.title', array(
+					'label' => '',
+					'id' => 'evokation_title',
+					'placeholder' => __('Your Evokation title')
+				));
+				echo $this->Form->input('Evokation.abstract', array(
+					'label' => '',
+					'id' => 'evokation_abstract',
+					'placeholder' => __('Your Evokation abstract')
+				));
+			 ?>
+
+			<div id="evokation_div" class="project page" data-placeholder=""></div>
+			
+		</div>
+
+		<aside>
+			<div class="large-2 columns chat">				
+				<h6 class="subheader"><?php echo __('CHAT'); ?></h6>
+				<!-- CHAT GOES HERE -->
+			</div>
+		</aside>
+	</div>
+</section>
+
+<meta name="padID" content="<?php echo $padID; ?>">
+
+<?php echo $this->Html->script('/components/etherpad/js/etherpad.js', array('inline' => false)); ?>
+<?php echo $this->Html->script('evokation', array('inline' => false)); ?>

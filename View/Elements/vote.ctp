@@ -4,7 +4,7 @@
 	<fieldset>
 		<legend><h3><?php echo __('Rate this evidence'); ?></h3></legend>
 	<?php
-		echo $this->Form->hidden('evidence_id', array('value' => $evidence_id));
+		echo $this->Form->hidden('evokation_id', array('value' => $evokation_id));
 		echo $this->Form->hidden('user_id', array('value' => $user_id));
 		echo $this->Form->input('value', array(
 			'div' => 'vote_radio',
@@ -14,4 +14,4 @@
 		));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('Send vote')); ?>

@@ -13,7 +13,30 @@ class BadgesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator','Access');
+
+	public $components = array('Paginator', 'Session', 'Access');
+	public $uses = array('Badge', 'UserOrganization', 'Organization');
+	public $user = null;
+
+	public function beforeFilter() {
+        parent::beforeFilter();
+        $this->user = array();
+        //get user data into public var
+		$this->user['role_id'] = $this->getUserRole();
+		$this->user['id'] = $this->getUserId();
+		$this->user['name'] = $this->getUserName();
+		
+		//there was some problem in retrieving user's info concerning his/her role : send him home
+		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
+			$this->redirect(array('controller' => 'users', 'action' => 'login'));
+		}
+
+		//checking Acl permission
+		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
+			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
+			$this->redirect($this->referer());
+		}
+    }
 
 /**
  * index method

@@ -16,22 +16,103 @@ class GroupsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+	public $user = null;
+
 /**
  * index method
  *
  * @return void
  */
-	public function index() {
+	public function index($mission_id = null) {
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->Paginator->paginate());
 
-		$userid = $this->Session->read('Auth.User.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $userid)));
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $userid)));
+		$mission = $this->Group->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
 
-		$this->set(compact('user', 'userid', 'username', 'myGroups'));
+		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
+
+		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
+
+		$groups_id = array();
+
+		foreach($groups as $group):
+			array_push($groups_id, array('Evokation.group_id' => $group['Group']['id']));
+			//array_push($groupsBelongs, array('GroupsUser.group_id' => $group['Group']['id'], 'GroupsUser.user_id' => $this->getUserId()));
+		endforeach;
+
+		//retrieve all organizations I am part of as a list to be displayed in a combobox
+		$evokations = $this->Group->Evokation->find('all', array(
+			'order' => array(
+				'Evokation.created DESC'
+			),
+			'conditions' => array(
+				'OR' => $groups_id
+			)
+		));
+
+		$groupsBelongs = array();
+
+		foreach($groupsUsers as $group):
+			array_push($groupsBelongs, array('Group.id' => $group['GroupsUser']['group_id']));
+		endforeach;
+		
+		//retrieve all organizations I am part of as a list to be displayed in a combobox
+		$groupsIBelong = $this->Group->find('all', array(
+			'order' => array(
+				'Group.created DESC'
+			),
+			'conditions' => array(
+				'OR' => $groupsBelongs
+			)
+		));
+
+		$myGroups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id, 'Group.user_id' => $this->getUserId())));
+
+		$mygroups_id = array();
+
+		foreach($myGroups as $g):
+			array_push($mygroups_id, array('Evokation.group_id' => $g['Group']['id']));
+		endforeach;
+
+		//retrieve all organizations I am part of as a list to be displayed in a combobox
+		$myevokations = $this->Group->Evokation->find('all', array(
+			'order' => array(
+				'Evokation.created DESC'
+			),
+			'conditions' => array(
+				'OR' => $mygroups_id
+			)
+		));
+
+		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong'));
+	}
+
+
+	public function by_mission($mission_id = null) {
+		if(is_null($mission_id)) {
+			$this->redirect(array('action' => 'index'));
+		}
+
+		$this->loadModel('Mission');
+		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
+		
+		if(empty($mission)) {
+			$this->redirect(array('action' => 'index'));	
+		}
+
+		$evokations = $this->Group->Evokation->find('all', array('order' => array('Evokation.created DESC'), 'conditions' => array('Group.mission_id' => $mission_id)));
+
+		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
+
+		$users = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
+
+		$this->set(compact('users', 'myGroups', 'groups', 'mission', 'evokations'));
+
+		$this->render('index');
 	}
 
 /**
@@ -42,19 +123,44 @@ class GroupsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$me = $this->getUserId();
+
+		$flags = array(
+			'_owner' => false,
+			'_member' => false
+		);
+
 		if (!$this->Group->exists($id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
+
 		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
-		$this->set('group', $this->Group->find('first', $options));
+		$group = $this->Group->find('first', $options);
 
-		$userid = $this->Session->read('Auth.User.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		$users = $this->Group->User->find('all');
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $me)));
 
-		$groupsUsers = $this->Group->GroupsUser->find('all');
+		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.group_id' => $id)));
 
-		$this->set(compact('users', 'userid', 'username', 'groupsUsers'));
+		
+		//check to see if i am the owner
+		if($this->isOwner($me, $id)) {
+			$flags['_owner'] = true;
+			$flags['_member'] = true;
+		} else {
+			//i am not the owner... am i at least part of the group?
+			if($this->isMember($me, $id)) {
+				$flags['_member'] = true;
+			}
+		}
+
+
+		$groupsRequestsPending = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status = 0')));
+
+		$groupsRequests = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status' => array(1, 2))));
+
+		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $me)));
+
+		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'groupsRequests', 'groupsRequestsPending', 'flags'));
 	}
 
 /**
@@ -62,19 +168,32 @@ class GroupsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($mission_id = null) {
 		if ($this->request->is('post')) {
 			$this->Group->create();
 			if ($this->Group->save($this->request->data)) {
 				$this->Session->setFlash(__('The group has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'index', $mission_id));
 			} else {
 				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
 			}
 		}
+
+
+		$this->loadModel('Mission');
+		$missions = $this->Mission->find('list');
+
+		if(!is_null($mission_id)) {
+			$tmp = $this->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
+			if(!empty($tmp)) {
+				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
+			}
+		}
+
+		$userid = $this->getUserId();
 		$users = $this->Group->User->find('list');
 		$evokations = $this->Group->Evokation->find('list');
-		$this->set(compact('users', 'evokations'));
+		$this->set(compact('users', 'userid', 'evokations', 'mission', 'missions'));
 	}
 
 /**
@@ -88,6 +207,14 @@ class GroupsController extends AppController {
 		if (!$this->Group->exists($id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
+		
+		$me = $this->getUserId();
+		if(!$this->isOwner($me, $id)) {
+			$this->Session->setFlash(__('Only the group owner is allowed to delete it.'));
+			return $this->redirect($this->referer());
+		}
+
+
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Group->save($this->request->data)) {
 				$this->Session->setFlash(__('The group has been saved.'));
@@ -116,6 +243,15 @@ class GroupsController extends AppController {
 		if (!$this->Group->exists()) {
 			throw new NotFoundException(__('Invalid group'));
 		}
+
+		//checking to see if i own this group
+		$me = $this->getUserId();
+		if(!$this->isOwner($me, $id)) {
+			$this->Session->setFlash(__('Only the group owner is allowed to delete it.'));
+			return $this->redirect($this->referer());
+		}
+
+
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Group->delete()) {
 			$this->Session->setFlash(__('The group has been deleted.'));
@@ -123,6 +259,35 @@ class GroupsController extends AppController {
 			$this->Session->setFlash(__('The group could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+	public function isMember($user_id = null, $id = null){
+		if(!$user_id || !$id) return false;
+		$this->loadModel('GroupsUser');
+		$users = $this->GroupsUser->find('all', array(
+			'conditions' => array(
+				'GroupsUser.group_id' => $id
+			)
+		));
+
+		foreach ($users as $usr) {
+				if($usr['User']['id'] == $user_id) return true;
+		}
+		return false;
+	}
+
+	public function isOwner($user_id = null, $id = null){
+		if(!$user_id || !$id) return false;
+		
+		$group = $this->Group->find('first', array(
+			'conditions' => array(
+				'user_id' => $user_id,
+				'Group.id' => $id
+			)
+		));
+
+		if(empty($group)) return false;
+		return true;
 	}
 
 /**

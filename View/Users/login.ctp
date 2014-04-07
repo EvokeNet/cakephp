@@ -1,65 +1,45 @@
 <?php
-	$this->extend('/Common/topbar');
+	$this->extend('/Common/login-topbar');
 	$this->start('menu');
+	$this->end(); 
 ?>
 
-<nav class="top-bar" data-topbar>
-	<ul class="title-area">
-		<li class="name">
-			<h1><a href="#"><?php echo _('Evoke Network'); ?></a></h1>
-		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-	</ul>
+<section class="evoke login background">
+	<div class="row full-width">
+	
+		<div class="medium-7 columns"><img src = '<?= $this->webroot.'img/bar.png' ?>' alt = "" class = "evoke login video-bar"></div>
 
-	<section class="top-bar-section">
-		<ul class="right">
-			<li class="has-dropdown">
-				<a href="#">Login</a>
-				<ul class="dropdown">
-					<li><a href="<?php echo $fbLoginUrl; ?>"><i class="fa fa-facebook-square"></i> Login with Facebook</a></li>
-					<li><a href="<?php echo $fbLoginUrl; ?>"><i class="fa fa-google-plus-square"></i> Login with Google+</a></li>
-				</ul>
-			</li>
-		</ul>
+		<div class="medium-5 columns">
+			<img src = '<?= $this->webroot.'img/evoke-69.png' ?>' alt = "" class = "evoke login padding-bottom">
+			
+			<div id = "login-columns">
+				<h4><?php echo __('Evoke Panel Login');?></h4>
 
-		<ul class="left">
-			<li><a href="#"><?php echo __('What is Evoke?') ?></a></li>
-		</ul>
-	</section>
-</nav>
+				<div class = "evoke login top-border">
+					<h5><?php echo __('Sign up');?></h5>
 
-<?php $this->end(); ?>
-
-<section class="evoke margin top-2">
-	<div class="row">
-		<div class="large-6 columns">
-			<div class="users form">
-				<?php echo $this->Session->flash('auth'); ?>
-				<?php echo $this->Form->create('User'); ?>
-					<fieldset>
-						<legend><?php echo __('Please enter your username and password'); ?></legend>
-						<?php 
-							echo $this->Form->input('username');
-							echo $this->Form->input('password');
-						?>
-					</fieldset>
-					<button class="button" type="submit">
-						<?php echo __('Login') ?>
-					</button>
-					<?php echo $this->Form->end(); ?>
-					<button class="button secondary">
-						<?php echo $this->Html->link(__('Sign Up'), array('controller' => 'users', 'action' => 'register'));?>
-					</button>
+					<a href="<?php echo $fbLoginUrl; ?>" class="evoke login button facebook"><i class="fa fa-facebook fa-2x"></i>&nbsp;&nbsp;&nbsp;<?php echo __('Sign in with Facebook');?></a>
+					<a href="<?php echo $this->Html->url(array('action' => 'google_login')); ?>" class="evoke login button google"><img src = '<?= $this->webroot.'img/evoke_g-login.png' ?>' alt = "">&nbsp;&nbsp;&nbsp;<?php echo __('Sign in with Google');?></a>
+					<a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'register'));?>" class="evoke login button signup"><img src = '<?= $this->webroot.'img/evoke_e-login.png' ?>'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Create EVOKE account');?></a>
+				</div>
+				<!-- <i class="fa fa-google-plus fa-2x" style = "position: absolute; top: 10px; left: 20px;"></i> -->
+				<div class="evoke login users form top-border bottom-border">
+					<?php echo $this->Session->flash('auth'); ?>
+					<?php echo $this->Form->create('User'); ?>
+							<!-- <legend><?php echo __('Please enter your username and password'); ?></legend> -->
+							<h5><?php echo __('Sign in');?></h5>
+							<?php 
+								echo $this->Form->input('username', array('label' => false));
+								echo $this->Form->input('password', array('label' => false));
+							?>
+						<button class="evoke button general" type="submit">
+							<?php echo __('Sign in'); ?>
+						</button>
+						<a href = "" class = "evoke login password"><?php echo __('Forgot your password?');?></a>
+						<?php echo $this->Form->end(); ?>
+				</div>
 			</div>
-		</div>
 
-		<div class="large-6 columns evoke margin top-2">
-			<a href="<?php echo $fbLoginUrl; ?>" class="evoke button expand bg-blue"><i class="fa fa-facebook">
-				</i> Login with Facebook
-			</a>
-			<a href="<?php echo $this->Html->url(array('action' => 'google_login')); ?>" class="evoke button expand bg-red">
-				<i class="fa fa-google-plus"></i> Login with Google
-			</a>
 		</div>
 	</div>
 </section>

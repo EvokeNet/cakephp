@@ -2,7 +2,7 @@
 class AccessComponent extends Component{ 
     var $components = array('Acl', 'Auth'); 
     
-    function startup(){ 
+    function startup(Controller $controller){ 
     } 
 
 /*

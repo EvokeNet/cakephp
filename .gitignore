@@ -2,5 +2,8 @@ Vendor/
 composer.phar
 Config/database.php
 webroot/components
+webroot/uploads/*
+webroot/files/*
 Plugin/
 tmp/
+dbv/data/meta/revision

@@ -1,7 +1,10 @@
 <?php
 App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
-APP::uses('GoogleAuthentication', 'Lib/GoogleAuthentication');
+
+use EtherpadLite\Client;
+use EtherpadLite\Request;
+
 
 /**
  * GroupsUsers Controller
@@ -26,9 +29,9 @@ class GroupsUsersController extends AppController {
 	public function index() {
 		$this->GroupsUser->recursive = 0;
 		$this->set('groupsUsers', $this->Paginator->paginate());
-
-		$userid = $this->Session->read('Auth.User.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
+		
+		$userid = $this->getUserId();
+		$username = explode(' ', $this->getUserName());
 		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		$groups = $this->GroupsUser->Group->find('all');
@@ -37,74 +40,19 @@ class GroupsUsersController extends AppController {
 	}
 
 /**
- * view method
+ * edit method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function view($group_id = null) {
+	public function edit($group_id = null) {
 
-		$this->loadModel('Setting');
-		$gAuth = new GoogleAuthentication(
-			Configure::read('google_client_id'),
-			Configure::read('google_client_secret'),
-			Configure::read('google_api_key')
-		);
-
-		$setting_access_token = $this->Setting->find('first', array(
-			'conditions'=> array(
-				'Setting.key' => 'google_auth_access_token'
-			)
-		));
-
-		$setting_refresh_token = $this->Setting->find('first', array(
-			'conditions'=> array(
-				'Setting.key' => 'google_auth_refresh_token'
-			)
-		));
-
-		if(empty($setting_refresh_token)) {
-			$token = $gAuth->authorize();
-
-			if(!empty($token)) {
-
-				$setting = array();
-
-				$this->Setting->create();
-				$setting['Setting']['key'] = 'google_auth_refresh_token';
-				$setting['Setting']['value'] = $token;
-				$this->Setting->save($setting);
-
-				$this->Setting->create();
-				$setting['Setting']['key'] = 'google_auth_access_token';
-				$setting['Setting']['value'] = $token;
-				$this->Setting->save($setting);
-
-				$this->Session->write('access_token', $token);
-
-			}
-		} else {
-
-			$access_token = $setting_access_token['Setting']['value'];
-			$refresh_token = $setting_refresh_token['Setting']['value'];
-
-			$token = $gAuth->authorize($access_token, $refresh_token);
-
-			if (!empty($token)) {
-				$setting = $this->Setting->find('first', array(
-					'conditions' => array(
-						'key' => 'google_auth_access_token'
-					)
-				));
-				$this->Setting->id = $setting['Setting']['id'];
-				$this->Setting->set('value', $token);
-				$this->Setting->save();
-			}
-			$this->Session->write('access_token', $token);
-		}
+		$apikey = Configure::read('etherpad_api_key');
+		$client = new Client($apikey, 'http://198.50.155.101:2222');
 
 		$group = $this->GroupsUser->getGroupAndUsers($group_id);
+		
 		$users = $this->GroupsUser->find('all', array(
 			'conditions' => array(
 				'GroupsUser.group_id' => $group_id
@@ -112,19 +60,97 @@ class GroupsUsersController extends AppController {
 		));
 
 		$this->loadModel('Evokation');
-		$this->Evokation->recursive = -1;
-
 		$evokation = $this->Evokation->find('first', array(
 			'conditions' => array(
-				'Evokation.group_id' => $group_id
+				'group_id' => $group_id
 			)
 		));
 
-		if(!empty($evokation)) {
+
+		if (!empty($evokation)) {
 			$this->request->data = $evokation;
 		}
 
-		$this->set(compact('group', 'users'));
+		$response = $client->checkToken();
+		if ($response->getCode() == 0) {
+			
+			$groupId = $group['Group']['id'];
+			$groupResponse = $client->createGroupIfNotExistsFor($groupId);
+
+			if ($groupResponse->getCode() == 0) {
+
+				$padGroupID = $groupResponse->getData();
+				$padGroupID = $padGroupID['groupID'];
+
+				$padIDResponse = $client->createGroupPad($padGroupID, 'evokation');
+
+				if ($padIDResponse->getCode() == 1) {
+					$padID = $padGroupID . '$evokation';
+				} else {
+					$padID = $padIDResponse->getData();
+					$padID = $padIDResponse['padID'];
+				}
+
+				$loggedInUser = $this->Auth->user();
+				foreach ($users as $user) {
+					if($user['User']['id'] == $loggedInUser['User']['id']) {
+						$isAllowed = true;
+						break;
+					}
+				}
+
+				if ($isAllowed) {
+					$authorResponse = $client->createAuthorIfNotExistsFor($user['User']['id'], $user['User']['name']);
+					
+					if($authorResponse->getCode() == 0) {
+						$authorID = $authorResponse->getData();
+						$authorID = $authorID['authorID'];
+
+						$this->loadModel('Setting');
+						$sessionID = $this->Setting->find('first', array(
+							'conditions' => array(
+								'key' => 'evokation.'.$evokation['Evokation']['id']
+							)
+						));
+
+						if (empty($sessionID)) {
+							$sessionResponse = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
+							$sessionID = $sessionResponse->getData();
+							$sessionID = $sessionID['sessionID'];
+
+							$setting = array();
+							$setting['Setting']['key'] = 'evokation.'.$evokation['Evokation']['id'];
+							$setting['Setting']['value'] = $sessionID;
+							$this->Setting->save($setting);
+
+						} else {
+							$sessionResponse = $client->getSessionInfo($sessionID['Setting']['value']);
+							$sessionResponse = $sessionResponse->getData();
+							$sessionTime = $sessionResponse['validUntil'];
+
+							if ($sessionTime <= strtotime('-1 second')) {
+								$client->deleteSession($sessionID['Setting']['value']);
+
+								$sessionResponse = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
+								$sessionID = $sessionResponse->getData();
+								$sessionID = $sessionID['sessionID'];
+
+								$this->Setting->read(null, $setting['Setting']['id']);
+								$this->Setting->set('value', $sessionID);
+								$this->Setting->save();
+
+							}
+
+						}
+
+					}
+
+				}
+
+			}
+		}
+
+		$this->set(compact('group', 'users', 'padID'));
 
 	}
 
@@ -172,45 +198,85 @@ class GroupsUsersController extends AppController {
 		}
 	}
 
-// /**
-//  * add method
-//  *
-//  * @return void
-//  */
-// 	public function add() {
-// 		if ($this->request->is('post')) {
-// 			$this->GroupsUser->create();
-// 			if ($this->GroupsUser->save($this->request->data)) {
-// 				$this->Session->setFlash(__('The groups user has been saved.'));
-// 				return $this->redirect(array('action' => 'index'));
-// 			} else {
-// 				$this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
-// 			}
-// 		}
-// 		$users = $this->GroupsUser->User->find('list');
-// 		$groups = $this->GroupsUser->Group->find('list');
-// 		$this->set(compact('users', 'groups'));
-// 	}
+
+/**
+ * storeFileId method
+ *
+ * AJAX call to store the fileID from Google Drive in the Database and
+ * use it in further calls in document updating.
+ *
+ * @return boolean TRUE if succeeded, FALSE otherwise
+ */
+	public function store_image() {
+		$this->autoRender = false;
+
+		if ($this->request->is('ajax')) {
+
+			$type = pathinfo($this->request->data['Evokation']['image_uploader']['tmp_name'], PATHINFO_EXTENSION);
+
+			if(!in_array($type, array('jpg', 'jpeg', 'JPG', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'bmp', 'BMP'))) {
+
+				$dir = 'uploads' . DS . $this->request->data['Evokation']['id'] . DS . $this->Auth->user('User.id');
+				if (!file_exists($dir) and !is_dir($dir)) {
+					$folder = new Folder();
+					if(!$folder->create($dir)) {
+						return false;
+					}
+				} 
+
+				$filename = WWW_ROOT . $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
+				if(move_uploaded_file($this->request->data['Evokation']['image_uploader']['tmp_name'], $filename)) {
+					$url = $this->webroot . $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
+					$size = getimagesize($filename);
+					return '<img src="' . $url . '" width="100%" data-size="' .$size[0]. '"/>';
+				} else {
+					return false;
+				}
+
+			}
+			// $data = file_get_contents($this->request->data['image_uploader']['tmp_name']);
+			// $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+		}
+	}
+
 
 /**
  * add method
  *
  * @return void
  */
-	public function add() {
+	public function add($uid = null, $gid = null) {
 		
-		$insertData = array('user_id' => $this->params['url']['arg'], 'group_id' => $this->params['url']['arg2']);
+		if($uid)
+			$user_id = $uid;
+		else
+			$user_id = $this->params['url']['arg'];
 
-		$exists = $this->GroupsUser->find('first', array('conditions' => array('GroupsUser.user_id' => $this->params['url']['arg'], 'GroupsUser.group_id' => $this->params['url']['arg2'])));
+		if($gid)
+			$group_id = $gid;
+		else
+			$group_id = $this->params['url']['arg2'];
+
+		$insertData = array('user_id' => $user_id, 'group_id' => $group_id);
+
+		$exists = $this->GroupsUser->find('first', array('conditions' => array('GroupsUser.user_id' => $user_id, 'GroupsUser.group_id' => $group_id)));
 
 		if(!$exists){
 	        if($this->GroupsUser->save($insertData)){
 	        	$this->Session->setFlash(__('The groups user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+
+	        	//Update request status
+	        	$request = $this->GroupsUser->Group->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $user_id, 'GroupRequest.group_id' => $group_id)));
+	        	if($request){
+	        		$this->GroupsUser->Group->GroupRequest->id = $request['GroupRequest']['id'];
+	        		$this->GroupsUser->Group->GroupRequest->save(array('status' => 1));
+	        	}
+
+				return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
 	        } else $this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
 		} else {
 			$this->Session->setFlash(__('This user already belongs to this group.'));
-			return $this->redirect(array('action' => 'index'));
+			return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
 		}
 	}
 
@@ -220,25 +286,38 @@ class GroupsUsersController extends AppController {
  * @return void
  */
 	public function send($id, $group_id){
-		$userid = $this->Session->read('Auth.User.User.id');
-		$username = explode(' ', $this->Session->read('Auth.User.User.name'));
-		
-		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
-		$receiver = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $id)));
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		
+		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$recipient = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $id)));
 
 		$group = $this->GroupsUser->Group->find('first', array('conditions' => array('Group.id' => $group_id)));
 
+		/* Adds requests */
+		$this->loadModel('GroupRequest');
+		$insertData = array('user_id' => $this->getUserId(), 'group_id' => $group_id);
+		$exists = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $this->getUserId(), 'GroupRequest.group_id' => $group_id)));
+
+		if(!$exists){
+	        if($this->GroupRequest->save($insertData)){
+	        	$this->Session->setFlash(__('The request has been sent'));
+	        } else $this->Session->setFlash(__('The request could not be sent'));
+		} else {
+			$this->Session->setFlash(__('This user already requested to join thsi group'));
+		}
+
 		$Email = new CakeEmail('smtp');
-		$Email->from(array($receiver['User']['email'] => $receiver['User']['name']));
-		$Email->to($sender['User']['email']);
+		//$Email->from(array('no-reply@quanti.ca' => $sender['User']['name']));
+		$Email->to($recipient['User']['email']);
 		$Email->subject(__('Evoke - Request to join group'));
 		$Email->emailFormat('html');
 		$Email->template('group', 'group');
-		$Email->viewVars(array('sender' => $sender, 'receiver' => $receiver, 'group' => $group));
+		$Email->viewVars(array('sender' => $sender, 'recipient' => $recipient, 'group' => $group));
 		$Email->send();
 		$this->Session->setFlash(__('The email was sent'));
-		$this->redirect(array('action' => 'index'));
+		$this->redirect(array('controller' => 'groups', 'action' => 'index', $group['Group']['mission_id']));
 	
 	}
 
@@ -249,7 +328,7 @@ class GroupsUsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit2($id = null) {
 		if (!$this->GroupsUser->exists($id)) {
 			throw new NotFoundException(__('Invalid groups user'));
 		}

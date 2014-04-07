@@ -1,4 +1,45 @@
-<?php echo $this->element('header', array("userid" => $userid, "username" => $username[0])); ?>
+<?php
+	$this->extend('/Common/topbar');
+	$this->start('menu');
+?>
+
+<nav class="top-bar" data-topbar>
+	<ul class="title-area">
+		<li class="name">
+			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $users['User']['id'])); ?></h1>
+		</li>
+		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+	</ul>
+
+	<section class="evoke top-bar-section">
+
+		<!-- Right Nav Section -->
+		<ul class="right">
+			<li class="name">
+				<h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1>
+			</li>
+			<li class="has-dropdown">
+				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
+				<ul class="dropdown">
+					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $users['User']['id'])); ?></h1></li>
+					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
+				</ul>
+			</li>
+			<li  class="has-dropdown">
+				<a href="#"><?= __('Language') ?></a>
+				<ul class="dropdown">
+					<li><?= $this->Html->link(__('English'), array('action'=>'changeLanguage', 'en')) ?></li>
+					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
+				</ul>
+			</li>
+		</ul>
+
+		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
+
+	</section>
+</nav>
+
+<?php $this->end(); ?>
 
 <section class="evoke margin top-2">
 	<div class="row dashboard">
@@ -8,12 +49,18 @@
 			<nav class="breadcrumbs dashboard_breadcrumbs">
 			  <a class="unavailable" href="#"><?php echo __('Dashboard ');?></a>
 			  <?php echo $this->Html->link($user['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?>
-			  <a class="current" href="#"><?php if($missionissue) echo __('Issue: ').$missionissue[0]['Issue']['name']; else echo __('Issue: ').$issue['Issue']['name'];?></a>
+			  <a class="current" href="#"><?php if($missionIssue) echo __('Issue: ').$missionIssue[0]['Issue']['name']; else echo __('Issue: ').$issue['Issue']['name'];?></a>
 			</nav>
+
+			<?php if(!$is_friend AND ($users['User']['id'] != $user['User']['id'])):?>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'add', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Follow this agent');?></a>
+			<?php else: ?>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'delete', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Unfollow this agent');?></a>
+			<?php endif; ?>
 
 			<dl class="tabs" data-tab>
 			  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
-			  <dd><a href="#panel2-2"><?php echo __('Projects and Evidences I Follow');?></a></dd>
+			  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
 			  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
 			</dl>
 			<div class="tabs-content">
@@ -22,10 +69,10 @@
 			    	//Lists all projects and evidences
 		    		foreach($evidence as $e):?>
 			    		<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
-			    		<p><?php echo substr($e['Evidence']['content'], 0, 100);?></p>
+			    		<p><?php echo substr(strip_tags($e['Evidence']['content']), 0, 90);?></p>
 			
 						<!-- Prints the issue related to each mission -->
-	    				<?php foreach($missionissues as $mi): 
+	    				<?php foreach($missionIssues as $mi): 
 		    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
 		    				<div class="row">
 							  <div class="large-10 columns">
@@ -53,9 +100,9 @@
 			  <div class="content active" id="panel12-1">
 
 			  <!-- Lists all issues -->
-		    	<h2><?php if(isset($missionissue[0])) echo __('Missions under Issue: ').$missionissue[0]['Issue']['name']; else echo sprintf(__('No missions under issue %s'), $issue['Issue']['name']); ?></h2>
+		    	<h2><?php if(isset($missionIssue[0])) echo __('Missions under Issue: ').$missionIssue[0]['Issue']['name']; else echo sprintf(__('No missions under issue %s'), $issue['Issue']['name']); ?></h2>
 		    	
-		    	<?php foreach($missionissue as $mi): ?>
+		    	<?php foreach($missionIssue as $mi): ?>
 		    		<h3><?php echo $this->Html->link($mi['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $mi['Mission']['id'], 1));?></h3>
 		    		<p><?php echo $mi['Mission']['description']; ?></p>
 		    	<?php endforeach; ?>

@@ -1,36 +1,74 @@
-<div class="evidences form">
-<?php echo $this->Form->create('Evidence'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Evidence'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('title');
-		echo $this->Form->input('content');
-		echo $this->Form->input('user_id');
-		echo $this->Form->input('quest_id');
-		echo $this->Form->input('mission_id');
-		echo $this->Form->input('phase_id');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<?php
+	$this->extend('/Common/topbar');
+	$this->start('menu');
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Evidence.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Evidence.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Evidences'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Quests'), array('controller' => 'quests', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Quest'), array('controller' => 'quests', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Missions'), array('controller' => 'missions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Mission'), array('controller' => 'missions', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Phases'), array('controller' => 'phases', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Phase'), array('controller' => 'phases', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Comments'), array('controller' => 'comments', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Comment'), array('controller' => 'comments', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Votes'), array('controller' => 'votes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Vote'), array('controller' => 'votes', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+	echo $this->element('header', array('user' => $user));
+	$this->end(); 
+
+?>
+
+<section class="evoke background-gray padding top-2">
+	<div class="row">
+		<div class="small-11 small-centered columns">
+			<div class="evidences form">
+
+			<div class = "evoke evidence-body edit">
+
+			<?php echo $this->Form->create('Evidence', array('enctype' => 'multipart/form-data')); ?>
+				<?php echo __('Edit Evidence'); ?>
+
+				<?php
+					echo $this->Form->input('id');
+					echo $this->Form->input('title', array('label' => __('Title')));
+					//echo $this->Form->input('content');
+					echo $this->Form->hidden('user_id');
+					//echo $this->Form->input('quest_id', array('empty' => true));
+					echo $this->Form->hidden('mission_id');
+					echo $this->Form->hidden('phase_id');
+					echo $this->Media->ckeditor('content', array('label' => __('Content')));
+					//echo $this->Media->iframe('Evidence', $this->request->data['Evidence']['id']);
+
+					echo "<label>".__('Attachments'). "</label>";
+		            echo '<div id="fileInputHolder">';
+		            echo "<ul>";
+		            $k = 0;
+		            foreach ($attachments as $media) {
+		                echo "<li>";
+		                echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $media['Attachment']['attachment'] .'</label>';
+		                
+		                echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $media['Attachment']['id'] .'">';
+		                echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$media['Attachment']['dir'].'/thumb_'.$media['Attachment']['attachment'] . '"/>';
+
+		                echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
+
+		                $k++;
+		            }
+		            echo "</ul>";
+		            echo '</div>';
+		            echo '<button id="newFile" class="button tiny">+ File</button>';
+				?>
+			<?php //echo $this->Form->end(__('Save Evidence')); ?>
+			<div class = "evoke titles-right"><button type="submit" class= "evoke button general submit-button-margin"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save Evidence')) ?></button></div>
+			</div>
+			</div>
+		</div>
+	</div>
+</section>
+<?php echo $this->Html->script('quest_attachments'); ?>
+<script type="text/javascript">
+
+        <?php
+            $i = 0;
+            for($i=0; $i<$k;$i++) {
+        
+                echo "$('#-". $i ."').click(function() {
+                        var attId = $('#Attachmentprev-". $i ."Id').val().replace('NO-', '');
+                        $('#img-". $i ."').remove();
+                        $('#label-". $i ."').remove();
+                        $('#Attachmentprev-". $i ."Id').val(attId);
+                        $('#-". $i ."').remove();
+                        return false;
+                    });";                
+        }?>
+    
+    </script>

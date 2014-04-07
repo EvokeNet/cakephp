@@ -45,12 +45,12 @@ class VotesController extends AppController {
  *
  * @return void
  */
-	public function add($evidence_id = null) {
+	public function add($evokation_id = null) {
 		if ($this->request->is('post')) {
 			$this->Vote->create();
 			if ($this->Vote->save($this->request->data)) {
 				$this->Session->setFlash(__('The vote has been saved.'));
-				return $this->redirect(array('controller' => 'evidences', 'action' => 'view', $this->request->data['Vote']['evidence_id']));
+				return $this->redirect(array('controller' => 'evokations', 'action' => 'view', $this->request->data['Vote']['evokation_id']));
 			} else {
 				$this->Session->setFlash(__('The vote could not be saved. Please, try again.'));
 			}
@@ -75,7 +75,7 @@ class VotesController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Vote->save($this->request->data)) {
 				$this->Session->setFlash(__('The vote has been saved.'));
-				return $this->redirect(array('controller' => 'evidences', 'action' => 'view', $this->request->data['Vote']['evidence_id']));
+				return $this->redirect(array('controller' => 'evokations', 'action' => 'view', $this->request->data['Vote']['evokation_id']));
 			} else {
 				$this->Session->setFlash(__('The vote could not be saved. Please, try again.'));
 			}

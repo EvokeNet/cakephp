@@ -4,7 +4,11 @@
 		<legend><?php echo __('Add Group'); ?></legend>
 	<?php
 		echo $this->Form->input('title');
-		echo $this->Form->input('user_id');
+		if(!empty($mission)) 
+			echo $this->Form->hidden('mission_id', array('value' => $mission['Mission']['id']));
+		else
+			echo $this->Form->input('mission_id');
+		echo $this->Form->hidden('user_id', array('value' => $userid));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
