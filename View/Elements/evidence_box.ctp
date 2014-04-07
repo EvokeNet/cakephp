@@ -1,7 +1,7 @@
 <div class="row evoke evidence blue-box">
 	<div class="medium-2 columns">
   		<div class = "evoke text-align">
-  			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
+  			<img src="https://graph.facebook.com/<?php echo $e['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
   			<!-- <h6><?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));?></h6> -->
 
   			<a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));?>">

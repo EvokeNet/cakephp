@@ -1,7 +1,7 @@
 <div class="row evoke evokation-red-box">
 	<div class="medium-2 columns">
   		<div class = "evoke dashboard text-align">
-  			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
+  			<img src="https://graph.facebook.com/<?php echo $e['User']['facebook_id']; ?>/picture?type=large" width="110px"/>
 
   			<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['Group']['id']));?>">
 			<h6><?= $e['Group']['created']?></h6>
