@@ -289,3 +289,20 @@
 	width: 25px;
 	padding-left: 6px;
 }
+
+.evoke.mission.pink fieldset{
+	border: 3px solid #c65862;
+}
+
+.evoke.mission.green fieldset{
+	border: 3px solid #20c475;
+}
+
+.evoke.mission fieldset legend{
+	font-weight:normal;
+	background: none;
+	font-family: 'AlegreyaRegular';
+	color:#fff;
+	font-size:2.0vw;
+	text-align:center;
+}
