@@ -66,12 +66,19 @@ class MissionsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null, $phase_number = null) {
+	public function view($id = null, $phase_number = null, $phaseId = null) {
 		if (!$this->Mission->exists($id)) {
 			throw new NotFoundException(__('Invalid mission'));
 		}
 
 		$missionPhases = $this->Mission->Phase->find('all', array('conditions' => array('Phase.mission_id' => $id), 'order' => 'Phase.position'));
+
+		if(!is_null($phaseId)){
+			$missionPhase = $this->Mission->Phase->find('first', array('conditions' => array('Phase.mission_id' => $id, 'Phase.id' => $phaseId)));	
+			if(!empty($missionPhase))
+				$phase_number = $missionPhase['Phase']['position'];
+		}
+		
 
 		if($phase_number > count($missionPhases)) {
 			$this->Session->setFlash(__("This mission/phase does not exist!"));
