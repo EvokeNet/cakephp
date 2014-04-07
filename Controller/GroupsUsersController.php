@@ -135,6 +135,7 @@ class GroupsUsersController extends AppController {
 								$sessionID = $sessionResponse->getData();
 								$sessionID = $sessionID['sessionID'];
 
+
 								debug($sessionID);
 								die();
 
@@ -149,7 +150,6 @@ class GroupsUsersController extends AppController {
 					}
 
 				}
-
 			}
 		}
 
