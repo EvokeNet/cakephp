@@ -48,8 +48,8 @@ class GroupsUsersController extends AppController {
  */
 	public function edit($group_id = null) {
 
-		$apikey = Configure::read('etherpad_api_key');
-		$client = new Client($apikey, 'http://198.50.155.101:2222');
+		// $apikey = Configure::read('etherpad_api_key');
+		// $client = new Client($apikey, 'http://198.50.155.101:2222');
 
 		$group = $this->GroupsUser->getGroupAndUsers($group_id);
 		
@@ -71,87 +71,87 @@ class GroupsUsersController extends AppController {
 			$this->request->data = $evokation;
 		}
 
-		$response = $client->checkToken();
-		if ($response->getCode() == 0) {
+		// $response = $client->checkToken();
+		// if ($response->getCode() == 0) {
 			
-			$groupId = $group['Group']['id'];
-			$groupResponse = $client->createGroupIfNotExistsFor($groupId);
+		// 	$groupId = $group['Group']['id'];
+		// 	$groupResponse = $client->createGroupIfNotExistsFor($groupId);
 
-			if ($groupResponse->getCode() == 0) {
+		// 	if ($groupResponse->getCode() == 0) {
 
-				$padGroupID = $groupResponse->getData();
-				$padGroupID = $padGroupID['groupID'];
+		// 		$padGroupID = $groupResponse->getData();
+		// 		$padGroupID = $padGroupID['groupID'];
 
-				$padIDResponse = $client->createGroupPad($padGroupID, 'evokation');
+		// 		$padIDResponse = $client->createGroupPad($padGroupID, 'evokation');
 
-				if ($padIDResponse->getCode() == 1) {
-					$padID = $padGroupID . '$evokation';
-				} else {
-					$padID = $padIDResponse->getData();
-					$padID = $padIDResponse['padID'];
-				}
+		// 		if ($padIDResponse->getCode() == 1) {
+		// 			$padID = $padGroupID . '$evokation';
+		// 		} else {
+		// 			$padID = $padIDResponse->getData();
+		// 			$padID = $padIDResponse['padID'];
+		// 		}
 
-				$loggedInUser = $this->Auth->user();
-				foreach ($users as $user) {
-					if($user['User']['id'] == $loggedInUser['User']['id']) {
-						$isAllowed = true;
-						break;
-					}
-				}
+		// 		$loggedInUser = $this->Auth->user();
+		// 		foreach ($users as $user) {
+		// 			if($user['User']['id'] == $loggedInUser['User']['id']) {
+		// 				$isAllowed = true;
+		// 				break;
+		// 			}
+		// 		}
 
-				if ($isAllowed) {
-					$authorResponse = $client->createAuthorIfNotExistsFor($user['User']['id'], $user['User']['name']);
+		// 		if ($isAllowed) {
+		// 			$authorResponse = $client->createAuthorIfNotExistsFor($user['User']['id'], $user['User']['name']);
 					
-					if($authorResponse->getCode() == 0) {
-						$authorID = $authorResponse->getData();
-						$authorID = $authorID['authorID'];
+		// 			if($authorResponse->getCode() == 0) {
+		// 				$authorID = $authorResponse->getData();
+		// 				$authorID = $authorID['authorID'];
 
-						$this->loadModel('Setting');
-						$sessionID = $this->Setting->find('first', array(
-							'conditions' => array(
-								'key' => 'evokation.'.$evokation['Evokation']['id']
-							)
-						));
+		// 				$this->loadModel('Setting');
+		// 				$sessionID = $this->Setting->find('first', array(
+		// 					'conditions' => array(
+		// 						'key' => 'evokation.'.$evokation['Evokation']['id']
+		// 					)
+		// 				));
 
-						if (empty($sessionID)) {
-							$sessionResponse = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
-							$sessionID = $sessionResponse->getData();
-							$sessionID = $sessionID['sessionID'];
+		// 				if (empty($sessionID)) {
+		// 					$sessionResponse = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
+		// 					$sessionID = $sessionResponse->getData();
+		// 					$sessionID = $sessionID['sessionID'];
 
-							$setting = array();
-							$setting['Setting']['key'] = 'evokation.'.$evokation['Evokation']['id'];
-							$setting['Setting']['value'] = $sessionID;
-							$this->Setting->save($setting);
+		// 					$setting = array();
+		// 					$setting['Setting']['key'] = 'evokation.'.$evokation['Evokation']['id'];
+		// 					$setting['Setting']['value'] = $sessionID;
+		// 					$this->Setting->save($setting);
 
-						} else {
-							$sessionResponse = $client->getSessionInfo($sessionID['Setting']['value']);
-							$sessionResponse = $sessionResponse->getData();
-							$sessionTime = $sessionResponse['validUntil'];
+		// 				} else {
+		// 					$sessionResponse = $client->getSessionInfo($sessionID['Setting']['value']);
+		// 					$sessionResponse = $sessionResponse->getData();
+		// 					$sessionTime = $sessionResponse['validUntil'];
 
-							if ($sessionTime <= strtotime('-1 second')) {
-								$client->deleteSession($sessionID['Setting']['value']);
+		// 					if ($sessionTime <= strtotime('-1 second')) {
+		// 						$client->deleteSession($sessionID['Setting']['value']);
 
-								$sessionResponse = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
-								$sessionID = $sessionResponse->getData();
-								$sessionID = $sessionID['sessionID'];
+		// 						$sessionResponse = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
+		// 						$sessionID = $sessionResponse->getData();
+		// 						$sessionID = $sessionID['sessionID'];
 
-								debug($sessionID);
-								die();
+		// 						debug($sessionID);
+		// 						die();
 
-								$this->Setting->read(null, $sessionID);
-								$this->Setting->set('value', $sessionID);
-								$this->Setting->save();
+		// 						$this->Setting->read(null, $sessionID);
+		// 						$this->Setting->set('value', $sessionID);
+		// 						$this->Setting->save();
 
-							}
+		// 					}
 
-						}
+		// 				}
 
-					}
+		// 			}
 
-				}
+		//		}
 
-			}
-		}
+		//	}
+		//}
 
 		$this->set(compact('group', 'users', 'padID'));
 
