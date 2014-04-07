@@ -11,6 +11,7 @@ class PanelsController extends AppController {
 	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 
 		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier');
 	public $user = null;
+	public $helpers = array('Media.Media');
 
 /**
 *
@@ -356,9 +357,17 @@ class PanelsController extends AppController {
 				//sets variable mission to be the mission being added now..
 				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
+
+			
 		}
+		/*
+		$this->Quest->create();
+		$data['Quest']['description'] = "Quest description goes here..";
+		$data['Quest']['mission_id'] = $id;
+		$newQuest = $this->Quest->save();*/
+
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
-			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files'));
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest'));
 	}
 
 /*
@@ -510,8 +519,15 @@ class PanelsController extends AppController {
 				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 		}
+
+		/*$this->Quest->create();
+		$data['Quest']['description'] = "Quest description goes here..";
+		$data['Quest']['mission_id'] = $id;
+		$newQuest = $this->Quest->save($data);
+		debug($newQuest);*/
+
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
-			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files'));
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest'));
 	}
 
 
@@ -587,11 +603,20 @@ class PanelsController extends AppController {
 	public function add_quest($id, $origin = 'add_mission'){
 		if ($this->request->is('post')) {
 			
+			$data = $this->request->data;
+			unset($data['Quest']['id']);
+
 			//creating a quest with its possible attachments
-			if ($this->Quest->createWithAttachments($this->request->data)) {
+			if ($this->Quest->createWithAttachments($data)) {
 				$this->Session->setFlash(__('The quest has been saved.'));
 				
 				$quest_id = $this->Quest->id;
+
+				$data = $this->request->data;
+				
+				$data['Quest']['id'] = $quest_id;
+				$this->Quest->save($data);
+
 				//now checking to see if it were a questionnarie type quest (type = 1)
 				if($this->request->data['Quest']['type'] == 1) {
 					//create a questionnaire..

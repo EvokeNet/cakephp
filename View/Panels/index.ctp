@@ -679,9 +679,9 @@
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
             var doc = {
                 userRole: missionIssue(i-1),//"user",//GET ROLE OF USER
-                userRoleFormat: "<a href='/evoke/issues/view/"+ missionIssueId(i-1) +"' class='userId' target='_blank'>{0}</a>",
+                userRoleFormat: "<a href='issues/view/"+ missionIssueId(i-1) +"' class='userId' target='_blank'>{0}</a>",
                 name: missionName(i-1),
-                nameFormat: "<a href='/evoke/missions/view/"+ missionId(i-1) +"/1' class='name' target='_blank'>{0}</a>:     " + missionButtons(i-1)
+                nameFormat: "<a href='missions/view/"+ missionId(i-1) +"/1' class='name' target='_blank'>{0}</a>:     " + missionButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -899,9 +899,9 @@
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
             var doc = {
                 userRole: orgsBadgeName[i-1],//"user",//GET ROLE OF USER
-                userRoleFormat: "<a href='/evoke/organizations/view/"+ orgsBadgeId[i-1] +"' class='userId' target='_blank'>{0}</a>",
+                userRoleFormat: "<a href='organizations/view/"+ orgsBadgeId[i-1] +"' class='userId' target='_blank'>{0}</a>",
                 name: badgesName[i-1],
-                nameFormat: "<a href='/evoke/badges/view/"+ badgesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + badgeButtons(i-1)
+                nameFormat: "<a href='badges/view/"+ badgesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + badgeButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -962,7 +962,7 @@
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
             var doc = {
                 name: orgsName[i-1],
-                nameFormat: "<a href='/evoke/organizations/view/"+ orgsId[i-1] +"' class='name' target='_blank'>{0}</a>:     " + orgsButtons(i-1)
+                nameFormat: "<a href='organizations/view/"+ orgsId[i-1] +"' class='name' target='_blank'>{0}</a>:     " + orgsButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1023,7 +1023,7 @@
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
             var doc = {
                 name: issuesName[i-1],
-                nameFormat: "<a href='/evoke/issues/view/"+ issuesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + issuesButtons(i-1)
+                nameFormat: "<a href='issues/view/"+ issuesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + issuesButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1084,22 +1084,22 @@
 
     function badgeButtons(i) {
     	var str = "'deleteBadge" + badgesId[i] + "'";
-    	return '<a href="/evoke/badges/edit/'+ badgesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="badges/edit/'+ badgesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
 	function orgsButtons(i) {
     	var str = "'orgsDelete" + orgsId[i] + "'";
-    	return '<a href="/evoke/organizations/edit/'+ orgsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="organizations/edit/'+ orgsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
     function issuesButtons(i) {
     	var str = "'issuesDelete" + issuesId[i] + "'";
-    	return '<a href="/evoke/issues/edit/'+ issuesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="issues/edit/'+ issuesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
     function missionButtons(i) {
     	var str = "'deleteMission" + missionsId[i] + "'";
-    	return '<a href="/evoke/panels/edit_mission/'+ missionsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="panels/edit_mission/'+ missionsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
 

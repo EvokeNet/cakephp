@@ -12,7 +12,8 @@
 		<ul class="evoke right">
 
 			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $user['User']['id'])); ?>"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/></a></li>
-			
+						
+
 			<li class = "name">
 				<h3><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $user['User']['id'])); ?>" class = "evoke top-bar-name"><?= $user['User']['name'] ?></a></h3>
 			</li>
