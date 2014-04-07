@@ -161,7 +161,8 @@
 }
 
 .evoke.dashboard.margin{
-	margin-top:50px;
+	/*margin-top:50px;*/
+	margin-top:10px;
 }
 
 .evoke.dashboard.shelve{
@@ -261,6 +262,51 @@
 	height: 500px;
 	z-index: 1;
 	position: relative;
+	overflow: scroll;
+}
+
+.evoke.dashboard.leadercloud ul{
+	list-style: none;
+	padding-top: 30px;
+}
+
+.evoke.dashboard.leadercloud ul li{
+	margin-bottom:20px;
+	border-bottom:2px solid #1b1b1b;
+	padding-bottom:20px;
+}
+
+.evoke.dashboard.leadercloud h1{
+	color:#fff;
+	display: inline;
+	font-family: 'AlegreyaRegular';
+	font-size:5.0vw;
+	margin: 10px 20px 0px 0px;
+}
+
+.evoke.dashboard.leadercloud h2{
+	color:#fff;
+	font-size:2.2vw;
+	font-family: 'AlegreyaRegular';
+	margin-left:20px;
+}
+
+.evoke.dashboard.leadercloud span{
+	color:#fff;
+	font-size:2.2vw;
+	font-family: 'AlegreyaRegular';
+	margin-left:20px;
+}
+
+.evoke.dashboard.feed ul{
+	list-style: none;
+	margin-top:30px;
+}
+
+.evoke.dashboard.feed ul li{
+	color:#8e8e8e;
+	font-size:1.5vw;
+	font-family: 'AlegreyaRegular';
 }
 
 /*.evoke.allies{
@@ -358,4 +404,29 @@
 	text-align: start;
 	margin-left: 50%;
 	margin-top: -15px;
+}
+
+.evoke.dashboard.badges-icon{
+	margin-right:5px; 
+	padding-bottom:10px;
+}
+
+.evoke.dashboard.users-icon-position{
+	/*float:left;*/
+	display:inline-block;
+	width: 100px;
+	text-align: center;
+	margin: 0px auto 30px;
+}
+
+.evoke.dashboard.users-icon-position span{
+	display:block;
+	color:#fff;
+	font-family: 'AlegreyaRegular';
+}
+
+.evoke.dashboard.users-icon{
+	max-height: 90px;
+	max-width: 90px;
+	/*margin: 0px 10px 20px 0px;*/
 }

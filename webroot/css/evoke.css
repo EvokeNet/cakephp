@@ -312,7 +312,7 @@ button, div, p, span, a,
 }
 
 .evoke .allies{
-	height:300px;
+	/*min-height:200px;*/
 	margin-bottom:30px;
 	z-index: 1;
 	position: relative;
@@ -322,16 +322,18 @@ button, div, p, span, a,
 	height:400px;
 	z-index: 1;
 	position: relative;
+	overflow:scroll;
+	overflow-x:hidden;
 }
 
 .evoke .badges{
-	height:200px;
+	/*height:200px;*/
 	z-index: 1;
 	position: relative;
 }
 
 .evoke .leadercloud{
-	height:500px;
+	/*height:500px;*/
 	z-index: 1;
 	position: relative;
 }

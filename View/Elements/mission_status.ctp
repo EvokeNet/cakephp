@@ -2,6 +2,8 @@
  	<div class="row full-width">
 	  <div class="medium-3 columns" style = "display: inline;">
 	  	<?php 
+	  		$complete = 0;
+	  		$mission_completed = 0;
 			$_completed = 0;
 			$_total = 0;
 			$valid_phases = 0;
@@ -16,14 +18,20 @@
 		?>
 
 		<h1><?= strtoupper(__('Mission Status')) ?></h1>&nbsp;&nbsp;
-		<span><?php echo round(($_completed * 100)/$_total).'%'; ?></span>
+		<span><?php 
+			if($_total){
+				$mission_completed = round(($_completed * 100)/$_total); 
+				echo $mission_completed.'%';
+			}
+		?></span>
 	  </div>
 	  <div class="medium-9 columns">
 	  	<div class="row">
 		  <div class="small-11 columns padding">
 		  	<div>
 	  	<?php	
-			$qtd = 100/$valid_phases;//sizeof($missionPhases);
+	  		if($valid_phases)
+				$qtd = 100/$valid_phases;//sizeof($missionPhases);
 			foreach ($missionPhases as $phase):
 				if((!isset($total[$phase['Phase']['id']]))) continue;
 				if(($total[$phase['Phase']['id']] == 0)) continue;
@@ -50,8 +58,10 @@
 		  </div>
 		  <div class="small-1 columns padding">
 		  	<div class = "evoke position">
-				<h2 class = "evoke mission status"><?= strtoupper('Finish') ?></h2>
-				<div class="evoke mission circle"><i class="fa fa-flag-checkered fa-lg"></i></div> 
+		  		<?php if($mission_completed == 100)
+					 	$complete = 'success';?>
+				<h2 class = "evoke mission status <?= $complete ?>"><?= strtoupper('Finish') ?></h2>
+				<div class="evoke mission circle <?= $complete ?>"><i class="fa fa-flag-checkered fa-lg"></i></div> 
 			</div>
 		  </div>
 		</div>

@@ -125,7 +125,16 @@
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height"/></div>
 					</div>
 
-					<div class = "evoke screen-box allies"></div>
+					<div class = "evoke screen-box allies" style = "padding: 40px 20px">
+						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>' class = "evoke dashboard users-icon"><span>Leslie Knope</span></div>
+						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>' class = "evoke dashboard users-icon"><span>Ron Swanson</span></div>
+						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/tom.jpg' ?>' class = "evoke dashboard users-icon"><span>Tom Haverford</span></div>
+						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/chris.jpg' ?>' class = "evoke dashboard users-icon"><span>Chris Traeger</span></div>
+						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/andy.jpg' ?>' class = "evoke dashboard users-icon"><span>Andy Dwyer</span></div>
+						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/ben.jpg' ?>' class = "evoke dashboard users-icon"><span>Ben Wyatt</span></div>
+						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/april.jpg' ?>' class = "evoke dashboard users-icon"><span>April Ludgate</span></div>
+						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/ann.jpg' ?>' class = "evoke dashboard users-icon"><span>Ann Perkins</span></div>
+					</div>
 
 				</div>
 
@@ -138,7 +147,12 @@
 
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height-two"/></div>
 					</div>
-					<div class = "evoke screen-box allies"></div>
+					<div class = "evoke screen-box badges" style = "padding: 40px 10px">
+						<img src = '<?= $this->webroot.'img/badge1.png' ?>' class = "evoke dashboard badges-icon">
+						<img src = '<?= $this->webroot.'img/badge2.png' ?>' class = "evoke dashboard badges-icon">
+						<img src = '<?= $this->webroot.'img/badge3.png' ?>' class = "evoke dashboard badges-icon">
+						<img src = '<?= $this->webroot.'img/badge4.png' ?>' class = "evoke dashboard badges-icon">
+					</div>
 				</div>
 
 				<div class = "evoke text-align position">
@@ -182,14 +196,51 @@
 				<div class = "evoke dashboard position">
 					<?php echo $this->element('right_titlebar', array('title' => (__('Leadercloud')))); ?>
 
-					<div class = "evoke screen-box allies margin"></div>
+					<div class = "evoke screen-box allies dashboard leadercloud margin">
+						<div class ="button general red" style = "margin-top:30px; margin-left:30px"><?= __('This Week') ?></div>
+						<ul>
+							<li>
+								<h1>1</h1>
+								<img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>' class = "evoke dashboard users-icon">
+								<span>Leslie Knope</span>
+								<span>Level 10 | Points 110</span>
+							</li>
+							<li>
+								<h1>2</h1>
+								<img src = "https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon">
+								<span><?= $users['User']['name'] ?></span>
+								<span>Level 10 | Points 100</span>
+							</li>
+							<li>
+								<h1>3</h1>
+								<img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>' class = "evoke dashboard users-icon">
+								<span>Ron Swanson</span>
+								<span>Level 9 | Points 90</span>
+							</li>
+						</ul>
+					</div>
 				</div>
 
 				<div class = "evoke dashboard position">
 				
 					<?php echo $this->element('right_titlebar', array('title' => (__('Feed')))); ?>
 
-					<div class = "evoke screen-box allies margin"></div>
+					<div class = "evoke screen-box dashboard feed margin">
+						<ul>
+							<li>Ron Swanson added a new profile picture</li>
+							<li>Ann Perkins created a new discussion</li>
+							<li>April Ludgate started a project</li>
+							<li>Ben Wyatt changed his profile picture</li>
+							<li>Andy Dwyer created a new Evokation Team</li>
+							<li>Leslie Knope finished a project</li>
+							<li>Chris Traeger commented on your disccusion</li>
+							<li>Andy Dwyer created a new discussion</li>
+							<li>Ann Perkins started a project</li>
+							<li>Chris Traeger changed his profile picture</li>
+							<li>April Ludgate created a new Evokation Team</li>
+							<li>Ron Swanson finished a project</li>
+						</ul>
+					</div>
 				</div>
 		</div>
 	</div>

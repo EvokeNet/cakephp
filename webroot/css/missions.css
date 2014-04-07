@@ -200,6 +200,10 @@
 	border: 4px solid #20c475;
 }
 
+.evoke.mission.circle.success i{
+	color: #20c475;
+}
+
 .evoke.mission.circle.dev{
 	border: 4px solid #c65862;
 }
