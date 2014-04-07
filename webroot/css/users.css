@@ -315,11 +315,15 @@
 .evoke.dashboard.folders{
 	font-family: 'AlegreyaRegular';
 	position: absolute; 
-	top: 70%; 
-	font-size: 1.0vw; 
+	/*top: 70%; 
+	font-size: 1.0vw; */
 	text-align: center; 
 	width: 83%;
 	color: #1d1d1d;
+
+	top: 80%;
+	font-size: 1.5vw;
+	margin-left: 10px;
 }
 
 /*** Alternative Dashboard ***/
