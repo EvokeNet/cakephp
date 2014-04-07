@@ -263,7 +263,7 @@
 	position: relative;
 }
 
-.evoke.allies{
+/*.evoke.allies{
 	height:400px;
 	margin-bottom:30px;
 	z-index: 1;
@@ -280,7 +280,7 @@
 	height:250px;
 	z-index: 1;
 	position: relative;
-}
+}*/
 
 .evoke.dashboard.panel{
 	height: 750px;
@@ -291,8 +291,10 @@
 }
 
 .screen-box.margin{
-	margin-right: 100px;
-	margin-left: 100px;
+	/*margin-right: 100px;
+	margin-left: 60px;*/
+	margin-right: 70px;
+	margin-left: 50px;
 }
 
 .display-inline{
@@ -346,4 +348,10 @@
 	max-height: 150px; 
 	/*max-width: 120px;*/ 
 	margin:10px 20px;
+}
+
+.evoke.dashboard.bottom-bar{
+	text-align: start;
+	margin-left: 50%;
+	margin-top: -15px;
 }
