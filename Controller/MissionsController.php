@@ -16,6 +16,7 @@ class MissionsController extends AppController {
 
 	public $components = array('Paginator', 'Session', 'Access');
 	public $user = null;
+	public $helpers = array('Menu');
 
 	public function beforeFilter() {
         parent::beforeFilter();

@@ -8,9 +8,25 @@
 ?>
 
 <section class="evoke background padding top-2">
-	<?php if(isset($mission['Mission'])) : ?>
-	<?= $this->element('left_titlebar', array('title' => sprintf(__('Evokation Teams: %s'), $mission['Mission']['title']))) ?>
-	<?php endif; ?>
+
+	<nav class="evoke breadcrumbs">
+	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
+
+	  <a class="unavailable" href="#"><?php echo sprintf(__('Mission %s'), $mission['Mission']['title']);?></a>
+
+	  	<?php foreach($missionPhases as $mp):
+
+	  		if($mp['Phase']['position'] < $missionPhase['Phase']['position'])
+	  			echo $this->Html->link($mp['Phase']['name'], array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $mp['Phase']['position']));
+
+  		endforeach; ?>
+
+	  <a class="current" href="#"><?php echo $missionPhase['Phase']['name'];?></a>
+	</nav>
+	
+	<?php if(isset($mission['Mission'])):  
+		echo $this->element('left_titlebar', array('title' => sprintf(__('Evokation Teams: %s'), $mission['Mission']['title'])));
+	endif; ?>
 	<div class="row full-width">
 		<div class="small-8 small-centered columns">
 
@@ -26,11 +42,6 @@
 	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
 	  				endforeach;
 	  			?>
-			   <!--  <?php
-		  			foreach($evokations as $e):
-	  					echo $this->element('evokation_red_box', array('e' => $e));
-	  				endforeach;
-	  			?> -->
 			  </div>
 			  <div class="content" id="panel2-2">
 			    <?php
@@ -47,22 +58,25 @@
 	  			?>
 			  </div>
 			</div>
+
 			<?php if(isset($mission['Mission'])): ?>
-				<a class="button" href="" data-reveal-id="newGroup" data-reveal>
+				<a class="button general" href="" data-reveal-id="newGroup" data-reveal>
 					<span><?php echo __('Create a group');?></span>
 				</a>
-				<div id="newGroup" class="reveal-modal small" data-reveal>
+				<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
 					<?= $this->element('add_group', array('mission' => $mission, 'userid' => $user['User']['id']));?>
 					<a class="close-reveal-modal">&#215;</a>
 				</div>
+
 			<?php else : ?>
-				<a class="button" href="" data-reveal-id="newGroup" data-reveal>
+				<a class="button general" href="" data-reveal-id="newGroup" data-reveal>
 					<span><?php echo __('Create a group');?></span>
 				</a>
-				<div id="newGroup" class="reveal-modal small" data-reveal>
+				<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
 					<?= $this->element('add_group', array('userid' => $user['User']['id']));?>
 					<a class="close-reveal-modal">&#215;</a>
 				</div>
+
 			<?php endif; ?>
 		</div>
 	</div>

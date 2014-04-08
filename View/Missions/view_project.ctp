@@ -14,6 +14,21 @@
 
 <section class="evoke background padding top-2">
 
+	<nav class="evoke breadcrumbs">
+	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
+
+	  <a class="unavailable" href="#"><?php echo sprintf(__('Mission %s'), $mission['Mission']['title']);?></a>
+
+	  	<?php foreach($missionPhases as $mp):
+
+	  		if($mp['Phase']['position'] < $missionPhase['Phase']['position'])
+	  			echo $this->Html->link($mp['Phase']['name'], array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $mp['Phase']['position']));
+
+  		endforeach; ?>
+
+	  <a class="current" href="#"><?php echo $missionPhase['Phase']['name'];?></a>
+	</nav>
+
 	<div class = "evoke position">
 		<?= $this->element('left_titlebar', array('title' => sprintf(__('Phase: %s'), $missionPhase['Phase']['name']))) ?>
 	</div>
@@ -64,7 +79,7 @@
 							</div>
 						</li>
 
-						<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke quests lightbox" data-reveal>
+						<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
 						  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
 						  <a class="evoke mission close-reveal-modal">&#215;</a>
 						</div>
@@ -203,7 +218,7 @@
 	  <div class="large-4 columns">
 	  		
 
-		<div class = "evoke position" style = "margin: 0px 1%;">
+		<div class = "evoke position" style = "margin: 5% 15%;">
 			<img src = '<?= $this->webroot.'img/espiral.png' ?>' style = " width: 100%;">
 			<div class = "evoke todo-list">
 				<div class = "evoke todo-list content">
@@ -245,17 +260,18 @@
 				  	</ul>
                 </div>
 			</div>
+
+			<?php if(isset($nextMP)){ ?>
+
+		  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right fa-lg"></i></a> </br>
+
+		  	<?php } if(isset($prevMP)) {?>
+
+		  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position'])); ?>" class = "button general green"><i class="fa fa-arrow-left fa-lg"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf(__('Go back to %s'), $prevMP['Phase']['name']);?></a>
+
+		  	<?php } ?>
+
 		</div>
-
-		<?php if(isset($nextMP)){ ?>
-
-	  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right fa-2x"></i></a> </br>
-
-	  	<?php } if(isset($prevMP)) {?>
-
-	  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position'])); ?>" class = "button general green"><i class="fa fa-arrow-left fa-2x"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf(__('Go back to %s'), $prevMP['Phase']['name']);?></a>
-
-	  	<?php } ?>
 	  	
 	  </div>
 	</div>

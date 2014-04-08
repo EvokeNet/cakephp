@@ -33,7 +33,7 @@
 }
 
 .evoke.todo-list.content{
-	padding: 20px 0px 50px;
+	padding: 20px 0px 100px;
 }
 
 .evoke.todo-list.content h1{
@@ -87,7 +87,7 @@
 }
 
 .evoke.missions.data p{
-	font-size:1.2vw;
+	font-size:1.5vw;
 }
 
 .evoke.adjust-row{
@@ -156,7 +156,7 @@
 .evoke.mission.status-bg span{
 	color:#fff;
 	font-size:4.0vw;
-	font-family: 'AlegreyaRegular';
+	font-family: 'AlegreyaBold';
 }
 
 .evoke.mission.status.progress{
@@ -262,38 +262,6 @@
          transform: matrix(-1, -0.1, 0, 1, 0, 0);
 }
 
-.evoke.mission.quest-bg{
-	background-color:#000;
-}
-
-.evoke.quests.lightbox{
-	background-color: #000;
-	border: 1px solid #c65862;
-	width: 70%!important;
-}
-
-.evoke.quests.content h2{
-	color:#fff;
-	font-family: 'AlegreyaRegular';
-	font-size:3.0vw;
-	margin-bottom:20px;
-}
-
-.evoke.quests.content p{
-	color:#fff;
-	font-family: 'AlegreyaRegular';
-	font-size:1.5vw;
-}
-
-.evoke.mission.close-reveal-modal{
-	background-color: #19708e;
-	color: #000;
-	border-radius: 50%;
-	height: 25px;
-	width: 25px;
-	padding-left: 6px;
-}
-
 .evoke.mission.pink fieldset{
 	border: 3px solid #c65862;
 }
@@ -309,4 +277,8 @@
 	color:#fff;
 	font-size:2.0vw;
 	text-align:center;
+}
+
+.evoke.quests.content{
+	min-width:400px!important;
 }

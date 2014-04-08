@@ -18,6 +18,10 @@
 	font-size: 1.2vw;
 }
 
+.ribbon-front.blue {
+	background-color: #008cba;
+}
+
   .ribbon-front,
   .ribbon-back-left,
   .ribbon-back-right

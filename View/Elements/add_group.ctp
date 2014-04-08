@@ -12,8 +12,8 @@
 			'action' => 'add'
 		));
 ?>
-	<fieldset>
-		<legend><?php echo __('Add Group'); ?></legend>
+
+	<h2><?php echo __('Add Group'); ?></h2>
 	<?php
 		echo $this->Form->input('title', array('required' => true));
 		if(isset($mission)) 
@@ -24,6 +24,8 @@
 		echo $this->Form->input('description', array('required' => true, 'type' => 'textarea'));
 
 	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Create Group')); ?>
+
+<?php //echo $this->Form->end(__('Create Group')); ?>
+
+<button type="submit" class= "evoke button general"><?= strtoupper(__('Create Group')) ?></button>
 </div>

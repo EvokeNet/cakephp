@@ -26,6 +26,19 @@
 			<li class="name">
 				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1></a>
 			</li>
+
+			<li class="evoke divider"></li>
+
+			<li  class="has-dropdown">
+				<a href="#"><?= __('Language') ?></a>
+				<ul class="dropdown">
+					<li><?= $this->Html->link(__('English'), array('action'=>'changeLanguage', 'en')) ?></li>
+					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
+				</ul>
+			</li>
+
+			<li class="evoke divider"></li>
+			
 			<li class="has-dropdown">
 				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
 				<ul class="dropdown">
@@ -57,20 +70,29 @@
 		<?= $this->element('left_titlebar', array('title' => __(sprintf(__("Agent's %s Dashboard"), $user['User']['name'])))) ?>
 	</div>
 
+	<!-- <div class = "evoke position">
+		<div class = "evoke titles-left">
+			<img src = '<?= $this->webroot.'img/small_bar.png' ?>'>
+			<div class = "evoke titles" style = "margin-left: -150px;"><h4><?php echo strtoupper(__(sprintf(__("Agent's %s Dashboard"), $user['User']['name'])));?></h4></div>
+			
+		</div>
+	</div> -->
+
 	<div class = "evoke dashboard position">
-		  		<div class = "evoke titles-right">
-		  			<div class = "evoke titles titles-ajust">
-				  		<dl class="tabs" data-tab>
-						  <dd><h4><?php echo strtoupper(__('Projects and Evidences'));?></h4></dd>
-						  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
-						  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
-						  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
-						</dl>
-					</div>
-					<!-- <img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke dashboard horizontal_bar absolute-right"> -->
-					<img src = '<?= $this->webroot.'img/smallbar.png' ?>' class = "evoke tabs-small-bar-size">
-				</div>
+  		<div class = "evoke titles-right">
+  			<div class = "evoke titles titles-ajust">
+		  		<dl class="tabs" data-tab>
+				  <dd><h4><?php echo strtoupper(__('Projects and Evidences'));?></h4></dd>
+				  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
+				  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
+				  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
+				</dl>
 			</div>
+			<!-- <img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke dashboard horizontal_bar absolute-right"> -->
+			<!-- <img src = '<?= $this->webroot.'img/smallbar.png' ?>' class = "evoke tabs-small-bar-size"> -->
+			<img src = '<?= $this->webroot.'img/smallbar.png' ?>' class = "evoke small-bar-size" style = "margin-top: -2%;">
+		</div>
+	</div>
 
 	<div class="row full-width">
 		<div class="medium-3 columns">
@@ -78,7 +100,7 @@
 				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%"/>
 
 				<div class="row">
-					  <div class="small-4 columns"><a href = "https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
+					  <div class="small-4 columns"><a href = "https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
 					  <div class="small-8 columns evoke dashboard tag-padding">
 						<div class = "evoke dashboard agent info">
 							<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
@@ -126,14 +148,25 @@
 					</div>
 
 					<div class = "evoke screen-box allies" style = "padding: 40px 20px">
-						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>' class = "evoke dashboard users-icon"><span>Leslie Knope</span></div>
+
+						<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
+						  <li><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>'><span>Leslie Knope</span></li>
+						  <li><img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>'><span>Ron Swanson</span></li>
+						  <li><img src = '<?= $this->webroot.'img/test_users/tom.jpg' ?>'><span>Tom Haverford</span></li>
+						  <li><img src = '<?= $this->webroot.'img/test_users/chris.jpg' ?>'><span>Chris Traeger</span></li>
+						  <li><img src = '<?= $this->webroot.'img/test_users/andy.jpg' ?>'><span>Andy Dwyer</span></li>
+						  <li><img src = '<?= $this->webroot.'img/test_users/ben.jpg' ?>'><span>Ben Wyatt</span></li>
+						  <li><img src = '<?= $this->webroot.'img/test_users/april.jpg' ?>'><span>April Ludgate</span></li>
+						</ul>
+
+						<!-- <div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>' class = "evoke dashboard users-icon"><span>Leslie Knope</span></div>
 						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>' class = "evoke dashboard users-icon"><span>Ron Swanson</span></div>
 						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/tom.jpg' ?>' class = "evoke dashboard users-icon"><span>Tom Haverford</span></div>
 						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/chris.jpg' ?>' class = "evoke dashboard users-icon"><span>Chris Traeger</span></div>
 						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/andy.jpg' ?>' class = "evoke dashboard users-icon"><span>Andy Dwyer</span></div>
 						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/ben.jpg' ?>' class = "evoke dashboard users-icon"><span>Ben Wyatt</span></div>
 						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/april.jpg' ?>' class = "evoke dashboard users-icon"><span>April Ludgate</span></div>
-						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/ann.jpg' ?>' class = "evoke dashboard users-icon"><span>Ann Perkins</span></div>
+						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/ann.jpg' ?>' class = "evoke dashboard users-icon"><span>Ann Perkins</span></div> -->
 					</div>
 
 				</div>
@@ -147,16 +180,23 @@
 
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height-two"/></div>
 					</div>
-					<div class = "evoke screen-box badges" style = "padding: 40px 10px">
-						<img src = '<?= $this->webroot.'img/badge1.png' ?>' class = "evoke dashboard badges-icon">
-						<img src = '<?= $this->webroot.'img/badge2.png' ?>' class = "evoke dashboard badges-icon">
-						<img src = '<?= $this->webroot.'img/badge3.png' ?>' class = "evoke dashboard badges-icon">
-						<img src = '<?= $this->webroot.'img/badge4.png' ?>' class = "evoke dashboard badges-icon">
+					<div class = "evoke screen-box badges" style = "padding: 20px 10px 10px 40px;">
+						<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
+						  <li><img src = '<?= $this->webroot.'img/badge1.png' ?>'></li>
+						  <li><img src = '<?= $this->webroot.'img/badge2.png' ?>'></li>
+						  <li><img src = '<?= $this->webroot.'img/badge3.png' ?>'></li>
+						  <li><img src = '<?= $this->webroot.'img/badge4.png' ?>'></li>
+						  <li><img src = '<?= $this->webroot.'img/badge1.png' ?>'></li>
+						  <li><img src = '<?= $this->webroot.'img/badge2.png' ?>'></li>
+						  <li><img src = '<?= $this->webroot.'img/badge3.png' ?>'></li>
+						</ul>
 					</div>
 				</div>
 
-				<div class = "evoke text-align position">
-					<img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class = "badges_bar"/>
+				<div class = "evoke dashboard position" style = "margin-top: -60px;">
+					<div class = "evoke dashboard bottom-bar">
+						<img src = '<?= $this->webroot.'img/vertical_bar.png' ?>'/>
+					</div>
 				</div>
 
 			</div>
@@ -194,6 +234,7 @@
 				</div>
 
 				<div class = "evoke dashboard position">
+
 					<?php echo $this->element('right_titlebar', array('title' => (__('Leadercloud')))); ?>
 
 					<div class = "evoke screen-box allies dashboard leadercloud margin">

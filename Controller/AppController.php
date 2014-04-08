@@ -38,7 +38,7 @@ class AppController extends Controller {
     );
 
     public $helpers = array(
-        'Chosen.Chosen', 'Media.Media'
+        'Chosen.Chosen', 'Media.Media', 'Menu'
     );
 
     public $user = null;

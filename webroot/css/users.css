@@ -55,7 +55,7 @@
 .columns h4{
 	font-family: 'SBB';
 	text-align: center;
-	font-size: 1.5vw;
+	font-size: 1.2vw;
 }
 
 .columns h5{
@@ -282,6 +282,7 @@
 	font-family: 'AlegreyaRegular';
 	font-size:5.0vw;
 	margin: 10px 20px 0px 0px;
+	text-shadow: 3px 2px 2px #7b7b7b;
 }
 
 .evoke.dashboard.leadercloud h2{
@@ -379,7 +380,7 @@
 	border:5px solid #000;
 	border-radius:20px;
 	max-width:550px;
-	margin: 0px auto;
+	margin: 0px auto 50px;
 	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
@@ -403,7 +404,7 @@
 .evoke.dashboard.bottom-bar{
 	text-align: start;
 	margin-left: 50%;
-	margin-top: -15px;
+	/*margin-top: -15px;*/
 }
 
 .evoke.dashboard.badges-icon{
@@ -429,4 +430,22 @@
 	max-height: 90px;
 	max-width: 90px;
 	/*margin: 0px 10px 20px 0px;*/
+}
+
+.evoke.login-lightbox{
+	background-color: #dcdcdc;
+	border-radius: 20px;
+	border: 3px solid #000;
+	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+}
+
+.evoke.login-lightbox h2{
+	font-family:'SBB';
+}
+
+.evoke.login-lightbox label{
+	font-family: 'AlegreyaBold';
+	font-size:1.0vw;
 }

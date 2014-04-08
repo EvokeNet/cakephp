@@ -26,18 +26,25 @@
 	  		<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
 		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']))?>"><h1><?= $group['Group']['title']?></h1>
 		 	
-		 	<!-- <p><?php echo $group['Group']['biography'] ?></p> -->
+		 	<div class = "evoke border-bottom"></div>
+
+		 	<p><?php echo $group['Group']['description'] ?></p>
+
+		 	<div class = "evoke border-bottom"></div>
+		 	
 		 	<i class="fa fa-facebook-square fa-2x"></i>&nbsp;
 			<i class="fa fa-google-plus-square fa-2x"></i>&nbsp;
 			<i class="fa fa-twitter-square fa-2x"></i>
 
+			<div class = "evoke border-bottom"></div>
+
 			<?php if($can_edit) : ?>
-				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $evokation['Evokation']['group_id'])); ?>" class = "button"><?php echo __('Edit Project');?></a></div>
+				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $evokation['Evokation']['group_id'])); ?>" class = "button general"><?php echo __('Edit Project');?></a></div>
 			<?php else : ?>
 				<?php if($Follows) :?>
-					<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $evokation['Evokation']['id'])); ?>" class = "button"><?php echo __('Unfollow');?></a></div>
+					<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $evokation['Evokation']['id'])); ?>" class = "button general"><?php echo __('Unfollow');?></a></div>
 				<?php else :?>
-					<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $evokation['Evokation']['id'])); ?>" class = "button"><?php echo __('Follow');?></a></div>
+					<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $evokation['Evokation']['id'])); ?>" class = "button general"><?php echo __('Follow');?></a></div>
 				<?php endif; ?>	
 			<?php endif; ?>
 	 	</div>
