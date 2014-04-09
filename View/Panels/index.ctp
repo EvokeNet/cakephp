@@ -8,15 +8,16 @@
 		<li class="name">
 			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></h1>
 		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+		<!-- <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li> -->
 	</ul>
 
-	<section class="evoke top-bar-section">
+	<section class="evoke dashboard top-bar-section">
 
 		<!-- Right Nav Section -->
 		<ul class="right">
+			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $userid)); ?>"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke top-bar icon"/></a></li>
 			<li class="name">
-				<h1><?= sprintf(__('Hi %s'), $username[0]) ?></h1>
+				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $userid)); ?>" class = "evoke top-bar-name"><h1><?= sprintf(__('Hi %s'), $username[0]) ?></h1></a>
 			</li>
 			<li class="has-dropdown">
 				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
@@ -34,7 +35,7 @@
 			</li>
 		</ul>
 
-		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
+		<h3><?php echo sprintf(__("Welcome to Evoke's Administration Panel"));?></h3>
 
 	</section>
 </nav>
@@ -44,7 +45,6 @@
 <section class="margin top-2">
 	<div class="row max-width">
 		<div class="large-12 columns">
-			<h1><?= __('Admin Panel') ?></h1>
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><?= __('Organizations') ?></a></dd>
 				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><?= __('Missions') ?></a></dd>
@@ -250,13 +250,9 @@
 	echo $this->Html->script('/components/jquery/jquery.min.js');
 	echo $this->Html->script('/components/foundation/js/foundation.min.js');
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
-
-	echo $this->Html->script('panels');
-?>
-<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>
-<link rel='stylesheet' href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"/>
-<?php
+	echo $this->Html->css('animate');
 	echo $this->Html->script('jquery.watable');
+
 ?>
 
 <script type="text/javascript" charset="utf-8">
@@ -290,32 +286,32 @@
                 }
             },
             tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
-                console.log('table created'); //data.table holds the html table element.
-                console.log(data);            //'this' keyword also holds the html table element.
+                //console.log('table created'); //data.table holds the html table element.
+                //console.log(data);            //'this' keyword also holds the html table element.
             },
             rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
-                console.log('row clicked');   //data.event holds the original jQuery event.
-                console.log(data);            //data.row holds the underlying row you supplied.
+                //console.log('row clicked');   //data.event holds the original jQuery event.
+                //console.log(data);            //data.row holds the underlying row you supplied.
                                               //data.column holds the underlying column you supplied.
                                               //data.checked is true if row is checked.
                                               //'this' keyword holds the clicked element.
-                if ( $(this).hasClass('userId') ) {
-                  data.event.preventDefault();
-                  alert('You clicked userId: ' + data.row.userId);
-                }
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
             },
             columnClicked: function(data) {    //Fires when a column is clicked
-              console.log('column clicked');  //data.event holds the original jQuery event
-              console.log(data);              //data.column holds the underlying column you supplied
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
                                               //data.descending is true when sorted descending (duh)
             },
             pageChanged: function(data) {      //Fires when manually changing page
-              console.log('page changed');    //data.event holds the original jQuery event
-              console.log(data);              //data.page holds the new page index
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
             },
             pageSizeChanged: function(data) {  //Fires when manually changing pagesize
-              console.log('pagesize changed');//data.event holds teh original event
-              console.log(data);              //data.pageSize holds the new pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
             }
         }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
 
@@ -361,32 +357,32 @@
                 }
             },
             tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
-                console.log('table created'); //data.table holds the html table element.
-                console.log(data);            //'this' keyword also holds the html table element.
+                // console.log('table created'); //data.table holds the html table element.
+                // console.log(data);            //'this' keyword also holds the html table element.
             },
             rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
-                console.log('row clicked');   //data.event holds the original jQuery event.
-                console.log(data);            //data.row holds the underlying row you supplied.
-                                              //data.column holds the underlying column you supplied.
-                                              //data.checked is true if row is checked.
-                                              //'this' keyword holds the clicked element.
-                if ( $(this).hasClass('userId') ) {
-                  data.event.preventDefault();
-                  alert('You clicked userId: ' + data.row.userId);
-                }
+                // console.log('row clicked');   //data.event holds the original jQuery event.
+                // console.log(data);            //data.row holds the underlying row you supplied.
+                //                               //data.column holds the underlying column you supplied.
+                //                               //data.checked is true if row is checked.
+                //                               //'this' keyword holds the clicked element.
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
             },
             columnClicked: function(data) {    //Fires when a column is clicked
-              console.log('column clicked');  //data.event holds the original jQuery event
-              console.log(data);              //data.column holds the underlying column you supplied
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
                                               //data.descending is true when sorted descending (duh)
             },
             pageChanged: function(data) {      //Fires when manually changing page
-              console.log('page changed');    //data.event holds the original jQuery event
-              console.log(data);              //data.page holds the new page index
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
             },
             pageSizeChanged: function(data) {  //Fires when manually changing pagesize
-              console.log('pagesize changed');//data.event holds teh original event
-              console.log(data);              //data.pageSize holds the new pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
             }
         }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
 
@@ -430,32 +426,32 @@
                 }
             },
             tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
-                console.log('table created'); //data.table holds the html table element.
-                console.log(data);            //'this' keyword also holds the html table element.
+                // console.log('table created'); //data.table holds the html table element.
+                // console.log(data);            //'this' keyword also holds the html table element.
             },
             rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
-                console.log('row clicked');   //data.event holds the original jQuery event.
-                console.log(data);            //data.row holds the underlying row you supplied.
-                                              //data.column holds the underlying column you supplied.
-                                              //data.checked is true if row is checked.
-                                              //'this' keyword holds the clicked element.
-                if ( $(this).hasClass('userId') ) {
-                  data.event.preventDefault();
-                  alert('You clicked userId: ' + data.row.userId);
-                }
+                // console.log('row clicked');   //data.event holds the original jQuery event.
+                // console.log(data);            //data.row holds the underlying row you supplied.
+                //                               //data.column holds the underlying column you supplied.
+                //                               //data.checked is true if row is checked.
+                //                               //'this' keyword holds the clicked element.
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
             },
             columnClicked: function(data) {    //Fires when a column is clicked
-              console.log('column clicked');  //data.event holds the original jQuery event
-              console.log(data);              //data.column holds the underlying column you supplied
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
                                               //data.descending is true when sorted descending (duh)
             },
             pageChanged: function(data) {      //Fires when manually changing page
-              console.log('page changed');    //data.event holds the original jQuery event
-              console.log(data);              //data.page holds the new page index
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
             },
             pageSizeChanged: function(data) {  //Fires when manually changing pagesize
-              console.log('pagesize changed');//data.event holds teh original event
-              console.log(data);              //data.pageSize holds the new pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
             }
         }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
 
@@ -500,32 +496,32 @@
                 }
             },
             tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
-                console.log('table created'); //data.table holds the html table element.
-                console.log(data);            //'this' keyword also holds the html table element.
+                // console.log('table created'); //data.table holds the html table element.
+                // console.log(data);            //'this' keyword also holds the html table element.
             },
             rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
-                console.log('row clicked');   //data.event holds the original jQuery event.
-                console.log(data);            //data.row holds the underlying row you supplied.
-                                              //data.column holds the underlying column you supplied.
-                                              //data.checked is true if row is checked.
-                                              //'this' keyword holds the clicked element.
-                if ( $(this).hasClass('userId') ) {
-                  data.event.preventDefault();
-                  alert('You clicked userId: ' + data.row.userId);
-                }
+                // console.log('row clicked');   //data.event holds the original jQuery event.
+                // console.log(data);            //data.row holds the underlying row you supplied.
+                //                               //data.column holds the underlying column you supplied.
+                //                               //data.checked is true if row is checked.
+                //                               //'this' keyword holds the clicked element.
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
             },
             columnClicked: function(data) {    //Fires when a column is clicked
-              console.log('column clicked');  //data.event holds the original jQuery event
-              console.log(data);              //data.column holds the underlying column you supplied
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
                                               //data.descending is true when sorted descending (duh)
             },
             pageChanged: function(data) {      //Fires when manually changing page
-              console.log('page changed');    //data.event holds the original jQuery event
-              console.log(data);              //data.page holds the new page index
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
             },
             pageSizeChanged: function(data) {  //Fires when manually changing pagesize
-              console.log('pagesize changed');//data.event holds teh original event
-              console.log(data);              //data.pageSize holds the new pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
             }
         }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
 
@@ -571,32 +567,32 @@
                 }
             },
             tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
-                console.log('table created'); //data.table holds the html table element.
-                console.log(data);            //'this' keyword also holds the html table element.
+                // console.log('table created'); //data.table holds the html table element.
+                // console.log(data);            //'this' keyword also holds the html table element.
             },
             rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
-                console.log('row clicked');   //data.event holds the original jQuery event.
-                console.log(data);            //data.row holds the underlying row you supplied.
-                                              //data.column holds the underlying column you supplied.
-                                              //data.checked is true if row is checked.
-                                              //'this' keyword holds the clicked element.
-                if ( $(this).hasClass('userId') ) {
-                  data.event.preventDefault();
-                  alert('You clicked userId: ' + data.row.userId);
-                }
+                // console.log('row clicked');   //data.event holds the original jQuery event.
+                // console.log(data);            //data.row holds the underlying row you supplied.
+                //                               //data.column holds the underlying column you supplied.
+                //                               //data.checked is true if row is checked.
+                //                               //'this' keyword holds the clicked element.
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
             },
             columnClicked: function(data) {    //Fires when a column is clicked
-              console.log('column clicked');  //data.event holds the original jQuery event
-              console.log(data);              //data.column holds the underlying column you supplied
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
                                               //data.descending is true when sorted descending (duh)
             },
             pageChanged: function(data) {      //Fires when manually changing page
-              console.log('page changed');    //data.event holds the original jQuery event
-              console.log(data);              //data.page holds the new page index
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
             },
             pageSizeChanged: function(data) {  //Fires when manually changing pagesize
-              console.log('pagesize changed');//data.event holds teh original event
-              console.log(data);              //data.pageSize holds the new pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
             }
         }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
 

@@ -59,6 +59,8 @@ class PanelsController extends AppController {
 		$userid = $this->user['id'];
 		$userrole = $this->user['role_id'];
 
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $userid)));
+
 		//loading things that are independent from user role (admin/manager)
 		$issues = $this->Issue->getIssues();
 
@@ -191,7 +193,7 @@ class PanelsController extends AppController {
 			)
 		));		
 		
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues',
 			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
 	}
