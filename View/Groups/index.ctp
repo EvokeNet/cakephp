@@ -22,7 +22,6 @@
 			  <div class="content active" id="panel2-1">
 			  	<?php
 		  			foreach($groups as $e):
-		  				//debug($users_groups);
 	  					echo $this->element('group_box', array('e' => $e, 'user' => $user, 'users' => $users_groups));
 	  				endforeach;
 	  			?>

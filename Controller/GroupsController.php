@@ -172,6 +172,8 @@ class GroupsController extends AppController {
  * @return void
  */
 	public function add($mission_id = null) {
+		if(isset($this->request->data['Group']['mission_id']))
+			$mission_id = $this->request->data['Group']['mission_id'];
 		if ($this->request->is('post')) {
 			$this->Group->create();
 			if ($this->Group->save($this->request->data)) {
