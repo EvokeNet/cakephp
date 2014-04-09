@@ -53,6 +53,7 @@ class PanelsController extends AppController {
 		$users_tab = $this->defineCurrentTab('users', $args);
 		$media_tab = $this->defineCurrentTab('media', $args);
 		$statistics_tab = $this->defineCurrentTab('statistics', $args);
+		$settings_tab = $this->defineCurrentTab('settings', $args);
 
 		//loading infos to be shown at top bar
 		$username = explode(' ', $this->user['name']);
@@ -195,7 +196,7 @@ class PanelsController extends AppController {
 		
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues',
-			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
+			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
 	}
 
 /*
@@ -1049,5 +1050,23 @@ class PanelsController extends AppController {
 			    }
 			}
 		}
+	}
+
+/*
+* settings method
+* general settings such as max_global of agents per group
+*/
+	public function settings(){
+		$data = $this->request->data;
+		if(isset($data['Config']['max_global'])) {
+			$change['Group']['max_global'] = $data['Config']['max_global'];
+			$groups = $this->Group->find('all');
+			foreach ($groups as $group) {
+				$this->Group->id = $group['Group']['id'];
+
+				$this->Group->save($change);
+			}
+		}
+
 	}
 }

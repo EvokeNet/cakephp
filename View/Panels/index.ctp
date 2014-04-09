@@ -56,7 +56,7 @@
 				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
 				<?php if($flags['_admin']) : ?>
 					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Media') ?></a></dd>
-					<dd class="<?php echo '$settings_tab'; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
+					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
 				<?php endif; ?>	
 				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><?= __('Statistics') ?></a></dd>
 			</dl>
@@ -227,8 +227,30 @@
 				<div class="content <?php echo $media_tab; ?>" id="media">
 					<p>Upload videos/images and choose actions that triggers them...</p>
 				</div>
-				<div class="content <?php echo '$settings_tab'; ?>" id="settings">
-					<p>General settings</p>
+				<div class="content <?php echo $settings_tab; ?>" id="settings">
+					<?php
+						echo $this->Form->create('Config', array(
+								'url' => array(
+									'controller' => 'panels',
+									'action' => 'settings'
+								)
+						));
+
+						if(isset($groups[0]) && $groups[0]['Group']['max_global'] != 0) {
+							echo $this->Form->input('max_global', array(
+								'label' => __('Define the limit of agents per group: '),
+								'value' => $groups[0]['Group']['max_global']
+							));	
+						} else {
+							echo $this->Form->input('max_global', array(
+								'label' => __('Define the limit of agents per group: ')
+							));	
+						}						
+					?>
+					<button class="button small" type="submit">
+						<?php echo __('Save Settings')?>
+					</button>
+					<?php echo $this->Form->end(); ?>
 				</div>
 				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
 					<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>

@@ -86,7 +86,10 @@ class GroupsController extends AppController {
 			)
 		));
 
-		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong'));
+		$this->loadModel('GroupsUser');
+		$users_groups = $this->GroupsUser->find('all');
+
+		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong', 'users_groups'));
 	}
 
 
