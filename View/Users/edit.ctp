@@ -6,6 +6,7 @@
 			<fieldset>
 				<legend><?php echo __('Edit Profile'); ?></legend>
 			<?php
+				//echo $sumMyPoints;
 				echo $this->Form->input('id');
 				echo $this->Form->input('name', array('label' => __('Name')));
 				echo $this->Form->input('username', array('label' => __('Username')));

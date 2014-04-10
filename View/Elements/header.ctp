@@ -20,7 +20,7 @@
 
 			<li class="evoke divider"></li>
 
-			<li class = "evoke top-bar-level"><h5><?= __('Points') ?>&nbsp;&nbsp;&nbsp;<span>120</span></h5></li>
+			<li class = "evoke top-bar-level"><h5><?= __('Points') ?>&nbsp;&nbsp;&nbsp;<span><?= $sumMyPoints ?></span></h5></li>
 
 			<!-- <li class = "evoke top-bar-padding"><h5><?= __('Points') ?></h5>&nbsp;&nbsp;<h4>8</h4></li> -->
 

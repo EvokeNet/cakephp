@@ -20,7 +20,6 @@
 				<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
 				<i class="fa fa-twitter-square fa-lg"></i>
 			</div>
-
 			<?php 
 				$count_members = array();
 				$member = false;
@@ -57,7 +56,7 @@
 	</div>	
 </div>
 
-<div id="myModal" class="reveal-modal" data-reveal style = "background-color: #bc5660; border: 5px solid #000">
+<div id="<?= $e['Group']['id']?>" class="reveal-modal" data-reveal style = "background-color: #bc5660; border: 5px solid #000">
   <h2><?= __("Message below will be sent to owner's group")?></h2>
   <p class="lead"></p>
   <p></p>

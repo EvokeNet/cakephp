@@ -1,6 +1,6 @@
 <!-- Form for adding quests -->
 <?php 
-
+    
 	if(!isset($origin) || $origin != 'edit_mission') $origin = 'add_mission';
 	echo $this->Form->create('Quest', array(
  							   	'url' => array(
@@ -74,7 +74,7 @@
         + File
     </button>
 </div>
-	<button class="button tiny" type="submit">
+	<button class="button small" type="submit">
 		<?php echo __('Add Quest')?>
 	</button>
 	<?php echo $this->Form->end(); 

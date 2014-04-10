@@ -11,7 +11,7 @@ class PanelsController extends AppController {
 	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 
 		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier');
 	public $user = null;
-	public $helpers = array('Media.Media');
+	public $helpers = array('Media.Media', 'Chosen.Chosen');
 
 /**
 *

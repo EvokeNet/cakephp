@@ -11,8 +11,8 @@
 			'action' => 'add'
 		));
 ?>
-	<fieldset>
-		<legend><?php echo __('Add Group'); ?></legend>
+
+	<h2><?php echo __('Add Group'); ?></h2>
 	<?php
 		echo $this->Form->input('title', array('required' => true));
 		if(isset($mission)) 
@@ -44,7 +44,7 @@
 
 	?>
 	</fieldset>
-	<button class="button small" type="submit">
+	<button class="evoke button general" type="submit">
 		<?php echo __('Create Group')?>
 	</button>
 	<?php echo $this->Form->end(); ?>

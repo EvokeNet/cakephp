@@ -78,7 +78,15 @@
 								<legend><?php echo __('Add an Organization'); ?></legend>
 								<?php
 									echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
-									echo $this->Form->input('birthdate', array('label' => __('Birthdate')));
+									echo $this->Form->input('birthdate', array(
+										'label' => __('Birthdate'),
+										'style' => 'width: auto',
+										'separator' => '/',
+										'dateFormat' => 'DMY',
+    									'minYear' => date('Y') - 100,
+    									'maxYear' => date('Y'),
+									));
+
 									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
 									echo $this->Form->input('website', array('label' => __('Website')));
 									echo $this->Form->input('facebook');
@@ -86,12 +94,21 @@
 									echo $this->Form->input('blog');
 									if($flags['_admin']) {
 										//if its an admin, use $possible_managers..
-										echo $this->Form->input('UserOrganization.users_id', array(
+										/*echo $this->Form->input('UserOrganization.users_id', array(
 											'label' => __('Possible Managers'),
 											'options' => $possible_managers,
 											'multiple' => 'checkbox',
 											'required' => true
-										));
+										));*/
+										echo $this->Chosen->select(
+										    'UserOrganization.users_id',
+										    $possible_managers,
+										    array(
+										    	'data-placeholder' => __('Select the managers').'...', 
+										    	'multiple' => true, 
+										    	'style' => 'width: 100%; height: 36px;'
+										    )
+										);
 									} else {
 										//else use my id
 										echo $this->Form->hidden('UserOrganization.user_id', array('value' => $userid));
@@ -236,9 +253,11 @@
 								)
 						));
 
+						echo '<div class="row">';
+
 						if(isset($groups[0]) && $groups[0]['Group']['max_global'] != 0) {
 							echo $this->Form->input('max_global', array(
-								'label' => __('Define the limit of agents per group: '),
+								//'label' => __('Define the limit of agents per group: '),
 								'value' => $groups[0]['Group']['max_global']
 							));	
 						} else {
@@ -246,6 +265,8 @@
 								'label' => __('Define the limit of agents per group: ')
 							));	
 						}						
+
+						echo '</div>';
 					?>
 					<button class="button small" type="submit">
 						<?php echo __('Save Settings')?>
@@ -695,11 +716,13 @@
         while(i <= <?php echo sizeof($missions_issues); ?>)
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var url = getCorrectURL("missions/view/");
+            var url2 = getCorrectURL("issues/view/");
             var doc = {
                 userRole: missionIssue(i-1),//"user",//GET ROLE OF USER
-                userRoleFormat: "<a href='issues/view/"+ missionIssueId(i-1) +"' class='userId' target='_blank'>{0}</a>",
+                userRoleFormat: "<a href='"+ url2+ missionIssueId(i-1) +"' class='userId' target='_blank'>{0}</a>",
                 name: missionName(i-1),
-                nameFormat: "<a href='missions/view/"+ missionId(i-1) +"/1' class='name' target='_blank'>{0}</a>:     " + missionButtons(i-1)
+                nameFormat: "<a href='" + url + missionId(i-1) +"/1' class='name' target='_blank'>{0}</a>:     " + missionButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -818,9 +841,10 @@
         ?>
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var url = getCorrectURL("missions/view/");
             var strU = '"ShowUser-' + usersId[i-1] + '"';
             var strRoleFormat = "<a href='#' onclick='document.getElementById(" + strU +").click();' class='userId'>{0}</a>";
-            var strMissionFormat = "<a href='missions/view/"+ usersMissionId[i-1] +"/1' class='name' target='_blank'>{0}</a>";//
+            var strMissionFormat = "<a href='" + url + usersMissionId[i-1] +"/1' class='name' target='_blank'>{0}</a>";//
 
             var doc = {
                 <?php
@@ -915,11 +939,13 @@
         while(i <= <?php echo $badges_size; ?>)
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var url = getCorrectURL("organizations/view/");
+            var url2 = getCorrectURL("badges/view/");
             var doc = {
                 userRole: orgsBadgeName[i-1],//"user",//GET ROLE OF USER
-                userRoleFormat: "<a href='organizations/view/"+ orgsBadgeId[i-1] +"' class='userId' target='_blank'>{0}</a>",
+                userRoleFormat: "<a href='" + url + orgsBadgeId[i-1] +"' class='userId' target='_blank'>{0}</a>",
                 name: badgesName[i-1],
-                nameFormat: "<a href='badges/view/"+ badgesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + badgeButtons(i-1)
+                nameFormat: "<a href='"+ url2 + badgesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + badgeButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -978,9 +1004,10 @@
         while(i <= <?php echo $orgs_size; ?>)
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var url = getCorrectURL("organizations/view/");
             var doc = {
                 name: orgsName[i-1],
-                nameFormat: "<a href='organizations/view/"+ orgsId[i-1] +"' class='name' target='_blank'>{0}</a>:     " + orgsButtons(i-1)
+                nameFormat: "<a href='"+ url + orgsId[i-1] +"' class='name' target='_blank'>{0}</a>:     " + orgsButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1039,9 +1066,10 @@
         while(i <= <?php echo $issues_size; ?>)
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var url = getCorrectURL("issues/view/");
             var doc = {
                 name: issuesName[i-1],
-                nameFormat: "<a href='issues/view/"+ issuesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + issuesButtons(i-1)
+                nameFormat: "<a href='" + url + issuesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + issuesButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1101,23 +1129,44 @@
     }
 
     function badgeButtons(i) {
+    	var url = getCorrectURL("badges/edit/");
     	var str = "'deleteBadge" + badgesId[i] + "'";
-    	return '<a href="badges/edit/'+ badgesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="'+ url + badgesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
 	function orgsButtons(i) {
-    	var str = "'orgsDelete" + orgsId[i] + "'";
-    	return '<a href="organizations/edit/'+ orgsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	var url = getCorrectURL("organizations/edit/");
+    	str = "'orgsDelete" + orgsId[i] + "'";
+    	return '<a href="'+ url + orgsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
     function issuesButtons(i) {
+    	var url = getCorrectURL("issues/edit/");
     	var str = "'issuesDelete" + issuesId[i] + "'";
-    	return '<a href="issues/edit/'+ issuesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="'+ url + issuesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
     function missionButtons(i) {
+    	var url = getCorrectURL("panels/edit_mission/");
     	var str = "'deleteMission" + missionsId[i] + "'";
-    	return '<a href="panels/edit_mission/'+ missionsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="' + url  + missionsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    }
+
+    function getCorrectURL(afterHome){
+    	var str = document.URL;
+    	
+    	str = str.substr(7, str.length);
+    	str = str.substr(str.indexOf("/"), str.length);
+    	if(str.length>1) {
+    		str = str.substr(0, str.indexOf('/', 1));
+    		//alert(str);	
+    		str = str + '/' + afterHome;
+    		return str;
+    	} else {
+    		//alert(str);	
+    		return afterHome;
+    	}
+    	//alert(str);
     }
 
 

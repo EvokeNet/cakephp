@@ -23,6 +23,17 @@ class Group extends AppModel {
 	public function getGroups($options = null) {
 		return $this->find('all', $options);
 	}
+
+	public function afterSave($created, $options = array()) {
+       
+       	if($created){
+	        $event = new CakeEvent('Model.Group.create', $this);
+
+	        $this->getEventManager()->dispatch($event);
+
+	        return true;
+	    }	
+    }
 	
 /**
  * belongsTo associations

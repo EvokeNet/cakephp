@@ -21,6 +21,17 @@ class GroupsUser extends AppModel {
 		return $this->GroupsUser->find('first', array('conditions' => array('GroupsUser.group_id' => $group_id, 'GroupsUser.user_id' => $user_id)));
 	}
 
+	public function afterSave($created, $options = array()) {
+       
+       	if($created){
+	        $event = new CakeEvent('Model.GroupsUser.join', $this);
+
+	        $this->getEventManager()->dispatch($event);
+
+	        return true;
+	    }	
+    }
+
 /**
  * belongsTo associations
  *

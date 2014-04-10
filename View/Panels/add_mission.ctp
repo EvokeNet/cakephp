@@ -137,13 +137,13 @@
 							echo '<h4>' . __('Your mission will not be accessible until it has at least one phase.') . '</h4>';
 						else :
 							foreach ($phases as $phase) : ?>
-							<table class="large-8 columns">
+							<table class="table table-hovered table-bordered table-condensed">
 								<thead>
 									<tr>
 										<td>
-											<?php echo __('Phase') . ': ' . $phase['Phase']['name'];?>
+											<?php echo $phase['Phase']['name']. ': ';?>
 										</td>
-										<td>
+										<td style="text-align:right">
 											<!-- lightbox to add quest to certain phase -->
 					  						<a href="#" data-reveal-id="myModalQuest" onclick="document.getElementById('phase').setAttribute('value', '<?php echo $phase['Phase']['id']; ?>')" data-reveal><?php echo __('Add a Quest');?></a> | <?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_phase', $id, $phase['Phase']['id'], 'add_mission'));?>
 										</td>

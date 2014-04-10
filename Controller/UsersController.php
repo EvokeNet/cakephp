@@ -23,6 +23,8 @@ class UsersController extends AppController {
 
 	public $user = null;
 
+	public $helpers = array('Menu');
+
 /**
 *
 * beforeFilter method
@@ -195,6 +197,22 @@ class UsersController extends AppController {
 		//debug($user_data);
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
+		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+
+		$sumMyPoints = 0;
+		
+		foreach($myPoints as $point){
+			$sumMyPoints += $point['Point']['value'];
+		}
+
+		$points = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $id)));
+
+		$sumPoints = 0;
+		
+		foreach($points as $point){
+			$sumPoints += $point['Point']['value'];
+		}
+
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
 
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
@@ -227,8 +245,6 @@ class UsersController extends AppController {
 			}
 				
 		}
-
-
 
 		$this->loadModel('Group');
 		$groups = $this->Group->find('all', array('joins' => array(
@@ -271,7 +287,7 @@ class UsersController extends AppController {
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
-			'missionIssues', 'issues', 'imgs'));
+			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');
@@ -465,25 +481,35 @@ class UsersController extends AppController {
 		//if so, he can edit whoever he likes
 		//otherwise, you are not allowed to edit agents but
 		// yourself and will be redirected home
-		if($this->getUserRole() != 1) {
-			if($id != $this->getUserId()) {
-				$this->Session->setFlash(__("You can't edit other users. Permission denied."));	
-				$this->redirect($this->referer());
-			}
-		}
+		
+		// if($this->getUserRole() != 1) {
+		// 	if($id != $this->getUserId()) {
+		// 		$this->Session->setFlash(__("You can't edit other users. Permission denied."));	
+		// 		$this->redirect($this->referer());
+		// 	}
+		// }
 
 
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$user = $this->User->find('first', $options);
-		$this->set(compact('user'));
+		//$this->set(compact('user'));
+
+		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+
+		$sumMyPoints = 0;
+		
+		foreach($myPoints as $point){
+			$sumMyPoints += $point['Point']['value'];
+		}
 
 		//$this->loadModel('UserIssue');
 
 		$issues = $this->User->UserIssue->Issue->find('list');
-		$this->set(compact('issues'));
+		//$this->set(compact('user', 'issues'));
 
 		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
-		$this->set(compact('selectedIssues'));
+		
+		$this->set(compact('user', 'issues', 'selectedIssues', 'sumMyPoints'));
 
 		if ($this->request->is(array('post', 'put'))) {
 			

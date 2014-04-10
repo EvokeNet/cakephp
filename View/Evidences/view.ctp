@@ -14,7 +14,7 @@
 <section class="evoke background padding top-2">
 	<div class="row full-width">
 
-	  <nav class="breadcrumbs">
+	  <nav class="evoke breadcrumbs">
 		<?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 		<a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>
 		<?php echo $this->Html->link($evidence['Phase']['name'], array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'], $evidence['Phase']['position']));?>
@@ -24,16 +24,23 @@
 
 	  <div class="medium-2 large-2 columns">
 	  	<div class="evoke evidence-tag text-align">
-	  		<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
+	  		<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
 		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1></a>
 		 	
+		 	<div class = "evoke border-bottom"></div>
+
 		 	<p><?php echo $evidence['User']['biography'] ?></p>
+
+		 	<div class = "evoke border-bottom"></div>
+		 	
 		 	<i class="fa fa-facebook-square fa-2x"></i>&nbsp;
 			<i class="fa fa-google-plus-square fa-2x"></i>&nbsp;
 			<i class="fa fa-twitter-square fa-2x"></i>
 
+			<div class = "evoke border-bottom"></div>
+
 			<?php if($evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
-				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button"><?php echo __('Edit Discussion');?></a></div>
+				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Discussion');?></a></div>
 			<?php endif; ?>
 	 	</div>
 	  </div>
