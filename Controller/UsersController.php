@@ -155,6 +155,8 @@ class UsersController extends AppController {
 			if ($this->User->save($this->request->data)) {
 				$user = $this->User->save($this->request->data);
 				$this->Session->setFlash(__('The user has been saved.'));
+				$user['User']['id'] = $this->User->id;
+				$user['User']['role_id'] = $this->User->role_id;
 				$this->Auth->login($user);
 				return $this->redirect(array('action' => 'edit', $this->User->id));
 				//return $this->redirect(array('action' => 'index'));
