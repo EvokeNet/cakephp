@@ -112,3 +112,13 @@ spl_autoload_unregister(array('App', 'load'));
 spl_autoload_register(array('App', 'load'), true, true);
 
 CakePlugin::loadAll();
+
+App::uses('CakeEventManager', 'Event');
+App::uses('PointListener', 'Event');
+CakeEventManager::instance()->attach(new PointListener());
+
+// App::uses('ClassRegistry', 'Utility');
+// App::uses('PointListener', 'Event');
+
+// $evidence = ClassRegistry::init('Evidence');
+// $evidence->getEventManager()->attach(new PointListener());

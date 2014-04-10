@@ -25,8 +25,9 @@
 		<!-- Right Nav Section -->
 		<ul class="right">
 			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke top-bar icon"/></a></li>
+			
 			<li class="name">
-				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>" class = "evoke top-bar-name"><h1><?= sprintf(__('Hi %s'), $users['User']['name']) ?></h1></a>
+				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>" class = "evoke top-bar-name"><?= sprintf(__('Hi %s'), $users['User']['name']) ?></a>
 			</li>
 
 			<li class="evoke divider"></li>
@@ -200,7 +201,7 @@
 							  <span class="meter" style="width: 50%"></span>
 							</div>
 
-							<h5><?php echo __('Points');?>&nbsp;&nbsp;<div><?php echo 12345678;?></div></h5>
+							<h5><?php echo __('Points');?>&nbsp;&nbsp;<div><?= $sumMyPoints ?></div></h5>
 					  	</div>
 					  </div>
 				</div>
@@ -269,7 +270,7 @@
 
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height-two"/></div>
 					</div>
-					<div class = "evoke screen-box badges" style = "padding: 20px 10px 10px 40px;">
+					<div class = "evoke screen-box badges" style = "padding: 20px 10px 10px 20px;">
 						<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
 						  <li><img src = '<?= $this->webroot.'img/badge1.png' ?>'></li>
 						  <li><img src = '<?= $this->webroot.'img/badge2.png' ?>'></li>

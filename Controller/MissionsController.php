@@ -98,7 +98,6 @@ class MissionsController extends AppController {
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
 		$missionIssues = $this->Mission->getMissionIssues($id);
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
-
 		
 		$hasGroup = false;
 		//check to see if user has entered a group of this mission..
@@ -251,11 +250,29 @@ class MissionsController extends AppController {
 
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
+		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+
+		$sumMyPoints = 0;
+		
+		foreach($myPoints as $point){
+			$sumMyPoints += $point['Point']['value'];
+		}
+
 		$evokationsFollowing = $this->User->EvokationFollower->find('all');
 
 		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
-			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed'));
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints'));
 
+		if($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]){
+
+			$event = new CakeEvent('Model.Phase.completed', $this, array(
+	            'entity_id' => $missionPhase['Phase']['id'],
+	            'user_id' => $this->getUserId(),
+	            'entity' => 'phaseCompleted'
+	        ));
+
+	        $this->getEventManager()->dispatch($event);
+		}
 
 		if($missionPhase['Phase']['type'] == 0)
 			$this->render('view_discussion');

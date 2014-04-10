@@ -101,6 +101,8 @@ class AppController extends Controller {
     public function getUserId() {
         $currentuser = $this->Auth->user();
         if(isset($currentuser['id'])) return $currentuser['id'];
+        // debug($currentuser);
+        // die();
         return $currentuser['User']['id'];
     }
 

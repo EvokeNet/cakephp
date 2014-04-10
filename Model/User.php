@@ -94,6 +94,20 @@ class User extends AppModel {
         return Security::hash($data,'md5',false);
     }
 
+    public function afterSave($created, $options = array()) {
+       
+       	if($created){
+	        $event = new CakeEvent('Model.User.add', $this, array(
+	            'entity_id' => $this->data['User']['id'],
+	            'entity' => 'user'
+	        ));
+
+	        $this->getEventManager()->dispatch($event);
+
+	        return true;
+	    }	
+    }
+
 /**
  * belongsTo associations
  *

@@ -29,10 +29,6 @@
 	  <a class="current" href="#"><?php echo $missionPhase['Phase']['name'];?></a>
 	</nav>
 
-	<div class = "evoke position">
-		<?= $this->element('left_titlebar', array('title' => sprintf(__('Phase: %s'), $missionPhase['Phase']['name']))) ?>
-	</div>
-
 	<!-- <div class = "evoke position">
 		<div class = "evoke titles-left">
 			<img src = '<?= $this->webroot.'img/small_bar.png' ?>'>

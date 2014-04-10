@@ -21,13 +21,13 @@
 				<i class="fa fa-twitter-square fa-lg"></i>
 			</div>
 
-			<a href="#" data-reveal-id="myModal" data-reveal class = "button general green"><?= __('Send request to join')?></a>
+			<a href="#" data-reveal-id="<?= $e['Group']['id']?>" data-reveal class = "button general green"><?= __('Send request to join')?></a>
 
 		</div>
 	</div>	
 </div>
 
-<div id="myModal" class="reveal-modal" data-reveal style = "background-color: #bc5660; border: 5px solid #000">
+<div id="<?= $e['Group']['id']?>" class="reveal-modal" data-reveal style = "background-color: #bc5660; border: 5px solid #000">
   <h2><?= __("Message below will be sent to owner's group")?></h2>
   <p class="lead"></p>
   <p></p>

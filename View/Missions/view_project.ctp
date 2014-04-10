@@ -29,10 +29,6 @@
 	  <a class="current" href="#"><?php echo $missionPhase['Phase']['name'];?></a>
 	</nav>
 
-	<div class = "evoke position">
-		<?= $this->element('left_titlebar', array('title' => sprintf(__('Phase: %s'), $missionPhase['Phase']['name']))) ?>
-	</div>
-
 	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
 	<div class = "evoke missions data">

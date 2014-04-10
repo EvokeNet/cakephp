@@ -13,15 +13,15 @@
 	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
 
 	  <a class="unavailable" href="#"><?php echo sprintf(__('Mission %s'), $mission['Mission']['title']);?></a>
-
+<!-- 
 	  	<?php foreach($missionPhases as $mp):
 
 	  		if($mp['Phase']['position'] < $missionPhase['Phase']['position'])
 	  			echo $this->Html->link($mp['Phase']['name'], array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $mp['Phase']['position']));
 
-  		endforeach; ?>
+  		endforeach; ?> -->
 
-	  <a class="current" href="#"><?php echo $missionPhase['Phase']['name'];?></a>
+	  <!-- <a class="current" href="#"><?php echo $missionPhase['Phase']['name'];?></a> -->
 	</nav>
 	
 	<?php if(isset($mission['Mission'])):  

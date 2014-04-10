@@ -1,5 +1,7 @@
 <?php
 App::uses('AppModel', 'Model');
+App::uses('CakeEvent', 'Event');
+
 /**
  * Evidence Model
  *
@@ -62,6 +64,21 @@ class Evidence extends AppModel {
         return false;
         // Throw an exception for the controller
         //throw new Exception(__("This post could not be saved. Please try again"));
+    }
+
+    public function afterSave($created, $options = array()) {
+       
+       	if($created){
+	        $event = new CakeEvent('Model.Evidence.add', $this, array(
+	            'entity_id' => $this->data['Evidence']['id'],
+	            'user_id' => $this->data['Evidence']['user_id'],
+	            'entity' => 'evidence'
+	        ));
+
+	        $this->getEventManager()->dispatch($event);
+
+	        return true;
+	    }	
     }
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
