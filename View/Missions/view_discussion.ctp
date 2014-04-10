@@ -42,7 +42,8 @@
 	<div class="row full-width">
 	  <div class="large-6 columns">
 	  	<div class = "evoke missions data">
-	  		<h1><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h1>
+	  		<h1><?php echo __('Phase: '); echo h($missionPhase['Phase']['name']); ?></h1>
+	  		<h2><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
 	  		<p><?= $mission['Mission']['description'];?></p>
   		</div>
 	  </div>

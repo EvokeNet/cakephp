@@ -29,6 +29,14 @@ class GroupsController extends AppController {
 
 		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
+		$myPoints = $this->Group->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+
+		$sumMyPoints = 0;
+		
+		foreach($myPoints as $point){
+			$sumMyPoints += $point['Point']['value'];
+		}
+
 		$mission = $this->Group->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
 
 		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
@@ -86,7 +94,7 @@ class GroupsController extends AppController {
 			)
 		));
 
-		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong'));
+		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong', 'sumMyPoints'));
 	}
 
 
@@ -139,6 +147,14 @@ class GroupsController extends AppController {
 
 		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $me)));
 
+		$myPoints = $this->Group->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+
+		$sumMyPoints = 0;
+		
+		foreach($myPoints as $point){
+			$sumMyPoints += $point['Point']['value'];
+		}
+
 		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.group_id' => $id)));
 
 		
@@ -160,7 +176,7 @@ class GroupsController extends AppController {
 
 		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $me)));
 
-		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'groupsRequests', 'groupsRequestsPending', 'flags'));
+		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints'));
 	}
 
 /**

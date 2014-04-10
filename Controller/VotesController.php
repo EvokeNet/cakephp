@@ -45,7 +45,7 @@ class VotesController extends AppController {
  *
  * @return void
  */
-	public function add($evokation_id = null) {
+	public function add() {
 		if ($this->request->is('post')) {
 			$this->Vote->create();
 			if ($this->Vote->save($this->request->data)) {
@@ -55,9 +55,9 @@ class VotesController extends AppController {
 				$this->Session->setFlash(__('The vote could not be saved. Please, try again.'));
 			}
 		}
-		$evidences = $this->Vote->Evidence->find('list');
+		$evokations = $this->Vote->Evokation->find('list');
 		$users = $this->Vote->User->find('list');
-		$this->set(compact('evidences', 'users'));
+		$this->set(compact('evokations', 'users'));
 	}
 
 /**
@@ -83,7 +83,7 @@ class VotesController extends AppController {
 			$options = array('conditions' => array('Vote.' . $this->Vote->primaryKey => $id));
 			$this->request->data = $this->Vote->find('first', $options);
 		}
-		$evidences = $this->Vote->Evidence->find('list');
+		$evokations = $this->Vote->Evokation->find('list');
 		$users = $this->Vote->User->find('list');
 		$this->set(compact('evidences', 'users'));
 	}

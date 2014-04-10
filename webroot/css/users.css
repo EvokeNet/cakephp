@@ -449,3 +449,12 @@
 	font-family: 'AlegreyaBold';
 	font-size:1.2vw;
 }
+
+.evoke.edit-agent-tag{
+	background-color: #dceaef;
+	border: 5px solid #4e9ab1;
+	border-radius: 20px;
+	-moz-box-shadow: 0 0 5px 5px #317964;
+	-webkit-box-shadow: 0 0 5px 5px #317964;
+	box-shadow: 0 0 5px 5px #317964;
+}
