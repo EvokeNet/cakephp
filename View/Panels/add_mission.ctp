@@ -184,6 +184,7 @@
 							<?php
 								echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
 								echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+								echo $this->Form->input('points', array('label' => __('Points'), 'required' => true));
 								echo $this->Form->hidden('mission_id', array('value' => $id));
 								echo $this->Form->hidden('form_type', array('value' => 'phase'));
 								echo $this->Form->radio('type', array(0 => 'Discussion', 1 => 'Project'), array('required' => true));

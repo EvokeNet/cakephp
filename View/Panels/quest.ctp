@@ -12,6 +12,7 @@
 	<?php
 		echo $this->Form->input('title', array('value' => $me['Quest']['title']));
 		echo $this->Media->ckeditor('description', array('value' => $me['Quest']['description']));
+        echo $this->Form->input('points', array('value' => $me['Quest']['points']));
         echo $this->Form->radio('mandatory', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => $me['Quest']['mandatory']));//
 		echo $this->Form->hidden('mission_id', array('value' => $mission_id));
 		echo $this->Form->hidden('phase_id', array('value' => $phase_id));

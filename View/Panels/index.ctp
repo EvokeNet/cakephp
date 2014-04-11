@@ -345,6 +345,16 @@
 								'label' => __("Agent's evidence comment is worth: ")
 							));
 
+						if(!empty($basicTraining_points))
+							echo $this->Form->input('BasicTraining.points', array(
+								'label' => __("Agent's basic training is worth: "),
+								'value' => $basicTraining_points['PointsDefinition']['points']
+							));
+						else 
+							echo $this->Form->input('BasicTraining.points', array(
+								'label' => __("Agent's basic training is worth: ")
+							));
+
 						echo '</fieldset>';
 
 					?>

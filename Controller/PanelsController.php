@@ -237,9 +237,16 @@ class PanelsController extends AppController {
 			)
 		));
 
+		$basicTraining_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'BasicTraining'
+			)
+		));
+
+
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues',
-			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points',
+			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
 			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
 	}
 
