@@ -49,7 +49,7 @@ class Group extends AppModel {
 
        $this->getEventManager()->dispatch($event);
 		
-		return true;	
+	   return true;	
     }
 	
 /**

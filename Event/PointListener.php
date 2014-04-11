@@ -12,11 +12,11 @@ class PointListener implements CakeEventListener {
 
             'Model.UserFriend.follow' => 'followUserPoints',
 
-            'Model.UserAnswer.add' => 'addAnswerPoints',
+            'Model.UserAnswer.add' => 'addUserAnswerPoints',
 
             'Model.User.add' => 'addRegisterPoints',
 
-            'Model.Group.create' => 'addGroupPoints',
+            'Model.Group.create' => 'createGroupPoints',
 
             'Model.GroupsUser.join' => 'joinGroupPoints',
 
@@ -35,6 +35,7 @@ class PointListener implements CakeEventListener {
 
             'Model.UserFriend.unfollow' => 'deletePoints',
             'Model.Group.delete' => 'deletePoints',
+            'Model.GroupsUser.unjoin' => 'deletePoints',
             'Model.CommentRemove.evidence' => 'deletePoints',
             'Model.Unlike.evidence' => 'deletePoints',
             'Model.EvokationFollower.delete' => 'deletePoints',
@@ -89,11 +90,19 @@ class PointListener implements CakeEventListener {
  		$point->saveAll($insertData);
  	}
 
- 	public function addGroupPoints($event){
+ 	public function createGroupPoints($event){
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
  		$insertData = array('user_id' => $event->subject()->data['Group']['user_id'], 'origin_id' => $event->subject()->data['Group']['id'], 'origin' => 'group', 'value' => 1500);
+ 		$point->saveAll($insertData);
+ 	}
+
+ 	public function joinGroupPoints($event){
+
+ 		$point = ClassRegistry::init('Point');
+ 		$point->create();
+ 		$insertData = array('user_id' => $event->subject()->data['GroupsUser']['user_id'], 'origin_id' => $event->subject()->data['GroupsUser']['group_id'], 'origin' => 'groupJoin', 'value' => 1500);
  		$point->saveAll($insertData);
  	}
 
@@ -108,7 +117,7 @@ class PointListener implements CakeEventListener {
 	 // 	}
  	// }
 
- 	public function addAnswerPoints($event){
+ 	public function addUserAnswerPoints($event){
 
  		$point = ClassRegistry::init('Point');
 
@@ -119,14 +128,6 @@ class PointListener implements CakeEventListener {
 	 		$insertData = array('user_id' => $event->subject()->data['UserAnswer']['user_id'], 'origin_id' => $event->subject()->data['UserAnswer']['question_id'], 'origin' => 'answer', 'value' => 250);
 	 		$point->saveAll($insertData);
 	 	}
- 	}
-
- 	public function joinGroupPoints($event){
-
- 		$point = ClassRegistry::init('Point');
- 		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['GroupsUser']['user_id'], 'origin_id' => $event->subject()->data['GroupsUser']['group_id'], 'origin' => 'groupJoin', 'value' => 1500);
- 		$point->saveAll($insertData);
  	}
 
  	public function completePhasePoints($event){
