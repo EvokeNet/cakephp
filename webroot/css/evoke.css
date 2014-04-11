@@ -205,6 +205,10 @@ button, div, p, span, a,
 	padding-top: 2em;
 }
 
+.evoke .padding.top-5 {
+	padding-top: 5em;
+}
+
 .evoke .footer{
 	background: #000000 url('../img/footer.png') no-repeat bottom;
 	background-repeat: no-repeat bottom left;
@@ -344,7 +348,7 @@ button, div, p, span, a,
 .evoke .allies span{
 	color:#fff;
 	padding-top: 5px;
-	font-size:1.2vw;
+	font-size: 0.8vw;
 	line-height:1.1em;
 	font-family: 'AlegreyaRegular';
 	display: inline-block;
@@ -983,6 +987,15 @@ button, div, p, span, a,
 	padding: 20px 30px;
 	margin-top: 10px;
 	border-radius: 5px;
+	position: relative;
+}
+
+.evoke.comment-box-delete{
+	float: right;
+}
+
+.evoke.comment-box-delete a{
+	color:#2e2e2e;
 }
 
 .evoke.comment-box h4, h6, p{

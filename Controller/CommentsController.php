@@ -107,13 +107,22 @@ class CommentsController extends AppController {
 		if (!$this->Comment->exists()) {
 			throw new NotFoundException(__('Invalid comment'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+
+		$comment = $this->Comment->find('first', array('conditions' => array('Comment.id' => $id)));
+
+		//$this->request->onlyAllow('post', 'delete');
 		if ($this->Comment->delete()) {
 			$this->Session->setFlash(__('The comment has been deleted.'));
+
 		} else {
 			$this->Session->setFlash(__('The comment could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		//return $this->redirect(array('action' => 'index'));
+
+		if($comment['Comment']['evidence_id'])
+			return $this->redirect(array('controller' => 'evidences', 'action' => 'view', $comment['Comment']['evidence_id']));
+		else if($comment['Comment']['evokation_id'])
+			return $this->redirect(array('controller' => 'evokations', 'action' => 'view', $comment['Comment']['evokation_id']));
 	}
 
 /**

@@ -98,7 +98,7 @@ class PointsController extends AppController {
 		if (!$this->Point->exists()) {
 			throw new NotFoundException(__('Invalid point'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		//$this->request->onlyAllow('post', 'delete');
 		if ($this->Point->delete()) {
 			$this->Session->setFlash(__('The point has been deleted.'));
 		} else {

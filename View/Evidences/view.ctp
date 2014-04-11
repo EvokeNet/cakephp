@@ -66,15 +66,6 @@
 		</div>
 
 	  	<div class = "evoke evidence-share">
-		  
-	  		<!-- Facebook share button -->			
-			<!-- <div id="fb-root"></div>
-	  		<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div><br> -->
-	  		<!-- <div class = "evoke button-bg">
-	  			<div class="evoke button like-button">
-	  			<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-type="link"></div>
-	  			</div>
-	  		</div> -->
 
 	  		<div style = "margin-bottom:10px">
 	  			<div id="fb-root"></div>
@@ -96,9 +87,11 @@
 		  	
 		  	<!-- like button -->
 		  	<?php if(empty($like)) : ?>
-		  		<div  onClick="location.href='/evoke/likes/like/<?php echo $evidence['Evidence']['id']; ?>'" class="evoke button-bg"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div><span><?= count($likes) ?></span></div>
+		  		<!-- <div  onClick="location.href='/evoke/likes/like/<?php echo $evidence['Evidence']['id']; ?>'" class="evoke button-bg"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div><span><?= count($likes) ?></span></div> -->
+		  		<div class="evoke button-bg"><a href = "<?php echo $this->Html->url(array('controller' => 'likes', 'action' => 'add', $evidence['Evidence']['id'])); ?>"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div><span><?= count($likes) ?></span></a></div>
 			<?php else : ?>
-				<div  onClick="location.href='/evoke/likes/like/<?php echo $evidence['Evidence']['id']; ?>'" class="evoke button-bg"><div class="evoke button like-button"><i class="fa fa-heart fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Unlike');?></h6></div><span><?= count($likes) ?></span></div>
+				<!-- <div  onClick="location.href='/evoke/likes/like/<?php echo $evidence['Evidence']['id']; ?>'" class="evoke button-bg"><div class="evoke button like-button"><i class="fa fa-heart fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Unlike');?></h6></div><span><?= count($likes) ?></span></div> -->
+				<div class="evoke button-bg"><a href = "<?php echo $this->Html->url(array('controller'=>'likes', 'action' => 'delete', $like['Like']['id'])); ?>"><div class="evoke button like-button"><i class="fa fa-heart fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Unlike');?></h6></div><span><?= count($likes) ?></span></a></div>
 			<?php endif; ?>
 
 			<!-- Voting lightbox button -->

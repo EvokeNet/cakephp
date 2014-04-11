@@ -34,6 +34,23 @@ class Group extends AppModel {
 	        return true;
 	    }	
     }
+
+    public function beforeDelete() {
+       
+       $group = $this->find('first', array(
+			'conditions' => array('Group.id' => $this->id))
+		);
+
+       $event = new CakeEvent('Model.Group.delete', $this, array(
+            'entity_id' => $like['Group']['id'],
+            'user_id' => $like['Group']['user_id'],
+            'entity' => 'group'
+        ));
+
+       $this->getEventManager()->dispatch($event);
+		
+		return true;	
+    }
 	
 /**
  * belongsTo associations

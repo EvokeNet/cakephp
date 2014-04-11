@@ -197,27 +197,39 @@ class UsersController extends AppController {
 
 		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
 
-		$sumMyPoints = 0;
+		$sumMyPoints = $this->getPoints($this->getUserId());
 		
-		foreach($myPoints as $point){
-			$sumMyPoints += $point['Point']['value'];
-		}
+		// foreach($myPoints as $point){
+		// 	$sumMyPoints += $point['Point']['value'];
+		// }
 
-		$myLevel = $this->User->Point->getLevel($sumMyPoints);
+		$myLevel = $this->getLevel($sumMyPoints);
 
 		$points = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $id)));
 
-		$sumPoints = 0;
+		$sumPoints = $this->getPoints($id);
 		
-		foreach($points as $point){
-			$sumPoints += $point['Point']['value'];
-		}
+		// foreach($points as $point){
+		// 	$sumPoints += $point['Point']['value'];
+		// }
 
-		$level = $this->User->Point->getLevel($sumPoints);
+		$level = $this->getLevel($sumPoints);
 
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
 
-		$allies = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $this->getUserId())));
+		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $this->getUserId())));
+
+		$are_friends = array();
+		$allies = 0;
+
+		foreach($friends as $friend){
+			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
+		}
+
+		$allies = $this->User->find('all', array(
+			'conditions' => array(
+				'OR' => $are_friends
+			)));
 
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
 		//debug($evidence);
@@ -246,8 +258,7 @@ class UsersController extends AppController {
 
 			if($mine){
 				array_push($myEvokations, $evokation);
-			}
-				
+			}	
 		}
 
 		$this->loadModel('Group');

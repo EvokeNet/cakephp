@@ -7,22 +7,50 @@ class PointListener implements CakeEventListener {
 
 	public function implementedEvents() {
         return array(
+
             'Model.Evidence.add' => 'addEvidencePoints',
-            'Model.Evidence.delete' => 'deleteEvidencePoints',
 
             'Model.UserFriend.follow' => 'followUserPoints',
 
-            'Model.Answer.add' => 'addAnswerPoints',
+            'Model.UserAnswer.add' => 'addAnswerPoints',
+
             'Model.User.add' => 'addRegisterPoints',
+
             'Model.Group.create' => 'addGroupPoints',
+
             'Model.GroupsUser.join' => 'joinGroupPoints',
+
             'Model.Phase.completed' => 'completePhasePoints',
+            
             'Model.Comment.evidence' => 'commentEvidencePoints',
+            
             'Model.Comment.evokation' => 'commentEvokationPoints',
+
             'Model.Like.evidence' => 'likeEvidencePoints',
+            
             'Model.Vote.evokation' => 'voteEvokationPoints',
-            'Model.EvokationFollower.add' => 'followEvokationPoints'
+            
+            'Model.EvokationFollower.add' => 'followEvokationPoints',
+            
+
+            'Model.UserFriend.unfollow' => 'deletePoints',
+            'Model.Group.delete' => 'deletePoints',
+            'Model.CommentRemove.evidence' => 'deletePoints',
+            'Model.Unlike.evidence' => 'deletePoints',
+            'Model.EvokationFollower.delete' => 'deletePoints',
+
         );
+    }
+
+    public function deletePoints($event){
+
+    	$point = ClassRegistry::init('Point');
+
+ 		$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
+
+ 		if($exists){
+	 		$point->delete($exists['Point']['id']);
+	 	}
     }
 
  	public function addEvidencePoints($event){
@@ -34,17 +62,6 @@ class PointListener implements CakeEventListener {
 
  	} 
 
- 	public function deleteEvidencePoints($event){
-
- 		$point = ClassRegistry::init('Point');
-
- 		$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => 'evidence')));
-
- 		if($exists)
- 			$exists->delete();
-
- 	}   
-
  	public function followUserPoints($event){
 
  		$point = ClassRegistry::init('Point');
@@ -52,6 +69,17 @@ class PointListener implements CakeEventListener {
  		$insertData = array('user_id' => $event->subject()->data['UserFriend']['user_id'], 'origin_id' => $event->subject()->data['UserFriend']['friend_id'], 'origin' => 'followUser', 'value' => 5);
  		$point->saveAll($insertData);
  	}
+
+ 	// public function unfollowUserPoints($event){
+
+ 	// 	$point = ClassRegistry::init('Point');
+
+ 	// 	$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
+
+ 	// 	if($exists){
+	 // 		$point->delete($exists['Point']['id']);
+	 // 	}
+ 	// }
 
  	public function addRegisterPoints($event){
 
@@ -68,6 +96,17 @@ class PointListener implements CakeEventListener {
  		$insertData = array('user_id' => $event->subject()->data['Group']['user_id'], 'origin_id' => $event->subject()->data['Group']['id'], 'origin' => 'group', 'value' => 1500);
  		$point->saveAll($insertData);
  	}
+
+ 	// public function unfollowUserPoints($event){
+
+ 	// 	$point = ClassRegistry::init('Point');
+
+ 	// 	$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
+
+ 	// 	if($exists){
+	 // 		$point->delete($exists['Point']['id']);
+	 // 	}
+ 	// }
 
  	public function addAnswerPoints($event){
 
@@ -107,10 +146,22 @@ class PointListener implements CakeEventListener {
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['Comment']['user_id'], 'origin_id' => $event->subject()->data['Comment']['evidence_id'], 'origin' => 'commentEvidence', 'value' => 5);
+ 		$insertData = array('user_id' => $event->subject()->data['Comment']['user_id'], 'origin_id' => $event->subject()->data['Comment']['id'], 'origin' => 'commentEvidence', 'value' => 5);
  		$point->saveAll($insertData);
 
  	}
+
+ 	// public function uncommentEvidencePoints($event){
+
+ 	// 	$point = ClassRegistry::init('Point');
+
+ 	// 	$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
+
+ 	// 	if($exists){
+	 // 		$point->delete($exists['Point']['id']);
+	 // 	}
+
+ 	// }
 
  	public function commentEvokationPoints($event){
 
@@ -125,9 +176,20 @@ class PointListener implements CakeEventListener {
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['Like']['user_id'], 'origin_id' => $event->subject()->data['Like']['evidence_id'], 'origin' => 'likeEvidence', 'value' => 1);
+ 		$insertData = array('user_id' => $event->subject()->data['Like']['user_id'], 'origin_id' => $event->subject()->data['Like']['id'], 'origin' => 'likeEvidence', 'value' => 1);
  		$point->saveAll($insertData);
  	}
+
+ 	// public function unlikeEvidencePoints($event){
+
+ 	// 	$point = ClassRegistry::init('Point');
+
+ 	// 	$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
+
+ 	// 	if($exists){
+	 // 		$point->delete($exists['Point']['id']);
+	 // 	}
+ 	// }
 
  	public function voteEvokationPoints($event){
 
@@ -145,6 +207,17 @@ class PointListener implements CakeEventListener {
  		$point->saveAll($insertData);
 
  	}
+
+ 	// public function unfollowEvokationPoints($event){
+
+ 	// 	$point = ClassRegistry::init('Point');
+
+ 	// 	$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
+
+ 	// 	if($exists){
+	 // 		$point->delete($exists['Point']['id']);
+	 // 	}
+ 	// }
 }
 
 // $evidence = ClassRegistry::init('Evidence');

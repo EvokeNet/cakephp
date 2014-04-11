@@ -76,10 +76,10 @@
 				</div>
 
 				<div class = "evoke text-align">
-					<?php if(!$is_friend AND ($users['User']['id'] != $user['User']['id'])):?>
+					<?php if(!$is_friend):?>
 						<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'add', $users['User']['id'], $user['User']['id'])); ?>" class = "button general"><?php echo __('Follow this agent');?></a>
-					<?php elseif($is_friend AND ($users['User']['id'] != $user['User']['id'])): ?>
-						<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'delete', $users['User']['id'], $user['User']['id'])); ?>" class = "button general"><?php echo __('Unfollow this agent');?></a>
+					<?php else: ?>
+						<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'delete', $is_friend['UserFriend']['id'])); ?>" class = "button general"><?php echo __('Unfollow this agent');?></a>
 					<?php endif; ?>
 				</div>
 

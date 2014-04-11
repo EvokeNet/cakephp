@@ -19,6 +19,23 @@ class Like extends AppModel {
 	    }	
     }
 
+    public function beforeDelete() {
+       
+       $like = $this->find('first', array(
+			'conditions' => array('Like.id' => $this->id))
+		);
+
+       $event = new CakeEvent('Model.Unlike.evidence', $this, array(
+            'entity_id' => $like['Like']['id'],
+            'user_id' => $like['Like']['user_id'],
+            'entity' => 'likeEvidence'
+        ));
+
+       $this->getEventManager()->dispatch($event);
+		
+		return true;	
+    }
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**

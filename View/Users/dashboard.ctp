@@ -58,7 +58,7 @@
 
 <?php $this->end(); ?>
 
-<section class="evoke background padding top-2">
+<section class="evoke background padding top-5">
 
 	<div class="row full-width">
 		<div class="medium-9 columns">
@@ -81,7 +81,7 @@
 		                        <?php foreach($missions as $m):?>
 		                        	<li class = "evoke dashboard position">
 		                        		<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>">
-			                        		<img src='<?= $this->webroot.'img/evoke_folder.png' ?>' width = "90%;"/>
+			                        		<img src='<?= $this->webroot.'img/evoke_folder.png' ?>' width = "80%;"/>
 			                        		<span class = "evoke dashboard folders"><?php echo $m['Mission']['title'];?></span>
 			                        		<?php foreach ($imgs as $img) : ?>
 			                        			<?php 
@@ -89,7 +89,7 @@
 			                        					$path = ' '.$this->webroot.'files/attachment/attachment/'.$img['Attachment']['dir'].'/thumb_'.$img['Attachment']['attachment'] . '';
 
 			                        					//echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';?>
-			                        					<img src = "<?= $path ?>" style = "position: absolute; top: 30%; left: 25%; width: 40%;"/>
+			                        					<img src = "<?= $path ?>" class = "evoke dashboard folders-img"/>
 			                        			
 			                        		<?php endif; endforeach; ?>
 		                        		</a>
@@ -222,13 +222,16 @@
 
 					<div class = "evoke screen-box allies" style = "padding: 40px 20px">
 						<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
-						  <li><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>'><span>Leslie Knope</span></li>
+							<?php foreach($allies as $ally): ?>
+								<li><img src = "https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"><span><?= $ally['User']['name'] ?></span></li>
+						  <!-- <li><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>'><span>Leslie Knope</span></li>
 						  <li><img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>'><span>Ron Swanson</span></li>
 						  <li><img src = '<?= $this->webroot.'img/test_users/tom.jpg' ?>'><span>Tom Haverford</span></li>
 						  <li><img src = '<?= $this->webroot.'img/test_users/chris.jpg' ?>'><span>Chris Traeger</span></li>
 						  <li><img src = '<?= $this->webroot.'img/test_users/andy.jpg' ?>'><span>Andy Dwyer</span></li>
 						  <li><img src = '<?= $this->webroot.'img/test_users/ben.jpg' ?>'><span>Ben Wyatt</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/april.jpg' ?>'><span>April Ludgate</span></li>
+						  <li><img src = '<?= $this->webroot.'img/test_users/april.jpg' ?>'><span>April Ludgate</span></li> -->
+							<?php endforeach;?>
 						</ul>
 					</div>
 

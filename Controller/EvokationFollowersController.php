@@ -118,7 +118,7 @@ class EvokationFollowersController extends AppController {
 		if (!$this->EvokationFollower->exists()) {
 			throw new NotFoundException(__('Invalid evokation follower'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		//$this->request->onlyAllow('post', 'delete');
 		if ($this->EvokationFollower->delete()) {
 			$this->Session->setFlash(__('The evokation follower has been deleted.'));
 		} else {

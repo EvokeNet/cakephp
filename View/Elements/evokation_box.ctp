@@ -1,8 +1,11 @@
 <?php 
 	$follows = false;
+	$follower = null;
+
 	foreach ($evokationsFollowing as $following) {
 		if($following['Evokation']['id'] == $e['Evokation']['id']){
 			$follows = true;
+			$follower = $following;
 			break;
 		}
 	}
@@ -31,7 +34,7 @@
 			<ul>
 		  		<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</li>
 		  		<?php if($follows) : ?>
-		  			<li><div class = "evoke evokation follow"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $users['User']['id'])); ?>" class = "evoke button general"><?php echo __('Unfollow');?></a></div></li>
+		  			<li><div class = "evoke evokation follow"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'delete', $follower['EvokationFollower']['id'])); ?>" class = "evoke button general"><?php echo __('Unfollow');?></a></div></li>
 		  		<?php else : ?>
 		  			<li><div class = "evoke evokation follow"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $users['User']['id'])); ?>" class = "evoke button general"><?php echo __('Follow');?></a></div></li>
 		  		<?php endif; ?>

@@ -100,23 +100,21 @@ class UserFriendsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null, $friend_id = null) {
-		if (!$this->UserFriend->User->exists($id) OR !$this->UserFriend->User->exists($friend_id)) {
-			throw new NotFoundException(__('User not found'));
+	public function delete($id = null) {
+		$this->UserFriend->id = $id;
+		if (!$this->UserFriend->exists()) {
+			throw new NotFoundException(__('Invalid user friend'));
 		}
 
-		$exists = $this->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $id, 'UserFriend.friend_id' => $friend_id)));
-		$existsReverse = $this->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $friend_id, 'UserFriend.friend_id' => $id)));
+		$user = $this->UserFriend->find('first', array('conditions' => array('UserFriend.id' => $id)));
 
-		$conditions = array('UserFriend.id' => array($exists['UserFriend']['id'], $existsReverse['UserFriend']['id']));
-
-		if($this->UserFriend->deleteAll($conditions, false)){
-	        $this->Session->setFlash(__('The friendship has been deleted.'));
+		//$this->request->onlyAllow('post', 'delete');
+		if ($this->UserFriend->delete()) {
+			$this->Session->setFlash(__('The user friend has been deleted.'));
 		} else {
-			$this->Session->setFlash(__('This friendship could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The user friend could not be deleted. Please, try again.'));
 		}
-
-		return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $friend_id));
+		return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user['UserFriend']['friend_id']));
 	}
 
 /**

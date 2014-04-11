@@ -46,7 +46,22 @@ class LikesController extends AppController {
  *
  * @return void
  */
-	public function like($evidence_id = null) {
+	// public function add() {
+	// 	if ($this->request->is('post')) {
+	// 		$this->Like->create();
+	// 		if ($this->Like->save($this->request->data)) {
+	// 			$this->Session->setFlash(__('The like has been saved.'));
+	// 			return $this->redirect(array('action' => 'index'));
+	// 		} else {
+	// 			$this->Session->setFlash(__('The like could not be saved. Please, try again.'));
+	// 		}
+	// 	}
+	// 	$evidences = $this->Like->Evidence->find('list');
+	// 	$users = $this->Like->User->find('list');
+	// 	$this->set(compact('evidences', 'users'));
+	// }
+
+	public function add($evidence_id = null) {
 		if(!$evidence_id) {
 			return $this->redirect($this->referer());
 		}
@@ -63,22 +78,12 @@ class LikesController extends AppController {
 
 		$like = $this->Like->find('first', array('conditions' => array('Like.evidence_id' => $evidence_id, 'Like.user_id' => $this->getUserId())));
 
-		if(empty($like)) {
-			$this->Like->create();
-			if ($this->Like->save($data)) {
-				//$this->Session->setFlash(__('The like has been saved.'));
-				return $this->redirect($this->referer());
-			} else {
-				$this->Session->setFlash(__('The like could not be saved. Please, try again.'));
-			}
+		$this->Like->create();
+		if ($this->Like->save($data)) {
+			//$this->Session->setFlash(__('The like has been saved.'));
+			return $this->redirect($this->referer());
 		} else {
-			$this->Like->id = $like['Like']['id'];
-			if ($this->Like->delete()) {
-				//$this->Session->setFlash(__('The like has been deleted.'));
-				return $this->redirect($this->referer());
-			} else {
-				$this->Session->setFlash(__('The like could not be deleted. Please, try again.'));
-			}
+			$this->Session->setFlash(__('The like could not be saved. Please, try again.'));
 		}
 	}
 
@@ -117,6 +122,103 @@ class LikesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->Like->id = $id;
+
+		if (!$this->Like->exists()) {
+			throw new NotFoundException(__('Invalid like'));
+		}
+
+		$like = $this->Like->find('first', array('conditions' => array('Like.id' => $id)));
+
+		if ($this->Like->delete()) {
+			//$this->Session->setFlash(__('The like has been deleted.'));
+		} else {
+			//$this->Session->setFlash(__('The like could not be deleted. Please, try again.'));
+		}
+
+		return $this->redirect(array('controller' => 'evidences', 'action' => 'view', $like['Like']['evidence_id']));
+	}
+
+/**
+ * admin_index method
+ *
+ * @return void
+ */
+	public function admin_index() {
+		$this->Like->recursive = 0;
+		$this->set('likes', $this->Paginator->paginate());
+	}
+
+/**
+ * admin_view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_view($id = null) {
+		if (!$this->Like->exists($id)) {
+			throw new NotFoundException(__('Invalid like'));
+		}
+		$options = array('conditions' => array('Like.' . $this->Like->primaryKey => $id));
+		$this->set('like', $this->Like->find('first', $options));
+	}
+
+/**
+ * admin_add method
+ *
+ * @return void
+ */
+	public function admin_add() {
+		if ($this->request->is('post')) {
+			$this->Like->create();
+			if ($this->Like->save($this->request->data)) {
+				$this->Session->setFlash(__('The like has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The like could not be saved. Please, try again.'));
+			}
+		}
+		$evidences = $this->Like->Evidence->find('list');
+		$users = $this->Like->User->find('list');
+		$this->set(compact('evidences', 'users'));
+	}
+
+/**
+ * admin_edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_edit($id = null) {
+		if (!$this->Like->exists($id)) {
+			throw new NotFoundException(__('Invalid like'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Like->save($this->request->data)) {
+				$this->Session->setFlash(__('The like has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The like could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('Like.' . $this->Like->primaryKey => $id));
+			$this->request->data = $this->Like->find('first', $options);
+		}
+		$evidences = $this->Like->Evidence->find('list');
+		$users = $this->Like->User->find('list');
+		$this->set(compact('evidences', 'users'));
+	}
+
+/**
+ * admin_delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_delete($id = null) {
 		$this->Like->id = $id;
 		if (!$this->Like->exists()) {
 			throw new NotFoundException(__('Invalid like'));
