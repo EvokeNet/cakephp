@@ -8,8 +8,23 @@ App::uses('AppModel', 'Model');
  */
 class Comment extends AppModel {
 
+	public function afterSave($created, $options = array()) {
+       
+       	if($created){
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+       		if(isset($this->data['Comment']['evidence_id'])){
+		        $event = new CakeEvent('Model.Comment.evidence', $this);
+
+		        $this->getEventManager()->dispatch($event);
+		    } else if(isset($this->data['Comment']['evokation_id'])){
+		        $event = new CakeEvent('Model.Comment.evokation', $this);
+
+		        $this->getEventManager()->dispatch($event);
+		    }
+
+	        return true;
+	    }	
+    }
 
 /**
  * belongsTo associations

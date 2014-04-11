@@ -55,7 +55,7 @@
 .columns h4{
 	font-family: 'SBB';
 	text-align: center;
-	font-size: 1.2vw;
+	font-size: 0.9vw;
 }
 
 .columns h5{
@@ -205,7 +205,7 @@
 	font-size:1.0vw;
 	line-height: 1.5em;
 	font-weight:bold;
-	text-align: start;
+	/*text-align: start;*/
 	font-family: 'AlegreyaRegular';
 	clear: left;
 }
@@ -448,4 +448,43 @@
 .evoke.login-lightbox label{
 	font-family: 'AlegreyaBold';
 	font-size:1.2vw;
+}
+
+.evoke.edit-agent-tag{
+	background-color: #dceaef;
+	border: 5px solid #4e9ab1;
+	border-radius: 20px;
+	padding-top:50px;
+	-moz-box-shadow: 0 0 5px 5px #317964;
+	-webkit-box-shadow: 0 0 5px 5px #317964;
+	box-shadow: 0 0 5px 5px #317964;
+	position:relative;
+	z-index:1;
+}
+
+.evoke.edit-hole{
+	opacity:0.4;
+	filter:alpha(opacity=40);
+	width:10px;
+}
+
+.evoke.edit-agent-tag h1{
+	color:#000;
+	font-family:'SBB';
+	font-size:1.2vw;
+}
+
+.evoke.edit-agent-tag i{
+	color:#6d7577;
+}
+
+.evoke.edit-bg{
+	background-color:#000;
+	padding:20px 110px;
+	border-radius:30px;
+	margin-left: -30px;
+	height: 670px;
+	overflow: scroll;
+	overflow-x: hidden;
+	margin-bottom: 100px;
 }

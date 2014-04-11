@@ -205,6 +205,8 @@ class UsersController extends AppController {
 			$sumMyPoints += $point['Point']['value'];
 		}
 
+		$myLevel = $this->User->Point->getLevel($sumMyPoints);
+
 		$points = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $id)));
 
 		$sumPoints = 0;
@@ -213,7 +215,11 @@ class UsersController extends AppController {
 			$sumPoints += $point['Point']['value'];
 		}
 
+		$level = $this->User->Point->getLevel($sumPoints);
+
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
+
+		$allies = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $this->getUserId())));
 
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
 		//debug($evidence);
@@ -287,7 +293,7 @@ class UsersController extends AppController {
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
-			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints'));
+			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');

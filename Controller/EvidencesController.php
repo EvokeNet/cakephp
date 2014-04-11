@@ -44,11 +44,19 @@ class EvidencesController extends AppController {
 
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
+		$myPoints = $this->Evidence->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+
+		$sumMyPoints = 0;
+		
+		foreach($myPoints as $point){
+			$sumMyPoints += $point['Point']['value'];
+		}
+
 		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
 		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
 		$like = $this->Evidence->Like->find('first', array('conditions' => array('Like.evidence_id' => $id, 'Like.user_id' => $this->getUserId())));
 		$likes = $this->Evidence->Like->find('all', array('conditions' => array('Like.evidence_id' => $id)));
-		$this->set(compact('user', 'evidence', 'comment', 'like', 'likes'));
+		$this->set(compact('user', 'evidence', 'comment', 'like', 'likes', 'sumMyPoints'));
 	}
 
 /**
@@ -117,6 +125,14 @@ class EvidencesController extends AppController {
 		}
 		$me = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $id)));
 
+		$myPoints = $this->Evidence->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+
+		$sumMyPoints = 0;
+		
+		foreach($myPoints as $point){
+			$sumMyPoints += $point['Point']['value'];
+		}
+
 		if($me['Evidence']['user_id'] != $this->getUserId()) {
 			//debug($me);
 			$this->Session->setFlash(__('You have no permission to edit an evidence that does not belong to you.'));
@@ -157,7 +173,7 @@ class EvidencesController extends AppController {
 			)
 		));
 
-		$this->set(compact('user', 'users', 'quests', 'missions', 'phases', 'attachments'));
+		$this->set(compact('user', 'users', 'quests', 'missions', 'phases', 'attachments', 'sumMyPoints'));
 	}
 
 	public function destroyAttachments($data){

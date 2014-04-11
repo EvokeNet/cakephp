@@ -59,7 +59,15 @@ class EvokationsController extends AppController {
 		$this->loadModel("User");
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$this->set(compact('evokation', 'group', 'user', 'comment', 'votes', 'vote', 'can_edit', 'follows'));
+		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+
+		$sumMyPoints = 0;
+		
+		foreach($myPoints as $point){
+			$sumMyPoints += $point['Point']['value'];
+		}
+
+		$this->set(compact('evokation', 'group', 'user', 'comment', 'votes', 'vote', 'can_edit', 'follows', 'sumMyPoints'));
 	}
 
 /**

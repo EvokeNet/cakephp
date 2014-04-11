@@ -14,7 +14,7 @@
 <section class="evoke background padding top-2">
 	<div class="row full-width">
 
-	  <nav class="breadcrumbs">
+	  <nav class="evoke breadcrumbs">
 		<?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 		<a class="unavailable" href="#"><?php echo __('Mission: ').$group['Mission']['title']; ?></a>
 		<a class="unavailable" href="#"><?php echo __('Projects'); ?></a>
@@ -122,7 +122,7 @@
 
 <!-- Lightbox for commenting form -->
 <div id="myModalComment" class="reveal-modal tiny evoke lightbox-bg" data-reveal>
-  <?php echo $this->element('comment', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id'])); ?>
+  <?php echo $this->element('comment_evokation', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id'])); ?>
   <a class="close-reveal-modal">&#215;</a>
 </div>
 

@@ -253,6 +253,16 @@ button, div, p, span, a,
 	background-size: cover;
 }
 
+.evoke.background-green{
+	background: url('../img/greenbg.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
 .evoke.background-gray{
 	background: url('../img/bg-gray.png');
 	background-repeat: no-repeat;

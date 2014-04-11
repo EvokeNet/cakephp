@@ -8,6 +8,16 @@ App::uses('AppModel', 'Model');
  */
 class Vote extends AppModel {
 
+	public function afterSave($created, $options = array()) {
+       
+       	if($created){
+	        $event = new CakeEvent('Model.Vote.evokation', $this);
+
+	        $this->getEventManager()->dispatch($event);
+
+	        return true;
+	    }	
+    }
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

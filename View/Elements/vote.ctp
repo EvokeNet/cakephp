@@ -14,4 +14,6 @@
 		));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Send vote')); ?>
+<?php //echo $this->Form->end(__('Send vote')); ?>
+
+<button type="submit" class= "evoke button general submit-button-margin"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Vote')) ?></button>

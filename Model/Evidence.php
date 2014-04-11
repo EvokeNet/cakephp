@@ -81,6 +81,17 @@ class Evidence extends AppModel {
 	    }	
     }
 
+    public function afterDelete() {
+
+        $event = new CakeEvent('Model.Evidence.delete', $this, array(
+            'entity_id' => $this->id,
+            'user_id' => $this->userId,
+            'entity' => 'evidence'
+        ));
+
+        $this->getEventManager()->dispatch($event);
+    }
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
