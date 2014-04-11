@@ -9,7 +9,7 @@ class PanelsController extends AppController {
 */
 	public $components = array('Paginator','Access');
 	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 
-		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier');
+		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition');
 	public $user = null;
 	public $helpers = array('Media.Media', 'Chosen.Chosen');
 
@@ -194,8 +194,52 @@ class PanelsController extends AppController {
 			)
 		));		
 		
+		//points definitions
+		$register_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'Register'
+			)
+		));
+
+		$allies_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'Allies'
+			)
+		));
+
+		$like_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'Like'
+			)
+		));
+
+		$vote_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'Vote'
+			)
+		));	
+
+		$evidenceComment_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'EvidenceComment'
+			)
+		));
+
+		$evokationComment_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'EvokationComment'
+			)
+		));
+
+		$evokationFollow_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'EvokationFollow'
+			)
+		));
+
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues',
+			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points',
 			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
 	}
 
@@ -1066,7 +1110,31 @@ class PanelsController extends AppController {
 
 				$this->Group->save($change);
 			}
+			unset($data['Config']);
+		}
+		
+		//points def
+		foreach ($data as $type => $point) {
+			if($point['points'] != '') {
+				$previous_point_setting = $this->PointsDefinition->find('first', array(
+					'conditions' => array(
+						'type' => $type
+					)
+				));
+
+				$save_data['PointsDefinition']['type'] = $type;
+				$save_data['PointsDefinition']['points'] = $point['points'];
+
+				if($previous_point_setting) {
+					$this->PointsDefinition->id = $previous_point_setting['PointsDefinition']['id'];
+				} else {
+					$this->PointsDefinition->create();
+				}
+
+				$this->PointsDefinition->save($save_data);
+			}
 		}
 
+		$this->redirect(array('controller' => 'panels', 'action' => 'index', 'settings'));
 	}
 }

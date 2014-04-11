@@ -253,7 +253,7 @@
 								)
 						));
 
-						echo '<div class="row">';
+						echo '<div class="row collapse">';
 
 						if(isset($groups[0]) && $groups[0]['Group']['max_global'] != 0) {
 							echo $this->Form->input('max_global', array(
@@ -267,6 +267,86 @@
 						}						
 
 						echo '</div>';
+
+						echo '<fieldset><legend>' . __('Points Definitions: ') . '</legend>';
+						
+						//points general def.
+						
+						if(!empty($register_points))
+							echo $this->Form->input('Register.points', array(
+								'label' => __("Agent's register is worth: "),
+								'value' => $register_points['PointsDefinition']['points']
+							));
+						else 
+							echo $this->Form->input('Register.points', array(
+								'label' => __("Agent's register is worth: ")
+							));
+
+
+						if(!empty($allies_points))
+							echo $this->Form->input('Allies.points', array(
+								'label' => __("Agent's follow agent is worth: "),
+								'value' => $allies_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('Allies.points', array(
+								'label' => __("Agent's follow agent is worth: ")
+							));
+
+						
+						if(!empty($like_points))
+							echo $this->Form->input('Like.points', array(
+								'label' => __("Agent's like is worth: "),
+								'value' => $like_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('Like.points', array(
+								'label' => __("Agent's like is worth: ")
+							));
+
+						if(!empty($vote_points))
+							echo $this->Form->input('Vote.points', array(
+								'label' => __("Agent's vote is worth: "),
+								'value' => $vote_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('Vote.points', array(
+								'label' => __("Agent's vote is worth: ")
+							));
+
+
+						if(!empty($evokationFollow_points))
+							echo $this->Form->input('EvokationFollow.points', array(
+								'label' => __("Agent's follow evokation is worth: "),
+								'value' => $evokationFollow_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('EvokationFollow.points', array(
+								'label' => __("Agent's follow evokation is worth: ")
+							));
+
+						if(!empty($evokationComment_points))
+							echo $this->Form->input('EvokationComment.points', array(
+								'label' => __("Agent's evokation comment is worth: "),
+								'value' => $evokationComment_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('EvokationComment.points', array(
+								'label' => __("Agent's evokation comment is worth: ")
+							));
+
+						if(!empty($evidenceComment_points))
+							echo $this->Form->input('EvidenceComment.points', array(
+								'label' => __("Agent's evidence comment is worth: "),
+								'value' => $evidenceComment_points['PointsDefinition']['points']
+							));
+						else 
+							echo $this->Form->input('EvidenceComment.points', array(
+								'label' => __("Agent's evidence comment is worth: ")
+							));
+
+						echo '</fieldset>';
+
 					?>
 					<button class="button small" type="submit">
 						<?php echo __('Save Settings')?>
