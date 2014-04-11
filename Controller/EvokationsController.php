@@ -1,5 +1,9 @@
 <?php
 App::uses('AppController', 'Controller');
+
+use EtherpadLite\Client;
+use EtherpadLite\Request;
+
 /**
  * Evokations Controller
  *
@@ -36,6 +40,9 @@ class EvokationsController extends AppController {
 		if (!$this->Evokation->exists($id)) {
 			throw new NotFoundException(__('Invalid evokation'));
 		}
+
+		
+
 		
 		$options = array('conditions' => array('Evokation.' . $this->Evokation->primaryKey => $id));
 		$evokation = $this->Evokation->find('first', $options);
@@ -67,7 +74,42 @@ class EvokationsController extends AppController {
 			$sumMyPoints += $point['Point']['value'];
 		}
 
-		$this->set(compact('evokation', 'group', 'user', 'comment', 'votes', 'vote', 'can_edit', 'follows', 'sumMyPoints'));
+
+		//get etherpad content!
+		$apikey = Configure::read('etherpad_api_key');
+		$client = new Client($apikey, 'http://198.50.155.101:2222');
+
+		$response = $client->checkToken();
+		if ($response->getCode() == 0) {
+			
+			$mappedGroup = $client->createGroupIfNotExistsFor($group['Group']['id']);
+			if ($mappedGroup->getCode() == 0) {
+				
+				$groupID = $mappedGroup->getData();
+				$groupID = $groupID['groupID'];
+			} else {
+				throw new InternalErrorException(__('Could not create Etherpad Group'));
+			}
+
+			// Now we have everything we need to create the Pad
+			$pad = $client->createGroupPad($groupID, 'evokation');
+			if ($pad->getCode() == 0) {
+				$padID = $pad->getData();
+				$padID = $padID['padID'];
+			} else {
+				$padID = $groupID . '$evokation';
+			}
+		}
+
+		//retrieve content from server
+		$padData = json_decode(file_get_contents('http://198.50.155.101:2222/api/1/getHTML?apikey=' . $apikey . '&padID=' . $padID));
+		
+		//treat it
+		$evokationContent = $padData->data->html;
+		$evokationContent = str_replace("<!DOCTYPE HTML><html><body>", "", $evokationContent);
+		$evokationContent = str_replace("</body></html>", "", $evokationContent);
+
+		$this->set(compact('evokation', 'group', 'user', 'comment', 'votes', 'vote', 'can_edit', 'follows', 'sumMyPoints', 'evokationContent'));
 	}
 
 /**

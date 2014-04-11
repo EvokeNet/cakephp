@@ -51,7 +51,7 @@ class EvokationFollowersController extends AppController {
 		if (!$this->EvokationFollower->Evokation->exists($id)) {
 			throw new NotFoundException(__('Evokation not found.'));
 		} else if (!$this->EvokationFollower->User->exists($user_id)) {
-			throw new NotFoundException(__('Evokation not found.'));
+			$this->redirect(array('controller' => 'users', 'action' => 'login'));
 		}
 
 		$insertData = array('evokation_id' => $id, 'user_id' => $user_id); 

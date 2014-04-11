@@ -23,9 +23,15 @@
 
 	  <div class="medium-2 large-2 columns">
 	  	<div class="evoke evidence-tag text-align">
-	  		<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
-		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']))?>"><h1><?= $group['Group']['title']?></h1>
+	  		<!-- <img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/> -->
 		 	
+	  		<?php if(isset($user['User'])) :?>
+		 		<a href = "<?= $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']))?>"><h1><?= $group['Group']['title']?></h1>
+		 	<?php else : ?>
+				<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'login'))?>"><h1><?= $group['Group']['title']?></h1>
+			<?php endif;?>
+
+
 		 	<div class = "evoke border-bottom"></div>
 
 		 	<p><?php echo $group['Group']['description'] ?></p>
@@ -41,7 +47,7 @@
 			<?php if($can_edit) : ?>
 				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $evokation['Evokation']['group_id'])); ?>" class = "button general"><?php echo __('Edit Project');?></a></div>
 			<?php else : ?>
-				<?php if($Follows) :?>
+				<?php if(isset($user['User']) && $Follows) :?>
 					<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $evokation['Evokation']['id'])); ?>" class = "button general"><?php echo __('Unfollow');?></a></div>
 				<?php else :?>
 					<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $evokation['Evokation']['id'])); ?>" class = "button general"><?php echo __('Follow');?></a></div>
@@ -53,7 +59,9 @@
 	 	<div class = "evoke evidence-body view">
 		  	<h1><?php echo h($evokation['Evokation']['title']); ?></h1>
 		  	<h6><?php echo h($evokation['Evokation']['created']); ?></h6>
-		  	<?php echo urldecode($evokation['Evokation']['abstract']); ?>
+		  	<div id="evokation_div" data-placeholder="">
+		  		<?php echo urldecode($evokationContent); ?>
+		  	</div>
 		  	
 		  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
 
@@ -114,15 +122,23 @@
 <!-- Lightbox for voting form -->
 <div id="myModalVote" class="reveal-modal tiny" data-reveal>
   <?php 
-	if(!$vote) echo $this->element('vote', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id']));
-	else echo $this->element('see_vote', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id'], 'vote_id' => $vote['Vote']['id'], 'vote_value' => $vote['Vote']['value']));
+	if(isset($user['User'])) {
+		if(!$vote) echo $this->element('vote', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id']));
+		else echo $this->element('see_vote', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id'], 'vote_id' => $vote['Vote']['id'], 'vote_value' => $vote['Vote']['value']));
+	} else {
+		echo $this->element('vote', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => null));
+	}
   ?>
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
 <!-- Lightbox for commenting form -->
 <div id="myModalComment" class="reveal-modal tiny evoke lightbox-bg" data-reveal>
-  <?php echo $this->element('comment_evokation', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id'])); ?>
+  	<?php if(isset($user['User'])) :?>
+  		<?php echo $this->element('comment_evokation', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id'])); ?>
+  	<?php else :?>
+  		<?php echo $this->element('comment_evokation', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => null)); ?>
+  	<?php endif; ?>
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
