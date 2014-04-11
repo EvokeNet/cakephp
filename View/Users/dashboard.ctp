@@ -196,7 +196,7 @@
 					  	<div class = "evoke dashboard agent info">
 					  		<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
 					  		<h4><?php echo $user['User']['name']; ?></h4>
-					  		<h5><?php echo __('Level');?>&nbsp;&nbsp;&nbsp;<div><?php echo 10;?></div></h5>
+					  		<h5><?php echo __('Level');?>&nbsp;&nbsp;&nbsp;<div><? echo $myLevel; ?></div></h5>
 							<div class="evoke dashboard progress small-9 large-9 round">
 							  <span class="meter" style="width: 50%"></span>
 							</div>
