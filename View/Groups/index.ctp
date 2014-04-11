@@ -1,7 +1,6 @@
 <?php
 	$this->extend('/Common/topbar');
 	$this->start('menu');
-
 	echo $this->element('header', array('user' => $user));
 	$this->end(); 
 
@@ -39,21 +38,21 @@
 			  <div class="content active" id="panel2-1">
 			  	<?php
 		  			foreach($groups as $e):
-	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
+	  					echo $this->element('group_box', array('e' => $e, 'user' => $user, 'users' => $users_groups));
 	  				endforeach;
 	  			?>
-			  </div>
+			   </div>
 			  <div class="content" id="panel2-2">
 			    <?php
 		  			foreach($myGroups as $e):
-	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
+	  					echo $this->element('group_box', array('e' => $e, 'user' => $user, 'users' => $users_groups));
 	  				endforeach;
 	  			?>
 			  </div>
-			  <div class = "content" id="panel2-3">
+			  <div class="content" id="panel2-3">
 			  	<?php
 		  			foreach($groupsIBelong as $e):
-	  					echo $this->element('group_box', array('e' => $e, 'user' => $user));
+	  					echo $this->element('group_box', array('e' => $e, 'user' => $user, 'users' => $users_groups));
 	  				endforeach;
 	  			?>
 			  </div>
@@ -64,7 +63,7 @@
 					<span><?php echo __('Create a group');?></span>
 				</a>
 				<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
-					<?= $this->element('add_group', array('mission' => $mission, 'userid' => $user['User']['id']));?>
+					<?= $this->element('add_group', array('mission' => $mission, 'userid' => $user['User']['id'], 'groups' => $groups));?>
 					<a class="close-reveal-modal">&#215;</a>
 				</div>
 
@@ -73,7 +72,7 @@
 					<span><?php echo __('Create a group');?></span>
 				</a>
 				<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
-					<?= $this->element('add_group', array('userid' => $user['User']['id']));?>
+					<?= $this->element('add_group', array('userid' => $user['User']['id'], 'groups' => $groups));?>
 					<a class="close-reveal-modal">&#215;</a>
 				</div>
 

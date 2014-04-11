@@ -8,15 +8,16 @@
 		<li class="name">
 			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></h1>
 		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+		<!-- <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li> -->
 	</ul>
 
-	<section class="evoke top-bar-section">
+	<section class="evoke dashboard top-bar-section">
 
 		<!-- Right Nav Section -->
 		<ul class="right">
+			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $userid)); ?>"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke top-bar icon"/></a></li>
 			<li class="name">
-				<h1><?= sprintf(__('Hi %s'), $username[0]) ?></h1>
+				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $userid)); ?>" class = "evoke top-bar-name"><h1><?= sprintf(__('Hi %s'), $username[0]) ?></h1></a>
 			</li>
 			<li class="has-dropdown">
 				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
@@ -34,7 +35,7 @@
 			</li>
 		</ul>
 
-		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
+		<h3><?php echo sprintf(__("Welcome to Evoke's Administration Panel"));?></h3>
 
 	</section>
 </nav>
@@ -44,7 +45,6 @@
 <section class="margin top-2">
 	<div class="row max-width">
 		<div class="large-12 columns">
-			<h1><?= __('Admin Panel') ?></h1>
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><?= __('Organizations') ?></a></dd>
 				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><?= __('Missions') ?></a></dd>
@@ -56,7 +56,7 @@
 				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
 				<?php if($flags['_admin']) : ?>
 					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Media') ?></a></dd>
-					<dd class="<?php echo '$settings_tab'; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
+					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
 				<?php endif; ?>	
 				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><?= __('Statistics') ?></a></dd>
 			</dl>
@@ -78,7 +78,15 @@
 								<legend><?php echo __('Add an Organization'); ?></legend>
 								<?php
 									echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
-									echo $this->Form->input('birthdate', array('label' => __('Birthdate')));
+									echo $this->Form->input('birthdate', array(
+										'label' => __('Birthdate'),
+										'style' => 'width: auto',
+										'separator' => '/',
+										'dateFormat' => 'DMY',
+    									'minYear' => date('Y') - 100,
+    									'maxYear' => date('Y'),
+									));
+
 									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
 									echo $this->Form->input('website', array('label' => __('Website')));
 									echo $this->Form->input('facebook');
@@ -86,12 +94,21 @@
 									echo $this->Form->input('blog');
 									if($flags['_admin']) {
 										//if its an admin, use $possible_managers..
-										echo $this->Form->input('UserOrganization.users_id', array(
+										/*echo $this->Form->input('UserOrganization.users_id', array(
 											'label' => __('Possible Managers'),
 											'options' => $possible_managers,
 											'multiple' => 'checkbox',
 											'required' => true
-										));
+										));*/
+										echo $this->Chosen->select(
+										    'UserOrganization.users_id',
+										    $possible_managers,
+										    array(
+										    	'data-placeholder' => __('Select the managers').'...', 
+										    	'multiple' => true, 
+										    	'style' => 'width: 100%; height: 36px;'
+										    )
+										);
 									} else {
 										//else use my id
 										echo $this->Form->hidden('UserOrganization.user_id', array('value' => $userid));
@@ -227,8 +244,124 @@
 				<div class="content <?php echo $media_tab; ?>" id="media">
 					<p>Upload videos/images and choose actions that triggers them...</p>
 				</div>
-				<div class="content <?php echo '$settings_tab'; ?>" id="settings">
-					<p>General settings</p>
+				<div class="content <?php echo $settings_tab; ?>" id="settings">
+					<?php
+						echo $this->Form->create('Config', array(
+								'url' => array(
+									'controller' => 'panels',
+									'action' => 'settings'
+								)
+						));
+
+						echo '<div class="row collapse">';
+
+						if(isset($groups[0]) && $groups[0]['Group']['max_global'] != 0) {
+							echo $this->Form->input('max_global', array(
+								//'label' => __('Define the limit of agents per group: '),
+								'value' => $groups[0]['Group']['max_global']
+							));	
+						} else {
+							echo $this->Form->input('max_global', array(
+								'label' => __('Define the limit of agents per group: ')
+							));	
+						}						
+
+						echo '</div>';
+
+						echo '<fieldset><legend>' . __('Points Definitions: ') . '</legend>';
+						
+						//points general def.
+						
+						if(!empty($register_points))
+							echo $this->Form->input('Register.points', array(
+								'label' => __("Agent's register is worth: "),
+								'value' => $register_points['PointsDefinition']['points']
+							));
+						else 
+							echo $this->Form->input('Register.points', array(
+								'label' => __("Agent's register is worth: ")
+							));
+
+
+						if(!empty($allies_points))
+							echo $this->Form->input('Allies.points', array(
+								'label' => __("Agent's follow agent is worth: "),
+								'value' => $allies_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('Allies.points', array(
+								'label' => __("Agent's follow agent is worth: ")
+							));
+
+						
+						if(!empty($like_points))
+							echo $this->Form->input('Like.points', array(
+								'label' => __("Agent's like is worth: "),
+								'value' => $like_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('Like.points', array(
+								'label' => __("Agent's like is worth: ")
+							));
+
+						if(!empty($vote_points))
+							echo $this->Form->input('Vote.points', array(
+								'label' => __("Agent's vote is worth: "),
+								'value' => $vote_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('Vote.points', array(
+								'label' => __("Agent's vote is worth: ")
+							));
+
+
+						if(!empty($evokationFollow_points))
+							echo $this->Form->input('EvokationFollow.points', array(
+								'label' => __("Agent's follow evokation is worth: "),
+								'value' => $evokationFollow_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('EvokationFollow.points', array(
+								'label' => __("Agent's follow evokation is worth: ")
+							));
+
+						if(!empty($evokationComment_points))
+							echo $this->Form->input('EvokationComment.points', array(
+								'label' => __("Agent's evokation comment is worth: "),
+								'value' => $evokationComment_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('EvokationComment.points', array(
+								'label' => __("Agent's evokation comment is worth: ")
+							));
+
+						if(!empty($evidenceComment_points))
+							echo $this->Form->input('EvidenceComment.points', array(
+								'label' => __("Agent's evidence comment is worth: "),
+								'value' => $evidenceComment_points['PointsDefinition']['points']
+							));
+						else 
+							echo $this->Form->input('EvidenceComment.points', array(
+								'label' => __("Agent's evidence comment is worth: ")
+							));
+
+						if(!empty($basicTraining_points))
+							echo $this->Form->input('BasicTraining.points', array(
+								'label' => __("Agent's basic training is worth: "),
+								'value' => $basicTraining_points['PointsDefinition']['points']
+							));
+						else 
+							echo $this->Form->input('BasicTraining.points', array(
+								'label' => __("Agent's basic training is worth: ")
+							));
+
+						echo '</fieldset>';
+
+					?>
+					<button class="button small" type="submit">
+						<?php echo __('Save Settings')?>
+					</button>
+					<?php echo $this->Form->end(); ?>
 				</div>
 				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
 					<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>
@@ -250,13 +383,9 @@
 	echo $this->Html->script('/components/jquery/jquery.min.js');
 	echo $this->Html->script('/components/foundation/js/foundation.min.js');
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
-
-	echo $this->Html->script('panels');
-?>
-<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>
-<link rel='stylesheet' href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"/>
-<?php
+	echo $this->Html->css('animate');
 	echo $this->Html->script('jquery.watable');
+
 ?>
 
 <script type="text/javascript" charset="utf-8">
@@ -290,32 +419,32 @@
                 }
             },
             tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
-                console.log('table created'); //data.table holds the html table element.
-                console.log(data);            //'this' keyword also holds the html table element.
+                //console.log('table created'); //data.table holds the html table element.
+                //console.log(data);            //'this' keyword also holds the html table element.
             },
             rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
-                console.log('row clicked');   //data.event holds the original jQuery event.
-                console.log(data);            //data.row holds the underlying row you supplied.
+                //console.log('row clicked');   //data.event holds the original jQuery event.
+                //console.log(data);            //data.row holds the underlying row you supplied.
                                               //data.column holds the underlying column you supplied.
                                               //data.checked is true if row is checked.
                                               //'this' keyword holds the clicked element.
-                if ( $(this).hasClass('userId') ) {
-                  data.event.preventDefault();
-                  alert('You clicked userId: ' + data.row.userId);
-                }
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
             },
             columnClicked: function(data) {    //Fires when a column is clicked
-              console.log('column clicked');  //data.event holds the original jQuery event
-              console.log(data);              //data.column holds the underlying column you supplied
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
                                               //data.descending is true when sorted descending (duh)
             },
             pageChanged: function(data) {      //Fires when manually changing page
-              console.log('page changed');    //data.event holds the original jQuery event
-              console.log(data);              //data.page holds the new page index
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
             },
             pageSizeChanged: function(data) {  //Fires when manually changing pagesize
-              console.log('pagesize changed');//data.event holds teh original event
-              console.log(data);              //data.pageSize holds the new pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
             }
         }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
 
@@ -361,32 +490,32 @@
                 }
             },
             tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
-                console.log('table created'); //data.table holds the html table element.
-                console.log(data);            //'this' keyword also holds the html table element.
+                // console.log('table created'); //data.table holds the html table element.
+                // console.log(data);            //'this' keyword also holds the html table element.
             },
             rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
-                console.log('row clicked');   //data.event holds the original jQuery event.
-                console.log(data);            //data.row holds the underlying row you supplied.
-                                              //data.column holds the underlying column you supplied.
-                                              //data.checked is true if row is checked.
-                                              //'this' keyword holds the clicked element.
-                if ( $(this).hasClass('userId') ) {
-                  data.event.preventDefault();
-                  alert('You clicked userId: ' + data.row.userId);
-                }
+                // console.log('row clicked');   //data.event holds the original jQuery event.
+                // console.log(data);            //data.row holds the underlying row you supplied.
+                //                               //data.column holds the underlying column you supplied.
+                //                               //data.checked is true if row is checked.
+                //                               //'this' keyword holds the clicked element.
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
             },
             columnClicked: function(data) {    //Fires when a column is clicked
-              console.log('column clicked');  //data.event holds the original jQuery event
-              console.log(data);              //data.column holds the underlying column you supplied
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
                                               //data.descending is true when sorted descending (duh)
             },
             pageChanged: function(data) {      //Fires when manually changing page
-              console.log('page changed');    //data.event holds the original jQuery event
-              console.log(data);              //data.page holds the new page index
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
             },
             pageSizeChanged: function(data) {  //Fires when manually changing pagesize
-              console.log('pagesize changed');//data.event holds teh original event
-              console.log(data);              //data.pageSize holds the new pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
             }
         }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
 
@@ -430,32 +559,32 @@
                 }
             },
             tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
-                console.log('table created'); //data.table holds the html table element.
-                console.log(data);            //'this' keyword also holds the html table element.
+                // console.log('table created'); //data.table holds the html table element.
+                // console.log(data);            //'this' keyword also holds the html table element.
             },
             rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
-                console.log('row clicked');   //data.event holds the original jQuery event.
-                console.log(data);            //data.row holds the underlying row you supplied.
-                                              //data.column holds the underlying column you supplied.
-                                              //data.checked is true if row is checked.
-                                              //'this' keyword holds the clicked element.
-                if ( $(this).hasClass('userId') ) {
-                  data.event.preventDefault();
-                  alert('You clicked userId: ' + data.row.userId);
-                }
+                // console.log('row clicked');   //data.event holds the original jQuery event.
+                // console.log(data);            //data.row holds the underlying row you supplied.
+                //                               //data.column holds the underlying column you supplied.
+                //                               //data.checked is true if row is checked.
+                //                               //'this' keyword holds the clicked element.
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
             },
             columnClicked: function(data) {    //Fires when a column is clicked
-              console.log('column clicked');  //data.event holds the original jQuery event
-              console.log(data);              //data.column holds the underlying column you supplied
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
                                               //data.descending is true when sorted descending (duh)
             },
             pageChanged: function(data) {      //Fires when manually changing page
-              console.log('page changed');    //data.event holds the original jQuery event
-              console.log(data);              //data.page holds the new page index
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
             },
             pageSizeChanged: function(data) {  //Fires when manually changing pagesize
-              console.log('pagesize changed');//data.event holds teh original event
-              console.log(data);              //data.pageSize holds the new pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
             }
         }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
 
@@ -500,32 +629,32 @@
                 }
             },
             tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
-                console.log('table created'); //data.table holds the html table element.
-                console.log(data);            //'this' keyword also holds the html table element.
+                // console.log('table created'); //data.table holds the html table element.
+                // console.log(data);            //'this' keyword also holds the html table element.
             },
             rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
-                console.log('row clicked');   //data.event holds the original jQuery event.
-                console.log(data);            //data.row holds the underlying row you supplied.
-                                              //data.column holds the underlying column you supplied.
-                                              //data.checked is true if row is checked.
-                                              //'this' keyword holds the clicked element.
-                if ( $(this).hasClass('userId') ) {
-                  data.event.preventDefault();
-                  alert('You clicked userId: ' + data.row.userId);
-                }
+                // console.log('row clicked');   //data.event holds the original jQuery event.
+                // console.log(data);            //data.row holds the underlying row you supplied.
+                //                               //data.column holds the underlying column you supplied.
+                //                               //data.checked is true if row is checked.
+                //                               //'this' keyword holds the clicked element.
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
             },
             columnClicked: function(data) {    //Fires when a column is clicked
-              console.log('column clicked');  //data.event holds the original jQuery event
-              console.log(data);              //data.column holds the underlying column you supplied
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
                                               //data.descending is true when sorted descending (duh)
             },
             pageChanged: function(data) {      //Fires when manually changing page
-              console.log('page changed');    //data.event holds the original jQuery event
-              console.log(data);              //data.page holds the new page index
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
             },
             pageSizeChanged: function(data) {  //Fires when manually changing pagesize
-              console.log('pagesize changed');//data.event holds teh original event
-              console.log(data);              //data.pageSize holds the new pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
             }
         }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
 
@@ -571,32 +700,32 @@
                 }
             },
             tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
-                console.log('table created'); //data.table holds the html table element.
-                console.log(data);            //'this' keyword also holds the html table element.
+                // console.log('table created'); //data.table holds the html table element.
+                // console.log(data);            //'this' keyword also holds the html table element.
             },
             rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
-                console.log('row clicked');   //data.event holds the original jQuery event.
-                console.log(data);            //data.row holds the underlying row you supplied.
-                                              //data.column holds the underlying column you supplied.
-                                              //data.checked is true if row is checked.
-                                              //'this' keyword holds the clicked element.
-                if ( $(this).hasClass('userId') ) {
-                  data.event.preventDefault();
-                  alert('You clicked userId: ' + data.row.userId);
-                }
+                // console.log('row clicked');   //data.event holds the original jQuery event.
+                // console.log(data);            //data.row holds the underlying row you supplied.
+                //                               //data.column holds the underlying column you supplied.
+                //                               //data.checked is true if row is checked.
+                //                               //'this' keyword holds the clicked element.
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
             },
             columnClicked: function(data) {    //Fires when a column is clicked
-              console.log('column clicked');  //data.event holds the original jQuery event
-              console.log(data);              //data.column holds the underlying column you supplied
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
                                               //data.descending is true when sorted descending (duh)
             },
             pageChanged: function(data) {      //Fires when manually changing page
-              console.log('page changed');    //data.event holds the original jQuery event
-              console.log(data);              //data.page holds the new page index
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
             },
             pageSizeChanged: function(data) {  //Fires when manually changing pagesize
-              console.log('pagesize changed');//data.event holds teh original event
-              console.log(data);              //data.pageSize holds the new pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
             }
         }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
 
@@ -677,11 +806,13 @@
         while(i <= <?php echo sizeof($missions_issues); ?>)
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var url = getCorrectURL("missions/view/");
+            var url2 = getCorrectURL("issues/view/");
             var doc = {
                 userRole: missionIssue(i-1),//"user",//GET ROLE OF USER
-                userRoleFormat: "<a href='/evoke/issues/view/"+ missionIssueId(i-1) +"' class='userId' target='_blank'>{0}</a>",
+                userRoleFormat: "<a href='"+ url2+ missionIssueId(i-1) +"' class='userId' target='_blank'>{0}</a>",
                 name: missionName(i-1),
-                nameFormat: "<a href='/evoke/missions/view/"+ missionId(i-1) +"/1' class='name' target='_blank'>{0}</a>:     " + missionButtons(i-1)
+                nameFormat: "<a href='" + url + missionId(i-1) +"/1' class='name' target='_blank'>{0}</a>:     " + missionButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -800,9 +931,10 @@
         ?>
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var url = getCorrectURL("missions/view/");
             var strU = '"ShowUser-' + usersId[i-1] + '"';
             var strRoleFormat = "<a href='#' onclick='document.getElementById(" + strU +").click();' class='userId'>{0}</a>";
-            var strMissionFormat = "<a href='missions/view/"+ usersMissionId[i-1] +"/1' class='name' target='_blank'>{0}</a>";//
+            var strMissionFormat = "<a href='" + url + usersMissionId[i-1] +"/1' class='name' target='_blank'>{0}</a>";//
 
             var doc = {
                 <?php
@@ -897,11 +1029,13 @@
         while(i <= <?php echo $badges_size; ?>)
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var url = getCorrectURL("organizations/view/");
+            var url2 = getCorrectURL("badges/view/");
             var doc = {
                 userRole: orgsBadgeName[i-1],//"user",//GET ROLE OF USER
-                userRoleFormat: "<a href='/evoke/organizations/view/"+ orgsBadgeId[i-1] +"' class='userId' target='_blank'>{0}</a>",
+                userRoleFormat: "<a href='" + url + orgsBadgeId[i-1] +"' class='userId' target='_blank'>{0}</a>",
                 name: badgesName[i-1],
-                nameFormat: "<a href='/evoke/badges/view/"+ badgesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + badgeButtons(i-1)
+                nameFormat: "<a href='"+ url2 + badgesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + badgeButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -960,9 +1094,10 @@
         while(i <= <?php echo $orgs_size; ?>)
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var url = getCorrectURL("organizations/view/");
             var doc = {
                 name: orgsName[i-1],
-                nameFormat: "<a href='/evoke/organizations/view/"+ orgsId[i-1] +"' class='name' target='_blank'>{0}</a>:     " + orgsButtons(i-1)
+                nameFormat: "<a href='"+ url + orgsId[i-1] +"' class='name' target='_blank'>{0}</a>:     " + orgsButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1021,9 +1156,10 @@
         while(i <= <?php echo $issues_size; ?>)
         {
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var url = getCorrectURL("issues/view/");
             var doc = {
                 name: issuesName[i-1],
-                nameFormat: "<a href='/evoke/issues/view/"+ issuesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + issuesButtons(i-1)
+                nameFormat: "<a href='" + url + issuesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + issuesButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1083,23 +1219,44 @@
     }
 
     function badgeButtons(i) {
+    	var url = getCorrectURL("badges/edit/");
     	var str = "'deleteBadge" + badgesId[i] + "'";
-    	return '<a href="/evoke/badges/edit/'+ badgesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="'+ url + badgesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
 	function orgsButtons(i) {
-    	var str = "'orgsDelete" + orgsId[i] + "'";
-    	return '<a href="/evoke/organizations/edit/'+ orgsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	var url = getCorrectURL("organizations/edit/");
+    	str = "'orgsDelete" + orgsId[i] + "'";
+    	return '<a href="'+ url + orgsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
     function issuesButtons(i) {
+    	var url = getCorrectURL("issues/edit/");
     	var str = "'issuesDelete" + issuesId[i] + "'";
-    	return '<a href="/evoke/issues/edit/'+ issuesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="'+ url + issuesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
     function missionButtons(i) {
+    	var url = getCorrectURL("panels/edit_mission/");
     	var str = "'deleteMission" + missionsId[i] + "'";
-    	return '<a href="/evoke/panels/edit_mission/'+ missionsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="' + url  + missionsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    }
+
+    function getCorrectURL(afterHome){
+    	var str = document.URL;
+    	
+    	str = str.substr(7, str.length);
+    	str = str.substr(str.indexOf("/"), str.length);
+    	if(str.length>1) {
+    		str = str.substr(0, str.indexOf('/', 1));
+    		//alert(str);	
+    		str = str + '/' + afterHome;
+    		return str;
+    	} else {
+    		//alert(str);	
+    		return afterHome;
+    	}
+    	//alert(str);
     }
 
 

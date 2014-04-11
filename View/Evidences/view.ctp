@@ -39,7 +39,7 @@
 
 			<div class = "evoke border-bottom"></div>
 
-			<?php if($evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
+			<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
 				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Discussion');?></a></div>
 			<?php endif; ?>
 	 	</div>
@@ -117,7 +117,11 @@
 
 <!-- Lightbox for commenting form -->
 <div id="myModalComment" class="reveal-modal tiny evoke lightbox-bg" data-reveal>
-  <?php echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'])); ?>
+  	<?php if(isset($user['User'])) :?>
+  		<?php echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'])); ?>
+  	<?php else :?>
+  		<?php echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => null)); ?>
+  	<?php endif;?>
   <a class="close-reveal-modal">&#215;</a>
 </div>
 

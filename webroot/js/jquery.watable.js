@@ -546,9 +546,9 @@
 
                 //create summary
                 if (_data.rows.length > 0)
-                    $('<p>Rows {0}-{1} of {2}</p>'.f(_data.fromRow + 1, Math.min(_data.toRow, _data.rows.length), _data.rows.length)).appendTo(footCell);
+                    $('<div style="float:left; height: 75px; padding: 20px;"><p>Results {0}-{1} of {2}</p></div>'.f(_data.fromRow + 1, Math.min(_data.toRow, _data.rows.length), _data.rows.length)).appendTo(footCell);
                 else {
-                    $('<p>No results</p>').appendTo(footCell);
+                    $('<div style="float:left; height: 75px; padding: 20px;"><p>No results</p></div>').appendTo(footCell);
                     _totalPages = 0;
                 }
 
@@ -566,7 +566,7 @@
                 var footToolbar = $('<div class="btn-toolbar"></div>').appendTo(footCell);
                 var footDiv = $('<div class="btn-group"></div>').appendTo(footToolbar);
                 var footPagerDiv = $('<div class="pagination"></div>').appendTo(footDiv);
-                var footPagerUl = $('<ul></ul>').appendTo(footPagerDiv);
+                var footPagerUl = $('<ul style="float:right; padding-right: 20px;"></ul>').appendTo(footPagerDiv);
 
                 $('<li class="{0}"><a href="#">«</a></li>'.f(_currPage == 1 ? 'disabled' : ''))
                     .on('click', {pageIndex: _currPage - 1}, priv.pageChanged).appendTo(footPagerUl);

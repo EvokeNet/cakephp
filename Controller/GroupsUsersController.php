@@ -48,6 +48,8 @@ class GroupsUsersController extends AppController {
  */
 	public function edit($group_id = null) {
 
+		$authorized = false;
+
 		$apikey = Configure::read('etherpad_api_key');
 		$client = new Client($apikey, 'http://198.50.155.101:2222');
 
@@ -71,83 +73,110 @@ class GroupsUsersController extends AppController {
 			$this->request->data = $evokation;
 		}
 
-		$response = $client->checkToken();
-		if ($response->getCode() == 0) {
-			
-			$groupId = $group['Group']['id'];
-			$groupResponse = $client->createGroupIfNotExistsFor($groupId);
+		$loggedInUser = $this->Auth->user();
+		foreach ($users as $user) {
+			if ($user['User']['id'] == $loggedInUser['User']['id']) {
+				$authorized = true;
+				break;
+			}
+		}
 
-			if ($groupResponse->getCode() == 0) {
-
-				$padGroupID = $groupResponse->getData();
-				$padGroupID = $padGroupID['groupID'];
-
-				$padIDResponse = $client->createGroupPad($padGroupID, 'evokation');
-
-				if ($padIDResponse->getCode() == 1) {
-					$padID = $padGroupID . '$evokation';
-				} else {
-					$padID = $padIDResponse->getData();
-					$padID = $padIDResponse['padID'];
-				}
-
-				$loggedInUser = $this->Auth->user();
-				foreach ($users as $user) {
-					if($user['User']['id'] == $loggedInUser['User']['id']) {
-						$isAllowed = true;
-						break;
-					}
-				}
-
-				if ($isAllowed) {
-					$authorResponse = $client->createAuthorIfNotExistsFor($user['User']['id'], $user['User']['name']);
+		if ($authorized) {
+		
+			$response = $client->checkToken();
+			if ($response->getCode() == 0) {
+				
+				// First we create an Etherpad Group, mapping the Evoke Group ID
+				$mappedGroup = $client->createGroupIfNotExistsFor($group['Group']['id']);
+				if ($mappedGroup->getCode() == 0) {
 					
-					if($authorResponse->getCode() == 0) {
-						$authorID = $authorResponse->getData();
-						$authorID = $authorID['authorID'];
+					$groupID = $mappedGroup->getData();
+					$groupID = $groupID['groupID'];
 
-						$this->loadModel('Setting');
-						$sessionID = $this->Setting->find('first', array(
-							'conditions' => array(
-								'key' => 'evokation.'.$evokation['Evokation']['id']
-							)
-						));
+				} else {
+					throw new InternalErrorException(__('Could not create Etherpad Group'));
+				}
 
-						if (empty($sessionID)) {
-							$sessionResponse = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
-							$sessionID = $sessionResponse->getData();
-							$sessionID = $sessionID['sessionID'];
+				// Second we create an Etherpad Author, mapping both the Evoke User ID and User name
+				$mappedAuthor = $client->createAuthorIfNotExistsFor($user['User']['id'], $user['User']['name']);
+				if ($mappedAuthor->getCode() == 0) {
+					
+					$authorID = $mappedAuthor->getData();
+					$authorID = $authorID['authorID'];
 
-							$setting = array();
-							$setting['Setting']['key'] = 'evokation.'.$evokation['Evokation']['id'];
-							$setting['Setting']['value'] = $sessionID;
-							$this->Setting->save($setting);
+				} else {
+					throw new InternalErrorException(__('Could not create Etherpad Group Author'));
+				}
 
-						} else {
-							$sessionResponse = $client->getSessionInfo($sessionID['Setting']['value']);
-							$sessionResponse = $sessionResponse->getData();
-							$sessionTime = $sessionResponse['validUntil'];
+				// Third we create a Session, but we need to ensure it does not exist in the Database yet
+				$this->loadModel('Setting');
+				$session = $this->Setting->find('first', array(
+					'conditions' => array(
+						'key' => 'evokation.'.$evokation['Evokation']['id']
+					)
+				));
 
-							if ($sessionTime <= strtotime('-1 second')) {
-								$client->deleteSession($sessionID['Setting']['value']);
+				if (empty($dbSession)) {
 
-								$sessionResponse = $client->createSession($padGroupID, $authorID, strtotime('+3 hours'));
-								$sessionID = $sessionResponse->getData();
-								$sessionID = $sessionID['sessionID'];
+					// There is no previous Session for this User, so let's create it
+					$sessionID = $client->createSession($groupID, $authorID, strtotime('+1 day'));
+					$sessionID = $sessionID->getData();
+					$sessionID = $sessionID['sessionID'];
 
-								$this->Setting->read(null, $setting['Setting']['id']);
-								$this->Setting->set('value', $sessionID);
-								$this->Setting->save();
+					// Store the Session in the Database
+					$setting = array();
+					$setting['Setting']['key'] = 'evokation.'.$evokation['Evokation']['id'];
+					$setting['Setting']['value'] = $sessionID;
+					$this->Setting->save($setting);
 
-							}
+					// We then set a COOKIE with the Session ID
+					if(isset($_COOKIE['sessionID'])) {
+						unset($_COOKIE['sessionID']);
+						setcookie('sessionID', $sessionID);
+					}
 
+				} else {
+
+					// There is a previous Session for this user, but we must check if it is valid
+					$existingSession = $client->getSessionInfo($dbSession['Setting']['value']);
+					$existingSession = $existingSession->getData();
+					$sessionTime = $existingSession['validUntil'];
+
+					// Checks if Session 'validUntil' UNIX timestamp is 1 second in the past
+					if ($sessionTime <= strtotime('-1 second')) {
+						
+						$client->deleteSession($dbSession['Setting']['value']);
+						
+						$newSession = $client->createSession($groupID, $authorID, strtotime('+1 day'));
+						$newSessionID = $newSession->getData();
+						$newSessionID = $newSessionID['sessionID'];
+
+						// We need to update the DB Session setting to the newly created Session
+						$this->Setting->read(null, $dbSession['Setting']['id']);
+						$this->Setting->set('value', $newSessionID);
+						$this->Setting->save();
+
+						// Finally, we set a COOKIE with the Session ID
+						if(isset($_COOKIE['sessionID'])) {
+							unset($_COOKIE['sessionID']);
+							setcookie('sessionID', $newSessionID);
 						}
 
 					}
+				}
 
+				// Now we have everything we need to create the Pad
+				$pad = $client->createGroupPad($groupID, 'evokation');
+				if ($pad->getCode() == 0) {
+					$padID = $pad->getData();
+					$padID = $padID['padID'];
+				} else {
+					$padID = $groupID . '$evokation';
 				}
 
 			}
+		} else {
+			throw new InternalErrorException(__('You are not authorized to edit this Evokation.'));
 		}
 
 		$this->set(compact('group', 'users', 'padID'));

@@ -9,8 +9,9 @@ class PanelsController extends AppController {
 */
 	public $components = array('Paginator','Access');
 	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 
-		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier');
+		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition');
 	public $user = null;
+	public $helpers = array('Media.Media', 'Chosen.Chosen');
 
 /**
 *
@@ -52,11 +53,14 @@ class PanelsController extends AppController {
 		$users_tab = $this->defineCurrentTab('users', $args);
 		$media_tab = $this->defineCurrentTab('media', $args);
 		$statistics_tab = $this->defineCurrentTab('statistics', $args);
+		$settings_tab = $this->defineCurrentTab('settings', $args);
 
 		//loading infos to be shown at top bar
 		$username = explode(' ', $this->user['name']);
 		$userid = $this->user['id'];
 		$userrole = $this->user['role_id'];
+
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		//loading things that are independent from user role (admin/manager)
 		$issues = $this->Issue->getIssues();
@@ -190,9 +194,60 @@ class PanelsController extends AppController {
 			)
 		));		
 		
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
+		//points definitions
+		$register_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'Register'
+			)
+		));
+
+		$allies_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'Allies'
+			)
+		));
+
+		$like_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'Like'
+			)
+		));
+
+		$vote_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'Vote'
+			)
+		));	
+
+		$evidenceComment_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'EvidenceComment'
+			)
+		));
+
+		$evokationComment_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'EvokationComment'
+			)
+		));
+
+		$evokationFollow_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'EvokationFollow'
+			)
+		));
+
+		$basicTraining_points = $this->PointsDefinition->find('first', array(
+			'conditions' => array(
+				'type' => 'BasicTraining'
+			)
+		));
+
+
+		$this->set(compact('flags', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues',
-			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab'));
+			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
+			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
 	}
 
 /*
@@ -356,9 +411,17 @@ class PanelsController extends AppController {
 				//sets variable mission to be the mission being added now..
 				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
+
+			
 		}
+		/*
+		$this->Quest->create();
+		$data['Quest']['description'] = "Quest description goes here..";
+		$data['Quest']['mission_id'] = $id;
+		$newQuest = $this->Quest->save();*/
+
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
-			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files'));
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest'));
 	}
 
 /*
@@ -510,8 +573,15 @@ class PanelsController extends AppController {
 				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 			}
 		}
+
+		/*$this->Quest->create();
+		$data['Quest']['description'] = "Quest description goes here..";
+		$data['Quest']['mission_id'] = $id;
+		$newQuest = $this->Quest->save($data);
+		debug($newQuest);*/
+
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
-			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files'));
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest'));
 	}
 
 
@@ -587,11 +657,20 @@ class PanelsController extends AppController {
 	public function add_quest($id, $origin = 'add_mission'){
 		if ($this->request->is('post')) {
 			
+			$data = $this->request->data;
+			unset($data['Quest']['id']);
+
 			//creating a quest with its possible attachments
-			if ($this->Quest->createWithAttachments($this->request->data)) {
+			if ($this->Quest->createWithAttachments($data)) {
 				$this->Session->setFlash(__('The quest has been saved.'));
 				
 				$quest_id = $this->Quest->id;
+
+				$data = $this->request->data;
+				
+				$data['Quest']['id'] = $quest_id;
+				$this->Quest->save($data);
+
 				//now checking to see if it were a questionnarie type quest (type = 1)
 				if($this->request->data['Quest']['type'] == 1) {
 					//create a questionnaire..
@@ -1022,5 +1101,47 @@ class PanelsController extends AppController {
 			    }
 			}
 		}
+	}
+
+/*
+* settings method
+* general settings such as max_global of agents per group
+*/
+	public function settings(){
+		$data = $this->request->data;
+		if(isset($data['Config']['max_global'])) {
+			$change['Group']['max_global'] = $data['Config']['max_global'];
+			$groups = $this->Group->find('all');
+			foreach ($groups as $group) {
+				$this->Group->id = $group['Group']['id'];
+
+				$this->Group->save($change);
+			}
+			unset($data['Config']);
+		}
+		
+		//points def
+		foreach ($data as $type => $point) {
+			if($point['points'] != '') {
+				$previous_point_setting = $this->PointsDefinition->find('first', array(
+					'conditions' => array(
+						'type' => $type
+					)
+				));
+
+				$save_data['PointsDefinition']['type'] = $type;
+				$save_data['PointsDefinition']['points'] = $point['points'];
+
+				if($previous_point_setting) {
+					$this->PointsDefinition->id = $previous_point_setting['PointsDefinition']['id'];
+				} else {
+					$this->PointsDefinition->create();
+				}
+
+				$this->PointsDefinition->save($save_data);
+			}
+		}
+
+		$this->redirect(array('controller' => 'panels', 'action' => 'index', 'settings'));
 	}
 }

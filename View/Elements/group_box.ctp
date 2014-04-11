@@ -20,8 +20,37 @@
 				<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
 				<i class="fa fa-twitter-square fa-lg"></i>
 			</div>
+			<?php 
+				$count_members = array();
+				$member = false;
+				if($e['Group']['user_id'] == $user['User']['id']) {
+					$member = true;
+				} else {
+					foreach ($users as $u) {
+						if($u['GroupsUser']['group_id'] == $e['Group']['id']) {
+							if(isset($count_members[$e['Group']['id']]))
+								$count_members[$e['Group']['id']]++;
+							else
+								$count_members[$e['Group']['id']] = 2;
+							if($u['GroupsUser']['user_id'] == $user['User']['id']) {
+								$member = true;
+								break;
+							}
+						}
+					}
+				}
 
-			<a href="#" data-reveal-id="<?= $e['Group']['id']?>" data-reveal class = "button general green"><?= __('Send request to join')?></a>
+				if(!$member) {
+					if(isset($count_members[$e['Group']['id']]))
+						if($count_members[$e['Group']['id']] < $e['Group']['max_local']) : ?>
+							<a href="#" data-reveal-id="myModal" data-reveal class = "button general green"><?= __('Send request to join')?></a>
+						<?php else : ?>
+							<h6><?= __('This group is full!')?></h6>
+						<?php endif;
+					else 
+						echo '<a href="#" data-reveal-id="myModal" data-reveal class = "button general green">' . __('Send request to join') . '</a>';
+				}
+			?>
 
 		</div>
 	</div>	

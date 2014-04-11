@@ -94,7 +94,11 @@ class GroupsController extends AppController {
 			)
 		));
 
-		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong', 'sumMyPoints'));
+		$this->loadModel('GroupsUser');
+		$users_groups = $this->GroupsUser->find('all');
+
+		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong', 'users_groups', 'sumMyPoints'));
+		
 	}
 
 
@@ -185,6 +189,8 @@ class GroupsController extends AppController {
  * @return void
  */
 	public function add($mission_id = null) {
+		if(isset($this->request->data['Group']['mission_id']))
+			$mission_id = $this->request->data['Group']['mission_id'];
 		if ($this->request->is('post')) {
 			$this->Group->create();
 			if ($this->Group->save($this->request->data)) {

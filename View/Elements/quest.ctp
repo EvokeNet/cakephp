@@ -1,6 +1,6 @@
 <div class = "evoke quests content">
 <h2><?php echo $q['Quest']['title'];?></h2>
-<p><?php echo $q['Quest']['description'];?></p>
+<?php echo urldecode($q['Quest']['description']);?>
 <?php 
 	if($q['Quest']['type'] == 1) {
 		//it's, actually, a questionnaire

@@ -13,6 +13,11 @@
 ?>
 
 <section class="evoke background padding top-2">
+<<<<<<< HEAD
+	<div class = "evoke position">
+		<?= $this->element('left_titlebar', array('title' => sprintf(__('Phase: %s'), $missionPhase['Phase']['name']))) ?>
+	</div>
+=======
 
 	<nav class="evoke breadcrumbs">
 	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
@@ -28,6 +33,7 @@
 
 	  <a class="current" href="#"><?php echo $missionPhase['Phase']['name'];?></a>
 	</nav>
+>>>>>>> 92906a48e43c61629ea04a8fb351da9c13cd5563
 
 	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
@@ -90,102 +96,104 @@
 	    </div>
 	  </div> 	
 	  <div class="large-5 columns padding-right">
-	  	<div class = "evoke titles-right">
-	  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>
-	  		<div>
-	  		<dl class="tabs vertical evoke icons" data-tab>
-			  <dd class="active"><a href="#panel31a"><i class="fa fa-file-text fa-2x"></i></a></dd>
-			  <dd><a href="#panel32a"><i class="fa fa-link fa-2x"></i></a></dd>
-			  <dd><a href="#panel33a"><i class="fa fa-picture-o fa-2x"></i></a></dd>
-			  <dd><a href="#panel34a"><i class="fa fa-video-camera fa-2x"></i></a></dd>
-			</dl>
-			<div class="tabs-content vertical evoke icons">
-			  <div class="content active" id="panel31a">
+	  	<?php if($missionPhase['Phase']['show_dossier'] == 1) : ?>
+		  	<div class = "evoke titles-right">
+		  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>
+		  		<div>
+		  		<dl class="tabs vertical evoke icons" data-tab>
+				  <dd class="active"><a href="#panel31a"><i class="fa fa-file-text fa-2x"></i></a></dd>
+				  <dd><a href="#panel32a"><i class="fa fa-link fa-2x"></i></a></dd>
+				  <dd><a href="#panel33a"><i class="fa fa-picture-o fa-2x"></i></a></dd>
+				  <dd><a href="#panel34a"><i class="fa fa-video-camera fa-2x"></i></a></dd>
+				</dl>
+				<div class="tabs-content vertical evoke icons">
+				  <div class="content active" id="panel31a">
 
-			  	<h1><?= __('Mission Dossier: Files')?></h1>
-			    <ul>
-				  	<?php 
-						foreach ($dossier_files as $file):
-							$type = explode('/', $file['Attachment']['type']);
-							if($type[0] == 'application'): 
-								$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
+				  	<h1><?= __('Mission Dossier: Files')?></h1>
+				    <ul>
+					  	<?php 
+							foreach ($dossier_files as $file):
+								$type = explode('/', $file['Attachment']['type']);
+								if($type[0] == 'application'): 
+									$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
 
-							<li><a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a></li>
+								<li><a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a></li>
 
-							<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
-							<div id="<?= $file['Attachment']['id']?>" class="reveal-modal large" data-reveal>
-							  <!-- <h2>Awesome. I have it.</h2>
-							  <p class="lead">Your couch.  It is mine.</p>
-							  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
-							  	<object data="<?= $path ?>" type="application/pdf" width="100%" height="100%" style = "height:900px">
+								<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
+								<div id="<?= $file['Attachment']['id']?>" class="reveal-modal large" data-reveal>
+								  <!-- <h2>Awesome. I have it.</h2>
+								  <p class="lead">Your couch.  It is mine.</p>
+								  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
+								  	<object data="<?= $path ?>" type="application/pdf" width="100%" height="100%" style = "height:900px">
 
-								  <p>It appears you don't have a PDF plugin for this browser.
-								  No biggie... you can <a href="myfile.pdf">click here to
-								  download the PDF file.</a></p>
-								  
-								</object>
-							  <a class="close-reveal-modal">&#215;</a> 
-							</div>
-
-					<?php endif; endforeach; ?>
-				</ul>
-
-			  </div>
-			  <div class="content" id="panel32a">
-			  	<h1><?= __('Mission Dossier: Links')?></h1>
-			  </div>
-			  <div class="content" id="panel33a">
-			    <h1><?= __('Mission Dossier: Pictures')?></h1>
-			    <ul>
-				  	<?php 
-						foreach ($dossier_files as $file):
-							$type = explode('/', $file['Attachment']['type']);
-							if($type[0] == 'image'): 
-								$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
-
-							<li><a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a></li>
-
-							<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
-							<div id="<?= $file['Attachment']['id']?>" class="reveal-modal small" data-reveal>
-							  <img src = "<?= $path?>"/>
-							  <a class="close-reveal-modal">&#215;</a> 
-							</div>
-
-					<?php endif; endforeach; ?>
-				</ul>
-
-			  </div>
-			  <div class="content" id="panel34a">
-			    <h1><?= __('Mission Dossier: Videos')?></h1>
-			    <ul>
-				  	<?php 
-						foreach ($dossier_files as $file):
-							//echo $file['Attachment']['attachment'];
-							//echo $file['Attachment']['type'];
-							$type = explode('/', $file['Attachment']['type']);
-							if($type[0] == 'video'): 
-								$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
-
-							<li><a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a></li>
-
-							<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
-							<div id="<?= $file['Attachment']['id']?>" class="reveal-modal large" data-reveal>
-							  <!-- <h2>Awesome. I have it.</h2>
-							  <p class="lead">Your couch.  It is mine.</p>
-							  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
-							  	<div class="flex-video">
-								        <iframe width="420" height="315" src="<?= $path ?>" frameborder="0" allowfullscreen></iframe>
+									  <p>It appears you don't have a PDF plugin for this browser.
+									  No biggie... you can <a href="myfile.pdf">click here to
+									  download the PDF file.</a></p>
+									  
+									</object>
+								  <a class="close-reveal-modal">&#215;</a> 
 								</div>
-							  <a class="close-reveal-modal">&#215;</a> 
-							</div>
 
-					<?php endif; endforeach; ?>
-				</ul>
-			  </div>
-			</div>
-			</div>
+						<?php endif; endforeach; ?>
+					</ul>
 
-  		</div>
+				  </div>
+				  <div class="content" id="panel32a">
+				  	<h1><?= __('Mission Dossier: Links')?></h1>
+				  </div>
+				  <div class="content" id="panel33a">
+				    <h1><?= __('Mission Dossier: Pictures')?></h1>
+				    <ul>
+					  	<?php 
+							foreach ($dossier_files as $file):
+								$type = explode('/', $file['Attachment']['type']);
+								if($type[0] == 'image'): 
+									$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
+
+								<li><a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a></li>
+
+								<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
+								<div id="<?= $file['Attachment']['id']?>" class="reveal-modal small" data-reveal>
+								  <img src = "<?= $path?>"/>
+								  <a class="close-reveal-modal">&#215;</a> 
+								</div>
+
+						<?php endif; endforeach; ?>
+					</ul>
+
+				  </div>
+				  <div class="content" id="panel34a">
+				    <h1><?= __('Mission Dossier: Videos')?></h1>
+				    <ul>
+					  	<?php 
+							foreach ($dossier_files as $file):
+								//echo $file['Attachment']['attachment'];
+								//echo $file['Attachment']['type'];
+								$type = explode('/', $file['Attachment']['type']);
+								if($type[0] == 'video'): 
+									$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
+
+								<li><a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a></li>
+
+								<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
+								<div id="<?= $file['Attachment']['id']?>" class="reveal-modal large" data-reveal>
+								  <!-- <h2>Awesome. I have it.</h2>
+								  <p class="lead">Your couch.  It is mine.</p>
+								  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
+								  	<div class="flex-video">
+									        <iframe width="420" height="315" src="<?= $path ?>" frameborder="0" allowfullscreen></iframe>
+									</div>
+								  <a class="close-reveal-modal">&#215;</a> 
+								</div>
+
+						<?php endif; endforeach; ?>
+					</ul>
+				  </div>
+				</div>
+				</div>
+
+	  		</div>
+	  	<?php endif; ?>
 	  </div>
 	</div>
 
@@ -257,6 +265,15 @@
                 </div>
 			</div>
 
+<<<<<<< HEAD
+		<?php if(isset($prevMP)){ ?>
+
+	  		<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position'])); ?>" class = "button general green"><i class="fa fa-arrow-left fa-2x"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf(__('Go back to %s'), $prevMP['Phase']['name']);?></a> </br>
+
+	  	<?php } if(isset($nextMP)) {?>
+
+	  		<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right fa-2x"></i></a>
+=======
 			<?php if(isset($nextMP)){ ?>
 
 		  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right fa-lg"></i></a> </br>
@@ -264,6 +281,7 @@
 		  	<?php } if(isset($prevMP)) {?>
 
 		  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position'])); ?>" class = "button general green"><i class="fa fa-arrow-left fa-lg"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf(__('Go back to %s'), $prevMP['Phase']['name']);?></a>
+>>>>>>> 92906a48e43c61629ea04a8fb351da9c13cd5563
 
 		  	<?php } ?>
 
