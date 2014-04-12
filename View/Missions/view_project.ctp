@@ -13,11 +13,9 @@
 ?>
 
 <section class="evoke background padding top-2">
-<<<<<<< HEAD
 	<div class = "evoke position">
 		<?= $this->element('left_titlebar', array('title' => sprintf(__('Phase: %s'), $missionPhase['Phase']['name']))) ?>
 	</div>
-=======
 
 	<nav class="evoke breadcrumbs">
 	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
@@ -33,7 +31,6 @@
 
 	  <a class="current" href="#"><?php echo $missionPhase['Phase']['name'];?></a>
 	</nav>
->>>>>>> 92906a48e43c61629ea04a8fb351da9c13cd5563
 
 	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
@@ -265,15 +262,6 @@
                 </div>
 			</div>
 
-<<<<<<< HEAD
-		<?php if(isset($prevMP)){ ?>
-
-	  		<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position'])); ?>" class = "button general green"><i class="fa fa-arrow-left fa-2x"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf(__('Go back to %s'), $prevMP['Phase']['name']);?></a> </br>
-
-	  	<?php } if(isset($nextMP)) {?>
-
-	  		<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right fa-2x"></i></a>
-=======
 			<?php if(isset($nextMP)){ ?>
 
 		  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-right fa-lg"></i></a> </br>
@@ -281,7 +269,6 @@
 		  	<?php } if(isset($prevMP)) {?>
 
 		  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position'])); ?>" class = "button general green"><i class="fa fa-arrow-left fa-lg"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf(__('Go back to %s'), $prevMP['Phase']['name']);?></a>
->>>>>>> 92906a48e43c61629ea04a8fb351da9c13cd5563
 
 		  	<?php } ?>
 
