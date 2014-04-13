@@ -10,7 +10,7 @@
         foreach ($powerpoints as $power) {
             $previous = 0;
             foreach ($mypp as $pp) {
-                if($pp['BadgePowerPoint']['power_points_id'] == $power['PowerPoint']['id'])
+                if($pp['BadgePowerPoint']['power_points_id'] == $power['PowerPoint']['id'] && $pp['BadgePowerPoint']['badge_id'] == $me['Badge']['id'])
                     $previous = $pp['BadgePowerPoint']['quantity'];
             }
             echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(

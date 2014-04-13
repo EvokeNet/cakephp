@@ -291,6 +291,7 @@ class GroupsUsersController extends AppController {
 		$exists = $this->GroupsUser->find('first', array('conditions' => array('GroupsUser.user_id' => $user_id, 'GroupsUser.group_id' => $group_id)));
 
 		if(!$exists){
+			$this->GroupsUser->create();
 	        if($this->GroupsUser->save($insertData)){
 	        	$this->Session->setFlash(__('The groups user has been saved.'));
 
@@ -300,6 +301,33 @@ class GroupsUsersController extends AppController {
 	        		$this->GroupsUser->Group->GroupRequest->id = $request['GroupRequest']['id'];
 	        		$this->GroupsUser->Group->GroupRequest->save(array('status' => 1));
 	        	}
+
+	        	$me = $this->GroupsUser->Group->find('first', array(
+	        		'conditions' => array(
+	        			'Group.id' => $gid
+	        		)
+	        	));
+
+	        	//attribute pp to group creator
+				$this->loadModel('QuestPowerPoint');
+				$pp = $this->QuestPowerPoint->find('first', array(
+					'conditions' => array(
+						'quest_id' => $me['Group']['quest_id']
+					)
+				));
+
+				if(!empty($pp)) {
+					$data['UserPowerPoint']['user_id'] = $user_id;
+					$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
+					$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
+					$data['UserPowerPoint']['quantity'] = $pp['QuestPowerPoint']['quantity'];
+					$data['UserPowerPoint']['model'] = 'Group';
+					$data['UserPowerPoint']['foreign_key'] = $me['Group']['id'];
+
+					$this->loadModel('UserPowerPoint');
+					$this->UserPowerPoint->create();
+					$this->UserPowerPoint->save($data);
+				}
 
 				return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
 	        } else $this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
@@ -385,17 +413,58 @@ class GroupsUsersController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
-		$this->GroupsUser->id = $id;
+		$gu = $this->GroupsUser->find('first', array(
+			'conditions' => array(
+				'GroupsUser.user_id' => $id
+			)
+		));
+		$this->GroupsUser->id = $gu['GroupsUser']['id'];
 		if (!$this->GroupsUser->exists()) {
 			throw new NotFoundException(__('Invalid groups user'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		//$this->request->onlyAllow('post', 'delete');
+
+		$group = $this->GroupsUser->Group->find('first', array(
+			'conditions' => array(
+				'Group.id' => $gu['GroupsUser']['group_id']
+			)
+		));
+
 		if ($this->GroupsUser->delete()) {
+
+			//attribute pp to evidence owner
+			$this->loadModel('QuestPowerPoint');
+			$pp = $this->QuestPowerPoint->find('first', array(
+				'conditions' => array(
+					'quest_id' => $group['Group']['quest_id']
+				)
+			));
+
+			if(!empty($pp)) {
+				
+				$this->loadModel('UserPowerPoint');
+				$old = $this->UserPowerPoint->find('first', array(
+					'conditions' => array(
+						'user_id' => $this->getUserId(),
+						'power_points_id' => $pp['QuestPowerPoint']['power_points_id'],
+						'quest_id' => $pp['QuestPowerPoint']['quest_id'],
+						'quantity' => $pp['QuestPowerPoint']['quantity'],
+						'model' => 'Group',
+						'foreign_key' => $group['Group']['id']
+					)
+				));
+
+				if(!empty($old)) {
+					$this->UserPowerPoint->id = $old['UserPowerPoint']['id'];
+					$this->UserPowerPoint->delete();
+				}
+			}
+
 			$this->Session->setFlash(__('The groups user has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The groups user could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']));
 	}
 
 /**
