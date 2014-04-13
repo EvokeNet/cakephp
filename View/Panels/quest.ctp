@@ -13,6 +13,22 @@
 		echo $this->Form->input('title', array('value' => $me['Quest']['title']));
 		echo $this->Media->ckeditor('description', array('value' => $me['Quest']['description']));
         echo $this->Form->input('points', array('value' => $me['Quest']['points']));
+
+
+        echo '<fieldset><legend> ' .__('Define Quest Power Points') . '</legend>';
+        foreach ($powerpoints as $power) {
+            $previous = 0;
+            foreach ($mypp as $pp) {
+                if($pp['QuestPowerPoint']['power_points_id'] == $power['PowerPoint']['id'])
+                    $previous = $pp['QuestPowerPoint']['quantity'];
+            }
+            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
+                'label' => $power['PowerPoint']['name'],
+                'value' => $previous
+            ));
+        }
+        echo '</fieldset>';
+
         echo $this->Form->radio('mandatory', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => $me['Quest']['mandatory']));//
 		echo $this->Form->hidden('mission_id', array('value' => $mission_id));
 		echo $this->Form->hidden('phase_id', array('value' => $phase_id));

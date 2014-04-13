@@ -5,7 +5,7 @@
 	echo $this->Form->create('Quest', array(
  							   	'url' => array(
  							   		'controller' => 'panels',
- 							   		'action' => 'edit_quest', $mission_id, $id, $origin
+ 							   		'action' => 'add_quest', $mission_id, $origin
                                 ),
                                 'enctype' => 'multipart/form-data'
 							)); ?>
@@ -19,6 +19,16 @@
 		echo $this->Media->ckeditor('content', array('label' => __('Description'), 'value' => $newQuest['Quest']['description']));*/
         echo $this->Form->input('description', array('required' => true));
         echo $this->Form->input('points', array('required' => true));
+
+        echo '<fieldset><legend> ' .__('Define Quest Power Points') . '</legend>';
+        foreach ($powerpoints as $power) {
+            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
+                'label' => $power['PowerPoint']['name'],
+                'value' => 0
+            ));
+        }
+        echo '</fieldset>';
+
         echo $this->Form->radio('mandatory', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => 1));//
 		echo $this->Form->radio('type', array(1 => 'Questionnaire', 2 => 'Evidence', 3 => 'Group', 4 => 'Evokation'), array('id' => 'questtype', 'required' => true));//
 		echo $this->Form->hidden('mission_id', array('value' => $mission_id));

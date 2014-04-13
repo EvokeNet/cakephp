@@ -281,14 +281,14 @@ class MissionsController extends AppController {
 
 	        $this->getEventManager()->dispatch($event);
 
-	        $event = new CakeEvent('Model.Phase.completed', $this, array(
+	        $event2 = new CakeEvent('Controller.Phase.notifyCompleted', $this, array(
 	            'entity_id' => $missionPhase['Phase']['id'],
 	            'user_id' => $this->getUserId(),
 	            'entity' => 'phaseCompleted',
 	            'points' => $missionPhase['Phase']['points']
 	        ));
 
-	        $this->getEventManager()->dispatch($event);
+	        $this->getEventManager()->dispatch($event2);
 		}
 
 		if($missionPhase['Phase']['type'] == 0)
