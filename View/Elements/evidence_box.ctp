@@ -10,7 +10,7 @@
   		</div>
 	</div>
 
-	<div class="small-7 medium-7 large-8 columns">
+	<div class="small-6 medium-6 large-7 columns">
 		<!-- <h1><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h1> -->
 
 		<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?>">
@@ -18,13 +18,13 @@
 		</a>
 	</div>
 
-	<div class="small-3 medium-3 large-2 columns">
+	<div class="small-4 medium-4 large-3 columns">
 		<div>
 			<?php foreach($missionIssues as $mi): 
 			if($e['Mission']['id'] == $mi['Mission']['id']):?>
 
 			<ul>
-				<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</li>
+				<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;&nbsp;<h5>4324</h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h5>433d</h5></li>
 				<li><h6><?= $mi['Issue']['name'] ?></h6></li>
 				<li><h6><?= date('F j, Y', strtotime($e['Evidence']['created'])) ?></h6></li>
 			</ul>

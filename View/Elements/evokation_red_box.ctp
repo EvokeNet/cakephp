@@ -1,5 +1,5 @@
 <div class="row evoke evokation-red-box">
-	<div class="medium-2 columns">
+	<div class="small-2 medium-2 large-2 columns">
   		<div class = "evoke dashboard text-align">
   			<!-- <img src="https://graph.facebook.com/<?php echo $e['User']['facebook_id']; ?>/picture?type=large" width="110px"/> -->
 
@@ -9,7 +9,7 @@
 
 		</div>
 	</div>
-	<div class="medium-8 columns">
+	<div class="small-8 medium-8 large-8 columns">
 
 		<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?>">
 		<h1><?= $e['Evokation']['title']?></h1>
@@ -17,7 +17,7 @@
 
 	</div>
 
-	<div class="medium-2 columns">
+	<div class="small-2 medium-2 large-2 columns">
 		<div class = "evoke text-align">
 			<div class = "evoke evidence-icons social">
 				<i class="fa fa-facebook-square fa-lg"></i>&nbsp;

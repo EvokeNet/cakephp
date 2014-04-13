@@ -9,11 +9,12 @@
 
 			</div>
 		</div>
-	<div class="medium-8 columns">
+	
+	<div class="small-7 medium-7 large-7 columns">
 		<h1><?= $e['Group']['title']?></h1>
 	</div>
 
-	<div class="medium-2 columns">
+	<div class="small-3 medium-3 large-3 columns">
 		<div class = "evoke text-align">
 			<div class = "evoke evidence-icons social">
 				<i class="fa fa-facebook-square fa-lg"></i>&nbsp;
