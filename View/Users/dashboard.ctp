@@ -59,7 +59,6 @@
 <?php $this->end(); ?>
 
 <section class="evoke background padding top-5">
-
 	<div class="row full-width">
 		<div class="medium-9 columns">
 

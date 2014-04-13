@@ -12,6 +12,7 @@
 ?>
 
 <section class="evoke background padding top-2">
+
 	<div class="row full-width">
 
 	  <nav class="evoke breadcrumbs">
@@ -40,8 +41,13 @@
 			<div class = "evoke border-bottom"></div>
 
 			<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
-				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Discussion');?></a></div>
+				<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Discussion');?></a></div>
 			<?php endif; ?>
+
+			<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
+				<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Delete Discussion');?></a></div>
+			<?php endif; ?>
+
 	 	</div>
 	  </div>
 	  <div class="medium-7 large-7 columns">
@@ -52,8 +58,9 @@
 		  	
 		  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
 
-		  	<?php echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
+		  	<?php //echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
 
+		  	<h2>Share a thought</h2>
 		  	<?php foreach ($comment as $c): 
 					echo $this->element('comment_box', array('c' => $c));
 	  			endforeach; 

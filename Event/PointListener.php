@@ -8,7 +8,7 @@ class PointListener implements CakeEventListener {
 	public function implementedEvents() {
         return array(
 
-            'Model.Evidence.add' => 'addEvidencePoints',
+            'Model.Evidence.create' => 'createEvidencePoints',
 
             'Model.UserFriend.follow' => 'followUserPoints',
 
@@ -32,7 +32,7 @@ class PointListener implements CakeEventListener {
             
             'Model.EvokationFollower.add' => 'followEvokationPoints',
             
-
+            'Model.Evidence.delete' => 'deletePoints',
             'Model.UserFriend.unfollow' => 'deletePoints',
             'Model.Group.delete' => 'deletePoints',
             'Model.GroupsUser.unjoin' => 'deletePoints',
@@ -54,11 +54,14 @@ class PointListener implements CakeEventListener {
 	 	}
     }
 
- 	public function addEvidencePoints($event){
+ 	public function createEvidencePoints($event){
+        $quests = ClassRegistry::init('Quest');
+
+        $quest = $quests->find('first', array('conditions' => array('Quest.id' => $event->subject()->data['Evidence']['quest_id'])));
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['Evidence']['user_id'], 'origin_id' => $event->subject()->data['Evidence']['id'], 'origin' => 'evidence', 'value' => 20);
+ 		$insertData = array('user_id' => $event->subject()->data['Evidence']['user_id'], 'origin_id' => $event->subject()->data['Evidence']['id'], 'origin' => 'evidence', 'value' => $quest['Quest']['points']);
  		$point->saveAll($insertData);
 
  	} 

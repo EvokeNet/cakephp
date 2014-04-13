@@ -21,7 +21,7 @@
 		<span><?php 
 			if($_total){
 				$mission_completed = round(($_completed * 100)/$_total); 
-				echo $mission_completed.'%';
+				//echo $mission_completed.'%';
 			}
 		?></span>
 	  </div>

@@ -39,8 +39,8 @@ class GroupsUser extends AppModel {
 		);
 
        $event = new CakeEvent('Model.GroupsUser.unjoin', $this, array(
-            'entity_id' => $like['GroupsUser']['group_id'],
-            'user_id' => $like['GroupsUser']['user_id'],
+            'entity_id' => $group['GroupsUser']['group_id'],
+            'user_id' => $group['GroupsUser']['user_id'],
             'entity' => 'groupJoin'
         ));
 

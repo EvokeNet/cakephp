@@ -66,6 +66,34 @@ class Evidence extends AppModel {
         //throw new Exception(__("This post could not be saved. Please try again"));
     }
 
+    public function afterSave($created, $options = array()) {
+       
+       	if($created){
+	        $event = new CakeEvent('Model.Evidence.create', $this);
+
+	        $this->getEventManager()->dispatch($event);
+
+	        return true;
+	    }	
+    }
+
+    public function beforeDelete() {
+       
+       $evidence = $this->find('first', array(
+			'conditions' => array('Evidence.id' => $this->id))
+		);
+
+       $event = new CakeEvent('Model.Group.delete', $this, array(
+            'entity_id' => $evidence['Evidence']['id'],
+            'user_id' => $evidence['Evidence']['user_id'],
+            'entity' => 'evidence'
+        ));
+
+       $this->getEventManager()->dispatch($event);
+		
+	   return true;	
+    }
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**

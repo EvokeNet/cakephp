@@ -148,7 +148,7 @@ class EvidencesController extends AppController {
 				}
 
 				$this->Session->setFlash(__('The evidence has been saved.'));
-				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], 0 , $me['Evidence']['phase_id']));
+				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], $me['Evidence']['phase_id']));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}
@@ -207,13 +207,16 @@ class EvidencesController extends AppController {
 		if (!$this->Evidence->exists()) {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		//$this->request->onlyAllow('post', 'delete');
+
+		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $id)));
+
 		if ($this->Evidence->delete()) {
 			$this->Session->setFlash(__('The evidence has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The evidence could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'], $evidence['Phase']['id']));
 	}
 
 /**

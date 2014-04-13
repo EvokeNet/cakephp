@@ -42,8 +42,8 @@ class Group extends AppModel {
 		);
 
        $event = new CakeEvent('Model.Group.delete', $this, array(
-            'entity_id' => $like['Group']['id'],
-            'user_id' => $like['Group']['user_id'],
+            'entity_id' => $group['Group']['id'],
+            'user_id' => $group['Group']['user_id'],
             'entity' => 'group'
         ));
 
