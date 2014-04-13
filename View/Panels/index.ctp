@@ -6,26 +6,36 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></h1>
+			<?php if(isset($user['User'])) :?>
+				<h1><a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?>"><?= strtoupper(__('Evoke')) ?></a></h1>
+			<?php else : ?>
+				<h1><a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'login')); ?>"><?= strtoupper(__('Evoke')) ?></a></h1>
+			<?php endif; ?>
+
 		</li>
 		<!-- <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li> -->
+		
 	</ul>
 
-	<section class="evoke dashboard top-bar-section">
+	<section class="evoke top-bar-section">
 
 		<!-- Right Nav Section -->
-		<ul class="right">
-			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $userid)); ?>"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke top-bar icon"/></a></li>
-			<li class="name">
-				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $userid)); ?>" class = "evoke top-bar-name"><h1><?= sprintf(__('Hi %s'), $username[0]) ?></h1></a>
+		<ul class="evoke right">
+
+			<?php if(isset($user['User'])) :?>
+				<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $user['User']['id'])); ?>"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/></a></li>
+			<?php endif; ?>
+
+			<li class = "name">
+				<?php if(isset($user['User'])) :?>
+					<h3><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $user['User']['id'])); ?>" class = "evoke top-bar-name"><?= $user['User']['name'] ?></a></h3>
+				<?php else :?>
+					<h3><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'login')); ?>" class = "evoke top-bar-name"><?= __('Unidentified Agent, please login') ?></a></h3>
+				<?php endif; ?>
 			</li>
-			<li class="has-dropdown">
-				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
-				<ul class="dropdown">
-					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></h1></li>
-					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
-				</ul>
-			</li>
+
+			<li class="evoke divider"></li>
+
 			<li  class="has-dropdown">
 				<a href="#"><?= __('Language') ?></a>
 				<ul class="dropdown">
@@ -33,10 +43,28 @@
 					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
 				</ul>
 			</li>
+
+			<li class="evoke divider"></li>
+			
+			<li class="has-dropdown">
+				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
+				<ul class="dropdown">
+					<?php if(isset($user['User'])) :?>
+						<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></h1></li>
+						<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
+					<?php else :?>
+						<li><h1><?php echo $this->Html->link(__('Log in'), array('controller' => 'users', 'action' => 'login')); ?></h1></li>
+					<?php endif; ?>
+				</ul>
+			</li>
+
 		</ul>
-
-		<h3><?php echo sprintf(__("Welcome to Evoke's Administration Panel"));?></h3>
-
+		
+		<ul class="evoke left">
+			<li class="name">
+				<h3><a href="#" class="evoke top-bar-name"><?php echo sprintf(__("Evoke's Administration Panel"));?></a></h3>
+			</li>
+		</ul>
 	</section>
 </nav>
 

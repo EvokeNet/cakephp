@@ -11,7 +11,21 @@ class UserFriend extends AppModel {
 	public function afterSave($created, $options = array()) {
        
        	if($created){
-	        $event = new CakeEvent('Model.UserFriend.follow', $this);
+       		$value = 5;
+	       	//check to see if admin set a different amount of points for this action
+		    App::import('model','PointsDefinition');
+		    $def = new PointsDefinition();
+		    $preset_point = $def->find('first', array(
+		        'conditions' => array(
+		            'type' => 'Allies'
+		        )
+		    ));
+		    if($preset_point)
+		        $value = $preset_point['PointsDefinition']['points'];
+
+	        $event = new CakeEvent('Model.UserFriend.follow', $this, array(
+	        	'points' => $value
+	        ));
 
 	        $this->getEventManager()->dispatch($event);
 

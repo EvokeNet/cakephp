@@ -12,11 +12,13 @@ class UserAnswer extends AppModel {
 	public function afterSave($created, $options = array()) {
        
        	if($created){
+       		
+
 	        $event = new CakeEvent('Model.UserAnswer.add', $this);
 
 	        $this->getEventManager()->dispatch($event);
 
-	        return true;
+	        //return true;
 	    }	
     }
 

@@ -6,25 +6,25 @@
 <nav class="top-bar" data-topbar>
 	<ul class="title-area">
 		<li class="name">
-			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $userid)); ?></h1>
+			<h1><a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $userid)); ?>"><?= strtoupper(__('Evoke')) ?></a></h1>
 		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+		<!-- <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li> -->
+		
 	</ul>
 
 	<section class="evoke top-bar-section">
 
 		<!-- Right Nav Section -->
-		<ul class="right">
-			<li class="name">
-				<h1><?= sprintf(__('Hi %s'), $username[0]) ?></h1>
+		<ul class="evoke right">
+
+			<!-- <li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $userid)); ?>"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/></a></li> -->
+			
+			<li class = "name">
+				<h3><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $userid)); ?>" class = "evoke top-bar-name"><?= $username[0] ?></a></h3>
 			</li>
-			<li class="has-dropdown">
-				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
-				<ul class="dropdown">
-					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></h1></li>
-					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
-				</ul>
-			</li>
+
+			<li class="evoke divider"></li>
+
 			<li  class="has-dropdown">
 				<a href="#"><?= __('Language') ?></a>
 				<ul class="dropdown">
@@ -32,19 +32,32 @@
 					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
 				</ul>
 			</li>
+
+			<li class="evoke divider"></li>
+			
+			<li class="has-dropdown">
+				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
+				<ul class="dropdown">
+					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></h1></li>
+					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
+				</ul>
+			</li>
+
 		</ul>
-
-		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
-
+		
+		<ul class="evoke left">
+			<li class="name">
+				<h3><a href="#" class="evoke top-bar-name"><?php echo sprintf(__("Evoke's Mission Panel")) .': ' . $mission['Mission']['title'];?></a></h3>
+			</li>
+		</ul>
 	</section>
 </nav>
-
 <?php $this->end(); ?>
 
 <section class="margin top-2">
 	<div class="row max-width">
 		<div class="large-12 columns">
-			<h1><?= __('Mission') ?><?php echo ': ' . $mission['Mission']['title']; ?></h1>
+			<!-- <h1><?= __('Mission') ?><?php echo ': ' . $mission['Mission']['title']; ?></h1> -->
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
 				<?php if(isset($id) && !is_null($id)) : ?>

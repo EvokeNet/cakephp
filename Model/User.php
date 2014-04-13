@@ -97,9 +97,22 @@ class User extends AppModel {
     public function afterSave($created, $options = array()) {
        
        	if($created){
+       		$value = 250;
+       		//check to see if admin set a different amount of points for this action
+	        App::import('model','PointsDefinition');
+	        $def = new PointsDefinition();
+	        $preset_point = $def->find('first', array(
+	            'conditions' => array(
+	                'type' => 'Register'
+	            )
+	        ));
+	        if($preset_point)
+	            $value = $preset_point['PointsDefinition']['points'];
+
 	        $event = new CakeEvent('Model.User.add', $this, array(
 	            'entity_id' => $this->data['User']['id'],
-	            'entity' => 'user'
+	            'entity' => 'user',
+	            'points' => $value
 	        ));
 
 	        $this->getEventManager()->dispatch($event);
