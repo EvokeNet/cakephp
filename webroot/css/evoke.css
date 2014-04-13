@@ -151,8 +151,8 @@ button, div, p, span, a,
 
 .evoke.dashboard.top-bar-section h3{
 	font-family: 'SBB';
-	font-size: 1.5em;
-	/*font-size: 1.5vw;*/
+	/*font-size: 1.5em;*/
+	font-size: 1.5vw;
 	color: #FFF;
 	padding-top: 8px;
 	text-align: center;
@@ -754,6 +754,10 @@ button, div, p, span, a,
 	-webkit-box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
 	box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.evoke.evidence.blue-box i{
+	font-size:1.2vw;
 }
 
 .evoke.evidence.blue-box a{

@@ -45,13 +45,13 @@
 	</div>
 
 	<div class="row full-width">
-		<div class="medium-3 columns">
+		<div class="small-3 medium-3 large-3 columns">
 			<div class = "evoke dashboard tag">
 				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%"/>
 
 				<div class="row">
-					  <div class="small-4 columns"><a href = "https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
-					  <div class="small-8 columns evoke dashboard tag-padding">
+					  <div class="small-4 medium-4 large-4 columns"><a href = "https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
+					  <div class="small-8 medium-8 large-8 columns evoke dashboard tag-padding">
 						<div class = "evoke dashboard agent info">
 							<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
 							<h4><?php echo $user['User']['name']; ?></h4>
@@ -152,7 +152,7 @@
 			</div>
 
 		</div>
-		<div class="medium-9 columns padding-right">
+		<div class="small-9 medium-9 large-9 columns padding-right">
 
 			<div class="evoke tabs-content screen-box dashboard panel">
 				  <div class="content active" id="panel2-1">
@@ -174,9 +174,9 @@
 				    		<p><?php echo substr($e['Evokation']['abstract'], 0, 100);?></p>
 				    		
 				    		<div class="row">
-							  <div class="large-10 columns">
+							  <div class="small-10 medium-10 large-10 columns">
 							  <?php echo $this->Html->link($e['Group']['title'], array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])).' | Issue | '. date('F j, Y', strtotime($e['Evokation']['created'])); ?></div>
-							  <div class="large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php //echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
+							  <div class="small-2 medium-2 large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php //echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
 							</div>
 
 			    	<?php endforeach;?>

@@ -285,7 +285,6 @@ class MissionsController extends AppController {
 	            'entity_id' => $missionPhase['Phase']['id'],
 	            'user_id' => $this->getUserId(),
 	            'entity' => 'phaseCompleted',
-	            'points' => $missionPhase['Phase']['points']
 	        ));
 
 	        $this->getEventManager()->dispatch($event2);

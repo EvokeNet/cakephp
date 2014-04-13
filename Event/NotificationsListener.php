@@ -13,17 +13,17 @@ class NotificationsListener implements CakeEventListener {
 
     public function notifyCompletedPhase($event){
 
-        $note = ClassRegistry::init('Notification');
+        $note = ClassRegistry::init('Notifications');
 
         $note->create();
-        
+
         $insertData = array(
-            'user_id' => $event->subject()->data['Evidence']['user_id'], 
-            'origin_id' => $event->subject()->data['Evidence']['id'], 
-            'origin' => 'evidence', 
-            'value' => $value
+            'user_id' => $event->data['user_id'], 
+            'origin_id' => $event->data['entity_id'], 
+            'origin' => $event->data['entity'], 
         );
-        $point->saveAll($insertData);
+
+        $note->saveAll($insertData);
 
     }
 }
