@@ -272,10 +272,20 @@ class MissionsController extends AppController {
 
 		if($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]){
 
-			$event = new CakeEvent('Model.Phase.completed', $this, array(
+			$event = new CakeEvent('Controller.Phase.completed', $this, array(
 	            'entity_id' => $missionPhase['Phase']['id'],
 	            'user_id' => $this->getUserId(),
-	            'entity' => 'phaseCompleted'
+	            'entity' => 'phaseCompleted',
+	            'points' => $missionPhase['Phase']['points']
+	        ));
+
+	        $this->getEventManager()->dispatch($event);
+
+	        $event = new CakeEvent('Model.Phase.completed', $this, array(
+	            'entity_id' => $missionPhase['Phase']['id'],
+	            'user_id' => $this->getUserId(),
+	            'entity' => 'phaseCompleted',
+	            'points' => $missionPhase['Phase']['points']
 	        ));
 
 	        $this->getEventManager()->dispatch($event);

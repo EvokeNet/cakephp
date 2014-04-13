@@ -25,7 +25,7 @@ class Like extends AppModel {
 
 
 	        $event = new CakeEvent('Model.Like.evidence', $this, array(
-	        	'points' => value
+	        	'points' => $value
 	        ));
 
 	        $this->getEventManager()->dispatch($event);

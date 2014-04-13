@@ -23,7 +23,7 @@ class GroupsController extends AppController {
  *
  * @return void
  */
-	public function index($mission_id = null) {
+	public function index($mission_id = null, $quest_id = null) {
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->Paginator->paginate());
 
@@ -38,6 +38,8 @@ class GroupsController extends AppController {
 		}
 
 		$mission = $this->Group->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
+
+		$quest = $this->Group->Mission->Quest->find('first', array('conditions' => array('Quest.id' => $quest_id)));
 
 		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
 
@@ -97,7 +99,7 @@ class GroupsController extends AppController {
 		$this->loadModel('GroupsUser');
 		$users_groups = $this->GroupsUser->find('all');
 
-		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong', 'users_groups', 'sumMyPoints'));
+		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong', 'users_groups', 'sumMyPoints', 'quest'));
 		
 	}
 

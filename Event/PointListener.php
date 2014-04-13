@@ -20,7 +20,7 @@ class PointListener implements CakeEventListener {
 
             'Model.GroupsUser.join' => 'joinGroupPoints',
 
-            'Model.Phase.completed' => 'completePhasePoints',
+            'Controller.Phase.completed' => 'completePhasePoints',
             
             'Model.Comment.evidence' => 'commentEvidencePoints',
             
@@ -47,7 +47,12 @@ class PointListener implements CakeEventListener {
 
     	$point = ClassRegistry::init('Point');
 
- 		$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
+ 		$exists = $point->find('first', array(
+            'conditions' => array(
+                'user_id' => $event->data['user_id'], 
+                'origin_id' => $event->data['entity_id'], 
+                'origin' => $event->data['entity']))
+        );
 
  		if($exists){
 	 		$point->delete($exists['Point']['id']);
@@ -55,13 +60,20 @@ class PointListener implements CakeEventListener {
     }
 
  	public function createEvidencePoints($event){
-        $quests = ClassRegistry::init('Quest');
+        // $quests = ClassRegistry::init('Quest');
 
-        $quest = $quests->find('first', array('conditions' => array('Quest.id' => $event->subject()->data['Evidence']['quest_id'])));
+        // $quest = $quests->find('first', array('conditions' => array('Quest.id' => $event->subject()->data['Evidence']['quest_id'])));
+
+        $value = $event->data['points'];
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['Evidence']['user_id'], 'origin_id' => $event->subject()->data['Evidence']['id'], 'origin' => 'evidence', 'value' => $quest['Quest']['points']);
+ 		$insertData = array(
+            'user_id' => $event->subject()->data['Evidence']['user_id'], 
+            'origin_id' => $event->subject()->data['Evidence']['id'], 
+            'origin' => 'evidence', 
+            'value' => $value
+        );
  		$point->saveAll($insertData);
 
  	} 
@@ -72,20 +84,14 @@ class PointListener implements CakeEventListener {
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['UserFriend']['user_id'], 'origin_id' => $event->subject()->data['UserFriend']['friend_id'], 'origin' => 'followUser', 'value' => $value);
+ 		$insertData = array(
+            'user_id' => $event->subject()->data['UserFriend']['user_id'], 
+            'origin_id' => $event->subject()->data['UserFriend']['friend_id'], 
+            'origin' => 'followUser', 
+            'value' => $value
+        );
  		$point->saveAll($insertData);
  	}
-
- 	// public function unfollowUserPoints($event){
-
- 	// 	$point = ClassRegistry::init('Point');
-
- 	// 	$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
-
- 	// 	if($exists){
-	 // 		$point->delete($exists['Point']['id']);
-	 // 	}
- 	// }
 
  	public function addRegisterPoints($event){
         //get the actual amount of points for this action
@@ -93,7 +99,13 @@ class PointListener implements CakeEventListener {
         
         $point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['User']['id'], 'origin_id' => $event->subject()->data['User']['id'], 'origin' => 'register', 'value' => $value);
+ 		$insertData = array(
+            'user_id' => $event->subject()->data['User']['id'], 
+            'origin_id' => $event->subject()->data['User']['id'], 
+            'origin' => 'register', 
+            'value' => $value
+        );
+
  		$point->saveAll($insertData);
  	}
 
@@ -103,7 +115,12 @@ class PointListener implements CakeEventListener {
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['Group']['user_id'], 'origin_id' => $event->subject()->data['Group']['id'], 'origin' => 'group', 'value' => $value);
+ 		$insertData = array(
+            'user_id' => $event->subject()->data['Group']['user_id'], 
+            'origin_id' => $event->subject()->data['Group']['id'], 
+            'origin' => 'group', 
+            'value' => $value
+        );
  		$point->saveAll($insertData);
  	}
 
@@ -113,22 +130,18 @@ class PointListener implements CakeEventListener {
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['GroupsUser']['user_id'], 'origin_id' => $event->subject()->data['GroupsUser']['group_id'], 'origin' => 'groupJoin', 'value' => $value);
+ 		$insertData = array(
+            'user_id' => $event->subject()->data['GroupsUser']['user_id'], 
+            'origin_id' => $event->subject()->data['GroupsUser']['group_id'], 
+            'origin' => 'groupJoin', 
+            'value' => $value
+        );
  		$point->saveAll($insertData);
  	}
 
- 	// public function unfollowUserPoints($event){
-
- 	// 	$point = ClassRegistry::init('Point');
-
- 	// 	$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
-
- 	// 	if($exists){
-	 // 		$point->delete($exists['Point']['id']);
-	 // 	}
- 	// }
-
  	public function addUserAnswerPoints($event){
+
+        $value = $event->data['points'];
 
  		$point = ClassRegistry::init('Point');
 
@@ -136,12 +149,19 @@ class PointListener implements CakeEventListener {
 
  		if(!$exists){
 	 		$point->create();
-	 		$insertData = array('user_id' => $event->subject()->data['UserAnswer']['user_id'], 'origin_id' => $event->subject()->data['UserAnswer']['question_id'], 'origin' => 'answer', 'value' => 250);
+	 		$insertData = array(
+                'user_id' => $event->subject()->data['UserAnswer']['user_id'], 
+                'origin_id' => $event->subject()->data['UserAnswer']['question_id'], 
+                'origin' => 'answer', 
+                'value' => $value
+            );
 	 		$point->saveAll($insertData);
 	 	}
  	}
 
  	public function completePhasePoints($event){
+
+        $value = $event->data['points'];
 
  		$point = ClassRegistry::init('Point');
 
@@ -149,7 +169,12 @@ class PointListener implements CakeEventListener {
 
  		if(!$exists){
 	 		$point->create();
-	 		$insertData = array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'], 'value' => 1500);
+	 		$insertData = array(
+                'user_id' => $event->data['user_id'], 
+                'origin_id' => $event->data['entity_id'], 
+                'origin' => $event->data['entity'], 
+                'value' => $value
+            );
 	 		$point->saveAll($insertData);
 	 	}
  	}
@@ -160,22 +185,15 @@ class PointListener implements CakeEventListener {
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['Comment']['user_id'], 'origin_id' => $event->subject()->data['Comment']['id'], 'origin' => 'commentEvidence', 'value' => $value);
+ 		$insertData = array(
+            'user_id' => $event->subject()->data['Comment']['user_id'], 
+            'origin_id' => $event->subject()->data['Comment']['id'], 
+            'origin' => 'commentEvidence', 
+            'value' => $value
+        );
  		$point->saveAll($insertData);
 
  	}
-
- 	// public function uncommentEvidencePoints($event){
-
- 	// 	$point = ClassRegistry::init('Point');
-
- 	// 	$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
-
- 	// 	if($exists){
-	 // 		$point->delete($exists['Point']['id']);
-	 // 	}
-
- 	// }
 
  	public function commentEvokationPoints($event){
         //get the actual amount of points for this action
@@ -183,7 +201,12 @@ class PointListener implements CakeEventListener {
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['Comment']['user_id'], 'origin_id' => $event->subject()->data['Comment']['evokation_id'], 'origin' => 'commentEvokation', 'value' => $value);
+ 		$insertData = array(
+            'user_id' => $event->subject()->data['Comment']['user_id'], 
+            'origin_id' => $event->subject()->data['Comment']['evokation_id'], 
+            'origin' => 'commentEvokation', 
+            'value' => $value
+        );
  		$point->saveAll($insertData);
 
  	}
@@ -194,20 +217,14 @@ class PointListener implements CakeEventListener {
         
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['Like']['user_id'], 'origin_id' => $event->subject()->data['Like']['id'], 'origin' => 'likeEvidence', 'value' => $value);
+ 		$insertData = array(
+            'user_id' => $event->subject()->data['Like']['user_id'], 
+            'origin_id' => $event->subject()->data['Like']['id'], 
+            'origin' => 'likeEvidence', 
+            'value' => $value
+        );
  		$point->saveAll($insertData);
  	}
-
- 	// public function unlikeEvidencePoints($event){
-
- 	// 	$point = ClassRegistry::init('Point');
-
- 	// 	$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
-
- 	// 	if($exists){
-	 // 		$point->delete($exists['Point']['id']);
-	 // 	}
- 	// }
 
  	public function voteEvokationPoints($event){
         //get the actual amount of points for this action
@@ -215,7 +232,12 @@ class PointListener implements CakeEventListener {
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['Vote']['user_id'], 'origin_id' => $event->subject()->data['Vote']['evokation_id'], 'origin' => 'voteEvokation', 'value' => $value);
+ 		$insertData = array(
+            'user_id' => $event->subject()->data['Vote']['user_id'], 
+            'origin_id' => $event->subject()->data['Vote']['evokation_id'], 
+            'origin' => 'voteEvokation', 
+            'value' => $value
+        );
  		$point->saveAll($insertData);
  	}
 
@@ -225,21 +247,16 @@ class PointListener implements CakeEventListener {
 
  		$point = ClassRegistry::init('Point');
  		$point->create();
- 		$insertData = array('user_id' => $event->subject()->data['EvokationFollower']['user_id'], 'origin_id' => $event->subject()->data['EvokationFollower']['evokation_id'], 'origin' => 'followEvokation', 'value' => $value);
+ 		$insertData = array(
+            'user_id' => $event->subject()->data['EvokationFollower']['user_id'], 
+            'origin_id' => $event->subject()->data['EvokationFollower']['evokation_id'], 
+            'origin' => 'followEvokation', 
+            'value' => $value
+        );
  		$point->saveAll($insertData);
 
  	}
 
- 	// public function unfollowEvokationPoints($event){
-
- 	// 	$point = ClassRegistry::init('Point');
-
- 	// 	$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
-
- 	// 	if($exists){
-	 // 		$point->delete($exists['Point']['id']);
-	 // 	}
- 	// }
 }
 
 // $evidence = ClassRegistry::init('Evidence');

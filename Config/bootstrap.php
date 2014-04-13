@@ -117,7 +117,8 @@ App::uses('CakeEventManager', 'Event');
 App::uses('PointListener', 'Event');
 CakeEventManager::instance()->attach(new PointListener());
 
-App::uses('Level', 'Lib');
+App::uses('NotificationsListener', 'Event');
+CakeEventManager::instance()->attach(new NotificationsListener());
 
 // App::uses('ClassRegistry', 'Utility');
 // App::uses('PointListener', 'Event');

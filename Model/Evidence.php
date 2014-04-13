@@ -69,7 +69,25 @@ class Evidence extends AppModel {
     public function afterSave($created, $options = array()) {
        
        	if($created){
-	        $event = new CakeEvent('Model.Evidence.create', $this);
+	        $value = 1;
+       		//check to see if admin set a different amount of points for this action
+	        App::import('model','Quest');
+	        $quests = new Quest();
+
+	        $evidence = $this->find('first', array(
+				'conditions' => array('Evidence.id' => $this->id))
+			);
+
+	        $quest = $quests->find('first', array(
+	        	'conditions' => array(
+	        		'Quest.id' => $evidence['Evidence']['quest_id'])));
+
+	        if($quest)
+	            $value = $quest['Quest']['points'];
+
+	        $event = new CakeEvent('Model.Evidence.create', $this, array(
+	        	'points' => $value
+	        ));
 
 	        $this->getEventManager()->dispatch($event);
 
