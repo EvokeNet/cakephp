@@ -23,9 +23,9 @@
 		<a class="current" href="#"><?php echo $evidence['Evidence']['title'];?></a>
 	  </nav>
 
-	  <div class="medium-2 large-2 columns">
+	  <div class="small-2 medium-2 large-2 columns">
 	  	<div class="evoke evidence-tag text-align">
-	  		<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/>
+	  		<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
 		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1></a>
 		 	
 		 	<div class = "evoke border-bottom"></div>
@@ -50,7 +50,7 @@
 
 	 	</div>
 	  </div>
-	  <div class="medium-7 large-7 columns">
+	  <div class="small-7 medium-7 large-7 columns">
 	 	<div class = "evoke evidence-body view">
 		  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
 		  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
@@ -60,14 +60,14 @@
 
 		  	<?php //echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
 
-		  	<h2>Share a thought</h2>
+		  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
 		  	<?php foreach ($comment as $c): 
 					echo $this->element('comment_box', array('c' => $c));
 	  			endforeach; 
   			?>
 		</div>
 	  </div>
-	  <div class="medium-3 large-3 columns padding-right">
+	  <div class="small-3 medium-3 large-3 columns padding-right">
 	  	<div class = "evoke position">
 			<?php echo $this->element('right_titlebar', array('title' => (__('Share')))); ?>
 		</div>

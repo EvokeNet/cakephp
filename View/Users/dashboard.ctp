@@ -60,7 +60,7 @@
 
 <section class="evoke background padding top-5">
 	<div class="row full-width">
-		<div class="medium-9 columns">
+		<div class="small-9 medium-9 large-9 columns">
 
 			<?php if(!$is_friend AND ($users['User']['id'] != $user['User']['id'])):?>
 				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'add', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Follow this agent');?></a>
@@ -74,7 +74,7 @@
 	            <div class="jcarousel-wrapper">
 
 	            	<div class="row">
-					  <div class="small-9 large-centered columns">
+					  <div class="small-9 medium-9 large-9 small-centered columns">
 					  	<div class="jcarousel">
 		                    <ul>
 		                        <?php foreach($missions as $m):?>
@@ -184,14 +184,14 @@
 
 		</div>
 
-		<div class="medium-3 columns">
+		<div class="small-3 medium-3 large-3 columns">
 
 			<div class = "evoke dashboard tag">
-				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%"/>
+				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%" style = "position: absolute; top: 0;"/>
 
-				<div class="row">
-					  <div class="small-4 columns"><a href = "https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
-					  <div class="small-8 columns">
+				<div class="row" style = "margin-top:10%">
+					  <div class="small-4 medium-4 large-4 columns"><a href = "https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
+					  <div class="small-8 medium-8 large-8 columns">
 					  	<div class = "evoke dashboard agent info">
 					  		<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
 					  		<h4><?php echo $user['User']['name']; ?></h4>

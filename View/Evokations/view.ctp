@@ -21,7 +21,7 @@
 		<a class="current" href="#"><?php echo $evokation['Evokation']['title'];?></a>
 	  </nav>
 
-	  <div class="medium-2 large-2 columns">
+	  <div class="small-2 medium-2 large-2 columns">
 	  	<div class="evoke evidence-tag text-align">
 	  		<!-- <img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/> -->
 		 	
@@ -55,7 +55,7 @@
 			<?php endif; ?>
 	 	</div>
 	  </div>
-	  <div class="medium-7 large-7 columns">
+	  <div class="small-7 medium-7 large-7 columns">
 	 	<div class = "evoke evidence-body view">
 		  	<h1><?php echo h($evokation['Evokation']['title']); ?></h1>
 		  	<h6><?php echo h($evokation['Evokation']['created']); ?></h6>
@@ -65,15 +65,17 @@
 		  	
 		  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
 
-		  	<?php echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
+		  	<?php //echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
 
+		  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
+		  	
 		  	<?php foreach ($comment as $c): 
 					echo $this->element('comment_box', array('c' => $c));
 	  			endforeach; 
   			?>
 		</div>
 	  </div>
-	  <div class="medium-3 large-3 columns padding-right">
+	  <div class="small-3 medium-3 large-3 columns padding-right">
 	  	<div class = "evoke position">
 			<?php echo $this->element('right_titlebar', array('title' => (__('Share')))); ?>
 		</div>

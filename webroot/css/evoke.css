@@ -151,8 +151,8 @@ button, div, p, span, a,
 
 .evoke.dashboard.top-bar-section h3{
 	font-family: 'SBB';
-	font-size: 1.5em;
-	/*font-size: 1.5vw;*/
+	/*font-size: 1.5em;*/
+	font-size: 1.5vw;
 	color: #FFF;
 	padding-top: 8px;
 	text-align: center;
@@ -469,7 +469,8 @@ button, div, p, span, a,
 .evoke .button.general {
 	background: #1f8cb2;
 	color: #ffffff;
-	font-size: 0.9em;
+	font-size: 1.0vw;
+	/*font-size: 0.9em;*/
 	/*border-radius: 5px;
 	padding: 0.4em 2em;*/
 	border-radius: 10px;
@@ -598,7 +599,8 @@ button, div, p, span, a,
 
 .evoke .titles{
 	background-color: #f1f1f1;
-	padding: 0.7em;
+	/*padding: 0.7em;*/
+	padding: 0.5em 0.1em;
 	border-radius: 20px;
 	border: 1px solid #bb5660;
 	z-index: 1;
@@ -756,6 +758,10 @@ button, div, p, span, a,
 	box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
 }
 
+.evoke.evidence.blue-box i{
+	font-size:1.2vw;
+}
+
 .evoke.evidence.blue-box a{
 	color:#fff; 
 	font-family: 'AlegreyaRegular';
@@ -764,6 +770,13 @@ button, div, p, span, a,
 .evoke.evidence.blue-box h1{
 	font-family: 'AlegreyaRegular';
 	font-size:1.8vw;
+}
+
+.evoke.evidence.blue-box h5{
+	font-family: 'AlegreyaRegular';
+	font-size: 1.2vw;
+	margin-top:7px;
+	display:inline;
 }
 
 .evoke.evidence.blue-box h6{
@@ -791,6 +804,10 @@ button, div, p, span, a,
 .evoke.evokation-box a{
 	color:#333333; 
 	font-family: 'AlegreyaRegular';
+}
+
+.evoke.evokation-box i{
+	font-size:1.2vw;
 }
 
 .evoke.evokation-box h1{
@@ -822,6 +839,10 @@ button, div, p, span, a,
 	-webkit-box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
 	box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.evoke.evokation-red-box i{
+	font-size:1.2vw;
 }
 
 .evoke.evokation-red-box a{

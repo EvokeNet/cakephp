@@ -40,14 +40,14 @@
 	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
 	<div class="row full-width">
-	  <div class="large-6 columns">
+	  <div class="small-6 medium-6 large-6 columns">
 	  	<div class = "evoke missions data">
 	  		<h1><?php echo __('Phase: '); echo h($missionPhase['Phase']['name']); ?></h1>
 	  		<h2><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
 	  		<p><?= $mission['Mission']['description'];?></p>
   		</div>
 	  </div>
-	  <div class="large-6 columns">
+	  <div class="small-6 medium-6 large-6 columns">
 	  		<div class = "evoke position">
 	  			<div class = "evoke text-align"><img src = '<?= $this->webroot.'img/hqnored.png' ?>' width="60%"></div>
 	  		
@@ -82,7 +82,7 @@
 	</div> -->
 
 	<div class="row full-width">
-	  <div class="large-7 columns padding">
+	  <div class="small-7 medium-7 large-7 columns padding">
 	  	<div class="jcarousel-wrapper carousel-width">
 
 		  	<div class="jcarousel">
@@ -109,7 +109,7 @@
 
 	    </div>
 	  </div>
-	  <div class="large-5 columns padding-right">
+	  <div class="small-5 medium-5 large-5 columns padding-right">
 	  	<?php if($missionPhase['Phase']['show_dossier'] == 1) : ?>
 		  	<div class = "evoke titles-right">
 		  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>
@@ -211,7 +211,7 @@
 	</div>
 
     <div class="row full-width">
-	  <div class="large-8 columns">
+	  <div class="small-8 medium-8 large-8 columns">
 	  	<div class = "evoke position">
 			<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke horizontal_bar left">
 			<dl class="tabs evoke titles" data-tab>
@@ -234,7 +234,7 @@
 			</div>
 		</div>
 	  </div>
-	  <div class="large-4 columns">
+	  <div class="small-4 medium-4 large-4 columns">
 	  		
 
 		<div class = "evoke position" style = "margin: 5% 15%;">

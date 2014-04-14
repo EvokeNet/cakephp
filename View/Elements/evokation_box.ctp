@@ -11,7 +11,7 @@
 	}
 ?>
 <div class="row evoke evokation-box">
-	<div class="medium-2 columns">
+	<div class="small-2 medium-2 large-2 columns">
   		<div class = "evoke dashboard text-align">
   			<!-- <img src="https://graph.facebook.com/<?php echo $e['User']['facebook_id']; ?>/picture?type=large" width="110px"/> -->
 
@@ -21,7 +21,8 @@
 
 			</div>
 		</div>
-	<div class="medium-8 columns">
+	
+	<div class="small-6 medium-6 large-7 columns">
 
 		<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?>">
 		<h1><?= $e['Evokation']['title']?></h1>
@@ -29,7 +30,7 @@
 
 	</div>
 
-	<div class="medium-2 columns">
+	<div class="small-4 medium-4 large-3 columns">
 		<div>
 			<ul>
 		  		<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</li>
