@@ -9,7 +9,7 @@ class PanelsController extends AppController {
 */
 	public $components = array('Paginator','Access');
 	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 
-		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint');
+		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint');
 	public $user = null;
 	public $helpers = array('Media.Media', 'Chosen.Chosen');
 
@@ -1168,8 +1168,26 @@ class PanelsController extends AppController {
 */
 	public function add_badge() {
 		if ($this->request->is('post')) {
+			
+			$powerInsert['Power'] = $this->request->data['Power'];
+			unset($this->request->data['Power']);
+
 			$this->Badge->create();
 			if ($this->Badge->save($this->request->data)) {
+
+				$badge_id = $this->Badge->id;
+				//create questpowerpoints entries..
+				foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
+					if($powerEntry['quantity'] > 0){
+						$insert['BadgePowerPoint']['badge_id'] = $badge_id;
+						$insert['BadgePowerPoint']['power_points_id'] = $powerId;
+						$insert['BadgePowerPoint']['quantity'] = $powerEntry['quantity'];
+
+						$this->BadgePowerPoint->create();
+						$this->BadgePowerPoint->save($insert);
+					}
+				}
+
 				$this->Session->setFlash(__('The badge has been saved.'));
 				return $this->redirect(array('action' => 'index', 'badges'));
 			} else {

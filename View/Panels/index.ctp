@@ -250,6 +250,16 @@
 								<?php
 									echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
 									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+
+							        echo '<fieldset><legend> ' .__('Necessary Power Points to get Badge') . '</legend>';
+							        foreach ($powerpoints as $power) {
+							            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
+							                'label' => $power['PowerPoint']['name'],
+							                'value' => 0
+							            ));
+							        }
+							        echo '</fieldset>';
+									
 									echo $this->Form->input('organization_id', array(
 										'label' => __('Organization'),
 										'options' => $organizations_list

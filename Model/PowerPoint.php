@@ -15,6 +15,19 @@ class PowerPoint extends AppModel {
 
 
 	public $hasMany = array(
+		'BadgePowerPoint' => array(
+			'className' => 'BadgePowerPoint',
+			'foreignKey' => 'power_points_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'QuestPowerPoint' => array(
 			'className' => 'QuestPowerPoint',
 			'foreignKey' => 'power_points_id',
