@@ -9,7 +9,7 @@ class PanelsController extends AppController {
 */
 	public $components = array('Paginator','Access');
 	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 
-		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition');
+		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint');
 	public $user = null;
 	public $helpers = array('Media.Media', 'Chosen.Chosen');
 
@@ -49,6 +49,7 @@ class PanelsController extends AppController {
 		$missions_tab = $this->defineCurrentTab('missions', $args);
 		$issues_tab = $this->defineCurrentTab('issues', $args);
 		$levels_tab = $this->defineCurrentTab('levels', $args);
+		$powerpoints_tab = $this->defineCurrentTab('powerpoints', $args);
 		$badges_tab = $this->defineCurrentTab('badges', $args);
 		$users_tab = $this->defineCurrentTab('users', $args);
 		$media_tab = $this->defineCurrentTab('media', $args);
@@ -64,6 +65,8 @@ class PanelsController extends AppController {
 
 		//loading things that are independent from user role (admin/manager)
 		$issues = $this->Issue->getIssues();
+
+		$powerpoints = $this->PowerPoint->find('all');
 
 		//needed to issues' add form
 		$parentIssues = $this->Issue->ParentIssue->find('list');
@@ -243,11 +246,10 @@ class PanelsController extends AppController {
 			)
 		));
 
-
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
-			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues',
+			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints',
 			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
-			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
+			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'powerpoints_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
 	}
 
 /*
@@ -1024,6 +1026,44 @@ class PanelsController extends AppController {
 			}
 		}
 	}
+
+/*
+* add_powerpoint method
+* adds a powerpoint via admin panel and returns to it
+*/
+	public function add_powerpoint() {
+		if ($this->request->is('post')) {
+			$this->PowerPoint->create();
+			if ($this->PowerPoint->save($this->request->data)) {
+				$this->Session->setFlash(__('The powerpoint has been saved.'));
+				return $this->redirect(array('action' => 'index', 'powerpoints'));
+			} else {
+				$this->Session->setFlash(__('The powerpoint could not be saved. Please, try again.'));
+			}
+		}
+	}
+
+/*
+* delete_powerpoint method
+* delete a powerpoint via admin panel and returns to it
+*/
+	public function delete_powerpoint($id = null) {
+		if ($this->request->is('post')) {
+
+			$this->PowerPoint->id = $id;
+			if (!$this->PowerPoint->exists()) {
+				throw new NotFoundException(__('Invalid powerpoint'));
+			}
+			if ($this->PowerPoint->delete()) {
+				$this->Session->setFlash(__('The powerpoint has been deleted.'));
+				return $this->redirect(array('action' => 'index', 'powerpoints'));
+			} else {
+				$this->Session->setFlash(__('The powerpoint could not be deleted. Please, try again.'));
+			}
+		}
+	}
+
+
 
 
 /*

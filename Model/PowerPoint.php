@@ -17,7 +17,7 @@ class PowerPoint extends AppModel {
 	public $hasMany = array(
 		'QuestPowerPoint' => array(
 			'className' => 'QuestPowerPoint',
-			'foreignKey' => 'power_point_id',
+			'foreignKey' => 'power_points_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -30,7 +30,7 @@ class PowerPoint extends AppModel {
 		),
 		'UserPowerPoint' => array(
 			'className' => 'UserPowerPoint',
-			'foreignKey' => 'power_point_id',
+			'foreignKey' => 'power_points_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

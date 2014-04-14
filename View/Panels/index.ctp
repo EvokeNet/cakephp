@@ -79,6 +79,7 @@
 				<?php if($flags['_admin']) : ?>
 					<dd class="<?php echo $issues_tab; ?>"><a href="#issues"><?= __('Issues') ?></a></dd>
 					<dd class="<?php echo $levels_tab; ?>"><a href="#levels"><?= __('Levels') ?></a></dd>
+					<dd class="<?php echo $powerpoints_tab; ?>"><a href="#powerpoints"><?= __('Power Points') ?></a></dd>
 				<?php endif; ?>	
 				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
 				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
@@ -190,13 +191,50 @@
 						</div>			    			
 
 							<?php foreach ($issues as $i) : ?>
-					  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'missions', 'action' => 'delete', $i['Issue']['id']), array( 'class' => 'button tiny alert', 'id' => 'issuesDelete'.$i['Issue']['id'], 'style' => 'display:none')); ?>
+					  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_issue', $i['Issue']['id']), array( 'class' => 'button tiny alert', 'id' => 'issuesDelete'.$i['Issue']['id'], 'style' => 'display:none')); ?>
 							<?php endforeach; ?>
 							<div id="IssuesHolder"></div>
 					</div>
 				</div>
 				<div class="content <?php echo $levels_tab; ?>" id="levels">
 					<p>Not defined.. levels details go here.</p>
+				</div>
+				<div class="content <?php echo $powerpoints_tab; ?>" id="powerpoints">
+					<div class="large-10 columns">
+			  			<button class="button" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></button>
+			    		<div id="myModalPowerPoint" class="reveal-modal tiny" data-reveal>
+							<?php echo $this->Form->create('PowerPoint', array(
+		 				   		'url' => array(
+		 				   			'controller' => 'panels',
+		 				   			'action' => 'add_powerpoint')
+								)); ?>
+							<fieldset>
+								<legend><?php echo __('Add a Power Point'); ?></legend>
+								<?php
+									echo $this->Form->input('name', array(
+										'label' => __('Name'),
+										'required' => true
+									));
+									echo $this->Form->input('description', array(
+										'label' => __('Description'),
+										'type' => 'textarea',
+										'required' => true
+									));
+								?>
+							</fieldset>
+							<button class="button small" type="submit">
+								<?php echo __('Add'); ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
+
+							<a class="close-reveal-modal">&#215;</a>
+						</div>			    			
+
+							<?php foreach ($powerpoints as $pp) : ?>
+					  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_powerpoint', $pp['PowerPoint']['id']), array( 'class' => 'button tiny alert', 'id' => 'powerpointsDelete'.$pp['PowerPoint']['id'], 'style' => 'display:none')); ?>
+							<?php endforeach; ?>
+							<div id="PowerPointsHolder"></div>
+					</div>
 				</div>
 				<div class="content <?php echo $badges_tab; ?>" id="badges">
 					<div class="large-10 columns">
@@ -768,6 +806,76 @@
         var filteredRows = waTableIssues.getData(false, true); //Gets the data you previously set, but with filtered rows only.
 
         var pageSize = waTableIssues.option("pageSize"); //Get option
+
+
+
+        var waTablePP = $('#PowerPointsHolder').WATable({
+            //debug:true,                 //Prints some debug info to console
+            pageSize: 10,                //Initial pagesize
+            transition: 'slide',       //Type of transition when paging (bounce, fade, flip, rotate, scroll, slide).Requires https://github.com/daneden/animate.css.
+            transitionDuration: 0.2,    //Duration of transition in seconds.
+            filter: true,               //Show filter fields
+            pageSizes: [],  //Set custom pageSizes. Leave empty array to hide button.
+            hidePagerOnEmpty: true,     //Removes the pager if data is empty.
+            preFill: false, //true,              //Initially fills the table with empty rows (as many as the pagesize).
+            types: {                    //Following are some specific properties related to the data types
+                string: {
+                    //filterTooltip: "Giggedi..."    //What to say in tooltip when hoovering filter fields. Set false to remove.
+                    //placeHolder: "Type here..."    //What to say in placeholder filter fields. Set false for empty.
+                },
+                number: {
+                    decimals: 1   //Sets decimal precision for float types
+                },
+                bool: {
+                    //filterTooltip: false
+                },
+                date: {
+                  utc: true,            //Show time as universal time, ie without timezones.
+                  //format: 'yy/dd/MM',   //The format. See all possible formats here http://arshaw.com/xdate/#Formatting.
+                  datePicker: true      //Requires "Datepicker for Bootstrap" plugin (http://www.eyecon.ro/bootstrap-datepicker).
+                }
+            },
+            tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
+                // console.log('table created'); //data.table holds the html table element.
+                // console.log(data);            //'this' keyword also holds the html table element.
+            },
+            rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
+                // console.log('row clicked');   //data.event holds the original jQuery event.
+                // console.log(data);            //data.row holds the underlying row you supplied.
+                //                               //data.column holds the underlying column you supplied.
+                //                               //data.checked is true if row is checked.
+                //                               //'this' keyword holds the clicked element.
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
+            },
+            columnClicked: function(data) {    //Fires when a column is clicked
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
+                                              //data.descending is true when sorted descending (duh)
+            },
+            pageChanged: function(data) {      //Fires when manually changing page
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
+            },
+            pageSizeChanged: function(data) {  //Fires when manually changing pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
+            }
+        }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
+
+        //Generate some data
+        var dataPP = getDataPowerPoints();
+        waTablePP.setData(dataPP);  //Sets the data.
+        //waTable.setData(data, true); //Sets the data but prevents any previously set columns from being overwritten
+        //waTable.setData(data, false, false); //Sets the data and prevents any previously checked rows from being reset
+
+        var allRows = waTablePP.getData(false); //Gets the data you previously set.
+        var checkedRows = waTablePP.getData(true); //Gets the data you previously set, but with checked rows only.
+        var filteredRows = waTablePP.getData(false, true); //Gets the data you previously set, but with filtered rows only.
+
+        var pageSize = waTablePP.option("pageSize"); //Get option
     });
 
 
@@ -1207,6 +1315,69 @@
     }
 
 
+    function getDataPowerPoints() {
+
+        //First define the columns
+        var cols = {
+            name: {
+                index: 1,
+                type: "string",
+                friendly: "Power Point",
+                format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
+                tooltip: "<?= __('Find power points in Evoke')?>", //Show some additional info about column
+                placeHolder: "<?= __('Search for power point...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+            }
+        };
+
+
+        <?php 
+        	$pp_size = 0;
+	    	$pp_array = "";
+	    	$ppids_array = "";
+	    	foreach ($powerpoints as $power) :
+	    		if($power['PowerPoint']['id'] == "") continue;
+	    		$pp_size++;
+	    		$pp_array .= '"'. $power['PowerPoint']['name'] .'", ';
+	    		$ppids_array .= '"'. $power['PowerPoint']['id'] .'", ';
+	    	endforeach;
+	    	$pp_array = substr($pp_array, 0, strlen($pp_array) - 2);
+    		$ppids_array = substr($ppids_array, 0, strlen($ppids_array) - 2);
+	    ?>
+    
+        /*
+          Create the actual data.
+          Whats worth mentioning is that you can use a 'format' property just as in the column definition,
+          but on a row level. See below on how we create a weightFormat property. This will be used when rendering the weight column.
+          Also, you can pre-check rows with the 'checked' property and prevent rows from being checkable with the 'checkable' property.
+        */
+        var rows = [];
+        var i = 1;
+        while(i <= <?php echo $pp_size; ?>)
+        {
+            //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var url = getCorrectURL("#");
+            var doc = {
+                name: ppName[i-1],
+                nameFormat: "<a href='#' class='name' target='_blank'>{0}</a>:     " + ppButtons(i-1)
+            };
+            rows.push(doc);
+            i++;
+        }
+
+        //Create the returning object. Besides cols and rows, you can also pass any other object you would need later on.
+        var data = {
+            cols: cols,
+            rows: rows,
+            otherStuff: {
+                thatIMight: 1,
+                needLater: true
+            }
+        };
+
+        return data;
+    }
+
+
     var usersName = new Array(<?php echo $users_name_array?>);    
     var usersId = new Array(<?php echo $users_id_array?>);
     var usersRole = new Array(<?php echo $users_role_array?>);    
@@ -1224,6 +1395,9 @@
 
 	var issuesName = new Array(<?php echo $issues_array?>);
     var issuesId = new Array(<?php echo $issueids_array?>);    
+
+    var ppName = new Array(<?php echo $pp_array?>);
+    var ppId = new Array(<?php echo $ppids_array?>);    
 
     var issueName = new Array(<?php echo $mission_issues_array ?>);
     var issueId = new Array(<?php echo $mission_issues_id_array ?>);
@@ -1256,6 +1430,12 @@
     	var url = getCorrectURL("organizations/edit/");
     	str = "'orgsDelete" + orgsId[i] + "'";
     	return '<a href="'+ url + orgsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    }
+
+	function ppButtons(i) {
+    	var url = getCorrectURL("");
+    	var str = "'powerpointsDelete" + ppId[i] + "'";
+    	return '<a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
     function issuesButtons(i) {
