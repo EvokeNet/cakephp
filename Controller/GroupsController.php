@@ -196,6 +196,34 @@ class GroupsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Group->create();
 			if ($this->Group->save($this->request->data)) {
+
+				$me = $this->Group->find('first', array(
+					'conditions' => array(
+						'Group.id' => $this->Group->id
+					)
+				));
+
+				//attribute pp to group creator
+				$this->loadModel('QuestPowerPoint');
+				$pp = $this->QuestPowerPoint->find('first', array(
+					'conditions' => array(
+						'quest_id' => $me['Group']['quest_id']
+					)
+				));
+
+				if(!empty($pp)) {
+					$data['UserPowerPoint']['user_id'] = $me['Group']['user_id'];
+					$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
+					$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
+					$data['UserPowerPoint']['quantity'] = $pp['QuestPowerPoint']['quantity'];
+					$data['UserPowerPoint']['model'] = 'Group';
+					$data['UserPowerPoint']['foreign_key'] = $me['Group']['id'];
+
+					$this->loadModel('UserPowerPoint');
+					$this->UserPowerPoint->create();
+					$this->UserPowerPoint->save($data);
+				}
+
 				$this->Session->setFlash(__('The group has been saved.'));
 				return $this->redirect(array('action' => 'index', $mission_id));
 			} else {
@@ -234,7 +262,7 @@ class GroupsController extends AppController {
 		
 		$me = $this->getUserId();
 		if(!$this->isOwner($me, $id)) {
-			$this->Session->setFlash(__('Only the group owner is allowed to delete it.'));
+			$this->Session->setFlash(__('Only the group owner is allowed to edit it.'));
 			return $this->redirect($this->referer());
 		}
 
@@ -277,7 +305,43 @@ class GroupsController extends AppController {
 
 
 		$this->request->onlyAllow('post', 'delete');
+		$group = $this->Group->find('first', array(
+			'conditions' => array(
+				'Group.id' => $id
+			)
+		));
+
 		if ($this->Group->delete()) {
+
+
+			//attribute pp to evidence owner
+			$this->loadModel('QuestPowerPoint');
+			$pp = $this->QuestPowerPoint->find('first', array(
+				'conditions' => array(
+					'quest_id' => $group['Group']['quest_id']
+				)
+			));
+
+			if(!empty($pp)) {
+				
+				$this->loadModel('UserPowerPoint');
+				$old = $this->UserPowerPoint->find('first', array(
+					'conditions' => array(
+						'user_id' => $group['Group']['user_id'],
+						'power_points_id' => $pp['QuestPowerPoint']['power_points_id'],
+						'quest_id' => $pp['QuestPowerPoint']['quest_id'],
+						'quantity' => $pp['QuestPowerPoint']['quantity'],
+						'model' => 'Group',
+						'foreign_key' => $group['Group']['id']
+					)
+				));
+
+				if(!empty($old)) {
+					$this->UserPowerPoint->id = $old['UserPowerPoint']['id'];
+					$this->UserPowerPoint->delete();
+				}
+			}
+
 			$this->Session->setFlash(__('The group has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The group could not be deleted. Please, try again.'));

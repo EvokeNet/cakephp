@@ -80,6 +80,29 @@ class LikesController extends AppController {
 
 		$this->Like->create();
 		if ($this->Like->save($data)) {
+
+			//attribute pp to evidence owner
+			$this->loadModel('QuestPowerPoint');
+			$pp = $this->QuestPowerPoint->find('first', array(
+				'conditions' => array(
+					'quest_id' => $evidence['Evidence']['quest_id']
+				)
+			));
+
+			if(!empty($pp)) {
+				$data['UserPowerPoint']['user_id'] = $evidence['Evidence']['user_id'];
+				$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
+				$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
+				$data['UserPowerPoint']['quantity'] = $pp['QuestPowerPoint']['quantity'];
+				$data['UserPowerPoint']['model'] = 'Evidence';
+				$data['UserPowerPoint']['foreign_key'] = $evidence['Evidence']['id'];
+
+				$this->loadModel('UserPowerPoint');
+				$this->UserPowerPoint->create();
+				$this->UserPowerPoint->save($data);
+
+			}
+
 			//$this->Session->setFlash(__('The like has been saved.'));
 			return $this->redirect($this->referer());
 		} else {
@@ -130,7 +153,42 @@ class LikesController extends AppController {
 
 		$like = $this->Like->find('first', array('conditions' => array('Like.id' => $id)));
 
+		$this->loadModel('Evidence');
+		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $like['Like']['evidence_id'])));
+		if(empty($evidence)){
+			return $this->redirect($this->referer());
+		}
+
 		if ($this->Like->delete()) {
+
+			//attribute pp to evidence owner
+			$this->loadModel('QuestPowerPoint');
+			$pp = $this->QuestPowerPoint->find('first', array(
+				'conditions' => array(
+					'quest_id' => $evidence['Evidence']['quest_id']
+				)
+			));
+
+			if(!empty($pp)) {
+				
+				$this->loadModel('UserPowerPoint');
+				$old = $this->UserPowerPoint->find('first', array(
+					'conditions' => array(
+						'user_id' => $evidence['Evidence']['user_id'],
+						'power_points_id' => $pp['QuestPowerPoint']['power_points_id'],
+						'quest_id' => $pp['QuestPowerPoint']['quest_id'],
+						'quantity' => $pp['QuestPowerPoint']['quantity'],
+						'model' => 'Evidence',
+						'foreign_key' => $evidence['Evidence']['id']
+					)
+				));
+
+				if(!empty($old)) {
+					$this->UserPowerPoint->id = $old['UserPowerPoint']['id'];
+					$this->UserPowerPoint->delete();
+				}
+			}
+
 			//$this->Session->setFlash(__('The like has been deleted.'));
 		} else {
 			//$this->Session->setFlash(__('The like could not be deleted. Please, try again.'));

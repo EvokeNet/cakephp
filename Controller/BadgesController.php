@@ -153,8 +153,9 @@ class BadgesController extends AppController {
 
 			$options = array('conditions' => array('Badge.' . $this->Badge->primaryKey => $id));
 			$this->request->data = $this->Badge->find('first', $options);
+			$me = $this->Badge->find('first', $options);
 
-			$this->set(compact('mypp', 'powerpoints'));
+			$this->set(compact('mypp', 'powerpoints', 'me'));
 
 		}
 	}

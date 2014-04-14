@@ -43,12 +43,12 @@
 				if(!$member) {
 					if(isset($count_members[$e['Group']['id']]))
 						if($count_members[$e['Group']['id']] < $e['Group']['max_local']) : ?>
-							<a href="#" data-reveal-id="myModal" data-reveal class = "button general green"><?= __('Send request to join')?></a>
+							<a href="#" data-reveal-id="<?= $e['Group']['id']?>" data-reveal class = "button general green"><?= __('Send request to join')?></a>
 						<?php else : ?>
 							<h6><?= __('This group is full!')?></h6>
 						<?php endif;
 					else 
-						echo '<a href="#" data-reveal-id="myModal" data-reveal class = "button general green">' . __('Send request to join') . '</a>';
+						echo '<a href="#" data-reveal-id="' .$e['Group']['id'] . '" data-reveal class = "button general green">' . __('Send request to join') . '</a>';
 				}
 			?>
 
