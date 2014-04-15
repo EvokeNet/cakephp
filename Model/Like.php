@@ -30,6 +30,23 @@ class Like extends AppModel {
 
 	        $this->getEventManager()->dispatch($event);
 
+	        App::import('model','Evidence');
+	        $evidences = new Evidence();
+
+	  //       $like = $this->find('first', array(
+			// 	'conditions' => array('Like.id' => $this->id))
+			// );
+
+	        $evidence = $evidences->find('first', array(
+				'conditions' => array('Evidence.id' => $this->data['Like']['evidence_id']))
+			);
+
+	        $event2 = new CakeEvent('Model.Like.notify', $this, array(
+	        	'user_id' => $evidence['Evidence']['user_id'],
+	        ));
+
+	        $this->getEventManager()->dispatch($event2);
+
 	        return true;
 	    }	
     }

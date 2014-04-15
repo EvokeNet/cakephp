@@ -29,6 +29,10 @@ class UserFriend extends AppModel {
 
 	        $this->getEventManager()->dispatch($event);
 
+	        $event2 = new CakeEvent('Model.UserFriend.notifyFollow', $this);
+
+	        $this->getEventManager()->dispatch($event2);
+
 	        return true;
 	    }	
     }

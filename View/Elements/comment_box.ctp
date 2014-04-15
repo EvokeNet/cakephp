@@ -25,7 +25,7 @@ $name = explode(' ', $c['User']['name']);
   <div class="small-2 medium-2 large-2 columns evoke text-align">
   	<img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?type=large" width="80px"/>
   	<h4 style = "font-size: 0.9vw;"><?php echo (__('Agent ').$name[0]); ?></h4>
-	<h6><?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h6>
+	<h6 style = "font-size: 0.7vw;"><?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h6>
   </div>
   <div class="small-10 medium-10 large-10 columns">
   	<div class = "evoke bubble">
