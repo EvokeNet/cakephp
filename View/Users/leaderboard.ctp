@@ -46,28 +46,43 @@
 		<div class="small-9 medium-9 large-9 columns">
 		<h1><?php echo __('Leadercloud');?></h1>
 			<dl class="tabs" data-tab>
-				<dd class="active"><a href="#panel2-1"><?php echo __('Weekly');?></a></dd>
-				<dd><a href="#panel2-2"><?php echo __('Monthly');?></a></dd>
-				<dd><a href="#panel2-3"><?php echo __('By Mission');?></a></dd>
-				<dd><a href="#panel2-4"><?php echo __('By Issue');?></a></dd>
-				<dd><a href="#panel2-5"><?php echo __('By Badges');?></a></dd>
+				<?php 
+					$first = ' class="active"';
+					$index = 1;
+					foreach ($power_points as $pp) {
+						echo '<dd'. $first.'><a href="#panel2-'. $index .'">'. $pp['PowerPoint']['name'] .'</a></dd>';
+						$index++;
+						$first = '';
+					}
+				?>
 			</dl>
 			<div class="tabs-content">
-				<div class="content active" id="panel2-1">
-					<p>First panel content goes here...</p>
-				</div>
-				<div class="content" id="panel2-2">
-					<p>Second panel content goes here...</p>
-				</div>
-				<div class="content" id="panel2-3">
-					<p>Third panel content goes here...</p>
-				</div>
-				<div class="content" id="panel2-4">
-					<p>Fourth panel content goes here...</p>
-				</div>
-				<div class="content" id="panel2-5">
-					<p>Fifth panel content goes here...</p>
-				</div>
+				<?php 
+					$first = ' active';
+					$index = 1;
+					foreach ($power_points as $pp) {
+						echo '<div class="content'. $first .'" id="panel2-'. $index .'">';
+							
+							$zeros = '';
+							foreach ($users as $usr) {
+								if(isset($powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']])) {
+									echo $usr['User']['name'] . ': '. $powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']] . 'pps';
+									echo '<br>';
+								} else {
+									$zeros .= $usr['User']['name'] . ': 0pps';
+									$zeros .= '<br>';
+								}
+							}
+
+							echo $zeros;
+
+						echo '</div>';
+						$index++;
+						$first = '';
+					}
+				?>
+
+				
 			</div>
 		</div>
 		<div class="small-3 medium-3 large-3 columns"></div>

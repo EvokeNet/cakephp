@@ -316,7 +316,7 @@ class GroupsUsersController extends AppController {
 					)
 				));
 
-				foreach($pps as $pp)) {
+				foreach($pps as $pp) {
 					$data['UserPowerPoint']['user_id'] = $user_id;
 					$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
 					$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
