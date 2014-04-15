@@ -102,7 +102,8 @@ class LikesController extends AppController {
 				$this->UserPowerPoint->save($data);
 			}
 
-			//$this->Session->setFlash(__('The like has been saved.'));
+			$this->Session->setFlash(__('Your like was computed'), 'flash_message');
+			
 			return $this->redirect($this->referer());
 		} else {
 			$this->Session->setFlash(__('The like could not be saved. Please, try again.'));

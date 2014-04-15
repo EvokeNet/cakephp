@@ -45,8 +45,6 @@ $title = __('Evoke Network');
 <body class="evoke">
 
 	<section role="main body">
-		<?php echo $this->Session->flash(); ?>
-
 		<?php echo $this->fetch('content'); ?>
 	</section>
 

@@ -59,6 +59,9 @@
 <?php $this->end(); ?>
 
 <section class="evoke background padding top-5">
+
+	<?php echo $this->Session->flash(); ?>
+
 	<div class="row full-width">
 		<div class="small-9 medium-9 large-9 columns">
 
@@ -248,7 +251,7 @@
 					  		<h4><?php echo $user['User']['name']; ?></h4>
 					  		<h5><?php echo __('Level');?>&nbsp;&nbsp;&nbsp;<div><? echo $myLevel; ?></div></h5>
 							<div class="evoke dashboard progress small-9 large-9 round">
-							  <span class="meter" style="width: 50%"></span>
+							  <span class="meter" style="width: <?= $percentage ?>%"></span>
 							</div>
 
 							<h5><?php echo __('Points');?>&nbsp;&nbsp;<div><?= $sumMyPoints ?></div></h5>
