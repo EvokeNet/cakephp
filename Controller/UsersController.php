@@ -207,6 +207,12 @@ class UsersController extends AppController {
 
 		$myLevel = $this->getLevel($sumMyPoints);
 
+		$this->loadModel('Level');
+
+		$thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $myLevel+1)));
+
+		$percentage = round(($sumMyPoints / $thisLevel['Level']['points']) * 100);
+
 		$points = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $id)));
 
 		$sumPoints = $this->getPoints($id);
@@ -304,7 +310,7 @@ class UsersController extends AppController {
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
-			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies'));
+			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'percentage'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');

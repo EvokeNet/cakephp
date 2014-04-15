@@ -1210,3 +1210,16 @@ button, div, p, span, a,
 .evoke .bubble p{
 	word-break: break-all;
 }
+
+.evoke .alert-message{
+	/*width: 20%;
+	margin-left: 20px;*/
+	font-size: 0.7vw;
+	text-align: center;
+}
+
+.evoke .alert-message p{
+	font-size: 0.9vw;
+	margin-bottom: 0;
+	font-family: 'AlegreyaBold';
+}
