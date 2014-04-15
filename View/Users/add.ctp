@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="small-6 large-centered columns">
+  <div class="small-6 small-centered columns">
   	<div class="users form">
 	<?php echo $this->Form->create('User'); ?>
 		<fieldset>

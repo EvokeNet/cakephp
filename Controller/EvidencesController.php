@@ -90,8 +90,11 @@ class EvidencesController extends AppController {
 
 		$this->Evidence->create();
 		if ($this->Evidence->save($insertData)) {
-			$this->Session->setFlash(__('The evidence has been saved.'));
 			
+			//$this->Session->setFlash(__('The evidence has been saved.')); 
+			 
+			$this->Session->setFlash(__('The evidence has been saved.'), 'flash_message');
+
 			//user has completed a quest, so if he doesnt exist in 'usersmissions', add him now!
 			$this->loadModel('UserMission');
 			$is_in = $this->UserMission->find('first', array('conditions' => array('UserMission.user_id' => $this->getUserId(), 'UserMission.mission_id' => $mission_id)));

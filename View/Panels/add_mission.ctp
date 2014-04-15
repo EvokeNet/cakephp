@@ -62,7 +62,7 @@
 
 <section class="evoke margin top-2">
 	<div class="row evoke max-width">
-		<div class="large-12 columns">
+		<div class="small-12 medium-12 large-12 columns">
 			<!-- <h1><?= __('Creating Mission')?><?php if(isset($id) && !is_null($id)) : echo ': ' . $mission['Mission']['title']; endif;?></h1> -->
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
@@ -100,27 +100,9 @@
 							<?php
 								if(isset($id) && !is_null($id)) {
 									echo '<legend>' . __('Edit Mission') .'</legend>'; 
-									echo $this->Form->input('title', array(
-										'value' => $mission['Mission']['title'], 
-										'label' => __('Title'), 
-										'required' => true
-									));
-									echo $this->Form->input('description', array(
-										'value' => $mission['Mission']['description'], 
-										'label' => __('Description'), 
-										'required' => true
-									));
-									echo $this->Form->radio('basic_trainning', array(
-											0 => 'No', 
-											1 => 'Yes'
-										), 
-										array(
-											'required' => true, 
-											'default' => $mission['Mission']['basic_trainning']
-										)
-									);
-
-
+									echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title'), 'required' => true));
+									echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description'), 'required' => true));
+									echo $this->Form->radio('basic_trainning', array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=>$mission['Mission']['basic_trainning']));
 									if(!is_null($mission_img) && !empty($mission_img)) :
 										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
 										echo '<div class="input file"><label for="Attachment0Attachment">Change Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
@@ -148,23 +130,9 @@
 									));
 								} else {
 									echo '<legend>'. __('Add a Mission') . '</legend>'; 
-									echo $this->Form->input('title', array(
-										'label' => __('Title'), 
-										'required' => true
-									));
-									echo $this->Form->input('description', array('
-										label' => __('Description'), 
-										'required' => true
-									));
-									echo $this->Form->radio('basic_trainning', array(
-											0 => 'No', 
-											1 => 'Yes'
-										), 
-										array(
-											'required' => true, 
-											'default' => 0
-										)
-									);
+									echo $this->Form->input('title', array('label' => __('Title'), 'required' => true));
+									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+									echo $this->Form->radio('basic_trainning', array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=> 0));
 									echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 									echo $this->Form->hidden('form_type', array('value' => 'mission'));
 									echo $this->Form->input('MissionIssue.issue_id', array(
@@ -184,7 +152,7 @@
 					</div>
 				</div>
 				<div class="content <?php echo $phases_tag ?> large-10 columns" id="phases">
-					<div class="large-9 columns">
+					<div class="small-9 medium-9 large-9 columns">
 						<?php if(empty($phases)) :
 							echo '<h4>' . __('Your mission will not be accessible until it has at least one phase.') . '</h4>';
 						else :
@@ -218,7 +186,7 @@
 						<?php endforeach; ?>
 						<?php endif; ?>
 					</div>
-					<div class="large-9 columns">
+					<div class="small-9 medium-9 large-9 columns">
 						<button class="button small" href="#" data-reveal-id="myModalPhase" data-reveal><?php echo __('Add a Phase');?></button>
 						<!-- <button class="button secondary small">
 							<?php echo $this->Html->Link(__('Back'), array('controller' => 'panels', 'action' => 'add_mission', $id, 'mission')); ?>

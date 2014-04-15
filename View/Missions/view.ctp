@@ -150,7 +150,7 @@
 		<?php endforeach; ?>
 
 		<div class="row">
-		  <div class="medium-9 columns">
+		  <div class="small-9 medium-9 large-9 columns">
 		  	<h2><?php echo __('Discussions: ').$mission['Mission']['title']; ?></h2>
 
 			<dl class="tabs" data-tab>
@@ -189,7 +189,7 @@
 			</div>
 
 		  </div>
-		  <div class="medium-3 columns">
+		  <div class="small-3 medium-3 large-3 columns">
 		  	<h2><?php echo __('To-do list');?></h2>
 		  	<ul>
 				<?php foreach($quests as $q):

@@ -59,6 +59,9 @@
 <?php $this->end(); ?>
 
 <section class="evoke background padding top-5">
+
+	<?php echo $this->Session->flash(); ?>
+
 	<div class="row full-width">
 		<div class="small-9 medium-9 large-9 columns">
 
@@ -74,7 +77,7 @@
 	            <div class="jcarousel-wrapper">
 
 	            	<div class="row">
-					  <div class="small-9 medium-9 large-9 small-centered columns">
+					  <div class="small-9 small-centered columns">
 					  	<div class="jcarousel">
 		                    <ul>
 		                        <?php foreach($missions as $m):?>
@@ -157,7 +160,58 @@
 				<img src = '<?= $this->webroot.'img/horizontal_bar.png' ?>' class = "screen_bar">
 
 				<div class="evoke screen-box dashboard leadercloud margin">
-					<div class ="button general red" style = "margin-top:30px; margin-left:30px"><?= __('This Week') ?></div>
+					<dl class="tabs" data-tab>
+						<?php 
+							$first = ' class="active"';
+							$index = 1;
+							foreach ($power_points as $pp) {
+								echo '<dd'. $first.'><a href="#panel2-'. $index .'" style = "margin-top:30px; margin-left:30px">'. $pp['PowerPoint']['name'] .'</a></dd>';
+								$index++;
+								$first = '';
+							}
+						?>
+					</dl>
+					<div class="tabs-content">
+						<?php 
+							$first = ' active';
+							$index = 1;
+							foreach ($power_points as $pp) {
+								echo '<div class="content'. $first .'" id="panel2-'. $index .'">';
+									echo '<ul>';
+									$zeros = array();
+									$pos = 1;
+									foreach ($allusers as $usr) {
+										if(isset($powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']])) {
+											echo '<li>';
+											echo '<h1>'. $pos .'</h1>';
+											echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
+											echo '<span>'. $usr['User']['name'] . '</span>';
+											echo '<span>|'. $pp['PowerPoint']['name'] .' Points: '.$powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']].' pts</span>';
+											echo '</li>';
+											$pos++;	
+										} else {
+											$zeros[] = $usr;
+										}
+										
+									}
+
+									foreach ($zeros as $zero) {
+										echo '<li>';
+										echo '<h1>'. $pos .'</h1>';
+										echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
+										echo '<span>'. $zero['User']['name'] . '</span>';
+										echo '<span>|'. $pp['PowerPoint']['name'] .' Points: 0 pts</span>';
+										echo '</li>';
+										$pos++;	
+									}								
+									echo '</ul>';
+								echo '</div>';
+								$index++;
+								$first = '';
+							}
+						?>
+					</div>
+					<!-- <div class ="button general red" style = "margin-top:30px; margin-left:30px"><?= __('This Week') ?></div>
 					<ul>
 						<li>
 							<h1>1</h1>
@@ -177,7 +231,7 @@
 							<span>Ron Swanson</span>
 							<span>Level 9 | Points 90</span>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 
 			</div>
@@ -197,7 +251,7 @@
 					  		<h4><?php echo $user['User']['name']; ?></h4>
 					  		<h5><?php echo __('Level');?>&nbsp;&nbsp;&nbsp;<div><? echo $myLevel; ?></div></h5>
 							<div class="evoke dashboard progress small-9 large-9 round">
-							  <span class="meter" style="width: 50%"></span>
+							  <span class="meter" style="width: <?= $percentage ?>%"></span>
 							</div>
 
 							<h5><?php echo __('Points');?>&nbsp;&nbsp;<div><?= $sumMyPoints ?></div></h5>

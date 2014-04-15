@@ -78,6 +78,11 @@ class Evidence extends AppModel {
 				'conditions' => array('Evidence.id' => $this->id))
 			);
 
+			if($evidence['Evidence']['evokation'] == 1)
+				$entity = 'evokationQuest';
+			else
+				$entity = 'evidence';
+
 	        $quest = $quests->find('first', array(
 	        	'conditions' => array(
 	        		'Quest.id' => $evidence['Evidence']['quest_id'])));
@@ -86,7 +91,8 @@ class Evidence extends AppModel {
 	            $value = $quest['Quest']['points'];
 
 	        $event = new CakeEvent('Model.Evidence.create', $this, array(
-	        	'points' => $value
+	        	'points' => $value,
+	        	'entity' => $entity
 	        ));
 
 	        $this->getEventManager()->dispatch($event);

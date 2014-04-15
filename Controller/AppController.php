@@ -115,40 +115,53 @@ class AppController extends Controller {
 
     public function getLevel($userPoints){
 
+        $this->loadModel('Level');
+
+        $levels = $this->Level->find('all', array('order' => array('Level.points ASC')));
+
         $level = 0;
 
-        if($userPoints < 250)
-            $level = 0;
+        foreach($levels as $l):
+            if($l['Level']['points'] <= $userPoints){
+                $level = $l['Level']['level'];
+            } else{
+                break;
+            }
 
-        else if($userPoints >= 250 && $userPoints < 500)
-            $level = 1;
+        endforeach;
 
-        else if($userPoints >= 500 && $userPoints < 750)
-            $level = 2;
+        // if($userPoints < 250)
+        //     $level = 0;
 
-        else if($userPoints >= 750 && $userPoints < 1000)
-            $level = 3;
+        // else if($userPoints >= 250 && $userPoints < 500)
+        //     $level = 1;
 
-        else if($userPoints >= 1000 && $userPoints < 2500)
-            $level = 4;
+        // else if($userPoints >= 500 && $userPoints < 750)
+        //     $level = 2;
 
-        else if($userPoints >= 2500 && $userPoints < 5000)
-            $level = 5;
+        // else if($userPoints >= 750 && $userPoints < 1000)
+        //     $level = 3;
 
-        else if($userPoints >= 5000 && $userPoints < 7500)
-            $level = 6;
+        // else if($userPoints >= 1000 && $userPoints < 2500)
+        //     $level = 4;
 
-        else if($userPoints >= 7500 && $userPoints < 10000)
-            $level = 7;
+        // else if($userPoints >= 2500 && $userPoints < 5000)
+        //     $level = 5;
 
-        else if($userPoints >= 10000 && $userPoints < 15000)
-            $level = 8;
+        // else if($userPoints >= 5000 && $userPoints < 7500)
+        //     $level = 6;
 
-        else if($userPoints >= 15000 && $userPoints < 20000)
-            $level = 9;
+        // else if($userPoints >= 7500 && $userPoints < 10000)
+        //     $level = 7;
 
-        else if($userPoints >= 20000)
-            $level = 10;
+        // else if($userPoints >= 10000 && $userPoints < 15000)
+        //     $level = 8;
+
+        // else if($userPoints >= 15000 && $userPoints < 20000)
+        //     $level = 9;
+
+        // else if($userPoints >= 20000)
+        //     $level = 10;
 
         return $level;
         

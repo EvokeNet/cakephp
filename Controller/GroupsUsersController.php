@@ -310,13 +310,13 @@ class GroupsUsersController extends AppController {
 
 	        	//attribute pp to group creator
 				$this->loadModel('QuestPowerPoint');
-				$pp = $this->QuestPowerPoint->find('first', array(
+				$pps = $this->QuestPowerPoint->find('all', array(
 					'conditions' => array(
 						'quest_id' => $me['Group']['quest_id']
 					)
 				));
 
-				if(!empty($pp)) {
+				foreach($pps as $pp) {
 					$data['UserPowerPoint']['user_id'] = $user_id;
 					$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
 					$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
@@ -434,14 +434,13 @@ class GroupsUsersController extends AppController {
 
 			//attribute pp to evidence owner
 			$this->loadModel('QuestPowerPoint');
-			$pp = $this->QuestPowerPoint->find('first', array(
+			$pps = $this->QuestPowerPoint->find('all', array(
 				'conditions' => array(
 					'quest_id' => $group['Group']['quest_id']
 				)
 			));
 
-			if(!empty($pp)) {
-				
+			foreach($pps as $pp) {				
 				$this->loadModel('UserPowerPoint');
 				$old = $this->UserPowerPoint->find('first', array(
 					'conditions' => array(

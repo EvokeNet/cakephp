@@ -31,6 +31,22 @@ class Comment extends AppModel {
 		        ));
 
 		        $this->getEventManager()->dispatch($event);
+
+
+		        App::import('model','Evidence');
+	        	
+	        	$evidences = new Evidence();
+				
+				$evidence = $evidences->find('first', array(
+					'conditions' => array('Evidence.id' => $this->data['Comment']['evidence_id']))
+				);
+
+		        $event2 = new CakeEvent('Model.Comment.notifyEvidence', $this, array(
+		        	'user_id' => $evidence['Evidence']['user_id'],
+		        ));
+
+		        $this->getEventManager()->dispatch($event2);
+
 		    } else if(isset($this->data['Comment']['evokation_id'])){
 		    	$value = 5;
 	       		//check to see if admin set a different amount of points for this action

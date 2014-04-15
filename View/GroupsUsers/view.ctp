@@ -48,7 +48,7 @@
 <section class="evoke margin top">
 	<div class="row full-width">
 		<aside>
-			<div class="large-2 columns evoke chat">
+			<div class="small-2 medium-2 large-2 columns evoke chat">
 				<h6 class="subheader"><?php echo __('ASSETS'); ?></h6>
 				
 				<!-- Here are the related resources, limited to 4 -->
@@ -87,7 +87,7 @@
 			</div>
 		</aside>
 
-		<div class="large-8 columns evoke">
+		<div class="small-8 medium-8 large-8 columns evoke">
 			<h1 class="evoke typeface strong" id="groupname"><small><?php echo __('Group'); ?> </small><?php echo $group['Group']['title']; ?></h1>
 
 			<!-- The Evokation project, with data from de DB and from Google Drive -->
@@ -122,7 +122,7 @@
 		</div>
 
 		<aside>
-			<div class="large-2 columns evoke toolbar">
+			<div class="small-2 medium-2 large-2 columns evoke toolbar">
 				<h6 class="subheader"><?php echo __('MEMBERS'); ?></h6>
 				<ul class="no-bullet">
 					<?php foreach ($users as $user): ?>

@@ -112,6 +112,8 @@
 	  <div class="small-5 medium-5 large-5 columns padding-right">
 	  	<?php if($missionPhase['Phase']['show_dossier'] == 1) : ?>
 		  	<div class = "evoke titles-right">
+
+		  	<div>
 		  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>
 		  		<div>
 		  		<dl class="tabs vertical evoke icons" data-tab>
@@ -205,6 +207,7 @@
 				</div>
 				</div>
 
+				</div>
 	  		</div>
 	  	<?php endif; ?>
 	  </div>

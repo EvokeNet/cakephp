@@ -64,15 +64,13 @@ class PointListener implements CakeEventListener {
 
         // $quest = $quests->find('first', array('conditions' => array('Quest.id' => $event->subject()->data['Evidence']['quest_id'])));
 
-        $value = $event->data['points'];
-
  		$point = ClassRegistry::init('Point');
  		$point->create();
  		$insertData = array(
             'user_id' => $event->subject()->data['Evidence']['user_id'], 
             'origin_id' => $event->subject()->data['Evidence']['id'], 
-            'origin' => 'evidence', 
-            'value' => $value
+            'origin' => $event->data['entity'], 
+            'value' => $event->data['points']
         );
  		$point->saveAll($insertData);
 

@@ -37,7 +37,7 @@
 	<div class="row full-width">
 
 		<aside>
-			<div class="large-2 columns toolbar">
+			<div class="small-2 medium-2 large-2 columns toolbar">
 				<h6 class="subheader"><?php echo __('MEMBERS'); ?></h6>
 				<ul class="no-bullet">
 					<?php foreach ($users as $user): ?>
@@ -71,7 +71,7 @@
 		</aside>
 
 
-		<div class="large-8 columns">
+		<div class="small-8 medium-8 large-8 columns">
 			<h1 class="typeface strong" id="groupname"><small><?php echo __('Group'); ?> </small><?php echo $group['Group']['title']; ?></h1>
 
 			<!-- The Evokation project, with data from de DB and from Google Drive -->
@@ -101,7 +101,7 @@
 		</div>
 
 		<aside>
-			<div class="large-2 columns chat">				
+			<div class="small-2 medium-2 large-2 columns chat">				
 				<h6 class="subheader"><?php echo __('CHAT'); ?></h6>
 				<!-- CHAT GOES HERE -->
 			</div>

@@ -43,7 +43,7 @@
 
 <section class="evoke margin top">
 	<div class="row">
-		<div class="large-12 columns">
+		<div class="small-12 medium-12 large-12 columns">
 			<div class="evoke profile picture wrapper left">
 				<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class="evoke profile picture" />
 			</div>
