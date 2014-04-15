@@ -1,6 +1,6 @@
 <div class = "evoke mission status-bg">
  	<div class="row full-width">
-	  <div class="medium-3 columns" style = "display: inline;">
+	  <div class="small-3 medium-3 large-3 columns" style = "display: inline;">
 	  	<?php 
 	  		$complete = 0;
 	  		$mission_completed = 0;
@@ -25,9 +25,9 @@
 			}
 		?></span>
 	  </div>
-	  <div class="medium-9 columns">
+	  <div class="small-9 medium-9 large-9 columns">
 	  	<div class="row">
-		  <div class="small-11 columns padding">
+		  <div class="small-11 medium-11 large-11 columns padding">
 		  	<div>
 	  	<?php	
 	  		if($valid_phases)
@@ -56,7 +56,7 @@
 			<?php endforeach; ?>
 		</div>
 		  </div>
-		  <div class="small-1 columns padding">
+		  <div class="small-1 medium-1 large-1 columns padding">
 		  	<div class = "evoke position">
 		  		<?php if($mission_completed == 100)
 					 	$complete = 'success';?>

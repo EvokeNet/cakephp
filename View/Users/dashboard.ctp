@@ -74,7 +74,7 @@
 	            <div class="jcarousel-wrapper">
 
 	            	<div class="row">
-					  <div class="small-9 medium-9 large-9 small-centered columns">
+					  <div class="small-9 small-centered columns">
 					  	<div class="jcarousel">
 		                    <ul>
 		                        <?php foreach($missions as $m):?>

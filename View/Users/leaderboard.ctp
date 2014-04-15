@@ -42,8 +42,8 @@
 <?php $this->end(); ?>
 
 <section class="evoke margin top-2">
-	<div class="row">
-		<div class="medium-9 columns">
+	<div class="row full-width">
+		<div class="small-9 medium-9 large-9 columns">
 		<h1><?php echo __('Leadercloud');?></h1>
 			<dl class="tabs" data-tab>
 				<dd class="active"><a href="#panel2-1"><?php echo __('Weekly');?></a></dd>
@@ -70,6 +70,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="medium-3 columns"></div>
+		<div class="small-3 medium-3 large-3 columns"></div>
 	</div>
 </section>

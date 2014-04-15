@@ -43,7 +43,7 @@
 
 <section class="evoke margin top-2">
 	<div class="row dashboard">
-		<div class="medium-9 columns">
+		<div class="small-9 medium-9 large-9 columns">
 			<h1><?php echo __('Dashboard');?></h1>
 
 			<nav class="breadcrumbs dashboard_breadcrumbs">
@@ -75,10 +75,10 @@
 	    				<?php foreach($missionIssues as $mi): 
 		    				if($e['Mission']['id'] == $mi['Mission']['id']):?>
 		    				<div class="row">
-							  <div class="large-10 columns">
+							  <div class="small-10 medium-10 large-10 columns">
 							  <?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));
 							  echo ' | '.$mi['Issue']['name'].' | '.date('F j, Y', strtotime($e['Evidence']['created'])); ?></div>
-							  <div class="large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
+							  <div class="small-2 medium-2 large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
 							</div> 
 		    				<?php break; endif;
 	    				endforeach;?>

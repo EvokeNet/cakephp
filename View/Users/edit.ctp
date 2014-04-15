@@ -1,10 +1,10 @@
 <section class="evoke background-green padding top-2">
 	<div class="row full-width">
-		<div class="small-9 large-centered columns">
+		<div class="small-9 small-centered columns">
 
 			<div class="row full-width">
 
-			  <div class="small-2 columns evoke no-padding">
+			  <div class="small-2 medium-2 large-2 columns evoke no-padding">
 			  <div class = "evoke edit-agent-tag">
 			  		<div class = "evoke text-align">
 			  			<h1><?= strtoupper(__('Evoke Account')) ?></h1>
@@ -27,7 +27,7 @@
 				</div>
 			  </div>
 
-			  <div class="small-10 columns evoke no-padding">
+			  <div class="small-10 medium-10 large-10 columns evoke no-padding">
 			  	<div class="evoke edit-bg users form">
 					<?php echo $this->Form->create('User', array('name' => 'editUser')); ?>
 						<?php

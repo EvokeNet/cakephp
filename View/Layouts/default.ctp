@@ -52,7 +52,7 @@ $title = __('Evoke Network');
 
 	<footer class="footer" id="footer">
 		<div class="row">
-			<div class="large-12 columns">
+			<div class="small-12 medium-12 large-12 columns">
 				<div class="row">
 				  <div class="small-5 small-centered columns">
 				  

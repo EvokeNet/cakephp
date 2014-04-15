@@ -71,8 +71,8 @@
 <?php $this->end(); ?>
 
 <section class="margin top-2">
-	<div class="row max-width">
-		<div class="large-12 columns">
+	<div class="row full-width">
+		<div class="small-12 medium-12 large-12 columns">
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><?= __('Organizations') ?></a></dd>
 				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><?= __('Missions') ?></a></dd>

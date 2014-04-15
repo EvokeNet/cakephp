@@ -18,7 +18,7 @@
 		</a>
 	</div>
 
-	<div class="small-4 medium-4 large-3 columns">
+	<div class="small-4 medium-4 large-3 columns padding">
 		<div>
 			<?php foreach($missionIssues as $mi): 
 			if($e['Mission']['id'] == $mi['Mission']['id']):?>

@@ -30,7 +30,7 @@
 
 	</div>
 
-	<div class="small-4 medium-4 large-3 columns">
+	<div class="small-4 medium-4 large-3 columns padding">
 		<div>
 			<ul>
 		  		<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</li>

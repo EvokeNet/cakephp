@@ -56,7 +56,7 @@
 
 <section class="margin top-2">
 	<div class="row max-width">
-		<div class="large-12 columns">
+		<div class="small-12 medium-12 large-12 columns">
 			<!-- <h1><?= __('Mission') ?><?php echo ': ' . $mission['Mission']['title']; ?></h1> -->
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
@@ -119,7 +119,7 @@
 					</div>
 				</div>
 				<div class="content <?php echo $phases_tag ?> large-10 columns" id="phases">
-					<div class="large-9 columns">
+					<div class="small-9 medium-9 large-9 columns">
 						<?php if(empty($phases)) :
 							echo '<h4>' . __('Your mission will not be accessible until it has at least one phase.') . '</h4>';
 						else :
@@ -153,7 +153,7 @@
 						<?php endforeach; ?>
 						<?php endif; ?>
 					</div>
-					<div class="large-9 columns">
+					<div class="small-9 medium-9 large-9 columns">
 						<button class="button small" href="#" data-reveal-id="myModalPhase" data-reveal><?php echo __('Add a Phase');?></button>
 						<!-- <button class="button secondary small">
 							<?php echo $this->Html->Link(__('Back'), array('controller' => 'panels', 'action' => 'add_mission', $id, 'mission')); ?>
