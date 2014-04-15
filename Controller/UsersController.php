@@ -303,8 +303,46 @@ class UsersController extends AppController {
 		$missionIssues = $this->Mission->MissionIssue->find('all');
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
+
+
+		//getting leaderboard data:
+			//getting user power points
+			$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
+
+			$points_users = array(); // will contain [user_id][level] && [user_id][points]
+
+			$allusers = $this->User->find('all');
+
+			$this->loadModel('Point');
+			$points = $this->Point->find('all');
+
+			$this->loadModel('PowerPoint');
+			$power_points = $this->PowerPoint->find('all');
+
+			foreach ($allusers as $usr) {
+				$this->User->id = $usr['User']['id'];
+				$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
+					'conditions' => array(
+						'UserPowerPoint.user_id' => $usr['User']['id']
+					)
+				));
+				foreach ($powerpoints_user as $powerpoint_user) {
+					if(isset($powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']])) {
+						$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']] += $powerpoint_user['UserPowerPoint']['quantity'];
+					} else {
+						$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']] = $powerpoint_user['UserPowerPoint']['quantity'];
+					}
+				}
+			}
+
+			foreach ($power_points as $pp) {
+				arsort($powerpoints_users[$pp['PowerPoint']['id']]);
+			}
+
+		//ended leader board data
+
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
-			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies'));
+			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'power_points'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');
@@ -355,7 +393,7 @@ class UsersController extends AppController {
 		$userid = $this->getUserId();
 
 		$username = explode(' ', $this->getUserName());
-		
+
 		//getting user power points
 		$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
 
@@ -390,9 +428,21 @@ class UsersController extends AppController {
 		}
 		
 
-		//debug($powerpoints_users);
+		$user = $this->User->find('first', array(
+			'conditions' => array(
+				'User.id' => $this->getUserId()
+			)
+		));
 
-		$this->set(compact('userid', 'username', 'users', 'powerpoints_users', 'power_points'));
+		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+
+		$sumMyPoints = 0;
+		
+		foreach($myPoints as $point){
+			$sumMyPoints += $point['Point']['value'];
+		}
+		
+		$this->set(compact('userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'sumMyPoints'));
 	}
 
 /**
