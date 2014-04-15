@@ -83,13 +83,13 @@ class LikesController extends AppController {
 
 			//attribute pp to evidence owner
 			$this->loadModel('QuestPowerPoint');
-			$pp = $this->QuestPowerPoint->find('first', array(
+			$pps = $this->QuestPowerPoint->find('all', array(
 				'conditions' => array(
 					'quest_id' => $evidence['Evidence']['quest_id']
 				)
 			));
 
-			if(!empty($pp)) {
+			foreach($pps as $pp) {
 				$data['UserPowerPoint']['user_id'] = $evidence['Evidence']['user_id'];
 				$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
 				$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
@@ -100,7 +100,6 @@ class LikesController extends AppController {
 				$this->loadModel('UserPowerPoint');
 				$this->UserPowerPoint->create();
 				$this->UserPowerPoint->save($data);
-
 			}
 
 			//$this->Session->setFlash(__('The like has been saved.'));
@@ -163,14 +162,13 @@ class LikesController extends AppController {
 
 			//attribute pp to evidence owner
 			$this->loadModel('QuestPowerPoint');
-			$pp = $this->QuestPowerPoint->find('first', array(
+			$pps = $this->QuestPowerPoint->find('all', array(
 				'conditions' => array(
 					'quest_id' => $evidence['Evidence']['quest_id']
 				)
 			));
 
-			if(!empty($pp)) {
-				
+			foreach ($pps as $pp) {
 				$this->loadModel('UserPowerPoint');
 				$old = $this->UserPowerPoint->find('first', array(
 					'conditions' => array(
@@ -182,13 +180,11 @@ class LikesController extends AppController {
 						'foreign_key' => $evidence['Evidence']['id']
 					)
 				));
-
 				if(!empty($old)) {
 					$this->UserPowerPoint->id = $old['UserPowerPoint']['id'];
 					$this->UserPowerPoint->delete();
 				}
 			}
-
 			//$this->Session->setFlash(__('The like has been deleted.'));
 		} else {
 			//$this->Session->setFlash(__('The like could not be deleted. Please, try again.'));
