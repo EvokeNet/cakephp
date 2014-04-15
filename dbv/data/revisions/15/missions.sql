@@ -1,0 +1,1 @@
+ALTER TABLE  `missions` ADD  `basic_trainning` TINYINT( 2 ) UNSIGNED NOT NULL DEFAULT  '0' AFTER  `language`;

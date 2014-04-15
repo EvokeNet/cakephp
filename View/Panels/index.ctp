@@ -71,8 +71,8 @@
 <?php $this->end(); ?>
 
 <section class="margin top-2">
-	<div class="row full-width">
-		<div class="small-12 medium-12 large-12 columns">
+	<div class="row max-width">
+		<div class="large-12 columns">
 			<dl class="tabs" data-tab>
 				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><?= __('Organizations') ?></a></dd>
 				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><?= __('Missions') ?></a></dd>
@@ -197,7 +197,53 @@
 					</div>
 				</div>
 				<div class="content <?php echo $levels_tab; ?>" id="levels">
-					<p>Not defined.. levels details go here.</p>
+					<div class="large-10 columns">
+						<?php 
+							$nextLevel = 1;
+							echo $this->Form->create('Level', array(
+								'url' => array(
+									'controller' => 'panels',
+									'action' => 'level'
+								)
+							));
+							foreach ($levels as $level):
+								echo '<div class="row collapse">';
+								echo '<div class="large-1 columns left inline"><label for="levelOld'.$level['Level']['id'].'">Level '.$level['Level']['level'].'</label></div>';
+								
+								echo $this->Form->input('level.old.'.$level['Level']['id'], array(
+									'label' => false,
+									'value' => $level['Level']['points'],
+									'div' => array(
+	        							'class' => 'large-1 columns left',
+	    							),
+									'required' => true
+								));
+								echo '<div class="large-1 columns left"><span class="postfix">points</span></div>';
+								echo '</div>';
+								
+								$nextLevel++;
+							endforeach;
+
+							echo '<div class="row collapse">';
+							echo '<div class="large-1 columns left inline"><label for="levelNew'.$nextLevel.'">Level '.$nextLevel.'</label></div>';
+								
+							echo $this->Form->input('level.new.'.$nextLevel, array(
+								'label' => false,
+								'div' => array(
+	        						'class' => 'large-1 columns left',
+	    						),
+								'required' => true
+							));
+							echo '<div class="large-1 columns left"><span class="postfix">points</span></div>';
+							echo '</div>';
+							
+							$nextLevel++;
+						?>
+						<button class="button small" type="submit">
+							<?php echo __('Save levels'); ?>
+						</button>
+						<?php echo $this->Form->end(); ?>
+					</div>
 				</div>
 				<div class="content <?php echo $powerpoints_tab; ?>" id="powerpoints">
 					<div class="large-10 columns">

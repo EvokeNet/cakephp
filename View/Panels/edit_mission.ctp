@@ -85,6 +85,7 @@
 								echo '<legend>' . __('Edit Mission'). '</legend>'; 
 								echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title'), 'required' => true));
 								echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description'), 'required' => true));
+								echo $this->Form->radio('basic_trainning', array(0 => 'No', 1=>'Yes'), 'required' => true, 'default'=>$mission['Mission']['basic_trainning']);
 								if(!is_null($mission_img) && !empty($mission_img)) :
 									echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
 									echo '<div class="input file"><label for="Attachment0Attachment">Change Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';

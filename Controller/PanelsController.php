@@ -9,7 +9,7 @@ class PanelsController extends AppController {
 */
 	public $components = array('Paginator','Access');
 	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 
-		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint');
+		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level');
 	public $user = null;
 	public $helpers = array('Media.Media', 'Chosen.Chosen');
 
@@ -67,6 +67,8 @@ class PanelsController extends AppController {
 		$issues = $this->Issue->getIssues();
 
 		$powerpoints = $this->PowerPoint->find('all');
+
+		$levels = $this->Level->find('all');
 
 		//needed to issues' add form
 		$parentIssues = $this->Issue->ParentIssue->find('list');
@@ -247,7 +249,7 @@ class PanelsController extends AppController {
 		));
 
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
-			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints',
+			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels',
 			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
 			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'powerpoints_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
 	}
@@ -1213,6 +1215,33 @@ class PanelsController extends AppController {
 			}
 		}
 	}
+
+/*
+* level method
+* defines levels settings (points to each level)
+*/
+	public function level(){
+		$data = $this->request->data;
+		if(isset($data['level']['old'])) {
+			//there are previous levels to check changes
+			foreach ($data['level']['old'] as $levelId => $levelPoints) {
+				$this->Level->id = $levelId;
+				$insert['Level']['points'] = $levelPoints;
+				$this->Level->save($insert);
+			}
+			unset($data['level']['old']);
+		}
+		foreach ($data['level']['new'] as $levelLevel => $levelPoints) {
+			$insert['Level']['points'] = $levelPoints;
+			$insert['Level']['level'] = $levelLevel;
+
+			$this->Level->create();
+			$this->Level->save($insert);
+		}
+
+		return $this->redirect(array('action' => 'index', 'levels'));
+	}
+
 
 /*
 * settings method
