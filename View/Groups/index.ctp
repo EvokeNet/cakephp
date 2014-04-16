@@ -27,6 +27,7 @@
 		echo $this->element('left_titlebar', array('title' => sprintf(__('Evokation Teams: %s'), $mission['Mission']['title'])));
 	endif; ?>
 	<div class="row full-width">
+		<?php echo $this->Session->flash(); ?>
 		<div class="small-8 small-centered columns">
 
 			<dl class="tabs" data-tab>

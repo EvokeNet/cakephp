@@ -40,18 +40,30 @@
 			<div class="small-2 medium-2 large-2 columns toolbar">
 				<h6 class="subheader"><?php echo __('MEMBERS'); ?></h6>
 				<ul class="no-bullet">
-					<?php foreach ($users as $user): ?>
-						<?php if ($user['User']['facebook_id']): ?>
+					<?php foreach ($users as $usr): ?>
+						<?php if ($usr['User']['facebook_id']): ?>
 							
 							<div class="image circle">
-								<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])) ?>">
-									<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" />
+								<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['User']['id'])) ?>">
+									<img src="https://graph.facebook.com/<?php echo $usr['User']['facebook_id']; ?>/picture?type=large" />
 								</a>
 							</div>
 							
 						<?php endif ?>
-						<li><?php $test = explode(' ', $user['User']['name']); echo $test[0]; ?></li>
+						<li><?php $test = explode(' ', $usr['User']['name']); echo $test[0]; ?></li>
 					<?php endforeach ?>
+
+					<?php if ($user['User']['facebook_id']): ?>
+							
+						<div class="image circle">
+							<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])) ?>">
+								<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" />
+							</a>
+						</div>
+							
+					<?php endif ?>
+					<li><?php $test = explode(' ', $user['User']['name']); echo $test[0]; ?></li>
+
 				</ul>
 
 
