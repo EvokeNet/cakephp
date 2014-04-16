@@ -152,7 +152,7 @@ class EvidencesController extends AppController {
 
 				//$this->Session->setFlash(__('The evidence has been saved.'));
 				$this->Session->setFlash(__('The evidence has been saved'), 'flash_message');
-				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], $me['Evidence']['phase_id']));
+				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], -1, $me['Evidence']['phase_id']));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}
