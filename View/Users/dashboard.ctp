@@ -80,9 +80,9 @@
 					  <div class="small-9 small-centered columns">
 					  	<div class="jcarousel">
 		                    <ul>
-		                        <?php foreach($missions as $m):?>
+		                        <?php foreach($missions as $m): ?>
 		                        	<li class = "evoke dashboard position">
-		                        		<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>">
+		                        		<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1)) ?>">
 			                        		<img src='<?= $this->webroot.'img/evoke_folder.png' ?>' width = "80%;"/>
 			                        		<span class = "evoke dashboard folders"><?php echo $m['Mission']['title'];?></span>
 			                        		<?php foreach ($imgs as $img) : 
@@ -286,7 +286,7 @@
 					<div class = "evoke screen-box allies" style = "padding: 40px 20px">
 						<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
 							<?php foreach($allies as $ally): ?>
-								<li><img src = "https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"><span><?= $ally['User']['name'] ?></span></li>
+								<li><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $ally['User']['id'])) ?>"><img src = "https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"><span><?= $ally['User']['name'] ?></span></a></li>
 						  <!-- <li><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>'><span>Leslie Knope</span></li>
 						  <li><img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>'><span>Ron Swanson</span></li>
 						  <li><img src = '<?= $this->webroot.'img/test_users/tom.jpg' ?>'><span>Tom Haverford</span></li>

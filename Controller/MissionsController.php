@@ -72,6 +72,8 @@ class MissionsController extends AppController {
 			throw new NotFoundException(__('Invalid mission'));
 		}
 
+		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
+
 		$missionPhases = $this->Mission->Phase->find('all', array('conditions' => array('Phase.mission_id' => $id), 'order' => 'Phase.position'));
 
 		if(!is_null($phaseId)){
@@ -102,7 +104,6 @@ class MissionsController extends AppController {
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));
 
-		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
 		$missionIssues = $this->Mission->getMissionIssues($id);
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 		
@@ -290,10 +291,60 @@ class MissionsController extends AppController {
 	        $this->getEventManager()->dispatch($event2);
 		}
 
-		if($missionPhase['Phase']['type'] == 0)
+		if($mission['Mission']['basic_training'] == 1)
+			$this->render('basic_training');
+		else if($missionPhase['Phase']['type'] == 0)
 			$this->render('view_discussion');
 		else
 			$this->render('view_project');
+	}
+
+/**
+ * basic training method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function basicTraining($id = null) {
+		if (!$this->Mission->exists($id)) {
+			throw new NotFoundException(__('Invalid mission'));
+		}
+
+		$this->loadModel('User');
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id)));
+
+		$my_quests_id = array();
+		$my_quests_id2 = array();
+		$k = 0;
+		foreach ($quests as $quest) {
+			$my_quests_id[$k] = array('quest_id' => $quest['Quest']['id']);
+			$my_quests_id2[$k] = array('foreign_key' => $quest['Quest']['id'], 'model' => 'Quest'); //specials condiditions to search in the Attachment database'
+			$k++;
+		}
+
+		$this->loadModel('Questionnaire');
+		$questionnaires = $this->Questionnaire->find('all', array(
+			'conditions' => array(
+				'OR' => $my_quests_id
+			)
+		));
+
+		$this->loadModel('Answer');
+		$answers = $this->Answer->find('all');
+		$this->loadModel('UserAnswer');
+		$previous_answers = $this->UserAnswer->find('all', array(
+			'conditions' => array(
+				'user_id' => $this->getUserId()
+			)
+		));
+
+		$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
+		$this->set('mission', $this->Mission->find('first', $options));
+
+		$this->set(compact('user', 'quests', 'questionnaires', 'previous_answers'));
 	}
 
 /**

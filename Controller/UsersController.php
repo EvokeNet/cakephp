@@ -239,16 +239,20 @@ class UsersController extends AppController {
 		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $this->getUserId())));
 
 		$are_friends = array();
-		$allies = 0;
+		//$allies = array();
 
 		foreach($friends as $friend){
 			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
 		}
 
-		$allies = $this->User->find('all', array(
-			'conditions' => array(
-				'OR' => $are_friends
+		if(!empty($are_friends)){
+			$allies = $this->User->find('all', array(
+				'conditions' => array(
+					'OR' => $are_friends
 			)));
+		} else{
+			$allies = array();
+		}
 
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
 		$myevidences = $evidence = $this->User->Evidence->find('all', array(
@@ -656,13 +660,12 @@ class UsersController extends AppController {
 
 				$this->User->UserIssue->deleteAll(array('UserIssue.user_id' => $userid), false);
 
-				/*foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
-			        $insertData = array('user_id' => $user, 'issue_id' => $a);
->>>>>>> 6580eca106b204456b88e62813d87ce66225a5b8
+				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
+			        $insertData = array('user_id' => $id, 'issue_id' => $a);
 
 			        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $id, 'UserIssue.issue_id' => $a)));
 			        if(!$exists) $this->User->UserIssue->saveAssociated($insertData);
-			    }*/
+			    }
 			    
 			    if ($this->User->save($this->request->data)) {
 

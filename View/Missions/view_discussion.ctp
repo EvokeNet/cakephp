@@ -31,14 +31,6 @@
 	  <a class="current" href="#"><?php echo $missionPhase['Phase']['name'];?></a>
 	</nav>
 
-	<!-- <div class = "evoke position">
-		<div class = "evoke titles-left">
-			<img src = '<?= $this->webroot.'img/small_bar.png' ?>'>
-			<div class = "evoke titles" style = "margin-left: -150px;"><h4><?php echo strtoupper(__(sprintf(__('Phase: %s'), $missionPhase['Phase']['name'])));?></h4></div>
-			
-		</div>
-	</div> -->
-
 	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
 	<div class="row full-width">

@@ -76,10 +76,12 @@
 
 	  	<div class = "evoke evidence-share">
 
-	  		<div style = "margin-bottom:10px">
+	  		<!-- <div style = "margin-bottom:10px">
 	  			<div id="fb-root"></div>
 	  			<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-width="200" data-type="button"></div>
-	  		</div>
+	  		</div> -->
+
+	  		<div class="evoke button-bg"><a href = "https://www.facebook.com/sharer/sharer.php?u=http://localhost/evoke/evidences/view/<? $evidence['Evidence']['id'] ?>"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Facebook');?></h6></div></a></div>
 		  	
 		  	<!-- Google Plus share button -->
 		  	<div>

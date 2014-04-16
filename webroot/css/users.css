@@ -497,3 +497,14 @@
 	overflow-x: hidden;
 	margin-bottom: 100px;
 }
+
+.evoke.edit-bg label{
+	font-size:1.5vw;
+	color:#fff;
+	margin-right:20px;
+	font-family:'AlegreyaBold';
+}
+
+/*.evoke.edit-bg div.input.text,.textarea,.email{
+	display: -webkit-box;
+}*/

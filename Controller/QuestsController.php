@@ -73,10 +73,10 @@ class QuestsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Quest->create();
 			if ($this->Quest->save($this->request->data)) {
-				$this->Session->setFlash(__('The quest has been saved.'));
+				//$this->Session->setFlash(__('The quest has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The quest could not be saved. Please, try again.'));
+				//$this->Session->setFlash(__('The quest could not be saved. Please, try again.'));
 			}
 		}
 		$missions = $this->Quest->Mission->find('list');
