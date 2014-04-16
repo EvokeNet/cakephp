@@ -5,7 +5,7 @@ $name = explode(' ', $c['User']['name']);
 
 ?>
 
-<div class = "evoke comment-box">
+<!-- <div class = "evoke comment-box">
 	<div class = "evoke comment-box-delete"><a href = "<?php echo $this->Html->url(array('controller'=> 'comments', 'action' => 'delete', $c['Comment']['id'])); ?>"><i class="fa fa-times-circle fa-lg"></i></a></div>
 	<div class="row">
 	  <div class="small-2 medium-2 large-2 columns evoke text-align">
@@ -19,7 +19,7 @@ $name = explode(' ', $c['User']['name']);
 	</div>
 </div>
 
-<!-- <div style = "margin-bottom:100px"></div>
+<div style = "margin-bottom:100px"></div> -->
 
 <div class="row">
   <div class="small-2 medium-2 large-2 columns evoke text-align">
@@ -41,7 +41,7 @@ $name = explode(' ', $c['User']['name']);
   </div>
 </div>
 
-<div style = "margin-bottom:100px"></div> -->
+<!-- <div style = "margin-bottom:100px"></div> -->
 
 <!-- <div class = "evoke bubble2">
 <img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?type=large" width="60px"/>

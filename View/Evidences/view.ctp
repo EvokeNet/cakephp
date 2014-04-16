@@ -13,6 +13,8 @@
 
 <section class="evoke background padding top-2">
 
+	<?php echo $this->Session->flash(); ?>
+	
 	<div class="row full-width">
 
 	  <nav class="evoke breadcrumbs">
@@ -51,7 +53,6 @@
 	 	</div>
 	  </div>
 	  <div class="small-7 medium-7 large-7 columns">
-	  	<?php echo $this->Session->flash(); ?>
 	 	<div class = "evoke evidence-body view">
 		  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
 		  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>

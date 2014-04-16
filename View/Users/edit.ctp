@@ -17,8 +17,8 @@
 		  			<div class = "evoke border-bottom"></div>
 
 			  		<div class = "evoke text-align dashboard agent info">
-				  		<h5><?php echo __('Level');?>&nbsp;&nbsp;&nbsp;<div><?php echo 10;?></div></h5>
-						<h5><?php echo __('Points');?>&nbsp;&nbsp;<div><?= $sumMyPoints ?></div></h5>
+			  			<h5><?php echo __('Points');?>&nbsp;&nbsp;<div><?= $userPoints ?></div></h5>
+				  		<h5><?php echo __('Level');?>&nbsp;&nbsp;&nbsp;<div><?= $userLevel ?></div></h5>
 				  	</div>
 
 				  	<div class = "evoke border-bottom"></div>

@@ -85,7 +85,8 @@ class UsersController extends AppController {
 						$user['User']['id'] = $this->User->id;
 						$this->Auth->login($user);
 						// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
-						return $this->redirect(array('action' => 'dashboard'));
+						//return $this->redirect(array('action' => 'dashboard'));
+						return $this->redirect(array('action' => 'edit', $this->User->id));
 					} else {
 						$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
 						return $this->redirect(array('action' => 'login'));
@@ -104,7 +105,7 @@ class UsersController extends AppController {
 					$user['User']['id'] = $this->User->id;
 					$this->Auth->login($user);
 					// $this->Session->write('Auth.User.id', $user['User']['id']);
-					return $this->redirect(array('action' => 'dashboard'));
+					return $this->redirect(array('action' => 'dashboard', $this->User->id));
 
 				}
 				
@@ -112,7 +113,7 @@ class UsersController extends AppController {
 
 		} else if ($this->Auth->login()) {
 
-			return $this->redirect(array('action' => 'dashboard'));
+			return $this->redirect(array('action' => 'dashboard', $this->User->id));
 
 		} else {
 			$fbLoginUrl = $facebook->getLoginUrl();
@@ -150,7 +151,7 @@ class UsersController extends AppController {
 	public function register() {
 		//check to see if logged in
 		if(!is_null($this->Auth->user())) 
-			return $this->redirect(array('action' => 'dashboard'));
+			return $this->redirect(array('action' => 'dashboard', $this->User->id));
 		
 		if ($this->request->is('post')) {
 			$this->User->create();
@@ -225,6 +226,13 @@ class UsersController extends AppController {
 		// }
 
 		$level = $this->getLevel($sumPoints);
+
+		$otherLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $level+1)));
+
+		if(!empty($thisLevel))
+			$percentageOtherUser = round(($sumPoints / $otherLevel['Level']['points']) * 100);
+		else
+			$percentageOtherUser = 0;
 
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
 
@@ -352,7 +360,8 @@ class UsersController extends AppController {
 		//ended leader board data
 
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
-			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'power_points', 'percentage'));
+			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
+			'power_points', 'percentage', 'percentageOtherUser'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');
@@ -646,8 +655,9 @@ class UsersController extends AppController {
 			    if ($this->User->save($this->request->data)) {
 
 			    	$this->Auth->login($user);
-			    	$this->Session->setFlash(__('The user has been saved.'));
-					return $this->redirect(array('action' => 'dashboard'));
+			    	//$this->Session->setFlash(__('The user has been saved.'));
+			    	$this->Session->setFlash(__('Your informations were succefully saved'), 'flash_message');
+					return $this->redirect(array('action' => 'dashboard', $id));
 
 				} 
 		        

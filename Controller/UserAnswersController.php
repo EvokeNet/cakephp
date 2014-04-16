@@ -88,6 +88,8 @@ class UserAnswersController extends AppController {
 					}
 				}
 			}
+
+			$this->Session->setFlash(__('The questionnaire was saved'), 'flash_message');
 			return $this->redirect($this->referer());
 		}
 		$users = $this->UserAnswer->User->find('list');

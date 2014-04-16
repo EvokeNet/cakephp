@@ -14,9 +14,7 @@
 
 <section class="evoke background padding top-2">
 
-	<!-- <div class = "evoke position">
-		<?= $this->element('left_titlebar', array('title' => sprintf(__('Phase: %s'), $missionPhase['Phase']['name']))) ?>
-	</div> -->
+	<?php echo $this->Session->flash(); ?>
 
 	<nav class="evoke breadcrumbs">
 	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>

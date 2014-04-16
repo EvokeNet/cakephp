@@ -30,20 +30,20 @@
 			<?php if(isset($user['User'])) :?>
 				<li class="evoke divider"></li>
 
-				<li class = "evoke top-bar-level"><h5><?= __('Points') ?>&nbsp;&nbsp;&nbsp;<span><?= $sumMyPoints ?></span></h5></li>
+				<li class = "evoke top-bar-level"><h5><?= __('Points') ?>&nbsp;&nbsp;&nbsp;<span><?= $userPoints ?></span></h5></li>
 
 				<!-- <li class = "evoke top-bar-padding"><h5><?= __('Points') ?></h5>&nbsp;&nbsp;<h4>8</h4></li> -->
 
 				<li class="evoke divider"></li>
 
-				<li class = "evoke top-bar-level"><h5><?= __('Level') ?>&nbsp;&nbsp;&nbsp;<span>21</span></h5></li>
+				<li class = "evoke top-bar-level"><h5><?= __('Level') ?>&nbsp;&nbsp;&nbsp;<span><?= $userLevel ?></span></h5></li>
 				<!-- <li class = "evoke top-bar-padding"><h5><?= __('Level') ?></h5>&nbsp;&nbsp;<h4>8</h4></li> -->
 				
 				<li class="evoke divider"></li>
 
 				<li class = "evoke top-bar-padding bar">
 					<div class="evoke top-bar progress small-9 large-9 round" style = "width:250px">
-					  <span class="evoke top-bar meter" style="width: 50%"></span>
+					  <span class="evoke top-bar meter" style="width: <?= $userLevelPercentage ?>%"></span>
 					</div>
 				</li>
 			<?php endif; ?>

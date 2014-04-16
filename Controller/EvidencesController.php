@@ -93,7 +93,7 @@ class EvidencesController extends AppController {
 			
 			//$this->Session->setFlash(__('The evidence has been saved.')); 
 			 
-			$this->Session->setFlash(__('The evidence has been saved.'), 'flash_message');
+			//$this->Session->setFlash(__('The evidence has been saved.'), 'flash_message');
 
 			//user has completed a quest, so if he doesnt exist in 'usersmissions', add him now!
 			$this->loadModel('UserMission');
@@ -150,7 +150,8 @@ class EvidencesController extends AppController {
 					$this->destroyAttachments($this->request->data['Attachment']['Old']);
 				}
 
-				$this->Session->setFlash(__('The evidence has been saved.'));
+				//$this->Session->setFlash(__('The evidence has been saved.'));
+				$this->Session->setFlash(__('The evidence has been saved'), 'flash_message');
 				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], $me['Evidence']['phase_id']));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));

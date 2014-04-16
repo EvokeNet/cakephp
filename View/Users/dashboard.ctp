@@ -85,13 +85,13 @@
 		                        		<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1));?>">
 			                        		<img src='<?= $this->webroot.'img/evoke_folder.png' ?>' width = "80%;"/>
 			                        		<span class = "evoke dashboard folders"><?php echo $m['Mission']['title'];?></span>
-			                        		<?php foreach ($imgs as $img) : ?>
-			                        			<?php 
-			                        				if($m['Mission']['id'] == $img['Attachment']['foreign_key']):
-			                        					$path = ' '.$this->webroot.'files/attachment/attachment/'.$img['Attachment']['dir'].'/thumb_'.$img['Attachment']['attachment'] . '';
+			                        		<?php foreach ($imgs as $img) : 
 
-			                        					//echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';?>
-			                        					<img src = "<?= $path ?>" class = "evoke dashboard folders-img"/>
+			                        			if($m['Mission']['id'] == $img['Attachment']['foreign_key']):
+		                        					$path = ' '.$this->webroot.'files/attachment/attachment/'.$img['Attachment']['dir'].'/thumb_'.$img['Attachment']['attachment'] . '';
+
+		                        					//echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';?>
+		                        					<img src = "<?= $path ?>" class = "evoke dashboard folders-img"/>
 			                        			
 			                        		<?php endif; endforeach; ?>
 		                        		</a>

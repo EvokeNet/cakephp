@@ -1067,16 +1067,24 @@ button, div, p, span, a,
 .evoke.lightbox p{
 	color:#fff;
 	font-family: 'AlegreyaRegular';
-	font-size:1.5vw;
+	font-size:1.5em;
+}
+
+.evoke.lightbox label{
+	color:#fff;
+	font-family: 'AlegreyaRegular';
+	font-size:1.0em;
 }
 
 .evoke.mission.close-reveal-modal{
-	background-color: #19708e;
+	/*background-color: #19708e;
 	color: #000;
 	border-radius: 50%;
 	height: 25px;
 	width: 25px;
-	padding-left: 6px;
+	padding-left: 6px;*/
+	padding-right: 6px;
+	font-size: 3.0rem;
 }
 
 /* Breadcrumbs */
@@ -1210,6 +1218,7 @@ button, div, p, span, a,
 
 .evoke .bubble p{
 	word-break: break-all;
+	margin-bottom: 0;
 }
 
 .evoke .alert-message{
@@ -1220,7 +1229,8 @@ button, div, p, span, a,
 }
 
 .evoke .alert-message p{
-	font-size: 0.9vw;
+	/*font-size: 0.9vw;*/
+	font-size:1.5em;
 	margin-bottom: 0;
 	font-family: 'AlegreyaBold';
 }

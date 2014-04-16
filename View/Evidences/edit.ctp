@@ -9,10 +9,10 @@
 
 <section class="evoke background-gray padding top-2">
 
+	<?php echo $this->Session->flash(); ?>
+	
 	<div class="row">
 		<div class="small-11 small-centered columns">
-
-			<?php echo $this->Session->flash(); ?>
 			
 			<div class="evidences form">
 
