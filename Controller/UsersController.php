@@ -211,7 +211,10 @@ class UsersController extends AppController {
 
 		$thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $myLevel+1)));
 
-		$percentage = round(($sumMyPoints / $thisLevel['Level']['points']) * 100);
+		if(!empty($thisLevel))
+			$percentage = round(($sumMyPoints / $thisLevel['Level']['points']) * 100);
+		else
+			$percentage = 0;
 
 		$points = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $id)));
 
@@ -342,7 +345,8 @@ class UsersController extends AppController {
 			}
 
 			foreach ($power_points as $pp) {
-				arsort($powerpoints_users[$pp['PowerPoint']['id']]);
+				if(isset($powerpoints_users[$pp['PowerPoint']['id']]) && is_array($powerpoints_users[$pp['PowerPoint']['id']]))
+					arsort($powerpoints_users[$pp['PowerPoint']['id']]);
 			}
 
 		//ended leader board data
@@ -430,7 +434,8 @@ class UsersController extends AppController {
 		}
 
 		foreach ($power_points as $pp) {
-			arsort($powerpoints_users[$pp['PowerPoint']['id']]);
+			if(isset($powerpoints_users[$pp['PowerPoint']['id']]) && is_array($powerpoints_users[$pp['PowerPoint']['id']]))
+				arsort($powerpoints_users[$pp['PowerPoint']['id']]);
 		}
 		
 
