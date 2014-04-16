@@ -211,7 +211,10 @@ class UsersController extends AppController {
 
 		$thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $myLevel+1)));
 
-		$percentage = round(($sumMyPoints / $thisLevel['Level']['points']) * 100);
+		if(isset($thisLevel))
+			$percentage = round(($sumMyPoints / $thisLevel['Level']['points']) * 100);
+		else
+			$percentage = 0;
 
 		$points = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $id)));
 

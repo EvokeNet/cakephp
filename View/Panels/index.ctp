@@ -502,8 +502,8 @@
 
     
 <?php 
-	echo $this->Html->script('/components/jquery/jquery.min.js');
-	echo $this->Html->script('/components/foundation/js/foundation.min.js');
+	echo $this->Html->script('/components/jquery/jquery.min.js', array('inline' => false));
+	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
 	echo $this->Html->css('animate');
 	echo $this->Html->script('jquery.watable');
