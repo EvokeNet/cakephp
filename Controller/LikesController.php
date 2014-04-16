@@ -93,7 +93,7 @@ class LikesController extends AppController {
 				$data['UserPowerPoint']['user_id'] = $evidence['Evidence']['user_id'];
 				$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
 				$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
-				$data['UserPowerPoint']['quantity'] = $pp['QuestPowerPoint']['quantity'];
+				$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity'] * 30);
 				$data['UserPowerPoint']['model'] = 'Evidence';
 				$data['UserPowerPoint']['foreign_key'] = $evidence['Evidence']['id'];
 
@@ -176,7 +176,7 @@ class LikesController extends AppController {
 						'user_id' => $evidence['Evidence']['user_id'],
 						'power_points_id' => $pp['QuestPowerPoint']['power_points_id'],
 						'quest_id' => $pp['QuestPowerPoint']['quest_id'],
-						'quantity' => $pp['QuestPowerPoint']['quantity'],
+						'quantity' => ($pp['QuestPowerPoint']['quantity'] * 30),
 						'model' => 'Evidence',
 						'foreign_key' => $evidence['Evidence']['id']
 					)

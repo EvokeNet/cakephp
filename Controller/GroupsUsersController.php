@@ -320,7 +320,7 @@ class GroupsUsersController extends AppController {
 					$data['UserPowerPoint']['user_id'] = $user_id;
 					$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
 					$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
-					$data['UserPowerPoint']['quantity'] = $pp['QuestPowerPoint']['quantity'];
+					$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity']*30);
 					$data['UserPowerPoint']['model'] = 'Group';
 					$data['UserPowerPoint']['foreign_key'] = $me['Group']['id'];
 
@@ -444,10 +444,10 @@ class GroupsUsersController extends AppController {
 				$this->loadModel('UserPowerPoint');
 				$old = $this->UserPowerPoint->find('first', array(
 					'conditions' => array(
-						'user_id' => $this->getUserId(),
+						'user_id' => $id,
 						'power_points_id' => $pp['QuestPowerPoint']['power_points_id'],
 						'quest_id' => $pp['QuestPowerPoint']['quest_id'],
-						'quantity' => $pp['QuestPowerPoint']['quantity'],
+						'quantity' => ($pp['QuestPowerPoint']['quantity']*30),
 						'model' => 'Group',
 						'foreign_key' => $group['Group']['id']
 					)

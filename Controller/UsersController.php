@@ -251,24 +251,36 @@ class UsersController extends AppController {
 			)));
 
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
+		$myevidences = $evidence = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			),
+			'conditions' => array(
+				'Evidence.user_id' => $id
+			)
+		));
 		//debug($evidence);
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));
 
-		$evokationsFollowing = $this->User->EvokationFollower->find('all');
+		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
+			'conditions' => array(
+				'EvokationFollower.user_id' => $this->getUserId()
+			)
+		));
 
 		$myEvokations = array();
 		foreach ($evokations as $evokation) {
 			$mine = false;
-			if($evokation['Group']['user_id'] == $this->getUserId())
+			if($evokation['Group']['user_id'] == $id)
 				$mine = true;
 
 			$this->loadModel('Group');
 			$group_evokation = $this->Group->GroupsUser->find('first', array(
 				'conditions' => array(
 					'GroupsUser.group_id' => $evokation['Group']['id'],
-					'GroupsUser.user_id' => $this->getUserId()
+					'GroupsUser.user_id' => $id
 				)
 			));
 			

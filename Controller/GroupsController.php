@@ -52,15 +52,19 @@ class GroupsController extends AppController {
 			//array_push($groupsBelongs, array('GroupsUser.group_id' => $group['Group']['id'], 'GroupsUser.user_id' => $this->getUserId()));
 		endforeach;
 
-		//retrieve all organizations I am part of as a list to be displayed in a combobox
-		$evokations = $this->Group->Evokation->find('all', array(
-			'order' => array(
-				'Evokation.created DESC'
-			),
-			'conditions' => array(
-				'OR' => $groups_id
-			)
-		));
+		if(!empty($groups_id)) {
+			//retrieve all organizations I am part of as a list to be displayed in a combobox
+			$evokations = $this->Group->Evokation->find('all', array(
+				'order' => array(
+					'Evokation.created DESC'
+				),
+				'conditions' => array(
+					'OR' => $groups_id
+				)
+			));
+		} else {
+			$evokations = array();
+		}
 
 		$groupsBelongs = array();
 
@@ -68,15 +72,19 @@ class GroupsController extends AppController {
 			array_push($groupsBelongs, array('Group.id' => $group['GroupsUser']['group_id']));
 		endforeach;
 		
-		//retrieve all organizations I am part of as a list to be displayed in a combobox
-		$groupsIBelong = $this->Group->find('all', array(
-			'order' => array(
-				'Group.created DESC'
-			),
-			'conditions' => array(
-				'OR' => $groupsBelongs
-			)
-		));
+		if(!empty($groupsUsers)) {
+			//retrieve all organizations I am part of as a list to be displayed in a combobox
+			$groupsIBelong = $this->Group->find('all', array(
+				'order' => array(
+					'Group.created DESC'
+				),
+				'conditions' => array(
+					'OR' => $groupsBelongs
+				)
+			));
+		} else {
+			$groupsIBelong = array();
+		}
 
 		$myGroups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id, 'Group.user_id' => $this->getUserId())));
 
@@ -86,20 +94,24 @@ class GroupsController extends AppController {
 			array_push($mygroups_id, array('Evokation.group_id' => $g['Group']['id']));
 		endforeach;
 
-		//retrieve all organizations I am part of as a list to be displayed in a combobox
-		$myevokations = $this->Group->Evokation->find('all', array(
-			'order' => array(
-				'Evokation.created DESC'
-			),
-			'conditions' => array(
-				'OR' => $mygroups_id
-			)
-		));
+		if(!empty($mygroups_id)) {
+			//retrieve all organizations I am part of as a list to be displayed in a combobox
+			$myevokations = $this->Group->Evokation->find('all', array(
+				'order' => array(
+					'Evokation.created DESC'
+				),
+				'conditions' => array(
+					'OR' => $mygroups_id
+				)
+			));
+		} else {
+			$myevokations = array();
+		}
 
 		$this->loadModel('GroupsUser');
 		$users_groups = $this->GroupsUser->find('all');
 
-		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong', 'users_groups', 'sumMyPoints', 'quest'));
+		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong', 'users_groups', 'sumMyPoints', 'quest_id'));
 		
 	}
 
@@ -215,7 +227,7 @@ class GroupsController extends AppController {
 					$data['UserPowerPoint']['user_id'] = $me['Group']['user_id'];
 					$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
 					$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
-					$data['UserPowerPoint']['quantity'] = $pp['QuestPowerPoint']['quantity'];
+					$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity'] * 30);
 					$data['UserPowerPoint']['model'] = 'Group';
 					$data['UserPowerPoint']['foreign_key'] = $me['Group']['id'];
 
@@ -329,7 +341,7 @@ class GroupsController extends AppController {
 						'user_id' => $group['Group']['user_id'],
 						'power_points_id' => $pp['QuestPowerPoint']['power_points_id'],
 						'quest_id' => $pp['QuestPowerPoint']['quest_id'],
-						'quantity' => $pp['QuestPowerPoint']['quantity'],
+						'quantity' => ($pp['QuestPowerPoint']['quantity'] * 30),
 						'model' => 'Group',
 						'foreign_key' => $group['Group']['id']
 					)

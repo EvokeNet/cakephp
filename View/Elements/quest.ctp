@@ -121,7 +121,7 @@
 
 		//its a group type of quest
 		if($q['Quest']['type'] == 3) { 
-			echo '<a href = "'. $this->Html->url(array('controller' => 'groups', 'action' => 'index', $mission['Mission']['id'])) .'" class = "button">' . __('Join/Create a group!') . '</a>';
+			echo '<a href = "'. $this->Html->url(array('controller' => 'groups', 'action' => 'index', $mission['Mission']['id'], $q['Quest']['id'])) .'" class = "button">' . __('Join/Create a group!') . '</a>';
 		}
 
 		//its an evokation type of quest

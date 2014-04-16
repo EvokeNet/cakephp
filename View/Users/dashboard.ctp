@@ -127,8 +127,18 @@
 			    				echo $this->element('evidence_box', array('e' => $e)); 
 			    		endforeach; 
 
+
 			    		foreach($evokations as $e):
-			    			echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+			    			$showFollowButton = true;
+			    			foreach($myEvokations as $my)
+			    				if(array_search($my['Evokation']['id'], $e['Evokation'])) {
+			    					$showFollowButton = false;
+			    					break;
+			    				}
+			    			if($showFollowButton) 
+			    				echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+			    			else
+			    				echo $this->element('evokation_box', array('e' => $e, 'mine' => true));
 						endforeach;
 					?>
 				  </div>
@@ -145,7 +155,7 @@
 				  <div class="content" id="panel2-3">
 				  	<?php 
 			    		foreach($myEvokations as $e):
-			    			echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+			    			echo $this->element('evokation_box', array('e' => $e, 'mine' => true));
 			    		endforeach;
 			    	?>
 				  </div>

@@ -15,11 +15,13 @@
 	<h2><?php echo __('Add Group'); ?></h2>
 	<?php
 		echo $this->Form->input('title', array('required' => true));
-		if(isset($mission)) 
+		if(isset($mission)) {
 			echo $this->Form->hidden('mission_id', array('value' => $mission['Mission']['id']));
-		else
+			echo $this->Form->hidden('quest_id', array('value' => $quest_id));
+		} else {
 			echo $this->Form->input('mission_id');
-
+		}
+		
 		echo $this->Form->hidden('user_id', array('value' => $userid));
 		echo $this->Form->input('description', array('required' => true, 'type' => 'textarea'));
 
