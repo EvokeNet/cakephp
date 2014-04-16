@@ -58,8 +58,10 @@
 
 <?php $this->end(); ?>
 
-<section class="evoke background padding top-5">
+<section class="evoke background">
 
+	<?= $this->element('menu') ?>
+	
 	<?php echo $this->Session->flash(); ?>
 
 	<div class="row full-width">

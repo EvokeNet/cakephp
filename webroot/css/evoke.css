@@ -1244,3 +1244,41 @@ button, div, p, span, a,
 	margin-bottom: 0;
 	font-family: 'AlegreyaBold';
 }
+
+.evoke.menu-bg{
+	/*background-color:#343642;
+	margin-bottom:30px;
+	border-bottom: 5px solid #182537;
+	border-top: 5px solid #182537;*/
+	background-color: #095c79;
+	margin-bottom: 30px;
+	border-bottom: 5px solid #182537;
+	text-align: center;
+}
+
+.evoke.menu-bg ul{
+	padding: 20px 0px 10px;
+	margin-bottom: 0;
+	display: inline-block;
+}
+
+.evoke.menu-bg a{
+	font-size: 1.8vw;
+	font-family: 'AlegreyaBold';
+	margin-right: 50px;
+	color:#fff;
+	text-shadow: 0px 3px 2px rgba(0,0,0, 0.6);
+}
+
+.evoke.menu-bg a:hover{
+	color:#bb5660;
+}
+
+.evoke.menu-bg a:active{
+	color:#fff;
+}
+
+.evoke.inline-list a:link    {color:green;}
+.evoke.inline-list a:visited {color:green;}
+.evoke.inline-list a:hover   {color:red;}
+.evoke.inline-list a:active  {color:yellow;}
