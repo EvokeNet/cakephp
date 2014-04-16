@@ -76,12 +76,15 @@
 
 	  	<div class = "evoke evidence-share">
 
+	  		
+	  		<div class="evoke button-bg">
+	  			<a href="javascript:fbShare('<?= $_SERVER['SERVER_NAME'].'/evidences/view/'.$evidence['Evidence']['id'] ?>', 'Fb Share', '<?= $evidence['Evidence']['title'] ?>', 'http://goo.gl/dS52U', 520, 350)"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Share on Facebook');?></h6></div></a>
+  			</div>
+
 	  		<!-- <div style = "margin-bottom:10px">
 	  			<div id="fb-root"></div>
 	  			<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-width="200" data-type="button"></div>
 	  		</div> -->
-
-	  		<div class="evoke button-bg"><a href = "https://www.facebook.com/sharer/sharer.php?u=http://localhost/evoke/evidences/view/<? $evidence['Evidence']['id'] ?>"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Facebook');?></h6></div></a></div>
 		  	
 		  	<!-- Google Plus share button -->
 		  	<div>
@@ -144,3 +147,11 @@
 
 
 ?>
+
+<script>
+    function fbShare(url, title, descr, image, winWidth, winHeight) {
+        var winTop = (screen.height / 2) - (winHeight / 2);
+        var winLeft = (screen.width / 2) - (winWidth / 2);
+        window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
+    }
+</script>

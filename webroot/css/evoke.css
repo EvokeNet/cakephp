@@ -1074,6 +1074,12 @@ button, div, p, span, a,
 	font-size:1.5em;
 }
 
+.evoke.lightbox span{
+	color: #fff!important;
+	font-family: 'AlegreyaRegular'!important;
+	font-size: 1.1em!important;
+}
+
 .evoke.lightbox label{
 	color:#fff;
 	font-family: 'AlegreyaRegular';

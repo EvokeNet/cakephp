@@ -44,6 +44,42 @@
 				</div>
 				</li>
 
+				<li>
+					<div class = "missionblock postit" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+						<h1><?= $q['Quest']['title']?></h1>
+					</div>
+				
+
+				<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
+				  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
+				  <a class="evoke mission close-reveal-modal">&#215;</a>
+				</div>
+				</li>
+
+				<li>
+					<div class = "missionblock postit" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+						<h1><?= $q['Quest']['title']?></h1>
+					</div>
+				
+
+				<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
+				  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
+				  <a class="evoke mission close-reveal-modal">&#215;</a>
+				</div>
+				</li>
+
+				<li>
+					<div class = "missionblock postit" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+						<h1><?= $q['Quest']['title']?></h1>
+					</div>
+				
+
+				<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
+				  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
+				  <a class="evoke mission close-reveal-modal">&#215;</a>
+				</div>
+				</li>
+
 			<?php endforeach; ?>
 		</ul>
 
