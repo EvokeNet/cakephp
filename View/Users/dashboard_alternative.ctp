@@ -174,27 +174,84 @@
 					<?php echo $this->element('right_titlebar', array('title' => (__('Leadercloud')))); ?>
 
 					<div class = "evoke screen-box allies dashboard leadercloud margin">
-						<div class ="button general red" style = "margin-top:30px; margin-left:30px"><?= __('This Week') ?></div>
-						<ul>
-							<li>
-								<h1>1</h1>
-								<img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>' class = "evoke dashboard users-icon">
-								<span>Leslie Knope</span>
-								<span>Level 10 | Points 110</span>
-							</li>
-							<li>
-								<h1>2</h1>
-								<img src = "https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon">
-								<span><?= $users['User']['name'] ?></span>
-								<span>Level 10 | Points 100</span>
-							</li>
-							<li>
-								<h1>3</h1>
-								<img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>' class = "evoke dashboard users-icon">
-								<span>Ron Swanson</span>
-								<span>Level 9 | Points 90</span>
-							</li>
-						</ul>
+						<dl class="tabs" data-tab>
+							<dd class="active"><a href="#LeaderXP" style = "margin-top:30px; margin-left:30px"><?= __('Levels') ?></a></dd>
+							<?php 
+								$index = 1;
+								foreach ($power_points as $pp) {
+									echo '<dd><a href="#Leader-'. $index .'" style = "margin-top:30px; margin-left:30px">'. $pp['PowerPoint']['name'] .'</a></dd>';
+									$index++;
+								}
+							?>
+						</dl>
+						<div class="tabs-content">
+							<div class="content active" id="LeaderXP">
+								<ul>
+								<?php 
+									$pos = 1;
+									$zeros = array();
+									foreach ($allusers as $usr) {
+										if(isset($points_users[$usr['User']['id']])) {
+											echo '<li>';
+											echo '<h1>'. $pos .'</h1>';
+											echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
+											echo '<span>'. $usr['User']['name'] . '</span>';
+											echo '<span>Level '. $points_users['Level'][$usr['User']['id']] .' | Points '. $points_users[$usr['User']['id']] .'</span>';
+											echo '</li>';
+											$pos++;	
+										} else {
+											$zeros[] = $usr;
+										}	
+									}
+									foreach ($zeros as $zero) {
+										echo '<li>';
+										echo '<h1>'. $pos .'</h1>';
+										echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
+										echo '<span>'. $zero['User']['name'] . '</span>';
+										echo '<span>Level 0 | Points 0</span>';
+										echo '</li>';
+										$pos++;	
+									}	
+								?>
+								</ul>
+							</div>
+							<?php 
+								$index = 1;
+								foreach ($power_points as $pp) {
+									echo '<div class="content" id="Leader-'. $index .'">';
+										echo '<ul>';
+										$zeros = array();
+										$pos = 1;
+										foreach ($allusers as $usr) {
+											if(isset($powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']])) {
+												echo '<li>';
+												echo '<h1>'. $pos .'</h1>';
+												echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
+												echo '<span>'. $usr['User']['name'] . '</span>';
+												echo '<span>|'. $pp['PowerPoint']['name'] .' Points: '.$powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']].' pts</span>';
+												echo '</li>';
+												$pos++;	
+											} else {
+												$zeros[] = $usr;
+											}
+											
+										}
+
+										foreach ($zeros as $zero) {
+											echo '<li>';
+											echo '<h1>'. $pos .'</h1>';
+											echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
+											echo '<span>'. $zero['User']['name'] . '</span>';
+											echo '<span>|'. $pp['PowerPoint']['name'] .' Points: 0 pts</span>';
+											echo '</li>';
+											$pos++;	
+										}								
+										echo '</ul>';
+									echo '</div>';
+									$index++;
+								}
+							?>
+						</div>
 					</div>
 				</div>
 

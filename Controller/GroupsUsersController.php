@@ -73,13 +73,35 @@ class GroupsUsersController extends AppController {
 			$this->request->data = $evokation;
 		}
 
+		$this->loadModel('Group');
+		$thisgroup = $this->Group->find('first', array(
+			'conditions' => array(
+				'Group.id' => $group_id
+			)
+		));
+
 		$loggedInUser = $this->Auth->user();
+		
+
+		
 		foreach ($users as $user) {
 			if ($user['User']['id'] == $loggedInUser['User']['id']) {
 				$authorized = true;
 				break;
 			}
 		}
+
+		if(!empty($thisgroup))
+			if($thisgroup['Group']['user_id'] == $this->getUserId()) {
+				$authorized = true;
+				$this->loadModel('User');
+				$user = $this->User->find('first', array(
+					'conditions' => array(
+						'User.id' => $this->getUserId()
+					)
+				));
+			}
+		
 
 		if ($authorized) {
 		
@@ -179,7 +201,7 @@ class GroupsUsersController extends AppController {
 			throw new InternalErrorException(__('You are not authorized to edit this Evokation.'));
 		}
 
-		$this->set(compact('group', 'users', 'padID'));
+		$this->set(compact('group', 'users', 'user', 'padID'));
 
 	}
 
@@ -365,17 +387,22 @@ class GroupsUsersController extends AppController {
 			$this->Session->setFlash(__('This user already requested to join thsi group'));
 		}
 
-		$Email = new CakeEmail('smtp');
-		//$Email->from(array('no-reply@quanti.ca' => $sender['User']['name']));
-		$Email->to($recipient['User']['email']);
-		$Email->subject(__('Evoke - Request to join group'));
-		$Email->emailFormat('html');
-		$Email->template('group', 'group');
-		$Email->viewVars(array('sender' => $sender, 'recipient' => $recipient, 'group' => $group));
-		$Email->send();
-		$this->Session->setFlash(__('The email was sent'));
+		if($recipient['User']['email'] != '' && !is_null($recipient['User']['email'])
+		 && $sender['User']['email'] != '' && !is_null($sender['User']['email'])) {
+
+			$Email = new CakeEmail('smtp');
+			//$Email->from(array('no-reply@quanti.ca' => $sender['User']['name']));
+			$Email->to($recipient['User']['email']);
+			$Email->subject(__('Evoke - Request to join group'));
+			$Email->emailFormat('html');
+			$Email->template('group', 'group');
+			$Email->viewVars(array('sender' => $sender, 'recipient' => $recipient, 'group' => $group));
+			$Email->send();
+			$this->Session->setFlash(__('The email was sent'));
+		} else {
+			$this->Session->setFlash(__('There was a problem sending the email.', 'flash_message'));
+		}
 		$this->redirect(array('controller' => 'groups', 'action' => 'index', $group['Group']['mission_id']));
-	
 	}
 
 /**

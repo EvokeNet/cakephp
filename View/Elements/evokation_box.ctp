@@ -46,7 +46,7 @@
 			  			<li><div class = "evoke evokation follow"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $users['User']['id'])); ?>" class = "evoke button general"><?php echo __('Follow');?></a></div></li>
 			  		<?php endif; ?>
 			  	<?php else: ?>
-			  		<li><div class = "evoke evokation follow"><a href = "#" class = "evoke button general"><?php echo __('GO TO PROJECT');?></a></div></li>
+			  		<li><div class = "evoke evokation follow"><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $e['Group']['id'])); ?>" class = "evoke button general"><?php echo __('GO TO PROJECT');?></a></div></li>
 			  	<?php endif; ?>
 			</ul>
 		</div>

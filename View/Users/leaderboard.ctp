@@ -13,22 +13,50 @@
 		<div class="evoke screen-box dashboard leadercloud margin">
 		
 			<dl class="tabs" data-tab>
+				<dd class="active"><a href="#panelXP"><?= __('Levels')?></a></dd>
 				<?php 
-					$first = ' class="active"';
 					$index = 1;
 					foreach ($power_points as $pp) {
-						echo '<dd'. $first.'><a href="#panel2-'. $index .'">'. $pp['PowerPoint']['name'] .'</a></dd>';
+						echo '<dd><a href="#panel2-'. $index .'">'. $pp['PowerPoint']['name'] .'</a></dd>';
 						$index++;
-						$first = '';
 					}
 				?>
 			</dl>
 			<div class="tabs-content">
+				<div class="content active" id="panelXP">
+					<ul>
+					<?php 
+						$pos = 1;
+						$zeros = array();
+						foreach ($users as $usr) {
+							if(isset($points_users[$usr['User']['id']])) {
+								echo '<li>';
+								echo '<h1>'. $pos .'</h1>';
+								echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
+								echo '<span>'. $usr['User']['name'] . '</span>';
+								echo '<span>Level '. $points_users['Level'][$usr['User']['id']] .' | Points '. $points_users[$usr['User']['id']] .'</span>';
+								echo '</li>';
+								$pos++;	
+							} else {
+								$zeros[] = $usr;
+							}	
+						}
+						foreach ($zeros as $zero) {
+							echo '<li>';
+							echo '<h1>'. $pos .'</h1>';
+							echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
+							echo '<span>'. $zero['User']['name'] . '</span>';
+							echo '<span>Level 0 | Points 0</span>';
+							echo '</li>';
+							$pos++;	
+						}	
+					?>
+					</ul>
+				</div>
 				<?php 
-					$first = ' active';
 					$index = 1;
 					foreach ($power_points as $pp) {
-						echo '<div class="content'. $first .'" id="panel2-'. $index .'">';
+						echo '<div class="content" id="panel2-'. $index .'">';
 							echo '<ul>';
 							$zeros = array();
 							$pos = 1;
@@ -38,7 +66,7 @@
 									echo '<h1>'. $pos .'</h1>';
 									echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
 									echo '<span>'. $usr['User']['name'] . '</span>';
-									echo '<span>|'. $pp['PowerPoint']['name'] .' Points: '.$powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']].' pts</span>';
+									echo '<span> |'. $pp['PowerPoint']['name'] .' Points: '.$powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']].' pts</span>';
 									echo '</li>';
 									$pos++;	
 								} else {
@@ -59,7 +87,6 @@
 
 						echo '</div>';
 						$index++;
-						$first = '';
 					}
 				?>
 

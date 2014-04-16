@@ -348,11 +348,21 @@ class UsersController extends AppController {
 
 			$this->loadModel('Point');
 			$points = $this->Point->find('all');
+			foreach ($points as $point) {
+				if(isset($points_users[$point['Point']['user_id']])) {
+					$points_users[$point['Point']['user_id']] += $point['Point']['value'];
+				}	else{
+					$points_users[$point['Point']['user_id']] = $point['Point']['value'];
+				}
+			}
 
 			$this->loadModel('PowerPoint');
 			$power_points = $this->PowerPoint->find('all');
 
 			foreach ($allusers as $usr) {
+				if(isset($points_users[$usr['User']['id']]))
+					$points_users['Level'][$usr['User']['id']] = $this->getLevel($points_users[$usr['User']['id']]);
+
 				$this->User->id = $usr['User']['id'];
 				$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
 					'conditions' => array(
@@ -368,16 +378,16 @@ class UsersController extends AppController {
 				}
 			}
 
-			foreach ($power_points as $pp) {
-				if(isset($powerpoints_users[$pp['PowerPoint']['id']]) && is_array($powerpoints_users[$pp['PowerPoint']['id']]))
-					arsort($powerpoints_users[$pp['PowerPoint']['id']]);
-			}
+			// foreach ($power_points as $pp) {
+			// 	if(isset($powerpoints_users[$pp['PowerPoint']['id']]) && is_array($powerpoints_users[$pp['PowerPoint']['id']]))
+			// 		arsort($powerpoints_users[$pp['PowerPoint']['id']]);
+			// }
 
 		//ended leader board data
 
-		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
+		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
-			'power_points', 'percentage', 'percentageOtherUser'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');
@@ -438,11 +448,21 @@ class UsersController extends AppController {
 
 		$this->loadModel('Point');
 		$points = $this->Point->find('all');
+		foreach ($points as $point) {
+			if(isset($points_users[$point['Point']['user_id']])) {
+				$points_users[$point['Point']['user_id']] += $point['Point']['value'];
+			}	else{
+				$points_users[$point['Point']['user_id']] = $point['Point']['value'];
+			}
+		}
 
 		$this->loadModel('PowerPoint');
 		$power_points = $this->PowerPoint->find('all');
 
 		foreach ($users as $user) {
+			if(isset($points_users[$user['User']['id']]))
+				$points_users['Level'][$user['User']['id']] = $this->getLevel($points_users[$user['User']['id']]);
+
 			$this->User->id = $user['User']['id'];
 			$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
 				'conditions' => array(
@@ -458,10 +478,13 @@ class UsersController extends AppController {
 			}
 		}
 
-		foreach ($power_points as $pp) {
-			if(isset($powerpoints_users[$pp['PowerPoint']['id']]) && is_array($powerpoints_users[$pp['PowerPoint']['id']]))
-				arsort($powerpoints_users[$pp['PowerPoint']['id']]);
-		}
+		/*foreach ($power_points as $pp) {
+			foreach ($users as $usr) {
+				if(isset($powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']]) && is_array($powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']]))
+					arsort($powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']]);
+			}
+		}*/
+
 		
 
 		$user = $this->User->find('first', array(
@@ -478,7 +501,7 @@ class UsersController extends AppController {
 			$sumMyPoints += $point['Point']['value'];
 		}
 		
-		$this->set(compact('userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'sumMyPoints'));
+		$this->set(compact('userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints'));
 	}
 
 /**

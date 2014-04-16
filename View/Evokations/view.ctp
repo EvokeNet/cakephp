@@ -45,7 +45,7 @@
 			<div class = "evoke border-bottom"></div>
 
 			<?php if($can_edit) : ?>
-				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $evokation['Evokation']['group_id'])); ?>" class = "button general"><?php echo __('Edit Project');?></a></div>
+				<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $evokation['Evokation']['group_id'])); ?>" class = "button general"><?php echo __('GO TO PROJECT');?></a></div>
 			<?php else : ?>
 				<?php if(isset($user['User']) && $Follows) :?>
 					<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $evokation['Evokation']['id'])); ?>" class = "button general"><?php echo __('Unfollow');?></a></div>
