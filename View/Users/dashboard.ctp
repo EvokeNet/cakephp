@@ -63,7 +63,7 @@
 	<?php echo $this->Session->flash(); ?>
 
 	<div class="row full-width">
-		<div class="small-9 medium-9 large-9 columns">
+		<div class="small-8 medium-8 large-9 columns">
 
 			<?php if(!$is_friend AND ($users['User']['id'] != $user['User']['id'])):?>
 				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'add', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Follow this agent');?></a>
@@ -238,7 +238,7 @@
 
 		</div>
 
-		<div class="small-3 medium-3 large-3 columns">
+		<div class="small-4 medium-4 large-3 columns">
 
 			<div class = "evoke dashboard tag">
 				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%" style = "position: absolute; top: 0;"/>

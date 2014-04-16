@@ -167,7 +167,8 @@
 
 .evoke.dashboard.shelve{
 	width:100%; 
-	margin-top:-100px;
+	/*margin-top:-100px;*/
+	margin-top: -7%;
 	margin-bottom:50px;
 }
  
@@ -339,10 +340,9 @@
 }
 
 .screen-box.margin{
-	/*margin-right: 100px;
-	margin-left: 60px;*/
-	margin-right: 70px;
-	margin-left: 50px;
+	/*margin-right: 70px;
+	margin-left: 50px;*/
+	margin-right: 5%;
 }
 
 .display-inline{
