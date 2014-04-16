@@ -165,7 +165,7 @@
 							$first = ' class="active"';
 							$index = 1;
 							foreach ($power_points as $pp) {
-								echo '<dd'. $first.'><a href="#panel2-'. $index .'" style = "margin-top:30px; margin-left:30px">'. $pp['PowerPoint']['name'] .'</a></dd>';
+								echo '<dd'. $first.'><a href="#Leader-'. $index .'" style = "margin-top:30px; margin-left:30px">'. $pp['PowerPoint']['name'] .'</a></dd>';
 								$index++;
 								$first = '';
 							}
@@ -176,7 +176,7 @@
 							$first = ' active';
 							$index = 1;
 							foreach ($power_points as $pp) {
-								echo '<div class="content'. $first .'" id="panel2-'. $index .'">';
+								echo '<div class="content'. $first .'" id="Leader-'. $index .'">';
 									echo '<ul>';
 									$zeros = array();
 									$pos = 1;
