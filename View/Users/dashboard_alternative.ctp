@@ -32,10 +32,10 @@
   		<div class = "evoke titles-right">
   			<div class = "evoke titles titles-ajust">
 		  		<dl class="tabs" data-tab>
-				  <dd><h4><?php echo strtoupper(__('Projects and Evidences'));?></h4></dd>
+				  <dd><h4><?php echo strtoupper(__("Agent's Projects and Evidences"));?></h4></dd>
 				  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
-				  <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
-				  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd>
+				  <!-- <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
+				  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd> -->
 				</dl>
 			</div>
 			<!-- <img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke dashboard horizontal_bar absolute-right"> -->
@@ -158,29 +158,15 @@
 				  <div class="content active" id="panel2-1">
 			    	<?php 
 			    	//Lists all projects and evidences
-			    		foreach($evidence as $e): 
+			    		foreach($myevidences as $e): 
 			    				echo $this->element('evidence_box', array('e' => $e)); 
 			    		endforeach; 
 
-			    		foreach($evokations as $e):
-			    			echo $this->element('evokation_box', array('e' => $e));
+			    		foreach($myEvokations as $e):
+			    			echo $this->element('evokation_box', array('e' => $e, 'evokationFollowers' => $evokationFollowers));
 						endforeach;
 					?>
-				  </div>
-				  <div class="content" id="panel2-3">
-				  	<?php 
-			    		foreach($myEvokations as $e):?>
-			    			<h4><?php echo $this->Html->link($e['Evokation']['title'], array('controller' => 'evokations', 'action' => 'view', $e['Evokation']['id']));?></h4>
-				    		<p><?php echo substr($e['Evokation']['abstract'], 0, 100);?></p>
-				    		
-				    		<div class="row">
-							  <div class="small-10 medium-10 large-10 columns">
-							  <?php echo $this->Html->link($e['Group']['title'], array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])).' | Issue | '. date('F j, Y', strtotime($e['Evokation']['created'])); ?></div>
-							  <div class="small-2 medium-2 large-2 columns"><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<?php //echo count($e['Comment']);?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</div>
-							</div>
-
-			    	<?php endforeach;?>
-				  </div>
+				  </div>				  
 				</div>
 
 				<div class = "evoke dashboard position">

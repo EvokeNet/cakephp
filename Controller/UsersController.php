@@ -243,6 +243,14 @@ class UsersController extends AppController {
 			)));
 
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
+		$myevidences = $evidence = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			),
+			'conditions' => array(
+				'Evidence.user_id' => $id
+			)
+		));
 		//debug($evidence);
 
 		$this->loadModel('Evokation');
@@ -257,14 +265,14 @@ class UsersController extends AppController {
 		$myEvokations = array();
 		foreach ($evokations as $evokation) {
 			$mine = false;
-			if($evokation['Group']['user_id'] == $this->getUserId())
+			if($evokation['Group']['user_id'] == $id)
 				$mine = true;
 
 			$this->loadModel('Group');
 			$group_evokation = $this->Group->GroupsUser->find('first', array(
 				'conditions' => array(
 					'GroupsUser.group_id' => $evokation['Group']['id'],
-					'GroupsUser.user_id' => $this->getUserId()
+					'GroupsUser.user_id' => $id
 				)
 			));
 			
@@ -355,7 +363,7 @@ class UsersController extends AppController {
 
 		//ended leader board data
 
-		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
+		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'power_points', 'percentage'));
 
 		if($id == $this->getUserId())
