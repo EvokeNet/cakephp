@@ -171,22 +171,50 @@
 
 				<div class="evoke screen-box dashboard leadercloud margin">
 					<dl class="tabs" data-tab>
+						<dd class="active"><a href="#LeaderXP" style = "margin-top:30px; margin-left:30px"><?= __('Levels') ?></a></dd>
 						<?php 
-							$first = ' class="active"';
 							$index = 1;
 							foreach ($power_points as $pp) {
-								echo '<dd'. $first.'><a href="#Leader-'. $index .'" style = "margin-top:30px; margin-left:30px">'. $pp['PowerPoint']['name'] .'</a></dd>';
+								echo '<dd><a href="#Leader-'. $index .'" style = "margin-top:30px; margin-left:30px">'. $pp['PowerPoint']['name'] .'</a></dd>';
 								$index++;
-								$first = '';
 							}
 						?>
 					</dl>
 					<div class="tabs-content">
+						<div class="content active" id="LeaderXP">
+							<ul>
+							<?php 
+								$pos = 1;
+								$zeros = array();
+								foreach ($allusers as $usr) {
+									if(isset($points_users[$usr['User']['id']])) {
+										echo '<li>';
+										echo '<h1>'. $pos .'</h1>';
+										echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
+										echo '<span>'. $usr['User']['name'] . '</span>';
+										echo '<span>Level '. $points_users['Level'][$usr['User']['id']] .' | Points '. $points_users[$usr['User']['id']] .'</span>';
+										echo '</li>';
+										$pos++;	
+									} else {
+										$zeros[] = $usr;
+									}	
+								}
+								foreach ($zeros as $zero) {
+									echo '<li>';
+									echo '<h1>'. $pos .'</h1>';
+									echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
+									echo '<span>'. $zero['User']['name'] . '</span>';
+									echo '<span>Level 0 | Points 0</span>';
+									echo '</li>';
+									$pos++;	
+								}	
+							?>
+							</ul>
+						</div>
 						<?php 
-							$first = ' active';
 							$index = 1;
 							foreach ($power_points as $pp) {
-								echo '<div class="content'. $first .'" id="Leader-'. $index .'">';
+								echo '<div class="content" id="Leader-'. $index .'">';
 									echo '<ul>';
 									$zeros = array();
 									$pos = 1;
@@ -217,7 +245,6 @@
 									echo '</ul>';
 								echo '</div>';
 								$index++;
-								$first = '';
 							}
 						?>
 					</div>
