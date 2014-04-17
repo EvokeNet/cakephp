@@ -152,7 +152,7 @@ button, div, p, span, a,
 .evoke.dashboard.top-bar-section h3{
 	font-family: 'SBB';
 	/*font-size: 1.5em;*/
-	font-size: 1.5vw;
+	/*font-size: 1.5vw;*/
 	color: #FFF;
 	padding-top: 8px;
 	text-align: center;
