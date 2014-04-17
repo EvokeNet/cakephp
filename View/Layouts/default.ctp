@@ -24,7 +24,7 @@ $title = __('Evoke Network');
 
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->script('/components/jquery/jquery.min');
+		//echo $this->Html->script('/components/jquery/jquery.min');
 
 		echo $this->Html->css('/components/foundation/css/foundation.min');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
@@ -68,9 +68,9 @@ $title = __('Evoke Network');
 	<?php
 
 		echo $this->Html->script('/components/jquery/jquery.min.js');
+		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js");
+		echo $this->Html->script('/components/modernizr/modernizr.js');
 		echo $this->Html->script('/components/foundation/js/foundation.min.js');
-		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
-		echo $this->Html->script('/components/modernizr/modernizr.js', array('inline' => false));
 		echo $this->Html->script('evoke');
 		echo $this->Html->script('footer_bind');
 
