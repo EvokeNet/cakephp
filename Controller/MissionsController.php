@@ -289,6 +289,28 @@ class MissionsController extends AppController {
 	        ));
 
 	        $this->getEventManager()->dispatch($event2);
+
+		} if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && ($mission['Mission']['basic_training'] == 1)){
+
+			$this->loadModel('PointsDefinition');
+	        $def = new PointsDefinition();
+	        $preset_point = $def->find('first', array(
+	            'conditions' => array(
+	                'type' => 'BasicTraining'
+	            )
+	        ));
+
+	        if($preset_point)
+	            $value = $preset_point['PointsDefinition']['points'];
+
+			$event3 = new CakeEvent('Controller.BasicTraining.completed', $this, array(
+	            'entity_id' => $mission['Mission']['id'],
+	            'user_id' => $this->getUserId(),
+	            'entity' => 'BasicTraining',
+	            'points' => $value
+	        ));
+
+	        $this->getEventManager()->dispatch($event3);
 		}
 
 		if($mission['Mission']['basic_training'] == 1)

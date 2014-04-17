@@ -31,6 +31,8 @@ class PointListener implements CakeEventListener {
             'Model.Vote.evokation' => 'voteEvokationPoints',
             
             'Model.EvokationFollower.add' => 'followEvokationPoints',
+
+            'Controller.BasicTraining.completed' => 'completedBasicTraining',
             
             'Model.Evidence.delete' => 'deletePoints',
             'Model.UserFriend.unfollow' => 'deletePoints',
@@ -75,6 +77,36 @@ class PointListener implements CakeEventListener {
  		$point->saveAll($insertData);
 
  	} 
+
+    public function completedBasicTraining($event){
+        // $quests = ClassRegistry::init('Quest');
+
+        // $quest = $quests->find('first', array('conditions' => array('Quest.id' => $event->subject()->data['Evidence']['quest_id'])));
+
+        $point = ClassRegistry::init('Point');
+        $point->create();
+        $insertData = array(
+            'user_id' => $event->data['user_id'], 
+            'origin_id' => $event->data['entity_id'], 
+            'origin' => $event->data['entity'], 
+            'value' => $event->data['points']
+        );
+        $point->saveAll($insertData);
+
+        $users = ClassRegistry::init('user');
+
+        $users->id = $event->data['user_id'];
+        $users->saveField('basic_trainning', 1);
+
+        // $user = $users->find('first', array('conditions' => array('id' => $event->data['user_id'])));
+        // $users->create();
+        // $insertUserData = array(
+        //     'basic_trainning' => 1, 
+        // );
+        // $users->updateAll($insertUserData);
+
+
+    } 
 
  	public function followUserPoints($event){
         //get the actual amount of points for this action
