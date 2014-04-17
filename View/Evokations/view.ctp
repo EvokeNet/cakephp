@@ -81,7 +81,15 @@
 		</div>
 
 	  	<div class = "evoke evidence-share">
-		  
+		  	
+		  	<div class="evoke button-bg">
+	  			<a href="javascript:fbShare('<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evokation['Evidence']['id'] ?>', 'Fb Share', '<?= $evokation['Evidence']['title'] ?>', 'http://goo.gl/dS52U', 520, 350)"><div class="evoke button like-button facebook-button"><i class="fa fa-facebook fa-lg"></i>&nbsp;&nbsp;&nbsp;<h6><?= __('Share on Facebook');?></h6></div></a>
+  			</div>
+
+  			<div class="evoke button-bg">
+	  			<a href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evokation['Evidence']['id'] ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false"><div class="evoke button like-button google-button"><i class="fa fa-google-plus fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Share on Google+');?></h6></div></a>
+  			</div>
+
 	  		<!-- Facebook share button -->			
 			<!-- <div id="fb-root"></div>
 	  		<div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-width="" data-type="button"></div><br> -->
@@ -90,15 +98,15 @@
 	  			<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-type="link"></div>
 	  			</div>
 	  		</div> -->
-	  		<div style = "margin-bottom:10px">
+	  		<!-- <div style = "margin-bottom:10px">
 		  		<div id="fb-root"></div>
 		  		<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-width="200" data-type="button"></div>
-	  		</div>
+	  		</div> -->
 		  	
 		  	<!-- Google Plus share button -->
-		  	<div>
+		  	<!-- <div>
 		  		<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
-	  		</div>
+	  		</div> -->
 			
 		</div>
 

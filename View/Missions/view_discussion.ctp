@@ -303,9 +303,3 @@
 	echo $this->Html->script('jcarousel_missions', array('inline' => false));
 
 ?>
-
-<script>
-
-	$('.jcarousel').jcarousel('scroll', '3');
-
-</script>

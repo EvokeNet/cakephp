@@ -20,14 +20,14 @@
 		<!-- <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li> -->
 	</ul>
 
-	<section class="evoke dashboard top-bar-section">
+	<section class="evoke top-bar-section">
 
 		<!-- Right Nav Section -->
 		<ul class="right">
 			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke top-bar icon"/></a></li>
 			
 			<li class="name">
-				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>" class = "evoke top-bar-name"><?= sprintf(__('Hi %s'), $users['User']['name']) ?></a>
+				<h3><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>" class = "evoke top-bar-name"><?= sprintf(__('Hi %s'), $users['User']['name']) ?></a></h3>
 			</li>
 
 			<li class="evoke divider"></li>
@@ -51,7 +51,7 @@
 			</li>
 		</ul>
 
-		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
+		<h3 class = "evoke dashboard title"><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
 
 	</section>
 </nav>

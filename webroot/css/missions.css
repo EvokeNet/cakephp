@@ -90,10 +90,12 @@
 	font-size:2.0vw;
 	color:#fff;
 	font-family: 'AlegreyaBold';
+	display: inline-block;
 }
 
 .evoke.missions.data p{
 	font-size:1.5vw;
+	/*display: inline-block;*/
 }
 
 .evoke.adjust-row{
@@ -230,13 +232,15 @@
  	text-align: center;
  	cursor:pointer;
 	/* width: 275px; */
-	margin: 0px 50px;
+	margin: 0px 20%;
+	word-wrap: break-word;
 	/* min-height: 175px; */
 	/* max-height: 175px; */
 	/* padding-top: 35px; */
 	position: relative;
 	border: 1px solid #E8E8E8;
-	min-height:150px;
+	/*min-height:275px;*/
+	min-height:10vw;
 	/*border-top: 60px solid #fdfd86;*/
 	/* font-family: 'Reenie Beanie'; */
 	/* font-size: 22px; */
@@ -266,6 +270,16 @@
       -o-transform: matrix(-1, -0.1, 0, 1, 0, 0);
      -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0);
          transform: matrix(-1, -0.1, 0, 1, 0, 0);
+}
+
+.postit-2{
+	/*margin: 0px 250px;*/
+	margin: 0px 30%;
+	padding: 5px 10px;
+}
+
+.postit-green{
+	background-color:#18d988;
 }
 
 .project {    
@@ -324,4 +338,8 @@
 .evoke.quests.content{
 	min-width:400px!important;
 	color: #fff;
+}
+
+.joyride-content-wrapper p{
+	font-size:1.3em;
 }
