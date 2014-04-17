@@ -58,9 +58,18 @@
 		  <div class="small-6 medium-6 large-6 columns evoke mission green">
 		  	<fieldset>
 			  	<legend><?= __('Succefully Launched Projects') ?></legend>
-				  	<?php foreach($evokations as $e):
-				  		//echo $this->element('evokation_red_box', array('e' => $e));
-			  		endforeach;?>
+				  	<?php foreach($success_evokations as $e):
+				  		$showFollowButton = true;
+			    			foreach($myEvokations as $my)
+			    				if(array_search($my['Evokation']['id'], $e['Evokation'])) {
+			    					$showFollowButton = false;
+			    					break;
+			    				}
+			    			if($showFollowButton) 
+			    				echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+			    			else
+			    				echo $this->element('evokation_box', array('e' => $e, 'mine' => true));
+		  			endforeach;?>
 			</fieldset>
 		  </div>
 	</div>

@@ -111,11 +111,14 @@ class MissionsController extends AppController {
 			)
 		));
 
+		$success_evokations = array();
 		$evokations = array();
 		//only get evokations from this mission
 		foreach ($allevokations as $evokation) {
 			if($evokation['Group']['mission_id'] = $id) {
 				$evokations[] = $evokation;
+				if($evokation['Evokation']['approved'] == 1)
+					$success_evokations[] = $evokation;
 			}
 		}
 
@@ -131,7 +134,7 @@ class MissionsController extends AppController {
 			if($group['user_id'] == $this->getUserId()) {
 				$hasGroup = true;
 				array_push($myEvokations_groupsids, array('Evokation.group_id' => $group['id']));
-				break;
+				//break;
 			}
 
 			$this->loadModel('GroupsUser');
@@ -144,7 +147,7 @@ class MissionsController extends AppController {
 				if($member['GroupsUser']['user_id'] == $this->getUserId()) {
 					$hasGroup = true;
 					array_push($myEvokations_groupsids, array('Evokation.group_id' => $member['GroupsUser']['group_id']));
-					break;
+					//break;
 				}
 			}
 		}
@@ -159,7 +162,6 @@ class MissionsController extends AppController {
 				)
 			));
 		}
-
 
 		//retrieving all ids from quests of this mission..
 		$my_quests_id = array();
@@ -300,7 +302,7 @@ class MissionsController extends AppController {
 
 		$evokationsFollowing = $this->User->EvokationFollower->find('all');
 
-		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 
+		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints'));
 
 		if($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]){
