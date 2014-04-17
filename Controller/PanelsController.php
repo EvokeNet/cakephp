@@ -8,7 +8,7 @@ class PanelsController extends AppController {
 * @var array
 */
 	public $components = array('Paginator','Access');
-	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 
+	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Evokation',
 		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level');
 	public $user = null;
 	public $helpers = array('Media.Media', 'Chosen.Chosen');
@@ -52,6 +52,7 @@ class PanelsController extends AppController {
 		$powerpoints_tab = $this->defineCurrentTab('powerpoints', $args);
 		$badges_tab = $this->defineCurrentTab('badges', $args);
 		$users_tab = $this->defineCurrentTab('users', $args);
+		$pending_tab = $this->defineCurrentTab('pending', $args);
 		$media_tab = $this->defineCurrentTab('media', $args);
 		$statistics_tab = $this->defineCurrentTab('statistics', $args);
 		$settings_tab = $this->defineCurrentTab('settings', $args);
@@ -80,6 +81,9 @@ class PanelsController extends AppController {
 		
 		$groups = $this->Group->getGroups();
 
+
+		$pending_evokations = array();
+		$approved_evokations = array();
 		//loading things that differ from perspective
 		//admin will have access to all data
 		//while manager will see only what belongs to his/hers organizations
@@ -109,6 +113,20 @@ class PanelsController extends AppController {
 			$missions_issues = $this->MissionIssue->Mission->find('all', array(
 				'order' => array(
 					'Mission.title ASC'
+				)
+			));
+
+			$pending_evokations = $this->Evokation->find('all', array(
+				'conditions' => array(
+					'Evokation.sent' => 1,
+					'Evokation.approved' => 0
+				)
+			));
+
+			$approved_evokations = $this->Evokation->find('all', array(
+				'conditions' => array(
+					'Evokation.sent' => 1,
+					'Evokation.approved' => 1
 				)
 			));
 
@@ -249,9 +267,9 @@ class PanelsController extends AppController {
 		));
 
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
-			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels',
+			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels', 'pending_evokations', 'approved_evokations',
 			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
-			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'powerpoints_tab', 'badges_tab', 'users_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
+			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'powerpoints_tab', 'badges_tab', 'users_tab', 'pending_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
 	}
 
 /*
@@ -1214,6 +1232,30 @@ class PanelsController extends AppController {
 			    }
 			}
 		}
+	}
+
+
+/*
+* changeEvokationStatus method
+* 
+*/
+
+	public function changeEvokationStatus($evo_id = null){
+		if($evo_id == null)
+			$this->redirect($this->referer());
+
+		$evokation = $this->Evokation->find('first', array(
+			'conditions' => array(
+				'Evokation.id' => $evo_id
+			)
+		));
+
+		if(empty($evokation))
+			$this->redirect($this->referer());
+
+		$this->Evokation->id = $evo_id;
+		$this->Evokation->save($this->request->data);
+		return $this->redirect(array('action' => 'index', 'pending'));
 	}
 
 /*
