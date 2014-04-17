@@ -60,8 +60,8 @@
 
 <section class="evoke background">
 
-	<?= $this->element('menu') ?>
-	
+	<?= $this->element('menu', array('user' => $users)) ?>
+
 	<?php echo $this->Session->flash(); ?>
 
 	<div class="row full-width">
