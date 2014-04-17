@@ -8,7 +8,7 @@
 			  <div class = "evoke edit-agent-tag">
 			  		<div class = "evoke text-align">
 			  			<h1><?= strtoupper(__('Evoke Account')) ?></h1>
-			  			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic" width = "75%"/>
+			  			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "margin: 10%; width: 40%;"/>
 		  			</div>
 		  			<div class = "evoke text-align">
 			  			<i class="fa fa-upload fa-5x"></i>

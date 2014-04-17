@@ -141,7 +141,7 @@
 	  </li>
 	  <li data-button="End">
 	    <h4><?= __('Good luck!') ?></h4>
-	    <p><?= __("Now, go out there and become and agent of change!") ?></p>
+	    <p><?= __("Now, go out there and become an agent of change!") ?></p>
 	  </li>
 	</ol>
 
@@ -153,5 +153,5 @@
 	// echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	// echo $this->Html->script('/components/foundation/js/foundation/foundation.joyride.js', array('inline' => false));
 	echo $this->Html->script('joyride', array('inline' => false));
-	echo $this->Html->script('/components/foundation/js/vendor/jquery.cookie.js', array('inline' => false));
+	echo $this->Html->script('/components/foundation/js/vendor/jquery.cookie.js');
 ?>

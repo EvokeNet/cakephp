@@ -337,9 +337,26 @@
 
 .evoke.quests.content{
 	min-width:400px!important;
-	color: #fff;
+}
+
+.joyride-content-wrapper{
+	background-color: #fff;
+	color: #252525;
+}
+
+.joyride-content-wrapper .button{
+	background-color: #c65862;
 }
 
 .joyride-content-wrapper p{
 	font-size:1.3em;
+}
+
+.joyride-content-wrapper h4{
+	color: #252525;
+}
+
+.joyride-tip-guide .joyride-nub.top{
+	border-color: #fff;
+	top: -18px;
 }
