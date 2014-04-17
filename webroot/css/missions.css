@@ -268,6 +268,42 @@
          transform: matrix(-1, -0.1, 0, 1, 0, 0);
 }
 
+.project {    
+ 	text-align: center;
+ 	color: #fff;
+ 	cursor:pointer;
+	/* width: 275px; */
+	margin: 0px 50px;
+	/* min-height: 175px; */
+	/* max-height: 175px; */
+	/*margin-top: -35px; */
+	position: relative;
+	/*border: 1px solid #E8E8E8;*/
+	min-height:300px;
+	/*border-top: 60px solid #fdfd86;*/
+	/* font-family: 'Reenie Beanie'; */
+	/* font-size: 22px; */
+	/* border-bottom-right-radius: 60px 5px; */
+	/* display: inline-block; */
+	background-image: url('../img/icone-project.png');
+}
+ 
+.project:after {     
+   content: "";
+  position:absolute;
+  z-index:-1;
+  right:-0px; bottom:20px;
+  width:200px;
+  height: 25px;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow:2px 15px 5px rgba(0, 0, 0, 0.40);
+-moz-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+ -webkit-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+      -o-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+     -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0);
+         transform: matrix(-1, -0.1, 0, 1, 0, 0);
+}
+
 .evoke.mission.pink fieldset{
 	border: 3px solid #c65862;
 }

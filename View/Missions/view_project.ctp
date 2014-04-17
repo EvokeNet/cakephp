@@ -42,7 +42,16 @@
 		  	<fieldset>
 			  	<legend><?= __('Latest Projects') ?></legend>
 			  	<?php foreach($evokations as $e):
-				  		echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+				  		$showFollowButton = true;
+			    			foreach($myEvokations as $my)
+			    				if(array_search($my['Evokation']['id'], $e['Evokation'])) {
+			    					$showFollowButton = false;
+			    					break;
+			    				}
+			    			if($showFollowButton) 
+			    				echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+			    			else
+			    				echo $this->element('evokation_box', array('e' => $e, 'mine' => true));
 		  			endforeach;?>
 			</fieldset>
 		  </div>
@@ -81,6 +90,15 @@
 						  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
 						  <a class="evoke mission close-reveal-modal">&#215;</a>
 						</div>
+						</li>
+					<?php endforeach; ?>
+
+					<?php foreach ($myEvokations as $myEvokation) :?>
+						<li>
+							<div class="missionblock project" onclick="javascript:window.location='<?= $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $myEvokation['Group']['id']));?>'">
+								<h1 style="color:#fff; padding-top: 65px;"><?= $myEvokation['Group']['title'] . "'s "?></h1>
+								<h1 style="color:#fff">PROJECT</h1>
+							</div>
 						</li>
 					<?php endforeach; ?>
                 </ul>
@@ -207,7 +225,16 @@
 			  <div class="content active" id="panel2-1">
 				<?php
 					foreach($evokations as $e):
-						echo $this->element('evokation_box', array('e' => $e));
+						$showFollowButton = true;
+			    		foreach($myEvokations as $my)
+			    			if(array_search($my['Evokation']['id'], $e['Evokation'])) {
+			    				$showFollowButton = false;
+			    				break;
+			    			}
+			    		if($showFollowButton) 
+			    			echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+			    		else
+			    			echo $this->element('evokation_box', array('e' => $e, 'mine' => true));
 					endforeach;?>
 			  </div>
 			  <div class="content" id="panel2-2">

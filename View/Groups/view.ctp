@@ -69,8 +69,13 @@
 			</div>
 		<?php } ?>
 
-
-		<a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'view', $group['Group']['id'])); ?>" class = "button"><?php echo __('Go to project');?></a>
+		<?php if($flags['_owner'] || $flags['_member']) : 
+			if(empty($myEvokation)) : ?>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'createProject', $group['Group']['id'])); ?>" class = "button"><?php echo __('START PROJECT');?></a>
+			<?php else :?>
+				<a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $group['Group']['id'])); ?>" class = "button"><?php echo __('GO TO PROJECT');?></a>
+			<?php endif;?>
+		<?php endif;?>
 
 	  </div>
 	</div>

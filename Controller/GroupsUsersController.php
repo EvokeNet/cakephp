@@ -64,7 +64,7 @@ class GroupsUsersController extends AppController {
 		$this->loadModel('Evokation');
 		$evokation = $this->Evokation->find('first', array(
 			'conditions' => array(
-				'group_id' => $group_id
+				'Evokation.group_id' => $group_id
 			)
 		));
 

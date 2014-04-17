@@ -266,7 +266,14 @@ class UsersController extends AppController {
 		//debug($evidence);
 
 		$this->loadModel('Evokation');
-		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));
+		$evokations = $this->Evokation->find('all', array(
+			'order' => array(
+				'Evokation.created DESC'
+			),
+			'conditions' => array(
+				'Evokation.sent' => 1
+			)
+		));
 
 		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
 			'conditions' => array(

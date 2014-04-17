@@ -187,6 +187,11 @@ class GroupsController extends AppController {
 			}
 		}
 
+		$myEvokation = $this->Group->Evokation->find('first', array(
+			'conditions' => array(
+				'Evokation.group_id' => $id
+			)
+		));
 
 		$groupsRequestsPending = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status = 0')));
 
@@ -194,7 +199,7 @@ class GroupsController extends AppController {
 
 		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $me)));
 
-		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints'));
+		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints', 'myEvokation'));
 	}
 
 /**
@@ -358,6 +363,38 @@ class GroupsController extends AppController {
 			$this->Session->setFlash(__('The group could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+
+	public function createProject($group_id = null){
+		if(!$group_id)
+			$this->redirect($this->referer());
+		
+		
+		$group = $this->Group->find('first', array(
+			'conditions' => array(
+				'Group.id' => $group_id
+			)
+		));
+
+		if(empty($group))
+			$this->redirect($this->referer());
+
+
+		if($this->isMember($this->getUserId(), $group_id) || $this->isOwner($this->getUserId(), $group_id)) {
+
+			$insertData['Evokation']['title'] = $group['Group']['title'] . "'s Evokation";
+			$insertData['Evokation']['group_id'] = $group_id;
+
+			$this->loadModel('Evokation');
+			$this->Evokation->create();
+			$this->Evokation->save($insertData);
+
+			$this->redirect(array('controller' => 'groupsUsers', 'action' => 'edit', $group_id));
+		} else {
+			$this->redirect($this->referer());
+		}
+
 	}
 
 	public function isMember($user_id = null, $id = null){
