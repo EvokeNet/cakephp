@@ -1,0 +1,2 @@
+ALTER TABLE  `evokations` ADD  `approved` TINYINT( 2 ) UNSIGNED NOT NULL DEFAULT  '0' AFTER  `language`;
+ALTER TABLE  `evokations` ADD  `sent` TINYINT( 2 ) UNSIGNED NOT NULL DEFAULT  '0' AFTER  `language`;
