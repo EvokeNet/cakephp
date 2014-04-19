@@ -83,11 +83,14 @@ class GroupsUsersController extends AppController {
 		$loggedInUser = $this->Auth->user();
 		
 
-		
+
+		$usersid = array(); //used to set the OR condition used down there
+
 		foreach ($users as $user) {
+			array_push($usersid, array('Evidence.user_id' => $user['User']['id']));
 			if ($user['User']['id'] == $loggedInUser['User']['id']) {
 				$authorized = true;
-				break;
+				//break;
 			}
 		}
 
@@ -100,6 +103,7 @@ class GroupsUsersController extends AppController {
 						'User.id' => $this->getUserId()
 					)
 				));
+				array_push($usersid, array('Evidence.user_id' => $user['User']['id']));
 			}
 		
 
@@ -201,7 +205,49 @@ class GroupsUsersController extends AppController {
 			throw new InternalErrorException(__('You are not authorized to edit this Evokation.'));
 		}
 
-		$this->set(compact('group', 'users', 'user', 'padID'));
+		$evokationsEvidences = array();
+		if(!empty($usersid)) {
+			//get all the evokations-type evidences from the group members..
+			$this->loadModel('Evidence');
+			$evokationsEvidences = $this->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.evokation' => 1,
+					'Evidence.mission_id' => $thisgroup['Group']['mission_id'],
+					'OR' => $usersid
+				)
+			));
+		}
+
+		//getting all attachments from those evokationEvidences
+		$evokationEvidencesids = array();
+
+		foreach ($evokationsEvidences as $e) {
+			array_push($evokationEvidencesids, array('Attachment.foreign_key' => $e['Evidence']['id']));
+		}
+
+		$evokationAttachments = array();
+		if(!empty($evokationEvidencesids)) {
+			$this->loadModel('Attachment');
+			$evokationAttachments = $this->Attachment->find('all', array(
+				'conditions' => array(
+					'Attachment.model' => 'Evidence',
+					'OR' => $evokationEvidencesids
+				)
+			));
+		}
+
+		//getting last update info, if any
+		$this->loadModel('EvokationsUpdate');
+		$lastUpdate = $this->EvokationsUpdate->find('first', array(
+			'order' => array(
+				'EvokationsUpdate.Created Desc'
+			),
+			'conditions' => array(
+				'EvokationsUpdate.evokation_id' => $evokation['Evokation']['id']
+			)
+		));
+
+		$this->set(compact('group', 'users', 'user', 'padID', 'evokationAttachments', 'evokation', 'lastUpdate'));
 
 	}
 
@@ -358,6 +404,48 @@ class GroupsUsersController extends AppController {
 			return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
 		}
 	}
+
+
+/*
+* publish method
+* publish to community setting a list of updates!
+*/
+	public function publish($id = null){
+		if(!$id)
+			$this->redirect($this->referer());
+
+		$this->loadModel('Evokation');
+		$evokation = $this->Evokation->find('first', array(
+			'conditions' => array(
+				'Evokation.id' => $id
+			)
+		));
+
+		if (empty($evokation)) 
+			$this->redirect($this->referer());
+
+
+		$insert['EvokationsUpdate']['evokation_id'] = $id;
+		$insert['EvokationsUpdate']['description'] = $this->request->data['Update']['description'];
+
+		$this->loadModel('EvokationsUpdate');
+		$this->EvokationsUpdate->create();
+		$this->EvokationsUpdate->save($insert);
+
+		
+		$insert = array();
+		$insert['Evokation']['id'] = $id;
+		$insert['Evokation']['sent'] = 1;
+
+		$this->loadModel('Evokation');
+		$this->Evokation->id = $id;
+		$this->Evokation->save($insert);
+
+		$this->redirect(array('controller' => 'users', 'action' => 'dashboard'));
+
+	}
+
+
 
 /**
  * send method
