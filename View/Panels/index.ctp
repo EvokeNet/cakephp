@@ -84,6 +84,7 @@
 				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
 				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
 				<?php if($flags['_admin']) : ?>
+					<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><?= __('Evokations') ?></a></dd>
 					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Media') ?></a></dd>
 					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
 				<?php endif; ?>	
@@ -362,6 +363,41 @@
 						<?php endif; ?>
 						<div id="UsersHolder"></div>
 					</div>
+				</div>
+				<div class="content <?php echo $pending_tab; ?>" id="pending">
+					<?php 
+						$evokations = array_merge($pending_evokations, $approved_evokations);
+					?>
+
+					<?php foreach ($evokations as $e): ?>
+						<button class="button small" id="ShowEvokationStatus-<?php echo $e['Evokation']['id']; ?>" data-reveal-id="evo-<?php echo $e['Evokation']['id']; ?>" style="display:none" data-reveal></button>
+									<!-- Lightbox for editing evokation status -->
+						<div id="evo-<?php echo $e['Evokation']['id']; ?>" class="reveal-modal tiny" data-reveal>
+							<?php 
+								echo $this->Form->create('Evokation', array(
+							 		'url' => array(
+							 			'controller' => 'panels',
+							 			'action' => 'changeEvokationStatus', 
+							 			$e['Evokation']['id']
+							 		)
+								));
+							 ?>
+							<fieldset>
+								<legend><?php echo __('Change status') .': '. $e['Evokation']['title']; ?></legend>
+								<?php
+									echo $this->Form->hidden('id', array('value' => $e['Evokation']['id']));
+									echo $this->Form->radio('approved', array(0 => 'Pending', 1 => 'Approved'), array('default' => $e['Evokation']['approved']));
+								?>
+							</fieldset>
+								<button class="button tiny" type="submit">
+									<?php echo __('Save Changes')?>
+								</button>
+								<?php echo $this->Form->end(); ?>
+								<a class="close-reveal-modal">&#215;</a>
+						</div>
+					<?php endforeach ?>
+					<!-- ShowEvokationStatus- -->
+					<div id="EvokationsHolder"></div>
 				</div>
 				<div class="content <?php echo $media_tab; ?>" id="media">
 					<p>Upload videos/images and choose actions that triggers them...</p>
@@ -933,6 +969,76 @@
         var filteredRows = waTablePP.getData(false, true); //Gets the data you previously set, but with filtered rows only.
 
         var pageSize = waTablePP.option("pageSize"); //Get option
+
+
+
+        var waTableE = $('#EvokationsHolder').WATable({
+            //debug:true,                 //Prints some debug info to console
+            pageSize: 10,                //Initial pagesize
+            transition: 'slide',       //Type of transition when paging (bounce, fade, flip, rotate, scroll, slide).Requires https://github.com/daneden/animate.css.
+            transitionDuration: 0.2,    //Duration of transition in seconds.
+            filter: true,               //Show filter fields
+            pageSizes: [],  //Set custom pageSizes. Leave empty array to hide button.
+            hidePagerOnEmpty: true,     //Removes the pager if data is empty.
+            preFill: false, //true,              //Initially fills the table with empty rows (as many as the pagesize).
+            types: {                    //Following are some specific properties related to the data types
+                string: {
+                    //filterTooltip: "Giggedi..."    //What to say in tooltip when hoovering filter fields. Set false to remove.
+                    //placeHolder: "Type here..."    //What to say in placeholder filter fields. Set false for empty.
+                },
+                number: {
+                    decimals: 1   //Sets decimal precision for float types
+                },
+                bool: {
+                    //filterTooltip: false
+                },
+                date: {
+                  utc: true,            //Show time as universal time, ie without timezones.
+                  //format: 'yy/dd/MM',   //The format. See all possible formats here http://arshaw.com/xdate/#Formatting.
+                  datePicker: true      //Requires "Datepicker for Bootstrap" plugin (http://www.eyecon.ro/bootstrap-datepicker).
+                }
+            },
+            tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
+                // console.log('table created'); //data.table holds the html table element.
+                // console.log(data);            //'this' keyword also holds the html table element.
+            },
+            rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
+                // console.log('row clicked');   //data.event holds the original jQuery event.
+                // console.log(data);            //data.row holds the underlying row you supplied.
+                //                               //data.column holds the underlying column you supplied.
+                //                               //data.checked is true if row is checked.
+                //                               //'this' keyword holds the clicked element.
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
+            },
+            columnClicked: function(data) {    //Fires when a column is clicked
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
+                                              //data.descending is true when sorted descending (duh)
+            },
+            pageChanged: function(data) {      //Fires when manually changing page
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
+            },
+            pageSizeChanged: function(data) {  //Fires when manually changing pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
+            }
+        }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
+
+        //Generate some data
+        var dataE = getDataEvokations();
+        waTableE.setData(dataE);  //Sets the data.
+        //waTable.setData(data, true); //Sets the data but prevents any previously set columns from being overwritten
+        //waTable.setData(data, false, false); //Sets the data and prevents any previously checked rows from being reset
+
+        var allRows = waTableE.getData(false); //Gets the data you previously set.
+        var checkedRows = waTableE.getData(true); //Gets the data you previously set, but with checked rows only.
+        var filteredRows = waTableE.getData(false, true); //Gets the data you previously set, but with filtered rows only.
+
+        var pageSize = waTableE.option("pageSize"); //Get option
     });
 
 
@@ -1434,6 +1540,132 @@
         return data;
     }
 
+    function getDataEvokations() {
+
+        //First define the columns
+        var cols = {
+            // mission: {
+            // 	index: 1,
+            //     type: "string",
+            //     friendly: "Mission",
+            //     format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
+            //     tooltip: "<?= __('By mission')?>", //Show some additional info about column
+            //     placeHolder: "<?= __('Search evokations by mission...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+            // },
+            status: {
+            	index: 1,
+                type: "string",
+                friendly: "Status",
+                format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
+                tooltip: "<?= __('By status')?>", //Show some additional info about column
+                placeHolder: "<?= __('Search evokations by status...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+            },
+            group: {
+            	index: 2,
+                type: "string",
+                friendly: "Group Title",
+                format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
+                tooltip: "<?= __('By group')?>", //Show some additional info about column
+                placeHolder: "<?= __('Search evokations by group...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+            },
+            name: {
+                index: 3,
+                type: "string",
+                friendly: "Evokation Title",
+                format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
+                tooltip: "<?= __('By title')?>", //Show some additional info about column
+                placeHolder: "<?= __('Search for evokations by title...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+            }
+        };
+
+
+        <?php 
+        	$evo_size = 0;
+	    	$evo_array = "";
+	    	$status_array = "";
+	    	$evoids_array = "";
+	    	$evo_groups_array = "";
+	    	$evo_groupids_array = "";
+	    	foreach ($pending_evokations as $e) :
+	    		//if($power['PowerPoint']['id'] == "") continue;
+	    		$evo_size++;
+	    		$evo_array .= '"'. $e['Evokation']['title'] .'", ';
+	    		$evoids_array .= '"'. $e['Evokation']['id'] .'", ';
+	    		$status_array .= '"'. $e['Evokation']['approved'] .'", ';
+	    		$evo_groups_array .= '"'. $e['Group']['title'] .'", ';
+	    		$evo_groupids_array .= '"'. $e['Group']['id'] .'", ';
+	    	endforeach;
+	    	foreach ($approved_evokations as $e) :
+	    		//if($power['PowerPoint']['id'] == "") continue;
+	    		$evo_size++;
+	    		$evo_array .= '"'. $e['Evokation']['title'] .'", ';
+	    		$evoids_array .= '"'. $e['Evokation']['id'] .'", ';
+	    		$status_array .= '"'. $e['Evokation']['approved'] .'", ';
+	    		$evo_groups_array .= '"'. $e['Group']['title'] .'", ';
+	    		$evo_groupids_array .= '"'. $e['Group']['id'] .'", ';
+	    	endforeach;
+
+	    	$evo_array = substr($evo_array, 0, strlen($evo_array) - 2);
+    		$evoids_array = substr($evoids_array, 0, strlen($evoids_array) - 2);
+    		$status_array = substr($status_array, 0, strlen($status_array) - 2);
+    		$evo_groups_array = substr($evo_groups_array, 0, strlen($evo_groups_array) - 2);
+    		$evo_groupids_array = substr($evo_groupids_array, 0, strlen($evo_groupids_array) - 2);
+	    ?>
+    
+        /*
+          Create the actual data.
+          Whats worth mentioning is that you can use a 'format' property just as in the column definition,
+          but on a row level. See below on how we create a weightFormat property. This will be used when rendering the weight column.
+          Also, you can pre-check rows with the 'checked' property and prevent rows from being checkable with the 'checkable' property.
+        */
+        var rows = [];
+        var i = 1;
+        while(i <= <?php echo $evo_size; ?>)
+        {
+            //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            var urlG = getCorrectURL("groups/view/");
+            var urlE = getCorrectURL("evokations/view/");
+
+            if(eStatus[i-1] == 0) {
+            	var str = "Pending";
+            }else{
+            	var str = "Approved";
+            }
+
+            var strE = '"ShowEvokationStatus-' + eId[i-1] + '"';
+            
+            var doc = {
+            	
+            	status: str,
+            	statusFormat: "<a href='#' onclick='document.getElementById(" + strE +").click();' class='userId'>{0}</a>",
+            	group: gName[i-1],
+                groupFormat: "<a href='"+ urlG + gId[i-1] + "' class='name' target='_blank'>{0}</a>",
+                name: eName[i-1],
+                nameFormat: "<a href='"+ urlE + eId[i-1] + "' class='name' target='_blank'>{0}</a>"
+            };
+            rows.push(doc);
+            i++;
+        }
+
+        //Create the returning object. Besides cols and rows, you can also pass any other object you would need later on.
+        var data = {
+            cols: cols,
+            rows: rows,
+            otherStuff: {
+                thatIMight: 1,
+                needLater: true
+            }
+        };
+
+        return data;
+    }
+
+
+    var eName = new Array(<?php echo $evo_array?>);    
+   	var eId = new Array(<?php echo $evoids_array?>);
+   	var eStatus = new Array(<?php echo $status_array?>);
+	var gName = new Array(<?php echo $evo_groups_array?>);    
+    var gId = new Array(<?php echo $evo_groupids_array?>);
 
     var usersName = new Array(<?php echo $users_name_array?>);    
     var usersId = new Array(<?php echo $users_id_array?>);

@@ -107,17 +107,39 @@ class MissionsController extends AppController {
 		//debug($evidence);
 
 		$this->loadModel('Evokation');
-		$evokations = $this->Evokation->find('all', array('order' => array('Evokation.created DESC')));
+		$allevokations = $this->Evokation->find('all', array(
+			'order' => array(
+				'Evokation.created DESC'
+			),
+			'conditions' => array(
+				'Evokation.sent' => 1
+			)
+		));
+
+		$success_evokations = array();
+		$evokations = array();
+		//only get evokations from this mission
+		foreach ($allevokations as $evokation) {
+			if($evokation['Group']['mission_id'] = $id) {
+				$evokations[] = $evokation;
+				if($evokation['Evokation']['approved'] == 1)
+					$success_evokations[] = $evokation;
+			}
+		}
 
 		$missionIssues = $this->Mission->getMissionIssues($id);
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 		
+		//will be used in retrieving all users groups id to get his evokations!
+		$myEvokations_groupsids = array();
+
 		$hasGroup = false;
 		//check to see if user has entered a group of this mission..
 		foreach ($mission['Group'] as $group) {
 			if($group['user_id'] == $this->getUserId()) {
 				$hasGroup = true;
-				break;
+				array_push($myEvokations_groupsids, array('Evokation.group_id' => $group['id']));
+				//break;
 			}
 
 			$this->loadModel('GroupsUser');
@@ -129,9 +151,21 @@ class MissionsController extends AppController {
 			foreach ($groupsuser as $member) {
 				if($member['GroupsUser']['user_id'] == $this->getUserId()) {
 					$hasGroup = true;
-					break;
+					array_push($myEvokations_groupsids, array('Evokation.group_id' => $member['GroupsUser']['group_id']));
+					//break;
 				}
 			}
+		}
+
+		//getting all user's evokations from this mission!
+		$myEvokations = array();
+		if(!empty($myEvokations_groupsids)) {
+			$this->loadModel('Evokation');
+			$myEvokations = $this->Evokation->find('all', array(
+				'conditions' => array(
+					'OR' => $myEvokations_groupsids
+				)
+			));
 		}
 
 		//retrieving all ids from quests of this mission..
@@ -273,7 +307,7 @@ class MissionsController extends AppController {
 
 		$evokationsFollowing = $this->User->EvokationFollower->find('all');
 
-		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 
+		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints'));
 
 		if($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]){

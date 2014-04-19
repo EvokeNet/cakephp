@@ -69,10 +69,12 @@ class GroupsController extends AppController {
 		$groupsBelongs = array();
 
 		foreach($groupsUsers as $group):
-			array_push($groupsBelongs, array('Group.id' => $group['GroupsUser']['group_id']));
+			$g = $this->Group->find('first', array('conditions' => array('Group.id' => $group['GroupsUser']['group_id'])));
+			if($g['Group']['user_id'] != $this->getUserId())
+				array_push($groupsBelongs, array('Group.id' => $group['GroupsUser']['group_id']));
 		endforeach;
 		
-		if(!empty($groupsUsers)) {
+		if(!empty($groupsUsers) && !(empty($groupsBelongs))) {
 			//retrieve all organizations I am part of as a list to be displayed in a combobox
 			$groupsIBelong = $this->Group->find('all', array(
 				'order' => array(
@@ -187,6 +189,11 @@ class GroupsController extends AppController {
 			}
 		}
 
+		$myEvokation = $this->Group->Evokation->find('first', array(
+			'conditions' => array(
+				'Evokation.group_id' => $id
+			)
+		));
 
 		$groupsRequestsPending = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status = 0')));
 
@@ -194,7 +201,7 @@ class GroupsController extends AppController {
 
 		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $me)));
 
-		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints'));
+		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints', 'myEvokation'));
 	}
 
 /**
@@ -214,6 +221,13 @@ class GroupsController extends AppController {
 						'Group.id' => $this->Group->id
 					)
 				));
+
+
+				$insert['GroupsUser']['user_id'] = $me['Group']['user_id'];
+				$insert['GroupsUser']['group_id'] = $me['Group']['id'];
+				//add owner to groupsusers
+				$this->Group->GroupsUser->create();
+				$this->Group->GroupsUser->save($insert);
 
 				//attribute pp to group creator
 				$this->loadModel('QuestPowerPoint');
@@ -358,6 +372,38 @@ class GroupsController extends AppController {
 			$this->Session->setFlash(__('The group could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+
+	public function createProject($group_id = null){
+		if(!$group_id)
+			$this->redirect($this->referer());
+		
+		
+		$group = $this->Group->find('first', array(
+			'conditions' => array(
+				'Group.id' => $group_id
+			)
+		));
+
+		if(empty($group))
+			$this->redirect($this->referer());
+
+
+		if($this->isMember($this->getUserId(), $group_id) || $this->isOwner($this->getUserId(), $group_id)) {
+
+			$insertData['Evokation']['title'] = $group['Group']['title'] . "'s Evokation";
+			$insertData['Evokation']['group_id'] = $group_id;
+
+			$this->loadModel('Evokation');
+			$this->Evokation->create();
+			$this->Evokation->save($insertData);
+
+			$this->redirect(array('controller' => 'groupsUsers', 'action' => 'edit', $group_id));
+		} else {
+			$this->redirect($this->referer());
+		}
+
 	}
 
 	public function isMember($user_id = null, $id = null){
