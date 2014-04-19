@@ -34,8 +34,13 @@ class MissionsController extends AppController {
 
 		//checking Acl permission
 		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
-			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
-			$this->redirect($this->referer());
+			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."), 'flash_error_message');	
+			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $this->user['id']));
+		}
+
+		if(($this->user['basic_traning'] == 0) && ($this->user['role_id'] != 1)) {
+			$this->Session->setFlash(__("You haven't completed the Basic Training"), 'flash_message');
+			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $this->user['id']));
 		}
     }
 

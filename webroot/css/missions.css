@@ -94,7 +94,7 @@
 }
 
 .evoke.missions.data p{
-	font-size:1.5vw;
+	font-size: 1.5em;
 	/*display: inline-block;*/
 }
 
@@ -151,9 +151,10 @@
 
 .evoke.mission.status-bg h1{
 	color:#fff;
-	font-size:2.0vw;
+	font-size:2.5vw;
 	display: inline;
-	font-family: 'AlegreyaRegular';
+	font-family: 'AlegreyaBold';
+	vertical-align: text-bottom;
 }
 
 .evoke.mission.status-bg h2{

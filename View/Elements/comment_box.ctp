@@ -34,7 +34,10 @@ $name = explode(' ', $c['User']['name']);
 		  	<p><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?><?php echo $c['Comment']['content']; ?></p>
 		  </div>
 		  <div class="small-1 medium-1 large-1 columns">
-		  	<div class = "evoke comment-box-delete"><a href = "<?php echo $this->Html->url(array('controller'=> 'comments', 'action' => 'delete', $c['Comment']['id'])); ?>"><i class="fa fa-times-circle fa-lg"></i></a></div>
+		  	<?php if($c['Comment']['user_id'] == $user['User']['id']): ?>
+		  	<div class = "evoke comment-box-delete"><a href = "<?php echo $this->Html->url(array('controller'=> 'comments', 'action' => 'delete', $c['Comment']['id'])); ?>"><i class="fa fa-times-circle fa-lg"></i></a>
+		  	</div>
+		  <?php endif; ?>
 		  </div>
 		</div>
 	</div>

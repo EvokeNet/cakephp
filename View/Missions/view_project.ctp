@@ -17,7 +17,7 @@
 	<?php echo $this->Session->flash(); ?>
 
 	<nav class="evoke breadcrumbs">
-	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
+	  <?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
 
 	  <a class="unavailable" href="#"><?php echo sprintf(__('Mission %s'), $mission['Mission']['title']);?></a>
 
@@ -193,16 +193,17 @@
 	  </div>
 	</div>
 
+	<div class = "evoke position">
+		<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke horizontal_bar left">
+		<dl class="tabs evoke titles" data-tab>
+			  <dd><h4><?php echo strtoupper(__('Projects'));?></h4></dd>
+			  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('Most Voted'))?></a></dd>
+			  <dd><a href="#panel2-2"><?= strtoupper(__('Most Recent'))?></a></dd>
+		</dl>
+	</div>		
     <div class="row full-width">
 	  <div class="small-8 medium-8 large-8 columns">
 	  	<div class = "evoke position">
-			<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke horizontal_bar left">
-			<dl class="tabs evoke titles" data-tab>
-				  <dd><h4><?php echo strtoupper(__('Projects'));?></h4></dd>
-				  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('Most Voted'))?></a></dd>
-				  <dd><a href="#panel2-2"><?= strtoupper(__('Most Recent'))?></a></dd>
-			</dl>
-
 			<div class="evoke tabs-content screen-box dashboard panel">
 			  <div class="content active" id="panel2-1">
 				<?php
@@ -218,7 +219,7 @@
 	  <div class="small-4 medium-4 large-4 columns">
 	  		
 
-		<div class = "evoke position" style = "margin: 5% 15%;">
+		<div class = "evoke position" style = "margin: 0 5%;">
 			<img src = '<?= $this->webroot.'img/espiral.png' ?>' style = " width: 100%;">
 			<div class = "evoke todo-list">
 				<div class = "evoke todo-list content">
@@ -250,9 +251,19 @@
 
 							//debug($previous_answers);
 							if($evidence_exists):?>
-								<li><h2 class = "evoke item-complete"><?php echo $q['Quest']['title'];?></h2></li>
+								<li>
+									<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+										<h2 class = "evoke item-complete"><?php echo $q['Quest']['title'];?></h2>
+									</a>
+								</li>
 							<?php else: ?>
-								<li><h2><?php echo $q['Quest']['title'];?></h2></li>
+								<li>
+
+								<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+									<h2><?php echo $q['Quest']['title'];?></h2>
+								</a>
+
+								</li>
 							<?php endif; 
 
 						endforeach; ?>
@@ -284,12 +295,7 @@
 	echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel', array('inline' => false));
 	//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
 	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
-	echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
+	//echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
+	echo $this->Html->script('jcarousel_missions', array('inline' => false));
 
 ?>
-
-<script>
-
-	$('.jcarousel').jcarousel('scroll', '3');
-
-</script>

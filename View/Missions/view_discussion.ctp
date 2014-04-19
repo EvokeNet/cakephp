@@ -17,7 +17,7 @@
 	<?php echo $this->Session->flash(); ?>
 
 	<nav class="evoke breadcrumbs">
-	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
+	  <?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
 
 	  <a class="unavailable" href="#"><?php echo sprintf(__('Mission %s'), $mission['Mission']['title']);?></a>
 
@@ -34,14 +34,14 @@
 	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
 	<div class="row full-width">
-	  <div class="small-6 medium-6 large-6 columns">
+	  <div class="small-6 medium-6 large-7 columns">
 	  	<div class = "evoke missions data">
 	  		<h1><?php echo __('Phase: '); echo h($missionPhase['Phase']['name']); ?></h1>
 	  		<h2><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
 	  		<p><?= $mission['Mission']['description'];?></p>
   		</div>
 	  </div>
-	  <div class="small-6 medium-6 large-6 columns">
+	  <div class="small-6 medium-6 large-5 columns">
 	  		<div class = "evoke position">
 	  			<div class = "evoke text-align"><img src = '<?= $this->webroot.'img/hqnored.png' ?>' width="60%"></div>
 	  		
@@ -207,15 +207,18 @@
 	  </div>
 	</div>
 
+<div class = "evoke position">
+	<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke horizontal_bar left">
+	<dl class="tabs evoke titles" data-tab>
+	  <dd><h4><?php echo strtoupper(__('Discussions'));?></h4></dd>
+	  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('Most Liked'))?></a></dd>
+	  <dd><a href="#panel2-2"><?= strtoupper(__('Most Recent'))?></a></dd>
+	</dl>
+</div>
     <div class="row full-width">
 	  <div class="small-8 medium-8 large-8 columns">
 	  	<div class = "evoke position">
-			<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke horizontal_bar left">
-			<dl class="tabs evoke titles" data-tab>
-				  <dd><h4><?php echo strtoupper(__('Discussions'));?></h4></dd>
-				  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('Most Liked'))?></a></dd>
-				  <dd><a href="#panel2-2"><?= strtoupper(__('Most Recent'))?></a></dd>
-			</dl>
+			
 
 			<div class="evoke tabs-content screen-box dashboard panel margin">
 			  <div class="content active" id="panel2-1">
@@ -234,7 +237,7 @@
 	  <div class="small-4 medium-4 large-4 columns">
 	  		
 
-		<div class = "evoke position" style = "margin: 5% 15%;">
+		<div class = "evoke position" style = "margin: 0 5%;">
 			<img src = '<?= $this->webroot.'img/espiral.png' ?>' style = " width: 100%;">
 			<div class = "evoke todo-list">
 				<div class = "evoke todo-list content">
@@ -266,9 +269,19 @@
 
 							//debug($previous_answers);
 							if($evidence_exists):?>
-								<li><h2 class = "evoke item-complete"><?php echo $q['Quest']['title'];?></h2></li>
+								<li>
+									<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+										<h2 class = "evoke item-complete"><?php echo $q['Quest']['title'];?></h2>
+									</a>
+								</li>
 							<?php else: ?>
-								<li><h2><?php echo $q['Quest']['title'];?></h2></li>
+								<li>
+
+								<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+									<h2><?php echo $q['Quest']['title'];?></h2>
+								</a>
+
+								</li>
 							<?php endif; 
 
 						endforeach; ?>

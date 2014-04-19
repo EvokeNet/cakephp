@@ -61,6 +61,12 @@ button, div, p, span, a,
     max-width: 80%;
 }
 
+/* OVERRIDES STANDARD ROW WIDTH */
+.evoke .row.full-width-alternate {
+    width: 100%;
+    max-width: 100%;
+}
+
 .evoke .bg-topbar {
 	background: #1f8cb2;
 }
