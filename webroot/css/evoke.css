@@ -1093,6 +1093,10 @@ button, div, p, span, a,
 	font-size:1.0em;
 }
 
+.evoke.lightbox.alchemy h2{
+	
+}
+
 .evoke.mission.close-reveal-modal{
 	/*background-color: #19708e;
 	color: #000;
@@ -1247,7 +1251,7 @@ button, div, p, span, a,
 
 .evoke .alert-message p{
 	/*font-size: 0.9vw;*/
-	font-size:1.5em;
+	font-size:2.0em;
 	margin-bottom: 0;
 	font-family: 'AlegreyaBold';
 }

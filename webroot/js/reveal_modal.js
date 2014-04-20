@@ -1,1 +1,1 @@
-$('#myModalSpecial').foundation('reveal', 'open');
+$('#formModal').foundation('reveal', 'open');

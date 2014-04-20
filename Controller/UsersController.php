@@ -330,6 +330,9 @@ class UsersController extends AppController {
 		$mission_ids = array();
 		foreach ($missions as $mission) {
 			$mission_ids[] = array('Attachment.foreign_key' => $mission['Mission']['id'], 'Attachment.model' => 'Mission');
+
+			if($mission['Mission']['basic_training'] == 1)
+				$basic_training = $mission;
 		}
 
 		$this->loadModel('Attachment');
@@ -394,7 +397,7 @@ class UsersController extends AppController {
 
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');

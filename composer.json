@@ -16,6 +16,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/jordanvg/cakephp-menu-helper"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/aschelch/cakephp-notification-plugin"
         }
     ],
     "require": {

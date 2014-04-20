@@ -153,5 +153,5 @@
 	// echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	// echo $this->Html->script('/components/foundation/js/foundation/foundation.joyride.js', array('inline' => false));
 	echo $this->Html->script('joyride', array('inline' => false));
-	echo $this->Html->script('/components/foundation/js/vendor/jquery.cookie.js');
+	echo $this->Html->script('/components/foundation/js/vendor/jquery.cookie.js', array('inline' => false));
 ?>
