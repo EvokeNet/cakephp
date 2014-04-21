@@ -118,14 +118,14 @@ class PanelsController extends AppController {
 
 			$pending_evokations = $this->Evokation->find('all', array(
 				'conditions' => array(
-					'Evokation.sent' => 1,
+					'Evokation.final_sent' => 1,
 					'Evokation.approved' => 0
 				)
 			));
 
 			$approved_evokations = $this->Evokation->find('all', array(
 				'conditions' => array(
-					'Evokation.sent' => 1,
+					'Evokation.final_sent' => 1,
 					'Evokation.approved' => 1
 				)
 			));

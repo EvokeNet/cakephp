@@ -480,6 +480,76 @@ class GroupsUsersController extends AppController {
 	}
 
 
+	public function publishFinal($id = null){
+		if(!$id)
+			$this->redirect($this->referer());
+
+		$this->loadModel('Evokation');
+		$evokation = $this->Evokation->find('first', array(
+			'conditions' => array(
+				'Evokation.id' => $id
+			)
+		));
+
+		if (empty($evokation)) 
+			$this->redirect($this->referer());
+
+		//get etherpad content!
+		$apikey = Configure::read('etherpad_api_key');
+		$client = new Client($apikey, 'http://198.50.155.101:2222');
+
+		$response = $client->checkToken();
+		if ($response->getCode() == 0) {
+			
+			$mappedGroup = $client->createGroupIfNotExistsFor($evokation['Evokation']['group_id']);
+			if ($mappedGroup->getCode() == 0) {
+				
+				$groupID = $mappedGroup->getData();
+				$groupID = $groupID['groupID'];
+			} else {
+				throw new InternalErrorException(__('Could not create Etherpad Group'));
+			}
+
+			// Now we have everything we need to create the Pad
+			$pad = $client->createGroupPad($groupID, 'evokation');
+			if ($pad->getCode() == 0) {
+				$padID = $pad->getData();
+				$padID = $padID['padID'];
+			} else {
+				$padID = $groupID . '$evokation';
+			}
+		}
+
+		//retrieve content from server
+		$padData = json_decode(file_get_contents('http://198.50.155.101:2222/api/1/getHTML?apikey=' . $apikey . '&padID=' . $padID));
+		
+		//treat it
+		$evokationContent = $padData->data->html;
+		$evokationContent = str_replace("<!DOCTYPE HTML><html><body>", "", $evokationContent);
+		$evokationContent = str_replace("</body></html>", "", $evokationContent);
+
+		$insert['EvokationsUpdate']['evokation_id'] = $id;
+		$insert['EvokationsUpdate']['description'] = 'Finished Evokation';
+		$insert['EvokationsUpdate']['content'] = $evokationContent;
+
+		$this->loadModel('EvokationsUpdate');
+		$this->EvokationsUpdate->create();
+		$this->EvokationsUpdate->save($insert);
+
+		
+		$insert = array();
+		$insert['Evokation']['id'] = $id;
+		$insert['Evokation']['sent'] = 1;
+		$insert['Evokation']['final_sent'] = 1;
+
+		$this->loadModel('Evokation');
+		$this->Evokation->id = $id;
+		$this->Evokation->save($insert);
+
+		$this->redirect(array('controller' => 'users', 'action' => 'dashboard'));
+
+	}
+
 
 /**
  * send method

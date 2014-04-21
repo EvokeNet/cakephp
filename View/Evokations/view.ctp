@@ -58,7 +58,17 @@
 	  <div class="small-7 medium-7 large-7 columns">
 	 	<div class = "evoke evidence-body view">
 		  	<h1><?php echo h($evokation['Evokation']['title']); ?></h1>
-		  	<h6><?php echo h($evokation['Evokation']['created']); ?></h6>
+		  	<?php if($evokation['Evokation']['final_sent'] == 0) :?>
+		  		<h6><?php echo h('Status: work in progress.'); ?></h6>
+		  	<?php else : ?>	
+		  		<?php if($evokation['Evokation']['approved'] == 0) :?>
+		  			<h6><?php echo h('Status: Waiting for approval.'); ?></h6>
+		  		<?php else : ?>	
+		  			<h6><?php echo h('Status: Approved!'); ?></h6>
+		  		<?php endif ?>	
+		  	<?php endif ?>
+
+		  	
 			<?php if(!empty($allUpdates)) :?>
 				<div id="showHistory"><small><?=  __('show update history') ?></small></div>
 		  		<div id="history" style="display:none">
