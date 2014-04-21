@@ -42,15 +42,25 @@ class EvokationsController extends AppController {
 		}
 
 		
-
-		
 		$options = array('conditions' => array('Evokation.' . $this->Evokation->primaryKey => $id));
 		$evokation = $this->Evokation->find('first', $options);
 		$this->Evokation->id = $id;
 		$comment = $this->Evokation->Comment->find('all', array('conditions' => array('Comment.evokation_id' => $id)));
 		$vote = $this->Evokation->Vote->find('first', array('conditions' => array('Vote.evokation_id' => $id, 'Vote.user_id' => $this->getUserId())));
 		$votes = $this->Evokation->Vote->find('all', array('conditions' => array('Vote.evokation_id' => $id)));
+
+
+		//evokation update:
+		$newUpdate = $this->Evokation->EvokationsUpdate->find('first', array(
+			'order' => array(
+				'EvokationsUpdate.created Desc'
+			),
+			'conditions' => array(
+				'EvokationsUpdate.evokation_id' => $id
+			)
+		));
 		
+
 		$group = $this->Evokation->Group->find('first');
 		$can_edit = false;
 		if($group['Group']['user_id'] == $this->getUserId()) $can_edit = true;
@@ -109,7 +119,7 @@ class EvokationsController extends AppController {
 		$evokationContent = str_replace("<!DOCTYPE HTML><html><body>", "", $evokationContent);
 		$evokationContent = str_replace("</body></html>", "", $evokationContent);
 
-		$this->set(compact('evokation', 'group', 'user', 'comment', 'votes', 'vote', 'can_edit', 'follows', 'sumMyPoints', 'evokationContent'));
+		$this->set(compact('evokation', 'group', 'user', 'comment', 'votes', 'vote', 'can_edit', 'follows', 'sumMyPoints', 'evokationContent', 'newUpdate'));
 	}
 
 /**

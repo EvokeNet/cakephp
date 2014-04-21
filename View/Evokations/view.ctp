@@ -59,6 +59,10 @@
 	 	<div class = "evoke evidence-body view">
 		  	<h1><?php echo h($evokation['Evokation']['title']); ?></h1>
 		  	<h6><?php echo h($evokation['Evokation']['created']); ?></h6>
+		  	<?php if(!empty($newUpdate)) :?>
+			  	<h4><?= __('Latest update:')?></h4>
+			  	<h5><?= $newUpdate['EvokationsUpdate']['description'] ?></h5>
+			<?php endif ?>
 		  	<div id="evokation_div" data-placeholder="">
 		  		<?php echo urldecode($evokationContent); ?>
 		  	</div>
@@ -83,11 +87,11 @@
 	  	<div class = "evoke evidence-share">
 		  	
 		  	<div class="evoke button-bg">
-	  			<a href="javascript:fbShare('<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evokation['Evidence']['id'] ?>', 'Fb Share', '<?= $evokation['Evidence']['title'] ?>', 'http://goo.gl/dS52U', 520, 350)"><div class="evoke button like-button facebook-button"><i class="fa fa-facebook fa-lg"></i>&nbsp;&nbsp;&nbsp;<h6><?= __('Share on Facebook');?></h6></div></a>
+	  			<a href="javascript:fbShare('<?= $_SERVER['SERVER_NAME']."/evokations/view/".$evokation['Evokation']['id'] ?>', 'Fb Share', '<?= $evokation['Evokation']['title'] ?>', 'http://goo.gl/dS52U', 520, 350)"><div class="evoke button like-button facebook-button"><i class="fa fa-facebook fa-lg"></i>&nbsp;&nbsp;&nbsp;<h6><?= __('Share on Facebook');?></h6></div></a>
   			</div>
 
   			<div class="evoke button-bg">
-	  			<a href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evokation['Evidence']['id'] ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false"><div class="evoke button like-button google-button"><i class="fa fa-google-plus fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Share on Google+');?></h6></div></a>
+	  			<a href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?= $_SERVER['SERVER_NAME']."/evokations/view/".$evokation['Evokation']['id'] ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false"><div class="evoke button like-button google-button"><i class="fa fa-google-plus fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Share on Google+');?></h6></div></a>
   			</div>
 
 	  		<!-- Facebook share button -->			
