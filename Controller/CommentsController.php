@@ -58,7 +58,8 @@ class CommentsController extends AppController {
 				if($this->request->data['Comment']['evidence_id'])
 					return $this->redirect(array('controller' => 'evidences', 'action' => 'view', $this->request->data['Comment']['evidence_id']));
 				else if($this->request->data['Comment']['evokation_id'])
-					return $this->redirect(array('controller' => 'evokations', 'action' => 'view', $this->request->data['Comment']['evokation_id']));
+					//return $this->redirect(array('controller' => 'evokations', 'action' => 'view', $this->request->data['Comment']['evokation_id']));
+					$this->redirect($this->referer());
 
 			} else {
 				$this->Session->setFlash(__('The comment could not be saved. Please, try again.'));
@@ -124,7 +125,8 @@ class CommentsController extends AppController {
 		if($comment['Comment']['evidence_id'])
 			return $this->redirect(array('controller' => 'evidences', 'action' => 'view', $comment['Comment']['evidence_id']));
 		else if($comment['Comment']['evokation_id'])
-			return $this->redirect(array('controller' => 'evokations', 'action' => 'view', $comment['Comment']['evokation_id']));
+			//return $this->redirect(array('controller' => 'evokations', 'action' => 'view', $comment['Comment']['evokation_id']));
+			$this->redirect($this->referer());
 	}
 
 /**
