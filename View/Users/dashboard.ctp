@@ -397,7 +397,7 @@
 
 	</div>
 
-	<?php if ($users['User']['basic_trainning'] == 0): ?>
+	<?php if ($users['User']['basic_training'] == 0 && isset($basic_training)): ?>
 	<div id="formModal" class="reveal-modal evoke lightbox text-align" data-reveal style = "top: 370px;!important">
 	  <img src = '<?= $this->webroot.'img/alchemy.png' ?>' style = "margin-top: -460px;"/>
 	  <h2><?= sprintf(__("Agent %s, it's time to start your Basic Training"), $name[0]) ?></h2>

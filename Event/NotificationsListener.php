@@ -19,6 +19,8 @@ class NotificationsListener implements CakeEventListener {
             'Model.Comment.notifyEvidence' => 'notifyCommentedEvidence',
 
             'Model.UserFriend.notifyFollow' => 'notifyUserFollower',
+
+            'Controller.AdminNotificationsUser.show' => 'notifyAdminNotification'
         );
     }
 
@@ -80,6 +82,15 @@ class NotificationsListener implements CakeEventListener {
         $note->saveAll($insertData);
 
         $note->requestAction(array('controller' => 'notifications', 'action' => 'displayBasicTrainingMessage', $event->data['user_id']));
+
+    }
+
+
+    public function notifyAdminNotification($event){
+
+        $note = ClassRegistry::init('Notifications');
+
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'displayAdminMessage', $event->data['user_id'], $event->data['entity_id']));
 
     }
 
