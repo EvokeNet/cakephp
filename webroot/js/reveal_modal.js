@@ -1,0 +1,1 @@
+$('#formModal').foundation('reveal', 'open');

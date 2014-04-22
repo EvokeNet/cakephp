@@ -65,7 +65,7 @@ class User extends AppModel {
 	    if (empty($this->data)) {
 	        $data = $this->read();
 	    }
-	    if (!$data['User']['role_id']) {
+	    if ((!isset($data['User']['role_id'])) | (!$data['User']['role_id'])) {
 	        return null;
 	    } else {
 	        return array('Role' => array('id' => $data['User']['role_id']));
@@ -142,6 +142,19 @@ class User extends AppModel {
  * @var array
  */
 	public $hasMany = array(
+		'AdminNotificationsUser' => array(
+			'className' => 'AdminNotificationsUser',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Comment' => array(
 			'className' => 'Comment',
 			'foreignKey' => 'user_id',

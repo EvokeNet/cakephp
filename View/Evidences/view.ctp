@@ -18,7 +18,7 @@
 	<div class="row full-width">
 
 	  <nav class="evoke breadcrumbs">
-		<?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
+		<?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 		<a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>
 		<?php echo $this->Html->link($evidence['Phase']['name'], array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'], $evidence['Phase']['position']));?>
 		<a class="unavailable" href="#"><?php echo __('Discussions'); ?></a>
@@ -58,13 +58,21 @@
 		  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
 		  	<?php echo urldecode($evidence['Evidence']['content']); ?>
 		  	
+		  	<?php if(!empty($attachments)) :?>
+		  		<h4><?= __("Evidence's attachments:")?></h4>
+		  	<?php endif ?>
+		  	<?php foreach ($attachments as $attachment) :?>
+		  		<span><?= $attachment['Attachment']['attachment']?></span>
+		  	<?php endforeach ?>
+
+
 		  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
 
 		  	<?php //echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
 
 		  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
 		  	<?php foreach ($comment as $c): 
-					echo $this->element('comment_box', array('c' => $c));
+					echo $this->element('comment_box', array('c' => $c, 'user' => $user));
 	  			endforeach; 
   			?>
 		</div>

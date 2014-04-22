@@ -1,5 +1,5 @@
 <div class = "evoke mission status-bg">
- 	<div class="row full-width">
+ 	<div class="row full-width-alternate">
 	  <div class="small-3 medium-3 large-3 columns" style = "display: inline;">
 	  	<?php 
 	  		$complete = 0;
@@ -26,7 +26,7 @@
 		?></span>
 	  </div>
 	  <div class="small-9 medium-9 large-9 columns">
-	  	<div class="row">
+	  	<div class="row full-width-alternate">
 		  <div class="small-11 medium-11 large-11 columns padding">
 		  	<div>
 	  	<?php	
@@ -45,7 +45,7 @@
 							$phaseDone = "dev";
 
 					?>
-					<h2 class = "evoke mission status <?=$phaseDone ?>"><?= strtoupper($phase['Phase']['name'])?></h2>
+					<a href = "<?php echo $this->Html->url(array('controller'=>'missions', 'action' => 'view', $phase['Mission']['id'], $phase['Phase']['id'])); ?>"><h2 class = "evoke mission status <?=$phaseDone ?>"><?= strtoupper($phase['Phase']['name'])?></h2></a>
 					<div class = "evoke mission circle-position"><div class="evoke mission circle <?=$phaseDone ?>"></div></div>
 					<div class = "evoke mission bar-position">
 						<div class="evoke mission status progress <?=$phaseDone ?>" style="">

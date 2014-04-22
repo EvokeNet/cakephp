@@ -2,13 +2,14 @@
 
 App::uses('CakeEventListener', 'Event');
 // App::uses('PointListener', 'Event');
+App::uses('Controller', 'AppController');
 
 class PointListener implements CakeEventListener {
 
 	public function implementedEvents() {
         return array(
 
-            'Model.Evidence.create' => 'createEvidencePoints',
+            'Controller.Evidence.create' => 'addPoints',
 
             'Model.UserFriend.follow' => 'followUserPoints',
 
@@ -61,7 +62,7 @@ class PointListener implements CakeEventListener {
 	 	}
     }
 
- 	public function createEvidencePoints($event){
+ 	public function addPoints($event){
         // $quests = ClassRegistry::init('Quest');
 
         // $quest = $quests->find('first', array('conditions' => array('Quest.id' => $event->subject()->data['Evidence']['quest_id'])));
@@ -69,9 +70,9 @@ class PointListener implements CakeEventListener {
  		$point = ClassRegistry::init('Point');
  		$point->create();
  		$insertData = array(
-            'user_id' => $event->subject()->data['Evidence']['user_id'], 
-            'origin_id' => $event->subject()->data['Evidence']['id'], 
-            'origin' => $event->data['entity'], 
+            'user_id' => $event->data['user_id'], 
+            'origin_id' => $event->data['origin_id'], 
+            'origin' => $event->data['origin'], 
             'value' => $event->data['points']
         );
  		$point->saveAll($insertData);
@@ -93,10 +94,10 @@ class PointListener implements CakeEventListener {
         );
         $point->saveAll($insertData);
 
-        $users = ClassRegistry::init('user');
+        $users = ClassRegistry::init('User');
 
         $users->id = $event->data['user_id'];
-        $users->saveField('basic_trainning', 1);
+        $users->saveField('basic_training', 1);
 
         // $user = $users->find('first', array('conditions' => array('id' => $event->data['user_id'])));
         // $users->create();

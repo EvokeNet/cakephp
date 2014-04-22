@@ -8,6 +8,7 @@
 		echo $this->Form->input('id', array('value' => $vote_id));
 		echo $this->Form->hidden('evokation_id', array('value' => $evokation_id));
 		echo $this->Form->hidden('user_id', array('value' => $user_id));
+		echo $this->Form->hidden('evokation_update_id', array('value' => $update_id));
 		echo $this->Form->input('value', array(
 			'div' => 'vote_radio',
 		    'type' => 'radio',

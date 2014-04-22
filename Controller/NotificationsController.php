@@ -41,6 +41,36 @@ class NotificationsController extends AppController {
 		$this->set('notification', $this->Notification->find('first', $options));
 	}
 
+	public function displayPhaseMessage($phase_name = null, $next_phase = null, $mission_id = null){
+		$this->Session->setFlash('', 'flash_phase_message', array('phase_name' => $phase_name, 'next' => $next_phase, 'mission_id' => $mission_id));
+	}
+
+	// public function displayPhaseMessage($phase_id = null, $next_phase = null){
+	// 	$this->loadModel('Phase');
+
+	// 	$phase = $this->Phase->find('first', array('conditions' => array('Phase.id' => $phase_id)));
+
+	// 	$nextMP = $this->Phase->getNextPhase($phase, $phase['Mission']['id']);
+
+	// 	if($phase)
+	// 		$this->Session->setFlash('', 'flash_phase_message', array('phase_name' => $phase['Phase']['name'], 'next' => $nextMP, 'mission_id' => $phase['Mission']['id']));
+	// }
+
+	public function displayBasicTrainingMessage($user_id){
+		$this->Session->setFlash('', 'flash_basic_training', array('user_id' => $user_id));
+	}
+
+	public function displayAdminMessage($user_id, $admin_notification_id){
+		$this->loadModel('AdminNotification');
+		$notification = $this->AdminNotification->find('first', array(
+			'conditions' => array(
+				'AdminNotification.id' => $admin_notification_id
+			)
+		));
+		$this->Session->setFlash('', 'flash_admin_notification', array('user_id' => $user_id, 'notificationTitle' => $notification['AdminNotification']['title'],
+		 'notificationDescription' => $notification['AdminNotification']['description']));
+	}
+
 /**
  * add method
  *

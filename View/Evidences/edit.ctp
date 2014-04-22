@@ -58,7 +58,10 @@
 		</div>
 	</div>
 </section>
-<?php echo $this->Html->script('quest_attachments'); ?>
+<?php 
+	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
+	echo $this->Html->script('quest_attachments'); 
+?>
 <script type="text/javascript">
 
         <?php

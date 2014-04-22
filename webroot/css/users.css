@@ -505,6 +505,10 @@
 	font-family:'AlegreyaBold';
 }
 
+.evoke.edit-bg select{
+	width:30%;
+}
+
 /*.evoke.edit-bg div.input.text,.textarea,.email{
 	display: -webkit-box;
 }*/

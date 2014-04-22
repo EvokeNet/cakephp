@@ -68,16 +68,49 @@
 
 
 				<H6 class="subheader"><?php echo __('ACTIONS'); ?></H6>
-				<button class="button expand" id="evokation_draft_button"><?php echo __('Publish to Network'); ?></button>
-				<button class="button expand disabled"><?php echo __('Send Final Evokation'); ?></button>
+				<button class="button expand" id="evokation_draft_button" data-reveal-id="send" data-reveal><?php echo __('Publish to Network'); ?></button>
+				<button class="button expand" data-reveal-id="final" data-reveal><?php echo __('Send Final Evokation'); ?></button>
 
 				<h6 class="subheader"><?php echo __('EVOKATION PARTS'); ?></h6>
 				<ul class="no-bullet">
-					<li><a href="#">Document</a></li>
-					<li><a href="#">Document</a></li>
-					<li><a href="#">Document</a></li>
-					<li><a href="#">Document</a></li>
+					<?php foreach ($evokationAttachments as $a) : ?>
+						<?= $a['Attachment']['attachment'] ?>
+					<?php endforeach ?>
 				</ul>
+
+				<div id="send" class="reveal-modal tiny" data-reveal>
+					<h1><?= __('Describe updates of this publishing:')?></h1>
+					<?php 
+						echo $this->Form->create('Update', array(
+							'url' => array(
+								'controller' => 'GroupsUsers',
+								'action' => 'publish', 
+								$evokation['Evokation']['id']
+							)
+						));
+
+						if(!empty($lastUpdate)) {
+							echo '<span>' . __('Last update: ') . $lastUpdate['EvokationsUpdate']['description'] . '</span>';
+						}
+
+						echo $this->Form->input('description');
+					?>
+					
+					<button class="button tiny" type="submit">
+						<?php echo __('Publish it')?>
+					</button>
+					<?php echo $this->Form->end(); ?>
+					<a class="close-reveal-modal">&#215;</a>
+				</div>
+
+				<div id="final" class="reveal-modal tiny" data-reveal>
+					<h1><?= __('Sending final evokation!')?></h1>
+					<h3><?= __('Once the evokation is sent it will go to admin approval.')?></h3>
+					<a class="button small" href="<?= $this->Html->url(array('controller' => 'GroupsUsers', 'action' => 'publishFinal', $evokation['Evokation']['id'])) ?>">
+						<?php echo __('Publish final evokation')?>
+					</a>
+					<a class="close-reveal-modal">&#215;</a>
+				</div>
 
 			</div>
 		</aside>

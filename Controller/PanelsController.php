@@ -9,7 +9,7 @@ class PanelsController extends AppController {
 */
 	public $components = array('Paginator','Access');
 	public $uses = array('User', 'Organization', 'UserOrganization', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Evokation',
-		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level');
+		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level', 'AdminNotification');
 	public $user = null;
 	public $helpers = array('Media.Media', 'Chosen.Chosen');
 
@@ -69,6 +69,8 @@ class PanelsController extends AppController {
 
 		$powerpoints = $this->PowerPoint->find('all');
 
+		$notifications = $this->AdminNotification->find('all');
+
 		$levels = $this->Level->find('all');
 
 		//needed to issues' add form
@@ -118,14 +120,14 @@ class PanelsController extends AppController {
 
 			$pending_evokations = $this->Evokation->find('all', array(
 				'conditions' => array(
-					'Evokation.sent' => 1,
+					'Evokation.final_sent' => 1,
 					'Evokation.approved' => 0
 				)
 			));
 
 			$approved_evokations = $this->Evokation->find('all', array(
 				'conditions' => array(
-					'Evokation.sent' => 1,
+					'Evokation.final_sent' => 1,
 					'Evokation.approved' => 1
 				)
 			));
@@ -267,7 +269,7 @@ class PanelsController extends AppController {
 		));
 
 		$this->set(compact('flags', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
-			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels', 'pending_evokations', 'approved_evokations',
+			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels', 'pending_evokations', 'approved_evokations', 'notifications',
 			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
 			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'powerpoints_tab', 'badges_tab', 'users_tab', 'pending_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
 	}
@@ -1232,6 +1234,36 @@ class PanelsController extends AppController {
 			    }
 			}
 		}
+	}
+
+/*
+* addNotification method
+* inserts notifications to be display as lightboxes to users as they, for instance, log in
+*/
+
+	public function addNotification() {
+		$this->AdminNotification->create();
+		$this->AdminNotification->save($this->request->data);
+
+		//debug($this->request->data);
+		return $this->redirect(array('action' => 'index', 'media'));
+	}
+
+
+/*
+* deleteNotification method
+* deletes notifications in adminpanel
+*/
+
+	public function deleteNotification($id = null) {
+		if($id == null)
+			$this->redirect($this->referer());
+		
+		$this->AdminNotification->id = $id;
+		$this->AdminNotification->delete();
+
+		//debug($this->request->data);
+		return $this->redirect(array('action' => 'index', 'media'));
 	}
 
 

@@ -1,0 +1,1 @@
+ALTER TABLE  `evokations` ADD  `final_sent` TINYINT( 2 ) UNSIGNED NOT NULL DEFAULT  '0' AFTER  `sent`;

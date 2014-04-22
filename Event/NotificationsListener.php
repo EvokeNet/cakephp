@@ -1,13 +1,16 @@
 <?php
 
 App::uses('CakeEventListener', 'Event');
-// App::uses('PointListener', 'Event');
+//App::uses('Session', 'Component');
 
 class NotificationsListener implements CakeEventListener {
 
 	public function implementedEvents() {
         return array(
-            'Controller.Phase.notifyCompleted' => 'notifyCompletedPhase',
+
+            'Controller.Evidence.create' => 'notifyEvidenceCreated',
+
+            'Controller.Phase.completed' => 'notifyCompletedPhase',
 
             'Controller.BasicTraining.completed' => 'notifyCompletedBasicTraining',
 
@@ -16,10 +19,12 @@ class NotificationsListener implements CakeEventListener {
             'Model.Comment.notifyEvidence' => 'notifyCommentedEvidence',
 
             'Model.UserFriend.notifyFollow' => 'notifyUserFollower',
+
+            'Controller.AdminNotificationsUser.show' => 'notifyAdminNotification'
         );
     }
 
-    public function notifyCompletedPhase($event){
+    public function notifyEvidenceCreated($event){
 
         $note = ClassRegistry::init('Notifications');
 
@@ -27,11 +32,38 @@ class NotificationsListener implements CakeEventListener {
 
         $insertData = array(
             'user_id' => $event->data['user_id'], 
-            'origin_id' => $event->data['entity_id'], 
-            'origin' => $event->data['entity'], 
+            'origin_id' => $event->data['origin_id'], 
+            'origin' => $event->data['origin'], 
         );
 
         $note->saveAll($insertData);
+
+    }
+
+    public function notifyCompletedPhase($event){
+
+        $note = ClassRegistry::init('Notifications');
+
+        $exists = $note->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
+
+        if(!$exists){
+            $note->create();
+
+            $insertData = array(
+                'user_id' => $event->data['user_id'], 
+                'origin_id' => $event->data['entity_id'], 
+                'origin' => $event->data['entity'], 
+            );
+
+            $note->saveAll($insertData);
+
+            //$note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['entity_id'], $event->data['next_phase']));
+            $note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['phase_name'], $event->data['next_phase'], $event->data['mission_id']));
+
+        }
+
+        //$note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['phase_name'], $event->data['next_phase'], $event->data['mission_id']));
+        //$note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['entity_id'], $event->data['next_phase']));
 
     }
 
@@ -48,6 +80,17 @@ class NotificationsListener implements CakeEventListener {
         );
 
         $note->saveAll($insertData);
+
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'displayBasicTrainingMessage', $event->data['user_id']));
+
+    }
+
+
+    public function notifyAdminNotification($event){
+
+        $note = ClassRegistry::init('Notifications');
+
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'displayAdminMessage', $event->data['user_id'], $event->data['entity_id']));
 
     }
 

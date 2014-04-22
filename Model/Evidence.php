@@ -66,40 +66,40 @@ class Evidence extends AppModel {
         //throw new Exception(__("This post could not be saved. Please try again"));
     }
 
-    public function afterSave($created, $options = array()) {
+   //  public function afterSave($created, $options = array()) {
        
-       	if($created){
-	        $value = 1;
-       		//check to see if admin set a different amount of points for this action
-	        App::import('model','Quest');
-	        $quests = new Quest();
+   //     	if($created){
+	  //       $value = 1;
+   //     		//check to see if admin set a different amount of points for this action
+	  //       App::import('model','Quest');
+	  //       $quests = new Quest();
 
-	        $evidence = $this->find('first', array(
-				'conditions' => array('Evidence.id' => $this->id))
-			);
+	  //       $evidence = $this->find('first', array(
+			// 	'conditions' => array('Evidence.id' => $this->id))
+			// );
 
-			if($evidence['Evidence']['evokation'] == 1)
-				$entity = 'evokationQuest';
-			else
-				$entity = 'evidence';
+			// if($evidence['Evidence']['evokation'] == 1)
+			// 	$entity = 'evokationQuest';
+			// else
+			// 	$entity = 'evidence';
 
-	        $quest = $quests->find('first', array(
-	        	'conditions' => array(
-	        		'Quest.id' => $evidence['Evidence']['quest_id'])));
+	  //       $quest = $quests->find('first', array(
+	  //       	'conditions' => array(
+	  //       		'Quest.id' => $evidence['Evidence']['quest_id'])));
 
-	        if($quest)
-	            $value = $quest['Quest']['points'];
+	  //       if($quest)
+	  //           $value = $quest['Quest']['points'];
 
-	        $event = new CakeEvent('Model.Evidence.create', $this, array(
-	        	'points' => $value,
-	        	'entity' => $entity
-	        ));
+	  //       $event = new CakeEvent('Model.Evidence.create', $this, array(
+	  //       	'points' => $value,
+	  //       	'entity' => $entity
+	  //       ));
 
-	        $this->getEventManager()->dispatch($event);
+	  //       $this->getEventManager()->dispatch($event);
 
-	        return true;
-	    }	
-    }
+	  //       return true;
+	  //   }	
+   //  }
 
     public function beforeDelete() {
        

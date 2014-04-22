@@ -15,7 +15,7 @@
 	<div class="row full-width">
 
 	  <nav class="evoke breadcrumbs">
-		<?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
+		<?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 		<a class="unavailable" href="#"><?php echo __('Mission: ').$group['Mission']['title']; ?></a>
 		<a class="unavailable" href="#"><?php echo __('Projects'); ?></a>
 		<a class="current" href="#"><?php echo $evokation['Evokation']['title'];?></a>
@@ -58,9 +58,36 @@
 	  <div class="small-7 medium-7 large-7 columns">
 	 	<div class = "evoke evidence-body view">
 		  	<h1><?php echo h($evokation['Evokation']['title']); ?></h1>
-		  	<h6><?php echo h($evokation['Evokation']['created']); ?></h6>
+		  	<?php if($evokation['Evokation']['final_sent'] == 0) :?>
+		  		<h6><?php echo h('Status: work in progress.'); ?></h6>
+		  	<?php else : ?>	
+		  		<?php if($evokation['Evokation']['approved'] == 0) :?>
+		  			<h6><?php echo h('Status: Waiting for approval.'); ?></h6>
+		  		<?php else : ?>	
+		  			<h6><?php echo h('Status: Approved!'); ?></h6>
+		  		<?php endif ?>	
+		  	<?php endif ?>
+
+		  	
+			<?php if(!empty($allUpdates)) :?>
+				<div id="showHistory"><small><?=  __('show update history') ?></small></div>
+		  		<div id="history" style="display:none">
+		  			<?php foreach ($allUpdates as $update) :?>
+		  				<a href="<?= $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $evokation['Evokation']['id'], $update['EvokationsUpdate']['id']))?>"><?= $update['EvokationsUpdate']['created'] . ': '. $update['EvokationsUpdate']['description']?></a>
+		  				<br>
+		  			<?php endforeach ?>
+		  		</div>
+		  	<?php endif ?>
+		  	<?php if(!empty($newUpdate)) :?>
+			  	<h4>
+			  		<?= __('Current update:')?>
+			  	</h4>
+			  	<h5><?= $newUpdate['EvokationsUpdate']['created'] . ': '. $newUpdate['EvokationsUpdate']['description'] ?></h5>
+			<?php endif ?>
 		  	<div id="evokation_div" data-placeholder="">
-		  		<?php echo urldecode($evokationContent); ?>
+		  		<?php if(isset($newUpdate['EvokationsUpdate'])) : ?>
+		  			<?php echo urldecode($newUpdate['EvokationsUpdate']['content']); ?>
+		  		<?php endif ?>
 		  	</div>
 		  	
 		  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
@@ -70,7 +97,7 @@
 		  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
 		  	
 		  	<?php foreach ($comment as $c): 
-					echo $this->element('comment_box', array('c' => $c));
+					echo $this->element('comment_box', array('c' => $c, 'user' => $user));
 	  			endforeach; 
   			?>
 		</div>
@@ -133,8 +160,8 @@
 <div id="myModalVote" class="reveal-modal tiny" data-reveal>
   <?php 
 	if(isset($user['User'])) {
-		if(!$vote) echo $this->element('vote', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id']));
-		else echo $this->element('see_vote', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id'], 'vote_id' => $vote['Vote']['id'], 'vote_value' => $vote['Vote']['value']));
+		if(!$vote) echo $this->element('vote', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id'], 'update_id' => $updateId));
+		else echo $this->element('see_vote', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id'], 'vote_id' => $vote['Vote']['id'], 'vote_value' => $vote['Vote']['value'], 'update_id' => $updateId));
 	} else {
 		echo $this->element('vote', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => null));
 	}
@@ -145,18 +172,35 @@
 <!-- Lightbox for commenting form -->
 <div id="myModalComment" class="reveal-modal tiny evoke lightbox-bg" data-reveal>
   	<?php if(isset($user['User'])) :?>
-  		<?php echo $this->element('comment_evokation', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id'])); ?>
+  		<?php echo $this->element('comment_evokation', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => $user['User']['id'], 'update_id' => $updateId)); ?>
   	<?php else :?>
-  		<?php echo $this->element('comment_evokation', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => null)); ?>
+  		<?php echo $this->element('comment_evokation', array('evokation_id' => $evokation['Evokation']['id'], 'user_id' => null, 'update_id' => $updateId)); ?>
   	<?php endif; ?>
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
 <?php
 
-	echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
+	echo $this->Html->script('/components/jquery/jquery.min');//, array('inline' => false));
 	echo $this->Html->script('facebook_share', array('inline' => false));
 	echo $this->Html->script('google_share', array('inline' => false));
 
 	echo $this->Html->css('evidences');
 ?>
+
+<script type="text/javascript" charset="utf-8">
+	var hidden = true;
+	$( "#showHistory" ).click(function() {
+  		if(hidden) {
+	  		$( "#history" ).show("slow");
+	  		$( "#showHistory>small" ).remove('');
+	  		$( "#showHistory" ).append('<small>hide update history</small>');
+	  		hidden = false;
+	  	} else {
+	  		$( "#history" ).hide();
+	  		$( "#showHistory>small" ).remove('');
+	  		$( "#showHistory" ).append('<small>show update history</small>');
+	  		hidden = true;
+	  	}
+	});
+</script>
