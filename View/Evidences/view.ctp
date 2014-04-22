@@ -58,6 +58,14 @@
 		  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
 		  	<?php echo urldecode($evidence['Evidence']['content']); ?>
 		  	
+		  	<?php if(!empty($attachments)) :?>
+		  		<h4><?= __("Evidence's attachments:")?></h4>
+		  	<?php endif ?>
+		  	<?php foreach ($attachments as $attachment) :?>
+		  		<span><?= $attachment['Attachment']['attachment']?></span>
+		  	<?php endforeach ?>
+
+
 		  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
 
 		  	<?php //echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>

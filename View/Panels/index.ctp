@@ -85,7 +85,7 @@
 				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
 				<?php if($flags['_admin']) : ?>
 					<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><?= __('Evokations') ?></a></dd>
-					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Media') ?></a></dd>
+					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Notifications & Media') ?></a></dd>
 					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
 				<?php endif; ?>	
 				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><?= __('Statistics') ?></a></dd>

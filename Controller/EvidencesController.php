@@ -53,10 +53,19 @@ class EvidencesController extends AppController {
 		}
 
 		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
+
+		$this->loadModel("Attachment");
+		$attachments = $this->Attachment->find('all', array(
+			'conditions' => array(
+				'Attachment.model' => 'Evidence',
+				'Attachment.foreign_key' => $id
+			)
+		));
+
 		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
 		$like = $this->Evidence->Like->find('first', array('conditions' => array('Like.evidence_id' => $id, 'Like.user_id' => $this->getUserId())));
 		$likes = $this->Evidence->Like->find('all', array('conditions' => array('Like.evidence_id' => $id)));
-		$this->set(compact('user', 'evidence', 'comment', 'like', 'likes', 'sumMyPoints'));
+		$this->set(compact('user', 'evidence', 'comment', 'like', 'likes', 'sumMyPoints', 'attachments'));
 	}
 
 /**
