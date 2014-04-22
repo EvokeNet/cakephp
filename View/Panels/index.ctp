@@ -85,7 +85,7 @@
 				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
 				<?php if($flags['_admin']) : ?>
 					<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><?= __('Evokations') ?></a></dd>
-					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Media') ?></a></dd>
+					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Notifications & Media') ?></a></dd>
 					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
 				<?php endif; ?>	
 				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><?= __('Statistics') ?></a></dd>
@@ -400,7 +400,41 @@
 					<div id="EvokationsHolder"></div>
 				</div>
 				<div class="content <?php echo $media_tab; ?>" id="media">
-					<p>Upload videos/images and choose actions that triggers them...</p>
+					<button class="button" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></button>
+					<div id="myModalNotification" class="reveal-modal tiny" data-reveal>
+						<?php echo $this->Form->create('AdminNotification', array(
+	 						'url' => array(
+	 							'controller' => 'panels',
+	 							'action' => 'addNotification')
+						)); ?>
+						<fieldset>
+							<legend><?php echo __('Create a Notification'); ?></legend>
+							<?php
+								echo $this->Form->input('title', array(
+									'label' => __('Title'), 
+									'required' => true
+								));
+								echo $this->Form->input('description', array(
+									'label' => __('Description'), 
+									'required' => true,
+									'type' => 'textarea'
+								));
+								echo $this->Form->hidden('user_id', array(
+									'value' => $userid
+								));
+
+							?>
+							</fieldset>
+						<button class="button small" type="submit">
+							<?php echo __('Add') ?>
+						</button>
+						<?php echo $this->Form->end(); ?>
+						<a class="close-reveal-modal">&#215;</a>
+					</div>
+					<?php foreach ($notifications as $n) : ?>
+						<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'deleteNotification', $n['AdminNotification']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteNotification'.$n['AdminNotification']['id'], 'style' => 'display:none')); ?>
+					<?php endforeach; ?>
+					<div id="NotificationsHolder"></div>
 				</div>
 				<div class="content <?php echo $settings_tab; ?>" id="settings">
 					<?php
@@ -1039,6 +1073,78 @@
         var filteredRows = waTableE.getData(false, true); //Gets the data you previously set, but with filtered rows only.
 
         var pageSize = waTableE.option("pageSize"); //Get option
+
+
+
+
+
+        var waTableNot = $('#NotificationsHolder').WATable({
+            //debug:true,                 //Prints some debug info to console
+            pageSize: 10,                //Initial pagesize
+            transition: 'slide',       //Type of transition when paging (bounce, fade, flip, rotate, scroll, slide).Requires https://github.com/daneden/animate.css.
+            transitionDuration: 0.2,    //Duration of transition in seconds.
+            filter: true,               //Show filter fields
+            pageSizes: [],  //Set custom pageSizes. Leave empty array to hide button.
+            hidePagerOnEmpty: true,     //Removes the pager if data is empty.
+            preFill: false, //true,              //Initially fills the table with empty rows (as many as the pagesize).
+            types: {                    //Following are some specific properties related to the data types
+                string: {
+                    //filterTooltip: "Giggedi..."    //What to say in tooltip when hoovering filter fields. Set false to remove.
+                    //placeHolder: "Type here..."    //What to say in placeholder filter fields. Set false for empty.
+                },
+                number: {
+                    decimals: 1   //Sets decimal precision for float types
+                },
+                bool: {
+                    //filterTooltip: false
+                },
+                date: {
+                  utc: true,            //Show time as universal time, ie without timezones.
+                  //format: 'yy/dd/MM',   //The format. See all possible formats here http://arshaw.com/xdate/#Formatting.
+                  datePicker: true      //Requires "Datepicker for Bootstrap" plugin (http://www.eyecon.ro/bootstrap-datepicker).
+                }
+            },
+            tableCreated: function(data) {    //Fires when the table is created / recreated. Use it if you want to manipulate the table in any way.
+                // console.log('table created'); //data.table holds the html table element.
+                // console.log(data);            //'this' keyword also holds the html table element.
+            },
+            rowClicked: function(data) {      //Fires when a row is clicked (Note. You need a column with the 'unique' property).
+                // console.log('row clicked');   //data.event holds the original jQuery event.
+                // console.log(data);            //data.row holds the underlying row you supplied.
+                //                               //data.column holds the underlying column you supplied.
+                //                               //data.checked is true if row is checked.
+                //                               //'this' keyword holds the clicked element.
+                // if ( $(this).hasClass('userId') ) {
+                //   data.event.preventDefault();
+                //   alert('You clicked userId: ' + data.row.userId);
+                // }
+            },
+            columnClicked: function(data) {    //Fires when a column is clicked
+              // console.log('column clicked');  //data.event holds the original jQuery event
+              // console.log(data);              //data.column holds the underlying column you supplied
+                                              //data.descending is true when sorted descending (duh)
+            },
+            pageChanged: function(data) {      //Fires when manually changing page
+              // console.log('page changed');    //data.event holds the original jQuery event
+              // console.log(data);              //data.page holds the new page index
+            },
+            pageSizeChanged: function(data) {  //Fires when manually changing pagesize
+              // console.log('pagesize changed');//data.event holds teh original event
+              // console.log(data);              //data.pageSize holds the new pagesize
+            }
+        }).data('WATable');  //This step reaches into the html data property to get the actual WATable object. Important if you want a reference to it as we want here.
+
+        //Generate some data
+        var dataNot = getDataNotifications();
+        waTableNot.setData(dataNot);  //Sets the data.
+        //waTable.setData(data, true); //Sets the data but prevents any previously set columns from being overwritten
+        //waTable.setData(data, false, false); //Sets the data and prevents any previously checked rows from being reset
+
+        var allRows = waTableNot.getData(false); //Gets the data you previously set.
+        var checkedRows = waTableNot.getData(true); //Gets the data you previously set, but with checked rows only.
+        var filteredRows = waTableNot.getData(false, true); //Gets the data you previously set, but with filtered rows only.
+
+        var pageSize = waTableNot.option("pageSize"); //Get option
     });
 
 
@@ -1661,6 +1767,101 @@
     }
 
 
+    function getDataNotifications() {
+
+        //First define the columns
+        var cols = {
+            admin: {
+            	index: 1,
+                type: "string",
+                friendly: "Created by",
+                format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
+                tooltip: "<?= __('By creator')?>", //Show some additional info about column
+                placeHolder: "<?= __('Search by creator...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+            },
+            trigger: {
+            	index: 2,
+                type: "string",
+                friendly: "Trigger Event",
+                format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
+                tooltip: "<?= __('By event')?>", //Show some additional info about column
+                placeHolder: "<?= __('Search by event...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+            },
+            name: {
+                index: 3,
+                type: "string",
+                friendly: "Notification Title",
+                format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
+                tooltip: "<?= __('By title')?>", //Show some additional info about column
+                placeHolder: "<?= __('Search by title...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+            }
+        };
+
+
+        <?php 
+        	$not_size = 0;
+	    	$not_array = "";
+	    	$notids_array = "";
+	    	$notuser_array = "";
+	    	foreach ($notifications as $n) :
+	    		$not_size++;
+	    		$not_array .= '"'. $n['AdminNotification']['title'] .'", ';
+	    		$notids_array .= '"'. $n['AdminNotification']['id'] .'", ';
+	    		$notuser_array .= '"'. $n['User']['name'] .'", ';
+	    	endforeach;
+
+	    	$not_array = substr($not_array, 0, strlen($not_array) - 2);
+    		$notids_array = substr($notids_array, 0, strlen($notids_array) - 2);
+    		$notuser_array = substr($notuser_array, 0, strlen($notuser_array) - 2);
+    		
+	    ?>
+    
+        /*
+          Create the actual data.
+          Whats worth mentioning is that you can use a 'format' property just as in the column definition,
+          but on a row level. See below on how we create a weightFormat property. This will be used when rendering the weight column.
+          Also, you can pre-check rows with the 'checked' property and prevent rows from being checkable with the 'checkable' property.
+        */
+        var rows = [];
+        var i = 1;
+        while(i <= <?php echo $not_size; ?>)
+        {
+            //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
+            //var urlG = getCorrectURL("groups/view/");
+            //var urlE = getCorrectURL("evokations/view/");
+
+            //var strE = '"ShowEvokationStatus-' + eId[i-1] + '"';
+            
+            var doc = {
+            	
+            	admin: notUser[i-1],//user name
+            	//adminFormat: "<a href='#' onclick='document.getElementById(" + strE +").click();' class='userId'>{0}</a>",
+            	trigger: "user log in",
+                //triggerFormat: "<a href='"+ urlG + gId[i-1] + "' class='name' target='_blank'>{0}</a>",
+                name: notTitle[i-1],//notification title
+                nameFormat: "<a href='#' class='name' target='_blank'>{0}</a>:  " + notButtons(i-1)
+            };
+            rows.push(doc);
+            i++;
+        }
+
+        //Create the returning object. Besides cols and rows, you can also pass any other object you would need later on.
+        var data = {
+            cols: cols,
+            rows: rows,
+            otherStuff: {
+                thatIMight: 1,
+                needLater: true
+            }
+        };
+
+        return data;
+    }
+
+	var notTitle = new Array(<?php echo $not_array?>);
+   	var notId = new Array(<?php echo $notids_array?>);
+   	var notUser = new Array(<?php echo $notuser_array?>);
+
     var eName = new Array(<?php echo $evo_array?>);    
    	var eId = new Array(<?php echo $evoids_array?>);
    	var eStatus = new Array(<?php echo $status_array?>);
@@ -1713,6 +1914,12 @@
     	var url = getCorrectURL("badges/edit/");
     	var str = "'deleteBadge" + badgesId[i] + "'";
     	return '<a href="'+ url + badgesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    }
+
+    function notButtons(i) {
+    	//var url = getCorrectURL("badges/edit/");
+    	var str = "'deleteNotification" + notId[i] + "'";
+    	return '<a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
 	function orgsButtons(i) {

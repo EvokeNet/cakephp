@@ -36,21 +36,75 @@ class EvokationsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
+	public function view($id = null, $update_id = null) {
 		if (!$this->Evokation->exists($id)) {
 			throw new NotFoundException(__('Invalid evokation'));
 		}
 
 		
-
-		
 		$options = array('conditions' => array('Evokation.' . $this->Evokation->primaryKey => $id));
 		$evokation = $this->Evokation->find('first', $options);
 		$this->Evokation->id = $id;
-		$comment = $this->Evokation->Comment->find('all', array('conditions' => array('Comment.evokation_id' => $id)));
-		$vote = $this->Evokation->Vote->find('first', array('conditions' => array('Vote.evokation_id' => $id, 'Vote.user_id' => $this->getUserId())));
-		$votes = $this->Evokation->Vote->find('all', array('conditions' => array('Vote.evokation_id' => $id)));
+
+		if(!$update_id)
+			$current = true;
+		else
+			$current = false;
+
+		if($current) {
+			//evokation update:
+			$newUpdate = $this->Evokation->EvokationsUpdate->find('first', array(
+				'order' => array(
+					'EvokationsUpdate.created Desc'
+				),
+				'conditions' => array(
+					'EvokationsUpdate.evokation_id' => $id
+				)
+			));
+
+		} else {
+			$newUpdate = $this->Evokation->EvokationsUpdate->find('first', array(
+				'conditions' => array(
+					'EvokationsUpdate.id' => $update_id
+				)
+			));
+		}
+
+		$allUpdates = $this->Evokation->EvokationsUpdate->find('all', array(
+			'order' => array(
+				'EvokationsUpdate.created Asc'
+			),
+			'conditions' => array(
+				'EvokationsUpdate.evokation_id' => $id
+			)
+		));
+
+		$updateId = 0;
+		if(!empty($newUpdate))
+			$updateId = $newUpdate['EvokationsUpdate']['id'];
+
+		$comment = $this->Evokation->Comment->find('all', array(
+			'conditions' => array(
+				'Comment.evokation_id' => $id,
+				'Comment.evokation_update_id' => $updateId
+			)
+		));
 		
+		$vote = $this->Evokation->Vote->find('first', array(
+			'conditions' => array(
+				'Vote.evokation_id' => $id,
+				'Vote.user_id' => $this->getUserId(),
+				'Vote.evokation_update_id' => $updateId
+			)
+		));
+		$votes = $this->Evokation->Vote->find('all', array(
+			'conditions' => array(
+				'Vote.evokation_id' => $id,
+				'Vote.evokation_update_id' => $updateId
+			)
+		));
+
+
 		$group = $this->Evokation->Group->find('first');
 		$can_edit = false;
 		if($group['Group']['user_id'] == $this->getUserId()) $can_edit = true;
@@ -109,7 +163,8 @@ class EvokationsController extends AppController {
 		$evokationContent = str_replace("<!DOCTYPE HTML><html><body>", "", $evokationContent);
 		$evokationContent = str_replace("</body></html>", "", $evokationContent);
 
-		$this->set(compact('evokation', 'group', 'user', 'comment', 'votes', 'vote', 'can_edit', 'follows', 'sumMyPoints', 'evokationContent'));
+		$this->set(compact('evokation', 'group', 'user', 'comment', 'votes', 'vote', 'can_edit', 'follows',
+		 'sumMyPoints', 'evokationContent', 'newUpdate', 'updateId', 'allUpdates'));
 	}
 
 /**

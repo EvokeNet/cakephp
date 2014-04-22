@@ -1,0 +1,1 @@
+ALTER TABLE  `comments` ADD  `evokation_update_id` INT( 16 ) UNSIGNED NULL AFTER  `evokation_id`;

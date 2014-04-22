@@ -395,6 +395,44 @@ class UsersController extends AppController {
 
 		//ended leader board data
 
+		//admin notifications check:
+		$this->loadModel('AdminNotification');
+		
+		if(isset($user['AdminNotificationsUser'][0])) {
+			//holds the last notification directed to this user
+			//debug($user['AdminNotificationsUser']);	
+			$last = $user['AdminNotificationsUser'][count($user['AdminNotificationsUser']) - 1];
+			//$last['id'] = 0;
+		} else {
+			$last['admin_notification_id'] = 0;
+		}
+		
+		//get all newer than that one
+		$adminNotifications = $this->AdminNotification->find('all', array(
+			'conditions' => array(
+				'AdminNotification.id >' => $last['admin_notification_id']
+			)
+		));
+		foreach ($adminNotifications as $not) {
+			//debug($not['AdminNotification']['id']);
+			$insert['AdminNotificationsUser']['user_id'] = $user['User']['id'];
+			$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
+
+			$this->User->AdminNotificationsUser->create();
+			$this->User->AdminNotificationsUser->save($insert);
+		}
+			/*
+			$event = new CakeEvent('Controller.Phase.completed', $this, array(
+	            'entity_id' => $missionPhase['Phase']['id'],
+	            'user_id' => $this->getUserId(),
+	            'entity' => 'phaseCompleted',
+	            'points' => $missionPhase['Phase']['points']
+	        ));
+
+	        $this->getEventManager()->dispatch($event);
+
+			*/
+
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training'));
