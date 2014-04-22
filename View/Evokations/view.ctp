@@ -85,7 +85,9 @@
 			  	<h5><?= $newUpdate['EvokationsUpdate']['created'] . ': '. $newUpdate['EvokationsUpdate']['description'] ?></h5>
 			<?php endif ?>
 		  	<div id="evokation_div" data-placeholder="">
-		  		<?php echo urldecode($newUpdate['EvokationsUpdate']['content']); ?>
+		  		<?php if(isset($newUpdate['EvokationsUpdate'])) : ?>
+		  			<?php echo urldecode($newUpdate['EvokationsUpdate']['content']); ?>
+		  		<?php endif ?>
 		  	</div>
 		  	
 		  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
