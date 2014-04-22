@@ -414,25 +414,24 @@ class UsersController extends AppController {
 			)
 		));
 		foreach ($adminNotifications as $not) {
-			//debug($not['AdminNotification']['id']);
+			//he sees it..
 			$insert['AdminNotificationsUser']['user_id'] = $user['User']['id'];
 			$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
 
 			$this->User->AdminNotificationsUser->create();
 			$this->User->AdminNotificationsUser->save($insert);
-		}
-			/*
-			$event = new CakeEvent('Controller.Phase.completed', $this, array(
-	            'entity_id' => $missionPhase['Phase']['id'],
+
+
+			$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
+	            'entity_id' => $not['AdminNotification']['id'],
 	            'user_id' => $this->getUserId(),
-	            'entity' => 'phaseCompleted',
-	            'points' => $missionPhase['Phase']['points']
+	            'entity' => 'showNotification'
 	        ));
 
 	        $this->getEventManager()->dispatch($event);
-
-			*/
-
+	        break;
+		}
+			
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training'));
