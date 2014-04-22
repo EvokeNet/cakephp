@@ -308,7 +308,7 @@ class MissionsController extends AppController {
 
 		$is_phase_completed = false;
 
-		if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']])){
+		if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && ($mission['Mission']['basic_training'] == 0)){
 
 			$event = new CakeEvent('Controller.Phase.completed', $this, array(
 	            'entity_id' => $missionPhase['Phase']['id'],
