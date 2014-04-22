@@ -431,6 +431,9 @@
 						<?php echo $this->Form->end(); ?>
 						<a class="close-reveal-modal">&#215;</a>
 					</div>
+					<?php foreach ($notifications as $n) : ?>
+						<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'deleteNotification', $n['AdminNotification']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteNotification'.$n['AdminNotification']['id'], 'style' => 'display:none')); ?>
+					<?php endforeach; ?>
 					<div id="NotificationsHolder"></div>
 				</div>
 				<div class="content <?php echo $settings_tab; ?>" id="settings">
@@ -1836,7 +1839,7 @@
             	trigger: "user log in",
                 //triggerFormat: "<a href='"+ urlG + gId[i-1] + "' class='name' target='_blank'>{0}</a>",
                 name: notTitle[i-1],//notification title
-                //nameFormat: "<a href='"+ urlE + eId[i-1] + "' class='name' target='_blank'>{0}</a>"
+                nameFormat: "<a href='#' class='name' target='_blank'>{0}</a>:  " + notButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1911,6 +1914,12 @@
     	var url = getCorrectURL("badges/edit/");
     	var str = "'deleteBadge" + badgesId[i] + "'";
     	return '<a href="'+ url + badgesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    }
+
+    function notButtons(i) {
+    	//var url = getCorrectURL("badges/edit/");
+    	var str = "'deleteNotification" + notId[i] + "'";
+    	return '<a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
 	function orgsButtons(i) {

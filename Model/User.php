@@ -142,6 +142,19 @@ class User extends AppModel {
  * @var array
  */
 	public $hasMany = array(
+		'AdminNotificationsUser' => array(
+			'className' => 'AdminNotificationsUser',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Comment' => array(
 			'className' => 'Comment',
 			'foreignKey' => 'user_id',

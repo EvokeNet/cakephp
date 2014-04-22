@@ -1250,6 +1250,22 @@ class PanelsController extends AppController {
 	}
 
 
+/*
+* deleteNotification method
+* deletes notifications in adminpanel
+*/
+
+	public function deleteNotification($id = null) {
+		if($id == null)
+			$this->redirect($this->referer());
+		
+		$this->AdminNotification->id = $id;
+		$this->AdminNotification->delete();
+
+		//debug($this->request->data);
+		return $this->redirect(array('action' => 'index', 'media'));
+	}
+
 
 /*
 * changeEvokationStatus method

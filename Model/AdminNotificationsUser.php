@@ -1,18 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * AdminNotification Model
+ * AdminNotificationsUser Model
  *
+ * @property AdminNotification $AdminNotification
  * @property User $User
  */
-class AdminNotification extends AppModel {
-
-/**
- * Display field
- *
- * @var string
- */
-	public $displayField = 'title';
+class AdminNotificationsUser extends AppModel {
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -23,6 +17,13 @@ class AdminNotification extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
+		'AdminNotification' => array(
+			'className' => 'AdminNotification',
+			'foreignKey' => 'admin_notification_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
