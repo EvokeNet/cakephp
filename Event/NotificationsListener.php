@@ -60,7 +60,7 @@ class NotificationsListener implements CakeEventListener {
 
         }
 
-        $note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['phase_name'], $event->data['next_phase'], $event->data['mission_id']));
+        //$note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['phase_name'], $event->data['next_phase'], $event->data['mission_id']));
         //$note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['entity_id'], $event->data['next_phase']));
 
     }
