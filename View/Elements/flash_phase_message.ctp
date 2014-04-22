@@ -31,9 +31,10 @@
 		<div class="green-ribbon-back-right"></div>
 	</div>
 	</div> -->
-
+<?php if($next){?>
   <p class="lead"><?= __('The next phase is now unlocked. Good luck, agent!') ?></p>
   <a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission_id, $next));?>" class = "button general"><?php echo __("Let's go to next phase!");?></a>
+<?php } ?>
   <a class="close-reveal-modal">&#215;</a>
 </div>
 

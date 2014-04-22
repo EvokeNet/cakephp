@@ -31,7 +31,7 @@ $name = explode(' ', $c['User']['name']);
   	<div class = "evoke bubble">
   		<div class="row">
 		  <div class="small-11 medium-11 large-11 columns">
-		  	<p><?php echo $c['Comment']['content']; ?> ?></p>
+		  	<p><?php echo $c['Comment']['content']; ?></p>
 		  </div>
 		  <div class="small-1 medium-1 large-1 columns">
 		  	<?php if($c['Comment']['user_id'] == $user['User']['id']): ?>
