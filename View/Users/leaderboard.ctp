@@ -9,7 +9,7 @@
 
 <section class="evoke margin top-2">
 	<div class="row full-width">
-		<h1><?php echo __('Leadercloud');?></h1>
+		<h1><?php echo __('Leaderboard');?></h1>
 		<div class="evoke screen-box dashboard leadercloud margin">
 		
 			<dl class="tabs" data-tab>
