@@ -17,7 +17,7 @@
 	<?php echo $this->Session->flash(); ?>
 
 	<nav class="evoke breadcrumbs">
-	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
+	  <?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
 
 	  <a class="unavailable" href="#"><?php echo sprintf(__('Mission %s'), $mission['Mission']['title']);?></a>
 
@@ -34,14 +34,14 @@
 	<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
 	<div class="row full-width">
-	  <div class="small-6 medium-6 large-6 columns">
+	  <div class="small-6 medium-6 large-7 columns">
 	  	<div class = "evoke missions data">
 	  		<h1><?php echo __('Phase: '); echo h($missionPhase['Phase']['name']); ?></h1>
 	  		<h2><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
 	  		<p><?= $mission['Mission']['description'];?></p>
   		</div>
 	  </div>
-	  <div class="small-6 medium-6 large-6 columns">
+	  <div class="small-6 medium-6 large-5 columns">
 	  		<div class = "evoke position">
 	  			<div class = "evoke text-align"><img src = '<?= $this->webroot.'img/hqnored.png' ?>' width="60%"></div>
 	  		
@@ -81,20 +81,60 @@
 
 		  	<div class="jcarousel">
                 <ul>
-                    <?php foreach ($quests as $q): ?>
 
-						<li>
-							<div class = "missionblock postit" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-								<h1><?= $q['Quest']['title']?></h1>
-							</div>
+					<?php foreach($quests as $q):
+						//only add to checklist quests that are mandatory
+						if($q['Quest']['mandatory'] != 1) continue;
 						
+						$evidence_exists = false;
+						//if it was an 'evidence' type quest
+						foreach($my_evidences as $e):
+							if($q['Quest']['id'] == $e['Quest']['id']) {$evidence_exists = true; break;}
+						endforeach;
 
-						<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
-						  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
-						  <a class="evoke mission close-reveal-modal">&#215;</a>
-						</div>
-						</li>
-					<?php endforeach; ?>
+						//if it was a questionnaire type quest
+						foreach($questionnaires as $questionnaire):
+							foreach ($previous_answers as $previous_answer) {
+								if($q['Quest']['id'] == $questionnaire['Quest']['id'] && $questionnaire['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {$evidence_exists = true; break;}
+							}
+						endforeach;
+
+						//if its a group type quest, check to see if user owns or belongs to a group of this mission
+						if($q['Quest']['type'] == 3) {
+							if($hasGroup) {
+								$evidence_exists = true;
+							}
+						}
+
+						//debug($previous_answers);
+						if($evidence_exists):?>
+							<li>
+								<div class = "missionblock postit postit-green" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+									<h1><?= $q['Quest']['title']?></h1>
+								</div>
+							
+
+							<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
+							  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
+							  <a class="evoke mission close-reveal-modal">&#215;</a>
+							</div>
+							</li>
+						<?php else: ?>
+							<li>
+								<div class = "missionblock postit" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+									<h1><?= $q['Quest']['title']?></h1>
+								</div>
+							
+
+							<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
+							  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
+							  <a class="evoke mission close-reveal-modal">&#215;</a>
+							</div>
+							</li>
+						<?php endif; 
+
+					endforeach; ?>
+
                 </ul>
             </div>
         
@@ -207,15 +247,18 @@
 	  </div>
 	</div>
 
+<div class = "evoke position">
+	<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke horizontal_bar left">
+	<dl class="tabs evoke titles" data-tab>
+	  <dd><h4><?php echo strtoupper(__('Discussions'));?></h4></dd>
+	  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('Most Liked'))?></a></dd>
+	  <dd><a href="#panel2-2"><?= strtoupper(__('Most Recent'))?></a></dd>
+	</dl>
+</div>
     <div class="row full-width">
 	  <div class="small-8 medium-8 large-8 columns">
 	  	<div class = "evoke position">
-			<img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke horizontal_bar left">
-			<dl class="tabs evoke titles" data-tab>
-				  <dd><h4><?php echo strtoupper(__('Discussions'));?></h4></dd>
-				  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('Most Liked'))?></a></dd>
-				  <dd><a href="#panel2-2"><?= strtoupper(__('Most Recent'))?></a></dd>
-			</dl>
+			
 
 			<div class="evoke tabs-content screen-box dashboard panel margin">
 			  <div class="content active" id="panel2-1">
@@ -234,7 +277,7 @@
 	  <div class="small-4 medium-4 large-4 columns">
 	  		
 
-		<div class = "evoke position" style = "margin: 5% 15%;">
+		<div class = "evoke position" style = "margin: 0 5%;">
 			<img src = '<?= $this->webroot.'img/espiral.png' ?>' style = " width: 100%;">
 			<div class = "evoke todo-list">
 				<div class = "evoke todo-list content">
@@ -266,9 +309,19 @@
 
 							//debug($previous_answers);
 							if($evidence_exists):?>
-								<li><h2 class = "evoke item-complete"><?php echo $q['Quest']['title'];?></h2></li>
+								<li>
+									<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+										<h2 class = "evoke item-complete"><?php echo $q['Quest']['title'];?></h2>
+									</a>
+								</li>
 							<?php else: ?>
-								<li><h2><?php echo $q['Quest']['title'];?></h2></li>
+								<li>
+
+								<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+									<h2><?php echo $q['Quest']['title'];?></h2>
+								</a>
+
+								</li>
 							<?php endif; 
 
 						endforeach; ?>
@@ -295,7 +348,7 @@
 
 <?php
 
-	echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
+	//echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
 	echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel', array('inline' => false));
 	//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
 	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');

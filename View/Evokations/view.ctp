@@ -15,7 +15,7 @@
 	<div class="row full-width">
 
 	  <nav class="evoke breadcrumbs">
-		<?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
+		<?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 		<a class="unavailable" href="#"><?php echo __('Mission: ').$group['Mission']['title']; ?></a>
 		<a class="unavailable" href="#"><?php echo __('Projects'); ?></a>
 		<a class="current" href="#"><?php echo $evokation['Evokation']['title'];?></a>
@@ -97,7 +97,7 @@
 		  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
 		  	
 		  	<?php foreach ($comment as $c): 
-					echo $this->element('comment_box', array('c' => $c));
+					echo $this->element('comment_box', array('c' => $c, 'user' => $user));
 	  			endforeach; 
   			?>
 		</div>

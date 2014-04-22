@@ -10,6 +10,8 @@
 
 	$this->extend('/Common/topbar');
 	$this->start('menu');
+
+	$name = explode(' ', $users['User']['name']);
 ?>
 
 <nav class="top-bar" data-topbar>
@@ -64,16 +66,16 @@
 
 	<?php echo $this->Session->flash(); ?>
 
+	<?= $this->element('left_titlebar', array('title' => __('Choose a mission'))) ?>
+	
 	<div class="row full-width">
-		<div class="small-8 medium-8 large-9 columns">
+		<div class="small-7 medium-7 large-8 columns">
 
 			<?php if(!$is_friend AND ($users['User']['id'] != $user['User']['id'])):?>
 				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'add', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Follow this agent');?></a>
 			<?php elseif($is_friend AND ($users['User']['id'] != $user['User']['id'])): ?>
 				<a href = "<?php echo $this->Html->url(array('controller' => 'userFriends', 'action' => 'delete', $users['User']['id'], $user['User']['id'])); ?>" class = "button"><?php echo __('Unfollow this agent');?></a>
 			<?php endif; ?>
-
-			<?= $this->element('left_titlebar', array('title' => __('Choose a mission'))) ?>
 
 			<div class = "evoke dashboard position">
 	            <div class="jcarousel-wrapper">
@@ -277,7 +279,7 @@
 
 		</div>
 
-		<div class="small-4 medium-4 large-3 columns">
+		<div class="small-5 medium-5 large-4 columns">
 
 			<div class = "evoke dashboard tag">
 				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%" style = "position: absolute; top: 0;"/>
@@ -395,23 +397,35 @@
 
 	</div>
 
+	<?php if ($users['User']['basic_trainning'] == 0): ?>
+	<div id="formModal" class="reveal-modal evoke lightbox text-align" data-reveal style = "top: 370px;!important">
+	  <img src = '<?= $this->webroot.'img/alchemy.png' ?>' style = "margin-top: -460px;"/>
+	  <h2><?= sprintf(__("Agent %s, it's time to start your Basic Training"), $name[0]) ?></h2>
+	  <p class="lead"><?= __('This training will show you the steps inside a missions so you can start being an agent of change') ?></p>
+	  <a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1)); ?>" class = "button general"><?php echo __("Let's get started!");?></a>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	<?php endif; ?>
+
 	<img src = '<?= $this->webroot.'img/parabolic.png' ?>' class = "evoke parabolic"/>
 
 </section>
 
 <?php
-
-	echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
+	
+	echo $this->Html->script('reveal_modal', array('inline' => false));
+	// echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
 	echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel', array('inline' => false));
 	//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
 	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
 	echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
 
 
+
 ?>
 
 <script>
 
-	$('.jcarousel').jcarousel('scroll', '3');
+	// $('#formModal').foundation('reveal', 'open');
 
 </script>

@@ -160,6 +160,34 @@ class EvidencesController extends AppController {
 				}
 
 				//$this->Session->setFlash(__('The evidence has been saved.'));
+
+				/* Starts event */
+				$value = 1;
+				$origin = 'evidence';
+
+				if($me['Evidence']['evokation'] == 1)
+					$origin = 'evidenceEvokation';
+
+		        $quest = $this->Evidence->Quest->find('first', array(
+		        	'conditions' => array(
+		        		'Quest.id' => $me['Evidence']['quest_id'])));
+
+		        if($quest)
+		            $value = $quest['Quest']['points'];
+
+		        $event = new CakeEvent('Controller.Evidence.create', $this, array(
+		        	'user_id' => $me['Evidence']['user_id'], 
+		            'origin_id' => $me['Evidence']['id'], 
+		            'origin' => $origin, 
+		        	'points' => $value,
+		        ));
+
+		        $this->getEventManager()->dispatch($event);
+
+		        $this->Session->setFlash(__('The evidence has been saved'), 'flash_message');
+
+				/* Ends event */
+
 				$this->Session->setFlash(__('The evidence has been saved'), 'flash_message');
 				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], -1, $me['Evidence']['phase_id']));
 			} else {
