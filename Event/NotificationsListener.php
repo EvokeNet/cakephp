@@ -55,8 +55,13 @@ class NotificationsListener implements CakeEventListener {
 
             $note->saveAll($insertData);
 
-            // $this->Session->setFlash(sprintf(__("You have completed the %s Phase"), $missionPhase['Phase']['name']), 'flash_lightbox_message');
+            //$note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['entity_id'], $event->data['next_phase']));
+            $note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['phase_name'], $event->data['next_phase'], $event->data['mission_id']));
+
         }
+
+        //$note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['phase_name'], $event->data['next_phase'], $event->data['mission_id']));
+        //$note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['entity_id'], $event->data['next_phase']));
 
     }
 
@@ -73,6 +78,8 @@ class NotificationsListener implements CakeEventListener {
         );
 
         $note->saveAll($insertData);
+
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'displayBasicTrainingMessage', $event->data['user_id']));
 
     }
 

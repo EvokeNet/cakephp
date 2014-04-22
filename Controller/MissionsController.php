@@ -306,28 +306,32 @@ class MissionsController extends AppController {
 
 		$evokationsFollowing = $this->User->EvokationFollower->find('all');
 
-		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations',
-			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints'));
+		$is_phase_completed = false;
 
-		if($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]){
+		if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']])){
 
 			$event = new CakeEvent('Controller.Phase.completed', $this, array(
 	            'entity_id' => $missionPhase['Phase']['id'],
 	            'user_id' => $this->getUserId(),
 	            'entity' => 'phaseCompleted',
-	            'points' => $missionPhase['Phase']['points']
+	            'points' => $missionPhase['Phase']['points'],
+	            'phase_name' => $missionPhase['Phase']['name'],
+	            'next_phase' => $nextMP['Phase']['id'],
+	            'mission_id' => $missionPhase['Mission']['id']
 	        ));
 
 	        $this->getEventManager()->dispatch($event);
 
-	        $this->loadModel('Notification');
+	        $is_phase_completed = true;
 
-	        $exists = $this->Notification->find('first', array('conditions' => array('origin_id' => $missionPhase['Phase']['id'], 'user_id' => $this->getUserId(),
-	            'origin' => 'phaseCompleted')));
+	        // $this->loadModel('Notification');
 
-	        if(!$exists)
-	        	$this->Session->setFlash(__("You have completed the Basic Training"), 'flash_lightbox_message');
-	        
+	        // $exists = $this->Notification->find('first', array('conditions' => array('origin_id' => $missionPhase['Phase']['id'], 'user_id' => $this->getUserId(),
+	        //     'origin' => 'phaseCompleted')));
+
+	        // if(!$exists)
+	        // 	$this->Session->setFlash(__("You have completed the Basic Training"), 'flash_lightbox_message');
+
 	        // $event2 = new CakeEvent('Controller.Phase.notifyCompleted', $this, array(
 	        //     'entity_id' => $missionPhase['Phase']['id'],
 	        //     'user_id' => $this->getUserId(),
@@ -360,14 +364,17 @@ class MissionsController extends AppController {
 
 	        $this->getEventManager()->dispatch($event3);
 
-	        $this->loadModel('Notification');
+	        // $this->loadModel('Notification');
 
-	        $exists = $this->Notification->find('first', array('conditions' => array('origin_id' => $mission['Mission']['id'], 'user_id' => $this->getUserId(),
-	            'origin' => 'phaseCompleted')));
+	        // $exists = $this->Notification->find('first', array('conditions' => array('origin_id' => $mission['Mission']['id'], 'user_id' => $this->getUserId(),
+	        //     'origin' => 'phaseCompleted')));
 	        // if(!$exists)
 	        	// $this->Session->setFlash(__("You have completed the Basic Training"), 'flash_lightbox_message');
 			//return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));
 		}
+
+		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations',
+			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
 		if($mission['Mission']['basic_training'] == 1)
 			$this->render('basic_training');

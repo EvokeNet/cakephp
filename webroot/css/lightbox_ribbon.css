@@ -1,18 +1,18 @@
-/* ribbon style */
+/* green-ribbon style */
 
  .green-ribbon-wrapper {
 	position: relative;
 }
   .green-ribbon-front {
+  	padding-top: 10px;
 	background-color: #56ba80;	
-	height: 250px;
-	width: 940px;
-	/*position: relative;
-	left:-70px;
-	z-index: 2;*/
-
-	width: 130%;
-	margin-left: -15%;
+	min-height: 200px;
+	/*width: 580px;*/
+	width:102%;
+	position: relative;
+	/*left:-40px;*/
+	left:-18px;
+	z-index: 2;
 }
 
   .green-ribbon-front,
@@ -42,51 +42,55 @@
 
   .green-ribbon-edge-bottomleft,
   .green-ribbon-edge-bottomright {
-	top: 180px;
+	top: 200px;
 }
 
   .green-ribbon-edge-topleft,
   .green-ribbon-edge-bottomleft {
-	left: -70px;
+	/*left: -40px;*/
+	left:-18px;
 	border-color: transparent #10532c transparent transparent;
 }
 
   .green-ribbon-edge-topleft {
-	top: -70px;
-	border-width: 70px 70px 0 0;
+	top: -40px;
+	border-width: 40px 40px 0 0;
 }
   .green-ribbon-edge-bottomleft {
-	border-width: 0 70px 0px 0;
+	border-width: 0 40px 0px 0;
 }
 
   .green-ribbon-edge-topright,
   .green-ribbon-edge-bottomright {
-	left: 800px;
+	/*left: 500px;*/
+	right:-17px;
 	border-color: transparent transparent transparent #10532c;
 }
 
   .green-ribbon-edge-topright {
-	top: -70px;
-	border-width: 70px 0 0 70px;
+	top: -40px;
+	border-width: 40px 0 0 40px;
 }
   .green-ribbon-edge-bottomright {
-	border-width: 0 0 0px 70px;
+	border-width: 0 0 0px 40px;
 }
 
   .green-ribbon-back-left {
 	position: absolute;
-	top: -70px;
-	left: 0px;
-	width: 0px;
-	height: 180px;
-		z-index: 0;
+	top: -40px;
+	/*left: -50px;*/
+	left:-29px;
+	width: 50px;
+	height: 200px;
+	background-color: #56ba80;	z-index: 0;
 }
 
   .green-ribbon-back-right {
 	position: absolute;
-	top: -70px;
-	right: 0px;
-	width: 0px;
-	height: 180px;
-		z-index: 0;
+	top: -40px;
+	/*right: -50px;*/
+	right:-28px;
+	width: 50px;
+	height: 200px;
+	background-color: #56ba80;	z-index: 0;
 }

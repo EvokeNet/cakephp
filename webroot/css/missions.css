@@ -72,6 +72,7 @@
 	color:#000;
 	font-family: 'AmaticSC-Regular';
 	font-size:2.5vw;
+	word-wrap: break-word;
 }
 
 .evoke.missions.data{
@@ -280,7 +281,14 @@
 }
 
 .postit-green{
-	background-color:#18d988;
+	border: 1px solid rgba(86,186,128,1);
+	background: rgb(86,186,128);
+	background: -moz-linear-gradient(-45deg, rgba(86,186,128,1) 77%, rgba(255,255,214,1) 100%);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(77%,rgba(86,186,128,1)), color-stop(100%,rgba(255,255,214,1)));
+	background: -webkit-linear-gradient(-45deg, rgba(86,186,128,1) 77%,rgba(255,255,214,1) 100%);
+	background: -o-linear-gradient(-45deg, rgba(86,186,128,1) 77%,rgba(255,255,214,1) 100%);
+	background: -ms-linear-gradient(-45deg, rgba(86,186,128,1) 77%,rgba(255,255,214,1) 100%);
+	background: linear-gradient(-45deg, rgba(86,186,128,1) 77%,rgba(255,255,214,1) 100%);
 }
 
 .project {    
@@ -301,6 +309,8 @@
 	/* border-bottom-right-radius: 60px 5px; */
 	/* display: inline-block; */
 	background-image: url('../img/icone-project.png');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
  
 .project:after {     

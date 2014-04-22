@@ -40,21 +40,58 @@
 
 		<ul class="small-block-grid-2 medium-block-grid-2 large-block-grid-2">
 			<div style = "margin-left:400px" id="numero4"></div>
-			<?php foreach ($quests as $q): ?>
+			<?php foreach($quests as $q):
+						//only add to checklist quests that are mandatory
+						if($q['Quest']['mandatory'] != 1) continue;
+						
+						$evidence_exists = false;
+						//if it was an 'evidence' type quest
+						foreach($my_evidences as $e):
+							if($q['Quest']['id'] == $e['Quest']['id']) {$evidence_exists = true; break;}
+						endforeach;
 
-				<li>
-					<div class = "missionblock postit postit-2" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-						<h1><?= $q['Quest']['title']?></h1>
-					</div>
-				
+						//if it was a questionnaire type quest
+						foreach($questionnaires as $questionnaire):
+							foreach ($previous_answers as $previous_answer) {
+								if($q['Quest']['id'] == $questionnaire['Quest']['id'] && $questionnaire['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {$evidence_exists = true; break;}
+							}
+						endforeach;
 
-				<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
-				  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
-				  <a class="evoke mission close-reveal-modal">&#215;</a>
-				</div>
-				</li>
+						//if its a group type quest, check to see if user owns or belongs to a group of this mission
+						if($q['Quest']['type'] == 3) {
+							if($hasGroup) {
+								$evidence_exists = true;
+							}
+						}
 
-			<?php endforeach; ?>
+						//debug($previous_answers);
+						if($evidence_exists):?>
+							<li>
+								<div class = "missionblock postit postit-green" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+									<h1><?= $q['Quest']['title']?></h1>
+								</div>
+							
+
+							<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
+							  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
+							  <a class="evoke mission close-reveal-modal">&#215;</a>
+							</div>
+							</li>
+						<?php else: ?>
+							<li>
+								<div class = "missionblock postit" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+									<h1><?= $q['Quest']['title']?></h1>
+								</div>
+							
+
+							<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
+							  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
+							  <a class="evoke mission close-reveal-modal">&#215;</a>
+							</div>
+							</li>
+						<?php endif; 
+
+					endforeach; ?>
 		</ul>
 
 	  </div>
