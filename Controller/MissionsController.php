@@ -77,10 +77,10 @@ class MissionsController extends AppController {
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		// if(($user['User']['basic_training'] == 0) && ($user['User']['role_id'] != 1) && ($mission['Mission']['basic_training'] == 0)) {
-		// 	$this->Session->setFlash(__("You haven't completed the Basic Training"), 'flash_message');
-		// 	return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));
-		// }
+		if(($user['User']['basic_training'] == 0) && ($user['User']['role_id'] != 1) && ($mission['Mission']['basic_training'] == 0)) {
+			$this->Session->setFlash(__("You haven't completed the Basic Training"), 'flash_message');
+			return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));
+		}
 
 		$missionPhases = $this->Mission->Phase->find('all', array('conditions' => array('Phase.mission_id' => $id), 'order' => 'Phase.position'));
 
@@ -342,7 +342,7 @@ class MissionsController extends AppController {
 
 	        // $this->Session->setFlash(sprintf(__("You have completed the %s Phase"), $missionPhase['Phase']['name']), 'flash_lightbox_message');
 
-		} if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && ($mission['Mission']['basic_training'] == 1) && ($user['User']['basic_trainning'] == 0)){
+		} if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && ($mission['Mission']['basic_training'] == 1) && ($user['User']['basic_training'] == 0)){
 
 			$this->loadModel('PointsDefinition');
 	        $def = new PointsDefinition();
