@@ -97,7 +97,7 @@ class PointListener implements CakeEventListener {
         $users = ClassRegistry::init('User');
 
         $users->id = $event->data['user_id'];
-        $users->saveField('basic_trainning', 1);
+        $users->saveField('basic_training', 1);
 
         // $user = $users->find('first', array('conditions' => array('id' => $event->data['user_id'])));
         // $users->create();

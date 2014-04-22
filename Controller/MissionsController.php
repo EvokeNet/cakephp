@@ -77,7 +77,7 @@ class MissionsController extends AppController {
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		if(($user['User']['basic_trainning'] == 0) && ($user['User']['role_id'] != 1) && ($mission['Mission']['basic_training'] == 0)) {
+		if(($user['User']['basic_training'] == 0) && ($user['User']['role_id'] != 1) && ($mission['Mission']['basic_training'] == 0)) {
 			$this->Session->setFlash(__("You haven't completed the Basic Training"), 'flash_message');
 			return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));
 		}
