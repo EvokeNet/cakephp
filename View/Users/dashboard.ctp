@@ -342,18 +342,29 @@
 					</div>
 					<div class = "evoke screen-box dashboard feed">
 						<ul>
-							<li>Ron Swanson added a new profile picture</li>
-							<li>Ann Perkins created a new discussion</li>
-							<li>April Ludgate started a project</li>
-							<li>Ben Wyatt changed his profile picture</li>
-							<li>Andy Dwyer created a new Evokation Team</li>
-							<li>Leslie Knope finished a project</li>
-							<li>Chris Traeger commented on your disccusion</li>
-							<li>Andy Dwyer created a new discussion</li>
-							<li>Ann Perkins started a project</li>
-							<li>Chris Traeger changed his profile picture</li>
-							<li>April Ludgate created a new Evokation Team</li>
-							<li>Ron Swanson finished a project</li>
+							<?php foreach($notifies as $n): 
+
+							if($n['Notification']['origin'] == 'evidence'):?>						
+								<li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s posted an evidence'), $n['User']['name']) ?></li></a>
+							<?php endif; ?>
+
+							<?php if($n['Notification']['origin'] == 'BasicTraining'):?>						
+								<li><?= sprintf(__('Agent %s finished the Basic Training'), $n['User']['name']) ?></li>
+							<?php endif; ?>
+
+							<?php if($n['Notification']['origin'] == 'like'):?>						
+								<li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s liked an evidence'), $n['User']['name']) ?></a></li>
+							<?php endif; ?>
+
+							<?php if($n['Notification']['origin'] == 'commentEvidence'):?>						
+								<li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evidence'), $n['User']['name']) ?></a></li>
+							<?php endif; ?>
+
+							<?php if($n['Notification']['origin'] == 'phaseCompleted'):?>						
+								<!-- <li><?= sprintf(__('Agent %s completed a phase'), $n['User']['name']) ?></li> -->
+							<?php endif; ?>
+							
+							<?php endforeach; ?>
 						</ul>
 					</div>
 				</div>
@@ -398,13 +409,13 @@
 	</div>
 
 	<?php if ($users['User']['basic_training'] == 0 && isset($basic_training)): ?>
-	<div id="formModal" class="reveal-modal evoke lightbox text-align" data-reveal style = "top: 370px;!important">
+	<!-- <div id="formModal" class="reveal-modal evoke lightbox text-align" data-reveal style = "top: 370px;!important">
 	  <img src = '<?= $this->webroot.'img/alchemy.png' ?>' style = "margin-top: -460px;"/>
 	  <h2><?= sprintf(__("Agent %s, it's time to start your Basic Training"), $name[0]) ?></h2>
 	  <p class="lead"><?= __('This training will show you the steps inside a missions so you can start being an agent of change') ?></p>
 	  <a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1)); ?>" class = "button general"><?php echo __("Let's get started!");?></a>
 	  <a class="close-reveal-modal">&#215;</a>
-	</div>
+	</div> -->
 	<?php endif; ?>
 
 	<img src = '<?= $this->webroot.'img/parabolic.png' ?>' class = "evoke parabolic"/>

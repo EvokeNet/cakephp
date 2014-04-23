@@ -306,10 +306,18 @@
 	margin-top:30px;
 }
 
-.evoke.dashboard.feed ul li{
-	color:#8e8e8e;
-	font-size:1.1vw;
+.evoke.dashboard.feed ul li, a{
+	color:#efefef!important;
+	font-size:1.0vw;
 	font-family: 'AlegreyaRegular';
+	line-height: 1.7em;
+}
+
+.evoke.dashboard.feed ul li{
+	border-bottom: 1px solid #8e8e8e;
+	padding-bottom: 5px;
+	margin-top: 10px;
+	width: 95%;
 }
 
 /*.evoke.allies{
