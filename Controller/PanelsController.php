@@ -35,7 +35,7 @@ class PanelsController extends AppController {
 
 		//checking Acl permission
 		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
-			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
+			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."), 'flash_message');	
 			$this->redirect($this->referer());
 		}
 	}
