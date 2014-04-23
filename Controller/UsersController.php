@@ -155,6 +155,7 @@ class UsersController extends AppController {
 		
 		if ($this->request->is('post')) {
 			$this->User->create();
+			$this->request->data['User']['role_id'] = 3;//sets user as a common user
 			if ($this->User->save($this->request->data)) {
 				$user = $this->User->save($this->request->data);
 				$this->Session->setFlash(__('The user has been saved.'));
@@ -730,12 +731,14 @@ class UsersController extends AppController {
 
 				$this->User->UserIssue->deleteAll(array('UserIssue.user_id' => $userid), false);
 
-				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
-			        $insertData = array('user_id' => $id, 'issue_id' => $a);
+				if(is_array($this->request->data['UserIssue']['issue_id'])) {
+					foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
+				        $insertData = array('user_id' => $id, 'issue_id' => $a);
 
-			        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $id, 'UserIssue.issue_id' => $a)));
-			        if(!$exists) $this->User->UserIssue->saveAssociated($insertData);
-			    }
+				        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $id, 'UserIssue.issue_id' => $a)));
+				        if(!$exists) $this->User->UserIssue->saveAssociated($insertData);
+				    }
+				}
 			    
 			    if ($this->User->save($this->request->data)) {
 
