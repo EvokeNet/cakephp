@@ -38,7 +38,7 @@
 	<div class="small-4 medium-4 large-3 columns padding">
 		<div>
 			<ul>
-		  		<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;</li>
+		  		<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;&nbsp;<?= count($e['Comment']) ?><!-- <i class="fa fa-heart-o fa-lg"></i>&nbsp;<?= count($e['Like']) ?> --></li>
 			  	<?php if($showFollowButton) : ?>
 			  		<?php if($follows) : ?>
 			  			<li><div class = "evoke evokation follow"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'delete', $follower['EvokationFollower']['id'])); ?>" class = "evoke button general"><?php echo __('Unfollow');?></a></div></li>
