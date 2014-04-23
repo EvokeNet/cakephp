@@ -414,6 +414,7 @@ class UsersController extends AppController {
 				'AdminNotification.id >' => $last['admin_notification_id']
 			)
 		));
+		
 		foreach ($adminNotifications as $not) {
 			//he sees it..
 			$insert['AdminNotificationsUser']['user_id'] = $user['User']['id'];
