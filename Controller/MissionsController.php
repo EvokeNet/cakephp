@@ -103,6 +103,8 @@ class MissionsController extends AppController {
 		//$evidences = $this->Mission->getEvidences($id);
 
 		$evidences = $this->Mission->Evidence->find('all', array('order' => array('Evidence.created DESC'), 'conditions' => array('Evidence.mission_id' => $id)));
+
+		//$eevis = $this->Mission->Evidence->find('all', array('fields' => array 'fields' => array('SUM(Like.rating) as avg_rating'), order' => array('Evidence.created DESC'), 'conditions' => array('Evidence.mission_id' => $id)));
 		//debug($evidence);
 
 		$this->loadModel('Evokation');
@@ -342,7 +344,7 @@ class MissionsController extends AppController {
 
 	        // $this->Session->setFlash(sprintf(__("You have completed the %s Phase"), $missionPhase['Phase']['name']), 'flash_lightbox_message');
 
-		} if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && ($mission['Mission']['basic_training'] == 1) && ($user['User']['basic_trainning'] == 0)){
+		} if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && ($mission['Mission']['basic_training'] == 1) && ($user['User']['basic_training'] == 0)){
 
 			$this->loadModel('PointsDefinition');
 	        $def = new PointsDefinition();

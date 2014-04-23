@@ -64,7 +64,7 @@
 				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
 				<ul class="dropdown">
 					<?php if(isset($user['User'])) :?>
-						<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></h1></li>
+						<li><h1><?php echo $this->Html->link(__('Edit information'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></h1></li>
 						<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
 					<?php else :?>
 						<li><h1><?php echo $this->Html->link(__('Log in'), array('controller' => 'users', 'action' => 'login')); ?></h1></li>
