@@ -9,7 +9,7 @@
 <section class="evoke background padding top-2">
 
 	<nav class="evoke breadcrumbs">
-	  <?php echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
+	  <?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
 
 	  <a class="unavailable" href="#"><?php echo sprintf(__('Mission %s'), $mission['Mission']['title']);?></a>
 <!-- 
@@ -20,14 +20,36 @@
 
   		endforeach; ?> -->
 
-	  <!-- <a class="current" href="#"><?php echo $missionPhase['Phase']['name'];?></a> -->
+	  <a class="current" href="#"><?= __('Evokation Teams') ?></a>
 	</nav>
 	
 	<?php if(isset($mission['Mission'])):  
 		echo $this->element('left_titlebar', array('title' => sprintf(__('Evokation Teams: %s'), $mission['Mission']['title'])));
 	endif; ?>
+
 	<div class="row full-width">
 		<?php echo $this->Session->flash(); ?>
+
+		<?php if(isset($mission['Mission'])): ?>
+				<a class="button general" href="" data-reveal-id="newGroup" data-reveal>
+					<span><?php echo __('Create a group');?></span>
+				</a>
+				<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
+					<?= $this->element('add_group', array('mission' => $mission, 'quest_id' => $quest_id, 'userid' => $user['User']['id'], 'groups' => $groups));?>
+					<a class="close-reveal-modal">&#215;</a>
+				</div>
+
+			<?php else : ?>
+				<a class="button general" href="" data-reveal-id="newGroup" data-reveal>
+					<span><?php echo __('Create a group');?></span>
+				</a>
+				<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
+					<?= $this->element('add_group', array('userid' => $user['User']['id'], 'groups' => $groups));?>
+					<a class="close-reveal-modal">&#215;</a>
+				</div>
+
+			<?php endif; ?>
+			
 		<div class="small-8 small-centered columns">
 
 			<dl class="tabs" data-tab>
@@ -58,26 +80,6 @@
 	  			?>
 			  </div>
 			</div>
-
-			<?php if(isset($mission['Mission'])): ?>
-				<a class="button general" href="" data-reveal-id="newGroup" data-reveal>
-					<span><?php echo __('Create a group');?></span>
-				</a>
-				<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
-					<?= $this->element('add_group', array('mission' => $mission, 'quest_id' => $quest_id, 'userid' => $user['User']['id'], 'groups' => $groups));?>
-					<a class="close-reveal-modal">&#215;</a>
-				</div>
-
-			<?php else : ?>
-				<a class="button general" href="" data-reveal-id="newGroup" data-reveal>
-					<span><?php echo __('Create a group');?></span>
-				</a>
-				<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
-					<?= $this->element('add_group', array('userid' => $user['User']['id'], 'groups' => $groups));?>
-					<a class="close-reveal-modal">&#215;</a>
-				</div>
-
-			<?php endif; ?>
 		</div>
 	</div>
 </section>

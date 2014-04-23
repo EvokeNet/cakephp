@@ -103,6 +103,8 @@ class MissionsController extends AppController {
 		//$evidences = $this->Mission->getEvidences($id);
 
 		$evidences = $this->Mission->Evidence->find('all', array('order' => array('Evidence.created DESC'), 'conditions' => array('Evidence.mission_id' => $id)));
+
+		//$eevis = $this->Mission->Evidence->find('all', array('fields' => array 'fields' => array('SUM(Like.rating) as avg_rating'), order' => array('Evidence.created DESC'), 'conditions' => array('Evidence.mission_id' => $id)));
 		//debug($evidence);
 
 		$this->loadModel('Evokation');

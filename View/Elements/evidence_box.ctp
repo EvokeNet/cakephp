@@ -24,7 +24,7 @@
 			if($e['Mission']['id'] == $mi['Mission']['id']):?>
 
 			<ul>
-				<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;&nbsp;<h5>4324</h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h5>433d</h5></li>
+				<li><i class="fa fa-comment-o fa-horizontal fa-lg"></i>&nbsp;&nbsp;<h5><?= count($e['Comment']) ?></h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h5><?= count($e['Like']) ?></h5></li>
 				<li><h6><?= $mi['Issue']['name'] ?></h6></li>
 				<li><h6><?= date('F j, Y', strtotime($e['Evidence']['created'])) ?></h6></li>
 			</ul>
