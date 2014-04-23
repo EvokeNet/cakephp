@@ -29,6 +29,12 @@ class UserPowerPoint extends AppModel {
 	        //to each badge, check the amount of pp it needs and the amount of pp i got
 	        foreach ($available_badges as $badge) {
 	        	//need to check to see if user alread got this badge & if this badge only needs pp's
+	        	
+	        	//super special-needs-to-be-removed-later condition to only dispatch badges acconding to the docs
+	        	if($badge['Badge']['name'] != 'Creative Visionary' && $badge['Badge']['name'] != 'Deep Collaborator'
+	        		&& $badge['Badge']['name'] != 'Systems Thinker' && $badge['Badge']['name'] != 'Social Activist') 
+	        			continue;
+
 	        	App::import('model','UserBadge');
 	        	$modelUserBadge = new UserBadge();
 	        	$userbadge = $modelUserBadge->find('first', array(

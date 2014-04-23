@@ -290,13 +290,17 @@
 							<?php echo $this->Form->create('Badge', array(
 	 						   		'url' => array(
 	 						   			'controller' => 'panels',
-	 						   			'action' => 'add_badge')
-									)); ?>
+	 						   			'action' => 'add_badge'
+	 						   		),
+	 						   		'enctype' => 'multipart/form-data'
+								)); 
+							?>
 								<fieldset>
 									<legend><?php echo __('Add a Badge'); ?></legend>
 								<?php
 									echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
 									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+									echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 
 							        echo '<fieldset><legend> ' .__('Necessary Power Points to get Badge') . '</legend>';
 							        foreach ($powerpoints as $power) {
@@ -1913,7 +1917,8 @@
     function badgeButtons(i) {
     	var url = getCorrectURL("badges/edit/");
     	var str = "'deleteBadge" + badgesId[i] + "'";
-    	return '<a href="'+ url + badgesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	//<a href="'+ url + badgesId[i] +'" >Edit</a> | 
+    	return '<a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
     }
 
     function notButtons(i) {

@@ -23,8 +23,9 @@ class BadgeListener implements CakeEventListener {
         );
 
         $userBadge->saveAll($insertData);
-        debug("hey");
-        die();
         //now dispatch a notification as a lightbox!..
+
+        $note = ClassRegistry::init('Notifications');
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'displayBadgeMessage', $event->data['badge_id']));
     }
 }

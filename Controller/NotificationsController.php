@@ -45,6 +45,28 @@ class NotificationsController extends AppController {
 		$this->Session->setFlash('', 'flash_phase_message', array('phase_name' => $phase_name, 'next' => $next_phase, 'mission_id' => $mission_id));
 	}
 
+	public function displayBadgeMessage($badge_id){
+		$this->loadModel('Badge');
+		$badge = $this->Badge->find('first', array(
+			'conditions' => array(
+				'Badge.id' => $badge_id
+			)
+		));
+
+		$this->loadModel('Attachment');
+		$attachment = $this->Attachment->find('first', array(
+			'conditions' => array(
+				'Attachment.model' => 'Badge',
+				'Attachment.foreign_key' => $badge_id
+			)
+		));		
+
+		$this->Session->setFlash('', 'flash_badge_message', array('badge_name' => $badge['Badge']['name'], 
+			'badge_desc' => $badge['Badge']['description'], 'imgPath' => $attachment['Attachment']['id'], 
+			'imgFile' => $attachment['Attachment']['attachment']));
+		$this->redirect(array('controller'=>'users','action'=>'dashboard'));
+	}
+
 	// public function displayPhaseMessage($phase_id = null, $next_phase = null){
 	// 	$this->loadModel('Phase');
 
