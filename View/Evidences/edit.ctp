@@ -7,8 +7,10 @@
 
 ?>
 
-<section class="evoke background-gray padding top-2">
+<section class="evoke background-gray">
 
+	<?= $this->element('menu', array('user' => $user)) ?>
+	
 	<?php echo $this->Session->flash(); ?>
 	
 	<div class="row">

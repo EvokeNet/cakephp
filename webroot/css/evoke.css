@@ -1035,7 +1035,11 @@ button, div, p, span, a,
 	font-family: 'AlegreyaRegular';
 }
 
-.evoke.comment-box h4, p{
+.evoke.comment-box p{
+	font-size:1.1vw;
+}
+
+.evoke.comment-box p{
 	font-size:1.1vw;
 }
 
@@ -1462,4 +1466,18 @@ button, div, p, span, a,
 
 .evoke.group.agent-info{
 	padding-bottom: 20px;
+}
+
+.evoke .black-bg{
+	background-color:#000;
+	border-radius:20px;
+	padding:30px;
+	margin-bottom:50px;
+}
+
+.evoke .gray-solid-bg{
+	background-color:#404040;
+	border-radius:10px;
+	padding:10px;
+	margin-bottom:50px;
 }

@@ -1,0 +1,19 @@
+.evoke .badges-bg img{
+	margin-bottom:20px;
+}
+
+.evoke .badges-bg li{
+	text-align:center;
+	padding-bottom:40px;
+}
+
+.evoke .badges-bg p{
+	color:#fff;
+	font-family: 'AlegreyaRegular';
+	font-size:1.2vw;
+}
+
+.evoke .badges-bg h1{
+	color:#fff;
+	font-family: 'AlegreyaBold';
+}

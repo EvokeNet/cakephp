@@ -55,6 +55,8 @@ class GroupsUsersController extends AppController {
 
 		$group = $this->GroupsUser->getGroupAndUsers($group_id);
 		
+		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
 		$users = $this->GroupsUser->find('all', array(
 			'conditions' => array(
 				'GroupsUser.group_id' => $group_id

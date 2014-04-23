@@ -14,8 +14,10 @@
 	
 ?>
 
-<section class="evoke background padding top-2">
+<section class="evoke background">
 	
+	<?= $this->element('menu', array('user' => $user)) ?>
+
 	<div class = "evoke dashboard position">
 		<?= $this->element('left_titlebar', array('title' => __(sprintf(__("Agent's %s Dashboard"), $user['User']['name'])))) ?>
 	</div>

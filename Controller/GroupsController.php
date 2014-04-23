@@ -252,7 +252,7 @@ class GroupsController extends AppController {
 				}
 
 				$this->Session->setFlash(__('The group has been saved.'), 'flash_message');
-				return $this->redirect(array('action' => 'index', $mission_id));
+				return $this->redirect(array('action' => 'view', $this->Group->id));
 			} else {
 				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
 			}
