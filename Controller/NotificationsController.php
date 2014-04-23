@@ -68,7 +68,7 @@ class NotificationsController extends AppController {
 			)
 		));
 		$this->Session->setFlash('', 'flash_admin_notification', array('user_id' => $user_id, 'notificationTitle' => $notification['AdminNotification']['title'],
-		 'notificationDescription' => $notification['AdminNotification']['description']));
+		 'notificationDescription' => $notification['AdminNotification']['description']), 'admin');
 	}
 
 /**

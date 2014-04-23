@@ -389,66 +389,6 @@
 	width: 40%;
 }
 
-/*** Alternative Dashboard ***/
-
-.evoke.dashboard.tag{
-	background-color:#fff;
-	border:5px solid #000;
-	border-radius:20px;
-	max-width:550px;
-	margin: 0px auto 50px;
-	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
-	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
-	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
-	overflow:hidden;
-	position: relative;
-}
-
-.evoke.dashboard.tag-padding{
-	padding: 10px 10px 0px 0px;
-}
-
-.evoke.dashboard.position.panel-margin{
-	margin-right: 100px;
-}
-
-.evoke.dashboard.user_pic{
-	max-height: 150px; 
-	/*max-width: 120px;*/ 
-	margin:10px 20px;
-}
-
-.evoke.dashboard.bottom-bar{
-	text-align: start;
-	margin-left: 50%;
-	/*margin-top: -15px;*/
-}
-
-.evoke.dashboard.badges-icon{
-	margin-right:5px; 
-	padding-bottom:10px;
-}
-
-.evoke.dashboard.users-icon-position{
-	/*float:left;*/
-	display:inline-block;
-	width: 100px;
-	text-align: center;
-	margin: 0px auto 30px;
-}
-
-.evoke.dashboard.users-icon-position span{
-	display:block;
-	color:#fff;
-	font-family: 'AlegreyaRegular';
-}
-
-.evoke.dashboard.users-icon{
-	max-height: 90px;
-	max-width: 90px;
-	/*margin: 0px 10px 20px 0px;*/
-}
-
 .evoke.login-lightbox{
 	background-color: #dcdcdc;
 	border-radius: 20px;
