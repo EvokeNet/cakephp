@@ -76,7 +76,6 @@ class PointListener implements CakeEventListener {
             'value' => $event->data['points']
         );
  		$point->saveAll($insertData);
-
  	} 
 
     public function completedBasicTraining($event){
