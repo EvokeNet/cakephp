@@ -250,7 +250,7 @@ class GroupsController extends AppController {
 					$this->UserPowerPoint->save($data);
 				}
 
-				$this->Session->setFlash(__('The group has been saved.'));
+				$this->Session->setFlash(__('The group has been saved.'), 'flash_message');
 				return $this->redirect(array('action' => 'index', $mission_id));
 			} else {
 				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));

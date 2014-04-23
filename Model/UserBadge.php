@@ -1,12 +1,12 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * AdminNotificationsUser Model
+ * UserBadge Model
  *
- * @property AdminNotification $AdminNotification
  * @property User $User
+ * @property Badge $Badge
  */
-class AdminNotificationsUser extends AppModel {
+class UserBadge extends AppModel {
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -17,16 +17,16 @@ class AdminNotificationsUser extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'AdminNotification' => array(
-			'className' => 'AdminNotification',
-			'foreignKey' => 'admin_notification_id',
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
+		'Badge' => array(
+			'className' => 'Badge',
+			'foreignKey' => 'badge_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
