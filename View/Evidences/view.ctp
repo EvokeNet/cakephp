@@ -21,7 +21,7 @@
 		<?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 		<a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>
 		<?php echo $this->Html->link($evidence['Phase']['name'], array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'], $evidence['Phase']['position']));?>
-		<a class="unavailable" href="#"><?php echo __('Discussions'); ?></a>
+		<!-- <a class="unavailable" href="#"><?php echo __('Discussions'); ?></a> -->
 		<a class="current" href="#"><?php echo $evidence['Evidence']['title'];?></a>
 	  </nav>
 
@@ -43,11 +43,11 @@
 			<div class = "evoke border-bottom"></div>
 
 			<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
-				<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Discussion');?></a></div>
+				<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Evidence');?></a></div>
 			<?php endif; ?>
 
 			<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
-				<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Delete Discussion');?></a></div>
+				<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Delete Evidence');?></a></div>
 			<?php endif; ?>
 
 	 	</div>
