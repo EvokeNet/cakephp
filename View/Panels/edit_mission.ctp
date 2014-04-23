@@ -285,7 +285,10 @@
 	</div>
 </section>
 
-<?php echo $this->Html->script('dossier_attachments'); ?>
+<?php 
+	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
+	echo $this->Html->script('dossier_attachments'); 
+?>
 
     <!-- necessary function to add remove the already existing questions -->
     <script type="text/javascript">
