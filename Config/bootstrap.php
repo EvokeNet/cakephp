@@ -120,6 +120,9 @@ CakeEventManager::instance()->attach(new PointListener());
 App::uses('NotificationsListener', 'Event');
 CakeEventManager::instance()->attach(new NotificationsListener());
 
+App::uses('BadgeListener', 'Event');
+CakeEventManager::instance()->attach(new BadgeListener());
+
 // App::uses('ClassRegistry', 'Utility');
 // App::uses('PointListener', 'Event');
 

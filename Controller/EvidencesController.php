@@ -185,25 +185,37 @@ class EvidencesController extends AppController {
 		        $this->getEventManager()->dispatch($event);
 
 
-		        //attribute pp to this user:
-				$this->loadModel('QuestPowerPoint');
-				$pps = $this->QuestPowerPoint->find('all', array(
+		        //attribute pp to this user if hasnt won from this very evidence:
+				$this->loadModel('UserPowerPoint');
+				$hasWonPowerPointsFromThis = $this->UserPowerPoint->find('first', array(
 					'conditions' => array(
-						'quest_id' => $me['Evidence']['quest_id']
+						'UserPowerPoint.user_id' => $this->getUserId(),
+						'UserPowerPoint.model' => 'Evidence',
+						'UserPowerPoint.foreign_key' => $me['Evidence']['id']
 					)
 				));
 
-				foreach($pps as $pp) {
-					$data['UserPowerPoint']['user_id'] = $me['Evidence']['user_id'];
-					$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
-					$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
-					$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity'] * 30);
-					$data['UserPowerPoint']['model'] = 'Evidence';
-					$data['UserPowerPoint']['foreign_key'] = $me['Evidence']['id'];
+				if(empty($hasWonPowerPointsFromThis)) {
 
-					$this->loadModel('UserPowerPoint');
-					$this->UserPowerPoint->create();
-					$this->UserPowerPoint->save($data);
+					$this->loadModel('QuestPowerPoint');
+					$pps = $this->QuestPowerPoint->find('all', array(
+						'conditions' => array(
+							'quest_id' => $me['Evidence']['quest_id']
+						)
+					));
+
+					foreach($pps as $pp) {
+						$data['UserPowerPoint']['user_id'] = $me['Evidence']['user_id'];
+						$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
+						$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
+						$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity'] * 30);
+						$data['UserPowerPoint']['model'] = 'Evidence';
+						$data['UserPowerPoint']['foreign_key'] = $me['Evidence']['id'];
+
+						$this->loadModel('UserPowerPoint');
+						$this->UserPowerPoint->create();
+						$this->UserPowerPoint->save($data);
+					}
 				}
 
 		        $this->Session->setFlash(__('The evidence has been saved'), 'flash_message');

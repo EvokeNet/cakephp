@@ -12,6 +12,8 @@ class NotificationsListener implements CakeEventListener {
 
             'Controller.Phase.completed' => 'notifyCompletedPhase',
 
+            //'Model.BadgesUser.notify' => 'notifyBadgeWon',
+
             'Controller.BasicTraining.completed' => 'notifyCompletedBasicTraining',
 
             'Model.Like.notify' => 'notifyLike',

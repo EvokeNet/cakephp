@@ -1195,7 +1195,7 @@ class PanelsController extends AppController {
 			unset($this->request->data['Power']);
 
 			$this->Badge->create();
-			if ($this->Badge->save($this->request->data)) {
+			if ($this->Badge->createWithAttachments($this->request->data)) {
 
 				$badge_id = $this->Badge->id;
 				//create questpowerpoints entries..
@@ -1287,6 +1287,31 @@ class PanelsController extends AppController {
 
 		$this->Evokation->id = $evo_id;
 		$this->Evokation->save($this->request->data);
+
+		//set as mission completed to each member of the evokation group
+		$members = $this->GroupsUser->find('all', array(
+			'conditions' => array(
+				'GroupsUser.group_id' => $evokation['Evokation']['group_id']
+			)
+		));
+		foreach ($members as $member) {
+			$previous = $this->UserMission->find('first', array(
+				'conditions' => array(
+					'UserMission.user_id' => $member['GroupsUser']['user_id'],
+					'UserMission.mission_id' => $evokation['Group']['mission_id']
+				)
+			));
+			$insert['UserMission']['completed'] = 1;
+			$insert['UserMission']['user_id'] = $member['GroupsUser']['user_id'];
+			$insert['UserMission']['mission_id'] = $evokation['Group']['mission_id'];
+			if(empty($previous)) {
+				$this->UserMission->create();
+			} else {
+				$this->UserMission->id = $previous['UserMission']['id'];
+				$insert['UserMission']['id'] = $previous['UserMission']['id'];
+			}
+			$this->UserMission->save($insert);
+		}
 		return $this->redirect(array('action' => 'index', 'pending'));
 	}
 
