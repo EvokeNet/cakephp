@@ -319,7 +319,7 @@
 						<?php if(!$allies): ?>
 
 							<img src = '<?= $this->webroot.'img/placeholders-allies.png' ?>' style = "width: 100%; max-height: 100%;">
-							<div style = "height:100%; display:table"><h1 style = "display: table-cell; vertical-align: middle;"><?= strtoupper(__('You have no allies at the moment')) ?></h1></div>
+							<!-- <div style = "height:100%; display:table"><h1 style = "display: table-cell; vertical-align: middle;"><?= strtoupper(__('You have no allies at the moment')) ?></h1></div> -->
 
 						<?php else: ?>
 
