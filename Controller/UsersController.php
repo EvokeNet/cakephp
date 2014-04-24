@@ -80,6 +80,7 @@ class UsersController extends AppController {
 					$user['User']['sex'] = $user_profile['gender'];
 					$user['User']['login'] = $user_profile['username'];
 					$user['User']['facebook'] = $user_profile['link'];
+					$user['User']['role_id'] = 3;
 
 					if($this->User->save($user)) {
 						$user['User']['id'] = $this->User->id;

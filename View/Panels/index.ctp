@@ -1344,6 +1344,7 @@
             var strU = '"ShowUser-' + usersId[i-1] + '"';
             var strRoleFormat = "<a href='#' onclick='document.getElementById(" + strU +").click();' class='userId'>{0}</a>";
             var strMissionFormat = "<a href='" + url + usersMissionId[i-1] +"/1' class='name' target='_blank'>{0}</a>";//
+            var urlU = getCorrectURL("users/dashboard/");
 
             var doc = {
                 <?php
@@ -1354,7 +1355,7 @@
                 	}
                 ?>
                 name: usersName[i-1],
-                nameFormat: "<a href='users/view/"+ usersId[i-1] +"' class='name' target='_blank'>{0}</a>"
+                nameFormat: "<a href='" + urlU + usersId[i-1] +"' class='name' target='_blank'>{0}</a>"
             };
             rows.push(doc);
             i++;
