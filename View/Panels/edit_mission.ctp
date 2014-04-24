@@ -17,8 +17,6 @@
 		<!-- Right Nav Section -->
 		<ul class="evoke right">
 
-			<!-- <li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $userid)); ?>"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/></a></li> -->
-			
 			<li class = "name">
 				<h3><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $userid)); ?>" class = "evoke top-bar-name"><?= $username[0] ?></a></h3>
 			</li>

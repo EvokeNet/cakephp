@@ -196,9 +196,29 @@ class UsersController extends AppController {
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
+		$user_photo = $this->User->Attachment->find('first', array(
+			'order' => array(
+				'Attachment.id DESC'
+			),
+			'conditions' => array(
+				'Attachment.model' => 'User',
+				'Attachment.foreign_key' => $id
+			)
+		));
+
 		$user_data = $this->Auth->user();
 		//debug($user_data);
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		$my_photo = $this->User->Attachment->find('first', array(
+			'order' => array(
+				'Attachment.id DESC'
+			),
+			'conditions' => array(
+				'Attachment.model' => 'User',
+				'Attachment.foreign_key' => $this->getUserId()
+			)
+		));
+
 
 		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
 
@@ -240,7 +260,7 @@ class UsersController extends AppController {
 
 		$allies = array();
 
-		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $this->getUserId())));
+		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
 		$are_friends = array();
 		//$allies = array();
@@ -268,8 +288,13 @@ class UsersController extends AppController {
 			$notifies = array();
 		}
 
-		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
-		$myevidences = $evidence = $this->User->Evidence->find('all', array(
+		$evidence = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			)
+		));
+
+		$myevidences = $this->User->Evidence->find('all', array(
 			'order' => array(
 				'Evidence.created DESC'
 			),
@@ -449,7 +474,7 @@ class UsersController extends AppController {
 			
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies', 'my_photo', 'user_photo'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');
@@ -706,17 +731,27 @@ class UsersController extends AppController {
 		//otherwise, you are not allowed to edit agents but
 		// yourself and will be redirected home
 		
-		// if($this->getUserRole() != 1) {
-		// 	if($id != $this->getUserId()) {
-		// 		$this->Session->setFlash(__("You can't edit other users. Permission denied."));	
-		// 		$this->redirect($this->referer());
-		// 	}
-		// }
+		if($this->getUserRole() != 1) {
+			if($id != $this->getUserId()) {
+				$this->Session->setFlash(__("You can't edit other users. Permission denied."), 'flash_message');	
+				$this->redirect(array('action' => 'edit', $this->getUserId()));
+			}
+		}
 
 
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$user = $this->User->find('first', $options);
 		//$this->set(compact('user'));
+
+		$user_photo = $this->User->Attachment->find('first', array(
+			'order' => array(
+				'Attachment.id DESC'
+			),
+			'conditions' => array(
+				'Attachment.model' => 'User',
+				'Attachment.foreign_key' => $id
+			)
+		));
 
 		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
 
@@ -733,10 +768,11 @@ class UsersController extends AppController {
 
 		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
 		
-		$this->set(compact('user', 'issues', 'selectedIssues', 'sumMyPoints'));
+		$this->set(compact('user', 'issues', 'selectedIssues', 'sumMyPoints', 'user_photo'));
 
 		if ($this->request->is(array('post', 'put'))) {
-			
+			// debug($this->request->data);
+			// die();
 			if (!empty($this->request->data)) {
 				$this->request->data['User']['role_id'] = $user['User']['role_id'];
 
@@ -754,7 +790,7 @@ class UsersController extends AppController {
 				    }
 				}
 			    
-			    if ($this->User->save($this->request->data)) {
+			    if ($this->User->createWithAttachments($this->request->data, true, $id)) {
 
 			    	$this->Auth->login($user);
 			    	//$this->Session->setFlash(__('The user has been saved.'));
@@ -770,6 +806,7 @@ class UsersController extends AppController {
 			$this->request->data = $this->User->find('first', $options);
 		}
 	}
+
 
 /**
  * delete method

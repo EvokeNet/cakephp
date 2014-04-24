@@ -144,6 +144,10 @@ class AppController extends Controller {
         
     }
 
+    public function getUserImage($userid) {
+
+    }
+
     public function getLevelPercentage($userPoints, $userLevel){
 
         $this->loadModel('Level');

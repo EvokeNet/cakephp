@@ -26,7 +26,15 @@
 
 		<!-- Right Nav Section -->
 		<ul class="right">
-			<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke top-bar icon"/></a></li>
+			<li>
+				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>">
+					<?php if($users['User']['photo_attachment'] == null) : ?>
+			  			<img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke top-bar icon"/>
+			  		<?php else : ?>
+			  			<img src="<?= $this->webroot.'files/attachment/attachment/'.$users['User']['photo_dir'].'/'.$users['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+			  		<?php endif; ?>
+				</a>
+			</li>
 			
 			<li class="name">
 				<h3><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $users['User']['id'])); ?>" class = "evoke top-bar-name"><?= sprintf(__('Hi %s'), $users['User']['name']) ?></a></h3>
@@ -252,27 +260,6 @@
 							}
 						?>
 					</div>
-					<!-- <div class ="button general red" style = "margin-top:30px; margin-left:30px"><?= __('This Week') ?></div>
-					<ul>
-						<li>
-							<h1>1</h1>
-							<img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>' class = "evoke dashboard users-icon">
-							<span>Leslie Knope</span>
-							<span>Level 10 | Points 110</span>
-						</li>
-						<li>
-							<h1>2</h1>
-							<img src = "https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon">
-							<span><?= $users['User']['name'] ?></span>
-							<span>Level 10 | Points 100</span>
-						</li>
-						<li>
-							<h1>3</h1>
-							<img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>' class = "evoke dashboard users-icon">
-							<span>Ron Swanson</span>
-							<span>Level 9 | Points 90</span>
-						</li>
-					</ul> -->
 				</div>
 
 			</div>
@@ -285,7 +272,15 @@
 				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%" style = "position: absolute; top: 0;"/>
 
 				<div class="row" style = "margin-top:10%">
-					  <div class="small-4 medium-4 large-4 columns"><a href = "https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
+					  <div class="small-4 medium-4 large-4 columns">
+					  	<a href = "#">
+					  		<?php if($user['User']['photo_attachment'] == null) : ?>
+			  					<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/>
+			  				<?php else : ?>
+			  					<img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>" class = "evoke dashboard user_pic"/>
+			  				<?php endif; ?>
+					  	</a>
+					  </div>
 					  <div class="small-8 medium-8 large-8 columns">
 					  	<div class = "evoke dashboard agent info">
 					  		<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
@@ -317,15 +312,18 @@
 					<div class = "evoke screen-box allies" style = "padding: 40px 20px">
 						<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
 							<?php foreach($allies as $ally): ?>
-								<li><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $ally['User']['id'])) ?>"><img src = "https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"><span><?= $ally['User']['name'] ?></span></a></li>
-						  <!-- <li><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>'><span>Leslie Knope</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>'><span>Ron Swanson</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/tom.jpg' ?>'><span>Tom Haverford</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/chris.jpg' ?>'><span>Chris Traeger</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/andy.jpg' ?>'><span>Andy Dwyer</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/ben.jpg' ?>'><span>Ben Wyatt</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/april.jpg' ?>'><span>April Ludgate</span></li> -->
-							<?php endforeach;?>
+								<li>
+									<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $ally['User']['id'])) ?>">
+										<?php if($ally['User']['photo_attachment'] == null) : ?>
+						  					<img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/>
+						  				<?php else : ?>
+						  					<img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/thumb_'.$ally['User']['photo_attachment'] ?>"/>
+						  				<?php endif; ?>
+										
+										<span><?= $ally['User']['name'] ?></span>
+									</a>
+								</li>
+						  	<?php endforeach;?>
 						</ul>
 					</div>
 

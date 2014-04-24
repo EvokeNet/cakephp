@@ -29,7 +29,13 @@
 
 	  <div class="small-2 medium-2 large-2 columns">
 	  	<div class="evoke evidence-tag text-align">
-	  		<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+	  		
+	  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
+				<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+			<?php else : ?>
+				<img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+			<?php endif; ?>
+	  		
 		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1></a>
 		 	
 		 	<div class = "evoke border-bottom"></div>

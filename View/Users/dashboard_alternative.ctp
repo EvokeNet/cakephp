@@ -52,7 +52,15 @@
 				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%"/>
 
 				<div class="row">
-					  <div class="small-4 medium-4 large-4 columns"><a href = "https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
+					  <div class="small-4 medium-4 large-4 columns">
+					  	<a href = "#">
+					  		<?php if($user['User']['photo_attachment'] == null) : ?>
+			  					<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/>
+			  				<?php else : ?>
+			  					<img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>" class = "evoke dashboard user_pic"/>
+			  				<?php endif; ?>
+					  	</a>
+					  </div>
 					  <div class="small-8 medium-8 large-8 columns evoke dashboard tag-padding">
 						<div class = "evoke dashboard agent info">
 							<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
@@ -102,23 +110,22 @@
 					<div class = "evoke screen-box allies" style = "padding: 40px 20px">
 
 						<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
-						  <li><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>'><span>Leslie Knope</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>'><span>Ron Swanson</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/tom.jpg' ?>'><span>Tom Haverford</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/chris.jpg' ?>'><span>Chris Traeger</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/andy.jpg' ?>'><span>Andy Dwyer</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/ben.jpg' ?>'><span>Ben Wyatt</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/april.jpg' ?>'><span>April Ludgate</span></li>
+							<?php foreach($allies as $ally): ?>
+								<li>
+									<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $ally['User']['id'])) ?>">
+										<?php if($ally['User']['photo_attachment'] == null) : ?>
+						  					<img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/>
+						  				<?php else : ?>
+						  					<img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/thumb_'.$ally['User']['photo_attachment'] ?>"/>
+						  				<?php endif; ?>
+										
+										<span><?= $ally['User']['name'] ?></span>
+									</a>
+								</li>
+						  	<?php endforeach;?>
 						</ul>
 
-						<!-- <div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>' class = "evoke dashboard users-icon"><span>Leslie Knope</span></div>
-						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>' class = "evoke dashboard users-icon"><span>Ron Swanson</span></div>
-						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/tom.jpg' ?>' class = "evoke dashboard users-icon"><span>Tom Haverford</span></div>
-						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/chris.jpg' ?>' class = "evoke dashboard users-icon"><span>Chris Traeger</span></div>
-						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/andy.jpg' ?>' class = "evoke dashboard users-icon"><span>Andy Dwyer</span></div>
-						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/ben.jpg' ?>' class = "evoke dashboard users-icon"><span>Ben Wyatt</span></div>
-						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/april.jpg' ?>' class = "evoke dashboard users-icon"><span>April Ludgate</span></div>
-						<div class = "evoke dashboard users-icon-position"><img src = '<?= $this->webroot.'img/test_users/ann.jpg' ?>' class = "evoke dashboard users-icon"><span>Ann Perkins</span></div> -->
+						
 					</div>
 
 				</div>
@@ -165,7 +172,7 @@
 			    		endforeach; 
 
 			    		foreach($myEvokations as $e):
-			    			echo $this->element('evokation_box', array('e' => $e, 'evokationFollowers' => $evokationFollowers));
+			    			echo $this->element('evokation_box', array('e' => $e, 'evokationFollowing' => $evokationsFollowing));
 						endforeach;
 					?>
 				  </div>				  
@@ -263,7 +270,7 @@
 
 					<div class = "evoke screen-box dashboard feed margin">
 						<ul>
-							<li>Ron Swanson added a new profile picture</li>
+							<!-- <li>Ron Swanson added a new profile picture</li>
 							<li>Ann Perkins created a new discussion</li>
 							<li>April Ludgate started a project</li>
 							<li>Ben Wyatt changed his profile picture</li>
@@ -274,7 +281,7 @@
 							<li>Ann Perkins started a project</li>
 							<li>Chris Traeger changed his profile picture</li>
 							<li>April Ludgate created a new Evokation Team</li>
-							<li>Ron Swanson finished a project</li>
+							<li>Ron Swanson finished a project</li> -->
 						</ul>
 					</div>
 				</div>

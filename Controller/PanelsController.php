@@ -1285,13 +1285,14 @@ class PanelsController extends AppController {
 		if(empty($evokation))
 			$this->redirect($this->referer());
 
+		$missionCompleted = 1;
 		$this->Evokation->id = $evo_id;
 		//it wasnt approved
 		if($this->request->data['Evokation']['approved'] == 0) {
 			$this->request->data['Evokation']['final_sent'] = 0;
+			$missionCompleted = 0;
 		}
 		$this->Evokation->save($this->request->data);
-
 
 
 		//set as mission completed to each member of the evokation group
@@ -1318,7 +1319,7 @@ class PanelsController extends AppController {
 					'UserMission.mission_id' => $evokation['Group']['mission_id']
 				)
 			));
-			$insert['UserMission']['completed'] = 1;
+			$insert['UserMission']['completed'] = $missionCompleted;
 			$insert['UserMission']['user_id'] = $member['GroupsUser']['user_id'];
 			$insert['UserMission']['mission_id'] = $evokation['Group']['mission_id'];
 			if(empty($previous)) {
@@ -1329,10 +1330,10 @@ class PanelsController extends AppController {
 			}
 			$this->UserMission->save($insert);
 
-			//dispatch mission completed
+			//dispatch mission completed or evokation failure
 			
 
-			if(!$badgeExists)
+			if(!$badgeExists || $missionCompleted == 0)
 				continue;
 
 			//check to see if he has a social innovator badge yet

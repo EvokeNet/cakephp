@@ -8,10 +8,14 @@
 			  <div class = "evoke edit-agent-tag">
 			  		<div class = "evoke text-align">
 			  			<h1><?= strtoupper(__('Evoke Account')) ?></h1>
-			  			<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "margin: 10%; width: 40%;"/>
+			  			<?php if(empty($user_photo)) :?>
+			  				<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "margin: 10%; width: 40%;"/>
+			  			<?php else : ?>
+			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$user_photo['Attachment']['dir'].'/thumb_'.$user_photo['Attachment']['attachment'] ?>" style = "margin: 10%; width: 40%;"/>
+			  			<?php endif; ?>
 		  			</div>
-		  			<div class = "evoke text-align">
-			  			<i class="fa fa-upload fa-5x"></i>
+		  			<div id="uploader" class = "evoke text-align">
+			  			<i id="imageUpload" class="fa fa-upload fa-5x"></i>
 		  			</div>
 
 		  			<div class = "evoke border-bottom"></div>
@@ -29,13 +33,14 @@
 
 			  <div class="small-9 medium-9 large-9 columns evoke no-padding">
 			  	<div class="evoke edit-bg users form">
-					<?php echo $this->Form->create('User', array('name' => 'editUser')); ?>
+					<?php echo $this->Form->create('User', array('name' => 'editUser', 'enctype' => 'multipart/form-data')); ?>
 						<?php
 							//echo $sumMyPoints;
 							echo $this->Form->input('id');
 							echo $this->Form->input('name', array('label' => __('Name'), 'class' => 'evoke'));
 							echo $this->Form->input('username', array('label' => __('Username')));
 							echo $this->Form->input('email', array('type' => 'email', 'required' => true));
+							echo '<div class="input file" style="display:none"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 							echo $this->Form->input('birthdate', array('type' => 'date', 'required' => true, 
 								'dateFormat' => 'MDY',
 						        'minYear'       => date('Y') - 100,
@@ -58,3 +63,23 @@
 		</div>
 	</div>
 </section>
+
+<?php 
+	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
+	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
+	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
+	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+?>
+<script type="text/javascript" charset="utf-8">
+	$("#imageUpload").css( 'cursor', 'pointer' );
+
+	$("#imageUpload").click(function() {
+	    $("#Attachment0Attachment").click();
+	});
+	$('#Attachment0Attachment').change(function() {
+		$('#path').remove();
+		var str = $('#Attachment0Attachment').val();
+		str = str.substring(str.lastIndexOf("\\") + 1);
+	    $('#uploader').append('<div id="path"><small>'+ str+'</small></div>');
+	});
+</script>
