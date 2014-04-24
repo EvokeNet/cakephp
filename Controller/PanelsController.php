@@ -621,7 +621,7 @@ class PanelsController extends AppController {
 		if ($this->request->is('post')) {
 			if($dossier_id == null) {
 				if($this->Dossier->createWithAttachments($this->request->data)) {
-					$this->Session->setFlash(__('The mission dossier has been updated.'));
+					//$this->Session->setFlash(__('The mission dossier has been updated.'));
 
 					if(isset($this->request->data['Attachment']['Old'])) {
 						//destroy the attachment that shouldn't be here nomore
@@ -632,7 +632,7 @@ class PanelsController extends AppController {
 				}
 			} else {
 				if($this->Dossier->createWithAttachments($this->request->data, true, $dossier_id)) {
-					$this->Session->setFlash(__('The mission dossier has been updated.'));
+					//$this->Session->setFlash(__('The mission dossier has been updated.'));
 
 					//destroy the attachment that shouldn't be here nomore
 					if(isset($this->request->data['Attachment']['Old'])) {

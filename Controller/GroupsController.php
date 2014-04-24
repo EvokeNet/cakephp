@@ -177,7 +177,8 @@ class GroupsController extends AppController {
 
 		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.group_id' => $id)));
 
-		
+		$iam_member = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
+
 		//check to see if i am the owner
 		if($this->isOwner($me, $id)) {
 			$flags['_owner'] = true;
@@ -201,7 +202,7 @@ class GroupsController extends AppController {
 
 		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $me)));
 
-		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints', 'myEvokation'));
+		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints', 'myEvokation', 'iam_member'));
 	}
 
 /**
@@ -251,7 +252,7 @@ class GroupsController extends AppController {
 				}
 
 				$this->Session->setFlash(__('The group has been saved.'), 'flash_message');
-				return $this->redirect(array('action' => 'index', $mission_id));
+				return $this->redirect(array('action' => 'view', $this->Group->id));
 			} else {
 				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
 			}

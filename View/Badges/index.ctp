@@ -1,4 +1,74 @@
-<div class="badges index">
+<?php
+
+	$this->extend('/Common/topbar');
+	$this->start('menu');
+
+	echo $this->element('header', array('user' => $user));
+	$this->end(); 
+
+?>
+
+<section class="evoke background">
+
+	<?= $this->element('menu', array('user' => $user)) ?>
+
+	<?= $this->element('left_titlebar', array('title' => __('Badges'))) ?>
+
+	<div class="row full-width">
+		<div class="small-11 small-centered columns">
+			<div class = "evoke black-bg badges-bg">
+				<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">
+				  <li>
+				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+				  	<h1> Badge </h1>
+				  	<p>Cras at tellus et lorem volutpat bibendum. Integer ut metus nunc. Phasellus nec auctor diam, in ornare magna. Phasellus hendrerit dolor augue, et feugiat ligula consequat vel.</p>
+			  	  </li>
+			  	  <li>
+				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+				  	<h1> Badge </h1>
+				  	<p>Cras at tellus et lorem volutpat bibendum. Integer ut metus nunc.</p>
+			  	  </li>
+			  	  <li>
+				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+				  	<h1> Badge </h1>
+				  	<p>Cras at tellus et lorem volutpat bibendum. Integer ut metus nunc. Phasellus nec auctor diam, in ornare magna. Phasellus hendrerit dolor augue, et feugiat ligula consequat vel.</p>
+			  	  </li>
+			  	  <li>
+				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+				  	<h1> Badge </h1>
+				  	<p>Cras at tellus et lorem volutpat bibendum. Integer ut metus nunc. Phasellus nec auctor diam, in ornare magna. Phasellus hendrerit dolor augue, et feugiat ligula consequat vel.</p>
+			  	  </li>
+			  	  <li>
+				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+				  	<h1> Badge </h1>
+				  	<p>Cras at tellus et lorem volutpat bibendum. Integer ut metus nunc.</p>
+			  	  </li>
+			  	  <li>
+				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+				  	<h1> Badge </h1>
+				  	<p>Cras at tellus et lorem volutpat bibendum. Integer ut metus nunc. Phasellus nec auctor diam, in ornare magna. Phasellus hendrerit dolor augue, et feugiat ligula consequat vel.</p>
+			  	  </li>
+			  	  <li>
+				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+				  	<h1> Badge </h1>
+				  	<p>Cras at tellus et lorem volutpat bibendum. Integer ut metus nunc. Phasellus nec auctor diam, in ornare magna. Phasellus hendrerit dolor augue, et feugiat ligula consequat vel.</p>
+			  	  </li>
+			  	  <li>
+				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+				  	<h1> Badge </h1>
+				  	<p>Cras at tellus et lorem volutpat bibendum. Integer ut metus nunc. Phasellus nec auctor diam, in ornare magna. Phasellus hendrerit dolor augue, et feugiat ligula consequat vel.</p>
+			  	  </li>
+			  	  <li>
+				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+				  	<h1> Badge </h1>
+				  	<p>Cras at tellus et lorem volutpat bibendum. Integer ut metus nunc. Phasellus nec auctor diam, in ornare magna. Phasellus hendrerit dolor augue, et feugiat ligula consequat vel.</p>
+			  	  </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- <div class="badges index">
 	<h2><?php echo __('Badges'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
@@ -42,3 +112,4 @@
 		<li><?php echo $this->Html->link(__('New Badge'), array('action' => 'add')); ?></li>
 	</ul>
 </div>
+ -->

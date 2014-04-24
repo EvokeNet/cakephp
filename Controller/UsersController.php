@@ -238,6 +238,8 @@ class UsersController extends AppController {
 
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
 
+		$allies = array();
+
 		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $this->getUserId())));
 
 		$are_friends = array();
@@ -247,13 +249,23 @@ class UsersController extends AppController {
 			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
 		}
 
+		$this->loadModel('Notification');
+
 		if(!empty($are_friends)){
 			$allies = $this->User->find('all', array(
 				'conditions' => array(
 					'OR' => $are_friends
 			)));
+
+			$notifies = $this->Notification->find('all', array(
+				'conditions' => array(
+					'OR' => $are_friends
+				), 'order' => array(
+					'Notification.created DESC'
+				)));
 		} else{
 			$allies = array();
+			$notifies = array();
 		}
 
 		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
@@ -437,7 +449,7 @@ class UsersController extends AppController {
 			
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');

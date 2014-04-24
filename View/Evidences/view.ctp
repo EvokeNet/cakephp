@@ -11,7 +11,9 @@
 
 ?>
 
-<section class="evoke background padding top-2">
+<section class="evoke background">
+
+	<?= $this->element('menu', array('user' => $user)) ?>
 
 	<?php echo $this->Session->flash(); ?>
 	

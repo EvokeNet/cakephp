@@ -306,10 +306,18 @@
 	margin-top:30px;
 }
 
-.evoke.dashboard.feed ul li{
-	color:#8e8e8e;
-	font-size:1.1vw;
+.evoke.dashboard.feed ul li, a{
+	color:#efefef!important;
+	font-size:1.0vw;
 	font-family: 'AlegreyaRegular';
+	/*line-height: 1.7em;*/
+}
+
+.evoke.dashboard.feed ul li{
+	border-bottom: 1px solid #8e8e8e;
+	padding-bottom: 5px;
+	margin-top: 10px;
+	width: 95%;
 }
 
 /*.evoke.allies{
@@ -379,66 +387,6 @@
 	top: 27%; 
 	left: 20%; 
 	width: 40%;
-}
-
-/*** Alternative Dashboard ***/
-
-.evoke.dashboard.tag{
-	background-color:#fff;
-	border:5px solid #000;
-	border-radius:20px;
-	max-width:550px;
-	margin: 0px auto 50px;
-	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
-	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
-	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
-	overflow:hidden;
-	position: relative;
-}
-
-.evoke.dashboard.tag-padding{
-	padding: 10px 10px 0px 0px;
-}
-
-.evoke.dashboard.position.panel-margin{
-	margin-right: 100px;
-}
-
-.evoke.dashboard.user_pic{
-	max-height: 150px; 
-	/*max-width: 120px;*/ 
-	margin:10px 20px;
-}
-
-.evoke.dashboard.bottom-bar{
-	text-align: start;
-	margin-left: 50%;
-	/*margin-top: -15px;*/
-}
-
-.evoke.dashboard.badges-icon{
-	margin-right:5px; 
-	padding-bottom:10px;
-}
-
-.evoke.dashboard.users-icon-position{
-	/*float:left;*/
-	display:inline-block;
-	width: 100px;
-	text-align: center;
-	margin: 0px auto 30px;
-}
-
-.evoke.dashboard.users-icon-position span{
-	display:block;
-	color:#fff;
-	font-family: 'AlegreyaRegular';
-}
-
-.evoke.dashboard.users-icon{
-	max-height: 90px;
-	max-width: 90px;
-	/*margin: 0px 10px 20px 0px;*/
 }
 
 .evoke.login-lightbox{
@@ -512,3 +460,34 @@
 /*.evoke.edit-bg div.input.text,.textarea,.email{
 	display: -webkit-box;
 }*/
+
+.evoke.leaderboard h1, h2, h3{
+	color:#fff;
+	font-family:'AlegreyaRegular';
+}
+
+.evoke.leaderboard h2{
+	font-family:'AlegreyaBold';
+}
+
+.evoke.leaderboard h3 {
+	font-size:2.5vw;
+}
+
+.evoke.leaderboard h4 {
+	display: inline;
+	font-size: 1.8vw;
+	margin-left: 10px;
+	color:#fff;
+	font-family:'AlegreyaRegular'!important;
+}
+
+.evoke.leaderboard li {
+	text-align:center;
+}
+
+.evoke.leaderboard-border{
+	border-bottom:1px solid #5e5e5e;
+	padding-bottom:10px;
+	margin-bottom:20px;
+}

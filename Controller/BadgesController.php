@@ -46,6 +46,11 @@ class BadgesController extends AppController {
 	public function index() {
 		$this->Badge->recursive = 0;
 		$this->set('badges', $this->Paginator->paginate());
+
+		$this->loadModel('User');
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$this->set(compact('user'));
 	}
 
 /**

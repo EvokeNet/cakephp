@@ -6,7 +6,9 @@
 
 ?>
 
-<section class="evoke background padding top-2">
+<section class="evoke background">
+
+	<?= $this->element('menu', array('user' => $user)) ?>
 
 	<nav class="evoke breadcrumbs">
 	  <?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>

@@ -468,14 +468,14 @@ button, div, p, span, a,
 .evoke .button.general {
 	background: #1f8cb2;
 	color: #ffffff;
-	font-size: 1.0vw;
+	/*font-size: 1.0vw;*/
 	/*font-size: 0.9em;*/
 	/*border-radius: 5px;
 	padding: 0.4em 2em;*/
 	border-radius: 10px;
 	/*padding: 0.4em 1.5em 0.8em;*/
 	padding: 0.7em 1.4em;
-	margin-right: 10px;
+	/*margin-right: 10px;*/
 	border-right: 3px solid #125167;
 	border-bottom: 3px solid #125167;
 }
@@ -1035,7 +1035,11 @@ button, div, p, span, a,
 	font-family: 'AlegreyaRegular';
 }
 
-.evoke.comment-box h4, p{
+.evoke.comment-box p{
+	font-size:1.1vw;
+}
+
+.evoke.comment-box p{
 	font-size:1.1vw;
 }
 
@@ -1311,4 +1315,169 @@ button, div, p, span, a,
 	position: relative;
 	top: 25%;
 	line-height: 1.0em;
+}
+
+/*** Alternative Dashboard ***/
+
+.evoke.dashboard.tag{
+	background-color:#fff;
+	border:5px solid #000;
+	border-radius:20px;
+	max-width:550px;
+	margin: 0px auto 50px;
+	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	overflow:hidden;
+	position: relative;
+}
+
+.evoke.dashboard.tag-padding{
+	padding: 10px 10px 0px 0px;
+}
+
+.evoke.dashboard.position.panel-margin{
+	margin-right: 100px;
+}
+
+.evoke.dashboard.user_pic{
+	max-height: 150px; 
+	/*max-width: 120px;*/ 
+	margin:10px 20px;
+}
+
+.evoke.dashboard.bottom-bar{
+	text-align: start;
+	margin-left: 50%;
+	/*margin-top: -15px;*/
+}
+
+.evoke.dashboard.badges-icon{
+	margin-right:5px; 
+	padding-bottom:10px;
+}
+
+.evoke.dashboard.users-icon-position{
+	/*float:left;*/
+	display:inline-block;
+	width: 100px;
+	text-align: center;
+	margin: 0px auto 30px;
+}
+
+.evoke.dashboard.users-icon-position span{
+	display:block;
+	color:#fff;
+	font-family: 'AlegreyaRegular';
+}
+
+.evoke.dashboard.users-icon{
+	max-height: 90px;
+	max-width: 90px;
+	/*margin: 0px 10px 20px 0px;*/
+}
+
+.evoke.dashboard.agent_tag{
+	position: relative; 
+	height:100%; 
+	min-height:250px;
+}
+
+.evoke.dashboard.agent.position{
+	position: absolute; 
+	top: 25%; 
+	left: 10%; 
+	/*width:70%;*/
+}
+
+.evoke.dashboard.agent-data{
+	text-align: center; 
+	width: 90%; 
+	margin: 20px auto; 
+	border-bottom: 1px solid #a7a7a7;
+}
+
+.evoke.dashboard.agent-data i{
+	color:#999999; 
+	padding-bottom:20px
+}
+
+.evoke.dashboard.agent-data p{
+	padding: 20px 0px 5px;
+	font-family: 'AlegreyaRegular';
+	font-size: 1.1vw;
+}
+
+.evoke.dashboard.agent-data.border-top{
+	border-top: 1px solid #a7a7a7;
+}
+
+.evoke.group.agent.info{
+	/*color:#000;*/
+	/*font-weight:bold;*/
+	/*float:left;*/
+	/*width: 80%;*/
+	/*clear:both;*/
+	padding: 10px 20px;
+}
+
+.evoke.group.agent.info h4{
+	font-size: 2.0vw;
+	font-weight:bold;
+	line-height: 1.0em;
+	font-family: 'AlegreyaRegular';
+	padding:10px 0px;
+}
+
+.evoke.group.agent.info h5{
+	font-size:1.1vw;
+	line-height: 1.5em;
+	font-weight:bold;
+	/*text-align: start;*/
+	font-family: 'AlegreyaRegular';
+	clear: left;
+}
+
+.evoke.group.agent.info h5 div{
+	color: #1f8cb2; 
+	display: inline; 
+	font-weight:bold;
+	font-family: 'AlegreyaRegular';
+}
+
+.evoke.group.agent.info h6{
+	font-size: 0.6vw; 
+	color: #a2a2a2;
+	line-height: 1.0em;
+	font-weight:bold;
+	text-align: start;
+	font-family: 'AlegreyaRegular';
+	clear: left;
+}
+
+.evoke.group.agent-info h5{
+	color: #1f8cb2; 
+	font-size:1.1vw;
+	line-height: 1.5em;
+	display: inline; 
+	font-weight:bold;
+	font-family: 'AlegreyaRegular';
+}
+
+.evoke.group.agent-info{
+	padding-bottom: 20px;
+}
+
+.evoke .black-bg{
+	background-color:#000;
+	border-radius:20px;
+	padding:30px;
+	margin-bottom:50px;
+}
+
+.evoke .gray-solid-bg{
+	background-color:#404040;
+	border-radius:10px;
+	padding:10px;
+	margin-bottom:50px;
 }
