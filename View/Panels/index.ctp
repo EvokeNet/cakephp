@@ -390,7 +390,7 @@
 								<legend><?php echo __('Change status') .': '. $e['Evokation']['title']; ?></legend>
 								<?php
 									echo $this->Form->hidden('id', array('value' => $e['Evokation']['id']));
-									echo $this->Form->radio('approved', array(0 => 'Pending', 1 => 'Approved'), array('default' => $e['Evokation']['approved']));
+									echo $this->Form->radio('approved', array(0 => 'Pending', 1 => 'Approved', -1 => 'Unapproved'), array('default' => $e['Evokation']['approved']));
 								?>
 							</fieldset>
 								<button class="button tiny" type="submit">
