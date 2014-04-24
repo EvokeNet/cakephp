@@ -1323,8 +1323,9 @@ button, div, p, span, a,
 	background-color:#fff;
 	border:5px solid #000;
 	border-radius:20px;
-	max-width:550px;
-	margin: 0px auto 50px;
+	/*max-width:550px;*/
+	/*margin: 0px auto 50px;*/
+	margin: 0px -2% 50px;
 	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
@@ -1341,7 +1342,8 @@ button, div, p, span, a,
 }
 
 .evoke.dashboard.user_pic{
-	max-height: 150px; 
+	/*max-height: 150px;*/ 
+	max-height: 7em;
 	/*max-width: 120px;*/ 
 	margin:10px 20px;
 }
