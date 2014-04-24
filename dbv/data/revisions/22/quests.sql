@@ -1,0 +1,1 @@
+ALTER TABLE  `quests` ADD  `todo_list` VARCHAR( 120 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER  `phase_id`;
