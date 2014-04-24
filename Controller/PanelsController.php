@@ -8,7 +8,7 @@ class PanelsController extends AppController {
 * @var array
 */
 	public $components = array('Paginator','Access');
-	public $uses = array('User', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'MissionIssue', 'Mission', 'Phase', 'Evokation',
+	public $uses = array('User', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation',
 		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level', 'AdminNotification');
 	public $user = null;
 	public $helpers = array('Media.Media', 'Chosen.Chosen');
@@ -121,7 +121,7 @@ class PanelsController extends AppController {
 			$pending_evokations = $this->Evokation->find('all', array(
 				'conditions' => array(
 					'Evokation.final_sent' => 1,
-					'Evokation.approved' => 0
+					'Evokation.approved' => null
 				)
 			));
 
@@ -1286,7 +1286,13 @@ class PanelsController extends AppController {
 			$this->redirect($this->referer());
 
 		$this->Evokation->id = $evo_id;
+		//it wasnt approved
+		if($this->request->data['Evokation']['approved'] == 0) {
+			$this->request->data['Evokation']['final_sent'] = 0;
+		}
 		$this->Evokation->save($this->request->data);
+
+
 
 		//set as mission completed to each member of the evokation group
 		$members = $this->GroupsUser->find('all', array(

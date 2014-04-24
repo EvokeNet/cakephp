@@ -390,7 +390,8 @@
 								<legend><?php echo __('Change status') .': '. $e['Evokation']['title']; ?></legend>
 								<?php
 									echo $this->Form->hidden('id', array('value' => $e['Evokation']['id']));
-									echo $this->Form->radio('approved', array(0 => 'Pending', 1 => 'Approved', -1 => 'Unapproved'), array('default' => $e['Evokation']['approved']));
+
+									echo $this->Form->radio('approved', array(0 => 'Unapproved', 1 => 'Approved'), array('default' => $e['Evokation']['approved']));
 								?>
 							</fieldset>
 								<button class="button tiny" type="submit">
@@ -1737,10 +1738,10 @@
             var urlG = getCorrectURL("groups/view/");
             var urlE = getCorrectURL("evokations/view/");
 
-            if(eStatus[i-1] == 0) {
-            	var str = "Pending";
-            }else{
+            if(eStatus[i-1] == 1) {
             	var str = "Approved";
+            }else{            	
+            	var str = "Pending";
             }
 
             var strE = '"ShowEvokationStatus-' + eId[i-1] + '"';

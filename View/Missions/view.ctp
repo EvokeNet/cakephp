@@ -159,32 +159,19 @@
 			  <dd><a href="#panel2-3"><?php echo __('My evidences');?></a></dd>
 			</dl>
 			<div class="tabs-content">
-			  <div class="content active" id="panel2-1">
-			  </div>
 			  <div class="content" id="panel2-2">
-			    <?php
-			    	foreach($evidences as $e):
-			    		//show only evidences related to this particular mission/phase
-				   		if($e['Evidence']['mission_id'] == $mission['Mission']['id'] && $e['Evidence']['phase_id'] == $missionPhase['Phase']['id']): ?>
-
-				   			<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
-				   			<p><?php echo substr($e['Evidence']['content'], 0, 200);?></p>
-						
-							
-		    			<hr class="sexy_line" />
-		    	<?php 
-		    			endif;
-		    		endforeach; 
-		    	?>
+			    <?php foreach($evidences as $e): ?>
+			   			<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
+				   		<p><?php echo substr($e['Evidence']['content'], 0, 200);?></p>
+						<hr class="sexy_line" />
+		    	<?php endforeach; ?>
 			  </div>
 			  <div class="content" id="panel2-3">
-			  		<?php   	
-			  	  	foreach ($my_evidences as $e) : ?>
-
-						<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
-				    		<p><?php echo substr($e['Evidence']['content'], 0, 200);?></p>
-						
-					<?php endforeach; ?>
+			  	<?php foreach($evidences as $e): ?>
+			   			<h4><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h4>
+				   		<p><?php echo substr($e['Evidence']['content'], 0, 200);?></p>
+						<hr class="sexy_line" />
+		    	<?php endforeach; ?>
 			  </div>
 			</div>
 

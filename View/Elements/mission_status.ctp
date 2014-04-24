@@ -45,7 +45,7 @@
 							$phaseDone = "dev";
 
 					?>
-					<a href = "<?php echo $this->Html->url(array('controller'=>'missions', 'action' => 'view', $phase['Mission']['id'], $phase['Phase']['id'])); ?>"><h2 class = "evoke mission status <?=$phaseDone ?>"><?= strtoupper($phase['Phase']['name'])?></h2></a>
+					<a href = "<?php echo $this->Html->url(array('controller'=>'missions', 'action' => 'view', $phase['Mission']['id'], $phase['Phase']['position'])); ?>"><h2 class = "evoke mission status <?=$phaseDone ?>"><?= strtoupper($phase['Phase']['name'])?></h2></a>
 					<div class = "evoke mission circle-position"><div class="evoke mission circle <?=$phaseDone ?>"></div></div>
 					<div class = "evoke mission bar-position">
 						<div class="evoke mission status progress <?=$phaseDone ?>" style="">

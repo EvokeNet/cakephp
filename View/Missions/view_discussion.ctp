@@ -266,12 +266,19 @@
 			  <div class="content active" id="panel2-1">
 				<?php 
 		    		//Lists all projects and evidences
-		    		foreach($evidences as $e): 
-		    				echo $this->element('evidence_box', array('e' => $e)); 
+		    		foreach($liked_evidences as $likeds): 
+		    				foreach ($likeds as $e) {
+		    					echo $this->element('evidence_box', array('e' => $e)); 
+		    				}
 		    		endforeach; 
 	    		?>
 			  </div>
 			  <div class="content" id="panel2-2">
+			  		<?php 
+			  			foreach($evidences as $e): 
+			   				echo $this->element('evidence_box', array('e' => $e)); 
+		    			endforeach; 
+		    		?>
 			  </div>
 			</div>
 		</div>

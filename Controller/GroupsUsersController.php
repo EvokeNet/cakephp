@@ -551,6 +551,7 @@ class GroupsUsersController extends AppController {
 		$insert['Evokation']['id'] = $id;
 		$insert['Evokation']['sent'] = 1;
 		$insert['Evokation']['final_sent'] = 1;
+		$insert['Evokation']['approved'] = null;
 
 		$this->loadModel('Evokation');
 		$this->Evokation->id = $id;
