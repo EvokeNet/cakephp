@@ -486,10 +486,13 @@ class UsersController extends AppController {
 	        $this->getEventManager()->dispatch($event);
 	        break;
 		}
-			
+		
+		$this->loadModel('Badge');
+		$badges = $this->Badge->find('all');
+
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies', 'my_photo', 'user_photo'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies', 'my_photo', 'user_photo', 'badges'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');
