@@ -20,15 +20,16 @@
 
 			<ul class="no-bullet">
 				<?php foreach ($users as $usr): ?>
-					<?php if ($usr['User']['facebook_id']): ?>
+					<div class="image circle">
+						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['User']['id'])) ?>">
+							<?php if($usr['User']['photo_attachment'] == null) : ?>
+								<img src = "https://graph.facebook.com/<?php echo $usr['User']['facebook_id']; ?>/picture?type=large">
+							<?php else : ?>
+								<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['User']['photo_dir'].'/'.$usr['User']['photo_attachment'] ?>" />
+							<?php endif; ?>
+						</a>
+					</div>
 						
-						<div class="image circle">
-							<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['User']['id'])) ?>">
-								<img src="https://graph.facebook.com/<?php echo $usr['User']['facebook_id']; ?>/picture?type=large" />
-							</a>
-						</div>
-						
-					<?php endif ?>
 					<li><?php $test = explode(' ', $usr['User']['name']); echo $test[0]; ?></li>
 				<?php endforeach ?>
 

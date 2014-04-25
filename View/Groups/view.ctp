@@ -79,7 +79,16 @@
 			  	<div class = "evoke screen-box allies" style = "padding: 40px 20px;">
 			  		<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
 						<?php foreach($groupsUsers as $g): ?>
-							<li><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $g['User']['id'])) ?>"><img src = "https://graph.facebook.com/<?php echo $g['User']['facebook_id']; ?>/picture?type=large"><span><?= $g['User']['name'] ?></span></a>
+							<li>
+								<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $g['User']['id'])) ?>">
+									<?php if($g['User']['photo_attachment'] == null) : ?>
+										<img src = "https://graph.facebook.com/<?php echo $g['User']['facebook_id']; ?>/picture?type=large">
+									<?php else : ?>
+										<img src="<?= $this->webroot.'files/attachment/attachment/'.$g['User']['photo_dir'].'/'.$g['User']['photo_attachment'] ?>" />
+									<?php endif; ?>
+
+									<span><?= $g['User']['name'] ?></span>
+								</a>
 								<?php if($flags['_owner'] && $group['User']['id'] != $g['User']['id']) {?>	
 							 		<a href="<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'delete', $g['User']['id'])); ?>" class="button general" style = "margin-top: 10px;"><?php echo __('Remove user');?></a>
 							 	<?php } ?>

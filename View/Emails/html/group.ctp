@@ -14,7 +14,13 @@
   <h2 style = "font-size:1.5em; color:#fff; font-weight:bold"><?php echo sprintf(__('You have one invite request for your group %s'), $group['Group']['title']);?></h2>
 
   <div style = "background-color:#fff; min-height: 150px; padding: 20px; border-radius: 10px; border: 2px solid #000; ">
-    <div style = "position:relative; float:left"><img src="https://graph.facebook.com/<?php echo $sender['User']['facebook_id']; ?>/picture?type=large"/></div>
+    <div style = "position:relative; float:left">
+        <?php if($sender['User']['photo_attachment'] == null) : ?>
+            <img src = "https://graph.facebook.com/<?php echo $sender['User']['facebook_id']; ?>/picture?type=large">
+        <?php else : ?>
+            <img src="<?= $this->webroot.'files/attachment/attachment/'.$sender['User']['photo_dir'].'/'.$sender['User']['photo_attachment'] ?>" />
+        <?php endif; ?>
+    </div>
     <div style = "margin-left: 160px;">
       <ul style = "list-style:none">
         <li><?php echo $sender['User']['name'];?></li>
