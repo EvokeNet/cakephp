@@ -19,18 +19,18 @@
 		<div class="small-11 small-centered columns">
 
 		<dl class="tabs" data-tab style = "margin-bottom:20px!important">
-			<dd class="active"><a href="#panelXP"><?= __('Levels')?></a></dd>
+			<dd class="active"><a id="xp" href="#panelXP"><?= __('Levels')?></a></dd>
 			<?php 
 				$index = 1;
 				foreach ($power_points as $pp) {
-					echo '<dd><a href="#panel2-'. $index .'">'. $pp['PowerPoint']['name'] .'</a></dd>';
+					echo '<dd><a id="pp-'. $index.'" href="#panel2-'. $index .'">'. $pp['PowerPoint']['name'] .'</a></dd>';
 					$index++;
 				}
 			?>
 		</dl>
 
 		<div class="evoke black-bg leaderboard">
-			<h1><?= sprintf(__("Your position: %s"), 10) ?>
+			<h1><?= __("Your position: ") ?> <span id="positionHolder">5</span></h1>
 			<div class="tabs-content evoke gray-solid-bg">
 				<div class="content active" id="panelXP">
 
@@ -41,45 +41,36 @@
 						<li><h2><?= strtoupper(__("XP")) ?></h2></li>
 						<?php 
 							$pos = 1;
-							$zeros = array();
-							foreach ($users as $usr) {
-								if(isset($points_users[$usr['User']['id']])) {?>
-
+							foreach ($points_users as $p => $point) {
+								foreach ($point as $usr) { 
+									if($usr['id'] == $user['User']['id'])
+										$position[0] = $pos;
+									?>
 									<li><h3 style = "color:#1f8cb2"><?= $pos ?></h3></li>
-									<li><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>' class = "evoke dashboard users-icon"><h4><?= $usr['User']['name'] ?></h4></li>
-									<li><h3><?= $points_users['Level'][$usr['User']['id']] ?></h3></li>
-									<li><h3><?= $points_users[$usr['User']['id']] ?></h3></li>
-									<span class = "evoke leaderboard-border"></span>
 
-								<?php
-									$pos++;	
-								} else {
-									$zeros[] = $usr;
-								}	
+									<li>
+										<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
+										<?php if($usr['photo_attachment'] == null) : ?>
+			  								<div>
+			  									<img src="https://graph.facebook.com/<?php echo $usr['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon"/>
+			  								</div>
+			  								<h4><?= $usr['name'] ?></h4>
+			  							<?php else : ?>
+			  								<div>
+			  									<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/thumb_'.$usr['photo_attachment'] ?>" class = "evoke dashboard users-icon"/>
+			  								</div>
+			  								<h4><?= $usr['name'] ?></h4>
+			  							<?php endif; ?>
+			  							</a>
+			  						</li>
+		  							<li><h3><?= $usr['level']?></h3></li>
+		  							<li><h3><?= $p ?></h3></li>
+		  							<span class = "evoke leaderboard-border"></span>
+									<?php 
+									$pos++;
+								}
 							}
-							foreach ($zeros as $zero) {
-								// echo '<li>';
-								// echo '<h1>'. $pos .'</h1>';
-								// echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
-								// echo '<span>'. $zero['User']['name'] . '</span>';
-								// echo '<span>Level 0 | Points 0</span>';
-								// echo '</li>';?>
-
-								<li><h3 style = "color:#1f8cb2"><?= $pos ?></h3></li>
-								<li><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>' class = "evoke dashboard users-icon"><h4><?= $usr['User']['name'] ?></h4></li>
-								<li><h3>0</h3></li>
-								<li><h3>0</h3></li>
-
-							<?php
-								$pos++;	
-							}	
 						?>
-					  <li><!-- Your content goes here --></li>
-					  <li><!-- Your content goes here --></li>
-					  <li><!-- Your content goes here --></li>
-					  <li><!-- Your content goes here --></li>
-					  <li><!-- Your content goes here --></li>
-					  <li><!-- Your content goes here --></li>
 					</ul>
 
 				</div>
@@ -87,31 +78,43 @@
 					$index = 1;
 					foreach ($power_points as $pp) {
 						echo '<div class="content" id="panel2-'. $index .'">';
-							echo '<ul>';
-							$zeros = array();
+							echo '<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">';
+							?>
+							<li><h2><?= strtoupper(__("Position")) ?></h2></li>
+							<li><h2><?= strtoupper(__("Agent")) ?></h2></li>
+							<li><h2><?= strtoupper(__("Power")) ?></h2></li>
+							<li><h2><?= strtoupper(__("Points")) ?></h2></li>
+							<?php
 							$pos = 1;
-							foreach ($users as $usr) {
-								if(isset($powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']])) {
-									echo '<li>';
-									echo '<h1>'. $pos .'</h1>';
-									echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
-									echo '<span>'. $usr['User']['name'] . '</span>';
-									echo '<span> |'. $pp['PowerPoint']['name'] .' Points: '.$powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']].' pts</span>';
-									echo '</li>';
-									$pos++;	
-								} else {
-									$zeros[] = $usr;
+							foreach ($powerpoints_users[$pp['PowerPoint']['id']] as $pps => $ppusr) {
+								foreach ($ppusr as $usr) {
+									if($usr['id'] == $user['User']['id'])
+										$position[$index] = $pos;
+								 	?>
+									<li><h3 style = "color:#1f8cb2"><?= $pos ?></h3></li>
+
+									<li>
+										<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
+										<?php if($usr['photo_attachment'] == null) : ?>
+				  							<div>
+				  								<img src="https://graph.facebook.com/<?php echo $usr['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon"/>
+				  							</div>
+				  							<h4><?= $usr['name'] ?></h4>
+				  						<?php else : ?>
+				  							<div>
+				  								<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/thumb_'.$usr['photo_attachment'] ?>" class = "evoke dashboard users-icon"/>
+				  							</div>
+				  							<h4><?= $usr['name'] ?></h4>
+				  						<?php endif; ?>
+				  						</a>
+				  					</li>
+				  					<li><h3><?= $pp['PowerPoint']['name']?></h3></li>
+				  					<li><h3><?= $pps ?></h3></li>
+		  							<span class = "evoke leaderboard-border"></span>
+									<?php 
+									
+									$pos++;
 								}
-								
-							}
-							foreach ($zeros as $zero) {
-								echo '<li>';
-								echo '<h1>'. $pos .'</h1>';
-								echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
-								echo '<span>'. $zero['User']['name'] . '</span>';
-								echo '<span>|'. $pp['PowerPoint']['name'] .' Points: 0 pts</span>';
-								echo '</li>';
-								$pos++;	
 							}								
 							echo '</ul>';
 
@@ -127,3 +130,27 @@
 		
 	</div>
 </section>
+
+
+
+<?php 
+	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
+	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
+	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
+	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+?>
+<script type="text/javascript" charset="utf-8">
+	$("#positionHolder").text('<?= $position[0]?>');
+
+	$("#xp").click(function() {
+	   	$("#positionHolder").text('<?= $position[0]?>');
+	});
+	<?php 
+		$i = 1;
+		foreach ($power_points as $pp) {
+			echo '$("#pp-'. $i.'").click(function() { $("#positionHolder").text("' . $position[$i]. '"); });';
+			$i++;
+		}
+
+	?>
+</script>

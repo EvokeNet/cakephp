@@ -2,19 +2,17 @@
 	<div class="row evoke evidence blue-box">
 		<div class="small-2 medium-2 large-2 columns">
 	  		<div class = "evoke text-align">
+	  			
 	  			<?php if($e['User']['photo_attachment'] == null) : ?>
 				  	<img src="https://graph.facebook.com/<?php echo $e['User']['facebook_id']; ?>/picture?type=large" width="90px"/>
 				<?php else : ?>
 				  	<img src="<?= $this->webroot.'files/attachment/attachment/'.$e['User']['photo_dir'].'/thumb_'.$e['User']['photo_attachment'] ?>" width="90px"/>
 				<?php endif; ?>
 				<h6><?= $e['User']['name']?></h6>
-			</a>
-  		</div>
-	</div>
+  			</div>
+		</div>
 
 		<div class="small-6 medium-6 large-7 columns">
-			<!-- <h1><?php echo $this->Html->link($e['Evidence']['title'], array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?></h1> -->
-
 			<h1><?= $e['Evidence']['title']?></h1>
 		</div>
 

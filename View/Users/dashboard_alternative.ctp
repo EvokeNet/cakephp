@@ -74,7 +74,7 @@
 				</div>
 
 				<div class = "evoke dashboard agent-data border-top">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ac ipsum pulvinar, lobortis purus sed, sodales orci. Suspendisse viverra elementum diam non auctor. Etiam convallis tellus ac egestas euismod. Pellentesque et leo sed odio sodales lacinia sed vestibulum sem.</p>
+					<p><?= $user['User']['biography']?></p>
 				</div>
 
 				<div class = "evoke dashboard agent-data">
@@ -161,7 +161,7 @@
 		</div>
 		<div class="small-9 medium-9 large-9 columns padding-right">
 
-			<div class="evoke tabs-content screen-box dashboard panel">
+			<div class="evoke screen-box dashboard leadercloud margin">
 				  <div class="content active" id="panel2-1">
 			    	<?php 
 			    	//Lists all projects and evidences
@@ -200,14 +200,14 @@
 									foreach ($point as $usr) {
 										echo '<li>';
 										echo '<h1>'. $pos .'</h1>';
-										if($usr['User']['photo_attachment'] == null) : ?>
-			  								<img src="https://graph.facebook.com/<?php echo $usr['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon"/>
+										if($usr['photo_attachment'] == null) : ?>
+			  								<img src="https://graph.facebook.com/<?php echo $usr['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon"/>
 			  							<?php else : ?>
-			  								<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['User']['photo_dir'].'/thumb_'.$usr['User']['photo_attachment'] ?>" class = "evoke dashboard users-icon"/>
+			  								<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/thumb_'.$usr['photo_attachment'] ?>" class = "evoke dashboard users-icon"/>
 			  							<?php endif;
 
-										echo '<span>'. $usr['User']['name'] . '</span>';
-										echo '<span>Level '. $usr['User']['level'] .' | Points '. $p .'</span>';
+										echo '<span>'. $usr['name'] . '</span>';
+										echo '<span>Level '. $usr['level'] .' | Points '. $p .'</span>';
 										echo '</li>';
 										$pos++;
 									}
