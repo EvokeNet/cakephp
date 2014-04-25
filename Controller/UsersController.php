@@ -196,29 +196,9 @@ class UsersController extends AppController {
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
-		$user_photo = $this->User->Attachment->find('first', array(
-			'order' => array(
-				'Attachment.id DESC'
-			),
-			'conditions' => array(
-				'Attachment.model' => 'User',
-				'Attachment.foreign_key' => $id
-			)
-		));
-
 		$user_data = $this->Auth->user();
 		//debug($user_data);
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-		$my_photo = $this->User->Attachment->find('first', array(
-			'order' => array(
-				'Attachment.id DESC'
-			),
-			'conditions' => array(
-				'Attachment.model' => 'User',
-				'Attachment.foreign_key' => $this->getUserId()
-			)
-		));
-
 
 		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
 
@@ -294,15 +274,14 @@ class UsersController extends AppController {
 			)
 		));
 
-		$myevidences = $this->User->Evidence->find('all', array(
-			'order' => array(
-				'Evidence.created DESC'
-			),
-			'conditions' => array(
-				'Evidence.user_id' => $id
-			)
-		));
-		//debug($evidence);
+		// $myevidences = $this->User->Evidence->find('all', array(
+		// 	'order' => array(
+		// 		'Evidence.created DESC'
+		// 	),
+		// 	'conditions' => array(
+		// 		'Evidence.user_id' => $id
+		// 	)
+		// ));
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array(
@@ -343,23 +322,24 @@ class UsersController extends AppController {
 		}
 
 		$this->loadModel('Group');
-		$groups = $this->Group->find('all', array('joins' => array(
-	        array(
-	            'table' => 'groups_users',
-	            'alias' => 'GroupsUsers',
-	            'type' => 'INNER',
-	            'conditions' => array(
-	                'GroupsUsers.user_id' => $id
-	            )
-	        ), array(
-	            'table' => 'groups',
-	            'alias' => 'Groups',
-	            'type' => 'INNER',
-	            'conditions' => array(
-	                'Groups.id = GroupsUsers.group_id'
-	            )
-	        )
-	    )));
+		// $groups = $this->Group->find('all', array('joins' => array(
+	 //        array(
+	 //            'table' => 'groups_users',
+	 //            'alias' => 'GroupsUsers',
+	 //            'type' => 'INNER',
+	 //            'conditions' => array(
+	 //                'GroupsUsers.user_id' => $id
+	 //            )
+	 //        ), array(
+	 //            'table' => 'groups',
+	 //            'alias' => 'Groups',
+	 //            'type' => 'INNER',
+	 //            'conditions' => array(
+	 //                'Groups.id = GroupsUsers.group_id'
+	 //            )
+	 //        )
+	 //    )));
+	    
 
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all', array(
@@ -368,19 +348,11 @@ class UsersController extends AppController {
 
 		$mission_ids = array();
 		foreach ($missions as $mission) {
-			$mission_ids[] = array('Attachment.foreign_key' => $mission['Mission']['id'], 'Attachment.model' => 'Mission');
+			// $mission_ids[] = array('Attachment.foreign_key' => $mission['Mission']['id'], 'Attachment.model' => 'Mission');
 
 			if($mission['Mission']['basic_training'] == 1)
 				$basic_training = $mission;
 		}
-
-		$this->loadModel('Attachment');
-		$imgs = $this->Attachment->find('all', array(
-			'order' => array('Attachment.foreign_key DESC'),
-			'conditions' => array(
-				'OR' => $mission_ids
-			)
-		));
 
 		$missionIssues = $this->Mission->MissionIssue->find('all');
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
@@ -426,8 +398,10 @@ class UsersController extends AppController {
 				$tmp = array();
 				foreach ($powerpoints_user as $powerpoint_user) {
 					if(isset($tmp[$powerpoint_user['UserPowerPoint']['power_points_id']])) {
+
 						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] += $powerpoint_user['UserPowerPoint']['quantity'];
 					} else {
+
 						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] = $powerpoint_user['UserPowerPoint']['quantity'];
 					}
 				}
@@ -445,7 +419,6 @@ class UsersController extends AppController {
 				asort($powerpoints_users[$pp['PowerPoint']['id']]);
 			}
 			asort($points_users);
-
 			
 		//ended leader board data
 
@@ -490,9 +463,10 @@ class UsersController extends AppController {
 		$this->loadModel('Badge');
 		$badges = $this->Badge->find('all');
 
-		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
+		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies', 'my_photo', 'user_photo', 'badges'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges'));
+		//'groups', 'my_photo', 'user_photo',
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');
