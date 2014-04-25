@@ -45,6 +45,7 @@ class PanelsController extends AppController {
 * Loads basic informations from database to local variables to be shown in the administrator's panel
 */
 	public function index($args = 'organizations') {
+		//debug($this->getCurrentLanguage());
 		$organizations_tab = $this->defineCurrentTab('organizations', $args);
 		$missions_tab = $this->defineCurrentTab('missions', $args);
 		$issues_tab = $this->defineCurrentTab('issues', $args);
@@ -292,6 +293,8 @@ class PanelsController extends AppController {
 		$points_tag = $this->defineCurrentTab('point', $args);
 		$dossier_tag = $this->defineCurrentTab('dossier', $args);
 
+		$language = $this->getCurrentLanguage();
+
 		//loading infos to be shown at top bar
 		$username = explode(' ', $this->user['name']);
 		$userid = $this->user['id'];
@@ -451,7 +454,7 @@ class PanelsController extends AppController {
 		$data['Quest']['mission_id'] = $id;
 		$newQuest = $this->Quest->save();*/
 
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
+		$this->set(compact('language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
@@ -467,6 +470,8 @@ class PanelsController extends AppController {
 		$badges_tag = $this->defineCurrentTab('badge', $args);
 		$points_tag = $this->defineCurrentTab('point', $args);
 		$dossier_tag = $this->defineCurrentTab('dossier', $args);
+
+		$language = $this->getCurrentLanguage();
 
 		//loading infos to be shown at top bar
 		$username = explode(' ', $this->user['name']);
@@ -613,7 +618,7 @@ class PanelsController extends AppController {
 		$newQuest = $this->Quest->save($data);
 		debug($newQuest);*/
 
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
+		$this->set(compact('language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
@@ -1384,7 +1389,12 @@ class PanelsController extends AppController {
 
 		    if($gotit >= 3000) {
 		    	//dispatch badge won
-		    	
+		  //   	$event = new CakeEvent('Model.BadgesUser.won', $this, array(
+				//     'badge_id' => $b['badge_id'],
+				//     'user_id' => $this->data['UserPowerPoint']['user_id']
+				// ));
+
+				// $this->getEventManager()->dispatch($event);
 		    }
 
 		}

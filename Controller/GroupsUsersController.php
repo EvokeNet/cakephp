@@ -387,26 +387,27 @@ class GroupsUsersController extends AppController {
 	        		)
 	        	));
 
-	        	//attribute pp to group creator
-				$this->loadModel('QuestPowerPoint');
-				$pps = $this->QuestPowerPoint->find('all', array(
-					'conditions' => array(
-						'quest_id' => $me['Group']['quest_id']
-					)
-				));
+	   //      	debug($me);
+	   //      	//attribute pp to group creator
+				// $this->loadModel('QuestPowerPoint');
+				// $pps = $this->QuestPowerPoint->find('all', array(
+				// 	'conditions' => array(
+				// 		'quest_id' => $me['Group']['quest_id']
+				// 	)
+				// ));
 
-				foreach($pps as $pp) {
-					$data['UserPowerPoint']['user_id'] = $user_id;
-					$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
-					$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
-					$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity']*30);
-					$data['UserPowerPoint']['model'] = 'Group';
-					$data['UserPowerPoint']['foreign_key'] = $me['Group']['id'];
+				// foreach($pps as $pp) {
+				// 	$data['UserPowerPoint']['user_id'] = $user_id;
+				// 	$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
+				// 	$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
+				// 	$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity']*30);
+				// 	$data['UserPowerPoint']['model'] = 'Group';
+				// 	$data['UserPowerPoint']['foreign_key'] = $me['Group']['id'];
 
-					$this->loadModel('UserPowerPoint');
-					$this->UserPowerPoint->create();
-					$this->UserPowerPoint->save($data);
-				}
+				// 	$this->loadModel('UserPowerPoint');
+				// 	$this->UserPowerPoint->create();
+				// 	$this->UserPowerPoint->save($data);
+				// }
 
 				return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
 	        } else $this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));

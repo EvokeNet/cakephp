@@ -47,6 +47,10 @@ class Attachment extends AppModel {
         'User' => array(
             'className' => 'User',
             'foreignKey' => 'foreign_key',
+        ),
+        'Group' => array(
+            'className' => 'Group',
+            'foreignKey' => 'foreign_key',
         )
     );
 }

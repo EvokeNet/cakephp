@@ -164,6 +164,16 @@ class GroupsController extends AppController {
 
 		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
 		$group = $this->Group->find('first', $options);
+		$this->loadModel('Attachment');
+		$group_img = $this->Attachment->find('first', array(
+			'order' => array(
+				'Attachment.id DESC'
+			),
+			'conditions' => array(
+				'Attachment.model' => 'Group',
+				'Attachment.foreign_key' => $id
+			)
+		));
 
 		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $me)));
 
@@ -202,7 +212,7 @@ class GroupsController extends AppController {
 
 		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $me)));
 
-		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints', 'myEvokation', 'iam_member'));
+		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'group_img', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints', 'myEvokation', 'iam_member'));
 	}
 
 /**
@@ -288,26 +298,37 @@ class GroupsController extends AppController {
 		}
 		
 		$me = $this->getUserId();
-		if(!$this->isOwner($me, $id)) {
-			$this->Session->setFlash(__('Only the group owner is allowed to edit it.'));
+
+		if(!$this->isOwner($me, $id) && !$this->isMember($me, $id)) {
+			$this->Session->setFlash(__('Only group members are allowed to edit it.'));
 			return $this->redirect($this->referer());
 		}
 
+		$this->loadModel('Attachment');
+		$group_img = $this->Attachment->find('first', array(
+			'order' => array(
+				'Attachment.id DESC'
+			),
+			'conditions' => array(
+				'Attachment.model' => 'Group',
+				'Attachment.foreign_key' => $id
+			)
+		));
+
+		$group = $this->Group->find('first', array('conditions' => array('Group.' . $this->Group->primaryKey => $id)));
+		
 
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Group->save($this->request->data)) {
+			if ($this->Group->createWithAttachments($this->request->data, true, $id)) {
 				$this->Session->setFlash(__('The group has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
+				return $this->redirect(array('action' => 'view', $id));
 			}
-		} else {
-			$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
-			$this->request->data = $this->Group->find('first', $options);
 		}
-		$users = $this->Group->User->find('list');
-		$evokations = $this->Group->Evokation->find('list');
-		$this->set(compact('users', 'evokations'));
+		
+		$this->set(compact('users', 'group', 'group_img'));
 	}
 
 /**

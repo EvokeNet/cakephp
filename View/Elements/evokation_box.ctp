@@ -20,6 +20,11 @@
 	<div class="row evoke evokation-box">
 		<div class="small-2 medium-2 large-2 columns">
 	  		<div class = "evoke dashboard text-align">
+	  			<?php if($e['Group']['photo_dir'] == null) :?>
+	  				<img src="https://graph.facebook.com//picture?type=large"/>
+		  		<?php else : ?>
+						<img src="<?= $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/thumb_'.$e['Group']['photo_attachment'] ?>" />
+				<?php endif; ?>
 	  			<h6><?= $e['Group']['title']?></h6>
 			</div>
 		</div>

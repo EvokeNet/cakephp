@@ -4,7 +4,12 @@
   			<!-- <img src="https://graph.facebook.com/<?php echo $e['User']['facebook_id']; ?>/picture?type=large" width="110px"/> -->
 
   			<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['Group']['id']));?>">
-			<h6><?= $e['Group']['created']?></h6>
+  				<?php if($e['Group']['photo_dir'] == null) :?>
+  					<img src="https://graph.facebook.com//picture?type=large"/>
+	  			<?php else : ?>
+						<img src="<?= $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/thumb_'.$e['Group']['photo_attachment'] ?>" />
+			  	<?php endif; ?>
+				<h6><?= $e['Group']['created']?></h6>
 			</a>
 
 			</div>
@@ -12,6 +17,7 @@
 	
 	<div class="small-7 medium-7 large-7 columns">
 		<h1><?= $e['Group']['title']?></h1>
+		<h5><?= $e['Group']['description']?></h5>
 	</div>
 
 	<div class="small-3 medium-3 large-3 columns">
