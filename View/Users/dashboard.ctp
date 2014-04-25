@@ -285,7 +285,7 @@
 				<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%" style = "position: absolute; top: 0;"/>
 
 				<div class="row" style = "margin-top:10%">
-					  <div class="small-4 medium-4 large-4 columns"><a href = "https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
+					  <div class="small-4 medium-4 large-4 columns evoke text-align"><a href = "https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large"><img src="https://graph.facebook.com/<?php echo $users['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/></a></div>
 					  <div class="small-8 medium-8 large-8 columns">
 					  	<div class = "evoke dashboard agent info">
 					  		<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
@@ -308,25 +308,33 @@
 					<div class = "evoke text-align">
 						<div class = "evoke titles">
 							<h4 class = "display-inline"><?php echo __('Allies');?></h4>
-							<a href = "" class = "evoke button general"><?php echo __('See All');?></a>
+							<a href = "" class = "evoke button general" style = "margin-right: 20px;"><?php echo __('See All');?></a>
 						</div>
 
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height"/></div>
 					</div>
 
-					<div class = "evoke screen-box allies" style = "padding: 40px 20px">
-						<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
-							<?php foreach($allies as $ally): ?>
-								<li><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $ally['User']['id'])) ?>"><img src = "https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"><span><?= $ally['User']['name'] ?></span></a></li>
-						  <!-- <li><img src = '<?= $this->webroot.'img/test_users/leslie.jpg' ?>'><span>Leslie Knope</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/ron.jpg' ?>'><span>Ron Swanson</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/tom.jpg' ?>'><span>Tom Haverford</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/chris.jpg' ?>'><span>Chris Traeger</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/andy.jpg' ?>'><span>Andy Dwyer</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/ben.jpg' ?>'><span>Ben Wyatt</span></li>
-						  <li><img src = '<?= $this->webroot.'img/test_users/april.jpg' ?>'><span>April Ludgate</span></li> -->
-							<?php endforeach;?>
-						</ul>
+					<div class = "evoke screen-box allies">
+
+						<?php if(!$allies): ?>
+
+							<img src = '<?= $this->webroot.'img/placeholders-allies.png' ?>' style = "width: 100%; max-height: 100%;">
+							<!-- <div style = "height:100%; display:table"><h1 style = "display: table-cell; vertical-align: middle;"><?= strtoupper(__('You have no allies at the moment')) ?></h1></div> -->
+
+						<?php else: ?>
+
+						<div style = "padding: 40px 20px">
+							<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
+								<?php 
+
+								foreach($allies as $ally): ?>
+									<li><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $ally['User']['id'])) ?>"><img src = "https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"><span><?= $ally['User']['name'] ?></span></a></li>
+								<?php endforeach;?>
+							</ul>
+						</div>
+
+						<?php endif; ?>
+
 					</div>
 
 				</div>
@@ -335,12 +343,20 @@
 					<div class = "evoke text-align">
 						<div class = "evoke titles">
 							<h4 class = "display-inline"><?php echo __('Feed');?></h4>
-							<a href = "" class = "evoke button general"><?php echo __('See All');?></a>
+							<a href = "" class = "evoke button general" style = "margin-right: 20px;"><?php echo __('See All');?></a>
 						</div>
 
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height-two"/></div>
 					</div>
 					<div class = "evoke screen-box dashboard feed">
+
+						<?php if(!$notifies): ?>
+
+							<img src = '<?= $this->webroot.'img/placeholders-feed.png' ?>' style = "width: 100%; max-height: 100%;">
+							<!-- <h1><?= strtoupper(__('You have no allies at the moment')) ?></h1> -->
+
+						<?php else: ?>
+
 						<ul>
 							<?php foreach($notifies as $n): 
 
@@ -366,6 +382,9 @@
 							
 							<?php endforeach; ?>
 						</ul>
+
+						<?php endif; ?>
+
 					</div>
 				</div>
 
@@ -373,26 +392,38 @@
 					<div class = "evoke text-align">
 						<div class = "evoke titles">
 							<h4 class = "display-inline"><?php echo __('Badges');?></h4>
-							<a href = "" class = "evoke button general"><?php echo __('See All');?></a>
+							<a href = "" class = "evoke button general" style = "margin-right: 20px;"><?php echo __('See All');?></a>
 						</div>
 
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height-two"/></div>
 					</div>
-					<div class = "evoke screen-box badges" style = "padding: 20px 10px 10px 20px;">
-						<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
-						  <li><img src = '<?= $this->webroot.'img/badge1.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge2.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge3.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge4.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge1.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge2.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge3.png' ?>'></li>
-						</ul>
+					<div class = "evoke screen-box badges">
 
-						<!-- <img src = '<?= $this->webroot.'img/badge1.png' ?>' class = "evoke dashboard badges-icon">
-						<img src = '<?= $this->webroot.'img/badge2.png' ?>' class = "evoke dashboard badges-icon">
-						<img src = '<?= $this->webroot.'img/badge3.png' ?>' class = "evoke dashboard badges-icon">
-						<img src = '<?= $this->webroot.'img/badge4.png' ?>' class = "evoke dashboard badges-icon"> -->
+						<?php if(!$badges): ?>
+
+							<img src = '<?= $this->webroot.'img/placeholders-badges.png' ?>' style = "width: 100%; max-height: 100%;">
+							<!-- <h1><?= strtoupper(__('You have no allies at the moment')) ?></h1> -->
+
+						<?php else: ?>
+
+						<div style = "padding: 20px 10px 10px 20px;">
+							<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
+								<?php 
+
+								foreach($badges as $badge): ?>
+									<li><img src = '<?= $this->webroot.'img/badge1.png' ?>'></li>
+									<li><img src = '<?= $this->webroot.'img/badge2.png' ?>'></li>
+									<li><img src = '<?= $this->webroot.'img/badge3.png' ?>'></li>
+									<li><img src = '<?= $this->webroot.'img/badge4.png' ?>'></li>
+									<li><img src = '<?= $this->webroot.'img/badge1.png' ?>'></li>
+									<li><img src = '<?= $this->webroot.'img/badge2.png' ?>'></li>
+									<li><img src = '<?= $this->webroot.'img/badge3.png' ?>'></li>
+								<?php endforeach;?>
+							</ul>
+						</div>
+
+						<?php endif; ?>
+
 					</div>
 				</div>
 
