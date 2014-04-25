@@ -36,8 +36,6 @@
 		  		<dl class="tabs" data-tab>
 				  <dd><h4><?php echo strtoupper(__("Agent's Projects and Evidences"));?></h4></dd>
 				  <dd class="active"><a href="#panel2-1"><?php echo __('All Projects and Evidences');?></a></dd>
-				  <!-- <dd><a href="#panel2-2"><?php echo __('Projects I Follow');?></a></dd>
-				  <dd><a href="#panel2-3"><?php echo __('My Projects');?></a></dd> -->
 				</dl>
 			</div>
 			<!-- <img src = '<?= $this->webroot.'img/small_bar.png' ?>' class = "evoke dashboard horizontal_bar absolute-right"> -->
