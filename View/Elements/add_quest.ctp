@@ -18,6 +18,7 @@
         debug($newQuest);
 		echo $this->Media->ckeditor('content', array('label' => __('Description'), 'value' => $newQuest['Quest']['description']));*/
         echo $this->Form->input('description', array('required' => true));
+        echo $this->Form->input('todo_list', array('required' => true));
         echo $this->Form->input('points', array('required' => true));
 
         echo '<fieldset><legend> ' .__('Define Quest Power Points') . '</legend>';

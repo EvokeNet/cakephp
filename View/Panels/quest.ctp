@@ -12,6 +12,7 @@
 	<?php
 		echo $this->Form->input('title', array('value' => $me['Quest']['title']));
 		echo $this->Media->ckeditor('description', array('value' => $me['Quest']['description']));
+        echo $this->Form->input('todo_list', array('value' => $me['Quest']['todo_list']));
         echo $this->Form->input('points', array('value' => $me['Quest']['points']));
 
 

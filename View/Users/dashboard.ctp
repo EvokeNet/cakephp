@@ -288,21 +288,44 @@
 					<div class = "evoke text-align">
 						<div class = "evoke titles">
 							<h4 class = "display-inline"><?php echo __('Allies');?></h4>
-							<a href = "" class = "evoke button general" style = "margin-right: 20px;"><?php echo __('See All');?></a>
+							<a href = "" class = "evoke button general" style = "margin-right: 20px;" data-reveal-id="myModalAllies"><?php echo __('See All');?></a>
+						</div>
+
+						<div id="myModalAllies" class="reveal-modal small evoke lightbox" data-reveal>
+						  <h2><?= __('Allies') ?></h2>
+
+						  	<ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-1">
+						  	<?php foreach($allies as $ally):?>
+								<li>
+									<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $ally['User']['id'])) ?>">
+										<?php if($ally['User']['photo_attachment'] == null) : ?>
+						  					<img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large" style = "width: 25%; margin-right: 40px;"/>
+						  				<?php else : ?>
+						  					<img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/thumb_'.$ally['User']['photo_attachment'] ?>" style = "width: 25%; margin-right: 40px;"/>
+						  				<?php endif; ?>
+										
+										<span><?= $ally['User']['name'] ?></span>
+									</a>
+								</li>
+							<?php endforeach;?>
+							</ul>
+						  <a class="close-reveal-modal">&#215;</a>
 						</div>
 
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height"/></div>
 					</div>
 
 					<div class = "evoke screen-box allies">
-						<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
+						
 							<?php if(!$allies): ?>
 
 								<img src = '<?= $this->webroot.'img/placeholders-allies.png' ?>' style = "width: 100%; max-height: 100%;">
 							
-							<?php else: ?>
+							<?php else: $count = 0;?>
 
-								<?php foreach($allies as $ally): ?>
+								<div style = "padding:20px 20px 0px">
+								<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
+								<?php foreach($allies as $ally): $count++; ?>
 									<li>
 										<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $ally['User']['id'])) ?>">
 											<?php if($ally['User']['photo_attachment'] == null) : ?>
@@ -314,11 +337,16 @@
 											<span><?= $ally['User']['name'] ?></span>
 										</a>
 									</li>
-							  	<?php endforeach;?>
+							  	<?php 
+							  	
 
+							  	if($count == 8)
+							  		break;
+
+							  	endforeach;?>
+							  	</ul>
+							  	</div>
 							<?php endif; ?>	
-
-						</ul>
 
 					</div>
 
@@ -377,7 +405,7 @@
 					<div class = "evoke text-align">
 						<div class = "evoke titles">
 							<h4 class = "display-inline"><?php echo __('Badges');?></h4>
-							<a href = "" class = "evoke button general" style = "margin-right: 20px;"><?php echo __('See All');?></a>
+							<a href = "<?= $this->Html->url(array('controller' => 'badges', 'action' => 'index')) ?>" class = "evoke button general" style = "margin-right: 20px;"><?php echo __('See All');?></a>
 						</div>
 
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height-two"/></div>
