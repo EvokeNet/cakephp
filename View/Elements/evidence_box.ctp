@@ -7,12 +7,11 @@
 				<?php else : ?>
 				  	<img src="<?= $this->webroot.'files/attachment/attachment/'.$e['User']['photo_dir'].'/thumb_'.$e['User']['photo_attachment'] ?>" width="90px"/>
 				<?php endif; ?>
-	  		</a>
+	  		
 	  		<!-- <img src="https://graph.facebook.com/<?php echo $e['User']['facebook_id']; ?>/picture?type=large" width="90px"/> -->
   			<!-- <h6><?php echo $this->Html->link($e['User']['name'], array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));?></h6> -->
 
-  			<a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $e['User']['id']));?>">
-			<h6><?= $e['User']['name']?></h6>
+  				<h6><?= $e['User']['name']?></h6>
 			</a>
   		</div>
 	</div>
