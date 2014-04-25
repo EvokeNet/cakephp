@@ -329,14 +329,14 @@
 							if($evidence_exists):?>
 								<li>
 									<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-										<h2 class = "evoke item-complete"><?php echo $q['Quest']['todo_list'];?></h2>
+										<h2 class = "evoke item-complete"><?php echo $q['Quest']['title'];?></h2>
 									</a>
 								</li>
 							<?php else: ?>
 								<li>
 
 								<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-									<h2><?php echo $q['Quest']['todo_list'];?></h2>
+									<h2><?php echo $q['Quest']['title'];?></h2>
 								</a>
 
 								</li>
