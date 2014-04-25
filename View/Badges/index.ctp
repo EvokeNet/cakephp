@@ -18,11 +18,21 @@
 		<div class="small-11 small-centered columns">
 			<div class = "evoke black-bg badges-bg">
 				<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">
-				  <li>
-				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
-				  	<h1> Badge </h1>
-				  	<p>Cras at tellus et lorem volutpat bibendum. Integer ut metus nunc. Phasellus nec auctor diam, in ornare magna. Phasellus hendrerit dolor augue, et feugiat ligula consequat vel.</p>
-			  	  </li>
+				  	<?php 
+
+					foreach($badges as $badge): ?>
+						<li>
+							<?php if(isset($badge['Badge']['img_dir'])) : ?>
+								<img src = '<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>'>
+							<?php else: ?>
+								<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+							<?php endif ?>
+							<h1><?= $badge['Badge']['name'] . '(' .$badge['Badge']['owns'] . ')';?></h1>
+				  			<p><?= $badge['Badge']['description']?></p>
+						</li>
+					<?php endforeach;?>
+				  	<!-- <img src = '<?= $this->webroot.'img/badge.png' ?>'> -->
+				  	<!-- 
 			  	  <li>
 				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
 				  	<h1> Badge </h1>
@@ -62,7 +72,7 @@
 				  	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
 				  	<h1> Badge </h1>
 				  	<p>Cras at tellus et lorem volutpat bibendum. Integer ut metus nunc. Phasellus nec auctor diam, in ornare magna. Phasellus hendrerit dolor augue, et feugiat ligula consequat vel.</p>
-			  	  </li>
+			  	  </li> -->
 				</ul>
 			</div>
 		</div>

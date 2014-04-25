@@ -98,7 +98,8 @@ class GroupsUsersController extends AppController {
 
 		foreach ($users as $user) {
 			array_push($usersid, array('Evidence.user_id' => $user['User']['id']));
-			if ($user['User']['id'] == $loggedInUser['User']['id']) {
+			// debug($loggedInUser);
+			if ($user['User']['id'] == $loggedInUser['id']) {
 				$authorized = true;
 				//break;
 			}

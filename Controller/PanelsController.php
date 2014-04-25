@@ -69,7 +69,12 @@ class PanelsController extends AppController {
 
 		$powerpoints = $this->PowerPoint->find('all');
 
-		$notifications = $this->AdminNotification->find('all');
+		//get all general notifications
+		$notifications = $this->AdminNotification->find('all', array(
+			'conditions' => array(
+				'AdminNotification.user_target' => null
+			)
+		));
 
 		$levels = $this->Level->find('all');
 
@@ -1285,6 +1290,12 @@ class PanelsController extends AppController {
 		if(empty($evokation))
 			$this->redirect($this->referer());
 
+		$mission = $this->Mission->find('first', array(
+			'conditions' => array(
+				'Mission.id' => $evokation['Group']['mission_id']
+			)
+		));
+
 		$missionCompleted = 1;
 		$this->Evokation->id = $evo_id;
 		//it wasnt approved
@@ -1312,6 +1323,7 @@ class PanelsController extends AppController {
 		if(empty($socialInnovator))
 			$badgeExists = false;
 
+
 		foreach ($members as $member) {
 			$previous = $this->UserMission->find('first', array(
 				'conditions' => array(
@@ -1328,10 +1340,22 @@ class PanelsController extends AppController {
 				$this->UserMission->id = $previous['UserMission']['id'];
 				$insert['UserMission']['id'] = $previous['UserMission']['id'];
 			}
-			$this->UserMission->save($insert);
+			$userMission = $this->UserMission->save($insert);
 
+			//debug($mission);
 			//dispatch mission completed or evokation failure
-			
+			if($missionCompleted == 1) {
+				$newData['AdminNotification']['title'] = 'Project Approved';
+				$newData['AdminNotification']['description'] = 'Congratulations, agent! Your project '.$evokation['Evokation']['title'].' was approved and you have'.
+					'successfully completed the '. $mission['Mission']['title'] .' mission.';
+			}else{
+				$newData['AdminNotification']['title'] = 'Project Not Approved!';
+				$newData['AdminNotification']['description'] = 'Agent, your project'. $evokation['Evokation']['title'] . ' failed!';
+			}
+			$newData['AdminNotification']['user_id'] = $this->getUserId();
+			$newData['AdminNotification']['user_target'] = $member['GroupsUser']['user_id'];
+			$this->AdminNotification->create();
+			$this->AdminNotification->save($newData);
 
 			if(!$badgeExists || $missionCompleted == 0)
 				continue;
@@ -1360,6 +1384,7 @@ class PanelsController extends AppController {
 
 		    if($gotit >= 3000) {
 		    	//dispatch badge won
+		    	
 		    }
 
 		}

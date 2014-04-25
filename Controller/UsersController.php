@@ -415,7 +415,6 @@ class UsersController extends AppController {
 		
 		if(isset($user['AdminNotificationsUser'][0])) {
 			//holds the last notification directed to this user
-			//debug($user['AdminNotificationsUser']);	
 			$last = $user['AdminNotificationsUser'][count($user['AdminNotificationsUser']) - 1];
 			//$last['id'] = 0;
 		} else {
@@ -425,7 +424,8 @@ class UsersController extends AppController {
 		//get all newer than that one
 		$adminNotifications = $this->AdminNotification->find('all', array(
 			'conditions' => array(
-				'AdminNotification.id >' => $last['admin_notification_id']
+				'AdminNotification.id >' => $last['admin_notification_id'],
+				'AdminNotification.user_target' => null				
 			)
 		));
 		
@@ -447,10 +447,57 @@ class UsersController extends AppController {
 	        $this->getEventManager()->dispatch($event);
 	        break;
 		}
-		
-		$this->loadModel('Badge');
-		$badges = $this->Badge->find('all');
 
+		//get all newer than that one
+		$adminNotificationsToMe = $this->AdminNotification->find('all', array(
+			'conditions' => array(
+				'AdminNotification.id >' => $last['admin_notification_id'],
+				'AdminNotification.user_target' => $this->getUserId()				
+			)
+		));
+		
+
+		foreach ($adminNotificationsToMe as $not) {
+			//he sees it..
+			$insert['AdminNotificationsUser']['user_id'] = $user['User']['id'];
+			$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
+
+			$this->User->AdminNotificationsUser->create();
+			$this->User->AdminNotificationsUser->save($insert);
+
+			$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
+	            'entity_id' => $not['AdminNotification']['id'],
+	            'user_id' => $this->getUserId(),
+	            'entity' => 'showNotification'
+	        ));
+
+	        $this->getEventManager()->dispatch($event);
+	        break;
+		}
+		
+		//$this->loadModel('Badge');
+		$badges = $this->User->UserBadge->find('all', array(
+			'conditions' => array(
+				'UserBadge.user_id' => $id
+			)
+		));
+
+		foreach ($badges as $b => $badge) {
+			$this->loadModel('Attachment');
+			$badge_img = $this->Attachment->find('first', array(
+				'conditions' => array(
+					'Attachment.model' => 'Badge',
+					'Attachment.foreign_key' => $badge['Badge']['id']
+				)
+			));
+			if(!empty($badge_img)) {
+				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
+				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
+			} else {
+
+			}
+
+		}
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges'));

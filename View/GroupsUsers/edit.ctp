@@ -45,12 +45,7 @@
 					<div class = "evoke titles"><h4><?= strtoupper(__("Updates"));?></h4></div>
 				</div>
 			</div>
-			<ul class="no-bullet">
-				<?php foreach ($evokationAttachments as $a) : ?>
-					<?= $a['Attachment']['attachment'] ?>
-				<?php endforeach ?>
-			</ul>
-
+			
 			<div id="send" class="reveal-modal tiny" data-reveal>
 				<h1><?= __('Describe updates of this publishing:')?></h1>
 				<?php 
@@ -123,6 +118,12 @@
 			<div class = "evoke position">
 				<div class = "evoke titles-left">
 					<div class = "evoke titles"><h4><?= strtoupper(__("Documents"));?></h4></div>
+					<ul class="no-bullet">
+						<?php foreach ($evokationAttachments as $a) : ?>
+							<?= $a['Attachment']['attachment'] ?>
+						<?php endforeach ?>
+					</ul>
+
 				</div>
 			</div>
 
