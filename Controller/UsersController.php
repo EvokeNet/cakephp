@@ -443,34 +443,10 @@ class UsersController extends AppController {
 
 			foreach ($power_points as $pp) {
 				asort($powerpoints_users[$pp['PowerPoint']['id']]);
-				// debug($powerpoints_users[$pp['PowerPoint']['id']]);
 			}
 			asort($points_users);
 
-			// $this->loadModel('PowerPoint');
-			// $power_points = $this->PowerPoint->find('all');
-
-			// foreach ($allusers as $usr) {
-			// 	$this->User->id = $usr['User']['id'];
-			// 	$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
-			// 		'conditions' => array(
-			// 			'UserPowerPoint.user_id' => $usr['User']['id']
-			// 		)
-			// 	));
-			// 	foreach ($powerpoints_user as $powerpoint_user) {
-			// 		if(isset($powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']])) {
-			// 			$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']] += $powerpoint_user['UserPowerPoint']['quantity'];
-			// 		} else {
-			// 			$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']] = $powerpoint_user['UserPowerPoint']['quantity'];
-			// 		}
-			// 	}
-			// }
-
-			// foreach ($power_points as $pp) {
-			// 	if(isset($powerpoints_users[$pp['PowerPoint']['id']]) && is_array($powerpoints_users[$pp['PowerPoint']['id']]))
-			// 		arsort($powerpoints_users[$pp['PowerPoint']['id']]);
-			// }
-
+			
 		//ended leader board data
 
 		//admin notifications check:
