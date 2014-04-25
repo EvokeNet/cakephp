@@ -1,0 +1,2 @@
+ALTER TABLE  `users` ADD  `photo_dir` VARCHAR( 255 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL AFTER  `basic_training` ,
+ADD  `photo_attachment` VARCHAR( 255 ) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL AFTER  `photo_dir`;

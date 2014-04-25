@@ -73,7 +73,15 @@ class GroupsUsersController extends AppController {
 
 		if (!empty($evokation)) {
 			$this->request->data = $evokation;
+			
+			//the group submitted tthe final version, dont allow them to edit no more
+			if($evokation['Evokation']['final_sent'] == 1) {
+				$this->Session->setFlash(__('Your group has already submitted this Evokation. You are not allowed to edit it until admin approval.'), 'flash_message');
+				$this->redirect($this->referer());
+			}
 		}
+
+
 
 		$this->loadModel('Group');
 		$thisgroup = $this->Group->find('first', array(
@@ -543,6 +551,7 @@ class GroupsUsersController extends AppController {
 		$insert['Evokation']['id'] = $id;
 		$insert['Evokation']['sent'] = 1;
 		$insert['Evokation']['final_sent'] = 1;
+		$insert['Evokation']['approved'] = null;
 
 		$this->loadModel('Evokation');
 		$this->Evokation->id = $id;

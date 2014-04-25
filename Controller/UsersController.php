@@ -80,6 +80,7 @@ class UsersController extends AppController {
 					$user['User']['sex'] = $user_profile['gender'];
 					$user['User']['login'] = $user_profile['username'];
 					$user['User']['facebook'] = $user_profile['link'];
+					$user['User']['role_id'] = 3;
 
 					if($this->User->save($user)) {
 						$user['User']['id'] = $this->User->id;
@@ -195,9 +196,29 @@ class UsersController extends AppController {
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
+		$user_photo = $this->User->Attachment->find('first', array(
+			'order' => array(
+				'Attachment.id DESC'
+			),
+			'conditions' => array(
+				'Attachment.model' => 'User',
+				'Attachment.foreign_key' => $id
+			)
+		));
+
 		$user_data = $this->Auth->user();
 		//debug($user_data);
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		$my_photo = $this->User->Attachment->find('first', array(
+			'order' => array(
+				'Attachment.id DESC'
+			),
+			'conditions' => array(
+				'Attachment.model' => 'User',
+				'Attachment.foreign_key' => $this->getUserId()
+			)
+		));
+
 
 		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
 
@@ -239,7 +260,7 @@ class UsersController extends AppController {
 
 		$allies = array();
 
-		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $this->getUserId())));
+		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
 		$are_friends = array();
 		//$allies = array();
@@ -267,8 +288,13 @@ class UsersController extends AppController {
 			$notifies = array();
 		}
 
-		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
-		$myevidences = $evidence = $this->User->Evidence->find('all', array(
+		$evidence = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			)
+		));
+
+		$myevidences = $this->User->Evidence->find('all', array(
 			'order' => array(
 				'Evidence.created DESC'
 			),
@@ -365,47 +391,62 @@ class UsersController extends AppController {
 			//getting user power points
 			$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
 
-			$points_users = array(); // will contain [user_id][level] && [user_id][points]
+			$points_users = array(); // will contain [points][][user]
 
 			$allusers = $this->User->find('all');
-
-			$this->loadModel('Point');
-			$points = $this->Point->find('all');
-			foreach ($points as $point) {
-				if(isset($points_users[$point['Point']['user_id']])) {
-					$points_users[$point['Point']['user_id']] += $point['Point']['value'];
-				}	else{
-					$points_users[$point['Point']['user_id']] = $point['Point']['value'];
-				}
-			}
 
 			$this->loadModel('PowerPoint');
 			$power_points = $this->PowerPoint->find('all');
 
+			$this->loadModel('Point');
+			//$points = $this->Point->find('all');
+			
 			foreach ($allusers as $usr) {
-				if(isset($points_users[$usr['User']['id']]))
-					$points_users['Level'][$usr['User']['id']] = $this->getLevel($points_users[$usr['User']['id']]);
+				$points = $this->Point->find('all', array(
+					'conditions' => array(
+						'Point.user_id' => $usr['User']['id']
+					)
+				));
+				$usrpoints = 0;
+				foreach ($points as $point) {
+					$usrpoints += $point['Point']['value'];
+				}
 
-				$this->User->id = $usr['User']['id'];
+				$usr['User']['level'] = $this->getLevel($usrpoints);
+				$points_users[$usrpoints][] = $usr;
+
+
+
 				$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
 					'conditions' => array(
 						'UserPowerPoint.user_id' => $usr['User']['id']
 					)
 				));
+
+				$tmp = array();
 				foreach ($powerpoints_user as $powerpoint_user) {
-					if(isset($powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']])) {
-						$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']] += $powerpoint_user['UserPowerPoint']['quantity'];
+					if(isset($tmp[$powerpoint_user['UserPowerPoint']['power_points_id']])) {
+						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] += $powerpoint_user['UserPowerPoint']['quantity'];
 					} else {
-						$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']] = $powerpoint_user['UserPowerPoint']['quantity'];
+						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] = $powerpoint_user['UserPowerPoint']['quantity'];
 					}
+				}
+				
+				foreach ($power_points as $pp) {
+					$qtdUser = 0;
+					if(isset($tmp[$pp['PowerPoint']['id']]))
+						$qtdUser = $tmp[$pp['PowerPoint']['id']];
+					
+					$powerpoints_users[$pp['PowerPoint']['id']][$qtdUser][] = $usr['User'];
 				}
 			}
 
-			// foreach ($power_points as $pp) {
-			// 	if(isset($powerpoints_users[$pp['PowerPoint']['id']]) && is_array($powerpoints_users[$pp['PowerPoint']['id']]))
-			// 		arsort($powerpoints_users[$pp['PowerPoint']['id']]);
-			// }
+			foreach ($power_points as $pp) {
+				asort($powerpoints_users[$pp['PowerPoint']['id']]);
+			}
+			asort($points_users);
 
+			
 		//ended leader board data
 
 		//admin notifications check:
@@ -451,7 +492,7 @@ class UsersController extends AppController {
 
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'groups', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies', 'badges'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies', 'my_photo', 'user_photo', 'badges'));
 
 		if($id == $this->getUserId())
 			$this->render('dashboard');
@@ -708,17 +749,27 @@ class UsersController extends AppController {
 		//otherwise, you are not allowed to edit agents but
 		// yourself and will be redirected home
 		
-		// if($this->getUserRole() != 1) {
-		// 	if($id != $this->getUserId()) {
-		// 		$this->Session->setFlash(__("You can't edit other users. Permission denied."));	
-		// 		$this->redirect($this->referer());
-		// 	}
-		// }
+		if($this->getUserRole() != 1) {
+			if($id != $this->getUserId()) {
+				$this->Session->setFlash(__("You can't edit other users. Permission denied."), 'flash_message');	
+				$this->redirect(array('action' => 'edit', $this->getUserId()));
+			}
+		}
 
 
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$user = $this->User->find('first', $options);
 		//$this->set(compact('user'));
+
+		$user_photo = $this->User->Attachment->find('first', array(
+			'order' => array(
+				'Attachment.id DESC'
+			),
+			'conditions' => array(
+				'Attachment.model' => 'User',
+				'Attachment.foreign_key' => $id
+			)
+		));
 
 		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
 
@@ -735,10 +786,11 @@ class UsersController extends AppController {
 
 		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
 		
-		$this->set(compact('user', 'issues', 'selectedIssues', 'sumMyPoints'));
+		$this->set(compact('user', 'issues', 'selectedIssues', 'sumMyPoints', 'user_photo'));
 
 		if ($this->request->is(array('post', 'put'))) {
-			
+			// debug($this->request->data);
+			// die();
 			if (!empty($this->request->data)) {
 				$this->request->data['User']['role_id'] = $user['User']['role_id'];
 
@@ -756,7 +808,7 @@ class UsersController extends AppController {
 				    }
 				}
 			    
-			    if ($this->User->save($this->request->data)) {
+			    if ($this->User->createWithAttachments($this->request->data, true, $id)) {
 
 			    	$this->Auth->login($user);
 			    	//$this->Session->setFlash(__('The user has been saved.'));
@@ -772,6 +824,7 @@ class UsersController extends AppController {
 			$this->request->data = $this->User->find('first', $options);
 		}
 	}
+
 
 /**
  * delete method

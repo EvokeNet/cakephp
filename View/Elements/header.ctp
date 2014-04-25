@@ -16,7 +16,15 @@
 		<ul class="evoke right">
 
 			<?php if(isset($user['User'])) :?>
-				<li><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $user['User']['id'])); ?>"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/></a></li>
+				<li>
+					<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $user['User']['id'])); ?>">
+						<?php if($user['User']['photo_attachment'] == null) : ?>
+							<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+			  			<?php else : ?>
+			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+			  			<?php endif; ?>
+					</a>
+				</li>
 			<?php endif; ?>
 
 			<li class = "name">

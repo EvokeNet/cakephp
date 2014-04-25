@@ -390,7 +390,8 @@
 								<legend><?php echo __('Change status') .': '. $e['Evokation']['title']; ?></legend>
 								<?php
 									echo $this->Form->hidden('id', array('value' => $e['Evokation']['id']));
-									echo $this->Form->radio('approved', array(0 => 'Pending', 1 => 'Approved'), array('default' => $e['Evokation']['approved']));
+
+									echo $this->Form->radio('approved', array(0 => 'Unapproved', 1 => 'Approved'), array('default' => $e['Evokation']['approved']));
 								?>
 							</fieldset>
 								<button class="button tiny" type="submit">
@@ -1344,6 +1345,7 @@
             var strU = '"ShowUser-' + usersId[i-1] + '"';
             var strRoleFormat = "<a href='#' onclick='document.getElementById(" + strU +").click();' class='userId'>{0}</a>";
             var strMissionFormat = "<a href='" + url + usersMissionId[i-1] +"/1' class='name' target='_blank'>{0}</a>";//
+            var urlU = getCorrectURL("users/dashboard/");
 
             var doc = {
                 <?php
@@ -1354,7 +1356,7 @@
                 	}
                 ?>
                 name: usersName[i-1],
-                nameFormat: "<a href='users/view/"+ usersId[i-1] +"' class='name' target='_blank'>{0}</a>"
+                nameFormat: "<a href='" + urlU + usersId[i-1] +"' class='name' target='_blank'>{0}</a>"
             };
             rows.push(doc);
             i++;
@@ -1736,10 +1738,10 @@
             var urlG = getCorrectURL("groups/view/");
             var urlE = getCorrectURL("evokations/view/");
 
-            if(eStatus[i-1] == 0) {
-            	var str = "Pending";
-            }else{
+            if(eStatus[i-1] == 1) {
             	var str = "Approved";
+            }else{            	
+            	var str = "Pending";
             }
 
             var strE = '"ShowEvokationStatus-' + eId[i-1] + '"';

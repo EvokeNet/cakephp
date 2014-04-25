@@ -102,10 +102,22 @@ class MissionsController extends AppController {
 
 		//$evidences = $this->Mission->getEvidences($id);
 
-		$evidences = $this->Mission->Evidence->find('all', array('order' => array('Evidence.created DESC'), 'conditions' => array('Evidence.mission_id' => $id)));
+		$evidences = $this->Mission->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			), 
+			'conditions' => array(
+				'Evidence.mission_id' => $id, 
+				'Evidence.phase_id' => $missionPhase['Phase']['id']
+			)
+		));
 
-		//$eevis = $this->Mission->Evidence->find('all', array('fields' => array 'fields' => array('SUM(Like.rating) as avg_rating'), order' => array('Evidence.created DESC'), 'conditions' => array('Evidence.mission_id' => $id)));
-		//debug($evidence);
+		$liked_evidences = array();
+
+		foreach ($evidences as $e) {
+			$liked_evidences[count($e['Like'])][] = $e;
+		}
+		asort($liked_evidences);
 
 		$this->loadModel('Evokation');
 		$allevokations = $this->Evokation->find('all', array(
@@ -232,7 +244,8 @@ class MissionsController extends AppController {
 		$my_evidences = $this->Evidence->find('all', array(
 			'order' => array('Evidence.title ASC'),
 			'conditions' => array(
-				'user_id' => $this->getUserId(),
+				'Evidence.user_id' => $this->getUserId(),
+				'Evidence.phase_id' => $missionPhase['Phase']['id'],
 				'OR' => $my_quests_id
 			)
 		));
@@ -375,7 +388,7 @@ class MissionsController extends AppController {
 			//return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));
 		}
 
-		$this->set(compact('user', 'evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations',
+		$this->set(compact('user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
 		if($mission['Mission']['basic_training'] == 1)
