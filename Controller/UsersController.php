@@ -391,41 +391,80 @@ class UsersController extends AppController {
 			//getting user power points
 			$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
 
-			$points_users = array(); // will contain [user_id][level] && [user_id][points]
+			$points_users = array(); // will contain [points][][user]
 
 			$allusers = $this->User->find('all');
-
-			$this->loadModel('Point');
-			$points = $this->Point->find('all');
-			foreach ($points as $point) {
-				if(isset($points_users[$point['Point']['user_id']])) {
-					$points_users[$point['Point']['user_id']] += $point['Point']['value'];
-				}	else{
-					$points_users[$point['Point']['user_id']] = $point['Point']['value'];
-				}
-			}
 
 			$this->loadModel('PowerPoint');
 			$power_points = $this->PowerPoint->find('all');
 
+			$this->loadModel('Point');
+			//$points = $this->Point->find('all');
+			
 			foreach ($allusers as $usr) {
-				if(isset($points_users[$usr['User']['id']]))
-					$points_users['Level'][$usr['User']['id']] = $this->getLevel($points_users[$usr['User']['id']]);
+				$points = $this->Point->find('all', array(
+					'conditions' => array(
+						'Point.user_id' => $usr['User']['id']
+					)
+				));
+				$usrpoints = 0;
+				foreach ($points as $point) {
+					$usrpoints += $point['Point']['value'];
+				}
 
-				$this->User->id = $usr['User']['id'];
+				$usr['User']['level'] = $this->getLevel($usrpoints);
+				$points_users[$usrpoints][] = $usr;
+
+
+
 				$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
 					'conditions' => array(
 						'UserPowerPoint.user_id' => $usr['User']['id']
 					)
 				));
+
+				$tmp = array();
 				foreach ($powerpoints_user as $powerpoint_user) {
-					if(isset($powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']])) {
-						$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']] += $powerpoint_user['UserPowerPoint']['quantity'];
+					if(isset($tmp[$powerpoint_user['UserPowerPoint']['power_points_id']])) {
+						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] += $powerpoint_user['UserPowerPoint']['quantity'];
 					} else {
-						$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']] = $powerpoint_user['UserPowerPoint']['quantity'];
+						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] = $powerpoint_user['UserPowerPoint']['quantity'];
 					}
 				}
+				
+				foreach ($power_points as $pp) {
+					$qtdUser = 0;
+					if(isset($tmp[$pp['PowerPoint']['id']]))
+						$qtdUser = $tmp[$pp['PowerPoint']['id']];
+					
+					$powerpoints_users[$pp['PowerPoint']['id']][$qtdUser][] = $usr['User'];
+				}
 			}
+
+			foreach ($power_points as $pp) {
+				asort($powerpoints_users[$pp['PowerPoint']['id']]);
+				// debug($powerpoints_users[$pp['PowerPoint']['id']]);
+			}
+			asort($points_users);
+
+			// $this->loadModel('PowerPoint');
+			// $power_points = $this->PowerPoint->find('all');
+
+			// foreach ($allusers as $usr) {
+			// 	$this->User->id = $usr['User']['id'];
+			// 	$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
+			// 		'conditions' => array(
+			// 			'UserPowerPoint.user_id' => $usr['User']['id']
+			// 		)
+			// 	));
+			// 	foreach ($powerpoints_user as $powerpoint_user) {
+			// 		if(isset($powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']])) {
+			// 			$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']] += $powerpoint_user['UserPowerPoint']['quantity'];
+			// 		} else {
+			// 			$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$usr['User']['id']] = $powerpoint_user['UserPowerPoint']['quantity'];
+			// 		}
+			// 	}
+			// }
 
 			// foreach ($power_points as $pp) {
 			// 	if(isset($powerpoints_users[$pp['PowerPoint']['id']]) && is_array($powerpoints_users[$pp['PowerPoint']['id']]))

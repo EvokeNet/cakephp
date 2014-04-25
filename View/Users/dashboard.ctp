@@ -197,29 +197,22 @@
 							<ul>
 							<?php 
 								$pos = 1;
-								$zeros = array();
-								foreach ($allusers as $usr) {
-									if(isset($points_users[$usr['User']['id']])) {
+								foreach ($points_users as $p => $point) {
+									foreach ($point as $usr) {
 										echo '<li>';
 										echo '<h1>'. $pos .'</h1>';
-										echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
+										if($usr['User']['photo_attachment'] == null) : ?>
+			  								<img src="https://graph.facebook.com/<?php echo $usr['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon"/>
+			  							<?php else : ?>
+			  								<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['User']['photo_dir'].'/thumb_'.$usr['User']['photo_attachment'] ?>" class = "evoke dashboard users-icon"/>
+			  							<?php endif;
+
 										echo '<span>'. $usr['User']['name'] . '</span>';
-										echo '<span>Level '. $points_users['Level'][$usr['User']['id']] .' | Points '. $points_users[$usr['User']['id']] .'</span>';
+										echo '<span>Level '. $usr['User']['level'] .' | Points '. $p .'</span>';
 										echo '</li>';
-										$pos++;	
-									} else {
-										$zeros[] = $usr;
-									}	
+										$pos++;
+									}
 								}
-								foreach ($zeros as $zero) {
-									echo '<li>';
-									echo '<h1>'. $pos .'</h1>';
-									echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
-									echo '<span>'. $zero['User']['name'] . '</span>';
-									echo '<span>Level 0 | Points 0</span>';
-									echo '</li>';
-									$pos++;	
-								}	
 							?>
 							</ul>
 						</div>
@@ -230,29 +223,21 @@
 									echo '<ul>';
 									$zeros = array();
 									$pos = 1;
-									foreach ($allusers as $usr) {
-										if(isset($powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']])) {
+									foreach ($powerpoints_users[$pp['PowerPoint']['id']] as $pps => $ppusr) {
+										foreach ($ppusr as $usr) {
 											echo '<li>';
 											echo '<h1>'. $pos .'</h1>';
-											echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
-											echo '<span>'. $usr['User']['name'] . '</span>';
-											echo '<span>|'. $pp['PowerPoint']['name'] .' Points: '.$powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']].' pts</span>';
-											echo '</li>';
-											$pos++;	
-										} else {
-											$zeros[] = $usr;
-										}
-										
-									}
+											if($usr['photo_attachment'] == null) : ?>
+				  								<img src="https://graph.facebook.com/<?php echo $usr['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon"/>
+				  							<?php else : ?>
+				  								<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/thumb_'.$usr['photo_attachment'] ?>" class = "evoke dashboard users-icon"/>
+				  							<?php endif;
 
-									foreach ($zeros as $zero) {
-										echo '<li>';
-										echo '<h1>'. $pos .'</h1>';
-										echo '<img src = '. $this->webroot.'img/test_users/leslie.jpg' . ' class = "evoke dashboard users-icon">';
-										echo '<span>'. $zero['User']['name'] . '</span>';
-										echo '<span>|'. $pp['PowerPoint']['name'] .' Points: 0 pts</span>';
-										echo '</li>';
-										$pos++;	
+											echo '<span>'. $usr['name'] . '</span>';
+											echo '<span>'. $pp['PowerPoint']['name'].' Points '. $pps .'</span>';
+											echo '</li>';
+											$pos++;
+										}
 									}								
 									echo '</ul>';
 								echo '</div>';
