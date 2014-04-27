@@ -1,4 +1,17 @@
-<section class="evoke background-green padding top-2">
+<?php 
+	if(isset($user['User']['biography'])){
+		$this->extend('/Common/topbar');
+		$this->start('menu');
+		echo $this->element('header', array('user' => $user));
+		$this->end(); 
+	}
+?>
+<section class="evoke background-green">
+	<?php 
+		if(isset($user['User']['biography'])){
+			echo $this->element('menu', array('user' => $user));
+		}
+	?>
 	<div class="row full-width">
 		<div class="small-9 small-centered columns">
 

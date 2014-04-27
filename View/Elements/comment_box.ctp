@@ -20,34 +20,33 @@ $name = explode(' ', $c['User']['name']);
   <div class="small-10 medium-10 large-10 columns">
   	<div class = "evoke bubble">
   		<div class="row">
-		  <div class="small-11 medium-11 large-11 columns">
+		  <div class="small-10 medium-10 large-10 columns">
 		  	<p><?php echo $c['Comment']['content']; ?></p>
 		  </div>
-		  <div class="small-1 medium-1 large-1 columns">
+		  <div class="small-2 medium-2 large-2 columns">
 		  	<?php if($c['Comment']['user_id'] == $user['User']['id']): ?>
-		  	<div class = "evoke comment-box-delete"><a href = "<?php echo $this->Html->url(array('controller'=> 'comments', 'action' => 'delete', $c['Comment']['id'])); ?>"><i class="fa fa-times-circle fa-lg"></i></a>
-		  	</div>
+
+			  	<div class = "evoke comment-box-delete"><a href = "<?php echo $this->Html->url(array('controller'=> 'comments', 'action' => 'delete', $c['Comment']['id'])); ?>"><i class="fa fa-times-circle fa-lg"></i></a>
+			  	</div>
+
+			  	<a href = "#" class = "evoke comment-box-delete" data-reveal-id="<?= $c['Comment']['id'] ?>" data-reveal><i class="fa fa-pencil fa-lg"></i>&nbsp;&nbsp;
+			  	</a>
+
+			  	<!-- Lightbox for commenting form -->
+				<div id="<?= $c['Comment']['id'] ?>" class="reveal-modal tiny evoke lightbox-bg" data-reveal>
+				  	<?php if(isset($user['User'])) :?>
+				  		<?php echo $this->element('edit_comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'], 'comment_id' => $c['Comment']['id'], 'content' => $c['Comment']['content'])); ?>
+				  	<?php else :?>
+				  		<?php echo $this->element('edit_comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => null, 'comment_id' => $c['Comment']['id'], 'content' => $c['Comment']['content'])); ?>
+				  	<?php endif;?>
+				  <a class="close-reveal-modal">&#215;</a>
+				</div>
+
 		  <?php endif; ?>
 		  </div>
 		</div>
 	</div>
   </div>
 </div>
-
-<!-- <div style = "margin-bottom:100px"></div> -->
-
-<!-- <div class = "evoke bubble2">
-<img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?type=large" width="60px"/>
-<h4 style = "display:inline"><?php echo (__('Agent ').$c['User']['name']); ?> - <?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h4>
-</div>
-<p><?php echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content']; ?></p>
-
-<div style = "margin-bottom:100px"></div> -->
-
-<!-- <div class = "evoke bubble2">
-<img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?type=large" width="60px"/>
-<h4 style = "display:inline"><?php echo (__('Agent ').$c['User']['name']); ?> - <?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h4>
-</div>
-<p><?php echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content'];echo $c['Comment']['content']; ?></p> -->
 
 <div style = "margin-bottom:100px"></div>

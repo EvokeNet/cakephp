@@ -1025,6 +1025,7 @@ button, div, p, span, a,
 
 .evoke.comment-box-delete{
 	float: right;
+	color:#252525;
 }
 
 .evoke.comment-box-delete a{

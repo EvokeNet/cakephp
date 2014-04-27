@@ -147,7 +147,7 @@
 	  </div>
 	  <div class="small-5 medium-5 large-5 columns padding-right">
 	  	<?php if($missionPhase['Phase']['show_dossier'] == 1) : ?>
-		  	<div class = "evoke titles-right">
+		  	<div class = "evoke titles-right" style = "width: 110%;">
 
 		  	<div>
 		  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>

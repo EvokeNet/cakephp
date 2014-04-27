@@ -243,11 +243,20 @@ class UsersController extends AppController {
 		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
 		$are_friends = array();
+
+		$are_friends2 = array();
+
+		$are_friends3 = array();
 		//$allies = array();
 
 		foreach($friends as $friend){
 			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
+			array_push($are_friends2, array('Notification.user_id' => $friend['UserFriend']['friend_id']));
+			array_push($are_friends3, array('Notification.action_user_id' => $friend['UserFriend']['friend_id']));
 		}
+
+		$notifies = array();
+		$notifies2 = array();
 
 		$this->loadModel('Notification');
 
@@ -259,13 +268,15 @@ class UsersController extends AppController {
 
 			$notifies = $this->Notification->find('all', array(
 				'conditions' => array(
-					'OR' => $are_friends
-				), 'order' => array(
-					'Notification.created DESC'
+					'OR' => $are_friends2
+				)));
+
+			$notifies2 = $this->Notification->find('all', array(
+				'conditions' => array(
+					'OR' => $are_friends2
 				)));
 		} else{
 			$allies = array();
-			$notifies = array();
 		}
 
 		$evidence = $this->User->Evidence->find('all', array(
@@ -787,6 +798,15 @@ class UsersController extends AppController {
 			    	$this->Auth->login($user);
 			    	//$this->Session->setFlash(__('The user has been saved.'));
 			    	$this->Session->setFlash(__('Your informations were succefully saved'), 'flash_message');
+
+			    	$event = new CakeEvent('Controller.User.update', $this, array(
+			        	'user_id' => $id, 
+			            'origin_id' => $id, 
+			            'origin' => 'userUpdate', 
+			        ));
+
+			        $this->getEventManager()->dispatch($event);
+
 					return $this->redirect(array('action' => 'dashboard', $id));
 
 				} 

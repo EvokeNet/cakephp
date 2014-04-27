@@ -388,7 +388,19 @@ class MissionsController extends AppController {
 			//return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));
 		}
 
-		$this->set(compact('user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations',
+		if($mission['Mission']['basic_training'] == 1){
+			$myevidences = $this->Mission->Evidence->find('all', array(
+				'order' => array(
+					'Evidence.created DESC'
+				), 
+				'conditions' => array(
+					'Evidence.mission_id' => $id, 
+					'Evidence.user_id' => $user['User']['id']
+				)
+			));
+		}
+
+		$this->set(compact('user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
 		if($mission['Mission']['basic_training'] == 1)

@@ -63,6 +63,7 @@
 					<dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= __('Mission Dossier') ?></a></dd>
 					<dd class="<?php echo $badges_tag ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
 					<dd class="<?php echo $points_tag ?>"><a href="#points"><?= __('Points') ?></a></dd>
+					<dd class="<?php echo $points_tag ?>"><a href="#graphic"><?= __('Graphic Novel') ?></a></dd>
 				<?php endif; ?>
 			</dl>
 			<div class="tabs-content">
