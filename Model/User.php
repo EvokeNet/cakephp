@@ -55,7 +55,7 @@ class User extends AppModel {
     );
 
 
-  public $actsAs = array('Acl' => array('type'=> 'requester', 'enabled' => false));
+  public $actsAs = array('Acl' => array('type'=> 'requester'));
 
 	function parentNode() {
 	    if (!$this->id && empty($this->data)) {
