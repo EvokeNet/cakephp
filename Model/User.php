@@ -54,9 +54,9 @@ class User extends AppModel {
         ),
     );
 
-    
-    var $actsAs = array('Acl' => array('requester'));
- 
+
+    public $actsAs = array('Acl' => array('type'=> 'requester', 'enabled' => false));
+
 	function parentNode() {
 	    if (!$this->id && empty($this->data)) {
 	        return null;
@@ -78,7 +78,7 @@ class User extends AppModel {
         if (!empty($data['Attachment'][0]) && $data['Attachment'][0]['attachment']['name'] != '') {
         	foreach ($data['Attachment'] as $i => $image) {
                 if (is_array($data['Attachment'][$i])) {
-                    
+
                     // Force setting the `model` field to this model
                     $image['model'] = 'User';
 
@@ -93,7 +93,7 @@ class User extends AppModel {
         }
         $insert['User'] = $data['User'];
         //$data['Attachment'] = $image;
-        
+
 
         // Try to save the data using Model::saveAll()
         if(!$hasPrev) $this->create();
@@ -142,9 +142,9 @@ class User extends AppModel {
 		}
 
 	    if(!empty($this->data['User']['tmp_password'])) {
-            $this->data['User']['password'] = AuthComponent::password($this->data['User']['tmp_password']); 
+            $this->data['User']['password'] = AuthComponent::password($this->data['User']['tmp_password']);
         }
-     
+
 		return true;
 	}
 
@@ -153,7 +153,7 @@ class User extends AppModel {
     }
 
     public function afterSave($created, $options = array()) {
-       
+
        	if($created){
        		$value = 250;
        		//check to see if admin set a different amount of points for this action
@@ -176,7 +176,7 @@ class User extends AppModel {
 	        $this->getEventManager()->dispatch($event);
 
 	        return true;
-	    }	
+	    }
     }
 
 /**
