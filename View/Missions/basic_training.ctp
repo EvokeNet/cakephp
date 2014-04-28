@@ -119,6 +119,23 @@
 
 	  <div class="small-5 medium-5 large-5 columns">
 
+	  	<div class = "evoke position">
+	  		<?php 
+ 				$language = 'ENGLISH';
+ 				if($lang == 'es') {
+ 					$language = 'SPANISH';
+ 				}
+			?>
+
+	  		<ul class="clearing-thumbs clearing-feature" data-clearing>
+				<li class="clearing-featured-img "><a  href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg01.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg01.jpg' ?>" width="100%"></a></li>
+				<li><a href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg02.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg02.jpg' ?>"></a></li>
+				<li><a href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg03.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg03.jpg' ?>"></a></li>
+				<li><a href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg04.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg04.jpg' ?>"></a></li>
+				<li><a href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg05.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg05.jpg' ?>"></a></li>
+			</ul>
+		</div>
+
 	  	<div class = "evoke position" style = "margin: 5% 15%;">
 	  		<div style = "margin-left:100px" id="numero5"></div>
 			<img src = '<?= $this->webroot.'img/espiral.png' ?>' style = " width: 100%;">
@@ -315,4 +332,6 @@
 	// echo $this->Html->script('/components/foundation/js/foundation/foundation.joyride.js', array('inline' => false));
 	echo $this->Html->script('joyride', array('inline' => false));
 	echo $this->Html->script('/components/foundation/js/vendor/jquery.cookie.js', array('inline' => false));
+	echo $this->Html->script('/components/foundation/js/foundation.js', array('inline' => false));
+	echo $this->Html->script('/components/foundation/js/foundation/foundation.clearing.js', array('inline' => false));
 ?>

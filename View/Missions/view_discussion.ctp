@@ -63,8 +63,58 @@
 	  </div>
 	  <div class="small-6 medium-6 large-5 columns">
 	  		<div class = "evoke position">
-	  			<div class = "evoke text-align"><img src = '<?= $this->webroot.'img/hqnored.png' ?>' width="60%"></div>
-	  		
+	  			
+ 				<?php 
+ 					$language = 'ENGLISH';
+ 					if($lang == 'es') {
+ 						$language = 'SPANISH';
+ 					}
+				?>
+
+	  			<?php if($mission['Mission']['title'] == 'Food Security' || $mission['Mission']['title'] == 'Seguridad Alimentaria') : ?>
+
+	  			<ul class="clearing-thumbs clearing-feature" data-clearing>
+					<li class="clearing-featured-img "><a  href="<?= $this->webroot.'img/EP01_PG01ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01_PG01ENGLISH.jpg' ?>" width="100%"></a></li>
+					<li><a href="<?= $this->webroot.'img/EP01PG02ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01PG02ENGLISH.jpg' ?>"></a></li>
+					<li><a href="<?= $this->webroot.'img/EP01PG03ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01PG03ENGLISH.jpg' ?>"></a></li>
+					<li><a href="<?= $this->webroot.'img/EP01PG04ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01PG04ENGLISH.jpg' ?>"></a></li>
+					<li><a href="<?= $this->webroot.'img/EvokeEP01PG05ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP01PG05ENGLISH.jpg' ?>"></a></li>
+					<li><a href="<?= $this->webroot.'img/EvokeEP01PG06ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP01PG06ENGLISH.jpg' ?>"></a></li>
+					<li><a href="<?= $this->webroot.'img/EvokeEP01PG07ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP01PG07ENGLISH.jpg' ?>"></a></li>
+					<li><a href="<?= $this->webroot.'img/EvokeEP01PG08ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP01PG08ENGLISH.jpg' ?>"></a></li>
+				</ul>
+
+				<?php endif; ?>
+				<?php if($mission['Mission']['title'] == 'Power Shift' || $mission['Mission']['title'] == 'Cambio de poder') : ?>
+
+				<ul class="clearing-thumbs clearing-feature" data-clearing>
+					<li class="clearing-featured-img"><a href="<?= $this->webroot.'img/EvokeEP2_01color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_01color'. $language.'.jpg' ?>" width="100%"></a></li>
+					<li><a href="<?= $this->webroot.'img/EvokeEP2_02color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_02color'. $language.'.jpg' ?>"></a></li>
+					<li><a href="<?= $this->webroot.'img/EvokeEP2_03color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_03color'. $language.'.jpg' ?>"></a></li>
+					<li><a href="<?= $this->webroot.'img/EvokeEP2_04color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_04color'. $language.'.jpg' ?>"></a></li>
+					<li><a href="<?= $this->webroot.'img/EvokeEP2_05color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_05color'. $language.'.jpg' ?>"></a></li>
+					<li><a href="<?= $this->webroot.'img/EvokeEP2_06color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_06color'. $language.'.jpg' ?>"></a></li>
+					<li><a href="<?= $this->webroot.'img/EvokeEP2_07color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_07color'. $language.'.jpg' ?>"></a></li>
+				</ul>
+
+				<?php endif; ?>
+				<?php if($mission['Mission']['title'] == 'Water Solutions' || $mission['Mission']['title'] == 'Soluciones para agua') : ?>
+ 
+					<ul class="clearing-thumbs clearing-feature" data-clearing>
+						<li class="clearing-featured-img"><a href="<?= $this->webroot.'img/EvokeEP03_pg01acol'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg01acol'. $language.'.jpg' ?>" width="100%"></a></li>
+						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg02col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg02col'. $language.'.jpg' ?>"></a></li>
+						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg03col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg03col'. $language.'.jpg' ?>"></a></li>
+						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg04col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg04col'. $language.'.jpg' ?>"></a></li>
+						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg05col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg05col'. $language.'.jpg' ?>"></a></li>
+						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg06col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg06col'. $language.'.jpg' ?>"></a></li>
+						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg07col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg07col'. $language.'.jpg' ?>"></a></li>
+					</ul>
+
+				<?php endif; ?>
+
+
+	  			<!-- <div class = "evoke text-align"><img src = '<?= $this->webroot.'img/hqnored.png' ?>' width="60%"></div>
+	  		 -->
 	  			<div class = "evoke ribbon-position">
 			  		<div class="ribbon-wrapper">
 						<div class="ribbon-front">
@@ -378,11 +428,17 @@
 
 <?php
 
+	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
+
 	//echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
 	echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel', array('inline' => false));
 	//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
 	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
 	//echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
 	echo $this->Html->script('jcarousel_missions', array('inline' => false));
+	echo $this->Html->script('/components/foundation/js/foundation.js', array('inline' => false));
+	echo $this->Html->script('/components/foundation/js/foundation/foundation.clearing.js', array('inline' => false));
+	// <script src="js/foundation/foundation.js"></script>
+ //  <script src="js/foundation/foundation.clearing.js"></script>
 
 ?>

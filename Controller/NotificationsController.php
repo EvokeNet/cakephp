@@ -62,8 +62,8 @@ class NotificationsController extends AppController {
 		}
 
 		if($flags['_es']){
-			$badge['Badge']['name']; = $badge['Badge']['name_es'];
-			$badge['Badge']['description']; = $badge['Badge']['description_es'];
+			$badge['Badge']['name'] = $badge['Badge']['name_es'];
+			$badge['Badge']['description'] = $badge['Badge']['description_es'];
 		}
 
 		$this->loadModel('Attachment');
