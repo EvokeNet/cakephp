@@ -32,6 +32,11 @@
 
 	  	<div class = "evoke missions data">
 	  		<h2 id="numero1"><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
+
+	  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
+			  <iframe src="http://player.vimeo.com/video/93164024" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			</div>
+			
 	  		<p id="numero2"><?= $mission['Mission']['description'];?></p>
   		</div>
 

@@ -40,6 +40,24 @@
 	  	<div class = "evoke missions data">
 	  		<h1><?php echo __('Phase: '); echo h($missionPhase['Phase']['name']); ?></h1>
 	  		<h2><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
+
+	  		<?php if($mission['Mission']['title'] == 'Food Security'): ?>
+	  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
+			  <iframe src="http://player.vimeo.com/video/93164026" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			</div>
+
+			<?php elseif($mission['Mission']['title'] == 'Power Shift'): ?>
+			<div class="flex-video widescreen vimeo" style = "margin-top:50px">
+			  <iframe src="http://player.vimeo.com/video/93164027" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			</div>
+
+			<?php elseif($mission['Mission']['title'] == 'Water Solutions'): ?>
+			<div class="flex-video widescreen vimeo" style = "margin-top:50px">
+			  <iframe src="http://player.vimeo.com/video/93164029" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			</div>
+
+			<?php endif; ?>
+
 	  		<p><?= $mission['Mission']['description'];?></p>
   		</div>
 	  </div>

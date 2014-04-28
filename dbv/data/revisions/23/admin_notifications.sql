@@ -1,1 +1,0 @@
-ALTER TABLE  `admin_notifications` ADD  `user_target` INT( 16 ) UNSIGNED NULL DEFAULT NULL AFTER  `description`;
