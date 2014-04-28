@@ -48,7 +48,7 @@
 	  			
  				<?php 
  					$language = 'ENGLISH';
- 					if($lang['_es']) {
+ 					if($lang == 'es') {
  						$language = 'SPANISH';
  					}
 				?>
