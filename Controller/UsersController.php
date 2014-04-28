@@ -796,7 +796,6 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 
-
 		//check to see if user is an admin
 		//if so, he can edit whoever he likes
 		//otherwise, you are not allowed to edit agents but
@@ -813,6 +812,11 @@ class UsersController extends AppController {
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$user = $this->User->find('first', $options);
 		//$this->set(compact('user'));
+
+		if(empty($user['User']['biography'])){
+			//echo $this->element('menu', array('user' => $user));
+			$this->Session->setFlash('', 'opening_lightbox_message');
+		}
 
 		$user_photo = $this->User->Attachment->find('first', array(
 			'order' => array(
