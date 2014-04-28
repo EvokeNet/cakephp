@@ -59,7 +59,7 @@ class NotificationsController extends AppController {
 				'Attachment.model' => 'Badge',
 				'Attachment.foreign_key' => $badge_id
 			)
-		));		
+		));
 
 		$this->Session->setFlash('', 'flash_badge_message', array('badge_name' => $badge['Badge']['name'], 
 			'badge_desc' => $badge['Badge']['description'], 'imgPath' => $attachment['Attachment']['id'], 

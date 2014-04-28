@@ -83,7 +83,9 @@
 							<?php
 								echo '<legend>' . __('Edit Mission'). '</legend>'; 
 								echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title'), 'required' => true));
+								echo $this->Form->input('title_es', array('value' => $mission['Mission']['title_es'], 'label' => __('Spanish Title')));
 								echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description'), 'required' => true));
+								echo $this->Form->input('description_es', array('value' => $mission['Mission']['description_es'], 'label' => __('Spanish Description')));
 								echo $this->Form->radio('basic_training', array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=> $mission['Mission']['basic_training']));
 								if(!is_null($mission_img) && !empty($mission_img)) :
 									echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
@@ -219,6 +221,7 @@
 							));
 						}
 						echo $this->Form->hidden('mission_id', array('value' => $id));
+						echo $this->Form->hidden('language', array('value' => $language));
 						if(!empty($dossier) && !is_null($dossier)) {
 							echo $this->Form->hidden('id', array('value' => $dossier['Dossier']['id']));
 						}

@@ -51,7 +51,9 @@
 							//echo $sumMyPoints;
 							echo $this->Form->input('id');
 							echo $this->Form->input('name', array('label' => __('Name'), 'class' => 'evoke'));
-							echo $this->Form->input('username', array('label' => __('Username')));
+							if($user['User']['facebook_id'] == '' || $user['User']['facebook_id'] == null) {
+								echo $this->Form->input('username', array('label' => __('Username')));
+							}
 							echo $this->Form->input('email', array('type' => 'email', 'required' => true));
 							echo '<div class="input file" style="display:none"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 							echo $this->Form->input('birthdate', array('type' => 'date', 'required' => true, 

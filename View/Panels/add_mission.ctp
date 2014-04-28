@@ -99,7 +99,9 @@
 								if(isset($id) && !is_null($id)) {
 									echo '<legend>' . __('Edit Mission') .'</legend>'; 
 									echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title'), 'required' => true));
+									echo $this->Form->input('title_es', array('value' => $mission['Mission']['title_es'], 'label' => __('Spanish Title')));
 									echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description'), 'required' => true));
+									echo $this->Form->input('description_es', array('value' => $mission['Mission']['description_es'], 'label' => __('Spanish Description')));
 									echo $this->Form->radio(__('Basic Training'), array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=>$mission['Mission']['basic_training']));
 									if(!is_null($mission_img) && !empty($mission_img)) :
 										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
@@ -129,7 +131,9 @@
 								} else {
 									echo '<legend>'. __('Add a Mission') . '</legend>'; 
 									echo $this->Form->input('title', array('label' => __('Title'), 'required' => true));
+									echo $this->Form->input('title_es', array('label' => __('Spanish Title')));
 									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+									echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
 									echo $this->Form->radio('basic_training', array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=> 0));
 									echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 									echo $this->Form->hidden('form_type', array('value' => 'mission'));
@@ -249,6 +253,7 @@
 							));
 						}
 						echo $this->Form->hidden('mission_id', array('value' => $id));
+						echo $this->Form->hidden('language', array('value' => $language));
 						if(!empty($dossier) && !is_null($dossier)) {
 							echo $this->Form->hidden('id', array('value' => $dossier['Dossier']['id']));
 						}

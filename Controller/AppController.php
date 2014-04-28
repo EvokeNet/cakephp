@@ -93,6 +93,10 @@ class AppController extends Controller {
         }
     }
 
+    public function getCurrentLanguage(){
+        return CakeSession::read('Config.language');
+    }
+
     public function changeLanguage($lang){
         if(!empty($lang)){
             if($lang == 'es'){

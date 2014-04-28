@@ -45,12 +45,41 @@ class BadgesController extends AppController {
  */
 	public function index() {
 		$this->Badge->recursive = 0;
-		$this->set('badges', $this->Paginator->paginate());
+		$badges = $this->Badge->find('all');
+
+		foreach ($badges as $b => $badge) {
+			$this->loadModel('Attachment');
+			$badge_img = $this->Attachment->find('first', array(
+				'conditions' => array(
+					'Attachment.model' => 'Badge',
+					'Attachment.foreign_key' => $badge['Badge']['id']
+				)
+			));
+			if(!empty($badge_img)) {
+				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
+				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
+			} 
+
+			$hasBadge = $this->Badge->UserBadge->find('first', array(
+				'conditions' => array(
+					'UserBadge.badge_id' => $badge['Badge']['id'],
+					'UserBadge.user_id' => $this->getUserId()
+				)
+			));
+
+			if(empty($hasBadge)) {
+				$badges[$b]['Badge']['owns'] = false;
+			} else {
+				$badges[$b]['Badge']['owns'] = true;
+			}
+
+		}
+		//$this->set('badges', $this->Paginator->paginate());
 
 		$this->loadModel('User');
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$this->set(compact('user'));
+		$this->set(compact('user', 'badges'));
 	}
 
 /**

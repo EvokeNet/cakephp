@@ -262,10 +262,17 @@
 										'label' => __('Name'),
 										'required' => true
 									));
+									echo $this->Form->input('name_es', array(
+										'label' => __('Spanish Name')
+									));
 									echo $this->Form->input('description', array(
 										'label' => __('Description'),
 										'type' => 'textarea',
 										'required' => true
+									));
+									echo $this->Form->input('description_es', array(
+										'label' => __('Spanish Description'),
+										'type' => 'textarea'
 									));
 								?>
 							</fieldset>
@@ -299,7 +306,9 @@
 									<legend><?php echo __('Add a Badge'); ?></legend>
 								<?php
 									echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
+									echo $this->Form->input('name_es', array('label' => __('Spanish Name')));
 									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+									echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
 									echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 
 							        echo '<fieldset><legend> ' .__('Necessary Power Points to get Badge') . '</legend>';

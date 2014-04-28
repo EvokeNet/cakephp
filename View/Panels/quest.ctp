@@ -11,7 +11,9 @@
 		<legend><?php echo __('Edit Quest'); ?></legend>
 	<?php
 		echo $this->Form->input('title', array('value' => $me['Quest']['title']));
-		echo $this->Media->ckeditor('description', array('value' => $me['Quest']['description']));
+        echo $this->Form->input('title_es', array('value' => $me['Quest']['title_es'], 'label' => __('Spanish Title')));
+		echo $this->Media->ckeditor('description', array('value' => $me['Quest']['description'], 'label' => __('Description')));
+        echo $this->Media->ckeditor('description_es', array('value' => $me['Quest']['description_es'], 'label' => __('Spanish Description')));
         echo $this->Form->input('todo_list', array('value' => $me['Quest']['todo_list']));
         echo $this->Form->input('points', array('value' => $me['Quest']['points']));
 

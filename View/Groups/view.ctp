@@ -25,6 +25,11 @@
 				<div class = "evoke text-align"><a href = ""><img src="" class = "evoke dashboard user_pic"/></a></div>
 
 				<div class = "evoke group agent info tag-padding">
+					<?php if(empty($group_img)) :?>
+			  				<img src="https://graph.facebook.com//picture?type=large" style = "margin: 20%; width: 60%;"/>
+			  			<?php else : ?>
+			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$group_img['Attachment']['dir'].'/'.$group_img['Attachment']['attachment'] ?>" style = "margin: 20%; width: 60%;"/>
+			  			<?php endif; ?>
 					<div class = "evoke text-align"><h4><?= $group['Group']['title']; ?></h4></div>
 					<h5><?= __('Team Owner');?>&nbsp;&nbsp;<div><?= $group['User']['name'] ?></div></h5>
 					<h5><?= __('Members');?>&nbsp;&nbsp;&nbsp;<div><?= $countMembers ?></div></h5>
@@ -40,6 +45,9 @@
 						<?php else :?>
 							<a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $group['Group']['id'])); ?>" class = "button general"><?php echo __('GO TO PROJECT');?></a>
 						<?php endif;?>
+						<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'edit', $group['Group']['id'])); ?>" class = "button general">
+							<?php echo __('Edit Information');?>
+						</a>
 					<?php endif;?>
 				</div>
 
