@@ -165,6 +165,11 @@ class UsersController extends AppController {
 				$user['User']['role_id'] = $this->User->role_id;
 				$this->Auth->login($user);
 
+				if(empty($user['User']['biography'])){
+					//echo $this->element('menu', array('user' => $user));
+					$this->Session->setFlash('', 'opening_lightbox_message');
+				}
+
 				$this->Session->setFlash('', 'opening_lightbox_message');
 
 				return $this->redirect(array('action' => 'edit', $this->User->id));
@@ -799,7 +804,6 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-
 
 		//check to see if user is an admin
 		//if so, he can edit whoever he likes
