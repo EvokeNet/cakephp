@@ -7,7 +7,7 @@
 <section class = "evoke login background">
 	<div class="row full-width">
 	
-		<div class="small-7 medium-7 large-7 columns"><img src = '<?= $this->webroot.'img/bar.png' ?>' alt = "" class = "evoke login video-bar"></div>
+		<div class="small-7 medium-7 large-7 columns"><!-- <img src = '<?= $this->webroot.'img/bar.png' ?>' alt = "" class = "evoke login video-bar"> --></div>
 
 		<div class="small-5 medium-5 large-5 columns">
 			<img src = '<?= $this->webroot.'img/evoke-69.png' ?>' alt = "" class = "evoke login padding-bottom">
