@@ -490,7 +490,7 @@ class MissionsController extends AppController {
 		$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
 		
 
-		$mission = $this->Mission->find('first', $options));
+		$mission = $this->Mission->find('first', $options);
 
 		if($flags['_es']) {
 			$mission['Mission']['title'] = $mission['Mission']['title_es'];
