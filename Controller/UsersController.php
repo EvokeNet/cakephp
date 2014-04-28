@@ -163,6 +163,13 @@ class UsersController extends AppController {
 				$user['User']['id'] = $this->User->id;
 				$user['User']['role_id'] = $this->User->role_id;
 				$this->Auth->login($user);
+
+				if(empty($user['User']['biography'])){
+					//echo $this->element('menu', array('user' => $user));
+					$this->Session->setFlash('', 'opening_lightbox_message');
+				}
+
+				$this->Session->setFlash('', 'opening_lightbox_message');
 				return $this->redirect(array('action' => 'edit', $this->User->id));
 				//return $this->redirect(array('action' => 'index'));
 			} else {
@@ -812,11 +819,6 @@ class UsersController extends AppController {
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$user = $this->User->find('first', $options);
 		//$this->set(compact('user'));
-
-		if(empty($user['User']['biography'])){
-			//echo $this->element('menu', array('user' => $user));
-			$this->Session->setFlash('', 'opening_lightbox_message');
-		}
 
 		$user_photo = $this->User->Attachment->find('first', array(
 			'order' => array(
