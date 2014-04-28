@@ -741,9 +741,9 @@ class PanelsController extends AppController {
 										$answer['question_id'] = $question_id;
 										$this->Answer->create();
 										if ($this->Answer->save($answer)) {
-											$this->Session->setFlash(__('The answer has been saved.'));
+											// $this->Session->setFlash(__('The answer has been saved.'));
 										} else {
-											$this->Session->setFlash(__('The answer could not be saved. Please, try again.'));
+											// $this->Session->setFlash(__('The answer could not be saved. Please, try again.'));
 										}
 									}
 								}

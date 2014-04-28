@@ -33,9 +33,11 @@
 		<?php echo $this->Session->flash(); ?>
 
 		<?php if(isset($mission['Mission'])): ?>
-				<a class="button general" href="" data-reveal-id="newGroup" data-reveal>
-					<span><?php echo __('Create a group');?></span>
-				</a>
+				<div class = "evoke titles-right">
+					<a class="button general green" href="" data-reveal-id="newGroup" data-reveal>
+						<span><?php echo __('Create a group');?></span>
+					</a>
+				</div>
 				<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
 					<?= $this->element('add_group', array('mission' => $mission, 'quest_id' => $quest_id, 'userid' => $user['User']['id'], 'groups' => $groups));?>
 					<a class="close-reveal-modal">&#215;</a>
