@@ -8,14 +8,13 @@
 	<div class="row full-width">
 	
 		<div class="small-7 medium-7 large-7 columns">
+			
 			<img src = '<?= $this->webroot.'img/bar.png' ?>' alt = "" class = "evoke login video-bar">
 
 			<div class="flex-video widescreen vimeo" style = "margin-top:50px">
 			  <iframe src="http://player.vimeo.com/video/93164917" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 			</div>
-			<!-- <div class="flex-video">
-		        <iframe width="420" height="315" src="http://www.youtube.com/watch?v=4WryP4KxHaU" frameborder="0" allowfullscreen></iframe>
-			</div> -->
+			
 		</div>
 
 		<div class="small-5 medium-5 large-5 columns">

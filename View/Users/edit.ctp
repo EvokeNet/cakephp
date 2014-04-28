@@ -1,5 +1,5 @@
 <?php 
-	if(isset($user['User']['biography'])){
+	if(!empty($user['User']['biography'])){
 		$this->extend('/Common/topbar');
 		$this->start('menu');
 		echo $this->element('header', array('user' => $user));
@@ -8,7 +8,7 @@
 ?>
 <section class="evoke background-green">
 	<?php 
-		if(isset($user['User']['biography'])){
+		if(!empty($user['User']['biography'])){
 			echo $this->element('menu', array('user' => $user));
 		}
 	?>
