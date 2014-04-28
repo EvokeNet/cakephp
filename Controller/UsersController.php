@@ -413,49 +413,22 @@ class UsersController extends AppController {
 		//admin notifications check:
 		// $this->loadModel('AdminNotification');
 		
-		// if(isset($user['AdminNotificationsUser'][0])) {
-		// 	//holds the last notification directed to this user
-		// 	$last = $user['AdminNotificationsUser'][count($user['AdminNotificationsUser']) - 1];
-		// 	//$last['id'] = 0;
-		// } else {
-		// 	$last['admin_notification_id'] = 0;
-		// }
+
+		if(isset($user['AdminNotificationsUser'][0])) {
+			//holds the last notification directed to this user
+			$last = $user['AdminNotificationsUser'][count($user['AdminNotificationsUser']) - 1];
+			//$last['id'] = 0;
+		} else {
+			$last['admin_notification_id'] = 0;
+		}
 		
-		// //get all newer than that one
-		// $adminNotifications = $this->AdminNotification->find('all', array(
-		// 	'conditions' => array(
-		// 		'AdminNotification.id >' => $last['admin_notification_id'],
-		// 		'AdminNotification.user_target' => null				
-		// 	)
-		// ));
-		
-		// foreach ($adminNotifications as $not) {
-		// 	//he sees it..
-		// 	$insert['AdminNotificationsUser']['user_id'] = $user['User']['id'];
-		// 	$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
-
-		// 	$this->User->AdminNotificationsUser->create();
-		// 	$this->User->AdminNotificationsUser->save($insert);
-
-
-		// 	$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
-	 //            'entity_id' => $not['AdminNotification']['id'],
-	 //            'user_id' => $this->getUserId(),
-	 //            'entity' => 'showNotification'
-	 //        ));
-
-	 //        $this->getEventManager()->dispatch($event);
-	 //        break;
-		// }
-
-		// //get all newer than that one
-		// $adminNotificationsToMe = $this->AdminNotification->find('all', array(
-		// 	'conditions' => array(
-		// 		'AdminNotification.id >' => $last['admin_notification_id'],
-		// 		'AdminNotification.user_target' => $this->getUserId()				
-		// 	)
-		// ));
-		
+		//get all newer than that one
+		$adminNotifications = $this->AdminNotification->find('all', array(
+			'conditions' => array(
+				'AdminNotification.id >' => $last['admin_notification_id'],
+				'AdminNotification.user_target' => null				
+			)
+		));
 
 		// foreach ($adminNotificationsToMe as $not) {
 		// 	//he sees it..
@@ -471,9 +444,36 @@ class UsersController extends AppController {
 	 //            'entity' => 'showNotification'
 	 //        ));
 
-	 //        $this->getEventManager()->dispatch($event);
-	 //        break;
-		// }
+	        $this->getEventManager()->dispatch($event);
+	        break;
+		}
+
+		//get all newer than that one
+		$adminNotificationsToMe = $this->AdminNotification->find('all', array(
+			'conditions' => array(
+				'AdminNotification.id >' => $last['admin_notification_id'],
+				'AdminNotification.user_target' => $this->getUserId()				
+			)
+		));
+		
+
+		foreach ($adminNotificationsToMe as $not) {
+			//he sees it..
+			$insert['AdminNotificationsUser']['user_id'] = $user['User']['id'];
+			$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
+
+			$this->User->AdminNotificationsUser->create();
+			$this->User->AdminNotificationsUser->save($insert);
+
+			$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
+	            'entity_id' => $not['AdminNotification']['id'],
+	            'user_id' => $this->getUserId(),
+	            'entity' => 'showNotification'
+	        ));
+
+	        $this->getEventManager()->dispatch($event);
+	        break;
+		}
 		
 		//$this->loadModel('Badge');
 		$badges = $this->User->UserBadge->find('all', array(

@@ -29,9 +29,23 @@
 	  		<!-- <img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/> -->
 		 	
 	  		<?php if(isset($user['User'])) :?>
-		 		<a href = "<?= $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']))?>"><h1><?= $group['Group']['title']?></h1>
+		 		<a href = "<?= $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']))?>">
+		 			<?php if($group['Group']['photo_dir'] == null) :?>
+	  					<img src="https://graph.facebook.com//picture?type=large" style="margin: 20%"/>
+		  			<?php else : ?>
+							<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="margin: 20%"/>
+				  	<?php endif; ?>
+		 			<h1><?= $group['Group']['title']?></h1>
+		 		</a>
 		 	<?php else : ?>
-				<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'login'))?>"><h1><?= $group['Group']['title']?></h1>
+				<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'login'))?>">
+					<?php if($group['Group']['photo_dir'] == null) :?>
+	  					<img src="https://graph.facebook.com//picture?type=large" style="margin: 20%"/>
+		  			<?php else : ?>
+							<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="margin: 20%"/>
+				  	<?php endif; ?>
+					<h1><?= $group['Group']['title']?></h1>
+				</a>
 			<?php endif;?>
 
 

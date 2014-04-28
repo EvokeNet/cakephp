@@ -139,13 +139,13 @@
 					</div>
 					<div class = "evoke screen-box badges" style = "padding: 20px 10px 10px 40px;">
 						<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
-						  <li><img src = '<?= $this->webroot.'img/badge1.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge2.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge3.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge4.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge1.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge2.png' ?>'></li>
-						  <li><img src = '<?= $this->webroot.'img/badge3.png' ?>'></li>
+							<?php foreach($badges as $badge): 
+								if(isset($badge['Badge']['img_dir'])) : ?>
+									<li><img src = '<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>'></li>
+								<?php else: ?>
+									<li><img src = '<?= $this->webroot.'img/badge4.png' ?>'></li>
+								<?php endif ?>
+							<?php endforeach;?>
 						</ul>
 					</div>
 				</div>

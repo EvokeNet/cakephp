@@ -45,6 +45,7 @@ class PanelsController extends AppController {
 * Loads basic informations from database to local variables to be shown in the administrator's panel
 */
 	public function index($args = 'organizations') {
+		//debug($this->getCurrentLanguage());
 		$organizations_tab = $this->defineCurrentTab('organizations', $args);
 		$missions_tab = $this->defineCurrentTab('missions', $args);
 		$issues_tab = $this->defineCurrentTab('issues', $args);
@@ -69,7 +70,12 @@ class PanelsController extends AppController {
 
 		$powerpoints = $this->PowerPoint->find('all');
 
-		$notifications = $this->AdminNotification->find('all');
+		//get all general notifications
+		$notifications = $this->AdminNotification->find('all', array(
+			'conditions' => array(
+				'AdminNotification.user_target' => null
+			)
+		));
 
 		$levels = $this->Level->find('all');
 
@@ -287,6 +293,8 @@ class PanelsController extends AppController {
 		$points_tag = $this->defineCurrentTab('point', $args);
 		$dossier_tag = $this->defineCurrentTab('dossier', $args);
 
+		$language = $this->getCurrentLanguage();
+
 		//loading infos to be shown at top bar
 		$username = explode(' ', $this->user['name']);
 		$userid = $this->user['id'];
@@ -446,7 +454,7 @@ class PanelsController extends AppController {
 		$data['Quest']['mission_id'] = $id;
 		$newQuest = $this->Quest->save();*/
 
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
+		$this->set(compact('language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
@@ -462,6 +470,8 @@ class PanelsController extends AppController {
 		$badges_tag = $this->defineCurrentTab('badge', $args);
 		$points_tag = $this->defineCurrentTab('point', $args);
 		$dossier_tag = $this->defineCurrentTab('dossier', $args);
+
+		$language = $this->getCurrentLanguage();
 
 		//loading infos to be shown at top bar
 		$username = explode(' ', $this->user['name']);
@@ -608,7 +618,7 @@ class PanelsController extends AppController {
 		$newQuest = $this->Quest->save($data);
 		debug($newQuest);*/
 
-		$this->set(compact('flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
+		$this->set(compact('language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
@@ -1285,6 +1295,12 @@ class PanelsController extends AppController {
 		if(empty($evokation))
 			$this->redirect($this->referer());
 
+		$mission = $this->Mission->find('first', array(
+			'conditions' => array(
+				'Mission.id' => $evokation['Group']['mission_id']
+			)
+		));
+
 		$missionCompleted = 1;
 		$this->Evokation->id = $evo_id;
 		//it wasnt approved
@@ -1312,6 +1328,7 @@ class PanelsController extends AppController {
 		if(empty($socialInnovator))
 			$badgeExists = false;
 
+
 		foreach ($members as $member) {
 			$previous = $this->UserMission->find('first', array(
 				'conditions' => array(
@@ -1328,10 +1345,22 @@ class PanelsController extends AppController {
 				$this->UserMission->id = $previous['UserMission']['id'];
 				$insert['UserMission']['id'] = $previous['UserMission']['id'];
 			}
-			$this->UserMission->save($insert);
+			$userMission = $this->UserMission->save($insert);
 
+			//debug($mission);
 			//dispatch mission completed or evokation failure
-			
+			if($missionCompleted == 1) {
+				$newData['AdminNotification']['title'] = 'Project Approved';
+				$newData['AdminNotification']['description'] = 'Congratulations, agent! Your project '.$evokation['Evokation']['title'].' was approved and you have'.
+					'successfully completed the '. $mission['Mission']['title'] .' mission.';
+			}else{
+				$newData['AdminNotification']['title'] = 'Project Not Approved!';
+				$newData['AdminNotification']['description'] = 'Agent, your project'. $evokation['Evokation']['title'] . ' failed!';
+			}
+			$newData['AdminNotification']['user_id'] = $this->getUserId();
+			$newData['AdminNotification']['user_target'] = $member['GroupsUser']['user_id'];
+			$this->AdminNotification->create();
+			$this->AdminNotification->save($newData);
 
 			if(!$badgeExists || $missionCompleted == 0)
 				continue;
@@ -1360,6 +1389,12 @@ class PanelsController extends AppController {
 
 		    if($gotit >= 3000) {
 		    	//dispatch badge won
+		  //   	$event = new CakeEvent('Model.BadgesUser.won', $this, array(
+				//     'badge_id' => $b['badge_id'],
+				//     'user_id' => $this->data['UserPowerPoint']['user_id']
+				// ));
+
+				// $this->getEventManager()->dispatch($event);
 		    }
 
 		}

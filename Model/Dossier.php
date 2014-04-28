@@ -17,7 +17,8 @@ class Dossier extends AppModel {
                 if (is_array($data['Attachment'][$i])) {
                     // Force setting the `model` field to this model
                     $image['model'] = 'Dossier';
-
+                    // debug($data); die();
+                    $image['language'] = $data['Dossier']['language'];
                     // Unset the foreign_key if the user tries to specify it
                     if (isset($image['foreign_key'])) {
                         unset($image['foreign_key']);
