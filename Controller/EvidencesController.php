@@ -62,6 +62,16 @@ class EvidencesController extends AppController {
 			)
 		));
 
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+
+			$evidence['Mission']['title'] = $evidence['Mission']['title_es'];
+		}
+
 		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
 		$like = $this->Evidence->Like->find('first', array('conditions' => array('Like.evidence_id' => $id, 'Like.user_id' => $this->getUserId())));
 		$likes = $this->Evidence->Like->find('all', array('conditions' => array('Like.evidence_id' => $id)));
@@ -113,9 +123,9 @@ class EvidencesController extends AppController {
 				$data['UserMission']['mission_id'] = $mission_id;
 
 				if ($this->UserMission->save($data)) {
-					$this->Session->setFlash(__('The user mission has been saved.'));
+					//$this->Session->setFlash(__('The user mission has been saved.'));
 				} else {
-					$this->Session->setFlash(__('The user mission could not be saved. Please, try again.'));
+					//$this->Session->setFlash(__('The user mission could not be saved. Please, try again.'));
 				}
 			}
 			return $this->redirect(array('action' => 'edit', $this->Evidence->id));
@@ -184,7 +194,6 @@ class EvidencesController extends AppController {
 
 		        $this->getEventManager()->dispatch($event);
 
-
 		        //attribute pp to this user if hasnt won from this very evidence:
 				$this->loadModel('UserPowerPoint');
 				$hasWonPowerPointsFromThis = $this->UserPowerPoint->find('first', array(
@@ -223,7 +232,7 @@ class EvidencesController extends AppController {
 				/* Ends event */
 
 				//$this->Session->setFlash(__('The evidence has been saved'), 'flash_message');
-				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], -1, $me['Evidence']['phase_id']));
+				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], $me['Phase']['position']));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}

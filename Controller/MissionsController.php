@@ -70,8 +70,18 @@ class MissionsController extends AppController {
 		if (!$this->Mission->exists($id)) {
 			throw new NotFoundException(__('Invalid mission'));
 		}
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
+
 
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
+
+		
 
 		$this->loadModel('User');
 
@@ -101,6 +111,12 @@ class MissionsController extends AppController {
 		$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);
 
 		//$evidences = $this->Mission->getEvidences($id);
+
+		if($flags['_es']) {
+			$mission['Mission']['title'] = $mission['Mission']['title_es'];
+			$mission['Mission']['description'] = $mission['Mission']['description_es'];
+
+		}
 
 		$evidences = $this->Mission->Evidence->find('all', array(
 			'order' => array(
@@ -185,7 +201,12 @@ class MissionsController extends AppController {
 		$my_quests_id = array();
 		$my_quests_id2 = array();
 		$k = 0;
-		foreach ($quests as $quest) {
+		foreach ($quests as $q => $quest) {
+			if($flags['_es']) {
+				$quests[$q]['Quest']['title'] = $quest['Quest']['title_es'];
+				$quests[$q]['Quest']['description'] = $quest['Quest']['description_es'];
+			}
+
 			$my_quests_id[$k] = array('quest_id' => $quest['Quest']['id']);
 			$my_quests_id2[$k] = array('foreign_key' => $quest['Quest']['id'], 'model' => 'Quest'); //specials condiditions to search in the Attachment database'
 			$k++;
@@ -388,7 +409,19 @@ class MissionsController extends AppController {
 			//return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));
 		}
 
-		$this->set(compact('user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations',
+		if($mission['Mission']['basic_training'] == 1){
+			$myevidences = $this->Mission->Evidence->find('all', array(
+				'order' => array(
+					'Evidence.created DESC'
+				), 
+				'conditions' => array(
+					'Evidence.mission_id' => $id, 
+					'Evidence.user_id' => $user['User']['id']
+				)
+			));
+		}
+
+		$this->set(compact('lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
 		if($mission['Mission']['basic_training'] == 1)
@@ -411,6 +444,14 @@ class MissionsController extends AppController {
 			throw new NotFoundException(__('Invalid mission'));
 		}
 
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
+
 		$this->loadModel('User');
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
@@ -419,7 +460,12 @@ class MissionsController extends AppController {
 		$my_quests_id = array();
 		$my_quests_id2 = array();
 		$k = 0;
-		foreach ($quests as $quest) {
+		foreach ($quests as $q => $quest) {
+			if($flags['_es']) {
+				$quests[$q]['Quest']['title'] = $quest['Quest']['title_es'];
+				$quests[$q]['Quest']['description'] = $quest['Quest']['description_es'];
+			}
+			
 			$my_quests_id[$k] = array('quest_id' => $quest['Quest']['id']);
 			$my_quests_id2[$k] = array('foreign_key' => $quest['Quest']['id'], 'model' => 'Quest'); //specials condiditions to search in the Attachment database'
 			$k++;
@@ -442,7 +488,15 @@ class MissionsController extends AppController {
 		));
 
 		$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
-		$this->set('mission', $this->Mission->find('first', $options));
+		
+
+		$mission = $this->Mission->find('first', $options));
+
+		if($flags['_es']) {
+			$mission['Mission']['title'] = $mission['Mission']['title_es'];
+			$mission['Mission']['description'] = $mission['Mission']['description_es'];
+
+		}
 
 		$this->set(compact('user', 'quests', 'questionnaires', 'previous_answers'));
 	}

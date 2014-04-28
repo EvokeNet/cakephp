@@ -47,7 +47,20 @@ class BadgesController extends AppController {
 		$this->Badge->recursive = 0;
 		$badges = $this->Badge->find('all');
 
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
+
 		foreach ($badges as $b => $badge) {
+			if($flags['_es']){
+				$badges[$b]['Badge']['name'] = $badge['Badge']['name_es'];
+				$badges[$b]['Badge']['description'] = $badge['Badge']['description_es'];
+			}
+
 			$this->loadModel('Attachment');
 			$badge_img = $this->Attachment->find('first', array(
 				'conditions' => array(

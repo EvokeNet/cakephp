@@ -92,6 +92,23 @@
 					  <div class="small-9 small-centered columns">
 					  	<div class="jcarousel">
 		                    <ul>
+		                    	<?php if ($users['User']['basic_training'] == 0 && isset($basic_training) && $users['User']['role_id'] > 2): ?>
+		                    		<li class = "evoke dashboard position">
+		                        		<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1)) ?>">
+			                        		<img src='<?= $this->webroot.'img/evoke_folder.png' ?>' width = "80%;"/>
+			                        		<span class = "evoke dashboard folders"><?php echo $basic_training['Mission']['title'];?></span>
+			                        		<?php 
+			                        			if(!empty($m['Attachment'])) :
+			                        				$img = end($m['Attachment']);
+			                        				// echo '<span>' . $img['attachment'] . '</span>';
+		                        					$path = ' '.$this->webroot.'files/attachment/attachment/'. $img['dir'].'/thumb_' . $img['attachment'].'';
+		                        					?>
+		                        					<img src = "<?= $path ?>" class = "evoke dashboard folders-img"/>
+			                        			
+			                        		<?php endif; ?>
+		                        		</a>
+		                        	</li>
+		                    	<?php else: ?>
 		                        <?php foreach($missions as $m): ?>
 		                        	<li class = "evoke dashboard position">
 		                        		<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1)) ?>">
@@ -108,7 +125,7 @@
 			                        		<?php endif; ?>
 		                        		</a>
 		                        	</li>
-					    		<?php endforeach; ?>
+					    		<?php endforeach; endif;?>
 		                    </ul>
 		                </div>
 					  </div>
@@ -355,9 +372,9 @@
 
 				<div class = "evoke dashboard position">
 					<div class = "evoke text-align">
-						<div class = "evoke titles">
+						<div class = "evoke titles" style = "margin-left: 30px;">
 							<h4 class = "display-inline"><?php echo __('Feed');?></h4>
-							<a href = "" class = "evoke button general" style = "margin-right: 20px;"><?php echo __('See All');?></a>
+							<!-- <a href = "" class = "evoke button general" style = "margin-right: 20px;"><?php echo __('See All');?></a> -->
 						</div>
 
 						<div class = "evoke dashboard vertical_bar"><img src = '<?= $this->webroot.'img/vertical_bar.png' ?>' class= "top-height-two"/></div>
@@ -382,8 +399,30 @@
 								<li><?= sprintf(__('Agent %s finished the Basic Training'), $n['User']['name']) ?></li>
 							<?php endif; ?>
 
+							<?php if($n['Notification']['origin'] == 'userUpdate'):?>						
+								<li><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $n['User']['id'])) ?>"><?= sprintf(__('Agent %s updated its profile'), $n['User']['name']) ?></a></li>
+							<?php endif; ?>
+
 							<?php if($n['Notification']['origin'] == 'like'):?>						
-								<li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s liked an evidence'), $n['User']['name']) ?></a></li>
+								<!-- <li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s liked an evidence from '), $n['User']['name']) ?></a></li> -->
+							<?php endif; ?>
+
+							<?php if($n['Notification']['origin'] == 'like'):
+							
+								foreach($allusers as $alluser):
+									if($n['Notification']['action_user_id'] == $alluser['User']['id']){
+										$action_user = $alluser;
+										break;
+									}
+								endforeach;
+
+								if($action_user['User']['id'] == $users['User']['id']){
+									$message = sprintf(__('You liked an evidence Agent %s posted'), $n['User']['name']);
+								} else{
+									$message = sprintf(__('Agent %s liked an evidence from Agent %s'), $action_user['User']['name'], $n['User']['name']);
+								}
+								?>						
+								<li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= $message ?></a></li>
 							<?php endif; ?>
 
 							<?php if($n['Notification']['origin'] == 'commentEvidence'):?>						
@@ -398,6 +437,13 @@
 						</ul>
 
 						<?php endif; ?>
+
+						<?php 
+							// if($notifies2): 
+								// foreach($notifies2 as $n): ?>
+						<?php 
+								// endforeach; 
+							// endif; ?>
 
 					</div>
 				</div>
@@ -451,14 +497,14 @@
 
 	</div>
 
-	<?php if ($users['User']['basic_training'] == 0 && isset($basic_training)): ?>
-	<!-- <div id="formModal" class="reveal-modal evoke lightbox text-align" data-reveal style = "top: 370px;!important">
+	<?php if ($users['User']['basic_training'] == 0 && isset($basic_training) && $users['User']['role_id'] > 2): ?>
+	<div id="formModal" class="reveal-modal evoke lightbox text-align" data-reveal style = "top: 370px;!important">
 	  <img src = '<?= $this->webroot.'img/alchemy.png' ?>' style = "margin-top: -460px;"/>
 	  <h2><?= sprintf(__("Agent %s, it's time to start your Basic Training"), $name[0]) ?></h2>
 	  <p class="lead"><?= __('This training will show you the steps inside a missions so you can start being an agent of change') ?></p>
 	  <a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1)); ?>" class = "button general"><?php echo __("Let's get started!");?></a>
-	  <a class="close-reveal-modal">&#215;</a>
-	</div> -->
+	  <!-- <a class="close-reveal-modal">&#215;</a> -->
+	</div>
 	<?php endif; ?>
 
 	<img src = '<?= $this->webroot.'img/parabolic.png' ?>' class = "evoke parabolic"/>

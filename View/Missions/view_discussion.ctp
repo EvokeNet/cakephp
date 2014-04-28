@@ -147,7 +147,7 @@
 	  </div>
 	  <div class="small-5 medium-5 large-5 columns padding-right">
 	  	<?php if($missionPhase['Phase']['show_dossier'] == 1) : ?>
-		  	<div class = "evoke titles-right">
+		  	<div class = "evoke titles-right" style = "width: 110%;">
 
 		  	<div>
 		  		<img src = '<?= $this->webroot.'img/dossier.png' ?>'>
@@ -165,6 +165,7 @@
 				    <ul>
 					  	<?php 
 							foreach ($dossier_files as $file):
+								if($file['Attachment']['language']!=$lang) continue;
 								$type = explode('/', $file['Attachment']['type']);
 								if($type[0] == 'application'): 
 									$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
@@ -197,6 +198,7 @@
 				    <ul>
 					  	<?php 
 							foreach ($dossier_files as $file):
+								if($file['Attachment']['language']!=$lang) continue;
 								$type = explode('/', $file['Attachment']['type']);
 								if($type[0] == 'image'): 
 									$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
@@ -218,6 +220,7 @@
 				    <ul>
 					  	<?php 
 							foreach ($dossier_files as $file):
+								if($file['Attachment']['language']!=$lang) continue;
 								//echo $file['Attachment']['attachment'];
 								//echo $file['Attachment']['type'];
 								$type = explode('/', $file['Attachment']['type']);

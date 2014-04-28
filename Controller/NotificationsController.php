@@ -53,6 +53,19 @@ class NotificationsController extends AppController {
 			)
 		));
 
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
+
+		if($flags['_es']){
+			$badge['Badge']['name']; = $badge['Badge']['name_es'];
+			$badge['Badge']['description']; = $badge['Badge']['description_es'];
+		}
+
 		$this->loadModel('Attachment');
 		$attachment = $this->Attachment->find('first', array(
 			'conditions' => array(

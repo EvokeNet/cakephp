@@ -1,43 +1,43 @@
 # LANGUAGE translation of CakePHP Application
 # Copyright YEAR NAME <EMAIL@ADDRESS>
-# 1 <1>, 2014.
+# Nicole Amaral <nicole5287@gmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2014-03-27 16:36-0300\n"
-"PO-Revision-Date: 2014-03-27 17:17-0200\n"
-"Last-Translator: 1 <1>\n"
-"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
-"Language: pt_BR\n"
+"PO-Revision-Date: 2014-04-19 00:29-0400\n"
+"Last-Translator: Nicole Amaral <nicole5287@gmail.com>\n"
+"Language-Team: Evoke Team\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Virtaal 0.7.1\n"
 
 #: Controller/AnswersController.php:38;72;99
 msgid "Invalid answer"
-msgstr ""
+msgstr "Repuesta no válida. "
 
 #: Controller/AnswersController.php:53;76
 #: Controller/PanelsController.php:521;601
 msgid "The answer has been saved."
-msgstr ""
+msgstr "La respuesta ha sido guardada."
 
 #: Controller/AnswersController.php:56;79
 #: Controller/PanelsController.php:523;603
 msgid "The answer could not be saved. Please, try again."
-msgstr ""
+msgstr "La respuesta no ha sido guardada. Por favor, intenta de nuevo."
 
 #: Controller/AnswersController.php:103
 #: Controller/PanelsController.php:698
 msgid "The answer has been deleted."
-msgstr ""
+msgstr "La respuesta ha sido eliminado."
 
 #: Controller/AnswersController.php:105
 #: Controller/PanelsController.php:700
 msgid "The answer could not be deleted. Please, try again."
-msgstr ""
+msgstr "La respuesta no se ha podido eliminar. Por favor, intenta de nuevo."
 
 #: Controller/BadgesController.php:36
 #: Controller/IssuesController.php:36
@@ -51,701 +51,705 @@ msgstr ""
 #: Controller/UserOrganizationsController.php:36
 msgid "You don't have permission to access this area. If needed, contact the administrator."
 msgstr ""
+"No tienes permiso para acceder a esta area. Si necesario, contacta al "
+"administrador."
 
 #: Controller/BadgesController.php:60;125;166;197;229;254
 msgid "Invalid badge"
-msgstr ""
+msgstr "Medalla no válida."
 
 #: Controller/BadgesController.php:92;129;212;233
 #: Controller/PanelsController.php:909
 msgid "The badge has been saved."
-msgstr ""
+msgstr "La medalla ha sido guardada."
 
 #: Controller/BadgesController.php:95;132;215;236
 #: Controller/PanelsController.php:912
 msgid "The badge could not be saved. Please, try again."
-msgstr ""
+msgstr "La medalla no ha sido guardada. Por favor, intenta de nuevo."
 
 #: Controller/BadgesController.php:170;258
 msgid "The badge has been deleted."
-msgstr ""
+msgstr "La medalla ha sido eliminada."
 
 #: Controller/BadgesController.php:172;260
 msgid "The badge could not be deleted. Please, try again."
-msgstr ""
+msgstr "La medalla no ha sido eliminada. Por favor, intenta de nuevo."
 
 #: Controller/CommentsController.php:38;74;102;123;154;189;217
 msgid "Invalid comment"
-msgstr ""
+msgstr "Comentário no válido."
 
 #: Controller/CommentsController.php:54;78;169;193
 msgid "The comment has been saved."
-msgstr ""
+msgstr "El comentário ha sido guardado."
 
 #: Controller/CommentsController.php:57;81;172;196
 msgid "The comment could not be saved. Please, try again."
-msgstr ""
+msgstr "El comentário no se guardó. Por favor, intenta de nuevo."
 
 #: Controller/CommentsController.php:106;127;221
 msgid "The comment has been deleted."
-msgstr ""
+msgstr "El comentário ha sido eliminado."
 
 #: Controller/CommentsController.php:108;129;223
 msgid "The comment could not be deleted. Please, try again."
-msgstr ""
+msgstr "El comentário no ha sido eliminado. Por favor, intenta de nuevo."
 
 #: Controller/EvidenceTagsController.php:38;73;101;131;166;194
 msgid "Invalid evidence tag"
-msgstr ""
+msgstr "Etiqueta de evidencia no válida."
 
 #: Controller/EvidenceTagsController.php:53;77;146;170
 msgid "The evidence tag has been saved."
-msgstr ""
+msgstr "La etiqueta ha sido guardada."
 
 #: Controller/EvidenceTagsController.php:56;80;149;173
 msgid "The evidence tag could not be saved. Please, try again."
-msgstr ""
+msgstr "La etiqueta no se guardó. Por favor, intenta de nuevo."
 
 #: Controller/EvidenceTagsController.php:105;198
 msgid "The evidence tag has been deleted."
-msgstr ""
+msgstr "La etiqueta ha sido eliminada."
 
 #: Controller/EvidenceTagsController.php:107;200
 msgid "The evidence tag could not be deleted. Please, try again."
-msgstr ""
+msgstr "La etiqueta no ha sido eliminada. Por favor, intenta de nuevo."
 
 #: Controller/EvidencesController.php:42;96;132;162;199;229
 msgid "Invalid evidence"
-msgstr ""
+msgstr "Evidencia no válida."
 
 #: Controller/EvidencesController.php:80;102;177;203
 msgid "The evidence has been saved."
-msgstr ""
+msgstr "Evidencia guardada."
 
 #: Controller/EvidencesController.php:83;105;180;206
 msgid "The evidence could not be saved. Please, try again."
-msgstr ""
+msgstr "Evidencia no guardada. Por favor, intenta de nuevo."
 
 #: Controller/EvidencesController.php:136;233
 msgid "The evidence has been deleted."
-msgstr ""
+msgstr "Evidencia elminada."
 
 #: Controller/EvidencesController.php:138;235
 msgid "The evidence could not be deleted. Please, try again."
-msgstr ""
+msgstr "Evidencia no ha sido eliminado. Por favor, intenta de nuevo."
 
 #: Controller/EvokationFollowersController.php:38;84;112;142;177;205
 msgid "Invalid evokation follower"
-msgstr ""
+msgstr "No válido."
 
 #: Controller/EvokationFollowersController.php:51;53
 msgid "Evokation not found."
-msgstr ""
+msgstr "No válido."
 
 #: Controller/EvokationFollowersController.php:62
 msgid "You are now following the evokation."
-msgstr ""
+msgstr "Estás siguendo este evokation."
 
 #: Controller/EvokationFollowersController.php:65
 msgid "The following could not be saved. Please, try again."
-msgstr ""
+msgstr "No se guardó."
 
 #: Controller/EvokationFollowersController.php:69
 msgid "You are already following the evokation."
-msgstr ""
+msgstr "Ya estás siguendo este evokation."
 
 #: Controller/EvokationFollowersController.php:88;157;181
 msgid "The evokation follower has been saved."
-msgstr ""
+msgstr "Guardado."
 
 #: Controller/EvokationFollowersController.php:91;160;184
 msgid "The evokation follower could not be saved. Please, try again."
-msgstr ""
+msgstr "No se guardó."
 
 #: Controller/EvokationFollowersController.php:116;209
 msgid "The evokation follower has been deleted."
-msgstr ""
+msgstr "El seguidor ha sido eliminado."
 
 #: Controller/EvokationFollowersController.php:118;211
 msgid "The evokation follower could not be deleted. Please, try again."
-msgstr ""
+msgstr "El seguidor no se eliminó. Por favor, intenta de nuevo."
 
 #: Controller/EvokationTagsController.php:38;73;101;131;166;194
 msgid "Invalid evokation tag"
-msgstr ""
+msgstr "Etiqueta no válida."
 
 #: Controller/EvokationTagsController.php:53;77;146;170
 msgid "The evokation tag has been saved."
-msgstr ""
+msgstr "Etiqueta guardada. "
 
 #: Controller/EvokationTagsController.php:56;80;149;173
 msgid "The evokation tag could not be saved. Please, try again."
-msgstr ""
+msgstr "Etiqueta no guardada. Por favor, intenta de nuevo."
 
 #: Controller/EvokationTagsController.php:105;198
 msgid "The evokation tag has been deleted."
-msgstr ""
+msgstr "Etiqueta no guardada."
 
 #: Controller/EvokationTagsController.php:107;200
 msgid "The evokation tag could not be deleted. Please, try again."
-msgstr ""
+msgstr "Etiqueta no se eliminó. Por favor, intenta de nuevo."
 
 #: Controller/EvokationsController.php:37;52;84;109;139;171;196
 msgid "Invalid evokation"
-msgstr ""
+msgstr "Evokation no válido."
 
 #: Controller/EvokationsController.php:67;88;154;175
 msgid "The evokation has been saved."
-msgstr ""
+msgstr "Evokation guardada. "
 
 #: Controller/EvokationsController.php:70;91;157;178
 msgid "The evokation could not be saved. Please, try again."
-msgstr ""
+msgstr "Evokation no se guardó. Por favor, intenta de nuevo."
 
 #: Controller/EvokationsController.php:113;200
 msgid "The evokation has been deleted."
-msgstr ""
+msgstr "El evokation ha sido eliminado."
 
 #: Controller/EvokationsController.php:115;202
 msgid "The evokation could not be deleted. Please, try again."
-msgstr ""
+msgstr "La etiqueta no se eliminó. Por favor, intenta de nuevo."
 
 #: Controller/GroupRequestsController.php:38;73;101;162;197;225
 msgid "Invalid group request"
-msgstr ""
+msgstr "Solicitud no válida."
 
 #: Controller/GroupRequestsController.php:53;77;177;201
 msgid "The group request has been saved."
-msgstr ""
+msgstr "Solicitud guardada. "
 
 #: Controller/GroupRequestsController.php:56;80;180;204
 msgid "The group request could not be saved. Please, try again."
-msgstr ""
+msgstr "La solicitud no se guardó. Por favor, intenta de nuevo."
 
 #: Controller/GroupRequestsController.php:105;229
 msgid "The group request has been deleted."
-msgstr ""
+msgstr "La solicitud se eliminó."
 
 #: Controller/GroupRequestsController.php:107;231
 msgid "The group request could not be deleted. Please, try again."
-msgstr ""
+msgstr "La solicitud no guardada. "
 
 #: Controller/GroupRequestsController.php:136
 msgid "The request was declined"
-msgstr ""
+msgstr "La solicitud fue rechazada."
 
 #: Controller/GroupsController.php:53;117;153;221;256;284
 msgid "Invalid group"
-msgstr ""
+msgstr "Grupo no válido."
 
 #: Controller/GroupsController.php:97;129;236;260
 msgid "The group has been saved."
-msgstr ""
+msgstr "Grupo guardado."
 
 #: Controller/GroupsController.php:100;132;239;263
 msgid "The group could not be saved. Please, try again."
-msgstr ""
+msgstr "El grupo no guardado. Por favor, intenta de nuevo."
 
 #: Controller/GroupsController.php:122;159
 msgid "Only the group owner is allowed to delete it."
-msgstr ""
+msgstr "Solamente el administrator del grupo puede eliminarlo."
 
 #: Controller/GroupsController.php:166;288
 msgid "The group has been deleted."
-msgstr ""
+msgstr "El grupo se eliminó."
 
 #: Controller/GroupsController.php:168;290
 msgid "The group could not be deleted. Please, try again."
-msgstr ""
+msgstr "El grupo se eliminó. Por favor, intenta de nuevo."
 
 #: Controller/GroupsUsersController.php:292;363;432;456
 msgid "The groups user has been saved."
-msgstr ""
+msgstr "Usuario de grupo guardado."
 
 #: Controller/GroupsUsersController.php:302;366;435;459
 msgid "The groups user could not be saved. Please, try again."
-msgstr ""
+msgstr "Usuario de grupo no guardado. Por favor, intenta de nuevo."
 
 #: Controller/GroupsUsersController.php:304
 msgid "This user already belongs to this group."
-msgstr ""
+msgstr "Este usuario ya forma parte del grupo."
 
 #: Controller/GroupsUsersController.php:331
 msgid "The request has been sent"
-msgstr ""
+msgstr "Solicitud enviada."
 
 #: Controller/GroupsUsersController.php:332
 msgid "The request could not be sent"
-msgstr ""
+msgstr "Solicitud no enviada."
 
 #: Controller/GroupsUsersController.php:334
 msgid "This user already requested to join thsi group"
-msgstr ""
+msgstr "El usuario ya solicitó unirse al grupo."
 
 #: Controller/GroupsUsersController.php:340
 msgid "Evoke - Request to join group"
-msgstr ""
+msgstr "Evoke - Solicita unirte al grupo."
 
 #: Controller/GroupsUsersController.php:345
 msgid "The email was sent"
-msgstr ""
+msgstr "Correo enviado."
 
 #: Controller/GroupsUsersController.php:359;387;417;452;480
 msgid "Invalid groups user"
-msgstr ""
+msgstr "Usuario de grupo no válido."
 
 #: Controller/GroupsUsersController.php:391;484
 msgid "The groups user has been deleted."
-msgstr ""
+msgstr "Usuario de grupo eliminado."
 
 #: Controller/GroupsUsersController.php:393;486
 msgid "The groups user could not be deleted. Please, try again."
-msgstr ""
+msgstr "Usuario de grupo no eliminado. Por favor, intenta de nuevo."
 
 #: Controller/IssuesController.php:64;98;125;160;194;221
 #: Controller/PanelsController.php:883
 msgid "Invalid issue"
-msgstr ""
+msgstr "Tema no válido."
 
 #: Controller/IssuesController.php:79;102;175;198
 #: Controller/PanelsController.php:867
 msgid "The issue has been saved."
-msgstr ""
+msgstr "Tema guardado."
 
 #: Controller/IssuesController.php:82;105;178;201
 #: Controller/PanelsController.php:870
 msgid "The issue could not be saved. Please, try again."
-msgstr ""
+msgstr "Tema no guardado. Por favor, intenta de nuevo."
 
 #: Controller/IssuesController.php:129;225
 #: Controller/PanelsController.php:887
 msgid "The issue has been deleted."
-msgstr ""
+msgstr "Tema eliminado."
 
 #: Controller/IssuesController.php:135;227
 #: Controller/PanelsController.php:895
 msgid "The issue could not be deleted. Please, try again."
-msgstr ""
+msgstr "Tema no eliminado. Por favor, intenta de nuevo."
 
 #: Controller/MissionIssuesController.php:60;95;123;153;188;216
 msgid "Invalid mission issue"
-msgstr ""
+msgstr "Tema de misión no válido."
 
 #: Controller/MissionIssuesController.php:75;99;168;192
 msgid "The mission issue has been saved."
-msgstr ""
+msgstr "Tema de misión guardado."
 
 #: Controller/MissionIssuesController.php:78;102;171;195
 msgid "The mission issue could not be saved. Please, try again."
-msgstr ""
+msgstr "Tema de misión no guardado. Por favor, intenta de nuevo."
 
 #: Controller/MissionIssuesController.php:127;220
 msgid "The mission issue has been deleted."
-msgstr ""
+msgstr "Tema de misión eliminado."
 
 #: Controller/MissionIssuesController.php:129;222
 msgid "The mission issue could not be deleted. Please, try again."
-msgstr ""
+msgstr "Tema de misión no eliminado. Por favor, intenta de nuevo."
 
 #: Controller/MissionsController.php:71;181;206;241;273;298
 msgid "Invalid mission"
-msgstr ""
+msgstr "Misión no válida."
 
 #: Controller/MissionsController.php:78
 msgid "This mission/phase does not exist!"
-msgstr ""
+msgstr "Este misión/fase no existe!"
 
 #: Controller/MissionsController.php:160;185;256;277
 msgid "The mission has been saved."
-msgstr ""
+msgstr "Misión guardada."
 
 #: Controller/MissionsController.php:163;188;259;280
 #: Controller/PanelsController.php:294;314;437
 msgid "The mission could not be saved. Please, try again."
-msgstr ""
+msgstr "Misión no guardada. Por favor, intenta de nuevo."
 
 #: Controller/MissionsController.php:210;302
 msgid "The mission has been deleted."
-msgstr ""
+msgstr "Misión eliminada."
 
 #: Controller/MissionsController.php:216;304
 msgid "The mission could not be deleted. Please, try again."
-msgstr ""
+msgstr "Misión no eliminada. Por favor, intenta de nuevo."
 
 #: Controller/OrganizationsController.php:61;93;125
 msgid "Invalid organization"
-msgstr ""
+msgstr "Organización inválida."
 
 #: Controller/OrganizationsController.php:76;104
 #: Controller/PanelsController.php:837;845
 msgid "The organization has been saved."
-msgstr ""
+msgstr "Organización guardada. "
 
 #: Controller/OrganizationsController.php:79;107
 #: Controller/PanelsController.php:854
 msgid "The organization could not be saved. Please, try again."
-msgstr ""
+msgstr "Organización no guardada. Por favor, intenta de nuevo."
 
 #: Controller/OrganizationsController.php:98;130
 msgid "You dont have permission to edit this organization."
-msgstr ""
+msgstr "No tienes permiso para editar la organización."
 
 #: Controller/OrganizationsController.php:137
 msgid "The organization has been deleted."
-msgstr ""
+msgstr "Organización eliminada. "
 
 #: Controller/OrganizationsController.php:139
 msgid "The organization could not be deleted. Please, try again."
-msgstr ""
+msgstr "Organizacion no eliminada. "
 
 #: Controller/PanelsController.php:286;306;429
 msgid "mission issue saved"
-msgstr ""
+msgstr "Tema de misión guardado."
 
 #: Controller/PanelsController.php:291;311;434;476
 msgid "mission issue failed saving."
-msgstr ""
+msgstr "Tema de misión no guardado."
 
 #: Controller/PanelsController.php:469
 msgid "phase saved."
-msgstr ""
+msgstr "Fase guardada. "
 
 #: Controller/PanelsController.php:493
 #: Controller/QuestsController.php:76;100;169;193
 msgid "The quest has been saved."
-msgstr ""
+msgstr "Desafío guardado. "
 
 #: Controller/PanelsController.php:502;582
 #: Controller/QuestionnairesController.php:53;76
 msgid "The questionnaire has been saved."
-msgstr ""
+msgstr "Encuesta guardada. "
 
 #: Controller/PanelsController.php:511;591
 #: Controller/QuestionsController.php:53;76
 msgid "The question has been saved."
-msgstr ""
+msgstr "Pregunta guardada. "
 
 #: Controller/PanelsController.php:528;608
 #: Controller/QuestionsController.php:56;79
 msgid "The question could not be saved. Please, try again."
-msgstr ""
+msgstr "Pregunta no guardada. Por favor, intenta de nuevo."
 
 #: Controller/PanelsController.php:532;612
 #: Controller/QuestionnairesController.php:56;79
 msgid "The questionnaire could not be saved. Please, try again."
-msgstr ""
+msgstr "Encuesta no guardada. Por favor, intenta de nuevo."
 
 #: Controller/PanelsController.php:547;624
 #: Controller/QuestsController.php:79;103;172;196
 msgid "The quest could not be saved. Please, try again."
-msgstr ""
+msgstr "Desafío no guardado. Por favor, intenta de nuevo."
 
 #: Controller/PanelsController.php:647
 msgid "The attachment has been deleted."
-msgstr ""
+msgstr "Archivo eliminado."
 
 #: Controller/PanelsController.php:649
 msgid "The attachment could not be deleted. Please, try again."
-msgstr ""
+msgstr "Archivo no eliminado. Por favor, intenta de nuevo."
 
 #: Controller/PanelsController.php:671
 #: Controller/QuestionnairesController.php:103
 msgid "The questionnaire has been deleted."
-msgstr ""
+msgstr "Encuesta eliminada."
 
 #: Controller/PanelsController.php:686
 #: Controller/QuestionsController.php:103
 msgid "The question has been deleted."
-msgstr ""
+msgstr "Pregunta eliminada."
 
 #: Controller/PanelsController.php:705
 #: Controller/QuestionsController.php:105
 msgid "The question could not be deleted. Please, try again."
-msgstr ""
+msgstr "Pregunta no eliminada. Por favor, intenta de nuevo."
 
 #: Controller/PanelsController.php:710
 #: Controller/QuestionnairesController.php:105
 msgid "The questionnaire could not be deleted. Please, try again."
-msgstr ""
+msgstr "Encuesta no eliminada. Por favor, intenta de nuevo."
 
 #: Controller/PanelsController.php:723
 #: Controller/QuestsController.php:61;96;124;154;189;217
 msgid "Invalid quest"
-msgstr ""
+msgstr "Desafío no válido."
 
 #: Controller/PanelsController.php:727
 #: Controller/QuestsController.php:128;221
 msgid "The quest has been deleted."
-msgstr ""
+msgstr "Desafío eliminado."
 
 #: Controller/PanelsController.php:741
 #: Controller/QuestsController.php:130;223
 msgid "The quest could not be deleted. Please, try again."
-msgstr ""
+msgstr "Desafío no eliminado. Por favor, intenta de nuevo."
 
 #: Controller/PanelsController.php:777
 #: Controller/PhasesController.php:61;95;122;152;186;213
 msgid "Invalid phase"
-msgstr ""
+msgstr "Fase no válida."
 
 #: Controller/PanelsController.php:781
 #: Controller/PhasesController.php:126;217
 msgid "The phase has been deleted."
-msgstr ""
+msgstr "Fase eliminada."
 
 #: Controller/PanelsController.php:788
 #: Controller/PhasesController.php:128;219
 msgid "The phase could not be deleted. Please, try again."
-msgstr ""
+msgstr "Fase no eliminada. Por favor, intenta de nuevo."
 
 #: Controller/PanelsController.php:832;851
 msgid "The organization has been saved without owner."
-msgstr ""
+msgstr "Organización guardada sin administrador."
 
 #: Controller/PanelsController.php:843
 msgid "user organization saved"
-msgstr ""
+msgstr "Usuario guardado."
 
 #: Controller/PanelsController.php:919
 #: Controller/UsersController.php:181;270;363;437;524;554;586;611
 msgid "Invalid user"
-msgstr ""
+msgstr "Usuario no válido."
 
 #: Controller/PanelsController.php:926
 msgid "The user role has been saved."
-msgstr ""
+msgstr "Papel guardado."
 
 #: Controller/PhasesController.php:76;99;167;190
 msgid "The phase has been saved."
-msgstr ""
+msgstr "Fase guardada. "
 
 #: Controller/PhasesController.php:79;102;170;193
 msgid "The phase could not be saved. Please, try again."
-msgstr ""
+msgstr "Fase no guardada. Por favor, intenta de nuevo."
 
 #: Controller/QuestionnairesController.php:38;72;99
 msgid "Invalid questionnaire"
-msgstr ""
+msgstr "Encuesta no válida."
 
 #: Controller/QuestionsController.php:38;72;99
 msgid "Invalid question"
-msgstr ""
+msgstr "Pregunta no válida. "
 
 #: Controller/RolesController.php:59;91;116
 msgid "Invalid role"
-msgstr ""
+msgstr "Papel no válido."
 
 #: Controller/RolesController.php:74;95
 msgid "The role has been saved."
-msgstr ""
+msgstr "Papel guardado."
 
 #: Controller/RolesController.php:77;98
 msgid "The role could not be saved. Please, try again."
-msgstr ""
+msgstr "Papel no guardado. Por favor, intenta de nuevo."
 
 #: Controller/RolesController.php:120
 msgid "The role has been deleted."
-msgstr ""
+msgstr "Papel eliminado."
 
 #: Controller/RolesController.php:122
 msgid "The role could not be deleted. Please, try again."
-msgstr ""
+msgstr "Papel eliminado. Por favor, intenta de nuevo."
 
 #: Controller/TagsController.php:38;70;95;125;157;182
 msgid "Invalid tag"
-msgstr ""
+msgstr "Etiqueta no válido."
 
 #: Controller/TagsController.php:53;74;140;161
 msgid "The tag has been saved."
-msgstr ""
+msgstr "Etiqueta guardada."
 
 #: Controller/TagsController.php:56;77;143;164
 msgid "The tag could not be saved. Please, try again."
-msgstr ""
+msgstr "Etiqueta no guardada. Por favor, intenta de nuevo."
 
 #: Controller/TagsController.php:99;186
 msgid "The tag has been deleted."
-msgstr ""
+msgstr "Etiqueta eliminada. "
 
 #: Controller/TagsController.php:101;188
 msgid "The tag could not be deleted. Please, try again."
-msgstr ""
+msgstr "Etiqueta no eliminado. Por favor, intenta de nuevo."
 
 #: Controller/UserAnswersController.php:38;124;153
 msgid "Invalid user answer"
-msgstr ""
+msgstr "Respuesta no válida. "
 
 #: Controller/UserAnswersController.php:89;128
 msgid "The user answer has been saved."
-msgstr ""
+msgstr "Repuesta guardada. "
 
 #: Controller/UserAnswersController.php:91;131
 msgid "The user answer could not be saved. Please, try again."
-msgstr ""
+msgstr "Respuesta no guardada. Por favor, intenta de nuevo."
 
 #: Controller/UserAnswersController.php:108;157
 msgid "The user answer has been deleted."
-msgstr ""
+msgstr "Repuesta eliminada. "
 
 #: Controller/UserAnswersController.php:110;159
 msgid "The user answer could not be deleted. Please, try again."
-msgstr ""
+msgstr "Respuesta no eliminada. Por favor, intenta de nuevo. "
 
 #: Controller/UserFriendsController.php:38;78;141;175;202
 msgid "Invalid user friend"
-msgstr ""
+msgstr "Alianza no válida. "
 
 #: Controller/UserFriendsController.php:51;105
 msgid "User not found"
-msgstr ""
+msgstr "Usuario no encontrado. "
 
 #: Controller/UserFriendsController.php:60
 msgid "The friendship has been saved."
-msgstr ""
+msgstr "Alianza guardada. "
 
 #: Controller/UserFriendsController.php:61
 msgid "The friendship could not be saved. Please, try again."
-msgstr ""
+msgstr "Alianza no guardada. Por favor, intenta de nuevo. "
 
 #: Controller/UserFriendsController.php:63
 msgid "This friendship has already been saved."
-msgstr ""
+msgstr "Alianza ya guardada. "
 
 #: Controller/UserFriendsController.php:82;156;179
 msgid "The user friend has been saved."
-msgstr ""
+msgstr "Alianza guardada. "
 
 #: Controller/UserFriendsController.php:85;159;182
 msgid "The user friend could not be saved. Please, try again."
-msgstr ""
+msgstr "Alianza no guardada. Por favor, intenta de nuevo. "
 
 #: Controller/UserFriendsController.php:114
 msgid "The friendship has been deleted."
-msgstr ""
+msgstr "Alianza eliminada. "
 
 #: Controller/UserFriendsController.php:116
 msgid "This friendship could not be deleted. Please, try again."
-msgstr ""
+msgstr "Alianza eliminada. Por favor, intenta de nuevo. "
 
 #: Controller/UserFriendsController.php:206
 msgid "The user friend has been deleted."
-msgstr ""
+msgstr "Alianza eliminada. "
 
 #: Controller/UserFriendsController.php:208
 msgid "The user friend could not be deleted. Please, try again."
-msgstr ""
+msgstr "Alianza no eliminada. Por favor intenta de nuevo."
 
 #: Controller/UserIssuesController.php:37;79;107;137;172;200
 msgid "Invalid user issue"
-msgstr ""
+msgstr "Tema no válido. "
 
 #: Controller/UserIssuesController.php:58;86;155;179
 msgid "The user issue could not be saved. Please, try again."
-msgstr ""
+msgstr "Tema no guardado. Por favor, intenta de nuevo."
 
 #: Controller/UserIssuesController.php:61;83;152;176
 msgid "The user issue has been saved."
-msgstr ""
+msgstr "Tema guardado. "
 
 #: Controller/UserIssuesController.php:111;204
 msgid "The user issue has been deleted."
-msgstr ""
+msgstr "Tema eliminado. "
 
 #: Controller/UserIssuesController.php:113;206
 msgid "The user issue could not be deleted. Please, try again."
-msgstr ""
+msgstr "Tema no eliminado. Por favor, intenta de nuevo. "
 
 #: Controller/UserMissionsController.php:38;73;101;131;166;194
 msgid "Invalid user mission"
-msgstr ""
+msgstr "Misión no válida. "
 
 #: Controller/UserMissionsController.php:53;77;146;170
 msgid "The user mission has been saved."
-msgstr ""
+msgstr "Misión guardada. "
 
 #: Controller/UserMissionsController.php:56;80;149;173
 msgid "The user mission could not be saved. Please, try again."
-msgstr ""
+msgstr "Misión no guardada. Por favor, intenta de nuevo. "
 
 #: Controller/UserMissionsController.php:105;198
 msgid "The user mission has been deleted."
-msgstr ""
+msgstr "Misión eliminada. "
 
 #: Controller/UserMissionsController.php:107;200
 msgid "The user mission could not be deleted. Please, try again."
-msgstr ""
+msgstr "Misión no eliminada. Por favor, intenta de nuevo. "
 
 #: Controller/UserOrganizationsController.php:60;95;123
 msgid "Invalid user organization"
-msgstr ""
+msgstr "Organización no válida. "
 
 #: Controller/UserOrganizationsController.php:75;99
 msgid "The user organization has been saved."
-msgstr ""
+msgstr "Organización guardada. "
 
 #: Controller/UserOrganizationsController.php:78;102
 msgid "The user organization could not be saved. Please, try again."
-msgstr ""
+msgstr "Organización no guardada. Por favor, intenta de nuevo. "
 
 #: Controller/UserOrganizationsController.php:127
 msgid "The user organization has been deleted."
-msgstr ""
+msgstr "Organización eliminada. "
 
 #: Controller/UserOrganizationsController.php:129
 msgid "The user organization could not be deleted. Please, try again."
-msgstr ""
+msgstr "Organización no eliminada. Por favor, intenta de nuevo. "
 
 #: Controller/UsersController.php:87
 msgid "There was some interference in your connection."
-msgstr ""
+msgstr "Hubo interferencia en su conexión. "
 
 #: Controller/UsersController.php:156;412;486;569;590
 msgid "The user has been saved."
-msgstr ""
+msgstr "Usuario guardado. "
 
 #: Controller/UsersController.php:161;415;491;572;593
 msgid "The user could not be saved. Please, try again."
-msgstr ""
+msgstr "Usuario no guardado. "
 
 #: Controller/UsersController.php:185
 msgid "Viewing dashboard of another agent. Needs changes in informations to be displayed."
 msgstr ""
+"Estás viendo el dashboard de otro agente. Require actualización de "
+"información para ser visualizado."
 
 #: Controller/UsersController.php:447
 msgid "You can't edit other users. Permission denied."
-msgstr ""
+msgstr "No puedes editar otros usuarios. Permiso negado. "
 
 #: Controller/UsersController.php:517
 msgid "You can't delete other users. Permission denied."
-msgstr ""
+msgstr "No puede eliminar a otros usuario. Permiso negado. "
 
 #: Controller/UsersController.php:528;615
 msgid "The user has been deleted."
-msgstr ""
+msgstr "Usuario eliminado. "
 
 #: Controller/UsersController.php:530;617
 msgid "The user could not be deleted. Please, try again."
-msgstr ""
+msgstr "Usuario no eliminado. Por favor, intenta de nuevo. "
 
 #: Controller/VotesController.php:37;72;101;131;166;194
 msgid "Invalid vote"
-msgstr ""
+msgstr "Voto no válido."
 
 #: Controller/VotesController.php:52;77;146;170
 msgid "The vote has been saved."
-msgstr ""
+msgstr "Voto guardado. "
 
 #: Controller/VotesController.php:55;80;149;173
 msgid "The vote could not be saved. Please, try again."
-msgstr ""
+msgstr "Voto no guardado. Por favor, intenta de nuevo. "
 
 #: Controller/VotesController.php:105;198
 msgid "The vote has been deleted."
-msgstr ""
+msgstr "Voto eliminado. "
 
 #: Controller/VotesController.php:107;200
 msgid "The vote could not be deleted. Please, try again."
-msgstr ""
+msgstr "Voto no eliminado. Por favor, intenta de nuevo. "
 
 #: Plugin/AclExtras/Console/Command/AclExtrasShell.php:80
 msgid "Plugin to process"
@@ -818,7 +822,7 @@ msgstr ""
 #: Plugin/Media/View/Medias/index.ctp:9
 #: Plugin/Media/View/Medias/media.ctp:28
 msgid "Filename"
-msgstr ""
+msgstr "Nombre de archivo"
 
 #: Plugin/Media/View/Medias/index.ctp:15
 #: Plugin/Media/View/Medias/media.ctp:35
@@ -834,54 +838,54 @@ msgstr ""
 #: View/Quests/view.ctp:9;62
 #: View/Users/admin_view.ctp:140
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: Plugin/Media/View/Medias/index.ctp:19
 #: Plugin/Media/View/Medias/media.ctp:39
 msgid "Alternative Text"
-msgstr ""
+msgstr "Texto Alternativo"
 
 #: Plugin/Media/View/Medias/index.ctp:23
 #: Plugin/Media/View/Medias/media.ctp:43
 msgid "Target Link"
-msgstr ""
+msgstr "Enlace Objetivo"
 
 #: Plugin/Media/View/Medias/index.ctp:30
 #: Plugin/Media/View/Medias/media.ctp:50
 msgid "None"
-msgstr ""
+msgstr "Ninguno"
 
 #: Plugin/Media/View/Medias/index.ctp:33
 #: Plugin/Media/View/Medias/media.ctp:53
 msgid "Left"
-msgstr ""
+msgstr "Izquierda"
 
 #: Plugin/Media/View/Medias/index.ctp:36
 #: Plugin/Media/View/Medias/media.ctp:56
 msgid "Center"
-msgstr ""
+msgstr "Centro"
 
 #: Plugin/Media/View/Medias/index.ctp:39
 #: Plugin/Media/View/Medias/media.ctp:59
 msgid "Right"
-msgstr ""
+msgstr "Derecha"
 
 #: Plugin/Media/View/Medias/index.ctp:45
 #: Plugin/Media/View/Medias/media.ctp:65
 msgid "Insert"
-msgstr ""
+msgstr "Insertar"
 
 #: Plugin/Media/View/Medias/index.ctp:54
 msgid "Drag files here"
-msgstr ""
+msgstr "Arrastrar archivos"
 
 #: Plugin/Media/View/Medias/index.ctp:55
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #: Plugin/Media/View/Medias/index.ctp:56
 msgid "Browse Folders"
-msgstr ""
+msgstr "Navegar Carpetas"
 
 #: Plugin/Media/View/Medias/index.ctp:57
 msgid "%s formats only"
@@ -889,7 +893,7 @@ msgstr ""
 
 #: Plugin/Media/View/Medias/index.ctp:63
 msgid "Medias"
-msgstr ""
+msgstr "Medios"
 
 #: Plugin/Media/View/Medias/index.ctp:65
 #: View/Badges/add.ctp:14
@@ -1053,20 +1057,20 @@ msgstr ""
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/index.ctp:26;77
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/view.ctp:49
 msgid "Actions"
-msgstr ""
+msgstr "Acciones"
 
 #: Plugin/Media/View/Medias/index.ctp:157
 msgid "Are you sure you want to delete this media?"
-msgstr ""
+msgstr "Estás seguro de que quieres eliminarlo?"
 
 #: Plugin/Media/View/Medias/index.ctp:169;178
 #: Plugin/Media/View/Medias/media.ctp:19
 msgid "Show"
-msgstr ""
+msgstr "Mostrar"
 
 #: Plugin/Media/View/Medias/index.ctp:170
 msgid "Hide"
-msgstr ""
+msgstr "Esconder"
 
 #: Plugin/Media/View/Medias/media.ctp:14;65
 #: View/Badges/edit.ctp:18
@@ -1167,19 +1171,19 @@ msgstr ""
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/index.ctp:51
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/view.ctp:175
 msgid "Delete"
-msgstr ""
+msgstr "Eliminar"
 
 #: Plugin/Media/View/Medias/media.ctp:17
 msgid "Insert "
-msgstr ""
+msgstr "Insertar"
 
 #: Plugin/Media/View/Medias/media.ctp:29
 msgid "Image size"
-msgstr ""
+msgstr "Tamano de imágen"
 
 #: Plugin/Media/View/Medias/media.ctp:47
 msgid "Alignment"
-msgstr ""
+msgstr "Alineación"
 
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/ViewBlock.php:80
 msgid "A view block with the name '%s' is already/still open."
@@ -1187,7 +1191,7 @@ msgstr ""
 
 #: View/Badges/add.ctp:4
 msgid "Add Badge"
-msgstr ""
+msgstr "Agregar Medalla"
 
 #: View/Badges/add.ctp:11
 #: View/Badges/edit.ctp:12
@@ -1273,18 +1277,18 @@ msgstr ""
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper/FormHelper.php:1834
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/form.ctp:23
 msgid "Submit"
-msgstr ""
+msgstr "Entregar"
 
 #: View/Badges/add.ctp:17
 #: View/Badges/edit.ctp:19
 #: View/Badges/view.ctp:31
 msgid "List Badges"
-msgstr ""
+msgstr "Listar Medallas"
 
 #: View/Badges/edit.ctp:4
 #: View/Badges/view.ctp:29
 msgid "Edit Badge"
-msgstr ""
+msgstr "Editar Medallas"
 
 #: View/Badges/edit.ctp:18
 #: View/Badges/index.ctp:20
@@ -1406,14 +1410,14 @@ msgstr ""
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/index.ctp:54
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/view.ctp:57;178
 msgid "Are you sure you want to delete # %s?"
-msgstr ""
+msgstr "Estás seguro de que quieres eliminar # %s?"
 
 #: View/Badges/index.ctp:2
 #: View/Panels/add_mission.ctp:43
 #: View/Panels/edit_mission.ctp:42
 #: View/Panels/index.ctp:45;294
 msgid "Badges"
-msgstr ""
+msgstr "Medallas"
 
 #: View/Badges/index.ctp:18
 #: View/Comments/admin_index.ctp:26
@@ -1471,7 +1475,7 @@ msgstr ""
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/index.ctp:48
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/view.ctp:163
 msgid "View"
-msgstr ""
+msgstr "Examinar"
 
 #: View/Badges/index.ctp:19
 #: View/Comments/admin_index.ctp:27
@@ -1528,7 +1532,7 @@ msgstr ""
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/index.ctp:49
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/view.ctp:169
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: View/Badges/index.ctp:28
 #: View/Comments/admin_index.ctp:36
@@ -1616,7 +1620,7 @@ msgstr ""
 #: View/Votes/index.ctp:41
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/index.ctp:70
 msgid "previous"
-msgstr ""
+msgstr "Prévio"
 
 #: View/Badges/index.ctp:35
 #: View/Comments/admin_index.ctp:43
@@ -1660,16 +1664,16 @@ msgstr ""
 #: View/Votes/index.ctp:43
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Scaffolds/index.ctp:72
 msgid "next"
-msgstr ""
+msgstr "Próximo"
 
 #: View/Badges/index.ctp:42
 #: View/Badges/view.ctp:32
 msgid "New Badge"
-msgstr ""
+msgstr "Nuevo Medalla"
 
 #: View/Badges/view.ctp:2
 msgid "Badge"
-msgstr ""
+msgstr "Medalla"
 
 #: View/Badges/view.ctp:4
 #: View/Comments/admin_view.ctp:4
@@ -1709,7 +1713,7 @@ msgstr ""
 #: View/Votes/admin_view.ctp:4
 #: View/Votes/view.ctp:4
 msgid "Id"
-msgstr ""
+msgstr "ID"
 
 #: View/Badges/view.ctp:9
 #: View/Groups/admin_view.ctp:94
@@ -1728,7 +1732,7 @@ msgstr ""
 #: View/Users/edit.ctp:10
 #: View/Users/register.ctp:18
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: View/Badges/view.ctp:14
 #: View/Missions/admin_view.ctp:14;130
@@ -1741,19 +1745,19 @@ msgstr ""
 #: View/Quests/admin_view.ctp:14
 #: View/Quests/view.ctp:14
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #: View/Badges/view.ctp:19
 msgid "Trigger"
-msgstr ""
+msgstr "Gatillo"
 
 #: View/Badges/view.ctp:30
 msgid "Delete Badge"
-msgstr ""
+msgstr "Eliminar Medalla"
 
 #: View/Comments/add.ctp:4
 msgid "Add Comment"
-msgstr ""
+msgstr "Agregar Comentário"
 
 #: View/Comments/add.ctp:17
 #: View/Comments/admin_add.ctp:17
@@ -1772,7 +1776,7 @@ msgstr ""
 #: View/Users/admin_view.ctp:83
 #: View/Users/index.ctp:65
 msgid "List Comments"
-msgstr ""
+msgstr "Listar Comentarios"
 
 #: View/Comments/add.ctp:18
 #: View/Comments/admin_add.ctp:18
@@ -1821,7 +1825,7 @@ msgstr ""
 #: View/Votes/index.ctp:51
 #: View/Votes/view.ctp:43
 msgid "List Evidences"
-msgstr ""
+msgstr "Listar Evidencia"
 
 #: View/Comments/add.ctp:19
 #: View/Comments/admin_add.ctp:19
@@ -1870,7 +1874,7 @@ msgstr ""
 #: View/Votes/index.ctp:52
 #: View/Votes/view.ctp:44
 msgid "New Evidence"
-msgstr ""
+msgstr "Nueva Evidencia"
 
 #: View/Comments/add.ctp:20
 #: View/Comments/admin_add.ctp:20
@@ -1950,7 +1954,7 @@ msgstr ""
 #: View/Votes/index.ctp:53
 #: View/Votes/view.ctp:45
 msgid "List Users"
-msgstr ""
+msgstr "Listar Usuarios"
 
 #: View/Comments/add.ctp:21
 #: View/Comments/admin_add.ctp:21
@@ -2030,20 +2034,20 @@ msgstr ""
 #: View/Votes/index.ctp:54
 #: View/Votes/view.ctp:46
 msgid "New User"
-msgstr ""
+msgstr "Nuevo Usuario"
 
 #: View/Comments/admin_add.ctp:4
 msgid "Admin Add Comment"
-msgstr ""
+msgstr "Admin Agregar Comentário"
 
 #: View/Comments/admin_edit.ctp:4
 msgid "Admin Edit Comment"
-msgstr ""
+msgstr "Admin Editar Comentário"
 
 #: View/Comments/admin_index.ctp:2
 #: View/Comments/index.ctp:2
 msgid "Comments"
-msgstr ""
+msgstr "Comentarios"
 
 #: View/Comments/admin_index.ctp:50
 #: View/Comments/admin_view.ctp:42
@@ -2060,13 +2064,13 @@ msgstr ""
 #: View/Users/admin_view.ctp:84;130
 #: View/Users/index.ctp:66
 msgid "New Comment"
-msgstr ""
+msgstr "Nuevo Comentário"
 
 #: View/Comments/admin_view.ctp:2
 #: View/Comments/view.ctp:2
 #: View/Evidences/view.ctp:84
 msgid "Comment"
-msgstr ""
+msgstr "Comentarios"
 
 #: View/Comments/admin_view.ctp:9
 #: View/Comments/view.ctp:9
@@ -2076,7 +2080,7 @@ msgstr ""
 #: View/Votes/admin_view.ctp:9
 #: View/Votes/view.ctp:9
 msgid "Evidence"
-msgstr ""
+msgstr "Evidencia"
 
 #: View/Comments/admin_view.ctp:14
 #: View/Comments/view.ctp:14
@@ -2096,7 +2100,7 @@ msgstr ""
 #: View/Votes/admin_view.ctp:14
 #: View/Votes/view.ctp:14
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 #: View/Comments/admin_view.ctp:19
 #: View/Comments/view.ctp:19
@@ -2109,7 +2113,7 @@ msgstr ""
 #: View/Quests/view.ctp:63
 #: View/Users/admin_view.ctp:141
 msgid "Content"
-msgstr ""
+msgstr "Contenido"
 
 #: View/Comments/admin_view.ctp:24
 #: View/Comments/view.ctp:24
@@ -2143,7 +2147,7 @@ msgstr ""
 #: View/Votes/admin_view.ctp:24
 #: View/Votes/view.ctp:24
 msgid "Created"
-msgstr ""
+msgstr "Creado"
 
 #: View/Comments/admin_view.ctp:29
 #: View/Comments/view.ctp:29
@@ -2177,148 +2181,148 @@ msgstr ""
 #: View/Votes/admin_view.ctp:29
 #: View/Votes/view.ctp:29
 msgid "Modified"
-msgstr ""
+msgstr "Modificado"
 
 #: View/Comments/admin_view.ctp:39
 #: View/Comments/edit.ctp:4
 #: View/Comments/view.ctp:39
 msgid "Edit Comment"
-msgstr ""
+msgstr "Editar Comentário"
 
 #: View/Comments/admin_view.ctp:40
 #: View/Comments/view.ctp:40
 msgid "Delete Comment"
-msgstr ""
+msgstr "Eliminar Comentário"
 
 #: View/Common/login-topbar.ctp:6
 msgid "WELCOME TO EVOKE NETWORK"
-msgstr ""
+msgstr "BIENVENIDOS A LA RED EVOKE"
 
 #: View/Elements/add_document.ctp:9
 msgid "Insert document title here"
-msgstr ""
+msgstr "Insertar título de documento aquí"
 
 #: View/Elements/add_document.ctp:14
 msgid "Insert document description here"
-msgstr ""
+msgstr "Insertar descripción aquí"
 
 #: View/Elements/add_document.ctp:23
 #: View/Elements/add_video.ctp:28
 msgid "Pick a file"
-msgstr ""
+msgstr "Escoger un archivo "
 
 #: View/Elements/add_document.ctp:29;61
 #: View/Elements/add_video.ctp:34;66
 msgid "Select a file from your computer"
-msgstr ""
+msgstr "Seleccionar un archico de su computador"
 
 #: View/Elements/add_quest.ctp:12
 #: View/Panels/add_mission.ctp:152
 #: View/Panels/edit_mission.ctp:126
 msgid "Add a Quest"
-msgstr ""
+msgstr "Crear un desafío"
 
 #: View/Elements/add_quest.ctp:24
 #: View/Panels/quest.ctp:31
 msgid "Questionnaire:"
-msgstr ""
+msgstr "Encuesta:"
 
 #: View/Elements/add_quest.ctp:31
 #: View/Panels/quest.ctp:77
 msgid "Add a question"
-msgstr ""
+msgstr "Agregar una pregunta"
 
 #: View/Elements/add_quest.ctp:39
 #: View/Panels/quest.ctp:85
 msgid "Essay"
-msgstr ""
+msgstr "Ensayo"
 
 #: View/Elements/add_quest.ctp:45
 #: View/Panels/quest.ctp:91
 msgid "1 to 5 scale"
-msgstr ""
+msgstr "Escala 1 a 5"
 
 #: View/Elements/add_quest.ctp:51
 #: View/Panels/quest.ctp:97
 msgid "Single choice"
-msgstr ""
+msgstr "única opción"
 
 #: View/Elements/add_quest.ctp:57
 #: View/Panels/quest.ctp:103
 msgid "Multiple choice"
-msgstr ""
+msgstr "opción multiple"
 
 #: View/Elements/add_quest.ctp:72
 #: View/Quests/add.ctp:4
 msgid "Add Quest"
-msgstr ""
+msgstr "Crear un desafío"
 
 #: View/Elements/add_video.ctp:9
 msgid "Insert video title here"
-msgstr ""
+msgstr "Insertar título de video aquí"
 
 #: View/Elements/add_video.ctp:14
 msgid "Insert video <embed> code here"
-msgstr ""
+msgstr "Insertar video <embed> "
 
 #: View/Elements/comment.ctp:4
 #: View/Evidences/view.ctp:56
 msgid "Share a Thought"
-msgstr ""
+msgstr "Compartir tus pensamientos"
 
 #: View/Elements/comment.ctp:11
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 #: View/Elements/error.ctp:2
 msgid "Error!"
-msgstr ""
+msgstr "Error!"
 
 #: View/Elements/quest.ctp:98
 msgid "Save answers"
-msgstr ""
+msgstr "Guardar respuestas"
 
 #: View/Elements/quest.ctp:112
 #: View/Missions/evoke.ctp:76;97
 msgid "Add Discussion"
-msgstr ""
+msgstr "Agregar discusión"
 
 #: View/Elements/see_vote.ctp:5
 #: View/Elements/vote.ctp:5
 msgid "Rate this evidence"
-msgstr ""
+msgstr "Votar en esta evidencia"
 
 #: View/Elements/see_vote.ctp:20
 msgid "Change Vote"
-msgstr ""
+msgstr "Cambiar Voto"
 
 #: View/Elements/success.ctp:3
 msgid "Success!"
-msgstr ""
+msgstr "éxito!"
 
 #: View/Elements/vote.ctp:17
 msgid "Send vote"
-msgstr ""
+msgstr "Enviar Voto"
 
 #: View/Emails/html/group.ctp:1
 msgid "Agent %s sent a request to join your group %s"
-msgstr ""
+msgstr "Agente %s quiere unirse a su grupo %s"
 
 #: View/Emails/html/group.ctp:2
 msgid "Agent's Dossier"
-msgstr ""
+msgstr "Dossier del Agente"
 
 #: View/Emails/html/group.ctp:18
 msgid "Accept User"
-msgstr ""
+msgstr "Aceptar Usuario"
 
 #: View/Emails/html/group.ctp:19
 msgid "Decline User"
-msgstr ""
+msgstr "Rechazar Usuario"
 
 #: View/EvidenceTags/add.ctp:4
 msgid "Add Evidence Tag"
-msgstr ""
+msgstr "Agregar Etiqueta de Evidencia"
 
 #: View/EvidenceTags/add.ctp:20
 #: View/EvidenceTags/admin_add.ctp:16
@@ -2327,7 +2331,7 @@ msgstr ""
 #: View/EvidenceTags/edit.ctp:18
 #: View/EvidenceTags/view.ctp:36
 msgid "List Evidence Tags"
-msgstr ""
+msgstr "Listar Etiquetas de Evidencia"
 
 #: View/EvidenceTags/add.ctp:23
 #: View/EvidenceTags/admin_add.ctp:19
@@ -2352,7 +2356,7 @@ msgstr ""
 #: View/Tags/edit.ctp:18
 #: View/Tags/view.ctp:36
 msgid "List Tags"
-msgstr ""
+msgstr "Listar Etiquetas"
 
 #: View/EvidenceTags/add.ctp:24
 #: View/EvidenceTags/admin_add.ctp:20
@@ -2375,32 +2379,32 @@ msgstr ""
 #: View/Tags/index.ctp:44
 #: View/Tags/view.ctp:37
 msgid "New Tag"
-msgstr ""
+msgstr "Nueva Etiqueta"
 
 #: View/EvidenceTags/admin_add.ctp:4
 msgid "Admin Add Evidence Tag"
-msgstr ""
+msgstr "Admin Agregar Etiqueta "
 
 #: View/EvidenceTags/admin_edit.ctp:4
 msgid "Admin Edit Evidence Tag"
-msgstr ""
+msgstr "Admin Editar Etiqueta "
 
 #: View/EvidenceTags/admin_index.ctp:2
 #: View/EvidenceTags/index.ctp:2
 msgid "Evidence Tags"
-msgstr ""
+msgstr "Etiquetas "
 
 #: View/EvidenceTags/admin_index.ctp:48
 #: View/EvidenceTags/admin_view.ctp:37
 #: View/EvidenceTags/index.ctp:48
 #: View/EvidenceTags/view.ctp:37
 msgid "New Evidence Tag"
-msgstr ""
+msgstr "Nueva Etiqueta"
 
 #: View/EvidenceTags/admin_view.ctp:2
 #: View/EvidenceTags/view.ctp:2
 msgid "Evidence Tag"
-msgstr ""
+msgstr "Etiqueta"
 
 #: View/EvidenceTags/admin_view.ctp:14
 #: View/EvidenceTags/view.ctp:14
@@ -2409,22 +2413,22 @@ msgstr ""
 #: View/Tags/admin_view.ctp:2
 #: View/Tags/view.ctp:2
 msgid "Tag"
-msgstr ""
+msgstr "Etiqueta"
 
 #: View/EvidenceTags/admin_view.ctp:34
 #: View/EvidenceTags/edit.ctp:4
 #: View/EvidenceTags/view.ctp:34
 msgid "Edit Evidence Tag"
-msgstr ""
+msgstr "Editar Etiqueta "
 
 #: View/EvidenceTags/admin_view.ctp:35
 #: View/EvidenceTags/view.ctp:35
 msgid "Delete Evidence Tag"
-msgstr ""
+msgstr "Eliminar Etiqueta"
 
 #: View/Evidences/admin_add.ctp:4
 msgid "Admin Add Evidence"
-msgstr ""
+msgstr "Admin Agregar Evidencia"
 
 #: View/Evidences/admin_add.ctp:23
 #: View/Evidences/admin_edit.ctp:25
@@ -2444,7 +2448,7 @@ msgstr ""
 #: View/Quests/edit.ctp:20
 #: View/Quests/view.ctp:46
 msgid "List Quests"
-msgstr ""
+msgstr "Listar Desafíos"
 
 #: View/Evidences/admin_add.ctp:24
 #: View/Evidences/admin_edit.ctp:26
@@ -2462,7 +2466,7 @@ msgstr ""
 #: View/Quests/index.ctp:52
 #: View/Quests/view.ctp:47
 msgid "New Quest"
-msgstr ""
+msgstr "Nuevo Desafío"
 
 #: View/Evidences/admin_add.ctp:25
 #: View/Evidences/admin_edit.ctp:27
@@ -2507,7 +2511,7 @@ msgstr ""
 #: View/UserMissions/index.ctp:51
 #: View/UserMissions/view.ctp:40
 msgid "List Missions"
-msgstr ""
+msgstr "Listar Misiones"
 
 #: View/Evidences/admin_add.ctp:26
 #: View/Evidences/admin_edit.ctp:28
@@ -2549,7 +2553,7 @@ msgstr ""
 #: View/UserMissions/index.ctp:52
 #: View/UserMissions/view.ctp:41
 msgid "New Mission"
-msgstr ""
+msgstr "Nueva Misión"
 
 #: View/Evidences/admin_add.ctp:27
 #: View/Evidences/admin_edit.ctp:29
@@ -2571,7 +2575,7 @@ msgstr ""
 #: View/Quests/index.ctp:55
 #: View/Quests/view.ctp:50
 msgid "List Phases"
-msgstr ""
+msgstr "Listar Fases"
 
 #: View/Evidences/admin_add.ctp:28
 #: View/Evidences/admin_edit.ctp:30
@@ -2591,7 +2595,7 @@ msgstr ""
 #: View/Quests/index.ctp:56
 #: View/Quests/view.ctp:51
 msgid "New Phase"
-msgstr ""
+msgstr "Nueva Fase"
 
 #: View/Evidences/admin_add.ctp:31
 #: View/Evidences/admin_edit.ctp:33
@@ -2610,7 +2614,7 @@ msgstr ""
 #: View/Votes/edit.ctp:22
 #: View/Votes/view.ctp:41
 msgid "List Votes"
-msgstr ""
+msgstr "Listar Votos"
 
 #: View/Evidences/admin_add.ctp:32
 #: View/Evidences/admin_edit.ctp:34
@@ -2627,22 +2631,22 @@ msgstr ""
 #: View/Votes/index.ctp:50
 #: View/Votes/view.ctp:42
 msgid "New Vote"
-msgstr ""
+msgstr "Nuevo Voto"
 
 #: View/Evidences/admin_edit.ctp:4
 msgid "Admin Edit Evidence"
-msgstr ""
+msgstr "Admin Editar Evidencia"
 
 #: View/Evidences/admin_index.ctp:2
 #: View/Evidences/index.ctp:2
 msgid "Evidences"
-msgstr ""
+msgstr "Evidencia"
 
 #: View/Evidences/admin_view.ctp:24
 #: View/Quests/admin_view.ctp:2
 #: View/Quests/view.ctp:2
 msgid "Quest"
-msgstr ""
+msgstr "Desafío"
 
 #: View/Evidences/admin_view.ctp:29
 #: View/MissionIssues/admin_view.ctp:9
@@ -2656,7 +2660,7 @@ msgstr ""
 #: View/UserMissions/admin_view.ctp:14
 #: View/UserMissions/view.ctp:14
 msgid "Mission"
-msgstr ""
+msgstr "Misión"
 
 #: View/Evidences/admin_view.ctp:34
 #: View/Panels/add_mission.ctp:148
@@ -2666,26 +2670,26 @@ msgstr ""
 #: View/Quests/admin_view.ctp:24
 #: View/Quests/view.ctp:24
 msgid "Phase"
-msgstr ""
+msgstr "Fase"
 
 #: View/Evidences/admin_view.ctp:54
 #: View/Evidences/edit.ctp:40
 msgid "Edit Evidence"
-msgstr ""
+msgstr "Editar Evidencia"
 
 #: View/Evidences/admin_view.ctp:55
 msgid "Delete Evidence"
-msgstr ""
+msgstr "Eliminar Evidencia"
 
 #: View/Evidences/admin_view.ctp:73
 #: View/Users/admin_view.ctp:100
 msgid "Related Comments"
-msgstr ""
+msgstr "Comentarios Relacionados"
 
 #: View/Evidences/admin_view.ctp:78;115
 #: View/Users/admin_view.ctp:105;313
 msgid "Evidence Id"
-msgstr ""
+msgstr "ID de Evidencia"
 
 #: View/Evidences/admin_view.ctp:79;116
 #: View/Evokations/admin_view.ctp:53
@@ -2695,19 +2699,19 @@ msgstr ""
 #: View/Quests/view.ctp:64
 #: View/Users/admin_view.ctp:106;142;181;217;247;282;314
 msgid "User Id"
-msgstr ""
+msgstr "ID de Agente"
 
 #: View/Evidences/admin_view.ctp:110
 #: View/Users/admin_view.ctp:308
 msgid "Related Votes"
-msgstr ""
+msgstr "Votos relacionados"
 
 #: View/Evidences/admin_view.ctp:117
 #: View/Users/admin_view.ctp:216
 #: View/Votes/admin_view.ctp:19
 #: View/Votes/view.ctp:19
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: View/Evidences/edit.ctp:18
 #: View/Evidences/view.ctp:19
@@ -2743,7 +2747,7 @@ msgstr "Configuraciones"
 #: View/Users/dashboard_by_issue.ctp:20
 #: View/Users/leaderboard.ctp:20
 msgid "Edit informations"
-msgstr ""
+msgstr "Editar Información"
 
 #: View/Evidences/edit.ctp:21
 #: View/Evidences/view.ctp:22
@@ -2761,7 +2765,7 @@ msgstr ""
 #: View/Users/dashboard_by_issue.ctp:21
 #: View/Users/leaderboard.ctp:21
 msgid "Sign Out"
-msgstr ""
+msgstr "Desconectarte"
 
 #: View/Evidences/edit.ctp:28
 #: View/Evidences/view.ctp:29
@@ -2780,11 +2784,11 @@ msgstr ""
 #: View/Users/leaderboard.ctp:28
 #: View/Users/view.ctp:27
 msgid "Dashboard"
-msgstr ""
+msgstr "Dashboard"
 
 #: View/Evidences/edit.ctp:52
 msgid "Save Evidence"
-msgstr ""
+msgstr "Guardar Evidencia"
 
 #: View/Evidences/view.ctp:40
 #: View/Missions/admin_index.ctp:2
@@ -2792,37 +2796,37 @@ msgstr ""
 #: View/Missions/view.ctp:40
 #: View/Panels/index.ctp:43
 msgid "Missions"
-msgstr ""
+msgstr "Misión"
 
 #: View/Evidences/view.ctp:41
 #: View/Missions/evoke.ctp:41;46
 #: View/Missions/view.ctp:54
 msgid "Mission: "
-msgstr ""
+msgstr "Misión:"
 
 #: View/Evidences/view.ctp:43
 msgid "Discussions"
-msgstr ""
+msgstr "Discusiones"
 
 #: View/Evidences/view.ctp:47;61
 #: View/Missions/evoke.ctp:9
 #: View/Users/view.ctp:9
 msgid "Agent "
-msgstr ""
+msgstr "Agente"
 
 #: View/Evidences/view.ctp:79
 msgid "Edit Discussion"
-msgstr ""
+msgstr "Editar Discusión"
 
 #: View/Evidences/view.ctp:82
 #: View/Votes/admin_view.ctp:2
 #: View/Votes/view.ctp:2
 msgid "Vote"
-msgstr ""
+msgstr "Votar"
 
 #: View/EvokationFollowers/add.ctp:4
 msgid "Add Evokation Follower"
-msgstr ""
+msgstr "Agregar Seguidor de Evokation"
 
 #: View/EvokationFollowers/add.ctp:16
 #: View/EvokationFollowers/admin_add.ctp:16
@@ -2831,7 +2835,7 @@ msgstr ""
 #: View/EvokationFollowers/edit.ctp:18
 #: View/EvokationFollowers/view.ctp:36
 msgid "List Evokation Followers"
-msgstr ""
+msgstr "Listar Seguidores de Evokations"
 
 #: View/EvokationFollowers/add.ctp:19
 #: View/EvokationFollowers/admin_add.ctp:19
@@ -2862,7 +2866,7 @@ msgstr ""
 #: View/Groups/admin_view.ctp:40
 #: View/Groups/edit.ctp:21
 msgid "List Evokations"
-msgstr ""
+msgstr "Listar Evokations"
 
 #: View/EvokationFollowers/add.ctp:20
 #: View/EvokationFollowers/admin_add.ctp:20
@@ -2891,32 +2895,32 @@ msgstr ""
 #: View/Groups/admin_view.ctp:41;81
 #: View/Groups/edit.ctp:22
 msgid "New Evokation"
-msgstr ""
+msgstr "Nueva Evokation"
 
 #: View/EvokationFollowers/admin_add.ctp:4
 msgid "Admin Add Evokation Follower"
-msgstr ""
+msgstr "Admin Agregar Seguidor de Evokation"
 
 #: View/EvokationFollowers/admin_edit.ctp:4
 msgid "Admin Edit Evokation Follower"
-msgstr ""
+msgstr "Admin Editar Seguidor de Evokation"
 
 #: View/EvokationFollowers/admin_index.ctp:2
 #: View/EvokationFollowers/index.ctp:2
 msgid "Evokation Followers"
-msgstr ""
+msgstr "Seguidores de Evokation"
 
 #: View/EvokationFollowers/admin_index.ctp:48
 #: View/EvokationFollowers/admin_view.ctp:37
 #: View/EvokationFollowers/index.ctp:48
 #: View/EvokationFollowers/view.ctp:37
 msgid "New Evokation Follower"
-msgstr ""
+msgstr "Nuevo Seguidor de Evokation"
 
 #: View/EvokationFollowers/admin_view.ctp:2
 #: View/EvokationFollowers/view.ctp:2
 msgid "Evokation Follower"
-msgstr ""
+msgstr "Seguidor de Evokation"
 
 #: View/EvokationFollowers/admin_view.ctp:14
 #: View/EvokationFollowers/view.ctp:14
@@ -2925,22 +2929,22 @@ msgstr ""
 #: View/Evokations/admin_view.ctp:2
 #: View/Evokations/view.ctp:2
 msgid "Evokation"
-msgstr ""
+msgstr "Evokation"
 
 #: View/EvokationFollowers/admin_view.ctp:34
 #: View/EvokationFollowers/edit.ctp:4
 #: View/EvokationFollowers/view.ctp:34
 msgid "Edit Evokation Follower"
-msgstr ""
+msgstr "Editar Seguidor de Evokation"
 
 #: View/EvokationFollowers/admin_view.ctp:35
 #: View/EvokationFollowers/view.ctp:35
 msgid "Delete Evokation Follower"
-msgstr ""
+msgstr "Eliminar Seguidor de Evokation"
 
 #: View/EvokationTags/add.ctp:4
 msgid "Add Evokation Tag"
-msgstr ""
+msgstr "Agregar Etiqueta"
 
 #: View/EvokationTags/add.ctp:16
 #: View/EvokationTags/admin_add.ctp:16
@@ -2949,47 +2953,47 @@ msgstr ""
 #: View/EvokationTags/edit.ctp:18
 #: View/EvokationTags/view.ctp:36
 msgid "List Evokation Tags"
-msgstr ""
+msgstr "Listar Etiquetas"
 
 #: View/EvokationTags/admin_add.ctp:4
 msgid "Admin Add Evokation Tag"
-msgstr ""
+msgstr "Admin Agregar Etiqueta"
 
 #: View/EvokationTags/admin_edit.ctp:4
 msgid "Admin Edit Evokation Tag"
-msgstr ""
+msgstr "Admin Edistar Etiqueta"
 
 #: View/EvokationTags/admin_index.ctp:2
 #: View/EvokationTags/index.ctp:2
 msgid "Evokation Tags"
-msgstr ""
+msgstr "Etiquetas"
 
 #: View/EvokationTags/admin_index.ctp:48
 #: View/EvokationTags/admin_view.ctp:37
 #: View/EvokationTags/index.ctp:48
 #: View/EvokationTags/view.ctp:37
 msgid "New Evokation Tag"
-msgstr ""
+msgstr "Nueva Etiqueta"
 
 #: View/EvokationTags/admin_view.ctp:2
 #: View/EvokationTags/view.ctp:2
 msgid "Evokation Tag"
-msgstr ""
+msgstr "Etiqueta"
 
 #: View/EvokationTags/admin_view.ctp:34
 #: View/EvokationTags/edit.ctp:4
 #: View/EvokationTags/view.ctp:34
 msgid "Edit Evokation Tag"
-msgstr ""
+msgstr "Editar Etiqueta"
 
 #: View/EvokationTags/admin_view.ctp:35
 #: View/EvokationTags/view.ctp:35
 msgid "Delete Evokation Tag"
-msgstr ""
+msgstr "Eliminar Etiqueta"
 
 #: View/Evokations/add.ctp:4
 msgid "Add Evokation"
-msgstr ""
+msgstr "Agregar Evokation"
 
 #: View/Evokations/add.ctp:18
 #: View/Evokations/admin_add.ctp:18
@@ -3024,7 +3028,7 @@ msgstr ""
 #: View/Users/admin_view.ctp:87
 #: View/Users/index.ctp:69
 msgid "List Groups"
-msgstr ""
+msgstr "Listar Grupos"
 
 #: View/Evokations/add.ctp:19
 #: View/Evokations/admin_add.ctp:19
@@ -3056,53 +3060,53 @@ msgstr ""
 #: View/Users/admin_view.ctp:88;206
 #: View/Users/index.ctp:70
 msgid "New Group"
-msgstr ""
+msgstr "Nuevo Grupo"
 
 #: View/Evokations/admin_add.ctp:4
 msgid "Admin Add Evokation"
-msgstr ""
+msgstr "Admin Agregar Evokation"
 
 #: View/Evokations/admin_edit.ctp:4
 msgid "Admin Edit Evokation"
-msgstr ""
+msgstr "Admin Edistar Evokation"
 
 #: View/Evokations/admin_index.ctp:2
 #: View/Evokations/index.ctp:2
 msgid "Evokations"
-msgstr ""
+msgstr "Evokations"
 
 #: View/Evokations/admin_view.ctp:14
 #: View/Evokations/view.ctp:14
 #: View/Groups/admin_view.ctp:53
 msgid "Abstract"
-msgstr ""
+msgstr "Resumen"
 
 #: View/Evokations/admin_view.ctp:39
 #: View/Evokations/edit.ctp:4
 #: View/Evokations/view.ctp:39
 msgid "Edit Evokation"
-msgstr ""
+msgstr "Editar Evokation"
 
 #: View/Evokations/admin_view.ctp:40
 #: View/Evokations/view.ctp:40
 msgid "Delete Evokation"
-msgstr ""
+msgstr "Eliminar Evokation"
 
 #: View/Evokations/admin_view.ctp:48
 #: View/Evokations/view.ctp:48
 #: View/Users/admin_view.ctp:176
 msgid "Related Groups"
-msgstr ""
+msgstr "Grupos Relacionados"
 
 #: View/Evokations/admin_view.ctp:54
 #: View/Evokations/view.ctp:54
 #: View/Users/admin_view.ctp:182
 msgid "Evokation Id"
-msgstr ""
+msgstr "ID Evokation"
 
 #: View/GroupRequests/add.ctp:4
 msgid "Add Group Request"
-msgstr ""
+msgstr "Agregar Solicitud de Grupo"
 
 #: View/GroupRequests/add.ctp:17
 #: View/GroupRequests/admin_add.ctp:17
@@ -3111,32 +3115,32 @@ msgstr ""
 #: View/GroupRequests/edit.ctp:19
 #: View/GroupRequests/view.ctp:41
 msgid "List Group Requests"
-msgstr ""
+msgstr "Listar Solicitudes"
 
 #: View/GroupRequests/admin_add.ctp:4
 msgid "Admin Add Group Request"
-msgstr ""
+msgstr "Admin Agregar Solicitud"
 
 #: View/GroupRequests/admin_edit.ctp:4
 msgid "Admin Edit Group Request"
-msgstr ""
+msgstr "Admin Editar Solicitud"
 
 #: View/GroupRequests/admin_index.ctp:2
 #: View/GroupRequests/index.ctp:2
 msgid "Group Requests"
-msgstr ""
+msgstr "Solicitudes Grupos"
 
 #: View/GroupRequests/admin_index.ctp:50
 #: View/GroupRequests/admin_view.ctp:42
 #: View/GroupRequests/index.ctp:50
 #: View/GroupRequests/view.ctp:42
 msgid "New Group Request"
-msgstr ""
+msgstr "Nuevos Solicitudes Grupos"
 
 #: View/GroupRequests/admin_view.ctp:2
 #: View/GroupRequests/view.ctp:2
 msgid "Group Request"
-msgstr ""
+msgstr "Solicitudes de Grupos"
 
 #: View/GroupRequests/admin_view.ctp:14
 #: View/GroupRequests/view.ctp:14
@@ -3145,58 +3149,58 @@ msgstr ""
 #: View/GroupsUsers/edit.ctp:83
 #: View/GroupsUsers/view.ctp:82
 msgid "Group"
-msgstr ""
+msgstr "Grupo"
 
 #: View/GroupRequests/admin_view.ctp:19
 #: View/GroupRequests/view.ctp:19
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
 #: View/GroupRequests/admin_view.ctp:39
 #: View/GroupRequests/edit.ctp:4
 #: View/GroupRequests/view.ctp:39
 msgid "Edit Group Request"
-msgstr ""
+msgstr "Editar Solicitud"
 
 #: View/GroupRequests/admin_view.ctp:40
 #: View/GroupRequests/view.ctp:40
 msgid "Delete Group Request"
-msgstr ""
+msgstr "Eliminar Solicitud"
 
 #: View/Groups/add.ctp:4
 msgid "Add Group"
-msgstr ""
+msgstr "Crear Grupo"
 
 #: View/Groups/admin_add.ctp:4
 msgid "Admin Add Group"
-msgstr ""
+msgstr "Admin Crear Grupo"
 
 #: View/Groups/admin_edit.ctp:4
 msgid "Admin Edit Group"
-msgstr ""
+msgstr "Admin Editar Crear"
 
 #: View/Groups/admin_index.ctp:2
 #: View/Groups/index.ctp:40
 #: View/Panels/index.ctp:292
 msgid "Groups"
-msgstr ""
+msgstr "Grupos"
 
 #: View/Groups/admin_view.ctp:34
 #: View/Groups/edit.ctp:4
 msgid "Edit Group"
-msgstr ""
+msgstr "Editar Grupo"
 
 #: View/Groups/admin_view.ctp:35
 msgid "Delete Group"
-msgstr ""
+msgstr "Eliminar Grupo"
 
 #: View/Groups/admin_view.ctp:45
 msgid "Related Evokations"
-msgstr ""
+msgstr "Evokations Relacionados "
 
 #: View/Groups/admin_view.ctp:50
 msgid "Group Id"
-msgstr ""
+msgstr "ID Grupo"
 
 #: View/Groups/admin_view.ctp:51
 msgid "Gdrive File Id"
@@ -3204,27 +3208,27 @@ msgstr ""
 
 #: View/Groups/admin_view.ctp:54
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: View/Groups/admin_view.ctp:86
 #: View/Roles/view.ctp:28
 msgid "Related Users"
-msgstr ""
+msgstr "Usuario Relacionados"
 
 #: View/Groups/admin_view.ctp:91
 #: View/Roles/view.ctp:48
 msgid "Role Id"
-msgstr ""
+msgstr "ID Role"
 
 #: View/Groups/admin_view.ctp:92
 #: View/Roles/view.ctp:33
 msgid "Facebook Id"
-msgstr ""
+msgstr "ID Facebook"
 
 #: View/Groups/admin_view.ctp:93
 #: View/Roles/view.ctp:34
 msgid "Facebook Token"
-msgstr ""
+msgstr "Token Facebook"
 
 #: View/Groups/admin_view.ctp:95
 #: View/Organizations/view.ctp:14
@@ -3233,58 +3237,58 @@ msgstr ""
 #: View/Users/admin_view.ctp:14
 #: View/Users/edit.ctp:13
 msgid "Birthdate"
-msgstr ""
+msgstr "Fecha de nascimiento "
 
 #: View/Groups/admin_view.ctp:96
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: View/Groups/admin_view.ctp:97
 #: View/Roles/view.ctp:37
 #: View/Users/admin_view.ctp:19
 #: View/Users/edit.ctp:14
 msgid "Sex"
-msgstr ""
+msgstr "Sexo"
 
 #: View/Groups/admin_view.ctp:98
 #: View/Roles/view.ctp:38
 #: View/Users/admin_view.ctp:24
 #: View/Users/edit.ctp:15
 msgid "Biography"
-msgstr ""
+msgstr "Biografía"
 
 #: View/Groups/admin_view.ctp:99
 #: View/Roles/view.ctp:39
 #: View/Users/edit.ctp:11
 #: View/Users/register.ctp:19
 msgid "Username"
-msgstr ""
+msgstr "Usuario"
 
 #: View/Groups/admin_view.ctp:100
 #: View/Roles/view.ctp:40
 #: View/Users/admin_view.ctp:34
 #: View/Users/register.ctp:20
 msgid "Password"
-msgstr ""
+msgstr "Contrasena"
 
 #: View/Groups/admin_view.ctp:101
 #: View/Roles/view.ctp:41
 #: View/Users/admin_view.ctp:39
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: View/Groups/admin_view.ctp:102
 #: View/Organizations/view.ctp:34
 #: View/Roles/view.ctp:42
 #: View/Users/admin_view.ctp:44
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: View/Groups/admin_view.ctp:103
 #: View/Roles/view.ctp:43
 #: View/Users/admin_view.ctp:49
 msgid "Instagram"
-msgstr ""
+msgstr "Instagram"
 
 #: View/Groups/admin_view.ctp:104
 #: View/Organizations/view.ctp:24
@@ -3293,85 +3297,85 @@ msgstr ""
 #: View/Users/admin_view.ctp:54
 #: View/Users/edit.ctp:19
 msgid "Website"
-msgstr ""
+msgstr "Página Web"
 
 #: View/Groups/admin_view.ctp:105
 #: View/Organizations/view.ctp:39
 #: View/Roles/view.ctp:45
 #: View/Users/admin_view.ctp:59
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 #: View/Groups/index.ctp:38
 msgid "Join a group or create one"
-msgstr ""
+msgstr "Unirte a un grupo o crear uno nuevo"
 
 #: View/Groups/index.ctp:41
 msgid "My Groups"
-msgstr ""
+msgstr "Mis Grupos"
 
 #: View/Groups/index.ctp:47;66
 #: View/Groups/view.ctp:40
 msgid "Group %s"
-msgstr ""
+msgstr "Group %s"
 
 #: View/Groups/index.ctp:48
 #: View/Groups/view.ctp:44
 msgid "Group Owner: %s"
-msgstr ""
+msgstr "Administrator del Grupo: %s"
 
 #: View/Groups/index.ctp:55
 #: View/Groups/view.ctp:42
 msgid "Send request to join"
-msgstr ""
+msgstr "Enviar Solicitus para unirte"
 
 #: View/Groups/index.ctp:73
 msgid "Create a group"
-msgstr ""
+msgstr "Crear un grupo"
 
 #: View/Groups/view.ctp:45
 msgid "Members (%s)"
-msgstr ""
+msgstr "Miembros (%s)"
 
 #: View/Groups/view.ctp:50
 msgid "Remove user"
-msgstr ""
+msgstr "Remover usuario"
 
 #: View/Groups/view.ctp:57
 msgid "Requests"
-msgstr ""
+msgstr "Solicitudes"
 
 #: View/Groups/view.ctp:60
 msgid "Pending Requests"
-msgstr ""
+msgstr "Solicitudes Pendientes"
 
 #: View/Groups/view.ctp:61
 msgid "Accepted/Declined Requests"
-msgstr ""
+msgstr "Solicitudes Acceptados/Rechazados"
 
 #: View/Groups/view.ctp:70
 msgid "Accept"
-msgstr ""
+msgstr "Acceptar"
 
 #: View/Groups/view.ctp:73
 msgid "Decline"
-msgstr ""
+msgstr "Rechazar"
 
 #: View/Groups/view.ctp:85
 msgid "Accepted"
-msgstr ""
+msgstr "Aceptado"
 
 #: View/Groups/view.ctp:86
 msgid "Declined"
-msgstr ""
+msgstr "Rechazado"
 
 #: View/Groups/view.ctp:87
 msgid "Requester: Agent %s </br> Status: %s"
-msgstr ""
+msgstr "Soliciante: Agente %s </br> Estado:%s"
 
 #: View/Groups/view.ctp:97
 msgid "Go to project"
-msgstr ""
+msgstr "Ir al Proyecto"
 
 #: View/GroupsUsers/add.ctp:4
 msgid "Add Groups User"
@@ -3386,110 +3390,110 @@ msgstr ""
 
 #: View/GroupsUsers/admin_add.ctp:4
 msgid "Admin Add Groups User"
-msgstr ""
+msgstr "Admin Agregar Usuario de Grupo"
 
 #: View/GroupsUsers/admin_edit.ctp:4
 msgid "Admin Edit Groups User"
-msgstr ""
+msgstr "Admin Agregar Usario a Grupo"
 
 #: View/GroupsUsers/admin_index.ctp:2
 #: View/GroupsUsers/index.ctp:2
 msgid "Groups Users"
-msgstr ""
+msgstr "Usuarios del Grupo"
 
 #: View/GroupsUsers/admin_index.ctp:48
 #: View/GroupsUsers/admin_view.ctp:37
 #: View/GroupsUsers/index.ctp:48
 msgid "New Groups User"
-msgstr ""
+msgstr "Nuevo Usuario del Grupo"
 
 #: View/GroupsUsers/admin_view.ctp:2
 msgid "Groups User"
-msgstr ""
+msgstr "Usaurio de Grupos"
 
 #: View/GroupsUsers/admin_view.ctp:34
 msgid "Edit Groups User"
-msgstr ""
+msgstr "Editar Usuario de Grupos"
 
 #: View/GroupsUsers/admin_view.ctp:35
 msgid "Delete Groups User"
-msgstr ""
+msgstr "Eliminar Usuario de Grupos"
 
 #: View/GroupsUsers/edit.ctp:44
 msgid "DOSSIER"
-msgstr ""
+msgstr "DOSSIER"
 
 #: View/GroupsUsers/edit.ctp:76
 #: View/GroupsUsers/view.ctp:75
 msgid "Edit project info"
-msgstr ""
+msgstr "Editar informcación proyecto"
 
 #: View/GroupsUsers/edit.ctp:78
 #: View/GroupsUsers/view.ctp:77
 msgid "CHAT"
-msgstr ""
+msgstr "CHAT"
 
 #: View/GroupsUsers/edit.ctp:98
 #: View/GroupsUsers/view.ctp:97
 msgid "Your Evokation title"
-msgstr ""
+msgstr "Título del Evokation"
 
 #: View/GroupsUsers/edit.ctp:103
 #: View/GroupsUsers/view.ctp:102
 msgid "Your Evokation abstract"
-msgstr ""
+msgstr "Resumen del Evokation"
 
 #: View/GroupsUsers/edit.ctp:156
 #: View/GroupsUsers/view.ctp:117
 msgid "MEMBERS"
-msgstr ""
+msgstr "MIEMBROS"
 
 #: View/GroupsUsers/edit.ctp:163
 #: View/GroupsUsers/view.ctp:124
 msgid "Save Evokation Draft"
-msgstr ""
+msgstr "Guardar Evokation en borrador"
 
 #: View/GroupsUsers/edit.ctp:164
 #: View/GroupsUsers/view.ctp:125
 msgid "Send Final Evokation"
-msgstr ""
+msgstr "Enviar Evokation Final"
 
 #: View/GroupsUsers/edit.ctp:166
 #: View/GroupsUsers/view.ctp:127
 msgid "RELATED DOCUMENTS"
-msgstr ""
+msgstr "DOCUMENTOS RELACIONADOS"
 
 #: View/GroupsUsers/edit.ctp:174
 #: View/GroupsUsers/view.ctp:135
 msgid "CALENDAR"
-msgstr ""
+msgstr "CALENDARIO"
 
 #: View/GroupsUsers/send.ctp:3
 msgid "To"
-msgstr ""
+msgstr "Para"
 
 #: View/GroupsUsers/send.ctp:4
 msgid "Subject"
-msgstr ""
+msgstr "Tema"
 
 #: View/GroupsUsers/send.ctp:5
 #: View/Users/view.ctp:55
 #: Plugin/DebugKit/View/Elements/log_panel.ctp:27
 #: Plugin/DebugKit/View/Elements/timer_panel.ctp:42;66
 msgid "Message"
-msgstr ""
+msgstr "Mensaje"
 
 #: View/GroupsUsers/send.ctp:7
 msgid "Send message"
-msgstr ""
+msgstr "Enviar Mensaje"
 
 #: View/GroupsUsers/view.ctp:43
 msgid "ASSETS"
-msgstr ""
+msgstr "BIENES"
 
 #: View/Issues/add.ctp:4
 msgid "Add Issue"
-msgstr ""
+msgstr "Agregar Tema"
 
 #: View/Issues/add.ctp:17;18
 #: View/Issues/admin_add.ctp:17;18
@@ -3516,7 +3520,7 @@ msgstr ""
 #: View/UserIssues/index.ctp:47
 #: View/UserIssues/view.ctp:30
 msgid "List Issues"
-msgstr ""
+msgstr "Listar Temas"
 
 #: View/Issues/add.ctp:19
 #: View/Issues/admin_add.ctp:19
@@ -3527,22 +3531,22 @@ msgstr ""
 #: View/Issues/index.ctp:50
 #: View/Issues/view.ctp:44
 msgid "New Parent Issue"
-msgstr ""
+msgstr "Nuevo Tema Organizador"
 
 #: View/Issues/admin_add.ctp:4
 msgid "Admin Add Issue"
-msgstr ""
+msgstr "Admin Agregar Tema"
 
 #: View/Issues/admin_edit.ctp:4
 msgid "Admin Edit Issue"
-msgstr ""
+msgstr "Admin Editar Tema"
 
 #: View/Issues/admin_index.ctp:2
 #: View/Issues/index.ctp:2
 #: View/Panels/index.ctp:101
 #: View/Users/dashboard_by_issue.ctp:87
 msgid "Issues"
-msgstr ""
+msgstr "Temas"
 
 #: View/Issues/admin_index.ctp:48
 #: View/Issues/admin_view.ctp:42
@@ -3565,7 +3569,7 @@ msgstr ""
 #: View/UserIssues/index.ctp:48
 #: View/UserIssues/view.ctp:31
 msgid "New Issue"
-msgstr ""
+msgstr "Nuevo Tema"
 
 #: View/Issues/admin_view.ctp:2
 #: View/Issues/view.ctp:2
@@ -3576,39 +3580,39 @@ msgstr ""
 #: View/UserIssues/admin_view.ctp:14
 #: View/UserIssues/view.ctp:14
 msgid "Issue"
-msgstr ""
+msgstr "Tema"
 
 #: View/Issues/admin_view.ctp:9
 #: View/Issues/view.ctp:9
 msgid "Parent Issue"
-msgstr ""
+msgstr "Tema Organizador"
 
 #: View/Issues/admin_view.ctp:19;55
 #: View/Issues/view.ctp:19;55
 #: View/Panels/index.ctp:129
 msgid "Slug"
-msgstr ""
+msgstr "Slug"
 
 #: View/Issues/admin_view.ctp:39
 #: View/Issues/edit.ctp:4
 #: View/Issues/view.ctp:39
 msgid "Edit Issue"
-msgstr ""
+msgstr "Editar Tema"
 
 #: View/Issues/admin_view.ctp:40
 #: View/Issues/view.ctp:40
 msgid "Delete Issue"
-msgstr ""
+msgstr "Eliminar Tema"
 
 #: View/Issues/admin_view.ctp:48
 #: View/Issues/view.ctp:48
 msgid "Related Issues"
-msgstr ""
+msgstr "Temas Relacionados"
 
 #: View/Issues/admin_view.ctp:53
 #: View/Issues/view.ctp:53
 msgid "Parent Id"
-msgstr ""
+msgstr "ID Organizador"
 
 #: View/Issues/admin_view.ctp:80
 #: View/Issues/view.ctp:80
@@ -3617,15 +3621,15 @@ msgstr ""
 
 #: View/Layouts/default.ctp:10
 msgid "Evoke Network"
-msgstr ""
+msgstr "Red Evoke"
 
 #: View/Layouts/default.ctp:59
 msgid "Report an issue"
-msgstr ""
+msgstr "Reportar un problema"
 
 #: View/Layouts/default.ctp:59
 msgid "Terms of Service"
-msgstr ""
+msgstr "Terminos de Servicio"
 
 #: View/MissionIssues/add.ctp:4
 msgid "Add Mission Issue"
@@ -3704,87 +3708,87 @@ msgstr ""
 #: View/Panels/add_mission.ctp:73;97
 #: View/Panels/edit_mission.ctp:62
 msgid "Image"
-msgstr ""
+msgstr "Imágen"
 
 #: View/Missions/admin_view.ctp:39
 #: View/Missions/edit.ctp:4
 #: View/Panels/add_mission.ctp:70
 #: View/Panels/edit_mission.ctp:59
 msgid "Edit Mission"
-msgstr ""
+msgstr "Editar Misión"
 
 #: View/Missions/admin_view.ctp:40
 msgid "Delete Mission"
-msgstr ""
+msgstr "Eliminar Misión"
 
 #: View/Missions/admin_view.ctp:52
 #: View/Quests/admin_view.ctp:57
 #: View/Quests/view.ctp:57
 #: View/Users/admin_view.ctp:135
 msgid "Related Evidences"
-msgstr ""
+msgstr "Evidencias Relacionadas"
 
 #: View/Missions/admin_view.ctp:60
 #: View/Quests/admin_view.ctp:65
 #: View/Quests/view.ctp:65
 #: View/Users/admin_view.ctp:143
 msgid "Quest Id"
-msgstr ""
+msgstr "ID Desafío"
 
 #: View/Missions/admin_view.ctp:61;98;131
 #: View/Quests/admin_view.ctp:66
 #: View/Quests/view.ctp:66
 #: View/Users/admin_view.ctp:144
 msgid "Mission Id"
-msgstr ""
+msgstr "ID Misión"
 
 #: View/Missions/admin_view.ctp:93
 msgid "Related Mission Issues"
-msgstr ""
+msgstr "Temas de Misión Relacionados"
 
 #: View/Missions/admin_view.ctp:99
 msgid "Issue Id"
-msgstr ""
+msgstr "ID Tema"
 
 #: View/Missions/admin_view.ctp:124
 msgid "Related Quests"
-msgstr ""
+msgstr "Desafíos Relacionados"
 
 #: View/Missions/evoke.ctp:43
 msgid "Evoke"
-msgstr ""
+msgstr "Evoke"
 
 #: View/Missions/evoke.ctp:49
 msgid "Lastest Projects"
-msgstr ""
+msgstr "Ultimos Proyectos"
 
 #: View/Missions/evoke.ctp:50
 msgid "Successfully Launched Projects"
-msgstr ""
+msgstr "Proyectos Lanzados Exitosamente"
 
 #: View/Missions/evoke.ctp:53
 #: View/Missions/view.ctp:59
 msgid "Quests: "
-msgstr ""
+msgstr "Desafíos:"
 
 #: View/Missions/evoke.ctp:68
 msgid "Projects: "
-msgstr ""
+msgstr "Proyectos:"
 
 #: View/Missions/evoke.ctp:71
 #: View/Missions/view.ctp:77
 msgid "Most Voted"
-msgstr ""
+msgstr "Más Votados"
 
 #: View/Missions/evoke.ctp:72
 #: View/Missions/view.ctp:78
 msgid "Most Recent"
-msgstr ""
+msgstr "Recientes"
 
 #: View/Missions/evoke.ctp:102
 #: View/Missions/view.ctp:113
 msgid "To-do list"
-msgstr ""
+msgstr "Tareas"
 
 #: View/Missions/index.ctp:42
 msgid "Mission Under Issues: "
@@ -3792,393 +3796,393 @@ msgstr ""
 
 #: View/Missions/view.ctp:42
 msgid "Mission %s"
-msgstr ""
+msgstr "Misión %s"
 
 #: View/Missions/view.ctp:55
 msgid "Created by: "
-msgstr ""
+msgstr "Creado por:"
 
 #: View/Missions/view.ctp:56
 msgid "Mission Brief"
-msgstr ""
+msgstr "Resumen de Misión"
 
 #: View/Missions/view.ctp:74
 msgid "Discussions: "
-msgstr ""
+msgstr "Discusiones:"
 
 #: View/Missions/view.ctp:79
 msgid "My evidences"
-msgstr ""
+msgstr "Mis Evidencias"
 
 #: View/Missions/view.ctp:142
 msgid "Go to %s  ->"
-msgstr ""
+msgstr "Ir a %s  ->"
 
 #: View/Missions/view.ctp:146
 msgid "<-  Go back to %s"
-msgstr ""
+msgstr "<- Volver a %s"
 
 #: View/Organizations/add.ctp:4
 msgid "Add Organization"
-msgstr ""
+msgstr "Agregar Organización"
 
 #: View/Organizations/add.ctp:21
 #: View/Organizations/edit.ctp:23
 #: View/Organizations/view.ctp:51
 msgid "List Organizations"
-msgstr ""
+msgstr "Listar Organizaciones"
 
 #: View/Organizations/edit.ctp:4
 #: View/Organizations/view.ctp:49
 msgid "Edit Organization"
-msgstr ""
+msgstr "Editar Organización"
 
 #: View/Organizations/index.ctp:2
 #: View/Panels/index.ctp:42;293
 msgid "Organizations"
-msgstr ""
+msgstr "Organizaciones"
 
 #: View/Organizations/index.ctp:50
 #: View/Organizations/view.ctp:52
 #: View/Panels/index.ctp:52
 msgid "New Organization"
-msgstr ""
+msgstr "Nueva Organización"
 
 #: View/Organizations/view.ctp:2
 #: View/Panels/index.ctp:170
 msgid "Organization"
-msgstr ""
+msgstr "Organización"
 
 #: View/Organizations/view.ctp:29
 msgid "Facerbook"
-msgstr ""
+msgstr "Facebook"
 
 #: View/Organizations/view.ctp:50
 msgid "Delete Organization"
-msgstr ""
+msgstr "Eliminar Organización"
 
 #: View/Panels/add_mission.ctp:39
 msgid "Creating Mission"
-msgstr ""
+msgstr "Creando Misión"
 
 #: View/Panels/add_mission.ctp:41
 #: View/Panels/edit_mission.ctp:40
 msgid "Mission Data"
-msgstr ""
+msgstr "Datos de Misión"
 
 #: View/Panels/add_mission.ctp:42
 #: View/Panels/edit_mission.ctp:41
 #: View/Phases/admin_index.ctp:2
 #: View/Phases/index.ctp:2
 msgid "Phases"
-msgstr ""
+msgstr "Fases"
 
 #: View/Panels/add_mission.ctp:44
 #: View/Panels/edit_mission.ctp:43
 msgid "Points"
-msgstr ""
+msgstr "Puntos"
 
 #: View/Panels/add_mission.ctp:89;103
 #: View/Panels/edit_mission.ctp:78
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #: View/Panels/add_mission.ctp:94
 msgid "Add a Mission"
-msgstr ""
+msgstr "Agregar Misiones"
 
 #: View/Panels/add_mission.ctp:110
 #: View/Panels/edit_mission.ctp:85
 msgid "Save and continue"
-msgstr ""
+msgstr "Guardar y continuar"
 
 #: View/Panels/add_mission.ctp:124
 #: View/Panels/edit_mission.ctp:99
 msgid "Add a Phase"
-msgstr ""
+msgstr "Agregar una fase"
 
 #: View/Panels/add_mission.ctp:134
 #: View/Panels/edit_mission.ctp:109
 #: View/Panels/index.ctp:84;133;176
 msgid "Add"
-msgstr ""
+msgstr "Agregar"
 
 #: View/Panels/add_mission.ctp:138
 #: View/Panels/edit_mission.ctp:113
 msgid "Back"
-msgstr ""
+msgstr "Volver"
 
 #: View/Panels/add_mission.ctp:195
 #: View/Panels/edit_mission.ctp:168
 msgid "Return to Admin Panel"
-msgstr ""
+msgstr "Volver a Panel de Adminstración"
 
 #: View/Panels/index.ctp:40
 msgid "Admin Panel"
-msgstr ""
+msgstr "Panel de Administración"
 
 #: View/Panels/index.ctp:44
 msgid "Levels"
-msgstr ""
+msgstr "Niveles"
 
 #: View/Panels/index.ctp:46;291
 #: View/Users/admin_index.ctp:2
 #: View/Users/index.ctp:2
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
 
 #: View/Panels/index.ctp:47
 msgid "Media"
-msgstr ""
+msgstr "Media"
 
 #: View/Panels/index.ctp:48
 msgid "Statistics"
-msgstr ""
+msgstr "Estadisticas"
 
 #: View/Panels/index.ctp:60
 msgid "Add an Organization"
-msgstr ""
+msgstr "Agregar Organización"
 
 #: View/Panels/index.ctp:72
 msgid "Possible Managers"
-msgstr ""
+msgstr "Gerentes Posibles"
 
 #: View/Panels/index.ctp:102
 msgid "Add new Issue"
-msgstr ""
+msgstr "Agregar un Nuevo Tema"
 
 #: View/Panels/index.ctp:125
 msgid "Add an Issue"
-msgstr ""
+msgstr "Agregar un Tema"
 
 #: View/Panels/index.ctp:139
 msgid "Add new Mission"
-msgstr ""
+msgstr "Agregar una Nueva Misión"
 
 #: View/Panels/index.ctp:157
 msgid "Add new Badge"
-msgstr ""
+msgstr "Agregar una Medalla Nueva"
 
 #: View/Panels/index.ctp:165
 msgid "Add a Badge"
-msgstr ""
+msgstr "Agregar una Medalla"
 
 #: View/Panels/index.ctp:197
 #: View/Roles/index.ctp:2
 msgid "Roles"
-msgstr ""
+msgstr "Papeles"
 
 #: View/Panels/index.ctp:212
 msgid "My Missions"
-msgstr ""
+msgstr "Mis Misiones"
 
 #: View/Panels/index.ctp:231
 msgid "Search by name"
-msgstr ""
+msgstr "Buscar por nombre"
 
 #: View/Panels/index.ctp:239
 msgid "permissions"
-msgstr ""
+msgstr "Permisos"
 
 #: View/Panels/index.ctp:254
 msgid "Change role"
-msgstr ""
+msgstr "Cambiar Papel "
 
 #: View/Panels/index.ctp:258
 #: View/Roles/view.ctp:2
 msgid "Role"
-msgstr ""
+msgstr "Papel "
 
 #: View/Panels/index.ctp:266
 #: View/Users/edit.ctp:24
 msgid "Save Changes"
-msgstr ""
+msgstr "Guardar Cambios"
 
 #: View/Panels/quest.ctp:11
 #: View/Quests/admin_view.ctp:44
 #: View/Quests/edit.ctp:4
 #: View/Quests/view.ctp:44
 msgid "Edit Quest"
-msgstr ""
+msgstr "Editar Desafío"
 
 #: View/Panels/quest.ctp:115
 msgid "Attachments"
-msgstr ""
+msgstr "Archivos"
 
 #: View/Panels/quest.ctp:137
 msgid "Save Quest"
-msgstr ""
+msgstr "Guardar Desafío"
 
 #: View/Phases/add.ctp:4
 msgid "Add Phase"
-msgstr ""
+msgstr "Agrgar Fase"
 
 #: View/Phases/add.ctp:10
 #: View/Phases/edit.ctp:11
 msgid "Discussion"
-msgstr ""
+msgstr "Discusión"
 
 #: View/Phases/add.ctp:10
 #: View/Phases/edit.ctp:11
 msgid "Project"
-msgstr ""
+msgstr "Proyecto "
 
 #: View/Phases/admin_add.ctp:4
 msgid "Admin Add Phase"
-msgstr ""
+msgstr "Admin Agregar Fase"
 
 #: View/Phases/admin_edit.ctp:4
 msgid "Admin Edit Phase"
-msgstr ""
+msgstr "Admin Editar Fase"
 
 #: View/Phases/admin_view.ctp:24
 #: View/Phases/view.ctp:24
 msgid "Position"
-msgstr ""
+msgstr "Posición"
 
 #: View/Phases/admin_view.ctp:29
 #: View/Phases/view.ctp:29
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: View/Phases/admin_view.ctp:49
 #: View/Phases/edit.ctp:4
 #: View/Phases/view.ctp:49
 msgid "Edit Phase"
-msgstr ""
+msgstr "Editar Fase"
 
 #: View/Phases/admin_view.ctp:50
 #: View/Phases/view.ctp:50
 msgid "Delete Phase"
-msgstr ""
+msgstr "Eliminar Fase"
 
 #: View/Quests/admin_add.ctp:4
 msgid "Admin Add Quest"
-msgstr ""
+msgstr "Admin Agregar Fase"
 
 #: View/Quests/admin_edit.ctp:4
 msgid "Admin Edit Quest"
-msgstr ""
+msgstr "Admin Editar Desafío"
 
 #: View/Quests/admin_index.ctp:2
 #: View/Quests/index.ctp:2
 msgid "Quests"
-msgstr ""
+msgstr "Desafíos"
 
 #: View/Quests/admin_view.ctp:45
 #: View/Quests/view.ctp:45
 msgid "Delete Quest"
-msgstr ""
+msgstr "Eliminar Desafío"
 
 #: View/Quests/admin_view.ctp:67
 #: View/Quests/view.ctp:67
 msgid "Phase Id"
-msgstr ""
+msgstr "ID Fase"
 
 #: View/Roles/add.ctp:4
 msgid "Add Role"
-msgstr ""
+msgstr "Agregar Papel "
 
 #: View/Roles/add.ctp:15
 #: View/Roles/edit.ctp:17
 #: View/Roles/view.ctp:21
 msgid "List Roles"
-msgstr ""
+msgstr "Listar Papeles"
 
 #: View/Roles/edit.ctp:4
 #: View/Roles/view.ctp:19
 msgid "Edit Role"
-msgstr ""
+msgstr "Editar Papeles"
 
 #: View/Roles/index.ctp:38
 #: View/Roles/view.ctp:22
 msgid "New Role"
-msgstr ""
+msgstr "Nuevo Papel"
 
 #: View/Roles/view.ctp:20
 msgid "Delete Role"
-msgstr ""
+msgstr "Eliminar Papel"
 
 #: View/Tags/add.ctp:4
 msgid "Add Tag"
-msgstr ""
+msgstr "Agregar Etiqueta"
 
 #: View/Tags/admin_add.ctp:4
 msgid "Admin Add Tag"
-msgstr ""
+msgstr "Admin Agregar Etiqueta"
 
 #: View/Tags/admin_edit.ctp:4
 msgid "Admin Edit Tag"
-msgstr ""
+msgstr "Admin Editar Etiqueta"
 
 #: View/Tags/admin_index.ctp:2
 #: View/Tags/index.ctp:2
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetas"
 
 #: View/Tags/admin_view.ctp:14
 #: View/Tags/view.ctp:14
 msgid "Instances"
-msgstr ""
+msgstr "Instancias"
 
 #: View/Tags/admin_view.ctp:34
 #: View/Tags/edit.ctp:4
 #: View/Tags/view.ctp:34
 msgid "Edit Tag"
-msgstr ""
+msgstr "Editar Etiquetas"
 
 #: View/Tags/admin_view.ctp:35
 #: View/Tags/view.ctp:35
 msgid "Delete Tag"
-msgstr ""
+msgstr "Eliminar Etiquetas"
 
 #: View/UserFriends/add.ctp:4
 msgid "Add User Friend"
-msgstr ""
+msgstr "Formar Alianza"
 
 #: View/UserFriends/add.ctp:16
 #: View/UserFriends/admin_add.ctp:16
 #: View/UserFriends/admin_edit.ctp:18
 #: View/UserFriends/admin_view.ctp:36
 msgid "List User Friends"
-msgstr ""
+msgstr "Listar Alianzas"
 
 #: View/UserFriends/admin_add.ctp:4
 msgid "Admin Add User Friend"
-msgstr ""
+msgstr "Admin Formar Alizana"
 
 #: View/UserFriends/admin_edit.ctp:4
 msgid "Admin Edit User Friend"
-msgstr ""
+msgstr "Admin Edistar Alianza"
 
 #: View/UserFriends/admin_index.ctp:2
 msgid "User Friends"
-msgstr ""
+msgstr "Alianzas"
 
 #: View/UserFriends/admin_index.ctp:46
 #: View/UserFriends/admin_view.ctp:37
 msgid "New User Friend"
-msgstr ""
+msgstr "Nueva Alianza"
 
 #: View/UserFriends/admin_view.ctp:2
 msgid "User Friend"
-msgstr ""
+msgstr "Alianzas"
 
 #: View/UserFriends/admin_view.ctp:14
 msgid "Friend Id"
-msgstr ""
+msgstr "ID Alianza"
 
 #: View/UserFriends/admin_view.ctp:34
 msgid "Edit User Friend"
-msgstr ""
+msgstr "Editar Alianzas"
 
 #: View/UserFriends/admin_view.ctp:35
 msgid "Delete User Friend"
-msgstr ""
+msgstr "Eliminar Alianzas"
 
 #: View/UserIssues/add.ctp:4
 msgid "Add User Issue"
-msgstr ""
+msgstr "Agregar Tema"
 
 #: View/UserIssues/add.ctp:16
 #: View/UserIssues/admin_add.ctp:16
@@ -4187,47 +4191,47 @@ msgstr ""
 #: View/UserIssues/edit.ctp:18
 #: View/UserIssues/view.ctp:26
 msgid "List User Issues"
-msgstr ""
+msgstr "Listar Temas"
 
 #: View/UserIssues/admin_add.ctp:4
 msgid "Admin Add User Issue"
-msgstr ""
+msgstr "Admin Agregar Tema"
 
 #: View/UserIssues/admin_edit.ctp:4
 msgid "Admin Edit User Issue"
-msgstr ""
+msgstr "Admin Edistar Tema"
 
 #: View/UserIssues/admin_index.ctp:2
 #: View/UserIssues/index.ctp:2
 msgid "User Issues"
-msgstr ""
+msgstr "Temas Usuario"
 
 #: View/UserIssues/admin_index.ctp:44
 #: View/UserIssues/admin_view.ctp:27
 #: View/UserIssues/index.ctp:44
 #: View/UserIssues/view.ctp:27
 msgid "New User Issue"
-msgstr ""
+msgstr "Nuevo Tema"
 
 #: View/UserIssues/admin_view.ctp:2
 #: View/UserIssues/view.ctp:2
 msgid "User Issue"
-msgstr ""
+msgstr "Tema Usuario"
 
 #: View/UserIssues/admin_view.ctp:24
 #: View/UserIssues/edit.ctp:4
 #: View/UserIssues/view.ctp:24
 msgid "Edit User Issue"
-msgstr ""
+msgstr "Editar Tema"
 
 #: View/UserIssues/admin_view.ctp:25
 #: View/UserIssues/view.ctp:25
 msgid "Delete User Issue"
-msgstr ""
+msgstr "Eliminar Tema"
 
 #: View/UserMissions/add.ctp:4
 msgid "Add User Mission"
-msgstr ""
+msgstr "Agregar Misión"
 
 #: View/UserMissions/add.ctp:16
 #: View/UserMissions/admin_add.ctp:16
@@ -4236,51 +4240,51 @@ msgstr ""
 #: View/UserMissions/edit.ctp:18
 #: View/UserMissions/view.ctp:36
 msgid "List User Missions"
-msgstr ""
+msgstr "Listar Misiones "
 
 #: View/UserMissions/admin_add.ctp:4
 msgid "Admin Add User Mission"
-msgstr ""
+msgstr "Admin Agregar Misiones"
 
 #: View/UserMissions/admin_edit.ctp:4
 msgid "Admin Edit User Mission"
-msgstr ""
+msgstr "Admin Editar Misiones"
 
 #: View/UserMissions/admin_index.ctp:2
 #: View/UserMissions/index.ctp:2
 msgid "User Missions"
-msgstr ""
+msgstr "Misiones"
 
 #: View/UserMissions/admin_index.ctp:48
 #: View/UserMissions/admin_view.ctp:37
 #: View/UserMissions/index.ctp:48
 #: View/UserMissions/view.ctp:37
 msgid "New User Mission"
-msgstr ""
+msgstr "Nueva Misión "
 
 #: View/UserMissions/admin_view.ctp:2
 #: View/UserMissions/view.ctp:2
 msgid "User Mission"
-msgstr ""
+msgstr "Misión"
 
 #: View/UserMissions/admin_view.ctp:34
 #: View/UserMissions/edit.ctp:4
 #: View/UserMissions/view.ctp:34
 msgid "Edit User Mission"
-msgstr ""
+msgstr "Editar Misión"
 
 #: View/UserMissions/admin_view.ctp:35
 #: View/UserMissions/view.ctp:35
 msgid "Delete User Mission"
-msgstr ""
+msgstr "Eliminar Misión "
 
 #: View/Users/add.ctp:6
 msgid "Add User"
-msgstr ""
+msgstr "Agregar Usuario"
 
 #: View/Users/admin_add.ctp:4
 msgid "Admin Add User"
-msgstr ""
+msgstr "Admin Agregar Usuario"
 
 #: View/Users/admin_add.ctp:32
 #: View/Users/admin_edit.ctp:34
@@ -4288,7 +4292,7 @@ msgstr ""
 #: View/Users/admin_view.ctp:89
 #: View/Users/index.ctp:71
 msgid "List Points"
-msgstr ""
+msgstr "Listar Puntos"
 
 #: View/Users/admin_add.ctp:33
 #: View/Users/admin_edit.ctp:35
@@ -4296,7 +4300,7 @@ msgstr ""
 #: View/Users/admin_view.ctp:90;237
 #: View/Users/index.ctp:72
 msgid "New Point"
-msgstr ""
+msgstr "Nuevo Punto"
 
 #: View/Users/admin_add.ctp:34
 #: View/Users/admin_edit.ctp:36
@@ -4304,7 +4308,7 @@ msgstr ""
 #: View/Users/admin_view.ctp:91
 #: View/Users/index.ctp:73
 msgid "List User Badges"
-msgstr ""
+msgstr "Listar Medallas"
 
 #: View/Users/admin_add.ctp:35
 #: View/Users/admin_edit.ctp:37
@@ -4312,7 +4316,7 @@ msgstr ""
 #: View/Users/admin_view.ctp:92;272
 #: View/Users/index.ctp:74
 msgid "New User Badge"
-msgstr ""
+msgstr "Nueva Medalla"
 
 #: View/Users/admin_add.ctp:36
 #: View/Users/admin_edit.ctp:38
@@ -4320,7 +4324,7 @@ msgstr ""
 #: View/Users/admin_view.ctp:93
 #: View/Users/index.ctp:75
 msgid "List User Organizations"
-msgstr ""
+msgstr "Listar Organizaciones"
 
 #: View/Users/admin_add.ctp:37
 #: View/Users/admin_edit.ctp:39
@@ -4328,256 +4332,256 @@ msgstr ""
 #: View/Users/admin_view.ctp:94;303
 #: View/Users/index.ctp:76
 msgid "New User Organization"
-msgstr ""
+msgstr "Listar Nueva Organización"
 
 #: View/Users/admin_edit.ctp:4
 msgid "Admin Edit User"
-msgstr ""
+msgstr "Admin Editar Usuario"
 
 #: View/Users/admin_view.ctp:29
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
 #: View/Users/admin_view.ctp:79
 msgid "Edit User"
-msgstr ""
+msgstr "Editar Usuario"
 
 #: View/Users/admin_view.ctp:80
 msgid "Delete User"
-msgstr ""
+msgstr "Eliminar Usuario"
 
 #: View/Users/admin_view.ctp:211
 msgid "Related Points"
-msgstr ""
+msgstr "Puntos Relacionados"
 
 #: View/Users/admin_view.ctp:242
 msgid "Related User Badges"
-msgstr ""
+msgstr "Medallas Relacionadas"
 
 #: View/Users/admin_view.ctp:248
 msgid "Badge Id"
-msgstr ""
+msgstr "ID Medalla"
 
 #: View/Users/admin_view.ctp:277
 msgid "Related User Organizations"
-msgstr ""
+msgstr "Organizaciones Relacionadas"
 
 #: View/Users/admin_view.ctp:283
 msgid "Organization Id"
-msgstr ""
+msgstr "ID Organización"
 
 #: View/Users/dashboard.ctp:46
 #: View/Users/dashboard_by_issue.ctp:47
 msgid "Follow this agent"
-msgstr ""
+msgstr "Seguir este agente"
 
 #: View/Users/dashboard.ctp:48
 #: View/Users/dashboard_by_issue.ctp:49
 msgid "Unfollow this agent"
-msgstr ""
+msgstr "Dejar de seguir este agente"
 
 #: View/Users/dashboard.ctp:52
 msgid "CHOOSE A MISSION"
-msgstr ""
+msgstr "ELIGE TU MISION"
 
 #: View/Users/dashboard.ctp:104
 msgid "EVOKE PANEL"
-msgstr ""
+msgstr "PANEL EVOKE"
 
 #: View/Users/dashboard.ctp:105
 #: View/Users/dashboard_by_issue.ctp:53
 msgid "All Projects and Evidences"
-msgstr ""
+msgstr "Todos los Evokations y Evidencias"
 
 #: View/Users/dashboard.ctp:106
 #: View/Users/dashboard_by_issue.ctp:54
 msgid "Projects I Follow"
-msgstr ""
+msgstr "Evokations que Estoy Siguiendo"
 
 #: View/Users/dashboard.ctp:107
 #: View/Users/dashboard_by_issue.ctp:55
 msgid "My Projects"
-msgstr ""
+msgstr "Mis Evokations"
 
 #: View/Users/dashboard.ctp:153
 msgid "Follow"
-msgstr ""
+msgstr "Seguir"
 
 #: View/Users/dashboard.ctp:195
 msgid "LEADERCLOUD"
-msgstr ""
+msgstr "NUBE DE LIDERES"
 
 #: View/Users/dashboard.ctp:212;223
 msgid "ALLIES"
-msgstr ""
+msgstr "ALIANZAS"
 
 #: View/Users/dashboard.ctp:217;230;256
 msgid "FEED"
-msgstr ""
+msgstr "TRANSMISIONES"
 
 #: View/Users/dashboard.ctp:236;250;258
 msgid "BADGES"
-msgstr ""
+msgstr "MEDALLAS"
 
 #: View/Users/dashboard_by_issue.ctp:41
 msgid "Dashboard "
-msgstr ""
+msgstr "Dashboard"
 
 #: View/Users/dashboard_by_issue.ctp:43
 msgid "Issue: "
-msgstr ""
+msgstr "Tema:"
 
 #: View/Users/dashboard_by_issue.ctp:88
 msgid "All Missions"
-msgstr ""
+msgstr "Todas las Misiones"
 
 #: View/Users/dashboard_by_issue.ctp:94
 msgid "Missions under Issue: "
-msgstr ""
+msgstr "Misiones bajo Tema:"
 
 #: View/Users/dashboard_by_issue.ctp:94
 msgid "No missions under issue %s"
-msgstr ""
+msgstr "No hay misiones bajo tema %s"
 
 #: View/Users/dashboard_by_issue.ctp:102
 msgid "Go back to Issues"
-msgstr ""
+msgstr "Volver a Temas"
 
 #: View/Users/dashboard_by_issue.ctp:103;118
 msgid "See All Missions"
-msgstr ""
+msgstr "Ver Todas las Misiones"
 
 #: View/Users/edit.ctp:7
 msgid "Edit Profile"
-msgstr ""
+msgstr "Editar Perfil"
 
 #: View/Users/edit.ctp:14
 msgid "male"
-msgstr ""
+msgstr "Masculino"
 
 #: View/Users/edit.ctp:14
 msgid "female"
-msgstr ""
+msgstr "Feminino"
 
 #: View/Users/leaderboard.ctp:38
 msgid "Leadercloud"
-msgstr ""
+msgstr "Nube de Lideres"
 
 #: View/Users/leaderboard.ctp:40
 msgid "Weekly"
-msgstr ""
+msgstr "Semanal"
 
 #: View/Users/leaderboard.ctp:41
 msgid "Monthly"
-msgstr ""
+msgstr "Mensual"
 
 #: View/Users/leaderboard.ctp:42
 msgid "By Mission"
-msgstr ""
+msgstr "Por Misión"
 
 #: View/Users/leaderboard.ctp:43
 msgid "By Issue"
-msgstr ""
+msgstr "Por Tema"
 
 #: View/Users/leaderboard.ctp:44
 msgid "By Badges"
-msgstr ""
+msgstr "Por Medallas"
 
 #: View/Users/login.ctp:20
 msgid "Evoke Panel Login"
-msgstr ""
+msgstr "Login Panel Evoke"
 
 #: View/Users/login.ctp:23
 msgid "Sign up"
-msgstr ""
+msgstr "Inscribirse"
 
 #: View/Users/login.ctp:25
 msgid "Sign in with Facebook"
-msgstr ""
+msgstr "Inciar Sesión con Facebook"
 
 #: View/Users/login.ctp:26
 msgid "Sign in with Google"
-msgstr ""
+msgstr "Iniciar Sesión con Google"
 
 #: View/Users/login.ctp:27
 msgid "Create EVOKE account"
-msgstr ""
+msgstr "Crear cuenta EVOKE"
 
 #: View/Users/login.ctp:33
 msgid "Please enter your username and password"
-msgstr ""
+msgstr "Usario y contrasena"
 
 #: View/Users/login.ctp:34;40
 msgid "Sign in"
-msgstr ""
+msgstr "Iniciar Sesión"
 
 #: View/Users/login.ctp:42
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Olvidaste tu contrasena?"
 
 #: View/Users/register.ctp:15
 msgid "Evoke Registration"
-msgstr ""
+msgstr "Inscripción Evoke"
 
 #: View/Users/register.ctp:23
 msgid "Register"
-msgstr ""
+msgstr "Inscríbate"
 
 #: View/Users/view.ctp:48
 msgid "Edit profile"
-msgstr ""
+msgstr "Editar Perfil"
 
 #: View/Users/view.ctp:50
 msgid "Forget Ally"
-msgstr ""
+msgstr "Terminar Alianza"
 
 #: View/Users/view.ctp:52
 msgid "Add Ally"
-msgstr ""
+msgstr "Formar Alianza"
 
 #: View/Votes/add.ctp:4
 msgid "Add Vote"
-msgstr ""
+msgstr "Votar"
 
 #: View/Votes/admin_add.ctp:4
 msgid "Admin Add Vote"
-msgstr ""
+msgstr "Admin Agregar Voto"
 
 #: View/Votes/admin_edit.ctp:4
 msgid "Admin Edit Vote"
-msgstr ""
+msgstr "Admin Editar Voto"
 
 #: View/Votes/admin_index.ctp:2
 #: View/Votes/index.ctp:2
 msgid "Votes"
-msgstr ""
+msgstr "Votos"
 
 #: View/Votes/admin_view.ctp:39
 #: View/Votes/edit.ctp:4
 #: View/Votes/view.ctp:39
 msgid "Edit Vote"
-msgstr ""
+msgstr "Editar Voto"
 
 #: View/Votes/admin_view.ctp:40
 #: View/Votes/view.ctp:40
 msgid "Delete Vote"
-msgstr ""
+msgstr "Eliminar Voto"
 
 #: Model/User.php:validation for field username
 msgid "A username is required"
-msgstr ""
+msgstr "Se require un usuario"
 
 #: Model/User.php:validation for field password
 msgid "A password is required"
-msgstr ""
+msgstr "se require una contrasena"
 
 #: Model/UserIssue.php:validation for field Issue
 msgid "Please select at least 1 feature"
-msgstr ""
+msgstr "Por favor, selecione por lo menos una característica"
 
 #: Plugin/DebugKit/Console/Command/BenchmarkShell.php:41
 msgid "-> Testing :url"
-msgstr ""
+msgstr "-> Comprobando:url "
 
 #: Plugin/DebugKit/Console/Command/BenchmarkShell.php:67
 msgid "Total Requests made: :requests"

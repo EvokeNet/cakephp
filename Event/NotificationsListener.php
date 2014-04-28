@@ -16,6 +16,8 @@ class NotificationsListener implements CakeEventListener {
 
             'Controller.BasicTraining.completed' => 'notifyCompletedBasicTraining',
 
+            'Controller.User.update' => 'notifyUserUpdate',
+
             'Model.Like.notify' => 'notifyLike',
 
             'Model.Comment.notifyEvidence' => 'notifyCommentedEvidence',
@@ -26,6 +28,20 @@ class NotificationsListener implements CakeEventListener {
         );
     }
 
+    public function notifyUserUpdate($event){
+        $note = ClassRegistry::init('Notifications');
+
+        $note->create();
+
+        $insertData = array(
+            'user_id' => $event->data['user_id'], 
+            'origin_id' => $event->data['origin_id'], 
+            'origin' => $event->data['origin'], 
+        );
+
+        $note->saveAll($insertData);
+    }
+    
     public function notifyEvidenceCreated($event){
 
         $note = ClassRegistry::init('Notifications');

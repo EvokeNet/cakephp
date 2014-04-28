@@ -16,8 +16,14 @@
 		</div>
 	
 	<div class="small-7 medium-7 large-7 columns">
-		<h1><?= $e['Group']['title']?></h1>
-		<h5><?= $e['Group']['description']?></h5>
+
+		<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['Group']['id']));?>">
+		
+			<h1><?= $e['Group']['title']?></h1>
+			<h5><?= $e['Group']['description']?></h5>
+
+		</a>
+
 	</div>
 
 	<div class="small-3 medium-3 large-3 columns">

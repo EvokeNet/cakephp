@@ -104,7 +104,7 @@
 				));
 			 ?>
 
-			<div id="evokation_div" class="project page" data-placeholder=""></div>
+			<div id="evokation_div" data-placeholder=""></div>
 
 		</div>
 		<div class="small-2 medium-2 large-2 columns">

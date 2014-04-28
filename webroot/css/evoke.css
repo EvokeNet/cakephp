@@ -117,7 +117,7 @@ button, div, p, span, a,
 .evoke .login-bg-topbar h6{
 	text-align: center;
 	font-family: 'AlegreyaRegular';
-	font-size: 1.85em;
+	font-size: 1.5em;
 	margin-bottom: 30px;
 	color: #848485;
 }
@@ -1025,6 +1025,7 @@ button, div, p, span, a,
 
 .evoke.comment-box-delete{
 	float: right;
+	color:#252525;
 }
 
 .evoke.comment-box-delete a{

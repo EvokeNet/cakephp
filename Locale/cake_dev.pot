@@ -1,0 +1,1279 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2014-04-28 11:47-0300\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Cache/Cache.php:173
+msgid "Cache engine %s is not available."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Cache/Cache.php:177
+msgid "Cache engines must use %s as a base class."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Cache/Cache.php:181
+msgid "Cache engine %s is not properly configured."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Cache/Cache.php:318
+msgid "%s cache was unable to write '%s' to %s cache"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Cache/Cache.php:542
+msgid "Invalid cache group %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Cache/Engine/FileEngine.php:312
+msgid "Files cannot be atomically decremented."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Cache/Engine/FileEngine.php:324
+msgid "Files cannot be atomically incremented."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Cache/Engine/FileEngine.php:361
+msgid "Could not apply permission mask \"%s\" on cache file \"%s\""
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Cache/Engine/FileEngine.php:384
+msgid "%s is not writable"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Cache/Engine/MemcacheEngine.php:165;182
+msgid "Method %s not implemented for compressed cache in %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Configure/IniReader.php:100
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Configure/PhpReader.php:62
+msgid "Cannot load configuration files with ../ in them."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Configure/IniReader.php:105
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Configure/PhpReader.php:67
+msgid "Could not load configuration file: %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Configure/PhpReader.php:72
+msgid "No variable %s found in %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:174
+msgid "Please install PHPUnit framework <info>(http://www.phpunit.de)</info>"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:370
+msgid "Test case %s cannot be run via this shell"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:383;400
+msgid "Test case %s not found"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/PluginTask.php:180
+msgid "%s modified"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:322
+msgid "Invalid object type."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:341
+msgid "Invalid type name"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Layouts/default.ctp:10
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Layouts/error.ctp:10
+#: View/Layouts/error.ctp:10
+msgid "CakePHP: the rapid development php framework"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:16
+#: View/Pages/home.ctp:16
+msgid "Release Notes for CakePHP %s."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:18
+#: View/Pages/home.ctp:18
+msgid "Read the changelog"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:29
+#: View/Pages/home.ctp:29
+msgid "URL rewriting is not properly configured on your server."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:40
+#: View/Pages/home.ctp:40
+msgid "Your version of PHP is 5.2.8 or higher."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:44
+#: View/Pages/home.ctp:44
+msgid "Your version of PHP is too low. You need PHP 5.2.8 or higher to use CakePHP."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:53
+#: View/Pages/home.ctp:53
+msgid "Your tmp directory is writable."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:57
+#: View/Pages/home.ctp:57
+msgid "Your tmp directory is NOT writable."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:67
+#: View/Pages/home.ctp:67
+msgid "The %s is being used for core caching. To change the config edit %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:71
+#: View/Pages/home.ctp:71
+msgid "Your cache is NOT working. Please check the settings in %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:81
+#: View/Pages/home.ctp:81
+msgid "Your database configuration file is present."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:86
+#: View/Pages/home.ctp:86
+msgid "Your database configuration file is NOT present."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:88
+#: View/Pages/home.ctp:88
+msgid "Rename %s to %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:113
+#: View/Pages/home.ctp:113
+msgid "CakePHP is able to connect to the database."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:117
+#: View/Pages/home.ctp:117
+msgid "CakePHP is NOT able to connect to the database."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:129
+#: View/Pages/home.ctp:129
+msgid "PCRE has not been compiled with Unicode support."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:131
+#: View/Pages/home.ctp:131
+msgid "Recompile PCRE with Unicode support by adding <code>--enable-unicode-properties</code> when configuring"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:140
+#: View/Pages/home.ctp:140
+msgid "DebugKit plugin is present"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:144
+#: View/Pages/home.ctp:144
+msgid "DebugKit is not installed. It will help you inspect and debug different aspects of your application."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:146
+#: View/Pages/home.ctp:146
+msgid "You can install it from %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:152
+#: View/Pages/home.ctp:152
+msgid "Editing this Page"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:155
+#: View/Pages/home.ctp:155
+msgid "To change the content of this page, edit: %s.<br />\nTo change its layout, edit: %s.<br />\nYou can also add some CSS styles for your pages at: %s."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:162
+#: View/Pages/home.ctp:162
+msgid "Getting Started"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:166
+#: View/Pages/home.ctp:166
+msgid "New"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:166
+#: View/Pages/home.ctp:166
+msgid "CakePHP 2.0 Docs"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:175
+#: View/Pages/home.ctp:175
+msgid "The 15 min Blog Tutorial"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:182
+#: View/Pages/home.ctp:182
+msgid "Official Plugins"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:187
+#: View/Pages/home.ctp:187
+msgid "provides a debugging toolbar and enhanced debugging tools for CakePHP applications."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:191
+#: View/Pages/home.ctp:191
+msgid "contains various localized validation classes and translations for specific countries"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:196
+#: View/Pages/home.ctp:196
+msgid "More about CakePHP"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:198
+#: View/Pages/home.ctp:198
+msgid "CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:201
+#: View/Pages/home.ctp:201
+msgid "Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:206
+#: View/Pages/home.ctp:206
+msgid "The Rapid Development Framework"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:207
+#: View/Pages/home.ctp:207
+msgid "CakePHP Documentation"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:208
+#: View/Pages/home.ctp:208
+msgid "Your Rapid Development Cookbook"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:209
+#: View/Pages/home.ctp:209
+msgid "CakePHP API"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:210
+#: View/Pages/home.ctp:210
+msgid "Quick API Reference"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:211
+#: View/Pages/home.ctp:211
+msgid "The Bakery"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:212
+#: View/Pages/home.ctp:212
+msgid "Everything CakePHP"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:213
+#: View/Pages/home.ctp:213
+msgid "CakePHP Plugins"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:214
+#: View/Pages/home.ctp:214
+msgid "A comprehensive list of all CakePHP plugins created by the community"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:215
+#: View/Pages/home.ctp:215
+msgid "CakePHP Community Center"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:216
+#: View/Pages/home.ctp:216
+msgid "Everything related to the CakePHP community in one place"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:217
+#: View/Pages/home.ctp:217
+msgid "CakePHP Google Group"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:218
+#: View/Pages/home.ctp:218
+msgid "Community mailing list"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:220
+#: View/Pages/home.ctp:220
+msgid "Live chat about CakePHP"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:221
+#: View/Pages/home.ctp:221
+msgid "CakePHP Code"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:222
+#: View/Pages/home.ctp:222
+msgid "Find the CakePHP code on GitHub and contribute to the framework"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:223;224
+#: View/Pages/home.ctp:223;224
+msgid "CakePHP Issues"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:225;226
+#: View/Pages/home.ctp:225;226
+msgid "CakePHP Roadmaps"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:227
+#: View/Pages/home.ctp:227
+msgid "Training"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:228
+#: View/Pages/home.ctp:228
+msgid "Join a live session and get skilled with the framework"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:229
+#: View/Pages/home.ctp:229
+msgid "CakeFest"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:230
+#: View/Pages/home.ctp:230
+msgid "Don't miss our annual CakePHP conference"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:231
+#: View/Pages/home.ctp:231
+msgid "Cake Software Foundation"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/View/Pages/home.ctp:232
+#: View/Pages/home.ctp:232
+msgid "Promoting development related to CakePHP"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Templates/skel/webroot/test.php:84
+#: webroot/test.php:84
+msgid "Debug setting does not allow access to this URL."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/AclComponent.php:67
+msgid "Could not find %s."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/AclComponent.php:91
+msgid "AclComponent adapters must implement AclInterface"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/AclComponent.php:162;176
+msgid "%s is deprecated, use %s instead"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/AuthComponent.php:493
+msgid "Authorization adapter \"%s\" was not found."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/AuthComponent.php:496
+msgid "Authorization objects must implement an %s method."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/AuthComponent.php:782
+msgid "Authentication adapter \"%s\" was not found."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/AuthComponent.php:785
+msgid "Authentication objects must implement an %s method."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/CookieComponent.php:384
+msgid "You must use cipher or rijndael for cookie encryption type"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/RequestHandlerComponent.php:757
+msgid "You must give a handler callback."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/SecurityComponent.php:335;613
+msgid "The request has been black-holed"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/Acl/PhpAcl.php:104
+msgid "\"roles\" section not found in configuration."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/Acl/PhpAcl.php:108
+msgid "Neither \"allow\" nor \"deny\" rules were provided in configuration."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/Acl/PhpAcl.php:528
+msgid "cycle detected when inheriting %s from %s. Path: %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/Auth/BaseAuthenticate.php:154
+msgid "Password hasher class \"%s\" was not found."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/Auth/BaseAuthenticate.php:157
+msgid "Password hasher must extend AbstractPasswordHasher class."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/Auth/BaseAuthorize.php:97
+msgid "$controller needs to be an instance of Controller"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/Auth/ControllerAuthorize.php:51
+msgid "$controller does not implement an %s method."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Controller/Component/Auth/CrudAuthorize.php:85
+msgid "CrudAuthorize::authorize() - Attempted access of un-mapped action \"%1$s\" in controller \"%2$s\""
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/Configure.php:73
+msgid "Can't find application core file. Please create %s, and make sure it is readable by PHP."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/Configure.php:93
+msgid "Can't find application bootstrap file. Please create %s, and make sure it is readable by PHP."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/Configure.php:340
+msgid "There is no \"%s\" adapter."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Core/Configure.php:343
+msgid "The \"%s\" adapter, does not have a %s method."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Event/CakeEventManager.php:104
+msgid "The eventKey variable is required"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/I18n/I18n.php:164
+msgid "You cannot use \"\" as a domain."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/I18n/I18n.php:202
+msgid "Missing plural form translation for \"%s\" in \"%s\" domain, \"%s\" locale.  Check your po file for correct plurals and valid Plural-Forms header."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Log/CakeLog.php:190
+msgid "Invalid key name"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Log/CakeLog.php:193
+msgid "Missing logger class name"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Log/CakeLog.php:314;332;351
+msgid "Stream %s not found"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Log/LogEngineCollection.php:44
+msgid "logger class %s does not implement a %s method."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Log/LogEngineCollection.php:69
+msgid "Could not load class %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Log/Engine/FileLog.php:150
+msgid "Could not apply permission mask \"%s\" on log file \"%s\""
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/AclNode.php:176
+msgid "AclNode::node() - Couldn't find %s node identified by \"%s\""
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/BehaviorCollection.php:226
+msgid "%s - Method %s not found in any attached behavior"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/CakeSchema.php:615
+msgid "Schema generation error: invalid column type %s for %s.%s does not exist in DBO"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php:1381
+msgid "(Model::getColumnTypes) Unable to build model field data. If you are using a model without a database table, try implementing schema()"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Model.php:3583
+msgid "Invalid join model settings in %s. The association parameter has the wrong type, expecting a string or array, but was passed type: %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Permission.php:86
+msgid "%s - Failed ARO node lookup in permissions check. Node references:\nAro: %s\nAco: %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Permission.php:97
+msgid "%s - Failed ACO node lookup in permissions check. Node references:\nAro: %s\nAco: %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Permission.php:108
+msgid "ACO permissions key %s does not exist in %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Permission.php:179
+msgid "%s - Invalid node"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Permission.php:197
+msgid "Invalid permission key \"%s\""
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Behavior/AclBehavior.php:66
+msgid "Callback %s not defined in %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Behavior/AclBehavior.php:83
+msgid "AclBehavior is setup with more then one type, please specify type parameter for node()"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Behavior/ContainableBehavior.php:342
+msgid "Model \"%s\" is not associated with model \"%s\""
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Behavior/TranslateBehavior.php:71
+msgid "Datasource %s for TranslateBehavior of model %s is not connected"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Behavior/TranslateBehavior.php:601
+msgid "You cannot bind a translation named \"name\"."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Behavior/TranslateBehavior.php:623
+msgid "Association %s is already bound to model %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/CakeSession.php:501
+msgid "Unable to configure the session, setting %s failed."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/CakeSession.php:535
+msgid "Could not load %s to handle the session."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/CakeSession.php:541
+msgid "Chosen SessionHandler does not implement CakeSessionHandlerInterface it cannot be used with an engine key."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php:255
+msgid "Selected driver is not enabled"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php:1189
+msgid "Error in Model %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php:2966
+msgid "Invalid schema object"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php:3076
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Sqlite.php:400
+msgid "Column name or type not defined in schema"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/DboSource.php:3081
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Sqlite.php:405
+msgid "Column type %s does not exist"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Mysql.php:333
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Datasource/Database/Sqlserver.php:218
+msgid "Could not describe table for %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Model/Validator/CakeValidationRule.php:281
+msgid "Could not find validation handler %s for %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/CakeRequest.php:451
+msgid "Method %s does not exist"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/CakeResponse.php:624
+msgid "Unknown status code"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/CakeResponse.php:668
+msgid "Invalid status code"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/CakeResponse.php:1268
+msgid "The requested file %s was not found or not readable"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/CakeSocket.php:304
+msgid "Connection timed out"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/CakeSocket.php:371
+msgid "Invalid encryption scheme chosen"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/CakeSocket.php:384
+msgid "Unable to perform enableCrypto operation on CakeSocket"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:368
+msgid "From requires only 1 email address."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:383
+msgid "Sender requires only 1 email address."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:398
+msgid "Reply-To requires only 1 email address."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:413
+msgid "Disposition-Notification-To requires only 1 email address."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:428
+msgid "Return-Path requires only 1 email address."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:562;576;616;630
+msgid "Invalid email: \"%s\""
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:661;676
+msgid "$headers should be an array."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:881
+msgid "Format not available."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:916
+msgid "Class \"%s\" not found."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:918
+msgid "The \"%s\" does not have a %s method."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:939
+msgid "Invalid format for Message-ID. The text should be something like \"<uuid@server.com>\""
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:1018
+msgid "No file or data specified."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:1021
+msgid "No filename specified."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:1027
+msgid "File not found: \"%s\""
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:1110
+msgid "From is not specified."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:1113
+msgid "You need to specify at least one destination for to, cc or bcc."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:1188
+msgid "%s not found."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/CakeEmail.php:1192
+msgid "Unknown email configuration \"%s\"."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/MailTransport.php:70;74
+msgid "Could not send email."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/SmtpTransport.php:100
+msgid "Unable to connect to SMTP server."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/SmtpTransport.php:121
+msgid "SMTP server did not accept the connection or trying to connect to non TLS SMTP server using TLS."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/SmtpTransport.php:126
+msgid "SMTP server did not accept the connection."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/SmtpTransport.php:142
+msgid "SMTP server did not accept the username."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/SmtpTransport.php:145
+msgid "SMTP server did not accept the password."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/SmtpTransport.php:148
+msgid "SMTP authentication method not allowed, check if SMTP server requires TLS"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/SmtpTransport.php:150
+msgid "SMTP does not require authentication."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/SmtpTransport.php:242
+msgid "SMTP timeout."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Email/SmtpTransport.php:253
+msgid "SMTP Error: %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpResponse.php:21
+msgid "HttpResponse is deprecated due to naming conflicts. Use HttpSocketResponse instead."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpSocket.php:244
+msgid "Invalid resource."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpSocket.php:404
+msgid "Class %s not found."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpSocket.php:602
+msgid "Unknown authentication method."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpSocket.php:605
+msgid "The %s does not support authentication."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpSocket.php:631
+msgid "Unknown authentication method for proxy."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpSocket.php:634
+msgid "The %s does not support proxy authentication."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpSocket.php:886
+msgid "HttpSocket::_buildRequestLine - Passed an invalid request line string. Activate quirks mode to do this."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpSocket.php:904
+msgid "HttpSocket::_buildRequestLine - The \"*\" asterisk character is only allowed for the following methods: %s. Activate quirks mode to work outside of HTTP/1.1 specs."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpSocketResponse.php:151
+msgid "Invalid response."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpSocketResponse.php:155
+msgid "Invalid HTTP response."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Network/Http/HttpSocketResponse.php:223
+msgid "HttpSocket::_decodeChunkedBody - Could not parse malformed chunk."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Routing/Router.php:234
+msgid "Route class not found, or route class is not a subclass of CakeRoute"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/TestSuite/CakeTestCase.php:207
+msgid "No fixture manager to load the test fixture"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/TestSuite/CakeTestRunner.php:98
+msgid "Could not find fixture manager %s."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/TestSuite/Fixture/CakeFixtureManager.php:152
+msgid "Referenced fixture class %s (%s) not found"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/TestSuite/Fixture/CakeFixtureManager.php:259
+msgid "Referenced fixture class %s not found"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/TestSuite/Fixture/CakeTestFixture.php:101
+msgid "Invalid datasource name \"%s\" for \"%s\" fixture. Fixture datasource names must begin with \"test\"."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/TestSuite/Fixture/CakeTestFixture.php:228
+msgid "Fixture creation for \"%s\" failed \"%s\""
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/TestSuite/Reporter/CakeBaseReporter.php:192
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/TestSuite/Reporter/CakeHtmlReporter.php:380
+msgid "Running  %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/TestSuite/Reporter/CakeHtmlReporter.php:271;310
+msgid "Test case: %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/TestSuite/Reporter/CakeHtmlReporter.php:272;311
+msgid "Stack trace:"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/CakeNumber.php:163
+msgid "No unit type."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/ClassRegistry.php:116
+msgid "(ClassRegistry::init() Attempted to create instance of a class with a numeric name"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/ClassRegistry.php:148
+msgid "Cannot create instance of %s, as it is abstract or is an interface"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/ClassRegistry.php:189
+msgid "(ClassRegistry::init() could not create instance of %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Debugger.php:629
+msgid "Invalid Debugger output format."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Debugger.php:845
+msgid "Please change the value of %s in %s to a salt value specific to your application."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Debugger.php:849
+msgid "Please change the value of %s in %s to a numeric (digits only) seed value specific to your application."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:385;408
+msgid "%s changed to %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:389;410
+msgid "%s NOT changed to %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:506
+msgid "%s is a file"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:517;695
+msgid "%s created"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:521
+msgid "%s NOT created"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:593;601;613
+msgid "%s removed"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:595;603;615
+msgid "%s NOT removed"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:653
+msgid "%s not found"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:662
+msgid "%s not writable"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:678
+msgid "%s copied to %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:680
+msgid "%s NOT copied to %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Folder.php:699
+msgid "%s not created"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Hash.php:355
+msgid "Hash::combine() needs an equal number of keys + values."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/ObjectCollection.php:128
+msgid "Cannot use modParams with indexes that do not exist."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Security.php:159
+msgid "Invalid value, cost must be between %s and %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Security.php:186;219
+msgid "You cannot use an empty key for %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Security.php:223
+msgid "You must specify the operation for Security::rijndael(), either encrypt or decrypt"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Security.php:227
+msgid "You must use a key larger than 32 bytes for Security::rijndael()"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Security.php:281
+msgid "Invalid salt: %s for %s Please visit http://www.php.net/crypt and read the appropriate section for building %s salts."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Validation.php:257
+msgid "You must define the $operator parameter for %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Validation.php:275
+msgid "You must define a regular expression for %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Validation.php:837
+msgid "Could not find %s class, unable to complete validation."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Validation.php:841
+msgid "Method %s does not exist on %s unable to complete validation."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Validation.php:935
+msgid "Can not determine the mimetype."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Xml.php:108;112;117
+msgid "XML cannot be read."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Xml.php:115;194
+msgid "Invalid input."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Xml.php:149
+msgid "Xml cannot be read."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Xml.php:198
+msgid "The key of input must be alphanumeric"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Xml.php:275;288
+msgid "Invalid array"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Utility/Xml.php:339
+msgid "The input is not instance of SimpleXMLElement, DOMDocument or DOMNode."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper.php:192
+msgid "Method %1$s::%2$s does not exist"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php:419
+msgid "Element Not Found: %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php:714
+msgid "You cannot extend an element which does not exist (%s)."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php:730
+msgid "You cannot have views extend themselves."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php:733
+msgid "You cannot have views extend in a loop."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/View.php:916
+msgid "The \"%s\" block was left open. Blocks are not allowed to cross files."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Elements/sql_dump.ctp:81
+msgid "Encountered unexpected %s. Cannot generate SQL log."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/fatal_error.ctp:20
+msgid "Fatal Error"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/fatal_error.ctp:22
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_action.ctp:21;25
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_behavior.ctp:23;27
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_component.ctp:23;27
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_connection.ctp:21;32
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_controller.ctp:23;27
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_database.ctp:21;25
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_datasource.ctp:23
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_datasource_config.ctp:21
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_helper.ctp:23;27
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_layout.ctp:21;25
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_plugin.ctp:21;25
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_table.ctp:21
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_view.ctp:21;25
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/pdo_error.ctp:21
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/private_action.ctp:21
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/scaffold_error.ctp:21
+msgid "Error"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/fatal_error.ctp:26
+msgid "File"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/fatal_error.ctp:30
+msgid "Line"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/fatal_error.ctp:34
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_action.ctp:40
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_behavior.ctp:37
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_component.ctp:37
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_connection.ctp:37
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_controller.ctp:37
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_database.ctp:29
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_datasource.ctp:30
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_datasource_config.ctp:25
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_helper.ctp:37
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_layout.ctp:29
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_plugin.ctp:41
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_table.ctp:25
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_view.ctp:29
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/pdo_error.ctp:35
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/private_action.ctp:25
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/scaffold_error.ctp:25
+msgid "Notice"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/fatal_error.ctp:35
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_action.ctp:41
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_behavior.ctp:38
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_component.ctp:38
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_connection.ctp:38
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_controller.ctp:38
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_database.ctp:30
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_datasource.ctp:31
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_datasource_config.ctp:26
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_helper.ctp:38
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_layout.ctp:30
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_plugin.ctp:42
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_table.ctp:26
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_view.ctp:30
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/pdo_error.ctp:36
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/private_action.ctp:26
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/scaffold_error.ctp:26
+msgid "If you want to customize this error message, create %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_action.ctp:20
+msgid "Missing Method in %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_action.ctp:22
+msgid "The action %1$s is not defined in controller %2$s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_action.ctp:26
+msgid "Create %1$s%2$s in file: %3$s."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_behavior.ctp:21
+msgid "Missing Behavior"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_behavior.ctp:24
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_component.ctp:24
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_controller.ctp:24
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_helper.ctp:24
+msgid "%s could not be found."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_behavior.ctp:28
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_component.ctp:28
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_controller.ctp:28
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_helper.ctp:28
+msgid "Create the class %s below in file: %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_component.ctp:21
+msgid "Missing Component"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_connection.ctp:19
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_database.ctp:19
+msgid "Missing Database Connection"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_connection.ctp:22
+msgid "A Database connection using \"%s\" was missing or unable to connect."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_connection.ctp:26
+msgid "The database server returned this error: %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_connection.ctp:33
+msgid "%s driver is NOT enabled"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_controller.ctp:21
+msgid "Missing Controller"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_database.ctp:22
+msgid "Scaffold requires a database connection"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_database.ctp:26
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_layout.ctp:26
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_view.ctp:26
+msgid "Confirm you have created the file: %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_datasource.ctp:21
+msgid "Missing Datasource"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_datasource.ctp:24
+msgid "Datasource class %s could not be found."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_datasource_config.ctp:19
+msgid "Missing Datasource Configuration"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_datasource_config.ctp:22
+msgid "The datasource configuration %1$s was not found in database.php."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_helper.ctp:21
+msgid "Missing Helper"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_layout.ctp:19
+msgid "Missing Layout"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_layout.ctp:22
+msgid "The layout file %s can not be found or does not exist."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_plugin.ctp:19
+msgid "Missing Plugin"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_plugin.ctp:22
+msgid "The application is trying to load a file from the %s plugin"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_plugin.ctp:26
+msgid "Make sure your plugin %s is in the %s directory and was loaded"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_plugin.ctp:34
+msgid "Loading all plugins"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_plugin.ctp:35
+msgid "If you wish to load all plugins at once, use the following line in your %s file"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_table.ctp:19
+msgid "Missing Database Table"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_table.ctp:22
+msgid "Table %1$s for model %2$s was not found in datasource %3$s."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_view.ctp:19
+msgid "Missing View"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/missing_view.ctp:22
+msgid "The view for %1$s%2$s was not found."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/pdo_error.ctp:19
+msgid "Database Error"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/pdo_error.ctp:26
+msgid "SQL Query"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/pdo_error.ctp:31
+msgid "SQL Query Params"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/private_action.ctp:19
+msgid "Private Method in %s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/private_action.ctp:22
+msgid "%s%s cannot be accessed directly."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/scaffold_error.ctp:19
+msgid "Scaffold Error"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Errors/scaffold_error.ctp:22
+msgid "Method _scaffoldError in was not found in the controller"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper/CacheHelper.php:156
+msgid "Unable to write view cache file: \"%s\" for \"%s\""
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper/FormHelper.php:1586
+msgid "Missing field name for FormHelper::%s"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper/HtmlHelper.php:1219
+msgid "Cannot load the configuration file. Wrong \"configFile\" configuration."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper/HtmlHelper.php:1225
+msgid "Cannot load the configuration file. Unknown reader."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper/JsHelper.php:152
+msgid "JsHelper:: Missing Method %s is undefined"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper/MootoolsEngineHelper.php:311
+msgid "%s requires a \"drag\" option to properly function"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper/NumberHelper.php:63
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper/TextHelper.php:78
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper/TimeHelper.php:61
+msgid "%s could not be found"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/View/Helper/PaginatorHelper.php:99
+msgid "%s does not implement a %s method, it is incompatible with %s"
+msgstr ""
+

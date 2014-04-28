@@ -188,6 +188,14 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
+		
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
@@ -332,8 +340,12 @@ class UsersController extends AppController {
 		));
 
 		$mission_ids = array();
-		foreach ($missions as $mission) {
+		foreach ($missions as $m => $mission) {
 			// $mission_ids[] = array('Attachment.foreign_key' => $mission['Mission']['id'], 'Attachment.model' => 'Mission');
+			if($flags['_es']) {
+				$missions[$m]['Mission']['title'] = $mission['Mission']['title_es'];
+				// $missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
+			}
 
 			if($mission['Mission']['basic_training'] == 1)
 				$basic_training = $mission;
@@ -391,7 +403,11 @@ class UsersController extends AppController {
 					}
 				}
 				
-				foreach ($power_points as $pp) {
+				foreach ($power_points as $p_index => $pp) {
+					if($flags['_es']) {
+						$power_points[$p_index]['PowerPoint']['name'] = $pp['PowerPoint']['name_es'];
+						// $missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
+					}
 					$qtdUser = 0;
 					if(isset($tmp[$pp['PowerPoint']['id']]))
 						$qtdUser = $tmp[$pp['PowerPoint']['id']];
@@ -553,6 +569,14 @@ class UsersController extends AppController {
 
 		$username = explode(' ', $this->getUserName());
 
+
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
 		//getting leaderboard data:
 			//getting user power points
 			$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
@@ -600,7 +624,11 @@ class UsersController extends AppController {
 					}
 				}
 				
-				foreach ($power_points as $pp) {
+				foreach ($power_points as $p_index => $pp) {
+					if($flags['_es']) {
+						$power_points[$p_index]['PowerPoint']['name'] = $pp['PowerPoint']['name_es'];
+						// $missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
+					}
 					$qtdUser = 0;
 					if(isset($tmp[$pp['PowerPoint']['id']]))
 						$qtdUser = $tmp[$pp['PowerPoint']['id']];
