@@ -181,7 +181,6 @@ class UsersController extends AppController {
  */
 	public function dashboard($id = null) {
 		$me = $this->getUserId();
-		//$this->changeLang('pt');
 		if(is_null($id)){
 			//send him to his on dashboard
 			$id = $me;
@@ -190,24 +189,14 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 
-		if($id != $me) {
-			//$this->Session->setFlash(__('Viewing dashboard of another agent. Needs changes in informations to be displayed.'));
-		}
-
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
-		$user_data = $this->Auth->user();
-		//debug($user_data);
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
 
 		$sumMyPoints = $this->getPoints($this->getUserId());
 		
-		// foreach($myPoints as $point){
-		// 	$sumMyPoints += $point['Point']['value'];
-		// }
-
 		$myLevel = $this->getLevel($sumMyPoints);
 
 		$this->loadModel('Level');
@@ -222,10 +211,6 @@ class UsersController extends AppController {
 		$points = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $id)));
 
 		$sumPoints = $this->getPoints($id);
-		
-		// foreach($points as $point){
-		// 	$sumPoints += $point['Point']['value'];
-		// }
 
 		$level = $this->getLevel($sumPoints);
 
@@ -243,20 +228,11 @@ class UsersController extends AppController {
 		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
 		$are_friends = array();
-
-		$are_friends2 = array();
-
-		$are_friends3 = array();
 		//$allies = array();
 
 		foreach($friends as $friend){
 			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
-			array_push($are_friends2, array('Notification.user_id' => $friend['UserFriend']['friend_id']));
-			array_push($are_friends3, array('Notification.action_user_id' => $friend['UserFriend']['friend_id']));
 		}
-
-		$notifies = array();
-		$notifies2 = array();
 
 		$this->loadModel('Notification');
 
@@ -268,15 +244,13 @@ class UsersController extends AppController {
 
 			$notifies = $this->Notification->find('all', array(
 				'conditions' => array(
-					'OR' => $are_friends2
-				)));
-
-			$notifies2 = $this->Notification->find('all', array(
-				'conditions' => array(
-					'OR' => $are_friends2
+					'OR' => $are_friends
+				), 'order' => array(
+					'Notification.created DESC'
 				)));
 		} else{
 			$allies = array();
+			$notifies = array();
 		}
 
 		$evidence = $this->User->Evidence->find('all', array(
@@ -285,14 +259,14 @@ class UsersController extends AppController {
 			)
 		));
 
-		// $myevidences = $this->User->Evidence->find('all', array(
-		// 	'order' => array(
-		// 		'Evidence.created DESC'
-		// 	),
-		// 	'conditions' => array(
-		// 		'Evidence.user_id' => $id
-		// 	)
-		// ));
+		$myevidences = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			),
+			'conditions' => array(
+				'Evidence.user_id' => $id
+			)
+		));
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array(
@@ -332,7 +306,7 @@ class UsersController extends AppController {
 			}	
 		}
 
-		$this->loadModel('Group');
+		//$this->loadModel('Group');
 		// $groups = $this->Group->find('all', array('joins' => array(
 	 //        array(
 	 //            'table' => 'groups_users',
@@ -396,7 +370,7 @@ class UsersController extends AppController {
 				}
 
 				$usr['User']['level'] = $this->getLevel($usrpoints);
-				$points_users[$usrpoints][] = $usr;
+				$points_users[$usrpoints][] = $usr['User'];
 
 
 
@@ -427,53 +401,103 @@ class UsersController extends AppController {
 			}
 
 			foreach ($power_points as $pp) {
-				asort($powerpoints_users[$pp['PowerPoint']['id']]);
+				
+				krsort($powerpoints_users[$pp['PowerPoint']['id']]);
+				
 			}
-			asort($points_users);
-			
+			krsort($points_users);
+
+
 		//ended leader board data
 
 		//admin notifications check:
-		$this->loadModel('AdminNotification');
+		// $this->loadModel('AdminNotification');
 		
-		if(isset($user['AdminNotificationsUser'][0])) {
-			//holds the last notification directed to this user
-			//debug($user['AdminNotificationsUser']);	
-			$last = $user['AdminNotificationsUser'][count($user['AdminNotificationsUser']) - 1];
-			//$last['id'] = 0;
-		} else {
-			$last['admin_notification_id'] = 0;
-		}
+		// if(isset($user['AdminNotificationsUser'][0])) {
+		// 	//holds the last notification directed to this user
+		// 	$last = $user['AdminNotificationsUser'][count($user['AdminNotificationsUser']) - 1];
+		// 	//$last['id'] = 0;
+		// } else {
+		// 	$last['admin_notification_id'] = 0;
+		// }
 		
-		//get all newer than that one
-		$adminNotifications = $this->AdminNotification->find('all', array(
+		// //get all newer than that one
+		// $adminNotifications = $this->AdminNotification->find('all', array(
+		// 	'conditions' => array(
+		// 		'AdminNotification.id >' => $last['admin_notification_id'],
+		// 		'AdminNotification.user_target' => null				
+		// 	)
+		// ));
+		
+		// foreach ($adminNotifications as $not) {
+		// 	//he sees it..
+		// 	$insert['AdminNotificationsUser']['user_id'] = $user['User']['id'];
+		// 	$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
+
+		// 	$this->User->AdminNotificationsUser->create();
+		// 	$this->User->AdminNotificationsUser->save($insert);
+
+
+		// 	$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
+	 //            'entity_id' => $not['AdminNotification']['id'],
+	 //            'user_id' => $this->getUserId(),
+	 //            'entity' => 'showNotification'
+	 //        ));
+
+	 //        $this->getEventManager()->dispatch($event);
+	 //        break;
+		// }
+
+		// //get all newer than that one
+		// $adminNotificationsToMe = $this->AdminNotification->find('all', array(
+		// 	'conditions' => array(
+		// 		'AdminNotification.id >' => $last['admin_notification_id'],
+		// 		'AdminNotification.user_target' => $this->getUserId()				
+		// 	)
+		// ));
+		
+
+		// foreach ($adminNotificationsToMe as $not) {
+		// 	//he sees it..
+		// 	$insert['AdminNotificationsUser']['user_id'] = $user['User']['id'];
+		// 	$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
+
+		// 	$this->User->AdminNotificationsUser->create();
+		// 	$this->User->AdminNotificationsUser->save($insert);
+
+		// 	$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
+	 //            'entity_id' => $not['AdminNotification']['id'],
+	 //            'user_id' => $this->getUserId(),
+	 //            'entity' => 'showNotification'
+	 //        ));
+
+	 //        $this->getEventManager()->dispatch($event);
+	 //        break;
+		// }
+		
+		//$this->loadModel('Badge');
+		$badges = $this->User->UserBadge->find('all', array(
 			'conditions' => array(
-				'AdminNotification.id >' => $last['admin_notification_id']
+				'UserBadge.user_id' => $id
 			)
 		));
-		
-		foreach ($adminNotifications as $not) {
-			//he sees it..
-			$insert['AdminNotificationsUser']['user_id'] = $user['User']['id'];
-			$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
 
-			$this->User->AdminNotificationsUser->create();
-			$this->User->AdminNotificationsUser->save($insert);
+		foreach ($badges as $b => $badge) {
+			$this->loadModel('Attachment');
+			$badge_img = $this->Attachment->find('first', array(
+				'conditions' => array(
+					'Attachment.model' => 'Badge',
+					'Attachment.foreign_key' => $badge['Badge']['id']
+				)
+			));
+			if(!empty($badge_img)) {
+				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
+				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
+			} else {
 
+			}
 
-			$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
-	            'entity_id' => $not['AdminNotification']['id'],
-	            'user_id' => $this->getUserId(),
-	            'entity' => 'showNotification'
-	        ));
-
-	        $this->getEventManager()->dispatch($event);
-	        break;
 		}
-		
-		$this->loadModel('Badge');
-		$badges = $this->Badge->find('all');
-
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges'));
@@ -529,53 +553,68 @@ class UsersController extends AppController {
 
 		$username = explode(' ', $this->getUserName());
 
-		//getting user power points
-		$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
+		//getting leaderboard data:
+			//getting user power points
+			$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
 
-		$points_users = array(); // will contain [user_id][level] && [user_id][points]
+			$points_users = array(); // will contain [points][][user]
 
-		$users = $this->User->find('all');
+			$allusers = $this->User->find('all');
 
-		$this->loadModel('Point');
-		$points = $this->Point->find('all');
-		foreach ($points as $point) {
-			if(isset($points_users[$point['Point']['user_id']])) {
-				$points_users[$point['Point']['user_id']] += $point['Point']['value'];
-			}	else{
-				$points_users[$point['Point']['user_id']] = $point['Point']['value'];
-			}
-		}
+			$this->loadModel('PowerPoint');
+			$power_points = $this->PowerPoint->find('all');
 
-		$this->loadModel('PowerPoint');
-		$power_points = $this->PowerPoint->find('all');
+			$this->loadModel('Point');
+			//$points = $this->Point->find('all');
+			
+			foreach ($allusers as $usr) {
+				$points = $this->Point->find('all', array(
+					'conditions' => array(
+						'Point.user_id' => $usr['User']['id']
+					)
+				));
+				$usrpoints = 0;
+				foreach ($points as $point) {
+					$usrpoints += $point['Point']['value'];
+				}
 
-		foreach ($users as $user) {
-			if(isset($points_users[$user['User']['id']]))
-				$points_users['Level'][$user['User']['id']] = $this->getLevel($points_users[$user['User']['id']]);
+				$usr['User']['level'] = $this->getLevel($usrpoints);
+				$points_users[$usrpoints][] = $usr['User'];
 
-			$this->User->id = $user['User']['id'];
-			$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
-				'conditions' => array(
-					'UserPowerPoint.user_id' => $user['User']['id']
-				)
-			));
-			foreach ($powerpoints_user as $powerpoint_user) {
-				if(isset($powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$user['User']['id']])) {
-					$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$user['User']['id']] += $powerpoint_user['UserPowerPoint']['quantity'];
-				} else {
-					$powerpoints_users[$powerpoint_user['UserPowerPoint']['power_points_id']][$user['User']['id']] = $powerpoint_user['UserPowerPoint']['quantity'];
+
+
+				$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
+					'conditions' => array(
+						'UserPowerPoint.user_id' => $usr['User']['id']
+					)
+				));
+
+				$tmp = array();
+				foreach ($powerpoints_user as $powerpoint_user) {
+					if(isset($tmp[$powerpoint_user['UserPowerPoint']['power_points_id']])) {
+
+						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] += $powerpoint_user['UserPowerPoint']['quantity'];
+					} else {
+
+						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] = $powerpoint_user['UserPowerPoint']['quantity'];
+					}
+				}
+				
+				foreach ($power_points as $pp) {
+					$qtdUser = 0;
+					if(isset($tmp[$pp['PowerPoint']['id']]))
+						$qtdUser = $tmp[$pp['PowerPoint']['id']];
+					
+					$powerpoints_users[$pp['PowerPoint']['id']][$qtdUser][] = $usr['User'];
 				}
 			}
-		}
 
-		/*foreach ($power_points as $pp) {
-			foreach ($users as $usr) {
-				if(isset($powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']]) && is_array($powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']]))
-					arsort($powerpoints_users[$pp['PowerPoint']['id']][$usr['User']['id']]);
+			foreach ($power_points as $pp) {
+				
+				krsort($powerpoints_users[$pp['PowerPoint']['id']]);
+				
 			}
-		}*/
-
-		
+			krsort($points_users);
 
 		$user = $this->User->find('first', array(
 			'conditions' => array(
@@ -798,15 +837,6 @@ class UsersController extends AppController {
 			    	$this->Auth->login($user);
 			    	//$this->Session->setFlash(__('The user has been saved.'));
 			    	$this->Session->setFlash(__('Your informations were succefully saved'), 'flash_message');
-
-			    	$event = new CakeEvent('Controller.User.update', $this, array(
-			        	'user_id' => $id, 
-			            'origin_id' => $id, 
-			            'origin' => 'userUpdate', 
-			        ));
-
-			        $this->getEventManager()->dispatch($event);
-
 					return $this->redirect(array('action' => 'dashboard', $id));
 
 				} 
