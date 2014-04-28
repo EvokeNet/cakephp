@@ -11,6 +11,15 @@
 
 ?>
 
+<meta property="og:locale" content="pt_BR">
+ 
+<meta property="og:url" content="http://www.meusite.com.br/ola-mundo">
+ 
+<meta property="og:title" content="<?= $evidence['Evidence']['title'] ?>">
+<meta property="og:site_name" content="<?= __('Evoke') ?>">
+ 
+<meta property="og:description" content="<?= $evidence['Evidence']['content'] ?>">
+
 <section class="evoke background">
 
 	<?= $this->element('menu', array('user' => $user)) ?>

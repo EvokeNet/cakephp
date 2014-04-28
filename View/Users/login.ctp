@@ -7,7 +7,15 @@
 <section class = "evoke login background">
 	<div class="row full-width">
 	
-		<div class="small-7 medium-7 large-7 columns"><!-- <img src = '<?= $this->webroot.'img/bar.png' ?>' alt = "" class = "evoke login video-bar"> --></div>
+		<div class="small-7 medium-7 large-7 columns">
+			
+			<img src = '<?= $this->webroot.'img/bar.png' ?>' alt = "" class = "evoke login video-bar">
+
+			<div class="flex-video widescreen vimeo" style = "margin-top:50px">
+			  <iframe src="http://player.vimeo.com/video/93164917" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			</div>
+			
+		</div>
 
 		<div class="small-5 medium-5 large-5 columns">
 			<img src = '<?= $this->webroot.'img/evoke-69.png' ?>' alt = "" class = "evoke login padding-bottom">
@@ -60,3 +68,10 @@
 	<!-- <img src = '<?= $this->webroot.'img/chiptag.png' ?>'> -->
   <a class="close-reveal-modal">&#215;</a>
 </div>
+
+<?php 
+	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
+	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
+	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
+	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+?>

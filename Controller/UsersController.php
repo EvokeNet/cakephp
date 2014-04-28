@@ -87,6 +87,7 @@ class UsersController extends AppController {
 						$this->Auth->login($user);
 						// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
 						//return $this->redirect(array('action' => 'dashboard'));
+						$this->Session->setFlash('', 'opening_lightbox_message');
 						return $this->redirect(array('action' => 'edit', $this->User->id));
 					} else {
 						$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
@@ -163,6 +164,14 @@ class UsersController extends AppController {
 				$user['User']['id'] = $this->User->id;
 				$user['User']['role_id'] = $this->User->role_id;
 				$this->Auth->login($user);
+
+				if(empty($user['User']['biography'])){
+					//echo $this->element('menu', array('user' => $user));
+					$this->Session->setFlash('', 'opening_lightbox_message');
+				}
+
+				$this->Session->setFlash('', 'opening_lightbox_message');
+
 				return $this->redirect(array('action' => 'edit', $this->User->id));
 				//return $this->redirect(array('action' => 'index'));
 			} else {
@@ -795,7 +804,6 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-
 
 		//check to see if user is an admin
 		//if so, he can edit whoever he likes
