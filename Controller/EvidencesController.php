@@ -227,6 +227,12 @@ class EvidencesController extends AppController {
 					}
 				}
 
+				if(empty($me['Evidence']['content'])) {
+					//debug($me);
+					$this->Session->setFlash(__('You need to fill the content'),'flash_message');
+					$this->redirect($this->referer());
+				}
+
 		        $this->Session->setFlash(__('The evidence has been saved'), 'flash_message');
 
 				/* Ends event */
