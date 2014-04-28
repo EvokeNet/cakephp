@@ -74,7 +74,7 @@
 	  			<?php if($mission['Mission']['title'] == 'Food Security' || $mission['Mission']['title'] == 'Seguridad Alimentaria') : ?>
 
 	  			<ul class="clearing-thumbs clearing-feature" data-clearing>
-					<li class="clearing-featured-img "><a  href="<?= $this->webroot.'img/EP01_PG01ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01_PG01ENGLISH.jpg' ?>" width="60%"></a></li>
+					<li class="clearing-featured-img "><a  href="<?= $this->webroot.'img/EP01_PG01ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01_PG01ENGLISH.jpg' ?>" width="100%"></a></li>
 					<li><a href="<?= $this->webroot.'img/EP01PG02ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01PG02ENGLISH.jpg' ?>"></a></li>
 					<li><a href="<?= $this->webroot.'img/EP01PG03ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01PG03ENGLISH.jpg' ?>"></a></li>
 					<li><a href="<?= $this->webroot.'img/EP01PG04ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01PG04ENGLISH.jpg' ?>"></a></li>
@@ -88,7 +88,7 @@
 				<?php if($mission['Mission']['title'] == 'Power Shift' || $mission['Mission']['title'] == 'Cambio de poder') : ?>
 
 				<ul class="clearing-thumbs clearing-feature" data-clearing>
-					<li class="clearing-featured-img"><a href="<?= $this->webroot.'img/EvokeEP2_01color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_01color'. $language.'.jpg' ?>" width="60%"></a></li>
+					<li class="clearing-featured-img"><a href="<?= $this->webroot.'img/EvokeEP2_01color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_01color'. $language.'.jpg' ?>" width="100%"></a></li>
 					<li><a href="<?= $this->webroot.'img/EvokeEP2_02color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_02color'. $language.'.jpg' ?>"></a></li>
 					<li><a href="<?= $this->webroot.'img/EvokeEP2_03color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_03color'. $language.'.jpg' ?>"></a></li>
 					<li><a href="<?= $this->webroot.'img/EvokeEP2_04color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_04color'. $language.'.jpg' ?>"></a></li>
@@ -101,7 +101,7 @@
 				<?php if($mission['Mission']['title'] == 'Water Solutions' || $mission['Mission']['title'] == 'Soluciones para agua') : ?>
  
 					<ul class="clearing-thumbs clearing-feature" data-clearing>
-						<li class="clearing-featured-img"><a href="<?= $this->webroot.'img/EvokeEP03_pg01acol'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg01acol'. $language.'.jpg' ?>" width="60%"></a></li>
+						<li class="clearing-featured-img"><a href="<?= $this->webroot.'img/EvokeEP03_pg01acol'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg01acol'. $language.'.jpg' ?>" width="100%"></a></li>
 						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg02col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg02col'. $language.'.jpg' ?>"></a></li>
 						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg03col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg03col'. $language.'.jpg' ?>"></a></li>
 						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg04col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg04col'. $language.'.jpg' ?>"></a></li>

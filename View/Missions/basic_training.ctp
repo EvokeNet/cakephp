@@ -128,7 +128,7 @@
 			?>
 
 	  		<ul class="clearing-thumbs clearing-feature" data-clearing>
-				<li class="clearing-featured-img "><a  href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg01.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg01.jpg' ?>" width="60%"></a></li>
+				<li class="clearing-featured-img "><a  href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg01.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg01.jpg' ?>" width="100%"></a></li>
 				<li><a href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg02.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg02.jpg' ?>"></a></li>
 				<li><a href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg03.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg03.jpg' ?>"></a></li>
 				<li><a href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg04.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg04.jpg' ?>"></a></li>
