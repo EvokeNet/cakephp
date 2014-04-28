@@ -40,6 +40,8 @@ $title = __('Evoke Network');
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 
+		echo $this->fetch('social-metatags');
+
 	?>
 </head>
 <body class="evoke">

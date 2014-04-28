@@ -11,14 +11,21 @@
 
 ?>
 
-<meta property="og:locale" content="pt_BR">
- 
-<meta property="og:url" content="http://www.meusite.com.br/ola-mundo">
- 
-<meta property="og:title" content="<?= $evidence['Evidence']['title'] ?>">
-<meta property="og:site_name" content="<?= __('Evoke') ?>">
- 
-<meta property="og:description" content="<?= $evidence['Evidence']['content'] ?>">
+<?php $this->start('social-metatags'); ?>
+
+	<meta property="og:locale" content="en_US">
+		 
+	<meta property="og:url" content="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $evidence['Evidence']['id'])); ?>">
+	 
+	<meta property="og:title" content="<?= $evidence['Evidence']['title'] ?>">
+	<meta property="og:site_name" content="<?= __('Evoke') ?>">
+	 
+	<meta property="og:description" content="<?= $evidence['Evidence']['content'] ?>">
+
+	<!-- <meta property="og:title" content="pagina" /> -->
+	<!-- [...] -->
+
+<?php $this->end(); ?>
 
 <section class="evoke background">
 
