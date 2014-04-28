@@ -51,9 +51,6 @@ class UsersController extends AppController {
 			
 		));
 
-		$fbLoginUrl = $facebook->getLoginUrl();
-		$this->set(compact('fbLoginUrl'));
-
 		if(isset($this->params['url']['code'])) {
 
 			$token = $facebook->getAccessToken();
@@ -115,31 +112,14 @@ class UsersController extends AppController {
 				
 			}
 
-		} 
+		} else if ($this->Auth->login()) {
 
-		if ($this->request->is('post')) {
-	        if ($this->Auth->login()) {
-	            return $this->redirect(array('action' => 'dashboard', $this->User->id));
-	            // Prior to 2.3 use
-	            // `return $this->redirect($this->Auth->redirect());`
-	        } else {
-	            $this->Session->setFlash(
-	                __('Username or password is incorrect'),
-	                'default',
-	                array(),
-	                'auth'
-	            );
-	        }
-	    }
+			return $this->redirect(array('action' => 'dashboard', $this->User->id));
 
-		// else if ($this->Auth->login()) {
-
-		// 	return $this->redirect(array('action' => 'dashboard', $this->User->id));
-
-		// } else {
-		// 	$fbLoginUrl = $facebook->getLoginUrl();
-		// 	$this->set(compact('fbLoginUrl'));
-		// }
+		} else {
+			$fbLoginUrl = $facebook->getLoginUrl();
+			$this->set(compact('fbLoginUrl'));
+		}
 	}
 
 
