@@ -195,6 +195,7 @@ class UsersController extends AppController {
 			$flags['_en'] = false;
 			$flags['_es'] = true;
 		}
+		debug($lang);
 		
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
