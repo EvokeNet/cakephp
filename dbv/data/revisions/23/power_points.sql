@@ -1,1 +1,2 @@
-ALTER TABLE  `power_points` ADD  `name_es` VARCHAR( 120 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER  `name`, ALTER TABLE  `power_points` ADD  `description_es` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER  `description`;
+ALTER TABLE  `power_points` ADD  `name_es` VARCHAR( 120 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER  `name`;
+ALTER TABLE  `power_points` ADD  `description_es` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL AFTER  `description`;
