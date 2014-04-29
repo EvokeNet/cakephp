@@ -33,9 +33,25 @@
 	  	<div class = "evoke missions data">
 	  		<h2 id="numero1"><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
 
-	  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
+	  		<?php 
+	  			if($lang == 'es') : 
+	 				$video = $mission['Mission']['video_link_es'];
+	 				$novels = $novels_es;
+				else :
+	 				$video = $mission['Mission']['video_link'];
+	 				$novels = $novels_en;
+	 			endif; 
+	  		?>
+
+	  		<?php if(!is_null($video) && $video != '') : ?>
+		  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
+				  <iframe src="<?= $video ?>" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+				</div>
+			<?php endif; ?>
+
+	  		<!-- <div class="flex-video widescreen vimeo" style = "margin-top:50px">
 			  <iframe src="http://player.vimeo.com/video/93164024" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-			</div>
+			</div> -->
 			
 	  		<p id="numero2"><?= $mission['Mission']['description'];?></p>
   		</div>
@@ -120,19 +136,17 @@
 	  <div class="small-5 medium-5 large-5 columns">
 
 	  	<div class = "evoke position">
-	  		<?php 
- 				$language = 'ENGLISH';
- 				if($lang == 'es') {
- 					$language = 'SPANISH';
- 				}
-			?>
+	  		
 
 	  		<ul class="clearing-thumbs clearing-feature" data-clearing>
-				<li class="clearing-featured-img "><a  href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg01.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg01.jpg' ?>" width="100%"></a></li>
-				<li><a href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg02.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg02.jpg' ?>"></a></li>
-				<li><a href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg03.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg03.jpg' ?>"></a></li>
-				<li><a href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg04.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg04.jpg' ?>"></a></li>
-				<li><a href="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg05.jpg' ?>"><img src="<?= $this->webroot.'img/Evoke_00_'. $language .'_Pg05.jpg' ?>"></a></li>
+				<?php 
+	 					$first = ' class="clearing-featured-img "';	
+	 				?>
+
+	 				<?php foreach ($novels as $novel) : ?>
+						<li <?= $first ?>><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
+						<?php $first = ''; ?>
+					<?php endforeach; ?>
 			</ul>
 		</div>
 

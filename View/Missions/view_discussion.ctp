@@ -41,21 +41,21 @@
 	  		<h1><?php echo __('Phase: '); echo h($missionPhase['Phase']['name']); ?></h1>
 	  		<h2><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
 
-	  		<?php if(($mission['Mission']['title'] == 'Food Security') || ($mission['Mission']['title'] == 'Seguridad Alimentaria')): ?>
-	  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
-			  <iframe src="http://player.vimeo.com/video/93164026" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-			</div>
 
-			<?php elseif(($mission['Mission']['title'] == 'Power Shift') || ($mission['Mission']['title'] == 'Cambio de poder')): ?>
-			<div class="flex-video widescreen vimeo" style = "margin-top:50px">
-			  <iframe src="http://player.vimeo.com/video/93164027" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-			</div>
+	  		<?php 
+	  			if($lang == 'es') : 
+	 				$video = $mission['Mission']['video_link_es'];
+	 				$novels = $novels_es;
+				else :
+	 				$video = $mission['Mission']['video_link'];
+	 				$novels = $novels_en;
+	 			endif; 
+	  		?>
 
-			<?php elseif(($mission['Mission']['title'] == 'Water Solutions') || ($mission['Mission']['title'] == 'Soluciones para agua')): ?>
-			<div class="flex-video widescreen vimeo" style = "margin-top:50px">
-			  <iframe src="http://player.vimeo.com/video/93164029" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-			</div>
-
+	  		<?php if(!is_null($video) && $video != '') : ?>
+		  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
+				  <iframe src="<?= $video ?>" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+				</div>
 			<?php endif; ?>
 
 	  		<p><?= $mission['Mission']['description'];?></p>
@@ -64,57 +64,18 @@
 	  <div class="small-6 medium-6 large-5 columns">
 	  		<div class = "evoke position">
 	  			
- 				<?php 
- 					$language = 'ENGLISH';
- 					if($lang == 'es') {
- 						$language = 'SPANISH';
- 					}
-				?>
+ 				<ul class="clearing-thumbs clearing-feature" data-clearing>						
+	 				<?php 
+	 					$first = ' class="clearing-featured-img "';	
+	 				?>
 
-	  			<?php if($mission['Mission']['title'] == 'Food Security' || $mission['Mission']['title'] == 'Seguridad Alimentaria') : ?>
-
-	  			<ul class="clearing-thumbs clearing-feature" data-clearing>
-					<li class="clearing-featured-img "><a  href="<?= $this->webroot.'img/EP01_PG01ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01_PG01ENGLISH.jpg' ?>" width="100%"></a></li>
-					<li><a href="<?= $this->webroot.'img/EP01PG02ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01PG02ENGLISH.jpg' ?>"></a></li>
-					<li><a href="<?= $this->webroot.'img/EP01PG03ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01PG03ENGLISH.jpg' ?>"></a></li>
-					<li><a href="<?= $this->webroot.'img/EP01PG04ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EP01PG04ENGLISH.jpg' ?>"></a></li>
-					<li><a href="<?= $this->webroot.'img/EvokeEP01PG05ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP01PG05ENGLISH.jpg' ?>"></a></li>
-					<li><a href="<?= $this->webroot.'img/EvokeEP01PG06ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP01PG06ENGLISH.jpg' ?>"></a></li>
-					<li><a href="<?= $this->webroot.'img/EvokeEP01PG07ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP01PG07ENGLISH.jpg' ?>"></a></li>
-					<li><a href="<?= $this->webroot.'img/EvokeEP01PG08ENGLISH.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP01PG08ENGLISH.jpg' ?>"></a></li>
+	 				<?php foreach ($novels as $novel) : ?>
+						<li <?= $first ?>><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
+						<?php $first = ''; ?>
+					<?php endforeach; ?>
+ 						
 				</ul>
 
-				<?php endif; ?>
-				<?php if($mission['Mission']['title'] == 'Power Shift' || $mission['Mission']['title'] == 'Cambio de poder') : ?>
-
-				<ul class="clearing-thumbs clearing-feature" data-clearing>
-					<li class="clearing-featured-img"><a href="<?= $this->webroot.'img/EvokeEP2_01color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_01color'. $language.'.jpg' ?>" width="100%"></a></li>
-					<li><a href="<?= $this->webroot.'img/EvokeEP2_02color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_02color'. $language.'.jpg' ?>"></a></li>
-					<li><a href="<?= $this->webroot.'img/EvokeEP2_03color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_03color'. $language.'.jpg' ?>"></a></li>
-					<li><a href="<?= $this->webroot.'img/EvokeEP2_04color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_04color'. $language.'.jpg' ?>"></a></li>
-					<li><a href="<?= $this->webroot.'img/EvokeEP2_05color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_05color'. $language.'.jpg' ?>"></a></li>
-					<li><a href="<?= $this->webroot.'img/EvokeEP2_06color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_06color'. $language.'.jpg' ?>"></a></li>
-					<li><a href="<?= $this->webroot.'img/EvokeEP2_07color'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP2_07color'. $language.'.jpg' ?>"></a></li>
-				</ul>
-
-				<?php endif; ?>
-				<?php if($mission['Mission']['title'] == 'Water Solutions' || $mission['Mission']['title'] == 'Soluciones para agua') : ?>
- 
-					<ul class="clearing-thumbs clearing-feature" data-clearing>
-						<li class="clearing-featured-img"><a href="<?= $this->webroot.'img/EvokeEP03_pg01acol'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg01acol'. $language.'.jpg' ?>" width="100%"></a></li>
-						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg02col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg02col'. $language.'.jpg' ?>"></a></li>
-						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg03col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg03col'. $language.'.jpg' ?>"></a></li>
-						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg04col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg04col'. $language.'.jpg' ?>"></a></li>
-						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg05col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg05col'. $language.'.jpg' ?>"></a></li>
-						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg06col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg06col'. $language.'.jpg' ?>"></a></li>
-						<li><a href="<?= $this->webroot.'img/EvokeEP03_pg07col'. $language.'.jpg' ?>"><img src="<?= $this->webroot.'img/EvokeEP03_pg07col'. $language.'.jpg' ?>"></a></li>
-					</ul>
-
-				<?php endif; ?>
-
-
-	  			<!-- <div class = "evoke text-align"><img src = '<?= $this->webroot.'img/hqnored.png' ?>' width="60%"></div>
-	  		 -->
 	  			<div class = "evoke ribbon-position">
 			  		<div class="ribbon-wrapper">
 						<div class="ribbon-front">
