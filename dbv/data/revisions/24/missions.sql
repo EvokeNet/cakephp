@@ -1,0 +1,2 @@
+ALTER TABLE  `missions` ADD  `video_link` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL AFTER  `language` ,
+ADD  `video_link_es` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL AFTER  `video_link`;

@@ -118,6 +118,26 @@ class MissionsController extends AppController {
 
 		}
 
+		$novels_en = $this->Mission->Novel->find('all', array(
+			'order' => array(
+				'Novel.page Asc'
+			),
+			'conditions' => array(
+				'Novel.mission_id' => $id,
+				'Novel.language' => 'en'
+			)
+		));
+
+		$novels_es = $this->Mission->Novel->find('all', array(
+			'order' => array(
+				'Novel.page Asc'
+			),
+			'conditions' => array(
+				'Novel.mission_id' => $id,
+				'Novel.language' => 'es'
+			)
+		));
+
 		$evidences = $this->Mission->Evidence->find('all', array(
 			'order' => array(
 				'Evidence.created DESC'
@@ -421,7 +441,8 @@ class MissionsController extends AppController {
 			));
 		}
 
-		$this->set(compact('lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences',
+		$this->set(compact('lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
+			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
 		if($mission['Mission']['basic_training'] == 1)
