@@ -694,6 +694,7 @@ class PanelsController extends AppController {
 		// debug($this->request->data['Novel']);
 		// die();
 		foreach ($this->request->data['Novel'] as $novelIndex => $novelData) {
+			debug($novelData);
 			if($novelData['page'] <= 0 || $novelData['Attachment'][0]['attachment']['size'] == 0) continue;
 
 			$insertNovel['Novel']['mission_id'] = $novelData['mission_id'];
