@@ -709,19 +709,19 @@ class PanelsController extends AppController {
 				if(isset($novelData['delete'])) {
 					$this->Novel->id = $novelData['id'];
 					$this->Novel->delete();
-					debug("trying to delete: ");
+					// debug("trying to delete: ");
 					
 				} else {
-					$this->Novel->createWithAttachments($insertNovel, true, $novelData['id']);	
+					// $this->Novel->createWithAttachments($insertNovel, true, $novelData['id']);	
 				}
 				
 			} else {
-				$this->Novel->createWithAttachments($insertNovel);
+				// $this->Novel->createWithAttachments($insertNovel);
 			}
-			// debug($insertNovel);
+			debug($insertNovel);
 			$insertNovel = array();
 		}
-		 // die();
+		 die();
 
 		$this->redirect($this->referer());
 
