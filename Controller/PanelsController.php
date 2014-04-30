@@ -691,8 +691,8 @@ class PanelsController extends AppController {
 
 	function novel($id, $origin = 'add_mission'){
 		
-		// debug($this->request->data['Novel']);
-		// die();
+		debug($this->request->data['Novel']);
+		die();
 		foreach ($this->request->data['Novel'] as $novelIndex => $novelData) {
 			if($novelData['page'] <= 0 || $novelData['Attachment'][0]['attachment']['size'] == 0) continue;
 
