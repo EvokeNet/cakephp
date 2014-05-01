@@ -100,9 +100,11 @@ button, div, p, span, a,
 /* Background */
 
 .evoke .default-background{
-	background: url('../img/bg.jpg');
-	background-repeat: no-repeat;
-	background-size: 100%;
+	background: url('../img/bg-purple.png') no-repeat center center fixed;
+	/*-webkit-background-size: 100%;
+	-moz-background-size: 100%;
+	-o-background-size: 100%;
+	background-size: 100%;*/
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -128,6 +130,20 @@ button, div, p, span, a,
 	box-shadow: 1px 1px 1px 0px rgba(137,87,102,1);
 }
 
+.evoke .content-block ul{
+	list-style: none;
+}
+
+.evoke .content-block ul li{
+	font-size:1.1vw;
+	color:#fff;
+}
+
+.evoke .content-block ul li a{
+	font-size:1.1vw;
+	color:#fff;
+}
+
 .evoke .default.tabs dd.active a{
 	background: #000;
 }
@@ -143,6 +159,8 @@ button, div, p, span, a,
 .evoke .default.tabs-content{
 	border-top: 5px solid #000;
 	margin-top: 1px;
+	height: 700px;
+	overflow-x: hidden;
 }
 
 .evoke .bg-topbar {
@@ -157,6 +175,8 @@ button, div, p, span, a,
 /* Evidence box */
 
 .evoke .evidence.content-box{
+	/*border-bottom: 2px solid #484058;*/
+	border-bottom: 2px solid rgba(0,0,0, 0.3);
 }
 
 .evoke .evidence.content-box:hover{
@@ -185,6 +205,31 @@ button, div, p, span, a,
 
 .evoke .text-align-end{
 	text-align: end;
+}
+
+.evoke .text-align-center{
+	text-align: center;
+}
+
+.evoke .button.general {
+	background: #1f8cb2;
+	color: #ffffff;
+	/*font-size: 1.0vw;*/
+	/*font-size: 0.9em;*/
+	/*border-radius: 5px;
+	padding: 0.4em 2em;*/
+	border-radius: 10px;
+	/*padding: 0.4em 1.5em 0.8em;*/
+	padding: 0.7em 1.4em;
+	/*margin-right: 10px;*/
+	border-right: 3px solid #125167;
+	border-bottom: 3px solid #125167;
+}
+
+.evoke .button {
+	padding-top: 1.25em;
+	padding-bottom: 1.25em;
+	color: #ffffff;
 }
 
 /* End of new CSS */

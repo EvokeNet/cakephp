@@ -1,63 +1,52 @@
 <?php
+	//echo $this->Html->css('/components/jcarousel/examples/basic/jcarousel.basic');
+	//echo $this->Html->css('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
+	echo $this->Html->css('jcarousel');
+	//echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
+
+	echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
+
+	echo $this->Html->css('breadcrumb');
+
 	$this->extend('/Common/topbar');
 	$this->start('menu');
+
+	echo $this->element('header', array('user' => $user));
+
+	$this->end(); 
 ?>
 
-<nav class="top-bar" data-topbar>
-	<ul class="title-area">
-		<li class="name">
-			<h1><?php echo $this->Html->link(strtoupper(__('Evoke')), array('controller' => 'users', 'action' => 'dashboard', $user['User']['id'])); ?></h1>
-		</li>
-		<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-	</ul>
+<section class="evoke default-background">
+	<div class="evoke default row full-width-alternate">
+	  <div class="small-12 small-centered columns">
 
-	<section class="evoke top-bar-section">
+	  	<h3 class = "evoke padding top-2"> <?= strtoupper(__('Choose a mission')) ?> </h3>
+			
+			<?php foreach($missions as $mission): ?>
+				<div class = "evoke missions index">
 
-		<!-- Right Nav Section -->
-		<ul class="right">
-			<li class="name">
-				<h1><?= sprintf(__('Hi %s'), $user['User']['name']) ?></h1>
-			</li>
-			<li class="has-dropdown">
-				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
-				<ul class="dropdown">
-					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?></h1></li>
-					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
-				</ul>
-			</li>
-			<li  class="has-dropdown">
-				<a href="#"><?= __('Language') ?></a>
-				<ul class="dropdown">
-					<li><?= $this->Html->link(__('English'), array('action'=>'changeLanguage', 'en')) ?></li>
-					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
-				</ul>
-			</li>
-		</ul>
+					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+				
+				</div>
+			<?php endforeach; ?>
 
-		<h3><?php echo sprintf(__('Welcome to Evoke Virtual Station'));?></h3>
+		  	<!-- <div class = "issues">
+				<?php foreach($issues as $i):?>
 
-	</section>
-</nav>
-
-<?php $this->end(); ?>
-
-<section class="evoke margin top-2">
-	<div class="row">
-	  <div class="small-11 small-centered columns">
-		  <div class = "issues">
-			<?php foreach($issues as $i):?>
-
-				<!-- Print the category's name -->
-				<h1><?php echo __('Mission Under Issues: ').$i['Issue']['name'];?></h1>
-				<?php foreach($missionIssues as $m):
-				//If the mission belongs to that category, it is printed
+					<h1><?php echo __('Mission Under Issues: ').$i['Issue']['name'];?></h1>
+					<?php foreach($missionIssues as $m):
 					if($i['Issue']['id'] == $m['Issue']['id']):?>
 						<h2><?php echo $this->Html->link($m['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $m['Mission']['id'], 1)); ?></h2>
 						<p><?php echo $m['Mission']['description'];?></p>
 						<hr class="sexy_line" />
 
 				<?php endif; endforeach; endforeach; ?>
-			</div>
+			</div> -->
+
 		</div>
 	</div>
 </section>
+
+<?php
+	echo $this->Html->script('image_hover', array('inline' => false));
+?>

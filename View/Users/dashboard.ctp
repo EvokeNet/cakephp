@@ -23,10 +23,10 @@
 
 	<div class="evoke default row full-width-alternate">
 	  <div class="small-2 medium-2 large-2 columns">
-	  	<h3> <?= strtoupper(__('Evidence')) ?> </h3>
+	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
 	  </div>
 
-	  <div class="small-7 medium-7 large-7 columns">
+	  <div class="small-7 medium-7 large-7 columns padding top-2">
 	  	<h3> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
 
 	  	<dl class="default tabs" data-tab>
@@ -40,9 +40,9 @@
 		    <?php 
 	    		//Lists all projects and evidences
 	    		foreach($evidence as $e): 
-	    				//echo $this->element('evidence_blue_box', array('e' => $e)); 
-	    				echo $this->element('evidence_box', array('e' => $e)); 
-	    				echo $this->element('evidence', array('e' => $e)); 
+    				//echo $this->element('evidence_blue_box', array('e' => $e)); 
+    				//echo $this->element('evidence_box', array('e' => $e)); 
+    				echo $this->element('evidence', array('e' => $e)); 
 	    		endforeach; 
 
 
@@ -62,20 +62,88 @@
 
 		  </div>
 		  <div class="content" id="panel2-2">
-		    <p>Second panel content goes here...</p>
+		    <?php 
+		    	foreach($evokations as $e):
+	    			foreach($evokationsFollowing as $following)
+	    				if($e['Evokation']['id'] == $following['Evokation']['id']) {
+	    					echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));		
+	    				}
+	    		endforeach;
+	    	?>
 		  </div>
 		  <div class="content" id="panel2-3">
-		    <p>Third panel content goes here...</p>
+		    <?php 
+	    		foreach($myEvokations as $e):
+	    			echo $this->element('evokation_box', array('e' => $e, 'mine' => true));
+	    		endforeach;
+	    	?>
 		  </div>
 		</div>
 
 	  </div>
 
-	  <div class="small-3 medium-3 large-3 columns">
+	  <div class="small-3 medium-3 large-3 columns padding top-2">
 	  	
 	  	<h3> <?= strtoupper(__('Feed')) ?> </h3>
 	  	<div class = "evoke content-block padding-10">
-	  		YAY
+	  		
+	  		<?php if(!$notifies): ?>
+
+				<img src = '<?= $this->webroot.'img/placeholders-feed.png' ?>' style = "width: 100%; max-height: 100%;">
+				<!-- <h1><?= strtoupper(__('You have no allies at the moment')) ?></h1> -->
+
+			<?php else: ?>
+
+			<ul>
+				<?php foreach($notifies as $n): 
+
+				if($n['Notification']['origin'] == 'evidence'):?>						
+					<li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s posted an evidence'), $n['User']['name']) ?></li></a>
+				<?php endif; ?>
+
+				<?php if($n['Notification']['origin'] == 'BasicTraining'):?>						
+					<li><?= sprintf(__('Agent %s finished the Basic Training'), $n['User']['name']) ?></li>
+				<?php endif; ?>
+
+				<?php if($n['Notification']['origin'] == 'userUpdate'):?>						
+					<li><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $n['User']['id'])) ?>"><?= sprintf(__('Agent %s updated its profile'), $n['User']['name']) ?></a></li>
+				<?php endif; ?>
+
+				<?php if($n['Notification']['origin'] == 'like'):?>						
+					<!-- <li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s liked an evidence from '), $n['User']['name']) ?></a></li> -->
+				<?php endif; ?>
+
+				<?php if($n['Notification']['origin'] == 'like'):
+				
+					foreach($allusers as $alluser):
+						if($n['Notification']['action_user_id'] == $alluser['User']['id']){
+							$action_user = $alluser;
+							break;
+						}
+					endforeach;
+
+					if($action_user['User']['id'] == $users['User']['id']){
+						$message = sprintf(__('You liked an evidence Agent %s posted'), $n['User']['name']);
+					} else{
+						$message = sprintf(__('Agent %s liked an evidence from Agent %s'), $action_user['User']['name'], $n['User']['name']);
+					}
+					?>						
+					<li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= $message ?></a></li>
+				<?php endif; ?>
+
+				<?php if($n['Notification']['origin'] == 'commentEvidence'):?>						
+					<li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evidence'), $n['User']['name']) ?></a></li>
+				<?php endif; ?>
+
+				<?php if($n['Notification']['origin'] == 'phaseCompleted'):?>						
+					<!-- <li><?= sprintf(__('Agent %s completed a phase'), $n['User']['name']) ?></li> -->
+				<?php endif; ?>
+				
+				<?php endforeach; ?>
+			</ul>
+
+			<?php endif; ?>
+
 	  	</div>
 
 	  	<h3> <?= strtoupper(__('Discussions')) ?> </h3>
@@ -87,21 +155,3 @@
 	</div>
 
 </section>
-
-<?php
-	echo $this->Html->script('reveal_modal', array('inline' => false));
-	// echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
-	echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel', array('inline' => false));
-	//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
-	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
-	echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
-
-
-
-?>
-
-<script>
-
-	// $('#formModal').foundation('reveal', 'open');
-
-</script>
