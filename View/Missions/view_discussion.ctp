@@ -10,6 +10,13 @@
 	echo $this->element('header', array('user' => $user));
 	$this->end(); 
 	
+	if($lang == 'es') : 
+		$video = $mission['Mission']['video_link_es'];
+		$novels = $novels_es;
+	else :
+		$video = $mission['Mission']['video_link'];
+		$novels = $novels_en;
+	endif; 
 ?>
 
 <section class="evoke background">
@@ -23,20 +30,29 @@
 		<div class = "small-10 medium-10 large-10 columns evoke no-right-padding">
 			
 			<div class = "evoke missions graphic-cover">
-				<img src = '<?= $this->webroot.'img/episodio10.jpg' ?>'>
-				<div class = "evoke ribbon-position">
-			  		<div class="ribbon-wrapper">
-						<div class="ribbon-front">
-							<?= __('Graphic Novel') ?>
+				<?php if(!empty($novels)) :?>
+	 				<ul class="clearing-thumbs clearing-feature" data-clearing>						
+		 				<li  class="clearing-featured-img "><a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>"><img src="<?= $this->webroot.'img/hq_cover.jpg'?>"></a></li>
+		 				
+		 				<?php foreach ($novels as $novel) : ?>
+							<li><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
+						<?php endforeach; ?>
+					</ul>
+					<!-- <img src = '<?= $this->webroot.'img/episodio10.jpg' ?>'> -->
+					<div class = "evoke ribbon-position">
+				  		<div class="ribbon-wrapper">
+							<div class="ribbon-front">
+								<?= __('Graphic Novel') ?>
+							</div>
+							<div class="ribbon-edge-topleft"></div>
+							<div class="ribbon-edge-topright"></div>
+							<div class="ribbon-edge-bottomleft"></div>
+							<div class="ribbon-edge-bottomright"></div>
+							<div class="ribbon-back-left"></div>
+							<div class="ribbon-back-right"></div>
 						</div>
-						<div class="ribbon-edge-topleft"></div>
-						<div class="ribbon-edge-topright"></div>
-						<div class="ribbon-edge-bottomleft"></div>
-						<div class="ribbon-edge-bottomright"></div>
-						<div class="ribbon-back-left"></div>
-						<div class="ribbon-back-right"></div>
 					</div>
-				</div>
+				<?php endif ?>
 			</div>
 
 			<div class = "evoke missions index tint">
@@ -54,16 +70,6 @@
 	  		<h2><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
 
 
-	  		<?php 
-	  			if($lang == 'es') : 
-	 				$video = $mission['Mission']['video_link_es'];
-	 				$novels = $novels_es;
-				else :
-	 				$video = $mission['Mission']['video_link'];
-	 				$novels = $novels_en;
-	 			endif; 
-	  		?>
-
 	  		<?php if(!is_null($video) && $video != '') : ?>
 		  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
 				  <iframe src="<?= $video ?>" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
@@ -75,29 +81,7 @@
 	  </div>
 	  <div class="small-6 medium-6 large-5 columns">
 	  		<div class = "evoke position">
-	  			<?php if(!empty($novels)) :?>
-	 				<ul class="clearing-thumbs clearing-feature" data-clearing>						
-		 				<li  class="clearing-featured-img "><a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>"><img src="<?= $this->webroot.'img/hq_cover.jpg'?>" width="100%"></a></li>
-		 				
-		 				<?php foreach ($novels as $novel) : ?>
-							<li><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
-						<?php endforeach; ?>
-					</ul>
-
-		  			<div class = "evoke ribbon-position">
-				  		<div class="ribbon-wrapper">
-							<div class="ribbon-front">
-								<?= __('Graphic Novel') ?>
-							</div>
-							<div class="ribbon-edge-topleft"></div>
-							<div class="ribbon-edge-topright"></div>
-							<div class="ribbon-edge-bottomleft"></div>
-							<div class="ribbon-edge-bottomright"></div>
-							<div class="ribbon-back-left"></div>
-							<div class="ribbon-back-right"></div>
-						</div>
-					</div>
-				<?php endif ?>
+	  			
 			</div>
 	  </div>
 	</div>
