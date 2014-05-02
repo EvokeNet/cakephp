@@ -1395,16 +1395,17 @@ button, div, p, span, a,
 	margin-bottom:30px;
 	border-bottom: 5px solid #182537;
 	border-top: 5px solid #182537;*/
-	background-color: #095c79;
+	background-color: #1f8cb2;
 	margin-bottom: 30px;
-	border-bottom: 5px solid #182537;
-	text-align: center;
+	padding-left: 10px;
+	border-bottom: 3px solid #182537;
+	text-align: left;
 }
 
 .evoke.menu-bg ul{
 	padding: 20px 0px 10px;
 	margin-bottom: 0;
-	display: inline-block;
+	/*display: inline-block;*/
 }
 
 .evoke.menu-bg a{

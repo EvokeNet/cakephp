@@ -14,6 +14,8 @@
 	$name = explode(' ', $users['User']['name']);
 
 	echo $this->element('header', array('user' => $users, 'sumMyPoints' => $sumMyPoints));
+
+
 	$this->end(); 
 ?>
 
@@ -22,8 +24,10 @@
 	<?php echo $this->Session->flash(); ?>
 
 	<div class="evoke default row full-width-alternate">
-	  
+
 	  <div class="small-2 medium-2 large-2 columns padding top-2">
+		<?php echo $this->element('menu', array('user' => $users));?>
+
 	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
 
 	  	<?php foreach($missions as $mission): ?>
