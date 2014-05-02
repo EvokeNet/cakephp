@@ -9,8 +9,10 @@
 	/* width: 210px; */
 	position: relative;
 	/* left: -40px; */
-	left: 35px;
-	top: 200px;
+	/*left: 35px;
+	top: 200px;*/
+	left:16px;
+	top:250px;
 	z-index: 2;
 	border-bottom-right-radius: 30px;
 	border-top-right-radius: 30px;
@@ -59,14 +61,15 @@
 
   .ribbon-edge-topleft,
   .ribbon-edge-bottomleft {
-	left:35px;
+	left: 16px;
 	border-color: transparent #691a21 transparent transparent;
 }
 
   .ribbon-edge-topleft {
 	/*top: -29px;
 	border-width: 30px 40px 0 0;*/
-	top: 180px;
+	/*top: 180px;*/
+	top: 230px;
 	border-width: 20px 26px 0 0;
 }
   .ribbon-edge-bottomleft {

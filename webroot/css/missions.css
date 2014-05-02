@@ -22,12 +22,18 @@
 	/*margin-bottom:5px;*/
 }
 
-.evoke .missions.index {
-	max-height: 350px;
+.evoke .missions.header {
+	height: 350px;
 	width: 100%;
 	overflow: hidden;
 	/*border-bottom: 5px solid #000;*/
 	margin-bottom: 20px;
+}
+
+.evoke .missions.header h3{
+	z-index: 1;
+	position: absolute;
+	margin: 20px;
 }
 
 .evoke .missions.graphic-cover{
@@ -37,9 +43,12 @@
 .evoke .missions.graphic-cover-img img{
 	height: 150px;
 	position: absolute;
-	top: 30px;
+	/*top: 30px;
 	z-index: 1;
-	left: 60px;
+	left: 60px;*/
+	top: 80px;
+	z-index: 1;
+	left: 40px;
 	border: 2px solid #000;
 }
 
@@ -75,8 +84,9 @@
 
 .evoke.mission.status-bg{
 	/*background-color: #000;*/
-	background-color: rgba(0, 0, 0, 0.7);
-	padding: 20px 30px;
+	background-color: rgba(0, 0, 0, 0.6);
+	/*padding: 20px 30px;*/
+	padding: 5px 0px 15px;
 	border-top: 1px solid #898989;
 	/*border-bottom: 1px solid #898989;*/
 	/*margin-bottom:50px;*/
@@ -128,32 +138,55 @@
 	background-color: #c65862;
 }
 
-/* End new CSS */
-
- .evoke.missions li {
-	list-style:none;
+.evoke .mission.tabs{
+	padding:10px 30px;
 }
 
-.evoke.ribbon-position{
-	position: absolute;
-	bottom: 40px;
-	/*left: 29.6%;*/
+.evoke .mission.tabs i{
+	background-color: #1f8cb2;
+	padding: 10px 15px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border-left: 5px solid #125167;
+	margin-bottom: 20px;
+	color:#fff;
 }
 
-.evoke.todo-list{
-	background-color:#e4e3dd;
-	margin-top: -8%;
-	margin-bottom: 70px;
+.evoke .mission.tabs .description p{
+	font-family: 'AlegreyaRegular';
+	color:#fff;
+}
+
+.evoke .mission.tabs .dossier h2{
+	display: inline;
+	margin-left: 20px;
+	font-family: 'AmaticSC-Regular';
+	color:#fff;
+	font-size: 1.8vw;
+}
+
+.evoke .mission.tabs .quests{
+	text-align: center;
+	word-wrap: break-word;
+	-webkit-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;
+	-moz-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;
+	box-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;
+}
+
+.evoke .mission.tabs .quests h1{
+	color:#fff;
+	font-family: 'AmaticSC-Regular';
 }
 
 .evoke.todo-list.content{
-	padding: 20px 0px 100px;
+	background-color:#e4e3dd;
+	padding: 20px 0px;
 }
 
 .evoke.todo-list.content h1{
 	color: #c41616;
 	font-family: 'AmaticSC-Bold';
-	padding: 40px 30px 0px;
+	padding: 0px 30px;
 	font-size: 3.0vw;
 }
 
@@ -166,12 +199,24 @@
 	padding: 20px 20px 10px;
 	margin: 0px auto;
 	border-bottom: 2px solid #a7a7a7;
-	width: 95%;
+	width: 100%;
 }
 
 .evoke.todo-list.content li h2{
 	font-family: 'AmaticSC-Regular';
 	font-size: 2.5vw;
+}
+
+/* End new CSS */
+
+ .evoke.missions li {
+	list-style:none;
+}
+
+.evoke.ribbon-position{
+	position: absolute;
+	bottom: 40px;
+	/*left: 29.6%;*/
 }
 
 .evoke.item-complete{
@@ -291,67 +336,6 @@
 
 .columns.padding{
 	padding:0;
-}
-
-.postit {    
- 	text-align: center;
- 	cursor:pointer;
-	/* width: 275px; */
-	margin: 0px 20%;
-	word-wrap: break-word;
-	/* min-height: 175px; */
-	/* max-height: 175px; */
-	/* padding-top: 35px; */
-	position: relative;
-	border: 1px solid #E8E8E8;
-	/*min-height:275px;*/
-	min-height:10vw;
-	/*border-top: 60px solid #fdfd86;*/
-	/* font-family: 'Reenie Beanie'; */
-	/* font-size: 22px; */
-	/* border-bottom-right-radius: 60px 5px; */
-	/* display: inline-block; */
-	background: rgb(255,255,136);
-	background: -moz-linear-gradient(-45deg, rgba(255,255,136,1) 77%, rgba(255,255,214,1) 100%);
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(77%,rgba(255,255,136,1)), color-stop(100%,rgba(255,255,214,1)));
-	background: -webkit-linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%);
-	background: -o-linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%);
-	background: -ms-linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%);
-	background: linear-gradient(-45deg, rgba(255,255,136,1) 77%,rgba(255,255,214,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff88', endColorstr='#ffff88',GradientType=0 );
-}
- 
-.postit:after {     
-   content: "";
-  position:absolute;
-  z-index:-1;
-  right:-0px; bottom:20px;
-  width:200px;
-  height: 25px;
-  background: rgba(0, 0, 0, 0.2);
-  box-shadow:2px 15px 5px rgba(0, 0, 0, 0.40);
--moz-transform: matrix(-1, -0.1, 0, 1, 0, 0);
- -webkit-transform: matrix(-1, -0.1, 0, 1, 0, 0);
-      -o-transform: matrix(-1, -0.1, 0, 1, 0, 0);
-     -ms-transform: matrix(-1, -0.1, 0, 1, 0, 0);
-         transform: matrix(-1, -0.1, 0, 1, 0, 0);
-}
-
-.postit-2{
-	/*margin: 0px 250px;*/
-	margin: 0px 30%;
-	padding: 5px 10px;
-}
-
-.postit-green{
-	border: 1px solid rgba(86,186,128,1);
-	background: rgb(86,186,128);
-	background: -moz-linear-gradient(-45deg, rgba(86,186,128,1) 77%, rgba(255,255,214,1) 100%);
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(77%,rgba(86,186,128,1)), color-stop(100%,rgba(255,255,214,1)));
-	background: -webkit-linear-gradient(-45deg, rgba(86,186,128,1) 77%,rgba(255,255,214,1) 100%);
-	background: -o-linear-gradient(-45deg, rgba(86,186,128,1) 77%,rgba(255,255,214,1) 100%);
-	background: -ms-linear-gradient(-45deg, rgba(86,186,128,1) 77%,rgba(255,255,214,1) 100%);
-	background: linear-gradient(-45deg, rgba(86,186,128,1) 77%,rgba(255,255,214,1) 100%);
 }
 
 .project {    
