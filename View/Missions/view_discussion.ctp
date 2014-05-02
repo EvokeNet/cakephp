@@ -66,7 +66,11 @@
 			<div class = "evoke missions header tint">
 				<h3> <?= strtoupper($mission['Mission']['title']) ?> </h3>
 				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
-				<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
+					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
+                <?php else :?>
+					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+                <?php endif ?>
 			</div>
 
 			<div class="row full-width-alternate">
