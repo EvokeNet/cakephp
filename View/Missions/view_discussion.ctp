@@ -31,12 +31,20 @@
 			
 			<div class = "evoke missions graphic-cover">
 				<?php if(!empty($novels)) :?>
-	 				<ul class="clearing-thumbs clearing-feature" data-clearing>						
-		 				<li  class="clearing-featured-img "><a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>"><img src="<?= $this->webroot.'img/hq_cover.jpg'?>"></a></li>
+	 				<ul class="clearing-thumbs clearing-feature" data-clearing>		
+
+		 				<li class="clearing-featured-img ">
+		 					<div class = "evoke missions graphic-cover-img">
+			 					<a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
+			 						<img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
+		 						</a>
+	 						</div>
+ 						</li>
 		 				
 		 				<?php foreach ($novels as $novel) : ?>
 							<li><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
 						<?php endforeach; ?>
+						
 					</ul>
 					<!-- <img src = '<?= $this->webroot.'img/episodio10.jpg' ?>'> -->
 					<div class = "evoke ribbon-position">
