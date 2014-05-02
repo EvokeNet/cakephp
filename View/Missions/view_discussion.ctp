@@ -63,32 +63,33 @@
 	  </div>
 	  <div class="small-6 medium-6 large-5 columns">
 	  		<div class = "evoke position">
-	  			
- 				<ul class="clearing-thumbs clearing-feature" data-clearing>						
-	 				<?php 
-	 					$first = ' class="clearing-featured-img "';	
-	 				?>
+	  			<?php if(!empty($novels)) :?>
+	 				<ul class="clearing-thumbs clearing-feature" data-clearing>						
+		 				<?php 
+		 					$first = ' class="clearing-featured-img "';	
+		 				?>
 
-	 				<?php foreach ($novels as $novel) : ?>
-						<li <?= $first ?>><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
-						<?php $first = ''; ?>
-					<?php endforeach; ?>
- 						
-				</ul>
+		 				<?php foreach ($novels as $novel) : ?>
+							<li <?= $first ?>><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
+							<?php $first = ''; ?>
+						<?php endforeach; ?>
+	 						
+					</ul>
 
-	  			<div class = "evoke ribbon-position">
-			  		<div class="ribbon-wrapper">
-						<div class="ribbon-front">
-							<?= __('Graphic Novel') ?>
+		  			<div class = "evoke ribbon-position">
+				  		<div class="ribbon-wrapper">
+							<div class="ribbon-front">
+								<?= __('Graphic Novel') ?>
+							</div>
+							<div class="ribbon-edge-topleft"></div>
+							<div class="ribbon-edge-topright"></div>
+							<div class="ribbon-edge-bottomleft"></div>
+							<div class="ribbon-edge-bottomright"></div>
+							<div class="ribbon-back-left"></div>
+							<div class="ribbon-back-right"></div>
 						</div>
-						<div class="ribbon-edge-topleft"></div>
-						<div class="ribbon-edge-topright"></div>
-						<div class="ribbon-edge-bottomleft"></div>
-						<div class="ribbon-edge-bottomright"></div>
-						<div class="ribbon-back-left"></div>
-						<div class="ribbon-back-right"></div>
 					</div>
-				</div>
+				<?php endif ?>
 			</div>
 	  </div>
 	</div>

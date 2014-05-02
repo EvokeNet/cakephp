@@ -144,7 +144,8 @@ class MissionsController extends AppController {
 			), 
 			'conditions' => array(
 				'Evidence.mission_id' => $id, 
-				'Evidence.phase_id' => $missionPhase['Phase']['id']
+				'Evidence.phase_id' => $missionPhase['Phase']['id'],
+				'Evidence.title != ' => ''
 			)
 		));
 
@@ -364,7 +365,7 @@ class MissionsController extends AppController {
 
 		$is_phase_completed = false;
 
-		if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']])){
+		if(isset($completed[$missionPhase['Phase']['id']]) && ($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']])){
 
 			$event = new CakeEvent('Controller.Phase.completed', $this, array(
 	            'entity_id' => $missionPhase['Phase']['id'],
@@ -398,7 +399,9 @@ class MissionsController extends AppController {
 
 	        // $this->Session->setFlash(sprintf(__("You have completed the %s Phase"), $missionPhase['Phase']['name']), 'flash_lightbox_message');
 
-		} if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && ($mission['Mission']['basic_training'] == 1) && ($user['User']['basic_training'] == 0)){
+		} if(isset($completed[$missionPhase['Phase']['id']]) && 
+			($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && 
+			($mission['Mission']['basic_training'] == 1) && ($user['User']['basic_training'] == 0)){
 
 			$this->loadModel('PointsDefinition');
 	        $def = new PointsDefinition();
