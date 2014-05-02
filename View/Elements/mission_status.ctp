@@ -17,13 +17,13 @@
 			//echo (($_completed * 100)/$_total) . '%';
 		?>
 
-		<h1><?= strtoupper(__('Mission Status')) ?></h1>&nbsp;&nbsp;
+		<!-- <h1><?= strtoupper(__('Mission Status')) ?></h1>&nbsp;&nbsp;
 		<span><?php 
 			if($_total){
 				$mission_completed = round(($_completed * 100)/$_total); 
 				//echo $mission_completed.'%';
 			}
-		?></span>
+		?></span> -->
 	  </div>
 	  <div class="small-9 medium-9 large-9 columns">
 	  	<div class="row full-width-alternate">

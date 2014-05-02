@@ -203,6 +203,14 @@ button, div, p, span, a,
 
 /* End evidence box */
 
+.evoke .no-left-padding{
+	padding-left:0;
+}
+
+.evoke .no-right-padding{
+	padding-right:0;
+}
+
 .evoke .text-align-end{
 	text-align: end;
 }

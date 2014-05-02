@@ -1,8 +1,7 @@
 $(function() {
 
-  $('.evoke .missions.index img').each(function(n) {
-    n += 1;
-    $(this).wrap('<figure class="tint t'+ n + '"></figure>');
+  $('.evoke .missions.index img').each(function(){
+    $(this).wrap('<div class="tint t"></div>');
   });
-
+  
 });

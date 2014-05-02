@@ -22,8 +22,16 @@
 	<?php echo $this->Session->flash(); ?>
 
 	<div class="evoke default row full-width-alternate">
-	  <div class="small-2 medium-2 large-2 columns">
+	  
+	  <div class="small-2 medium-2 large-2 columns padding top-2">
 	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
+
+	  	<?php foreach($missions as $mission): ?>
+			<div class = "evoke dashboard missions">
+				<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+			</div>
+		<?php endforeach; ?>
+
 	  </div>
 
 	  <div class="small-7 medium-7 large-7 columns padding top-2">
