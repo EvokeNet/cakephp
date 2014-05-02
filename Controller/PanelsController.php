@@ -318,10 +318,10 @@ class PanelsController extends AppController {
 		$powerpoints = $this->PowerPoint->find('all');
 
 		//retrieving mission img
-		$mission_img = null;
-		if(!is_null($id)){
-			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
-		}
+		// $mission_img = null;
+		// if(!is_null($id)){
+		// 	$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
+		// }
 
 		$dossier_files = null;
 		$dossier = null;
@@ -406,12 +406,12 @@ class PanelsController extends AppController {
 				}
 			} else {
 				//first, check if he sended another img for the mission...
-				if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
-					//he did not send an image, unset the 'Attachment' so it doesn't cause trouble
-					$data = $this->request->data;
-					unset($data['Attachment']);
-					$this->request->data = $data;
-				}
+				// if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
+				// 	//he did not send an image, unset the 'Attachment' so it doesn't cause trouble
+				// 	$data = $this->request->data;
+				// 	unset($data['Attachment']);
+				// 	$this->request->data = $data;
+				// }
 
 				//it already exists, so let's save any alterations and move on..
 				if ($this->Mission->createWithAttachments($this->request->data, true, $id)) {
@@ -499,10 +499,10 @@ class PanelsController extends AppController {
 		));
 
 		//image attached to mission, to be displayed in mission data tab
-		$mission_img = null;
-		if(!is_null($id)){
-			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
-		}
+		// $mission_img = null;
+		// if(!is_null($id)){
+		// 	$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
+		// }
 
 		$dossier_files = null;
 		$dossier = null;
@@ -593,13 +593,7 @@ class PanelsController extends AppController {
 			
 			if($this->Mission->exists($id)) {
 				//first, check if he sended another img for the mission...
-				if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
-					//he did not send an image, unset the 'Attachment' so it doesn't cause trouble
-					$data = $this->request->data;
-					unset($data['Attachment']);
-					$this->request->data = $data;
-				}
-
+				
 				//it already exists, so let's save any alterations and move on..
 				if ($this->Mission->createWithAttachments($this->request->data, true, $id)) {
 					$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));

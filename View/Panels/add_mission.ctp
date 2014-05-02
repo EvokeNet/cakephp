@@ -106,11 +106,17 @@
 									echo $this->Form->input('video_link', array('value' => $mission['Mission']['video_link_es'], 'label' => __('Video Link')));
 									echo $this->Form->input('video_link_es', array('value' => $mission['Mission']['video_link_es'], 'label' => __('Spanish Video Link')));
 									echo $this->Form->radio(__('Basic Training'), array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=>$mission['Mission']['basic_training']));
-									if(!is_null($mission_img) && !empty($mission_img)) :
-										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
-										echo '<div class="input file"><label for="Attachment0Attachment">Change Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
+									if(!is_null($mission['Mission']['image_dir'])) :
+										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['image_dir'].'/thumb_'.$mission['Mission']['image_attachment'] . '"/>';
+										echo '<div class="input file"><label for="AttachmentImgAttachment">Change Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
 									else :
-										echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
+										echo '<div class="input file"><label for="AttachmentImgAttachment">Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
+									endif;
+									if(!is_null($mission['Mission']['cover_dir'])) :
+										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/thumb_'.$mission['Mission']['cover_attachment'] . '"/>';
+										echo '<div class="input file"><label for="AttachmentCoverAttachment">Change Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
+									else :
+										echo '<div class="input file"><label for="AttachmentCoverAttachment">Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
 									endif;
 									echo $this->Form->hidden('form_type', array('value' => 'mission'));
 									if(isset($mission['MissionIssue'][0]['issue_id'])) {
@@ -140,7 +146,18 @@
 									echo $this->Form->input('video_link', array('label' => __('Video Link')));
 									echo $this->Form->input('video_link_es', array('label' => __('Spanish Video Link')));
 									echo $this->Form->radio('basic_training', array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=> 0));
-									echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
+									if(!is_null($mission['Mission']['image_dir'])) :
+										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['image_dir'].'/thumb_'.$mission['Mission']['image_attachment'] . '"/>';
+										echo '<div class="input file"><label for="AttachmentImgAttachment">Change Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
+									else :
+										echo '<div class="input file"><label for="AttachmentImgAttachment">Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
+									endif;
+									if(!is_null($mission['Mission']['cover_dir'])) :
+										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/thumb_'.$mission['Mission']['cover_attachment'] . '"/>';
+										echo '<div class="input file"><label for="AttachmentCoverAttachment">Change Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
+									else :
+										echo '<div class="input file"><label for="AttachmentCoverAttachment">Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
+									endif;
 									echo $this->Form->hidden('form_type', array('value' => 'mission'));
 									echo $this->Form->input('MissionIssue.issue_id', array(
             							'options' => $issues
