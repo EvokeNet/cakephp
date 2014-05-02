@@ -1,6 +1,6 @@
 <div class = "evoke mission status-bg">
  	<div class="row full-width-alternate">
-	  <div class="small-3 medium-3 large-3 columns" style = "display: inline;">
+	  <div class="small-1 medium-1 large-1 columns" style = "display: inline;">
 	  	<?php 
 	  		$complete = 0;
 	  		$mission_completed = 0;
@@ -25,7 +25,7 @@
 			}
 		?></span> -->
 	  </div>
-	  <div class="small-9 medium-9 large-9 columns">
+	  <div class="small-11 medium-11 large-11 columns">
 	  	<div class="row full-width-alternate">
 		  <div class="small-11 medium-11 large-11 columns padding">
 		  	<div>
@@ -46,7 +46,7 @@
 
 					?>
 					<a href = "<?php echo $this->Html->url(array('controller'=>'missions', 'action' => 'view', $phase['Mission']['id'], $phase['Phase']['position'])); ?>"><h2 class = "evoke mission status <?=$phaseDone ?>"><?= strtoupper($phase['Phase']['name'])?></h2></a>
-					<div class = "evoke mission circle-position"><div class="evoke mission circle <?=$phaseDone ?>"></div></div>
+					<!-- <div class = "evoke mission circle-position"><div class="evoke mission circle <?=$phaseDone ?>"></div></div> -->
 					<div class = "evoke mission bar-position">
 						<div class="evoke mission status progress <?=$phaseDone ?>" style="">
 							<span class="evoke mission status <?=$phaseDone ?> meter" style="width: <?php echo (($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) ?>%"></span>

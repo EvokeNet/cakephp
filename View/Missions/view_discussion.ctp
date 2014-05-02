@@ -31,12 +31,20 @@
 			
 			<div class = "evoke missions graphic-cover">
 				<?php if(!empty($novels)) :?>
-	 				<ul class="clearing-thumbs clearing-feature" data-clearing>						
-		 				<li  class="clearing-featured-img "><a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>"><img src="<?= $this->webroot.'img/hq_cover.jpg'?>"></a></li>
+	 				<ul class="clearing-thumbs clearing-feature" data-clearing>		
+
+		 				<li class="clearing-featured-img ">
+		 					<div class = "evoke missions graphic-cover-img">
+			 					<a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
+			 						<img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
+		 						</a>
+	 						</div>
+ 						</li>
 		 				
 		 				<?php foreach ($novels as $novel) : ?>
 							<li><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
 						<?php endforeach; ?>
+						
 					</ul>
 					<!-- <img src = '<?= $this->webroot.'img/episodio10.jpg' ?>'> -->
 					<div class = "evoke ribbon-position">
@@ -56,13 +64,14 @@
 			</div>
 
 			<div class = "evoke missions index tint">
+				<h3> <?= strtoupper($mission['Mission']['title']) ?> </h3>
+				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
                 <?php else :?>
 					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
                 <?php endif ?>
 			</div>
-			<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
 		</div>
 	</div>
