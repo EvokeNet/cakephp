@@ -154,7 +154,7 @@ class MissionsController extends AppController {
 		foreach ($evidences as $e) {
 			$liked_evidences[count($e['Like'])][] = $e;
 		}
-		asort($liked_evidences);
+		krsort($liked_evidences);
 
 		$this->loadModel('Evokation');
 		$allevokations = $this->Evokation->find('all', array(
