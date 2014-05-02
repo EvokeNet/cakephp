@@ -23,7 +23,7 @@
 }
 
 .evoke .missions.index {
-	max-height: 300px;
+	max-height: 350px;
 	width: 100%;
 	overflow: hidden;
 	/*border-bottom: 5px solid #000;*/
@@ -74,11 +74,15 @@
 }*/
 
 .evoke.mission.status-bg{
-	background-color: #000;
+	/*background-color: #000;*/
+	background-color: rgba(0, 0, 0, 0.7);
 	padding: 20px 30px;
 	border-top: 1px solid #898989;
-	border-bottom: 1px solid #898989;
-	margin-bottom:50px;
+	/*border-bottom: 1px solid #898989;*/
+	/*margin-bottom:50px;*/
+	position: absolute;
+	width: 100%;
+	bottom: 20px;
 }
 
 .evoke.mission.status-bg h1{
@@ -250,57 +254,6 @@
 
 .evoke.mission.evokation h6{
 	font-size: 1.2vw;
-}
-
-.evoke.mission.status-bg{
-	background-color: #000;
-	padding: 20px 30px;
-	border-top: 1px solid #898989;
-	border-bottom: 1px solid #898989;
-	margin-bottom:50px;
-}
-
-.evoke.mission.status-bg h1{
-	color:#fff;
-	font-size:2.5vw;
-	display: inline;
-	font-family: 'AlegreyaBold';
-	vertical-align: text-bottom;
-}
-
-.evoke.mission.status-bg h2{
-	font-size:1.5vw;
-	font-family: 'AlegreyaBold';
-}
-
-.evoke.mission.status-bg span{
-	color:#fff;
-	font-size:4.0vw;
-	font-family: 'AlegreyaBold';
-}
-
-.evoke.mission.status.progress{
-	background-color: #252525;
-	padding: 0;
-	/*height: 0.8rem;*/
-	height: 0.5rem;
-	border: 0;
-}
-
-.evoke.mission.status.success{
-	color: #20c475;
-}
-
-.evoke.mission.status.dev{
-	color: #c65862;
-}
-
-.evoke.mission.status.success.meter{
-	background-color: #20c475;
-}
-
-.evoke.mission.status.dev.meter{
-	background-color: #c65862;
 }
 
 .evoke.mission.circle-position{

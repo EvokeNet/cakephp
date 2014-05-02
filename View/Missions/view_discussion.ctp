@@ -40,9 +40,10 @@
 			</div>
 
 			<div class = "evoke missions index tint">
+				<h3> <?= strtoupper($mission['Mission']['title']) ?> </h3>
+				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 				<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
 			</div>
-			<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
 		</div>
 	</div>
