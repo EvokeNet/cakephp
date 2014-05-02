@@ -19,7 +19,12 @@
 			<?php foreach($missions as $mission): ?>
 
                 <div class="evoke default view view-first">
-                    <img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+                    <?php if(!is_null($mission['Mission']['cover_dir'])) :?>
+						<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
+                    <?php else :?>
+						<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+                	<?php endif ?>
+                    
                     <div class="mask">
                         <h2><?= $mission['Mission']['title'] ?></h2>
                         <p><?= $mission['Mission']['description'] ?></p>
