@@ -1,7 +1,7 @@
 <?php
 	//echo $this->Html->css('/components/jcarousel/examples/basic/jcarousel.basic');
 	//echo $this->Html->css('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
-	echo $this->Html->css('jcarousel');
+	echo $this->Html->css('mycarousel');
 	//echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
 
 	echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
@@ -30,19 +30,54 @@
 
 	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
 
-	  	<?php foreach($missions as $mission): ?>
-			<div class = "evoke dashboard missions">
-				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
-					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
-                <?php else :?>
-					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
-                <?php endif ?>
-			</div>
-		<?php endforeach; ?>
-
 	  </div>
 
 	  <div class="small-7 medium-7 large-7 columns padding top-2">
+
+	  	  <div id="pattern" class="pattern">
+  	<div class="c">
+			<div class="c-list-container">
+				<ul class="c-list">
+
+					<?php foreach($missions as $mission): ?>
+						<div class = "evoke dashboard missions">
+							<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
+								<li>
+									<a href="#">
+										<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
+										<!-- <div class="summary">
+											<h2>This is the first title</h2>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
+										</div> -->
+									</a>
+								</li>
+								
+			                <?php else :?>
+
+								<li>
+									<a href="#">
+										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+										<!-- <div class="summary">
+											<h2>This is the first title</h2>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
+										</div> -->
+									</a>
+								</li>
+
+			                <?php endif ?>
+						</div>
+					<?php endforeach; ?>
+					
+				</ul>
+			</div>
+			<nav class="c-nav">
+				<a href="#" class="prev">&larr; Prev</a>
+				<a href="#" class="next">Next &rarr;</a>
+			</nav>
+		</div>
+		
+	</div>
+
 	  	<h3> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
 
 	  	<dl class="default tabs" data-tab>
@@ -170,7 +205,13 @@
 	  </div>
 
 	  <div class="medium-1 end columns"></div>
-	  
+
 	</div>
 
 </section>
+
+<?php
+
+	echo $this->Html->script('mycarousel', array('inline' => false));
+
+?>
