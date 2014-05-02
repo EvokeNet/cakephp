@@ -138,15 +138,12 @@
 	  	<div class = "evoke position">
 	  		
 	  		<?php if(!empty($novels)) :?>
-		  		<ul class="clearing-thumbs clearing-feature" data-clearing>
-					<?php 
-		 					$first = ' class="clearing-featured-img "';	
-		 				?>
-
-		 				<?php foreach ($novels as $novel) : ?>
-							<li <?= $first ?>><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
-							<?php $first = ''; ?>
-						<?php endforeach; ?>
+		  		<ul class="clearing-thumbs clearing-feature" data-clearing>						
+		 			<li  class="clearing-featured-img "><a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>"><img src="<?= $this->webroot.'img/hq_cover.jpg'?>" width="100%"></a></li>
+		 				
+		 			<?php foreach ($novels as $novel) : ?>
+						<li><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
+					<?php endforeach; ?>
 				</ul>
 			<?php endif ?>
 		</div>
