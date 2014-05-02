@@ -98,7 +98,7 @@
 
 	  </div>
 
-	  <div class="small-3 medium-3 large-3 columns padding top-2">
+	  <div class="small-2 medium-2 large-2 columns padding top-2">
 	  	
 	  	<h3> <?= strtoupper(__('Feed')) ?> </h3>
 	  	<div class = "evoke content-block padding-10">
@@ -168,6 +168,9 @@
 	  	</div>
 
 	  </div>
+
+	  <div class="medium-1 end columns"></div>
+	  
 	</div>
 
 </section>

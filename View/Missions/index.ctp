@@ -12,7 +12,16 @@
 
 <section class="evoke default-background">
 	<div class="evoke default row full-width-alternate">
-	  <div class="small-12 small-centered columns">
+
+<!-- 	  <div class="small-1 medium-1 large-1 columns">
+	  	YAY
+	  </div>
+ -->
+	  <div class="small-2 medium-2 large-2 columns">
+	  	<?php echo $this->element('menu', array('user' => $user));?>
+	  </div>
+
+	  <div class="small-9 medium-9 large-9 columns">
 
 	  	<h3 class = "evoke padding top-2"> <?= strtoupper(__('Choose a mission')) ?> </h3>
 			
@@ -35,6 +44,9 @@
 			<?php endforeach; ?>
 
 		</div>
+
+		<div class="medium-1 end columns"></div>
+
 	</div>
 </section>
 

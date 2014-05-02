@@ -118,7 +118,7 @@
 	background-color: #252525;
 	padding: 0;
 	/*height: 0.8rem;*/
-	height: 0.5rem;
+	height: 0.3rem;
 	border: 0;
 }
 
@@ -205,6 +205,14 @@
 .evoke.todo-list.content li h2{
 	font-family: 'AmaticSC-Regular';
 	font-size: 2.5vw;
+}
+
+.evoke.mission.bar-position{
+	/*margin-top: 24px;*/
+	/*margin-left: 37px;*/
+	/* position: absolute; */
+	/* width: 90%; */
+	/*text-align: end;*/
 }
 
 /* End new CSS */
@@ -324,14 +332,6 @@
 
 .evoke.mission.circle.dev{
 	border: 4px solid #c65862;
-}
-
-.evoke.mission.bar-position{
-	margin-top: 24px;
-	margin-left: 37px;
-	/* position: absolute; */
-	/* width: 90%; */
-	text-align: end;
 }
 
 .columns.padding{

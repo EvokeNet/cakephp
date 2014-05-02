@@ -25,9 +25,9 @@
 
 	<div class="evoke default row full-width-alternate">
 		<div class = "small-2 medium-2 large-2 columns">
-			<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
+			<?php echo $this->element('menu', array('user' => $user));?>
 		</div>
-		<div class = "small-10 medium-10 large-10 columns">
+		<div class = "small-9 medium-9 large-9 columns">
 			
 			<div class = "evoke missions graphic-cover">
 				<?php if(!empty($novels)) :?>
@@ -319,6 +319,11 @@
 			</div>
 
 		</div>
+
+		<div class="small-1 medium-1 large-1 end columns">
+			
+		</div>
+
 	</div>
 
 </section>
