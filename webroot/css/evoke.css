@@ -67,9 +67,180 @@ button, div, p, span, a,
     max-width: 100%;
 }
 
+/* SPACINGS, MARGINS, PADDINGS */
+
+.evoke .margin.top {
+	margin-top: 1em;
+}
+
+.evoke .margin.top-2 {
+	margin-top: 2em;
+}
+
+.evoke .margin.left {
+	margin-left: 1em;
+}
+
+.evoke .margin.left-2 {
+	margin-left: 2em;
+}
+
+.evoke .margin.bottom {
+	margin-bottom: 1em;
+}
+
+.evoke .padding.top-2 {
+	padding-top: 2em;
+}
+
+.evoke .padding.top-5 {
+	padding-top: 5em;
+}
+
+/* Background */
+
+.evoke .default-background{
+	background: url('../img/bg-purple.png') no-repeat center center fixed;
+	/*-webkit-background-size: 100%;
+	-moz-background-size: 100%;
+	-o-background-size: 100%;
+	background-size: 100%;*/
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.evoke .default h3{
+	font-family: 'SBB';
+	color:#fff;
+	/*text-shadow: 0px 0px 8px rgba(47, 113, 108, 1);*/
+	/*text-shadow: 3px 3px 0px rgba(47, 113, 108, 1);*/
+	text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.9);
+	/*text-shadow: 0px 0px 20px #2f716c;*/
+	font-size: 1.2em;
+}
+
+.evoke .content-block{
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 2px;
+	margin-bottom:20px;
+	-webkit-box-shadow: 1px 1px 1px 0px rgba(137,87,102,1);
+	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	box-shadow: 1px 1px 1px 0px rgba(137,87,102,1);
+}
+
+.evoke .content-block ul{
+	list-style: none;
+}
+
+.evoke .content-block ul li{
+	font-size:1.1vw;
+	color:#fff;
+}
+
+.evoke .content-block ul li a{
+	font-size:1.1vw;
+	color:#fff;
+}
+
+.evoke .default.tabs dd.active a{
+	background: #000;
+}
+
+.evoke .default.tabs dd>a{
+	background: #1f8cb2;
+	color: #ffffff;
+	font-size: 0.8vw;
+	padding: 1em 2em;
+	border-left: 1px solid #000;
+}
+
+.evoke .default.tabs-content{
+	border-top: 5px solid #000;
+	margin-top: 1px;
+	height: 700px;
+	overflow-x: hidden;
+}
+
 .evoke .bg-topbar {
 	background: #1f8cb2;
+	border-bottom: 2px solid #000;
 }
+
+.evoke .padding-10{
+	padding: 10px;
+}
+
+/* Evidence box */
+
+.evoke .evidence.content-box{
+	/*border-bottom: 2px solid #484058;*/
+	border-bottom: 2px solid rgba(0,0,0, 0.3);
+}
+
+.evoke .evidence.content-box:hover{
+	/*background-color:#5a8fab;*/
+
+	background-color: rgba(90, 143, 171, 0.4);
+}
+
+.evoke .evidence .headings{
+	line-height: 1em;
+	margin-bottom: 0;
+	color:#fff;
+	font-family: 'AlegreyaRegular';
+}
+
+.evoke .evidence.content-box h5{
+	font-size: 0.85rem;
+	font-family: 'AlegreyaBold';
+}
+
+.evoke .evidence.content-box h6{
+	font-size: 0.75rem;
+}
+
+/* End evidence box */
+
+.evoke .no-left-padding{
+	padding-left:0;
+}
+
+.evoke .no-right-padding{
+	padding-right:0;
+}
+
+.evoke .text-align-end{
+	text-align: end;
+}
+
+.evoke .text-align-center{
+	text-align: center;
+}
+
+.evoke .button.general {
+	background: #1f8cb2;
+	color: #ffffff;
+	/*font-size: 1.0vw;*/
+	/*font-size: 0.9em;*/
+	/*border-radius: 5px;
+	padding: 0.4em 2em;*/
+	border-radius: 10px;
+	/*padding: 0.4em 1.5em 0.8em;*/
+	padding: 0.7em 1.4em;
+	/*margin-right: 10px;*/
+	border-right: 3px solid #125167;
+	border-bottom: 3px solid #125167;
+}
+
+.evoke .button {
+	padding-top: 1.25em;
+	padding-bottom: 1.25em;
+	color: #ffffff;
+}
+
+/* End of new CSS */
 
 .evoke .divider{
 	height:50px!important;
@@ -176,36 +347,6 @@ button, div, p, span, a,
 .evoke.top-bar-section h4{
 	font-size:2.0em;
 	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
-}
-
-/* SPACINGS, MARGINS, PADDINGS */
-
-.evoke .margin.top {
-	margin-top: 1em;
-}
-
-.evoke .margin.top-2 {
-	margin-top: 2em;
-}
-
-.evoke .margin.left {
-	margin-left: 1em;
-}
-
-.evoke .margin.left-2 {
-	margin-left: 2em;
-}
-
-.evoke .margin.bottom {
-	margin-bottom: 1em;
-}
-
-.evoke .padding.top-2 {
-	padding-top: 2em;
-}
-
-.evoke .padding.top-5 {
-	padding-top: 5em;
 }
 
 .evoke .footer{
@@ -324,14 +465,10 @@ button, div, p, span, a,
 	height: 50%;
 }
 
-.evoke .tabs-content{
+/*.evoke .tabs-content{
 	margin-top: 30px;
 	padding: 5px 30px;
-	/*height: 700px;
-	overflow-y: scroll;
-	overflow-x: hidden;*/
-	/*overflow: scroll;*/
-}
+}*/
 
 .evoke .allies{
 	/*min-height:200px;*/
@@ -562,14 +699,10 @@ button, div, p, span, a,
 	color:#FFF;
 }
 
-.evoke.tabs-content{
+/*.evoke.tabs-content{
 	margin-top: 30px;
 	padding: 5px 30px;
-	/*height: 700px;
-	overflow-y: scroll;
-	overflow-x: hidden;*/
-	/*overflow: scroll;*/
-}
+}*/
 
 .evoke.tabs-content > .content.active {
 	width: 100%;
@@ -646,22 +779,18 @@ button, div, p, span, a,
 	margin: 0px 40px;
 }
 
-.evoke .tabs dd.active a{
+/*.evoke .tabs dd.active a{
 	background: #bb5660;
-	/*border-left: 3px solid #88363c;
-	border-top: 3px solid #88363c;*/
-}
+}*/
 
-.evoke .tabs dd>a{
+/*.evoke .tabs dd>a{
 	background: #1f8cb2;
 	color: #ffffff;
 	font-size: 0.8vw;
 	border-radius: 5px;
 	padding: 0.4em 0.9em;
 	margin-right: 10px;
-	/*border-right: 3px solid #125167;
-	border-bottom: 3px solid #125167;*/
-}
+}*/
 
 .evoke .icons.tabs{
 	float: right;
@@ -1266,32 +1395,35 @@ button, div, p, span, a,
 	margin-bottom:30px;
 	border-bottom: 5px solid #182537;
 	border-top: 5px solid #182537;*/
-	background-color: #095c79;
+	background-color: #1f8cb2;
 	margin-bottom: 30px;
-	border-bottom: 5px solid #182537;
-	text-align: center;
+	/*margin-left: -30px;*/
+	padding-left: 30px;
+
+	border-bottom: 3px solid #182537;
+	text-align: left;
 }
 
 .evoke.menu-bg ul{
 	padding: 20px 0px 10px;
 	margin-bottom: 0;
-	display: inline-block;
+	/*display: inline-block;*/
 }
 
 .evoke.menu-bg a{
-	font-size: 1.2vw;
+	font-size: 1vw;
 	font-family: 'AlegreyaBold';
 	margin-right: 50px;
-	color:#fff;
-	text-shadow: 0px 3px 2px rgba(0,0,0, 0.6);
+	color:#000;
+	/*text-shadow: 0px 3px 2px rgba(0,0,0, 0.6);*/
 }
 
 .evoke.menu-bg a:hover{
-	color:#bb5660;
+	color:#fff;
 }
 
 .evoke.menu-bg a:active{
-	color:#fff;
+	color:#000;
 }
 
 .evoke.inline-list a:link    {color:green;}

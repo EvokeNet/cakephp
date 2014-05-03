@@ -44,8 +44,22 @@ class MissionsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Mission->recursive = 0;
-		$this->set('missions', $this->Paginator->paginate());
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
+
+		$missions = $this->Mission->find('all');
+		foreach ($missions as $m => $mission) {
+			if($flags['_es']) {
+				$missions[$m]['Mission']['title'] = $mission['Mission']['title_es'];
+				$missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
+			}
+
+		}
 
 		$this->loadModel('User');
 
@@ -56,7 +70,7 @@ class MissionsController extends AppController {
 		$this->loadModel('Issue');
 		$issues = $this->Issue->find('all');
 
-		$this->set(compact('user', 'missionIssues', 'issues'));
+		$this->set(compact('missions', 'user', 'missionIssues', 'issues'));
 	}
 
 /**
