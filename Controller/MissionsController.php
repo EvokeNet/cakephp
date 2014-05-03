@@ -121,8 +121,11 @@ class MissionsController extends AppController {
 		}
 
 		$missionPhase = $this->Mission->Phase->find('first', array('conditions' => array('Phase.mission_id' => $id, 'Phase.position' => $phase_number)));
-		$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
-		$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);
+		// if(!empty($missionPhase)){
+			$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
+			$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);	
+		// } 
+		
 
 		//$evidences = $this->Mission->getEvidences($id);
 

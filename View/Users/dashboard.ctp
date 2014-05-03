@@ -45,7 +45,7 @@
 						<div class = "evoke dashboard missions">
 							<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 								<li>
-									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id']))?>">
+									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
 										<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
@@ -57,7 +57,7 @@
 			                <?php else :?>
 
 								<li>
-									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id']))?>">
+									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
 										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
