@@ -28,12 +28,10 @@
 	  <div class="small-2 medium-2 large-2 columns padding top-2">
 		<?php echo $this->element('menu', array('user' => $users));?>
 
-	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
-
 	  </div>
 
-	  <div class="small-7 medium-7 large-7 columns padding top-2">
-
+	  <div class="small-6 medium-6 large-6 columns padding top-2">
+	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
 	  	  <div id="pattern" class="pattern">
   	<div class="c">
 			<div class="c-list-container">
@@ -71,8 +69,8 @@
 				</ul>
 			</div>
 			<nav class="c-nav">
-				<a href="#" class="prev">&larr; Prev</a>
-				<a href="#" class="next">Next &rarr;</a>
+				<a href="#" class="prev"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
+				<a href="#" class="next"><i class="fa fa-arrow-circle-o-right fa-2x"></i></a>
 			</nav>
 		</div>
 		
@@ -133,7 +131,7 @@
 
 	  </div>
 
-	  <div class="small-2 medium-2 large-2 columns padding top-2">
+	  <div class="small-3 medium-3 large-3 columns padding top-2">
 	  	
 	  	<h3> <?= strtoupper(__('Feed')) ?> </h3>
 	  	<div class = "evoke content-block padding-10">

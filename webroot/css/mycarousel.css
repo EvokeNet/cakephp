@@ -19,6 +19,7 @@
         
         .c ul{
             list-style: none;
+            margin-left: 0;
         }
 
         .c li {
@@ -62,10 +63,11 @@
         /* Medium */
         @media screen and (min-width: 35em) {
             .c {
-                padding: 1em 0.5em 0;
+                /*padding: 1em 0.5em 0;*/
             }
             .c li {
-                padding: 0 0.5em;
+                /*padding: 0 0.5em;*/
+                padding: 0 0.2em;
             }
             body:after { /* Conditional CSS http://adactio.com/journal/5429/ */
                 content: 'medium';
