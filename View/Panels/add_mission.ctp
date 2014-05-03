@@ -69,7 +69,6 @@
 					<dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= __('Mission Dossier') ?></a></dd>
 					<dd class="<?php echo $badges_tag ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
 					<dd class="<?php echo $points_tag ?>"><a href="#points"><?= __('Points') ?></a></dd>
-					<dd class="<?php echo $novel_tag ?>"><a href="#graphic"><?= __('Graphic Novel') ?></a></dd>
 				<?php endif; ?>
 			</dl>
 			<div class="tabs-content">
@@ -103,20 +102,12 @@
 									echo $this->Form->input('title_es', array('value' => $mission['Mission']['title_es'], 'label' => __('Spanish Title')));
 									echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description'), 'required' => true));
 									echo $this->Form->input('description_es', array('value' => $mission['Mission']['description_es'], 'label' => __('Spanish Description')));
-									echo $this->Form->input('video_link', array('value' => $mission['Mission']['video_link_es'], 'label' => __('Video Link')));
-									echo $this->Form->input('video_link_es', array('value' => $mission['Mission']['video_link_es'], 'label' => __('Spanish Video Link')));
 									echo $this->Form->radio(__('Basic Training'), array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=>$mission['Mission']['basic_training']));
-									if(!is_null($mission['Mission']['image_dir'])) :
-										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['image_dir'].'/thumb_'.$mission['Mission']['image_attachment'] . '"/>';
-										echo '<div class="input file"><label for="AttachmentImgAttachment">Change Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
+									if(!is_null($mission_img) && !empty($mission_img)) :
+										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
+										echo '<div class="input file"><label for="Attachment0Attachment">Change Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 									else :
-										echo '<div class="input file"><label for="AttachmentImgAttachment">Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
-									endif;
-									if(!is_null($mission['Mission']['cover_dir'])) :
-										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/thumb_'.$mission['Mission']['cover_attachment'] . '"/>';
-										echo '<div class="input file"><label for="AttachmentCoverAttachment">Change Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
-									else :
-										echo '<div class="input file"><label for="AttachmentCoverAttachment">Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
+										echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 									endif;
 									echo $this->Form->hidden('form_type', array('value' => 'mission'));
 									if(isset($mission['MissionIssue'][0]['issue_id'])) {
@@ -143,21 +134,8 @@
 									echo $this->Form->input('title_es', array('label' => __('Spanish Title')));
 									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
 									echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
-									echo $this->Form->input('video_link', array('label' => __('Video Link')));
-									echo $this->Form->input('video_link_es', array('label' => __('Spanish Video Link')));
 									echo $this->Form->radio('basic_training', array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=> 0));
-									if(!is_null($mission['Mission']['image_dir'])) :
-										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['image_dir'].'/thumb_'.$mission['Mission']['image_attachment'] . '"/>';
-										echo '<div class="input file"><label for="AttachmentImgAttachment">Change Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
-									else :
-										echo '<div class="input file"><label for="AttachmentImgAttachment">Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
-									endif;
-									if(!is_null($mission['Mission']['cover_dir'])) :
-										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/thumb_'.$mission['Mission']['cover_attachment'] . '"/>';
-										echo '<div class="input file"><label for="AttachmentCoverAttachment">Change Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
-									else :
-										echo '<div class="input file"><label for="AttachmentCoverAttachment">Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
-									endif;
+									echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 									echo $this->Form->hidden('form_type', array('value' => 'mission'));
 									echo $this->Form->input('MissionIssue.issue_id', array(
             							'options' => $issues
@@ -320,57 +298,6 @@
 						Point distribution for the mission
 					</p>
 				</div>
-				<div class="content <?php echo $novel_tag ?>" id="graphic">
-					<?php 
-						echo $this->Form->create('Novel', array(
-	 					   		'url' => array(
-	 					   			'controller' => 'panels',
-	 					   			'action' => 'novel', $id, 'edit_mission'
-	 					   		),
-	 					   		'enctype' => 'multipart/form-data'
-						));
-
-						echo '<h3>'. __('English graphic novel:') . '</h3>';
-						$kn = 0;
-						foreach ($novels_en as $ne => $novel) {
-							echo '<div id="content' .$kn.'">';
-							echo $this->Form->hidden($kn.'.mission_id', array('value' => $id));
-							echo $this->Form->hidden($kn.'.language', array('value' => 'en'));
-							echo $this->Form->hidden($kn.'.id', array('value' => $novel['Novel']['id']));
-							echo $this->Form->input($kn.'.page', array('value' => $novel['Novel']['page'], 'label' => __('Page number')));			
-							echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/thumb_'.$novel['Novel']['page_attachment'] . '"/>';
-							echo '<div class="input file"><label for="Novel'.$kn.'Attachment0Attachment">Change Page Image</label><input type="file" name="data[Novel]['.$kn.'][Attachment][0][attachment]" id="Novel'.$kn.'Attachment0Attachment"></div>';
-							echo '<button class="button tiny alert" id="Delete'. $kn .'">delete</button></div>';
-							$kn++;
-						}
-
-						echo '<div id="newEn"></div>';
-						
-						echo '<button href="#" id="newFileNovelEn" class="button tiny">New Page</button>';
-						
-						echo '<h3>'. __('Spanish graphic novel:') . '</h3>';
-						foreach ($novels_es as $nes => $novel) {
-							echo '<div id="content' .$kn.'">';
-							echo $this->Form->hidden($kn.'.mission_id', array('value' => $id));
-							echo $this->Form->hidden($kn.'.language', array('value' => 'es'));
-							echo $this->Form->hidden($kn.'.id', array('value' => $novel['Novel']['id']));
-							echo $this->Form->input($kn.'.page', array('value' => $novel['Novel']['page'], 'label' => __('Page number')));
-							echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/thumb_'.$novel['Novel']['page_attachment'] . '"/>';
-							echo '<div class="input file"><label for="Novel'.$kn.'Attachment0Attachment">Change Page Image</label><input type="file" name="data[Novel]['.$kn.'][Attachment][0][attachment]" id="Novel'.$kn.'Attachment0Attachment"></div>';
-							echo '<button class="button tiny alert" id="Delete'. $kn .'">delete</button></div>';
-							$kn++;
-						}
-
-						echo '<div id="newEs"></div>';
-						echo '<button href="#" id="newFileNovelEs" class="button tiny">New Page</button>';
-
-			            echo '<br><br>';
-
-			            echo '<button class="button small" type="submit">'. __('Save Novels') . '</button>';
-
-						echo $this->Form->end();
-					?>
-				</div>
 			</div>
 			<!-- encerrar tudo -->
 			<?php 
@@ -410,28 +337,5 @@
 	                return false;
 	        	    });";
         	}
-
-        	$i = 0;
-	        for($i=0; $i<$kn;$i++) {
-	            echo "$('#Delete". $i ."').click(function() {
-	                	$('#content".$i."').hide();
-	                	$('#content".$i."').append('". '<input name="data[Novel]['. $i.'][delete]" value="1" >' . "');
-	                	return false;
-	        	    });";
-        	}
-
-        	echo 'var prox = '. $i.';';
         ?>
-
-        $("#newFileNovelEn").click(function() {
-	        $('#newEn').append('<div id="content'+prox+'"> <input type="hidden" name="data[Novel]['+prox+'][mission_id]" value="<?=$id?>" id="Novel'+prox+'MissionId"><input type="hidden" name="data[Novel]['+prox+'][language]" value="en" id="Novel'+prox+'Language"><div class="input number"><label for="Novel'+prox+'Page">Page number</label><input name="data[Novel]['+prox+'][page]" type="number" id="Novel'+prox+'Page"></div><div class="input file"><label for="Novel'+prox+'Attachment0Attachment">Image</label><input type="file" name="data[Novel]['+prox+'][Attachment][0][attachment]" id="Novel'+prox+'Attachment0Attachment"></div></div>');
-	        prox++;
-	        return false;
-	    });
-
-        $("#newFileNovelEs").click(function() {
-	        $('#newEs').append('<div id="content'+prox+'"> <input type="hidden" name="data[Novel]['+prox+'][mission_id]" value="<?=$id?>" id="Novel'+prox+'MissionId"><input type="hidden" name="data[Novel]['+prox+'][language]" value="es" id="Novel'+prox+'Language"><div class="input number"><label for="Novel'+prox+'Page">Page number</label><input name="data[Novel]['+prox+'][page]" type="number" id="Novel'+prox+'Page"></div><div class="input file"><label for="Novel'+prox+'Attachment0Attachment">Image</label><input type="file" name="data[Novel]['+prox+'][Attachment][0][attachment]" id="Novel'+prox+'Attachment0Attachment"></div></div>');
-	        prox++;
-	        return false;
-	    });
     </script>

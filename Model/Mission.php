@@ -55,13 +55,9 @@ class Mission extends AppModel {
 	public function createWithAttachments($data, $hasPrev = false, $id = null) {
         // Sanitize your images before adding them
         $images = array();
-        $OR = array();
-        $cover = false;
-        $img = false;
-
-        if (!empty($data['Attachment']['Img']) || !empty($data['Attachment']['Cover'])) {
+        if (!empty($data['Attachment'][0]) || !empty($data['Attachment'][1])) {
         	foreach ($data['Attachment'] as $i => $image) {
-                if (is_array($data['Attachment'][$i]) && $data['Attachment'][$i]['attachment']['error'] == 0) {
+                if (is_array($data['Attachment'][$i])) {
                 	
                     // Force setting the `model` field to this model
                     $image['model'] = 'Mission';
@@ -70,21 +66,13 @@ class Mission extends AppModel {
                     if (isset($image['foreign_key'])) {
                         unset($image['foreign_key']);
                     }
-                    
-					$OR[] = array('Attachment.attachment' => $image['attachment']['name']);
-					$images[] = $image;
 
-					if($i == 'Cover')
-						$cover = true;
-
-					if($i == 'Img')
-						$img = true;
+                    $images[] = $image;
                 }
             }
         }
         $data['Attachment'] = $images;
-        // debug($data);
-        
+
         // Try to save the data using Model::saveAll()
         if(!$hasPrev) $this->create();
         else {
@@ -93,39 +81,6 @@ class Mission extends AppModel {
         }
         if ($this->saveAll($data)) {
             
-            
-            $recentAttachments = $this->Attachment->find('all', array(
-            	'order' => array(
-            		'Attachment.id Desc'
-            	),
-            	'conditions' => array(
-            		'Attachment.model' => 'Mission',
-            		'Attachment.foreign_key' => $this->id,
-            		'OR' => $OR
-            	)
-            ));
-
-
-            $k = 0;
-            if($cover && $img)
-            	$tmp = array(0 => array('dir' => 'cover_dir', 'attachment' => 'cover_attachment'), 1 => array('dir' => 'image_dir', 'attachment' => 'image_attachment'));
-            else
-            	if($img)
-            		$tmp = array(0 => array('dir' => 'image_dir', 'attachment' => 'image_attachment'));
-            	else
-            		$tmp = array(0 => array('dir' => 'cover_dir', 'attachment' => 'cover_attachment'));
-            
-            foreach ($recentAttachments as $att) {
-            	if($k >= count($tmp)) break;
-            	$insert['Mission']['id'] = $this->id;
-            	$insert['Mission'][$tmp[$k]['dir']] = $att['Attachment']['dir'];
-            	$insert['Mission'][$tmp[$k]['attachment']] = $att['Attachment']['attachment'];
-            	$k++;
-            }
-
-            if(!$this->save($insert)){
-            	return false;
-            }
             return $this->find('first', array('conditions' => array('Mission.id' => $this->id)));
         }
         //return false;
@@ -215,19 +170,6 @@ class Mission extends AppModel {
 	    ),
 	    'Dossier' => array(
 			'className' => 'Dossier',
-			'foreignKey' => 'mission_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Novel' => array(
-			'className' => 'Novel',
 			'foreignKey' => 'mission_id',
 			'dependent' => false,
 			'conditions' => '',

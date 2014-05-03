@@ -1965,13 +1965,10 @@
     function getCorrectURL(afterHome){
     	var str = document.URL;
     	
-    	//str = str.substr(7, str.length);
-    	str = str.substr(0, str.indexOf("panels"));
-    	
-    	str = str.substr(0, str.length -1);
-    	// alert(str);
+    	str = str.substr(7, str.length);
+    	str = str.substr(str.indexOf("/"), str.length);
     	if(str.length>1) {
-    		// str = str.substr(0, str.indexOf('/', 1));
+    		str = str.substr(0, str.indexOf('/', 1));
     		//alert(str);	
     		str = str + '/' + afterHome;
     		return str;

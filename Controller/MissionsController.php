@@ -118,34 +118,13 @@ class MissionsController extends AppController {
 
 		}
 
-		$novels_en = $this->Mission->Novel->find('all', array(
-			'order' => array(
-				'Novel.page Asc'
-			),
-			'conditions' => array(
-				'Novel.mission_id' => $id,
-				'Novel.language' => 'en'
-			)
-		));
-
-		$novels_es = $this->Mission->Novel->find('all', array(
-			'order' => array(
-				'Novel.page Asc'
-			),
-			'conditions' => array(
-				'Novel.mission_id' => $id,
-				'Novel.language' => 'es'
-			)
-		));
-
 		$evidences = $this->Mission->Evidence->find('all', array(
 			'order' => array(
 				'Evidence.created DESC'
 			), 
 			'conditions' => array(
 				'Evidence.mission_id' => $id, 
-				'Evidence.phase_id' => $missionPhase['Phase']['id'],
-				'Evidence.title != ' => ''
+				'Evidence.phase_id' => $missionPhase['Phase']['id']
 			)
 		));
 
@@ -154,7 +133,7 @@ class MissionsController extends AppController {
 		foreach ($evidences as $e) {
 			$liked_evidences[count($e['Like'])][] = $e;
 		}
-		krsort($liked_evidences);
+		asort($liked_evidences);
 
 		$this->loadModel('Evokation');
 		$allevokations = $this->Evokation->find('all', array(
@@ -365,7 +344,7 @@ class MissionsController extends AppController {
 
 		$is_phase_completed = false;
 
-		if(isset($completed[$missionPhase['Phase']['id']]) && ($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']])){
+		if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']])){
 
 			$event = new CakeEvent('Controller.Phase.completed', $this, array(
 	            'entity_id' => $missionPhase['Phase']['id'],
@@ -399,9 +378,7 @@ class MissionsController extends AppController {
 
 	        // $this->Session->setFlash(sprintf(__("You have completed the %s Phase"), $missionPhase['Phase']['name']), 'flash_lightbox_message');
 
-		} if(isset($completed[$missionPhase['Phase']['id']]) && 
-			($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && 
-			($mission['Mission']['basic_training'] == 1) && ($user['User']['basic_training'] == 0)){
+		} if(($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && ($mission['Mission']['basic_training'] == 1) && ($user['User']['basic_training'] == 0)){
 
 			$this->loadModel('PointsDefinition');
 	        $def = new PointsDefinition();
@@ -444,8 +421,7 @@ class MissionsController extends AppController {
 			));
 		}
 
-		$this->set(compact('lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
-			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
+		$this->set(compact('lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
 		if($mission['Mission']['basic_training'] == 1)
