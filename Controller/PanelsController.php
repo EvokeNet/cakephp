@@ -8,8 +8,9 @@ class PanelsController extends AppController {
 * @var array
 */
 	public $components = array('Paginator','Access');
-	public $uses = array('User', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation',
-		'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level', 'AdminNotification');
+	public $uses = array('User', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group',
+	 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 
+	 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level', 'AdminNotification', 'Novel');
 	public $user = null;
 	public $helpers = array('Media.Media', 'Chosen.Chosen');
 
@@ -292,6 +293,7 @@ class PanelsController extends AppController {
 		$badges_tag = $this->defineCurrentTab('badge', $args);
 		$points_tag = $this->defineCurrentTab('point', $args);
 		$dossier_tag = $this->defineCurrentTab('dossier', $args);
+		$novel_tag = $this->defineCurrentTab('novel', $args);
 
 		$language = $this->getCurrentLanguage();
 
@@ -316,10 +318,10 @@ class PanelsController extends AppController {
 		$powerpoints = $this->PowerPoint->find('all');
 
 		//retrieving mission img
-		$mission_img = null;
-		if(!is_null($id)){
-			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
-		}
+		// $mission_img = null;
+		// if(!is_null($id)){
+		// 	$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
+		// }
 
 		$dossier_files = null;
 		$dossier = null;
@@ -404,12 +406,12 @@ class PanelsController extends AppController {
 				}
 			} else {
 				//first, check if he sended another img for the mission...
-				if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
-					//he did not send an image, unset the 'Attachment' so it doesn't cause trouble
-					$data = $this->request->data;
-					unset($data['Attachment']);
-					$this->request->data = $data;
-				}
+				// if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
+				// 	//he did not send an image, unset the 'Attachment' so it doesn't cause trouble
+				// 	$data = $this->request->data;
+				// 	unset($data['Attachment']);
+				// 	$this->request->data = $data;
+				// }
 
 				//it already exists, so let's save any alterations and move on..
 				if ($this->Mission->createWithAttachments($this->request->data, true, $id)) {
@@ -454,7 +456,8 @@ class PanelsController extends AppController {
 		$data['Quest']['mission_id'] = $id;
 		$newQuest = $this->Quest->save();*/
 
-		$this->set(compact('language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
+		$this->set(compact('language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 
+			'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag',
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
@@ -470,6 +473,7 @@ class PanelsController extends AppController {
 		$badges_tag = $this->defineCurrentTab('badge', $args);
 		$points_tag = $this->defineCurrentTab('point', $args);
 		$dossier_tag = $this->defineCurrentTab('dossier', $args);
+		$novel_tag = $this->defineCurrentTab('novel', $args);
 
 		$language = $this->getCurrentLanguage();
 
@@ -495,10 +499,10 @@ class PanelsController extends AppController {
 		));
 
 		//image attached to mission, to be displayed in mission data tab
-		$mission_img = null;
-		if(!is_null($id)){
-			$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
-		}
+		// $mission_img = null;
+		// if(!is_null($id)){
+		// 	$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
+		// }
 
 		$dossier_files = null;
 		$dossier = null;
@@ -509,6 +513,26 @@ class PanelsController extends AppController {
 				$dossier_files = $this->Attachment->find('all', array('conditions' => array('Model' => 'Dossier', 'foreign_key' => $dossier['Dossier']['id'])));
 			}
 		}
+
+		$novels_en = $this->Novel->find('all', array(
+			'order' => array(
+				'Novel.page Asc'
+			),
+			'conditions' => array(
+				'Novel.mission_id' => $id,
+				'Novel.language' => 'en'
+			)
+		));
+
+		$novels_es = $this->Novel->find('all', array(
+			'order' => array(
+				'Novel.page Asc'
+			),
+			'conditions' => array(
+				'Novel.mission_id' => $id,
+				'Novel.language' => 'es'
+			)
+		));
 
 		if($this->user['role_id'] == 1){
 			$flags = array(
@@ -569,13 +593,7 @@ class PanelsController extends AppController {
 			
 			if($this->Mission->exists($id)) {
 				//first, check if he sended another img for the mission...
-				if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
-					//he did not send an image, unset the 'Attachment' so it doesn't cause trouble
-					$data = $this->request->data;
-					unset($data['Attachment']);
-					$this->request->data = $data;
-				}
-
+				
 				//it already exists, so let's save any alterations and move on..
 				if ($this->Mission->createWithAttachments($this->request->data, true, $id)) {
 					$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
@@ -618,7 +636,8 @@ class PanelsController extends AppController {
 		$newQuest = $this->Quest->save($data);
 		debug($newQuest);*/
 
-		$this->set(compact('language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 
+		$this->set(compact('language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 
+			'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en',
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
@@ -662,6 +681,50 @@ class PanelsController extends AppController {
 		} else {
 			$this->redirect(array('action' => 'index'));
 		}
+	}
+
+	function novel($id, $origin = 'add_mission'){
+		
+		// debug($this->request->data['Novel']);
+		// die();
+		foreach ($this->request->data['Novel'] as $novelIndex => $novelData) {
+			// debug($novelData);
+			if($novelData['page'] <= 0 || $novelData['Attachment'][0]['attachment']['error'] != 0) continue;
+
+			$insertNovel['Novel']['mission_id'] = $novelData['mission_id'];
+			$insertNovel['Novel']['language'] = $novelData['language'];
+			$insertNovel['Novel']['page'] = $novelData['page'];
+			$insertNovel['Attachment'] = $novelData['Attachment'];
+
+			// debug($novelData);
+					
+			if(isset($novelData['id'])) {
+				$insertNovel['Novel']['id'] = $novelData['id'];
+
+				if(isset($novelData['delete'])) {
+					$this->Novel->id = $novelData['id'];
+					$this->Novel->delete();
+					// debug("trying to delete: ");
+					
+				} else {
+					$this->Novel->createWithAttachments($insertNovel, true, $novelData['id']);	
+				}
+				
+			} else {
+				$this->Novel->createWithAttachments($insertNovel);
+			}
+			// debug($insertNovel);
+			$insertNovel = array();
+		}
+		 // die();
+
+		$this->redirect($this->referer());
+
+		//sending back to correct address
+		if($origin == 'add_mission')
+			$this->redirect(array('action' => 'add_mission', $id, 'novel'));
+		else 
+			$this->redirect(array('action' => 'edit_mission', $id, 'novel'));
 	}
 
 /*

@@ -15,6 +15,8 @@
 	<div class="row full-width">
 		<div class="small-9 small-centered columns">
 
+		<?php echo $this->Session->flash(); ?>
+
 			<div class="row full-width">
 
 			  <div class="small-3 medium-3 large-3 columns evoke no-padding">

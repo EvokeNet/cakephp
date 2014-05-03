@@ -33,9 +33,25 @@
 	  	<div class = "evoke missions data">
 	  		<h2 id="numero1"><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
 
-	  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
+	  		<?php 
+	  			if($lang == 'es') : 
+	 				$video = $mission['Mission']['video_link_es'];
+	 				$novels = $novels_es;
+				else :
+	 				$video = $mission['Mission']['video_link'];
+	 				$novels = $novels_en;
+	 			endif; 
+	  		?>
+
+	  		<?php if(!is_null($video) && $video != '') : ?>
+		  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
+				  <iframe src="<?= $video ?>" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+				</div>
+			<?php endif; ?>
+
+	  		<!-- <div class="flex-video widescreen vimeo" style = "margin-top:50px">
 			  <iframe src="http://player.vimeo.com/video/93164024" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-			</div>
+			</div> -->
 			
 	  		<p id="numero2"><?= $mission['Mission']['description'];?></p>
   		</div>
@@ -118,6 +134,19 @@
 	  </div>
 
 	  <div class="small-5 medium-5 large-5 columns">
+
+	  	<div class = "evoke position">
+	  		
+	  		<?php if(!empty($novels)) :?>
+		  		<ul class="clearing-thumbs clearing-feature" data-clearing>						
+		 			<li  class="clearing-featured-img "><a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>"><img src="<?= $this->webroot.'img/hq_cover.jpg'?>" width="100%"></a></li>
+		 				
+		 			<?php foreach ($novels as $novel) : ?>
+						<li><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif ?>
+		</div>
 
 	  	<div class = "evoke position" style = "margin: 5% 15%;">
 	  		<div style = "margin-left:100px" id="numero5"></div>
@@ -315,4 +344,6 @@
 	// echo $this->Html->script('/components/foundation/js/foundation/foundation.joyride.js', array('inline' => false));
 	echo $this->Html->script('joyride', array('inline' => false));
 	echo $this->Html->script('/components/foundation/js/vendor/jquery.cookie.js', array('inline' => false));
+	echo $this->Html->script('/components/foundation/js/foundation.js', array('inline' => false));
+	echo $this->Html->script('/components/foundation/js/foundation/foundation.clearing.js', array('inline' => false));
 ?>

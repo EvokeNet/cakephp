@@ -41,21 +41,21 @@
 	  		<h1><?php echo __('Phase: '); echo h($missionPhase['Phase']['name']); ?></h1>
 	  		<h2><?php echo __('Mission: '); echo h($mission['Mission']['title']); ?></h2>
 
-	  		<?php if(($mission['Mission']['title'] == 'Food Security') || ($mission['Mission']['title'] == 'Seguridad Alimentaria')): ?>
-	  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
-			  <iframe src="http://player.vimeo.com/video/93164026" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-			</div>
 
-			<?php elseif(($mission['Mission']['title'] == 'Power Shift') || ($mission['Mission']['title'] == 'Cambio de poder')): ?>
-			<div class="flex-video widescreen vimeo" style = "margin-top:50px">
-			  <iframe src="http://player.vimeo.com/video/93164027" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-			</div>
+	  		<?php 
+	  			if($lang == 'es') : 
+	 				$video = $mission['Mission']['video_link_es'];
+	 				$novels = $novels_es;
+				else :
+	 				$video = $mission['Mission']['video_link'];
+	 				$novels = $novels_en;
+	 			endif; 
+	  		?>
 
-			<?php elseif(($mission['Mission']['title'] == 'Water Solutions') || ($mission['Mission']['title'] == 'Soluciones para agua')): ?>
-			<div class="flex-video widescreen vimeo" style = "margin-top:50px">
-			  <iframe src="http://player.vimeo.com/video/93164029" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-			</div>
-
+	  		<?php if(!is_null($video) && $video != '') : ?>
+		  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
+				  <iframe src="<?= $video ?>" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+				</div>
 			<?php endif; ?>
 
 	  		<p><?= $mission['Mission']['description'];?></p>
@@ -63,21 +63,29 @@
 	  </div>
 	  <div class="small-6 medium-6 large-5 columns">
 	  		<div class = "evoke position">
-	  			<div class = "evoke text-align"><img src = '<?= $this->webroot.'img/hqnored.png' ?>' width="60%"></div>
-	  		
-	  			<div class = "evoke ribbon-position">
-			  		<div class="ribbon-wrapper">
-						<div class="ribbon-front">
-							<?= __('Graphic Novel') ?>
+	  			<?php if(!empty($novels)) :?>
+	 				<ul class="clearing-thumbs clearing-feature" data-clearing>						
+		 				<li  class="clearing-featured-img "><a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>"><img src="<?= $this->webroot.'img/hq_cover.jpg'?>" width="100%"></a></li>
+		 				
+		 				<?php foreach ($novels as $novel) : ?>
+							<li><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
+						<?php endforeach; ?>
+					</ul>
+
+		  			<div class = "evoke ribbon-position">
+				  		<div class="ribbon-wrapper">
+							<div class="ribbon-front">
+								<?= __('Graphic Novel') ?>
+							</div>
+							<div class="ribbon-edge-topleft"></div>
+							<div class="ribbon-edge-topright"></div>
+							<div class="ribbon-edge-bottomleft"></div>
+							<div class="ribbon-edge-bottomright"></div>
+							<div class="ribbon-back-left"></div>
+							<div class="ribbon-back-right"></div>
 						</div>
-						<div class="ribbon-edge-topleft"></div>
-						<div class="ribbon-edge-topright"></div>
-						<div class="ribbon-edge-bottomleft"></div>
-						<div class="ribbon-edge-bottomright"></div>
-						<div class="ribbon-back-left"></div>
-						<div class="ribbon-back-right"></div>
 					</div>
-				</div>
+				<?php endif ?>
 			</div>
 	  </div>
 	</div>

@@ -274,6 +274,9 @@ class UsersController extends AppController {
 		$evidence = $this->User->Evidence->find('all', array(
 			'order' => array(
 				'Evidence.created DESC'
+			),
+			'conditions' => array(
+				'Evidence.title != ' => ''
 			)
 		));
 
@@ -282,7 +285,8 @@ class UsersController extends AppController {
 				'Evidence.created DESC'
 			),
 			'conditions' => array(
-				'Evidence.user_id' => $id
+				'Evidence.user_id' => $id,
+				'Evidence.title != ' => ''
 			)
 		));
 
