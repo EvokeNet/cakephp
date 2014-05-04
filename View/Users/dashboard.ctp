@@ -28,10 +28,10 @@
 	  <div class="small-2 medium-2 large-2 columns">
 		<?php echo $this->element('menu', array('user' => $users));?>
 
-		<div class=" padding top-2">
+		<!-- <div class=" padding top-2">
 	  		<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
 
-	  	</div>
+	  	</div> -->
 	  </div>
 
 	  <div class="small-6 medium-6 large-6 columns padding top-2">
@@ -46,7 +46,7 @@
 							<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 								<li>
 									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id']))?>">
-										<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
+										<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px;">
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
@@ -58,7 +58,7 @@
 
 								<li>
 									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id']))?>">
-										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+										<img src = '<?= $this->webroot.'img/evoke-new-interface-mission-tab1.jpg' ?>' style = "max-height: 130px; height: 130px;">
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>

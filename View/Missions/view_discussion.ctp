@@ -313,6 +313,17 @@
 							endforeach; ?>
 
 					  	</ul>
+
+					  	<?php if(isset($nextMP)){ ?>
+
+					  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-share-square fa-lg"></i></a> </br>
+
+					  	<?php } if(isset($prevMP)) {?>
+
+					  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position'])); ?>" class = "button general green"><i class="fa fa-share-square fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf(__('Go back to %s'), $prevMP['Phase']['name']);?></a>
+
+					  	<?php } ?>
+
 	                </div>
 				
 			  </div>

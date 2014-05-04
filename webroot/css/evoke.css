@@ -146,19 +146,24 @@ button, div, p, span, a,
 }
 
 .evoke .default.tabs dd.active a{
-	background: #000;
+	/*background: #000;*/
+	background:#c65862;
 }
 
 .evoke .default.tabs dd>a{
 	background: #1f8cb2;
+	margin-left: 2px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	color: #ffffff;
 	font-size: 0.8vw;
 	padding: 1em 2em;
-	border-left: 1px solid #000;
+	/*border-left: 1px solid #000;*/
 }
 
 .evoke .default.tabs-content{
-	border-top: 5px solid #000;
+	/*border-top: 5px solid #000;*/
+	border-top: 5px solid #c65862;
 	margin-top: 1px;
 	height: 700px;
 	overflow-x: hidden;
@@ -183,7 +188,7 @@ button, div, p, span, a,
 .evoke .evidence.content-box:hover{
 	/*background-color:#5a8fab;*/
 
-	background-color: rgba(90, 143, 171, 0.4);
+	background-color: rgba(90, 143, 171, 0.7);
 }
 
 .evoke .evidence .headings{

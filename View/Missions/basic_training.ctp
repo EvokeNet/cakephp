@@ -74,7 +74,7 @@
 			</div>
 
 			<div class = "evoke missions header tint">
-				<h3> <?= strtoupper($mission['Mission']['title']) ?> </h3>
+				<h3 id="numero1"> <?= strtoupper($mission['Mission']['title']) ?> </h3>
 				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
@@ -100,7 +100,7 @@
 						</div>
 					<?php endif; ?>
 
-			  		<p><?= $mission['Mission']['description'];?></p>
+			  		<p id="numero2"><?= $mission['Mission']['description'];?></p>
 
 				  </div>
 				  <div class="content" id="panel2-2">
@@ -342,6 +342,43 @@
 		</div>
 
 	</div>
+
+	<ol class="joyride-list" data-joyride>
+	  <li data-id="firstStop" data-text="Next" data-options="tip_location: top">
+	    <p><?= __('Hello '.$user['User']['name'].'! Welcome to your Basic Training to become an active agent') ?></p>
+	  </li>
+	  <li data-id="numero" data-text="Next" data-options="tip_location: top">
+	    <p><?= __('Here you will find tips on how to succeed in a Mission') ?></p>
+	  </li>
+	  <li data-id="numero1" data-class="custom so-awesome" data-text="Next">
+	    <h4><?= __('Mission Description') ?></h4>
+	    <p><?= __("Here's the Mission's Brief") ?></p>
+	  </li>
+	  <li data-id="numero2" data-button="Next" data-options="tip_location:top;tip_animation:fade">
+	    <h4><?= __('Mission Description') ?></h4>
+	    <p><?= __("You will have the mission's description along with its video and graphic novel") ?></p>
+	  </li>
+	  <li data-id="numero3" data-button="Next" data-options="tip_location:top;tip_animation:fade">
+	    <h4><?= __('Activities') ?></h4>
+	    <p><?= __("These are a series of tasks to do") ?></p>
+	  </li>
+	  <li data-id="numero4" data-button="Next" data-options="tip_location:top;tip_animation:fade">
+	    <h4><?= __('Activities') ?></h4>
+	    <p><?= __("Hou have to complete each one of these before you can move on to the next phase") ?></p>
+	  </li>
+	  <li data-id="numero5" data-button="Next" data-options="tip_location:top;tip_animation:fade">
+	    <h4><?= __('Activities - TO-DO List') ?></h4>
+	    <p><?= __("The obligatory ones will be listed here so you can keep track of them") ?></p>
+	  </li>
+	  <li data-id="numero10" data-button="Next" data-options="tip_location:top;tip_animation:fade">
+	    <h4>Stop #3</h4>
+	    <p>Get the details right by styling Joyride with a custom stylesheet!</p>
+	  </li>
+	  <li data-button="End">
+	    <h4><?= __('Good luck!') ?></h4>
+	    <p><?= __("Now, go out there and become an agent of change!") ?></p>
+	  </li>
+	</ol>
 
 </section>
 
