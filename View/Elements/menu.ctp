@@ -1,4 +1,4 @@
-<div class = "evoke menu-bg">
+<div class = "evoke menu-bg sidebar">
 	<ul class="evoke side-nav">
 	  <li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard')) ?>"><i class="fa fa-folder-open"></i>     <?= strtoupper(__('Dashboard')) ?></a></li>
 	  
