@@ -25,13 +25,8 @@
 
 	<div class="evoke default row full-width-alternate">
 
-	  <div class="small-2 medium-2 large-2 columns">
-		<?php echo $this->element('menu', array('user' => $users));?>
-
-		<!-- <div class=" padding top-2">
-	  		<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
-
-	  	</div> -->
+	  <div class="small-2 medium-2 large-2 columns padding-left">
+	  	<?php echo $this->element('menu', array('user' => $users));?>
 	  </div>
 
 	  <div class="small-6 medium-6 large-6 columns padding top-2">
