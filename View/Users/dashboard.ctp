@@ -53,7 +53,7 @@
 
 								<li>
 									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id']))?>">
-										<img src = '<?= $this->webroot.'img/evoke-new-interface-mission-tab1.jpg' ?>' style = "max-height: 130px; height: 130px;">
+										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px;">
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
