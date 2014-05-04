@@ -114,6 +114,8 @@ class MissionsController extends AppController {
 				$phase_number = $missionPhase['Phase']['position'];
 		}
 		
+		if(is_null($phase_number))
+			$this->redirect(array('controller' => 'missions', 'action' => 'view', $id, 1));
 
 		if($phase_number > count($missionPhases)) {
 			$this->Session->setFlash(__("This mission/phase does not exist!"));
