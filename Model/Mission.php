@@ -123,7 +123,7 @@ class Mission extends AppModel {
             	$k++;
             }
 
-            if(!$this->save($insert)){
+            if(isset($insert) && !$this->save($insert)){
             	return false;
             }
             return $this->find('first', array('conditions' => array('Mission.id' => $this->id)));
