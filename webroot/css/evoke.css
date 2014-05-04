@@ -1398,24 +1398,46 @@ button, div, p, span, a,
 	background-color: #1f8cb2;
 	margin-bottom: 30px;
 	/*margin-left: -30px;*/
-	padding-left: 30px;
+	/*padding-left: 30px;*/
 
-	border-bottom: 3px solid #182537;
+	border-bottom: 1px solid #333;
 	text-align: left;
 }
 
 .evoke.menu-bg ul{
-	padding: 20px 0px 10px;
 	margin-bottom: 0;
+	list-style-type: none;
+	margin: 0px 0px 0px;
+	padding: 0px 0px 0px;
+}
+
+.evoke.menu-bg li{
+	border-bottom: 1px solid #333;
+}
+
+.evoke.menu-bg li a{
+	padding: 10px 20px 10px;
+	/*margin-bottom: 0;*/
 	/*display: inline-block;*/
+}
+
+.evoke.menu-bg li a {
+	display: block;
 }
 
 .evoke.menu-bg a{
 	font-size: 1vw;
 	font-family: 'AlegreyaBold';
-	margin-right: 50px;
 	color:#000;
 	/*text-shadow: 0px 3px 2px rgba(0,0,0, 0.6);*/
+}
+
+.evoke.menu-bg li:hover{
+	/*padding: 10px 20px 10px;*/
+	background-color: #000;
+	color:#fff;
+	/*margin-bottom: 0;*/
+	/*display: inline-block;*/
 }
 
 .evoke.menu-bg a:hover{
@@ -1424,6 +1446,14 @@ button, div, p, span, a,
 
 .evoke.menu-bg a:active{
 	color:#000;
+}
+
+.current{
+	background-color: #000;
+	color:#fff;
+}
+.evoke.current a{
+	color:#fff;
 }
 
 .evoke.inline-list a:link    {color:green;}
