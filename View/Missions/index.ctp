@@ -13,10 +13,6 @@
 <section class="evoke default-background">
 	<div class="evoke default row full-width-alternate">
 
-<!-- 	  <div class="small-1 medium-1 large-1 columns">
-	  	YAY
-	  </div>
- -->
 	  <div class="small-2 medium-2 large-2 columns">
 	  	<?php echo $this->element('menu', array('user' => $user));?>
 	  </div>

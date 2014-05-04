@@ -168,6 +168,7 @@
 .evoke .mission.tabs .quests{
 	text-align: center;
 	word-wrap: break-word;
+	cursor: pointer;
 	-webkit-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;
 	-moz-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;
 	box-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;

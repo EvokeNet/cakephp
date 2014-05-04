@@ -9,6 +9,14 @@
 	
 	echo $this->element('header', array('user' => $user));
 	$this->end(); 
+	
+	if($lang == 'es') : 
+		$video = $mission['Mission']['video_link_es'];
+		$novels = $novels_es;
+	else :
+		$video = $mission['Mission']['video_link'];
+		$novels = $novels_en;
+	endif; 
 
 ?>
 

@@ -331,10 +331,10 @@
 <?php
 
 	//echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
-	echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel', array('inline' => false));
+	// echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel', array('inline' => false));
 	//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
 	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
 	//echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
-	echo $this->Html->script('jcarousel_missions', array('inline' => false));
+	// echo $this->Html->script('jcarousel_missions', array('inline' => false));
 
 ?>
