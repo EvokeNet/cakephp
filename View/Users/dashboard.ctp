@@ -25,9 +25,13 @@
 
 	<div class="evoke default row full-width-alternate">
 
-	  <div class="small-2 medium-2 large-2 columns padding top-2">
+	  <div class="small-2 medium-2 large-2 columns">
 		<?php echo $this->element('menu', array('user' => $users));?>
 
+		<div class=" padding top-2">
+	  		<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
+
+	  	</div>
 	  </div>
 
 	  <div class="small-6 medium-6 large-6 columns padding top-2">
@@ -41,7 +45,7 @@
 						<div class = "evoke dashboard missions">
 							<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 								<li>
-									<a href="#">
+									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id']))?>">
 										<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
@@ -53,7 +57,7 @@
 			                <?php else :?>
 
 								<li>
-									<a href="#">
+									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id']))?>">
 										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>

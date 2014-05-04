@@ -115,6 +115,7 @@ class Mission extends AppModel {
             	else
             		$tmp = array(0 => array('dir' => 'cover_dir', 'attachment' => 'cover_attachment'));
             
+            $insert = null;
             foreach ($recentAttachments as $att) {
             	if($k >= count($tmp)) break;
             	$insert['Mission']['id'] = $this->id;
@@ -123,7 +124,7 @@ class Mission extends AppModel {
             	$k++;
             }
 
-            if(!$this->save($insert)){
+            if(!is_null($insert) && !$this->save($insert)){
             	return false;
             }
             return $this->find('first', array('conditions' => array('Mission.id' => $this->id)));
