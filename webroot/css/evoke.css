@@ -131,6 +131,10 @@ button, div, p, span, a,
 	box-shadow: 1px 1px 1px 0px rgba(137,87,102,1);
 }
 
+.evoke .content-block.padding{
+	padding: 20px 0px 5px;
+}
+
 .evoke .content-block ul{
 	list-style: none;
 }
@@ -144,6 +148,10 @@ button, div, p, span, a,
 	font-size:1.1vw;
 	color:#fff;
 }
+
+/*.evoke .default.tabs dd{
+	float: right;
+}*/
 
 .evoke .default.tabs dd.active a{
 	/*background: #000;*/
@@ -235,9 +243,18 @@ button, div, p, span, a,
 	border-radius: 10px;
 	/*padding: 0.4em 1.5em 0.8em;*/
 	padding: 0.7em 1.4em;
+	margin-bottom:0px;
 	/*margin-right: 10px;*/
 	border-right: 3px solid #125167;
 	border-bottom: 3px solid #125167;
+}
+
+.evoke .button.config{
+	margin-bottom: 10px;
+}
+
+.evoke .margin-top-20{
+	margin-top: 20px;
 }
 
 .evoke .button {
@@ -1379,7 +1396,7 @@ button, div, p, span, a,
 	border-bottom: 5px solid #182537;
 	border-top: 5px solid #182537;*/
 	background-color: #1f8cb2;
-	margin-bottom: 30px;
+	/*margin-bottom: 30px;*/
 	/*margin-left: -30px;*/
 	/*padding-left: 30px;*/
 

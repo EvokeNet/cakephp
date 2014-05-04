@@ -27,7 +27,7 @@
 		<div class = "small-2 medium-2 large-2 columns">
 			<?php echo $this->element('menu', array('user' => $user));?>
 		</div>
-		<div class = "small-9 medium-9 large-9 columns">
+		<div class = "small-9 medium-9 large-9 columns maincolumn">
 			
 			<div class = "evoke missions graphic-cover">
 				<?php if(!empty($novels)) :?>
@@ -327,11 +327,15 @@
 
 					  	<?php if(isset($nextMP)){ ?>
 
-					  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-share-square fa-lg"></i></a> </br>
+					  	<div class = "evoke text-align-center margin-top-20">
+					  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-share-square fa-lg"></i></a>
+					  	</div>
 
 					  	<?php } if(isset($prevMP)) {?>
 
+					  	<div class = "evoke text-align-center margin-top-20">
 					  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position'])); ?>" class = "button general green"><i class="fa fa-share-square fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf(__('Go back to %s'), $prevMP['Phase']['name']);?></a>
+					  	</div>
 
 					  	<?php } ?>
 
@@ -351,12 +355,5 @@
 </section>
 
 <?php
-
-	//echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
-	// echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel', array('inline' => false));
-	//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
-	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
-	//echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
-	// echo $this->Html->script('jcarousel_missions', array('inline' => false));
-
+	echo $this->Html->script('menu_height', array('inline' => false));
 ?>

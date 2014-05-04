@@ -24,6 +24,16 @@
 
         .c li {
             float: left;
+            position: relative;
+        }
+        .c li h1{
+            color: #fff;
+            font-family: 'AlegreyaBold';
+            font-size: 2.0vw;
+            position: absolute;
+            top: 0;
+            left: 10px;
+            word-wrap: break-word;
         }
         .c li a {
             display: block;
@@ -68,6 +78,7 @@
             .c li {
                 /*padding: 0 0.5em;*/
                 padding: 0 0.2em;
+                position: relative;
             }
             body:after { /* Conditional CSS http://adactio.com/journal/5429/ */
                 content: 'medium';

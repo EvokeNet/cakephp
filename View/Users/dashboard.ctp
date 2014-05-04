@@ -1,8 +1,6 @@
 <?php
-	//echo $this->Html->css('/components/jcarousel/examples/basic/jcarousel.basic');
-	//echo $this->Html->css('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
+
 	echo $this->Html->css('mycarousel');
-	//echo $this->Html->css('/components/jcarousel/examples/responsive/jcarousel.responsive');
 
 	echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
 
@@ -25,11 +23,11 @@
 
 	<div class="evoke default row full-width-alternate">
 
-	  <div class="small-2 medium-2 large-2 columns padding-left">
+	  <div class="small-2 medium-2 large-2 columns">
 	  	<?php echo $this->element('menu', array('user' => $users));?>
 	  </div>
 
-	  <div class="small-6 medium-6 large-6 columns padding top-2">
+	  <div class="small-6 medium-6 large-6 columns padding top-2 maincolumn">
 	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
 	  	  <div id="pattern" class="pattern">
   	<div class="c">
@@ -40,8 +38,9 @@
 						<div class = "evoke dashboard missions">
 							<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 								<li>
-									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id']))?>">
+									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
 										<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px;">
+										<h1><?= $mission['Mission']['title'] ?> </h1>
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
@@ -52,8 +51,9 @@
 			                <?php else :?>
 
 								<li>
-									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id']))?>">
+									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
 										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px;">
+										<h1><?= $mission['Mission']['title'] ?> </h1>
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
@@ -102,9 +102,9 @@
 	    					break;
 	    				}
 	    			if($showFollowButton) 
-	    				echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+	    				echo $this->element('evokation', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
 	    			else
-	    				echo $this->element('evokation_box', array('e' => $e, 'mine' => true));
+	    				echo $this->element('evokation', array('e' => $e, 'mine' => true));
 				endforeach;
 			?>
 
@@ -114,7 +114,7 @@
 		    	foreach($evokations as $e):
 	    			foreach($evokationsFollowing as $following)
 	    				if($e['Evokation']['id'] == $following['Evokation']['id']) {
-	    					echo $this->element('evokation_box', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));		
+	    					echo $this->element('evokation', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));		
 	    				}
 	    		endforeach;
 	    	?>
@@ -122,7 +122,7 @@
 		  <div class="content" id="panel2-3">
 		    <?php 
 	    		foreach($myEvokations as $e):
-	    			echo $this->element('evokation_box', array('e' => $e, 'mine' => true));
+	    			echo $this->element('evokation', array('e' => $e, 'mine' => true));
 	    		endforeach;
 	    	?>
 		  </div>
@@ -133,7 +133,7 @@
 	  <div class="small-3 medium-3 large-3 columns padding top-2">
 	  	
 	  	<h3> <?= strtoupper(__('Feed')) ?> </h3>
-	  	<div class = "evoke content-block padding-10">
+	  	<div class = "evoke content-block padding">
 	  		
 	  		<?php if(!$notifies): ?>
 
@@ -150,7 +150,7 @@
 				<?php endif; ?>
 
 				<?php if($n['Notification']['origin'] == 'BasicTraining'):?>						
-					<li><?= sprintf(__('Agent %s finished the Basic Training'), $n['User']['name']) ?></li>
+					<li><a href = "#"><?= sprintf(__('Agent %s finished the Basic Training'), $n['User']['name']) ?></a></li>
 				<?php endif; ?>
 
 				<?php if($n['Notification']['origin'] == 'userUpdate'):?>						
@@ -196,7 +196,6 @@
 
 	  	<h3> <?= strtoupper(__('Discussions')) ?> </h3>
 	  	<div class = "evoke content-block padding-10">
-	  		YAY
 	  	</div>
 
 	  </div>
@@ -208,7 +207,6 @@
 </section>
 
 <?php
-
 	echo $this->Html->script('mycarousel', array('inline' => false));
-
+	echo $this->Html->script('menu_height', array('inline' => false));
 ?>

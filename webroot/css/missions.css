@@ -23,7 +23,8 @@
 }
 
 .evoke .missions.header {
-	height: 350px;
+	/*height: 350px;*/
+	max-height: 350px;
 	width: 100%;
 	overflow: hidden;
 	/*border-bottom: 5px solid #000;*/
@@ -41,12 +42,12 @@
 }
 
 .evoke .missions.graphic-cover-img img{
-	height: 150px;
+	/*height: 150px;
 	position: absolute;
-	/*top: 30px;
-	z-index: 1;
-	left: 60px;*/
-	top: 80px;
+	top: 80px;*/
+	height: 12vw;
+	position: absolute;
+	top: 8vw;
 	z-index: 1;
 	left: 40px;
 	border: 2px solid #000;
@@ -86,7 +87,8 @@
 	/*background-color: #000;*/
 	background-color: rgba(0, 0, 0, 0.6);
 	/*padding: 20px 30px;*/
-	padding: 5px 0px 15px;
+	/*padding: 5px 0px 15px;*/
+	padding: 10px 0px;
 	border-top: 1px solid #898989;
 	/*border-bottom: 1px solid #898989;*/
 	/*margin-bottom:50px;*/
@@ -104,8 +106,10 @@
 }
 
 .evoke.mission.status-bg h2{
-	font-size:1.5vw;
-	font-family: 'AlegreyaBold';
+	/*font-size:1.5vw;
+	font-family: 'AlegreyaBold';*/
+	font-size: 1.8vw;
+	font-family: 'AlegreyaItalic';
 }
 
 .evoke.mission.status-bg span{
@@ -193,12 +197,16 @@
 
 .evoke.todo-list.content ul{
 	list-style: none;
-	margin-left:0;
+	/*margin-left:0;*/
+	text-align: center;
+	width: 85%;
+	margin: 0px auto;
 }
 
 .evoke.todo-list.content li{
-	padding: 20px 20px 10px;
-	margin: 0px auto;
+	/*padding: 20px 20px 10px;*/
+	padding: 0px 20px;
+	/*margin: 0px auto;*/
 	border-bottom: 2px solid #a7a7a7;
 	width: 100%;
 }

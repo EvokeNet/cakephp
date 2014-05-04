@@ -41,7 +41,9 @@
 .view p {
    font-family: 'AlegreyaRegular';
    /*font-size: 1.0em;*/
-   font-size: 1.5vw;
+   /*font-size: 1.5vw;*/
+   font-size: 1.7vw;
+   margin-top: 50px;
    position: relative;
    color: #fff;
    padding: 20px 20px;
