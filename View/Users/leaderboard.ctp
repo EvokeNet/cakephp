@@ -15,11 +15,11 @@
 	</div>
 	
 	
-	<?= $this->element('left_titlebar', array('title' => __('Leaderboard'))) ?>
-
 	<div class="row full-width">
 
 		<div class="small-11 small-centered columns">
+
+		<?= $this->element('left_titlebar', array('title' => __('Leaderboard'))) ?>
 
 		<dl class="tabs" data-tab style = "margin-bottom:20px!important">
 			<dd class="active"><a id="xp" href="#panelXP"><?= __('Levels')?></a></dd>
