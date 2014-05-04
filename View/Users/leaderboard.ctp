@@ -10,7 +10,10 @@
 
 <section class="evoke background">	
 
-	<?= $this->element('menu', array('user' => $user)) ?>
+	<div class="small-2 medium-2 large-2 columns padding-left">
+	  		<?php echo $this->element('menu', array('user' => $user));?>
+	</div>
+	
 	
 	<?= $this->element('left_titlebar', array('title' => __('Leaderboard'))) ?>
 
