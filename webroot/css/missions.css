@@ -113,6 +113,7 @@
 	font-family: 'AlegreyaBold';*/
 	font-size: 1.8vw;
 	font-family: 'AlegreyaItalic';
+	text-shadow: 0 0 12px rgba(0,0,0,0.85);
 }
 
 .evoke.mission.status-bg span{
