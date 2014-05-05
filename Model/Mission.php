@@ -155,6 +155,19 @@ class Mission extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'DossierVideo' => array(
+			'className' => 'DossierVideo',
+			'foreignKey' => 'mission_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Evidence' => array(
 			'className' => 'Evidence',
 			'foreignKey' => 'mission_id',
