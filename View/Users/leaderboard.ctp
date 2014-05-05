@@ -8,18 +8,19 @@
 
 ?>
 
-<section class="evoke background">	
+<section class="evoke default-background">	
+
+	<?php echo $this->Session->flash(); ?>
+
+	<div class="evoke default row full-width-alternate">
 
 	<div class="small-2 medium-2 large-2 columns padding-left">
 	  		<?php echo $this->element('menu', array('user' => $user));?>
-	</div>
+	</div>	
 	
-	
-	<div class="row full-width">
+	<div class="small-9 medium-9 large-9 columns maincolumn">
 
-		<div class="small-11 small-centered columns">
-
-		<?= $this->element('left_titlebar', array('title' => __('Leaderboard'))) ?>
+		<h3> <?= strtoupper(__('Leaderboard')) ?> </h3>
 
 		<dl class="tabs" data-tab style = "margin-bottom:20px!important">
 			<dd class="active"><a id="xp" href="#panelXP"><?= __('Levels')?></a></dd>
@@ -131,6 +132,8 @@
 		</div>
 		</div>
 		
+		<div class="medium-1 end columns"></div>
+
 	</div>
 </section>
 
@@ -141,6 +144,7 @@
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+	echo $this->Html->script('menu_height', array('inline' => false));
 ?>
 <script type="text/javascript" charset="utf-8">
 	$("#positionHolder").text('<?= $position[0]?>');
