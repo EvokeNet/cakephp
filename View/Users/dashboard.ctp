@@ -13,7 +13,6 @@
 
 	echo $this->element('header', array('user' => $users, 'sumMyPoints' => $sumMyPoints));
 
-
 	$this->end(); 
 ?>
 
@@ -30,7 +29,7 @@
 	  <div class="small-6 medium-6 large-6 columns padding top-2 maincolumn">
 	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
 	  	  <div id="pattern" class="pattern">
-  	<div class="c">
+  			<div class="c">
 			<div class="c-list-container">
 				<ul class="c-list">
 
