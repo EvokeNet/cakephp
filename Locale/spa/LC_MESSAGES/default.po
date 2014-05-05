@@ -5257,7 +5257,7 @@ msgstr ""
 #: View/Phases/view.ctp:24
 #: View/Users/leaderboard.ctp:38;83
 msgid "Position"
-msgstr ""
+msgstr "Posición"
 
 #: View/Phases/admin_view.ctp:29
 #: View/Phases/view.ctp:29

@@ -730,6 +730,9 @@ button, div, p, span, a,
 	margin: 0px 40px;
 }
 
+.evoke.full-height{
+	height: 100%;
+}
 /*.evoke .tabs dd.active a{
 	background: #bb5660;
 }*/
