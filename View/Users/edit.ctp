@@ -6,18 +6,24 @@
 		$this->end(); 
 	}
 ?>
-<section class="evoke background-green">
-	<?php 
-		if(!empty($user['User']['biography'])){
-			echo $this->element('menu', array('user' => $user));
-		}
-	?>
-	<div class="row full-width">
-		<div class="small-9 small-centered columns">
+
+<section class="evoke default-background">
+
+	<div class="evoke default row full-width-alternate">
+
+		<div class="small-2 medium-2 large-2 columns">
+		  	<?php 
+				if(!empty($user['User']['biography'])){
+					echo $this->element('menu', array('user' => $user));
+				}
+			?>
+	  	</div>
+
+		<div class="small-9 medium-9 large-9 columns">
 
 		<?php echo $this->Session->flash(); ?>
 
-			<div class="row full-width">
+			<div class="row full-width-alternate">
 
 			  <div class="small-3 medium-3 large-3 columns evoke no-padding">
 			  <div class = "evoke edit-agent-tag">
@@ -81,6 +87,9 @@
 
 			</div>
 		</div>
+
+		<div class="medium-1 end columns"></div>
+
 	</div>
 </section>
 
