@@ -64,6 +64,10 @@
         .c-nav a.next {
             border-left: 1px solid #808080;
             text-align: right;
+            color:#fff;
+        }
+        .c-nav a.prev {
+            color:#fff;
         }
         .c-nav a.inactive {
             opacity: 0.2;

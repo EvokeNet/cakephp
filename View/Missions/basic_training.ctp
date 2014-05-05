@@ -37,7 +37,7 @@
 			<?php echo $this->element('menu', array('user' => $user));?>
 		</div>
 
-		<div class = "small-9 medium-9 large-9 columns">
+		<div class = "small-9 medium-9 large-9 columns maincolumn">
 			
 			<div class = "evoke missions graphic-cover">
 				<?php if(!empty($novels)) :?>
@@ -77,9 +77,9 @@
 				<h3 id="numero1"> <?= strtoupper($mission['Mission']['title']) ?> </h3>
 				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
-					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
+					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "height:22vw">
                 <?php else :?>
-					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "height:22vw">
                 <?php endif ?>
 			</div>
 
@@ -388,5 +388,6 @@
 	echo $this->Html->script('/components/foundation/js/vendor/jquery.cookie.js', array('inline' => false));
 	echo $this->Html->script('/components/foundation/js/foundation.js', array('inline' => false));
 	echo $this->Html->script('/components/foundation/js/foundation/foundation.clearing.js', array('inline' => false));
+	echo $this->Html->script('menu_height', array('inline' => false));
 
 ?>

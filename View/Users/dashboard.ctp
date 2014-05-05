@@ -34,6 +34,24 @@
 			<div class="c-list-container">
 				<ul class="c-list">
 
+					<?php if ($users['User']['basic_training'] == 0 && isset($basic_training) && $users['User']['role_id'] > 2): ?>
+                		<li class = "evoke dashboard position">
+                    		<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1)) ?>">
+                        		<img src='<?= $this->webroot.'img/evoke_folder.png' ?>' width = "80%;"/>
+                        		<span class = "evoke dashboard folders"><?php echo $basic_training['Mission']['title'];?></span>
+                        		<?php 
+                        			if(!empty($m['Attachment'])) :
+                        				$img = end($m['Attachment']);
+                        				// echo '<span>' . $img['attachment'] . '</span>';
+                    					$path = ' '.$this->webroot.'files/attachment/attachment/'. $img['dir'].'/thumb_' . $img['attachment'].'';
+                    					?>
+                    					<img src = "<?= $path ?>" class = "evoke dashboard folders-img"/>
+                        			
+                        		<?php endif; ?>
+                    		</a>
+                    	</li>
+                	<?php else: ?>
+
 					<?php foreach($missions as $mission): ?>
 						<div class = "evoke dashboard missions">
 							<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
@@ -65,6 +83,8 @@
 			                <?php endif ?>
 						</div>
 					<?php endforeach; ?>
+
+					<?php endif;?>
 					
 				</ul>
 			</div>
@@ -131,7 +151,7 @@
 
 	  </div>
 
-	  <div class="small-3 medium-3 large-3 columns padding top-2">
+	  <div class="small-3 medium-3 large-3 columns padding top-2 evoke no-left-padding no-right-padding">
 	  	
 	  	<h3> <?= strtoupper(__('Feed')) ?> </h3>
 	  	<div class = "evoke content-block padding">
@@ -147,15 +167,40 @@
 				<?php foreach($notifies as $n): 
 
 				if($n['Notification']['origin'] == 'evidence'):?>						
-					<li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s posted an evidence'), $n['User']['name']) ?></li></a>
+					<li>
+
+						<?php if($n['User']['photo_attachment'] == null) : ?>
+							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+			  			<?php else : ?>
+			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+			  			<?php endif; ?>
+
+					<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s posted an evidence'), $n['User']['name']) ?></a>
+
+					</li>
 				<?php endif; ?>
 
 				<?php if($n['Notification']['origin'] == 'BasicTraining'):?>						
-					<li><a href = "#"><?= sprintf(__('Agent %s finished the Basic Training'), $n['User']['name']) ?></a></li>
+					<li>
+
+					<?php if($n['User']['photo_attachment'] == null) : ?>
+						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+		  			<?php else : ?>
+		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+		  			<?php endif; ?>
+
+					<a href = "#"><?= sprintf(__('Agent %s finished the Basic Training'), $n['User']['name']) ?></a>
+					</li>
 				<?php endif; ?>
 
 				<?php if($n['Notification']['origin'] == 'userUpdate'):?>						
-					<li><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $n['User']['id'])) ?>"><?= sprintf(__('Agent %s updated its profile'), $n['User']['name']) ?></a></li>
+					<li>
+					<?php if($n['User']['photo_attachment'] == null) : ?>
+						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+		  			<?php else : ?>
+		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+		  			<?php endif; ?>	
+					<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $n['User']['id'])) ?>"><?= sprintf(__('Agent %s updated its profile'), $n['User']['name']) ?></a></li>
 				<?php endif; ?>
 
 				<?php if($n['Notification']['origin'] == 'like'):?>						
@@ -177,11 +222,23 @@
 						$message = sprintf(__('Agent %s liked an evidence from Agent %s'), $action_user['User']['name'], $n['User']['name']);
 					}
 					?>						
-					<li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= $message ?></a></li>
+					<li>
+					<?php if($n['User']['photo_attachment'] == null) : ?>
+						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+		  			<?php else : ?>
+		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+		  			<?php endif; ?>
+					<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= $message ?></a></li>
 				<?php endif; ?>
 
 				<?php if($n['Notification']['origin'] == 'commentEvidence'):?>						
-					<li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evidence'), $n['User']['name']) ?></a></li>
+					<li>
+					<?php if($n['User']['photo_attachment'] == null) : ?>
+						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+		  			<?php else : ?>
+		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+		  			<?php endif; ?>
+					<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evidence'), $n['User']['name']) ?></a></li>
 				<?php endif; ?>
 
 				<?php if($n['Notification']['origin'] == 'phaseCompleted'):?>						
