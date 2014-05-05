@@ -302,6 +302,8 @@ class PanelsController extends AppController {
 		$userid = $this->user['id'];
 		$userrole = $this->user['role_id'];
 
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $userid)));
+
 		//list of issues to be loaded at the combo box..
 		$issues = $this->Issue->find('list');
 
@@ -456,7 +458,7 @@ class PanelsController extends AppController {
 		$data['Quest']['mission_id'] = $id;
 		$newQuest = $this->Quest->save();*/
 
-		$this->set(compact('language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 
+		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 
 			'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag',
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
@@ -482,6 +484,7 @@ class PanelsController extends AppController {
 		$userid = $this->user['id'];
 		$userrole = $this->user['role_id'];
 
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $userid)));
 
 		//list of issues to be loaded at the combo box..
 		$issues = $this->Issue->find('list');
@@ -636,7 +639,7 @@ class PanelsController extends AppController {
 		$newQuest = $this->Quest->save($data);
 		debug($newQuest);*/
 
-		$this->set(compact('language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 
+		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 
 			'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en',
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}

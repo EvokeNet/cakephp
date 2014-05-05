@@ -1,7 +1,5 @@
 <?php
 
-	echo $this->Html->css('jcarousel');
-
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 	$comments_count = sprintf(' (%s) ', count($comment));
@@ -27,115 +25,91 @@
 
 <?php $this->end(); ?>
 
-<section class="evoke background">
-
-	<?= $this->element('menu', array('user' => $user)) ?>
+<section class="evoke default-background">
 
 	<?php echo $this->Session->flash(); ?>
-	
-	<div class="row full-width">
 
-	  <nav class="evoke breadcrumbs">
-		<?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
-		<a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>
-		<?php echo $this->Html->link($evidence['Phase']['name'], array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'], $evidence['Phase']['position']));?>
-		<!-- <a class="unavailable" href="#"><?php echo __('Discussions'); ?></a> -->
-		<a class="current" href="#"><?php echo $evidence['Evidence']['title'];?></a>
-	  </nav>
+	<div class="evoke default row full-width-alternate">
 
 	  <div class="small-2 medium-2 large-2 columns">
-	  	<div class="evoke evidence-tag text-align">
-	  		
-	  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
-				<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-			<?php else : ?>
-				<img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-			<?php endif; ?>
-	  		
-		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1></a>
-		 	
-		 	<div class = "evoke border-bottom"></div>
-
-		 	<p><?php echo $evidence['User']['biography'] ?></p>
-
-		 	<div class = "evoke border-bottom"></div>
-		 	
-		 	<i class="fa fa-facebook-square fa-2x"></i>&nbsp;
-			<i class="fa fa-google-plus-square fa-2x"></i>&nbsp;
-			<i class="fa fa-twitter-square fa-2x"></i>
-
-			<div class = "evoke border-bottom"></div>
-
-			<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
-
-				<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Evidence');?></a></div>
-			<?php endif; ?>
-
-			<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
-				<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Delete Evidence');?></a></div>
-
-			<?php endif; ?>
-
-	 	</div>
+	  	<?php echo $this->element('menu', array('user' => $user));?>
 	  </div>
-	  <div class="small-7 medium-7 large-7 columns">
-	 	<div class = "evoke evidence-body view">
-		  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
-		  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
-		  	<?php echo urldecode($evidence['Evidence']['content']); ?>
-		  	
-		  	<?php if(!empty($attachments)) :?>
-		  		<h4><?= __("Evidence's attachments:")?></h4>
-		  	<?php endif ?>
-		  	<?php foreach ($attachments as $attachment) :?>
-		  		<span><?= $attachment['Attachment']['attachment']?></span>
-		  	<?php endforeach ?>
+
+	  <div class="small-9 medium-9 large-9 columns maincolumn">
+
+	  	<nav class="evoke breadcrumbs">
+			<?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
+			<a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>
+			<?php echo $this->Html->link($evidence['Phase']['name'], array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'], $evidence['Phase']['position']));?>
+			<!-- <a class="unavailable" href="#"><?php echo __('Discussions'); ?></a> -->
+			<a class="current" href="#"><?php echo $evidence['Evidence']['title'];?></a>
+		</nav>
+
+	  	<div class="evoke default row full-width-alternate">
+
+  		<div class="small-3 medium-3 large-3 columns">
+		  	<div class="evoke evidence-tag text-align">
+		  		
+		  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
+					<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+				<?php else : ?>
+					<img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+				<?php endif; ?>
+		  		
+			 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1></a>
+			 	
+			 	<div class = "evoke border-bottom"></div>
+
+			 	<p><?php echo $evidence['User']['biography'] ?></p>
+
+			 	<div class = "evoke border-bottom"></div>
+			 	
+			 	<i class="fa fa-facebook-square fa-2x"></i>&nbsp;
+				<i class="fa fa-google-plus-square fa-2x"></i>&nbsp;
+				<i class="fa fa-twitter-square fa-2x"></i>
+
+				<div class = "evoke border-bottom"></div>
+
+				<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
+
+					<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Evidence');?></a></div>
+				<?php endif; ?>
+
+				<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
+					<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Delete Evidence');?></a></div>
+
+				<?php endif; ?>
+
+		 	</div>
+		  </div>
+		  <div class="small-7 medium-7 large-7 columns">
+		 	<div class = "evoke evidence-body view">
+			  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
+			  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
+			  	<?php echo urldecode($evidence['Evidence']['content']); ?>
+			  	
+			  	<?php if(!empty($attachments)) :?>
+			  		<h4><?= __("Evidence's attachments:")?></h4>
+			  	<?php endif ?>
+			  	<?php foreach ($attachments as $attachment) :?>
+			  		<span><?= $attachment['Attachment']['attachment']?></span>
+			  	<?php endforeach ?>
 
 
-		  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
+			  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
 
-		  	<?php //echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
+			  	<?php //echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
 
-		  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
-		  	<?php foreach ($comment as $c): 
-					echo $this->element('comment_box', array('c' => $c, 'user' => $user));
-	  			endforeach; 
-  			?>
-		</div>
-	  </div>
-	  <div class="small-3 medium-3 large-3 columns padding-right">
-	  	<div class = "evoke position">
-			<?php echo $this->element('right_titlebar', array('title' => (__('Share')))); ?>
-		</div>
+			  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
+			  	<?php foreach ($comment as $c): 
+						echo $this->element('comment_box', array('c' => $c, 'user' => $user));
+		  			endforeach; 
+	  			?>
+			</div>
+		  </div>
+	  <div class="small-2 medium-2 large-2 columns padding-right">
 
-	  	<div class = "evoke evidence-share">
-	  		
-	  		<div class="evoke button-bg">
-	  			<a href="javascript:fbShare('<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>', 'Fb Share', '<?= $evidence['Evidence']['title'] ?>', 'http://goo.gl/dS52U', 520, 350)"><div class="evoke button like-button facebook-button"><i class="fa fa-facebook fa-lg"></i>&nbsp;&nbsp;&nbsp;<h6><?= __('Share on Facebook');?></h6></div></a>
-  			</div>
-
-  			<div class="evoke button-bg">
-	  			<a href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false"><div class="evoke button like-button google-button"><i class="fa fa-google-plus fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Share on Google+');?></h6></div></a>
-  			</div>
-
-  			<!-- <a href="#" onclick="popUp=window.open('https://plus.google.com/share?url=YOUR-WEBPAGE-PERMALINK/URL', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false">
-  			<img class="share-googleplus" src="YOUR-GOOGLE+-IMAGE-ICON-URL" alt="Social Share Articles on GooglePlus" title="Share articles to GooglePlus" /></a> -->
-
-	  		<!-- <div style = "margin-bottom:10px">
-	  			<div id="fb-root"></div>
-	  			<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-width="200" data-type="button"></div>
-	  		</div> -->
-		  	
-		  	<!-- Google Plus share button -->
-		  	<!-- <div>
-		  		<div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
-	  		</div> -->
-			
-		</div>
-
-		<div class = "evoke dashboard position">
-			<?php echo $this->element('right_titlebar', array('title' => (__('Rating')))); ?>
-		</div>
+		<h3> <?= strtoupper(__('Rating')) ?> </h3>
 
 		<div class = "evoke evidence-share">
 		  	
@@ -156,8 +130,29 @@
 			
 		</div>
 
+		<h3> <?= strtoupper(__('Share')) ?> </h3>
+
+	  	<div class = "evoke evidence-share">
+	  		
+	  		<div class="evoke button-bg">
+	  			<a href="javascript:fbShare('<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>', 'Fb Share', '<?= $evidence['Evidence']['title'] ?>', 'http://goo.gl/dS52U', 520, 350)"><div class="evoke button like-button facebook-button"><i class="fa fa-facebook fa-lg"></i>&nbsp;&nbsp;&nbsp;<h6><?= __('Share on Facebook');?></h6></div></a>
+  			</div>
+
+  			<div class="evoke button-bg">
+	  			<a href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false"><div class="evoke button like-button google-button"><i class="fa fa-google-plus fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Share on Google+');?></h6></div></a>
+  			</div>
+			
+		</div>
+
 	  </div>
-	</div>
+
+	  	</div>
+
+	  </div>
+
+	  <div class="medium-1 end columns"></div>
+
+  	</div>
 </section>
 
 <!-- Lightbox for voting form -->
@@ -182,6 +177,7 @@
 <?php
 
 	echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
+	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->script('facebook_share', array('inline' => false));
 	echo $this->Html->script('google_share', array('inline' => false));
 

@@ -19,7 +19,7 @@
 			?>
 	  	</div>
 
-		<div class="small-9 medium-9 large-9 columns">
+		<div class="small-9 medium-9 large-9 columns maincolumn">
 
 		<?php echo $this->Session->flash(); ?>
 
@@ -98,6 +98,7 @@
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+	echo $this->Html->script('menu_height', array('inline' => false));
 ?>
 <script type="text/javascript" charset="utf-8">
 	$("#imageUpload").css( 'cursor', 'pointer' );
