@@ -353,6 +353,7 @@ class UsersController extends AppController {
 			'order' => array('Mission.created')
 		));
 
+		$show_basic_training = false;
 		$mission_ids = array();
 		foreach ($missions as $m => $mission) {
 			// $mission_ids[] = array('Attachment.foreign_key' => $mission['Mission']['id'], 'Attachment.model' => 'Mission');
@@ -361,8 +362,21 @@ class UsersController extends AppController {
 				// $missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
 			}
 
-			if($mission['Mission']['basic_training'] == 1)
+			if($mission['Mission']['basic_training'] == 1) {
+				if($users['User']['basic_training'] == 0) {
+					$insert['User']['id'] = $this->getUserId();
+					$insert['User']['role_id'] = $this->getUserRole();
+					$insert['User']['basic_training'] = 1;
+
+					$this->User->id = $insert['User']['id'];
+					$this->User->save($insert);
+
+					$show_basic_training = true;
+				}
 				$basic_training = $mission;
+				unset($missions[$m]);
+			}
+				
 		}
 
 		$missionIssues = $this->Mission->MissionIssue->find('all');
@@ -530,7 +544,7 @@ class UsersController extends AppController {
 		}
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
 		//'groups', 'my_photo', 'user_photo',
 
 		if($id == $this->getUserId())

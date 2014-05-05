@@ -32,46 +32,27 @@
   			<div class="c">
 			<div class="c-list-container">
 				<ul class="c-list">
-
-					<?php if ($users['User']['basic_training'] == 0 && isset($basic_training) && $users['User']['role_id'] > 2): ?>
-                		<li class = "evoke dashboard position">
-                    		<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1)) ?>">
-                        		<img src='<?= $this->webroot.'img/evoke_folder.png' ?>' width = "80%;"/>
-                        		<span class = "evoke dashboard folders"><?php echo $basic_training['Mission']['title'];?></span>
-                        		<?php 
-                        			if(!empty($m['Attachment'])) :
-                        				$img = end($m['Attachment']);
-                        				// echo '<span>' . $img['attachment'] . '</span>';
-                    					$path = ' '.$this->webroot.'files/attachment/attachment/'. $img['dir'].'/thumb_' . $img['attachment'].'';
-                    					?>
-                    					<img src = "<?= $path ?>" class = "evoke dashboard folders-img"/>
-                        			
-                        		<?php endif; ?>
-                    		</a>
-                    	</li>
-                	<?php else: ?>
-
-					<?php foreach($missions as $mission): ?>
-						<div class = "evoke dashboard missions">
-							<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
+					<div class = "evoke dashboard missions">
+						<!-- if needed, show the basic training mission before all others -->
+						<?php if (isset($basic_training)): ?>
+	                		<?php if(!is_null($basic_training['Mission']['cover_dir'])) :?>
 								<li>
-									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
-										<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px;">
-										<h1><?= $mission['Mission']['title'] ?> </h1>
+									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1))?>">
+
+										<img src="<?= $this->webroot.'files/attachment/attachment/'.$basic_training['Mission']['cover_dir'].'/'.$basic_training['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px;">
+										<h1><?= $basic_training['Mission']['title'] ?> </h1>
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
 										</div> -->
 									</a>
 								</li>
-								
+									
 			                <?php else :?>
-
 								<li>
-									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
+									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1))?>">
 										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px;">
-										<h1><?= $mission['Mission']['title'] ?> </h1>
-
+										<h1><?= $basic_training['Mission']['title'] ?> </h1>
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
@@ -79,12 +60,44 @@
 									</a>
 								</li>
 
-			                <?php endif ?>
-						</div>
-					<?php endforeach; ?>
+				            <?php endif ?>
 
-					<?php endif;?>
-					
+	                		
+	                	<?php endif;?>
+
+						<?php foreach($missions as $mission): ?>
+							
+								<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
+									<li>
+										<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
+
+											<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px;">
+											<h1><?= $mission['Mission']['title'] ?> </h1>
+											<!-- <div class="summary">
+												<h2>This is the first title</h2>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
+											</div> -->
+										</a>
+									</li>
+									
+				                <?php else :?>
+
+									<li>
+										<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
+											<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px;">
+											<h1><?= $mission['Mission']['title'] ?> </h1>
+
+											<!-- <div class="summary">
+												<h2>This is the first title</h2>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
+											</div> -->
+										</a>
+									</li>
+
+				                <?php endif ?>
+							
+						<?php endforeach; ?>
+					</div>
 				</ul>
 			</div>
 			<nav class="c-nav">
@@ -179,7 +192,7 @@
 					</li>
 				<?php endif; ?>
 
-				<?php if($n['Notification']['origin'] == 'BasicTraining'):?>						
+				<?php if($n['Notification']['origin'] == 'BasicTraining'):?>
 					<li>
 
 					<?php if($n['User']['photo_attachment'] == null) : ?>
@@ -261,9 +274,20 @@
 
 	</div>
 
+	<?php if ($show_basic_training && $users['User']['role_id'] > 2): ?>
+	<div id="formModal" class="reveal-modal evoke lightbox text-align" data-reveal style = "top: 370px;!important">
+	  <img src = '<?= $this->webroot.'img/alchemy.png' ?>' style = "margin-top: -460px;"/>
+	  <h2><?= sprintf(__("Agent %s, it's time to start your Basic Training"), $name[0]) ?></h2>
+	  <p class="lead"><?= __('This training will show you the steps inside a missions so you can start being an agent of change') ?></p>
+	  <a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1)); ?>" class = "button general"><?php echo __("Let's get started!");?></a>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
+	<?php endif; ?>
+
 </section>
 
 <?php
 	echo $this->Html->script('mycarousel', array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
+	echo $this->Html->script('reveal_modal', array('inline' => false));
 ?>
