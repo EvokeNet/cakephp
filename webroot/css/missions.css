@@ -149,7 +149,7 @@
 	padding:10px 30px;
 }
 
-.evoke .mission.tabs i{
+/*.evoke .mission.tabs i{
 	background-color: #1f8cb2;
 	padding: 10px 15px;
 	border-bottom-right-radius: 5px;
@@ -157,7 +157,7 @@
 	border-left: 5px solid #125167;
 	margin-bottom: 20px;
 	color:#fff;
-}
+}*/
 
 .evoke .mission.tabs .description p{
 	font-family: 'AlegreyaRegular';
@@ -170,6 +170,16 @@
 	font-family: 'AmaticSC-Regular';
 	color:#fff;
 	font-size: 1.8vw;
+}
+
+.evoke .mission.tabs .dossier i{
+	background-color: #1f8cb2;
+	padding: 10px 15px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border-left: 5px solid #125167;
+	margin-bottom: 20px;
+	color:#fff;
 }
 
 .evoke .mission.tabs .quests{
