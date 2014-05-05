@@ -10,12 +10,14 @@
 
 <section class="evoke background">
 
-	<?= $this->element('menu', array('user' => $user)) ?>
-
-	<?= $this->element('left_titlebar', array('title' => __('Badges'))) ?>
-
+	<div class="small-2 medium-2 large-2 columns padding-left">
+	  		<?php echo $this->element('menu', array('user' => $user));?>
+	</div>	
+	
 	<div class="row full-width">
+		
 		<div class="small-11 small-centered columns">
+			<?= $this->element('left_titlebar', array('title' => __('Badges'))) ?>
 			<div class = "evoke black-bg badges-bg">
 				<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">
 				  	<?php 

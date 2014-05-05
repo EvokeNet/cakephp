@@ -379,12 +379,12 @@ class PanelsController extends AppController {
 		if ($this->request->is('post')) {
 			
 			if(!$this->Mission->exists($id)) {
-				if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
-					//he did not send an image, unset the 'Attachment' so it doesn't cause any trouble
-					$data = $this->request->data;
-					unset($data['Attachment']);
-					$this->request->data = $data;
-				}
+				// if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
+				// 	//he did not send an image, unset the 'Attachment' so it doesn't cause any trouble
+				// 	$data = $this->request->data;
+				// 	unset($data['Attachment']);
+				// 	$this->request->data = $data;
+				// }
 
 				//it's a new mission, so let's add it.. creating it with possible attachments (mission img)
 				if ($mission = $this->Mission->createWithAttachments($this->request->data)) {
