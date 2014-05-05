@@ -2,17 +2,12 @@
 
 	echo $this->Html->css('mycarousel');
 
-	echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
-
-	echo $this->Html->css('breadcrumb');
-
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 
 	$name = explode(' ', $users['User']['name']);
 
 	echo $this->element('header', array('user' => $users, 'sumMyPoints' => $sumMyPoints));
-
 
 	$this->end(); 
 ?>
@@ -30,7 +25,7 @@
 	  <div class="small-6 medium-6 large-6 columns padding top-2 maincolumn">
 	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
 	  	  <div id="pattern" class="pattern">
-  	<div class="c">
+  			<div class="c">
 			<div class="c-list-container">
 				<ul class="c-list">
 
