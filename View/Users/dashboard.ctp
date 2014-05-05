@@ -290,4 +290,5 @@
 	echo $this->Html->script('reveal_modal', array('inline' => false));
 	echo $this->Html->script('mycarousel', array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
+	echo $this->Html->script('reveal_modal', array('inline' => false));
 ?>
