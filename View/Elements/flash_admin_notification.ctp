@@ -1,6 +1,6 @@
 <?php echo $this->Html->css('lightbox_ribbon'); ?>
 
-<div id="formModal" class="reveal-modal medium evoke lightbox phase text-align" data-reveal data-options="closeOnBackgroundClick:true">
+<div id="formModal" class="reveal-modal medium evoke lightbox phase text-align" data-reveal data-options="closeOnBackgroundClick:false">
 
   <h3><?= strtoupper(__('Notification')) ?></h3>
  	<div class = "evoke lightbox-margin">
@@ -17,7 +17,8 @@
 	</div>
 	</div>
   <p class="lead"><?= $notificationDescription ?></p>
-  <a class="close-reveal-modal">&#215;</a>
+  <!-- <a class="close-reveal-modal">&#215;</a> -->
+  <a href="#" REPLACE><?= __('Understood, dismiss it...')?></a>
 </div>
 
 <?php 
