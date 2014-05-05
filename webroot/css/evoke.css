@@ -266,82 +266,64 @@ button, div, p, span, a,
 
 /* End of new CSS */
 
-.evoke .divider{
-	height:50px!important;
-}
+/* New topbar section */
 
-.evoke.top-bar-name{
-	font-family: 'AlegreyaBold';
-	color:#fff;
-	font-size:0.9em;
-	/*font-size: 1.5em;*/
-	/*padding-top: 3px!important;*/
-	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
-}
-
-.evoke.top-bar-level h5{
-	font-family: 'AlegreyaBold';
-	color: #fff;
-	font-size: 1.2em;
-	padding: 0px 20px;
-	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
-}
-
-.evoke.top-bar-level span{
-	font-family: 'AlegreyaRegular';
-	color: #fff;
-	font-size: 1.5em;
-	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
-}
-
-.evoke .login-bg-topbar {
-	background: #0d0d10;
-	padding-top:50px;		
-	/*padding-top:80px;*/
-	/*height: 250px;*/
-}
-
-.evoke .login-bg-topbar h1{
-	color: #FFF;
-	font-family: 'SBB';
-	line-height: 0.8em;
-	font-size: 9em;
-	text-align: center;
-}
-
-.evoke .login-bg-topbar h6{
-	text-align: center;
-	font-family: 'AlegreyaRegular';
-	font-size: 1.5em;
-	margin-bottom: 30px;
-	color: #848485;
-}
-
-.evoke .top-bar-section ul{
-	background: #1f8cb2;
+.evoke .top-bar-background{
+	background-color: #008cba;
 }
 
 .evoke .top-bar-section li:not(.has-form) a:not(.button){
-	background: #1f8cb2;
+	background-color: #008cba;
+	font-family: 'AlegreyaBold';
+	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
+	font-size:1.1vw;
 }
 
-.evoke .top-bar-section h2{
-	background: #1f8cb2;
+.evoke .top-bar-section li:not(.has-form) a:not(.button) span{
+	font-size:1.3vw;
 }
 
-.evoke.right{
-	max-width: 90vw;
+.evoke .top-bar .name h1 a{
+	font-family: 'SBB';
+	font-size: 2.5vw;
 }
 
-.top-bar .name h1 a{
-	font-family:'SBB';
-	font-size: 2.5em;
-	margin: 5px 0px 10px 10px;
+#top-bar-name a{
+	padding-left:0;
 }
 
-.has-dropdown i{
-	margin-top: 10px;
+.evoke.top-bar.progress{
+	background-color: #252525;
+	width: 8vw;
+	padding:0;
+	height: 0.4rem;
+	border:0;
+	margin-top: 20px;
 }
+
+.evoke.top-bar .meter{
+	background: #c65862;
+}
+
+.evoke.top-bar.icon{
+	max-height: 30px; 
+	max-width: 70px; 
+}
+
+/*.evoke .contain-to-grid{
+	background-color: #008cba;
+}	
+
+.evoke .top-bar-section ul{
+	background-color: #008cba;
+}
+
+.evoke .top-bar-section li:not(.has-form) a:not(.button){
+	background-color: #008cba;
+}*/
+
+/* End topbar section */
+
 
 /*.right .name h1{
 	font-family: 'AlegreyaRegular';
@@ -360,17 +342,6 @@ button, div, p, span, a,
 	color: #FFF;
 	padding-top: 8px;
 	text-align: center;
-}
-
-.evoke.top-bar-section h3, h4, h5{
-	font-family: 'AlegreyaRegular';
-	/*display: inline;
-	color: #FFF;*/
-}
-
-.evoke.top-bar-section h4{
-	font-size:2.0em;
-	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
 }
 
 .evoke .footer{
@@ -439,27 +410,6 @@ button, div, p, span, a,
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-}
-
-.evoke.top-bar.progress{
-	background-color: #252525;
-	width: 90%;
-	padding:0;
-	height: 0.8rem;
-	border:0;
-	/*margin-top: 10px;*/
-}
-
-.evoke.top-bar-padding{
-	padding: 0px 30px;
-}
-
-.evoke.top-bar-padding.bar{
-	padding-top: 2.0%;
-}
-
-.evoke.top-bar.meter{
-	background-color: #c65862;
 }
 
 .evoke .agent-tag{
@@ -1049,12 +999,6 @@ button, div, p, span, a,
 	position: absolute; 
 	bottom: 185px; 
 	left: 0;
-}
-
-.evoke.top-bar.icon{
-	max-height: 40px; 
-	max-width: 70px; 
-	/*margin-top:3px;*/
 }
 
 .evoke.position{
