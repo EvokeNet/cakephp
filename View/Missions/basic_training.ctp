@@ -193,6 +193,12 @@
 
 					<i class="fa fa-link fa-2x"></i><h2><?= __('Mission Dossier: Links')?></h2>
 					<ul>
+						<?php foreach($links as $link): ?>
+							<li>
+								<a href = "//<?= $link['DossierLink']['link'] ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
+								<?= $link['DossierLink']['description'] ?>
+							</li>
+						<?php endforeach; ?>
 					</ul>
 
 					<i class="fa fa-picture-o fa-2x"></i><h2><?= __('Mission Dossier: Pictures')?></h2>
