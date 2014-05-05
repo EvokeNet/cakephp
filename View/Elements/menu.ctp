@@ -25,7 +25,7 @@
 		}
 	}
 ?>
-<div class = "evoke menu-bg sidebar">
+<div class = "evoke menu-bg sidebar menucolumn">
 	<ul>
 	  <li <?=$dashboardlink?>><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard')) ?>"><i class="fa fa-folder-open" style="padding-right: 10px;"></i><?= strtoupper(__('Dashboard')) ?></a></li>
 	  
