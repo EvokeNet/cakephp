@@ -142,6 +142,19 @@ class Mission extends AppModel {
  * @var array
  */
 	public $hasMany = array(
+		'DossierLink' => array(
+			'className' => 'DossierLink',
+			'foreignKey' => 'mission_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Evidence' => array(
 			'className' => 'Evidence',
 			'foreignKey' => 'mission_id',

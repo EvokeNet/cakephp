@@ -301,6 +301,13 @@ class MissionsController extends AppController {
 			$dossier_files = array();
 		}
 
+		if($flags['_es'])
+			$langs = 'es';
+		else
+			$langs = 'en';
+
+		$links = $this->Mission->DossierLink->find('all', array('conditions' => array('DossierLink.mission_id' => $id, 'DossierLink.language' => $langs)));
+
 		$this->loadModel('Evidence');
 		$my_evidences = $this->Evidence->find('all', array(
 			'order' => array('Evidence.title ASC'),
@@ -463,7 +470,7 @@ class MissionsController extends AppController {
 			));
 		}
 
-		$this->set(compact('lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
+		$this->set(compact('links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
 			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
