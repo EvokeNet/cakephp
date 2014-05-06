@@ -17,6 +17,7 @@
 		$video = $mission['Mission']['video_link'];
 		$novels = $novels_en;
 	endif; 
+	
 ?>
 
 <section class="evoke default-background">
@@ -301,7 +302,7 @@
 
 					  	</ul>
 
-					  	<?php if(isset($nextMP)){ ?>
+					  	<?php if((isset($nextMP)) && ((($completed[$missionPhase['Phase']['id']] * 100)/$total[$missionPhase['Phase']['id']]) == 100)) { ?>
 
 					  	<div class = "evoke text-align-center margin-top-20">
 					  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-share-square fa-lg"></i></a>
