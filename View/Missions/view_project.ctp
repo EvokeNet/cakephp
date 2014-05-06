@@ -183,12 +183,14 @@
 
 					<i class="fa fa-link fa-2x"></i><h2><?= __('Mission Dossier: Links')?></h2>
 					<ul>
+
 						<?php foreach($links as $link): ?>
 							<li>
 								<a href = "//<?= $link['DossierLink']['link'] ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
 								<?= $link['DossierLink']['description'] ?>
 							</li>
 						<?php endforeach; ?>
+
 					</ul>
 
 					<i class="fa fa-picture-o fa-2x"></i><h2><?= __('Mission Dossier: Pictures')?></h2>
@@ -300,49 +302,10 @@
 					<div class = "evoke todo-list content">
 						<h1><?= strtoupper(__('To-Do List')) ?></h1>
 						<ul class="small-block-grid-3">
-							<?php foreach($quests as $q):
-								//only add to checklist quests that are mandatory
-								if($q['Quest']['mandatory'] != 1) continue;
-								
-								$evidence_exists = false;
-								//if it was an 'evidence' type quest
-								foreach($my_evidences as $e):
-									if($q['Quest']['id'] == $e['Quest']['id']) {$evidence_exists = true; break;}
-								endforeach;
-
-								//if it was a questionnaire type quest
-								foreach($questionnaires as $questionnaire):
-									foreach ($previous_answers as $previous_answer) {
-										if($q['Quest']['id'] == $questionnaire['Quest']['id'] && $questionnaire['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {$evidence_exists = true; break;}
-									}
-								endforeach;
-
-								//if its a group type quest, check to see if user owns or belongs to a group of this mission
-								if($q['Quest']['type'] == 3) {
-									if($hasGroup) {
-										$evidence_exists = true;
-									}
-								}
-
-								//debug($previous_answers);
-								if($evidence_exists):?>
-									<li>
-										<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-											<h2 class = "evoke item-complete"><?php echo $q['Quest']['title'];?></h2>
-										</a>
-									</li>
-								<?php else: ?>
-									<li>
-
-									<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-										<h2><?php echo $q['Quest']['title'];?></h2>
-									</a>
-
-									</li>
-								<?php endif; 
-
-							endforeach; ?>
-
+							<?php if(isset($checklists)):
+									foreach($checklists as $check):?>
+								<li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li>
+							<?php endforeach; endif;?>
 					  	</ul>
 
 					  	<?php if(isset($nextMP)){ ?>

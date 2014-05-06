@@ -24,10 +24,10 @@
 	<?php echo $this->Session->flash(); ?>
 
 	<div class="evoke default row full-width-alternate">
-		<div class = "small-2 medium-2 large-2 columns">
-			<?php echo $this->element('menu', array('user' => $user));?>
-		</div>
-		<div class = "small-9 medium-9 large-9 columns">
+		<div class="small-2 medium-2 large-2 columns">
+	  		<?php echo $this->element('menu', array('user' => $user));?>
+	  	</div>
+		<div class = "small-9 medium-9 large-9 columns maincolumn">
 			
 			<div class = "evoke missions graphic-cover">
 				<?php if(!empty($novels)) :?>
@@ -67,9 +67,9 @@
 				<h3> <?= strtoupper($mission['Mission']['title']) ?> </h3>
 				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
-					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
+					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "height:22vw">
                 <?php else :?>
-					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "height:22vw">
                 <?php endif ?>
 			</div>
 
@@ -184,6 +184,12 @@
 
 					<i class="fa fa-link fa-2x"></i><h2><?= __('Mission Dossier: Links')?></h2>
 					<ul>
+						<?php foreach($links as $link): ?>
+							<li>
+								<a href = "//<?= $link['DossierLink']['link'] ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
+								<?= $link['DossierLink']['description'] ?>
+							</li>
+						<?php endforeach; ?>
 					</ul>
 
 					<i class="fa fa-picture-o fa-2x"></i><h2><?= __('Mission Dossier: Pictures')?></h2>
@@ -232,6 +238,24 @@
 								</div>
 
 						<?php endif; endforeach; ?>
+
+						<?php foreach ($video_links as $link): ?>
+
+								<li><a href="#" data-reveal-id="<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a></li>
+
+								<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
+								<div id="<?= $link['DossierVideo']['id']?>" class="reveal-modal large" data-reveal>
+								  <!-- <h2>Awesome. I have it.</h2>
+								  <p class="lead">Your couch.  It is mine.</p>
+								  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
+								  	<div class="flex-video">
+									        <iframe width="420" height="315" src="<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
+									</div>
+								  <a class="close-reveal-modal">&#215;</a> 
+								</div>
+
+						<?php endforeach; ?>
+
 					</ul>
 
 				  </div>
@@ -270,50 +294,28 @@
 					<div class = "evoke todo-list content">
 						<h1><?= strtoupper(__('To-Do List')) ?></h1>
 						<ul class="small-block-grid-3">
-							<?php foreach($quests as $q):
-								//only add to checklist quests that are mandatory
-								if($q['Quest']['mandatory'] != 1) continue;
-								
-								$evidence_exists = false;
-								//if it was an 'evidence' type quest
-								foreach($my_evidences as $e):
-									if($q['Quest']['id'] == $e['Quest']['id']) {$evidence_exists = true; break;}
-								endforeach;
 
-								//if it was a questionnaire type quest
-								foreach($questionnaires as $questionnaire):
-									foreach ($previous_answers as $previous_answer) {
-										if($q['Quest']['id'] == $questionnaire['Quest']['id'] && $questionnaire['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {$evidence_exists = true; break;}
-									}
-								endforeach;
-
-								//if its a group type quest, check to see if user owns or belongs to a group of this mission
-								if($q['Quest']['type'] == 3) {
-									if($hasGroup) {
-										$evidence_exists = true;
-									}
-								}
-
-								//debug($previous_answers);
-								if($evidence_exists):?>
-									<li>
-										<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-											<h2 class = "evoke item-complete"><?php echo $q['Quest']['title'];?></h2>
-										</a>
-									</li>
-								<?php else: ?>
-									<li>
-
-									<a href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-										<h2><?php echo $q['Quest']['title'];?></h2>
-									</a>
-
-									</li>
-								<?php endif; 
-
-							endforeach; ?>
+							<?php if(isset($checklists)):
+									foreach($checklists as $check):?>
+								<li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li>
+							<?php endforeach; endif;?>
 
 					  	</ul>
+
+					  	<?php if(isset($nextMP)){ ?>
+
+					  	<div class = "evoke text-align-center margin-top-20">
+					  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-share-square fa-lg"></i></a>
+					  	</div>
+
+					  	<?php } if(isset($prevMP)) {?>
+
+					  	<div class = "evoke text-align-center margin-top-20">
+					  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position'])); ?>" class = "button general green"><i class="fa fa-share-square fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;&nbsp;<?php echo sprintf(__('Go back to %s'), $prevMP['Phase']['name']);?></a>
+					  	</div>
+
+					  	<?php } ?>
+
 	                </div>
 				
 			  </div>
@@ -330,12 +332,5 @@
 </section>
 
 <?php
-
-	//echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
-	echo $this->Html->script('/components/jcarousel/dist/jquery.jcarousel', array('inline' => false));
-	//echo $this->Html->script('/components/jcarousel/examples/basic/jcarousel.basic');
-	//echo $this->Html->script('/components/jcarousel/examples/skeleton/jcarousel.skeleton');
-	//echo $this->Html->script('/components/jcarousel/examples/responsive/jcarousel.responsive', array('inline' => false));
-	echo $this->Html->script('jcarousel_missions', array('inline' => false));
-
+	echo $this->Html->script('menu_height', array('inline' => false));
 ?>

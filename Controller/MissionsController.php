@@ -95,8 +95,6 @@ class MissionsController extends AppController {
 
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
 
-		
-
 		$this->loadModel('User');
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
@@ -127,7 +125,6 @@ class MissionsController extends AppController {
 			$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
 			$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);	
 		// } 
-		
 
 		//$evidences = $this->Mission->getEvidences($id);
 
@@ -308,6 +305,7 @@ class MissionsController extends AppController {
 
 		$links = $this->Mission->DossierLink->find('all', array('conditions' => array('DossierLink.mission_id' => $id, 'DossierLink.language' => $langs)));
 		$video_links = $this->Mission->DossierVideo->find('all', array('conditions' => array('DossierVideo.mission_id' => $id, 'DossierVideo.language' => $langs)));
+		$checklists = $this->Mission->PhaseChecklist->find('all', array('conditions' => array('PhaseChecklist.mission_id' => $id, 'PhaseChecklist.phase_id' => $missionPhase['Phase']['id'], 'PhaseChecklist.language' => $langs)));
 
 		$this->loadModel('Evidence');
 		$my_evidences = $this->Evidence->find('all', array(
@@ -471,7 +469,8 @@ class MissionsController extends AppController {
 			));
 		}
 
-		$this->set(compact('links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
+
+		$this->set(compact('checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
 			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
