@@ -58,7 +58,8 @@ class EvidencesController extends AppController {
 		$attachments = $this->Attachment->find('all', array(
 			'conditions' => array(
 				'Attachment.model' => 'Evidence',
-				'Attachment.foreign_key' => $id
+				'Attachment.foreign_key' => $id,
+				'Attachment.dir !=' => null
 			)
 		));
 
