@@ -474,8 +474,16 @@ class MissionsController extends AppController {
 			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
-		// if((($completed[$prevMP['Phase']['id']] * 100)/$total[$prevMP['Phase']['id']]) != 100) 
+		// if(isset($prevMP['Phase']['id']) && ((($completed[$prevMP['Phase']['id']] * 100)/$total[$prevMP['Phase']['id']]) != 100)) 
 		// 	return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
+		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 1) && $completed[$prevMP['Phase']['id']] < 2){
+			$this->Session->setFlash(__('You need to finish at least to quests to complete Basic Training'), 'flash_message');
+			return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
+		}
+		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 0) && $completed[$prevMP['Phase']['id']] < 1){
+			$this->Session->setFlash(__('You need to finish at least one quest to go to next phase'), 'flash_message');
+			return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
+		}
 		if($mission['Mission']['basic_training'] == 1)
 			$this->render('basic_training');
 		else if($missionPhase['Phase']['type'] == 0)
