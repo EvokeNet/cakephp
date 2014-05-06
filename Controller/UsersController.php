@@ -383,7 +383,7 @@ class UsersController extends AppController {
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
 
-
+		/* commented for now
 		//getting leaderboard data:
 			//getting user power points
 			$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
@@ -453,6 +453,7 @@ class UsersController extends AppController {
 
 
 		//ended leader board data
+		*/
 
 		//admin notifications check:
 		$this->loadModel('AdminNotification');
