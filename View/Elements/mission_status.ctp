@@ -39,10 +39,16 @@
 						<div style="width:<?= $qtd?>%; float:left">
 							<?php 
 								$phaseDone = "alert";
-								if(((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) == 100) && ($completed[$phase['Phase']['id']] < 2) && ($phase['Mission']['basic_training'] == 1))
-									$phaseDone = "success";
-								if(((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) > 0) && ((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) < 100) && ($completed[$phase['Phase']['id']] < 1) && ($phase['Mission']['basic_training'] == 0))
+								
+								if(((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) > 0) && ((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) < 100))
 									$phaseDone = "dev";
+
+								if(($completed[$phase['Phase']['id']] >= 2) && ($phase['Mission']['basic_training'] == 1))
+									$phaseDone = "success";
+
+								if(($completed[$phase['Phase']['id']] >= 1) && ($phase['Mission']['basic_training'] == 0))
+									$phaseDone = "success";
+
 
 							?>
 							<a href = "<?php echo $this->Html->url(array('controller'=>'missions', 'action' => 'view', $phase['Mission']['id'], $phase['Phase']['position'])); ?>"><h2 class = "evoke mission status <?=$phaseDone ?>"><?= strtoupper($phase['Phase']['name'])?><i class="fa fa-angle-right fa-lg" style = "margin-left: 40%;"></i></h2></a>
