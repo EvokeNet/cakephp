@@ -92,6 +92,19 @@ class Phase extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'PhaseChecklist' => array(
+			'className' => 'PhaseChecklist',
+			'foreignKey' => 'phase_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Quest' => array(
 			'className' => 'Quest',
 			'foreignKey' => 'phase_id',
