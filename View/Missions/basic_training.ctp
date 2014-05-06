@@ -193,6 +193,12 @@
 
 					<i class="fa fa-link fa-2x"></i><h2><?= __('Mission Dossier: Links')?></h2>
 					<ul>
+						<?php foreach($links as $link): ?>
+							<li>
+								<a href = "//<?= $link['DossierLink']['link'] ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
+								<?= $link['DossierLink']['description'] ?>
+							</li>
+						<?php endforeach; ?>
 					</ul>
 
 					<i class="fa fa-picture-o fa-2x"></i><h2><?= __('Mission Dossier: Pictures')?></h2>
@@ -244,17 +250,13 @@
 
 						<?php foreach ($video_links as $link): ?>
 
-								<li><a href="#" data-reveal-id="<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a></li>
+								<li><a href="#" data-reveal-id="video-<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a></li>
 
-								<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
-								<div id="<?= $link['DossierVideo']['id']?>" class="reveal-modal large" data-reveal>
-								  <!-- <h2>Awesome. I have it.</h2>
-								  <p class="lead">Your couch.  It is mine.</p>
-								  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
-								  	<div class="flex-video">
-									        <iframe width="420" height="315" src="<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
+								<div id="video-<?= $link['DossierVideo']['id']?>" class="reveal-modal large" data-reveal>
+								  	<div id="frame-<?= $link['DossierVideo']['id']?>" class="flex-video-new">
+									        <iframe id="iframe-<?= $link['DossierVideo']['id']?>" width="420" height="315" src="//<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
 									</div>
-								  <a class="close-reveal-modal">&#215;</a> 
+									<a class="close-reveal-modal">&#215;</a> 
 								</div>
 
 						<?php endforeach; ?>
