@@ -11,7 +11,11 @@
 		  <div class="small-2 medium-2 large-2 columns evoke text-align-center">
 
 		  	<?php if($e['User']['photo_attachment'] == null) : ?>
-			  	<img src="https://graph.facebook.com/<?php echo $e['User']['facebook_id']; ?>/picture?type=large" style = "height:5vw"/>
+			  	<?php if($e['User']['facebook_id'] == null) : ?>
+					<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"  style = "height:5vw"/>
+				<?php else : ?>	
+					<img src="https://graph.facebook.com/<?php echo $e['User']['facebook_id']; ?>/picture?type=large" style = "height:5vw"/>
+				<?php endif; ?>
 			<?php else : ?>
 			  	<img src="<?= $this->webroot.'files/attachment/attachment/'.$e['User']['photo_dir'].'/thumb_'.$e['User']['photo_attachment'] ?>" style = "height:5vw"/>
 			<?php endif; ?>

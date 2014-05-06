@@ -53,7 +53,12 @@
 					  <div class="small-4 medium-4 large-4 columns">
 					  	<a href = "#">
 					  		<?php if($user['User']['photo_attachment'] == null) : ?>
-			  					<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/>
+			  					<?php if($user['User']['facebook_id'] == null) : ?>
+									<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" class = "evoke dashboard user_pic"/>
+								<?php else : ?>	
+									<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" class = "evoke dashboard user_pic"/>
+								<?php endif; ?>
+
 			  				<?php else : ?>
 			  					<img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>" class = "evoke dashboard user_pic"/>
 			  				<?php endif; ?>
@@ -112,7 +117,12 @@
 								<li>
 									<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $ally['User']['id'])) ?>">
 										<?php if($ally['User']['photo_attachment'] == null) : ?>
-						  					<img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/>
+						  					<?php if($ally['User']['facebook_id'] == null) : ?>
+												<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/>
+											<?php else : ?>	
+												<img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/>
+											<?php endif; ?>
+						  					
 						  				<?php else : ?>
 						  					<img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/thumb_'.$ally['User']['photo_attachment'] ?>"/>
 						  				<?php endif; ?>
@@ -166,17 +176,17 @@
 			    	<?php 
 			    	//Lists all projects and evidences
 			    		foreach($myevidences as $e): 
-			    				echo $this->element('evidence_box', array('e' => $e)); 
+			    				echo $this->element('evidence', array('e' => $e)); 
 			    		endforeach; 
 
 			    		foreach($myEvokations as $e):
-			    			echo $this->element('evokation_box', array('e' => $e, 'evokationFollowing' => $evokationsFollowing));
+			    			echo $this->element('evokation', array('e' => $e, 'evokationFollowing' => $evokationsFollowing));
 						endforeach;
 					?>
 				  </div>				  
 				</div>
 
-				<div class = "evoke dashboard position">
+				<!--<div class = "evoke dashboard position">
 
 					<?php echo $this->element('right_titlebar', array('title' => (__('Leadercloud')))); ?>
 
@@ -244,7 +254,7 @@
 							}
 						?>
 					</div>
-				</div>
+				</div>-->
 
 				<div class = "evoke dashboard position">
 				

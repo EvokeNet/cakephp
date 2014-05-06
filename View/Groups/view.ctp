@@ -90,7 +90,12 @@
 							<li>
 								<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $g['User']['id'])) ?>">
 									<?php if($g['User']['photo_attachment'] == null) : ?>
-										<img src = "https://graph.facebook.com/<?php echo $g['User']['facebook_id']; ?>/picture?type=large">
+										<?php if($g['User']['facebook_id'] == null) : ?>
+											<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/>
+										<?php else : ?>	
+											<img src = "https://graph.facebook.com/<?php echo $g['User']['facebook_id']; ?>/picture?type=large">
+										<?php endif; ?>
+
 									<?php else : ?>
 										<img src="<?= $this->webroot.'files/attachment/attachment/'.$g['User']['photo_dir'].'/'.$g['User']['photo_attachment'] ?>" />
 									<?php endif; ?>

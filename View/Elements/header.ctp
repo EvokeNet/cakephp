@@ -15,7 +15,12 @@
 	      <li class="active">
 	      	<a href="#">
 	      		<?php if($user['User']['photo_attachment'] == null) : ?>
-					<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+					<?php if($user['User']['facebook_id'] == null) : ?>
+						<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+					<?php else : ?>	
+						<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+					<?php endif; ?>
+					
 	  			<?php else : ?>
 	  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 	  			<?php endif; ?>		
