@@ -240,7 +240,7 @@
 
 						<?php foreach ($video_links as $link): ?>
 
-								<li><a href="<?= $link['DossierVideo']['video_link'] ?>" data-reveal-id="<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a></li>
+								<li><a href="#" data-reveal-id="<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a></li>
 
 								<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
 								<div id="<?= $link['DossierVideo']['id']?>" class="reveal-modal large" data-reveal>
