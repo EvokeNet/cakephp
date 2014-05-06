@@ -33,7 +33,7 @@ class UsersController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'logout', 'register');        
+        $this->Auth->allow('add', 'login', 'logout', 'register');        
     }
 
 
@@ -160,7 +160,7 @@ class UsersController extends AppController {
 			$this->request->data['User']['role_id'] = 3;//sets user as a common user
 			if ($this->User->save($this->request->data)) {
 				$user = $this->User->save($this->request->data);
-				$this->Session->setFlash(__('The user has been saved.'));
+				// $this->Session->setFlash(__('The user has been saved.'));
 				$user['User']['id'] = $this->User->id;
 				$user['User']['role_id'] = $this->User->role_id;
 				$this->Auth->login($user);
@@ -878,7 +878,7 @@ class UsersController extends AppController {
 
 				$this->User->UserIssue->deleteAll(array('UserIssue.user_id' => $userid), false);
 
-				if(is_array($this->request->data['UserIssue']['issue_id'])) {
+				if(isset($this->request->data['UserIssue']) && is_array($this->request->data['UserIssue']['issue_id'])) {
 					foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
 				        $insertData = array('user_id' => $id, 'issue_id' => $a);
 

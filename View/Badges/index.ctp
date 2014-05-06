@@ -17,7 +17,7 @@
 		<div class="small-2 medium-2 large-2 columns padding-left">
 		  		<?php echo $this->element('menu', array('user' => $user));?>
 		</div>	
-		
+
 		<div class="small-9 medium-9 large-9 columns maincolumn">
 			
 			<h3> <?= strtoupper(__('Badges')) ?> </h3>
@@ -52,6 +52,7 @@
 			  	-->
 				</ul>
 			</div>
+
 		</div>
 
 		<div class="medium-1 end columns"></div>

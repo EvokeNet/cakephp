@@ -2,7 +2,7 @@
 
 	echo $this->Html->css('mycarousel');
 
-	// echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
+	echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
 
 	// echo $this->Html->css('breadcrumb');
 
@@ -299,6 +299,7 @@
 </section>
 
 <?php
+	echo $this->Html->script('reveal_modal', array('inline' => false));
 	echo $this->Html->script('mycarousel', array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->script('reveal_modal', array('inline' => false));

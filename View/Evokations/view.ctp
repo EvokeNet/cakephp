@@ -9,21 +9,21 @@
 
 ?>
 
-<?php $this->start('social-metatags'); ?>
+<?php //$this->start('social-metatags'); ?>
 
-	<meta property="og:locale" content="en_US">
+	<!-- <meta property="og:locale" content="en_US">
 		 
 	<meta property="og:url" content="<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $evokation['Evokation']['id'])); ?>">
 	 
 	<meta property="og:title" content="<?= $evokation['Evokation']['title'] ?>">
-	<meta property="og:site_name" content="<?= __('Evoke') ?>">
+	<meta property="og:site_name" content="<?= __('Evoke') ?>"> -->
 	 
 	<!-- <meta property="og:description" content="<?= $evokation['Evokation']['content'] ?>"> -->
 
 	<!-- <meta property="og:title" content="pagina" /> -->
 	<!-- [...] -->
 
-<?php $this->end(); ?>
+<?php //$this->end(); ?>
 
 <section class="evoke default-background">
 

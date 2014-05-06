@@ -17,6 +17,7 @@
 		$video = $mission['Mission']['video_link'];
 		$novels = $novels_en;
 	endif; 
+	
 ?>
 
 <section class="evoke default-background">
@@ -241,17 +242,13 @@
 
 						<?php foreach ($video_links as $link): ?>
 
-								<li><a href="#" data-reveal-id="<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a></li>
+								<li><a href="#" data-reveal-id="video-<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a></li>
 
-								<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
-								<div id="<?= $link['DossierVideo']['id']?>" class="reveal-modal large" data-reveal>
-								  <!-- <h2>Awesome. I have it.</h2>
-								  <p class="lead">Your couch.  It is mine.</p>
-								  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p> -->
-								  	<div class="flex-video">
-									        <iframe width="420" height="315" src="<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
+								<div id="video-<?= $link['DossierVideo']['id']?>" class="reveal-modal large" data-reveal>
+								  	<div id="frame-<?= $link['DossierVideo']['id']?>" class="flex-video-new">
+									        <iframe id="iframe-<?= $link['DossierVideo']['id']?>" width="420" height="315" src="//<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
 									</div>
-								  <a class="close-reveal-modal">&#215;</a> 
+									<a class="close-reveal-modal">&#215;</a> 
 								</div>
 
 						<?php endforeach; ?>
@@ -302,7 +299,7 @@
 
 					  	</ul>
 
-					  	<?php if(isset($nextMP)){ ?>
+					  	<?php if((isset($nextMP)) && ((($completed[$missionPhase['Phase']['id']] * 100)/$total[$missionPhase['Phase']['id']]) == 100)) { ?>
 
 					  	<div class = "evoke text-align-center margin-top-20">
 					  	<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $nextMP['Phase']['position'])); ?>" class = "button general blue"><?php echo sprintf(__('Go to %s'), $nextMP['Phase']['name']);?>&nbsp;&nbsp;&nbsp;<i class="fa fa-share-square fa-lg"></i></a>

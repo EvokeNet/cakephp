@@ -9,21 +9,21 @@
 
 ?>
 
-<?php $this->start('social-metatags'); ?>
+<?php //$this->start('social-metatags'); ?>
 
-	<meta property="og:locale" content="en_US">
+	<!-- <meta property="og:locale" content="en_US">
 		 
 	<meta property="og:url" content="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $evidence['Evidence']['id'])); ?>">
 	 
 	<meta property="og:title" content="<?= $evidence['Evidence']['title'] ?>">
 	<meta property="og:site_name" content="<?= __('Evoke') ?>">
 	 
-	<meta property="og:description" content="<?= $evidence['Evidence']['content'] ?>">
+	<meta property="og:description" content="<?= $evidence['Evidence']['content'] ?>"> -->
 
 	<!-- <meta property="og:title" content="pagina" /> -->
 	<!-- [...] -->
 
-<?php $this->end(); ?>
+<?php //$this->end(); ?>
 
 <section class="evoke default-background">
 
@@ -90,10 +90,59 @@
 			  	
 			  	<?php if(!empty($attachments)) :?>
 			  		<h4><?= __("Evidence's attachments:")?></h4>
-			  	<?php endif ?>
-			  	<?php foreach ($attachments as $attachment) :?>
-			  		<span><?= $attachment['Attachment']['attachment']?></span>
-			  	<?php endforeach ?>
+			  		<?php 
+			  			$images = array();
+			  			$pdfs = array();
+			  			foreach ($attachments as $attachment) :
+			  				$type = explode('/', $attachment['Attachment']['type']);
+							if($type[0] == 'application'): 
+								$pdfs[] = $attachment;
+							else :
+								if($type[0] == 'image')
+									$images[] = $attachment;
+							endif;
+
+						endforeach; 
+					?>
+
+					<?php if(!empty($images)) :?>
+				  	  	<ul class="clearing-thumbs" data-clearing>		
+
+					  		<?php foreach ($images as $attachment) :?>
+					  			<!-- <span><?= $attachment['Attachment']['attachment']?></span> -->
+								<li>
+				 					<a href="<?= $this->webroot.'files/attachment/attachment/'.$attachment['Attachment']['dir'].'/'.$attachment['Attachment']['attachment'].''; ?>">
+				 						<img src="<?= $this->webroot.'files/attachment/attachment/'.$attachment['Attachment']['dir'].'/thumb_'.$attachment['Attachment']['attachment'] ?>" width="100%">
+				 					</a>
+			 					</li>
+					  		<?php endforeach ?>
+						</ul>
+					<?php endif ?>
+
+					<?php if(!empty($pdfs)) :?>
+				  	  	
+					  	<?php foreach ($pdfs as $attachment) :?>
+					  		<?php $path = ' '.$this->webroot.'files/attachment/attachment/'.$attachment['Attachment']['dir'].'/'.$attachment['Attachment']['attachment'] . ''; ?>
+
+							<li><a href="<?= $path ?>" data-reveal-id="<?= $attachment['Attachment']['id']?>" data-reveal><?= $attachment['Attachment']['attachment']?></a></li>
+
+							
+							<div id="<?= $attachment['Attachment']['id']?>" class="reveal-modal large" data-reveal>
+							 	<object data="<?= $path ?>" type="application/pdf" width="100%" height="100%" style = "height:900px">
+
+								  	<p>
+								  		It appears you don't have a PDF plugin for this browser. No biggie... you can 
+										<a href="myfile.pdf">click here to download the PDF file.</a>
+									</p>
+									  
+								</object>
+								<a class="close-reveal-modal">&#215;</a> 
+							</div>
+					  	<?php endforeach ?>
+						
+					<?php endif ?>
+				  	
+				<?php endif ?>
 
 
 			  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
