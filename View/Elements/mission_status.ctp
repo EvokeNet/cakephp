@@ -39,9 +39,9 @@
 						<div style="width:<?= $qtd?>%; float:left">
 							<?php 
 								$phaseDone = "alert";
-								if((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) == 100)
+								if(((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) == 100) && ($completed[$phase['Phase']['id']] < 2) && ($phase['Mission']['basic_training'] == 1))
 									$phaseDone = "success";
-								if(((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) > 0) && ((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) < 100))
+								if(((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) > 0) && ((($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) < 100) && ($completed[$phase['Phase']['id']] < 1) && ($phase['Mission']['basic_training'] == 0))
 									$phaseDone = "dev";
 
 							?>
