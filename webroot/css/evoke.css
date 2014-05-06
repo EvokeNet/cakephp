@@ -55,6 +55,24 @@ button, div, p, span, a,
 	width: 70%!important;
 }
 
+.flex-video-new {
+  position: relative;
+  padding-top: 1.5625rem;
+  padding-bottom: 67.5%;
+  height: 0;
+  margin-bottom: 1rem;
+  overflow: hidden; }
+  .flex-video-new.widescreen {
+    padding-bottom: 57.25%; }
+  .flex-video-new.vimeo {
+    padding-top: 0; }
+  .flex-video-new iframe, .flex-video-new object, .flex-video-new embed, .flex-video-new video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
 /* OVERRIDES STANDARD ROW WIDTH */
 .evoke .row.full-width {
     width: 80%;

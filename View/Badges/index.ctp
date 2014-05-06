@@ -32,8 +32,13 @@
 							<img src = '<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>'>
 						<?php else: ?>
 							<img src = '<?= $this->webroot.'img/badge.png' ?>'>
-						<?php endif ?>
-						<h1><?= $badge['Badge']['name'] . '(' .$badge['Badge']['owns'] . ')';?></h1>
+						<?php endif;
+
+							$owned = ' (owned)';
+							if($badge['Badge']['owns'] != 1)
+								$owned = '';
+						?>
+						<h1><?= $badge['Badge']['name'] . $owned;?></h1>
 			  			<p><?= $badge['Badge']['description']?></p>
 					</li>
 				<?php endforeach;?>

@@ -2,7 +2,7 @@
 
 	echo $this->Html->css('mycarousel');
 
-	// echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
+	echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
 
 	// echo $this->Html->css('breadcrumb');
 
@@ -18,7 +18,19 @@
 
 <section class="evoke default-background">
 
-	<?php echo $this->Session->flash(); ?>
+	<?php 
+		// for ($i=0; $i < 2; $i++) { 
+			// debug($this->Session->flash('admin-1')); 
+			echo $this->Session->flash(); 
+			
+		// }
+	?>
+
+	<div id="secondModal" class="reveal-modal" data-reveal>
+	  <h2>This is a second modal.</h2>
+	  <p>See? It just slides into place after the other first modal. Very handy when you need subsequent dialogs, or when a modal option impacts or requires another decision.</p>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
 
 	<div class="evoke default row full-width-alternate">
 
@@ -287,6 +299,7 @@
 </section>
 
 <?php
+	echo $this->Html->script('reveal_modal', array('inline' => false));
 	echo $this->Html->script('mycarousel', array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->script('reveal_modal', array('inline' => false));

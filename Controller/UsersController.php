@@ -489,7 +489,7 @@ class UsersController extends AppController {
 	        ));
 
 	        $this->getEventManager()->dispatch($event);
-	        break;
+	        // break;
 		}
 
 		//get all newer than that one
