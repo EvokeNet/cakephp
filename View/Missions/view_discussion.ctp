@@ -88,6 +88,7 @@
 				    <?php if(!is_null($video) && $video != '') : ?>
 				  		<div class="flex-video widescreen vimeo" style = "margin-top:50px">
 						  <iframe src="<?= $video ?>" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
 						</div>
 					<?php endif; ?>
 
