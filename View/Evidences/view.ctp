@@ -100,7 +100,7 @@
 			  			$pdfs = array();
 			  			foreach ($attachments as $attachment) :
 			  				$type = explode('/', $attachment['Attachment']['type']);
-							if($type[0] == 'application'): 
+							if($type[0] == 'application' && $type[1] != 'octet-stream'): 
 								$pdfs[] = $attachment;
 							else :
 								if($type[0] == 'image')
