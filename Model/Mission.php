@@ -220,6 +220,19 @@ class Mission extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'PhaseChecklist' => array(
+			'className' => 'PhaseChecklist',
+			'foreignKey' => 'mission_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Quest' => array(
 			'className' => 'Quest',
 			'foreignKey' => 'mission_id',
