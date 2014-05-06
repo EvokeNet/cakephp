@@ -130,7 +130,7 @@
 
 .evoke.login.video-bar{
 	position: absolute;
-	top: -17px;
+	top: -16px;
 	left: 50%;
 }
 
@@ -315,7 +315,7 @@
 }
 
 .evoke.dashboard.feed ul li, a{
-	color:#efefef!important;
+	/*color:#efefef!important;*/
 	font-size:1.0vw;
 	font-family: 'AlegreyaRegular';
 	/*line-height: 1.7em;*/

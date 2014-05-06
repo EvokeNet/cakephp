@@ -114,6 +114,8 @@ class MissionsController extends AppController {
 				$phase_number = $missionPhase['Phase']['position'];
 		}
 		
+		if(is_null($phase_number))
+			$this->redirect(array('controller' => 'missions', 'action' => 'view', $id, 1));
 
 		if($phase_number > count($missionPhases)) {
 			$this->Session->setFlash(__("This mission/phase does not exist!"));
@@ -121,8 +123,11 @@ class MissionsController extends AppController {
 		}
 
 		$missionPhase = $this->Mission->Phase->find('first', array('conditions' => array('Phase.mission_id' => $id, 'Phase.position' => $phase_number)));
-		$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
-		$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);
+		// if(!empty($missionPhase)){
+			$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
+			$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);	
+		// } 
+		
 
 		//$evidences = $this->Mission->getEvidences($id);
 
@@ -296,6 +301,14 @@ class MissionsController extends AppController {
 			$dossier_files = array();
 		}
 
+		if($flags['_es'])
+			$langs = 'es';
+		else
+			$langs = 'en';
+
+		$links = $this->Mission->DossierLink->find('all', array('conditions' => array('DossierLink.mission_id' => $id, 'DossierLink.language' => $langs)));
+		$video_links = $this->Mission->DossierVideo->find('all', array('conditions' => array('DossierVideo.mission_id' => $id, 'DossierVideo.language' => $langs)));
+
 		$this->loadModel('Evidence');
 		$my_evidences = $this->Evidence->find('all', array(
 			'order' => array('Evidence.title ASC'),
@@ -458,7 +471,7 @@ class MissionsController extends AppController {
 			));
 		}
 
-		$this->set(compact('lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
+		$this->set(compact('links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
 			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
@@ -698,4 +711,5 @@ class MissionsController extends AppController {
 			$this->Session->setFlash(__('The mission could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

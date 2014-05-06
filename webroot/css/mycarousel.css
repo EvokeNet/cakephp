@@ -24,6 +24,17 @@
 
         .c li {
             float: left;
+            position: relative;
+        }
+        .c li h1{
+            color: #fff;
+            font-family: 'AlegreyaBold';
+            font-size: 2.0vw;
+            position: absolute;
+            top: 0;
+            left: 10px;
+            word-wrap: break-word;
+            text-shadow: 0 0 12px rgba(0,0,0,0.85);
         }
         .c li a {
             display: block;
@@ -54,6 +65,10 @@
         .c-nav a.next {
             border-left: 1px solid #808080;
             text-align: right;
+            color:#fff;
+        }
+        .c-nav a.prev {
+            color:#fff;
         }
         .c-nav a.inactive {
             opacity: 0.2;
@@ -68,6 +83,7 @@
             .c li {
                 /*padding: 0 0.5em;*/
                 padding: 0 0.2em;
+                position: relative;
             }
             body:after { /* Conditional CSS http://adactio.com/journal/5429/ */
                 content: 'medium';
@@ -87,13 +103,13 @@
         /*Large with room to spare on either side */
         @media screen and (min-width: 82em) {
             .c-nav a {
-                position: absolute;
+                /*position: absolute;
                 top: 40%;
                 left: -4em;
                 width: 4em;
                 height: 2em;
                 padding: 0;
-                margin-top: -1em;
+                margin-top: -1em;*/
             }
             .c-nav a.next {
                 left: auto;

@@ -6,18 +6,24 @@
 		$this->end(); 
 	}
 ?>
-<section class="evoke background-green">
-	<?php 
-		if(!empty($user['User']['biography'])){
-			echo $this->element('menu', array('user' => $user));
-		}
-	?>
-	<div class="row full-width">
-		<div class="small-9 small-centered columns">
+
+<section class="evoke default-background">
+
+	<div class="evoke default row full-width-alternate">
+
+		<div class="small-2 medium-2 large-2 columns">
+		  	<?php 
+				if(!empty($user['User']['biography'])){
+					echo $this->element('menu', array('user' => $user));
+				}
+			?>
+	  	</div>
+
+		<div class="small-9 medium-9 large-9 columns maincolumn">
 
 		<?php echo $this->Session->flash(); ?>
 
-			<div class="row full-width">
+			<div class="row full-width-alternate">
 
 			  <div class="small-3 medium-3 large-3 columns evoke no-padding">
 			  <div class = "evoke edit-agent-tag">
@@ -70,7 +76,10 @@
 							echo $this->Form->input('instagram');
 							echo $this->Form->input('website', array('label' => __('Website')));
 							echo $this->Form->input('blog');
-							echo $this->Form->input('UserIssue.issue_id', array('class' => 'edit-user-issues', 'type' => 'select', 'multiple' => 'checkbox', 'selected' => $selectedIssues));
+
+							if($issues):
+								echo $this->Form->input('UserIssue.issue_id', array('class' => 'edit-user-issues', 'type' => 'select', 'multiple' => 'checkbox', 'selected' => $selectedIssues));
+							endif;
 						?>
 					<div class = "evoke text-align"><button type="submit" class= "evoke button general submit-button-margin margin top-2"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save and proceed to your dashboard')) ?></button> </div>
 				</div>
@@ -78,6 +87,9 @@
 
 			</div>
 		</div>
+
+		<div class="medium-1 end columns"></div>
+
 	</div>
 </section>
 
@@ -86,6 +98,7 @@
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+	echo $this->Html->script('menu_height', array('inline' => false));
 ?>
 <script type="text/javascript" charset="utf-8">
 	$("#imageUpload").css( 'cursor', 'pointer' );

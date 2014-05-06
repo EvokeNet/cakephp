@@ -45,13 +45,13 @@
 									$phaseDone = "dev";
 
 							?>
-							<a href = "<?php echo $this->Html->url(array('controller'=>'missions', 'action' => 'view', $phase['Mission']['id'], $phase['Phase']['position'])); ?>"><h2 class = "evoke mission status <?=$phaseDone ?>"><?= strtoupper($phase['Phase']['name'])?></h2></a>
+							<a href = "<?php echo $this->Html->url(array('controller'=>'missions', 'action' => 'view', $phase['Mission']['id'], $phase['Phase']['position'])); ?>"><h2 class = "evoke mission status <?=$phaseDone ?>"><?= strtoupper($phase['Phase']['name'])?><i class="fa fa-angle-right fa-lg" style = "margin-left: 40%;"></i></h2></a>
 							<!-- <div class = "evoke mission circle-position"><div class="evoke mission circle <?=$phaseDone ?>"></div></div> -->
-							<div class = "evoke mission bar-position">
+							<!-- <div class = "evoke mission bar-position">
 								<div class="evoke mission status progress <?=$phaseDone ?>" style="">
 									<span class="evoke mission status <?=$phaseDone ?> meter" style="width: <?php echo (($completed[$phase['Phase']['id']] * 100)/$total[$phase['Phase']['id']]) ?>%"></span>
 								</div>
-							</div>
+							</div> -->
 						</div>
 				<?php endforeach; ?>
 			</div>
@@ -62,11 +62,11 @@
 					 	$complete = 'success';?>
 				<h2 class = "evoke mission status <?= $complete ?> text-align-end" ><?= strtoupper('Finish') ?></h2>
 
-				<div class = "evoke mission bar-position">
+				<!-- <div class = "evoke mission bar-position">
 					<div class="evoke mission status progress success" style="">
 						<span class="evoke mission status success meter" style="100%"></span>
 					</div>
-				</div>
+				</div> -->
 
 				<!-- <div class="evoke mission circle <?= $complete ?>"><i class="fa fa-flag-checkered fa-lg"></i></div>  -->
 			</div>

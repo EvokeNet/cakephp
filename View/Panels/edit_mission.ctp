@@ -1,56 +1,11 @@
 <?php
 	$this->extend('/Common/topbar');
 	$this->start('menu');
+
+	echo $this->element('header', array('user' => $user));
+	$this->end(); 
+	
 ?>
-
-<nav class="top-bar" data-topbar>
-	<ul class="title-area">
-		<li class="name">
-			<h1><a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $userid)); ?>"><?= strtoupper(__('Evoke')) ?></a></h1>
-		</li>
-		<!-- <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li> -->
-		
-	</ul>
-
-	<section class="evoke top-bar-section">
-
-		<!-- Right Nav Section -->
-		<ul class="evoke right">
-
-			<li class = "name">
-				<h3><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $userid)); ?>" class = "evoke top-bar-name"><?= $username[0] ?></a></h3>
-			</li>
-
-			<li class="evoke divider"></li>
-
-			<li  class="has-dropdown">
-				<a href="#"><?= __('Language') ?></a>
-				<ul class="dropdown">
-					<li><?= $this->Html->link(__('English'), array('action'=>'changeLanguage', 'en')) ?></li>
-					<li><?= $this->Html->link(__('Spanish'), array('action'=>'changeLanguage', 'es')) ?></li>
-				</ul>
-			</li>
-
-			<li class="evoke divider"></li>
-			
-			<li class="has-dropdown">
-				<a href="#"><i class="fa fa-cog fa-2x"></i></a>
-				<ul class="dropdown">
-					<li><h1><?php echo $this->Html->link(__('Edit informations'), array('controller' => 'users', 'action' => 'edit', $userid)); ?></h1></li>
-					<li><h1><?php echo $this->Html->link(__('Sign Out'), array('controller' => 'users', 'action' => 'logout')); ?></h1></li>
-				</ul>
-			</li>
-
-		</ul>
-		
-		<ul class="evoke left">
-			<li class="name">
-				<h3><a href="#" class="evoke top-bar-name"><?php echo sprintf(__("Evoke's Mission Panel")) .': ' . $mission['Mission']['title'];?></a></h3>
-			</li>
-		</ul>
-	</section>
-</nav>
-<?php $this->end(); ?>
 
 <section class="margin top-2">
 	<div class="row max-width">

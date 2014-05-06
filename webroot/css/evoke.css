@@ -55,6 +55,24 @@ button, div, p, span, a,
 	width: 70%!important;
 }
 
+.flex-video-new {
+  position: relative;
+  padding-top: 1.5625rem;
+  padding-bottom: 67.5%;
+  height: 0;
+  margin-bottom: 1rem;
+  overflow: hidden; }
+  .flex-video-new.widescreen {
+    padding-bottom: 57.25%; }
+  .flex-video-new.vimeo {
+    padding-top: 0; }
+  .flex-video-new iframe, .flex-video-new object, .flex-video-new embed, .flex-video-new video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
 /* OVERRIDES STANDARD ROW WIDTH */
 .evoke .row.full-width {
     width: 80%;
@@ -116,9 +134,13 @@ button, div, p, span, a,
 	color:#fff;
 	/*text-shadow: 0px 0px 8px rgba(47, 113, 108, 1);*/
 	/*text-shadow: 3px 3px 0px rgba(47, 113, 108, 1);*/
-	text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.9);
+
+	text-shadow: 0 0 12px rgba(0,0,0,0.85);
+
+	/*text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.9);*/
 	/*text-shadow: 0px 0px 20px #2f716c;*/
-	font-size: 1.2em;
+	/*font-size: 1.2em;*/
+	font-size: 1.5vw;
 }
 
 .evoke .content-block{
@@ -130,6 +152,10 @@ button, div, p, span, a,
 	box-shadow: 1px 1px 1px 0px rgba(137,87,102,1);
 }
 
+.evoke .content-block.padding{
+	padding: 20px 0px 5px;
+}
+
 .evoke .content-block ul{
 	list-style: none;
 }
@@ -137,6 +163,7 @@ button, div, p, span, a,
 .evoke .content-block ul li{
 	font-size:1.1vw;
 	color:#fff;
+	margin-bottom: 10px;
 }
 
 .evoke .content-block ul li a{
@@ -144,20 +171,29 @@ button, div, p, span, a,
 	color:#fff;
 }
 
+/*.evoke .default.tabs dd{
+	float: right;
+}*/
+
 .evoke .default.tabs dd.active a{
-	background: #000;
+	/*background: #000;*/
+	background:#c65862;
 }
 
 .evoke .default.tabs dd>a{
 	background: #1f8cb2;
+	margin-left: 2px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	color: #ffffff;
 	font-size: 0.8vw;
 	padding: 1em 2em;
-	border-left: 1px solid #000;
+	/*border-left: 1px solid #000;*/
 }
 
 .evoke .default.tabs-content{
-	border-top: 5px solid #000;
+	/*border-top: 5px solid #000;*/
+	border-top: 5px solid #c65862;
 	margin-top: 1px;
 	height: 700px;
 	overflow-x: hidden;
@@ -182,7 +218,7 @@ button, div, p, span, a,
 .evoke .evidence.content-box:hover{
 	/*background-color:#5a8fab;*/
 
-	background-color: rgba(90, 143, 171, 0.4);
+	background-color: rgba(90, 143, 171, 0.7);
 }
 
 .evoke .evidence .headings{
@@ -222,16 +258,25 @@ button, div, p, span, a,
 .evoke .button.general {
 	background: #1f8cb2;
 	color: #ffffff;
-	/*font-size: 1.0vw;*/
+	font-size: 1.0vw;
 	/*font-size: 0.9em;*/
 	/*border-radius: 5px;
 	padding: 0.4em 2em;*/
 	border-radius: 10px;
 	/*padding: 0.4em 1.5em 0.8em;*/
 	padding: 0.7em 1.4em;
+	margin-bottom:0px;
 	/*margin-right: 10px;*/
 	border-right: 3px solid #125167;
 	border-bottom: 3px solid #125167;
+}
+
+.evoke .button.config{
+	margin-bottom: 10px;
+}
+
+.evoke .margin-top-20{
+	margin-top: 20px;
 }
 
 .evoke .button {
@@ -242,82 +287,68 @@ button, div, p, span, a,
 
 /* End of new CSS */
 
-.evoke .divider{
-	height:50px!important;
-}
+/* New topbar section */
 
-.evoke.top-bar-name{
-	font-family: 'AlegreyaBold';
-	color:#fff;
-	font-size:0.9em;
-	/*font-size: 1.5em;*/
-	/*padding-top: 3px!important;*/
-	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
-}
-
-.evoke.top-bar-level h5{
-	font-family: 'AlegreyaBold';
-	color: #fff;
-	font-size: 1.2em;
-	padding: 0px 20px;
-	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
-}
-
-.evoke.top-bar-level span{
-	font-family: 'AlegreyaRegular';
-	color: #fff;
-	font-size: 1.5em;
-	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
-}
-
-.evoke .login-bg-topbar {
-	background: #0d0d10;
-	padding-top:50px;		
-	/*padding-top:80px;*/
-	/*height: 250px;*/
-}
-
-.evoke .login-bg-topbar h1{
-	color: #FFF;
-	font-family: 'SBB';
-	line-height: 0.8em;
-	font-size: 9em;
-	text-align: center;
-}
-
-.evoke .login-bg-topbar h6{
-	text-align: center;
-	font-family: 'AlegreyaRegular';
-	font-size: 1.5em;
-	margin-bottom: 30px;
-	color: #848485;
-}
-
-.evoke .top-bar-section ul{
-	background: #1f8cb2;
+.evoke .top-bar-background{
+	background-color: #008cba;
 }
 
 .evoke .top-bar-section li:not(.has-form) a:not(.button){
-	background: #1f8cb2;
+	background-color: #008cba;
+	font-family: 'AlegreyaBold';
+	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
+	font-size:1.1vw;
 }
 
-.evoke .top-bar-section h2{
-	background: #1f8cb2;
+.evoke .top-bar-section li:not(.has-form) a:not(.button) span{
+	font-size:1.3vw;
 }
 
-.evoke.right{
-	max-width: 90vw;
+.evoke .top-bar .name h1 a{
+	font-family: 'SBB';
+	font-size: 2.5vw;
 }
 
-.top-bar .name h1 a{
-	font-family:'SBB';
-	font-size: 2.5em;
-	margin: 5px 0px 10px 10px;
+#top-bar-name a{
+	padding-left:0;
 }
 
-.has-dropdown i{
-	margin-top: 10px;
+.evoke.top-bar.progress{
+	background-color: #252525;
+	width: 8vw;
+	padding:0;
+	height: 0.4rem;
+	border:0;
+	margin-top: 20px;
 }
+
+.evoke.top-bar .meter{
+	background: #c65862;
+}
+
+.evoke.top-bar.icon{
+	max-height: 30px; 
+	max-width: 70px; 
+}
+
+/* End topbar section */
+
+/* Login top bar */
+
+.evoke .login-bg-topbar{
+	background: #0d0d10;
+	padding-top: 20px;
+}
+
+.evoke .login-bg-topbar h4{
+	text-align: center;
+	font-family: 'AlegreyaRegular';
+	/* font-size: 1.5em; */
+	margin-bottom: 20px;
+	color: #848485;
+}
+
+/* End login top-bar */
 
 /*.right .name h1{
 	font-family: 'AlegreyaRegular';
@@ -336,17 +367,6 @@ button, div, p, span, a,
 	color: #FFF;
 	padding-top: 8px;
 	text-align: center;
-}
-
-.evoke.top-bar-section h3, h4, h5{
-	font-family: 'AlegreyaRegular';
-	/*display: inline;
-	color: #FFF;*/
-}
-
-.evoke.top-bar-section h4{
-	font-size:2.0em;
-	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
 }
 
 .evoke .footer{
@@ -415,27 +435,6 @@ button, div, p, span, a,
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-}
-
-.evoke.top-bar.progress{
-	background-color: #252525;
-	width: 90%;
-	padding:0;
-	height: 0.8rem;
-	border:0;
-	/*margin-top: 10px;*/
-}
-
-.evoke.top-bar-padding{
-	padding: 0px 30px;
-}
-
-.evoke.top-bar-padding.bar{
-	padding-top: 2.0%;
-}
-
-.evoke.top-bar.meter{
-	background-color: #c65862;
 }
 
 .evoke .agent-tag{
@@ -602,21 +601,6 @@ button, div, p, span, a,
 	list-style-type: none;
 }
 
-.evoke .button.general {
-	background: #1f8cb2;
-	color: #ffffff;
-	/*font-size: 1.0vw;*/
-	/*font-size: 0.9em;*/
-	/*border-radius: 5px;
-	padding: 0.4em 2em;*/
-	border-radius: 10px;
-	/*padding: 0.4em 1.5em 0.8em;*/
-	padding: 0.7em 1.4em;
-	/*margin-right: 10px;*/
-	border-right: 3px solid #125167;
-	border-bottom: 3px solid #125167;
-}
-
 .evoke .button.general.green{
 	background-color: #20c475;
 	border-right: 3px solid #137244;
@@ -627,14 +611,6 @@ button, div, p, span, a,
 	background-color: #bc5660;
 	border-right: 3px solid #82353b;
 	border-bottom: 3px solid #82353b;
-}
-
-.evoke .button {
-	/*max-height: 2.5em;*/
-	/*line-height: 0;*/
-	padding-top: 1.25em;
-	padding-bottom: 1.25em;
-	color: #ffffff;
 }
 
 .evoke  a.button.google{
@@ -779,6 +755,9 @@ button, div, p, span, a,
 	margin: 0px 40px;
 }
 
+.evoke.full-height{
+	height: 100%;
+}
 /*.evoke .tabs dd.active a{
 	background: #bb5660;
 }*/
@@ -1045,12 +1024,6 @@ button, div, p, span, a,
 	position: absolute; 
 	bottom: 185px; 
 	left: 0;
-}
-
-.evoke.top-bar.icon{
-	max-height: 40px; 
-	max-width: 70px; 
-	/*margin-top:3px;*/
 }
 
 .evoke.position{
@@ -1396,31 +1369,63 @@ button, div, p, span, a,
 	border-bottom: 5px solid #182537;
 	border-top: 5px solid #182537;*/
 	background-color: #1f8cb2;
-	margin-bottom: 30px;
-	padding-left: 10px;
-	border-bottom: 3px solid #182537;
+	/*margin-bottom: 30px;*/
+	/*margin-left: -30px;*/
+	/*padding-left: 30px;*/
+
+	border-bottom: 1px solid #333;
 	text-align: left;
 }
 
 .evoke.menu-bg ul{
-	padding: 20px 0px 10px;
 	margin-bottom: 0;
+	list-style-type: none;
+	margin: 0px 0px 0px;
+	padding: 0px 0px 0px;
+}
+
+.evoke.menu-bg li{
+	border-bottom: 1px solid #333;
+}
+
+.evoke.menu-bg li a{
+	padding: 10px 20px 10px;
+	/*margin-bottom: 0;*/
 	/*display: inline-block;*/
 }
 
+.evoke.menu-bg li a {
+	display: block;
+}
+
 .evoke.menu-bg a{
-	font-size: 1.2vw;
+	font-size: 1vw;
 	font-family: 'AlegreyaBold';
-	margin-right: 50px;
+	color:#252525;
+	/*text-shadow: 0px 3px 2px rgba(0,0,0, 0.6);*/
+}
+
+.evoke.menu-bg li:hover{
+	/*padding: 10px 20px 10px;*/
+	background-color: #000;
 	color:#fff;
-	text-shadow: 0px 3px 2px rgba(0,0,0, 0.6);
+	/*margin-bottom: 0;*/
+	/*display: inline-block;*/
 }
 
 .evoke.menu-bg a:hover{
-	color:#bb5660;
+	color:#fff;
 }
 
 .evoke.menu-bg a:active{
+	color:#000;
+}
+
+.current{
+	background-color: #000;
+	color:#fff;
+}
+.evoke.current a{
 	color:#fff;
 }
 
@@ -1606,6 +1611,7 @@ button, div, p, span, a,
 	border-radius:20px;
 	padding:30px;
 	margin-bottom:50px;
+	min-height: 200px;
 }
 
 .evoke .gray-solid-bg{

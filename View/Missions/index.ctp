@@ -13,20 +13,17 @@
 <section class="evoke default-background">
 	<div class="evoke default row full-width-alternate">
 
-<!-- 	  <div class="small-1 medium-1 large-1 columns">
-	  	YAY
-	  </div>
- -->
 	  <div class="small-2 medium-2 large-2 columns">
 	  	<?php echo $this->element('menu', array('user' => $user));?>
 	  </div>
 
-	  <div class="small-9 medium-9 large-9 columns">
+	  <div class="small-9 medium-9 large-9 columns maincolumn">
 
 	  	<h3 class = "evoke padding top-2"> <?= strtoupper(__('Choose a mission')) ?> </h3>
 			
 			<?php foreach($missions as $mission): ?>
 
+				<h1 style = "position: absolute; color: #fff; z-index: 1; font-size: 1.5vw; left: 30px; margin-top: 20px; font-family: 'AlegreyaBold'; text-shadow: 0 0 12px rgba(0,0,0,0.85);"><?= strtoupper($mission['Mission']['title']) ?> </h1>
                 <div class="evoke default view view-first">
                     <?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 						<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
@@ -35,9 +32,9 @@
                 	<?php endif ?>
                     
                     <div class="mask">
-                        <h2><?= $mission['Mission']['title'] ?></h2>
-                        <p><?= $mission['Mission']['description'] ?></p>
-                        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1)); ?>" class="button general info">Read More</a>
+                        <!-- <h2><?= $mission['Mission']['title'] ?></h2> -->
+                        <p><?= substr($mission['Mission']['description'], 0, 140) ?></p>
+                        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1)); ?>" class="button general info"><?= __('Go to mission') ?></a>
                     </div>
                 </div> 
 
@@ -52,4 +49,5 @@
 
 <?php
 	echo $this->Html->script('image_hover', array('inline' => false));
+	echo $this->Html->script('menu_height', array('inline' => false));
 ?>
