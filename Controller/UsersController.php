@@ -878,7 +878,7 @@ class UsersController extends AppController {
 
 				$this->User->UserIssue->deleteAll(array('UserIssue.user_id' => $userid), false);
 
-				if(is_array($this->request->data['UserIssue']['issue_id'])) {
+				if(isset($this->request->data['UserIssue']) && is_array($this->request->data['UserIssue']['issue_id'])) {
 					foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
 				        $insertData = array('user_id' => $id, 'issue_id' => $a);
 
