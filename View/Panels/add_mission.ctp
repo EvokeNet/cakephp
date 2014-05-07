@@ -11,7 +11,7 @@
 	<div class="row evoke max-width">
 		<div class="small-12 medium-12 large-12 columns">
 			<!-- <h1><?= __('Creating Mission')?><?php if(isset($id) && !is_null($id)) : echo ': ' . $mission['Mission']['title']; endif;?></h1> -->
-			<dl class="tabs" data-tab>
+			<dl class="tabs vertical" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
 				<?php if(isset($id) && !is_null($id)) : ?>
 					<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= __('Phases') ?></a></dd>
@@ -21,7 +21,7 @@
 					<dd class="<?php echo $novel_tag ?>"><a href="#graphic"><?= __('Graphic Novel') ?></a></dd>
 				<?php endif; ?>
 			</dl>
-			<div class="tabs-content">
+			<div class="tabs-content vertical">
 				<div class="content <?php echo $mission_tag ?> large-10 columns" id="mission">
 					<div class="form">
 
@@ -359,6 +359,23 @@
 	                return false;
 	        	    });";
         	}
+
+        	foreach ($dossier_links as $link) {
+        		echo "$('#deleteLink-". $link['DossierLink']['id'] ."').click(function() {
+	                	$('#linkContent-".$link['DossierLink']['id']."').hide();
+	                	$('#linkContent-".$link['DossierLink']['id']."').append('". '<input name="data[DossierLink]['.$link['DossierLink']['id'].'][delete]" value="1" >' . "');
+	                	return false;
+	        	    });";
+        	}
+
+        	foreach ($dossier_videos as $video) {
+        		echo "$('#deleteVideo-". $video['DossierVideo']['id'] ."').click(function() {
+	                	$('#videoContent-".$video['DossierVideo']['id']."').hide();
+	                	$('#videoContent-".$video['DossierVideo']['id']."').append('". '<input name="data[DossierVideo]['.$video['DossierVideo']['id'].'][delete]" value="1" >' . "');
+	                	return false;
+	        	    });";
+        	}
+
 
         	$i = 0;
 	        for($i=0; $i<$kn;$i++) {

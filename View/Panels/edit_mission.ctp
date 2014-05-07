@@ -170,6 +170,31 @@
 						</dl>
 						<div class="tabs-content ">
 							<div class="content active" id="Links">
+								<button class="button small" href="#" data-reveal-id="myModalDossierLink" data-reveal><?php echo __('Add a Link');?></button>
+								<div id="myModalDossierLink" class="form reveal-modal tiny" data-reveal>
+									<?php echo $this->Form->create('NewDossierLink', array(
+			 							   		'url' => array(
+			 							   			'controller' => 'panels',
+			 							   			'action' => 'dossierLinks', $id, 'edit_mission')
+												)
+											); ?>
+										<fieldset>
+											<legend><?php echo __('Add a Link'); ?></legend>
+										<?php
+											echo $this->Form->input('title', array('label' => __('Title'), 'required' => true));
+											echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+											echo $this->Form->input('link', array('label' => __('Link'), 'required' => true));
+											echo $this->Form->hidden('mission_id', array('value' => $id));
+											echo $this->Form->input('language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => 'en'));
+										?>
+										</fieldset>
+										<button class="button small" type="submit">
+											<?php echo __('Add') ?>
+										</button>
+										<?php echo $this->Form->end(); ?>
+										<a class="close-reveal-modal">&#215;</a>
+								</div>
+
 								<?php 
 									echo $this->Form->create('DossierLink', array(
 				 					   		'url' => array(
@@ -201,6 +226,30 @@
 								?>
 							</div>
 							<div class="content" id="Videos">
+								<button class="button small" href="#" data-reveal-id="myModalDossierVideo" data-reveal><?php echo __('Add a Video');?></button>
+								<div id="myModalDossierVideo" class="form reveal-modal tiny" data-reveal>
+									<?php echo $this->Form->create('NewDossierVideo', array(
+			 							   		'url' => array(
+			 							   			'controller' => 'panels',
+			 							   			'action' => 'dossierVideos', $id, 'edit_mission')
+												)
+											); ?>
+										<fieldset>
+											<legend><?php echo __('Add a Video'); ?></legend>
+										<?php
+											echo $this->Form->input('title', array('label' => __('Title'), 'required' => true));
+											echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+											echo $this->Form->input('video_link', array('label' => __('Video embed link'), 'required' => true));
+											echo $this->Form->hidden('mission_id', array('value' => $id));
+											echo $this->Form->input('language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => 'en'));
+										?>
+										</fieldset>
+										<button class="button small" type="submit">
+											<?php echo __('Add') ?>
+										</button>
+										<?php echo $this->Form->end(); ?>
+										<a class="close-reveal-modal">&#215;</a>
+								</div>
 								<?php
 									echo $this->Form->create('DossierVideo', array(
 				 					   		'url' => array(

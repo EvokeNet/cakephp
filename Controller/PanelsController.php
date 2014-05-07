@@ -333,6 +333,38 @@ class PanelsController extends AppController {
 			if(!is_null($dossier) && !empty($dossier)) {
 				$dossier_files = $this->Attachment->find('all', array('conditions' => array('Model' => 'Dossier', 'foreign_key' => $dossier['Dossier']['id'])));
 			}
+			
+			$dossier_links = $this->DossierLink->find('all', array(
+				'conditions' => array(
+					'DossierLink.mission_id' => $id
+				)
+			));
+
+			$dossier_videos = $this->DossierVideo->find('all', array(
+				'conditions' => array(
+					'DossierVideo.mission_id' => $id
+				)
+			));	
+
+			$novels_en = $this->Novel->find('all', array(
+				'order' => array(
+					'Novel.page Asc'
+				),
+				'conditions' => array(
+					'Novel.mission_id' => $id,
+					'Novel.language' => 'en'
+				)
+			));
+
+			$novels_es = $this->Novel->find('all', array(
+				'order' => array(
+					'Novel.page Asc'
+				),
+				'conditions' => array(
+					'Novel.mission_id' => $id,
+					'Novel.language' => 'es'
+				)
+			));
 		}
 
 		if($this->user['role_id'] == 1){
@@ -458,8 +490,8 @@ class PanelsController extends AppController {
 		$data['Quest']['mission_id'] = $id;
 		$newQuest = $this->Quest->save();*/
 
-		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 
-			'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag',
+		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'novels_en',
+			'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'dossier_links', 'dossier_videos', 'novels_es',
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
@@ -702,7 +734,17 @@ class PanelsController extends AppController {
 
 	function dossierLinks($id, $origin = 'add_mission') {
 		// debug($this->request->data);
-		
+		if(isset($this->request->data['NewDossierLink'])) {
+			$insert['DossierLink'] = $this->request->data['NewDossierLink'];
+			$this->DossierLink->save($insert);
+
+			//sending back to correct address
+			if($origin == 'add_mission')
+				$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
+			else 
+				$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));	
+		}
+
 		foreach ($this->request->data['DossierLink'] as $index => $link) {
 			$insert['DossierLink'] = $this->request->data['DossierLink'][$index];
 			if(isset($insert['DossierLink']['delete'])) {
@@ -723,7 +765,17 @@ class PanelsController extends AppController {
 
 	function dossierVideos($id, $origin = 'add_mission') {
 		// debug($this->request->data);
-		
+		if(isset($this->request->data['NewDossierVideo'])) {
+			$insert['DossierVideo'] = $this->request->data['NewDossierVideo'];
+			$this->DossierVideo->save($insert);
+
+			//sending back to correct address
+			if($origin == 'add_mission')
+				$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
+			else 
+				$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));	
+		}
+
 		foreach ($this->request->data['DossierVideo'] as $index => $link) {
 			$insert['DossierVideo'] = $this->request->data['DossierVideo'][$index];
 			if(isset($insert['DossierVideo']['delete'])) {
