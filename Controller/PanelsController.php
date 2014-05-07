@@ -706,9 +706,31 @@ class PanelsController extends AppController {
 		foreach ($this->request->data['DossierLink'] as $index => $link) {
 			$insert['DossierLink'] = $this->request->data['DossierLink'][$index];
 			if(isset($insert['DossierLink']['delete'])) {
-
+				$this->DossierLink->id = $insert['DossierLink']['id'];
+				$this->DossierLink->delete();
 			} else {
 				$this->DossierLink->save($insert);	
+			}
+			$insert = array();
+		}
+		
+		//sending back to correct address
+		if($origin == 'add_mission')
+			$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
+		else 
+			$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
+	}
+
+	function dossierVideos($id, $origin = 'add_mission') {
+		// debug($this->request->data);
+		
+		foreach ($this->request->data['DossierVideo'] as $index => $link) {
+			$insert['DossierVideo'] = $this->request->data['DossierVideo'][$index];
+			if(isset($insert['DossierVideo']['delete'])) {
+				$this->DossierVideo->id = $insert['DossierVideo']['id'];
+				$this->DossierVideo->delete();
+			} else {
+				$this->DossierVideo->save($insert);	
 			}
 			$insert = array();
 		}

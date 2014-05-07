@@ -179,16 +179,20 @@
 									));
 									$jLink = 0;
 									foreach ($dossier_links as $link) {
+										echo '<div id="linkContent-'.$link['DossierLink']['id'].'">';
 										echo '<fieldset>';
 										echo '<legend>'.__('Dossier Link').'</legend>';
-										echo $this->Form->hidden('DossierLink.'.$jLink.'.id', array('value' => $link['DossierLink']['id']));
-										echo $this->Form->hidden('DossierLink.'.$jLink.'.mission_id', array('value' => $link['DossierLink']['mission_id']));
-										echo $this->Form->input('DossierLink.'.$jLink.'.title', array('value' => $link['DossierLink']['title']));
-										echo $this->Form->input('DossierLink.'.$jLink.'.description', array('value' => $link['DossierLink']['description'], 'type'=>'textarea'));
-										echo $this->Form->input('DossierLink.'.$jLink.'.link', array('value' => $link['DossierLink']['link']));
-										echo $this->Form->input('DossierLink.'.$jLink.'.language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => $link['DossierLink']['language']));
-										// echo $link['DossierLink']['title'];
+										echo $this->Form->hidden('DossierLink.'.$link['DossierLink']['id'].'.id', array('value' => $link['DossierLink']['id']));
+										echo $this->Form->hidden('DossierLink.'.$link['DossierLink']['id'].'.mission_id', array('value' => $link['DossierLink']['mission_id']));
+										echo $this->Form->input('DossierLink.'.$link['DossierLink']['id'].'.title', array('value' => $link['DossierLink']['title']));
+										echo $this->Form->input('DossierLink.'.$link['DossierLink']['id'].'.description', array('value' => $link['DossierLink']['description'], 'type'=>'textarea'));
+										echo $this->Form->input('DossierLink.'.$link['DossierLink']['id'].'.link', array('value' => $link['DossierLink']['link']));
+										echo $this->Form->input('DossierLink.'.$link['DossierLink']['id'].'.language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => $link['DossierLink']['language']));
+										
+										echo '<button class="button tiny alert" id="deleteLink-'.$link['DossierLink']['id'].'">delete</button>';
+										
 										echo '</fieldset>';
+										echo '</div>';
 										$jLink++;
 									}
 
@@ -206,16 +210,20 @@
 									));
 									$jVideo = 0;
 										foreach ($dossier_videos as $video) {
+											echo '<div id="videoContent-'.$video['DossierVideo']['id'].'">';
 											echo '<fieldset>';
 											echo '<legend>'.__('Dossier Video').'</legend>';
-											echo $this->Form->hidden('DossierVideo.'.$jVideo.'.id', array('value' => $video['DossierVideo']['id']));
-											echo $this->Form->hidden('DossierVideo.'.$jVideo.'.mission_id', array('value' => $video['DossierVideo']['mission_id']));
-											echo $this->Form->input('DossierVideo.'.$jVideo.'.title', array('value' => $video['DossierVideo']['title']));
-											echo $this->Form->input('DossierVideo.'.$jVideo.'.description', array('value' => $video['DossierVideo']['description'], 'type'=>'textarea'));
-											echo $this->Form->input('DossierVideo.'.$jVideo.'.video_link', array('value' => $video['DossierVideo']['video_link']));
-											echo $this->Form->input('DossierVideo.'.$jVideo.'.language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => $video['DossierVideo']['language']));
-											// echo $link['DossierLink']['title'];
+											echo $this->Form->hidden('DossierVideo.'.$video['DossierVideo']['id'].'.id', array('value' => $video['DossierVideo']['id']));
+											echo $this->Form->hidden('DossierVideo.'.$video['DossierVideo']['id'].'.mission_id', array('value' => $video['DossierVideo']['mission_id']));
+											echo $this->Form->input('DossierVideo.'.$video['DossierVideo']['id'].'.title', array('value' => $video['DossierVideo']['title']));
+											echo $this->Form->input('DossierVideo.'.$video['DossierVideo']['id'].'.description', array('value' => $video['DossierVideo']['description'], 'type'=>'textarea'));
+											echo $this->Form->input('DossierVideo.'.$video['DossierVideo']['id'].'.video_link', array('value' => $video['DossierVideo']['video_link']));
+											echo $this->Form->input('DossierVideo.'.$video['DossierVideo']['id'].'.language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => $video['DossierVideo']['language']));
+											
+											echo '<button class="button tiny alert" id="deleteVideo-'.$video['DossierVideo']['id'].'">delete</button>';
 											echo '</fieldset>';
+											echo '</div>';
+
 											$jVideo++;
 										}
 
@@ -386,6 +394,22 @@
 	                $('#Attachmentprev-". $i ."Id').val(attId);
 	                $('#-". $i ."').remove();
 	                return false;
+	        	    });";
+        	}
+
+        	foreach ($dossier_links as $link) {
+        		echo "$('#deleteLink-". $link['DossierLink']['id'] ."').click(function() {
+	                	$('#linkContent-".$link['DossierLink']['id']."').hide();
+	                	$('#linkContent-".$link['DossierLink']['id']."').append('". '<input name="data[DossierLink]['.$link['DossierLink']['id'].'][delete]" value="1" >' . "');
+	                	return false;
+	        	    });";
+        	}
+
+        	foreach ($dossier_videos as $video) {
+        		echo "$('#deleteVideo-". $video['DossierVideo']['id'] ."').click(function() {
+	                	$('#videoContent-".$video['DossierVideo']['id']."').hide();
+	                	$('#videoContent-".$video['DossierVideo']['id']."').append('". '<input name="data[DossierVideo]['.$video['DossierVideo']['id'].'][delete]" value="1" >' . "');
+	                	return false;
 	        	    });";
         	}
 
