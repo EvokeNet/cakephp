@@ -201,63 +201,184 @@
 					</div>
 				</div>
 				<div class="content <?php echo $dossier_tag ?>" id="dossier">
-					<h4>
-						<?= __('Create a dossier by adding files that might be useful for agents to complete this mission!') ?>
-					</h4>
-					<?php 
-						if(!empty($dossier) && !is_null($dossier)) {
-						
-							echo $this->Form->create('Dossier', array(
-	 						   		'url' => array(
-	 						   			'controller' => 'panels',
-	 						   			'action' => 'dossier', $id, $dossier['Dossier']['id'] 
-	 						   		),
-	 						   		'enctype' => 'multipart/form-data'
-							));
-						} else {
-							echo $this->Form->create('Dossier', array(
-	 						   		'url' => array(
-	 						   			'controller' => 'panels',
-	 						   			'action' => 'dossier', $id
-	 						   		),
-	 						   		'enctype' => 'multipart/form-data'
-							));
-						}
-						echo $this->Form->hidden('mission_id', array('value' => $id));
-						echo $this->Form->hidden('language', array('value' => $language));
-						if(!empty($dossier) && !is_null($dossier)) {
-							echo $this->Form->hidden('id', array('value' => $dossier['Dossier']['id']));
-						}
+						<dl class="tabs" data-tab>
+							<dd class="active"><a href="#Links"><?= __('Dossier Links') ?></a></dd>
+							<dd><a href="#Videos"><?= __('Dossier Videos') ?></a></dd>
+							<dd><a href="#DAtachments"><?= __('Dossier Attachments') ?></a></dd>
+						</dl>
+						<div class="tabs-content ">
+							<div class="content active" id="Links">
+								<button class="button small" href="#" data-reveal-id="myModalDossierLink" data-reveal><?php echo __('Add a Link');?></button>
+								<div id="myModalDossierLink" class="form reveal-modal tiny" data-reveal>
+									<?php echo $this->Form->create('NewDossierLink', array(
+			 							   		'url' => array(
+			 							   			'controller' => 'panels',
+			 							   			'action' => 'dossierLinks', $id, 'edit_mission')
+												)
+											); ?>
+										<fieldset>
+											<legend><?php echo __('Add a Link'); ?></legend>
+										<?php
+											echo $this->Form->input('title', array('label' => __('Title'), 'required' => true));
+											echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+											echo $this->Form->input('link', array('label' => __('Link'), 'required' => true));
+											echo $this->Form->hidden('mission_id', array('value' => $id));
+											echo $this->Form->input('language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => 'en'));
+										?>
+										</fieldset>
+										<button class="button small" type="submit">
+											<?php echo __('Add') ?>
+										</button>
+										<?php echo $this->Form->end(); ?>
+										<a class="close-reveal-modal">&#215;</a>
+								</div>
 
-						echo "<label>".__('Attachments'). "</label>";
-			            echo '<div id="fileInputHolderD">';
-			            echo "<ul>";
+								<?php 
+									echo $this->Form->create('DossierLink', array(
+				 					   		'url' => array(
+				 					   			'controller' => 'panels',
+				 					   			'action' => 'dossierLinks', $id, 'edit_mission' 
+				 					   		)
+									));
+									$jLink = 0;
+									foreach ($dossier_links as $link) {
+										echo '<div id="linkContent-'.$link['DossierLink']['id'].'">';
+										echo '<fieldset>';
+										echo '<legend>'.__('Dossier Link').'</legend>';
+										echo $this->Form->hidden('DossierLink.'.$link['DossierLink']['id'].'.id', array('value' => $link['DossierLink']['id']));
+										echo $this->Form->hidden('DossierLink.'.$link['DossierLink']['id'].'.mission_id', array('value' => $link['DossierLink']['mission_id']));
+										echo $this->Form->input('DossierLink.'.$link['DossierLink']['id'].'.title', array('value' => $link['DossierLink']['title']));
+										echo $this->Form->input('DossierLink.'.$link['DossierLink']['id'].'.description', array('value' => $link['DossierLink']['description'], 'type'=>'textarea'));
+										echo $this->Form->input('DossierLink.'.$link['DossierLink']['id'].'.link', array('value' => $link['DossierLink']['link']));
+										echo $this->Form->input('DossierLink.'.$link['DossierLink']['id'].'.language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => $link['DossierLink']['language']));
+										
+										echo '<button class="button tiny alert" id="deleteLink-'.$link['DossierLink']['id'].'">delete</button>';
+										
+										echo '</fieldset>';
+										echo '</div>';
+										$jLink++;
+									}
 
-			            if(!is_null($dossier) && !empty($dossier)) {
-							$k = 0;
-							foreach ($dossier_files as $file) {
-				                echo "<li>";
-				                echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $file['Attachment']['attachment'] .'</label>';
-				                
-				                echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $file['Attachment']['id'] .'">';
-				                echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/thumb_'.$file['Attachment']['attachment'] . '"/>';
+									echo '<button class="button small" type="submit">'. __('Save links') . '</button>';
+									echo $this->Form->end();
+								?>
+							</div>
+							<div class="content" id="Videos">
+								<button class="button small" href="#" data-reveal-id="myModalDossierVideo" data-reveal><?php echo __('Add a Video');?></button>
+								<div id="myModalDossierVideo" class="form reveal-modal tiny" data-reveal>
+									<?php echo $this->Form->create('NewDossierVideo', array(
+			 							   		'url' => array(
+			 							   			'controller' => 'panels',
+			 							   			'action' => 'dossierVideos', $id, 'edit_mission')
+												)
+											); ?>
+										<fieldset>
+											<legend><?php echo __('Add a Video'); ?></legend>
+										<?php
+											echo $this->Form->input('title', array('label' => __('Title'), 'required' => true));
+											echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+											echo $this->Form->input('video_link', array('label' => __('Video embed link'), 'required' => true));
+											echo $this->Form->hidden('mission_id', array('value' => $id));
+											echo $this->Form->input('language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => 'en'));
+										?>
+										</fieldset>
+										<button class="button small" type="submit">
+											<?php echo __('Add') ?>
+										</button>
+										<?php echo $this->Form->end(); ?>
+										<a class="close-reveal-modal">&#215;</a>
+								</div>
+								<?php
+									echo $this->Form->create('DossierVideo', array(
+				 					   		'url' => array(
+				 					   			'controller' => 'panels',
+				 					   			'action' => 'dossierVideos', $id, 'edit_mission' 
+				 					   		)
+									));
+									$jVideo = 0;
+										foreach ($dossier_videos as $video) {
+											echo '<div id="videoContent-'.$video['DossierVideo']['id'].'">';
+											echo '<fieldset>';
+											echo '<legend>'.__('Dossier Video').'</legend>';
+											echo $this->Form->hidden('DossierVideo.'.$video['DossierVideo']['id'].'.id', array('value' => $video['DossierVideo']['id']));
+											echo $this->Form->hidden('DossierVideo.'.$video['DossierVideo']['id'].'.mission_id', array('value' => $video['DossierVideo']['mission_id']));
+											echo $this->Form->input('DossierVideo.'.$video['DossierVideo']['id'].'.title', array('value' => $video['DossierVideo']['title']));
+											echo $this->Form->input('DossierVideo.'.$video['DossierVideo']['id'].'.description', array('value' => $video['DossierVideo']['description'], 'type'=>'textarea'));
+											echo $this->Form->input('DossierVideo.'.$video['DossierVideo']['id'].'.video_link', array('value' => $video['DossierVideo']['video_link']));
+											echo $this->Form->input('DossierVideo.'.$video['DossierVideo']['id'].'.language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => $video['DossierVideo']['language']));
+											
+											echo '<button class="button tiny alert" id="deleteVideo-'.$video['DossierVideo']['id'].'">delete</button>';
+											echo '</fieldset>';
+											echo '</div>';
 
-				                echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
+											$jVideo++;
+										}
 
-				                $k++;
-				            }
-						} else {
-							echo "nothing yet..";
-						}
+										echo '<button class="button small" type="submit">'. __('Save videos') . '</button>';
+										echo $this->Form->end();
+									?>
+							</div>
+							<div class="content" id="DAtachments">
+								<h4>
+									<?= __('Create a dossier by adding files that might be useful for agents to complete this mission!') ?>
+								</h4>
+								<?php 
+									if(!empty($dossier) && !is_null($dossier)) {
+										echo $this->Form->create('Dossier', array(
+				 						   		'url' => array(
+				 						   			'controller' => 'panels',
+				 						   			'action' => 'dossier', $id, $dossier['Dossier']['id'], 'edit_mission' 
+				 						   		),
+				 						   		'enctype' => 'multipart/form-data'
+										));
+									} else {
+										echo $this->Form->create('Dossier', array(
+				 						   		'url' => array(
+				 						   			'controller' => 'panels',
+				 						   			'action' => 'dossier', $id, null, 'edit_mission'
+				 						   		),
+				 						   		'enctype' => 'multipart/form-data'
+										));
+									}
+									echo $this->Form->hidden('mission_id', array('value' => $id));
+									echo $this->Form->hidden('language', array('value' => $language));
+									if(!empty($dossier) && !is_null($dossier)) {
+										echo $this->Form->hidden('id', array('value' => $dossier['Dossier']['id']));
+									}
 
-			            echo "</ul>";
-			            echo '</div>';
-			            echo '<button href="#" id="newFileD" class="button tiny">+ File</button>';
-			            echo '<br><br>';
+									echo "<label>".__('Attachments'). "</label>";
+						            echo '<div id="fileInputHolderD">';
+						            echo "<ul>";
 
-			            echo '<button class="button small" type="submit">'. __('Save dossier') . '</button>';
-						echo $this->Form->end();
-					?>
+						            $k = 0;
+						            if(!is_null($dossier) && !empty($dossier)) {
+										$k = 0;
+										foreach ($dossier_files as $file) {
+							                echo "<li>";
+							                echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $file['Attachment']['attachment'] .'</label>';
+							                
+							                echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $file['Attachment']['id'] .'">';
+							                echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/thumb_'.$file['Attachment']['attachment'] . '"/>';
+
+							                echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
+
+							                $k++;
+							            }
+									} else {
+										echo "nothing yet..";
+									}
+
+						            echo "</ul>";
+						            echo '</div>';
+						            echo '<button href="#" id="newFileD" class="button tiny">+ File</button>';
+						            echo '<br><br>';
+
+						            echo '<button class="button small" type="submit">'. __('Save dossier') . '</button>';
+									echo $this->Form->end();
+								?>
+							</div>
+						</div>
+				
 				</div>
 				<div class="content <?php echo $badges_tag ?>" id="badges">
 					<p>
