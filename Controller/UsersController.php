@@ -382,6 +382,7 @@ class UsersController extends AppController {
 		$missionIssues = $this->Mission->MissionIssue->find('all');
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
+		$allusers = $this->User->find('all');
 
 		/* commented for now
 		//getting leaderboard data:

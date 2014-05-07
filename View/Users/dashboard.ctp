@@ -123,7 +123,7 @@
 	  	<h3> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
 
 	  	<dl class="default tabs" data-tab>
-		  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('All Evidence')) ?></a></dd>
+		  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('All Evidences and Evokations')) ?></a></dd>
 		  <dd><a href="#panel2-2"><?= strtoupper(__('Projects I Follow')) ?></a></dd>
 		  <dd><a href="#panel2-3"><?= strtoupper(__('My Projects')) ?></a></dd>
 		</dl>
