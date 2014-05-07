@@ -8,8 +8,8 @@ class PanelsController extends AppController {
 * @var array
 */
 	public $components = array('Paginator','Access');
-	public $uses = array('User', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group',
-	 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 
+	public $uses = array('User', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'DossierLink', 
+	 'DossierVideo', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 
 	 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level', 'AdminNotification', 'Novel');
 	public $user = null;
 	public $helpers = array('Media.Media', 'Chosen.Chosen');
@@ -517,6 +517,18 @@ class PanelsController extends AppController {
 			}
 		}
 
+		$dossier_links = $this->DossierLink->find('all', array(
+			'conditions' => array(
+				'DossierLink.mission_id' => $id
+			)
+		));
+
+		$dossier_videos = $this->DossierVideo->find('all', array(
+			'conditions' => array(
+				'DossierVideo.mission_id' => $id
+			)
+		));	
+
 		$novels_en = $this->Novel->find('all', array(
 			'order' => array(
 				'Novel.page Asc'
@@ -639,8 +651,8 @@ class PanelsController extends AppController {
 		$newQuest = $this->Quest->save($data);
 		debug($newQuest);*/
 
-		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 
-			'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en',
+		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 
+			'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en', 'dossier_links', 'dossier_videos',
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
@@ -650,6 +662,8 @@ class PanelsController extends AppController {
 * save a dossier of a mission, along with its attachments
 */
 	function dossier($id, $dossier_id = null, $origin = 'add_mission') {
+		// debug($this->request->data);
+		// die();
 		if ($this->request->is('post')) {
 			if($dossier_id == null) {
 				if($this->Dossier->createWithAttachments($this->request->data)) {
@@ -684,6 +698,26 @@ class PanelsController extends AppController {
 		} else {
 			$this->redirect(array('action' => 'index'));
 		}
+	}
+
+	function dossierLinks($id, $origin = 'add_mission') {
+		// debug($this->request->data);
+		
+		foreach ($this->request->data['DossierLink'] as $index => $link) {
+			$insert['DossierLink'] = $this->request->data['DossierLink'][$index];
+			if(isset($insert['DossierLink']['delete'])) {
+
+			} else {
+				$this->DossierLink->save($insert);	
+			}
+			$insert = array();
+		}
+		
+		//sending back to correct address
+		if($origin == 'add_mission')
+			$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
+		else 
+			$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
 	}
 
 	function novel($id, $origin = 'add_mission'){

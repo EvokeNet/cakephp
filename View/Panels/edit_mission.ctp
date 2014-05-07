@@ -11,7 +11,7 @@
 	<div class="row max-width">
 		<div class="small-12 medium-12 large-12 columns">
 			<!-- <h1><?= __('Mission') ?><?php echo ': ' . $mission['Mission']['title']; ?></h1> -->
-			<dl class="tabs" data-tab>
+			<dl class="tabs vertical" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
 				<?php if(isset($id) && !is_null($id)) : ?>
 					<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= __('Phases') ?></a></dd>
@@ -21,7 +21,7 @@
 					<dd class="<?php echo $novel_tag ?>"><a href="#graphic"><?= __('Graphic Novel') ?></a></dd>
 				<?php endif; ?>
 			</dl>
-			<div class="tabs-content">
+			<div class="tabs-content vertical">
 				<div class="content <?php echo $mission_tag ?> content large-10 columns" id="mission">
 					<div class="form">
 
@@ -163,64 +163,126 @@
 					</div>
 				</div>
 				<div class="content <?php echo $dossier_tag ?>" id="dossier">
-					<h4>
-						<?= __('Create a dossier by adding files that might be useful for agents to complete this mission!') ?>
-					</h4>
-					<?php 
-						if(!empty($dossier) && !is_null($dossier)) {
-						
-							echo $this->Form->create('Dossier', array(
-	 						   		'url' => array(
-	 						   			'controller' => 'panels',
-	 						   			'action' => 'dossier', $id, $dossier['Dossier']['id'], 'edit_mission' 
-	 						   		),
-	 						   		'enctype' => 'multipart/form-data'
-							));
-						} else {
-							echo $this->Form->create('Dossier', array(
-	 						   		'url' => array(
-	 						   			'controller' => 'panels',
-	 						   			'action' => 'dossier', $id, null, 'edit_mission'
-	 						   		),
-	 						   		'enctype' => 'multipart/form-data'
-							));
-						}
-						echo $this->Form->hidden('mission_id', array('value' => $id));
-						echo $this->Form->hidden('language', array('value' => $language));
-						if(!empty($dossier) && !is_null($dossier)) {
-							echo $this->Form->hidden('id', array('value' => $dossier['Dossier']['id']));
-						}
+						<dl class="tabs" data-tab>
+							<dd class="active"><a href="#Links"><?= __('Dossier Links') ?></a></dd>
+							<dd><a href="#Videos"><?= __('Dossier Videos') ?></a></dd>
+							<dd><a href="#DAtachments"><?= __('Dossier Attachments') ?></a></dd>
+						</dl>
+						<div class="tabs-content ">
+							<div class="content active" id="Links">
+								<?php 
+									echo $this->Form->create('DossierLink', array(
+				 					   		'url' => array(
+				 					   			'controller' => 'panels',
+				 					   			'action' => 'dossierLinks', $id, 'edit_mission' 
+				 					   		)
+									));
+									$jLink = 0;
+									foreach ($dossier_links as $link) {
+										echo '<fieldset>';
+										echo '<legend>'.__('Dossier Link').'</legend>';
+										echo $this->Form->hidden('DossierLink.'.$jLink.'.id', array('value' => $link['DossierLink']['id']));
+										echo $this->Form->hidden('DossierLink.'.$jLink.'.mission_id', array('value' => $link['DossierLink']['mission_id']));
+										echo $this->Form->input('DossierLink.'.$jLink.'.title', array('value' => $link['DossierLink']['title']));
+										echo $this->Form->input('DossierLink.'.$jLink.'.description', array('value' => $link['DossierLink']['description'], 'type'=>'textarea'));
+										echo $this->Form->input('DossierLink.'.$jLink.'.link', array('value' => $link['DossierLink']['link']));
+										echo $this->Form->input('DossierLink.'.$jLink.'.language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => $link['DossierLink']['language']));
+										// echo $link['DossierLink']['title'];
+										echo '</fieldset>';
+										$jLink++;
+									}
 
-						echo "<label>".__('Attachments'). "</label>";
-			            echo '<div id="fileInputHolderD">';
-			            echo "<ul>";
+									echo '<button class="button small" type="submit">'. __('Save links') . '</button>';
+									echo $this->Form->end();
+								?>
+							</div>
+							<div class="content" id="Videos">
+								<?php
+									echo $this->Form->create('DossierVideo', array(
+				 					   		'url' => array(
+				 					   			'controller' => 'panels',
+				 					   			'action' => 'dossierVideos', $id, 'edit_mission' 
+				 					   		)
+									));
+									$jVideo = 0;
+										foreach ($dossier_videos as $video) {
+											echo '<fieldset>';
+											echo '<legend>'.__('Dossier Video').'</legend>';
+											echo $this->Form->hidden('DossierVideo.'.$jVideo.'.id', array('value' => $video['DossierVideo']['id']));
+											echo $this->Form->hidden('DossierVideo.'.$jVideo.'.mission_id', array('value' => $video['DossierVideo']['mission_id']));
+											echo $this->Form->input('DossierVideo.'.$jVideo.'.title', array('value' => $video['DossierVideo']['title']));
+											echo $this->Form->input('DossierVideo.'.$jVideo.'.description', array('value' => $video['DossierVideo']['description'], 'type'=>'textarea'));
+											echo $this->Form->input('DossierVideo.'.$jVideo.'.video_link', array('value' => $video['DossierVideo']['video_link']));
+											echo $this->Form->input('DossierVideo.'.$jVideo.'.language', array('type'=>'select', 'options' => array('en' => 'English', 'es' => 'Spanish'),'selected' => $video['DossierVideo']['language']));
+											// echo $link['DossierLink']['title'];
+											echo '</fieldset>';
+											$jVideo++;
+										}
 
-			            $k = 0;
-			            if(!is_null($dossier) && !empty($dossier)) {
-							$k = 0;
-							foreach ($dossier_files as $file) {
-				                echo "<li>";
-				                echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $file['Attachment']['attachment'] .'</label>';
-				                
-				                echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $file['Attachment']['id'] .'">';
-				                echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/thumb_'.$file['Attachment']['attachment'] . '"/>';
+										echo '<button class="button small" type="submit">'. __('Save videos') . '</button>';
+										echo $this->Form->end();
+									?>
+							</div>
+							<div class="content" id="DAtachments">
+								<h4>
+									<?= __('Create a dossier by adding files that might be useful for agents to complete this mission!') ?>
+								</h4>
+								<?php 
+									if(!empty($dossier) && !is_null($dossier)) {
+										echo $this->Form->create('Dossier', array(
+				 						   		'url' => array(
+				 						   			'controller' => 'panels',
+				 						   			'action' => 'dossier', $id, $dossier['Dossier']['id'], 'edit_mission' 
+				 						   		),
+				 						   		'enctype' => 'multipart/form-data'
+										));
+									} else {
+										echo $this->Form->create('Dossier', array(
+				 						   		'url' => array(
+				 						   			'controller' => 'panels',
+				 						   			'action' => 'dossier', $id, null, 'edit_mission'
+				 						   		),
+				 						   		'enctype' => 'multipart/form-data'
+										));
+									}
+									echo $this->Form->hidden('mission_id', array('value' => $id));
+									echo $this->Form->hidden('language', array('value' => $language));
+									if(!empty($dossier) && !is_null($dossier)) {
+										echo $this->Form->hidden('id', array('value' => $dossier['Dossier']['id']));
+									}
 
-				                echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
+									echo "<label>".__('Attachments'). "</label>";
+						            echo '<div id="fileInputHolderD">';
+						            echo "<ul>";
 
-				                $k++;
-				            }
-						} else {
-							echo "nothing yet..";
-						}
+						            $k = 0;
+						            if(!is_null($dossier) && !empty($dossier)) {
+										$k = 0;
+										foreach ($dossier_files as $file) {
+							                echo "<li>";
+							                echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $file['Attachment']['attachment'] .'</label>';
+							                
+							                echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $file['Attachment']['id'] .'">';
+							                echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/thumb_'.$file['Attachment']['attachment'] . '"/>';
 
-			            echo "</ul>";
-			            echo '</div>';
-			            echo '<button href="#" id="newFileD" class="button tiny">+ File</button>';
-			            echo '<br><br>';
+							                echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
 
-			            echo '<button class="button small" type="submit">'. __('Save dossier') . '</button>';
-						echo $this->Form->end();
-					?>
+							                $k++;
+							            }
+									} else {
+										echo "nothing yet..";
+									}
+
+						            echo "</ul>";
+						            echo '</div>';
+						            echo '<button href="#" id="newFileD" class="button tiny">+ File</button>';
+						            echo '<br><br>';
+
+						            echo '<button class="button small" type="submit">'. __('Save dossier') . '</button>';
+									echo $this->Form->end();
+								?>
+							</div>
+						</div>
 				</div>
 				<div class="content <?php echo $badges_tag ?>" id="badges">
 					<p>
