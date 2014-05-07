@@ -692,6 +692,15 @@ class PanelsController extends AppController {
 		// die();
 		foreach ($this->request->data['Novel'] as $novelIndex => $novelData) {
 			// debug($novelData);
+			if(isset($novelData['id'])) {
+				$insertNovel['Novel']['id'] = $novelData['id'];
+
+				if(isset($novelData['delete'])) {
+					$this->Novel->id = $novelData['id'];
+					$this->Novel->delete();
+					// debug("trying to delete: ");
+				}
+			}
 			if($novelData['page'] <= 0 || $novelData['Attachment'][0]['attachment']['error'] != 0) continue;
 
 			$insertNovel['Novel']['mission_id'] = $novelData['mission_id'];
