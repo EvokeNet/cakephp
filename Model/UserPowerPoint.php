@@ -30,9 +30,8 @@ class UserPowerPoint extends AppModel {
 	        foreach ($available_badges as $badge) {
 	        	//need to check to see if user alread got this badge & if this badge only needs pp's
 	        	
-	        	//super special-needs-to-be-removed-later condition to only dispatch badges acconding to the docs
-	        	if($badge['Badge']['name'] != 'Creative Visionary' && $badge['Badge']['name'] != 'Deep Collaborator'
-	        		&& $badge['Badge']['name'] != 'Systems Thinker' && $badge['Badge']['name'] != 'Social Activist') 
+	        	//only dispatch badges that are exclusively based on power points acquisition!
+	        	if($badge['Badge']['power_points_only'] != 1) 
 	        			continue;
 
 	        	App::import('model','UserBadge');
@@ -47,23 +46,35 @@ class UserPowerPoint extends AppModel {
 	        	if(!empty($userbadge))
 	        		continue;
 
+	        	$ok = true;
 	        	foreach ($badge['BadgePowerPoint'] as $b) {
 	        		
 		        	$needed = $b['quantity'];
 		        	$gotit = 0;
 		        	foreach ($my_powerpoints as $my_pp) {
-		        		if($my_pp['UserPowerPoint']['power_points_id'] == $b['power_points_id'])
+		        		if($b['power_points_id'] == null) {
+		        			//is considering any pp!
 		        			$gotit += $my_pp['UserPowerPoint']['quantity'];
+		        		}
+		        		else { 
+		        			if($my_pp['UserPowerPoint']['power_points_id'] == $b['power_points_id']) {
+		        				$gotit += $my_pp['UserPowerPoint']['quantity'];
+		        			}
+		        		}
 		        	}
-		        	if($gotit >= $needed) {
-		        		//hurray! he's got it! -> dispatch an event letting him know he won the badge
-		        		$event = new CakeEvent('Model.BadgesUser.won', $this, array(
-				        	'badge_id' => $b['badge_id'],
-				        	'user_id' => $this->data['UserPowerPoint']['user_id']
-				        ));
+		        	if($gotit < $needed) {
+		        		$ok = false;
+		        	}
+		        }
 
-				        $this->getEventManager()->dispatch($event);
-		        	}
+		        if($ok) {
+		        	//hurray! he's got it! -> dispatch an event letting him know he won the badge
+		        	$event = new CakeEvent('Model.BadgesUser.won', $this, array(
+				       	'badge_id' => $badge['Badge']['id'],
+				      	'user_id' => $this->data['UserPowerPoint']['user_id']
+				    ));
+
+				    $this->getEventManager()->dispatch($event);
 		        }
 	        }
 	    	return true;
