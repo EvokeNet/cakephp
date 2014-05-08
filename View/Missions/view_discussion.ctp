@@ -68,9 +68,9 @@
 				<h3> <?= strtoupper($mission['Mission']['title']) ?> </h3>
 				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
-					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "height:22vw">
+					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "width: 100%; height:22vw">
                 <?php else :?>
-					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "height:22vw">
+					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "width: 100%; height:22vw">
                 <?php endif ?>
 			</div>
 

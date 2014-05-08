@@ -328,25 +328,6 @@ class UsersController extends AppController {
 			}	
 		}
 
-		//$this->loadModel('Group');
-		// $groups = $this->Group->find('all', array('joins' => array(
-	 //        array(
-	 //            'table' => 'groups_users',
-	 //            'alias' => 'GroupsUsers',
-	 //            'type' => 'INNER',
-	 //            'conditions' => array(
-	 //                'GroupsUsers.user_id' => $id
-	 //            )
-	 //        ), array(
-	 //            'table' => 'groups',
-	 //            'alias' => 'Groups',
-	 //            'type' => 'INNER',
-	 //            'conditions' => array(
-	 //                'Groups.id = GroupsUsers.group_id'
-	 //            )
-	 //        )
-	 //    )));
-	    
 
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all', array(
@@ -383,78 +364,6 @@ class UsersController extends AppController {
 		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
 		$allusers = $this->User->find('all');
-
-		/* commented for now
-		//getting leaderboard data:
-			//getting user power points
-			$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
-
-			$points_users = array(); // will contain [points][][user]
-
-			$allusers = $this->User->find('all');
-
-			$this->loadModel('PowerPoint');
-			$power_points = $this->PowerPoint->find('all');
-
-			$this->loadModel('Point');
-			//$points = $this->Point->find('all');
-			
-			foreach ($allusers as $usr) {
-				$points = $this->Point->find('all', array(
-					'conditions' => array(
-						'Point.user_id' => $usr['User']['id']
-					)
-				));
-				$usrpoints = 0;
-				foreach ($points as $point) {
-					$usrpoints += $point['Point']['value'];
-				}
-
-				$usr['User']['level'] = $this->getLevel($usrpoints);
-				$points_users[$usrpoints][] = $usr['User'];
-
-
-
-				$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
-					'conditions' => array(
-						'UserPowerPoint.user_id' => $usr['User']['id']
-					)
-				));
-
-				$tmp = array();
-				foreach ($powerpoints_user as $powerpoint_user) {
-					if(isset($tmp[$powerpoint_user['UserPowerPoint']['power_points_id']])) {
-
-						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] += $powerpoint_user['UserPowerPoint']['quantity'];
-					} else {
-
-						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] = $powerpoint_user['UserPowerPoint']['quantity'];
-					}
-				}
-				
-				foreach ($power_points as $p_index => $pp) {
-					if($flags['_es']) {
-						$power_points[$p_index]['PowerPoint']['name'] = $pp['PowerPoint']['name_es'];
-						// $missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
-					}
-					$qtdUser = 0;
-					if(isset($tmp[$pp['PowerPoint']['id']]))
-						$qtdUser = $tmp[$pp['PowerPoint']['id']];
-					
-					$powerpoints_users[$pp['PowerPoint']['id']][$qtdUser][] = $usr['User'];
-				}
-			}
-
-			foreach ($power_points as $pp) {
-				
-				krsort($powerpoints_users[$pp['PowerPoint']['id']]);
-				
-			}
-			krsort($points_users);
-
-
-		//ended leader board data
-		*/
 
 		//admin notifications check:
 		$this->loadModel('AdminNotification');
@@ -522,28 +431,29 @@ class UsersController extends AppController {
 		}
 		
 		//$this->loadModel('Badge');
-		$badges = $this->User->UserBadge->find('all', array(
-			'conditions' => array(
-				'UserBadge.user_id' => $id
-			)
-		));
+		// $badges = $this->User->UserBadge->find('all', array(
+		// 	'conditions' => array(
+		// 		'UserBadge.user_id' => $id
+		// 	)
+		// ));
 
-		foreach ($badges as $b => $badge) {
-			$this->loadModel('Attachment');
-			$badge_img = $this->Attachment->find('first', array(
-				'conditions' => array(
-					'Attachment.model' => 'Badge',
-					'Attachment.foreign_key' => $badge['Badge']['id']
-				)
-			));
-			if(!empty($badge_img)) {
-				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
-				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
-			} else {
+		// foreach ($badges as $b => $badge) {
+		// 	$this->loadModel('Attachment');
+		// 	$badge_img = $this->Attachment->find('first', array(
+		// 		'conditions' => array(
+		// 			'Attachment.model' => 'Badge',
+		// 			'Attachment.foreign_key' => $badge['Badge']['id']
+		// 		)
+		// 	));
+		// 	if(!empty($badge_img)) {
+		// 		$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
+		// 		$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
+		// 	} else {
 
-			}
+		// 	}
 
-		}
+		// }
+		
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));

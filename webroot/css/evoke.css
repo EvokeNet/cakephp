@@ -285,6 +285,39 @@ button, div, p, span, a,
 	color: #ffffff;
 }
 
+.evoke .fatal-error{
+	position:relative;
+}
+
+.evoke .fatal-error img{
+	vertical-align: middle; 
+	height:600px; 
+	width: 100%
+}
+
+.evoke .fatal-error .block{
+	position: absolute; 
+	top: 35%; 
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0; 
+	text-align: center; 
+	width: 600px;
+	box-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;
+	background: rgba(0, 0, 0, 0.6);
+	padding:20px;
+	border: 1px solid #c65862;
+}
+
+.evoke .fatal-error h1{
+	text-shadow: 0 0 12px rgba(0,0,0,0.85); 
+	color: #fff; 
+	font-family:'AlegreyaRegular'; 
+	z-index: 1;
+	position: relative;
+}
+
 /* End of new CSS */
 
 /* New topbar section */

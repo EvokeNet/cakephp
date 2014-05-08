@@ -317,6 +317,88 @@ class MissionsController extends AppController {
 			)
 		));
 
+		/* Start checklist mechanic */
+
+		$checklist_done = array();
+		$build_profile = null;
+
+		if($mission['Mission']['basic_training'] == 1){
+
+			$all_bt_quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
+
+			$bt_quest_ids = array();
+			$bt_evidences = null;
+
+			foreach($all_bt_quests as $a):
+				if($a['Quest']['type'] == 1){
+					$build_profile = $a;
+					//debug($a['Quest']['title']);
+				}
+				
+				array_push($bt_quest_ids, array('Evidence.quest_id' => $a['Quest']['id']));
+				//debug($a['Quest']['title']);
+			endforeach;
+
+			if(!empty($by_quest_ids)){
+				$bt_evidences = $this->Mission->Quest->Evidence->find('all', array(
+					'conditions' => array(
+						'OR' => $bt_quest_ids
+					)
+				));
+			} else{
+				//debug("YAY");
+			}
+
+			$question_bt = array();
+
+			if(isset($build_profile)){
+				$this->loadModel('Question');
+				$question_bt = $this->Question->find('all', array('conditions' => array('Question.questionnaire_id' => $build_profile['Questionnaire']['id'])));
+			}
+
+			foreach($question_bt as $q):
+				foreach ($previous_answers as $previous_answer) {
+					if(($q['Question']['id'] == $previous_answer['UserAnswer']['question_id'])){
+						$checklist_done[2] = true;// array_push($checklist_done, true);
+						break;
+					} else if((isset($bt_evidences)) || ($q['Question']['id'] == $previous_answer['UserAnswer']['question_id'])){
+						$checklist_done[1] = true;// array_push($checklist_done, true);
+					}
+					else{
+						$checklist_done[2] = false; //array_push($checklist_done, false);
+						//$checklist_done[1] = false; //array_push($checklist_done, false);
+					}
+				}
+			endforeach;
+
+			$this->loadModel('Notification');
+			$notes = $this->Notification->find('first', array('conditions' => array('Notification.action_user_id' => $this->getUserId(), 'Notification.origin' => 'commentEvidence')));
+			$notesLike = $this->Notification->find('first', array('conditions' => array('Notification.action_user_id' => $this->getUserId(), 'Notification.origin' => 'like')));
+
+			if((isset($notes) && isset($notesLike)))
+				$checklist_done[4] = true;// array_push($checklist_done, true);
+			else
+				$checklist_done[4] = false; //array_push($checklist_done, false);
+
+			$this->loadModel('UserFriend');
+			$ally = $this->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId())));
+
+			if(isset($ally))
+				$checklist_done[5] = true;// array_push($checklist_done, true);
+			else
+				$checklist_done[5] = false; //array_push($checklist_done, false);
+
+			//debug($checklist_done);
+
+			// $done_profs = false;
+
+			// foreach ($previous_answers as $previous_answer) {
+			// 	if($previous_answer)
+			// }
+		}
+
+		/* End checklist mechanic*/
+
 		//checking number of mandatory quests per phase and number of completed ones..
 		$all_mandatory_quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.mandatory' => 1)));
 
@@ -470,7 +552,7 @@ class MissionsController extends AppController {
 		}
 
 
-		$this->set(compact('checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
+		$this->set(compact('checklist_done', 'checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
 			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
