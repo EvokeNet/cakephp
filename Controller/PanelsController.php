@@ -1266,10 +1266,15 @@ class PanelsController extends AppController {
 
 				$badge_id = $this->Badge->id;
 				//create questpowerpoints entries..
+				
 				foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
 					if($powerEntry['quantity'] > 0){
 						$insert['BadgePowerPoint']['badge_id'] = $badge_id;
-						$insert['BadgePowerPoint']['power_points_id'] = $powerId;
+						$insertId = $powerId;
+						if($powerId == 0) {
+							$insertId = null;
+						}
+						$insert['BadgePowerPoint']['power_points_id'] = $insertId;
 						$insert['BadgePowerPoint']['quantity'] = $powerEntry['quantity'];
 
 						$this->BadgePowerPoint->create();

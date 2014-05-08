@@ -255,8 +255,13 @@
 							                'value' => 0
 							            ));
 							        }
+							        echo $this->Form->input('Power.0.quantity', array(
+							                'label' => 'No specific power',
+							                'value' => 0
+							            ));
 							        echo '</fieldset>';
 									
+									echo $this->Form->radio('power_points_only', array(1 => 'Yes', 0 => 'No'), array('label' => __('Obtained exclusively with power points'), 'required' => true, 'default' => 1));
 									echo $this->Form->input('organization_id', array(
 										'label' => __('Organization'),
 										'options' => $organizations_list
