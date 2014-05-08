@@ -155,6 +155,43 @@ class EvidencesController extends AppController {
 			$sumMyPoints += $point['Point']['value'];
 		}
 
+		$this->loadModel('Dossier');
+		$this->loadModel('Attachment');
+
+		$dossier = $this->Dossier->find('first', array(
+			'conditions' => array(
+				'mission_id' => $me['Evidence']['id']
+			)
+		));
+
+		if(!empty($dossier)) {
+			//dossier files
+			$dossier_files = $this->Attachment->find('all', array(
+				'conditions' => array(
+					'Attachment.foreign_key' => $dossier['Dossier']['id'],
+					'Attachment.model' => 'Dossier'
+				)
+			));
+		} else {
+			$dossier_files = array();
+		}
+
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
+
+		if($flags['_es'])
+			$langs = 'es';
+		else
+			$langs = 'en';
+
+		$links = $this->Evidence->Mission->DossierLink->find('all', array('conditions' => array('DossierLink.mission_id' => $id, 'DossierLink.language' => $langs)));
+		$video_links = $this->Evidence->Mission->DossierVideo->find('all', array('conditions' => array('DossierVideo.mission_id' => $id, 'DossierVideo.language' => $langs)));
+
 		if($me['Evidence']['user_id'] != $this->getUserId()) {
 			//debug($me);
 			$this->Session->setFlash(__('You have no permission to edit an evidence that does not belong to you.'));
@@ -247,6 +284,17 @@ class EvidencesController extends AppController {
 			$this->request->data = $this->Evidence->find('first', $options);
 		}
 
+		//getting power points from evoke to display the ones related to quests in quests' lightboxes
+		$this->loadModel('PowerPoint');
+		$tmp = $this->PowerPoint->find('all');
+		$allPowerPoints = array(); //will contain all evoke's powerpoints with the first index as their id's (i.e. the power point with id 33 will be at $allPowerPoints[33])
+		foreach ($tmp as $tmpKey => $tmpPP) {
+			if($flags['_es']) {
+				$tmp[$tmpKey]['PowerPoint']['name']	= $tmp[$tmpKey]['PowerPoint']['name_es'];
+				$tmp[$tmpKey]['PowerPoint']['description']	= $tmp[$tmpKey]['PowerPoint']['description_es'];
+			}
+			$allPowerPoints[$tmpPP['PowerPoint']['id']] = $tmp[$tmpKey];
+		}
 
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
@@ -263,7 +311,11 @@ class EvidencesController extends AppController {
 			)
 		));
 
-		$this->set(compact('user', 'users', 'quests', 'missions', 'phases', 'attachments', 'sumMyPoints'));
+		$q = $this->Evidence->Quest->find('first', array('conditions' => array('Quest.id' => $me['Evidence']['quest_id'])));
+
+		$lang = $this->getCurrentLanguage();
+
+		$this->set(compact('dossier_files', 'lang', 'allPowerPoints', 'dossier', 'links', 'video_links', 'user', 'users', 'quests', 'q', 'missions', 'phases', 'attachments', 'sumMyPoints', 'me'));
 	}
 
 	public function destroyAttachments($data){

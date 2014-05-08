@@ -107,12 +107,24 @@ button, div, p, span, a,
 	margin-bottom: 1em;
 }
 
+.evoke .padding.top-1 {
+	padding-top: 1em;
+}
+
 .evoke .padding.top-2 {
 	padding-top: 2em;
 }
 
 .evoke .padding.top-5 {
 	padding-top: 5em;
+}
+
+.evoke .padding.bottom-1 {
+	padding-bottom: 1em;
+}
+
+.evoke .padding.bottom-2 {
+	padding-bottom: 2em;
 }
 
 /* Background */
@@ -123,6 +135,14 @@ button, div, p, span, a,
 	-moz-background-size: 100%;
 	-o-background-size: 100%;
 	background-size: 100%;*/
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.evoke.background-gray{
+	background: url('../img/bg-gray.png') no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -247,6 +267,14 @@ button, div, p, span, a,
 	padding-right:0;
 }
 
+.evoke .margin-left-0{
+	margin-left:0;
+}
+
+.evoke .margin-right-0{
+	margin-right:0;
+}
+
 .evoke .text-align-end{
 	text-align: end;
 }
@@ -258,7 +286,8 @@ button, div, p, span, a,
 .evoke .button.general {
 	background: #1f8cb2;
 	color: #ffffff;
-	font-size: 1.0vw;
+	/*font-size: 1.0vw;*/
+	font-size:0.7vw;
 	/*font-size: 0.9em;*/
 	/*border-radius: 5px;
 	padding: 0.4em 2em;*/
@@ -283,6 +312,84 @@ button, div, p, span, a,
 	padding-top: 1.25em;
 	padding-bottom: 1.25em;
 	color: #ffffff;
+}
+
+.evoke .fatal-error{
+	position:relative;
+}
+
+.evoke .fatal-error img{
+	vertical-align: middle; 
+	height:600px; 
+	width: 100%
+}
+
+.evoke .fatal-error .block{
+	position: absolute; 
+	top: 35%; 
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0; 
+	text-align: center; 
+	width: 600px;
+	box-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;
+	background: rgba(0, 0, 0, 0.6);
+	padding:20px;
+	border: 1px solid #c65862;
+}
+
+.evoke .fatal-error h1{
+	text-shadow: 0 0 12px rgba(0,0,0,0.85); 
+	color: #fff; 
+	font-family:'AlegreyaRegular'; 
+	z-index: 1;
+	position: relative;
+}
+
+.tint {
+	position: relative;
+	float: left;
+	/*margin: 10px 0;*/
+	cursor: pointer;
+	-webkit-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;
+	-moz-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;
+	box-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;
+}
+
+.tint:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.8);
+/*	-moz-transition: all .3s linear;
+	-webkit-transition: all .3s linear;
+	-ms-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	transition: all .3s linear;*/
+}
+
+.evoke .group .social-icons i{
+	color:#fff;
+}
+
+.evoke  .tag{
+	background-color:#fff;
+	border:5px solid #000;
+	border-radius:20px;
+	-webkit-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	-moz-box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
+	overflow:hidden;
+	position: relative;
+}
+
+.evoke .box-padding{
+	padding: 20px 10px;
 }
 
 /* End of new CSS */
@@ -427,17 +534,7 @@ button, div, p, span, a,
 	background-size: cover;
 }
 
-.evoke.background-gray{
-	background: url('../img/bg-gray.png');
-	background-repeat: no-repeat;
-	background-size: 100%;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-}
-
-.evoke .agent-tag{
+/*.evoke .agent-tag{
 	background-image: url('../img/agent_tag.png');
 	background-repeat: no-repeat;
 	background-size: 100% auto;
@@ -458,11 +555,10 @@ button, div, p, span, a,
 .evoke .agent-tag img.agent-picture{
 	position: absolute;
 	top: 31%;
-	/* right: 50%; */
 	left: 12%;
 	width: 23%;
 	height: 50%;
-}
+}*/
 
 /*.evoke .tabs-content{
 	margin-top: 30px;
@@ -693,17 +789,17 @@ button, div, p, span, a,
 	box-shadow: 2px 3px 2px 0px rgba(137,87,102,1);
 }
 
-.evoke.button.general {
+/*.evoke.button.general {
 	background: #1f8cb2;
 	color: #ffffff;
 	font-size: 0.9em;
 	border-radius: 5px;
-	/*padding: 0.4em 2em;*/
-	/*margin-right: 10px;*/
+	padding: 0.4em 2em;
+	/*margin-right: 10px;
 	margin-bottom: 0;
 	border-right: 3px solid #125167;
 	border-bottom: 3px solid #125167;
-}
+}*/
 
 .evoke .titles{
 	background-color: #f1f1f1;
@@ -1036,14 +1132,6 @@ button, div, p, span, a,
 
 .evoke.text-align{
 	text-align: center;
-}
-
-.evoke.evidence-icons{
-	margin-bottom: 5px;
-}
-
-.evoke.evidence-icons.social i{
-	color:#fff;
 }
 
 .evoke.button.like-button{
@@ -1455,7 +1543,7 @@ button, div, p, span, a,
 
 /*** Alternative Dashboard ***/
 
-.evoke.dashboard.tag{
+.evoke.dashboardt.ag{
 	background-color:#fff;
 	border:5px solid #000;
 	border-radius:20px;

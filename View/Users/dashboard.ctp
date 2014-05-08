@@ -18,14 +18,6 @@
 
 <section class="evoke default-background">
 
-	<?php 
-		// for ($i=0; $i < 2; $i++) { 
-			// debug($this->Session->flash('admin-1')); 
-			echo $this->Session->flash(); 
-			
-		// }
-	?>
-
 	<div id="secondModal" class="reveal-modal" data-reveal>
 	  <h2>This is a second modal.</h2>
 	  <p>See? It just slides into place after the other first modal. Very handy when you need subsequent dialogs, or when a modal option impacts or requires another decision.</p>
@@ -34,11 +26,12 @@
 
 	<div class="evoke default row full-width-alternate">
 
-	  <div class="small-2 medium-2 large-2 columns">
+	  <div class="small-2 medium-2 large-2 columns padding-left">
 	  	<?php echo $this->element('menu', array('user' => $users));?>
 	  </div>
 
 	  <div class="small-6 medium-6 large-6 columns padding top-2 maincolumn">
+	  	<?php echo $this->Session->flash(); ?>
 	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
 	  	  <div id="pattern" class="pattern">
   			<div class="c">
