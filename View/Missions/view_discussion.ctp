@@ -122,7 +122,7 @@
 								}
 							}
 
-							//debug($previous_answers);
+							debug($q);
 							if($evidence_exists):?>
 								<li>
 									<div class = "quests" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
