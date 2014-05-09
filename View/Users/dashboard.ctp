@@ -171,7 +171,7 @@
 	  <div class="small-3 medium-3 large-3 columns padding top-2 evoke no-left-padding no-right-padding">
 	  	
 	  	<h3> <?= strtoupper(__('Feed')) ?> </h3>
-	  	<div class = "evoke content-block padding">
+	  	<div class = "evoke content-block padding profile feed">
 	  		
 	  		<?php if(!$notifies): ?>
 

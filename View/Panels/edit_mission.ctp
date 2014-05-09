@@ -7,11 +7,10 @@
 	
 ?>
 
-<section class="margin top-2">
-	<div class="row max-width">
-		<div class="small-12 medium-12 large-12 columns">
+<section>
+	<div class="row full-width-alternate">
 			<!-- <h1><?= __('Mission') ?><?php echo ': ' . $mission['Mission']['title']; ?></h1> -->
-			<dl class="tabs vertical" data-tab>
+			<dl class="panels tabs vertical" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
 				<?php if(isset($id) && !is_null($id)) : ?>
 					<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= __('Phases') ?></a></dd>
@@ -21,7 +20,7 @@
 					<dd class="<?php echo $novel_tag ?>"><a href="#graphic"><?= __('Graphic Novel') ?></a></dd>
 				<?php endif; ?>
 			</dl>
-			<div class="tabs-content vertical">
+			<div class="panels tabs-content vertical">
 				<div class="content <?php echo $mission_tag ?> content large-10 columns" id="mission">
 					<div class="form">
 
@@ -352,55 +351,117 @@
 					</p>
 				</div>
 				<div class="content <?php echo $novel_tag ?>" id="graphic">
-					<?php 
-						echo $this->Form->create('Novel', array(
-	 					   		'url' => array(
-	 					   			'controller' => 'panels',
-	 					   			'action' => 'novel', $id, 'edit_mission'
-	 					   		),
-	 					   		'enctype' => 'multipart/form-data'
-						));
+					<div class="row">
+						<div class="small-8 medium-8 large-8 columns">
+							<dl class="tabs" data-tab>
+								<dd class="active"><a href="#novel_launcher"><?= __('Graphic novel launcher') ?></a></dd>
+								<dd><a href="#novel_en"><?= __('English graphic novel') ?></a></dd>
+								<dd><a href="#novel_es"><?= __('Spanish graphic novel') ?></a></dd>
+							</dl>
+							<div class="tabs-content">
+								<div class="content active" id="novel_launcher">
+									<h3>Setting up the launcher should be easy!</h3>
+									<?php 
+										echo $this->Form->create('Novel', array(
+					 					   		'url' => array(
+					 					   			'controller' => 'panels',
+					 					   			'action' => 'novelLauncher', $id, 'edit_mission'
+					 					   		),
+					 					   		'enctype' => 'multipart/form-data'
+										));
+									?>
+								</div>
+								<div class="content" id="novel_en">
+									<?php 
+										echo $this->Form->create('Novel', array(
+					 					   		'url' => array(
+					 					   			'controller' => 'panels',
+					 					   			'action' => 'novel', $id, 'edit_mission'
+					 					   		),
+					 					   		'enctype' => 'multipart/form-data'
+										));
 
-						echo '<h3>'. __('English graphic novel:') . '</h3>';
-						$kn = 0;
-						foreach ($novels_en as $ne => $novel) {
-							echo '<div id="content' .$kn.'">';
-							echo $this->Form->hidden($kn.'.mission_id', array('value' => $id));
-							echo $this->Form->hidden($kn.'.language', array('value' => 'en'));
-							echo $this->Form->hidden($kn.'.id', array('value' => $novel['Novel']['id']));
-							echo $this->Form->input($kn.'.page', array('value' => $novel['Novel']['page'], 'label' => __('Page number')));			
-							echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/thumb_'.$novel['Novel']['page_attachment'] . '"/>';
-							echo '<div class="input file"><label for="Novel'.$kn.'Attachment0Attachment">Change Page Image</label><input type="file" name="data[Novel]['.$kn.'][Attachment][0][attachment]" id="Novel'.$kn.'Attachment0Attachment"></div>';
-							echo '<button class="button tiny alert" id="Delete'. $kn .'">delete</button></div>';
-							$kn++;
-						}
+										echo '<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">';
+										$kn = 0;
+										foreach ($novels_en as $ne => $novel) {
+											echo '<li>';
+											echo '<div id="content' .$kn.'">';
+											echo '<fieldset><legend>Page preview</legend>';
+											echo $this->Form->hidden($kn.'.mission_id', array('value' => $id));
+											echo $this->Form->hidden($kn.'.language', array('value' => 'en'));
+											echo $this->Form->hidden($kn.'.id', array('value' => $novel['Novel']['id']));
+											echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/thumb_'.$novel['Novel']['page_attachment'] . '"/>';
+											echo '<div style="float:right">';
+											echo $this->Form->input($kn.'.page', array('value' => $novel['Novel']['page'], 'label' => __('Page number')));			
+											echo '</div>';
 
-						echo '<div id="newEn"></div>';
+											echo '<div class="input file"><label for="Novel'.$kn.'Attachment0Attachment">Change Page Image</label><input type="file" name="data[Novel]['.$kn.'][Attachment][0][attachment]" id="Novel'.$kn.'Attachment0Attachment"></div>';
+											echo '<button class="button alert medium-12 small-12 large-12 columns" id="Delete'. $kn .'">delete</button>';
+											echo '</fieldset></div>';
+											$kn++;
+											echo '</li>';
+										}
+
+										echo '</ul>';
+										echo '<div id="newEn"></div>';
+										
+										echo '<button href="#" id="newFileNovelEn" class="button medium-12 small-12 large-12 columns">New Page</button>';
+
+										echo '<br><br>';
+
+										echo '<button class="button small" type="submit">'. __('Save Novels') . '</button>';
+
+										echo $this->Form->end();
+									?>
+								</div>
+								<div class="content" id="novel_es">
+									<?php 
 						
-						echo '<button href="#" id="newFileNovelEn" class="button tiny">New Page</button>';
-						
-						echo '<h3>'. __('Spanish graphic novel:') . '</h3>';
-						foreach ($novels_es as $nes => $novel) {
-							echo '<div id="content' .$kn.'">';
-							echo $this->Form->hidden($kn.'.mission_id', array('value' => $id));
-							echo $this->Form->hidden($kn.'.language', array('value' => 'es'));
-							echo $this->Form->hidden($kn.'.id', array('value' => $novel['Novel']['id']));
-							echo $this->Form->input($kn.'.page', array('value' => $novel['Novel']['page'], 'label' => __('Page number')));
-							echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/thumb_'.$novel['Novel']['page_attachment'] . '"/>';
-							echo '<div class="input file"><label for="Novel'.$kn.'Attachment0Attachment">Change Page Image</label><input type="file" name="data[Novel]['.$kn.'][Attachment][0][attachment]" id="Novel'.$kn.'Attachment0Attachment"></div>';
-							echo '<button class="button tiny alert" id="Delete'. $kn .'">delete</button></div>';
-							$kn++;
-						}
+										echo $this->Form->create('Novel', array(
+				 					   		'url' => array(
+				 					   			'controller' => 'panels',
+				 					   			'action' => 'novel', $id, 'edit_mission'
+				 					   		),
+				 					   		'enctype' => 'multipart/form-data'
+										));
+										
+										echo '<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">';
+										foreach ($novels_es as $nes => $novel) {
+											echo '<li>';
+											echo '<div id="content' .$kn.'">';
+											echo '<fieldset><legend>Page preview</legend>';
+											echo $this->Form->hidden($kn.'.mission_id', array('value' => $id));
+											echo $this->Form->hidden($kn.'.language', array('value' => 'es'));
+											echo $this->Form->hidden($kn.'.id', array('value' => $novel['Novel']['id']));
+											echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/thumb_'.$novel['Novel']['page_attachment'] . '"/>';
+											echo '<div style="float:right">';
+											echo $this->Form->input($kn.'.page', array('value' => $novel['Novel']['page'], 'label' => __('Page number')));
+											echo '</div>';
+											echo '<div class="input file"><label for="Novel'.$kn.'Attachment0Attachment">Change Page Image</label><input type="file" name="data[Novel]['.$kn.'][Attachment][0][attachment]" id="Novel'.$kn.'Attachment0Attachment"></div>';
+											echo '<button class="button alert medium-12 small-12 large-12 columns" id="Delete'. $kn .'">delete</button>';
+											
+											echo '</fieldset></div>';
+											$kn++;
+											echo '</li>';
+										}
 
-						echo '<div id="newEs"></div>';
-						echo '<button href="#" id="newFileNovelEs" class="button tiny">New Page</button>';
+										echo '</ul>';
+										echo '<div id="newEs"></div>';
+										echo '<button href="#" id="newFileNovelEn" class="button medium-12 small-12 large-12 columns">New Page</button>';
+										
 
-			            echo '<br><br>';
+							            echo '<br><br>';
 
-			            echo '<button class="button small" type="submit">'. __('Save Novels') . '</button>';
+							            echo '<button class="button small" type="submit">'. __('Save Novels') . '</button>';
 
-						echo $this->Form->end();
-					?>
+										echo $this->Form->end();
+									?>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					
 				</div>
 			</div>
 
@@ -421,7 +482,6 @@
 				<?php else :
 					echo $this->Html->Link(__('Return to Admin Panel'), array('controller' => 'panels', 'action' => 'index', 'missions'), array( 'class' => 'button small')); 
 				endif; ?>
-		</div>
 	</div>
 </section>
 

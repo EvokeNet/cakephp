@@ -107,6 +107,10 @@ button, div, p, span, a,
 	margin-bottom: 1em;
 }
 
+.evoke .margin.bottom-1 {
+	margin-bottom: 1em;
+}
+
 .evoke .padding.top-1 {
 	padding-top: 1em;
 }
@@ -125,6 +129,10 @@ button, div, p, span, a,
 
 .evoke .padding.bottom-2 {
 	padding-bottom: 2em;
+}
+
+.evoke .margin-left-13{
+	margin-left: 13%;
 }
 
 /* Background */
@@ -215,7 +223,7 @@ button, div, p, span, a,
 	/*border-top: 5px solid #000;*/
 	border-top: 5px solid #c65862;
 	margin-top: 1px;
-	height: 700px;
+	/*height: 700px;*/
 	overflow-x: hidden;
 }
 
@@ -294,10 +302,22 @@ button, div, p, span, a,
 	border-radius: 10px;
 	/*padding: 0.4em 1.5em 0.8em;*/
 	padding: 0.7em 1.4em;
-	margin-bottom:0px;
+	/*margin-bottom:0px;*/
 	/*margin-right: 10px;*/
 	border-right: 3px solid #125167;
 	border-bottom: 3px solid #125167;
+}
+
+.evoke .button.general.green{
+	background: #20c475;
+	border-right: 3px solid #137244;
+	border-bottom: 3px solid #137244;
+}
+
+.evoke .button.general.red{
+	background: #bc5660;
+	border-right: 3px solid #82353b;
+	border-bottom: 3px solid #82353b;
 }
 
 .evoke .button.config{
@@ -392,6 +412,10 @@ button, div, p, span, a,
 	padding: 20px 10px;
 }
 
+.evoke .position-relative{
+	position:relative;
+}
+
 /* End of new CSS */
 
 /* New topbar section */
@@ -429,6 +453,10 @@ button, div, p, span, a,
 	margin-top: 20px;
 }
 
+.evoke.top-bar .meter{
+	background: #c65862;
+}
+
 .evoke.top-bar-2.progress{
 	background-color: #252525;
 	padding:0;
@@ -436,13 +464,11 @@ button, div, p, span, a,
 	border:0;
 	margin-top: 20px;
 }
-.evoke.top-bar .meter{
-	background: #c65862;
-}
 
 .evoke.top-bar-2 .meter{
 	background: #c65862;
 }
+
 .evoke.top-bar.icon{
 	max-height: 30px; 
 	max-width: 70px; 
@@ -599,26 +625,6 @@ button, div, p, span, a,
 	max-height:130px;
 }
 
-.evoke .feed{
-	min-height:100px;
-	z-index: 1;
-	position: relative;
-	overflow:scroll;
-	overflow-x:hidden;
-}
-
-.evoke .badges{
-	/*height:200px;*/
-	z-index: 1;
-	position: relative;
-}
-
-.evoke .leadercloud{
-	/*height:500px;*/
-	z-index: 1;
-	position: relative;
-}
-
 .evoke .tabs-content > .content.active {
 	width: 100%;
 }
@@ -705,18 +711,6 @@ button, div, p, span, a,
 
 .evoke .evidence-list ul{
 	list-style-type: none;
-}
-
-.evoke .button.general.green{
-	background-color: #20c475;
-	border-right: 3px solid #137244;
-	border-bottom: 3px solid #137244;
-}
-
-.evoke .button.general.red{
-	background-color: #bc5660;
-	border-right: 3px solid #82353b;
-	border-bottom: 3px solid #82353b;
 }
 
 .evoke  a.button.google{
