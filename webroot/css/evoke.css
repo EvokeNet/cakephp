@@ -322,10 +322,20 @@ button, div, p, span, a,
 	margin-top: 20px;
 }
 
+.evoke.top-bar-2.progress{
+	background-color: #252525;
+	padding:0;
+	height: 0.4rem;
+	border:0;
+	margin-top: 20px;
+}
 .evoke.top-bar .meter{
 	background: #c65862;
 }
 
+.evoke.top-bar-2 .meter{
+	background: #c65862;
+}
 .evoke.top-bar.icon{
 	max-height: 30px; 
 	max-width: 70px; 

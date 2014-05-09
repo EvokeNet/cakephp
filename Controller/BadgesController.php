@@ -44,7 +44,7 @@ class BadgesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Badge->recursive = 0;
+		// $this->Badge->recursive = 0;
 		$badges = $this->Badge->find('all');
 
 		$lang = $this->getCurrentLanguage();
@@ -53,6 +53,16 @@ class BadgesController extends AppController {
 		if($lang=='es') {
 			$flags['_en'] = false;
 			$flags['_es'] = true;
+		}
+
+		$this->loadModel('PowerPoint');
+		$tmp = $this->PowerPoint->find('all');
+		$allPowerPoints = array();
+		foreach ($tmp as $tmpkey => $tmpvalue) {
+			if($flags['_es']){
+				$tmp[$tmpkey]['PowerPoint']['name'] = $tmp[$tmpkey]['PowerPoint']['name_es'];
+			}
+			$allPowerPoints[$tmpvalue['PowerPoint']['id']] = $tmp[$tmpkey]['PowerPoint'];
 		}
 
 		foreach ($badges as $b => $badge) {
@@ -86,6 +96,56 @@ class BadgesController extends AppController {
 				$badges[$b]['Badge']['owns'] = true;
 			}
 
+			$pps = array();
+			$badgeGoal = 0;
+			$badgeCurrent = 0;
+			foreach ($badge['BadgePowerPoint'] as $bpp) {
+				if($bpp['power_points_id'] == null) {
+					//percentage for such power point
+
+					$goal = $bpp['quantity'];
+					$current = $this->getUserPowerPoints($this->getUserId());
+					
+					if($current > $goal)
+						$current = $goal;
+
+					$badgeGoal += $goal;
+					$badgeCurrent += $current;
+					$insert['UserPercentage'] = ($current / $goal) * 100;
+					$insert['UserGoal'] = $goal;
+					$insert['name'] = __('All powers');
+
+					$pps[] = $insert;
+				} else {
+					if(isset($allPowerPoints[$bpp['power_points_id']])) {
+						//percentage for such power point
+
+						$goal = $bpp['quantity'];
+						$current = $this->getUserPowerPoints($this->getUserId(), $bpp['power_points_id']);
+						
+						if($current > $goal)
+							$current = $goal;
+
+						$badgeGoal += $goal;
+						$badgeCurrent += $current;
+
+						$allPowerPoints[$bpp['power_points_id']]['UserPercentage'] = ($current / $goal) * 100;
+						$allPowerPoints[$bpp['power_points_id']]['UserGoal'] = $goal;
+						$pps[] = $allPowerPoints[$bpp['power_points_id']];
+					}
+				}
+			}
+
+
+			if($badge['Badge']['power_points_only'] == 1) {
+				//the badge completition depends only on powerpoints
+				if($badgeGoal == 0)
+					$badges[$b]['Badge']['UserPercentage'] = 0;
+				else
+					$badges[$b]['Badge']['UserPercentage'] = ($badgeCurrent / $badgeGoal) * 100;
+			}
+
+			$badges[$b]['Badge']['PowerPoints'] = $pps;
 		}
 		//$this->set('badges', $this->Paginator->paginate());
 
@@ -94,6 +154,35 @@ class BadgesController extends AppController {
 
 		$this->set(compact('user', 'badges'));
 	}
+
+
+
+
+	public function getUserPowerPoints($user_id, $power_points_id = null) {
+		$this->loadModel('UserPowerPoint');
+		$check = array();
+		if($power_points_id == null) {
+			$check = $this->UserPowerPoint->find('all', array(
+				'conditions' => array(
+					'UserPowerPoint.user_id' => $user_id
+				)
+			));
+		} else {
+			$check = $this->UserPowerPoint->find('all', array(
+				'conditions' => array(
+					'UserPowerPoint.user_id' => $user_id,
+					'UserPowerPoint.power_points_id' => $power_points_id
+				)
+			));
+		}
+
+		$sum = 0;
+		foreach ($check as $data) {
+			$sum += $data['UserPowerPoint']['quantity'];
+		}
+		return $sum;
+	}
+
 
 /**
  * view method
