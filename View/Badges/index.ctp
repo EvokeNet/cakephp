@@ -29,37 +29,46 @@
 				<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
 				  	<?php 
 
-					foreach($badges as $badge): ?>
+					foreach($badges as $b => $badge): ?>
 						<li>
+							<?php //$badges[$b]['Badge']['UserPercentage'] = 0.3;?>
 							<?php if(isset($badge['Badge']['img_dir'])) : ?>
 								<?php if($badge['Badge']['power_points_only'] == 1) : ?>
 									<div id="<?=$badge['Badge']['id']?>" class="evoke default view view-first">
 					                    
 					                    <div class = "margin-left-13">
 					                    <div class="loader">
-										    <div class="loader-bg" id="two">
+										    <div class="loader-bg">
 										    	<img src = '<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>'>
 										    </div>    
 
 										    <div class="spiner-holder-one animate-0-25-a">
-										        <div class="spiner-holder-two animate-0-25-b">
-										            <div class="loader-spiner" style=""></div>
-										        </div>
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-0-25-b">
+											            <div class="loader-spiner" style=""></div>
+											        </div>
+										    	<?php endif?>
 										    </div>
 										    <div class="spiner-holder-one animate-25-50-a">
-										        <div class="spiner-holder-two animate-25-50-b">
-										            <div class="loader-spiner"></div>
-										        </div>
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-25-50-b">
+										            	<div class="loader-spiner"></div>
+										        	</div>
+										    	<?php endif?>
 										    </div>
 										    <div class="spiner-holder-one animate-50-75-a">
-										        <div class="spiner-holder-two animate-50-75-b">
-										            <div class="loader-spiner"></div>
-										        </div>
+										    	<?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-50-75-b">
+											            <div class="loader-spiner"></div>
+											        </div>
+										    	<?php endif?>										        
 										    </div>
 										    <div class="spiner-holder-one animate-75-100-a">
-										        <div class="spiner-holder-two animate-75-100-b">
-										            <div class="loader-spiner"></div>
-										        </div>
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-75-100-b">
+											            <div class="loader-spiner"></div>
+											        </div>
+										    	<?php endif?>
 										    </div>
 										</div>
 					                    </div>
@@ -76,29 +85,37 @@
 					                    
 					                    <div class = "margin-left-13">
 					                    <div class="loader">
-										    <div class="loader-bg" id="two">
+										    <div class="loader-bg">
 										    	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
 										    </div>    
 
 										    <div class="spiner-holder-one animate-0-25-a">
-										        <div class="spiner-holder-two animate-0-25-b">
-										            <div class="loader-spiner" style=""></div>
-										        </div>
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-0-25-b">
+											            <div class="loader-spiner" style=""></div>
+											        </div>
+										    	<?php endif?>
 										    </div>
 										    <div class="spiner-holder-one animate-25-50-a">
-										        <div class="spiner-holder-two animate-25-50-b">
-										            <div class="loader-spiner"></div>
-										        </div>
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-25-50-b">
+										            	<div class="loader-spiner"></div>
+										        	</div>
+										    	<?php endif?>
 										    </div>
 										    <div class="spiner-holder-one animate-50-75-a">
-										        <div class="spiner-holder-two animate-50-75-b">
-										            <div class="loader-spiner"></div>
-										        </div>
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-50-75-b">
+											            <div class="loader-spiner"></div>
+											        </div>
+										    	<?php endif?>
 										    </div>
 										    <div class="spiner-holder-one animate-75-100-a">
-										        <div class="spiner-holder-two animate-75-100-b">
-										            <div class="loader-spiner"></div>
-										        </div>
+										    	<?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-75-100-b">
+											            <div class="loader-spiner"></div>
+											        </div>
+										    	<?php endif?>
 										    </div>
 										</div>
 					                    </div>
@@ -157,22 +174,30 @@
 
 	<?php 
 		foreach ($badges as $badge) {
+			// debug($badge['Badge'])
 			if(isset($badge['Badge']['UserPercentage']))
 				echo 'renderProgress('.($badge['Badge']['UserPercentage']).', $("#'. $badge['Badge']['id'] .'"));';
 		}
 	?>
- // renderProgress(88);
- // renderProgress(50, 'two');
- // renderProgress(100, 'three');
 
 function renderProgress(progress, el)
 {
     // progress = progress;
     // alert(el.attr('id'));
-    
+    if(progress==0) {
+    	$("#"+el.attr('id')+" .animate-50-75-b, .animate-25-50-b, .animate-0-25-b")
+                                              .css("transform","rotate(90deg)");
+        $("#"+el.attr('id')+" .animate-75-100-b").css("transform","rotate(90deg)");
+    	$("#"+el.attr('id')+" .btext").html("0%");
+    	return;
+    }
+	if(progress % 1 != 0) {
+		progress = progress.toFixed(2);
+	}
     if(progress<25){
         var angle = -90 + (progress/100)*360;
         $("#"+el.attr('id')+" .animate-0-25-b").css("transform","rotate("+angle+"deg)");
+
     }
     else if(progress>=25 && progress<50){
         var angle = -90 + ((progress-25)/100)*360;
@@ -190,7 +215,8 @@ function renderProgress(progress, el)
                                               .css("transform","rotate(0deg)");
         $("#"+el.attr('id')+" .animate-75-100-b").css("transform","rotate("+angle+"deg)");
     }
-    progress = progress.toFixed(2);
+    
     $("#"+el.attr('id')+" .btext").html(progress+"%");
+    
 }
 </script>
