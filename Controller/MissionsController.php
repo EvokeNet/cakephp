@@ -116,7 +116,7 @@ class MissionsController extends AppController {
 			$this->redirect(array('controller' => 'missions', 'action' => 'view', $id, 1));
 
 		if($phase_number > count($missionPhases)) {
-			$this->Session->setFlash(__("This mission/phase does not exist!"));
+			$this->Session->setFlash(__("There are no phases for this mission"), 'flash_message');
 			$this->redirect($this->referer());
 		}
 
@@ -501,11 +501,11 @@ class MissionsController extends AppController {
 
 		// if(isset($prevMP['Phase']['id']) && ((($completed[$prevMP['Phase']['id']] * 100)/$total[$prevMP['Phase']['id']]) != 100)) 
 		// 	return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
-		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 1) && $completed[$prevMP['Phase']['id']] < 2){
+		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 1) && $completed[$prevMP['Phase']['id']] < 2 && $user['User']['role_id'] < 2){
 			$this->Session->setFlash(__('You need to finish at least to quests to complete Basic Training'), 'flash_message');
 			return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
 		}
-		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 0) && $completed[$prevMP['Phase']['id']] < 1){
+		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 0) && $completed[$prevMP['Phase']['id']] < 1 && $user['User']['role_id'] < 2){
 			$this->Session->setFlash(__('You need to finish at least one quest to go to next phase'), 'flash_message');
 			return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
 		}

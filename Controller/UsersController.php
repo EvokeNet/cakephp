@@ -549,42 +549,138 @@ class UsersController extends AppController {
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
 		//'groups', 'my_photo', 'user_photo',
 
-		if($id == $this->getUserId())
-			$this->render('dashboard');
-		else
-			$this->render('dashboard_alternative');
+		if($id != $this->getUserId()){
+			// $this->Session->setFlash(__("You cannot access other user's dashboard"), 'flash_message');
+			$this->redirect(array('action'=>'profile', $id)); 
+		}
 	}
 
 /**
  *
- * dashboard issue
- * @throws NotFoundException
- * @param string $id
- * @param string $user_id
+ * profile method
  *
  * @return void
  */
-	public function dashboardByIssue($user_id = null, $id = null) {
-		if (!$this->User->exists($user_id)) {
+	public function profile($id = null) {
+		
+		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 
-		$user = $this->User->find('first', array('conditions' => array('User.id' => $user_id)));
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
+		// debug($lang);
+		
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
-		$user_data = $this->getUserData();
-		$users = $this->User->find('first', array('conditions' => array('User.id' => $user_data['id'])));
+		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $id, 'UserFriend.friend_id' => $user_data['id'])));
+		$this->loadModel('Level');
 
-		$evidence = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
+		$points = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $id)));
 
-		$this->loadModel('Mission');
-		$missions = $this->Mission->find('all');
-		$issue = $this->Mission->MissionIssue->Issue->find('first', array('conditions' => array('Issue.id' => $id)));
-		$missionIssues = $this->Mission->MissionIssue->find('all');
-		$missionIssue = $this->Mission->MissionIssue->find('all', array('conditions' => array('MissionIssue.issue_id' => $id)));
+		$sumPoints = $this->getPoints($id);
 
-		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'issue', 'missions', 'missionIssues', 'missionIssue'));
+		$level = $this->getLevel($sumPoints);
+
+		$otherLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $level+1)));
+
+		if(!empty($thisLevel))
+			$percentage = round(($sumPoints / $otherLevel['Level']['points']) * 100);
+		else
+			$percentage = 0;
+
+		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
+
+		$allies = array();
+
+		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
+
+		$are_friends = array();
+		//$allies = array();
+
+		foreach($friends as $friend){
+			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
+		}
+
+		if(!empty($are_friends)){
+			$allies = $this->User->find('all', array(
+				'conditions' => array(
+					'OR' => $are_friends
+			)));
+		} else{
+			$allies = array();
+			//$notifies = array();
+		}
+
+		$myevidences = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			),
+			'conditions' => array(
+				'Evidence.user_id' => $id,
+			)
+		));
+
+		$this->loadModel('Evokation');
+		$evokations = $this->Evokation->find('all', array(
+			'order' => array(
+				'Evokation.created DESC'
+			),
+			'conditions' => array(
+				'Evokation.sent' => 1
+			)
+		));
+
+		$myEvokations = array();
+		foreach ($evokations as $evokation) {
+			$mine = false;
+			if($evokation['Group']['user_id'] == $id)
+				$mine = true;
+
+			$this->loadModel('Group');
+			$group_evokation = $this->Group->GroupsUser->find('first', array(
+				'conditions' => array(
+					'GroupsUser.group_id' => $evokation['Group']['id'],
+					'GroupsUser.user_id' => $id
+				)
+			));
+			
+			if(!empty($group_evokation))
+				$mine = true;
+
+			if($mine){
+				array_push($myEvokations, $evokation);
+			}	
+		}
+		
+		$this->loadModel('Badge');
+
+		$badges = $this->Badge->find('all');
+
+		foreach ($badges as $b => $badge) {
+			$this->loadModel('Attachment');
+			$badge_img = $this->Attachment->find('first', array(
+				'conditions' => array(
+					'Attachment.model' => 'Badge',
+					'Attachment.foreign_key' => $badge['Badge']['id']
+				)
+			));
+			if(!empty($badge_img)) {
+				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
+				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
+			}
+
+		}
+
+		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
+			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
 
 	}
 
