@@ -144,12 +144,13 @@
 				  	
 				<?php endif ?>
 
+			  	<div class="row full-width-alternate comment-blocks">
+				  <div class="large-8 columns"><h2><?= strtoupper(__('Share a Thought')) ?></h2></div>
+				  <div class="large-4 columns">
+				  	<a href ="#" class= "evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<h6><?= __('Comment');?></h6></a>
+				  </div>
+				</div>
 
-			  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
-
-			  	<?php //echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
-
-			  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
 			  	<?php foreach ($comment as $c): 
 						echo $this->element('comment_box', array('c' => $c, 'user' => $user));
 		  			endforeach; 

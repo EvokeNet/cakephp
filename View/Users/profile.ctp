@@ -113,7 +113,7 @@
 						if($k >8) break;
 						$name = explode(' ', $ally['User']['name']); ?>
 						<li>
-							<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['User']['id'])) ?>">
+							<a class="th" href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['User']['id'])) ?>">
 								<?php if($ally['User']['photo_attachment'] == null) : ?>
 				  					<img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/>
 				  				<?php else : ?>

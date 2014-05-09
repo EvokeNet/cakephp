@@ -86,6 +86,12 @@
 .evoke .profile .tint:before{
 	background: rgba(0, 0, 0, 0.5);
 }
+
+.evoke .profile.feed{
+	height: 300px;
+	overflow-x: hidden;
+}
+
 /* End CSS */
 
 .edit-user-issues{
