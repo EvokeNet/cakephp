@@ -670,8 +670,8 @@ class PanelsController extends AppController {
 
 	function novel($id, $origin = 'add_mission'){
 		
-		// debug($this->request->data['Novel']);
-		// die();
+		 // debug($this->request->data['Novel']);
+		 // die();
 		foreach ($this->request->data['Novel'] as $novelIndex => $novelData) {
 			// debug($novelData);
 			if(isset($novelData['id'])) {
@@ -680,7 +680,6 @@ class PanelsController extends AppController {
 				if(isset($novelData['delete'])) {
 					$this->Novel->id = $novelData['id'];
 					$this->Novel->delete();
-					// debug("trying to delete: ");
 				}
 			}
 			if($novelData['page'] <= 0 || $novelData['Attachment'][0]['attachment']['error'] != 0) continue;
@@ -689,7 +688,7 @@ class PanelsController extends AppController {
 			$insertNovel['Novel']['language'] = $novelData['language'];
 			$insertNovel['Novel']['page'] = $novelData['page'];
 			$insertNovel['Attachment'] = $novelData['Attachment'];
-
+			unset($insertNovel['Novel']['id']);
 			// debug($novelData);
 					
 			if(isset($novelData['id'])) {
@@ -698,7 +697,6 @@ class PanelsController extends AppController {
 				if(isset($novelData['delete'])) {
 					$this->Novel->id = $novelData['id'];
 					$this->Novel->delete();
-					// debug("trying to delete: ");
 					
 				} else {
 					$this->Novel->createWithAttachments($insertNovel, true, $novelData['id']);	
@@ -712,13 +710,10 @@ class PanelsController extends AppController {
 		}
 		 // die();
 
-		$this->redirect($this->referer());
+		// $this->redirect($this->referer());
 
 		//sending back to correct address
-		if($origin == 'add_mission')
-			$this->redirect(array('action' => 'add_mission', $id, 'novel'));
-		else 
-			$this->redirect(array('action' => 'edit_mission', $id, 'novel'));
+		$this->redirect(array('action' => 'edit_mission', $id, 'novel'));
 	}
 
 /*
