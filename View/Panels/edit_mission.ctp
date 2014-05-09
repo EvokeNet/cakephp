@@ -355,11 +355,24 @@
 					<div class="row">
 						<div class="small-8 medium-8 large-8 columns">
 							<dl class="tabs" data-tab>
-								<dd class="active"><a href="#novel_en"><?= __('English graphic novel') ?></a></dd>
+								<dd class="active"><a href="#novel_launcher"><?= __('Graphic novel launcher') ?></a></dd>
+								<dd><a href="#novel_en"><?= __('English graphic novel') ?></a></dd>
 								<dd><a href="#novel_es"><?= __('Spanish graphic novel') ?></a></dd>
 							</dl>
 							<div class="tabs-content">
-								<div class="content active" id="novel_en">
+								<div class="content active" id="novel_launcher">
+									<h3>Setting up the launcher should be easy!</h3>
+									<?php 
+										echo $this->Form->create('Novel', array(
+					 					   		'url' => array(
+					 					   			'controller' => 'panels',
+					 					   			'action' => 'novelLauncher', $id, 'edit_mission'
+					 					   		),
+					 					   		'enctype' => 'multipart/form-data'
+										));
+									?>
+								</div>
+								<div class="content" id="novel_en">
 									<?php 
 										echo $this->Form->create('Novel', array(
 					 					   		'url' => array(
