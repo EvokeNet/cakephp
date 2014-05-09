@@ -550,8 +550,8 @@ class UsersController extends AppController {
 		//'groups', 'my_photo', 'user_photo',
 
 		if($id != $this->getUserId()){
-			$this->Session->setFlash(__("You cannot access other user's dashboard"), 'flash_message');
-			$this->redirect($this->referer()); 
+			// $this->Session->setFlash(__("You cannot access other user's dashboard"), 'flash_message');
+			$this->redirect(array('action'=>'profile', $id)); 
 		}
 	}
 

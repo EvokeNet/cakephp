@@ -7,271 +7,378 @@
 	
 ?>
 
-<section class="evoke">
-	<div class="row full-width-alternate">
-		
-		<dl class="tabs vertical" data-tab>
-			<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><?= __('Organizations') ?></a></dd>
-			<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><?= __('Missions') ?></a></dd>
-			<?php if($flags['_admin']) : ?>
-				<dd class="<?php echo $issues_tab; ?>"><a href="#issues"><?= __('Issues') ?></a></dd>
-				<dd class="<?php echo $levels_tab; ?>"><a href="#levels"><?= __('Levels') ?></a></dd>
-				<dd class="<?php echo $powerpoints_tab; ?>"><a href="#powerpoints"><?= __('Power Points') ?></a></dd>
-			<?php endif; ?>	
-			<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
-			<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
-			<?php if($flags['_admin']) : ?>
-				<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><?= __('Evokations') ?></a></dd>
-				<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Notifications & Media') ?></a></dd>
-				<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
-			<?php endif; ?>	
-			<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><?= __('Statistics') ?></a></dd>
-		</dl>
-		<div class="tabs-content vertical padding top-1 bottom-1">
-			<div class="content <?php echo $organizations_tab; ?>" id="organizations">
-				<div class="large-10 columns">
-					<?php foreach ($organizations as $organization) { ?>
-							<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert', 'id' => 'orgsDelete'.$organization['Organization']['id'], 'style' => 'display:none' )); ?>
-					<?php }	?>
+<section class="margin top-2">
+	<div class="row max-width">
+		<div class="large-12 columns">
+			<dl class="tabs" data-tab>
+				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><?= __('Organizations') ?></a></dd>
+				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><?= __('Missions') ?></a></dd>
+				<?php if($flags['_admin']) : ?>
+					<dd class="<?php echo $issues_tab; ?>"><a href="#issues"><?= __('Issues') ?></a></dd>
+					<dd class="<?php echo $levels_tab; ?>"><a href="#levels"><?= __('Levels') ?></a></dd>
+					<dd class="<?php echo $powerpoints_tab; ?>"><a href="#powerpoints"><?= __('Power Points') ?></a></dd>
+				<?php endif; ?>	
+				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
+				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
+				<?php if($flags['_admin']) : ?>
+					<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><?= __('Evokations') ?></a></dd>
+					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Notifications & Media') ?></a></dd>
+					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
+				<?php endif; ?>	
+				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><?= __('Statistics') ?></a></dd>
+			</dl>
+			<div class="tabs-content">
+				<div class="content <?php echo $organizations_tab; ?>" id="organizations">
+					<div class="large-10 columns">
+						<?php foreach ($organizations as $organization) { ?>
+								<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert', 'id' => 'orgsDelete'.$organization['Organization']['id'], 'style' => 'display:none' )); ?>
+						<?php }	?>
 
-					<a href = "#" class="evoke button general margin bottom-1" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></a>
-					<div id="myModalOrganization" class="reveal-modal tiny" data-reveal>
-						<?php echo $this->Form->create('Organization', array(
- 						   		'url' => array(
- 						   			'controller' => 'panels',
- 						   			'action' => 'add_org')
-								)); ?>
-						<fieldset>
-							<legend><?php echo __('Add an Organization'); ?></legend>
-							<?php
-								echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
-								echo $this->Form->input('birthdate', array(
-									'label' => __('Birthdate'),
-									'style' => 'width: auto',
-									'separator' => '/',
-									'dateFormat' => 'DMY',
-									'minYear' => date('Y') - 100,
-									'maxYear' => date('Y'),
-								));
+						<button class="button" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></button>
+						<div id="myModalOrganization" class="reveal-modal tiny" data-reveal>
+							<?php echo $this->Form->create('Organization', array(
+	 						   		'url' => array(
+	 						   			'controller' => 'panels',
+	 						   			'action' => 'add_org')
+									)); ?>
+							<fieldset>
+								<legend><?php echo __('Add an Organization'); ?></legend>
+								<?php
+									echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
+									echo $this->Form->input('birthdate', array(
+										'label' => __('Birthdate'),
+										'style' => 'width: auto',
+										'separator' => '/',
+										'dateFormat' => 'DMY',
+    									'minYear' => date('Y') - 100,
+    									'maxYear' => date('Y'),
+									));
 
-								echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
-								echo $this->Form->input('website', array('label' => __('Website')));
-								echo $this->Form->input('facebook');
-								echo $this->Form->input('twitter');
-								echo $this->Form->input('blog');
-								if($flags['_admin']) {
-									//if its an admin, use $possible_managers..
-									/*echo $this->Form->input('UserOrganization.users_id', array(
-										'label' => __('Possible Managers'),
-										'options' => $possible_managers,
-										'multiple' => 'checkbox',
-										'required' => true
-									));*/
-									echo $this->Chosen->select(
-									    'UserOrganization.users_id',
-									    $possible_managers,
-									    array(
-									    	'data-placeholder' => __('Select the managers').'...', 
-									    	'multiple' => true, 
-									    	'style' => 'width: 100%; height: 36px;'
-									    )
-									);
-								} else {
-									//else use my id
-									echo $this->Form->hidden('UserOrganization.user_id', array('value' => $userid));
-								}				
-							?>
-						</fieldset>
-						<button class="button small" type="submit">
-							<?php echo __('Add') ?>
-						</button>
-						<?php echo $this->Form->end(); ?>
-						<a class="close-reveal-modal">&#215;</a>
+									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+									echo $this->Form->input('website', array('label' => __('Website')));
+									echo $this->Form->input('facebook');
+									echo $this->Form->input('twitter');
+									echo $this->Form->input('blog');
+									if($flags['_admin']) {
+										//if its an admin, use $possible_managers..
+										/*echo $this->Form->input('UserOrganization.users_id', array(
+											'label' => __('Possible Managers'),
+											'options' => $possible_managers,
+											'multiple' => 'checkbox',
+											'required' => true
+										));*/
+										echo $this->Chosen->select(
+										    'UserOrganization.users_id',
+										    $possible_managers,
+										    array(
+										    	'data-placeholder' => __('Select the managers').'...', 
+										    	'multiple' => true, 
+										    	'style' => 'width: 100%; height: 36px;'
+										    )
+										);
+									} else {
+										//else use my id
+										echo $this->Form->hidden('UserOrganization.user_id', array('value' => $userid));
+									}				
+								?>
+							</fieldset>
+							<button class="button small" type="submit">
+								<?php echo __('Add') ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
+							<a class="close-reveal-modal">&#215;</a>
+						</div>
+						<div id="OrganizationsHolder"></div>
 					</div>
-					<div id="OrganizationsHolder"></div>
 				</div>
-			</div>
-			<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
-				<div class="large-10 columns">
-					<?php //echo $this->Html->Link(__('Add new Mission'), array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?>
-
-					<a href = "<?= $this->Html->url(array('controller' => 'panels', 'action' => 'add_mission')) ?>" class="evoke button general margin bottom-1"><?php echo __('New Mission');?></a>
-			  		
-				  		<!-- creating delete post buttons to be referenced at js -->
-				  		<?php foreach ($missions_issues as $mi) : ?>
-				  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteMission'.$mi['Mission']['id'], 'style' => 'display:none')); ?>
-						<?php endforeach; ?>
-					
-					<div id="MissionsHolder" style="width:auto"></div>
-				</div> 
-			</div>
-			<div class="content <?php echo $issues_tab; ?>" id="issues">
-				<div class="large-10 columns">
-		  			<!-- <button class="button" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></button> -->
-
-		  			<a href = "#" class="evoke button general margin bottom-1" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></a>
-
-		    		<div id="myModalIssue" class="reveal-modal tiny" data-reveal>
-						<?php echo $this->Form->create('Issue', array(
-	 				   		'url' => array(
-	 				   			'controller' => 'panels',
-	 				   			'action' => 'add_issue')
-							)); ?>
-						<fieldset>
-							<legend><?php echo __('Add an Issue'); ?></legend>
-							<?php
-								//echo $this->Form->input('parent_id');
-								echo $this->Form->input('name', array('label' => __('Name')));
-								echo $this->Form->input('slug', array('label' => __('Slug')));
-							?>
-						</fieldset>
-						<button class="button small" type="submit">
-							<?php echo __('Add'); ?>
-						</button>
-						<?php echo $this->Form->end(); ?>
-
-						<a class="close-reveal-modal">&#215;</a>
-					</div>			    			
-
-						<?php foreach ($issues as $i) : ?>
-				  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_issue', $i['Issue']['id']), array( 'class' => 'button tiny alert', 'id' => 'issuesDelete'.$i['Issue']['id'], 'style' => 'display:none')); ?>
-						<?php endforeach; ?>
-						<div id="IssuesHolder"></div>
+				<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
+					<div class="large-10 columns">
+						<?php echo $this->Html->Link(__('Add new Mission'), array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?>
+				  		
+					  		<!-- creating delete post buttons to be referenced at js -->
+					  		<?php foreach ($missions_issues as $mi) : ?>
+					  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteMission'.$mi['Mission']['id'], 'style' => 'display:none')); ?>
+							<?php endforeach; ?>
+						
+						<div id="MissionsHolder" style="width:auto"></div>
+					</div> 
 				</div>
-			</div>
-			<div class="content <?php echo $levels_tab; ?>" id="levels">
-				<div class="large-10 columns">
-					<?php 
-						$nextLevel = 1;
-						echo $this->Form->create('Level', array(
-							'url' => array(
-								'controller' => 'panels',
-								'action' => 'level'
-							)
-						));
-						foreach ($levels as $level):
+				<div class="content <?php echo $issues_tab; ?>" id="issues">
+					<div class="large-10 columns">
+			  			<button class="button" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></button>
+			    		<div id="myModalIssue" class="reveal-modal tiny" data-reveal>
+							<?php echo $this->Form->create('Issue', array(
+		 				   		'url' => array(
+		 				   			'controller' => 'panels',
+		 				   			'action' => 'add_issue')
+								)); ?>
+							<fieldset>
+								<legend><?php echo __('Add an Issue'); ?></legend>
+								<?php
+									//echo $this->Form->input('parent_id');
+									echo $this->Form->input('name', array('label' => __('Name')));
+									echo $this->Form->input('slug', array('label' => __('Slug')));
+								?>
+							</fieldset>
+							<button class="button small" type="submit">
+								<?php echo __('Add'); ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
+
+							<a class="close-reveal-modal">&#215;</a>
+						</div>			    			
+
+							<?php foreach ($issues as $i) : ?>
+					  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_issue', $i['Issue']['id']), array( 'class' => 'button tiny alert', 'id' => 'issuesDelete'.$i['Issue']['id'], 'style' => 'display:none')); ?>
+							<?php endforeach; ?>
+							<div id="IssuesHolder"></div>
+					</div>
+				</div>
+				<div class="content <?php echo $levels_tab; ?>" id="levels">
+					<div class="large-10 columns">
+						<?php 
+							$nextLevel = 1;
+							echo $this->Form->create('Level', array(
+								'url' => array(
+									'controller' => 'panels',
+									'action' => 'level'
+								)
+							));
+							foreach ($levels as $level):
+								echo '<div class="row collapse">';
+								echo '<div class="large-1 columns left inline"><label for="levelOld'.$level['Level']['id'].'">Level '.$level['Level']['level'].'</label></div>';
+								
+								echo $this->Form->input('level.old.'.$level['Level']['id'], array(
+									'label' => false,
+									'value' => $level['Level']['points'],
+									'div' => array(
+	        							'class' => 'large-1 columns left',
+	    							),
+									'required' => true
+								));
+								echo '<div class="large-1 columns left"><span class="postfix">points</span></div>';
+								echo '</div>';
+								
+								$nextLevel++;
+							endforeach;
+
 							echo '<div class="row collapse">';
-							echo '<div class="large-1 columns left inline"><label for="levelOld'.$level['Level']['id'].'">Level '.$level['Level']['level'].'</label></div>';
-							
-							echo $this->Form->input('level.old.'.$level['Level']['id'], array(
+							echo '<div class="large-1 columns left inline"><label for="levelNew'.$nextLevel.'">Level '.$nextLevel.'</label></div>';
+								
+							echo $this->Form->input('level.new.'.$nextLevel, array(
 								'label' => false,
-								'value' => $level['Level']['points'],
 								'div' => array(
-        							'class' => 'large-1 columns left',
-    							),
+	        						'class' => 'large-1 columns left',
+	    						),
 								'required' => true
 							));
 							echo '<div class="large-1 columns left"><span class="postfix">points</span></div>';
 							echo '</div>';
 							
 							$nextLevel++;
-						endforeach;
-
-						echo '<div class="row collapse">';
-						echo '<div class="large-1 columns left inline"><label for="levelNew'.$nextLevel.'">Level '.$nextLevel.'</label></div>';
-							
-						echo $this->Form->input('level.new.'.$nextLevel, array(
-							'label' => false,
-							'div' => array(
-        						'class' => 'large-1 columns left',
-    						),
-							'required' => true
-						));
-						echo '<div class="large-1 columns left"><span class="postfix">points</span></div>';
-						echo '</div>';
-						
-						$nextLevel++;
-					?>
-					<button class="evoke button general margin bottom-1" type="submit">
-						<?php echo __('Save levels'); ?>
-					</button>
-					<?php echo $this->Form->end(); ?>
-				</div>
-			</div>
-			<div class="content <?php echo $powerpoints_tab; ?>" id="powerpoints">
-				<div class="large-10 columns">
-		  			<!-- <button class="button" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></button> -->
-
-		  			<a href = "#" class="evoke button general margin bottom-1" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></a>
-
-		    		<div id="myModalPowerPoint" class="reveal-modal tiny" data-reveal>
-						<?php echo $this->Form->create('PowerPoint', array(
-	 				   		'url' => array(
-	 				   			'controller' => 'panels',
-	 				   			'action' => 'add_powerpoint')
-							)); ?>
-						<fieldset>
-							<legend><?php echo __('Add a Power Point'); ?></legend>
-							<?php
-								echo $this->Form->input('name', array(
-									'label' => __('Name'),
-									'required' => true
-								));
-								echo $this->Form->input('name_es', array(
-									'label' => __('Spanish Name')
-								));
-								echo $this->Form->input('description', array(
-									'label' => __('Description'),
-									'type' => 'textarea',
-									'required' => true
-								));
-								echo $this->Form->input('description_es', array(
-									'label' => __('Spanish Description'),
-									'type' => 'textarea'
-								));
-							?>
-						</fieldset>
+						?>
 						<button class="button small" type="submit">
-							<?php echo __('Add'); ?>
+							<?php echo __('Save levels'); ?>
 						</button>
 						<?php echo $this->Form->end(); ?>
-
-						<a class="close-reveal-modal">&#215;</a>
-					</div>			    			
-
-						<?php foreach ($powerpoints as $pp) : ?>
-				  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_powerpoint', $pp['PowerPoint']['id']), array( 'class' => 'button tiny alert', 'id' => 'powerpointsDelete'.$pp['PowerPoint']['id'], 'style' => 'display:none')); ?>
-						<?php endforeach; ?>
-						<div id="PowerPointsHolder"></div>
+					</div>
 				</div>
-			</div>
-			<div class="content <?php echo $badges_tab; ?>" id="badges">
-				<div class="large-10 columns">
-					<!-- <button class="button" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></button> -->
-
-					<a href = "#" class="evoke button general margin bottom-1" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></a>
-
-					<div id="myModalBadge" class="reveal-modal tiny" data-reveal>
-						<?php echo $this->Form->create('Badge', array(
- 						   		'url' => array(
- 						   			'controller' => 'panels',
- 						   			'action' => 'add_badge'
- 						   		),
- 						   		'enctype' => 'multipart/form-data'
-							)); 
-						?>
+				<div class="content <?php echo $powerpoints_tab; ?>" id="powerpoints">
+					<div class="large-10 columns">
+			  			<button class="button" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></button>
+			    		<div id="myModalPowerPoint" class="reveal-modal tiny" data-reveal>
+							<?php echo $this->Form->create('PowerPoint', array(
+		 				   		'url' => array(
+		 				   			'controller' => 'panels',
+		 				   			'action' => 'add_powerpoint')
+								)); ?>
 							<fieldset>
-								<legend><?php echo __('Add a Badge'); ?></legend>
-							<?php
-								echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
-								echo $this->Form->input('name_es', array('label' => __('Spanish Name')));
-								echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
-								echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
-								echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
+								<legend><?php echo __('Add a Power Point'); ?></legend>
+								<?php
+									echo $this->Form->input('name', array(
+										'label' => __('Name'),
+										'required' => true
+									));
+									echo $this->Form->input('name_es', array(
+										'label' => __('Spanish Name')
+									));
+									echo $this->Form->input('description', array(
+										'label' => __('Description'),
+										'type' => 'textarea',
+										'required' => true
+									));
+									echo $this->Form->input('description_es', array(
+										'label' => __('Spanish Description'),
+										'type' => 'textarea'
+									));
+								?>
+							</fieldset>
+							<button class="button small" type="submit">
+								<?php echo __('Add'); ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
 
-						        echo '<fieldset><legend> ' .__('Necessary Power Points to get Badge') . '</legend>';
-						        foreach ($powerpoints as $power) {
-						            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
-						                'label' => $power['PowerPoint']['name'],
-						                'value' => 0
-						            ));
-						        }
-						        echo '</fieldset>';
-								
-								echo $this->Form->input('organization_id', array(
-									'label' => __('Organization'),
-									'options' => $organizations_list
+							<a class="close-reveal-modal">&#215;</a>
+						</div>			    			
+
+							<?php foreach ($powerpoints as $pp) : ?>
+					  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_powerpoint', $pp['PowerPoint']['id']), array( 'class' => 'button tiny alert', 'id' => 'powerpointsDelete'.$pp['PowerPoint']['id'], 'style' => 'display:none')); ?>
+							<?php endforeach; ?>
+							<div id="PowerPointsHolder"></div>
+					</div>
+				</div>
+				<div class="content <?php echo $badges_tab; ?>" id="badges">
+					<div class="large-10 columns">
+						<button class="button" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></button>
+						<div id="myModalBadge" class="reveal-modal tiny" data-reveal>
+							<?php echo $this->Form->create('Badge', array(
+	 						   		'url' => array(
+	 						   			'controller' => 'panels',
+	 						   			'action' => 'add_badge'
+	 						   		),
+	 						   		'enctype' => 'multipart/form-data'
+								)); 
+							?>
+								<fieldset>
+									<legend><?php echo __('Add a Badge'); ?></legend>
+								<?php
+									echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
+									echo $this->Form->input('name_es', array('label' => __('Spanish Name')));
+									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+									echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
+									echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
+
+							        echo '<fieldset><legend> ' .__('Necessary Power Points to get Badge') . '</legend>';
+							        foreach ($powerpoints as $power) {
+							            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
+							                'label' => $power['PowerPoint']['name'],
+							                'value' => 0
+							            ));
+							        }
+							        echo $this->Form->input('Power.0.quantity', array(
+							                'label' => 'No specific power',
+							                'value' => 0
+							            ));
+							        echo '</fieldset>';
+									
+									echo $this->Form->radio('power_points_only', array(1 => 'Yes', 0 => 'No'), array('label' => __('Obtained exclusively with power points'), 'required' => true, 'default' => 1));
+									echo $this->Form->input('organization_id', array(
+										'label' => __('Organization'),
+										'options' => $organizations_list
+									));
+								?>
+								</fieldset>
+							<button class="button small" type="submit">
+								<?php echo __('Add') ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
+							<a class="close-reveal-modal">&#215;</a>
+						</div>
+
+						<?php foreach ($badges as $badge) : ?>
+							<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'badges', 'action' => 'delete', $badge['Badge']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteBadge'.$badge['Badge']['id'], 'style' => 'display:none')); ?>
+						<?php endforeach; ?>
+						<div id="BadgesHolder"></div>
+					</div>
+				</div>
+				<div class="content <?php echo $users_tab; ?>" id="users">
+					<div class="large-10 columns">
+						<?php if($flags['_admin']) :
+							foreach ($all_users as $user) : ?>
+								<button class="button small" id="ShowUser-<?php echo $user['User']['id']; ?>" data-reveal-id="user-<?php echo $user['User']['id']; ?>" style="display:none" data-reveal></button>
+									<!-- Lightbox for editing user role -->
+								<div id="user-<?php echo $user['User']['id']; ?>" class="reveal-modal tiny" data-reveal>
+									<?php 
+										echo $this->Form->create('User', array(
+									 		'url' => array(
+									 			'controller' => 'panels',
+									 			'action' => 'edit_user_role', 
+									 			$user['User']['id']
+									 		)
+										));
+									 ?>
+									<fieldset>
+										<legend><?php echo __('Change role') .': '. $user['User']['name']; ?></legend>
+									<?php
+										echo $this->Form->hidden('id', array('value' => $user['User']['id']));
+										echo $this->Form->input('role_id', array(
+											'label' => __('Role'),
+											'options' => $roles_list,
+											'value' => $user['User']['role_id']
+										));
+									?>
+									</fieldset>
+										<button class="button tiny" type="submit">
+											<?php echo __('Save Changes')?>
+										</button>
+										<?php echo $this->Form->end(); ?>
+									<a class="close-reveal-modal">&#215;</a>
+								</div>
+							<?php endforeach; ?>
+						<?php endif; ?>
+						<div id="UsersHolder"></div>
+					</div>
+				</div>
+				<div class="content <?php echo $pending_tab; ?>" id="pending">
+					<?php 
+						$evokations = array_merge($pending_evokations, $approved_evokations);
+					?>
+
+					<?php foreach ($evokations as $e): ?>
+						<button class="button small" id="ShowEvokationStatus-<?php echo $e['Evokation']['id']; ?>" data-reveal-id="evo-<?php echo $e['Evokation']['id']; ?>" style="display:none" data-reveal></button>
+									<!-- Lightbox for editing evokation status -->
+						<div id="evo-<?php echo $e['Evokation']['id']; ?>" class="reveal-modal tiny" data-reveal>
+							<?php 
+								echo $this->Form->create('Evokation', array(
+							 		'url' => array(
+							 			'controller' => 'panels',
+							 			'action' => 'changeEvokationStatus', 
+							 			$e['Evokation']['id']
+							 		)
 								));
+							 ?>
+							<fieldset>
+								<legend><?php echo __('Change status') .': '. $e['Evokation']['title']; ?></legend>
+								<?php
+									echo $this->Form->hidden('id', array('value' => $e['Evokation']['id']));
+
+									echo $this->Form->radio('approved', array(0 => 'Unapproved', 1 => 'Approved'), array('default' => $e['Evokation']['approved']));
+								?>
+							</fieldset>
+								<button class="button tiny" type="submit">
+									<?php echo __('Save Changes')?>
+								</button>
+								<?php echo $this->Form->end(); ?>
+								<a class="close-reveal-modal">&#215;</a>
+						</div>
+					<?php endforeach ?>
+					<!-- ShowEvokationStatus- -->
+					<div id="EvokationsHolder"></div>
+				</div>
+				<div class="content <?php echo $media_tab; ?>" id="media">
+					<button class="button" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></button>
+					<div id="myModalNotification" class="reveal-modal tiny" data-reveal>
+						<?php echo $this->Form->create('AdminNotification', array(
+	 						'url' => array(
+	 							'controller' => 'panels',
+	 							'action' => 'addNotification')
+						)); ?>
+						<fieldset>
+							<legend><?php echo __('Create a Notification'); ?></legend>
+							<?php
+								echo $this->Form->input('title', array(
+									'label' => __('Title'), 
+									'required' => true
+								));
+								echo $this->Form->input('description', array(
+									'label' => __('Description'), 
+									'required' => true,
+									'type' => 'textarea'
+								));
+								echo $this->Form->hidden('user_id', array(
+									'value' => $userid
+								));
+
 							?>
 							</fieldset>
 						<button class="button small" type="submit">
@@ -280,256 +387,139 @@
 						<?php echo $this->Form->end(); ?>
 						<a class="close-reveal-modal">&#215;</a>
 					</div>
-
-					<?php foreach ($badges as $badge) : ?>
-						<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'badges', 'action' => 'delete', $badge['Badge']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteBadge'.$badge['Badge']['id'], 'style' => 'display:none')); ?>
+					<?php foreach ($notifications as $n) : ?>
+						<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'deleteNotification', $n['AdminNotification']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteNotification'.$n['AdminNotification']['id'], 'style' => 'display:none')); ?>
 					<?php endforeach; ?>
-					<div id="BadgesHolder"></div>
+					<div id="NotificationsHolder"></div>
 				</div>
-			</div>
-			<div class="content <?php echo $users_tab; ?>" id="users">
-				<div class="large-10 columns">
-					<?php if($flags['_admin']) :
-						foreach ($all_users as $user) : ?>
-							<button class="button small" id="ShowUser-<?php echo $user['User']['id']; ?>" data-reveal-id="user-<?php echo $user['User']['id']; ?>" style="display:none" data-reveal></button>
-								<!-- Lightbox for editing user role -->
-							<div id="user-<?php echo $user['User']['id']; ?>" class="reveal-modal tiny" data-reveal>
-								<?php 
-									echo $this->Form->create('User', array(
-								 		'url' => array(
-								 			'controller' => 'panels',
-								 			'action' => 'edit_user_role', 
-								 			$user['User']['id']
-								 		)
-									));
-								 ?>
-								<fieldset>
-									<legend><?php echo __('Change role') .': '. $user['User']['name']; ?></legend>
-								<?php
-									echo $this->Form->hidden('id', array('value' => $user['User']['id']));
-									echo $this->Form->input('role_id', array(
-										'label' => __('Role'),
-										'options' => $roles_list,
-										'value' => $user['User']['role_id']
-									));
-								?>
-								</fieldset>
-									<button class="button tiny" type="submit">
-										<?php echo __('Save Changes')?>
-									</button>
-									<?php echo $this->Form->end(); ?>
-								<a class="close-reveal-modal">&#215;</a>
-							</div>
-						<?php endforeach; ?>
-					<?php endif; ?>
-					<div id="UsersHolder"></div>
-				</div>
-			</div>
-			<div class="content <?php echo $pending_tab; ?>" id="pending">
-				<?php 
-					$evokations = array_merge($pending_evokations, $approved_evokations);
-				?>
+				<div class="content <?php echo $settings_tab; ?>" id="settings">
+					<?php
+						echo $this->Form->create('Config', array(
+								'url' => array(
+									'controller' => 'panels',
+									'action' => 'settings'
+								)
+						));
 
-				<?php foreach ($evokations as $e): ?>
-					<button class="button small" id="ShowEvokationStatus-<?php echo $e['Evokation']['id']; ?>" data-reveal-id="evo-<?php echo $e['Evokation']['id']; ?>" style="display:none" data-reveal></button>
-								<!-- Lightbox for editing evokation status -->
-					<div id="evo-<?php echo $e['Evokation']['id']; ?>" class="reveal-modal tiny" data-reveal>
-						<?php 
-							echo $this->Form->create('Evokation', array(
-						 		'url' => array(
-						 			'controller' => 'panels',
-						 			'action' => 'changeEvokationStatus', 
-						 			$e['Evokation']['id']
-						 		)
+						echo '<div class="row collapse">';
+
+						if(isset($groups[0]) && $groups[0]['Group']['max_global'] != 0) {
+							echo $this->Form->input('max_global', array(
+								//'label' => __('Define the limit of agents per group: '),
+								'value' => $groups[0]['Group']['max_global']
+							));	
+						} else {
+							echo $this->Form->input('max_global', array(
+								'label' => __('Define the limit of agents per group: ')
+							));	
+						}						
+
+						echo '</div>';
+
+						echo '<fieldset><legend>' . __('Points Definitions: ') . '</legend>';
+						
+						//points general def.
+						
+						if(!empty($register_points))
+							echo $this->Form->input('Register.points', array(
+								'label' => __("Agent's register is worth: "),
+								'value' => $register_points['PointsDefinition']['points']
 							));
-						 ?>
-						<fieldset>
-							<legend><?php echo __('Change status') .': '. $e['Evokation']['title']; ?></legend>
-							<?php
-								echo $this->Form->hidden('id', array('value' => $e['Evokation']['id']));
-
-								echo $this->Form->radio('approved', array(0 => 'Unapproved', 1 => 'Approved'), array('default' => $e['Evokation']['approved']));
-							?>
-						</fieldset>
-							<button class="button tiny" type="submit">
-								<?php echo __('Save Changes')?>
-							</button>
-							<?php echo $this->Form->end(); ?>
-							<a class="close-reveal-modal">&#215;</a>
-					</div>
-				<?php endforeach ?>
-				<!-- ShowEvokationStatus- -->
-				<div id="EvokationsHolder"></div>
-			</div>
-			<div class="content <?php echo $media_tab; ?>" id="media">
-				<!-- <button class="button" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></button> -->
-
-				<a href = "#" class="evoke button general margin bottom-1" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></a>
-
-				<div id="myModalNotification" class="reveal-modal tiny" data-reveal>
-					<?php echo $this->Form->create('AdminNotification', array(
- 						'url' => array(
- 							'controller' => 'panels',
- 							'action' => 'addNotification')
-					)); ?>
-					<fieldset>
-						<legend><?php echo __('Create a Notification'); ?></legend>
-						<?php
-							echo $this->Form->input('title', array(
-								'label' => __('Title'), 
-								'required' => true
-							));
-							echo $this->Form->input('description', array(
-								'label' => __('Description'), 
-								'required' => true,
-								'type' => 'textarea'
-							));
-							echo $this->Form->hidden('user_id', array(
-								'value' => $userid
+						else 
+							echo $this->Form->input('Register.points', array(
+								'label' => __("Agent's register is worth: ")
 							));
 
-						?>
-						</fieldset>
+
+						if(!empty($allies_points))
+							echo $this->Form->input('Allies.points', array(
+								'label' => __("Agent's follow agent is worth: "),
+								'value' => $allies_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('Allies.points', array(
+								'label' => __("Agent's follow agent is worth: ")
+							));
+
+						
+						if(!empty($like_points))
+							echo $this->Form->input('Like.points', array(
+								'label' => __("Agent's like is worth: "),
+								'value' => $like_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('Like.points', array(
+								'label' => __("Agent's like is worth: ")
+							));
+
+						if(!empty($vote_points))
+							echo $this->Form->input('Vote.points', array(
+								'label' => __("Agent's vote is worth: "),
+								'value' => $vote_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('Vote.points', array(
+								'label' => __("Agent's vote is worth: ")
+							));
+
+
+						if(!empty($evokationFollow_points))
+							echo $this->Form->input('EvokationFollow.points', array(
+								'label' => __("Agent's follow evokation is worth: "),
+								'value' => $evokationFollow_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('EvokationFollow.points', array(
+								'label' => __("Agent's follow evokation is worth: ")
+							));
+
+						if(!empty($evokationComment_points))
+							echo $this->Form->input('EvokationComment.points', array(
+								'label' => __("Agent's evokation comment is worth: "),
+								'value' => $evokationComment_points['PointsDefinition']['points']
+							));
+						else
+							echo $this->Form->input('EvokationComment.points', array(
+								'label' => __("Agent's evokation comment is worth: ")
+							));
+
+						if(!empty($evidenceComment_points))
+							echo $this->Form->input('EvidenceComment.points', array(
+								'label' => __("Agent's evidence comment is worth: "),
+								'value' => $evidenceComment_points['PointsDefinition']['points']
+							));
+						else 
+							echo $this->Form->input('EvidenceComment.points', array(
+								'label' => __("Agent's evidence comment is worth: ")
+							));
+
+						if(!empty($basicTraining_points))
+							echo $this->Form->input('BasicTraining.points', array(
+								'label' => __("Agent's basic training is worth: "),
+								'value' => $basicTraining_points['PointsDefinition']['points']
+							));
+						else 
+							echo $this->Form->input('BasicTraining.points', array(
+								'label' => __("Agent's basic training is worth: ")
+							));
+
+						echo '</fieldset>';
+
+					?>
 					<button class="button small" type="submit">
-						<?php echo __('Add') ?>
+						<?php echo __('Save Settings')?>
 					</button>
 					<?php echo $this->Form->end(); ?>
-					<a class="close-reveal-modal">&#215;</a>
 				</div>
-				<?php foreach ($notifications as $n) : ?>
-					<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'deleteNotification', $n['AdminNotification']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteNotification'.$n['AdminNotification']['id'], 'style' => 'display:none')); ?>
-				<?php endforeach; ?>
-				<div id="NotificationsHolder"></div>
-			</div>
-			<div class="content <?php echo $settings_tab; ?>" id="settings">
-				<?php
-					echo $this->Form->create('Config', array(
-							'url' => array(
-								'controller' => 'panels',
-								'action' => 'settings'
-							)
-					));
-
-					echo '<div class="row collapse">';
-
-					if(isset($groups[0]) && $groups[0]['Group']['max_global'] != 0) {
-						echo $this->Form->input('max_global', array(
-							//'label' => __('Define the limit of agents per group: '),
-							'value' => $groups[0]['Group']['max_global']
-						));	
-					} else {
-						echo $this->Form->input('max_global', array(
-							'label' => __('Define the limit of agents per group: ')
-						));	
-					}						
-
-					echo '</div>';
-
-					echo '<fieldset><legend>' . __('Points Definitions: ') . '</legend>';
-					
-					//points general def.
-					
-					if(!empty($register_points))
-						echo $this->Form->input('Register.points', array(
-							'label' => __("Agent's register is worth: "),
-							'value' => $register_points['PointsDefinition']['points']
-						));
-					else 
-						echo $this->Form->input('Register.points', array(
-							'label' => __("Agent's register is worth: ")
-						));
-
-
-					if(!empty($allies_points))
-						echo $this->Form->input('Allies.points', array(
-							'label' => __("Agent's follow agent is worth: "),
-							'value' => $allies_points['PointsDefinition']['points']
-						));
-					else
-						echo $this->Form->input('Allies.points', array(
-							'label' => __("Agent's follow agent is worth: ")
-						));
-
-					
-					if(!empty($like_points))
-						echo $this->Form->input('Like.points', array(
-							'label' => __("Agent's like is worth: "),
-							'value' => $like_points['PointsDefinition']['points']
-						));
-					else
-						echo $this->Form->input('Like.points', array(
-							'label' => __("Agent's like is worth: ")
-						));
-
-					if(!empty($vote_points))
-						echo $this->Form->input('Vote.points', array(
-							'label' => __("Agent's vote is worth: "),
-							'value' => $vote_points['PointsDefinition']['points']
-						));
-					else
-						echo $this->Form->input('Vote.points', array(
-							'label' => __("Agent's vote is worth: ")
-						));
-
-
-					if(!empty($evokationFollow_points))
-						echo $this->Form->input('EvokationFollow.points', array(
-							'label' => __("Agent's follow evokation is worth: "),
-							'value' => $evokationFollow_points['PointsDefinition']['points']
-						));
-					else
-						echo $this->Form->input('EvokationFollow.points', array(
-							'label' => __("Agent's follow evokation is worth: ")
-						));
-
-					if(!empty($evokationComment_points))
-						echo $this->Form->input('EvokationComment.points', array(
-							'label' => __("Agent's evokation comment is worth: "),
-							'value' => $evokationComment_points['PointsDefinition']['points']
-						));
-					else
-						echo $this->Form->input('EvokationComment.points', array(
-							'label' => __("Agent's evokation comment is worth: ")
-						));
-
-					if(!empty($evidenceComment_points))
-						echo $this->Form->input('EvidenceComment.points', array(
-							'label' => __("Agent's evidence comment is worth: "),
-							'value' => $evidenceComment_points['PointsDefinition']['points']
-						));
-					else 
-						echo $this->Form->input('EvidenceComment.points', array(
-							'label' => __("Agent's evidence comment is worth: ")
-						));
-
-					if(!empty($basicTraining_points))
-						echo $this->Form->input('BasicTraining.points', array(
-							'label' => __("Agent's basic training is worth: "),
-							'value' => $basicTraining_points['PointsDefinition']['points']
-						));
-					else 
-						echo $this->Form->input('BasicTraining.points', array(
-							'label' => __("Agent's basic training is worth: ")
-						));
-
-					echo '</fieldset>';
-
-				?>
-				<button class="evoke button general margin bottom-1" type="submit">
-					<?php echo __('Save Settings')?>
-				</button>
-
-				<?php echo $this->Form->end(); ?>
-			</div>
-			<div class="content <?php echo $statistics_tab; ?>" id="statistics">
-				<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>
-				<p><?php echo __('Groups') . ": " . sizeof($groups);?></p>
-				<p><?php echo __('Organizations') . ": " . sizeof($organizations);?></p>
-				<p><?php echo __('Badges') . ": ".sizeof($badges);?></p>
-				<p>AND MORE!</p>
+				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
+					<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>
+					<p><?php echo __('Groups') . ": " . sizeof($groups);?></p>
+					<p><?php echo __('Organizations') . ": " . sizeof($organizations);?></p>
+					<p><?php echo __('Badges') . ": ".sizeof($badges);?></p>
+					<p>AND MORE!</p>
+				</div>
 			</div>
 		</div>
-		
 	</div>
 </section>
 

@@ -234,6 +234,31 @@ class MissionsController extends AppController {
 			));
 		}
 
+		//getting power points from evoke to display the ones related to quests in quests' lightboxes
+		$this->loadModel('PowerPoint');
+		$tmp = $this->PowerPoint->find('all');
+		$allPowerPoints = array(); //will contain all evoke's powerpoints with the first index as their id's (i.e. the power point with id 33 will be at $allPowerPoints[33])
+		foreach ($tmp as $tmpKey => $tmpPP) {
+			if($flags['_es']) {
+				$tmp[$tmpKey]['PowerPoint']['name']	= $tmp[$tmpKey]['PowerPoint']['name_es'];
+				$tmp[$tmpKey]['PowerPoint']['description']	= $tmp[$tmpKey]['PowerPoint']['description_es'];
+			}
+			$allPowerPoints[$tmpPP['PowerPoint']['id']] = $tmp[$tmpKey];
+		}
+
+
+		//getting badges from evoke to display the ones related to quests in quests' lightboxes
+		$this->loadModel('Badge');
+		$tmp = $this->Badge->find('all');
+		$allBadges = array(); //will contain all evoke's badges with the first index as their id's (i.e. the badge with id 33 will be at $allBadges[33])
+		foreach ($tmp as $tmpKey => $tmpB) {
+			if($flags['_es']) {
+				$tmp[$tmpKey]['Badge']['name']	= $tmp[$tmpKey]['Badge']['name_es'];
+				$tmp[$tmpKey]['Badge']['description']	= $tmp[$tmpKey]['Badge']['description_es'];
+			}
+			$allBadges[$tmpB['Badge']['id']] = $tmp[$tmpKey];
+		}
+
 		//retrieving all ids from quests of this mission..
 		$my_quests_id = array();
 		$my_quests_id2 = array();
@@ -470,7 +495,7 @@ class MissionsController extends AppController {
 		}
 
 
-		$this->set(compact('checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
+		$this->set(compact('allBadges', 'allPowerPoints', 'checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
 			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 

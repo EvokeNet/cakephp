@@ -8,7 +8,11 @@ $name = explode(' ', $c['User']['name']);
 <div class="row">
   <div class="small-2 medium-2 large-2 columns evoke text-align">
   	<?php if($c['User']['photo_attachment'] == null) : ?>
-		<img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?height=80" width="80px"/>
+		<?php if($c['User']['facebook_id'] == null) : ?>
+			<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" width="80px"/>
+		<?php else : ?>	
+			<img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?height=80" width="80px"/>
+		<?php endif; ?>
 	<?php else : ?>
 		<img src="<?= $this->webroot.'files/attachment/attachment/'.$c['User']['photo_dir'].'/'.$c['User']['photo_attachment'] ?>" width="80px"/>
 	<?php endif; ?>

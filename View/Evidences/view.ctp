@@ -51,7 +51,12 @@
 		  	<div class="evoke evidence-tag text-align">
 		  		
 		  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
-					<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+					<?php if($evidence['User']['facebook_id'] == null) : ?>
+						<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+					<?php else : ?>	
+						<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+					<?php endif; ?>
+
 				<?php else : ?>
 					<img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
 				<?php endif; ?>
@@ -95,7 +100,7 @@
 			  			$pdfs = array();
 			  			foreach ($attachments as $attachment) :
 			  				$type = explode('/', $attachment['Attachment']['type']);
-							if($type[0] == 'application'): 
+							if($type[0] == 'application' && $type[1] != 'octet-stream'): 
 								$pdfs[] = $attachment;
 							else :
 								if($type[0] == 'image')

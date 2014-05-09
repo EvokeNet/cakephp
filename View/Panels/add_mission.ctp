@@ -11,82 +11,26 @@
 	<div class="row evoke max-width">
 		<div class="small-12 medium-12 large-12 columns">
 			<!-- <h1><?= __('Creating Mission')?><?php if(isset($id) && !is_null($id)) : echo ': ' . $mission['Mission']['title']; endif;?></h1> -->
-			<dl class="tabs" data-tab>
+			<dl class="tabs vertical" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
-				<?php if(isset($id) && !is_null($id)) : ?>
-					<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= __('Phases') ?></a></dd>
-					<dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= __('Mission Dossier') ?></a></dd>
-					<dd class="<?php echo $badges_tag ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
-					<dd class="<?php echo $points_tag ?>"><a href="#points"><?= __('Points') ?></a></dd>
-					<dd class="<?php echo $novel_tag ?>"><a href="#graphic"><?= __('Graphic Novel') ?></a></dd>
-				<?php endif; ?>
 			</dl>
-			<div class="tabs-content">
+			<div class="tabs-content vertical">
 				<div class="content <?php echo $mission_tag ?> large-10 columns" id="mission">
 					<div class="form">
 
 						<?php 
-							if(isset($id) && !is_null($id)) {
-								echo $this->Form->create('Mission', array(
- 							   		'url' => array(
- 							   			'controller' => 'panels',
- 							   			'action' => 'add_mission', $id
- 							   		),
-									'enctype' => 'multipart/form-data'
-								));
-							} else {
-								echo $this->Form->create('Mission', array(
- 							   		'url' => array(
- 							   			'controller' => 'panels',
- 							   			'action' => 'add_mission'
- 							   		),
- 							   		'enctype' => 'multipart/form-data'
-								));
-							} 
+							echo $this->Form->create('Mission', array(
+ 							   	'url' => array(
+ 							   		'controller' => 'panels',
+ 							   		'action' => 'add_mission'
+ 								),
+ 								'enctype' => 'multipart/form-data'
+							));
+							 
 						?>
 						<fieldset>
 							<?php
-								if(isset($id) && !is_null($id)) {
-									echo '<legend>' . __('Edit Mission') .'</legend>'; 
-									echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title'), 'required' => true));
-									echo $this->Form->input('title_es', array('value' => $mission['Mission']['title_es'], 'label' => __('Spanish Title')));
-									echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description'), 'required' => true));
-									echo $this->Form->input('description_es', array('value' => $mission['Mission']['description_es'], 'label' => __('Spanish Description')));
-									echo $this->Form->input('video_link', array('value' => $mission['Mission']['video_link_es'], 'label' => __('Video Link')));
-									echo $this->Form->input('video_link_es', array('value' => $mission['Mission']['video_link_es'], 'label' => __('Spanish Video Link')));
-									echo $this->Form->radio(__('Basic Training'), array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=>$mission['Mission']['basic_training']));
-									if(!is_null($mission['Mission']['image_dir'])) :
-										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['image_dir'].'/thumb_'.$mission['Mission']['image_attachment'] . '"/>';
-										echo '<div class="input file"><label for="AttachmentImgAttachment">Change Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
-									else :
-										echo '<div class="input file"><label for="AttachmentImgAttachment">Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
-									endif;
-									if(!is_null($mission['Mission']['cover_dir'])) :
-										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/thumb_'.$mission['Mission']['cover_attachment'] . '"/>';
-										echo '<div class="input file"><label for="AttachmentCoverAttachment">Change Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
-									else :
-										echo '<div class="input file"><label for="AttachmentCoverAttachment">Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
-									endif;
-									echo $this->Form->hidden('form_type', array('value' => 'mission'));
-									if(isset($mission['MissionIssue'][0]['issue_id'])) {
-										echo $this->Form->input('MissionIssue.issue_id', array(
-            								'label' => __('Issue'),
-            								'options' => $issues,
-            								'value' => $mission['MissionIssue'][0]['issue_id'] //as we are, for now, restricting the amount of issues per mission to 1
-            							));
-									} else {
-										echo $this->Form->input('MissionIssue.issue_id', array(
-            								'label' => __('Issue'),
-            								'options' => $issues,
-            								'value' => $mission['MissionIssue']['issue_id'] //as we are, for now, restricting the amount of issues per mission to 1
-            							));
-									}
-									echo $this->Form->input('organization_id', array(
-											'label' => __('Created by'),
-											'options' => $organizations,
-											'value' => $mission['Mission']['organization_id']
-									));
-								} else {
+								
 									echo '<legend>'. __('Add a Mission') . '</legend>'; 
 									echo $this->Form->input('title', array('label' => __('Title'), 'required' => true));
 									echo $this->Form->input('title_es', array('label' => __('Spanish Title')));
@@ -115,7 +59,6 @@
 											'label' => __('Created by'),
 											'options' => $organizations
 									));
-								}
 							?>
 						</fieldset>
 						<button class="button small" type="submit">
@@ -123,202 +66,6 @@
 						</button>
 						<?php echo $this->Form->end(); ?>
 					</div>
-				</div>
-				<div class="content <?php echo $phases_tag ?> large-10 columns" id="phases">
-					<div class="small-9 medium-9 large-9 columns">
-						<?php if(empty($phases)) :
-							echo '<h4>' . __('Your mission will not be accessible until it has at least one phase.') . '</h4>';
-						else :
-							foreach ($phases as $phase) : ?>
-							<table class="table table-hovered table-bordered table-condensed">
-								<thead>
-									<tr>
-										<td>
-											<?php echo $phase['Phase']['name']. ': ';?>
-										</td>
-										<td style="text-align:right">
-											<!-- lightbox to add quest to certain phase -->
-					  						<a href="#" data-reveal-id="myModalQuest" onclick="document.getElementById('phase').setAttribute('value', '<?php echo $phase['Phase']['id']; ?>')" data-reveal><?php echo __('Add a Quest');?></a> | <?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_phase', $id, $phase['Phase']['id'], 'add_mission'));?>
-										</td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td colspan="2">
-											<!-- list the already existing quests under this phase -->
-											<?php 
-												foreach ($phase['Quest'] as $quest) { 
-													echo $this->Html->Link('['.$quest['title'].'] ', array('controller' => 'panels', 'action' => 'quest', $phase['Phase']['id'], $id, $quest['id']));
-												}	
-											?>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<br>
-						<?php endforeach; ?>
-						<?php endif; ?>
-					</div>
-					<div class="small-9 medium-9 large-9 columns">
-						<button class="button small" href="#" data-reveal-id="myModalPhase" data-reveal><?php echo __('Add a Phase');?></button>
-						<!-- <button class="button secondary small">
-							<?php echo $this->Html->Link(__('Back'), array('controller' => 'panels', 'action' => 'add_mission', $id, 'mission')); ?>
-						</button> -->		
-					</div>
-					<div id="myModalPhase" class="phases form reveal-modal tiny" data-reveal>
-						<?php echo $this->Form->create('Phase', array(
- 							   		'url' => array(
- 							   			'controller' => 'panels',
- 							   			'action' => 'add_phase', $id)
-									)
-								); ?>
-							<fieldset>
-								<legend><?php echo __('Add a Phase'); ?></legend>
-							<?php
-								echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
-								echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
-								echo $this->Form->input('points', array('label' => __('Points'), 'required' => true));
-								echo $this->Form->hidden('mission_id', array('value' => $id));
-								echo $this->Form->hidden('form_type', array('value' => 'phase'));
-								echo $this->Form->radio('type', array(0 => 'Discussion', 1 => 'Project'), array('required' => true));
-								echo $this->Form->radio('show_dossier', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => 1));
-								echo $this->Form->input('position', array('required' => true));
-							?>
-							</fieldset>
-							<button class="button small" type="submit">
-								<?php echo __('Add') ?>
-							</button>
-							<?php echo $this->Form->end(); ?>
-							<a class="close-reveal-modal">&#215;</a>
-					</div>
-
-					<!-- Lightbox for adding quest to phase form -->
-					<div id="myModalQuest" class="reveal-modal tiny" data-reveal>
-						<?php 
-							echo $this->element('add_quest', array('mission_id' => $id, 'powerpoints' => $powerpoints));
-						?>
-						<a class="close-reveal-modal">&#215;</a>
-					</div>
-				</div>
-				<div class="content <?php echo $dossier_tag ?>" id="dossier">
-					<h4>
-						<?= __('Create a dossier by adding files that might be useful for agents to complete this mission!') ?>
-					</h4>
-					<?php 
-						if(!empty($dossier) && !is_null($dossier)) {
-						
-							echo $this->Form->create('Dossier', array(
-	 						   		'url' => array(
-	 						   			'controller' => 'panels',
-	 						   			'action' => 'dossier', $id, $dossier['Dossier']['id'] 
-	 						   		),
-	 						   		'enctype' => 'multipart/form-data'
-							));
-						} else {
-							echo $this->Form->create('Dossier', array(
-	 						   		'url' => array(
-	 						   			'controller' => 'panels',
-	 						   			'action' => 'dossier', $id
-	 						   		),
-	 						   		'enctype' => 'multipart/form-data'
-							));
-						}
-						echo $this->Form->hidden('mission_id', array('value' => $id));
-						echo $this->Form->hidden('language', array('value' => $language));
-						if(!empty($dossier) && !is_null($dossier)) {
-							echo $this->Form->hidden('id', array('value' => $dossier['Dossier']['id']));
-						}
-
-						echo "<label>".__('Attachments'). "</label>";
-			            echo '<div id="fileInputHolderD">';
-			            echo "<ul>";
-
-			            if(!is_null($dossier) && !empty($dossier)) {
-							$k = 0;
-							foreach ($dossier_files as $file) {
-				                echo "<li>";
-				                echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $file['Attachment']['attachment'] .'</label>';
-				                
-				                echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $file['Attachment']['id'] .'">';
-				                echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/thumb_'.$file['Attachment']['attachment'] . '"/>';
-
-				                echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
-
-				                $k++;
-				            }
-						} else {
-							echo "nothing yet..";
-						}
-
-			            echo "</ul>";
-			            echo '</div>';
-			            echo '<button href="#" id="newFileD" class="button tiny">+ File</button>';
-			            echo '<br><br>';
-
-			            echo '<button class="button small" type="submit">'. __('Save dossier') . '</button>';
-						echo $this->Form->end();
-					?>
-				</div>
-				<div class="content <?php echo $badges_tag ?>" id="badges">
-					<p>
-						badges related to the mission
-					</p>
-				</div>
-				<div class="content <?php echo $points_tag ?>" id="points">
-					<p>
-						Point distribution for the mission
-					</p>
-				</div>
-				<div class="content <?php echo $novel_tag ?>" id="graphic">
-					<?php 
-						echo $this->Form->create('Novel', array(
-	 					   		'url' => array(
-	 					   			'controller' => 'panels',
-	 					   			'action' => 'novel', $id, 'edit_mission'
-	 					   		),
-	 					   		'enctype' => 'multipart/form-data'
-						));
-
-						echo '<h3>'. __('English graphic novel:') . '</h3>';
-						$kn = 0;
-						foreach ($novels_en as $ne => $novel) {
-							echo '<div id="content' .$kn.'">';
-							echo $this->Form->hidden($kn.'.mission_id', array('value' => $id));
-							echo $this->Form->hidden($kn.'.language', array('value' => 'en'));
-							echo $this->Form->hidden($kn.'.id', array('value' => $novel['Novel']['id']));
-							echo $this->Form->input($kn.'.page', array('value' => $novel['Novel']['page'], 'label' => __('Page number')));			
-							echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/thumb_'.$novel['Novel']['page_attachment'] . '"/>';
-							echo '<div class="input file"><label for="Novel'.$kn.'Attachment0Attachment">Change Page Image</label><input type="file" name="data[Novel]['.$kn.'][Attachment][0][attachment]" id="Novel'.$kn.'Attachment0Attachment"></div>';
-							echo '<button class="button tiny alert" id="Delete'. $kn .'">delete</button></div>';
-							$kn++;
-						}
-
-						echo '<div id="newEn"></div>';
-						
-						echo '<button href="#" id="newFileNovelEn" class="button tiny">New Page</button>';
-						
-						echo '<h3>'. __('Spanish graphic novel:') . '</h3>';
-						foreach ($novels_es as $nes => $novel) {
-							echo '<div id="content' .$kn.'">';
-							echo $this->Form->hidden($kn.'.mission_id', array('value' => $id));
-							echo $this->Form->hidden($kn.'.language', array('value' => 'es'));
-							echo $this->Form->hidden($kn.'.id', array('value' => $novel['Novel']['id']));
-							echo $this->Form->input($kn.'.page', array('value' => $novel['Novel']['page'], 'label' => __('Page number')));
-							echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/thumb_'.$novel['Novel']['page_attachment'] . '"/>';
-							echo '<div class="input file"><label for="Novel'.$kn.'Attachment0Attachment">Change Page Image</label><input type="file" name="data[Novel]['.$kn.'][Attachment][0][attachment]" id="Novel'.$kn.'Attachment0Attachment"></div>';
-							echo '<button class="button tiny alert" id="Delete'. $kn .'">delete</button></div>';
-							$kn++;
-						}
-
-						echo '<div id="newEs"></div>';
-						echo '<button href="#" id="newFileNovelEs" class="button tiny">New Page</button>';
-
-			            echo '<br><br>';
-
-			            echo '<button class="button small" type="submit">'. __('Save Novels') . '</button>';
-
-						echo $this->Form->end();
-					?>
 				</div>
 			</div>
 			<!-- encerrar tudo -->
@@ -339,48 +86,6 @@
 		</div>
 	</div>
 </section>
-
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-	echo $this->Html->script('dossier_attachments'); 
 ?>
-
-    <!-- necessary function to add remove the already existing questions -->
-    <script type="text/javascript">
-    	<?php 
-        	$i = 0;
-	        for($i=0; $i<$k;$i++) {
-	            echo "$('#-". $i ."').click(function() {
-	                var attId = $('#Attachmentprev-". $i ."Id').val().replace('NO-', '');
-	                $('#img-". $i ."').remove();
-	                $('#label-". $i ."').remove();
-	                $('#Attachmentprev-". $i ."Id').val(attId);
-	                $('#-". $i ."').remove();
-	                return false;
-	        	    });";
-        	}
-
-        	$i = 0;
-	        for($i=0; $i<$kn;$i++) {
-	            echo "$('#Delete". $i ."').click(function() {
-	                	$('#content".$i."').hide();
-	                	$('#content".$i."').append('". '<input name="data[Novel]['. $i.'][delete]" value="1" >' . "');
-	                	return false;
-	        	    });";
-        	}
-
-        	echo 'var prox = '. $i.';';
-        ?>
-
-        $("#newFileNovelEn").click(function() {
-	        $('#newEn').append('<div id="content'+prox+'"> <input type="hidden" name="data[Novel]['+prox+'][mission_id]" value="<?=$id?>" id="Novel'+prox+'MissionId"><input type="hidden" name="data[Novel]['+prox+'][language]" value="en" id="Novel'+prox+'Language"><div class="input number"><label for="Novel'+prox+'Page">Page number</label><input name="data[Novel]['+prox+'][page]" type="number" id="Novel'+prox+'Page"></div><div class="input file"><label for="Novel'+prox+'Attachment0Attachment">Image</label><input type="file" name="data[Novel]['+prox+'][Attachment][0][attachment]" id="Novel'+prox+'Attachment0Attachment"></div></div>');
-	        prox++;
-	        return false;
-	    });
-
-        $("#newFileNovelEs").click(function() {
-	        $('#newEs').append('<div id="content'+prox+'"> <input type="hidden" name="data[Novel]['+prox+'][mission_id]" value="<?=$id?>" id="Novel'+prox+'MissionId"><input type="hidden" name="data[Novel]['+prox+'][language]" value="es" id="Novel'+prox+'Language"><div class="input number"><label for="Novel'+prox+'Page">Page number</label><input name="data[Novel]['+prox+'][page]" type="number" id="Novel'+prox+'Page"></div><div class="input file"><label for="Novel'+prox+'Attachment0Attachment">Image</label><input type="file" name="data[Novel]['+prox+'][Attachment][0][attachment]" id="Novel'+prox+'Attachment0Attachment"></div></div>');
-	        prox++;
-	        return false;
-	    });
-    </script>

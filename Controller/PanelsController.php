@@ -8,8 +8,8 @@ class PanelsController extends AppController {
 * @var array
 */
 	public $components = array('Paginator','Access');
-	public $uses = array('User', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group',
-	 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 
+	public $uses = array('User', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'DossierLink', 
+	 'DossierVideo', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 
 	 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level', 'AdminNotification', 'Novel');
 	public $user = null;
 	public $helpers = array('Media.Media', 'Chosen.Chosen');
@@ -288,13 +288,7 @@ class PanelsController extends AppController {
 	public function add_mission($id = null, $args = 'mission') {
 		
 		$mission_tag = $this->defineCurrentTab('mission', $args);
-		$phases_tag = $this->defineCurrentTab('phase', $args);
-		$quests_tag = $this->defineCurrentTab('quest', $args);
-		$badges_tag = $this->defineCurrentTab('badge', $args);
-		$points_tag = $this->defineCurrentTab('point', $args);
-		$dossier_tag = $this->defineCurrentTab('dossier', $args);
-		$novel_tag = $this->defineCurrentTab('novel', $args);
-
+		
 		$language = $this->getCurrentLanguage();
 
 		//loading infos to be shown at top bar
@@ -307,33 +301,7 @@ class PanelsController extends AppController {
 		//list of issues to be loaded at the combo box..
 		$issues = $this->Issue->find('list');
 
-		//list of phases to be shown at the 'add phases to a mission' scenario..
-		$phases = $this->Phase->find('all', array(
-			'conditions' => array(
-				'mission_id' => $id
-			),
-			'order' => array(
-				'Phase.position'
-			)
-		));
-
 		$powerpoints = $this->PowerPoint->find('all');
-
-		//retrieving mission img
-		// $mission_img = null;
-		// if(!is_null($id)){
-		// 	$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
-		// }
-
-		$dossier_files = null;
-		$dossier = null;
-		//checking to see if i already have a dossier and, if so, if I already have files attached to it
-		if(!is_null($id)){
-			$dossier = $this->Dossier->find('first', array('conditions' => array('Dossier.mission_id' => $id)));
-			if(!is_null($dossier) && !empty($dossier)) {
-				$dossier_files = $this->Attachment->find('all', array('conditions' => array('Model' => 'Dossier', 'foreign_key' => $dossier['Dossier']['id'])));
-			}
-		}
 
 		if($this->user['role_id'] == 1){
 			$flags = array(
@@ -377,90 +345,28 @@ class PanelsController extends AppController {
 
 		$mission = null;
 
-
 		if ($this->request->is('post')) {
 			
-			if(!$this->Mission->exists($id)) {
-				// if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
-				// 	//he did not send an image, unset the 'Attachment' so it doesn't cause any trouble
-				// 	$data = $this->request->data;
-				// 	unset($data['Attachment']);
-				// 	$this->request->data = $data;
-				// }
-
-				//it's a new mission, so let's add it.. creating it with possible attachments (mission img)
-				if ($mission = $this->Mission->createWithAttachments($this->request->data)) {
+			//it's a new mission, so let's add it.. creating it with possible attachments (mission img)
+			if ($mission = $this->Mission->createWithAttachments($this->request->data)) {
+			
+				$id = $mission['Mission']['id'];
+				//saves the issue related to it..
+				$this->request->data['MissionIssue']['mission_id'] = $id;
+				if($this->MissionIssue->save($this->request->data)) {
+					$this->Session->setFlash(__('mission issue saved'));
 					
-					$id = $mission['Mission']['id'];
-
-					//saves the issue related to it..
-					$this->request->data['MissionIssue']['mission_id'] = $id;
-					if($this->MissionIssue->save($this->request->data)) {
-						$this->Session->setFlash(__('mission issue saved'));
-						
-						//redirects to the same page, but with the tab phase activated
-						$this->redirect(array('action' => 'add_mission', $id, 'phase'));
-					} else {
-						$this->Session->setFlash(__('mission issue failed saving.'));
-					}
+					//redirects to the same page, but with the tab phase activated
+					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
 				} else {
-					$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
+					$this->Session->setFlash(__('mission issue failed saving.'));
 				}
 			} else {
-				//first, check if he sended another img for the mission...
-				// if($this->request->data['Attachment'][0]['attachment']['error'] != 0) {
-				// 	//he did not send an image, unset the 'Attachment' so it doesn't cause trouble
-				// 	$data = $this->request->data;
-				// 	unset($data['Attachment']);
-				// 	$this->request->data = $data;
-				// }
-
-				//it already exists, so let's save any alterations and move on..
-				if ($this->Mission->createWithAttachments($this->request->data, true, $id)) {
-					$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
-					
-					//saves the issue related to it..
-					$this->request->data['MissionIssue']['mission_id'] = $id;
-					$this->MissionIssue->id = $this->MissionIssue->find('first', array('conditions' => array('mission_id' => $id)));
-					if($this->MissionIssue->save($this->request->data)) {
-						$this->Session->setFlash(__('mission issue saved'));
-
-						//redirects to the same page, but with the tab phase activated
-						$this->redirect(array('action' => 'add_mission', $id, 'phase'));
-					} else {
-						$this->Session->setFlash(__('mission issue failed saving.'));
-					}
-				} else {
-					$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
-				}
-			}
-		} else{
-			
-			//it could be a request from one of the other tabs
-			if(!is_null($id) && $args == 'dossier'){
-				//sets variable mission to be the mission being added now..
-				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
-			}
-			if(!is_null($id) && $args == 'phase'){
-				//sets variable mission to be the mission being added now..
-				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
-			}
-			if(!is_null($id) && $args == 'mission'){
-				//sets variable mission to be the mission being added now..
-				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
-			}
-
-			
-		}
-		/*
-		$this->Quest->create();
-		$data['Quest']['description'] = "Quest description goes here..";
-		$data['Quest']['mission_id'] = $id;
-		$newQuest = $this->Quest->save();*/
-
-		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 
-			'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag',
-			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
+				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
+			}		 
+		} 
+		
+		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'id','mission', 'issues', 'organizations'));
 	}
 
 /*
@@ -516,6 +422,18 @@ class PanelsController extends AppController {
 				$dossier_files = $this->Attachment->find('all', array('conditions' => array('Model' => 'Dossier', 'foreign_key' => $dossier['Dossier']['id'])));
 			}
 		}
+
+		$dossier_links = $this->DossierLink->find('all', array(
+			'conditions' => array(
+				'DossierLink.mission_id' => $id
+			)
+		));
+
+		$dossier_videos = $this->DossierVideo->find('all', array(
+			'conditions' => array(
+				'DossierVideo.mission_id' => $id
+			)
+		));	
 
 		$novels_en = $this->Novel->find('all', array(
 			'order' => array(
@@ -639,8 +557,8 @@ class PanelsController extends AppController {
 		$newQuest = $this->Quest->save($data);
 		debug($newQuest);*/
 
-		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 
-			'quests_tag', 'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en',
+		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 
+			'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en', 'dossier_links', 'dossier_videos',
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
@@ -650,6 +568,8 @@ class PanelsController extends AppController {
 * save a dossier of a mission, along with its attachments
 */
 	function dossier($id, $dossier_id = null, $origin = 'add_mission') {
+		// debug($this->request->data);
+		// die();
 		if ($this->request->is('post')) {
 			if($dossier_id == null) {
 				if($this->Dossier->createWithAttachments($this->request->data)) {
@@ -686,12 +606,83 @@ class PanelsController extends AppController {
 		}
 	}
 
+	function dossierLinks($id, $origin = 'add_mission') {
+		// debug($this->request->data);
+		if(isset($this->request->data['NewDossierLink'])) {
+			$insert['DossierLink'] = $this->request->data['NewDossierLink'];
+			$this->DossierLink->save($insert);
+
+			//sending back to correct address
+			if($origin == 'add_mission')
+				$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
+			else 
+				$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));	
+		}
+
+		foreach ($this->request->data['DossierLink'] as $index => $link) {
+			$insert['DossierLink'] = $this->request->data['DossierLink'][$index];
+			if(isset($insert['DossierLink']['delete'])) {
+				$this->DossierLink->id = $insert['DossierLink']['id'];
+				$this->DossierLink->delete();
+			} else {
+				$this->DossierLink->save($insert);	
+			}
+			$insert = array();
+		}
+		
+		//sending back to correct address
+		if($origin == 'add_mission')
+			$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
+		else 
+			$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
+	}
+
+	function dossierVideos($id, $origin = 'add_mission') {
+		// debug($this->request->data);
+		if(isset($this->request->data['NewDossierVideo'])) {
+			$insert['DossierVideo'] = $this->request->data['NewDossierVideo'];
+			$this->DossierVideo->save($insert);
+
+			//sending back to correct address
+			if($origin == 'add_mission')
+				$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
+			else 
+				$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));	
+		}
+
+		foreach ($this->request->data['DossierVideo'] as $index => $link) {
+			$insert['DossierVideo'] = $this->request->data['DossierVideo'][$index];
+			if(isset($insert['DossierVideo']['delete'])) {
+				$this->DossierVideo->id = $insert['DossierVideo']['id'];
+				$this->DossierVideo->delete();
+			} else {
+				$this->DossierVideo->save($insert);	
+			}
+			$insert = array();
+		}
+		
+		//sending back to correct address
+		if($origin == 'add_mission')
+			$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
+		else 
+			$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
+	}
+
 	function novel($id, $origin = 'add_mission'){
 		
 		// debug($this->request->data['Novel']);
 		// die();
 		foreach ($this->request->data['Novel'] as $novelIndex => $novelData) {
 			// debug($novelData);
+			if(isset($novelData['id'])) {
+				$insertNovel['Novel']['id'] = $novelData['id'];
+
+				if(isset($novelData['delete'])) {
+					$this->Novel->id = $novelData['id'];
+					$this->Novel->delete();
+					// debug("trying to delete: ");
+				}
+			}
 			if($novelData['page'] <= 0 || $novelData['Attachment'][0]['attachment']['error'] != 0) continue;
 
 			$insertNovel['Novel']['mission_id'] = $novelData['mission_id'];
@@ -1275,10 +1266,15 @@ class PanelsController extends AppController {
 
 				$badge_id = $this->Badge->id;
 				//create questpowerpoints entries..
+				
 				foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
 					if($powerEntry['quantity'] > 0){
 						$insert['BadgePowerPoint']['badge_id'] = $badge_id;
-						$insert['BadgePowerPoint']['power_points_id'] = $powerId;
+						$insertId = $powerId;
+						if($powerId == 0) {
+							$insertId = null;
+						}
+						$insert['BadgePowerPoint']['power_points_id'] = $insertId;
 						$insert['BadgePowerPoint']['quantity'] = $powerEntry['quantity'];
 
 						$this->BadgePowerPoint->create();

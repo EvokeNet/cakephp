@@ -23,7 +23,12 @@
 					<div class="image circle">
 						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['User']['id'])) ?>">
 							<?php if($usr['User']['photo_attachment'] == null) : ?>
-								<img src = "https://graph.facebook.com/<?php echo $usr['User']['facebook_id']; ?>/picture?type=large">
+								<?php if($usr['User']['facebook_id'] == null) : ?>
+									<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/>
+								<?php else : ?>	
+									<img src = "https://graph.facebook.com/<?php echo $usr['User']['facebook_id']; ?>/picture?type=large">
+								<?php endif; ?>
+
 							<?php else : ?>
 								<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['User']['photo_dir'].'/'.$usr['User']['photo_attachment'] ?>" />
 							<?php endif; ?>

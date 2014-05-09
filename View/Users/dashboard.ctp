@@ -44,7 +44,7 @@
 								<li>
 									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1))?>">
 
-										<img src="<?= $this->webroot.'files/attachment/attachment/'.$basic_training['Mission']['cover_dir'].'/'.$basic_training['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px;">
+										<img src="<?= $this->webroot.'files/attachment/attachment/'.$basic_training['Mission']['cover_dir'].'/'.$basic_training['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px; width:100%">
 										<h1><?= $basic_training['Mission']['title'] ?> </h1>
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
@@ -56,7 +56,7 @@
 			                <?php else :?>
 								<li>
 									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1))?>">
-										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px;">
+										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px; width:100%">
 										<h1><?= $basic_training['Mission']['title'] ?> </h1>
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
@@ -76,7 +76,7 @@
 									<li>
 										<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
 
-											<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px;">
+											<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px; width:100%">
 											<h1><?= $mission['Mission']['title'] ?> </h1>
 											<!-- <div class="summary">
 												<h2>This is the first title</h2>
@@ -89,7 +89,7 @@
 
 									<li>
 										<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
-											<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px;">
+											<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px; width:100%">
 											<h1><?= $mission['Mission']['title'] ?> </h1>
 
 											<!-- <div class="summary">
@@ -187,7 +187,12 @@
 					<li>
 
 						<?php if($n['User']['photo_attachment'] == null) : ?>
-							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+							<?php if($n['User']['facebook_id'] == null) : ?>
+								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+							<?php else : ?>	
+								<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+							<?php endif; ?>
+
 			  			<?php else : ?>
 			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 			  			<?php endif; ?>
@@ -201,7 +206,11 @@
 					<li>
 
 					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php if($n['User']['facebook_id'] == null) : ?>
+							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+						<?php else : ?>	
+							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php endif; ?>
 		  			<?php else : ?>
 		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 		  			<?php endif; ?>
@@ -213,7 +222,11 @@
 				<?php if($n['Notification']['origin'] == 'userUpdate'):?>						
 					<li>
 					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php if($n['User']['facebook_id'] == null) : ?>
+								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+						<?php else : ?>	
+							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php endif; ?>
 		  			<?php else : ?>
 		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 		  			<?php endif; ?>	
@@ -241,7 +254,11 @@
 					?>						
 					<li>
 					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php if($n['User']['facebook_id'] == null) : ?>
+							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+						<?php else : ?>	
+							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php endif; ?>
 		  			<?php else : ?>
 		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 		  			<?php endif; ?>
@@ -251,7 +268,11 @@
 				<?php if($n['Notification']['origin'] == 'commentEvidence'):?>						
 					<li>
 					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php if($n['User']['facebook_id'] == null) : ?>
+							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+						<?php else : ?>	
+							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php endif; ?>
 		  			<?php else : ?>
 		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 		  			<?php endif; ?>
