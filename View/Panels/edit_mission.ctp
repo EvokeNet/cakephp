@@ -7,11 +7,10 @@
 	
 ?>
 
-<section class="margin top-2">
-	<div class="row max-width">
-		<div class="small-12 medium-12 large-12 columns">
+<section>
+	<div class="row full-width-alternate">
 			<!-- <h1><?= __('Mission') ?><?php echo ': ' . $mission['Mission']['title']; ?></h1> -->
-			<dl class="tabs vertical" data-tab>
+			<dl class="panels tabs vertical" data-tab>
 				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
 				<?php if(isset($id) && !is_null($id)) : ?>
 					<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= __('Phases') ?></a></dd>
@@ -21,7 +20,7 @@
 					<dd class="<?php echo $novel_tag ?>"><a href="#graphic"><?= __('Graphic Novel') ?></a></dd>
 				<?php endif; ?>
 			</dl>
-			<div class="tabs-content vertical">
+			<div class="panels tabs-content vertical">
 				<div class="content <?php echo $mission_tag ?> content large-10 columns" id="mission">
 					<div class="form">
 
@@ -483,7 +482,6 @@
 				<?php else :
 					echo $this->Html->Link(__('Return to Admin Panel'), array('controller' => 'panels', 'action' => 'index', 'missions'), array( 'class' => 'button small')); 
 				endif; ?>
-		</div>
 	</div>
 </section>
 

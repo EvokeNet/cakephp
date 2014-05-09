@@ -7,34 +7,36 @@
 	
 ?>
 
-<section class="margin top-2">
-	<div class="row max-width">
-		<div class="large-12 columns">
-			<dl class="tabs" data-tab>
-				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><?= __('Organizations') ?></a></dd>
-				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><?= __('Missions') ?></a></dd>
+<section>
+	<div class="row full-width-alternate">
+			<dl class="panels tabs vertical" data-tab>
+				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><?= strtoupper(__('Organizations')) ?></a></dd>
+				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><?= strtoupper(__('Missions')) ?></a></dd>
 				<?php if($flags['_admin']) : ?>
-					<dd class="<?php echo $issues_tab; ?>"><a href="#issues"><?= __('Issues') ?></a></dd>
-					<dd class="<?php echo $levels_tab; ?>"><a href="#levels"><?= __('Levels') ?></a></dd>
-					<dd class="<?php echo $powerpoints_tab; ?>"><a href="#powerpoints"><?= __('Power Points') ?></a></dd>
+					<dd class="<?php echo $issues_tab; ?>"><a href="#issues"><?= strtoupper(__('Issues')) ?></a></dd>
+					<dd class="<?php echo $levels_tab; ?>"><a href="#levels"><?= strtoupper(__('Levels')) ?></a></dd>
+					<dd class="<?php echo $powerpoints_tab; ?>"><a href="#powerpoints"><?= strtoupper(__('Power Points')) ?></a></dd>
 				<?php endif; ?>	
-				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
-				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
+				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><?= strtoupper(__('Badges')) ?></a></dd>
+				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= strtoupper(__('Users')) ?></a></dd>
 				<?php if($flags['_admin']) : ?>
-					<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><?= __('Evokations') ?></a></dd>
-					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Notifications & Media') ?></a></dd>
-					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
+					<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><?= strtoupper(__('Evokations')) ?></a></dd>
+					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= strtoupper(__('Notifications & Media')) ?></a></dd>
+					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><?= strtoupper(__('General Settings')) ?></a></dd>
 				<?php endif; ?>	
-				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><?= __('Statistics') ?></a></dd>
+				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><?= strtoupper(__('Statistics')) ?></a></dd>
 			</dl>
-			<div class="tabs-content">
+			<div class="panels tabs-content vertical padding top-2">
 				<div class="content <?php echo $organizations_tab; ?>" id="organizations">
-					<div class="large-10 columns">
+					
 						<?php foreach ($organizations as $organization) { ?>
 								<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert', 'id' => 'orgsDelete'.$organization['Organization']['id'], 'style' => 'display:none' )); ?>
 						<?php }	?>
 
-						<button class="button" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></button>
+						<!-- <button class="button" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></button> -->
+
+						<a href ="#" class="button general" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></a>
+
 						<div id="myModalOrganization" class="reveal-modal tiny" data-reveal>
 							<?php echo $this->Form->create('Organization', array(
 	 						   		'url' => array(
@@ -89,12 +91,14 @@
 							<a class="close-reveal-modal">&#215;</a>
 						</div>
 						<div id="OrganizationsHolder"></div>
-					</div>
+					
 				</div>
 				<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
 					<div class="large-10 columns">
-						<?php echo $this->Html->Link(__('Add new Mission'), array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?>
+						<?php //echo $this->Html->Link(__('Add new Mission'), array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?>
 				  		
+				  		<a href ="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'add_mission')) ?>" class="button general"><?php echo __('New Mission');?></a>
+
 					  		<!-- creating delete post buttons to be referenced at js -->
 					  		<?php foreach ($missions_issues as $mi) : ?>
 					  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteMission'.$mi['Mission']['id'], 'style' => 'display:none')); ?>
@@ -105,7 +109,10 @@
 				</div>
 				<div class="content <?php echo $issues_tab; ?>" id="issues">
 					<div class="large-10 columns">
-			  			<button class="button" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></button>
+			  			<!-- <button class="button" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></button> -->
+
+			  			<a href = "#" class="button general" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></a>
+
 			    		<div id="myModalIssue" class="reveal-modal tiny" data-reveal>
 							<?php echo $this->Form->create('Issue', array(
 		 				   		'url' => array(
@@ -120,7 +127,7 @@
 									echo $this->Form->input('slug', array('label' => __('Slug')));
 								?>
 							</fieldset>
-							<button class="button small" type="submit">
+							<button class="button general" type="submit">
 								<?php echo __('Add'); ?>
 							</button>
 							<?php echo $this->Form->end(); ?>
@@ -177,7 +184,7 @@
 							
 							$nextLevel++;
 						?>
-						<button class="button small" type="submit">
+						<button class="button general" type="submit">
 							<?php echo __('Save levels'); ?>
 						</button>
 						<?php echo $this->Form->end(); ?>
@@ -185,7 +192,10 @@
 				</div>
 				<div class="content <?php echo $powerpoints_tab; ?>" id="powerpoints">
 					<div class="large-10 columns">
-			  			<button class="button" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></button>
+			  			<!-- <button class="button" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></button> -->
+
+			  			<a href ="#" class="button general" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></a>
+
 			    		<div id="myModalPowerPoint" class="reveal-modal tiny" data-reveal>
 							<?php echo $this->Form->create('PowerPoint', array(
 		 				   		'url' => array(
@@ -213,7 +223,7 @@
 									));
 								?>
 							</fieldset>
-							<button class="button small" type="submit">
+							<button class="button general" type="submit">
 								<?php echo __('Add'); ?>
 							</button>
 							<?php echo $this->Form->end(); ?>
@@ -229,7 +239,10 @@
 				</div>
 				<div class="content <?php echo $badges_tab; ?>" id="badges">
 					<div class="large-10 columns">
-						<button class="button" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></button>
+						<!-- <button class="button" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></button> -->
+
+						<a href ="#" class="button general" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></a>
+
 						<div id="myModalBadge" class="reveal-modal tiny" data-reveal>
 							<?php echo $this->Form->create('Badge', array(
 	 						   		'url' => array(
@@ -268,7 +281,7 @@
 									));
 								?>
 								</fieldset>
-							<button class="button small" type="submit">
+							<button class="button general" type="submit">
 								<?php echo __('Add') ?>
 							</button>
 							<?php echo $this->Form->end(); ?>
@@ -356,7 +369,10 @@
 					<div id="EvokationsHolder"></div>
 				</div>
 				<div class="content <?php echo $media_tab; ?>" id="media">
-					<button class="button" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></button>
+					<!-- <button class="button" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></button> -->
+
+					<a href ="#" class="button general" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></a>
+
 					<div id="myModalNotification" class="reveal-modal tiny" data-reveal>
 						<?php echo $this->Form->create('AdminNotification', array(
 	 						'url' => array(
@@ -381,7 +397,7 @@
 
 							?>
 							</fieldset>
-						<button class="button small" type="submit">
+						<button class="button general" type="submit">
 							<?php echo __('Add') ?>
 						</button>
 						<?php echo $this->Form->end(); ?>
@@ -506,7 +522,7 @@
 						echo '</fieldset>';
 
 					?>
-					<button class="button small" type="submit">
+					<button class="button general" type="submit">
 						<?php echo __('Save Settings')?>
 					</button>
 					<?php echo $this->Form->end(); ?>
@@ -519,7 +535,6 @@
 					<p>AND MORE!</p>
 				</div>
 			</div>
-		</div>
 	</div>
 </section>
 
@@ -532,6 +547,7 @@
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->css('animate');
 	echo $this->Html->script('jquery.watable');
 
