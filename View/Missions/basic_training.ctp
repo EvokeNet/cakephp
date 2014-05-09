@@ -33,7 +33,7 @@
 		  <div class="small-3 small-centered columns" id="numero"></div>
 		</div>
 
-		<div class = "small-2 medium-2 large-2 columns">
+		<div class = "small-2 medium-2 large-2 columns padding-left">
 			<?php echo $this->element('menu', array('user' => $user));?>
 		</div>
 

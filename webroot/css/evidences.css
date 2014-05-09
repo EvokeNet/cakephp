@@ -16,6 +16,30 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+/* New CSS */
+
+.evoke .evidence.dossier h2{
+	display: inline;
+	margin-left: 20px;
+	font-family: 'AmaticSC-Regular';
+	color:#fff;
+	font-size: 1.8vw;
+}
+
+.evoke .evidence.dossier i{
+	background-color: #1f8cb2;
+	min-width: 70px;
+	text-align: center;
+	padding: 10px 15px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border-left: 5px solid #125167;
+	margin-bottom: 20px;
+	color:#fff;
+}
+
+/* End new CSS */
+
 .evoke.evidence-tag{
 	background-color:#efefef;
 	border:1px solid #000;

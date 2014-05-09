@@ -6,84 +6,86 @@
 
 ?>
 
-<section class="evoke background">
+<section class="evoke default-background">
 
-	<?= $this->element('menu', array('user' => $user)) ?>
+	<?php echo $this->Session->flash(); ?>
 
-	<nav class="evoke breadcrumbs">
-	  <?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index')); ?>
+	<div id="secondModal" class="reveal-modal" data-reveal>
+	  <h2>This is a second modal.</h2>
+	  <p>See? It just slides into place after the other first modal. Very handy when you need subsequent dialogs, or when a modal option impacts or requires another decision.</p>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div>
 
-	  <a class="unavailable" href="#"><?php echo sprintf(__('Mission %s'), $mission['Mission']['title']);?></a>
-<!-- 
-	  	<?php foreach($missionPhases as $mp):
+	<div class="evoke default row full-width-alternate">
 
-	  		if($mp['Phase']['position'] < $missionPhase['Phase']['position'])
-	  			echo $this->Html->link($mp['Phase']['name'], array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $mp['Phase']['position']));
+	  <div class="small-2 medium-2 large-2 columns padding-left">
+	  	<?php echo $this->element('menu', array('user' => $user));?>
+	  </div>
 
-  		endforeach; ?> -->
+	  <div class="small-9 medium-9 large-9 columns padding top-2 maincolumn">
 
-	  <a class="current" href="#"><?= __('Evokation Teams') ?></a>
-	</nav>
-	
-	<?php if(isset($mission['Mission'])):  
-		echo $this->element('left_titlebar', array('title' => sprintf(__('Evokation Teams: %s'), $mission['Mission']['title'])));
-	endif; ?>
+	  	<h3><?= strtoupper(__('Groups')) ?></h3>
 
-	<div class="row full-width">
-		<?php echo $this->Session->flash(); ?>
+	  	<h3 class = "padding top-1"><?= strtoupper(sprintf(__('Mission: %s'), $mission['Mission']['title'])) ?></h3>
 
-		<?php if(isset($mission['Mission'])): ?>
-				<div class = "evoke titles-right">
-					<a class="button general green" href="" data-reveal-id="newGroup" data-reveal style = "padding: 20px 70px; font-size: 1.3vw;">
-						<span><?php echo __('Create a group');?></span>
-					</a>
-				</div>
-				<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
-					<?= $this->element('add_group', array('mission' => $mission, 'quest_id' => $quest_id, 'userid' => $user['User']['id'], 'groups' => $groups));?>
-					<a class="close-reveal-modal">&#215;</a>
-				</div>
-
-			<?php else : ?>
-				<a class="button general" href="" data-reveal-id="newGroup" data-reveal>
+	  	<?php if(isset($mission['Mission'])): ?>
+			<div class = "evoke titles-right">
+				<a class="button general green" href="" data-reveal-id="newGroup" data-reveal>
 					<span><?php echo __('Create a group');?></span>
 				</a>
-				<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
-					<?= $this->element('add_group', array('userid' => $user['User']['id'], 'groups' => $groups));?>
-					<a class="close-reveal-modal">&#215;</a>
-				</div>
-
-			<?php endif; ?>
-			
-		<div class="small-8 small-centered columns">
-
-			<dl class="tabs" data-tab>
-			  <dd class="active"><a href="#panel2-1"><?php echo __('Evokation Teams');?></a></dd>
-			  <dd><a href="#panel2-2"><?php echo __('My Evokation Teams');?></a></dd>
-			  <dd><a href="#panel2-3"><?php echo __('Evokation Teams I Belong To');?></a></dd>
-			</dl>
-			<div class="evoke tabs-content screen-box margin panel group box-size">
-			  <div class="content active" id="panel2-1">
-			  	<?php
-		  			foreach($groups as $e):
-	  					echo $this->element('group_box', array('e' => $e, 'user' => $user, 'users' => $users_groups));
-	  				endforeach;
-	  			?>
-			   </div>
-			  <div class="content" id="panel2-2">
-			    <?php
-		  			foreach($myGroups as $e):
-	  					echo $this->element('group_box', array('e' => $e, 'user' => $user, 'users' => $users_groups));
-	  				endforeach;
-	  			?>
-			  </div>
-			  <div class="content" id="panel2-3">
-			  	<?php
-		  			foreach($groupsIBelong as $e):
-	  					echo $this->element('group_box', array('e' => $e, 'user' => $user, 'users' => $users_groups));
-	  				endforeach;
-	  			?>
-			  </div>
 			</div>
+			<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
+				<?= $this->element('add_group', array('mission' => $mission, 'quest_id' => $quest_id, 'userid' => $user['User']['id'], 'groups' => $groups));?>
+				<a class="close-reveal-modal">&#215;</a>
+			</div>
+
+		<?php else : ?>
+			<a class="button general" href="" data-reveal-id="newGroup" data-reveal>
+				<span><?php echo __('Create a group');?></span>
+			</a>
+			<div id="newGroup" class="reveal-modal large evoke lightbox" data-reveal>
+				<?= $this->element('add_group', array('userid' => $user['User']['id'], 'groups' => $groups));?>
+				<a class="close-reveal-modal">&#215;</a>
+			</div>
+
+		<?php endif; ?>
+
+		<dl class="default tabs" data-tab>
+		  <dd class="active"><a href="#panel2-1"><?php echo __('All Evokation Teams');?></a></dd>
+		  <dd><a href="#panel2-2"><?php echo __('My Evokation Teams');?></a></dd>
+		  <dd><a href="#panel2-3"><?php echo __('Evokation Teams I Belong To');?></a></dd>
+		</dl>
+		<div class="evoke content-block default tabs-content">
+		  <div class="content active" id="panel2-1">
+		  	<?php
+	  			foreach($groups as $e):
+  					echo $this->element('group', array('e' => $e, 'user' => $user, 'users' => $users_groups));
+  				endforeach;
+  			?>
+		   </div>
+		  <div class="content" id="panel2-2">
+		    <?php
+	  			foreach($myGroups as $e):
+  					echo $this->element('group', array('e' => $e, 'user' => $user, 'users' => $users_groups));
+  				endforeach;
+  			?>
+		  </div>
+		  <div class="content" id="panel2-3">
+		  	<?php
+	  			foreach($groupsIBelong as $e):
+  					echo $this->element('group', array('e' => $e, 'user' => $user, 'users' => $users_groups));
+  				endforeach;
+  			?>
+		  </div>
 		</div>
-	</div>
+
+	  </div>
+
+	  <div class="medium-1 end columns"></div>
+
+  </div>
 </section>
+
+<?php
+	echo $this->Html->script('menu_height', array('inline' => false));
+?>

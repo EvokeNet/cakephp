@@ -12,14 +12,15 @@
 
 <section class="evoke default-background">
 	<div class="evoke default row full-width-alternate">
-
-	  <div class="small-2 medium-2 large-2 columns">
+	  <div class="small-2 medium-2 large-2 columns padding-left">
 	  	<?php echo $this->element('menu', array('user' => $user));?>
 	  </div>
 
-	  <div class="small-9 medium-9 large-9 columns maincolumn">
+	  <div class="small-9 medium-9 large-9 columns maincolumn padding bottom-2">
 
-	  	<h3 class = "evoke padding top-2"> <?= strtoupper(__('Choose a mission')) ?> </h3>
+	  	<?php echo $this->Session->flash(); ?>
+
+	  	<h3 class = "evoke padding top-1 padding bottom-1"> <?= strtoupper(__('Choose a mission')) ?> </h3>
 			
 			<?php foreach($missions as $mission): ?>
 
