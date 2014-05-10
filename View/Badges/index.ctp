@@ -132,7 +132,7 @@
 								if($badge['Badge']['owns'] != 1)
 									$owned = '';
 							?>
-							<h1><?= $badge['Badge']['name'] . $owned;?></h1>
+							<h1><?= $badge['Badge']['name'] ?></h1>
 				  			
 							
 				  			<?php foreach ($badge['Badge']['PowerPoints'] as $bpp) : ?>

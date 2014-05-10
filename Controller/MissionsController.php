@@ -323,6 +323,27 @@ class MissionsController extends AppController {
 			$dossier_files = array();
 		}
 
+		$this->loadModel('Launcher');
+		$launcher = $this->Launcher->find('first', array(
+			'conditions' => array(
+				'Launcher.mission_id' => $id
+			)
+		));
+
+		$launcherImg = array();
+		if(!empty($launcher)) {
+			$this->loadModel('Attachment');
+			$launcherImg = $this->Attachment->find('first', array(
+				'order' => array(
+					'Attachment.id Desc'
+				),
+				'conditions' => array(
+					'Attachment.model' => 'Launcher',
+					'Attachment.foreign_key' => $launcher['Launcher']['id']
+				)
+			));
+		}
+
 		if($flags['_es'])
 			$langs = 'es';
 		else
@@ -495,7 +516,7 @@ class MissionsController extends AppController {
 		}
 
 
-		$this->set(compact('allBadges', 'allPowerPoints', 'checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
+		$this->set(compact('launcherImg', 'allBadges', 'allPowerPoints', 'checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
 			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 

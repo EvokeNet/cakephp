@@ -45,9 +45,15 @@
 
 		 				<li class="clearing-featured-img ">
 		 					<div class = "evoke missions graphic-cover-img">
-			 					<a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
-			 						<img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
-		 						</a>
+			 					<?php if(empty($launcherImg)) :?>
+				 					<a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
+				 						<img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
+			 						</a>
+			 					<?php else:?>
+			 						<a href="<?= $this->webroot.'files/attachment/attachment/'.$launcherImg['Attachment']['dir'].'/'.$launcherImg['Attachment']['attachment'] ?>">
+				 						<img src="<?= $this->webroot.'files/attachment/attachment/'.$launcherImg['Attachment']['dir'].'/'.$launcherImg['Attachment']['attachment'] ?>"/>
+			 						</a>
+			 					<?php endif;?>
 	 						</div>
  						</li>
 		 				
@@ -57,19 +63,7 @@
 
 					</ul>
 					<!-- <img src = '<?= $this->webroot.'img/episodio10.jpg' ?>'> -->
-					<div class = "evoke ribbon-position">
-				  		<div class="ribbon-wrapper">
-							<div class="ribbon-front">
-								<?= __('Graphic Novel') ?>
-							</div>
-							<div class="ribbon-edge-topleft"></div>
-							<div class="ribbon-edge-topright"></div>
-							<div class="ribbon-edge-bottomleft"></div>
-							<div class="ribbon-edge-bottomright"></div>
-							<div class="ribbon-back-left"></div>
-							<div class="ribbon-back-right"></div>
-						</div>
-					</div>
+					
 				<?php endif ?>
 			</div>
 

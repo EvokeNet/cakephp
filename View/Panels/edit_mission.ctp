@@ -362,13 +362,24 @@
 								<div class="content active" id="novel_launcher">
 									<h3>Setting up the launcher should be easy!</h3>
 									<?php 
-										echo $this->Form->create('Novel', array(
+										echo $this->Form->create('Launcher', array(
 					 					   		'url' => array(
 					 					   			'controller' => 'panels',
-					 					   			'action' => 'novelLauncher', $id, 'edit_mission'
+					 					   			'action' => 'novelLauncher', $id
 					 					   		),
 					 					   		'enctype' => 'multipart/form-data'
 										));
+										echo $this->Form->hidden('mission_id', array('value' => $id));
+										if(!empty($launcher)) {
+											echo $this->Form->hidden('id', array('value' => $launcher['Launcher']['id']));
+											echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$launcherImg['Attachment']['dir'].'/thumb_'.$launcherImg['Attachment']['attachment'] . '"/>';
+										}
+
+										echo '<div class="input file"><label for="LauncherAttachment0Attachment">Change Page Image</label><input type="file" name="data[Launcher][Attachment][0][attachment]" id="LauncherAttachment0Attachment"></div>';
+
+										echo '<button class="button small" type="submit">'. __('Save Launcher') . '</button>';
+
+										echo $this->Form->end();
 									?>
 								</div>
 								<div class="content" id="novel_en">
