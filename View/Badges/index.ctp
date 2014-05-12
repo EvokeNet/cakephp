@@ -29,108 +29,119 @@
 				<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
 				  	<?php 
 
-					foreach($badges as $badge): ?>
+					foreach($badges as $b => $badge): ?>
 						<li>
+							<?php //$badges[$b]['Badge']['UserPercentage'] = 0.3;?>
 							<?php if(isset($badge['Badge']['img_dir'])) : ?>
-								<!-- <img src = '<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>'> -->
-						
-								<!-- <img class='knob' src='<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>'>  -->
-								<!-- <img class="knob badges-knob" src = '<?= $this->webroot.'img/badge.png' ?>'> -->
-								
 
-								<div class="evoke default badges view view-first">
-				                    
-				                    <div class = "margin-left-13">
-				                    <div class="loader">
-									    <div class="loader-bg" id="two">
-									    	<img src = '<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>'>
-									    </div>    
+								<?php if($badge['Badge']['power_points_only'] == 1) : ?>
+									<div id="<?=$badge['Badge']['id']?>" class="evoke default view view-first">
+					                    
+					                    <div class = "margin-left-13">
+					                    <div class="loader">
+										    <div class="loader-bg">
+										    	<img src = '<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>'>
+										    </div>    
 
-									    <div class="spiner-holder-one animate-0-25-a">
-									        <div class="spiner-holder-two animate-0-25-b">
-									            <div class="loader-spiner" style=""></div>
-									        </div>
-									    </div>
-									    <div class="spiner-holder-one animate-25-50-a">
-									        <div class="spiner-holder-two animate-25-50-b">
-									            <div class="loader-spiner"></div>
-									        </div>
-									    </div>
-									    <div class="spiner-holder-one animate-50-75-a">
-									        <div class="spiner-holder-two animate-50-75-b">
-									            <div class="loader-spiner"></div>
-									        </div>
-									    </div>
-									    <div class="spiner-holder-one animate-75-100-a">
-									        <div class="spiner-holder-two animate-75-100-b">
-									            <div class="loader-spiner"></div>
-									        </div>
-									    </div>
-									</div>
-				                    </div>
-				                    <div class="evoke badges mask">
-				                        <!-- <h2><?= $mission['Mission']['title'] ?></h2> -->
-				                        <p class="btext"></p>
-				                        <!-- <div class="btext"></div>
-				                        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class="button general info"><?= __('Go to mission') ?></a> -->
-				                    </div>
-				                </div> 
+										    <div class="spiner-holder-one animate-0-25-a">
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-0-25-b">
+											            <div class="loader-spiner" style=""></div>
+											        </div>
+										    	<?php endif?>
+										    </div>
+										    <div class="spiner-holder-one animate-25-50-a">
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-25-50-b">
+										            	<div class="loader-spiner"></div>
+										        	</div>
+										    	<?php endif?>
+										    </div>
+										    <div class="spiner-holder-one animate-50-75-a">
+										    	<?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-50-75-b">
+											            <div class="loader-spiner"></div>
+											        </div>
+										    	<?php endif?>										        
+										    </div>
+										    <div class="spiner-holder-one animate-75-100-a">
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-75-100-b">
+											            <div class="loader-spiner"></div>
+											        </div>
+										    	<?php endif?>
+										    </div>
+										</div>
+					                    </div>
+					                    <div class="evoke mask">
+					                        <p class="btext"></p>
+					                    </div>
+					                </div> 
+					            <?php else :?>
+					            	<img src = '<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>'>
+					        	<?php endif;?>
 
 							<?php else: ?>
-								<!-- <img class='knob badges-knob' src = '<?= $this->webroot.'img/badge.png' ?>'> -->
+								<?php if($badge['Badge']['power_points_only'] == 1) : ?>
+									<div id="<?=$badge['Badge']['id']?>" class="evoke default view view-first">
+					                    
+					                    <div class = "margin-left-13">
+					                    <div class="loader">
+										    <div class="loader-bg">
+										    	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+										    </div>    
 
-								<div class="evoke default view view-first">
-				                    
-				                    <div class = "margin-left-13">
-				                    <div class="loader">
-									    <div class="loader-bg" id="two">
-									    	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
-									    </div>    
-
-									    <div class="spiner-holder-one animate-0-25-a">
-									        <div class="spiner-holder-two animate-0-25-b">
-									            <div class="loader-spiner" style=""></div>
-									        </div>
-									    </div>
-									    <div class="spiner-holder-one animate-25-50-a">
-									        <div class="spiner-holder-two animate-25-50-b">
-									            <div class="loader-spiner"></div>
-									        </div>
-									    </div>
-									    <div class="spiner-holder-one animate-50-75-a">
-									        <div class="spiner-holder-two animate-50-75-b">
-									            <div class="loader-spiner"></div>
-									        </div>
-									    </div>
-									    <div class="spiner-holder-one animate-75-100-a">
-									        <div class="spiner-holder-two animate-75-100-b">
-									            <div class="loader-spiner"></div>
-									        </div>
-									    </div>
-									</div>
-				                    </div>
-				                    <div class="evoke mask">
-				                        <!-- <h2><?= $mission['Mission']['title'] ?></h2> -->
-				                        <p class="btext"></p>
-				                        <!-- <div class="btext"></div>
-				                        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class="button general info"><?= __('Go to mission') ?></a> -->
-				                    </div>
-				                </div> 
-							
+										    <div class="spiner-holder-one animate-0-25-a">
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-0-25-b">
+											            <div class="loader-spiner" style=""></div>
+											        </div>
+										    	<?php endif?>
+										    </div>
+										    <div class="spiner-holder-one animate-25-50-a">
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-25-50-b">
+										            	<div class="loader-spiner"></div>
+										        	</div>
+										    	<?php endif?>
+										    </div>
+										    <div class="spiner-holder-one animate-50-75-a">
+										        <?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-50-75-b">
+											            <div class="loader-spiner"></div>
+											        </div>
+										    	<?php endif?>
+										    </div>
+										    <div class="spiner-holder-one animate-75-100-a">
+										    	<?php if($badge['Badge']['UserPercentage'] != 0):?>
+											        <div class="spiner-holder-two animate-75-100-b">
+											            <div class="loader-spiner"></div>
+											        </div>
+										    	<?php endif?>
+										    </div>
+										</div>
+					                    </div>
+					                    <div class="evoke mask">
+					                        <p class="btext"></p>
+					                    </div>
+					                </div> 
+								<?php else :?>
+					            	<img src = '<?= $this->webroot.'img/badge.png' ?>'>
+					        	<?php endif;?>
 							<?php endif;
 								// echo '<input type="text" class="dial" value="'.$badge['Badge']['UserPercentage'].'">';
 								$owned = ' (owned)';
 								if($badge['Badge']['owns'] != 1)
 									$owned = '';
 							?>
-							<h1><?= $badge['Badge']['name'] . $owned;?></h1>
+							<h1><?= $badge['Badge']['name'] ?></h1>
 				  			
 							
 				  			<?php foreach ($badge['Badge']['PowerPoints'] as $bpp) : ?>
 				  				<?php $current = ($bpp['UserPercentage']/100) * $bpp['UserGoal']; ?>
 								<div>
 				  				
-				  				<span style="color:#fff"><?=$bpp['name'] .':'?>&nbsp;</span>
+				  				<span style="color:#fff"><?=$bpp['name']?></span>
 				  				<span data-tooltip data-options="disable_for_touch:true" class="has-tip tip-top radius" title="<?=$current.'/'.$bpp['UserGoal'] ?>">
 				  				<div class="evoke top-bar-2 progress success round">
 									<span class="meter" style="width: <?= $bpp['UserPercentage'] ?>%"></span>
@@ -162,114 +173,52 @@
 ?>
 
 <script>
-//  $(".dial").val(90);
-// $(".dial").trigger('change');
 
-// $(".dial").knob({
-//                 // 'min':0,
-//                 'max':100,
-//                 'readOnly':true,
-//                 'fgColor':'#c65862',
-//                 'lineCap' : 'round',
-//                 'thickness' : 0.1,
-//                 'dynamicDraw': true,
-//                 'skin': 'tron',
-//                 'displayInput': false
-//                 });
+	<?php 
+		foreach ($badges as $badge) {
+			// debug($badge['Badge'])
+			if(isset($badge['Badge']['UserPercentage']))
+				echo 'renderProgress('.($badge['Badge']['UserPercentage']).', $("#'. $badge['Badge']['id'] .'"));';
+		}
+	?>
 
- renderProgress(88);
- renderProgress(50, 'two');
- renderProgress(100, 'three');
-
-function renderProgress(progress)
+function renderProgress(progress, el)
 {
-    progress = 50;
+    // progress = progress;
+    // alert(el.attr('id'));
+    if(progress==0) {
+    	$("#"+el.attr('id')+" .animate-50-75-b, .animate-25-50-b, .animate-0-25-b")
+                                              .css("transform","rotate(90deg)");
+        $("#"+el.attr('id')+" .animate-75-100-b").css("transform","rotate(90deg)");
+    	$("#"+el.attr('id')+" .btext").html("0%");
+    	return;
+    }
+	if(progress % 1 != 0) {
+		progress = progress.toFixed(2);
+	}
     if(progress<25){
         var angle = -90 + (progress/100)*360;
-        $(".animate-0-25-b").css("transform","rotate("+angle+"deg)");
+        $("#"+el.attr('id')+" .animate-0-25-b").css("transform","rotate("+angle+"deg)");
+
     }
     else if(progress>=25 && progress<50){
         var angle = -90 + ((progress-25)/100)*360;
-        $(".animate-0-25-b").css("transform","rotate(0deg)");
-        $(".animate-25-50-b").css("transform","rotate("+angle+"deg)");
+        $("#"+el.attr('id')+" .animate-0-25-b").css("transform","rotate(0deg)");
+        $("#"+el.attr('id')+" .animate-25-50-b").css("transform","rotate("+angle+"deg)");
     }
     else if(progress>=50 && progress<75){
         var angle = -90 + ((progress-50)/100)*360;
-        $(".animate-25-50-b, .animate-0-25-b").css("transform","rotate(0deg)");
-        $(".animate-50-75-b").css("transform","rotate("+angle+"deg)");
+        $("#"+el.attr('id')+" .animate-25-50-b, .animate-0-25-b").css("transform","rotate(0deg)");
+        $("#"+el.attr('id')+" .animate-50-75-b").css("transform","rotate("+angle+"deg)");
     }
     else if(progress>=75 && progress<=100){
         var angle = -90 + ((progress-75)/100)*360;
-        $(".animate-50-75-b, .animate-25-50-b, .animate-0-25-b")
+        $("#"+el.attr('id')+" .animate-50-75-b, .animate-25-50-b, .animate-0-25-b")
                                               .css("transform","rotate(0deg)");
-        $(".animate-75-100-b").css("transform","rotate("+angle+"deg)");
+        $("#"+el.attr('id')+" .animate-75-100-b").css("transform","rotate("+angle+"deg)");
     }
-    $(".btext").html(progress+"%");
+    
+    $("#"+el.attr('id')+" .btext").html(progress+"%");
+    
 }
-// $( document ).ready(function() {
-//         $('#myStathalf').circliful();
-// 		$('#myStat').circliful();
-// 		$('#myStathalf2').circliful();
-// 		$('#myStat2').circliful();
-//     });
-// $(".knob").val(90);
-// $(".knob").knob({
-// 				'fgColor':'#c65862',
-// 				'lineCap' : 'round',
-// 				'thickness' : 0.1,
-// 				'width' : '75%',
-// 				'height' : '75%',
-//                 /*change : function (value) {
-//                     //console.log("change : " + value);
-//                 },
-//                 release : function (value) {
-//                     console.log("release : " + value);
-//                 },
-//                 cancel : function () {
-//                     console.log("cancel : " + this.value);
-//                 },*/
-//                 draw : function () {
-
-//                     // "tron" case
-//                     if(this.$.data('skin') == 'tron') {
-
-//                         var a = this.angle(this.cv)  // Angle
-//                             , sa = this.startAngle          // Previous start angle
-//                             , sat = this.startAngle         // Start angle
-//                             , ea                            // Previous end angle
-//                             , eat = sat + a                 // End angle
-//                             , r = true;
-
-//                         this.g.lineWidth = this.lineWidth;
-
-//                         this.o.cursor
-//                             && (sat = eat - 0.3)
-//                             && (eat = eat + 0.3);
-
-//                         if (this.o.displayPrevious) {
-//                             ea = this.startAngle + this.angle(this.value);
-//                             this.o.cursor
-//                                 && (sa = ea - 0.3)
-//                                 && (ea = ea + 0.3);
-//                             this.g.beginPath();
-//                             this.g.strokeStyle = this.previousColor;
-//                             this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
-//                             this.g.stroke();
-//                         }
-
-//                         this.g.beginPath();
-//                         this.g.strokeStyle = r ? this.o.fgColor : this.fgColor ;
-//                         this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
-//                         this.g.stroke();
-
-//                         this.g.lineWidth = 2;
-//                         this.g.beginPath();
-//                         this.g.strokeStyle = this.o.fgColor;
-//                         this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-//                         this.g.stroke();
-
-//                         return false;
-//                     }
-//                 }
-//             });
 </script>

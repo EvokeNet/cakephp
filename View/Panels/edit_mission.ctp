@@ -438,13 +438,33 @@
 								<div class="content active" id="novel_launcher">
 									<h3>Setting up the launcher should be easy!</h3>
 									<?php 
-										echo $this->Form->create('Novel', array(
+										echo $this->Form->create('Launcher', array(
 					 					   		'url' => array(
 					 					   			'controller' => 'panels',
-					 					   			'action' => 'novelLauncher', $id, 'edit_mission'
+					 					   			'action' => 'novelLauncher', $id
 					 					   		),
 					 					   		'enctype' => 'multipart/form-data'
 										));
+										$tmp = 0;
+										foreach ($phases as $phase) {
+											echo '<fieldset><legend>'.$phase['Phase']['name']. ' '.__('launcher').'</legend>';
+										
+											if(isset($launchers[$phase['Phase']['id']])) {
+												echo $this->Form->hidden($tmp.'.id', array('value' => $launchers[$phase['Phase']['id']]['id']));
+												echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$launchers[$phase['Phase']['id']]['image_dir'].'/thumb_'.$launchers[$phase['Phase']['id']]['image_name'] . '"/>';
+											}
+
+											echo $this->Form->hidden($tmp.'.phase_id', array('value' => $phase['Phase']['id']));
+
+											echo '<div class="input file"><label for="Launcher'.$tmp.'Attachment0Attachment">Set Launcher Image</label><input type="file" name="data[Launcher]['.$tmp.'][Attachment][0][attachment]" id="Launcher'.$tmp.'Attachment0Attachment"></div>';
+
+											echo '</fieldset>';
+											$tmp++;
+										}
+
+										echo '<button class="button small" type="submit">'. __('Save Launchers') . '</button>';
+
+										echo $this->Form->end();
 									?>
 								</div>
 								<div class="content" id="novel_en">

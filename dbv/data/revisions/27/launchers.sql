@@ -1,0 +1,1 @@
+ALTER TABLE  `launchers` ADD  `phase_id` INT( 16 ) UNSIGNED NOT NULL AFTER  `mission_id`
