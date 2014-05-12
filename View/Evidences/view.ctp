@@ -91,8 +91,8 @@
 		 	<div class = "evoke evidence-body view">
 			  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
 			  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
-			  	<?php echo urldecode($evidence['Evidence']['content']); ?>
-			  	
+			  	<div class = "imgtag"><?php echo urldecode($evidence['Evidence']['content']); ?></div>
+
 			  	<?php if(!empty($attachments)) :?>
 			  		<h4><?= __("Evidence's attachments:")?></h4>
 			  		<?php 
@@ -235,6 +235,7 @@
 	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->script('facebook_share', array('inline' => false));
 	echo $this->Html->script('google_share', array('inline' => false));
+	echo $this->Html->script('target_blank', array('inline' => false));
 
 ?>
 
