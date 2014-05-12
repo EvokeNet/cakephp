@@ -324,24 +324,31 @@ class MissionsController extends AppController {
 		}
 
 		$this->loadModel('Launcher');
-		$launcher = $this->Launcher->find('first', array(
+		$launcher = $this->Launcher->find('all', array(
 			'conditions' => array(
 				'Launcher.mission_id' => $id
 			)
 		));
 
-		$launcherImg = array();
-		if(!empty($launcher)) {
-			$this->loadModel('Attachment');
+		$launchers = array();
+		foreach ($launcher as $lkey => $l) {
 			$launcherImg = $this->Attachment->find('first', array(
 				'order' => array(
 					'Attachment.id Desc'
 				),
 				'conditions' => array(
 					'Attachment.model' => 'Launcher',
-					'Attachment.foreign_key' => $launcher['Launcher']['id']
+					'Attachment.foreign_key' => $l['Launcher']['id']
 				)
-			));
+			));	
+			$launcher[$lkey]['Launcher']['image_dir'] = null;
+			$launcher[$lkey]['Launcher']['image_name'] = null;
+			if(!empty($launcherImg)){
+				$launcher[$lkey]['Launcher']['image_dir'] = $launcherImg['Attachment']['dir'];
+				$launcher[$lkey]['Launcher']['image_name'] = $launcherImg['Attachment']['attachment'];
+			}
+
+			$launchers[$l['Launcher']['phase_id']] = $launcher[$lkey]['Launcher'];
 		}
 
 		if($flags['_es'])
@@ -516,7 +523,7 @@ class MissionsController extends AppController {
 		}
 
 
-		$this->set(compact('launcherImg', 'allBadges', 'allPowerPoints', 'checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
+		$this->set(compact('launchers', 'allBadges', 'allPowerPoints', 'checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
 			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 

@@ -44,15 +44,15 @@ class Launcher extends AppModel {
         }
 
         if(isset($image)) {
+
         	$image['foreign_key'] = $insert['Launcher']['id'];
         	$photo['Attachment'] = $image;
-	        if (!$this->Attachment->save($photo)) {
-	        	return false;
+            $this->Attachment->create();
+	        if ($this->Attachment->save($photo)) {
+	        	return true;
 	        }
+            unset($image);
 	    }
-        if ($this->save($insert)) {
-         	return true;
-        }
 
         //return false;
         // Throw an exception for the controller

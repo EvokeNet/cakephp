@@ -45,13 +45,13 @@
 
 		 				<li class="clearing-featured-img ">
 		 					<div class = "evoke missions graphic-cover-img">
-			 					<?php if(empty($launcherImg)) :?>
+			 					<?php if(is_null($launchers[$missionPhase['Phase']['id']]['image_dir'])) :?>
 				 					<a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
 				 						<img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
 			 						</a>
 			 					<?php else:?>
-			 						<a href="<?= $this->webroot.'files/attachment/attachment/'.$launcherImg['Attachment']['dir'].'/'.$launcherImg['Attachment']['attachment'] ?>">
-				 						<img src="<?= $this->webroot.'files/attachment/attachment/'.$launcherImg['Attachment']['dir'].'/'.$launcherImg['Attachment']['attachment'] ?>"/>
+			 						<a href="<?= $this->webroot.'files/attachment/attachment/'.$launchers[$missionPhase['Phase']['id']]['image_dir'].'/'.$launchers[$missionPhase['Phase']['id']]['image_name'] ?>">
+				 						<img src="<?= $this->webroot.'files/attachment/attachment/'.$launchers[$missionPhase['Phase']['id']]['image_dir'].'/'.$launchers[$missionPhase['Phase']['id']]['image_name'] ?>"/>
 			 						</a>
 			 					<?php endif;?>
 	 						</div>
