@@ -10,7 +10,7 @@ class PanelsController extends AppController {
 	public $components = array('Paginator','Access');
 	public $uses = array('User', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 'DossierLink', 
 	 'DossierVideo', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire', 'Question', 'Answer', 'Attachment', 
-	 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level', 'AdminNotification', 'Novel');
+	 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level', 'AdminNotification', 'Novel', 'Launcher');
 	public $user = null;
 	public $helpers = array('Media.Media', 'Chosen.Chosen');
 
@@ -435,6 +435,33 @@ class PanelsController extends AppController {
 			)
 		));	
 
+		$launcher = $this->Launcher->find('all', array(
+			'conditions' => array(
+				'Launcher.mission_id' => $id
+			)
+		));
+
+		$launchers = array();
+		foreach ($launcher as $lkey => $l) {
+			$launcherImg = $this->Attachment->find('first', array(
+				'order' => array(
+					'Attachment.id Desc'
+				),
+				'conditions' => array(
+					'Attachment.model' => 'Launcher',
+					'Attachment.foreign_key' => $l['Launcher']['id']
+				)
+			));	
+			$launcher[$lkey]['Launcher']['image_dir'] = null;
+			$launcher[$lkey]['Launcher']['image_name'] = null;
+			if(!empty($launcherImg)){
+				$launcher[$lkey]['Launcher']['image_dir'] = $launcherImg['Attachment']['dir'];
+				$launcher[$lkey]['Launcher']['image_name'] = $launcherImg['Attachment']['attachment'];
+			}
+
+			$launchers[$l['Launcher']['phase_id']] = $launcher[$lkey]['Launcher'];
+		}
+
 		$novels_en = $this->Novel->find('all', array(
 			'order' => array(
 				'Novel.page Asc'
@@ -558,7 +585,7 @@ class PanelsController extends AppController {
 		debug($newQuest);*/
 
 		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 
-			'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en', 'dossier_links', 'dossier_videos',
+			'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en', 'dossier_links', 'dossier_videos', 'launchers',
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
@@ -666,6 +693,36 @@ class PanelsController extends AppController {
 			$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
 		else 
 			$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
+	}
+
+
+	function novelLauncher($id) {
+		// debug($this->request->data['Launcher']);
+		// die();
+		if(isset($this->request->data['Launcher'])) {
+			foreach ($this->request->data['Launcher'] as $launcher) {
+			
+				$att['Attachment'] = $launcher['Attachment'];
+				$att['Launcher']['mission_id'] = $id;
+				$att['Launcher']['phase_id'] = $launcher['phase_id'];
+				if($att['Attachment'][0]['attachment']['error'] != 0)
+					// return $this->redirect(array('action' => 'edit_mission', $id, 'novel'));
+					continue;
+				
+				if(!isset($launcher['id'])) {
+					// debug($att);
+					$this->Launcher->createWithAttachments($att);
+				} else {
+					$att['Launcher']['id'] = $att['id'];
+					$this->Launcher->createWithAttachments($att, true, $att['id']);
+					// debug($att);
+					// unset($att['Launcher']['id']);
+				}
+			}
+			// die();
+		}
+		
+		$this->redirect(array('action' => 'edit_mission', $id,'novel'));
 	}
 
 	function novel($id, $origin = 'add_mission'){

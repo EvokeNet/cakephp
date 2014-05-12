@@ -33,6 +33,7 @@
 						<li>
 							<?php //$badges[$b]['Badge']['UserPercentage'] = 0.3;?>
 							<?php if(isset($badge['Badge']['img_dir'])) : ?>
+
 								<?php if($badge['Badge']['power_points_only'] == 1) : ?>
 									<div id="<?=$badge['Badge']['id']?>" class="evoke default view view-first">
 					                    
@@ -79,6 +80,7 @@
 					            <?php else :?>
 					            	<img src = '<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>'>
 					        	<?php endif;?>
+
 							<?php else: ?>
 								<?php if($badge['Badge']['power_points_only'] == 1) : ?>
 									<div id="<?=$badge['Badge']['id']?>" class="evoke default view view-first">
@@ -132,7 +134,7 @@
 								if($badge['Badge']['owns'] != 1)
 									$owned = '';
 							?>
-							<h1><?= $badge['Badge']['name'] . $owned;?></h1>
+							<h1><?= $badge['Badge']['name'] ?></h1>
 				  			
 							
 				  			<?php foreach ($badge['Badge']['PowerPoints'] as $bpp) : ?>
