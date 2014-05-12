@@ -116,7 +116,7 @@ class MissionsController extends AppController {
 			$this->redirect(array('controller' => 'missions', 'action' => 'view', $id, 1));
 
 		if($phase_number > count($missionPhases)) {
-			$this->Session->setFlash(__("This mission/phase does not exist!"));
+			$this->Session->setFlash(__("There are no phases for this mission"), 'flash_message');
 			$this->redirect($this->referer());
 		}
 
@@ -234,6 +234,31 @@ class MissionsController extends AppController {
 			));
 		}
 
+		//getting power points from evoke to display the ones related to quests in quests' lightboxes
+		$this->loadModel('PowerPoint');
+		$tmp = $this->PowerPoint->find('all');
+		$allPowerPoints = array(); //will contain all evoke's powerpoints with the first index as their id's (i.e. the power point with id 33 will be at $allPowerPoints[33])
+		foreach ($tmp as $tmpKey => $tmpPP) {
+			if($flags['_es']) {
+				$tmp[$tmpKey]['PowerPoint']['name']	= $tmp[$tmpKey]['PowerPoint']['name_es'];
+				$tmp[$tmpKey]['PowerPoint']['description']	= $tmp[$tmpKey]['PowerPoint']['description_es'];
+			}
+			$allPowerPoints[$tmpPP['PowerPoint']['id']] = $tmp[$tmpKey];
+		}
+
+
+		//getting badges from evoke to display the ones related to quests in quests' lightboxes
+		$this->loadModel('Badge');
+		$tmp = $this->Badge->find('all');
+		$allBadges = array(); //will contain all evoke's badges with the first index as their id's (i.e. the badge with id 33 will be at $allBadges[33])
+		foreach ($tmp as $tmpKey => $tmpB) {
+			if($flags['_es']) {
+				$tmp[$tmpKey]['Badge']['name']	= $tmp[$tmpKey]['Badge']['name_es'];
+				$tmp[$tmpKey]['Badge']['description']	= $tmp[$tmpKey]['Badge']['description_es'];
+			}
+			$allBadges[$tmpB['Badge']['id']] = $tmp[$tmpKey];
+		}
+
 		//retrieving all ids from quests of this mission..
 		$my_quests_id = array();
 		$my_quests_id2 = array();
@@ -296,6 +321,34 @@ class MissionsController extends AppController {
 			));
 		} else {
 			$dossier_files = array();
+		}
+
+		$this->loadModel('Launcher');
+		$launcher = $this->Launcher->find('all', array(
+			'conditions' => array(
+				'Launcher.mission_id' => $id
+			)
+		));
+
+		$launchers = array();
+		foreach ($launcher as $lkey => $l) {
+			$launcherImg = $this->Attachment->find('first', array(
+				'order' => array(
+					'Attachment.id Desc'
+				),
+				'conditions' => array(
+					'Attachment.model' => 'Launcher',
+					'Attachment.foreign_key' => $l['Launcher']['id']
+				)
+			));	
+			$launcher[$lkey]['Launcher']['image_dir'] = null;
+			$launcher[$lkey]['Launcher']['image_name'] = null;
+			if(!empty($launcherImg)){
+				$launcher[$lkey]['Launcher']['image_dir'] = $launcherImg['Attachment']['dir'];
+				$launcher[$lkey]['Launcher']['image_name'] = $launcherImg['Attachment']['attachment'];
+			}
+
+			$launchers[$l['Launcher']['phase_id']] = $launcher[$lkey]['Launcher'];
 		}
 
 		if($flags['_es'])
@@ -551,18 +604,17 @@ class MissionsController extends AppController {
 			));
 		}
 
-
-		$this->set(compact('checklist_done', 'checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
+		$this->set(compact('launchers', 'allBadges', 'allPowerPoints', 'checklist_done', 'checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
 			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 
 		// if(isset($prevMP['Phase']['id']) && ((($completed[$prevMP['Phase']['id']] * 100)/$total[$prevMP['Phase']['id']]) != 100)) 
 		// 	return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
-		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 1) && $completed[$prevMP['Phase']['id']] < 2){
+		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 1) && $completed[$prevMP['Phase']['id']] < 2 && $user['User']['role_id'] < 2){
 			$this->Session->setFlash(__('You need to finish at least to quests to complete Basic Training'), 'flash_message');
 			return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
 		}
-		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 0) && $completed[$prevMP['Phase']['id']] < 1){
+		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 0) && $completed[$prevMP['Phase']['id']] < 1 && $user['User']['role_id'] < 2){
 			$this->Session->setFlash(__('You need to finish at least one quest to go to next phase'), 'flash_message');
 			return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
 		}

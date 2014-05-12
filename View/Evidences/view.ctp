@@ -31,7 +31,7 @@
 
 	<div class="evoke default row full-width-alternate">
 
-	  <div class="small-2 medium-2 large-2 columns">
+	  <div class="small-2 medium-2 large-2 columns padding-left">
 	  	<?php echo $this->element('menu', array('user' => $user));?>
 	  </div>
 
@@ -51,7 +51,12 @@
 		  	<div class="evoke evidence-tag text-align">
 		  		
 		  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
-					<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+					<?php if($evidence['User']['facebook_id'] == null) : ?>
+						<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+					<?php else : ?>	
+						<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+					<?php endif; ?>
+
 				<?php else : ?>
 					<img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
 				<?php endif; ?>
@@ -72,11 +77,11 @@
 
 				<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
 
-					<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Evidence');?></a></div>
+					<div class = "evoke evidence padding bottom-1"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Evidence');?></a></div>
 				<?php endif; ?>
 
 				<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
-					<div class = "evoke evidence"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Delete Evidence');?></a></div>
+					<div class = "evoke evidence padding bottom-1"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Delete Evidence');?></a></div>
 
 				<?php endif; ?>
 
@@ -86,8 +91,8 @@
 		 	<div class = "evoke evidence-body view">
 			  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
 			  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
-			  	<?php echo urldecode($evidence['Evidence']['content']); ?>
-			  	
+			  	<div class = "imgtag"><?php echo urldecode($evidence['Evidence']['content']); ?></div>
+
 			  	<?php if(!empty($attachments)) :?>
 			  		<h4><?= __("Evidence's attachments:")?></h4>
 			  		<?php 
@@ -95,7 +100,7 @@
 			  			$pdfs = array();
 			  			foreach ($attachments as $attachment) :
 			  				$type = explode('/', $attachment['Attachment']['type']);
-							if($type[0] == 'application'): 
+							if($type[0] == 'application' && $type[1] != 'octet-stream'): 
 								$pdfs[] = $attachment;
 							else :
 								if($type[0] == 'image')
@@ -144,12 +149,13 @@
 				  	
 				<?php endif ?>
 
+			  	<div class="row full-width-alternate comment-blocks">
+				  <div class="large-8 columns"><h2><?= strtoupper(__('Share a Thought')) ?></h2></div>
+				  <div class="large-4 columns">
+				  	<a href ="#" class= "evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<h6><?= __('Comment');?></h6></a>
+				  </div>
+				</div>
 
-			  	<!-- <div class = "evoke titles"><h2><?php echo __('Share a Thought').$comments_count; ?></h2></div> -->
-
-			  	<?php //echo $this->element('left_titlebar', array('title' => (__('Share a thought').$comments_count))); ?>
-
-			  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
 			  	<?php foreach ($comment as $c): 
 						echo $this->element('comment_box', array('c' => $c, 'user' => $user));
 		  			endforeach; 
@@ -229,7 +235,7 @@
 	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->script('facebook_share', array('inline' => false));
 	echo $this->Html->script('google_share', array('inline' => false));
-
+	echo $this->Html->script('target_blank', array('inline' => false));
 
 ?>
 

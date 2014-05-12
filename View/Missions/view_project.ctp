@@ -24,7 +24,7 @@
 	<?php echo $this->Session->flash(); ?>
 
 	<div class="evoke default row full-width-alternate">
-		<div class = "small-2 medium-2 large-2 columns">
+		<div class = "small-2 medium-2 large-2 columns padding-left">
 			<?php echo $this->element('menu', array('user' => $user));?>
 		</div>
 		<div class = "small-9 medium-9 large-9 columns maincolumn">
@@ -35,9 +35,15 @@
 
 		 				<li class="clearing-featured-img ">
 		 					<div class = "evoke missions graphic-cover-img">
-			 					<a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
-			 						<img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
-		 						</a>
+			 					<?php if(is_null($launchers[$missionPhase['Phase']['id']]['image_dir'])) :?>
+				 					<a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
+				 						<img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
+			 						</a>
+			 					<?php else:?>
+			 						<a href="<?= $this->webroot.'files/attachment/attachment/'.$launchers[$missionPhase['Phase']['id']]['image_dir'].'/'.$launchers[$missionPhase['Phase']['id']]['image_name'] ?>">
+				 						<img src="<?= $this->webroot.'files/attachment/attachment/'.$launchers[$missionPhase['Phase']['id']]['image_dir'].'/'.$launchers[$missionPhase['Phase']['id']]['image_name'] ?>"/>
+			 						</a>
+			 					<?php endif;?>
 	 						</div>
  						</li>
 		 				
@@ -47,19 +53,7 @@
 
 					</ul>
 					<!-- <img src = '<?= $this->webroot.'img/episodio10.jpg' ?>'> -->
-					<div class = "evoke ribbon-position">
-				  		<div class="ribbon-wrapper">
-							<div class="ribbon-front">
-								<?= __('Graphic Novel') ?>
-							</div>
-							<div class="ribbon-edge-topleft"></div>
-							<div class="ribbon-edge-topright"></div>
-							<div class="ribbon-edge-bottomleft"></div>
-							<div class="ribbon-edge-bottomright"></div>
-							<div class="ribbon-back-left"></div>
-							<div class="ribbon-back-right"></div>
-						</div>
-					</div>
+					
 				<?php endif ?>
 			</div>
 
@@ -67,9 +61,11 @@
 				<h3> <?= strtoupper($mission['Mission']['title']) ?> </h3>
 				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
-					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "width: 100%; height:22vw">
+
+					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "height:22vw; width:100%">
                 <?php else :?>
-					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "width: 100%; height:22vw">
+					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "height:22vw; width:100%">
+
                 <?php endif ?>
 			</div>
 
@@ -95,60 +91,21 @@
 				  </div>
 				  <div class="content" id="panel2-2">
 				    <ul class="small-block-grid-4">
-
-						<?php foreach($quests as $q):
-							//only add to checklist quests that are mandatory
-							if($q['Quest']['mandatory'] != 1) continue;
-							
-							$evidence_exists = false;
-							//if it was an 'evidence' type quest
-							foreach($my_evidences as $e):
-								if($q['Quest']['id'] == $e['Quest']['id']) {$evidence_exists = true; break;}
-							endforeach;
-
-							//if it was a questionnaire type quest
-							foreach($questionnaires as $questionnaire):
-								foreach ($previous_answers as $previous_answer) {
-									if($q['Quest']['id'] == $questionnaire['Quest']['id'] && $questionnaire['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {$evidence_exists = true; break;}
-								}
-							endforeach;
-
-							//if its a group type quest, check to see if user owns or belongs to a group of this mission
-							if($q['Quest']['type'] == 3) {
-								if($hasGroup) {
-									$evidence_exists = true;
-								}
-							}
-
-							//debug($previous_answers);
-							if($evidence_exists):?>
-								<li>
-									<div class = "quests" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-										<h1><?= $q['Quest']['title']?></h1>
-									</div>
+						<?php foreach($quests as $q): ?>
+							<li>
+								<div class = "quests" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+									<h1><?= $q['Quest']['title']?></h1>
+								</div>
 								
 
 								<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
-								  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
-								  <a class="evoke mission close-reveal-modal">&#215;</a>
+									<?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers, 
+										'allPowerPoints' => $allPowerPoints, 'allBadges' => $allBadges))?>
+									<a class="evoke mission close-reveal-modal">&#215;</a>
 								</div>
-								</li>
-							<?php else: ?>
-								<li>
-									<div class = "quests" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
-										<h1><?= $q['Quest']['title']?></h1>
-									</div>
-								
-
-								<div id="<?= $q['Quest']['id'] ?>" class="reveal-modal large evoke lightbox" data-reveal>
-								  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers))?>
-								  <a class="evoke mission close-reveal-modal">&#215;</a>
-								</div>
-								</li>
-							<?php endif; 
-
-						endforeach; ?>
-
+							</li>
+						
+						<?php endforeach; ?>
 	                </ul>
 				  </div>
 				  <div class="content dossier" id="panel2-3">

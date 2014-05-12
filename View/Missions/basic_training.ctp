@@ -33,7 +33,7 @@
 		  <div class="small-3 small-centered columns" id="numero"></div>
 		</div>
 
-		<div class = "small-2 medium-2 large-2 columns">
+		<div class = "small-2 medium-2 large-2 columns padding-left">
 			<?php echo $this->element('menu', array('user' => $user));?>
 		</div>
 
@@ -45,9 +45,15 @@
 
 		 				<li class="clearing-featured-img ">
 		 					<div class = "evoke missions graphic-cover-img">
-			 					<a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
-			 						<img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
-		 						</a>
+			 					<?php if(is_null($launchers[$missionPhase['Phase']['id']]['image_dir'])) :?>
+				 					<a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
+				 						<img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
+			 						</a>
+			 					<?php else:?>
+			 						<a href="<?= $this->webroot.'files/attachment/attachment/'.$launchers[$missionPhase['Phase']['id']]['image_dir'].'/'.$launchers[$missionPhase['Phase']['id']]['image_name'] ?>">
+				 						<img src="<?= $this->webroot.'files/attachment/attachment/'.$launchers[$missionPhase['Phase']['id']]['image_dir'].'/'.$launchers[$missionPhase['Phase']['id']]['image_name'] ?>"/>
+			 						</a>
+			 					<?php endif;?>
 	 						</div>
  						</li>
 		 				
@@ -57,19 +63,7 @@
 
 					</ul>
 					<!-- <img src = '<?= $this->webroot.'img/episodio10.jpg' ?>'> -->
-					<div class = "evoke ribbon-position">
-				  		<div class="ribbon-wrapper">
-							<div class="ribbon-front">
-								<?= __('Graphic Novel') ?>
-							</div>
-							<div class="ribbon-edge-topleft"></div>
-							<div class="ribbon-edge-topright"></div>
-							<div class="ribbon-edge-bottomleft"></div>
-							<div class="ribbon-edge-bottomright"></div>
-							<div class="ribbon-back-left"></div>
-							<div class="ribbon-back-right"></div>
-						</div>
-					</div>
+					
 				<?php endif ?>
 			</div>
 
@@ -77,9 +71,11 @@
 				<h3 id="numero1"> <?= strtoupper($mission['Mission']['title']) ?> </h3>
 				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
-					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "width: 100%; height:22vw">
+
+					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "height:22vw; width:100%">
                 <?php else :?>
-					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "width: 100%; height:22vw">
+					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "height:22vw; width:100%">
+
                 <?php endif ?>
 			</div>
 

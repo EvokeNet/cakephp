@@ -18,14 +18,6 @@
 
 <section class="evoke default-background">
 
-	<?php 
-		// for ($i=0; $i < 2; $i++) { 
-			// debug($this->Session->flash('admin-1')); 
-			echo $this->Session->flash(); 
-			
-		// }
-	?>
-
 	<div id="secondModal" class="reveal-modal" data-reveal>
 	  <h2>This is a second modal.</h2>
 	  <p>See? It just slides into place after the other first modal. Very handy when you need subsequent dialogs, or when a modal option impacts or requires another decision.</p>
@@ -34,11 +26,12 @@
 
 	<div class="evoke default row full-width-alternate">
 
-	  <div class="small-2 medium-2 large-2 columns">
+	  <div class="small-2 medium-2 large-2 columns padding-left">
 	  	<?php echo $this->element('menu', array('user' => $users));?>
 	  </div>
 
 	  <div class="small-6 medium-6 large-6 columns padding top-2 maincolumn">
+	  	<?php echo $this->Session->flash(); ?>
 	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
 	  	  <div id="pattern" class="pattern">
   			<div class="c">
@@ -51,7 +44,7 @@
 								<li>
 									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1))?>">
 
-										<img src="<?= $this->webroot.'files/attachment/attachment/'.$basic_training['Mission']['cover_dir'].'/'.$basic_training['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px;">
+										<img src="<?= $this->webroot.'files/attachment/attachment/'.$basic_training['Mission']['cover_dir'].'/'.$basic_training['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px; width:100%">
 										<h1><?= $basic_training['Mission']['title'] ?> </h1>
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
@@ -63,7 +56,7 @@
 			                <?php else :?>
 								<li>
 									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1))?>">
-										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px;">
+										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px; width:100%">
 										<h1><?= $basic_training['Mission']['title'] ?> </h1>
 										<!-- <div class="summary">
 											<h2>This is the first title</h2>
@@ -83,7 +76,7 @@
 									<li>
 										<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
 
-											<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px;">
+											<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px; width:100%">
 											<h1><?= $mission['Mission']['title'] ?> </h1>
 											<!-- <div class="summary">
 												<h2>This is the first title</h2>
@@ -96,7 +89,7 @@
 
 									<li>
 										<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
-											<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px;">
+											<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px; width:100%">
 											<h1><?= $mission['Mission']['title'] ?> </h1>
 
 											<!-- <div class="summary">
@@ -178,7 +171,7 @@
 	  <div class="small-3 medium-3 large-3 columns padding top-2 evoke no-left-padding no-right-padding">
 	  	
 	  	<h3> <?= strtoupper(__('Feed')) ?> </h3>
-	  	<div class = "evoke content-block padding">
+	  	<div class = "evoke content-block padding profile feed">
 	  		
 	  		<?php if(!$notifies): ?>
 
@@ -194,7 +187,12 @@
 					<li>
 
 						<?php if($n['User']['photo_attachment'] == null) : ?>
-							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+							<?php if($n['User']['facebook_id'] == null) : ?>
+								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+							<?php else : ?>	
+								<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+							<?php endif; ?>
+
 			  			<?php else : ?>
 			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 			  			<?php endif; ?>
@@ -208,7 +206,11 @@
 					<li>
 
 					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php if($n['User']['facebook_id'] == null) : ?>
+							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+						<?php else : ?>	
+							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php endif; ?>
 		  			<?php else : ?>
 		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 		  			<?php endif; ?>
@@ -220,7 +222,11 @@
 				<?php if($n['Notification']['origin'] == 'userUpdate'):?>						
 					<li>
 					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php if($n['User']['facebook_id'] == null) : ?>
+								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+						<?php else : ?>	
+							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php endif; ?>
 		  			<?php else : ?>
 		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 		  			<?php endif; ?>	
@@ -248,7 +254,11 @@
 					?>						
 					<li>
 					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php if($n['User']['facebook_id'] == null) : ?>
+							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+						<?php else : ?>	
+							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php endif; ?>
 		  			<?php else : ?>
 		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 		  			<?php endif; ?>
@@ -258,7 +268,11 @@
 				<?php if($n['Notification']['origin'] == 'commentEvidence'):?>						
 					<li>
 					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php if($n['User']['facebook_id'] == null) : ?>
+							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+						<?php else : ?>	
+							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php endif; ?>
 		  			<?php else : ?>
 		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 		  			<?php endif; ?>

@@ -1,40 +1,118 @@
 <?php
 	$this->extend('/Common/topbar');
 	$this->start('menu');
-
-	echo $this->element('header', array('user' => $user));
-	$this->end(); 
-	
 ?>
 
-<section class="margin top-2">
-	<div class="row max-width">
-		<div class="large-12 columns">
-			<dl class="tabs" data-tab>
-				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><?= __('Organizations') ?></a></dd>
-				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><?= __('Missions') ?></a></dd>
+<div class="evoke panels contain-to-grid top-bar-background panels-bg">
+  <nav class="top-bar row full-width-alternate" data-topbar>
+    <ul class="title-area">
+	    <li class="name">
+	      <h1><a href="#"><?= ('Evoke') ?></a></h1>
+	    </li>
+	     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	  </ul>
+
+	  <section class="top-bar-section">
+	    <!-- Right Nav Section -->
+	    <ul class="right top-bar-background">
+
+	      <li class="active">
+	      	<a href="#">
+	      		<?php if($user['User']['photo_attachment'] == null) : ?>
+					<?php if($user['User']['facebook_id'] == null) : ?>
+						<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+					<?php else : ?>	
+						<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+					<?php endif; ?>
+					
+	  			<?php else : ?>
+	  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+	  			<?php endif; ?>		
+	      	</a>
+      	  </li>
+
+	     <!--  <li class="active" id = "top-bar-name">
+
+	      	<?php if(isset($user['User'])) :?>
+				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'profile', $user['User']['id'])); ?>"><span><?= $user['User']['name'] ?></span></a>
+			<?php else :?>
+				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'login')); ?>"><span><?= __('Unidentified Agent, please login') ?></span></a>
+			<?php endif; ?>
+
+      	  </li> -->
+
+	      <li class="has-dropdown">
+	        <a href="#">
+	        	<?php if(isset($user['User'])) :?>
+					<span><?= $user['User']['name'] ?></span>
+				<?php else :?>
+					<span><?= __('Unidentified Agent, please login') ?></span>
+				<?php endif; ?>
+	        </a>
+	        <ul class="dropdown">
+	          	<?php if(isset($user['User'])) :?>
+					<li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $user['User']['id'])) ?>"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;<?= __('See profile') ?></a></li>
+	          		<li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'logout')) ?>"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;&nbsp;<?= __('Sign Out') ?></a></li>
+				<?php else :?>
+					 <li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'login')) ?>"><?= __('Log in') ?></a></li>
+				<?php endif; ?>
+
+	        </ul>
+	      </li>
+
+	      <li class="evoke divider"></li>
+
+	      <li class="has-dropdown">
+	        <a href="#"><?= __('Language') ?></a>
+	        <ul class="dropdown">
+	          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'en')) ?>"><?= __('English') ?></a></li>
+	          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'es')) ?>"><?= __('Spanish') ?></a></li>
+	        </ul>
+	      </li>
+
+	    </ul>
+
+	    <!-- Left Nav Section -->
+	    <!-- <ul class="left">
+	      <li><a href="#">Left Nav Button</a></li>
+	    </ul> -->
+	  </section>
+  </nav>
+</div>
+
+<?php $this->end(); ?>
+
+<section>
+	<div class="panels row full-width-alternate">
+			<dl class="panels tabs vertical" data-tab>
+				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><i class="fa fa-briefcase fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Organizations')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><i class="fa fa-folder-open-o fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Missions')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 				<?php if($flags['_admin']) : ?>
-					<dd class="<?php echo $issues_tab; ?>"><a href="#issues"><?= __('Issues') ?></a></dd>
-					<dd class="<?php echo $levels_tab; ?>"><a href="#levels"><?= __('Levels') ?></a></dd>
-					<dd class="<?php echo $powerpoints_tab; ?>"><a href="#powerpoints"><?= __('Power Points') ?></a></dd>
+					<dd class="<?php echo $issues_tab; ?>"><a href="#issues"><i class="fa fa-list-ul fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Issues')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $levels_tab; ?>"><a href="#levels"><i class="fa fa-trophy fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Levels')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $powerpoints_tab; ?>"><a href="#powerpoints"><i class="fa fa-star-o fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Power Points')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 				<?php endif; ?>	
-				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
-				<dd class="<?php echo $users_tab; ?>"><a href="#users"><?= __('Users') ?></a></dd>
+				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><i class="fa fa-shield fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Badges')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+				<dd class="<?php echo $users_tab; ?>"><a href="#users"><i class="fa fa-users fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Users')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 				<?php if($flags['_admin']) : ?>
-					<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><?= __('Evokations') ?></a></dd>
-					<dd class="<?php echo $media_tab; ?>"><a href="#media"><?= __('Notifications & Media') ?></a></dd>
-					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><?= __('General Settings') ?></a></dd>
+					<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><i class="fa fa-inbox fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Evokations')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $media_tab; ?>"><a href="#media"><i class="fa fa-exclamation-circle fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Notifications & Media')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><i class="fa fa-cogs fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('General Settings')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 				<?php endif; ?>	
-				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><?= __('Statistics') ?></a></dd>
+				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><i class="fa fa-bar-chart-o fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Statistics')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 			</dl>
-			<div class="tabs-content">
+			<div class="panels tabs-content vertical padding top-2">
 				<div class="content <?php echo $organizations_tab; ?>" id="organizations">
-					<div class="large-10 columns">
+					
 						<?php foreach ($organizations as $organization) { ?>
 								<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert', 'id' => 'orgsDelete'.$organization['Organization']['id'], 'style' => 'display:none' )); ?>
 						<?php }	?>
 
-						<button class="button" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></button>
+						<!-- <button class="button" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></button> -->
+
+						<a href ="#" class="button general" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></a>
+
 						<div id="myModalOrganization" class="reveal-modal tiny" data-reveal>
 							<?php echo $this->Form->create('Organization', array(
 	 						   		'url' => array(
@@ -89,12 +167,14 @@
 							<a class="close-reveal-modal">&#215;</a>
 						</div>
 						<div id="OrganizationsHolder"></div>
-					</div>
+					
 				</div>
 				<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
 					<div class="large-10 columns">
-						<?php echo $this->Html->Link(__('Add new Mission'), array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?>
+						<?php //echo $this->Html->Link(__('Add new Mission'), array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?>
 				  		
+				  		<a href ="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'add_mission')) ?>" class="button general"><?php echo __('New Mission');?></a>
+
 					  		<!-- creating delete post buttons to be referenced at js -->
 					  		<?php foreach ($missions_issues as $mi) : ?>
 					  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteMission'.$mi['Mission']['id'], 'style' => 'display:none')); ?>
@@ -105,7 +185,10 @@
 				</div>
 				<div class="content <?php echo $issues_tab; ?>" id="issues">
 					<div class="large-10 columns">
-			  			<button class="button" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></button>
+			  			<!-- <button class="button" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></button> -->
+
+			  			<a href = "#" class="button general" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></a>
+
 			    		<div id="myModalIssue" class="reveal-modal tiny" data-reveal>
 							<?php echo $this->Form->create('Issue', array(
 		 				   		'url' => array(
@@ -120,7 +203,7 @@
 									echo $this->Form->input('slug', array('label' => __('Slug')));
 								?>
 							</fieldset>
-							<button class="button small" type="submit">
+							<button class="button general" type="submit">
 								<?php echo __('Add'); ?>
 							</button>
 							<?php echo $this->Form->end(); ?>
@@ -136,6 +219,7 @@
 				</div>
 				<div class="content <?php echo $levels_tab; ?>" id="levels">
 					<div class="large-10 columns">
+						<h3><?= strtoupper(__('Define Levels')) ?></h3>
 						<?php 
 							$nextLevel = 1;
 							echo $this->Form->create('Level', array(
@@ -177,7 +261,7 @@
 							
 							$nextLevel++;
 						?>
-						<button class="button small" type="submit">
+						<button class="button general" type="submit">
 							<?php echo __('Save levels'); ?>
 						</button>
 						<?php echo $this->Form->end(); ?>
@@ -185,7 +269,10 @@
 				</div>
 				<div class="content <?php echo $powerpoints_tab; ?>" id="powerpoints">
 					<div class="large-10 columns">
-			  			<button class="button" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></button>
+			  			<!-- <button class="button" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></button> -->
+
+			  			<a href ="#" class="button general" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></a>
+
 			    		<div id="myModalPowerPoint" class="reveal-modal tiny" data-reveal>
 							<?php echo $this->Form->create('PowerPoint', array(
 		 				   		'url' => array(
@@ -213,7 +300,7 @@
 									));
 								?>
 							</fieldset>
-							<button class="button small" type="submit">
+							<button class="button general" type="submit">
 								<?php echo __('Add'); ?>
 							</button>
 							<?php echo $this->Form->end(); ?>
@@ -229,7 +316,10 @@
 				</div>
 				<div class="content <?php echo $badges_tab; ?>" id="badges">
 					<div class="large-10 columns">
-						<button class="button" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></button>
+						<!-- <button class="button" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></button> -->
+
+						<a href ="#" class="button general" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></a>
+
 						<div id="myModalBadge" class="reveal-modal tiny" data-reveal>
 							<?php echo $this->Form->create('Badge', array(
 	 						   		'url' => array(
@@ -255,15 +345,20 @@
 							                'value' => 0
 							            ));
 							        }
+							        echo $this->Form->input('Power.0.quantity', array(
+							                'label' => 'No specific power',
+							                'value' => 0
+							            ));
 							        echo '</fieldset>';
 									
+									echo $this->Form->radio('power_points_only', array(1 => 'Yes', 0 => 'No'), array('label' => __('Obtained exclusively with power points'), 'required' => true, 'default' => 1));
 									echo $this->Form->input('organization_id', array(
 										'label' => __('Organization'),
 										'options' => $organizations_list
 									));
 								?>
 								</fieldset>
-							<button class="button small" type="submit">
+							<button class="button general" type="submit">
 								<?php echo __('Add') ?>
 							</button>
 							<?php echo $this->Form->end(); ?>
@@ -351,7 +446,10 @@
 					<div id="EvokationsHolder"></div>
 				</div>
 				<div class="content <?php echo $media_tab; ?>" id="media">
-					<button class="button" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></button>
+					<!-- <button class="button" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></button> -->
+
+					<a href ="#" class="button general" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></a>
+
 					<div id="myModalNotification" class="reveal-modal tiny" data-reveal>
 						<?php echo $this->Form->create('AdminNotification', array(
 	 						'url' => array(
@@ -376,7 +474,7 @@
 
 							?>
 							</fieldset>
-						<button class="button small" type="submit">
+						<button class="button general" type="submit">
 							<?php echo __('Add') ?>
 						</button>
 						<?php echo $this->Form->end(); ?>
@@ -501,7 +599,7 @@
 						echo '</fieldset>';
 
 					?>
-					<button class="button small" type="submit">
+					<button class="button general" type="submit">
 						<?php echo __('Save Settings')?>
 					</button>
 					<?php echo $this->Form->end(); ?>
@@ -514,7 +612,6 @@
 					<p>AND MORE!</p>
 				</div>
 			</div>
-		</div>
 	</div>
 </section>
 
@@ -527,6 +624,7 @@
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->css('animate');
 	echo $this->Html->script('jquery.watable');
 
@@ -1108,7 +1206,7 @@
             userRole: {
                 index: 1, //The order this column should appear in the table
                 type: "string", //The type. Possible are string, number, bool, date(in milliseconds).
-                friendly: "Issue",  //Name that will be used in header. Can also be any html as shown here.
+                friendly: "<?= strtoupper(__('Issue')) ?>",  //Name that will be used in header. Can also be any html as shown here.
                 format: "<a href='role.com' class='userId' target='_blank'>{0}</a>",  //Used to format the data anything you want. Use {0} as placeholder for the actual data.
                 //unique: true,  //This is required if you want checkable rows, or to use the rowClicked callback. Be certain the values are really unique or weird things will happen.
                 sortOrder: "asc", //Data will initially be sorted by this column. Possible are "asc" or "desc"
@@ -1119,7 +1217,7 @@
             name: {
                 index: 2,
                 type: "string",
-                friendly: "Title",
+                friendly: "<?= strtoupper(__('Title')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find missions, edit or even delete them')?>", //Show some additional info about column
                 placeHolder: "<?= __('Search missions by title...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
@@ -1195,9 +1293,10 @@
                 index: 1, //The order this column should appear in the table
                 type: "string", //The type. Possible are string, number, bool, date(in milliseconds).
                 <?php 
-                	if($flags['_admin']) echo 'friendly: "Role",';
-                	else echo 'friendly: "Missions",';
+                	if($flags['_admin']) $f = strtoupper(__('Role'));
+                	else $f = strtoupper(__('Missions'));
                 ?>
+                friendly: '<?= $f ?>',
                   //Name that will be used in header. Can also be any html as shown here.
                 format: "<a href='role.com' class='userId' target='_blank'>{0}</a>",  //Used to format the data anything you want. Use {0} as placeholder for the actual data.
                 //unique: true,  //This is required if you want checkable rows, or to use the rowClicked callback. Be certain the values are really unique or weird things will happen.
@@ -1209,7 +1308,7 @@
             name: {
                 index: 2,
                 type: "string",
-                friendly: "User",
+                friendly: "<?= strtoupper(__('User')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find users')?>", //Show some additional info about column
                 placeHolder: "<?= __('Search users by name...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
@@ -1328,7 +1427,7 @@
             userRole: {
                 index: 1, //The order this column should appear in the table
                 type: "string", //The type. Possible are string, number, bool, date(in milliseconds).
-                friendly: "Organization",  //Name that will be used in header. Can also be any html as shown here.
+                friendly: "<?= strtoupper(__('Organization')) ?>",  //Name that will be used in header. Can also be any html as shown here.
                 format: "<a href='role.com' class='userId' target='_blank'>{0}</a>",  //Used to format the data anything you want. Use {0} as placeholder for the actual data.
                 //unique: true,  //This is required if you want checkable rows, or to use the rowClicked callback. Be certain the values are really unique or weird things will happen.
                 sortOrder: "asc", //Data will initially be sorted by this column. Possible are "asc" or "desc"
@@ -1339,7 +1438,7 @@
             name: {
                 index: 2,
                 type: "string",
-                friendly: "Badge",
+                friendly: "<?= strtoupper(__('Badge')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find Badges, edit or even delete them')?>", //Show some additional info about column
                 placeHolder: "<?= __('Search for badges...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
@@ -1418,11 +1517,11 @@
             name: {
                 index: 1,
                 type: "string",
-                friendly: "Organization",
+                friendly: "<?= strtoupper(__('Organizations')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find Organizations, edit or even delete them')?>", //Show some additional info about column
                 placeHolder: "<?= __('Search for organizations...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
-            }
+            },
         };
 
 
@@ -1480,7 +1579,7 @@
             name: {
                 index: 1,
                 type: "string",
-                friendly: "Issue",
+                friendly: "<?= strtoupper(__('Issues')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find issues, edit or even delete them')?>", //Show some additional info about column
                 placeHolder: "<?= __('Search for issue...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
@@ -1543,7 +1642,7 @@
             name: {
                 index: 1,
                 type: "string",
-                friendly: "Power Point",
+                friendly: "<?= strtoupper(__('Power Points')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find power points in Evoke')?>", //Show some additional info about column
                 placeHolder: "<?= __('Search for power point...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
@@ -1613,7 +1712,7 @@
             status: {
             	index: 1,
                 type: "string",
-                friendly: "Status",
+                friendly: "<?= strtoupper(__('Status')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('By status')?>", //Show some additional info about column
                 placeHolder: "<?= __('Search evokations by status...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
@@ -1621,7 +1720,7 @@
             group: {
             	index: 2,
                 type: "string",
-                friendly: "Group Title",
+                friendly: "<?= strtoupper(__('Group Title')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('By group')?>", //Show some additional info about column
                 placeHolder: "<?= __('Search evokations by group...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
@@ -1629,7 +1728,7 @@
             name: {
                 index: 3,
                 type: "string",
-                friendly: "Evokation Title",
+                friendly: "<?= strtoupper(__('Evokation Title')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('By title')?>", //Show some additional info about column
                 placeHolder: "<?= __('Search for evokations by title...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).

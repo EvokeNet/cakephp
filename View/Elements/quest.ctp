@@ -2,6 +2,35 @@
 <h2><?php echo $q['Quest']['title'];?></h2>
 <p><?php echo urldecode($q['Quest']['description']);?></p>
 <?php 
+	$availablePP = array();
+	foreach ($q['QuestPowerPoint'] as $questPP) {
+		if(isset($allPowerPoints[$questPP['power_points_id']])) {
+			$availablePP[] = $allPowerPoints[$questPP['power_points_id']];
+		}
+	}
+	// debug($availablePP);
+	if(!empty($availablePP)) {
+		echo '<p>'. __('Powers related to this quest: ');
+		$lastElement = end($availablePP);
+		foreach ($availablePP as $powerpoint) {
+			echo '<span data-tooltip data-options="disable_for_touch:true" class="has-tip tip-top radius" title="';
+			echo __('Needed to get the following badges: ');
+			foreach ($powerpoint['BadgePowerPoint'] as $badgePowerPoint) {
+				if(isset($allBadges[$badgePowerPoint['badge_id']])) {
+					echo $allBadges[$badgePowerPoint['badge_id']]['Badge']['name'] . ' ';
+				}
+			}
+			echo '">'. $powerpoint['PowerPoint']['name'] .'</span>';
+			if($powerpoint != $lastElement) {
+				echo ', ';
+			}
+
+		}
+		echo '</p>';
+	}
+	
+
+
 	if($q['Quest']['type'] == 1) {
 		//it's, actually, a questionnaire
 		$my_questionnaire = null;

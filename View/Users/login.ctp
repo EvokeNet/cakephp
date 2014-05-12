@@ -2,6 +2,11 @@
 	$this->extend('/Common/login-topbar');
 	$this->start('menu');
 	$this->end(); 
+
+	if($browserLanguage == 'es')
+		$video_url = 'http://player.vimeo.com/video/93164917';
+	else
+		$video_url = 'http://player.vimeo.com/video/94984840';
 ?>
 
 <section class = "evoke login background">
@@ -12,7 +17,7 @@
 			<img src = '<?= $this->webroot.'img/bar.png' ?>' alt = "" class = "evoke login video-bar">
 
 			<div class="flex-video widescreen vimeo" style = "margin-top:50px">
-			  <iframe src="http://player.vimeo.com/video/93164917" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+			  <iframe src="<?= $video_url ?>" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 			</div>
 			
 		</div>
@@ -21,7 +26,7 @@
 			<img src = '<?= $this->webroot.'img/evoke-69.png' ?>' alt = "" class = "evoke login padding-bottom">
 			
 			<div id = "login-columns">
-				<h4><?php echo __('Evoke Panel Login');?></h4>
+				<h4><?php echo __('Evoke Panel Login'); ?></h4>
 
 				<div class = "evoke login top-border">
 					<h5><?php echo __('Sign up');?></h5>

@@ -4,6 +4,99 @@
 	margin-bottom:10px;
 }
 
+.evoke .tag .icon{
+	/*max-height: 150px;*/ 
+	
+	/*max-width: 120px;*/ 
+	width: 100px;
+	height: 110px;
+	overflow:hidden;
+	margin:10px 0px 0px 20px;
+}
+
+.evoke.dashboard.agent.info{
+	/*color:#000;*/
+	/*font-weight:bold;*/
+	/*float:left;*/
+	/*width: 80%;*/
+	/*clear:both;*/
+	padding: 10px 20px;
+}
+
+.evoke .profile .info h4{
+	font-size: 1.8vw;
+	font-weight:bold;
+	line-height: 1.0em;
+	float:left;
+	clear:both;
+	font-family: 'AlegreyaRegular';
+}
+
+.evoke .profile .info h5{
+	font-size:0.9vw;
+	line-height: 1.5em;
+	font-weight:bold;
+	/*text-align: start;*/
+	font-family: 'AlegreyaRegular';
+	clear: left;
+}
+
+.evoke .profile .info h5 span{
+	color: #1f8cb2; 
+	display: inline; 
+	font-weight:bold;
+	font-size: 2.0vw;
+	font-family: 'AlegreyaRegular';
+	text-shadow: 0px 1px 1px rgba(0,0,0, 0.6);
+}
+
+.evoke .profile .info h6{
+	font-size: 0.6vw;
+	color: #a2a2a2;
+	line-height: 0.5em;
+	font-family: 'SBB';
+	margin-top: 10px;
+}
+
+.evoke .profile .progress{
+	background-color: #252525;
+	width: 70%;
+	padding:0;
+	height: 0.6rem;
+	/*margin-top: 10px;*/
+}
+
+.evoke .profile .info.button{
+	font-size: 0.7em;
+	padding: 0.5em 1em;
+	margin: 0px 13px 10px;
+}
+
+.evoke .profile .group h4{
+	font-size: 2.0vw;
+	font-family: 'AlegreyaRegular';
+	color:#fff;
+}
+
+.evoke .profile .group a{
+	margin-bottom:20px;
+}
+
+.evoke .profile .tint:before{
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.evoke .profile.feed{
+	height: 300px;
+	overflow-x: hidden;
+}
+
+.evoke .profile.icon{
+	width:100px;
+	height:100px;
+	overflow:hidden;
+}
+
 /* End CSS */
 
 .edit-user-issues{
@@ -258,14 +351,6 @@
 
 .evoke.dashboard.agent-data.border-top{
 	border-top: 1px solid #a7a7a7;
-}
-
-.evoke.dashboard.progress{
-	background-color: #252525;
-	width: 90%;
-	padding:0;
-	height: 0.8rem;
-	/*margin-top: 10px;*/
 }
 
 .evoke.dashboard.leadercloud{

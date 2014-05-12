@@ -16,7 +16,12 @@
   <div style = "background-color:#fff; min-height: 150px; padding: 20px; border-radius: 10px; border: 2px solid #000; ">
     <div style = "position:relative; float:left">
         <?php if($sender['User']['photo_attachment'] == null) : ?>
-            <img src = "https://graph.facebook.com/<?php echo $sender['User']['facebook_id']; ?>/picture?type=large">
+            <?php if($sender['User']['facebook_id'] == null) : ?>
+                <img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/>
+            <?php else : ?> 
+                <img src = "https://graph.facebook.com/<?php echo $sender['User']['facebook_id']; ?>/picture?type=large">
+            <?php endif; ?>
+            
         <?php else : ?>
             <img src="<?= $this->webroot.'files/attachment/attachment/'.$sender['User']['photo_dir'].'/'.$sender['User']['photo_attachment'] ?>" />
         <?php endif; ?>
