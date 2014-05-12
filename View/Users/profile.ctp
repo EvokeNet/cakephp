@@ -44,16 +44,20 @@
 		  		<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%"/>
 
 		  		<div class="row">
-					  <div class="small-4 medium-4 large-4 columns pic">
+					  <div class="small-4 medium-4 large-4 columns profile pic no-right-padding">
 					  	<a href = "#">
 					  		<?php if($user['User']['photo_attachment'] == null) : ?>
-			  					<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"/>
-			  				<?php else : ?>
-			  					<img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>"/>
-			  				<?php endif; ?>
+								<?php if($user['User']['facebook_id'] == null) : ?>
+									<div class = "icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
+								<?php else : ?>	
+									<div class = "icon"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"/></div>
+								<?php endif; ?>
+							<?php else : ?>
+								<div class = "icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>"/></div>
+							<?php endif; ?>
 					  	</a>
 					  </div>
-					  <div class="small-8 medium-8 large-8 columns info">
+					  <div class="small-8 medium-8 large-8 columns info margin bottom-1">
 						
 							<h6><?php echo strtoupper(__("Evoke Agent"));?></h6>
 							<h4><?php echo $user['User']['name']; ?></h4>
@@ -114,11 +118,16 @@
 						$name = explode(' ', $ally['User']['name']); ?>
 						<li>
 							<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['User']['id'])) ?>">
+								
 								<?php if($ally['User']['photo_attachment'] == null) : ?>
-				  					<img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large" style = "width: 120px; height: 110px; overflow: hidden;"/>
-				  				<?php else : ?>
-				  					<img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/thumb_'.$ally['User']['photo_attachment'] ?>" style = "width: 120px; height: 110px; overflow: hidden;"/>
-				  				<?php endif; ?>
+									<?php if($ally['User']['facebook_id'] == null) : ?>
+										<div class = "profile icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
+									<?php else : ?>	
+										<div class = "profile icon"><img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/></div>
+									<?php endif; ?>
+								<?php else : ?>
+									<div class = "profile icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'] ?>"/></div>
+								<?php endif; ?>
 								
 								<span><?= $name[0] ?></span>
 							</a>
@@ -133,11 +142,16 @@
 			  	<?php foreach($allies as $ally):?>
 					<li>
 						<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['User']['id'])) ?>">
-							<?php if($ally['User']['photo_attachment'] == null) : ?>
-			  					<img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large" style = "width: 25%; margin-right: 40px;"/>
-			  				<?php else : ?>
-			  					<img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/thumb_'.$ally['User']['photo_attachment'] ?>" style = "width: 25%; margin-right: 40px;"/>
-			  				<?php endif; ?>
+
+			  				<?php if($ally['User']['photo_attachment'] == null) : ?>
+								<?php if($ally['User']['facebook_id'] == null) : ?>
+									<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/>
+								<?php else : ?>	
+									<img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/>
+								<?php endif; ?>
+							<?php else : ?>
+								<img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'] ?>"/>
+							<?php endif; ?>
 							
 							<span><?= $ally['User']['name'] ?></span>
 						</a>

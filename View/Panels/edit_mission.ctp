@@ -1,23 +1,99 @@
 <?php
 	$this->extend('/Common/topbar');
 	$this->start('menu');
-
-	echo $this->element('header', array('user' => $user));
-	$this->end(); 
-	
 ?>
 
+<div class="evoke panels contain-to-grid top-bar-background panels-bg">
+  <nav class="top-bar row full-width-alternate" data-topbar>
+    <ul class="title-area">
+	    <li class="name">
+	      <h1><a href="#"><?= ('Evoke') ?></a></h1>
+	    </li>
+	     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	  </ul>
+
+	  <section class="top-bar-section">
+	    <!-- Right Nav Section -->
+	    <ul class="right top-bar-background">
+
+	      <li class="active">
+	      	<a href="#">
+	      		<?php if($user['User']['photo_attachment'] == null) : ?>
+					<?php if($user['User']['facebook_id'] == null) : ?>
+						<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+					<?php else : ?>	
+						<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+					<?php endif; ?>
+					
+	  			<?php else : ?>
+	  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+	  			<?php endif; ?>		
+	      	</a>
+      	  </li>
+
+	     <!--  <li class="active" id = "top-bar-name">
+
+	      	<?php if(isset($user['User'])) :?>
+				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'profile', $user['User']['id'])); ?>"><span><?= $user['User']['name'] ?></span></a>
+			<?php else :?>
+				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'login')); ?>"><span><?= __('Unidentified Agent, please login') ?></span></a>
+			<?php endif; ?>
+
+      	  </li> -->
+
+	      <li class="has-dropdown">
+	        <a href="#">
+	        	<?php if(isset($user['User'])) :?>
+					<span><?= $user['User']['name'] ?></span>
+				<?php else :?>
+					<span><?= __('Unidentified Agent, please login') ?></span>
+				<?php endif; ?>
+	        </a>
+	        <ul class="dropdown">
+	          	<?php if(isset($user['User'])) :?>
+					<li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $user['User']['id'])) ?>"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;<?= __('See profile') ?></a></li>
+	          		<li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'logout')) ?>"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;&nbsp;<?= __('Sign Out') ?></a></li>
+				<?php else :?>
+					 <li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'login')) ?>"><?= __('Log in') ?></a></li>
+				<?php endif; ?>
+
+	        </ul>
+	      </li>
+
+	      <li class="evoke divider"></li>
+
+	      <li class="has-dropdown">
+	        <a href="#"><?= __('Language') ?></a>
+	        <ul class="dropdown">
+	          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'en')) ?>"><?= __('English') ?></a></li>
+	          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'es')) ?>"><?= __('Spanish') ?></a></li>
+	        </ul>
+	      </li>
+
+	    </ul>
+
+	    <!-- Left Nav Section -->
+	    <!-- <ul class="left">
+	      <li><a href="#">Left Nav Button</a></li>
+	    </ul> -->
+	  </section>
+  </nav>
+</div>
+
+<?php $this->end(); ?>
+
 <section>
-	<div class="row full-width-alternate">
+	<div class="panels row full-width-alternate">
 			<!-- <h1><?= __('Mission') ?><?php echo ': ' . $mission['Mission']['title']; ?></h1> -->
 			<dl class="panels tabs vertical" data-tab>
-				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= __('Mission Data') ?></a></dd>
+				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= strtoupper(__('Mission Data')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 				<?php if(isset($id) && !is_null($id)) : ?>
-					<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= __('Phases') ?></a></dd>
-					<dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= __('Mission Dossier') ?></a></dd>
-					<dd class="<?php echo $badges_tag ?>"><a href="#badges"><?= __('Badges') ?></a></dd>
-					<dd class="<?php echo $points_tag ?>"><a href="#points"><?= __('Points') ?></a></dd>
-					<dd class="<?php echo $novel_tag ?>"><a href="#graphic"><?= __('Graphic Novel') ?></a></dd>
+					<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= strtoupper(__('Phases')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= strtoupper(__('Mission Dossier')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $badges_tag ?>"><a href="#badges"><?= strtoupper(__('Badges')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $points_tag ?>"><a href="#points"><?= strtoupper(__('Points')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $novel_tag ?>"><a href="#graphic"><?= strtoupper(__('Graphic Novel')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 				<?php endif; ?>
 			</dl>
 			<div class="panels tabs-content vertical">

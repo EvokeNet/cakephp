@@ -51,6 +51,9 @@ class UsersController extends AppController {
 			
 		));
 
+		$browserLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+		$this->set(compact('browserLanguage'));
+
 		if(isset($this->params['url']['code'])) {
 
 			$token = $facebook->getAccessToken();

@@ -38,7 +38,7 @@
 								<!-- <img class="knob badges-knob" src = '<?= $this->webroot.'img/badge.png' ?>'> -->
 								
 
-								<div class="evoke default view view-first">
+								<div class="evoke default badges view view-first">
 				                    
 				                    <div class = "margin-left-13">
 				                    <div class="loader">
@@ -68,7 +68,7 @@
 									    </div>
 									</div>
 				                    </div>
-				                    <div class="evoke mask">
+				                    <div class="evoke badges mask">
 				                        <!-- <h2><?= $mission['Mission']['title'] ?></h2> -->
 				                        <p class="btext"></p>
 				                        <!-- <div class="btext"></div>

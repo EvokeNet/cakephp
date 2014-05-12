@@ -4,15 +4,14 @@
 	margin-bottom:10px;
 }
 
-.evoke .profile .pic img{
+.evoke .tag .icon{
 	/*max-height: 150px;*/ 
-	max-height: 7em;
+	
 	/*max-width: 120px;*/ 
-	margin:10px 20px;
-}
-
-.evoke .profile .info{
-
+	width: 100px;
+	height: 110px;
+	overflow:hidden;
+	margin:10px 0px 0px 20px;
 }
 
 .evoke.dashboard.agent.info{
@@ -90,6 +89,12 @@
 .evoke .profile.feed{
 	height: 300px;
 	overflow-x: hidden;
+}
+
+.evoke .profile.icon{
+	width:100px;
+	height:100px;
+	overflow:hidden;
 }
 
 /* End CSS */
