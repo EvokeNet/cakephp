@@ -386,14 +386,11 @@ class MissionsController extends AppController {
 				)
 			));
 
-			debug(count($my_bt_evis));
-
 			$question_bt = array();
 
 			if(isset($build_profile)){
 				$this->loadModel('Question');
 				$question_bt = $this->Question->find('all', array('conditions' => array('Question.questionnaire_id' => $build_profile['Questionnaire']['id'])));
-				debug(count($my_bt_evis));
 			}
 
 			foreach($question_bt as $q):
@@ -441,6 +438,79 @@ class MissionsController extends AppController {
 				$checklist_done[5] = true;// array_push($checklist_done, true);
 			else
 				$checklist_done[5] = false; //array_push($checklist_done, false);
+
+		} if(($mission['Mission']['basic_training'] == 0) && (($missionPhase['Phase']['name'] == 'Explore') || ($missionPhase['Phase']['name'] == 'Explorar'))){
+
+			$build_profile = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.type' => '1')));
+
+			$my_bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			$question_bt = array();
+
+			if(isset($build_profile)){
+				$this->loadModel('Question');
+				$question_bt = $this->Question->find('all', array('conditions' => array('Question.questionnaire_id' => $build_profile['Questionnaire']['id'])));
+			}
+
+			foreach($question_bt as $q):
+				foreach ($previous_answers as $previous_answer) {
+					if($q['Question']['id'] == $previous_answer['UserAnswer']['question_id']){
+						$checklist_done[3] = true;// array_push($checklist_done, true);
+						break;
+					} else{
+						$checklist_done[3] = false;
+					}
+				}
+			endforeach;
+
+			if(($checklist_done[3]) || (isset($my_bt_evis)))
+				$checklist_done[1] = true;
+			else
+				$checklist_done[1] = false;
+
+			$quest_roots = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'Find your roots')));
+
+			$roots_evis = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $quest_roots['Phase']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(isset($roots_evis))
+				$checklist_done[4] = true;
+			else
+				$checklist_done[4] = false;
+
+			$bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+				)
+			));
+
+			$ci = array();
+
+			foreach($bt_evis as $b):
+				array_push($ci, array('Comment.evidence_id' => $b['Evidence']['id'], 'Comment.user_id' => $user['User']['id']));
+			endforeach;
+
+			$comment = $this->Mission->Quest->Evidence->Comment->find('all', array(
+				'conditions' => array(
+					'OR' => $ci
+			)));
+
+			if(isset($comment))
+				$checklist_done[2] = true;
+			else
+				$checklist_done[2] = false;
 
 		}
 
