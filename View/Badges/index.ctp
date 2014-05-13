@@ -35,7 +35,7 @@
 							<?php if(isset($badge['Badge']['img_dir'])) : ?>
 
 								<?php if($badge['Badge']['power_points_only'] == 1) : ?>
-									<div id="<?=$badge['Badge']['id']?>" class="evoke default view view-first">
+									<div id="<?=$badge['Badge']['id']?>" class="evoke default badges view view-first">
 					                    
 					                    <div class = "margin-left-13">
 					                    <div class="loader">
@@ -73,7 +73,7 @@
 										    </div>
 										</div>
 					                    </div>
-					                    <div class="evoke mask">
+					                    <div class="evoke badges mask">
 					                        <p class="btext"></p>
 					                    </div>
 					                </div> 
@@ -83,7 +83,7 @@
 
 							<?php else: ?>
 								<?php if($badge['Badge']['power_points_only'] == 1) : ?>
-									<div id="<?=$badge['Badge']['id']?>" class="evoke default view view-first">
+									<div id="<?=$badge['Badge']['id']?>" class="evoke default badges view view-first">
 					                    
 					                    <div class = "margin-left-13">
 					                    <div class="loader">
@@ -121,7 +121,7 @@
 										    </div>
 										</div>
 					                    </div>
-					                    <div class="evoke mask">
+					                    <div class="evoke badges mask">
 					                        <p class="btext"></p>
 					                    </div>
 					                </div> 

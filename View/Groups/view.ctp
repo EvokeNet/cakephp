@@ -11,7 +11,6 @@
 
 <section class="evoke default-background">
 
-	<?php echo $this->Session->flash(); ?>
 
 	<div id="secondModal" class="reveal-modal" data-reveal>
 	  <h2>This is a second modal.</h2>
@@ -26,6 +25,7 @@
 	  </div>
 
 	  <div class="small-9 medium-9 large-9 columns padding top-2 maincolumn">
+		<?php echo $this->Session->flash(); ?>
 
 	  	<div class="row">
 		  <div class="small-3 medium-3 large-3 columns padding bottom-2">

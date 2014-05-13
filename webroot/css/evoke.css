@@ -370,6 +370,7 @@ button, div, p, span, a,
 .tint {
 	position: relative;
 	float: left;
+	width:100%;
 	/*margin: 10px 0;*/
 	cursor: pointer;
 	-webkit-shadow: rgba(0, 0, 0, 0.6) 3px 5px 5px;
@@ -415,6 +416,38 @@ button, div, p, span, a,
 .evoke .position-relative{
 	position:relative;
 }
+
+.evoke .flash.alert-message{
+	border-left: 8px solid #eac841;
+}
+
+.evoke .flash.alert-box {
+	color: #8a6d3b;
+	background-color: #fcf8e3;
+	border-color: #faebcc;
+}
+
+.evoke .flash.alert-box p, .evoke .flash_error.alert-box p{
+	font-size: 1.2vw;
+	margin-bottom: 0;
+	font-family: 'AlegreyaBold';
+}
+
+.evoke .flash_error.alert-message{
+	border-left: 8px solid #df6c6e;
+}
+
+.evoke .flash_error.alert-box {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+/*.evoke .flash_error.alert-box.warning p{
+	font-size: 1.2vw;
+	margin-bottom: 0;
+	font-family: 'AlegreyaBold';
+}*/
 
 /* End of new CSS */
 
@@ -1439,20 +1472,6 @@ button, div, p, span, a,
 .evoke .bubble p{
 	word-break: break-all;
 	margin-bottom: 0;
-}
-
-.evoke .alert-message{
-	/*width: 20%;
-	margin-left: 20px;*/
-	font-size: 0.7vw;
-	text-align: center;
-}
-
-.evoke .alert-message p{
-	/*font-size: 0.9vw;*/
-	font-size:2.0em;
-	margin-bottom: 0;
-	font-family: 'AlegreyaBold';
 }
 
 .evoke.menu-bg{
