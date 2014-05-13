@@ -22,14 +22,13 @@
 
 <section class="evoke default-background">
 
-	<?php echo $this->Session->flash(); ?>
 
 	<div class="evoke default row full-width-alternate">
 		<div class="small-2 medium-2 large-2 columns padding-left">
 	  		<?php echo $this->element('menu', array('user' => $user));?>
 	  	</div>
 		<div class = "small-9 medium-9 large-9 columns maincolumn">
-			
+			<?php echo $this->Session->flash(); ?>			
 			<div class = "evoke missions graphic-cover">
 				<?php if(!empty($novels)) :?>
 	 				<ul class="clearing-thumbs clearing-feature" data-clearing>		
