@@ -377,61 +377,62 @@ class MissionsController extends AppController {
 
 		if($mission['Mission']['basic_training'] == 1){
 
-			$all_bt_quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
+			$build_profile = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.type' => '1')));
 
-			$bt_quest_ids = array();
-			$bt_evidences = null;
+			$my_bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
 
-			foreach($all_bt_quests as $a):
-				if($a['Quest']['type'] == 1){
-					$build_profile = $a;
-					//debug($a['Quest']['title']);
-				}
-				
-				array_push($bt_quest_ids, array('Evidence.quest_id' => $a['Quest']['id']));
-				//debug($a['Quest']['title']);
-			endforeach;
-
-			if(!empty($by_quest_ids)){
-				$bt_evidences = $this->Mission->Quest->Evidence->find('all', array(
-					'conditions' => array(
-						'OR' => $bt_quest_ids
-					)
-				));
-			} else{
-				//debug("YAY");
-			}
+			debug(count($my_bt_evis));
 
 			$question_bt = array();
 
 			if(isset($build_profile)){
 				$this->loadModel('Question');
 				$question_bt = $this->Question->find('all', array('conditions' => array('Question.questionnaire_id' => $build_profile['Questionnaire']['id'])));
+				debug(count($my_bt_evis));
 			}
 
 			foreach($question_bt as $q):
 				foreach ($previous_answers as $previous_answer) {
-					if(($q['Question']['id'] == $previous_answer['UserAnswer']['question_id'])){
+					if((isset($my_bt_evis)) || ($q['Question']['id'] == $previous_answer['UserAnswer']['question_id'])){
 						$checklist_done[2] = true;// array_push($checklist_done, true);
 						break;
-					} else if((isset($bt_evidences)) || ($q['Question']['id'] == $previous_answer['UserAnswer']['question_id'])){
-						$checklist_done[1] = true;// array_push($checklist_done, true);
-					}
-					else{
-						$checklist_done[2] = false; //array_push($checklist_done, false);
-						//$checklist_done[1] = false; //array_push($checklist_done, false);
+					} else{
+						$checklist_done[2] = false;
 					}
 				}
 			endforeach;
 
-			$this->loadModel('Notification');
-			$notes = $this->Notification->find('first', array('conditions' => array('Notification.action_user_id' => $this->getUserId(), 'Notification.origin' => 'commentEvidence')));
-			$notesLike = $this->Notification->find('first', array('conditions' => array('Notification.action_user_id' => $this->getUserId(), 'Notification.origin' => 'like')));
-
-			if((isset($notes) && isset($notesLike)))
-				$checklist_done[4] = true;// array_push($checklist_done, true);
+			if(($checklist_done[2]) || (isset($my_bt_evis)))
+				$checklist_done[1] = true;
 			else
-				$checklist_done[4] = false; //array_push($checklist_done, false);
+				$checklist_done[1] = false;
+
+			$bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+				)
+			));
+
+			$ci = array();
+
+			foreach($bt_evis as $b):
+				array_push($ci, array('Comment.evidence_id' => $b['Evidence']['id'], 'Comment.user_id' => $user['User']['id']));
+			endforeach;
+
+			$comment = $this->Mission->Quest->Evidence->Comment->find('all', array(
+				'conditions' => array(
+					'OR' => $ci
+			)));
+
+			if(isset($comment))
+				$checklist_done[4] = true;
+			else
+				$checklist_done[4] = false;
 
 			$this->loadModel('UserFriend');
 			$ally = $this->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId())));
@@ -441,13 +442,6 @@ class MissionsController extends AppController {
 			else
 				$checklist_done[5] = false; //array_push($checklist_done, false);
 
-			//debug($checklist_done);
-
-			// $done_profs = false;
-
-			// foreach ($previous_answers as $previous_answer) {
-			// 	if($previous_answer)
-			// }
 		}
 
 		/* End checklist mechanic*/
