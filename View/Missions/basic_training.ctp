@@ -21,8 +21,6 @@
 
 <section class="evoke default-background">
 
-	<?php echo $this->Session->flash(); ?>
-
 	<div class="evoke default row full-width-alternate">
 
 		<div class="row">
@@ -38,14 +36,15 @@
 		</div>
 
 		<div class = "small-9 medium-9 large-9 columns maincolumn">
-			
+			<?php echo $this->Session->flash(); ?>			
+						
 			<div class = "evoke missions graphic-cover">
 				<?php if(!empty($novels)) :?>
 	 				<ul class="clearing-thumbs clearing-feature" data-clearing>		
 
 		 				<li class="clearing-featured-img ">
 		 					<div class = "evoke missions graphic-cover-img">
-			 					<?php if(is_null($launchers[$missionPhase['Phase']['id']]['image_dir'])) :?>
+			 					<?php if(!isset($launchers[$missionPhase['Phase']['id']]['image_dir']) || is_null($launchers[$missionPhase['Phase']['id']]['image_dir'])) :?>
 				 					<a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
 				 						<img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
 			 						</a>

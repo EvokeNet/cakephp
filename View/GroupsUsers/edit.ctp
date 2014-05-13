@@ -150,5 +150,6 @@
 
 <meta name="padID" content="<?php echo $padID; ?>">
 
+<?php echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false)); ?>
 <?php echo $this->Html->script('/components/etherpad/js/etherpad.js', array('inline' => false)); ?>
 <?php echo $this->Html->script('evokation', array('inline' => false)); ?>

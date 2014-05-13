@@ -574,7 +574,11 @@ class UsersController extends AppController {
 		
 		$this->loadModel('Badge');
 
-		$badges = $this->Badge->find('all');
+		$badges = $this->User->UserBadge->find('all', array(
+			'conditions' => array(
+				'UserBadge.user_id' => $id
+			)
+		));
 
 		foreach ($badges as $b => $badge) {
 			$this->loadModel('Attachment');
@@ -587,6 +591,8 @@ class UsersController extends AppController {
 			if(!empty($badge_img)) {
 				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
 				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
+			} else {
+
 			}
 
 		}
