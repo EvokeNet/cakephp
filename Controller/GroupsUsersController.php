@@ -19,7 +19,7 @@ class GroupsUsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Cookie');
 
 /**
  * index method
@@ -105,7 +105,7 @@ class GroupsUsersController extends AppController {
 			}
 		}
 
-		if(!empty($thisgroup))
+		if(!empty($thisgroup)) {
 			if($thisgroup['Group']['user_id'] == $this->getUserId()) {
 				$authorized = true;
 				$this->loadModel('User');
@@ -116,6 +116,7 @@ class GroupsUsersController extends AppController {
 				));
 				array_push($usersid, array('Evidence.user_id' => $user['User']['id']));
 			}
+		}
 		
 			$response = $client->checkToken();
 			if ($response->getCode() == 0) {
@@ -144,7 +145,7 @@ class GroupsUsersController extends AppController {
 
 				// Third we create a Session, but we need to ensure it does not exist in the Database yet
 				$this->loadModel('Setting');
-				$session = $this->Setting->find('first', array(
+				$dbSession = $this->Setting->find('first', array(
 					'conditions' => array(
 						'key' => 'evokation.'.$evokation['Evokation']['id']
 					)
@@ -164,9 +165,16 @@ class GroupsUsersController extends AppController {
 					$this->Setting->save($setting);
 
 					// We then set a COOKIE with the Session ID
-					if(isset($_COOKIE['sessionID'])) {
-						unset($_COOKIE['sessionID']);
-						setcookie('sessionID', $sessionID);
+					if($this->Cookie->check('sessionID')) {//isset($_COOKIE['sessionID'])) {
+						// unset($_COOKIE['sessionID']);
+						// setcookie('sessionID', $sessionID);
+						$this->Cookie->delete('sessionID');
+
+						$this->Cookie->write('sessionID', $sessionID, false);
+					} else {
+						// setcookie('sessionID', $sessionID);
+						$this->Cookie->write('sessionID', $sessionID, false);
+
 					}
 
 				} else {
@@ -186,14 +194,23 @@ class GroupsUsersController extends AppController {
 						$newSessionID = $newSessionID['sessionID'];
 
 						// We need to update the DB Session setting to the newly created Session
-						$this->Setting->read(null, $dbSession['Setting']['id']);
-						$this->Setting->set('value', $newSessionID);
+						// $this->Setting->read(null, $dbSession['Setting']['id']);
+						// $this->Setting->set('value', $newSessionID);
+						
+						$this->Setting->id = $dbSession['Setting']['id'];
 						$this->Setting->save();
 
 						// Finally, we set a COOKIE with the Session ID
-						if(isset($_COOKIE['sessionID'])) {
-							unset($_COOKIE['sessionID']);
-							setcookie('sessionID', $newSessionID);
+						if($this->Cookie->check('sessionID')) {//isset($_COOKIE['sessionID'])) {
+							// unset($_COOKIE['sessionID']);
+							$this->Cookie->delete('sessionID');
+							// setcookie('sessionID', $newSessionID);
+							$this->Cookie->write('sessionID', $newSessionID, false);
+
+						} else {
+							// setcookie('sessionID', $newSessionID);
+							$this->Cookie->write('sessionID', $newSessionID, false);
+
 						}
 
 					}
