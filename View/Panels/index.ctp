@@ -618,14 +618,15 @@
 									<ul class="small-block-grid-4">
 									  <li><div class = "yay">
 									  	<div class="row full-width-alternate no-margin">
-										  <div class="small-6 large-centered columns text-align-center"><h1 style = "font-size: 1.5em;"><i class="fa fa-users fa-2x"></i>&nbsp;&nbsp;Total Users</h1><h1>90</h1></div>
+										  <div class="small-8 large-centered columns text-align-center"><h1 style = "font-size: 1.5em;"><i class="fa fa-users fa-2x"></i>&nbsp;&nbsp;<?= strtoupper(__('Total Users')) ?></h1><h1><?= sizeof($all_users) ?></h1></div>
 										</div>
 									  </div></li>
 									  <li><div class = "yay">
 									  	<div class="row full-width-alternate no-margin">
-										  <div class="small-4 medium-4 large-4 columns text-align-center">Average Level</div>
-										  <div class="small-4 medium-4 large-4 columns text-align-center">Average Ally per User</div>
-										  <div class="small-4 medium-4 large-4 columns text-align-center">Average Point</div>
+									  	  <h5 class = "text-align-center white"><?= strtoupper(__('Average')) ?></h5>
+										  <div class="small-4 medium-4 large-4 columns text-align-center"><h6 class = "white"><?= strtoupper(__('Level')) ?></h6><h1 class = "white"><?= sizeof($allRelations)/sizeof($all_users) ?></h1></div>
+										  <div class="small-4 medium-4 large-4 columns text-align-center"><h6 class = "white"><?= strtoupper(__('Ally/User')) ?></h6><h1 class = "white"><?= sizeof($allRelations)/sizeof($all_users) ?></h1></div>
+										  <div class="small-4 medium-4 large-4 columns text-align-center"><h6 class = "white"><?= strtoupper(__('points')) ?></h6><h1 class = "white"><?= sizeof($allRelations)/sizeof($all_users) ?></h1></div>
 										</div>
 									  </div></li>
 									  <li><div class = "yay"><!-- Your content goes here --></div></li>

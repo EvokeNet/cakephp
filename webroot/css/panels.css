@@ -184,19 +184,19 @@
 	/*margin: 0px 10px;*/
 }
 
-.evoke .panels .statistics .yay:nth-child(2n+0){
+.evoke .panels .statistics li:nth-child(2n+0) .yay{
 	background-color: #2ecc71;
 	padding: 15px;
 	color: #fff;
 }
 
-.evoke .panels .statistics .yay:nth-child(2n+1){
+.evoke .panels .statistics li:nth-child(2n+1) .yay{
 	background-color: #3498db;
 	padding: 15px;
 	color: #fff;
 }
 
-.evoke .panels .statistics .yay:nth-child(2n+3){
+.evoke .panels .statistics li:nth-child(2n+3) .yay{
 	background-color: #f22613;
 	padding: 15px;
 	color: #fff;

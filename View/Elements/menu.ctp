@@ -3,6 +3,7 @@
 	$missionslink = '';
 	$leaderboardlink = '';
 	$badgeslink = '';
+	$evokationslink = '';
 
 	$currentController = $this->params['controller'];
 	$currentAction = $this->params['action'];

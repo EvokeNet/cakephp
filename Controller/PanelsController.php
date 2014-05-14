@@ -993,10 +993,7 @@ class PanelsController extends AppController {
 				} 
 
 				//if it came from add mission, go back to it, else...
-				if($origin == 'add_mission')
-					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
-				else 
-					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+				$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
 			
 			} else {
 				$this->Session->setFlash(__('The quest could not be saved. Please, try again.'));
