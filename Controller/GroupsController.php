@@ -117,6 +117,111 @@ class GroupsController extends AppController {
 		
 	}
 
+/**
+ * evokations method
+ *
+ * @return void
+ */
+	public function evokations($user_id = null) {
+
+		$this->Group->recursive = 0;
+		$this->set('groups', $this->Paginator->paginate());
+
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$myPoints = $this->Group->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+
+		$sumMyPoints = 0;
+		
+		foreach($myPoints as $point){
+			$sumMyPoints += $point['Point']['value'];
+		}
+
+		$missions = $this->Group->Mission->find('all');
+
+		$missionIssues = $this->Group->Mission->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id'));
+
+		$this->loadModel('Issue');
+		$issues = $this->Issue->find('all');
+
+		$quest = $this->Group->Mission->Quest->find('first', array('conditions' => array('Quest.id' => $quest_id)));
+
+		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
+
+		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
+
+		$groups_id = array();
+
+		foreach($groups as $group):
+			array_push($groups_id, array('Evokation.group_id' => $group['Group']['id']));
+			//array_push($groupsBelongs, array('GroupsUser.group_id' => $group['Group']['id'], 'GroupsUser.user_id' => $this->getUserId()));
+		endforeach;
+
+		if(!empty($groups_id)) {
+			//retrieve all organizations I am part of as a list to be displayed in a combobox
+			$evokations = $this->Group->Evokation->find('all', array(
+				'order' => array(
+					'Evokation.created DESC'
+				),
+				'conditions' => array(
+					'OR' => $groups_id
+				)
+			));
+		} else {
+			$evokations = array();
+		}
+
+		$groupsBelongs = array();
+
+		foreach($groupsUsers as $group):
+			$g = $this->Group->find('first', array('conditions' => array('Group.id' => $group['GroupsUser']['group_id'])));
+			if($g['Group']['user_id'] != $this->getUserId())
+				array_push($groupsBelongs, array('Group.id' => $group['GroupsUser']['group_id']));
+		endforeach;
+		
+		if(!empty($groupsUsers) && !(empty($groupsBelongs))) {
+			//retrieve all organizations I am part of as a list to be displayed in a combobox
+			$groupsIBelong = $this->Group->find('all', array(
+				'order' => array(
+					'Group.created DESC'
+				),
+				'conditions' => array(
+					'OR' => $groupsBelongs
+				)
+			));
+		} else {
+			$groupsIBelong = array();
+		}
+
+		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
+
+		$mygroups_id = array();
+
+		foreach($myGroups as $g):
+			array_push($mygroups_id, array('Evokation.group_id' => $g['Group']['id']));
+		endforeach;
+
+		if(!empty($mygroups_id)) {
+			//retrieve all organizations I am part of as a list to be displayed in a combobox
+			$myevokations = $this->Group->Evokation->find('all', array(
+				'order' => array(
+					'Evokation.created DESC'
+				),
+				'conditions' => array(
+					'OR' => $mygroups_id
+				)
+			));
+		} else {
+			$myevokations = array();
+		}
+
+		$this->loadModel('GroupsUser');
+		$users_groups = $this->GroupsUser->find('all');
+
+		$this->set(compact('missionIssues', 'user', 'myGroups', 'missions', 'evokations', 'myevokations', 'groupsIBelong', 'users_groups', 'sumMyPoints', 'quest_id'));
+		
+	}
+
 
 	public function by_mission($mission_id = null) {
 		if(is_null($mission_id)) {

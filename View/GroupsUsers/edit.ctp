@@ -7,49 +7,32 @@
 
 ?>
 
-<section class="evoke background-gray">
+<section class="evoke default background-gray">
 
-	<?= $this->element('menu', array('user' => $user)) ?>
+	<div class="evoke default row full-width-alternate">
 
-	<div class = "evoke dashboard position">
-		<?= $this->element('left_titlebar', array('title' => __("evokation's Development Area"))) ?>
-	</div>
+	  <div class="small-2 medium-2 large-2 columns padding-left">
+	  	<?php echo $this->element('menu', array('user' => $user));?>
+	  </div>
 
-	<div class="row full-width">
+  	<div class="small-10 medium-10 large-10 columns maincolumn">
+
+  		<h3><?= strtoupper(__("evokation's Development Area")) ?></h3>
+
+		<div class="row full-width-alternate">
 		<div class="small-2 medium-2 large-2 columns">
 
-			<ul class="no-bullet">
-				<?php foreach ($users as $usr): ?>
-					<div class="image circle">
-						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['User']['id'])) ?>">
-							<?php if($usr['User']['photo_attachment'] == null) : ?>
-								<?php if($usr['User']['facebook_id'] == null) : ?>
-									<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/>
-								<?php else : ?>	
-									<img src = "https://graph.facebook.com/<?php echo $usr['User']['facebook_id']; ?>/picture?type=large">
-								<?php endif; ?>
-
-							<?php else : ?>
-								<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['User']['photo_dir'].'/'.$usr['User']['photo_attachment'] ?>" />
-							<?php endif; ?>
-						</a>
-					</div>
-						
-					<li><?php $test = explode(' ', $usr['User']['name']); echo $test[0]; ?></li>
-				<?php endforeach ?>
-
-			</ul>
-
-
-			<H6 class="subheader"><?php echo __('ACTIONS'); ?></H6>
+			<h3><?= strtoupper(__("Assets")) ?></h3>
+			
+			<h3><?= strtoupper(__("ACTIONS")) ?></h3>
 			<button class="button general expand" id="evokation_draft_button" data-reveal-id="send" data-reveal><?php echo __('Publish to Network'); ?></button>
 			<button class="button general expand" data-reveal-id="final" data-reveal><?php echo __('Send Final Evokation'); ?></button>
 
-			<div class = "evoke position">
+			<!-- <div class = "evoke position">
 				<div class = "evoke titles-left">
 					<div class = "evoke titles"><h4><?= strtoupper(__("Updates"));?></h4></div>
 				</div>
-			</div>
+			</div> -->
 			
 			<div id="send" class="reveal-modal tiny" data-reveal>
 				<h1><?= __('Describe updates of this publishing:')?></h1>
@@ -114,42 +97,46 @@
 		</div>
 		<div class="small-2 medium-2 large-2 columns">
 
-			<div class = "evoke position">
-				<div class = "evoke titles-left">
-					<div class = "evoke titles"><h4><?= strtoupper(__("Team"));?></h4></div>
-				</div>
-			</div>
+			<h3><?= strtoupper(__("Team")) ?></h3>
 
-			<div class = "evoke position">
-				<div class = "evoke titles-left">
-					<div class = "evoke titles"><h4><?= strtoupper(__("Documents"));?></h4></div>
-					<ul class="no-bullet">
-						<?php foreach ($evokationAttachments as $a) : ?>
-							<?= $a['Attachment']['attachment'] ?>
-						<?php endforeach ?>
-					</ul>
+			<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3 evokation">
+				<?php foreach ($users as $usr): ?>
+					<li>
+						<div class = "text-align-center">
+							<div class="image circle">
+								<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['User']['id'])) ?>">
+									<?php if($usr['User']['photo_attachment'] == null) : ?>
+										<?php if($usr['User']['facebook_id'] == null) : ?>
+											<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/>
+										<?php else : ?>	
+											<img src = "https://graph.facebook.com/<?php echo $usr['User']['facebook_id']; ?>/picture?type=large">
+										<?php endif; ?>
 
-				</div>
-			</div>
+									<?php else : ?>
+										<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['User']['photo_dir'].'/'.$usr['User']['photo_attachment'] ?>" />
+									<?php endif; ?>
+								</a>
+							</div>
+						</div>
+							
+						<h5 class = "text-align-center white"><?php $test = explode(' ', $usr['User']['name']); echo $test[0]; ?></h5>
+					</li>
+				<?php endforeach ?>
+			</ul>
 
-			<div class = "evoke position">
-				<div class = "evoke titles-left">
-					<div class = "evoke titles"><h4><?= strtoupper(__("Deadlines"));?></h4></div>
-				</div>
-			</div>
+			<h3><?= strtoupper(__("Deadlines")) ?></h3>
 
-			<!-- <div class = "evoke position">
-				<div class = "evoke titles-left">
-					<div class = "evoke titles"><h4><?= strtoupper(__("Chat"));?></h4></div>
-				</div>
-			</div> -->
 		</div>
+	</div>
 	</div>
 
 </section>
 
 <meta name="padID" content="<?php echo $padID; ?>">
 
-<?php echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false)); ?>
-<?php echo $this->Html->script('/components/etherpad/js/etherpad.js', array('inline' => false)); ?>
-<?php echo $this->Html->script('evokation', array('inline' => false)); ?>
+<?php 
+	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
+	echo $this->Html->script('/components/etherpad/js/etherpad.js', array('inline' => false)); 
+	echo $this->Html->script('evokation', array('inline' => false));
+	echo $this->Html->script('menu_height', array('inline' => false));
+?>
