@@ -949,6 +949,22 @@ class MissionsController extends AppController {
 			'UserPhaseChecklist.user_id' => $this->getUserId()
 		), 'order' => array('UserPhaseChecklist.phase_checklist_id ASC')));
 
+		foreach($missionPhases as $m):
+			${'check'.$m['Phase']['name']} = $this->UserPhaseChecklist->find('all', array('conditions' => array(
+				'UserPhaseChecklist.mission_id' => $id,
+				'UserPhaseChecklist.phase_id' => $m['Phase']['id'],
+				'UserPhaseChecklist.user_id' => $this->getUserId()
+			), 'order' => array('UserPhaseChecklist.phase_checklist_id ASC')));
+
+			${'checklists'.$m['Phase']['name']} = $this->Mission->PhaseChecklist->find('all', array('conditions' => array(
+				'PhaseChecklist.mission_id' => $id, 
+				'PhaseChecklist.phase_id' => $m['Phase']['id'], 
+				'PhaseChecklist.language' => $langs
+			)));
+
+			$this->set(compact('check'.$m['Phase']['name'], 'checklists'.$m['Phase']['name']));
+		endforeach;
+
 		/* End checklist mechanic*/
 
 		//checking number of mandatory quests per phase and number of completed ones..

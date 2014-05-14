@@ -57,8 +57,23 @@
 			</div>
 
 			<div class = "evoke missions header tint">
-				<h3> <?= strtoupper($mission['Mission']['title']) ?> &nbsp;&nbsp; <?= sprintf(__('- Phase: %s'), strtoupper($missionPhase['Phase']['name'])) ?></h3>
-				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
+				<h3> <?= strtoupper($mission['Mission']['title']) ?>&nbsp;&nbsp;-&nbsp;&nbsp;<?= sprintf(__('Phase %s'), strtoupper($missionPhase['Phase']['name'])) ?></h3>
+
+				<?php
+					$status = array();
+
+					foreach($missionPhases as $m):
+						echo $m['Phase']['name'].count(${'check'.$m['Phase']['name']}).' ';
+						echo $m['Phase']['name'].count(${'checklists'.$m['Phase']['name']}).' ';
+						$status['check'.$m['Phase']['name']] = count(${'check'.$m['Phase']['name']});
+						$status['checklists'.$m['Phase']['name']] = count(${'checklists'.$m['Phase']['name']});
+					endforeach; 
+
+					echo $this->element('phase_status', array('missionPhases' => $missionPhases, 'status' => $status));
+				?>
+
+				
+
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 
 					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "height:22vw; width:100%">

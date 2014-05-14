@@ -67,7 +67,7 @@
 			</div>
 
 			<div class = "evoke missions header tint">
-				<h3 id="numero1"> <?= strtoupper($mission['Mission']['title']) ?> &nbsp; <?= sprintf(__('- Phase: %s'), strtoupper($missionPhase['Phase']['name'])) ?></h3>
+				<h3 id="numero1"><?= strtoupper($mission['Mission']['title']) ?></h3>
 				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 
