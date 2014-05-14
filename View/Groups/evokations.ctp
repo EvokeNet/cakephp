@@ -16,7 +16,7 @@
 	  <a class="close-reveal-modal">&#215;</a>
 	</div>
 
-	<div class="evoke default row full-width-alternate">
+	<div class="evoke row full-width-alternate">
 
 	  <div class="small-2 medium-2 large-2 columns padding-left">
 	  	<?php echo $this->element('menu', array('user' => $user));?>
@@ -24,12 +24,14 @@
 
 	  <div class="small-9 medium-9 large-9 columns padding top-2 maincolumn">
 
-	  	<h3><?= strtoupper(__('Evokations Teams')) ?></h3>
+	  	<div class = "default">
+	  		<h3><?= strtoupper(__('Evokations Teams')) ?></h3>
+	  	</div>
 
 		<div class="evoke groups-evokations sheer-background">
 			<?php foreach($missions as $m):?>
 
-			<h2 class = "white margin bottom-1"><?= $m['Mission']['title'] ?></h1>
+			<h3 class = "white margin bottom-1 top-2"><?= $m['Mission']['title'] ?></h3>
 			<?php foreach($myGroups as $mg):
 			//If the mission belongs to that category, it is printed
 				if($mg['Group']['mission_id'] == $m['Mission']['id']):
