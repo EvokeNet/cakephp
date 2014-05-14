@@ -5,7 +5,7 @@ $name = explode(' ', $c['User']['name']);
 
 ?>
 
-<div class="row">
+<div class="evoke row margin bottom-2">
   <div class="small-2 medium-2 large-2 columns evoke text-align">
   	<?php if($c['User']['photo_attachment'] == null) : ?>
 		<?php if($c['User']['facebook_id'] == null) : ?>
@@ -53,4 +53,4 @@ $name = explode(' ', $c['User']['name']);
   </div>
 </div>
 
-<div style = "margin-bottom:100px"></div>
+<!-- <div style = "margin-bottom:50px"></div> -->

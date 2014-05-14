@@ -605,10 +605,36 @@
 					<?php echo $this->Form->end(); ?>
 				</div>
 				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
+					<div class="large-12 medium-12 small-12 columns">
+						<dl class="tabs" data-tab>
+							<dd class="active"><a href="#organizationMetrics"><?= __('Organizations') ?></a></dd>
+							<dd><a href="#missionMetrics"><?= __('Missions') ?></a></dd>
+							<dd><a href="#otherMetrics"><?= __('Other') ?></a></dd>
+						</dl>
+						<div class="tabs-content ">
+							<div class="content active" id="organizationMetrics">
+
+							</div>
+							<div class="content" id="missionMetrics">
+							</div>
+							<div class="content" id="otherMetrics">
+							</div>
+						</div>
+
+						
+					</div>
 					<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>
-					<p><?php echo __('Groups') . ": " . sizeof($groups);?></p>
+					<p><?php echo __('Evokation Groups') . ": " . sizeof($groups);?></p>
 					<p><?php echo __('Organizations') . ": " . sizeof($organizations);?></p>
 					<p><?php echo __('Badges') . ": ".sizeof($badges);?></p>
+					<p><?php echo 'issues' ?></p>
+					<?php 
+						foreach ($pickedIssues as $issue) {
+							echo $issue['issue'] . ': '. $issue['quantity'];
+							echo '<br>';
+						}
+					?>
+					<p>Average of allies/user: <?=sizeof($allRelations)/sizeof($all_users)?></p>
 					<p>AND MORE!</p>
 				</div>
 			</div>

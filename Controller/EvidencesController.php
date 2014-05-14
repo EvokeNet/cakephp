@@ -195,7 +195,7 @@ class EvidencesController extends AppController {
 
 		if($me['Evidence']['user_id'] != $this->getUserId()) {
 			//debug($me);
-			$this->Session->setFlash(__('You have no permission to edit an evidence that does not belong to you.'));
+			$this->Session->setFlash(__('You have no permission to edit an evidence that does not belong to you.'), 'flash_message');
 			$this->redirect($this->referer());
 		}
 

@@ -91,6 +91,7 @@
 										<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
 											<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px; width:100%">
 											<h1><?= $mission['Mission']['title'] ?> </h1>
+											<!-- <div style = "max-height: 130px; height: 130px; width:100%; overflow:hidden; border: 2px solid #000"><img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'></div> -->
 
 											<!-- <div class="summary">
 												<h2>This is the first title</h2>
