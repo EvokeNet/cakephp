@@ -974,7 +974,7 @@ button, div, p, span, a,
 	font-family: 'AmaticSC-Bold';
 }
 
-.evoke .leaderboard.tabs dd.active a{
+/*.evoke .leaderboard.tabs dd.active a{
 	background: none;
 	font-size:1.5em;
 	padding: 10px;
@@ -982,7 +982,7 @@ button, div, p, span, a,
 
 .evoke .leaderboard.tabs dd>a{
 	background: none;
-}
+}*/
 
 /*.evoke .leaderboard.tabs dd>a:hover{
 	background: none;
