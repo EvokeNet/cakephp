@@ -242,6 +242,26 @@ class UsersController extends AppController {
 		else
 			$percentageOtherUser = 0;
 
+		$evidence = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			),
+			'conditions' => array(
+				'Evidence.title != ' => ''
+			)
+		));
+
+		$myevidences = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			),
+			'conditions' => array(
+				'Evidence.user_id' => $id,
+				'Evidence.title != ' => ''
+			)
+		));
+
+
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
 
 		$allies = array();
@@ -266,33 +286,26 @@ class UsersController extends AppController {
 			$notifies = $this->Notification->find('all', array(
 				'conditions' => array(
 					'OR' => $are_friends
-				), 'order' => array(
+				), 
+				'order' => array(
 					'Notification.created DESC'
-				)));
+				)
+			));
+
+			foreach ($notifies as $key => $value) {
+				if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
+				 $value['Notification']['origin'] == 'commentEvidence') {
+					if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
+						unset($notifies[$key]);
+					}
+				}
+			}
 		} else{
 			$allies = array();
 			$notifies = array();
 		}
 
-		$evidence = $this->User->Evidence->find('all', array(
-			'order' => array(
-				'Evidence.created DESC'
-			),
-			'conditions' => array(
-				'Evidence.title != ' => ''
-			)
-		));
-
-		$myevidences = $this->User->Evidence->find('all', array(
-			'order' => array(
-				'Evidence.created DESC'
-			),
-			'conditions' => array(
-				'Evidence.user_id' => $id,
-				'Evidence.title != ' => ''
-			)
-		));
-
+		
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array(
 			'order' => array(
@@ -462,9 +475,9 @@ class UsersController extends AppController {
 		//admin notifications check:
 		$this->loadModel('AdminNotification');
 		
-		if(isset($user['AdminNotificationsUser'][0])) {
+		if(isset($users['AdminNotificationsUser'][0])) {
 			//holds the last notification directed to this user
-			$last = $user['AdminNotificationsUser'][count($user['AdminNotificationsUser']) - 1];
+			$last = $users['AdminNotificationsUser'][count($users['AdminNotificationsUser']) - 1];
 			//$last['id'] = 0;
 		} else {
 			$last['admin_notification_id'] = 0;
@@ -480,7 +493,7 @@ class UsersController extends AppController {
 		
 		foreach ($adminNotifications as $not) {
 			//he sees it..
-			$insert['AdminNotificationsUser']['user_id'] = $user['User']['id'];
+			$insert['AdminNotificationsUser']['user_id'] = $users['User']['id'];
 			$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
 
 			$this->User->AdminNotificationsUser->create();
@@ -508,7 +521,7 @@ class UsersController extends AppController {
 
 		foreach ($adminNotificationsToMe as $not) {
 			//he sees it..
-			$insert['AdminNotificationsUser']['user_id'] = $user['User']['id'];
+			$insert['AdminNotificationsUser']['user_id'] = $users['User']['id'];
 			$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
 
 			$this->User->AdminNotificationsUser->create();
