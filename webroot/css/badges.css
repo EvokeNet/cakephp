@@ -66,6 +66,10 @@
    overflow: visible;
 }
 
+.evoke .badges.view .mask,.view .content {
+   height: 12vw;
+}
+
 .evoke .badges.view-first:hover img {
    -webkit-transform: none;
    -moz-transform: none;

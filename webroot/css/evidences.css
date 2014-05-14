@@ -38,6 +38,10 @@
 	color:#fff;
 }
 
+.imgtag p{
+	word-wrap: break-word;
+}
+
 /* End new CSS */
 
 .evoke.evidence-tag{
@@ -106,6 +110,7 @@
 
 .evoke .comment-blocks{
 	margin-top:100px;
+	margin-bottom: 50px;
 }
 
 .evoke.evidence-body.view h2{
