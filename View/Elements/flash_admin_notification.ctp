@@ -17,8 +17,8 @@
 	</div>
 	</div>
   <p class="lead"><?= $notificationDescription ?></p>
-  <!-- <a class="close-reveal-modal">&#215;</a> -->
-  <a href="#" REPLACE><?= __('Understood, dismiss it...')?></a>
+  <a class="close-reveal-modal">&#215;</a>
+  <!-- <a href="#" REPLACE><?= __('Understood, dismiss it...')?></a> -->
 </div>
 
 <?php 

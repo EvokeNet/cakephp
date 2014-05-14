@@ -89,6 +89,7 @@ class GroupsUsersController extends AppController {
 		));
 
 		$loggedInUser = $this->Auth->user();
+		// debug($loggedInUser);
 
 		$usersid = array(); //used to set the OR condition used down there
 
@@ -114,21 +115,15 @@ class GroupsUsersController extends AppController {
 			}
 		}
 		
+		if(!$authorized) {
+			$this->Session->setFlash(__('This evokation does not belong to your group, you can not edit it.'), 'flash_message');
+			$this->redirect($this->referer());
+		}
 
 		$response = $client->checkToken();
 		if ($response->getCode() == 0) {
 				
-			// First we create an Etherpad Group, mapping the Evoke Group ID
-			$mappedGroup = $client->createGroupIfNotExistsFor($group['Group']['id']);
-			if ($mappedGroup->getCode() == 0) {
-				
-				$groupID = $mappedGroup->getData();
-				$groupID = $groupID['groupID'];
-
-			} else {
-				throw new InternalErrorException(__('Could not create Etherpad Group'));
-			}
-
+			/*
 			// Second we create an Etherpad Author, mapping both the Evoke User ID and User name
 			$mappedAuthor = $client->createAuthorIfNotExistsFor($user['User']['id'], $user['User']['name']);
 			if ($mappedAuthor->getCode() == 0) {
@@ -140,6 +135,55 @@ class GroupsUsersController extends AppController {
 				throw new InternalErrorException(__('Could not create Etherpad Group Author'));
 			}
 
+			// First we create an Etherpad Group, mapping the Evoke Group ID
+			$mappedGroup = $client->createGroupIfNotExistsFor($group['Group']['id']);
+			if ($mappedGroup->getCode() == 0) {
+				
+				$groupID = $mappedGroup->getData();
+				$groupID = $groupID['groupID'];
+
+			} else {
+				throw new InternalErrorException(__('Could not create Etherpad Group'));
+			}
+
+			
+			// Now we have everything we need to create the Pad
+			$pad = $client->createGroupPad($groupID, 'evokation');
+			// debug($pad);
+			if ($pad->getCode() == 0) {
+				$padID = $pad->getData();
+				$padID = $padID['padID'];
+			} else {
+				$padID = $groupID . '$evokation';
+			}
+			*/
+
+			//creating pad without group
+			$pad = $client->createPad($group['Group']['id'].'_evokation');
+			
+			//set the padid independently of wheter the pad already existed or not...
+			$padID = $group['Group']['id'].'_evokation';
+
+			/*if ($pad->getCode() == 0) {
+				$padID = $pad->getData();
+				debug($padID);
+				$padID = $padID['padID'];
+			} else {
+				$padID = $group['Group']['id'].'_evokation';
+				//debug($padID + " ja existente");
+			}
+			*/
+			
+			// debug($client->deleteGroup('g.LfNKlhxX6m8eRiV7'));
+
+			// die();
+			// $sessionID = $client->deleteSession('s.40814be18e4df7b75b64b45aeef9f217');
+				
+			// debug($client->listSessionsOfGroup('g.omVK2MHaj1dovjix'));
+			
+
+			// die();
+			/*
 			// Third we create a Session, but we need to ensure it does not exist in the Database yet
 			$this->loadModel('Setting');
 			$dbSession = $this->Setting->find('first', array(
@@ -148,12 +192,16 @@ class GroupsUsersController extends AppController {
 				)
 			));
 
-			if (empty($dbSession)) {
+			// debug($dbSession);
+			// die();
+			if (!isset($dbSession['Setting'])) {
 
 				// There is no previous Session for this User, so let's create it
 				$sessionID = $client->createSession($groupID, $authorID, strtotime('+1 day'));
 				$sessionID = $sessionID->getData();
 				$sessionID = $sessionID['sessionID'];
+
+				// debug($sessionID);
 
 				// Store the Session in the Database
 				$setting = array();
@@ -164,9 +212,11 @@ class GroupsUsersController extends AppController {
 				// We then set a COOKIE with the Session ID
 				if(isset($_COOKIE['sessionID'])) {
 					unset($_COOKIE['sessionID']);
-					setcookie('sessionID', $sessionID, time()+60*60*24, '/');
+					setcookie('sessionID', $sessionID, time()+60*60*24, '/', 'evokenet.org');//, '198.50.155.101');
 				} else {
-					setcookie('sessionID', $sessionID, time()+60*60*24, '/');
+					setcookie('sessionID', $sessionID, time()+60*60*24, '/', 'evokenet.org');
+					// debug('oi');
+
 				}
 
 			} else {
@@ -178,8 +228,9 @@ class GroupsUsersController extends AppController {
 				$sessionID = $dbSession['Setting']['value'];
 
 				// Checks if Session 'validUntil' UNIX timestamp is 1 second in the past
-				if ($sessionTime <= strtotime('-1 second')) {
-					
+				if ($sessionTime < time()) {
+					// debug('oi2');
+					// die();
 					$client->deleteSession($dbSession['Setting']['value']);
 					
 					$newSession = $client->createSession($groupID, $authorID, strtotime('+1 day'));
@@ -188,30 +239,21 @@ class GroupsUsersController extends AppController {
 					$sessionID = $newSessionID;
 
 					// We need to update the DB Session setting to the newly created Session
-					// $this->Setting->read(null, $dbSession['Setting']['id']);
-					// $this->Setting->set('value', $newSessionID);
-						
-					$this->Setting->id = $dbSession['Setting']['id'];
+					$this->Setting->read(null, $dbSession['Setting']['id']);
+					$this->Setting->set('value', $newSessionID);
+					// $this->Setting->id = $dbSession['Setting']['id'];
 					$this->Setting->save();
-
-					// Finally, we set a COOKIE with the Session ID
-					if(isset($_COOKIE['sessionID'])) {//$this->Cookie->check('sessionID')) {//
-						unset($_COOKIE['sessionID']);
-						setcookie('sessionID', $sessionID, time()+60*60*24, '/');
-					} else {
-						setcookie('sessionID', $sessionID, time()+60*60*24, '/');
-					}
+				}
+				// Finally, we set a COOKIE with the Session ID
+				if(isset($_COOKIE['sessionID'])) {//$this->Cookie->check('sessionID')) {//
+					unset($_COOKIE['sessionID']);
+					setcookie('sessionID', $sessionID, time()+60*60*24, '/', 'evokenet.org');
+				} else {
+					setcookie('sessionID', $sessionID, time()+60*60*24, '/', 'evokenet.org');
+					// debug('oi');
 				}
 			}
-
-			// Now we have everything we need to create the Pad
-			$pad = $client->createGroupPad($groupID, 'evokation');
-			if ($pad->getCode() == 0) {
-				$padID = $pad->getData();
-				$padID = $padID['padID'];
-			} else {
-				$padID = $groupID . '$evokation';
-			}
+			*/
 
 		}
 		// if ($authorized) {
@@ -539,7 +581,7 @@ class GroupsUsersController extends AppController {
 		$response = $client->checkToken();
 		if ($response->getCode() == 0) {
 			
-			$mappedGroup = $client->createGroupIfNotExistsFor($evokation['Evokation']['group_id']);
+			/*$mappedGroup = $client->createGroupIfNotExistsFor($evokation['Evokation']['group_id']);
 			if ($mappedGroup->getCode() == 0) {
 				
 				$groupID = $mappedGroup->getData();
@@ -555,6 +597,15 @@ class GroupsUsersController extends AppController {
 				$padID = $padID['padID'];
 			} else {
 				$padID = $groupID . '$evokation';
+			}
+			*/
+			// Now we have everything we need to create the Pad
+			$pad = $client->createPad($evokation['Evokation']['group_id']. '_evokation');
+			if ($pad->getCode() == 0) {
+				$padID = $pad->getData();
+				$padID = $padID['padID'];
+			} else {
+				$padID = $evokation['Evokation']['group_id']. '_evokation';
 			}
 		}
 

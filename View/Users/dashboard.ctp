@@ -174,7 +174,7 @@
 	  	<h3> <?= strtoupper(__('Feed')) ?> </h3>
 	  	<div class = "evoke content-block padding profile feed">
 	  		
-	  		<?php if(!$notifies): ?>
+	  		<?php if(empty($notifies)): ?>
 
 				<img src = '<?= $this->webroot.'img/placeholders-feed.png' ?>' style = "width: 100%; max-height: 100%;">
 				<!-- <h1><?= strtoupper(__('You have no allies at the moment')) ?></h1> -->
