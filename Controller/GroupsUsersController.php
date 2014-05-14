@@ -190,9 +190,9 @@ class GroupsUsersController extends AppController {
 				// We then set a COOKIE with the Session ID
 				if(isset($_COOKIE['sessionID'])) {
 					unset($_COOKIE['sessionID']);
-					setcookie('sessionID', $sessionID, time()+60*60*24, '/', '198.50.155.101');
+					setcookie('sessionID', $sessionID, time()+60*60*24, '/', 'evokenet.org');//, '198.50.155.101');
 				} else {
-					setcookie('sessionID', $sessionID, time()+60*60*24, '/', '198.50.155.101');
+					setcookie('sessionID', $sessionID, time()+60*60*24, '/', 'evokenet.org');
 					// debug('oi');
 
 				}
@@ -225,9 +225,9 @@ class GroupsUsersController extends AppController {
 				// Finally, we set a COOKIE with the Session ID
 				if(isset($_COOKIE['sessionID'])) {//$this->Cookie->check('sessionID')) {//
 					unset($_COOKIE['sessionID']);
-					setcookie('sessionID', $sessionID, time()+60*60*24, '/', '198.50.155.101');
+					setcookie('sessionID', $sessionID, time()+60*60*24, '/', 'evokenet.org');
 				} else {
-					setcookie('sessionID', $sessionID, time()+60*60*24, '/', '198.50.155.101');
+					setcookie('sessionID', $sessionID, time()+60*60*24, '/', 'evokenet.org');
 					// debug('oi');
 				}
 			}
