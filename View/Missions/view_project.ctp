@@ -259,8 +259,15 @@
 						<h1><?= strtoupper(__('To-Do List')) ?></h1>
 						<ul class="small-block-grid-3">
 							<?php if(isset($checklists)):
-									foreach($checklists as $check):?>
-								<li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li>
+									foreach($checklists as $check):
+
+									if($checklist_done[$check['PhaseChecklist']['position']] && isset($checklist_done[$check['PhaseChecklist']['position']])):?>
+										<li><h2 class = "evoke item-complete"><?= $check['PhaseChecklist']['item'] ?></h2></li>
+									<?php else: ?>
+										<li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li>
+									<?php endif;
+									?>
+								<!-- <li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li> -->
 							<?php endforeach; endif;?>
 					  	</ul>
 

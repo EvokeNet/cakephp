@@ -395,7 +395,7 @@ class MissionsController extends AppController {
 
 			foreach($question_bt as $q):
 				foreach ($previous_answers as $previous_answer) {
-					if((isset($my_bt_evis)) || ($q['Question']['id'] == $previous_answer['UserAnswer']['question_id'])){
+					if($q['Question']['id'] == $previous_answer['UserAnswer']['question_id']){
 						$checklist_done[2] = true;// array_push($checklist_done, true);
 						break;
 					} else{
@@ -451,12 +451,16 @@ class MissionsController extends AppController {
 				)
 			));
 
+			//debug($my_bt_evis);
+
 			$question_bt = array();
 
 			if(isset($build_profile)){
 				$this->loadModel('Question');
 				$question_bt = $this->Question->find('all', array('conditions' => array('Question.questionnaire_id' => $build_profile['Questionnaire']['id'])));
 			}
+
+			$checklist_done[3] = false;
 
 			foreach($question_bt as $q):
 				foreach ($previous_answers as $previous_answer) {
@@ -469,7 +473,7 @@ class MissionsController extends AppController {
 				}
 			endforeach;
 
-			if(($checklist_done[3]) || (isset($my_bt_evis)))
+			if(($checklist_done[3]) || (isset($my_bt_evis[0])))
 				$checklist_done[1] = true;
 			else
 				$checklist_done[1] = false;
@@ -484,7 +488,9 @@ class MissionsController extends AppController {
 				)
 			));
 
-			if(isset($roots_evis))
+			//debug($roots_evis);
+
+			if(!empty($roots_evis))
 				$checklist_done[4] = true;
 			else
 				$checklist_done[4] = false;
@@ -493,24 +499,204 @@ class MissionsController extends AppController {
 				'conditions' => array(
 					'Evidence.mission_id' => $id,
 					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					// 'Evidence.user_id !=' => $user['User']['id'], 
+					'NOT' => array('Evidence.user_id' => $this->getUserId())
+			)));
+
+			$ci = array();
+
+			//debug($bt_evis);
+
+			foreach($bt_evis as $b):
+				array_push($ci, array('Comment.evidence_id' => $b['Evidence']['id'], 'Comment.user_id' => $user['User']['id']));
+				// if($user['User']['id'])
+				// 	debug("ieie");
+			endforeach;
+
+			$comment = $this->Mission->Quest->Evidence->Comment->find('first', array(
+				'conditions' => array(
+					'OR' => $ci
+			)));
+
+			//debug($comment);
+
+			if(!empty($comment))
+				$checklist_done[2] = true;
+			else
+				$checklist_done[2] = false;
+
+		} if(($mission['Mission']['basic_training'] == 0) && (($missionPhase['Phase']['name'] == 'Imagine') || ($missionPhase['Phase']['name'] == 'Imaginar'))){
+
+			$my_bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+
+			if(isset($my_bt_evis[0]))
+				$checklist_done[1] = true;
+			else
+				$checklist_done[1] = false;
+
+			$bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					// 'Evidence.user_id !=' => $user['User']['id'], 
+					'NOT' => array('Evidence.user_id' => $this->getUserId())
+			)));
+
+			$ci = array();
+
+			if(!empty($bt_evis)){
+				foreach($bt_evis as $b):
+					array_push($ci, array('Comment.evidence_id' => $b['Evidence']['id'], 'Comment.user_id' => $this->getUserId()));
+					// if($user['User']['id'])
+					// 	debug("ieie");
+				endforeach;
+			}
+
+			$this->loadModel('Comment');
+
+			$comment = $this->Comment->find('all', array(
+				'conditions' => array(
+					'OR' => $ci
+			)));
+
+			debug(empty($ci));
+
+			if(!empty($comment[0]))
+				$checklist_done[2] = true;
+			else
+				$checklist_done[2] = false;
+
+			$checklist_done[3] = false;
+
+		} if(($mission['Mission']['basic_training'] == 0) && (($missionPhase['Phase']['name'] == 'Act') || ($missionPhase['Phase']['name'] == 'Actuar'))){
+
+			$this->loadModel('Group');
+
+			$my_groups = $this->Group->find('all', array(
+				'conditions' => array(
+					'Group.user_id' => $this->getUserId(),
+					'Group.mission_id' => $id
+				)
+			));
+
+			$groups = $this->Group->find('first', array(
+				'conditions' => array(
+					'Group.mission_id' => $id
 				)
 			));
 
 			$ci = array();
 
-			foreach($bt_evis as $b):
-				array_push($ci, array('Comment.evidence_id' => $b['Evidence']['id'], 'Comment.user_id' => $user['User']['id']));
+			foreach($groups as $b):
+				array_push($ci, array('GroupsUser.group_id' => $b['Group']['id'], 'GroupsUser.user_id' => $this->getUserId()));
+				// if($user['User']['id'])
+				// 	debug("ieie");
 			endforeach;
 
-			$comment = $this->Mission->Quest->Evidence->Comment->find('all', array(
+			$gs = $this->Group->GroupsUser->find('first', array(
 				'conditions' => array(
 					'OR' => $ci
 			)));
 
-			if(isset($comment))
+			if((isset($my_groups[0])) || (!empty($gs)))
+				$checklist_done[1] = true;
+			else
+				$checklist_done[1] = false;
+
+			$quest_problem = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'The Problem')));
+
+			$problem_evis = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $quest_problem['Phase']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(!empty($problem_evis))
 				$checklist_done[2] = true;
 			else
 				$checklist_done[2] = false;
+
+			$change_problem = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'Your World Changing Idea')));
+
+			$change_evis = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $change_problem['Phase']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(!empty($change_evis))
+				$checklist_done[3] = true;
+			else
+				$checklist_done[3] = false;
+
+			// $this->loadModel('EvokationFollower');
+
+			// $ev_fo = $this->EvokationFollower->find('first')
+
+			$checklist_done[4] = false;
+
+		} if(($mission['Mission']['basic_training'] == 0) && (($missionPhase['Phase']['name'] == 'Evoke'))){
+
+			$quest1 = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'How will you know?')));
+
+			$evis1 = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					'Evidence.quest_id' => $quest1['Quest']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(!empty($evis1))
+				$checklist_done[1] = true;
+			else
+				$checklist_done[1] = false;
+
+			$quest2 = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'Super Hero Symbol')));
+
+			$evis2 = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					'Evidence.quest_id' => $quest2['Quest']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(!empty($evis2))
+				$checklist_done[2] = true;
+			else
+				$checklist_done[2] = false;
+
+			$quest3 = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'Elevator Pitch')));
+
+			$evis3 = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					'Evidence.quest_id' => $quest3['Quest']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(!empty($evis3))
+				$checklist_done[3] = true;
+			else
+				$checklist_done[3] = false;
+
+			$checklist_done[4] = false;
 
 		}
 
