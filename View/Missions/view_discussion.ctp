@@ -58,7 +58,7 @@
 			</div>
 
 			<div class = "evoke missions header tint">
-				<h3> <?= strtoupper($mission['Mission']['title']) ?> </h3>
+				<h3> <?= strtoupper($mission['Mission']['title']) ?>&nbsp;&nbsp;-&nbsp;&nbsp;<?= sprintf(__('Phase %s'), strtoupper($missionPhase['Phase']['name'])) ?></h3>
 				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 
@@ -247,16 +247,25 @@
 						<h1><?= strtoupper(__('To-Do List')) ?></h1>
 						<ul class="small-block-grid-3">
 
-							<?php if(isset($checklists)):
-									foreach($checklists as $check):
+							<?php 
+								$checking = array();
 
-									if($checklist_done[$check['PhaseChecklist']['position']] && isset($checklist_done[$check['PhaseChecklist']['position']])):?>
-										<li><h2 class = "evoke item-complete"><?= $check['PhaseChecklist']['item'] ?></h2></li>
-									<?php else: ?>
-										<li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li>
-									<?php endif;
-									?>
-								<!-- <li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li> -->
+								foreach($todocheck as $t):
+									//array_push($checking, $t['UserPhaseChecklist']['phase_checklist_id']);
+									$checking[$t['UserPhaseChecklist']['phase_checklist_id']] = $t['UserPhaseChecklist']['phase_checklist_id'];
+									//echo $t['UserPhaseChecklist']['phase_checklist_id'];
+								endforeach;
+
+								if(isset($checklists)):
+										foreach($checklists as $check):
+
+										if(isset($checking[$check['PhaseChecklist']['position']])):?>
+											<li><h2 class = "evoke item-complete"><?= $check['PhaseChecklist']['item'] ?></h2></li>
+										<?php else: ?>
+											<li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li>
+										<?php endif;
+										?>
+									<!-- <li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li> -->
 							<?php endforeach; endif;?>
 
 					  	</ul>
