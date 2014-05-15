@@ -58,7 +58,7 @@ $title = __('Evoke Network');
 				  
 				  	<div class = "evoke footer-margin-top">
 					  	<h2><?php echo strtoupper(__('Evoke'));?></h2>
-					  	<h6>2014 &nbsp;&nbsp; EVOKE | <?= __('Report an issue') ?> | <?= __('Terms of Service') ?></h6>
+					  	<h6>2014 &nbsp;&nbsp; EVOKE | <?= __('Report an issue') ?> | <a href = "<?= $this->Html->url(array('controller' => 'pages', 'action' => 'terms'))?>" target="_blank"><?= __('Terms of Service') ?></a></h6>
 						<div class = "evoke footer-world-bank"><img src = '<?= $this->webroot.'img/wblogo.png' ?>' alt = ""/></div>
 					</div>
 					

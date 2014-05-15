@@ -165,6 +165,10 @@ button, div, p, span, a,
 	background-size: cover;
 }
 
+.evoke .float-right{
+	float:right;
+}
+
 .evoke .default h3{
 	font-family: 'SBB';
 	color:#fff;
@@ -463,6 +467,14 @@ button, div, p, span, a,
 	margin-bottom: 0;
 	font-family: 'AlegreyaBold';
 }*/
+
+.evoke .sheer-background{
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 20px;
+	padding: 30px;
+	margin-bottom: 50px;
+	min-height: 200px;
+}
 
 /* End of new CSS */
 
@@ -974,7 +986,7 @@ button, div, p, span, a,
 	font-family: 'AmaticSC-Bold';
 }
 
-.evoke .leaderboard.tabs dd.active a{
+/*.evoke .leaderboard.tabs dd.active a{
 	background: none;
 	font-size:1.5em;
 	padding: 10px;
@@ -982,7 +994,7 @@ button, div, p, span, a,
 
 .evoke .leaderboard.tabs dd>a{
 	background: none;
-}
+}*/
 
 /*.evoke .leaderboard.tabs dd>a:hover{
 	background: none;
@@ -1092,13 +1104,25 @@ button, div, p, span, a,
 
 .evoke.evokation-red-box{
 	background-color:#c65862;
-	margin-bottom: 3px;
+	/*margin-bottom: 3px;*/
+	margin: 0px 20px 3px;
 	padding: 20px 20px 10px;
 	color:#fff;
 	font-family: 'AlegreyaRegular';
-	-webkit-box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset 0 0 30px -8px #000;
+	-webkit-box-shadow: inset 0 0 30px -8px #000;
+	box-shadow: inset 0 0 30px -8px #000;
+	/*-webkit-box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
-	box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);*/
+}
+
+.evoke.evokation-red-box:hover{
+	background-color:#1b7292;
+	cursor:pointer;
+	/*-webkit-box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: inset -3px -5px 5px 0px rgba(0,0,0,0.75);*/
 }
 
 .evoke.evokation-red-box i{

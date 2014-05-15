@@ -115,10 +115,15 @@ class GroupsUsersController extends AppController {
 			}
 		}
 		
+		if(!$authorized) {
+			$this->Session->setFlash(__('This evokation does not belong to your group, you can not edit it.'), 'flash_message');
+			$this->redirect($this->referer());
+		}
 
 		$response = $client->checkToken();
 		if ($response->getCode() == 0) {
 				
+			/*
 			// Second we create an Etherpad Author, mapping both the Evoke User ID and User name
 			$mappedAuthor = $client->createAuthorIfNotExistsFor($user['User']['id'], $user['User']['name']);
 			if ($mappedAuthor->getCode() == 0) {
@@ -141,16 +146,33 @@ class GroupsUsersController extends AppController {
 				throw new InternalErrorException(__('Could not create Etherpad Group'));
 			}
 
-
+			
 			// Now we have everything we need to create the Pad
 			$pad = $client->createGroupPad($groupID, 'evokation');
+			// debug($pad);
 			if ($pad->getCode() == 0) {
 				$padID = $pad->getData();
 				$padID = $padID['padID'];
 			} else {
 				$padID = $groupID . '$evokation';
 			}
+			*/
+
+			//creating pad without group
+			$pad = $client->createPad($group['Group']['id'].'_evokation');
 			
+			//set the padid independently of wheter the pad already existed or not...
+			$padID = $group['Group']['id'].'_evokation';
+
+			/*if ($pad->getCode() == 0) {
+				$padID = $pad->getData();
+				debug($padID);
+				$padID = $padID['padID'];
+			} else {
+				$padID = $group['Group']['id'].'_evokation';
+				//debug($padID + " ja existente");
+			}
+			*/
 			
 			// debug($client->deleteGroup('g.LfNKlhxX6m8eRiV7'));
 
@@ -161,7 +183,7 @@ class GroupsUsersController extends AppController {
 			
 
 			// die();
-
+			/*
 			// Third we create a Session, but we need to ensure it does not exist in the Database yet
 			$this->loadModel('Setting');
 			$dbSession = $this->Setting->find('first', array(
@@ -231,15 +253,7 @@ class GroupsUsersController extends AppController {
 					// debug('oi');
 				}
 			}
-
-			// // Now we have everything we need to create the Pad
-			// $pad = $client->createGroupPad($groupID, 'evokation');
-			// if ($pad->getCode() == 0) {
-			// 	$padID = $pad->getData();
-			// 	$padID = $padID['padID'];
-			// } else {
-			// 	$padID = $groupID . '$evokation';
-			// }
+			*/
 
 		}
 		// if ($authorized) {
@@ -567,7 +581,7 @@ class GroupsUsersController extends AppController {
 		$response = $client->checkToken();
 		if ($response->getCode() == 0) {
 			
-			$mappedGroup = $client->createGroupIfNotExistsFor($evokation['Evokation']['group_id']);
+			/*$mappedGroup = $client->createGroupIfNotExistsFor($evokation['Evokation']['group_id']);
 			if ($mappedGroup->getCode() == 0) {
 				
 				$groupID = $mappedGroup->getData();
@@ -583,6 +597,15 @@ class GroupsUsersController extends AppController {
 				$padID = $padID['padID'];
 			} else {
 				$padID = $groupID . '$evokation';
+			}
+			*/
+			// Now we have everything we need to create the Pad
+			$pad = $client->createPad($evokation['Evokation']['group_id']. '_evokation');
+			if ($pad->getCode() == 0) {
+				$padID = $pad->getData();
+				$padID = $padID['padID'];
+			} else {
+				$padID = $evokation['Evokation']['group_id']. '_evokation';
 			}
 		}
 
@@ -637,22 +660,22 @@ class GroupsUsersController extends AppController {
 		$response = $client->checkToken();
 		if ($response->getCode() == 0) {
 			
-			$mappedGroup = $client->createGroupIfNotExistsFor($evokation['Evokation']['group_id']);
-			if ($mappedGroup->getCode() == 0) {
+			// $mappedGroup = $client->createGroupIfNotExistsFor($evokation['Evokation']['group_id']);
+			// if ($mappedGroup->getCode() == 0) {
 				
-				$groupID = $mappedGroup->getData();
-				$groupID = $groupID['groupID'];
-			} else {
-				throw new InternalErrorException(__('Could not create Etherpad Group'));
-			}
+			// 	$groupID = $mappedGroup->getData();
+			// 	$groupID = $groupID['groupID'];
+			// } else {
+			// 	throw new InternalErrorException(__('Could not create Etherpad Group'));
+			// }
 
 			// Now we have everything we need to create the Pad
-			$pad = $client->createGroupPad($groupID, 'evokation');
+			$pad = $client->createPad($evokation['Evokation']['group_id']. '_evokation');
 			if ($pad->getCode() == 0) {
 				$padID = $pad->getData();
 				$padID = $padID['padID'];
 			} else {
-				$padID = $groupID . '$evokation';
+				$padID = $evokation['Evokation']['group_id']. '_evokation';
 			}
 		}
 
