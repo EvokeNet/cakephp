@@ -660,22 +660,22 @@ class GroupsUsersController extends AppController {
 		$response = $client->checkToken();
 		if ($response->getCode() == 0) {
 			
-			$mappedGroup = $client->createGroupIfNotExistsFor($evokation['Evokation']['group_id']);
-			if ($mappedGroup->getCode() == 0) {
+			// $mappedGroup = $client->createGroupIfNotExistsFor($evokation['Evokation']['group_id']);
+			// if ($mappedGroup->getCode() == 0) {
 				
-				$groupID = $mappedGroup->getData();
-				$groupID = $groupID['groupID'];
-			} else {
-				throw new InternalErrorException(__('Could not create Etherpad Group'));
-			}
+			// 	$groupID = $mappedGroup->getData();
+			// 	$groupID = $groupID['groupID'];
+			// } else {
+			// 	throw new InternalErrorException(__('Could not create Etherpad Group'));
+			// }
 
 			// Now we have everything we need to create the Pad
-			$pad = $client->createGroupPad($groupID, 'evokation');
+			$pad = $client->createPad($evokation['Evokation']['group_id']. '_evokation');
 			if ($pad->getCode() == 0) {
 				$padID = $pad->getData();
 				$padID = $padID['padID'];
 			} else {
-				$padID = $groupID . '$evokation';
+				$padID = $evokation['Evokation']['group_id']. '_evokation';
 			}
 		}
 
