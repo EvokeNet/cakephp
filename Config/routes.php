@@ -35,7 +35,7 @@
     	array('controller' => 'groupsUsers', 'action' => 'edit')
 	);
 
-	Router::connect(
+/*	Router::connect(
     	'/admin/*',
     	array('controller' => 'panels')
 	);
@@ -44,7 +44,7 @@
     	'/admin/:action/*',
     	array('controller' => 'panels')
 	);
-
+*/
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

@@ -18,12 +18,6 @@
 
 <section class="evoke default-background">
 
-	<div id="secondModal" class="reveal-modal" data-reveal>
-	  <h2>This is a second modal.</h2>
-	  <p>See? It just slides into place after the other first modal. Very handy when you need subsequent dialogs, or when a modal option impacts or requires another decision.</p>
-	  <a class="close-reveal-modal">&#215;</a>
-	</div>
-
 	<div class="evoke default row full-width-alternate">
 
 	  <div class="small-2 medium-2 large-2 columns padding-left">
@@ -32,6 +26,41 @@
 
 	  <div class="small-6 medium-6 large-6 columns padding top-2 maincolumn">
 	  	<?php echo $this->Session->flash(); ?>
+
+	  	<?php 
+	  		// debug($adminNotifications);
+	  		$allNot = "";
+	  		$first = true;
+	  		$hasNotification = null;
+	  		echo $this->Html->css('lightbox_ribbon');
+	  		foreach ($adminNotifications as $key => $not) {
+	  			$searchStr = '<!-- CLOSE_HERE -->';
+
+	  			$fla = 	$this->Session->flash('admin'.$not['AdminNotification']['id']);
+	  			if(end($adminNotifications) == $not) {
+		  			$closeModal = '<a class="close-reveal-modal">&#215;</a>';
+		  			$fla =  str_replace( $searchStr , $closeModal , $fla);
+	  			} else {
+	  				if(isset($adminNotifications[$key++])) {
+	  					$nextId = $adminNotifications[$key++]['AdminNotification']['id'];
+	  					$nextModal = '<p><a href="#" data-reveal-id="admin'.$nextId.'" class="button">Understood ...</a></p>';
+		  				$fla =  str_replace( $searchStr , $nextModal , $fla);
+		  			}
+	  			}
+
+	  			if($first) {
+	  				echo $fla;
+	  				$hasNotification = 'admin'.$not['AdminNotification']['id'];
+	  			} else {
+		  			$allNot .= $fla;
+	  			}
+	  			// debug($fla);
+	  			// echo $fla;
+	  			$first = false;
+	  		}
+	  		echo $allNot;
+	  	?>
+
 	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
 	  	  <div id="pattern" class="pattern">
   			<div class="c">
@@ -314,8 +343,18 @@
 </section>
 
 <?php
+	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false)); 
 	echo $this->Html->script('reveal_modal', array('inline' => false));
 	echo $this->Html->script('mycarousel', array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
-	echo $this->Html->script('reveal_modal', array('inline' => false));
 ?>
+
+<script type="text/javascript" charset="utf-8">
+	<?php 
+		if(!is_null($hasNotification)){
+			echo '$(document).ready( function() {';
+			echo '$("#'.$hasNotification.'").foundation("reveal", "open");';
+			echo '});';
+		}
+	?>
+</script>
