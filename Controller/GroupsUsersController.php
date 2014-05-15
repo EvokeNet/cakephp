@@ -144,6 +144,7 @@ class GroupsUsersController extends AppController {
 
 			// Now we have everything we need to create the Pad
 			$pad = $client->createGroupPad($groupID, 'evokation');
+			debug($pad);
 			if ($pad->getCode() == 0) {
 				$padID = $pad->getData();
 				$padID = $padID['padID'];
