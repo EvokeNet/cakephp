@@ -22,6 +22,10 @@ class Notification extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+		'Evidence' => array(
+            'className' => 'Evidence',
+            'foreignKey' => 'origin_id',
+        ),
 	);
 }

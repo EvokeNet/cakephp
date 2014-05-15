@@ -373,4 +373,3 @@ Configure::write('fb_app_secret', '8f56121cd2840b321cf64d8aa156f3ce');
 Configure::write('fb_app_requests', '');
 
 Configure::write('etherpad_api_key', '03d669e40fa104737fb405ac8dc8e9571eef846525314fc67d0562486c539da0');
-

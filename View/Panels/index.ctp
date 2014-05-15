@@ -605,11 +605,59 @@
 					<?php echo $this->Form->end(); ?>
 				</div>
 				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
-					<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>
-					<p><?php echo __('Groups') . ": " . sizeof($groups);?></p>
-					<p><?php echo __('Organizations') . ": " . sizeof($organizations);?></p>
-					<p><?php echo __('Badges') . ": ".sizeof($badges);?></p>
-					<p>AND MORE!</p>
+					<div class="large-12 medium-12 small-12 columns">
+						<dl class="tabs" data-tab>
+							<dd class="active"><a href="#otherMetrics"><?= __('General') ?></a></dd>
+							<dd><a href="#organizationMetrics"><?= __('Organizations') ?></a></dd>
+							<dd><a href="#missionMetrics"><?= __('Missions') ?></a></dd>
+						</dl>
+						<div class="tabs-content ">
+							<div class="content active" id="otherMetrics">
+								<div class="large-12 medium-12 small-12 columns">
+							
+									<h3><?=__('Total of organizations: '). sizeof($organizations)?></h3>
+									<h3><?=__('Total of missions: '). sizeof($missions_issues)?></h3>
+									<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>
+									<p><?php echo __('Evokation Groups') . ": " . sizeof($groups);?></p>
+									<p>Average of allies/user: <?=sizeof($allRelations)/sizeof($all_users)?></p>
+									<p><?php echo 'issues' ?></p>
+									<?php 
+										foreach ($pickedIssues as $issue) {
+											echo $issue['issue'] . ': '. $issue['quantity'];
+											echo '<br>';
+										}
+									?>
+									<p><?php echo __('Badges') . ": ".sizeof($badges);?></p>
+								</div>
+							</div>
+							<div class="content" id="organizationMetrics">
+								<div class="large-12 medium-12 small-12 columns">
+									<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
+										<?php foreach ($organizations as $org) : ?>
+											<li>
+												<fieldset>
+													<h3><?=$org['Organization']['name']?></h3>
+												</fieldset>
+											</li>
+										<?php endforeach ?>
+									</ul>
+								</div>									
+							</div>
+							<div class="content" id="missionMetrics">
+								<div class="large-12 medium-12 small-12 columns">
+									<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
+										<?php foreach ($missions_issues as $mission) : ?>
+											<li>
+												<fieldset>
+													<h3><?=$mission['Mission']['title']?></h3>
+												</fieldset>
+											</li>
+										<?php endforeach ?>
+									</ul>
+								</div>									
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 	</div>

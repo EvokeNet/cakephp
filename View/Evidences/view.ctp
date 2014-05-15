@@ -47,47 +47,7 @@
 
 	  	<div class="evoke default row full-width-alternate">
 
-  		<div class="small-3 medium-3 large-3 columns">
-		  	<div class="evoke evidence-tag text-align">
-		  		
-		  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
-					<?php if($evidence['User']['facebook_id'] == null) : ?>
-						<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-					<?php else : ?>	
-						<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-					<?php endif; ?>
-
-				<?php else : ?>
-					<img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-				<?php endif; ?>
-		  		
-			 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1></a>
-			 	
-			 	<div class = "evoke border-bottom"></div>
-
-			 	<p><?php echo $evidence['User']['biography'] ?></p>
-
-			 	<div class = "evoke border-bottom"></div>
-			 	
-			 	<i class="fa fa-facebook-square fa-2x"></i>&nbsp;
-				<i class="fa fa-google-plus-square fa-2x"></i>&nbsp;
-				<i class="fa fa-twitter-square fa-2x"></i>
-
-				<div class = "evoke border-bottom"></div>
-
-				<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
-
-					<div class = "evoke evidence padding bottom-1"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Evidence');?></a></div>
-				<?php endif; ?>
-
-				<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
-					<div class = "evoke evidence padding bottom-1"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Delete Evidence');?></a></div>
-
-				<?php endif; ?>
-
-		 	</div>
-		  </div>
-		  <div class="small-7 medium-7 large-7 columns">
+		  <div class="small-9 medium-9 large-9 columns">
 		 	<div class = "evoke evidence-body view">
 			  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
 			  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
@@ -162,7 +122,53 @@
 	  			?>
 			</div>
 		  </div>
-	  <div class="small-2 medium-2 large-2 columns padding-right">
+	  <div class="small-3 medium-3 large-3 columns padding-right">
+
+	  	<div class="evoke evidence-tag text-align margin bottom-2">
+		  		
+	  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
+				<?php if($evidence['User']['facebook_id'] == null) : ?>
+					<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+				<?php else : ?>	
+					<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+				<?php endif; ?>
+
+			<?php else : ?>
+				<img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+			<?php endif; ?>
+	  		
+		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1></a>
+
+			<dl class="accordion" data-accordion>
+			  <dd>
+			    <a href="#panel11"><i class="fa fa-angle-down fa-lg"></i></a>
+			    <div id="panel11" class="content evidence-tag">
+			      <div class = "evoke border-bottom"></div>
+
+				 	<p><?php echo $evidence['User']['biography'] ?></p>
+
+				 	<div class = "evoke border-bottom"></div>
+				 	
+				 	<i class="fa fa-facebook-square fa-2x"></i>&nbsp;
+					<i class="fa fa-google-plus-square fa-2x"></i>&nbsp;
+					<i class="fa fa-twitter-square fa-2x"></i>
+
+					<div class = "evoke border-bottom"></div>
+
+					<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
+
+						<div class = "evoke evidence padding bottom-1"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Edit Evidence');?></a></div>
+					<?php endif; ?>
+
+					<?php if(isset($user['User']) && $evidence['Evidence']['user_id'] == $user['User']['id']) : ?>
+						<div class = "evoke evidence padding bottom-1"><a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class = "button general"><?php echo __('Delete Evidence');?></a></div>
+
+					<?php endif; ?>
+			    </div>
+			  </dd>
+			</dl>
+
+	 	</div>
 
 		<h3> <?= strtoupper(__('Rating')) ?> </h3>
 
