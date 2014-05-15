@@ -46,7 +46,7 @@
 
 	      <li class="active">
 	      	<a href="#">
-				<div class="evoke top-bar progress small-9 large-9 success round">
+				<div class="evoke top-bar progress small-9 large-9 round">
 				  <span class="meter" style="width: <?= $userLevelPercentage ?>%"></span>
 				</div>
 			</a>

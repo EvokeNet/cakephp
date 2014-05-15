@@ -4,7 +4,6 @@
 	border-bottom: 3px solid #efefef;
 }
 
-
 .evoke .forum-topic-bg.custom-padding{
 	padding: 15px 30px 10px 40px;
 }
@@ -20,6 +19,7 @@
 .evoke .forum-post-bg table{
 	border: 3px solid #16141b;
 	margin-bottom:0;
+	background: none;
 }
 
 .evoke .forum-post-bg tbody{
@@ -78,6 +78,12 @@
 	/*padding: 10px 20px;*/
 }
 
+.evoke .forum.reply a{
+	font-family:'AlegreyaRegular';
+	font-size:2rem;
+	color:#000;
+}
+
 .evoke .forum.bubble:after {
 	content: '';
 	position: absolute;
@@ -117,6 +123,33 @@
 	overflow:hidden;
 }
 
+.evoke .forum.index td, .evoke .forum.index th{
+	font-family:'AlegreyaRegular';
+}
+
+.evoke .forum.index td{
+	font-size: 1.1rem;
+}
+
+.evoke .forum.index th{
+	font-size: 1.2rem;
+}
+
+.evoke .topic.new label{
+	text-align: left;
+	font-size: 1.1rem;
+	margin-bottom: 1em;
+}
+
+.evoke .topic.new .decoda-editor{
+	display:inline;
+}
+
+.top-bar-section ul li.active>a {
+	/* background: #008cba; */
+	color: #ffffff;
+}
+
 .decoda{
 	color: #fff;
 	font-size: 1.2rem;
@@ -127,4 +160,13 @@
 	background-color: #efefef;
 	color: #000;
 	font-family:'AlegreyaRegular';
+}
+
+.breadcrumb a{
+	color:#252525;
+	font-size:1.2rem;
+}
+
+.breadcrumb a:visited{
+	color:#252525;
 }

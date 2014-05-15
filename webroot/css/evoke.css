@@ -87,6 +87,10 @@ button, div, p, span, a,
 
 /* SPACINGS, MARGINS, PADDINGS */
 
+.evoke .bg-min-height{
+	min-height:800px;
+}
+
 .evoke .margin.top {
 	margin-top: 1em;
 }
@@ -708,13 +712,13 @@ button, div, p, span, a,
 	margin-left: 100px;
 }
 
-.evoke .panel{
+/*.evoke .panel{
 	height: 550px;
 	overflow: scroll;
 	overflow-x: hidden;
 	z-index: 1;
 	position: relative;
-}
+}*/
 
 .evoke .screen-box-height{
 	height: 550px;
