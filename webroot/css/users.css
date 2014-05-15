@@ -1,5 +1,9 @@
 /* New CSS */
 
+.evoke .margin.top-6{
+	margin-top: 6vw;
+}
+
 .evoke .dashboard.missions img{
 	margin-bottom:10px;
 }
@@ -96,6 +100,49 @@
 	height:100px;
 	overflow:hidden;
 }
+
+.evoke .leaderboard.tabs{
+	width:100%;
+}
+
+.evoke .leaderboard.tabs a{
+	font-size:0.9vw;
+	color:#fff;
+	font-family:'AlegreyaRegular';
+}
+
+.evoke .leaderboard.tabs dd.active a{
+	/*-webkit-box-shadow: 1px 0px 15px #0cd377;
+	-moz-box-shadow: 1px 0px 15px #0cd377;
+	box-shadow: 1px 0px 15px #0cd377;*/
+	color:#0cd377;
+}
+
+.evoke .leaderboard.tabs dd>a{
+	background-color: rgba(0, 0, 0, 0.5);
+	border-bottom: 2px solid #47454b;
+}
+
+.evoke .leaderboard .tabs-content ul{
+	border-bottom: 2px solid #47454b;
+	padding: 20px 0px 0px;
+	margin-bottom: 20px;
+}
+
+.evoke .leaderboard .headings h1, h2, h3{
+	color: #fff;
+	font-family: 'AlegreyaRegular';
+	line-height: 1.0em;
+}
+
+.evoke .leaderboard .headings h3{
+	font-size: 1.9rem;
+}
+
+/*.evoke .leaderboard .headings h2{
+	color: #fff;
+	font-family: 'AlegreyaRegular';
+}*/
 
 /* End CSS */
 
@@ -554,33 +601,33 @@
 	display: -webkit-box;
 }*/
 
-.evoke.leaderboard h1, h2, h3{
+/*.evoke.leaderboard h1, h2, h3{
 	color:#fff;
 	font-family:'AlegreyaRegular';
 }
 
 .evoke.leaderboard h2{
 	font-family:'AlegreyaBold';
-}
+}*/
 
-.evoke.leaderboard h3 {
+/*.evoke.leaderboard h3 {
 	font-size:2.5vw;
-}
+}*/
 
-.evoke.leaderboard h4 {
+/*.evoke.leaderboard h4 {
 	display: inline;
 	font-size: 1.8vw;
 	margin-left: 10px;
 	color:#fff;
 	font-family:'AlegreyaRegular'!important;
-}
+}*/
 
-.evoke.leaderboard li {
+/*.evoke.leaderboard li {
 	text-align:center;
-}
+}*/
 
-.evoke.leaderboard-border{
+/*.evoke.leaderboard-border{
 	border-bottom:1px solid #5e5e5e;
 	padding-bottom:10px;
 	margin-bottom:20px;
-}
+}*/

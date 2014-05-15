@@ -8,49 +8,43 @@
 
 ?>
 
-<section class="evoke default-background">	
+<section class="evoke leaderboard default-background">	
 
 	<?php echo $this->Session->flash(); ?>
 
-	<div class="evoke default row full-width-alternate">
+	<div class="evoke row full-width-alternate">
 
 	<div class="small-2 medium-2 large-2 columns padding-left">
 	  		<?php echo $this->element('menu', array('user' => $user));?>
 	</div>	
 	
-	<div class="small-9 medium-9 large-9 columns maincolumn">
+	<div class="small-8 medium-8 large-8 columns maincolumn padding top-2">
 
-		<h3> <?= strtoupper(__('Leaderboard')) ?> </h3>
+		<div class = "default">
+			<h3 class = "padding bottom-1"> <?= strtoupper(__('Leaderboard')) ?> </h3>
+		</div>
 
-		<dl class="tabs" data-tab style = "margin-bottom:20px!important">
-			<dd class="active"><a id="xp" href="#panelXP"><?= __('Levels')?></a></dd>
-			<?php 
-				$index = 1;
-				foreach ($power_points as $pp) {
-					echo '<dd><a id="pp-'. $index.'" href="#panel2-'. $index .'">'. $pp['PowerPoint']['name'] .'</a></dd>';
-					$index++;
-				}
-			?>
-		</dl>
+		<div class="evoke sheer-background">
+			<div class="tabs-content evoke headings">
+				<h1 class = "float-right"><?= strtoupper(__("Your position: ")) ?> <span id="positionHolder">5</span></h1>
+				<div class="content vertical active" id="panelXP">
 
-		<div class="evoke black-bg leaderboard">
-			<h1><?= __("Your position: ") ?> <span id="positionHolder">5</span></h1>
-			<div class="tabs-content evoke gray-solid-bg">
-				<div class="content active" id="panelXP">
-
-					<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
-						<li><h2><?= strtoupper(__("Position")) ?></h2></li>
-						<li><h2><?= strtoupper(__("Agent")) ?></h2></li>
-						<li><h2><?= strtoupper(__("Level")) ?></h2></li>
-						<li><h2><?= strtoupper(__("XP")) ?></h2></li>
-						<?php 
-							$pos = 1;
-							foreach ($points_users as $p => $point) {
-								foreach ($point as $usr) { 
-									if($usr['id'] == $user['User']['id'])
-										$position[0] = $pos;
-									?>
-									<li><h3 style = "color:#1f8cb2"><?= $pos ?></h3></li>
+					<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5">
+						<li><h3><?= strtoupper(__("Position")) ?></h3></li>
+						<li><h3><?= strtoupper(__("Agent ID")) ?></h3></li>
+						<li><h3><?= strtoupper(__("Agent name")) ?></h3></li>
+						<li><h3><?= strtoupper(__("Level")) ?></h3></li>
+						<li><h3><?= strtoupper(__("XP")) ?></h3></li>
+					</ul>
+					<?php 
+						$pos = 1;
+						foreach ($points_users as $p => $point) {
+							foreach ($point as $usr) { 
+								if($usr['id'] == $user['User']['id'])
+									$position[0] = $pos;
+								?>
+								<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5">
+									<li><h1 style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></h1></li>
 
 									<li>
 										<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
@@ -58,81 +52,98 @@
 			  								<div>
 			  									<img src="https://graph.facebook.com/<?php echo $usr['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon"/>
 			  								</div>
-			  								<h4><?= $usr['name'] ?></h4>
 			  							<?php else : ?>
 			  								<div>
 			  									<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/thumb_'.$usr['photo_attachment'] ?>" class = "evoke dashboard users-icon"/>
 			  								</div>
-			  								<h4><?= $usr['name'] ?></h4>
 			  							<?php endif; ?>
 			  							</a>
 			  						</li>
+			  						<li><h3 style = "font-size: 2.5rem;"><?= $usr['name'] ?></h3></li>
 		  							<li><h3><?= $usr['level']?></h3></li>
 		  							<li><h3><?= $p ?></h3></li>
 		  							<span class = "evoke leaderboard-border"></span>
-									<?php 
-									$pos++;
-								}
+	  							</ul>
+								<?php 
+								$pos++;
 							}
-						?>
-					</ul>
+						}
+					?>
 
 				</div>
 				<?php 
 					$index = 1;
 					foreach ($power_points as $pp) {
-						echo '<div class="content" id="panel2-'. $index .'">';
-							echo '<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">';
-							?>
-							<li><h2><?= strtoupper(__("Position")) ?></h2></li>
-							<li><h2><?= strtoupper(__("Agent")) ?></h2></li>
-							<li><h2><?= strtoupper(__("Power")) ?></h2></li>
-							<li><h2><?= strtoupper(__("Points")) ?></h2></li>
+						echo '<div class="content vertical" id="panel2-'. $index .'">';?>
+							
+							<h1 class = "margin bottom-1"><?= strtoupper($pp['PowerPoint']['name']) ?></h1>
+
+							<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5">
+								<li><h3><?= strtoupper(__("Position")) ?></h3></li>
+								<li><h3><?= strtoupper(__("Agent ID")) ?></h3></li>
+								<li><h3><?= strtoupper(__("Agent name")) ?></h3></li>
+								<li><h3><?= strtoupper(__("Level")) ?></h3></li>
+								<li><h3><?= strtoupper(__("Points")) ?></h3></li>
+							</ul>
 							<?php
-							$pos = 1;
-							foreach ($powerpoints_users[$pp['PowerPoint']['id']] as $pps => $ppusr) {
-								foreach ($ppusr as $usr) {
-									if($usr['id'] == $user['User']['id'])
-										$position[$index] = $pos;
-								 	?>
-									<li><h3 style = "color:#1f8cb2"><?= $pos ?></h3></li>
+								$pos = 1;
+								foreach ($powerpoints_users[$pp['PowerPoint']['id']] as $pps => $ppusr) {
+									foreach ($ppusr as $usr) {
+										if($usr['id'] == $user['User']['id'])
+											$position[$index] = $pos;
+									 	?>
 
-									<li>
-										<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
-										<?php if($usr['photo_attachment'] == null) : ?>
-				  							<div>
-				  								<img src="https://graph.facebook.com/<?php echo $usr['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon"/>
-				  							</div>
-				  							<h4><?= $usr['name'] ?></h4>
-				  						<?php else : ?>
-				  							<div>
-				  								<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/thumb_'.$usr['photo_attachment'] ?>" class = "evoke dashboard users-icon"/>
-				  							</div>
-				  							<h4><?= $usr['name'] ?></h4>
-				  						<?php endif; ?>
-				  						</a>
-				  					</li>
-				  					<li><h3><?= $pp['PowerPoint']['name']?></h3></li>
-				  					<li><h3><?= $pps ?></h3></li>
-		  							<span class = "evoke leaderboard-border"></span>
-									<?php 
-									
-									$pos++;
-								}
-							}								
-							echo '</ul>';
+									 	<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5">
 
-						echo '</div>';
+											<li><h1 style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></h1></li>
+
+											<li>
+												<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
+												<?php if($usr['photo_attachment'] == null) : ?>
+						  							<div>
+						  								<img src="https://graph.facebook.com/<?php echo $usr['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon"/>
+						  							</div>
+						  						<?php else : ?>
+						  							<div>
+						  								<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/thumb_'.$usr['photo_attachment'] ?>" class = "evoke dashboard users-icon"/>
+						  							</div>
+						  						<?php endif; ?>
+						  						</a>
+						  					</li>
+						  					<li><h3 style = "font-size: 2.5rem;"><?= $usr['name'] ?></h3></li>
+						  					<li><h3><?= $usr['level']?></h3></li>
+						  					<li><h3><?= $pps ?></h3></li>
+				  							<span class = "evoke leaderboard-border"></span>
+			  							</ul>
+										<?php 
+										
+										$pos++;
+									}
+								}		
+							?>
+
+							</div>
+						<?php
 						$index++;
 					}
 				?>
-
 				
 			</div>
 		</div>
 		</div>
 		
-		<div class="medium-1 end columns"></div>
+		<div class="small-2 medium-2 large-2 columns">
+			<dl class="leaderboard tabs vertical margin top-6" data-tab>
+				<dd class="active"><a id="xp" href="#panelXP"><?= strtoupper(__('Levels'))?></a></dd>
+				<?php 
+					$index = 1;
+					foreach ($power_points as $pp) {
+						echo '<dd><a id="pp-'. $index.'" href="#panel2-'. $index .'">'. strtoupper($pp['PowerPoint']['name']) .'</a></dd>';
+						$index++;
+					}
+				?>
+			</dl>
+		</div>
 
 	</div>
 </section>
