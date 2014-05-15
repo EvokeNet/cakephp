@@ -57,9 +57,9 @@
 		  <div class="small-2 medium-2 large-2 columns evoke text-align-center">
 
 		  	<?php if($e['Group']['photo_dir'] == null) :?>
-  				<img src="https://graph.facebook.com//picture?type=large"/>
+  				<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "height:5vw"/>
 	  		<?php else : ?>
-				<img src="<?= $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/thumb_'.$e['Group']['photo_attachment'] ?>" />
+				<img src="<?= $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/thumb_'.$e['Group']['photo_attachment'] ?>" style = "height:5vw"/>
 			<?php endif; ?>
 
 		  </div>

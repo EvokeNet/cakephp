@@ -370,6 +370,603 @@ class MissionsController extends AppController {
 			)
 		));
 
+		/* Start checklist mechanic */
+
+		$checklist_done = array();
+		$build_profile = null;
+		$this->loadModel('UserPhaseChecklist');
+
+		if($mission['Mission']['basic_training'] == 1){
+
+			$build_profile = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.type' => '1')));
+
+			$my_bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			$question_bt = array();
+
+			if(isset($build_profile)){
+				$this->loadModel('Question');
+				$question_bt = $this->Question->find('all', array('conditions' => array('Question.questionnaire_id' => $build_profile['Questionnaire']['id'])));
+			}
+
+			$this->UserPhaseChecklist->create();
+
+			foreach($question_bt as $q):
+				foreach ($previous_answers as $previous_answer) {
+					if($q['Question']['id'] == $previous_answer['UserAnswer']['question_id']){
+						$checklist_done[2] = true;// array_push($checklist_done, true);
+
+						$insertData = array(
+				            'user_id' => $this->getUserId(),  
+				            'phase_checklist_id' => 2,
+				            'mission_id' => $id,
+				            'phase_id' => $missionPhase['Phase']['id'],
+				            'completed' => true,
+				        );
+
+						$check2 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+				            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+				            'UserPhaseChecklist.phase_checklist_id' => 2,
+				            'UserPhaseChecklist.mission_id' => $id,
+				            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+				        )));
+
+						if(empty($check2))
+							$this->UserPhaseChecklist->saveAll($insertData);
+						break;
+					} 
+				}
+			endforeach;
+
+			if(($checklist_done[2]) || (isset($my_bt_evis))){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 1,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check1 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 1,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+				if(empty($check1))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+			$bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+				)
+			));
+
+			$ci = array();
+
+			foreach($bt_evis as $b):
+				array_push($ci, array('Comment.evidence_id' => $b['Evidence']['id'], 'Comment.user_id' => $user['User']['id']));
+			endforeach;
+
+			$comment = $this->Mission->Quest->Evidence->Comment->find('all', array(
+				'conditions' => array(
+					'OR' => $ci
+			)));
+
+			if(isset($comment)){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 4,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check4 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 4,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+				if(empty($check4))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+			$this->loadModel('UserFriend');
+			$ally = $this->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId())));
+
+			if(isset($ally)){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 5,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check5 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 5,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+				if(empty($check5))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+		} if(($mission['Mission']['basic_training'] == 0) && (($missionPhase['Phase']['name'] == 'Explore') || ($missionPhase['Phase']['name'] == 'Explorar'))){
+
+			$build_profile = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.type' => '1')));
+
+			$my_bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			//debug($my_bt_evis);
+
+			$question_bt = array();
+
+			if(isset($build_profile)){
+				$this->loadModel('Question');
+				$question_bt = $this->Question->find('all', array('conditions' => array('Question.questionnaire_id' => $build_profile['Questionnaire']['id'])));
+			}
+
+			//$checklist_done[3] = false;
+
+			$check3 = $check2 = $check1 = $check4 = 0;
+
+			$this->UserPhaseChecklist->create();
+
+			foreach($question_bt as $q):
+				foreach ($previous_answers as $previous_answer) {
+					if($q['Question']['id'] == $previous_answer['UserAnswer']['question_id']){
+						
+						$insertData = array(
+				            'user_id' => $this->getUserId(),  
+				            'phase_checklist_id' => 3,
+				            'mission_id' => $id,
+				            'phase_id' => $missionPhase['Phase']['id'],
+				            'completed' => true,
+				        );
+
+						$check3 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+				            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+				            'UserPhaseChecklist.phase_checklist_id' => 3,
+				            'UserPhaseChecklist.mission_id' => $id,
+				            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+				        )));
+
+				        if(empty($check3))
+							$this->UserPhaseChecklist->saveAll($insertData);
+						break;
+					} 
+				}
+			endforeach;
+
+			if(($check3) || (isset($my_bt_evis[0]))){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 1,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check1 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 1,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check1))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+			$quest_roots = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'Find your roots')));
+
+			$roots_evis = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $quest_roots['Phase']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			//debug($roots_evis);
+
+			if(!empty($roots_evis)){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 4,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check4 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 4,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check4))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+			$bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					// 'Evidence.user_id !=' => $user['User']['id'], 
+					'NOT' => array('Evidence.user_id' => $this->getUserId())
+			)));
+
+			$ci = array();
+
+			//debug($bt_evis);
+
+			foreach($bt_evis as $b):
+				array_push($ci, array('Comment.evidence_id' => $b['Evidence']['id'], 'Comment.user_id' => $user['User']['id']));
+				// if($user['User']['id'])
+				// 	debug("ieie");
+			endforeach;
+
+			$comment = $this->Mission->Quest->Evidence->Comment->find('first', array(
+				'conditions' => array(
+					'OR' => $ci
+			)));
+
+			//debug($comment);
+
+			if(!empty($comment)){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 2,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check2 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 2,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check2))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+		} if(($mission['Mission']['basic_training'] == 0) && (($missionPhase['Phase']['name'] == 'Imagine') || ($missionPhase['Phase']['name'] == 'Imaginar'))){
+
+			$my_bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(isset($my_bt_evis[0])){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 1,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check1 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 1,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check1))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+			$bt_evis = $this->Mission->Quest->Evidence->find('all', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					// 'Evidence.user_id !=' => $user['User']['id'], 
+					'NOT' => array('Evidence.user_id' => $this->getUserId())
+			)));
+
+			$ci = array();
+
+			if(!empty($bt_evis)){
+				foreach($bt_evis as $b):
+					array_push($ci, array('Comment.evidence_id' => $b['Evidence']['id'], 'Comment.user_id' => $this->getUserId()));
+					// if($user['User']['id'])
+					// 	debug("ieie");
+				endforeach;
+			}
+
+			$this->loadModel('Comment');
+
+			$comment = $this->Comment->find('all', array(
+				'conditions' => array(
+					'OR' => $ci
+			)));
+
+			//debug(empty($ci));
+
+			if(!empty($comment[0])){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 2,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check2 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 2,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check2))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+		} if(($mission['Mission']['basic_training'] == 0) && (($missionPhase['Phase']['name'] == 'Act') || ($missionPhase['Phase']['name'] == 'Actuar'))){
+
+			$this->loadModel('Group');
+
+			$my_groups = $this->Group->find('all', array(
+				'conditions' => array(
+					'Group.user_id' => $this->getUserId(),
+					'Group.mission_id' => $id
+				)
+			));
+
+			$groups = $this->Group->find('first', array(
+				'conditions' => array(
+					'Group.mission_id' => $id
+				)
+			));
+
+			$ci = array();
+
+			foreach($groups as $b):
+				array_push($ci, array('GroupsUser.group_id' => $b['Group']['id'], 'GroupsUser.user_id' => $this->getUserId()));
+				// if($user['User']['id'])
+				// 	debug("ieie");
+			endforeach;
+
+			$gs = $this->Group->GroupsUser->find('first', array(
+				'conditions' => array(
+					'OR' => $ci
+			)));
+
+			if((isset($my_groups[0])) || (!empty($gs))){
+				
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 1,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check1 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 1,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check1))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+			$quest_problem = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'The Problem')));
+
+			$problem_evis = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $quest_problem['Phase']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(!empty($problem_evis)){
+				
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 2,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check2 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 2,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check2))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+			$change_problem = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'Your World Changing Idea')));
+
+			$change_evis = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $change_problem['Phase']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(!empty($change_evis)){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 3,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check3 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 3,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check3))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+			// $this->loadModel('EvokationFollower');
+
+			// $ev_fo = $this->EvokationFollower->find('first')
+
+		} if(($mission['Mission']['basic_training'] == 0) && (($missionPhase['Phase']['name'] == 'Evoke'))){
+
+			$quest1 = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'How will you know?')));
+
+			$evis1 = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					'Evidence.quest_id' => $quest1['Quest']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(!empty($evis1)){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 1,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check1 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 1,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check1))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+			$quest2 = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'Super Hero Symbol')));
+
+			$evis2 = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					'Evidence.quest_id' => $quest2['Quest']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(!empty($evis2)){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 2,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check2 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 2,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check2))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+			$quest3 = $this->Mission->Quest->find('first', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'], 'Quest.title' => 'Elevator Pitch')));
+
+			$evis3 = $this->Mission->Quest->Evidence->find('first', array(
+				'conditions' => array(
+					'Evidence.mission_id' => $id,
+					'Evidence.phase_id' => $missionPhase['Phase']['id'],
+					'Evidence.quest_id' => $quest3['Quest']['id'],
+					'Evidence.user_id' => $this->getUserId()
+				)
+			));
+
+			if(!empty($evis3)){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 3,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check3 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 3,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check3))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+		}
+
+		$todocheck = $this->UserPhaseChecklist->find('all', array('conditions' => array(
+			'UserPhaseChecklist.mission_id' => $id,
+			'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+			'UserPhaseChecklist.user_id' => $this->getUserId()
+		), 'order' => array('UserPhaseChecklist.phase_checklist_id ASC')));
+
+		foreach($missionPhases as $m):
+			${'check'.$m['Phase']['name']} = $this->UserPhaseChecklist->find('all', array('conditions' => array(
+				'UserPhaseChecklist.mission_id' => $id,
+				'UserPhaseChecklist.phase_id' => $m['Phase']['id'],
+				'UserPhaseChecklist.user_id' => $this->getUserId()
+			), 'order' => array('UserPhaseChecklist.phase_checklist_id ASC')));
+
+			${'checklists'.$m['Phase']['name']} = $this->Mission->PhaseChecklist->find('all', array('conditions' => array(
+				'PhaseChecklist.mission_id' => $id, 
+				'PhaseChecklist.phase_id' => $m['Phase']['id'], 
+				'PhaseChecklist.language' => $langs
+			)));
+
+			$this->set(compact('check'.$m['Phase']['name'], 'checklists'.$m['Phase']['name']));
+		endforeach;
+
+		/* End checklist mechanic*/
+
 		//checking number of mandatory quests per phase and number of completed ones..
 		$all_mandatory_quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.mandatory' => 1)));
 
@@ -522,8 +1119,7 @@ class MissionsController extends AppController {
 			));
 		}
 
-
-		$this->set(compact('launchers', 'allBadges', 'allPowerPoints', 'checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
+		$this->set(compact('todocheck', 'launchers', 'allBadges', 'allPowerPoints', 'checklist_done', 'checklists', 'links', 'video_links', 'lang', 'user', 'evidences', 'liked_evidences', 'evokations', 'quests', 'mission', 'missionIssues', 'phase_number', 
 			'missionPhases', 'missionPhase', 'nextMP', 'prevMP', 'myEvokations', 'success_evokations', 'myevidences', 'novels_es', 'novels_en',
 			'questionnaires', 'answers', 'previous_answers', 'attachments', 'my_evidences', 'evokationsFollowing', 'users', 'organized_by', 'mission_img', 'dossier_files', 'hasGroup', 'total', 'completed', 'sumMyPoints', 'is_phase_completed'));
 

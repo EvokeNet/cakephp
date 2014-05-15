@@ -67,12 +67,14 @@
 			</div>
 
 			<div class = "evoke missions header tint">
-				<h3 id="numero1"> <?= strtoupper($mission['Mission']['title']) ?> </h3>
+				<h3 id="numero1"><?= strtoupper($mission['Mission']['title']) ?></h3>
 				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
+
 					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "height:22vw; width:100%">
                 <?php else :?>
 					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "height:22vw; width:100%">
+
                 <?php endif ?>
 			</div>
 
@@ -299,9 +301,26 @@
 					<div class = "evoke todo-list content">
 						<h1><?= strtoupper(__('To-Do List')) ?></h1>
 						<ul class="small-block-grid-3">
-							<?php if(isset($checklists)):
-									foreach($checklists as $check):?>
-								<li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li>
+							<?php 
+
+							$checking = array();
+
+							foreach($todocheck as $t):
+								//array_push($checking, $t['UserPhaseChecklist']['phase_checklist_id']);
+								$checking[$t['UserPhaseChecklist']['phase_checklist_id']] = $t['UserPhaseChecklist']['phase_checklist_id'];
+								//echo $t['UserPhaseChecklist']['phase_checklist_id'];
+							endforeach;
+
+							if(isset($checklists)):
+									foreach($checklists as $check):
+
+									if(isset($checking[$check['PhaseChecklist']['position']])):?>
+										<li><h2 class = "evoke item-complete"><?= $check['PhaseChecklist']['item'] ?></h2></li>
+									<?php else: ?>
+										<li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li>
+									<?php endif;
+									?>
+								<!-- <li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li> -->
 							<?php endforeach; endif;?>
 					  	</ul>
 	                </div>

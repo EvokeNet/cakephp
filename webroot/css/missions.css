@@ -104,12 +104,16 @@
 	border: 0;
 }
 
-.evoke.mission.status.success{
+.evoke .mission.status.success{
 	color: #20c475;
 }
 
-.evoke.mission.status.dev{
+.evoke .mission.status.dev{
 	color: #c65862;
+}
+
+.evoke .mission.status.alert{
+	color: #7F7F7F;
 }
 
 .evoke.mission.status.success.meter{
