@@ -160,13 +160,19 @@ class GroupsUsersController extends AppController {
 
 			//creating pad without group
 			$pad = $client->createPad($group['Group']['id'].'_evokation');
-			// debug($pad);
-			if ($pad->getCode() == 0) {
+			
+			//set the padid independently of wheter the pad already existed or not...
+			$padID = $group['Group']['id'].'_evokation';
+
+			/*if ($pad->getCode() == 0) {
 				$padID = $pad->getData();
+				debug($padID);
 				$padID = $padID['padID'];
 			} else {
 				$padID = $group['Group']['id'].'_evokation';
+				//debug($padID + " ja existente");
 			}
+			*/
 			
 			// debug($client->deleteGroup('g.LfNKlhxX6m8eRiV7'));
 
