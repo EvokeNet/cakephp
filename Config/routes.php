@@ -35,6 +35,16 @@
     	array('controller' => 'groupsUsers', 'action' => 'edit')
 	);
 
+	Router::connect(
+    	'/terms',
+    	array('controller' => 'pages', 'action' => 'terms')
+	);
+
+	Router::connect(
+    	'/DMCAnotifications',
+    	array('controller' => 'pages', 'action' => 'dmcanotifications')
+	);
+
 /*	Router::connect(
     	'/admin/*',
     	array('controller' => 'panels')
