@@ -30,6 +30,21 @@
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
+	Router::connect(
+    	'/evokation/*',
+    	array('controller' => 'groupsUsers', 'action' => 'edit')
+	);
+
+	Router::connect(
+    	'/admin/*',
+    	array('controller' => 'panels')
+	);
+
+	Router::connect(
+    	'/admin/:action/*',
+    	array('controller' => 'panels')
+	);
+
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
