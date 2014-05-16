@@ -50,33 +50,35 @@
 
 		<?php endif; ?>
 
-		<dl class="default tabs" data-tab>
-		  <dd class="active"><a href="#panel2-1"><?php echo __('All Evokation Teams');?></a></dd>
-		  <dd><a href="#panel2-2"><?php echo __('My Evokation Teams');?></a></dd>
-		  <dd><a href="#panel2-3"><?php echo __('Evokation Teams I Belong To');?></a></dd>
-		</dl>
-		<div class="evoke content-block default tabs-content">
-		  <div class="content active" id="panel2-1">
-		  	<?php
-	  			foreach($groups as $e):
-  					echo $this->element('group', array('e' => $e, 'user' => $user, 'users' => $users_groups));
-  				endforeach;
-  			?>
-		   </div>
-		  <div class="content" id="panel2-2">
-		    <?php
-	  			foreach($myGroups as $e):
-  					echo $this->element('group', array('e' => $e, 'user' => $user, 'users' => $users_groups));
-  				endforeach;
-  			?>
-		  </div>
-		  <div class="content" id="panel2-3">
-		  	<?php
-	  			foreach($groupsIBelong as $e):
-  					echo $this->element('group', array('e' => $e, 'user' => $user, 'users' => $users_groups));
-  				endforeach;
-  			?>
-		  </div>
+		<div class="evoke sheer-background">
+			<dl class="groups tabs float-right margin bottom-2" data-tab>
+			  <dd class="active"><a href="#panel2-1"><?php echo __('All Evokation Teams');?></a></dd>
+			  <dd><a href="#panel2-2"><?php echo __('My Evokation Teams');?></a></dd>
+			  <dd><a href="#panel2-3"><?php echo __('Evokation Teams I Belong To');?></a></dd>
+			</dl>
+			<div class="groups tabs-content">
+			  <div class="content active margin top-2" id="panel2-1">
+			  	<?php
+		  			foreach($groups as $e):
+	  					echo $this->element('group_box', array('e' => $e, 'user' => $user, 'users' => $users_groups));
+	  				endforeach;
+	  			?>
+			   </div>
+			  <div class="content margin top-2" id="panel2-2">
+			    <?php
+		  			foreach($myGroups as $e):
+	  					echo $this->element('group', array('e' => $e, 'user' => $user, 'users' => $users_groups));
+	  				endforeach;
+	  			?>
+			  </div>
+			  <div class="content margin top-2" id="panel2-3">
+			  	<?php
+		  			foreach($groupsIBelong as $e):
+	  					echo $this->element('group', array('e' => $e, 'user' => $user, 'users' => $users_groups));
+	  				endforeach;
+	  			?>
+			  </div>
+			</div>
 		</div>
 
 	  </div>

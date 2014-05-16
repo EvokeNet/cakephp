@@ -1,5 +1,5 @@
 <div class="row evoke evokation-red-box">
-	<div class="small-2 medium-2 large-2 columns">
+	<div class="small-2 medium-2 large-2 columns margin bottom-1">
   		<div class = "evoke dashboard text-align">
   			<!-- <img src="https://graph.facebook.com/<?php echo $e['User']['facebook_id']; ?>/picture?type=large" width="110px"/> -->
 
@@ -9,7 +9,7 @@
 	  			<?php else : ?>
 						<img src="<?= $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/thumb_'.$e['Group']['photo_attachment'] ?>" />
 			  	<?php endif; ?>
-				<h6><?= $e['Group']['created']?></h6>
+				<!-- <h6><?= $e['Group']['created']?></h6> -->
 			</a>
 
 			</div>
@@ -20,7 +20,7 @@
 		<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['Group']['id']));?>">
 		
 			<h1><?= $e['Group']['title']?></h1>
-			<h5><?= $e['Group']['description']?></h5>
+			<!-- <h5><?= $e['Group']['description']?></h5> -->
 
 		</a>
 
@@ -28,7 +28,7 @@
 
 	<div class="small-3 medium-3 large-3 columns">
 		<div class = "evoke text-align">
-			<div class = "evoke evidence-icons social">
+			<div class = "evoke evidence-icons social margin bottom-1 top">
 				<i class="fa fa-facebook-square fa-lg"></i>&nbsp;
 				<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
 				<i class="fa fa-twitter-square fa-lg"></i>
@@ -53,17 +53,13 @@
 					}
 				}
 
-				if(!$member) {
-					if(isset($count_members[$e['Group']['id']]))
-						if($count_members[$e['Group']['id']] < $e['Group']['max_local']) : ?>
-							<a href="#" data-reveal-id="<?= $e['Group']['id']?>" data-reveal class = "button general green"><?= __('Send request to join')?></a>
-						<?php else : ?>
-							<h6><?= __('This group is full!')?></h6>
-						<?php endif;
-					else 
-						echo '<a href="#" data-reveal-id="' .$e['Group']['id'] . '" data-reveal class = "button general green">' . __('Send request to join') . '</a>';
-				}
-			?>
+				if(!$member):?>
+					<a href="#" data-reveal-id="<?= $e['Group']['id']?>" data-reveal class = "button general green"><?= __('Send request to join')?></a>
+				<?php else: ?>
+					<div style = "color: #20c475; font-size: 1.1vw; line-height: 1.5em; display: inline; font-family: 'AlegreyaRegular';">
+						<i class="fa fa-check"></i><?= __('Member') ?>
+					</div>
+				<?php endif; ?>
 
 		</div>
 	</div>	

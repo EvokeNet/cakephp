@@ -6,3 +6,32 @@
 	overflow: scroll;
 	overflow-x: hidden;
 }
+
+.evoke .groups.tabs dd.active a {
+	background: #bc5660;
+	border-left: 5px solid #82353b;
+	border-top: 5px solid #82353b;
+	border-right: none;
+	border-bottom: none;
+}
+
+.evoke .groups.tabs dd>a {
+	background: #1f8cb2;
+	color: #ffffff;
+	/*font-size: 1.0vw;*/
+	font-size:0.7vw;
+	/*font-size: 0.9em;*/
+	/*border-radius: 5px;
+	padding: 0.4em 2em;*/
+	border-radius: 10px;
+	/*padding: 0.4em 1.5em 0.8em;*/
+	padding: 0.7em 1.4em;
+	/*margin-bottom:0px;*/
+	margin-right: 10px;
+	border-right: 5px solid #125167;
+	border-bottom: 5px solid #125167;
+}
+
+.evoke .groups.tabs-content{
+	background:transparent;
+}

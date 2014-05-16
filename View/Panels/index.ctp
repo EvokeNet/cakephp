@@ -81,7 +81,10 @@
   </nav>
 </div>
 
-<?php $this->end(); ?>
+<?php 
+	$this->end(); 
+	echo $this->Html->css('lightbox_ribbon');
+?>
 
 <section>
 	<div class="panels row full-width-alternate">
@@ -481,6 +484,34 @@
 						<a class="close-reveal-modal">&#215;</a>
 					</div>
 					<?php foreach ($notifications as $n) : ?>
+
+						<!-- show him/her how the notification will be seen -->
+						<button class="button small" id="ShowNot-<?php echo $n['AdminNotification']['id']; ?>" data-reveal-id="not-<?php echo $n['AdminNotification']['id']; ?>" style="display:none" data-reveal></button>
+									<!-- Lightbox for editing evokation status -->
+
+						<div id="<?= 'not-'.$n['AdminNotification']['id']?>" class="reveal-modal medium evoke lightbox phase text-align" data-reveal data-options="closeOnBackgroundClick:false">
+
+						  <h3><?= strtoupper(__('Notification')) ?></h3>
+						 	<div class = "evoke lightbox-margin">
+						  	<div class="green-ribbon-wrapper">
+								<div class="green-ribbon-front">
+									<h2 style = "color:#fff"><?= $n['AdminNotification']['title'] ?></h2>
+								</div>
+								<div class="green-ribbon-edge-topleft"></div>
+								<div class="green-ribbon-edge-topright"></div>
+								<div class="green-ribbon-edge-bottomleft"></div>
+								<div class="green-ribbon-edge-bottomright"></div>
+								<div class="green-ribbon-back-left"></div>
+								<div class="green-ribbon-back-right"></div>
+							</div>
+							</div>
+						  	<p class="lead"><?= $n['AdminNotification']['description'] ?></p>
+							<a class="close-reveal-modal">&#215;</a>
+						  
+						</div>
+
+						
+
 						<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'deleteNotification', $n['AdminNotification']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteNotification'.$n['AdminNotification']['id'], 'style' => 'display:none')); ?>
 					<?php endforeach; ?>
 					<div id="NotificationsHolder"></div>
@@ -1930,15 +1961,16 @@
             //var urlE = getCorrectURL("evokations/view/");
 
             //var strE = '"ShowEvokationStatus-' + eId[i-1] + '"';
-            
+            strN = '"ShowNot-'+notId[i-1] + '"';
+
             var doc = {
             	
             	admin: notUser[i-1],//user name
-            	//adminFormat: "<a href='#' onclick='document.getElementById(" + strE +").click();' class='userId'>{0}</a>",
+            	adminFormat: "<a href='#' class='userId'>{0}</a>",
             	trigger: "user log in",
-                //triggerFormat: "<a href='"+ urlG + gId[i-1] + "' class='name' target='_blank'>{0}</a>",
+                triggerFormat: "<a href='#' class='name' target='_blank'>{0}</a>",
                 name: notTitle[i-1],//notification title
-                nameFormat: "<a href='#' class='name' target='_blank'>{0}</a>:  " + notButtons(i-1)
+                nameFormat: "<a href='#' onclick='document.getElementById(" + strN +").click();' class='name' >{0}</a>:  " + notButtons(i-1)
             };
             rows.push(doc);
             i++;
