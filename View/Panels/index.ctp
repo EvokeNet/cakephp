@@ -644,6 +644,22 @@
 						</dl>
 						<div class="tabs-content ">
 							<div class="content active" id="otherMetrics">
+								<?php 
+									$average_level = $userLevels['all']/sizeof($all_users);
+									$average_level = number_format($average_level, 2);
+
+									$average_points = $userLevels['allP']/sizeof($all_users);
+									$average_points = number_format($average_points, 2);
+
+									$allies_user = sizeof($allRelations)/sizeof($all_users);
+									$allies_user = number_format($allies_user, 2);
+
+									$chosenIssues = array();
+									foreach ($pickedIssues as $issue) {
+										$chosenIssues[$issue['quantity']][] = $issue['issue'];
+									}
+									krsort($chosenIssues);
+								?>
 								<div class="large-12 medium-12 small-12 columns">
 									<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
 										<li>
@@ -670,6 +686,30 @@
 												</div>
 									  		</div>
 										</li>
+										<li>
+									  		<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+												  	<div class="small-6 large-centered columns text-align-center">
+												  		<h1 style = "font-size: 1.5em;">
+												  			<i class="fa fa-shield fa-2x"></i>
+												  			&nbsp;&nbsp;<?=sizeof($organizations).' '.__('Badges')?>
+												  		</h1>
+												  	</div>
+												</div>
+									  		</div>
+										</li>
+										<li>
+									  		<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+												  	<div class="small-6 large-centered columns text-align-center">
+												  		<h1 style = "font-size: 1.5em;">
+												  			<i class="fa fa-star-o fa-2x"></i>
+												  			&nbsp;&nbsp;<?=sizeof($organizations).' '.__('Powers')?>
+												  		</h1>
+												  	</div>
+												</div>
+									  		</div>
+										</li>
 									</ul>
 
 									<ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-1">
@@ -680,28 +720,52 @@
 												</div>
 									  		</div>
 										</li>
+									</ul>
+									<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
 									  	<li>
 									  		<div class = "yay">
 											  	<div class="row full-width-alternate no-margin">
-												  	<div class="small-4 medium-4 large-4 columns text-align-center">Average Level</div>
-												  	<div class="small-4 medium-4 large-4 columns text-align-center">Average Ally per User</div>
-												  	<div class="small-4 medium-4 large-4 columns text-align-center">Average Point</div>
+												  		<h6 class = "white"><?= strtoupper(__('Level')) ?></h6>
+												  		<h1 class = "white"><?= $average_level ?></h1>
+												  		<h1 class = "white"><i class="fa fa-star"></i><?= ' '.$userLevels['max'] ?></h1>
+												</div>
+											</div>
+										</li>
+										<li>
+									  		<div class = "yay">
+												<div class="row full-width-alternate no-margin">
+													<h6 class = "white"><?= strtoupper(__('Points')) ?></h6>
+													<h1 class = "white"><?= $average_points ?></h1>
+												  	<h1 class = "white"><i class="fa fa-star"></i><?= ' '.$userLevels['maxP'] ?></h1>
+												</div>
+											</div>	
+										</li>
+										<li>
+											<div class = "yay">
+												<div class="row full-width-alternate no-margin">
+													<h6 class = "white"><i class="fa fa-child"></i><?= ' '.strtoupper(__('Allies per user')) ?></h6>
+													<h1 class = "white"><?= $allies_user ?></h1>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class = "yay">
+												<div class="row full-width-alternate no-margin">
+													<h6 class = "white"><?= strtoupper(__('Evokation Teams')) ?></h6>
+													<h1 class = "white"><i class="fa fa-edit"></i><?= sizeof($groups) ?></h1>
+													<h1 class = "white"><i class="fa fa-check"></i><?= 'X approved' ?></h1>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class = "yay">
+												<div class="row full-width-alternate no-margin">
+													<h6 class = "white"><?= strtoupper(__('issues')) ?></h6>
+													<h1 class = "white"><?= 'issue pie chart';//$chosenIssues ?></h1>
 												</div>
 											</div>
 										</li>
 									</ul>
-
-									<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>
-									<p><?php echo __('Evokation Groups') . ": " . sizeof($groups);?></p>
-									<p>Average of allies/user: <?=sizeof($allRelations)/sizeof($all_users)?></p>
-									<p><?php echo 'issues' ?></p>
-									<?php 
-										foreach ($pickedIssues as $issue) {
-											echo $issue['issue'] . ': '. $issue['quantity'];
-											echo '<br>';
-										}
-									?>
-									<p><?php echo __('Badges') . ": ".sizeof($badges);?></p>
 								</div>
 							</div>
 							<div class="content" id="organizationMetrics">

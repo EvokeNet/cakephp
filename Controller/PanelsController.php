@@ -154,6 +154,26 @@ class PanelsController extends AppController {
 				)
 			));
 
+			$userLevels['max'] = 0;
+			$userLevels['all'] = 0;
+			$userLevels['maxP'] = 0;
+			$userLevels['allP'] = 0;
+			foreach ($all_users as $usr) {
+				$userPoints = $this->getPoints($usr['User']['id']);
+	        	$userLevels['allP'] += $userPoints;
+	        	// debug($usr['User']['name'] . ' '.$userPoints);
+	        	if($userLevels['maxP'] < $userPoints) {
+	        		$userLevels['maxP'] = $userPoints;
+	        	}
+
+	        	$userLevel = $this->getLevel($userPoints);
+	        	
+	        	$userLevels['all'] += $userLevel;
+	        	if($userLevels['max'] < $userLevel) {
+	        		$userLevels['max'] = $userLevel;
+	        	}
+			}
+
 			$users_of_my_missions = null;
 
 		} else {
@@ -229,6 +249,26 @@ class PanelsController extends AppController {
 					'OR' => $my_orgs_id1
 				)
 			));
+
+			$userLevels['max'] = 0;
+			$userLevels['all'] = 0;
+			$userLevels['maxP'] = 0;
+			$userLevels['allP'] = 0;
+			foreach ($users_of_my_missions as $usr) {
+				$userPoints = $this->getPoints($usr['User']['id']);
+	        	$userLevels['allP'] += $userPoints;
+	        	// debug($usr['User']['name'] . ' '.$userPoints);
+	        	if($userLevels['maxP'] < $userPoints) {
+	        		$userLevels['maxP'] = $userPoints;
+	        	}
+
+	        	$userLevel = $this->getLevel($userPoints);
+	        	
+	        	$userLevels['all'] += $userLevel;
+	        	if($userLevels['max'] < $userLevel) {
+	        		$userLevels['max'] = $userLevel;
+	        	}
+			}
 		}
 		
 		//array that contains all the possible owners of an organization
@@ -290,7 +330,7 @@ class PanelsController extends AppController {
 			)
 		));
 
-		$this->set(compact('flags', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
+		$this->set(compact('flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels', 'pending_evokations', 'approved_evokations', 'notifications',
 			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
 			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'powerpoints_tab', 'badges_tab', 'users_tab', 'pending_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
