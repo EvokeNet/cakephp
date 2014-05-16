@@ -24,7 +24,7 @@
 	  	<?php echo $this->element('menu', array('user' => $users));?>
 	  </div>
 
-	  <div class="small-6 medium-6 large-6 columns padding top-2 maincolumn">
+	  <div class="small-7 medium-7 large-7 columns padding top-2 maincolumn">
 	  	<?php echo $this->Session->flash(); ?>
 
 	  	<?php 
@@ -61,7 +61,7 @@
 	  		echo $allNot;
 	  	?>
 
-	  	<h3> <?= strtoupper(__('Choose a mission')) ?> </h3>
+	  	<h3 class = "margin bottom-1"><?= strtoupper(__('Choose a mission')) ?> </h3>
 	  	  <div id="pattern" class="pattern">
   			<div class="c">
 			<div class="c-list-container">
@@ -143,7 +143,7 @@
 		
 	</div>
 
-	  	<h3> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
+	  	<h3 class = "margin bottom-1"> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
 
 	  	<dl class="default tabs" data-tab>
 		  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('All Evidences and Evokations')) ?></a></dd>
@@ -198,7 +198,7 @@
 
 	  </div>
 
-	  <div class="small-3 medium-3 large-3 columns padding top-2 evoke no-left-padding no-right-padding">
+	  <div class="small-3 medium-3 large-3 columns padding top-2">
 	  	
 	  	<!-- <h3> <?= strtoupper(__('Notifications')) ?> </h3>
 	  	<div class = "evoke content-block padding-10">
@@ -255,7 +255,7 @@
 <?php endif; ?>
 	  	</div> -->
 
-	  	<h3> <?= strtoupper(__('Feed')) ?> </h3>
+	  	<h3 class = "margin bottom-1"><?= strtoupper(__('Feed')) ?> </h3>
 	  	<div class = "evoke content-block padding profile feed">
 	  		
 	  		<?php if(empty($notifies)): ?>
@@ -375,13 +375,13 @@
 
 	  	</div>
 
-	  	<h3> <?= strtoupper(__('Discussions')) ?> </h3>
+	  	<h3 class = "margin bottom-1"><?= strtoupper(__('Discussions')) ?> </h3>
 	  	<div class = "evoke content-block padding-10">
 	  	</div>
 
 	  </div>
 
-	  <div class="medium-1 end columns"></div>
+	  <!-- <div class="medium-1 end columns"></div> -->
 
 	</div>
 

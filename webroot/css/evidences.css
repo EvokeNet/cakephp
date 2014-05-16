@@ -44,11 +44,11 @@
 
 .evoke .accordion .content.active{
 	background-color:#efefef;
-	border-radius:10px;
+	/*border-radius:10px;*/
 }
 
 .evoke .accordion dd>a{
-	border-radius:10px;
+	/*border-radius:10px;*/
 }
 
 /* End new CSS */
@@ -106,9 +106,17 @@
 .evoke.evidence-body{
 	background-color: #fff;
 	border: 2px solid #a7a7a7;
-	padding: 30px 50px;
+	/*padding: 30px 50px;*/
 	border-radius: 20px;
 	margin-bottom:50px;
+}
+
+.evoke .evidence-body .content p{
+	font-size: 1.5em;
+}
+
+.evoke.evidence-body .padding30{
+	padding:30px 50px;
 }
 
 .evoke.evidence-body.view h1{

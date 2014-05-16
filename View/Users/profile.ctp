@@ -32,13 +32,13 @@
 	  	<?php echo $this->element('menu', array('user' => $users));?>
 	  </div>
 
-	  <div class="small-9 medium-9 large-9 columns maincolumn">
+	  <div class="small-10 medium-10 large-10 columns maincolumn body-padding">
 
 	  <div class = "tint">
 	  	<div class="row margin-left-0 margin-right-0 padding top-1">
 		  <div class="small-4 medium-4 large-4 columns padding bottom-2">
 
-		  	<h3><?= strtoupper(__('Agent')) ?></h3>
+		  	<h3 class = "margin bottom-1"><?= strtoupper(__('Agent')) ?></h3>
 
 		  	<div class = "tag">
 		  		<img src='<?= $this->webroot.'img/chip105.png' ?>' width = "100%"/>
@@ -86,7 +86,7 @@
 		  <div class="small-4 medium-4 large-4 columns">
 
 		  	<div class="row">
-			  <div class="large-6 columns"><h3><?= strtoupper(__('Badges')) ?></h3></div>
+			  <div class="large-6 columns"><h3 class = "margin bottom-1"><?= strtoupper(__('Badges')) ?></h3></div>
 			  <div class="large-6 columns text-align-end"><a href = "<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index')); ?>" class = "info button general"><?php echo __('See All');?></a></div>
 			</div>
 
@@ -105,7 +105,7 @@
 		  <div class="small-4 medium-4 large-4 columns">
 
 		  	<div class="row">
-			  <div class="large-6 columns"><h3><?= strtoupper(__('Allies')) ?></h3></div>
+			  <div class="large-6 columns"><h3 class = "margin bottom-1"><?= strtoupper(__('Allies')) ?></h3></div>
 			  <div class="large-6 columns text-align-end"><a href = "#" class = "info button general" data-reveal-id="myModalAllies"><?php echo __('See All');?></a></div>
 			</div>
 
@@ -167,7 +167,7 @@
 
 		<div class="row full-width-alternate margin-left-0 margin-right-0">
 		  <div class="small-6 medium-6 large-6 columns padding top-2 group">
-		  	<h3><?= strtoupper(__("Evokations Groups")) ?></h3>
+		  	<h3 class = "margin bottom-1"><?= strtoupper(__("Evokations Groups")) ?></h3>
 
 		  	<?php foreach($myEvokations as $e): ?>
 
@@ -191,7 +191,7 @@
 		  </div>
 		  <div class="small-6 medium-6 large-6 columns padding top-2">
 
-		  	<h3> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
+		  	<h3 class = "margin bottom-1"> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
 
 		  	<dl class="default tabs" data-tab>
 			  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('My Evidences')) ?></a></dd>
@@ -221,7 +221,7 @@
 
 	  </div>
 
-	  <div class="medium-1 end columns"></div>
+	  <!-- <div class="medium-1 end columns"></div> -->
 
 	</div>
 

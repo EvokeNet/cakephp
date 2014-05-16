@@ -99,6 +99,14 @@ button, div, p, span, a,
 	margin-top: 2em;
 }
 
+.evoke .margin.top-5 {
+	margin-top: 5em;
+}
+
+.evoke .margin.top-6{
+	margin-top: 6vw;
+}
+
 .evoke .margin.left {
 	margin-left: 1em;
 }
@@ -150,6 +158,16 @@ button, div, p, span, a,
 .evoke .margin-left-13{
 	margin-left: 13%;
 }
+
+.evoke .body-padding{
+	padding: 0px 100px;
+}
+
+.evoke .min-height{
+	height:500px;
+}
+
+/* font */
 
 /* Background */
 
@@ -308,8 +326,8 @@ button, div, p, span, a,
 
 .evoke .margin-right-0{
 	margin-right:0;
-}
 
+}
 .evoke .text-align-end{
 	text-align: end;
 }
@@ -483,6 +501,61 @@ button, div, p, span, a,
 	padding: 30px;
 	margin-bottom: 50px;
 	min-height: 200px;
+}
+
+.evoke .evokations.tabs dd.active a {
+	background: #bc5660;
+	border-left: 3px solid #82353b;
+	border-top: 3px solid #82353b;
+	border-right: none;
+	border-bottom: none;
+}
+
+.evoke .evokations.tabs dd>a {
+	background: #1f8cb2;
+	border-right: 3px solid #125167;
+	border-bottom: 3px solid #125167;
+	margin-right:10px;
+	border-radius:10px;
+	color:#fff;
+}
+
+.evoke .leaderboard.tabs{
+	width:100%;
+}
+
+.evoke .leaderboard.tabs a{
+	font-size:0.9vw;
+	color:#fff;
+	font-family:'AlegreyaRegular';
+}
+
+.evoke .leaderboard.tabs dd.active a{
+	/*-webkit-box-shadow: 1px 0px 15px #0cd377;
+	-moz-box-shadow: 1px 0px 15px #0cd377;
+	box-shadow: 1px 0px 15px #0cd377;*/
+	color:#0cd377;
+}
+
+.evoke .leaderboard.tabs dd>a{
+	background-color: rgba(0, 0, 0, 0.5);
+	border-bottom: 2px solid #47454b;
+}
+
+.evoke .leaderboard .tabs-content ul{
+	border-bottom: 2px solid #47454b;
+	padding: 20px 0px 0px;
+	margin-bottom: 20px;
+}
+
+.evoke .leaderboard .headings h1, h2, h3{
+	color: #fff;
+	font-family: 'AlegreyaRegular';
+	line-height: 1.0em;
+}
+
+.evoke .leaderboard .headings h3{
+	font-size: 1.9rem;
 }
 
 /* End of new CSS */

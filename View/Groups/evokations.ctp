@@ -22,27 +22,73 @@
 	  	<?php echo $this->element('menu', array('user' => $user));?>
 	  </div>
 
-	  <div class="small-9 medium-9 large-9 columns padding top-2 maincolumn">
+	  <div class="small-8 medium-8 large-8 columns margin top-2 maincolumn">
 
 	  	<div class = "default">
-	  		<h3><?= strtoupper(__('Evokations Teams')) ?></h3>
+	  		<h3 class = "margin bottom-1"><?= strtoupper(__('Evokations Teams')) ?></h3>
 	  	</div>
 
-		<div class="evoke groups-evokations sheer-background">
-			<?php foreach($missions as $m):?>
+		<div class="evoke sheer-background">
 
-			<h3 class = "white margin bottom-1 top-2"><?= $m['Mission']['title'] ?></h3>
-			<?php foreach($myGroups as $mg):
-			//If the mission belongs to that category, it is printed
-				if($mg['Group']['mission_id'] == $m['Mission']['id']):
-					echo $this->element('group_box', array('e' => $mg, 'user' => $user, 'users' => $users_groups)); 
-				endif; endforeach; endforeach; 
-			?>
+			<dl class="evokations tabs float-right" data-tab>
+			  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('All Evokation Teams')) ?></a></dd>
+			  <dd><a href="#panel2-2"><?= strtoupper(__('My Evokation Teams')) ?></a></dd>
+			</dl>
+			<div class="tabs-content">
+			  <div class="content active" id="panel2-1">
+
+			    <?php foreach($missions as $m):?>
+
+				<h3 class = "white margin bottom-1 top-2"><?= $m['Mission']['title'] ?></h3>
+				<?php foreach($myGroups as $mg):
+				//If the mission belongs to that category, it is printed
+					if($mg['Group']['mission_id'] == $m['Mission']['id']):
+						echo $this->element('group_box', array('e' => $mg, 'user' => $user, 'users' => $users_groups)); 
+					endif; endforeach; endforeach; 
+				?>
+
+			  </div>
+			  <div class="content" id="panel2-2">
+
+			    <?php foreach($missions as $m):?>
+
+				<h3 class = "white margin bottom-1 top-2"><?= $m['Mission']['title'] ?></h3>
+				<?php foreach($myGroups as $mg):
+				//If the mission belongs to that category, it is printed
+					if($mg['Group']['mission_id'] == $m['Mission']['id']):
+						echo $this->element('group_box', array('e' => $mg, 'user' => $user, 'users' => $users_groups)); 
+					endif; endforeach; endforeach; 
+				?>
+
+			  </div>
+			</div>
+
 		</div>
 
 	  </div>
 
-	  <div class="medium-1 end columns"></div>
+	  <div class="small-2 medium-2 large-2 columns margin top-6">
+
+	  	<div class = "default">
+	  		<h3 class = "margin bottom-1"><?= strtoupper(__('By Missions')) ?></h3>
+	  	</div>
+
+	  	<dl class="leaderboard tabs vertical" data-tab>
+			<dd class="active"><a id="xp" href="#panel21-1"><?= strtoupper(__('Levels'))?></a></dd>
+			<dd><a id="xp" href="#panel21-2"><?= strtoupper(__('Levels'))?></a></dd>
+			<dd><a id="xp" href="#panel21-3"><?= strtoupper(__('Levels'))?></a></dd>
+			<?php 
+				// $index = 1;
+				// foreach ($power_points as $pp) {
+				// 	echo '<dd><a id="pp-'. $index.'" href="#panel2-'. $index .'">'. strtoupper($pp['PowerPoint']['name']) .'</a></dd>';
+				// 	$index++;
+				// }
+			?>
+		</dl>
+
+	  </div>
+
+	  <!-- <div class="medium-1 end columns"></div> -->
 
   </div>
 </section>
