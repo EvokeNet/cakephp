@@ -67,14 +67,14 @@
 			  <div class="content margin top-2" id="panel2-2">
 			    <?php
 		  			foreach($myGroups as $e):
-	  					echo $this->element('group', array('e' => $e, 'user' => $user, 'users' => $users_groups));
+	  					echo $this->element('group_box', array('e' => $e, 'user' => $user, 'users' => $users_groups));
 	  				endforeach;
 	  			?>
 			  </div>
 			  <div class="content margin top-2" id="panel2-3">
 			  	<?php
 		  			foreach($groupsIBelong as $e):
-	  					echo $this->element('group', array('e' => $e, 'user' => $user, 'users' => $users_groups));
+	  					echo $this->element('group_box', array('e' => $e, 'user' => $user, 'users' => $users_groups));
 	  				endforeach;
 	  			?>
 			  </div>

@@ -1,4 +1,4 @@
-<div class="row margin top-2">
+<div class="row padding top-2">
   <div class="small-8 small-centered columns">
   	<div class = "evoke flash alert-message">
 		<div data-alert class="flash alert-box">

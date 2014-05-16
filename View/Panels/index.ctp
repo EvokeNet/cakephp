@@ -635,7 +635,7 @@
 					</button>
 					<?php echo $this->Form->end(); ?>
 				</div>
-				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
+				<div class="evoke content <?php echo $statistics_tab; ?> statistics" id="statistics">
 					<div class="large-12 medium-12 small-12 columns">
 						<dl class="tabs" data-tab>
 							<dd class="active"><a href="#otherMetrics"><?= __('General') ?></a></dd>
@@ -644,21 +644,145 @@
 						</dl>
 						<div class="tabs-content ">
 							<div class="content active" id="otherMetrics">
+								<?php 
+									$average_level = $userLevels['all']/sizeof($all_users);
+									$average_level = number_format($average_level, 2);
+
+									$average_points = $userLevels['allP']/sizeof($all_users);
+									$average_points = number_format($average_points, 2);
+
+									$allies_user = sizeof($allRelations)/sizeof($all_users);
+									$allies_user = number_format($allies_user, 2);
+
+									$chosenIssues = array();
+									foreach ($pickedIssues as $issue) {
+										$chosenIssues[$issue['quantity']][] = $issue['issue'];
+									}
+									krsort($chosenIssues);
+								?>
 								<div class="large-12 medium-12 small-12 columns">
-							
-									<h3><?=__('Total of organizations: '). sizeof($organizations)?></h3>
-									<h3><?=__('Total of missions: '). sizeof($missions_issues)?></h3>
-									<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>
-									<p><?php echo __('Evokation Groups') . ": " . sizeof($groups);?></p>
-									<p>Average of allies/user: <?=sizeof($allRelations)/sizeof($all_users)?></p>
-									<p><?php echo 'issues' ?></p>
-									<?php 
-										foreach ($pickedIssues as $issue) {
-											echo $issue['issue'] . ': '. $issue['quantity'];
-											echo '<br>';
-										}
-									?>
-									<p><?php echo __('Badges') . ": ".sizeof($badges);?></p>
+									<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
+										<li>
+											<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+													<div class="small-6 large-centered columns text-align-center">
+												  		<h1 style = "font-size: 1.5em; color: #555">
+												  			<i class="fa fa-crosshairs fa-2x"></i>
+												  			&nbsp;&nbsp;<?=sizeof($missions_issues).' ' . __('Missions')?>
+												  		</h1>
+												  	</div>
+												</div>
+									  		</div>
+									  	</li>
+									  	<li>
+									  		<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+												  	<div class="small-6 large-centered columns text-align-center">
+												  		<h1 style = "font-size: 1.5em; color: #555">
+												  			<i class="fa fa-bank fa-2x"></i>
+												  			&nbsp;&nbsp;<?=sizeof($organizations).' '.__('Organizations')?>
+												  		</h1>
+												  	</div>
+												</div>
+									  		</div>
+										</li>
+										<li>
+									  		<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+												  	<div class="small-6 large-centered columns text-align-center">
+												  		<h1 style = "font-size: 1.5em; color: #555">
+												  			<i class="fa fa-shield fa-2x"></i>
+												  			&nbsp;&nbsp;<?=sizeof($badges).' '.__('Badges')?>
+												  		</h1>
+												  	</div>
+												</div>
+									  		</div>
+										</li>
+										<li>
+									  		<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+												  	<div class="small-6 large-centered columns text-align-center">
+												  		<h1 style = "font-size: 1.5em; color: #555">
+												  			<i class="fa fa-star-o fa-2x"></i>
+												  			&nbsp;&nbsp;<?= sizeof($powerpoints). ' '.__('Powers')?>
+												  		</h1>
+												  	</div>
+												</div>
+									  		</div>
+										</li>
+									</ul>
+
+									<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
+									  	<li>
+											<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+													<div class="text-center">
+														<i class="fa fa-users fa-2x"></i>
+													
+													<h1 style = "font-size: 1.5em; color: #555">
+														<?= __('Users')?>
+													</h1>
+													<h1 style = "color: #555"><?=sizeof($all_users)?></h1>
+													</div>
+												</div>
+									  		</div>
+										</li>
+									  	<li>
+									  		<div class = "yay">
+											  	<div class="row full-width-alternate no-margin text-center">
+												  	<h1 style = "font-size: 1.5em; color: #555">
+												  		<?= strtoupper(__('Level')) ?>
+												  	</h1>
+												  	<h5 style = "color: #555"><?= __('Average: ') .$average_level ?></h5>
+												  	<h5 style = "color: #555"><?= __('Highest: ') .$userLevels['max'].' ' ?><i class="fa fa-star"></i></h5>
+												</div>
+											</div>
+										</li>
+										<li>
+									  		<div class = "yay">
+												<div class="row full-width-alternate no-margin text-center">
+													<h1 style = "font-size: 1.5em; color: #555">
+												  		<?= strtoupper(__('Points')) ?>
+												  	</h1>
+												  	<h5 style = "color: #555"><?= __('Average: ') .$average_points ?></h5>
+												  	<h5 style = "color: #555"><?= __('Highest: ') .$userLevels['maxP'].' ' ?><i class="fa fa-star"></i></h5>
+												</div>
+											</div>	
+										</li>
+										<li>
+											<div class = "yay">
+												<div class="row full-width-alternate no-margin text-center">
+													<i class="fa fa-child fa-2x"></i>
+													<h1 style = "font-size: 1.5em; color: #555">
+												  		<?= $allies_user. ' ' . strtoupper(__('Allies per user')) ?>
+												  	</h1>
+												  	<!-- <h5 style = "color: #555"><?= $allies_user ?></h5> -->
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class = "yay">
+												<div class="row full-width-alternate no-margin text-center">
+													<h1 style = "font-size: 1.5em; color: #555">
+														<?= strtoupper(__('Evokation Teams')) ?>
+													</h1>
+													<h5 style = "color: #555"><i class="fa fa-edit"></i><?= ' '.sizeof($groups).' '.__('created') ?></h5>
+													<h5 style = "color: #555"><i class="fa fa-check"></i><?= ' X '. __('approved') ?></h5>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class = "yay">
+												<div class="row full-width-alternate no-margin text-center">
+													<h1 style = "font-size: 1.5em; color: #555">
+														<i class="fa fa-list-ul"></i>
+												  		<?=' '. strtoupper(__('chosen issues')) ?>
+												  	</h1>
+													<div id="piechart"></div>
+												</div>
+											</div>
+										</li>
+									</ul>
 								</div>
 							</div>
 							<div class="content" id="organizationMetrics">
@@ -703,11 +827,53 @@
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+	// echo $this->Html->script("https://www.google.com/jsapi", array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->css('animate');
 	echo $this->Html->script('jquery.watable');
 
 ?>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+	// var stringToColour = function(str) {
+	//     var hash = 0;
+	//     for (var i = 0; i < str.length; i++) {
+	//         hash = str.charCodeAt(i) + ((hash << 5) - hash);
+	//     }
+	//     var colour = '#';
+	//     for (var i = 0; i < 3; i++) {
+	//         var value = (hash >> (i * 8)) & 0xFF;
+	//         colour += ('00' + value.toString(16)).substr(-2);
+	//     }
+	//     return colour;
+	// }
+
+	google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Language', 'Speakers (in millions)'],
+          <?php 
+          	foreach ($chosenIssues as $issueQ => $issue) {
+          		foreach ($issue as $is) {
+	          		echo '["'.$is.'", '. $issueQ .'],';
+          		}
+          	}
+          ?>
+        ]);
+
+      var options = {
+        // legend: 'none',
+        legend: {textStyle: {color: '#555'}},
+        pieSliceText: 'label',
+        // pieStartAngle: 100,
+        backgroundColor: { fill:'transparent' }
+      };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+</script>
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready( function() {

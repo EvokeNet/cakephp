@@ -162,7 +162,8 @@ span.image:hover ul.button-group {
 .evoke .image.circle {
 	border-radius: 50%;
 	height: 4rem;
-	margin-right: 0.5rem;
+	/*margin-right: 0.5rem;*/
+	margin-left: 0.8em;
 	padding: 0;
 	width: 4rem;
 	overflow: hidden;
