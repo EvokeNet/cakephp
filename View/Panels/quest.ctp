@@ -77,7 +77,11 @@
     									<?php
     								}
     							}
-                                
+                                echo'
+                                <button class="button" id="add-'.$k.'" type="button">
+                                    <i class="fa fa-plus"></i>
+                                     Option
+                                </button>';
     						}
     					?>
 
@@ -173,9 +177,14 @@
         <?php
             $i = 0;
             for($i=0; $i<$k;$i++) {
-        
+                $new = '<div><input name="data[Questions]['.$i.'][Answer][][description]" placeholder="Opção" type="text"></div>';
+
                 echo "$('#". $i ."').click(function() {
                         $('#". $i ."').parent('div.survey-question').remove();
+                    });";
+
+                echo "$('#add-". $i ."').click(function() {
+                        $('#add-". $i ."').parent('div.survey-question').append('".$new."');
                     });";
 
                 echo "$('#-". $i ."').click(function() {
