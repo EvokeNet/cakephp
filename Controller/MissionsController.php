@@ -556,7 +556,34 @@ class MissionsController extends AppController {
 				}
 			endforeach;
 
-			if(($check3) || (isset($my_bt_evis[0]))){
+			$this->loadModel('Topic');
+
+			$topic = $this->Topic->find('first', array(
+				'conditions' => array(
+					'Topic.user_id' => $this->getUserId(),
+			)));
+
+			// if(!empty($topic)){
+			// 	$insertData = array(
+		 //            'user_id' => $this->getUserId(),  
+		 //            'phase_checklist_id' => 3,
+		 //            'mission_id' => $id,
+		 //            'phase_id' => $missionPhase['Phase']['id'],
+		 //            'completed' => true,
+		 //        );
+
+			// 	$check3 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		 //            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		 //            'UserPhaseChecklist.phase_checklist_id' => 3,
+		 //            'UserPhaseChecklist.mission_id' => $id,
+		 //            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		 //        )));
+
+		 //        if(empty($check3))
+			// 		$this->UserPhaseChecklist->saveAll($insertData);
+			// }
+
+			if((($check3) || (isset($my_bt_evis[0]))) && (!empty($topic))) {
 				$insertData = array(
 		            'user_id' => $this->getUserId(),  
 		            'phase_checklist_id' => 1,
@@ -730,18 +757,58 @@ class MissionsController extends AppController {
 					$this->UserPhaseChecklist->saveAll($insertData);
 			}
 
+			$this->loadModel('Topic');
+
+			$topic = $this->Topic->find('first', array(
+				'conditions' => array(
+					'Topic.user_id' => $this->getUserId(),
+			)));
+
+			if(!empty($topic)){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 3,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check3 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 3,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check3))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
 		} if(($mission['Mission']['basic_training'] == 0) && (($missionPhase['Phase']['name'] == 'Act') || ($missionPhase['Phase']['name'] == 'Actuar'))){
 
 			$this->loadModel('Group');
 
-			$my_groups = $this->Group->find('all', array(
+			// $my_groups = $this->Group->find('all', array(
+			// 	'conditions' => array(
+			// 		'Group.user_id' => $this->getUserId(),
+			// 		'Group.mission_id' => $id
+			// 	)
+			// ));
+
+			// $groups = $this->Group->find('first', array(
+			// 	'conditions' => array(
+			// 		'Group.mission_id' => $id
+			// 	)
+			// ));
+
+			$my_groups = $this->Group->find('first', array(
 				'conditions' => array(
 					'Group.user_id' => $this->getUserId(),
 					'Group.mission_id' => $id
 				)
 			));
 
-			$groups = $this->Group->find('first', array(
+			$groups = $this->Group->find('all', array(
 				'conditions' => array(
 					'Group.mission_id' => $id
 				)
@@ -842,9 +909,103 @@ class MissionsController extends AppController {
 					$this->UserPhaseChecklist->saveAll($insertData);
 			}
 
-			// $this->loadModel('EvokationFollower');
+			$groups = $this->Group->find('all', array(
+				'conditions' => array(
+					'Group.mission_id' => $id
+				)
+			));
 
-			// $ev_fo = $this->EvokationFollower->find('first')
+			$ci = array();
+
+			foreach($groups as $b):
+				array_push($ci, array('GroupsUser.group_id' => $b['Group']['id'], 'GroupsUser.user_id' => $this->getUserId()));
+				// if($user['User']['id'])
+				// 	debug("ieie");
+			endforeach;
+
+			$gs = $this->Group->GroupsUser->find('first', array(
+				'conditions' => array(
+					'OR' => $ci
+			)));
+
+			$this->loadModel('EvokationFollower');
+
+			$ev_follows = $this->EvokationFollower->find('all', array(
+				'conditions' => array(
+					'EvokationFollower.user_id' => $this->getUserId(),
+			)));
+
+			// $ee = array();
+			$gg = array();
+
+			// foreach($ev_follows as $e):
+			// 	array_push($ee, array('Evokation.id' => $e['EvokationFollower']['evokation_id'])));
+			// endforeach;
+
+			// $follow_evokations = $this->EvokationFollower->Evokation->find('first', array(
+			// 	'conditions' => array(
+			// 		'OR' => $ee
+			// )));
+
+			if(!empty($ev_follows)):
+				foreach($ev_follows as $e):
+					array_push($gg, array('Group.group_id' => $e['Evokation']['group_id'], 'Group.mission_id' => $id));
+				endforeach;
+			endif;
+
+			$follow_groups = array();
+
+			if(!empty($gg)):
+				$follow_groups = $this->Group->find('all', array(
+					'conditions' => array(
+						'OR' => $gg
+				)));
+			endif;
+
+			if(!empty($follow_groups)){
+				$insertData = array(
+		            'user_id' => $this->getUserId(),  
+		            'phase_checklist_id' => 4,
+		            'mission_id' => $id,
+		            'phase_id' => $missionPhase['Phase']['id'],
+		            'completed' => true,
+		        );
+
+				$check4 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		            'UserPhaseChecklist.phase_checklist_id' => 4,
+		            'UserPhaseChecklist.mission_id' => $id,
+		            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		        )));
+
+		        if(empty($check4))
+					$this->UserPhaseChecklist->saveAll($insertData);
+			}
+
+			// $ev_follow = $this->EvokationFollower->find('first', array(
+			// 	'conditions' => array(
+			// 		'EvokationFollower.user_id' => $this->getUserId(),
+			// )));
+
+			// if(!empty($ev_follow)){
+			// 	$insertData = array(
+		 //            'user_id' => $this->getUserId(),  
+		 //            'phase_checklist_id' => 4,
+		 //            'mission_id' => $id,
+		 //            'phase_id' => $missionPhase['Phase']['id'],
+		 //            'completed' => true,
+		 //        );
+
+			// 	$check4 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+		 //            'UserPhaseChecklist.user_id' => $this->getUserId(),  
+		 //            'UserPhaseChecklist.phase_checklist_id' => 4,
+		 //            'UserPhaseChecklist.mission_id' => $id,
+		 //            'UserPhaseChecklist.phase_id' => $missionPhase['Phase']['id'],
+		 //        )));
+
+		 //        if(empty($check4))
+			// 		$this->UserPhaseChecklist->saveAll($insertData);
+			// }
 
 		} if(($mission['Mission']['basic_training'] == 0) && (($missionPhase['Phase']['name'] == 'Evoke'))){
 

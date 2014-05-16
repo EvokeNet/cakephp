@@ -72,8 +72,6 @@
 					echo $this->element('phase_status', array('missionPhases' => $missionPhases, 'status' => $status));
 				?>
 
-				
-
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 
 					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "height:22vw; width:100%">
