@@ -269,6 +269,8 @@ class UsersController extends AppController {
 
 		$are_friends = array();
 		$mine_allies = array();
+		$post_allies = array();
+		$topic_allies = array();
 		//$allies = array();
 
 		//debug($friends);
@@ -276,6 +278,8 @@ class UsersController extends AppController {
 		foreach($friends as $friend){
 			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
 			array_push($mine_allies, array('Notification.user_id' => $friend['UserFriend']['friend_id']));
+			array_push($post_allies, array('Post.user_id' => $friend['UserFriend']['friend_id']));
+			array_push($topic_allies, array('Topic.user_id' => $friend['UserFriend']['friend_id']));
 		} 
 
 		//debug($are_friends);
@@ -502,8 +506,28 @@ class UsersController extends AppController {
 		// 	}
 
 		// }
+
+		$this->loadModel('Post');
+		$this->loadModel('Topic');
+
+		$a_posts = array();
+		$a_topics = array();
+
+		if(!empty($post_allies)){
+			$a_posts = $this->Post->find('all', array(
+				'conditions' => array(
+					'OR' => $post_allies
+			)));
+		}
+
+		if(!empty($topic_allies)){
+			$a_topics = $this->Topic->find('all', array(
+				'conditions' => array(
+					'OR' => $topic_allies
+			)));
+		}
 		
-		$this->set(compact('user', 'users', 'adminNotifications', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
+		$this->set(compact('a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
 		//'groups', 'my_photo', 'user_photo',
@@ -512,6 +536,44 @@ class UsersController extends AppController {
 			// $this->Session->setFlash(__("You cannot access other user's dashboard"), 'flash_message');
 			$this->redirect(array('action'=>'profile', $id)); 
 		}
+	}
+
+/**
+ * logout method
+ *
+ * @return void
+ */
+	public function allies($id) {
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
+
+		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$allies = array();
+
+		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
+
+		$are_friends = array();
+		//$allies = array();
+
+		foreach($friends as $friend){
+			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
+		}
+
+		if(!empty($are_friends)){
+			$allies = $this->User->find('all', array(
+				'conditions' => array(
+					'OR' => $are_friends
+			)));
+		} else{
+			$allies = array();
+			//$notifies = array();
+		}
+
+		$this->set(compact('user', 'users', 'friends', 'allies'));
 	}
 
 /**

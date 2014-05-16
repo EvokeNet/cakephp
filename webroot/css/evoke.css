@@ -539,7 +539,7 @@ button, div, p, span, a,
 
 .evoke .leaderboard.tabs dd>a{
 	background-color: rgba(0, 0, 0, 0.5);
-	border-bottom: 2px solid #47454b;
+	border-bottom: 3px solid #47454b;
 }
 
 .evoke .leaderboard .tabs-content ul{
@@ -614,6 +614,65 @@ button, div, p, span, a,
 .evoke.top-bar.icon{
 	max-height: 30px; 
 	max-width: 70px; 
+}
+
+.evoke.evidence-tag{
+	background-color:#efefef;
+	border:1px solid #000;
+	border-radius:10px;
+}
+
+.evoke.evidence-tag.allies:hover{
+	background-color:#008cba;
+	border:6px solid #c65862;
+	color:#fff;
+}
+
+.evoke.evidence-tag.allies:hover h1, .evoke.evidence-tag.allies:hover p, .evoke.evidence-tag.allies:hover i{
+	color:#fff;
+}
+
+.evoke.evidence-tag.evi-min-height{
+	min-height: 300px;
+}
+
+.evoke.evidence-tag-border{
+	border-bottom: 2px solid #a7a7a7;
+	padding-bottom:10px;
+}
+
+.evoke.evidence-tag h1{
+	color: #000;
+	font-size:2.0vw;
+	font-family: 'AlegreyaBold';
+	word-wrap: break-word;
+}
+
+.evoke.evidence-tag p{
+	font-family: 'AlegreyaRegular';
+	color: #393939;
+	text-align: center;
+	width: 90%;
+	margin: 20px auto;
+	/*border-bottom: 1px solid #a7a7a7;
+	border-top: 1px solid #a7a7a7;*/
+	padding: 20px 0px;
+}
+
+.evoke.evidence-tag i{
+	color:#999999;
+}
+
+.evoke.evidence-tag .ally{
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	margin: 40px auto 20px;	
+}
+
+.evoke .accordion .content.active{
+	background-color:#efefef;
+	/*border-radius:10px;*/
 }
 
 /* End topbar section */

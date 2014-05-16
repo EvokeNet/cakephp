@@ -105,8 +105,8 @@
 		  <div class="small-4 medium-4 large-4 columns">
 
 		  	<div class="row">
-			  <div class="large-6 columns"><h3 class = "margin bottom-1"><?= strtoupper(__('Allies')) ?></h3></div>
-			  <div class="large-6 columns text-align-end"><a href = "#" class = "info button general" data-reveal-id="myModalAllies"><?php echo __('See All');?></a></div>
+			  <div class="large-6 columns"><h3 class = "margin bottom-1"><?= strtoupper(__('Allies')) ?>&nbsp;&nbsp;(<?= count($allies) ?>)</h3></div>
+			  <div class="large-6 columns text-align-end"><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'allies', $user['User']['id'])) ?>" class = "info button general"><?php echo __('See All');?></a></div>
 			</div>
 
 		  	<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">

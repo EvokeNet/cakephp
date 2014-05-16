@@ -377,6 +377,55 @@
 
 	  	<h3 class = "margin bottom-1"><?= strtoupper(__('Discussions')) ?> </h3>
 	  	<div class = "evoke content-block padding-10">
+
+	  		<!-- <ul>
+	  		<?php if(!empty($a_topics)): foreach($a_topics as $n): 
+
+				//if($n['Notification']['origin'] == 'evidence'):?>						
+					<li>
+
+						<?php if($n['User']['photo_attachment'] == null) : ?>
+							<?php if($n['User']['facebook_id'] == null) : ?>
+								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+							<?php else : ?>	
+								<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+							<?php endif; ?>
+
+			  			<?php else : ?>
+			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+			  			<?php endif; ?>
+
+					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $n['Topic']['title'])) ?>"><?= sprintf(__('Agent %s posted the topic %s'), $n['User']['name'], $n['Topic']['title']) ?></a>
+
+					</li>
+				<?php //endif; ?>
+			<?php endforeach; endif; ?>
+			</ul>
+
+			<ul>
+			<?php if(!empty($a_posts)): foreach($a_posts as $n): 
+
+				//if($n['Notification']['origin'] == 'evidence'):?>						
+					<li>
+
+						<?php if($n['User']['photo_attachment'] == null) : ?>
+							<?php if($n['User']['facebook_id'] == null) : ?>
+								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+							<?php else : ?>	
+								<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+							<?php endif; ?>
+
+			  			<?php else : ?>
+			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+			  			<?php endif; ?>
+
+					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $n['Topic']['title'])) ?>"><?= sprintf(__('Agent %s posted the topic %s'), $n['User']['name'], $n['Topic']['title']) ?></a>
+
+					</li>
+				<?php //endif; ?>
+			<?php endforeach; endif;?>
+			</ul> -->
+
 	  	</div>
 
 	  </div>

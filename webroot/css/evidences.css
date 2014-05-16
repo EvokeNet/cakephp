@@ -42,10 +42,9 @@
 	word-wrap: break-word;
 }
 
-.evoke .accordion .content.active{
+/*.evoke .accordion .content.active{
 	background-color:#efefef;
-	/*border-radius:10px;*/
-}
+}*/
 
 .evoke .accordion dd>a{
 	/*border-radius:10px;*/
@@ -53,7 +52,7 @@
 
 /* End new CSS */
 
-.evoke.evidence-tag{
+/*.evoke.evidence-tag{
 	background-color:#efefef;
 	border:1px solid #000;
 	border-radius:10px;
@@ -77,14 +76,12 @@
 	text-align: center;
 	width: 90%;
 	margin: 20px auto;
-	/*border-bottom: 1px solid #a7a7a7;
-	border-top: 1px solid #a7a7a7;*/
 	padding: 20px 0px;
 }
 
 .evoke.evidence-tag i{
 	color:#999999;
-}
+}*/
 
 .evoke.evidence.margin-button{
 	margin-top:40px;
