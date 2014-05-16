@@ -712,16 +712,18 @@
 										</li>
 									</ul>
 
-									<ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-1">
-										<li>
+									<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
+									  	<li>
 											<div class = "yay">
 											  	<div class="row full-width-alternate no-margin">
-												  <div class="small-6 large-centered columns text-align-center"><h1 style = "font-size: 1.5em;"><i class="fa fa-users fa-2x"></i>&nbsp;&nbsp;Total Users</h1><h1>90</h1></div>
+													<h1 style = "font-size: 1.5em;">
+														<i class="fa fa-users fa-2x"></i>
+														&nbsp;&nbsp;Total Users
+													</h1>
+													<h1>90</h1>
 												</div>
 									  		</div>
 										</li>
-									</ul>
-									<ul class="small-block-grid-1 medium-block-grid-3 large-block-grid-3">
 									  	<li>
 									  		<div class = "yay">
 											  	<div class="row full-width-alternate no-margin">
@@ -761,7 +763,8 @@
 											<div class = "yay">
 												<div class="row full-width-alternate no-margin">
 													<h6 class = "white"><?= strtoupper(__('issues')) ?></h6>
-													<h1 class = "white"><?= 'issue pie chart';//$chosenIssues ?></h1>
+													<!-- <h1 class = "white"><?= 'issue pie chart';//$chosenIssues ?></h1> -->
+													<div id="piechart"></div>
 												</div>
 											</div>
 										</li>
@@ -810,11 +813,53 @@
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+	// echo $this->Html->script("https://www.google.com/jsapi", array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->css('animate');
 	echo $this->Html->script('jquery.watable');
 
 ?>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+	// var stringToColour = function(str) {
+	//     var hash = 0;
+	//     for (var i = 0; i < str.length; i++) {
+	//         hash = str.charCodeAt(i) + ((hash << 5) - hash);
+	//     }
+	//     var colour = '#';
+	//     for (var i = 0; i < 3; i++) {
+	//         var value = (hash >> (i * 8)) & 0xFF;
+	//         colour += ('00' + value.toString(16)).substr(-2);
+	//     }
+	//     return colour;
+	// }
+
+	google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Language', 'Speakers (in millions)'],
+          <?php 
+          	foreach ($chosenIssues as $issueQ => $issue) {
+          		foreach ($issue as $is) {
+	          		echo '["'.$is.'", '. $issueQ .'],';
+          		}
+          	}
+          ?>
+        ]);
+
+      var options = {
+        // legend: 'none',
+        legend: {textStyle: {color: 'white'}},
+        pieSliceText: 'label',
+        // pieStartAngle: 100,
+        backgroundColor: { fill:'transparent' }
+      };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+</script>
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready( function() {
