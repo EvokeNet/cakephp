@@ -635,7 +635,7 @@
 					</button>
 					<?php echo $this->Form->end(); ?>
 				</div>
-				<div class="content <?php echo $statistics_tab; ?>" id="statistics">
+				<div class="evoke content <?php echo $statistics_tab; ?> statistics" id="statistics">
 					<div class="large-12 medium-12 small-12 columns">
 						<dl class="tabs" data-tab>
 							<dd class="active"><a href="#otherMetrics"><?= __('General') ?></a></dd>
@@ -645,7 +645,27 @@
 						<div class="tabs-content ">
 							<div class="content active" id="otherMetrics">
 								<div class="large-12 medium-12 small-12 columns">
-							
+									
+									<ul class="small-block-grid-4">
+									  <li><div class = "yay">
+									  	<div class="row full-width-alternate no-margin">
+										  <div class="small-6 large-centered columns text-align-center"><h1 style = "font-size: 1.5em;"><i class="fa fa-users fa-2x"></i>&nbsp;&nbsp;Total Users</h1><h1>90</h1></div>
+										</div>
+									  </div></li>
+									  <li><div class = "yay">
+									  	<div class="row full-width-alternate no-margin">
+										  <div class="small-4 medium-4 large-4 columns text-align-center">Average Level</div>
+										  <div class="small-4 medium-4 large-4 columns text-align-center">Average Ally per User</div>
+										  <div class="small-4 medium-4 large-4 columns text-align-center">Average Point</div>
+										</div>
+									  </div></li>
+									  <li><div class = "yay"><!-- Your content goes here --></div></li>
+									  <li><div class = "yay"><!-- Your content goes here --></div></li>
+									  <li><div><!-- Your content goes here --></div></li>
+									  <li><div><!-- Your content goes here --></div></li>
+									  <li><div><!-- Your content goes here --></div></li>
+									</ul>
+
 									<h3><?=__('Total of organizations: '). sizeof($organizations)?></h3>
 									<h3><?=__('Total of missions: '). sizeof($missions_issues)?></h3>
 									<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>

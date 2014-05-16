@@ -117,6 +117,49 @@ class GroupsController extends AppController {
 		
 	}
 
+/**
+ * evokations method
+ *
+ * @return void
+ */
+	public function evokations() {
+
+		$this->Group->recursive = 0;
+		$this->set('groups', $this->Paginator->paginate());
+
+		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$missions = $this->Group->Mission->find('all');
+
+		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
+
+		$mygroups_id = array();
+
+		foreach($myGroups as $g):
+			array_push($mygroups_id, array('Evokation.group_id' => $g['Group']['id']));
+		endforeach;
+
+		if(!empty($mygroups_id)) {
+			//retrieve all organizations I am part of as a list to be displayed in a combobox
+			$myevokations = $this->Group->Evokation->find('all', array(
+				'order' => array(
+					'Evokation.created DESC'
+				),
+				'conditions' => array(
+					'OR' => $mygroups_id
+				)
+			));
+		} else {
+			$myevokations = array();
+		}
+
+		$this->loadModel('GroupsUser');
+		$users_groups = $this->GroupsUser->find('all');
+
+		$this->set(compact('missionIssues', 'user', 'myGroups', 'missions', 'users_groups'));
+		
+	}
+
 
 	public function by_mission($mission_id = null) {
 		if(is_null($mission_id)) {

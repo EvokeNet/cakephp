@@ -55,7 +55,11 @@
 
 				if(!$member):?>
 					<a href="#" data-reveal-id="<?= $e['Group']['id']?>" data-reveal class = "button general green"><?= __('Send request to join')?></a>
-				<?php else: ?>
+				<?php elseif($member && $e['Group']['user_id'] == $user['User']['id']): ?>
+					<div style = "color: #20c475; font-size: 1.1vw; line-height: 1.5em; display: inline; font-family: 'AlegreyaRegular';">
+						<i class="fa fa-check"></i><?= __('Owner') ?>
+					</div>
+				<?php elseif($member && $e['Group']['user_id'] != $user['User']['id']): ?>
 					<div style = "color: #20c475; font-size: 1.1vw; line-height: 1.5em; display: inline; font-family: 'AlegreyaRegular';">
 						<i class="fa fa-check"></i><?= __('Member') ?>
 					</div>

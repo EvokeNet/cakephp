@@ -9,16 +9,16 @@ $name = explode(' ', $c['User']['name']);
   <div class="small-2 medium-2 large-2 columns evoke text-align">
   	<?php if($c['User']['photo_attachment'] == null) : ?>
 		<?php if($c['User']['facebook_id'] == null) : ?>
-			<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" width="80px"/>
+			<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $c['User']['id'])) ?>"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" width="80px"/></a>
 		<?php else : ?>	
-			<img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?height=80" width="80px"/>
+			<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $c['User']['id'])) ?>"><img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?height=80" width="80px"/></a>
 		<?php endif; ?>
 	<?php else : ?>
-		<img src="<?= $this->webroot.'files/attachment/attachment/'.$c['User']['photo_dir'].'/'.$c['User']['photo_attachment'] ?>" width="80px"/>
+		<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $c['User']['id'])) ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$c['User']['photo_dir'].'/'.$c['User']['photo_attachment'] ?>" width="80px"/></a>
 	<?php endif; ?>
 
   	<!-- <img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?type=large" width="80px"/> -->
-  	<h4 style = "font-size: 0.9vw;"><?php echo (__('Agent ').$name[0]); ?></h4>
+  	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $c['User']['id'])) ?>"><h4 style = "font-size: 0.9vw;"><?php echo (__('Agent ').$name[0]); ?></h4></a>
 	<h6 style = "font-size: 0.7vw;"><?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h6>
   </div>
   <div class="small-10 medium-10 large-10 columns">

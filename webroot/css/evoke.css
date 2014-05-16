@@ -359,7 +359,8 @@ button, div, p, span, a,
 
 .evoke .fatal-error img{
 	vertical-align: middle; 
-	height:600px; 
+	/*height:600px;*/ 
+	min-height: 600px;
 	width: 100%
 }
 
@@ -1316,6 +1317,10 @@ button, div, p, span, a,
 
 .evoke.no-padding{
 	padding:0;
+}
+
+.evoke .no-margin{
+	margin:0;
 }
 
 .evoke.breadcrumbs > *:before{
