@@ -77,11 +77,12 @@
     									<?php
     								}
     							}
+                                
     						}
     					?>
 
-    				<button class="btn btn-danger btn-remove" id="<?php echo $k?>" type="button">
-    					<i class="icon-trash"></i>
+    				<button class="button alert" id="<?php echo $k?>" type="button">
+    					<i class="fa fa-trash-o"></i>
     				</button>
     			</div>
 
@@ -162,8 +163,9 @@
 		<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_quest', $mission_id, $me['Quest']['id'], $origin));?>
 	</button>
 
+    <?php echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));?>
     <?php echo $this->Html->script('survey'); ?>
-    <?php echo $this->Html->script('quest_attachments'); ?>
+    <?//echo $this->Html->script('quest_attachments'); ?>
 
     <!-- necessary function to add remove the already existing questions -->
     <script type="text/javascript">
