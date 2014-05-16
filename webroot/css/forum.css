@@ -139,7 +139,7 @@
 	font-family:'AlegreyaBold';
 }
 
-.evoke .forum.index ul h3, span{
+.evoke .forum.index ul h3, .evoke .forum.index ul span{
 	color:#1f8cb2;
 	font-family:'AlegreyaRegular';
 }
