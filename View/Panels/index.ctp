@@ -645,29 +645,52 @@
 						<div class="tabs-content ">
 							<div class="content active" id="otherMetrics">
 								<div class="large-12 medium-12 small-12 columns">
-									
-									<ul class="small-block-grid-4">
-									  <li><div class = "yay">
-									  	<div class="row full-width-alternate no-margin">
-										  <div class="small-6 large-centered columns text-align-center"><h1 style = "font-size: 1.5em;"><i class="fa fa-users fa-2x"></i>&nbsp;&nbsp;Total Users</h1><h1>90</h1></div>
-										</div>
-									  </div></li>
-									  <li><div class = "yay">
-									  	<div class="row full-width-alternate no-margin">
-										  <div class="small-4 medium-4 large-4 columns text-align-center">Average Level</div>
-										  <div class="small-4 medium-4 large-4 columns text-align-center">Average Ally per User</div>
-										  <div class="small-4 medium-4 large-4 columns text-align-center">Average Point</div>
-										</div>
-									  </div></li>
-									  <li><div class = "yay"><!-- Your content goes here --></div></li>
-									  <li><div class = "yay"><!-- Your content goes here --></div></li>
-									  <li><div><!-- Your content goes here --></div></li>
-									  <li><div><!-- Your content goes here --></div></li>
-									  <li><div><!-- Your content goes here --></div></li>
+									<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
+										<li>
+											<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+													<div class="small-6 large-centered columns text-align-center">
+												  		<h1 style = "font-size: 1.5em;">
+												  			<i class="fa fa-crosshairs fa-2x"></i>
+												  			&nbsp;&nbsp;<?=sizeof($missions_issues).' ' . __('Missions')?>
+												  		</h1>
+												  	</div>
+												</div>
+									  		</div>
+									  	</li>
+									  	<li>
+									  		<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+												  	<div class="small-6 large-centered columns text-align-center">
+												  		<h1 style = "font-size: 1.5em;">
+												  			<i class="fa fa-bank fa-2x"></i>
+												  			&nbsp;&nbsp;<?=sizeof($organizations).' '.__('Organizations')?>
+												  		</h1>
+												  	</div>
+												</div>
+									  		</div>
+										</li>
 									</ul>
 
-									<h3><?=__('Total of organizations: '). sizeof($organizations)?></h3>
-									<h3><?=__('Total of missions: '). sizeof($missions_issues)?></h3>
+									<ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-1">
+										<li>
+											<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+												  <div class="small-6 large-centered columns text-align-center"><h1 style = "font-size: 1.5em;"><i class="fa fa-users fa-2x"></i>&nbsp;&nbsp;Total Users</h1><h1>90</h1></div>
+												</div>
+									  		</div>
+										</li>
+									  	<li>
+									  		<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+												  	<div class="small-4 medium-4 large-4 columns text-align-center">Average Level</div>
+												  	<div class="small-4 medium-4 large-4 columns text-align-center">Average Ally per User</div>
+												  	<div class="small-4 medium-4 large-4 columns text-align-center">Average Point</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+
 									<p><?php echo __('Users') . ": " . sizeof($all_users);?></p>
 									<p><?php echo __('Evokation Groups') . ": " . sizeof($groups);?></p>
 									<p>Average of allies/user: <?=sizeof($allRelations)/sizeof($all_users)?></p>

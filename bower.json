@@ -2,7 +2,7 @@
   "name": "Evoke",
   "dependencies": {
     "foundation": "5.0.3",
-    "font-awesome": "v4.0.3",
+    "font-awesome": "v4.1",
     "mrmrs-colors": "master",
     "medium-editor": "master",
     "medium-editor-insert-plugin": "git://github.com/orthes/medium-editor-insert-plugin.git",
