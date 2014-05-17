@@ -143,71 +143,29 @@
 		
 	</div>
 
-	  	<h3 class = "margin bottom-1"> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
+	  	<h3 class = "margin bottom-1"> <?= strtoupper(__('Evidence Stream')) ?> </h3>
 
-	  	<dl class="default tabs" data-tab>
-		  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('All Evidences')) ?></a></dd>
-		  <dd><a href="#panel2-4"><?= strtoupper(__('All Evokations')) ?></a></dd>
-		  <dd><a href="#panel2-2"><?= strtoupper(__('Projects I Follow')) ?></a></dd>
-		  <dd><a href="#panel2-3"><?= strtoupper(__('My Projects')) ?></a></dd>
-		</dl>
-		<div class="evoke content-block default tabs-content">
-		  <div class="content active" id="panel2-1">
+	  	<div class="evoke content-block default">
+		  <!-- <div class="content active" id="panel2-1"> -->
 		    
 		    <?php 
 		    	$lastEvidence = null;
 	    		//Lists all projects and evidences
 	    		foreach($evidence as $e): 
-    				//echo $this->element('evidence_blue_box', array('e' => $e)); 
-    				//echo $this->element('evidence_box', array('e' => $e)); 
+    				
     				echo $this->element('evidence', array('e' => $e)); 
     				$lastEvidence = $e['Evidence']['id'];
 	    		endforeach; 
-	    		// echo '<p>'.$lastEvidence.'</p>';
+	    		
 			?>
 			<meta name="lastEvidence" content="<?php echo $lastEvidence; ?>">
 			<div id="target"></div>
-		  </div>
-		  <div class="content" id="panel2-4">
-		    
-		    <?php 
-	    		foreach($evokations as $e):
-	    			$showFollowButton = true;
-	    			foreach($myEvokations as $my)
-	    				if(array_search($my['Evokation']['id'], $e['Evokation'])) {
-	    					$showFollowButton = false;
-	    					break;
-	    				}
-	    			if($showFollowButton) 
-	    				echo $this->element('evokation', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
-	    			else
-	    				echo $this->element('evokation', array('e' => $e, 'mine' => true));
-				endforeach;
-			?>
-
-		  </div>
-		  <div class="content" id="panel2-2">
-		    <?php 
-		    	foreach($evokations as $e):
-	    			foreach($evokationsFollowing as $following)
-	    				if($e['Evokation']['id'] == $following['Evokation']['id']) {
-	    					echo $this->element('evokation', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));		
-	    				}
-	    		endforeach;
-	    	?>
-		  </div>
-		  <div class="content" id="panel2-3">
-		    <?php 
-	    		foreach($myEvokations as $e):
-	    			echo $this->element('evokation', array('e' => $e, 'mine' => true));
-	    		endforeach;
-	    	?>
-		  </div>
+		  <!-- </div> -->
 		</div>
 
 	  </div>
 
-	  <div class="small-3 medium-3 large-3 columns padding top-2">
+	  <div class="small-3 medium-3 large-3 columns padding top-2 maincolumn">
 	  	
 	  	<h3> <?= strtoupper(__('Notifications')) ?> </h3>
 	  	<div class = "evoke content-block padding profile feed">
@@ -521,10 +479,10 @@
 			        last = responseLast;
 			        response = response.substring(response.search("lastEnd")+7);
 			        
-			        console.log(response);	
+			        // console.log(response);	
 
 			        $('#target').append((response));
-			        alert('YAY');
+			        // alert('YAY');
 			        
 			    },
 			    error: function(e) {

@@ -20,12 +20,6 @@
 
 	<?php echo $this->Session->flash(); ?>
 
-	<div id="secondModal" class="reveal-modal" data-reveal>
-	  <h2>This is a second modal.</h2>
-	  <p>See? It just slides into place after the other first modal. Very handy when you need subsequent dialogs, or when a modal option impacts or requires another decision.</p>
-	  <a class="close-reveal-modal">&#215;</a>
-	</div>
-
 	<div class="evoke default row full-width-alternate profile">
 
 	  <div class="small-2 medium-2 large-2 columns padding-left">
