@@ -508,6 +508,8 @@
 	$(window).scroll(function() {   
 		if($(window).scrollTop() + $(window).height() == $(document).height()) {
 	    	
+	    	alert('YAY0');
+	    	
 	    	$.ajax({
 			    type: 'get',
 			    url: getCorrectURL('moreEvidences')+"/"+last+"/"+olderContent,
@@ -524,6 +526,7 @@
 			        console.log(response);	
 
 			        $('#target').append((response));
+			        alert('YAY');
 			        
 			    },
 			    error: function(e) {
