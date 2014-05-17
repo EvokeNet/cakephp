@@ -521,7 +521,7 @@
 			        last = responseLast;
 			        response = response.substring(response.search("lastEnd")+7);
 			        
-			        // console.log(response);	
+			        console.log(response);	
 
 			        $('#target').append((response));
 			        
