@@ -258,7 +258,6 @@ class UsersController extends AppController {
 			$flags['_en'] = false;
 			$flags['_es'] = true;
 		}
-		// debug($lang);
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
@@ -289,17 +288,18 @@ class UsersController extends AppController {
 			'limit' => 8
 		));
 
-		$myevidences = $this->User->Evidence->find('all', array(
-			'order' => array(
-				'Evidence.modified DESC'
-			),
-			'conditions' => array(
-				'Evidence.user_id' => $id,
-				'Evidence.title != ' => ''
-			)
-		));
+		// $myevidences = $this->User->Evidence->find('all', array(
+		// 	'order' => array(
+		// 		'Evidence.modified DESC'
+		// 	),
+		// 	'conditions' => array(
+		// 		'Evidence.user_id' => $id,
+		// 		'Evidence.title != ' => ''
+		// 	),
+		// 	'limit' => 8
+		// ));
 
-		$allies = array();
+		// $allies = array();
 
 		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
@@ -327,23 +327,23 @@ class UsersController extends AppController {
 		$notifies = array();
 		$feed = array();
 
-		if(!empty($are_friends)){
-			$allies = $this->User->find('all', array(
-				'conditions' => array(
-					'OR' => $are_friends
-			)));
+		// if(!empty($are_friends)){
+		// 	$allies = $this->User->find('all', array(
+		// 		'conditions' => array(
+		// 			'OR' => $are_friends
+		// 	)));
 
-			// foreach ($notifies as $key => $value) {
-			// 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
-			// 	 $value['Notification']['origin'] == 'commentEvidence') {
-			// 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
-			// 			unset($notifies[$key]);
-			// 		}
-			// 	}
-			// }
-		} else{
-			$allies = array();
-		}
+		// 	// foreach ($notifies as $key => $value) {
+		// 	// 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
+		// 	// 	 $value['Notification']['origin'] == 'commentEvidence') {
+		// 	// 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
+		// 	// 			unset($notifies[$key]);
+		// 	// 		}
+		// 	// 	}
+		// 	// }
+		// } else{
+		// 	$allies = array();
+		// }
 
 		if(!empty($mine_allies)){
 			$feed = $this->Notification->find('all', array(
@@ -397,9 +397,6 @@ class UsersController extends AppController {
 			}
 				
 		}
-
-		// $missionIssues = $this->Mission->MissionIssue->find('all');
-		// $issues = $this->Mission->MissionIssue->Issue->find('all');
 
 		$allusers = $this->User->find('all');
 
@@ -470,28 +467,28 @@ class UsersController extends AppController {
 		
 		//$this->loadModel('Badge');
 
-		$badges = $this->User->UserBadge->find('all', array(
-			'conditions' => array(
-				'UserBadge.user_id' => $id
-			)
-		));
+		// $badges = $this->User->UserBadge->find('all', array(
+		// 	'conditions' => array(
+		// 		'UserBadge.user_id' => $id
+		// 	)
+		// ));
 
-		foreach ($badges as $b => $badge) {
-			$this->loadModel('Attachment');
-			$badge_img = $this->Attachment->find('first', array(
-				'conditions' => array(
-					'Attachment.model' => 'Badge',
-					'Attachment.foreign_key' => $badge['Badge']['id']
-				)
-			));
-			if(!empty($badge_img)) {
-				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
-				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
-			} else {
+		// foreach ($badges as $b => $badge) {
+		// 	$this->loadModel('Attachment');
+		// 	$badge_img = $this->Attachment->find('first', array(
+		// 		'conditions' => array(
+		// 			'Attachment.model' => 'Badge',
+		// 			'Attachment.foreign_key' => $badge['Badge']['id']
+		// 		)
+		// 	));
+		// 	if(!empty($badge_img)) {
+		// 		$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
+		// 		$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
+		// 	} else {
 
-			}
+		// 	}
 
-		}
+		// }
 		//$this->set(compact('user', 'users', 'adminNotifications', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 
 		// $badges = $this->User->UserBadge->find('all', array(

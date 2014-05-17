@@ -731,16 +731,16 @@
         },
         {
             "name": "mjohnson/utility",
-            "version": "1.6.8",
+            "version": "1.6.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/milesj/utility.git",
-                "reference": "3e97eceb802df26c718e70770ac3d0083ded9a9f"
+                "reference": "6bfe0742c5f4fea3439b3478e79651dcd6125146"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/milesj/utility/zipball/3e97eceb802df26c718e70770ac3d0083ded9a9f",
-                "reference": "3e97eceb802df26c718e70770ac3d0083ded9a9f",
+                "url": "https://api.github.com/repos/milesj/utility/zipball/6bfe0742c5f4fea3439b3478e79651dcd6125146",
+                "reference": "6bfe0742c5f4fea3439b3478e79651dcd6125146",
                 "shasum": ""
             },
             "require": {
@@ -794,7 +794,7 @@
                 "utility",
                 "validateable"
             ],
-            "time": "2014-04-23 03:25:56"
+            "time": "2014-05-22 02:13:35"
         },
         {
             "name": "paulredmond/chosen-cakephp",
@@ -928,16 +928,16 @@
         },
         {
             "name": "titon/utility",
-            "version": "0.13.2",
+            "version": "0.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/titon/utility.git",
-                "reference": "41a0959cdabcedc97b25a51b54f78991b224dbeb"
+                "reference": "f8b6cc7a5787c574d52d8a18fc3ce138ad7f0a6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/titon/utility/zipball/41a0959cdabcedc97b25a51b54f78991b224dbeb",
-                "reference": "41a0959cdabcedc97b25a51b54f78991b224dbeb",
+                "url": "https://api.github.com/repos/titon/utility/zipball/f8b6cc7a5787c574d52d8a18fc3ce138ad7f0a6e",
+                "reference": "f8b6cc7a5787c574d52d8a18fc3ce138ad7f0a6e",
                 "shasum": ""
             },
             "require": {
@@ -993,7 +993,7 @@
                 "uuid",
                 "validate"
             ],
-            "time": "2014-05-17 03:57:45"
+            "time": "2014-05-22 03:14:09"
         }
     ],
     "packages-dev": [
