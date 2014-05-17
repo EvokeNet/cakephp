@@ -543,7 +543,7 @@ class UsersController extends AppController {
 		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'evidence', 'myevidences', 'missions', 
 			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies', 'show_basic_training'));
 		//'groups', 'my_photo', 'user_photo',
-
+		
 	}
 
 /**
