@@ -22,6 +22,12 @@ class NotificationsListener implements CakeEventListener {
 
             'Model.Comment.notifyEvidence' => 'notifyCommentedEvidence',
 
+            'Model.Comment.notifyUpdateEvokation' => 'notifyCommentedUpdateEvokation',
+
+            'Model.Comment.notifyEvokation' => 'notifyCommentedEvokation',
+
+            'Model.Vote.notifyEvokation' => 'notifyVotedEvokation',
+
             'Model.UserFriend.notifyFollow' => 'notifyUserFollower',
 
             'Controller.AdminNotificationsUser.show' => 'notifyAdminNotification'
@@ -146,6 +152,105 @@ class NotificationsListener implements CakeEventListener {
         $note->saveAll($insertData);
 
     }
+
+    public function notifyCommentedEvokation($event){
+
+        $note = ClassRegistry::init('Notifications');
+
+        $note->create();
+
+        $aux = $event->data;
+
+        $insertData = array();
+
+        for($i = 0; $i < $event->data['array_count']; $i++){
+            
+            $insertData = array(
+                'user_id' => $event->data[$i], 
+                'origin_id' => $event->subject()->data['Comment']['evokation_id'], 
+                'origin' => 'commentEvokation',
+                'action_user_id' => $event->subject()->data['Comment']['user_id']
+            );
+
+            $note->saveAll($insertData);
+        }
+
+    }
+
+    public function notifyVotedEvokation($event){
+
+        $note = ClassRegistry::init('Notifications');
+
+        $note->create();
+
+        $aux = $event->data;
+
+        $insertData = array();
+
+        for($i = 0; $i < $event->data['array_count']; $i++){
+            
+            $insertData = array(
+                'user_id' => $event->data[$i], 
+                'origin_id' => $event->subject()->data['Vote']['evokation_id'], 
+                'origin' => 'voteEvokation',
+                'action_user_id' => $event->subject()->data['Vote']['user_id']
+            );
+
+            $note->saveAll($insertData);
+        }
+
+    }
+
+    // public function notifyCommentedUpdateEvokation($event){
+
+    //     $note = ClassRegistry::init('Notifications');
+
+    //     $note->create();
+
+    //     $insertData = array(
+    //         'user_id' => $event->data['user_id'], 
+    //         'origin_id' => $event->subject()->data['Comment']['evokation_id'], 
+    //         'origin' => 'commentUpdateEvokation',
+    //         'action_user_id' => $event->subject()->data['Comment']['user_id']
+    //     );
+
+    //     $note->saveAll($insertData);
+
+    // }
+
+    // public function notifyCommentedEvokation($event){
+
+    //     $note = ClassRegistry::init('Notifications');
+
+    //     $note->create();
+
+    //     $insertData = array(
+    //         'user_id' => $event->data['user_id'], 
+    //         'origin_id' => $event->subject()->data['Comment']['evokation_id'], 
+    //         'origin' => 'commentEvokation',
+    //         'action_user_id' => $event->subject()->data['Comment']['user_id']
+    //     );
+
+    //     $note->saveAll($insertData);
+
+    // }
+
+    // public function notifyVotedEvokation($event){
+
+    //     $note = ClassRegistry::init('Notifications');
+
+    //     $note->create();
+
+    //     $insertData = array(
+    //         'user_id' => $event->data['user_id'], 
+    //         'origin_id' => $event->subject()->data['Vote']['evokation_id'], 
+    //         'origin' => 'votedEvokation',
+    //         'action_user_id' => $event->subject()->data['Vote']['user_id']
+    //     );
+
+    //     $note->saveAll($insertData);
+
+    // }
 
     public function notifyUserFollower($event){
 

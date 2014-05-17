@@ -200,62 +200,93 @@
 
 	  <div class="small-3 medium-3 large-3 columns padding top-2">
 	  	
-	  	<!-- <h3> <?= strtoupper(__('Notifications')) ?> </h3>
-	  	<div class = "evoke content-block padding-10">
-	  		<?php if(empty($notifies)): ?>
+	  	<h3> <?= strtoupper(__('Notifications')) ?> </h3>
+	  	<div class = "evoke content-block padding profile feed">
+	  		<ul>
+		  		<?php if(empty($notifies)): ?>
 
-				<img src = '<?= $this->webroot.'img/placeholders-feed.png' ?>' style = "width: 100%; max-height: 100%;">
+					<img src = '<?= $this->webroot.'img/placeholders-feed.png' ?>' style = "width: 100%; max-height: 100%;">
+				<?php else: ?>
+					<?php foreach($notifies as $n):
 
-			<?php else: ?>
-				<?php foreach($notifies as $n):
-					if($n['Notification']['origin'] == 'like'):
-				
-					foreach($allusers as $alluser):
-						if($n['Notification']['action_user_id'] == $alluser['User']['id']){
-							$action_user = $alluser;
-							break;
-						}
-					endforeach;
+						$action_user = null;
 
-					if($action_user['User']['id'] == $users['User']['id']){
-						$message = sprintf(__('You liked an evidence Agent %s posted'), $n['User']['name']);
-					} if(($action_user['User']['id'] != $users['User']['id']) && ($n['User']['id'] == $users['User']['id'])){
-						$message = sprintf(__('Agent %s liked an evidence you posted'), $n['User']['name']);
-					} else{
-						$message = sprintf(__('Agent %s liked an evidence from Agent %s'), $action_user['User']['name'], $n['User']['name']);
-					}
-					?>						
-					<li>
-					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<?php if($n['User']['facebook_id'] == null) : ?>
-							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-						<?php else : ?>	
-							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-						<?php endif; ?>
-		  			<?php else : ?>
-		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-		  			<?php endif; ?>
-					<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= $message ?></a></li>
+						foreach($allusers as $alluser):
+							if($n['Notification']['action_user_id'] == $alluser['User']['id']){
+								$action_user = $alluser;
+								break;
+							}
+						endforeach;
+
+						if($n['Notification']['origin'] == 'like'):
+
+						if($action_user['User']['id'] != $users['User']['id']){ ?>
+
+							<li>
+								<?php if($action_user['User']['photo_attachment'] == null) : ?>
+									<?php if($action_user['User']['facebook_id'] == null) : ?>
+										<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+									<?php else : ?>	
+										<img src="https://graph.facebook.com/<?php echo $action_user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+									<?php endif; ?>
+					  			<?php else : ?>
+					  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$action_user['User']['photo_dir'].'/'.$action_user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+					  			<?php endif; ?>
+								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s liked an evidence you posted'), $action_user['User']['name']) ?></a>
+							</li>
+
+						<?php } ?>
+
+					<?php endif; ?>
+
+					<?php if($n['Notification']['origin'] == 'commentEvidence'):
+
+						if($action_user['User']['id'] != $users['User']['id']){ ?>
+
+							<li>
+								<?php if($action_user['User']['photo_attachment'] == null) : ?>
+									<?php if($action_user['User']['facebook_id'] == null) : ?>
+										<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+									<?php else : ?>	
+										<img src="https://graph.facebook.com/<?php echo $action_user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+									<?php endif; ?>
+					  			<?php else : ?>
+					  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$action_user['User']['photo_dir'].'/'.$action_user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+					  			<?php endif; ?>
+								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evidence you posted'), $action_user['User']['name']) ?></a>
+							</li>
+
+						<?php } ?>
+												
+					<?php endif; ?>
+
+					<?php if($n['Notification']['origin'] == 'commentEvokation'):
+
+						if($action_user['User']['id'] != $users['User']['id']){ ?>
+
+							<li>
+								<?php if($action_user['User']['photo_attachment'] == null) : ?>
+									<?php if($action_user['User']['facebook_id'] == null) : ?>
+										<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+									<?php else : ?>	
+										<img src="https://graph.facebook.com/<?php echo $action_user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+									<?php endif; ?>
+					  			<?php else : ?>
+					  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$action_user['User']['photo_dir'].'/'.$action_user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+					  			<?php endif; ?>
+								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evokation your group posted'), $action_user['User']['name']) ?></a>
+							</li>
+
+						<?php } ?>
+												
+					<?php endif; ?>
+
+				<?php endforeach; ?>
 				<?php endif; ?>
+			</ul>
+	  	</div>
 
-				<?php if($n['Notification']['origin'] == 'commentEvidence'):?>						
-					<li>
-					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<?php if($n['User']['facebook_id'] == null) : ?>
-							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-						<?php else : ?>	
-							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-						<?php endif; ?>
-		  			<?php else : ?>
-		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-		  			<?php endif; ?>
-					<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evidence'), $n['User']['name']) ?></a></li>
-				<?php endif; ?>
-<?php endforeach; ?>
-<?php endif; ?>
-	  	</div> -->
-
-	  	<h3 class = "margin bottom-1"><?= strtoupper(__('Feed')) ?> </h3>
+	  	<h3 class = "margin bottom-1 top"><?= strtoupper(__('Feed')) ?> </h3>
 	  	<div class = "evoke content-block padding profile feed">
 	  		
 	  		<?php if(empty($notifies)): ?>
@@ -266,7 +297,7 @@
 			<?php else: ?>
 
 			<ul>
-				<?php foreach($notifies as $n): 
+				<?php foreach($feed as $n): 
 
 				if($n['Notification']['origin'] == 'evidence'):?>						
 					<li>
@@ -375,27 +406,26 @@
 
 	  	</div>
 
-	  	<h3 class = "margin bottom-1"><?= strtoupper(__('Discussions')) ?> </h3>
-	  	<div class = "evoke content-block padding-10">
+	  	<h3 class = "margin bottom-1 top"><?= strtoupper(__('Discussions')) ?> </h3>
+	  	<div class = "evoke content-block padding profile feed">
 
-	  		<!-- <ul>
-	  		<?php if(!empty($a_topics)): foreach($a_topics as $n): 
-
+	  		<ul>
+	  		<?php if(!empty($a_topics)): foreach($a_topics as $topic): 
 				//if($n['Notification']['origin'] == 'evidence'):?>						
 					<li>
 
-						<?php if($n['User']['photo_attachment'] == null) : ?>
-							<?php if($n['User']['facebook_id'] == null) : ?>
+						<?php if($topic['User']['photo_attachment'] == null) : ?>
+							<?php if($topic['User']['facebook_id'] == null) : ?>
 								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
 							<?php else : ?>	
-								<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+								<img src="https://graph.facebook.com/<?php echo $topic['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
 							<?php endif; ?>
 
 			  			<?php else : ?>
-			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$topic['User']['photo_dir'].'/'.$topic['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 			  			<?php endif; ?>
 
-					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $n['Topic']['title'])) ?>"><?= sprintf(__('Agent %s posted the topic %s'), $n['User']['name'], $n['Topic']['title']) ?></a>
+					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $topic['Topic']['title'])) ?>"><?= sprintf(__('Agent %s created the topic %s'), $topic['User']['name'], $topic['Topic']['title']) ?></a>
 
 					</li>
 				<?php //endif; ?>
@@ -403,28 +433,28 @@
 			</ul>
 
 			<ul>
-			<?php if(!empty($a_posts)): foreach($a_posts as $n): 
+			<?php if(!empty($a_posts)): foreach($a_posts as $post): 
 
 				//if($n['Notification']['origin'] == 'evidence'):?>						
 					<li>
 
-						<?php if($n['User']['photo_attachment'] == null) : ?>
-							<?php if($n['User']['facebook_id'] == null) : ?>
+						<?php if($post['User']['photo_attachment'] == null) : ?>
+							<?php if($post['User']['facebook_id'] == null) : ?>
 								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
 							<?php else : ?>	
-								<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+								<img src="https://graph.facebook.com/<?php echo $post['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
 							<?php endif; ?>
 
 			  			<?php else : ?>
-			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$post['User']['photo_dir'].'/'.$post['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 			  			<?php endif; ?>
 
-					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $n['Topic']['title'])) ?>"><?= sprintf(__('Agent %s posted the topic %s'), $n['User']['name'], $n['Topic']['title']) ?></a>
+					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $post['Topic']['title'])) ?>"><?= sprintf(__('Agent %s posted a reply in topic %s'), $post['User']['name'], $post['Topic']['title']) ?></a>
 
 					</li>
 				<?php //endif; ?>
 			<?php endforeach; endif;?>
-			</ul> -->
+			</ul>
 
 	  	</div>
 

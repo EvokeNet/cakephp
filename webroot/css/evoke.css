@@ -240,7 +240,7 @@ button, div, p, span, a,
 }
 
 .evoke .content-block ul li a{
-	font-size:1.1vw;
+	font-size:1.0vw;
 	color:#fff;
 }
 
@@ -548,7 +548,7 @@ button, div, p, span, a,
 	margin-bottom: 20px;
 }
 
-.evoke .leaderboard .headings h1, h2, h3{
+.evoke .leaderboard .headings h1, .evoke .leaderboard .headings h2, .evoke .leaderboard .headings h3{
 	color: #fff;
 	font-family: 'AlegreyaRegular';
 	line-height: 1.0em;
