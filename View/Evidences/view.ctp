@@ -27,8 +27,6 @@
 
 <section class="evoke default-background">
 
-	<?php echo $this->Session->flash(); ?>
-
 	<div class="evoke default row full-width-alternate">
 
 	  <div class="small-2 medium-2 large-2 columns padding-left">
@@ -37,6 +35,8 @@
 
 	  <div class="small-9 medium-9 large-9 columns maincolumn">
 
+	  	<?php echo $this->Session->flash(); ?>
+	  	
 	  	<nav class="evoke breadcrumbs">
 			<?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 			<a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>

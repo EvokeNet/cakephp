@@ -179,3 +179,25 @@
 	background:#f2f4f8;
 	margin-left: 0px;
 }
+
+.evoke .panels .statistics li{
+	/*margin: 0px 10px;*/
+}
+
+.evoke .panels .statistics li:nth-child(2n+0) .yay{
+	background-color: #ABE3E8;
+	padding: 15px;
+	color: #555;
+}
+
+.evoke .panels .statistics li:nth-child(2n+1) .yay{
+	background-color: #C9EDFF;
+	padding: 15px;
+	color: #555;
+}
+/*
+.evoke .panels .statistics li:nth-child(2n+3) .yay{
+	background-color: #32CDE8;
+	padding: 15px;
+	color: #fff;
+}*/
