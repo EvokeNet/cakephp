@@ -36,6 +36,16 @@
 	);
 
 	Router::connect(
+    	'/terms',
+    	array('controller' => 'pages', 'action' => 'terms')
+	);
+
+	Router::connect(
+    	'/DMCAnotifications',
+    	array('controller' => 'pages', 'action' => 'dmcanotifications')
+	);
+
+/*	Router::connect(
     	'/admin/*',
     	array('controller' => 'panels')
 	);
@@ -44,7 +54,7 @@
     	'/admin/:action/*',
     	array('controller' => 'panels')
 	);
-
+*/
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

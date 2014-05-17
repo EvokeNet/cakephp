@@ -185,19 +185,19 @@
 }
 
 .evoke .panels .statistics li:nth-child(2n+0) .yay{
-	background-color: #2ecc71;
+	background-color: #ABE3E8;
 	padding: 15px;
-	color: #fff;
+	color: #555;
 }
 
 .evoke .panels .statistics li:nth-child(2n+1) .yay{
-	background-color: #3498db;
+	background-color: #C9EDFF;
 	padding: 15px;
-	color: #fff;
+	color: #555;
 }
-
+/*
 .evoke .panels .statistics li:nth-child(2n+3) .yay{
-	background-color: #f22613;
+	background-color: #32CDE8;
 	padding: 15px;
 	color: #fff;
-}
+}*/
