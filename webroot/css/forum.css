@@ -4,6 +4,11 @@
 	border-bottom: 3px solid #efefef;
 }
 
+
+.evoke .forum-topic-bg.custom-padding{
+	padding: 15px 30px 10px 40px;
+}
+
 .evoke .forum-topic-bg p{
 	font-size: 1.4em;
 }
@@ -28,6 +33,21 @@
 .evoke .forum-post-bg td{
 	word-break: break-all;
 }
+
+.evoke .forum-post-bg td.actions{
+	position: relative;
+	width: 10%;
+}
+
+.evoke .forum.action-icons{
+	position: absolute;
+	right: 10px;
+	top: 20px;
+}
+
+/*.evoke .forum.action-icons a{
+	color:#c65862;
+}*/
 
 .evoke .forum-post-bg td p{
 	color:#fff;
@@ -95,4 +115,16 @@
 	width:100px;
 	height:100px;
 	overflow:hidden;
+}
+
+.decoda{
+	color: #fff;
+	font-size: 1.2rem;
+}
+
+.decoda-quote {
+	margin-bottom: 20px;
+	background-color: #efefef;
+	color: #000;
+	font-family:'AlegreyaRegular';
 }
