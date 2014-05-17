@@ -147,6 +147,52 @@ class UsersController extends AppController {
 		$this->set('users', $this->Paginator->paginate());
 	}
 
+
+	public function moreEvidences($lastEvidence, $limit = 1){
+		$this->autoRender = false; // We don't render a view in this example
+    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+
+    	$last = $this->User->Evidence->find('first', array(
+    		'conditions' => array(
+    			'Evidence.id' => $lastEvidence
+    		),
+    	));
+
+
+    	if(empty($last))
+    		return json_encode(array());
+
+    	$evidence = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			),
+			'conditions' => array(
+				'Evidence.title != ' => '',
+				'Evidence.modified <' => $last['Evidence']['modified']
+			),
+			'limit' => $limit
+		));
+
+    	$data = "";
+
+	    $str = "lastBegin-1lastEnd";
+	    $older = "";
+    	foreach ($evidence as $key => $value) {
+    		$view = new View($this, false);
+			$content = ($view->element('evidence', array('e' => $value)));
+			
+			$data .= $content .' ';
+
+    		$older = $value['Evidence']['id'];
+    	}
+    	if($older != "") {
+    		$str = "lastBegin".$older."lastEnd";
+    	}
+    	return $str.$data;
+	}
+
+
+
 /**
  *
  * register method
@@ -244,16 +290,17 @@ class UsersController extends AppController {
 
 		$evidence = $this->User->Evidence->find('all', array(
 			'order' => array(
-				'Evidence.created DESC'
+				'Evidence.modified DESC'
 			),
 			'conditions' => array(
 				'Evidence.title != ' => ''
-			)
+			),
+			'limit' => 6
 		));
 
 		$myevidences = $this->User->Evidence->find('all', array(
 			'order' => array(
-				'Evidence.created DESC'
+				'Evidence.modified DESC'
 			),
 			'conditions' => array(
 				'Evidence.user_id' => $id,
