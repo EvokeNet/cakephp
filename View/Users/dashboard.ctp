@@ -507,9 +507,7 @@
 	//checking scrolling info to call ajax function
 	$(window).scroll(function() {   
 		if($(window).scrollTop() + $(window).height() == $(document).height()) {
-	    	
-	    	alert('YAY0');
-	    	
+
 	    	$.ajax({
 			    type: 'get',
 			    url: getCorrectURL('moreEvidences')+"/"+last+"/"+olderContent,
@@ -540,6 +538,7 @@
 	function htmlEntities(str) {
 	    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 	}
+	
 	function getCorrectURL(afterHome){
     	var str = document.URL;
     	
