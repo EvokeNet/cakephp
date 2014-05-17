@@ -15,7 +15,7 @@
 	<div class="evoke row full-width-alternate">
 
 	<div class="small-2 medium-2 large-2 columns padding-left">
-	  		<?php echo $this->element('menu', array('user' => $user));?>
+  		<?php echo $this->element('menu', array('user' => $user));?>
 	</div>	
 	
 	<div class="small-8 medium-8 large-8 columns maincolumn padding top-2">

@@ -27,6 +27,11 @@
 			}	
 		}
 	}
+
+	if(isset($user['User']['role_id']))
+		$src  = $user['User']['role_id'];
+	else
+		$src = $user['role_id'];
 ?>
 <div class = "evoke menu-bg sidebar menucolumn">
 	<ul>
@@ -35,7 +40,7 @@
 	  <li <?=$evokationslink?>><a href="<?= $this->Html->url(array('controller' => 'groups', 'action' => 'evokations')) ?>"><i class="fa fa-users" style="padding-right: 10px;"></i><?= strtoupper(__('Evokations')) ?></a></li>
 	  <li <?=$badgeslink?>><a href="<?= $this->Html->url(array('controller' => 'badges', 'action' => 'index')) ?>"><i class="fa fa-shield" style="padding-right: 10px;"></i><?= strtoupper(__('Badges')) ?></a></li>
 	  <li <?=$leaderboardlink?>><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard')) ?>"><i class="fa fa-trophy" style="padding-right: 10px;"></i><?=strtoupper(__('Leaderboard')) ?></a></li>
-	  <?php if($user['User']['role_id'] <= 2) : ?>
+	  <?php if($src <= 2) : ?>
 	  	<li><a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'index')) ?>"><i class="fa fa-cogs" style="padding-right: 10px;"></i><?= strtoupper(__('Administration')) ?></a></li>
 	  <?php endif ?>
 	</ul>
