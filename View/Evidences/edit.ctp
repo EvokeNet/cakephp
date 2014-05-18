@@ -140,6 +140,7 @@
 						echo $this->Form->hidden('mission_id');
 						echo $this->Form->hidden('phase_id');
 						echo $this->Media->ckeditor('content', array('label' => __('Content')));
+						echo $this->Form->hidden('content');
 						//echo $this->Media->iframe('Evidence', $this->request->data['Evidence']['id']);
 
 						echo "<label>".__('Attachments'). "</label>";
@@ -211,20 +212,46 @@
 
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-echo $this->Html->script('menu_height', array('inline' => false));
+	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->script('quest_attachments'); 
 ?>
 
 <script type="text/javascript">
 
-	function check_form() {
-		var editor_val = CKEDITOR.instances.EvidenceEditForm.document.getBody().getChild(0).getText() ;
-	    
-		if (editor_val == '') {
-			alert('Editor value cannot be empty!') ;
-			return document.referrer;
-		}
-	}
+	//var editor = CKEDITOR.editor.replace('EvidenceContent');
+	
+	//alert(data);
+
+	function autosave() {
+	    jQuery('form').each(function() {
+
+	    	var ops = $('.cke_wysiwyg_frame').contents().find('.cke_editable p').html();
+	    	alert(ops);
+	        // For each form on the page, pass the form data via an ajax POST to
+	        // the save/autosave action
+	        $("textarea#EvidenceContent").val(ops);
+
+	        jQuery.ajax({
+	            url: "<?= $me['Evidence']['id'] ?>",
+	            data: 'navigation=save&autosave=true&'+jQuery(this).serialize(),
+	            type: 'POST',
+	            success: function(data){
+	                if(data && data == 'success') {
+	                	$("textarea#EvidenceContent").val(ops);
+	                    // Save successfully completed, no need to do anything
+	                } else{
+	                    // Save failed, report the error if you desire
+	                    // ....
+	                }
+	            }// end successful POST function
+	        }); // end jQuery ajax call
+
+	    }); // end setting up the autosave on every form on the page
+	}// end function autosave()
+	 
+	// set the autosave interval (60 seconds * 1000 milliseconds per second)
+	setInterval(autosave, 10 * 1000);
+
 
     <?php
         $i = 0;
