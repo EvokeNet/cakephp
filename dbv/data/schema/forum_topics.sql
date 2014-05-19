@@ -1,0 +1,23 @@
+CREATE TABLE `forum_topics` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `forum_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `title` varchar(100) NOT NULL,
+  `slug` varchar(110) NOT NULL,
+  `excerpt` text NOT NULL,
+  `status` smallint(6) NOT NULL DEFAULT '0',
+  `type` smallint(6) NOT NULL DEFAULT '0',
+  `post_count` int(11) NOT NULL DEFAULT '0',
+  `view_count` int(11) NOT NULL DEFAULT '0',
+  `firstPost_id` int(11) DEFAULT NULL,
+  `lastPost_id` int(11) DEFAULT NULL,
+  `lastUser_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `forum_id` (`forum_id`),
+  KEY `user_id` (`user_id`),
+  KEY `firstPost_id` (`firstPost_id`),
+  KEY `lastPost_id` (`lastPost_id`),
+  KEY `lastUser_id` (`lastUser_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Discussion topics'

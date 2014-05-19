@@ -103,6 +103,10 @@ button, div, p, span, a,
 	margin-left: 2em;
 }
 
+.evoke .margin.bottom-0 {
+	margin-bottom: 0;
+}
+
 .evoke .margin.bottom {
 	margin-bottom: 1em;
 }

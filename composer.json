@@ -12,10 +12,6 @@
         {
             "type": "vcs",
             "url": "http://github.com/ceeram/CakePdf"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/jordanvg/cakephp-menu-helper"
         }
     ],
     "require": {
@@ -28,7 +24,7 @@
         "paulredmond/chosen-cakephp": "*",
         "0x46616c6b/etherpad-lite-client": "dev-master",
         "ceeram/cakepdf": "1.0.1",
-        "grafikart/cakephp-media": "1.0.0"
+        "mjohnson/forum": "*"
     },
     "config": {
         "vendor-dir": "Vendor/"
