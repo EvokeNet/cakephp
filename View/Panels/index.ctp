@@ -814,7 +814,7 @@
 											<div class = "yay">
 											  	<div class="row full-width-alternate no-margin">
 													<div class="small-12 large-centered columns text-align-center">
-														<i class="fa fa-globe fa-2x"></i>
+														<i class="fa fa-globe fa-3x"></i>
 												  		<h1 style = "font-size: 1.5em; color: #555">
 												  			<?= __('Users around the world')?>
 												  		</h1>
