@@ -730,14 +730,17 @@
 									  	<li>
 									  		<div class = "yay">
 											  	<div class="row full-width-alternate no-margin text-center">
-												  	<div class="large-4 medium-4 small-4 columns">
-													  	<h1 style = "font-size: 1.5em; color: #555">
-													  		<?= __('Level') ?>
-													  	</h1>
+													<h1 style = "font-size: 1.5em; color: #555">
+												  		<i class="fa fa-bolt"></i>
+												  		<?= ' '.__('Level') ?>
+												  	</h1>
+												  	<div class="large-6 medium-6 small-6 columns">
+												  		<h1 style = "font-size: 1.5em; color: #555"><?= __('Average') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= $average_level ?></h5>
 												  	</div>
-												  	<div class="large-8 medium-8 small-8 columns">
-													  	<h5 style = "color: #555"><?= __('Average: ') .$average_level ?></h5>
-													  	<h5 style = "color: #555"><?= __('Highest: ') .$userLevels['max'].' ' ?><i class="fa fa-star"></i></h5>
+												  	<div class="large-6 medium-6 small-6 columns">
+													  	<h1 style = "font-size: 1.5em; color: #555"><?= __('Highest') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= $userLevels['max'].' ' ?><i class="fa fa-star"></i></h5>
 												  	</div>
 												</div>
 											</div>
@@ -745,14 +748,17 @@
 										<li>
 									  		<div class = "yay">
 												<div class="row full-width-alternate no-margin text-center">
-													<div class="large-4 medium-4 small-4 columns">
-														<h1 style = "font-size: 1.5em; color: #555">
-													  		<?= __('Points') ?>
-													  	</h1>
+													<h1 style = "font-size: 1.5em; color: #555">
+													  	<i class="fa fa-bullseye"></i>
+													  	<?= ' ' .__('Points') ?>
+													</h1>
+													<div class="large-6 medium-6 small-6 columns">
+														<h1 style = "font-size: 1.5em; color: #555"><?= __('Average') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= $average_points ?></h5>
 													</div>
-												  	<div class="large-8 medium-8 small-8 columns">
-												  		<h5 style = "color: #555"><?= __('Average: ') .$average_points ?></h5>
-												  		<h5 style = "color: #555"><?= __('Highest: ') .$userLevels['maxP'].' ' ?><i class="fa fa-star"></i></h5>
+												  	<div class="large-6 medium-6 small-6 columns">
+												  		<h1 style = "font-size: 1.5em; color: #555"><?= __('Highest') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= $userLevels['maxP'].' ' ?><i class="fa fa-star"></i></h5>
 												  	</div>
 												</div>
 											</div>	
@@ -777,10 +783,17 @@
 											<div class = "yay">
 												<div class="row full-width-alternate no-margin text-center">
 													<h1 style = "font-size: 1.5em; color: #555">
-														<?= strtoupper(__('Evokation Teams')) ?>
+													  	<i class="fa fa-code"></i>
+													  	<?= ' ' .__('Evokation Teams') ?>
 													</h1>
-													<h5 style = "color: #555"><i class="fa fa-edit"></i><?= ' '.sizeof($groups).' '.__('created') ?></h5>
-													<h5 style = "color: #555"><i class="fa fa-check"></i><?= ' '. sizeof($approved_evokations).' '. __('approved') ?></h5>
+													<div class="large-6 medium-6 small-6 columns">
+														<h1 style = "font-size: 1.5em; color: #555"><?= __('Created') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= sizeof($groups).' ' ?><i class="fa fa-edit"></i></h5>
+													</div>
+												  	<div class="large-6 medium-6 small-6 columns">
+												  		<h1 style = "font-size: 1.5em; color: #555"><?= __('Approved') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= sizeof($approved_evokations).' ' ?><i class="fa fa-check"></i></h5>
+												  	</div>
 												</div>
 											</div>
 										</li>
