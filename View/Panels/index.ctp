@@ -941,7 +941,8 @@
         	projection: {
 			      name: 'kavrayskiy-vii',
 			},
-	        backgroundColor: { fill:'transparent' }
+	        backgroundColor: { fill:'transparent' },
+	        width: '100%',
 
         };
 
