@@ -1112,6 +1112,9 @@ class MissionsController extends AppController {
 		), 'order' => array('UserPhaseChecklist.phase_checklist_id ASC')));
 
 		foreach($missionPhases as $m):
+			$temp = explode(' ', $m['Phase']['name']);
+			$m['Phase']['name'] = $temp[0];
+
 			${'check'.$m['Phase']['name']} = $this->UserPhaseChecklist->find('all', array('conditions' => array(
 				'UserPhaseChecklist.mission_id' => $id,
 				'UserPhaseChecklist.phase_id' => $m['Phase']['id'],
@@ -1123,9 +1126,6 @@ class MissionsController extends AppController {
 				'PhaseChecklist.phase_id' => $m['Phase']['id'], 
 				'PhaseChecklist.language' => $langs
 			)));
-
-			debug(${'checklists'.$m['Phase']['name']});
-			debug(${'check'.$m['Phase']['name']});
 
 			$this->set(compact('check'.$m['Phase']['name'], 'checklists'.$m['Phase']['name']));
 		endforeach;
@@ -1205,7 +1205,19 @@ class MissionsController extends AppController {
 
 		$is_phase_completed = false;
 
-		if(isset($completed[$missionPhase['Phase']['id']]) && ($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']])){
+		if(isset(${'check'.$prevMP['Phase']['name']}))
+			$complete_tasks = count(${'check'.$prevMP['Phase']['name']});
+		else
+			$complete_tasks = 0;
+
+		if(isset(${'checklists'.$prevMP['Phase']['name']}))
+			$all_tasks = count(${'checklists'.$prevMP['Phase']['name']});
+		else
+			$all_tasks = 0;
+
+		// if(isset($completed[$missionPhase['Phase']['id']]) && ($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']])){
+
+		if($complete_tasks == $all_tasks){
 
 			$event = new CakeEvent('Controller.Phase.completed', $this, array(
 	            'entity_id' => $missionPhase['Phase']['id'],
@@ -1239,8 +1251,7 @@ class MissionsController extends AppController {
 
 	        // $this->Session->setFlash(sprintf(__("You have completed the %s Phase"), $missionPhase['Phase']['name']), 'flash_lightbox_message');
 
-		} if(isset($completed[$missionPhase['Phase']['id']]) && 
-			($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && 
+		} if(($complete_tasks == $all_tasks) && 
 			($mission['Mission']['basic_training'] == 1) && ($user['User']['basic_training'] == 0)){
 
 			$this->loadModel('PointsDefinition');
@@ -1290,14 +1301,19 @@ class MissionsController extends AppController {
 
 		// if(isset($prevMP['Phase']['id']) && ((($completed[$prevMP['Phase']['id']] * 100)/$total[$prevMP['Phase']['id']]) != 100)) 
 		// 	return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
-		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 1) && $completed[$prevMP['Phase']['id']] < 2 && $user['User']['role_id'] < 2){
+
+		// $complete_tasks = count(${'check'.$prevMP['Phase']['name']});
+		// $all_tasks = count(${'checklists'.$prevMP['Phase']['name']});
+
+		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 1) && ($complete_tasks < $all_tasks) && $user['User']['role_id'] < 2){
 			$this->Session->setFlash(__('You need to finish at least to quests to complete Basic Training'), 'flash_message');
 			return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
 		}
-		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 0) && $completed[$prevMP['Phase']['id']] < 1 && $user['User']['role_id'] < 2){
-			$this->Session->setFlash(__('You need to finish at least one quest to go to next phase'), 'flash_message');
+		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 0) && ($complete_tasks < $all_tasks) && $user['User']['role_id'] > 2){
+			$this->Session->setFlash(sprintf(__('You need to finish all checklist tasks from phase %s to go to phase %s'), $prevMP['Phase']['name'], $missionPhase['Phase']['name']), 'flash_message');
 			return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
 		}
+
 		if($mission['Mission']['basic_training'] == 1)
 			$this->render('basic_training');
 		else if($missionPhase['Phase']['type'] == 0)

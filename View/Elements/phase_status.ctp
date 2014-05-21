@@ -15,18 +15,18 @@
 	  				$qtd = 100/$phases;
 	  			
 	  			if($qtd == 100)
-	  				$qtd = 50;
+	  				$qtd = 40;
 
-	  			foreach ($missionPhases as $phase): ?>
+
+	  			foreach ($missionPhases as $phase): 
+	  				$temp = explode(' ', $phase['Phase']['name']);
+					$phase['Phase']['name'] = $temp[0]; ?>
 
 					<div style="width:<?= $qtd ?>%; float:left">
 						<?php 
 							$phaseDone = 'alert';
 							
-							echo $status['check'.$phase['Phase']['name']];
-							echo $status['checklists'.$phase['Phase']['name']];
-							
-							if($status['check'.$phase['Phase']['name']] < $status['checklists'.$phase['Phase']['name']])
+							if(($status['check'.$phase['Phase']['name']] > 0) && ($status['check'.$phase['Phase']['name']] < $status['checklists'.$phase['Phase']['name']]))
 								$phaseDone = "dev";
 
 							if($status['check'.$phase['Phase']['name']] == $status['checklists'.$phase['Phase']['name']])

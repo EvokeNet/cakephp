@@ -68,11 +68,13 @@
 
 			<div class = "evoke missions header tint">
 				<h3 id="numero1"><?= strtoupper($mission['Mission']['title']) ?></h3>
-				
+
 				<?php
 					$status = array();
 
 					foreach($missionPhases as $m):
+						$temp = explode(' ', $m['Phase']['name']);
+						$m['Phase']['name'] = $temp[0];
 						// echo $m['Phase']['name'].count(${'check'.$m['Phase']['name']}).' ';
 						// echo $m['Phase']['name'].count(${'checklists'.$m['Phase']['name']}).' ';
 						$status['check'.$m['Phase']['name']] = count(${'check'.$m['Phase']['name']});

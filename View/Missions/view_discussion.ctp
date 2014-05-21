@@ -64,8 +64,10 @@
 					$status = array();
 
 					foreach($missionPhases as $m):
-						echo $m['Phase']['name'].count(${'check'.$m['Phase']['name']}).' ';
-						echo $m['Phase']['name'].count(${'checklists'.$m['Phase']['name']}).' ';
+						$temp = explode(' ', $m['Phase']['name']);
+						$m['Phase']['name'] = $temp[0];
+						// echo $m['Phase']['name'].count(${'check'.$m['Phase']['name']}).' ';
+						// echo $m['Phase']['name'].count(${'checklists'.$m['Phase']['name']}).' ';
 						$status['check'.$m['Phase']['name']] = count(${'check'.$m['Phase']['name']});
 						$status['checklists'.$m['Phase']['name']] = count(${'checklists'.$m['Phase']['name']});
 					endforeach; 
