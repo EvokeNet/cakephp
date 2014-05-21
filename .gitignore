@@ -4,6 +4,12 @@ Config/database.php
 webroot/components
 webroot/uploads/*
 webroot/files/*
-Plugin/
+Plugin/AclExtras
+Plugin/CakePdf
+Plugin/Chosen
+Plugin/DebugKit
+Plugin/Media
+Plugin/Upload
+Plugin/Utility
 tmp/
 dbv/data/meta/revision
