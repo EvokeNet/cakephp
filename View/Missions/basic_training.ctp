@@ -219,7 +219,7 @@
 									  <a class="close-reveal-modal">&#215;</a> 
 									</div>
 
-							<?php endif; endforeach; ?>
+							<?php endif; endforeach; ?>   
 						</ul>
 
 					<i class="fa fa-video-camera fa-2x"></i><h2><?= __('Mission Dossier: Videos')?></h2>
