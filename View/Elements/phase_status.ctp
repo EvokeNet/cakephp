@@ -8,13 +8,23 @@
 	  		<?php 
 
 	  			$phases = count($missionPhases);
-	  			$qtd = 100/$phases;
+
+	  			$qtd = 90;
+
+	  			if(!empty($phases))
+	  				$qtd = 100/$phases;
+	  			
+	  			if($qtd == 100)
+	  				$qtd = 50;
 
 	  			foreach ($missionPhases as $phase): ?>
 
 					<div style="width:<?= $qtd ?>%; float:left">
 						<?php 
-							$phaseDone = "alert";
+							$phaseDone = 'alert';
+							
+							echo $status['check'.$phase['Phase']['name']];
+							echo $status['checklists'.$phase['Phase']['name']];
 							
 							if($status['check'.$phase['Phase']['name']] < $status['checklists'.$phase['Phase']['name']])
 								$phaseDone = "dev";
@@ -32,7 +42,7 @@
 		  </div>
 		  <div class="small-1 medium-1 large-1 columns padding">
 		  	<div class = "evoke position">
-		  		<?php $complete = 'alert'; ?> <!-- Needs to check if evokation was approved -->
+		  		<?php $complete = "alert"; ?> <!-- Needs to check if evokation was approved -->
 				<h2 class = "evoke mission status <?= $complete ?>" ><?= strtoupper('Finish') ?></h2>
 			</div>
 		  </div>

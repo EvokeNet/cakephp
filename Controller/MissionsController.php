@@ -372,7 +372,6 @@ class MissionsController extends AppController {
 
 		/* Start checklist mechanic */
 
-		$checklist_done = array();
 		$build_profile = null;
 		$this->loadModel('UserPhaseChecklist');
 
@@ -389,7 +388,7 @@ class MissionsController extends AppController {
 
 			$question_bt = array();
 
-			if(isset($build_profile)){
+			if(!empty($build_profile)){
 				$this->loadModel('Question');
 				$question_bt = $this->Question->find('all', array('conditions' => array('Question.questionnaire_id' => $build_profile['Questionnaire']['id'])));
 			}
@@ -399,7 +398,6 @@ class MissionsController extends AppController {
 			foreach($question_bt as $q):
 				foreach ($previous_answers as $previous_answer) {
 					if($q['Question']['id'] == $previous_answer['UserAnswer']['question_id']){
-						$checklist_done[2] = true;// array_push($checklist_done, true);
 
 						$insertData = array(
 				            'user_id' => $this->getUserId(),  
@@ -423,7 +421,7 @@ class MissionsController extends AppController {
 				}
 			endforeach;
 
-			if(($checklist_done[2]) || (isset($my_bt_evis))){
+			if(!empty($my_bt_evis)){
 				$insertData = array(
 		            'user_id' => $this->getUserId(),  
 		            'phase_checklist_id' => 1,
@@ -451,16 +449,21 @@ class MissionsController extends AppController {
 
 			$ci = array();
 
-			foreach($bt_evis as $b):
-				array_push($ci, array('Comment.evidence_id' => $b['Evidence']['id'], 'Comment.user_id' => $user['User']['id']));
-			endforeach;
+			if(!empty($bt_evis)){
+				foreach($bt_evis as $b):
+					array_push($ci, array('Comment.evidence_id' => $b['Evidence']['id'], 'Comment.user_id' => $this->getUserId()));
+				endforeach;
+			}
 
-			$comment = $this->Mission->Quest->Evidence->Comment->find('all', array(
-				'conditions' => array(
-					'OR' => $ci
-			)));
+			$comment = array();
+			if(!empty($ci)){
+				$comment = $this->Mission->Quest->Evidence->Comment->find('all', array(
+					'conditions' => array(
+						'OR' => $ci
+				)));
+			}
 
-			if(isset($comment)){
+			if(!empty($comment)){
 				$insertData = array(
 		            'user_id' => $this->getUserId(),  
 		            'phase_checklist_id' => 4,
@@ -483,7 +486,7 @@ class MissionsController extends AppController {
 			$this->loadModel('UserFriend');
 			$ally = $this->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId())));
 
-			if(isset($ally)){
+			if(!empty($ally)){
 				$insertData = array(
 		            'user_id' => $this->getUserId(),  
 		            'phase_checklist_id' => 5,
@@ -519,12 +522,10 @@ class MissionsController extends AppController {
 
 			$question_bt = array();
 
-			if(isset($build_profile)){
+			if(!empty($build_profile)){
 				$this->loadModel('Question');
 				$question_bt = $this->Question->find('all', array('conditions' => array('Question.questionnaire_id' => $build_profile['Questionnaire']['id'])));
 			}
-
-			//$checklist_done[3] = false;
 
 			$check3 = $check2 = $check1 = $check4 = 0;
 
@@ -690,7 +691,7 @@ class MissionsController extends AppController {
 				)
 			));
 
-			if(isset($my_bt_evis[0])){
+			if(!empty($my_bt_evis[0])){
 				$insertData = array(
 		            'user_id' => $this->getUserId(),  
 		            'phase_checklist_id' => 1,
@@ -1122,6 +1123,9 @@ class MissionsController extends AppController {
 				'PhaseChecklist.phase_id' => $m['Phase']['id'], 
 				'PhaseChecklist.language' => $langs
 			)));
+
+			debug(${'checklists'.$m['Phase']['name']});
+			debug(${'check'.$m['Phase']['name']});
 
 			$this->set(compact('check'.$m['Phase']['name'], 'checklists'.$m['Phase']['name']));
 		endforeach;
