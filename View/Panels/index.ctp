@@ -103,7 +103,7 @@
 					<dd class="<?php echo $media_tab; ?>"><a href="#media"><i class="fa fa-exclamation-circle fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Notifications & Media')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><i class="fa fa-cogs fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('General Settings')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 				<?php endif; ?>	
-				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><i class="fa fa-bar-chart-o fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Statistics')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+				<dd id="test" class="<?php echo $statistics_tab; ?>"><a href="#statistics"><i class="fa fa-bar-chart-o fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Statistics')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 			</dl>
 			<div class="panels tabs-content vertical padding top-2">
 				<div class="content <?php echo $organizations_tab; ?>" id="organizations">
@@ -879,18 +879,6 @@
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
-	// var stringToColour = function(str) {
-	//     var hash = 0;
-	//     for (var i = 0; i < str.length; i++) {
-	//         hash = str.charCodeAt(i) + ((hash << 5) - hash);
-	//     }
-	//     var colour = '#';
-	//     for (var i = 0; i < 3; i++) {
-	//         var value = (hash >> (i * 8)) & 0xFF;
-	//         colour += ('00' + value.toString(16)).substr(-2);
-	//     }
-	//     return colour;
-	// }
 
 	google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);

@@ -71,6 +71,7 @@
 						$status['check'.$m['Phase']['name']] = count(${'check'.$m['Phase']['name']});
 						$status['checklists'.$m['Phase']['name']] = count(${'checklists'.$m['Phase']['name']});
 					endforeach; 
+					// debug($status);
 
 					echo $this->element('phase_status', array('missionPhases' => $missionPhases, 'status' => $status));
 				?>
