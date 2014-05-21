@@ -1,0 +1,1 @@
+ALTER TABLE  `phase_checklists` ADD  `position` INT( 16 ) UNSIGNED NOT NULL AFTER  `phase_id`

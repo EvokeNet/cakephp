@@ -4,6 +4,10 @@
 	border-bottom: 3px solid #efefef;
 }
 
+.evoke .forum-topic-bg.custom-padding{
+	padding: 15px 30px 10px 40px;
+}
+
 .evoke .forum-topic-bg p{
 	font-size: 1.4em;
 }
@@ -15,6 +19,7 @@
 .evoke .forum-post-bg table{
 	border: 3px solid #16141b;
 	margin-bottom:0;
+	background: none;
 }
 
 .evoke .forum-post-bg tbody{
@@ -28,6 +33,21 @@
 .evoke .forum-post-bg td{
 	word-break: break-all;
 }
+
+.evoke .forum-post-bg td.actions{
+	position: relative;
+	width: 10%;
+}
+
+.evoke .forum.action-icons{
+	position: absolute;
+	right: 10px;
+	top: 20px;
+}
+
+/*.evoke .forum.action-icons a{
+	color:#c65862;
+}*/
 
 .evoke .forum-post-bg td p{
 	color:#fff;
@@ -56,6 +76,12 @@
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	/*padding: 10px 20px;*/
+}
+
+.evoke .forum.reply a{
+	font-family:'AlegreyaRegular';
+	font-size:2rem;
+	color:#000;
 }
 
 .evoke .forum.bubble:after {
@@ -95,4 +121,84 @@
 	width:100px;
 	height:100px;
 	overflow:hidden;
+}
+
+.evoke .forum.index ul {
+	border-bottom: 2px solid #47454b;
+	padding: 20px 0px 0px;
+	margin-bottom: 20px;
+}
+
+.evoke .forum.index a{
+	color:#1f8cb2;
+	font-family:'AlegreyaBold';
+}
+
+.evoke .forum.index ul h2{
+	color:#fff;
+	font-family:'AlegreyaBold';
+}
+
+.evoke .forum.index ul h3, .evoke .forum.index ul span{
+	color:#1f8cb2;
+	font-family:'AlegreyaRegular';
+}
+
+.evoke .statistics{
+	background: #C9EDFF;
+	border:none;
+}
+
+.evoke .statistics b{
+	font-family: 'AlegreyaRegular';
+	font-size: 1.3rem;
+	line-height: 1.5em;
+}
+
+/*.evoke .forum.index td, .evoke .forum.index th{
+	font-family:'AlegreyaRegular';
+}
+
+.evoke .forum.index td{
+	font-size: 1.1rem;
+}
+
+.evoke .forum.index th{
+	font-size: 1.2rem;
+}*/
+
+.evoke .topic.new label{
+	text-align: left;
+	font-size: 1.1rem;
+	margin-bottom: 1em;
+}
+
+.evoke .topic.new .decoda-editor{
+	display:inline;
+}
+
+.top-bar-section ul li.active>a {
+	/* background: #008cba; */
+	color: #ffffff;
+}
+
+.decoda{
+	color: #fff;
+	font-size: 1.2rem;
+}
+
+.decoda-quote {
+	margin-bottom: 20px;
+	background-color: #efefef;
+	color: #000;
+	font-family:'AlegreyaRegular';
+}
+
+.breadcrumb a{
+	color:#252525;
+	font-size:1.2rem;
+}
+
+.breadcrumb a:visited{
+	color:#252525;
 }

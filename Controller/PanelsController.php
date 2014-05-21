@@ -867,10 +867,7 @@ class PanelsController extends AppController {
 			if($this->Phase->save($this->request->data)){
 				$this->Session->setFlash(__('phase saved.'));
 				//if it came from add mission, go back to it, else...
-				if($origin == 'add_mission')
-					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
-				else 
-					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+				$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
 			} else {
 				$this->Session->setFlash(__('mission issue failed saving.'));
 			}
