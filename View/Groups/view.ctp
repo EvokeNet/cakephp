@@ -88,45 +88,10 @@
 
 			</div>
 		</div>
-		<div class="small-9 medium-9 large-9 columns">
-
-			<?php echo $this->element('right_titlebar', array('title' => (__('Members')))); ?>
-
-			<div class="row">
-			  <div class="large-1 columns"></div>
-			  <div class="large-8 large-offset-3 columns">
-			  	<div class = "evoke screen-box allies" style = "padding: 40px 20px;">
-			  		<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
-						<?php foreach($groupsUsers as $g): ?>
-							<li>
-								<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $g['User']['id'])) ?>">
-									<?php if($g['User']['photo_attachment'] == null) : ?>
-										<?php if($g['User']['facebook_id'] == null) : ?>
-											<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/>
-										<?php else : ?>	
-											<img src = "https://graph.facebook.com/<?php echo $g['User']['facebook_id']; ?>/picture?type=large">
-										<?php endif; ?>
-
-									<?php else : ?>
-										<img src="<?= $this->webroot.'files/attachment/attachment/'.$g['User']['photo_dir'].'/'.$g['User']['photo_attachment'] ?>" />
-									<?php endif; ?>
-
-									<span><?= $g['User']['name'] ?></span>
-								</a>
-								<?php if($flags['_owner'] && $group['User']['id'] != $g['User']['id']) {?>	
-							 		<a href="<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'delete', $g['User']['id'])); ?>" class="button general" style = "margin-top: 10px;"><?php echo __('Remove user');?></a>
-							 	<?php } ?>
-							</li>
-						<?php endforeach;?>
-					</ul>
-				</div>
-			  </div>
-			</div>
-
-		  </div>
+		
 		  <div class="small-7 medium-7 large-7 columns">
 
-		  	<div class = "text-align-end"><h3><?= strtoupper(__('members')) ?></h3></div>
+		  	<div class = "text-align-end"><h3><?= strtoupper(__('Members')) ?></h3></div>
 
 		  	<div class = "evoke content-block" style = "padding: 20px 10px;">
 		  		<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
