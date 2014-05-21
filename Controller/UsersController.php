@@ -261,7 +261,6 @@ class UsersController extends AppController {
 			)
 		));
 
-
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
 
 		$allies = array();
@@ -269,13 +268,21 @@ class UsersController extends AppController {
 		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
 		$are_friends = array();
+		$mine_allies = array();
 		//$allies = array();
+
+		//debug($friends);
 
 		foreach($friends as $friend){
 			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
-		}
+			array_push($mine_allies, array('Notification.user_id' => $friend['UserFriend']['friend_id']));
+		} 
+
+		//debug($are_friends);
 
 		$this->loadModel('Notification');
+
+		$notifies = array();
 
 		if(!empty($are_friends)){
 			$allies = $this->User->find('all', array(
@@ -283,27 +290,28 @@ class UsersController extends AppController {
 					'OR' => $are_friends
 			)));
 
+			// foreach ($notifies as $key => $value) {
+			// 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
+			// 	 $value['Notification']['origin'] == 'commentEvidence') {
+			// 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
+			// 			unset($notifies[$key]);
+			// 		}
+			// 	}
+			// }
+		} else{
+			$allies = array();
+		}
+
+		if(!empty($mine_allies)){
 			$notifies = $this->Notification->find('all', array(
 				'conditions' => array(
-					'OR' => $are_friends
+					'OR' => $mine_allies
 				), 
 				'order' => array(
 					'Notification.created DESC'
 				)
 			));
-
-			foreach ($notifies as $key => $value) {
-				if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
-				 $value['Notification']['origin'] == 'commentEvidence') {
-					if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
-						unset($notifies[$key]);
-					}
-				}
-			}
-		} else{
-			$allies = array();
-			$notifies = array();
-		}
+		} 
 
 		
 		$this->loadModel('Evokation');

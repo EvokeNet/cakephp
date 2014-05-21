@@ -200,6 +200,62 @@
 
 	  <div class="small-3 medium-3 large-3 columns padding top-2 evoke no-left-padding no-right-padding">
 	  	
+	  	<h3> <?= strtoupper(__('Notifications')) ?> </h3>
+	  	<div class = "evoke content-block padding-10">
+	  		<?php if(empty($notifies)): ?>
+
+				<img src = '<?= $this->webroot.'img/placeholders-feed.png' ?>' style = "width: 100%; max-height: 100%;">
+				<!-- <h1><?= strtoupper(__('You have no allies at the moment')) ?></h1> -->
+
+			<?php else: ?>
+				<?php foreach($notifies as $n):
+					if($n['Notification']['origin'] == 'like'):
+				
+					foreach($allusers as $alluser):
+						if($n['Notification']['action_user_id'] == $alluser['User']['id']){
+							$action_user = $alluser;
+							break;
+						}
+					endforeach;
+
+					if($action_user['User']['id'] == $users['User']['id']){
+						$message = sprintf(__('You liked an evidence Agent %s posted'), $n['User']['name']);
+					} if(($action_user['User']['id'] != $users['User']['id']) && ($n['User']['id'] == $users['User']['id'])){
+						$message = sprintf(__('Agent %s liked an evidence you posted'), $n['User']['name']);
+					} else{
+						$message = sprintf(__('Agent %s liked an evidence from Agent %s'), $action_user['User']['name'], $n['User']['name']);
+					}
+					?>						
+					<li>
+					<?php if($n['User']['photo_attachment'] == null) : ?>
+						<?php if($n['User']['facebook_id'] == null) : ?>
+							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+						<?php else : ?>	
+							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php endif; ?>
+		  			<?php else : ?>
+		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+		  			<?php endif; ?>
+					<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= $message ?></a></li>
+				<?php endif; ?>
+
+				<?php if($n['Notification']['origin'] == 'commentEvidence'):?>						
+					<li>
+					<?php if($n['User']['photo_attachment'] == null) : ?>
+						<?php if($n['User']['facebook_id'] == null) : ?>
+							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+						<?php else : ?>	
+							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+						<?php endif; ?>
+		  			<?php else : ?>
+		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+		  			<?php endif; ?>
+					<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evidence'), $n['User']['name']) ?></a></li>
+				<?php endif; ?>
+<?php endforeach; ?>
+<?php endif; ?>
+	  	</div>
+
 	  	<h3> <?= strtoupper(__('Feed')) ?> </h3>
 	  	<div class = "evoke content-block padding profile feed">
 	  		

@@ -126,18 +126,19 @@
 
 	  	<div class="evoke evidence-tag text-align margin bottom-2">
 		  		
-	  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
-				<?php if($evidence['User']['facebook_id'] == null) : ?>
-					<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-				<?php else : ?>	
-					<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+		  	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $evidence['User']['id']))?>">
+		  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
+					<?php if($evidence['User']['facebook_id'] == null) : ?>
+						<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+					<?php else : ?>	
+						<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+					<?php endif; ?>
+				<?php else : ?>
+					<img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
 				<?php endif; ?>
-
-			<?php else : ?>
-				<img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-			<?php endif; ?>
-	  		
-		 	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $evidence['User']['id']))?>"><h1><?= $evidence['User']['name']?></h1></a>
+		  		
+			 	<h1><?= $evidence['User']['name']?></h1>
+		 	</a>
 
 			<dl class="accordion" data-accordion>
 			  <dd>
