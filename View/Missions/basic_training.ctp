@@ -208,7 +208,7 @@
 								<!-- <a href = "//<?= $link['DossierLink']['link'] ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
 								<?= $link['DossierLink']['description'] ?> -->
 
-								<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'link', $user['User']['id'], 1, $mission['Mission']['id'], $missionPhase['Phase']['id'], $link['DossierLink']['link'])); ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
+								<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'link', $user['User']['id'], 1, $mission['Mission']['id'], $missionPhase['Phase']['id'],  str_replace('/', 'HTMLSLASH', $link['DossierLink']['link']) )); ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
 								<?= $link['DossierLink']['description'] ?>
 
 							</li>
