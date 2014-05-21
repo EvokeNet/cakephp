@@ -57,7 +57,7 @@ class UserFriendsController extends AppController {
 
 		if(!$exists){
 	        if($this->UserFriend->saveAll($insertData)){
-	        	$this->Session->setFlash(__('The friendship has been saved.'));
+	        	//$this->Session->setFlash(__('The friendship has been saved.'));
 	        }  else $this->Session->setFlash(__('The friendship could not be saved. Please, try again.'));
 		} else {
 			$this->Session->setFlash(__('This friendship has already been saved.'));

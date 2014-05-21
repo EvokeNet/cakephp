@@ -205,8 +205,12 @@
 					<ul>
 						<?php foreach($links as $link): ?>
 							<li>
-								<a href = "//<?= $link['DossierLink']['link'] ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
+								<!-- <a href = "//<?= $link['DossierLink']['link'] ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
+								<?= $link['DossierLink']['description'] ?> -->
+
+								<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'link', $user['User']['id'], 1, $mission['Mission']['id'], $missionPhase['Phase']['id'], $link['DossierLink']['link'])); ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
 								<?= $link['DossierLink']['description'] ?>
+
 							</li>
 						<?php endforeach; ?>
 					</ul>

@@ -74,6 +74,40 @@ class MissionsController extends AppController {
 	}
 
 /**
+ * index method
+ *
+ * @return void
+ */
+	public function link($user_id, $basic_training, $mission_id, $phase_id, $url) {
+
+		$this->loadModel('UserPhaseChecklist');
+
+		if($basic_training == 1){
+			$insertData = array(
+	            'user_id' => $user_id,  
+	            'phase_checklist_id' => 3,
+	            'mission_id' => $mission_id,
+	            'phase_id' => $phase_id,
+	            'completed' => true,
+	        );
+
+			$check3 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
+	            'UserPhaseChecklist.user_id' => $user_id,  
+	            'UserPhaseChecklist.phase_checklist_id' => 3,
+	            'UserPhaseChecklist.mission_id' => $mission_id,
+	            'UserPhaseChecklist.phase_id' => $phase_id,
+	        )));
+
+			if(empty($check3))
+				$this->UserPhaseChecklist->saveAll($insertData);
+
+		} 
+
+		return $this->redirect('http://'.$url);
+
+	}
+
+/**
  * view method
  *
  * @throws NotFoundException
@@ -584,7 +618,7 @@ class MissionsController extends AppController {
 			// 		$this->UserPhaseChecklist->saveAll($insertData);
 			// }
 
-			if((($check3) || (isset($my_bt_evis[0]))) && (!empty($topic))) {
+			if((($check3) || (!empty($my_bt_evis))) && (!empty($topic))) {
 				$insertData = array(
 		            'user_id' => $this->getUserId(),  
 		            'phase_checklist_id' => 1,
