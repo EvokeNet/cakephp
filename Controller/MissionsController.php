@@ -103,6 +103,7 @@ class MissionsController extends AppController {
 
 		} 
 
+		$url = str_replace('HTMLSLASH', '/', $url);
 		return $this->redirect('http://'.$url);
 
 	}
