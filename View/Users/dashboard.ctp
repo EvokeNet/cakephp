@@ -200,12 +200,11 @@
 
 	  <div class="small-3 medium-3 large-3 columns padding top-2 evoke no-left-padding no-right-padding">
 	  	
-	  	<h3> <?= strtoupper(__('Notifications')) ?> </h3>
+	  	<!-- <h3> <?= strtoupper(__('Notifications')) ?> </h3>
 	  	<div class = "evoke content-block padding-10">
 	  		<?php if(empty($notifies)): ?>
 
 				<img src = '<?= $this->webroot.'img/placeholders-feed.png' ?>' style = "width: 100%; max-height: 100%;">
-				<!-- <h1><?= strtoupper(__('You have no allies at the moment')) ?></h1> -->
 
 			<?php else: ?>
 				<?php foreach($notifies as $n):
@@ -254,7 +253,7 @@
 				<?php endif; ?>
 <?php endforeach; ?>
 <?php endif; ?>
-	  	</div>
+	  	</div> -->
 
 	  	<h3> <?= strtoupper(__('Feed')) ?> </h3>
 	  	<div class = "evoke content-block padding profile feed">
