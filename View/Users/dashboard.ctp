@@ -423,6 +423,7 @@
 	?>
 
 	var last = $('meta[name=lastEvidence]').attr('content');
+	/*
 	//checking scrolling info to call ajax function
 	$(window).scroll(function() {   
 		if($(window).scrollTop() + $(window).height() > $(document).height() -100) {
@@ -437,12 +438,27 @@
 			    },
 			    success: function(response) {
 			        console.log(response);
-			        last = response['newLast'];
-			  		
-			        // 	$('#target').append('<p>'+response+'</p>');
-			        // };
-			        //alert(response);
-			        
+			        last = -1;
+			        // console.log(response['content']);	
+			        response = response.substring(12, response.length -15);
+			        console.log(response);	
+			        response = response.replace(/\\/g+'n', "");
+			        response = response.replace("\n", "");
+			        response = response.replace("\r", "");
+			        response = response.replace("\t", "");
+			        response = response.replace(/\\/g, "");
+			        $('#target').append((response));
+			        // alert(response);
+			  		// for (var i = 0; i < response.length; i++) {
+			  		// for(var i in response){
+			  		// 	console.log(response[i]);	
+			  		// }
+			  		// 	// console.log(response[i]);
+			  		// 	// alert(object);
+			  		// 						    // for (var property in object) {
+					  //   //     alert('item ' + i + ': ' + property + '=' + object[property]);
+					  //   // }
+			  		// };
 			    },
 			    error: function(e) {
 			        alert("An error occurred: " + e.responseText.message);
@@ -451,8 +467,10 @@
 			});
 		}
 	});
-
-
+	*/
+	function htmlEntities(str) {
+	    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+	}
 	function getCorrectURL(afterHome){
     	var str = document.URL;
     	

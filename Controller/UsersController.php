@@ -173,18 +173,28 @@ class UsersController extends AppController {
 			'limit' => 8
 		));
 
-    	$olderEvidences = array();
-    	$olderEvidences['newLast'] = -1;
+    	$data = array (
+	        'content' => "",
+	        'error' => null,
+	    );
     	foreach ($evidence as $key => $value) {
-    		$olderEvidences[] = $value['Evidence'];
-    		$olderEvidences['newLast'] = $value['Evidence']['id'];
+    		$view = new View($this, false);
+			$content = ($view->element('evidence', array('e' => $value)));
+			
+			$data['content'] .= $content .' ';
+			// $data['content'] = str_replace('\\/', "/", $data['content']);
+
+    		// $olderEvidences[0] = array('newLast' => $value['Evidence']['id']);
     	}
     	
     	// debug($olderEvidences);
     	// die();
     	// return "older";
-    	return json_encode($olderEvidences);
+    	return json_encode($data);
 	}
+
+
+
 /**
  *
  * register method
@@ -287,7 +297,7 @@ class UsersController extends AppController {
 			'conditions' => array(
 				'Evidence.title != ' => ''
 			),
-			'limit' => 2
+			'limit' => 1
 		));
 
 		$myevidences = $this->User->Evidence->find('all', array(
