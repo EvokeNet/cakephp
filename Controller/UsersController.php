@@ -152,16 +152,38 @@ class UsersController extends AppController {
 		$this->autoRender = false; // We don't render a view in this example
     	$this->request->onlyAllow('ajax'); // No direct access via browser URL
 
+    	$last = $this->User->Evidence->find('first', array(
+    		'conditions' => array(
+    			'Evidence.id' => $lastEvidence
+    		),
+    	));
+
+
+    	if(empty($last))
+    		return json_encode(array());
+
     	$evidence = $this->User->Evidence->find('all', array(
 			'order' => array(
 				'Evidence.created DESC'
 			),
 			'conditions' => array(
-				'Evidence.title != ' => ''
-			)
+				'Evidence.title != ' => '',
+				'Evidence.modified <' => $last['Evidence']['modified']
+			),
+			'limit' => 8
 		));
 
-    	return "oioi";
+    	$olderEvidences = array();
+    	$olderEvidences['newLast'] = -1;
+    	foreach ($evidence as $key => $value) {
+    		$olderEvidences[] = $value['Evidence'];
+    		$olderEvidences['newLast'] = $value['Evidence']['id'];
+    	}
+    	
+    	// debug($olderEvidences);
+    	// die();
+    	// return "older";
+    	return json_encode($olderEvidences);
 	}
 /**
  *
@@ -260,16 +282,17 @@ class UsersController extends AppController {
 
 		$evidence = $this->User->Evidence->find('all', array(
 			'order' => array(
-				'Evidence.created DESC'
+				'Evidence.modified DESC'
 			),
 			'conditions' => array(
 				'Evidence.title != ' => ''
-			)
+			),
+			'limit' => 2
 		));
 
 		$myevidences = $this->User->Evidence->find('all', array(
 			'order' => array(
-				'Evidence.created DESC'
+				'Evidence.modified DESC'
 			),
 			'conditions' => array(
 				'Evidence.user_id' => $id,

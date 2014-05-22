@@ -146,7 +146,8 @@
 	  	<h3> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
 
 	  	<dl class="default tabs" data-tab>
-		  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('All Evidences and Evokations')) ?></a></dd>
+		  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('All Evidences')) ?></a></dd>
+		  <dd><a href="#panel2-4"><?= strtoupper(__('All Evokations')) ?></a></dd>
 		  <dd><a href="#panel2-2"><?= strtoupper(__('Projects I Follow')) ?></a></dd>
 		  <dd><a href="#panel2-3"><?= strtoupper(__('My Projects')) ?></a></dd>
 		</dl>
@@ -154,14 +155,22 @@
 		  <div class="content active" id="panel2-1">
 		    
 		    <?php 
+		    	$lastEvidence = null;
 	    		//Lists all projects and evidences
 	    		foreach($evidence as $e): 
     				//echo $this->element('evidence_blue_box', array('e' => $e)); 
     				//echo $this->element('evidence_box', array('e' => $e)); 
     				echo $this->element('evidence', array('e' => $e)); 
+    				$lastEvidence = $e['Evidence']['id'];
 	    		endforeach; 
-
-
+	    		// echo '<p>'.$lastEvidence.'</p>';
+			?>
+			<meta name="lastEvidence" content="<?php echo $lastEvidence; ?>">
+			<div id="target"></div>
+		  </div>
+		  <div class="content" id="panel2-4">
+		    
+		    <?php 
 	    		foreach($evokations as $e):
 	    			$showFollowButton = true;
 	    			foreach($myEvokations as $my)
@@ -413,26 +422,27 @@
 		}
 	?>
 
-
+	var last = $('meta[name=lastEvidence]').attr('content');
 	//checking scrolling info to call ajax function
 	$(window).scroll(function() {   
 		if($(window).scrollTop() + $(window).height() > $(document).height() -100) {
 	    	// alert("bottom!");
+	    	// alert('<?=$lastEvidence?>');
+
 	    	$.ajax({
 			    type: 'get',
-			    url: "<?php echo $this->Html->url(array('action' => 'moreEvidences')); ?>",
+			    url: getCorrectURL('moreEvidences')+"/"+last,//"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
 			    beforeSend: function(xhr) {
 			        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 			    },
 			    success: function(response) {
-			        alert(response);
-			        if (response.error) {
-			            alert(response.error);
-			            console.log(response.error);
-			        }
-			        if (response.content) {
-			            // $('#target').html(response.content);
-			        }
+			        console.log(response);
+			        last = response['newLast'];
+			  		
+			        // 	$('#target').append('<p>'+response+'</p>');
+			        // };
+			        //alert(response);
+			        
 			    },
 			    error: function(e) {
 			        alert("An error occurred: " + e.responseText.message);
@@ -441,4 +451,25 @@
 			});
 		}
 	});
+
+
+	function getCorrectURL(afterHome){
+    	var str = document.URL;
+    	
+    	//str = str.substr(7, str.length);
+    	str = str.substr(0, str.indexOf("dashboard"));
+    	
+    	str = str.substr(0, str.length -1);
+    	// alert(str);
+    	if(str.length>1) {
+    		// str = str.substr(0, str.indexOf('/', 1));
+    		//alert(str);	
+    		str = str + '/' + afterHome;
+    		return str;
+    	} else {
+    		//alert(str);	
+    		return afterHome;
+    	}
+    	//alert(str);
+    }
 </script>
