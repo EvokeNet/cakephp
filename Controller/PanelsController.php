@@ -158,6 +158,8 @@ class PanelsController extends AppController {
 			$userLevels['all'] = 0;
 			$userLevels['maxP'] = 0;
 			$userLevels['allP'] = 0;
+			$countries = array();
+			$unknown_countries = 0;
 			foreach ($all_users as $usr) {
 				$userPoints = $this->getPoints($usr['User']['id']);
 	        	$userLevels['allP'] += $userPoints;
@@ -172,6 +174,18 @@ class PanelsController extends AppController {
 	        	if($userLevels['max'] < $userLevel) {
 	        		$userLevels['max'] = $userLevel;
 	        	}
+
+
+				if(!is_null($usr['User']['country']) && $usr['User']['country'] != '' && $usr['User']['country'] != ' ') {
+					$currentcountry = $usr['User']['country'];
+					if(isset($countries[$currentcountry])) {
+						$countries[$currentcountry]++;
+					} else {
+						$countries[$currentcountry] = 1;
+					}
+				} else {
+					$unknown_countries++;
+				}
 			}
 
 			$users_of_my_missions = null;
@@ -254,6 +268,8 @@ class PanelsController extends AppController {
 			$userLevels['all'] = 0;
 			$userLevels['maxP'] = 0;
 			$userLevels['allP'] = 0;
+			$countries = array();
+			$unknown_countries = 0;
 			foreach ($users_of_my_missions as $usr) {
 				$userPoints = $this->getPoints($usr['User']['id']);
 	        	$userLevels['allP'] += $userPoints;
@@ -268,6 +284,18 @@ class PanelsController extends AppController {
 	        	if($userLevels['max'] < $userLevel) {
 	        		$userLevels['max'] = $userLevel;
 	        	}
+				
+				if(!is_null($usr['User']['country']) && $usr['User']['country'] != '' && $usr['User']['country'] != ' ') {
+					$currentcountry = $usr['User']['country'];
+					if(isset($countries[$currentcountry])) {
+						$countries[$currentcountry]++;
+					} else {
+						$countries[$currentcountry] = 1;
+					}
+				} else {
+					$unknown_countries++;
+				}
+
 			}
 		}
 		
@@ -330,7 +358,8 @@ class PanelsController extends AppController {
 			)
 		));
 
-		$this->set(compact('flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations', 'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 
+		$this->set(compact('flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations', 
+			'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 'unknown_countries', 'countries',
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels', 'pending_evokations', 'approved_evokations', 'notifications',
 			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
 			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'powerpoints_tab', 'badges_tab', 'users_tab', 'pending_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
@@ -838,10 +867,7 @@ class PanelsController extends AppController {
 			if($this->Phase->save($this->request->data)){
 				$this->Session->setFlash(__('phase saved.'));
 				//if it came from add mission, go back to it, else...
-				if($origin == 'add_mission')
-					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
-				else 
-					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+				$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
 			} else {
 				$this->Session->setFlash(__('mission issue failed saving.'));
 			}

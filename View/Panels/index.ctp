@@ -7,7 +7,7 @@
   <nav class="top-bar row full-width-alternate" data-topbar>
     <ul class="title-area">
 	    <li class="name">
-	      <h1><a href="#"><?= ('Evoke') ?></a></h1>
+	      <h1><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $user['User']['id'])); ?>"><?= ('Evoke') ?></a></h1>
 	    </li>
 	     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
 	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -103,7 +103,7 @@
 					<dd class="<?php echo $media_tab; ?>"><a href="#media"><i class="fa fa-exclamation-circle fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Notifications & Media')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><i class="fa fa-cogs fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('General Settings')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 				<?php endif; ?>	
-				<dd class="<?php echo $statistics_tab; ?>"><a href="#statistics"><i class="fa fa-bar-chart-o fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Statistics')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+				<dd id="test" class="<?php echo $statistics_tab; ?>"><a href="#statistics"><i class="fa fa-bar-chart-o fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Statistics')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
 			</dl>
 			<div class="panels tabs-content vertical padding top-2">
 				<div class="content <?php echo $organizations_tab; ?>" id="organizations">
@@ -730,11 +730,18 @@
 									  	<li>
 									  		<div class = "yay">
 											  	<div class="row full-width-alternate no-margin text-center">
-												  	<h1 style = "font-size: 1.5em; color: #555">
-												  		<?= strtoupper(__('Level')) ?>
+													<h1 style = "font-size: 1.5em; color: #555">
+												  		<i class="fa fa-bolt"></i>
+												  		<?= ' '.__('Level') ?>
 												  	</h1>
-												  	<h5 style = "color: #555"><?= __('Average: ') .$average_level ?></h5>
-												  	<h5 style = "color: #555"><?= __('Highest: ') .$userLevels['max'].' ' ?><i class="fa fa-star"></i></h5>
+												  	<div class="large-6 medium-6 small-6 columns">
+												  		<h1 style = "font-size: 1.5em; color: #555"><?= __('Average') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= $average_level ?></h5>
+												  	</div>
+												  	<div class="large-6 medium-6 small-6 columns">
+													  	<h1 style = "font-size: 1.5em; color: #555"><?= __('Highest') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= $userLevels['max'].' ' ?><i class="fa fa-star"></i></h5>
+												  	</div>
 												</div>
 											</div>
 										</li>
@@ -742,10 +749,17 @@
 									  		<div class = "yay">
 												<div class="row full-width-alternate no-margin text-center">
 													<h1 style = "font-size: 1.5em; color: #555">
-												  		<?= strtoupper(__('Points')) ?>
-												  	</h1>
-												  	<h5 style = "color: #555"><?= __('Average: ') .$average_points ?></h5>
-												  	<h5 style = "color: #555"><?= __('Highest: ') .$userLevels['maxP'].' ' ?><i class="fa fa-star"></i></h5>
+													  	<i class="fa fa-bullseye"></i>
+													  	<?= ' ' .__('Points') ?>
+													</h1>
+													<div class="large-6 medium-6 small-6 columns">
+														<h1 style = "font-size: 1.5em; color: #555"><?= __('Average') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= $average_points ?></h5>
+													</div>
+												  	<div class="large-6 medium-6 small-6 columns">
+												  		<h1 style = "font-size: 1.5em; color: #555"><?= __('Highest') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= $userLevels['maxP'].' ' ?><i class="fa fa-star"></i></h5>
+												  	</div>
 												</div>
 											</div>	
 										</li>
@@ -753,8 +767,13 @@
 											<div class = "yay">
 												<div class="row full-width-alternate no-margin text-center">
 													<i class="fa fa-child fa-2x"></i>
+													<i class="fa fa-child fa-2x"></i>
+													<i class="fa fa-child fa-2x"></i>
 													<h1 style = "font-size: 1.5em; color: #555">
-												  		<?= $allies_user. ' ' . strtoupper(__('Allies per user')) ?>
+												  		<?= __('Allies per user') ?>
+												  	</h1>
+												  	<h1 style = "font-size: 1.5em; color: #555">
+												  		<?= $allies_user?>
 												  	</h1>
 												  	<!-- <h5 style = "color: #555"><?= $allies_user ?></h5> -->
 												</div>
@@ -764,10 +783,17 @@
 											<div class = "yay">
 												<div class="row full-width-alternate no-margin text-center">
 													<h1 style = "font-size: 1.5em; color: #555">
-														<?= strtoupper(__('Evokation Teams')) ?>
+													  	<i class="fa fa-code"></i>
+													  	<?= ' ' .__('Evokation Teams') ?>
 													</h1>
-													<h5 style = "color: #555"><i class="fa fa-edit"></i><?= ' '.sizeof($groups).' '.__('created') ?></h5>
-													<h5 style = "color: #555"><i class="fa fa-check"></i><?= ' X '. __('approved') ?></h5>
+													<div class="large-6 medium-6 small-6 columns">
+														<h1 style = "font-size: 1.5em; color: #555"><?= __('Created') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= sizeof($groups).' ' ?><i class="fa fa-edit"></i></h5>
+													</div>
+												  	<div class="large-6 medium-6 small-6 columns">
+												  		<h1 style = "font-size: 1.5em; color: #555"><?= __('Approved') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><?= sizeof($approved_evokations).' ' ?><i class="fa fa-check"></i></h5>
+												  	</div>
 												</div>
 											</div>
 										</li>
@@ -776,12 +802,30 @@
 												<div class="row full-width-alternate no-margin text-center">
 													<h1 style = "font-size: 1.5em; color: #555">
 														<i class="fa fa-list-ul"></i>
-												  		<?=' '. strtoupper(__('chosen issues')) ?>
+												  		<?=' '. __('Chosen Issues') ?>
 												  	</h1>
 													<div id="piechart"></div>
 												</div>
 											</div>
 										</li>
+									</ul>
+									<ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-1">
+										<li>
+											<div class = "yay">
+											  	<div class="row full-width-alternate no-margin">
+													<div class="small-12 large-centered columns text-align-center">
+														<i class="fa fa-globe fa-3x"></i>
+												  		<h1 style = "font-size: 1.5em; color: #555">
+												  			<?= __('Users around the world')?>
+												  		</h1>
+												  	</div>
+												  	<div id="mapchart"></div>
+													<h5 style = "color: #555">
+														<?= __('Users from unknown countries') . ': '.$unknown_countries ?>
+													</h5>
+												</div>
+									  		</div>
+									  	</li>
 									</ul>
 								</div>
 							</div>
@@ -835,18 +879,6 @@
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
-	// var stringToColour = function(str) {
-	//     var hash = 0;
-	//     for (var i = 0; i < str.length; i++) {
-	//         hash = str.charCodeAt(i) + ((hash << 5) - hash);
-	//     }
-	//     var colour = '#';
-	//     for (var i = 0; i < 3; i++) {
-	//         var value = (hash >> (i * 8)) & 0xFF;
-	//         colour += ('00' + value.toString(16)).substr(-2);
-	//     }
-	//     return colour;
-	// }
 
 	google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
@@ -873,6 +905,38 @@
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
       }
+
+      google.load('visualization', '1', {'packages': ['geochart']});
+     google.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable([
+          	['Country', 'Users '],
+          	<?php 
+          		foreach ($countries as $key => $value) {
+          			echo '["'.$key.'", '.$value.'],';
+          		}
+          	?>
+          // ['Germany', 200],
+          // ['United States', 300],
+          // ['Brazil', 400],
+          // ['Canada', 500],
+          // ['France', 600],
+          // ['RU', 700]
+        ]);
+
+        var options = {
+        	projection: {
+			      name: 'kavrayskiy-vii',
+			},
+	        backgroundColor: { fill:'transparent' },
+	        width: '100%',
+
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('mapchart'));
+        chart.draw(data, options);
+    };
 </script>
 
 <script type="text/javascript" charset="utf-8">
