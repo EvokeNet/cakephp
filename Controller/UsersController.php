@@ -147,6 +147,22 @@ class UsersController extends AppController {
 		$this->set('users', $this->Paginator->paginate());
 	}
 
+
+	public function moreEvidences($lastEvidence){
+		$this->autoRender = false; // We don't render a view in this example
+    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+
+    	$evidence = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			),
+			'conditions' => array(
+				'Evidence.title != ' => ''
+			)
+		));
+
+    	return "oioi";
+	}
 /**
  *
  * register method
