@@ -248,7 +248,6 @@ class UsersController extends AppController {
 		}
 
 		if($id != $this->getUserId()){
-			// $this->Session->setFlash(__("You cannot access other user's dashboard"), 'flash_message');
 			$this->redirect(array('action'=>'profile', $id)); 
 		}
 
@@ -280,19 +279,6 @@ class UsersController extends AppController {
 		else
 			$percentage = 0;
 
-		$points = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $id)));
-
-		$sumPoints = $this->getPoints($id);
-
-		$level = $this->getLevel($sumPoints);
-
-		$otherLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $level+1)));
-
-		if(!empty($thisLevel))
-			$percentageOtherUser = round(($sumPoints / $otherLevel['Level']['points']) * 100);
-		else
-			$percentageOtherUser = 0;
-
 		$evidence = $this->User->Evidence->find('all', array(
 			'order' => array(
 				'Evidence.modified DESC'
@@ -312,8 +298,6 @@ class UsersController extends AppController {
 				'Evidence.title != ' => ''
 			)
 		));
-
-		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
 
 		$allies = array();
 
@@ -383,46 +367,6 @@ class UsersController extends AppController {
 			));
 		} 
 
-		
-		$this->loadModel('Evokation');
-		$evokations = $this->Evokation->find('all', array(
-			'order' => array(
-				'Evokation.created DESC'
-			),
-			'conditions' => array(
-				'Evokation.sent' => 1
-			)
-		));
-
-		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
-			'conditions' => array(
-				'EvokationFollower.user_id' => $this->getUserId()
-			)
-		));
-
-		$myEvokations = array();
-		foreach ($evokations as $evokation) {
-			$mine = false;
-			if($evokation['Group']['user_id'] == $id)
-				$mine = true;
-
-			$this->loadModel('Group');
-			$group_evokation = $this->Group->GroupsUser->find('first', array(
-				'conditions' => array(
-					'GroupsUser.group_id' => $evokation['Group']['id'],
-					'GroupsUser.user_id' => $id
-				)
-			));
-			
-			if(!empty($group_evokation))
-				$mine = true;
-
-			if($mine){
-				array_push($myEvokations, $evokation);
-			}	
-		}
-
-
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all', array(
 			'order' => array('Mission.created')
@@ -454,8 +398,8 @@ class UsersController extends AppController {
 				
 		}
 
-		$missionIssues = $this->Mission->MissionIssue->find('all');
-		$issues = $this->Mission->MissionIssue->Issue->find('all');
+		// $missionIssues = $this->Mission->MissionIssue->find('all');
+		// $issues = $this->Mission->MissionIssue->Issue->find('all');
 
 		$allusers = $this->User->find('all');
 
@@ -579,7 +523,7 @@ class UsersController extends AppController {
 		$a_posts = array();
 		$a_topics = array();
 
-		/*
+		
 		if(!empty($post_allies)){
 			$this->Post->recursive = 1;
 			$a_posts = $this->Post->find('all', array(
@@ -594,11 +538,10 @@ class UsersController extends AppController {
 				'conditions' => array(
 					'OR' => $topic_allies
 			)));
-		}*/
+		}
 		
-		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
-			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
+		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'evidence', 'myevidences', 'missions', 
+			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies', 'show_basic_training'));
 		//'groups', 'my_photo', 'user_photo',
 
 	}
@@ -676,7 +619,7 @@ class UsersController extends AppController {
 
 		$otherLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $level+1)));
 
-		if(!empty($thisLevel))
+		if(!empty($otherLevel))
 			$percentage = round(($sumPoints / $otherLevel['Level']['points']) * 100);
 		else
 			$percentage = 0;
