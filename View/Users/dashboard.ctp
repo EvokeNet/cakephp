@@ -207,7 +207,7 @@
 
 	  </div>
 
-	  <div class="small-3 medium-3 large-3 columns padding top-2">
+	  <div class="small-3 medium-3 large-3 columns padding top-2 maincolumn">
 	  	
 	  	<h3> <?= strtoupper(__('Notifications')) ?> </h3>
 	  	<div class = "evoke content-block padding profile feed">
