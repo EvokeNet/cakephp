@@ -48,6 +48,14 @@ class GroupsUsersController extends AppController {
  */
 	public function edit($group_id = null) {
 
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
+
 		$authorized = false;
 
 		$apikey = Configure::read('etherpad_api_key');
@@ -369,9 +377,18 @@ class GroupsUsersController extends AppController {
 
 		//getting all attachments from those evokationEvidences
 		$evokationEvidencesids = array();
-
+		$evokationsQuests = array();
 		foreach ($evokationsEvidences as $e) {
 			array_push($evokationEvidencesids, array('Attachment.foreign_key' => $e['Evidence']['id']));
+			$qid = $e['Quest']['id'];
+			if($flags['_es']) {
+				$e['Quest']['title'] = $e['Quest']['title_es'];
+				$e['Quest']['description'] = $e['Quest']['description_es'];
+			}
+			
+			$evokationsQuests[$qid]['Quest'] = $e['Quest'];
+			unset($e['Quest']);
+			$evokationsQuests[$qid]['Evidences'][] = $e;
 		}
 
 		$evokationAttachments = array();
@@ -396,7 +413,7 @@ class GroupsUsersController extends AppController {
 			)
 		));
 
-		$this->set(compact('group', 'users', 'user', 'padID', 'evokationAttachments', 'evokation', 'lastUpdate', 'sessionID'));
+		$this->set(compact('group', 'users', 'user', 'padID', 'evokationAttachments', 'evokationsEvidences', 'evokationsQuests','evokation', 'lastUpdate', 'sessionID'));
 
 	}
 
