@@ -517,28 +517,28 @@ class UsersController extends AppController {
 
 		// }
 
-		$this->loadModel('Forum.Post');
-		$this->loadModel('Forum.Topic');
+		// $this->loadModel('Forum.Post');
+		// $this->loadModel('Forum.Topic');
 
-		$a_posts = array();
-		$a_topics = array();
+		// $a_posts = array();
+		// $a_topics = array();
 
 		
-		if(!empty($post_allies)){
-			$this->Post->recursive = 1;
-			$a_posts = $this->Post->find('all', array(
-				'conditions' => array(
-					'OR' => $post_allies
-			)));
-		}
+		// if(!empty($post_allies)){
+		// 	$this->Post->recursive = 1;
+		// 	$a_posts = $this->Post->find('all', array(
+		// 		'conditions' => array(
+		// 			'OR' => $post_allies
+		// 	)));
+		// }
 
-		if(!empty($topic_allies)){
-			$this->Topic->recursive = 1;
-			$a_topics = $this->Topic->find('all', array(
-				'conditions' => array(
-					'OR' => $topic_allies
-			)));
-		}
+		// if(!empty($topic_allies)){
+		// 	$this->Topic->recursive = 1;
+		// 	$a_topics = $this->Topic->find('all', array(
+		// 		'conditions' => array(
+		// 			'OR' => $topic_allies
+		// 	)));
+		// }
 		
 		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'evidence', 'myevidences', 'missions', 
 			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies', 'show_basic_training'));
