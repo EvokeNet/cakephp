@@ -375,54 +375,54 @@
 
 	  	<h3 class = "margin bottom-1 top"><?= strtoupper(__('Discussions')) ?> </h3>
 	  	<div class = "evoke content-block padding profile feed">
-	  		<!--
+
 	  		<ul>
-	  		<?php //if(!empty($a_topics)): foreach($a_topics as $topic): 
+	  		<?php if(!empty($a_topics)): foreach($a_topics as $topic): 
 				//if($n['Notification']['origin'] == 'evidence'):?>						
 					<li>
 
-						<?php //if($topic['User']['photo_attachment'] == null) : ?>
-							<?php //if($topic['User']['facebook_id'] == null) : ?>
-								<img src=""   class = "evoke top-bar icon"/>
-							<?php //else : ?>	
-								<img src="https://graph.facebook.com/<?php// echo $topic['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-							<?php //endif; ?>
+						<?php if($topic['User']['photo_attachment'] == null) : ?>
+							<?php if($topic['User']['facebook_id'] == null) : ?>
+								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+							<?php else : ?>	
+								<img src="https://graph.facebook.com/<?php echo $topic['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+							<?php endif; ?>
 
-			  			<?php //else : ?>
-			  				<img src="" class = "evoke top-bar icon"/>
-			  			<?php //endif; ?>
+			  			<?php else : ?>
+			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$topic['User']['photo_dir'].'/'.$topic['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+			  			<?php endif; ?>
 
-					<a href = ""></a>
+					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $topic['Topic']['title'])) ?>"><?= sprintf(__('Agent %s created the topic %s'), $topic['User']['name'], $topic['Topic']['title']) ?></a>
 
 					</li>
 				<?php //endif; ?>
-			<?php //endforeach; endif; ?>
+			<?php endforeach; endif; ?>
 			</ul>
 
 			<ul>
-			<?php //if(!empty($a_posts)): foreach($a_posts as $post): 
+			<?php if(!empty($a_posts)): foreach($a_posts as $post): 
 
 				//if($n['Notification']['origin'] == 'evidence'):?>						
 					<li>
 
-						<?php //if($post['User']['photo_attachment'] == null) : ?>
-							<?php //if($post['User']['facebook_id'] == null) : ?>
-								<img src=""   class = "evoke top-bar icon"/>
-							<?php //else : ?>	
-								<img src="https://graph.facebook.com/<?php //echo $post['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-							<?php //endif; ?>
+						<?php if($post['User']['photo_attachment'] == null) : ?>
+							<?php if($post['User']['facebook_id'] == null) : ?>
+								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+							<?php else : ?>	
+								<img src="https://graph.facebook.com/<?php echo $post['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+							<?php endif; ?>
 
-			  			<?php //else : ?>
-			  				<img src="" class = "evoke top-bar icon"/>
-			  			<?php //endif; ?>
+			  			<?php else : ?>
+			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$post['User']['photo_dir'].'/'.$post['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+			  			<?php endif; ?>
 
-					<a href = ""></a>
+					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $post['Topic']['title'])) ?>"><?= sprintf(__('Agent %s posted a reply in topic %s'), $post['User']['name'], $post['Topic']['title']) ?></a>
 
 					</li>
 				<?php //endif; ?>
-			<?php //endforeach; endif;?>
+			<?php endforeach; endif;?>
 			</ul>
-			-->
+
 	  	</div>
 
 	  </div>
@@ -466,6 +466,8 @@
 	//checking scrolling info to call ajax function
 	$(window).scroll(function() {   
 		if($(window).scrollTop() + $(window).height() == $(document).height()) {
+	    	
+	    	// alert('YAY0');
 	    	
 	    	$.ajax({
 			    type: 'get',
