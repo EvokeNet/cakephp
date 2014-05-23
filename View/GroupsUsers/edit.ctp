@@ -23,6 +23,45 @@
 		<div class="small-2 medium-2 large-2 columns">
 
 			<h3><?= strtoupper(__("Assets")) ?></h3>
+			<div class="evoke content-block default">
+				<?php foreach ($evokationsQuests as $quest) :?>
+					<div class='evoke evidence content-box'>
+						<a href='#' data-reveal-id="quest-<?=$quest['Quest']['id']?>" data-reveal>
+							<div class='evoke row full-width-alternate'>
+
+							  	<div class='small-12 medium-12 large-12 columns text-center'>
+							  		<div>
+							  			<h4 class='headings'><?= $quest['Quest']['title'] ?></h4>
+							  		</div>
+							  	</div>
+
+							</div>
+						</a>
+					</div>
+
+					<div id="quest-<?=$quest['Quest']['id']?>" class="reveal-modal large evoke lightbox" data-reveal>
+						<div class = "evoke quests content text-center">
+							<h2><?php echo $quest['Quest']['title'];?></h2>
+							<p><?php echo urldecode($quest['Quest']['description']);?></p>
+							<br>
+							<br>
+							<h3 style="color:white"><?=__('Evidences from your group:')?></h3>
+							<ul>
+							<?php foreach ($quest['Evidences'] as $e) :?>
+								<li>
+									<p>
+										<a href="<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']))?>" target="_blank">
+											<?=$e['Evidence']['title'] . ' ('.$e['User']['name'] .')'?>
+										</a>
+									</p>
+								</li>
+							<?php endforeach ?>
+							</ul>
+						</div>
+						<a class="close-reveal-modal">&#215;</a>
+					</div>
+				<?php endforeach ?>
+			</div>
 			
 			<h3><?= strtoupper(__("ACTIONS")) ?></h3>
 			<button class="button general expand" id="evokation_draft_button" data-reveal-id="send" data-reveal><?php echo __('Publish to Network'); ?></button>
@@ -102,7 +141,7 @@
 			<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3 evokation">
 				<?php foreach ($users as $usr): ?>
 					<li>
-						<div class = "text-align-center">
+						<div class = "text-align-center text-center">
 							<div class="image circle">
 								<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['User']['id'])) ?>">
 									<?php if($usr['User']['photo_attachment'] == null) : ?>
