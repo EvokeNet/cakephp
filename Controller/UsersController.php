@@ -147,6 +147,52 @@ class UsersController extends AppController {
 		$this->set('users', $this->Paginator->paginate());
 	}
 
+
+	public function moreEvidences($lastEvidence, $limit = 1){
+		$this->autoRender = false; // We don't render a view in this example
+    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+
+    	$last = $this->User->Evidence->find('first', array(
+    		'conditions' => array(
+    			'Evidence.id' => $lastEvidence
+    		),
+    	));
+
+
+    	if(empty($last))
+    		return json_encode(array());
+
+    	$evidence = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			),
+			'conditions' => array(
+				'Evidence.title != ' => '',
+				'Evidence.modified <' => $last['Evidence']['modified']
+			),
+			'limit' => $limit
+		));
+
+    	$data = "";
+
+	    $str = "lastBegin-1lastEnd";
+	    $older = "";
+    	foreach ($evidence as $key => $value) {
+    		$view = new View($this, false);
+			$content = ($view->element('evidence', array('e' => $value)));
+			
+			$data .= $content .' ';
+
+    		$older = $value['Evidence']['id'];
+    	}
+    	if($older != "") {
+    		$str = "lastBegin".$older."lastEnd";
+    	}
+    	return $str.$data;
+	}
+
+
+
 /**
  *
  * register method
@@ -244,16 +290,17 @@ class UsersController extends AppController {
 
 		$evidence = $this->User->Evidence->find('all', array(
 			'order' => array(
-				'Evidence.created DESC'
+				'Evidence.modified DESC'
 			),
 			'conditions' => array(
 				'Evidence.title != ' => ''
-			)
+			),
+			'limit' => 8
 		));
 
 		$myevidences = $this->User->Evidence->find('all', array(
 			'order' => array(
-				'Evidence.created DESC'
+				'Evidence.modified DESC'
 			),
 			'conditions' => array(
 				'Evidence.user_id' => $id,
@@ -269,6 +316,9 @@ class UsersController extends AppController {
 
 		$are_friends = array();
 		$mine_allies = array();
+		$post_allies = array();
+		$topic_allies = array();
+		$my_notifies = array();
 		//$allies = array();
 
 		//debug($friends);
@@ -276,6 +326,9 @@ class UsersController extends AppController {
 		foreach($friends as $friend){
 			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
 			array_push($mine_allies, array('Notification.user_id' => $friend['UserFriend']['friend_id']));
+			array_push($my_notifies, array('Notification.user_id' => $users['User']['id']));
+			array_push($post_allies, array('Post.user_id' => $friend['UserFriend']['friend_id']));
+			array_push($topic_allies, array('Topic.user_id' => $friend['UserFriend']['friend_id']));
 		} 
 
 		//debug($are_friends);
@@ -283,6 +336,7 @@ class UsersController extends AppController {
 		$this->loadModel('Notification');
 
 		$notifies = array();
+		$feed = array();
 
 		if(!empty($are_friends)){
 			$allies = $this->User->find('all', array(
@@ -303,9 +357,20 @@ class UsersController extends AppController {
 		}
 
 		if(!empty($mine_allies)){
-			$notifies = $this->Notification->find('all', array(
+			$feed = $this->Notification->find('all', array(
 				'conditions' => array(
 					'OR' => $mine_allies
+				), 
+				'order' => array(
+					'Notification.created DESC'
+				)
+			));
+		} 
+
+		if(!empty($my_notifies)){
+			$notifies = $this->Notification->find('all', array(
+				'conditions' => array(
+					'OR' => $my_notifies
 				), 
 				'order' => array(
 					'Notification.created DESC'
@@ -502,8 +567,30 @@ class UsersController extends AppController {
 		// 	}
 
 		// }
+
+		$this->loadModel('Forum.Post');
+		$this->loadModel('Forum.Topic');
+
+		$a_posts = array();
+		$a_topics = array();
+
+		if(!empty($post_allies)){
+			$this->Post->recursive = 1;
+			$a_posts = $this->Post->find('all', array(
+				'conditions' => array(
+					'OR' => $post_allies
+			)));
+		}
+
+		if(!empty($topic_allies)){
+			$this->Topic->recursive = 1;
+			$a_topics = $this->Topic->find('all', array(
+				'conditions' => array(
+					'OR' => $topic_allies
+			)));
+		}
 		
-		$this->set(compact('user', 'users', 'adminNotifications', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
+		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
 		//'groups', 'my_photo', 'user_photo',
@@ -512,6 +599,44 @@ class UsersController extends AppController {
 			// $this->Session->setFlash(__("You cannot access other user's dashboard"), 'flash_message');
 			$this->redirect(array('action'=>'profile', $id)); 
 		}
+	}
+
+/**
+ * logout method
+ *
+ * @return void
+ */
+	public function allies($id) {
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
+
+		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$allies = array();
+
+		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
+
+		$are_friends = array();
+		//$allies = array();
+
+		foreach($friends as $friend){
+			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
+		}
+
+		if(!empty($are_friends)){
+			$allies = $this->User->find('all', array(
+				'conditions' => array(
+					'OR' => $are_friends
+			)));
+		} else{
+			$allies = array();
+			//$notifies = array();
+		}
+
+		$this->set(compact('user', 'users', 'friends', 'allies'));
 	}
 
 /**

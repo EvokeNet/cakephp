@@ -21,9 +21,9 @@
 		  		<?php echo $this->element('menu', array('user' => $user));?>
 		</div>	
 
-		<div class="small-9 medium-9 large-9 columns maincolumn">
+	  <div class="small-10 medium-10 large-10 columns margin top-2 maincolumn body-padding">
 			
-			<h3> <?= strtoupper(__('Badges')) ?> </h3>
+			<h3 class = "margin bottom-1"> <?= strtoupper(__('Badges')) ?> </h3>
 
 			<div class = "evoke black-bg badges-bg">
 				<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
@@ -160,7 +160,7 @@
 
 		</div>
 
-		<div class="medium-1 end columns"></div>
+		<!-- <div class="medium-1 end columns"></div> -->
 
 	</div>
 

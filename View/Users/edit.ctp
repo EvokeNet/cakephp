@@ -19,7 +19,9 @@
 			?>
 	  	</div>
 
-		<div class="small-9 medium-9 large-9 columns maincolumn">
+		<div class="small-10 medium-10 large-10 columns maincolumn margin top-2 body-padding">
+
+		<h3 class = "margin bottom-1"><?= strtoupper(__('Edit informations')) ?></h3>
 
 		<?php echo $this->Session->flash(); ?>
 
@@ -334,7 +336,7 @@
 			</div>
 		</div>
 
-		<div class="medium-1 end columns"></div>
+		<!-- <div class="medium-1 end columns"></div> -->
 
 	</div>
 </section>

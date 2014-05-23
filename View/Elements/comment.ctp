@@ -12,6 +12,9 @@
 		<i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i>
 		<?= strtoupper(__('Post')) ?>
 	</button>
+
+	<?php echo $this->Form->end(); ?>
+	
 <?php else :?>
 	<h1><?php echo __('Agent, log in to share a thought'); ?></h1>
 	

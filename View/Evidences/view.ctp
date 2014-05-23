@@ -33,7 +33,7 @@
 	  	<?php echo $this->element('menu', array('user' => $user));?>
 	  </div>
 
-	  <div class="small-9 medium-9 large-9 columns maincolumn">
+	  <div class="small-10 medium-10 large-10 columns maincolumn">
 
 	  	<?php echo $this->Session->flash(); ?>
 	  	
@@ -49,6 +49,7 @@
 
 		  <div class="small-9 medium-9 large-9 columns">
 		 	<div class = "evoke evidence-body view">
+		 	<div class = "content padding30">
 			  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
 			  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
 			  	<div class = "imgtag"><?php echo urldecode($evidence['Evidence']['content']); ?></div>
@@ -120,11 +121,12 @@
 						echo $this->element('comment_box', array('c' => $c, 'user' => $user));
 		  			endforeach; 
 	  			?>
+	  			</div>
 			</div>
 		  </div>
 	  <div class="small-3 medium-3 large-3 columns padding-right">
 
-	  	<div class="evoke evidence-tag text-align margin bottom-2">
+	  	<div class="evoke evidence-tag text-align-center margin bottom-2">
 		  		
 		  	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $evidence['User']['id']))?>">
 		  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
@@ -212,7 +214,7 @@
 
 	  </div>
 
-	  <div class="medium-1 end columns"></div>
+	  <!-- <div class="medium-1 end columns"></div> -->
 
   	</div>
 </section>

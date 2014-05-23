@@ -14,9 +14,11 @@
 			));
 		?>
 		</fieldset>
-	<?php //echo $this->Form->end(__('Send vote')); ?>
 
 	<button type="submit" class= "evoke button general submit-button-margin"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Vote')) ?></button>
+	
+	<?php echo $this->Form->end(); ?>
+
 <?php else :?>
 	<h1><?php echo __('Agent, log in to rate this evokation'); ?></h1>
 	

@@ -24,7 +24,7 @@
 	  	<?php echo $this->element('menu', array('user' => $user));?>
 	  </div>
 
-	  <div class="small-9 medium-9 large-9 columns padding top-2 maincolumn">
+	  <div class="small-10 medium-10 large-10 columns margin top-2 maincolumn body-padding">
 		<?php echo $this->Session->flash(); ?>
 
 	  	<div class="row">

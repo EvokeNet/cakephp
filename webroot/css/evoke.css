@@ -99,6 +99,14 @@ button, div, p, span, a,
 	margin-top: 2em;
 }
 
+.evoke .margin.top-5 {
+	margin-top: 5em;
+}
+
+.evoke .margin.top-6{
+	margin-top: 6vw;
+}
+
 .evoke .margin.left {
 	margin-left: 1em;
 }
@@ -150,6 +158,16 @@ button, div, p, span, a,
 .evoke .margin-left-13{
 	margin-left: 13%;
 }
+
+.evoke .body-padding{
+	padding: 0px 100px;
+}
+
+.evoke .min-height{
+	height:500px;
+}
+
+/* font */
 
 /* Background */
 
@@ -222,7 +240,7 @@ button, div, p, span, a,
 }
 
 .evoke .content-block ul li a{
-	font-size:1.1vw;
+	font-size:1.0vw;
 	color:#fff;
 }
 
@@ -308,8 +326,8 @@ button, div, p, span, a,
 
 .evoke .margin-right-0{
 	margin-right:0;
-}
 
+}
 .evoke .text-align-end{
 	text-align: end;
 }
@@ -485,6 +503,61 @@ button, div, p, span, a,
 	min-height: 200px;
 }
 
+.evoke .evokations.tabs dd.active a {
+	background: #bc5660;
+	border-left: 3px solid #82353b;
+	border-top: 3px solid #82353b;
+	border-right: none;
+	border-bottom: none;
+}
+
+.evoke .evokations.tabs dd>a {
+	background: #1f8cb2;
+	border-right: 3px solid #125167;
+	border-bottom: 3px solid #125167;
+	margin-right:10px;
+	border-radius:10px;
+	color:#fff;
+}
+
+.evoke .leaderboard.tabs{
+	width:100%;
+}
+
+.evoke .leaderboard.tabs a{
+	font-size:0.9vw;
+	color:#fff;
+	font-family:'AlegreyaRegular';
+}
+
+.evoke .leaderboard.tabs dd.active a{
+	/*-webkit-box-shadow: 1px 0px 15px #0cd377;
+	-moz-box-shadow: 1px 0px 15px #0cd377;
+	box-shadow: 1px 0px 15px #0cd377;*/
+	color:#0cd377;
+}
+
+.evoke .leaderboard.tabs dd>a{
+	background-color: rgba(0, 0, 0, 0.5);
+	border-bottom: 3px solid #47454b;
+}
+
+.evoke .leaderboard .tabs-content ul{
+	border-bottom: 2px solid #47454b;
+	padding: 20px 0px 0px;
+	margin-bottom: 20px;
+}
+
+.evoke .leaderboard .headings h1, .evoke .leaderboard .headings h2, .evoke .leaderboard .headings h3{
+	color: #fff;
+	font-family: 'AlegreyaRegular';
+	line-height: 1.0em;
+}
+
+.evoke .leaderboard .headings h3{
+	font-size: 1.9rem;
+}
+
 /* End of new CSS */
 
 /* New topbar section */
@@ -541,6 +614,65 @@ button, div, p, span, a,
 .evoke.top-bar.icon{
 	max-height: 30px; 
 	max-width: 70px; 
+}
+
+.evoke.evidence-tag{
+	background-color:#efefef;
+	border:1px solid #000;
+	border-radius:10px;
+}
+
+.evoke.evidence-tag.allies:hover{
+	background-color:#008cba;
+	border:6px solid #c65862;
+	color:#fff;
+}
+
+.evoke.evidence-tag.allies:hover h1, .evoke.evidence-tag.allies:hover p, .evoke.evidence-tag.allies:hover i{
+	color:#fff;
+}
+
+.evoke.evidence-tag.evi-min-height{
+	min-height: 300px;
+}
+
+.evoke.evidence-tag-border{
+	border-bottom: 2px solid #a7a7a7;
+	padding-bottom:10px;
+}
+
+.evoke.evidence-tag h1{
+	color: #000;
+	font-size:2.0vw;
+	font-family: 'AlegreyaBold';
+	word-wrap: break-word;
+}
+
+.evoke.evidence-tag p{
+	font-family: 'AlegreyaRegular';
+	color: #393939;
+	text-align: center;
+	width: 90%;
+	margin: 20px auto;
+	/*border-bottom: 1px solid #a7a7a7;
+	border-top: 1px solid #a7a7a7;*/
+	padding: 20px 0px;
+}
+
+.evoke.evidence-tag i{
+	color:#999999;
+}
+
+.evoke.evidence-tag .ally{
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	margin: 40px auto 20px;	
+}
+
+.evoke .accordion .content.active{
+	background-color:#efefef;
+	/*border-radius:10px;*/
 }
 
 /* End topbar section */

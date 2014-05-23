@@ -131,6 +131,8 @@ class GroupsController extends AppController {
 
 		$missions = $this->Group->Mission->find('all');
 
+		$groups = $this->Group->find('all');
+
 		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
 
 		$mygroups_id = array();
@@ -156,7 +158,7 @@ class GroupsController extends AppController {
 		$this->loadModel('GroupsUser');
 		$users_groups = $this->GroupsUser->find('all');
 
-		$this->set(compact('missionIssues', 'user', 'myGroups', 'missions', 'users_groups'));
+		$this->set(compact('missionIssues', 'groups', 'user', 'myGroups', 'missions', 'users_groups'));
 		
 	}
 
