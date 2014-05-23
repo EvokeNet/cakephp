@@ -295,7 +295,7 @@ class UsersController extends AppController {
 			'conditions' => array(
 				'Evidence.title != ' => ''
 			),
-			'limit' => 6
+			'limit' => 8
 		));
 
 		$myevidences = $this->User->Evidence->find('all', array(

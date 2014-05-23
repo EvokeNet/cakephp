@@ -508,7 +508,7 @@
 	$(window).scroll(function() {   
 		if($(window).scrollTop() + $(window).height() == $(document).height()) {
 	    	
-	    	alert('YAY0');
+	    	// alert('YAY0');
 	    	
 	    	$.ajax({
 			    type: 'get',
@@ -523,10 +523,10 @@
 			        last = responseLast;
 			        response = response.substring(response.search("lastEnd")+7);
 			        
-			        console.log(response);	
+			        // console.log(response);	
 
 			        $('#target').append((response));
-			        alert('YAY');
+			        // alert('YAY');
 			        
 			    },
 			    error: function(e) {
