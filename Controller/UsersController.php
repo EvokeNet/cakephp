@@ -246,6 +246,12 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
+
+		if($id != $this->getUserId()){
+			// $this->Session->setFlash(__("You cannot access other user's dashboard"), 'flash_message');
+			$this->redirect(array('action'=>'profile', $id)); 
+		}
+
 		$lang = $this->getCurrentLanguage();
 		$flags['_en'] = true;
 		$flags['_es'] = false;
@@ -254,7 +260,6 @@ class UsersController extends AppController {
 			$flags['_es'] = true;
 		}
 		// debug($lang);
-		
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
@@ -574,6 +579,7 @@ class UsersController extends AppController {
 		$a_posts = array();
 		$a_topics = array();
 
+		/*
 		if(!empty($post_allies)){
 			$this->Post->recursive = 1;
 			$a_posts = $this->Post->find('all', array(
@@ -588,17 +594,13 @@ class UsersController extends AppController {
 				'conditions' => array(
 					'OR' => $topic_allies
 			)));
-		}
+		}*/
 		
 		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
 		//'groups', 'my_photo', 'user_photo',
 
-		if($id != $this->getUserId()){
-			// $this->Session->setFlash(__("You cannot access other user's dashboard"), 'flash_message');
-			$this->redirect(array('action'=>'profile', $id)); 
-		}
 	}
 
 /**
