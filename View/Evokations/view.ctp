@@ -1,4 +1,6 @@
 <?php
+	
+	echo $this->Html->css('diagonal_ribbon');
 
 	$this->extend('/Common/topbar');
 	$this->start('menu');
@@ -27,15 +29,15 @@
 
 <section class="evoke default-background">
 
-	<?php echo $this->Session->flash(); ?>
-
 	<div class="evoke default row full-width-alternate">
 
 	  <div class="small-2 medium-2 large-2 columns padding-left">
 	  	<?php echo $this->element('menu', array('user' => $user));?>
 	  </div>
 
-	  <div class="small-9 medium-9 large-9 columns maincolumn">
+	  <div class="small-10 medium-10 large-10 columns maincolumn">
+
+	  	<?php echo $this->Session->flash(); ?>
 
 	  	<nav class="evoke breadcrumbs">
 			<?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
@@ -44,34 +46,104 @@
 			<a class="current" href="#"><?php echo $evokation['Evokation']['title'];?></a>
 		  </nav>
 
-	  	<div class="evoke default row full-width-alternate">
+	  	<div class="evoke evokation default row full-width-alternate">
 
-  		<div class="small-3 medium-3 large-3 columns">
-		  	<div class="evoke evidence-tag text-align">
-		  		<!-- <img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/> -->
-			 	
-		  		<?php if(isset($user['User'])) :?>
-			 		<a href = "<?= $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']))?>">
-			 			<?php if($group['Group']['photo_dir'] == null) :?>
-		  					<img src="https://graph.facebook.com//picture?type=large" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-			  			<?php else : ?>
-								<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-					  	<?php endif; ?>
-			 			<h1><?= $group['Group']['title']?></h1>
-			 		</a>
-			 	<?php else : ?>
-					<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'login'))?>">
-						<?php if($group['Group']['photo_dir'] == null) :?>
-		  					<img src="https://graph.facebook.com//picture?type=large" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-			  			<?php else : ?>
-								<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-					  	<?php endif; ?>
-						<h1><?= $group['Group']['title']?></h1>
-					</a>
-				<?php endif;?>
+		  <div class="small-9 medium-9 large-9 columns">
+		 	<div class = "evoke no-padding evidence-body view">
 
+			  	<h1 class = "padding30"><?php echo h($evokation['Evokation']['title']); ?></h1>
+			  	<?php if($evokation['Evokation']['final_sent'] == 0) :?>
+			  		<!-- <h6><?php echo h('Status: work in progress.'); ?></h6> -->
+			  		<div class="ribbon-wrapper-green"><div class="ribbon-green"><?= strtoupper(__('Work in progress')) ?></div></div>
+			  	<?php else : ?>	
+			  		<?php if($evokation['Evokation']['approved'] == 0) :?>
+			  			<!-- <h6><?php echo h('Status: Waiting for approval.'); ?></h6> -->
+			  			<div class="ribbon-wrapper-green"><div class="ribbon-green"><?= strtoupper(__('Waiting for approval')) ?></div></div>
+			  		<?php else : ?>	
+			  			<!-- <h6><?php echo h('Status: Approved!'); ?></h6> -->
+			  			<div class="ribbon-wrapper-green"><div class="ribbon-green"><?= strtoupper(__('Approved!')) ?></div></div>
+			  		<?php endif ?>	
+			  	<?php endif ?>
 
-			 	<div class = "evoke border-bottom"></div>
+			  	<dl class="accordion margin top-5" data-accordion>
+				  <dd>
+				    <a class = "text-align-center title" href="#panel1"><?= strtoupper(__('Latest updates')) ?>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-down fa-lg"></i></a>
+				    <div id="panel1" class="content">
+
+				    	<?php if(!empty($allUpdates)) :?>
+					  		<div class = "padding30" id="history">
+					  			<?php foreach ($allUpdates as $update) :?>
+					  				<a href="<?= $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $evokation['Evokation']['id'], $update['EvokationsUpdate']['id']))?>">
+
+					  					<h4><?= date('F j, Y', strtotime($update['EvokationsUpdate']['created'])) ?></h4>
+
+					  					<h5><?= $update['EvokationsUpdate']['description']?></h5>
+
+					  				</a>
+					  				<br>
+					  			<?php endforeach ?>
+					  		</div>
+					  	<?php endif ?>
+
+					  	<?php if(!empty($newUpdate)) :?>
+
+						  	<!-- <h4><?= __('Current update:')?></h4>
+						  	<h5><?= $newUpdate['EvokationsUpdate']['created'] . ': '. $newUpdate['EvokationsUpdate']['description'] ?></h5> -->
+
+						<?php endif ?>
+
+				    </div>
+				  </dd>
+				</dl>
+
+				<div class = "content padding30">
+				  	<div id="evokation_div" data-placeholder="">
+				  		<?php if(isset($newUpdate['EvokationsUpdate'])) : ?>
+				  			<p><?php echo urldecode($newUpdate['EvokationsUpdate']['content']); ?></p>
+				  		<?php endif ?>
+				  	</div>
+				  	
+				  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
+				  	
+				  	<?php foreach ($comment as $c): 
+							echo $this->element('comment_box', array('c' => $c, 'user' => $user));
+			  			endforeach; 
+		  			?>
+	  			</div>
+			</div>
+		  </div>
+
+	  <div class="small-3 medium-3 large-3 columns padding-right">
+
+	  	<div class="evoke evidence-tag text-align-center margin bottom-2">
+	  		<!-- <img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 150px; margin: 20px 0px; max-height: 200px;"/> -->
+		 	
+	  		<?php if(isset($user['User'])) :?>
+		 		<a href = "<?= $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']))?>">
+		 			<?php if($group['Group']['photo_dir'] == null) :?>
+	  					<img src="https://graph.facebook.com//picture?type=large" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+		  			<?php else : ?>
+							<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+				  	<?php endif; ?>
+		 			<h1><?= $group['Group']['title']?></h1>
+		 		</a>
+		 	<?php else : ?>
+				<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'login'))?>">
+					<?php if($group['Group']['photo_dir'] == null) :?>
+	  					<img src="https://graph.facebook.com//picture?type=large" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+		  			<?php else : ?>
+							<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+				  	<?php endif; ?>
+					<h1><?= $group['Group']['title']?></h1>
+				</a>
+			<?php endif;?>
+
+			<dl class="accordion" data-accordion>
+			  <dd>
+			    <a href="#panel11"><i class="fa fa-angle-down fa-lg"></i></a>
+			    <div id="panel11" class="content evidence-tag">
+				
+				<div class = "evoke border-bottom"></div>
 
 			 	<p><?php echo $group['Group']['description'] ?></p>
 
@@ -92,53 +164,12 @@
 						<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $evokation['Evokation']['id'])); ?>" class = "button general"><?php echo __('Follow');?></a></div>
 					<?php endif; ?>	
 				<?php endif; ?>
-		 	</div>
-		  </div>
 
-		  <div class="small-7 medium-7 large-7 columns">
-		 	<div class = "evoke evidence-body view">
-			  	<h1><?php echo h($evokation['Evokation']['title']); ?></h1>
-			  	<?php if($evokation['Evokation']['final_sent'] == 0) :?>
-			  		<h6><?php echo h('Status: work in progress.'); ?></h6>
-			  	<?php else : ?>	
-			  		<?php if($evokation['Evokation']['approved'] == 0) :?>
-			  			<h6><?php echo h('Status: Waiting for approval.'); ?></h6>
-			  		<?php else : ?>	
-			  			<h6><?php echo h('Status: Approved!'); ?></h6>
-			  		<?php endif ?>	
-			  	<?php endif ?>
+				</div>
+			  </dd>
+			</dl>
 
-			  	
-				<?php if(!empty($allUpdates)) :?>
-					<div id="showHistory"><small><?=  __('show update history') ?></small></div>
-			  		<div id="history" style="display:none">
-			  			<?php foreach ($allUpdates as $update) :?>
-			  				<a href="<?= $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $evokation['Evokation']['id'], $update['EvokationsUpdate']['id']))?>"><?= $update['EvokationsUpdate']['created'] . ': '. $update['EvokationsUpdate']['description']?></a>
-			  				<br>
-			  			<?php endforeach ?>
-			  		</div>
-			  	<?php endif ?>
-			  	<?php if(!empty($newUpdate)) :?>
-				  	<h4>
-				  		<?= __('Current update:')?>
-				  	</h4>
-				  	<h5><?= $newUpdate['EvokationsUpdate']['created'] . ': '. $newUpdate['EvokationsUpdate']['description'] ?></h5>
-				<?php endif ?>
-			  	<div id="evokation_div" data-placeholder="">
-			  		<?php if(isset($newUpdate['EvokationsUpdate'])) : ?>
-			  			<?php echo urldecode($newUpdate['EvokationsUpdate']['content']); ?>
-			  		<?php endif ?>
-			  	</div>
-			  	
-			  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
-			  	
-			  	<?php foreach ($comment as $c): 
-						echo $this->element('comment_box', array('c' => $c, 'user' => $user));
-		  			endforeach; 
-	  			?>
-			</div>
-		  </div>
-	  <div class="small-2 medium-2 large-2 columns padding-right">
+	 	</div>
 
 		<h3> <?= strtoupper(__('Rating')) ?> </h3>
 
@@ -172,7 +203,7 @@
 
 	  </div>
 
-	  <div class="medium-1 end columns"></div>
+	  <!-- <div class="medium-1 end columns"></div> -->
 
   	</div>
 </section>

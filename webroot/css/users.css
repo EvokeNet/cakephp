@@ -1,9 +1,5 @@
 /* New CSS */
 
-.evoke .margin.top-6{
-	margin-top: 6vw;
-}
-
 .evoke .dashboard.missions img{
 	margin-bottom:10px;
 }
@@ -101,7 +97,7 @@
 	overflow:hidden;
 }
 
-.evoke .leaderboard.tabs{
+/*.evoke .leaderboard.tabs{
 	width:100%;
 }
 
@@ -112,9 +108,6 @@
 }
 
 .evoke .leaderboard.tabs dd.active a{
-	/*-webkit-box-shadow: 1px 0px 15px #0cd377;
-	-moz-box-shadow: 1px 0px 15px #0cd377;
-	box-shadow: 1px 0px 15px #0cd377;*/
 	color:#0cd377;
 }
 
@@ -137,7 +130,7 @@
 
 .evoke .leaderboard .headings h3{
 	font-size: 1.9rem;
-}
+}*/
 
 /*.evoke .leaderboard .headings h2{
 	color: #fff;

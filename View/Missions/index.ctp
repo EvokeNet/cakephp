@@ -16,7 +16,7 @@
 	  	<?php echo $this->element('menu', array('user' => $user));?>
 	  </div>
 
-	  <div class="small-9 medium-9 large-9 columns maincolumn padding bottom-2">
+	  <div class="small-10 medium-10 large-10 columns maincolumn body-padding">
 
 	  	<?php echo $this->Session->flash(); ?>
 
@@ -24,7 +24,7 @@
 			
 			<?php foreach($missions as $mission): ?>
 
-				<h1 style = "position: absolute; color: #fff; z-index: 1; font-size: 1.5vw; left: 30px; margin-top: 20px; font-family: 'AlegreyaBold'; text-shadow: 0 0 12px rgba(0,0,0,0.85);"><?= strtoupper($mission['Mission']['title']) ?> </h1>
+				<h1 style = "position: absolute; color: #fff; z-index: 1; font-size: 1.5vw; left: 130px; margin-top: 20px; font-family: 'AlegreyaBold'; text-shadow: 0 0 12px rgba(0,0,0,0.85);"><?= strtoupper($mission['Mission']['title']) ?> </h1>
                 <div class="evoke default view view-first">
                     <?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 						<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
@@ -43,7 +43,7 @@
 
 		</div>
 
-		<div class="medium-1 end columns"></div>
+		<!-- <div class="medium-1 end columns"></div> -->
 
 	</div>
 </section>

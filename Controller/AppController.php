@@ -33,7 +33,7 @@ class AppController extends Controller {
         'Auth' => array(
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
         ),
-        'DebugKit.Toolbar',
+        // 'DebugKit.Toolbar',
         'Acl'
     );
 

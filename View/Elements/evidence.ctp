@@ -1,14 +1,14 @@
-<div class = "evoke evidence content-box">
-	<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id']));?>">
-		<div class="evoke row full-width-alternate">
+<div class='evoke evidence content-box'>
+	<a href='<?php echo $this->Html->url(array("controller" => 'evidences', 'action' => 'view', $e['Evidence']['id']));?>'>
+		<div class='evoke row full-width-alternate'>
 
-		  <div class="small-3 medium-3 large-3 columns evoke text-align-end">
+		  <div class='small-3 medium-3 large-3 columns evoke text-align-end'>
 
-		  	<h5 class = "headings"><?= $e['User']['name']?></h5>
-		  	<h6 class = "headings"><?= date('F j, Y', strtotime($e['Evidence']['created'])) ?></h6>
+		  	<h5 class='headings'><?= $e['User']['name']?></h5>
+		  	<h6 class='headings'><?= date('F j, Y', strtotime($e['Evidence']['created']))?></h6>
 		  </div>
 
-		  <div class="small-2 medium-2 large-2 columns evoke text-align-center">
+		  <div class='small-2 medium-2 large-2 columns evoke text-align-center'>
 
 		  	<?php if($e['User']['photo_attachment'] == null) : ?>
 			  	<?php if($e['User']['facebook_id'] == null) : ?>
@@ -22,9 +22,9 @@
 
 		  </div>
 
-		  <div class="small-7 medium-7 large-7 columns">
+		  <div class='small-7 medium-7 large-7 columns'>
 		  	<div>
-		  		<h4 class = "headings"><?= $e['Evidence']['title'] ?></h4>
+		  		<h4 class='headings'><?= $e['Evidence']['title'] ?></h4>
 		  	</div>
 		  </div>
 

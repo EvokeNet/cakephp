@@ -9,13 +9,13 @@
 			echo $this->Form->input('content', array('value' => $content));
 		?>
 
-<!-- 	<button type="submit" class= "evoke button general submit-button-margin">
+	<button type="submit" class= "evoke button general submit-button-margin">
 		<i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i>
 		<?php echo $this->Form->end(__('Post')); ?>
-	</button> -->
+	</button>
 
 	<?php 
-		echo $this->Form->submit(__('Post', true), array('class'=>'evoke button general submit-button-margin')); 
+		//echo $this->Form->submit(__('Post', true), array('class'=>'evoke button general submit-button-margin')); 
     	echo $this->Form->end();
     ?>
 

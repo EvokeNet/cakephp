@@ -147,6 +147,52 @@ class UsersController extends AppController {
 		$this->set('users', $this->Paginator->paginate());
 	}
 
+
+	public function moreEvidences($lastEvidence, $limit = 1){
+		$this->autoRender = false; // We don't render a view in this example
+    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+
+    	$last = $this->User->Evidence->find('first', array(
+    		'conditions' => array(
+    			'Evidence.id' => $lastEvidence
+    		),
+    	));
+
+
+    	if(empty($last))
+    		return json_encode(array());
+
+    	$evidence = $this->User->Evidence->find('all', array(
+			'order' => array(
+				'Evidence.created DESC'
+			),
+			'conditions' => array(
+				'Evidence.title != ' => '',
+				'Evidence.modified <' => $last['Evidence']['modified']
+			),
+			'limit' => $limit
+		));
+
+    	$data = "";
+
+	    $str = "lastBegin-1lastEnd";
+	    $older = "";
+    	foreach ($evidence as $key => $value) {
+    		$view = new View($this, false);
+			$content = ($view->element('evidence', array('e' => $value)));
+			
+			$data .= $content .' ';
+
+    		$older = $value['Evidence']['id'];
+    	}
+    	if($older != "") {
+    		$str = "lastBegin".$older."lastEnd";
+    	}
+    	return $str.$data;
+	}
+
+
+
 /**
  *
  * register method
@@ -200,6 +246,11 @@ class UsersController extends AppController {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
+
+		if($id != $this->getUserId()){
+			$this->redirect(array('action'=>'profile', $id)); 
+		}
+
 		$lang = $this->getCurrentLanguage();
 		$flags['_en'] = true;
 		$flags['_es'] = false;
@@ -207,8 +258,6 @@ class UsersController extends AppController {
 			$flags['_en'] = false;
 			$flags['_es'] = true;
 		}
-		// debug($lang);
-		
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
@@ -229,46 +278,36 @@ class UsersController extends AppController {
 		else
 			$percentage = 0;
 
-		$points = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $id)));
-
-		$sumPoints = $this->getPoints($id);
-
-		$level = $this->getLevel($sumPoints);
-
-		$otherLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $level+1)));
-
-		if(!empty($thisLevel))
-			$percentageOtherUser = round(($sumPoints / $otherLevel['Level']['points']) * 100);
-		else
-			$percentageOtherUser = 0;
-
 		$evidence = $this->User->Evidence->find('all', array(
 			'order' => array(
-				'Evidence.created DESC'
+				'Evidence.modified DESC'
 			),
 			'conditions' => array(
 				'Evidence.title != ' => ''
-			)
-		));
-
-		$myevidences = $this->User->Evidence->find('all', array(
-			'order' => array(
-				'Evidence.created DESC'
 			),
-			'conditions' => array(
-				'Evidence.user_id' => $id,
-				'Evidence.title != ' => ''
-			)
+			'limit' => 8
 		));
 
-		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
+		// $myevidences = $this->User->Evidence->find('all', array(
+		// 	'order' => array(
+		// 		'Evidence.modified DESC'
+		// 	),
+		// 	'conditions' => array(
+		// 		'Evidence.user_id' => $id,
+		// 		'Evidence.title != ' => ''
+		// 	),
+		// 	'limit' => 8
+		// ));
 
-		$allies = array();
+		// $allies = array();
 
 		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
 		$are_friends = array();
 		$mine_allies = array();
+		$post_allies = array();
+		$topic_allies = array();
+		$my_notifies = array();
 		//$allies = array();
 
 		//debug($friends);
@@ -276,6 +315,9 @@ class UsersController extends AppController {
 		foreach($friends as $friend){
 			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
 			array_push($mine_allies, array('Notification.user_id' => $friend['UserFriend']['friend_id']));
+			array_push($my_notifies, array('Notification.user_id' => $users['User']['id']));
+			array_push($post_allies, array('Post.user_id' => $friend['UserFriend']['friend_id']));
+			array_push($topic_allies, array('Topic.user_id' => $friend['UserFriend']['friend_id']));
 		} 
 
 		//debug($are_friends);
@@ -283,27 +325,28 @@ class UsersController extends AppController {
 		$this->loadModel('Notification');
 
 		$notifies = array();
+		$feed = array();
 
-		if(!empty($are_friends)){
-			$allies = $this->User->find('all', array(
-				'conditions' => array(
-					'OR' => $are_friends
-			)));
+		// if(!empty($are_friends)){
+		// 	$allies = $this->User->find('all', array(
+		// 		'conditions' => array(
+		// 			'OR' => $are_friends
+		// 	)));
 
-			// foreach ($notifies as $key => $value) {
-			// 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
-			// 	 $value['Notification']['origin'] == 'commentEvidence') {
-			// 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
-			// 			unset($notifies[$key]);
-			// 		}
-			// 	}
-			// }
-		} else{
-			$allies = array();
-		}
+		// 	// foreach ($notifies as $key => $value) {
+		// 	// 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
+		// 	// 	 $value['Notification']['origin'] == 'commentEvidence') {
+		// 	// 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
+		// 	// 			unset($notifies[$key]);
+		// 	// 		}
+		// 	// 	}
+		// 	// }
+		// } else{
+		// 	$allies = array();
+		// }
 
 		if(!empty($mine_allies)){
-			$notifies = $this->Notification->find('all', array(
+			$feed = $this->Notification->find('all', array(
 				'conditions' => array(
 					'OR' => $mine_allies
 				), 
@@ -313,45 +356,16 @@ class UsersController extends AppController {
 			));
 		} 
 
-		
-		$this->loadModel('Evokation');
-		$evokations = $this->Evokation->find('all', array(
-			'order' => array(
-				'Evokation.created DESC'
-			),
-			'conditions' => array(
-				'Evokation.sent' => 1
-			)
-		));
-
-		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
-			'conditions' => array(
-				'EvokationFollower.user_id' => $this->getUserId()
-			)
-		));
-
-		$myEvokations = array();
-		foreach ($evokations as $evokation) {
-			$mine = false;
-			if($evokation['Group']['user_id'] == $id)
-				$mine = true;
-
-			$this->loadModel('Group');
-			$group_evokation = $this->Group->GroupsUser->find('first', array(
+		if(!empty($my_notifies)){
+			$notifies = $this->Notification->find('all', array(
 				'conditions' => array(
-					'GroupsUser.group_id' => $evokation['Group']['id'],
-					'GroupsUser.user_id' => $id
+					'OR' => $my_notifies
+				), 
+				'order' => array(
+					'Notification.created DESC'
 				)
 			));
-			
-			if(!empty($group_evokation))
-				$mine = true;
-
-			if($mine){
-				array_push($myEvokations, $evokation);
-			}	
-		}
-
+		} 
 
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all', array(
@@ -383,9 +397,6 @@ class UsersController extends AppController {
 			}
 				
 		}
-
-		$missionIssues = $this->Mission->MissionIssue->find('all');
-		$issues = $this->Mission->MissionIssue->Issue->find('all');
 
 		$allusers = $this->User->find('all');
 
@@ -456,28 +467,28 @@ class UsersController extends AppController {
 		
 		//$this->loadModel('Badge');
 
-		$badges = $this->User->UserBadge->find('all', array(
-			'conditions' => array(
-				'UserBadge.user_id' => $id
-			)
-		));
+		// $badges = $this->User->UserBadge->find('all', array(
+		// 	'conditions' => array(
+		// 		'UserBadge.user_id' => $id
+		// 	)
+		// ));
 
-		foreach ($badges as $b => $badge) {
-			$this->loadModel('Attachment');
-			$badge_img = $this->Attachment->find('first', array(
-				'conditions' => array(
-					'Attachment.model' => 'Badge',
-					'Attachment.foreign_key' => $badge['Badge']['id']
-				)
-			));
-			if(!empty($badge_img)) {
-				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
-				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
-			} else {
+		// foreach ($badges as $b => $badge) {
+		// 	$this->loadModel('Attachment');
+		// 	$badge_img = $this->Attachment->find('first', array(
+		// 		'conditions' => array(
+		// 			'Attachment.model' => 'Badge',
+		// 			'Attachment.foreign_key' => $badge['Badge']['id']
+		// 		)
+		// 	));
+		// 	if(!empty($badge_img)) {
+		// 		$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
+		// 		$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
+		// 	} else {
 
-			}
+		// 	}
 
-		}
+		// }
 		//$this->set(compact('user', 'users', 'adminNotifications', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 
 		// $badges = $this->User->UserBadge->find('all', array(
@@ -502,16 +513,72 @@ class UsersController extends AppController {
 		// 	}
 
 		// }
+
+		// $this->loadModel('Forum.Post');
+		// $this->loadModel('Forum.Topic');
+
+		// $a_posts = array();
+		// $a_topics = array();
+
 		
-		$this->set(compact('user', 'users', 'adminNotifications', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
-			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
+		// if(!empty($post_allies)){
+		// 	$this->Post->recursive = 1;
+		// 	$a_posts = $this->Post->find('all', array(
+		// 		'conditions' => array(
+		// 			'OR' => $post_allies
+		// 	)));
+		// }
+
+		// if(!empty($topic_allies)){
+		// 	$this->Topic->recursive = 1;
+		// 	$a_topics = $this->Topic->find('all', array(
+		// 		'conditions' => array(
+		// 			'OR' => $topic_allies
+		// 	)));
+		// }
+		
+		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'evidence', 'myevidences', 'missions', 
+			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies', 'show_basic_training'));
 		//'groups', 'my_photo', 'user_photo',
 
-		if($id != $this->getUserId()){
-			// $this->Session->setFlash(__("You cannot access other user's dashboard"), 'flash_message');
-			$this->redirect(array('action'=>'profile', $id)); 
+	}
+
+/**
+ * logout method
+ *
+ * @return void
+ */
+	public function allies($id) {
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
 		}
+
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
+
+		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$allies = array();
+
+		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
+
+		$are_friends = array();
+		//$allies = array();
+
+		foreach($friends as $friend){
+			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
+		}
+
+		if(!empty($are_friends)){
+			$allies = $this->User->find('all', array(
+				'conditions' => array(
+					'OR' => $are_friends
+			)));
+		} else{
+			$allies = array();
+			//$notifies = array();
+		}
+
+		$this->set(compact('user', 'users', 'friends', 'allies'));
 	}
 
 /**
@@ -549,7 +616,7 @@ class UsersController extends AppController {
 
 		$otherLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $level+1)));
 
-		if(!empty($thisLevel))
+		if(!empty($otherLevel))
 			$percentage = round(($sumPoints / $otherLevel['Level']['points']) * 100);
 		else
 			$percentage = 0;
