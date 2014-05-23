@@ -423,51 +423,38 @@
 	?>
 
 	var last = $('meta[name=lastEvidence]').attr('content');
-	/*
+	var olderContent = 5;
+
 	//checking scrolling info to call ajax function
 	$(window).scroll(function() {   
-		if($(window).scrollTop() + $(window).height() > $(document).height() -100) {
-	    	// alert("bottom!");
-	    	// alert('<?=$lastEvidence?>');
-
+		if($(window).scrollTop() + $(window).height() == $(document).height()) {
+	    	
 	    	$.ajax({
 			    type: 'get',
-			    url: getCorrectURL('moreEvidences')+"/"+last,//"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
+			    url: getCorrectURL('moreEvidences')+"/"+last+"/"+olderContent,
+			    //"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
 			    beforeSend: function(xhr) {
 			        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 			    },
 			    success: function(response) {
-			        console.log(response);
-			        last = -1;
-			        // console.log(response['content']);	
-			        response = response.substring(12, response.length -15);
-			        console.log(response);	
-			        response = response.replace(/\\/g+'n', "");
-			        response = response.replace("\n", "");
-			        response = response.replace("\r", "");
-			        response = response.replace("\t", "");
-			        response = response.replace(/\\/g, "");
+			        var responseLast = response.substring(response.search("lastBegin") + 9, response.search("lastEnd"));
+			        
+			        last = responseLast;
+			        response = response.substring(response.search("lastEnd")+7);
+			        
+			        // console.log(response);	
+
 			        $('#target').append((response));
-			        // alert(response);
-			  		// for (var i = 0; i < response.length; i++) {
-			  		// for(var i in response){
-			  		// 	console.log(response[i]);	
-			  		// }
-			  		// 	// console.log(response[i]);
-			  		// 	// alert(object);
-			  		// 						    // for (var property in object) {
-					  //   //     alert('item ' + i + ': ' + property + '=' + object[property]);
-					  //   // }
-			  		// };
+			        
 			    },
 			    error: function(e) {
-			        alert("An error occurred: " + e.responseText.message);
+			        // alert("An error occurred: " + e.responseText.message);
 			        console.log(e);
 			    }
 			});
 		}
 	});
-	*/
+	
 	function htmlEntities(str) {
 	    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 	}

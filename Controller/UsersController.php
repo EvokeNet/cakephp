@@ -148,7 +148,7 @@ class UsersController extends AppController {
 	}
 
 
-	public function moreEvidences($lastEvidence){
+	public function moreEvidences($lastEvidence, $limit = 1){
 		$this->autoRender = false; // We don't render a view in this example
     	$this->request->onlyAllow('ajax'); // No direct access via browser URL
 
@@ -170,27 +170,25 @@ class UsersController extends AppController {
 				'Evidence.title != ' => '',
 				'Evidence.modified <' => $last['Evidence']['modified']
 			),
-			'limit' => 8
+			'limit' => $limit
 		));
 
-    	$data = array (
-	        'content' => "",
-	        'error' => null,
-	    );
+    	$data = "";
+
+	    $str = "lastBegin-1lastEnd";
+	    $older = "";
     	foreach ($evidence as $key => $value) {
     		$view = new View($this, false);
 			$content = ($view->element('evidence', array('e' => $value)));
 			
-			$data['content'] .= $content .' ';
-			// $data['content'] = str_replace('\\/', "/", $data['content']);
+			$data .= $content .' ';
 
-    		// $olderEvidences[0] = array('newLast' => $value['Evidence']['id']);
+    		$older = $value['Evidence']['id'];
     	}
-    	
-    	// debug($olderEvidences);
-    	// die();
-    	// return "older";
-    	return json_encode($data);
+    	if($older != "") {
+    		$str = "lastBegin".$older."lastEnd";
+    	}
+    	return $str.$data;
 	}
 
 
@@ -297,7 +295,7 @@ class UsersController extends AppController {
 			'conditions' => array(
 				'Evidence.title != ' => ''
 			),
-			'limit' => 1
+			'limit' => 6
 		));
 
 		$myevidences = $this->User->Evidence->find('all', array(
