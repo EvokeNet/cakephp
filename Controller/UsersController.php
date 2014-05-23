@@ -646,10 +646,11 @@ class UsersController extends AppController {
 
 		$myevidences = $this->User->Evidence->find('all', array(
 			'order' => array(
-				'Evidence.created DESC'
+				'Evidence.modified DESC'
 			),
 			'conditions' => array(
 				'Evidence.user_id' => $id,
+				'Evidence.title != ' => ''
 			)
 		));
 
