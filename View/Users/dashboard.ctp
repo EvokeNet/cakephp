@@ -462,7 +462,7 @@
 	var last = $('meta[name=lastEvidence]').attr('content');
 	var olderContent = 5;
 
-	/*
+	
 	//checking scrolling info to call ajax function
 	$(window).scroll(function() {   
 		if($(window).scrollTop() + $(window).height() == $(document).height()) {
@@ -493,7 +493,7 @@
 			});
 		}
 	});
-	*/
+	
 	
 	function htmlEntities(str) {
 	    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
