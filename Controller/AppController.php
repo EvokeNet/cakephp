@@ -61,7 +61,7 @@ class AppController extends Controller {
         $userLevel = $this->getLevel($userPoints);
         $userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
 
-        $this->set(compact('userPoints', 'userLevel', 'userLevelPercentage'));
+        $this->set(compact('userPoints', 'userLevel', 'userLevelPercentage', 'cuser'));
         
         // $this->set('userPoints', $userPoints);
         // $this->set('userLevel', $userLevel);
