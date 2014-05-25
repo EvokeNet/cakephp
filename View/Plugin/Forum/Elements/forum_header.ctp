@@ -1,3 +1,9 @@
+<?php
+
+	$user = $cuser;
+
+?>
+
 <div class="evoke contain-to-grid top-bar-background">
   <nav class="top-bar row full-width-alternate" data-topbar>
     <ul class="title-area">
