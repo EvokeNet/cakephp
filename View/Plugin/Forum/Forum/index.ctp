@@ -3,7 +3,7 @@
     $this->extend('/Common/topbar');
     $this->start('menu');
 
-    echo $this->element('forum_header', array('user' => $cuser));
+    echo $this->element('forum_header', array('user' => $user));
     $this->end(); 
 
 ?>

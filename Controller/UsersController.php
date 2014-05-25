@@ -133,6 +133,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function logout() {
+		$this->Session->destroy();
 		$this->redirect($this->Auth->logout());
 	}
 
