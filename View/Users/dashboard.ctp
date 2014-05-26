@@ -516,8 +516,8 @@
 
 	//ajax on either evokation or evidence stream
 	$("#evokationTrigger").click(function (){
-		alert( $('#targetEvokation :last-child').offset().top);
-		if($(window).scrollTop() + $(window).height() == $('#targetEvokation :last-child').height()) {
+		// alert( $('#targetEvokation :last-child').offset().top);
+		if($(window).scrollTop() + $(window).height() >= $('#targetEvokation :last-child').offset().top) {
 			alert('evokation');
 
 		}
