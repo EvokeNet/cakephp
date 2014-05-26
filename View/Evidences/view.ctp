@@ -59,10 +59,13 @@
 			  		<?php 
 			  			$images = array();
 			  			$pdfs = array();
+			  			$docs = array();
 			  			foreach ($attachments as $attachment) :
 			  				$type = explode('/', $attachment['Attachment']['type']);
-							if($type[0] == 'application' && $type[1] != 'octet-stream'): 
+							if($type[0] == 'application' && $type[1] != 'octet-stream' && $type[1] == 'pdf'): 
 								$pdfs[] = $attachment;
+							elseif($type[0] == 'application' && ($type[1] == 'msword' || $type[1] == 'vnd.openxmlformats-officedocument.wordprocessingml.document')): 
+								$docs[] = $attachment;
 							else :
 								if($type[0] == 'image')
 									$images[] = $attachment;
@@ -107,6 +110,17 @@
 					  	<?php endforeach ?>
 						
 					<?php endif ?>
+
+					<?php if(!empty($docs)) :?>
+				  	  	
+					  	<?php foreach ($docs as $attachment): ?>
+					  		<?php $path = ' '.$this->webroot.'files/attachment/attachment/'.$attachment['Attachment']['dir'].'/'.$attachment['Attachment']['attachment'] . ''; ?>
+
+							<li><a href="<?= $path ?>" target = '_blank'><?= $attachment['Attachment']['attachment']?></a></li>
+
+					  	<?php endforeach; ?>
+						
+					<?php endif; ?>
 				  	
 				<?php endif ?>
 
