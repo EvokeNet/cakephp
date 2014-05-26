@@ -17,6 +17,11 @@
 	} else {
 		$showFollowButton = false;
 	}
+
+
+	if(!isset($my_id)){
+		$my_id = $users['User']['id'];
+	}
 ?>
 
 <div class = "evoke evidence content-box">
@@ -40,7 +45,7 @@
 			  		<?php else : ?>
 			  			<div class = "evoke evokation follow" style = "margin-left: 10px;">
 			  			<div style = "margin-bottom: -20px; font-size: 1.0vw;"><i class="fa fa-comment-o fa-horizontal"></i>&nbsp;&nbsp;<?= count($e['Comment']) ?></div>
-			  			<a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $users['User']['id'])); ?>" class = "evoke button general" style = "font-size: 0.8vw"><?php echo __('Follow');?></a></div>
+			  			<a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $my_id)); ?>" class = "evoke button general" style = "font-size: 0.8vw"><?php echo __('Follow');?></a></div>
 			  		<?php endif; ?>
 			  	<?php else: ?>
 
