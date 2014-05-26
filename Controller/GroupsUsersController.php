@@ -363,7 +363,7 @@ class GroupsUsersController extends AppController {
 			$this->loadModel('Evidence');
 			$evokationsEvidences = $this->Evidence->find('all', array(
 				'conditions' => array(
-					//'Evidence.evokation' => 1, -> only use as assets the evidences from que 'evokation-type' quests
+					'Evidence.evokation' => 1, //-> only use as assets the evidences from que 'evokation-type' quests
 					'Evidence.mission_id' => $thisgroup['Group']['mission_id'],
 					'OR' => $usersid
 				)
