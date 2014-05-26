@@ -192,20 +192,26 @@
 			  <dd><a href="#panel2-2"><?= strtoupper(__('My Projects')) ?></a></dd>
 			</dl>
 			<div class="evoke content-block default tabs-content">
-			  <div class="content active" id="panel2-1">
-			    <?php 
-		    		//Lists all projects and evidences
-		    		foreach($myevidences as $e): 
-	    				//echo $this->element('evidence_blue_box', array('e' => $e)); 
-	    				//echo $this->element('evidence_box', array('e' => $e)); 
-	    				echo $this->element('evidence', array('e' => $e)); 
-		    		endforeach; 
-				?>
+			  	<div class="content active" id="panel2-1">
+			    	<?php 
+			    		$lastEvidence = null;
+
+			    		//Lists all projects and evidences
+			    		foreach($myevidences as $e): 
+		    				//echo $this->element('evidence_blue_box', array('e' => $e)); 
+		    				//echo $this->element('evidence_box', array('e' => $e)); 
+		    				echo $this->element('evidence', array('e' => $e)); 
+	    					$lastEvidence = $e['Evidence']['id'];
+
+			    		endforeach; 
+					?>
+					<meta name="lastEvidence" content="<?php echo $lastEvidence; ?>">
+					<div id="target"></div>
 			  </div>
 			  <div class="content" id="panel2-2">
 			    <?php 
 		    		foreach($myEvokations as $e):
-		    			echo $this->element('evokation', array('e' => $e, 'mine' => true));
+		    			echo $this->element('evokation', array('e' => $e, 'mine' => false)); // HERE
 		    		endforeach;
 		    	?>
 			  </div>
@@ -222,8 +228,119 @@
 </section>
 
 <?php
+	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false)); 
 	echo $this->Html->script('reveal_modal', array('inline' => false));
 	echo $this->Html->script('mycarousel', array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->script('reveal_modal', array('inline' => false));
 ?>
+
+<script type="text/javascript" charset="utf-8">
+	$(document).ready( function() {});
+
+	var last = $('meta[name=lastEvidence]').attr('content');
+	var lastEvokation = $('meta[name=lastEvokation]').attr('content');
+	var olderContent = 5;
+	var evidence = true;
+	var lastLocal = last;
+	var method = 'moreEvidences';
+	var target = '#target';
+
+	//ajax on either evokation or evidence stream
+	$("#evokationTrigger").click(function (){
+		evidence = false;
+		lastLocal = lastEvokation;
+		method = 'moreEvokations';
+		target = '#targetEvokation';
+	});
+
+	$("#evidenceTrigger").click(function (){
+		evidence = true;
+		lastLocal = last;
+		method = 'moreEvidences';
+		target = '#target';
+	});
+
+	//checking scrolling info to call ajax function
+	$(window).scroll(throttle(function() {   
+		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 150)) {
+			// alert(isNaN(lastLocal) + " "+ lastLocal);
+			if((lastLocal) != "")
+				fillExtraContent();
+			// menuHeight();
+		}
+	}, 1500));
+	
+	function throttle(fn, threshhold, scope) {
+	  	threshhold || (threshhold = 250);
+	  	var last,
+	    	deferTimer;
+	  	return function () {
+	    	var context = scope || this;
+
+	    	var now = +new Date,
+	    	    args = arguments;
+	    	if (last && now < last + threshhold) {
+	    	  // hold on to it
+	    		clearTimeout(deferTimer);
+	    		deferTimer = setTimeout(function () {
+	    	    	last = now;
+	        		fn.apply(context, args);
+	      		}, threshhold);
+	    	} else {
+	    		last = now;
+	      		fn.apply(context, args);
+	    	}
+	  	};
+	}
+
+
+	function fillExtraContent(){
+		$.ajax({
+		    type: 'get',
+		    url: getCorrectURL(method)+"/"+lastLocal+"/"+olderContent,
+		    //"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
+		    beforeSend: function(xhr) {
+		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		    },
+		    success: function(response) {
+		        var responseLast = response.substring(response.search("lastBegin") + 9, response.search("lastEnd"));
+
+				lastLocal = responseLast;
+								        
+		        if(evidence) {
+					last = lastLocal;
+				} else {
+					lastEvokation = lastLocal;
+				}
+		        response = response.substring(response.search("lastEnd")+7);
+			        
+		        // console.log(response);	
+		        $(target).append((response));
+		    },
+		    error: function(e) {
+		        console.log(e);
+		    }
+		});
+	}
+
+	function getCorrectURL(afterHome){
+    	var str = document.URL;
+    	
+    	//str = str.substr(7, str.length);
+    	str = str.substr(0, str.indexOf("dashboard"));
+    	
+    	str = str.substr(0, str.length -1);
+    	// alert(str);
+    	if(str.length>1) {
+    		// str = str.substr(0, str.indexOf('/', 1));
+    		//alert(str);	
+    		str = str + '/' + afterHome;
+    		return str;
+    	} else {
+    		//alert(str);	
+    		return afterHome;
+    	}
+    	//alert(str);
+    }
+</script>
