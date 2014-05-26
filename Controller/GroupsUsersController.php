@@ -96,17 +96,12 @@ class GroupsUsersController extends AppController {
 			)
 		));
 
-		$loggedInUser = $this->Auth->user();
-		// debug($loggedInUser);
-
 		$usersid = array(); //used to set the OR condition used down there
 
 		foreach ($users as $user) {
 			array_push($usersid, array('Evidence.user_id' => $user['User']['id']));
-			// debug($loggedInUser);
-			if ($user['User']['id'] == $loggedInUser['id']) {
+			if ($user['User']['id'] == $this->getUserId()) {
 				$authorized = true;
-				//break;
 			}
 		}
 
@@ -368,7 +363,7 @@ class GroupsUsersController extends AppController {
 			$this->loadModel('Evidence');
 			$evokationsEvidences = $this->Evidence->find('all', array(
 				'conditions' => array(
-					'Evidence.evokation' => 1,
+					//'Evidence.evokation' => 1, -> only use as assets the evidences from que 'evokation-type' quests
 					'Evidence.mission_id' => $thisgroup['Group']['mission_id'],
 					'OR' => $usersid
 				)

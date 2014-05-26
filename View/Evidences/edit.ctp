@@ -14,7 +14,7 @@
 	<div class="row full-width-alternate padding top-1">
 
 		<div class="small-3 medium-3 large-3 columns evidence dossier">
-			<div class = "content-block box-padding">
+			<div class = "content-block box-padding ">
 
 			<i class="fa fa-file-text fa-2x"></i><h2><?= __('Mission Dossier: Files')?></h2>
 				    <ul>
@@ -127,6 +127,7 @@
 
 				<div class = "evoke evidence-body edit">
 
+				<div class = "padding30">
 				<?php echo $this->Form->create('Evidence', array('enctype' => 'multipart/form-data')); ?>
 					<?php //echo __('Edit Evidence'); ?>
 
@@ -162,6 +163,7 @@
 					?>
 				<?php //echo $this->Form->end(__('Save Evidence')); ?>
 				<div class = "evoke titles-right"><button type="submit" class= "evoke button general submit-button-margin"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save Evidence')) ?></button></div>
+				</div>
 				</div>
 			</div>
 		</div>
