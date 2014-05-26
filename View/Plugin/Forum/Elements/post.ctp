@@ -87,7 +87,7 @@ if($post_count == 1)
                     $isMod = $this->Forum->isMod($topic['Forum']['id']);
 
                     if ($topic['Topic']['firstPost_id'] == $post_id) {
-                        if ($isMod || ($topic['Topic']['status'] && $user['id'] == $post['Post']['user_id'])) {
+                        if ($isMod || ($topic['Topic']['status'] && $user['User']['id'] == $post['Post']['user_id'])) {
                             $links[] = $this->Html->link('<span class="fa fa-pencil fa-lg"></span>', array('controller' => 'topics', 'action' => 'edit', $topic['Topic']['slug'], (!empty($topic['Poll']['id']) ? 'poll' : '')), array('escape' => false, 'class' => 'js-tooltip', 'data-tooltip' => __d('forum', 'Edit Topic')));
                         }
 
@@ -97,7 +97,7 @@ if($post_count == 1)
 
                         //$links[] = $this->Html->link('<span class="fa fa-flag"></span>', array('controller' => 'topics', 'action' => 'report', $topic['Topic']['slug']), array('escape' => false, 'class' => 'js-tooltip', 'data-tooltip' => __d('forum', 'Report Topic')));
                     } else {
-                        if ($isMod || ($topic['Topic']['status'] && $user['id'] == $post['Post']['user_id'])) {
+                        if ($isMod || ($topic['Topic']['status'] && $user['User']['id'] == $post['Post']['user_id'])) {
                             $links[] = $this->Html->link('<span class="fa fa-pencil fa-lg"></span>', array('controller' => 'posts', 'action' => 'edit', $post_id), array('escape' => false, 'class' => 'js-tooltip', 'data-tooltip' => __d('forum', 'Edit Post')));
                             $links[] = $this->Html->link('<span class="fa fa-times fa-lg"></span>', array('controller' => 'posts', 'action' => 'delete', $post_id), array('escape' => false, 'confirm' => __d('forum', 'Are you sure you want to delete?'), 'class' => 'js-tooltip', 'data-tooltip' => __d('forum', 'Delete Post')));
                         }
