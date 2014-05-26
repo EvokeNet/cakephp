@@ -44,7 +44,7 @@ class PostsController extends ForumAppController {
      */
     public function add($slug, $quote_id = null) {
         $topic = $this->Post->Topic->getBySlug($slug);
-        $user_id = $this->Auth->user('id');
+        $user_id = $this->getUserId();
 
         if (!$topic) {
             throw new NotFoundException();
@@ -61,10 +61,10 @@ class PostsController extends ForumAppController {
             $this->request->data['Post']['user_id'] = $user_id;
             $this->request->data['Post']['userIP'] = $this->request->clientIp();
 
-            // if ($post_id = $this->Post->addPost($this->request->data['Post'])) {
-            //     $this->ForumToolbar->updatePosts($post_id);
-            //     $this->ForumToolbar->goToPage($topic['Topic']['id'], $post_id);
-            // }
+            if ($post_id = $this->Post->addPost($this->request->data['Post'])) {
+                $this->ForumToolbar->updatePosts($post_id);
+                $this->ForumToolbar->goToPage($topic['Topic']['id'], $post_id);
+            }
 
         } else if ($quote_id) {
             if ($quote = $this->Post->getQuote($quote_id)) {
