@@ -143,24 +143,55 @@
 		
 	</div>
 
-	  	<h3 class = "margin bottom-1"> <?= strtoupper(__('Evidence Stream')) ?> </h3>
+	  	<h3 class = "margin bottom-1"> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
+	  	
+	  	<dl class="default tabs" data-tab>
+		  <dd class="active"><a id="evidenceTrigger" href="#evidenceHolder"><?= strtoupper(__('All Evidences')) ?></a></dd>
+		  <dd><a id="evokationTrigger" href="#evokationHolder"><?= strtoupper(__('All Evokations')) ?></a></dd>
+		</dl>
 
-	  	<div class="evoke content-block default">
-		  <!-- <div class="content active" id="panel2-1"> -->
-		    
-		    <?php 
-		    	$lastEvidence = null;
-	    		//Lists all projects and evidences
-	    		foreach($evidence as $e): 
-    				
-    				echo $this->element('evidence', array('e' => $e)); 
-    				$lastEvidence = $e['Evidence']['id'];
-	    		endforeach; 
-	    		
-			?>
-			<meta name="lastEvidence" content="<?php echo $lastEvidence; ?>">
-			<div id="target"></div>
-		  <!-- </div> -->
+	  	<div class="evoke content-block default tabs-content">
+		  	<div class="content active" id="evidenceHolder">
+			    
+			    <?php 
+			    	$lastEvidence = null;
+		    		//Lists all projects and evidences
+		    		foreach($evidence as $e): 
+	    				
+	    				echo $this->element('evidence', array('e' => $e)); 
+	    				$lastEvidence = $e['Evidence']['id'];
+		    		endforeach; 
+		    		
+				?>
+				<meta name="lastEvidence" content="<?php echo $lastEvidence; ?>">
+				<div id="target"></div>
+			  </div>
+			  <div class="content" id="evokationHolder">
+					    <?php 
+					    	$lastEvokation = null;
+
+				    		foreach($evokations as $e):
+				    			$showFollowButton = true;
+				    			foreach($myEvokations as $my) :
+				    				if(array_search($my['Evokation']['id'], $e['Evokation'])) {
+				    					$showFollowButton = false;
+				    					break;
+				    				}
+				    			endforeach;
+
+				    			if($showFollowButton) 
+				    				echo $this->element('evokation', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+				    			else
+				    				echo $this->element('evokation', array('e' => $e, 'mine' => true));
+
+			    				$lastEvokation = $e['Evokation']['id'];
+
+							endforeach;
+						?>
+					<meta name="lastEvokation" content="<?php echo $lastEvokation; ?>">
+			    	<div id="targetEvokation"></div>
+
+			  </div>
 		</div>
 
 	  </div>
@@ -481,45 +512,90 @@
 	?>
 
 	var last = $('meta[name=lastEvidence]').attr('content');
+	var lastEvokation = $('meta[name=lastEvokation]').attr('content');
 	var olderContent = 5;
+	var evidence = true;
+	var lastLocal = last;
+	var method = 'moreEvidences';
+	var target = '#target';
 
-	
-	//checking scrolling info to call ajax function
-	$(window).scroll(function() {   
-		if($(window).scrollTop() + $(window).height() == $(document).height()) {
-
-	    	$.ajax({
-			    type: 'get',
-			    url: getCorrectURL('moreEvidences')+"/"+last+"/"+olderContent,
-			    //"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
-			    beforeSend: function(xhr) {
-			        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-			    },
-			    success: function(response) {
-			        var responseLast = response.substring(response.search("lastBegin") + 9, response.search("lastEnd"));
-			        
-			        last = responseLast;
-			        response = response.substring(response.search("lastEnd")+7);
-			        
-			        // console.log(response);	
-
-			        $('#target').append((response));
-			        // alert('YAY');
-			        
-			    },
-			    error: function(e) {
-			        // alert("An error occurred: " + e.responseText.message);
-			        console.log(e);
-			    }
-			});
-		}
+	//ajax on either evokation or evidence stream
+	$("#evokationTrigger").click(function (){
+		evidence = false;
+		lastLocal = lastEvokation;
+		method = 'moreEvokations';
+		target = '#targetEvokation';
 	});
+
+	$("#evidenceTrigger").click(function (){
+		evidence = true;
+		lastLocal = last;
+		method = 'moreEvidences';
+		target = '#target';
+	});
+
+	//checking scrolling info to call ajax function
+	$(window).scroll(throttle(function() {   
+		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 150)) {
+			
+			fillExtraContent();
+			// menuHeight();
+		}
+	}, 1500));
 	
-	
-	function htmlEntities(str) {
-	    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+	function throttle(fn, threshhold, scope) {
+	  	threshhold || (threshhold = 250);
+	  	var last,
+	    	deferTimer;
+	  	return function () {
+	    	var context = scope || this;
+
+	    	var now = +new Date,
+	    	    args = arguments;
+	    	if (last && now < last + threshhold) {
+	    	  // hold on to it
+	    		clearTimeout(deferTimer);
+	    		deferTimer = setTimeout(function () {
+	    	    	last = now;
+	        		fn.apply(context, args);
+	      		}, threshhold);
+	    	} else {
+	    		last = now;
+	      		fn.apply(context, args);
+	    	}
+	  	};
 	}
-	
+
+
+	function fillExtraContent(){
+		$.ajax({
+		    type: 'get',
+		    url: getCorrectURL(method)+"/"+lastLocal+"/"+olderContent,
+		    //"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
+		    beforeSend: function(xhr) {
+		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		    },
+		    success: function(response) {
+		        var responseLast = response.substring(response.search("lastBegin") + 9, response.search("lastEnd"));
+
+				lastLocal = responseLast;
+								        
+		        if(evidence) {
+					last = lastLocal;
+				} else {
+					lastEvokation = lastLocal;
+				}
+		        response = response.substring(response.search("lastEnd")+7);
+			        
+		        // console.log(response);	
+		        $(target).append((response));
+		    },
+		    error: function(e) {
+		        console.log(e);
+		    }
+		});
+	}
+
 	function getCorrectURL(afterHome){
     	var str = document.URL;
     	
