@@ -842,29 +842,8 @@ class UsersController extends AppController {
 		foreach($myPoints as $point){
 			$sumMyPoints += $point['Point']['value'];
 		}
-
-		$level_one = $this->User->find('all', array('conditions' => array('User.level' => 1)));
-
-		$level_two = $this->User->find('all', array('conditions' => array('User.level' => 2)));
 		
-		$questing_evi = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
-
-		$aux_evi = array();
-		$questing_user = array();
-
-		foreach($questing_evi as $evi):
-			array_push($aux_evi, array('User.id' => $evi['Evidence']['user_id']));
-		endforeach;
-
-		if(!empty($aux_evi)){
-			$questing_user = $this->User->find('all', array(
-				'conditions' => array(
-					'OR' => $aux_evi
-				)
-			));
-		}
-
-		$this->set(compact('level_one', 'level_two', 'questing_user', 'userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints'));
+		$this->set(compact('userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints'));
 	}
 
 /**
