@@ -52,7 +52,7 @@ class MissionsController extends AppController {
 			$flags['_es'] = true;
 		}
 
-		$missions = $this->Mission->find('all');
+		$missions = $this->Mission->find('all', array('conditions' => array('Mission.basic_training' => 0)));
 		foreach ($missions as $m => $mission) {
 			if($flags['_es']) {
 				$missions[$m]['Mission']['title'] = $mission['Mission']['title_es'];
@@ -60,6 +60,8 @@ class MissionsController extends AppController {
 			}
 
 		}
+
+		$basic_training = $this->Mission->find('first', array('conditions' => array('Mission.basic_training' => 1)));
 
 		$this->loadModel('User');
 
@@ -70,7 +72,7 @@ class MissionsController extends AppController {
 		$this->loadModel('Issue');
 		$issues = $this->Issue->find('all');
 
-		$this->set(compact('missions', 'user', 'missionIssues', 'issues'));
+		$this->set(compact('missions', 'user', 'missionIssues', 'issues', 'basic_training'));
 	}
 
 /**
@@ -564,11 +566,11 @@ class MissionsController extends AppController {
 
 		// if(isset($prevMP['Phase']['id']) && ((($completed[$prevMP['Phase']['id']] * 100)/$total[$prevMP['Phase']['id']]) != 100)) 
 		// 	return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
-		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 1) && $completed[$prevMP['Phase']['id']] < 2 && $user['User']['role_id'] < 2){
+		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 1) && $completed[$prevMP['Phase']['id']] < 2 && $user['User']['role_id'] > 2){
 			$this->Session->setFlash(__('You need to finish at least to quests to complete Basic Training'), 'flash_message');
 			return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
 		}
-		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 0) && $completed[$prevMP['Phase']['id']] < 1 && $user['User']['role_id'] < 2){
+		if(isset($prevMP['Phase']['id']) && ($mission['Mission']['basic_training'] == 0) && $completed[$prevMP['Phase']['id']] < 1 && $user['User']['role_id'] > 2){
 			$this->Session->setFlash(__('You need to finish at least one quest to go to next phase'), 'flash_message');
 			return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
 		}
