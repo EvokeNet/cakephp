@@ -864,24 +864,6 @@ class UsersController extends AppController {
 			));
 		}
 
-		foreach($users_groups as $g):
-			array_push($mygroups_id, array('Evokation.group_id' => $g['GroupsUser']['group_id']));
-		endforeach;
-
-		$myevokations = array();
-
-		if(!empty($mygroups_id)) {
-			//retrieve all organizations I am part of as a list to be displayed in a combobox
-			$myevokations = $this->Group->Evokation->find('all', array(
-				'order' => array(
-					'Evokation.created DESC'
-				),
-				'conditions' => array(
-					'OR' => $mygroups_id
-				)
-			));
-		} 
-
 		$this->set(compact('level_one', 'level_two', 'questing_user', 'userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints'));
 	}
 
