@@ -148,3 +148,7 @@
 .evoke.button.submit-button-margin{
 	margin-top:20px;
 }
+
+#CommentContent{
+	height:300px;
+}

@@ -243,7 +243,7 @@
 </div>
 
 <!-- Lightbox for commenting form -->
-<div id="myModalComment" class="reveal-modal tiny evoke lightbox-bg" data-reveal>
+<div id="myModalComment" class="reveal-modal small evoke lightbox-bg" data-reveal>
   	<?php if(isset($user['User'])) :?>
   		<?php echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'])); ?>
   	<?php else :?>
