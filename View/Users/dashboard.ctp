@@ -515,71 +515,87 @@
 	var lastEvokation = $('meta[name=lastEvokation]').attr('content');
 	var olderContent = 5;
 	var evidence = true;
+	var lastLocal = last;
+	var method = 'moreEvidences';
+	var target = '#target';
 
 	//ajax on either evokation or evidence stream
 	$("#evokationTrigger").click(function (){
 		evidence = false;
+		lastLocal = lastEvokation;
+		method = 'moreEvokations';
+		target = '#targetEvokation';
 	});
 
 	$("#evidenceTrigger").click(function (){
 		evidence = true;
+		lastLocal = last;
+		method = 'moreEvidences';
+		target = '#target';
 	});
 
 	//checking scrolling info to call ajax function
-	$(window).scroll(function() {   
-		if($(window).scrollTop() + $(window).height() < $(document).height() - 200) {
-			// alert('esta na aba evidence? '+evidence);
-			if(evidence) {
-				var lastLocal = last;
-				var method = 'moreEvidences';
-				var target = '#target';
-				// console.log("Evidence");
-			} else {
-				var lastLocal = lastEvokation;
-				var method = 'moreEvokations';
-				var target = '#targetEvokation';
-				// console.log("Evokation");
-			}
-
-	    	$.ajax({
-			    type: 'get',
-			    url: getCorrectURL(method)+"/"+lastLocal+"/"+olderContent,
-			    //"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
-			    beforeSend: function(xhr) {
-			        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-			    },
-			    success: function(response) {
-			        var responseLast = response.substring(response.search("lastBegin") + 9, response.search("lastEnd"));
-			        
-			        if(evidence) {
-						last = responseLast;
-					} else {
-						lastEvokation = responseLast;
-					}
-
-			        response = response.substring(response.search("lastEnd")+7);
-			        
-			        // console.log(response);	
-
-			        $(target).append((response));
-			        
-			    },
-			    error: function(e) {
-			        // alert("An error occurred: " + e.responseText.message);
-			        console.log(e);
-			        // alert(lastLocal);
-
-			    }
-			});
+	$(window).scroll(throttle(function() {   
+		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 150)) {
+			
+			fillExtraContent();
 			// menuHeight();
 		}
-	});
+	}, 1500));
 	
-	
-	function htmlEntities(str) {
-	    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+	function throttle(fn, threshhold, scope) {
+	  	threshhold || (threshhold = 250);
+	  	var last,
+	    	deferTimer;
+	  	return function () {
+	    	var context = scope || this;
+
+	    	var now = +new Date,
+	    	    args = arguments;
+	    	if (last && now < last + threshhold) {
+	    	  // hold on to it
+	    		clearTimeout(deferTimer);
+	    		deferTimer = setTimeout(function () {
+	    	    	last = now;
+	        		fn.apply(context, args);
+	      		}, threshhold);
+	    	} else {
+	    		last = now;
+	      		fn.apply(context, args);
+	    	}
+	  	};
 	}
-	
+
+
+	function fillExtraContent(){
+		$.ajax({
+		    type: 'get',
+		    url: getCorrectURL(method)+"/"+lastLocal+"/"+olderContent,
+		    //"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
+		    beforeSend: function(xhr) {
+		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		    },
+		    success: function(response) {
+		        var responseLast = response.substring(response.search("lastBegin") + 9, response.search("lastEnd"));
+
+				lastLocal = responseLast;
+								        
+		        if(evidence) {
+					last = lastLocal;
+				} else {
+					lastEvokation = lastLocal;
+				}
+		        response = response.substring(response.search("lastEnd")+7);
+			        
+		        // console.log(response);	
+		        $(target).append((response));
+		    },
+		    error: function(e) {
+		        console.log(e);
+		    }
+		});
+	}
+
 	function getCorrectURL(afterHome){
     	var str = document.URL;
     	

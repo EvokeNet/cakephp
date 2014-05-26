@@ -149,21 +149,20 @@ class UsersController extends AppController {
 	}
 
 
-	public function moreEvidences($lastEvidence, $limit = 1){
+	public function moreEvidences($lastOne, $limit = 1){
 		$this->autoRender = false; // We don't render a view in this example
     	$this->request->onlyAllow('ajax'); // No direct access via browser URL
 
-    	$last = $this->User->Evidence->find('first', array(
+   		$last = $this->User->Evidence->find('first', array(
     		'conditions' => array(
-    			'Evidence.id' => $lastEvidence
-    		),
-    	));
-
+    			'Evidence.id' => $lastOne
+    		)
+    	));	
 
     	if(empty($last))
-    		return json_encode(array());
+    			return json_encode(array());
 
-    	$evidence = $this->User->Evidence->find('all', array(
+    	$obj = $this->User->Evidence->find('all', array(
 			'order' => array(
 				'Evidence.created DESC'
 			),
@@ -174,17 +173,109 @@ class UsersController extends AppController {
 			'limit' => $limit
 		));
 
+		$el = 'evidence';
+		$ind = 'Evidence';
+    	
+
     	$data = "";
 
 	    $str = "lastBegin-1lastEnd";
 	    $older = "";
-    	foreach ($evidence as $key => $value) {
+    	foreach ($obj as $key => $value) {
     		$view = new View($this, false);
-			$content = ($view->element('evidence', array('e' => $value)));
+			$content = ($view->element($el, array('e' => $value)));
 			
 			$data .= $content .' ';
 
-    		$older = $value['Evidence']['id'];
+    		$older = $value[$ind]['id'];
+    	}
+    	if($older != "") {
+    		$str = "lastBegin".$older."lastEnd";
+    	}
+    	return $str.$data;
+	}
+
+
+	public function moreEvokations($lastOne, $limit = 1){
+		$this->autoRender = false; // We don't render a view in this example
+    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+
+    	$this->loadModel('Evokation');
+   		$last = $this->Evokation->find('first', array(
+    		'conditions' => array(
+    			'Evokation.id' => $lastOne
+    		)
+    	));	
+
+    	if(empty($last))
+    			return json_encode(array());
+
+    	$obj = $this->Evokation->find('all', array(
+			'order' => array(
+				'Evokation.modified DESC'
+			),
+			'conditions' => array(
+				'Evokation.sent ' => 1,
+				'Evokation.modified <' => $last['Evokation']['modified']
+			),
+			'limit' => $limit
+		));
+
+		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
+			'conditions' => array(
+				'EvokationFollower.user_id' => $this->getUserId()
+			)
+		));
+
+		$myEvokations = array();
+		foreach ($obj as $evokation) {
+			$mine = false;
+			if($evokation['Group']['user_id'] == $id)
+				$mine = true;
+
+			$this->loadModel('Group');
+			$group_evokation = $this->Group->GroupsUser->find('first', array(
+				'conditions' => array(
+					'GroupsUser.group_id' => $evokation['Group']['id'],
+					'GroupsUser.user_id' => $id
+				)
+			));
+			
+			if(!empty($group_evokation))
+				$mine = true;
+
+			if($mine){
+				array_push($myEvokations, $evokation);
+			}	
+		}
+
+		$el = 'evokation';
+		$ind = 'Evokation';
+    	
+
+    	$data = "";
+
+	    $str = "lastBegin-1lastEnd";
+	    $older = "";
+    	foreach ($obj as $key => $value) {
+    		$showFollowButton = true;
+			foreach($myEvokations as $my) :
+				if(array_search($my['Evokation']['id'], $value['Evokation'])) {
+					$showFollowButton = false;
+					break;
+				}
+			endforeach;
+
+    		$view = new View($this, false);
+
+			if($showFollowButton) 
+				$content = ($view->element($el, array('e' => $value, 'evokationsFollowing' => $evokationsFollowing, 'my_id' => $this->getUserId())));
+			else
+				$content = ($view->element($el, array('e' => $value, 'mine' => true, 'my_id' => $this->getUserId())));
+
+			$data .= $content .' ';
+
+    		$older = $value[$ind]['id'];
     	}
     	if($older != "") {
     		$str = "lastBegin".$older."lastEnd";
@@ -286,19 +377,19 @@ class UsersController extends AppController {
 			'conditions' => array(
 				'Evidence.title != ' => ''
 			),
-			'limit' => 1 // CHANGE 8
+			'limit' => 8 // CHANGE 8
 		));
 
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array(
 			'order' => array(
-				'Evokation.created DESC'
+				'Evokation.modified DESC'
 			),
 			'conditions' => array(
 				'Evokation.sent' => 1
 			),
-			'limit' => 1 // CHANGE 8
+			'limit' => 8 // CHANGE 8
 		));
 
 		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
