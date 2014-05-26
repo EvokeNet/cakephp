@@ -355,6 +355,15 @@ class UsersController extends AppController {
 					'Notification.created DESC'
 				)
 			));
+			
+			foreach ($feed as $key => $value) {
+			 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
+		 	 		$value['Notification']['origin'] == 'commentEvidence') {
+		 	 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
+		 	 			unset($feed[$key]);
+		 	 		}
+		 	 	}
+		 	}
 		} 
 
 		if(!empty($my_notifies)){
@@ -366,6 +375,15 @@ class UsersController extends AppController {
 					'Notification.created DESC'
 				)
 			));
+
+			foreach ($notifies as $key => $value) {
+			 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
+		 	 		$value['Notification']['origin'] == 'commentEvidence') {
+		 	 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
+		 	 			unset($notifies[$key]);
+		 	 		}
+		 	 	}
+		 	}
 		} 
 
 		$this->loadModel('Mission');
