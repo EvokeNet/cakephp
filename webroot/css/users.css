@@ -8,8 +8,10 @@
 	/*max-height: 150px;*/ 
 	
 	/*max-width: 120px;*/ 
-	width: 100px;
-	height: 110px;
+	/*width: 100px;
+	height: 110px;*/
+	width: 5.5vw;
+	height: 7vw;
 	overflow:hidden;
 	margin:10px 0px 0px 20px;
 }
