@@ -143,24 +143,54 @@
 		
 	</div>
 
-	  	<h3 class = "margin bottom-1"> <?= strtoupper(__('Evidence Stream')) ?> </h3>
+	  	<h3 class = "margin bottom-1"> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
+	  	
+	  	<dl class="default tabs" data-tab>
+		  <dd class="active"><a id="evidenceTrigger" href="#evidenceHolder"><?= strtoupper(__('All Evidences')) ?></a></dd>
+		  <dd><a id="evokationTrigger" href="#evokationHolder"><?= strtoupper(__('All Evokations')) ?></a></dd>
+		</dl>
 
-	  	<div class="evoke content-block default">
-		  <!-- <div class="content active" id="panel2-1"> -->
-		    
-		    <?php 
-		    	$lastEvidence = null;
-	    		//Lists all projects and evidences
-	    		foreach($evidence as $e): 
-    				
-    				echo $this->element('evidence', array('e' => $e)); 
-    				$lastEvidence = $e['Evidence']['id'];
-	    		endforeach; 
-	    		
-			?>
-			<meta name="lastEvidence" content="<?php echo $lastEvidence; ?>">
-			<div id="target"></div>
-		  <!-- </div> -->
+	  	<div class="evoke content-block default tabs-content">
+		  	<div class="content active" id="evidenceHolder">
+			    
+			    <?php 
+			    	$lastEvidence = null;
+		    		//Lists all projects and evidences
+		    		foreach($evidence as $e): 
+	    				
+	    				echo $this->element('evidence', array('e' => $e)); 
+	    				$lastEvidence = $e['Evidence']['id'];
+		    		endforeach; 
+		    		
+				?>
+				<meta name="lastEvidence" content="<?php echo $lastEvidence; ?>">
+				<div id="target"></div>
+			  </div>
+			  <div class="content" id="evokationHolder">
+			    	<div id="targetEvokation">
+			    <?php 
+		    		foreach($evokations as $e):
+		    			$showFollowButton = true;
+		    			foreach($myEvokations as $my) :
+		    				if(array_search($my['Evokation']['id'], $e['Evokation'])) {
+		    					$showFollowButton = false;
+		    					break;
+		    				}
+		    			endforeach;
+
+		    			if($showFollowButton) 
+		    				echo $this->element('evokation', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+		    			else
+		    				echo $this->element('evokation', array('e' => $e, 'mine' => true));
+
+	    				$lastEvokation = $e['Evokation']['id'];
+
+					endforeach;
+				?>
+				</div>
+				<meta name="lastEvokation" content="<?php echo $lastEvokation; ?>">
+
+			  </div>
 		</div>
 
 	  </div>
@@ -483,7 +513,21 @@
 	var last = $('meta[name=lastEvidence]').attr('content');
 	var olderContent = 5;
 
-	
+
+	//ajax on either evokation or evidence stream
+	$("#evokationTrigger").click(function (){
+		alert( $('#targetEvokation :last-child').offset().top);
+		if($(window).scrollTop() + $(window).height() == $('#targetEvokation :last-child').height()) {
+			alert('evokation');
+
+		}
+	});
+
+	$("#evidenceTrigger").click(function (){
+		// alert('evidence');
+	});
+
+
 	//checking scrolling info to call ajax function
 	$(window).scroll(function() {   
 		if($(window).scrollTop() + $(window).height() == $(document).height()) {

@@ -289,6 +289,45 @@ class UsersController extends AppController {
 			'limit' => 8
 		));
 
+
+		$this->loadModel('Evokation');
+		$evokations = $this->Evokation->find('all', array(
+			'order' => array(
+				'Evokation.created DESC'
+			),
+			'conditions' => array(
+				'Evokation.sent' => 1
+			)
+		));
+
+		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
+			'conditions' => array(
+				'EvokationFollower.user_id' => $this->getUserId()
+			)
+		));
+
+		$myEvokations = array();
+		foreach ($evokations as $evokation) {
+			$mine = false;
+			if($evokation['Group']['user_id'] == $id)
+				$mine = true;
+
+			$this->loadModel('Group');
+			$group_evokation = $this->Group->GroupsUser->find('first', array(
+				'conditions' => array(
+					'GroupsUser.group_id' => $evokation['Group']['id'],
+					'GroupsUser.user_id' => $id
+				)
+			));
+			
+			if(!empty($group_evokation))
+				$mine = true;
+
+			if($mine){
+				array_push($myEvokations, $evokation);
+			}	
+		}
+
 		// $myevidences = $this->User->Evidence->find('all', array(
 		// 	'order' => array(
 		// 		'Evidence.modified DESC'
@@ -557,7 +596,8 @@ class UsersController extends AppController {
 		}
 		
 		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'evidence', 'myevidences', 'missions', 
-			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies', 'show_basic_training'));
+			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies', 
+			'show_basic_training', 'evokations', 'evokationsFollowing', 'myEvokations'));
 		//'groups', 'my_photo', 'user_photo',
 		
 	}
