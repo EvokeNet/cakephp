@@ -655,6 +655,30 @@ class UsersController extends AppController {
 			)
 		));
 
+		$this->loadModel('Group');
+		$this->loadModel('GroupsUser');
+		$users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
+
+		$mygroups_id = array();
+
+		foreach($users_groups as $g):
+			array_push($mygroups_id, array('Evokation.group_id' => $g['GroupsUser']['group_id']));
+		endforeach;
+
+		$myevokations = array();
+
+		if(!empty($mygroups_id)) {
+			//retrieve all organizations I am part of as a list to be displayed in a combobox
+			$myevokations = $this->Group->Evokation->find('all', array(
+				'order' => array(
+					'Evokation.created DESC'
+				),
+				'conditions' => array(
+					'OR' => $mygroups_id
+				)
+			));
+		} 
+
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array(
 			'order' => array(
@@ -665,27 +689,27 @@ class UsersController extends AppController {
 			)
 		));
 
-		$myEvokations = array();
-		foreach ($evokations as $evokation) {
-			$mine = false;
-			if($evokation['Group']['user_id'] == $id)
-				$mine = true;
+		// $myEvokations = array();
+		// foreach ($evokations as $evokation) {
+		// 	$mine = false;
+		// 	if($evokation['Group']['user_id'] == $id)
+		// 		$mine = true;
 
-			$this->loadModel('Group');
-			$group_evokation = $this->Group->GroupsUser->find('first', array(
-				'conditions' => array(
-					'GroupsUser.group_id' => $evokation['Group']['id'],
-					'GroupsUser.user_id' => $id
-				)
-			));
+		// 	$this->loadModel('Group');
+		// 	$group_evokation = $this->Group->GroupsUser->find('first', array(
+		// 		'conditions' => array(
+		// 			'GroupsUser.group_id' => $evokation['Group']['id'],
+		// 			'GroupsUser.user_id' => $id
+		// 		)
+		// 	));
 			
-			if(!empty($group_evokation))
-				$mine = true;
+		// 	if(!empty($group_evokation))
+		// 		$mine = true;
 
-			if($mine){
-				array_push($myEvokations, $evokation);
-			}	
-		}
+		// 	if($mine){
+		// 		array_push($myEvokations, $evokation);
+		// 	}	
+		// }
 		
 		$this->loadModel('Badge');
 
@@ -712,7 +736,7 @@ class UsersController extends AppController {
 
 		}
 
-		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
+		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
 

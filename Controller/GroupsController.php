@@ -133,13 +133,20 @@ class GroupsController extends AppController {
 
 		$groups = $this->Group->find('all');
 
+		$evokations = $this->Group->Evokation->find('all');
+
 		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
+
+		$this->loadModel('GroupsUser');
+		$users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
 
 		$mygroups_id = array();
 
-		foreach($myGroups as $g):
-			array_push($mygroups_id, array('Evokation.group_id' => $g['Group']['id']));
+		foreach($users_groups as $g):
+			array_push($mygroups_id, array('Evokation.group_id' => $g['GroupsUser']['group_id']));
 		endforeach;
+
+		$myevokations = array();
 
 		if(!empty($mygroups_id)) {
 			//retrieve all organizations I am part of as a list to be displayed in a combobox
@@ -151,14 +158,9 @@ class GroupsController extends AppController {
 					'OR' => $mygroups_id
 				)
 			));
-		} else {
-			$myevokations = array();
-		}
+		} 
 
-		$this->loadModel('GroupsUser');
-		$users_groups = $this->GroupsUser->find('all');
-
-		$this->set(compact('missionIssues', 'groups', 'user', 'myGroups', 'missions', 'users_groups'));
+		$this->set(compact('missionIssues', 'myevokations', 'evokations', 'groups', 'user', 'myGroups', 'missions', 'users_groups'));
 		
 	}
 
