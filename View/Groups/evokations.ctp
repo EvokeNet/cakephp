@@ -31,8 +31,8 @@
 		<div class="evoke sheer-background" style = "min-height:500px">
 
 			<dl class="evokations tabs float-right" data-tab>
-			  <dd class="active" id = "their"><a href="#panel2-1"><?= strtoupper(__('All Evokation Teams')) ?></a></dd>
-			  <dd><a href="#panel2-2" id = "mine"><?= strtoupper(__('My Evokation Teams')) ?></a></dd>
+			  <dd class="active" id = "their"><a href="#panel2-1"><?= strtoupper(__('All Evokations')) ?></a></dd>
+			  <dd><a href="#panel2-2" id = "mine"><?= strtoupper(__('My Evokations')) ?></a></dd>
 			</dl>
 			<div class="tabs-content">
 			  <div class="content active" id="panel2-1">
@@ -53,10 +53,10 @@
 				  			<div class="content vertical <?= $classe ?>" id="panel21-<?= $m['Mission']['id'] ?>">
 							    <!-- <p><?= strtoupper($m['Mission']['title'])?></p> -->
 
-							    <?php foreach($groups as $mg):
+							    <?php foreach($evokations as $mg):
 								//If the mission belongs to that category, it is printed
 									if($mg['Group']['mission_id'] == $m['Mission']['id']):
-										echo $this->element('group_box', array('e' => $mg, 'user' => $user, 'users' => $users_groups)); 
+										echo $this->element('evokation_box', array('e' => $mg, 'user' => $user, 'users' => $users_groups)); 
 									endif; endforeach; 
 								?>
 
@@ -85,13 +85,13 @@
 				  			<div class="content vertical <?= $classe2 ?>" id="panel31-<?= $m['Mission']['id'] ?>">
 							    <!-- <p><?= strtoupper($m['Mission']['title'])?></p> -->
 
-							    <?php foreach($myGroups as $mg):
+							    <?php foreach($myevokations as $mg):
 								//If the mission belongs to that category, it is printed
 									if($mg['Group']['mission_id'] == $m['Mission']['id']):
-										echo $this->element('group_box', array('e' => $mg, 'user' => $user, 'users' => $users_groups)); 
+										echo $this->element('evokation_box', array('e' => $mg, 'user' => $user, 'users' => $users_groups)); 
 									endif; endforeach; 
 								?>
-
+								
 							</div>
 
 					<?php endforeach;  ?>

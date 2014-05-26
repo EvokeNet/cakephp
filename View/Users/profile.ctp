@@ -26,7 +26,7 @@
 	  	<?php echo $this->element('menu', array('user' => $users));?>
 	  </div>
 
-	  <div class="small-10 medium-10 large-10 columns maincolumn body-padding">
+	  <div class="small-10 medium-10 large-10 columns maincolumn">
 
 	  <div class = "tint">
 	  	<div class="row margin-left-0 margin-right-0 padding top-1">
@@ -163,7 +163,7 @@
 		  <div class="small-6 medium-6 large-6 columns padding top-2 group">
 		  	<h3 class = "margin bottom-1"><?= strtoupper(__("Evokations Groups")) ?></h3>
 
-		  	<?php foreach($myEvokations as $e): ?>
+		  	<?php foreach($myevokations as $e): ?>
 
 		  		<a href = "<?= $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])) ?>">
 	    			<div class="row padding bottom-2">
@@ -204,7 +204,7 @@
 			  </div>
 			  <div class="content" id="panel2-2">
 			    <?php 
-		    		foreach($myEvokations as $e):
+		    		foreach($myevokations as $e):
 		    			echo $this->element('evokation', array('e' => $e, 'mine' => true));
 		    		endforeach;
 		    	?>
