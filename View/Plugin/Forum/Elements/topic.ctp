@@ -58,7 +58,7 @@ if($post_count == 1)
     <div class="row full-width-alternate padding bottom-1" data-equalizer>
 
       <div class="small-2 medium-2 large-2 columns" data-equalizer-watch>
-        <a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $post['User']['id'])) ?>">
+        <a href = "<?= $this->Html->url(array('plugin' => '', 'controller' => 'users', 'action' => 'profile', $post['User']['id'])) ?>">
             <?php if($post['User']['photo_attachment'] == null) : ?>
                 <?php if($post['User']['facebook_id'] == null) : ?>
                     <div class = "topic icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
