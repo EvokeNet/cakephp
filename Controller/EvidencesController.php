@@ -265,7 +265,7 @@ class EvidencesController extends AppController {
 					}
 				}
 
-				if(empty($me['Evidence']['content'])) {
+				if(empty($this->request->data['Evidence']['content'])) {
 					//debug($me);
 					$this->Session->setFlash(__('You need to fill the content'),'flash_message');
 					$this->redirect($this->referer());
