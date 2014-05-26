@@ -167,28 +167,29 @@
 				<div id="target"></div>
 			  </div>
 			  <div class="content" id="evokationHolder">
-			    	<div id="targetEvokation">
-			    <?php 
-		    		foreach($evokations as $e):
-		    			$showFollowButton = true;
-		    			foreach($myEvokations as $my) :
-		    				if(array_search($my['Evokation']['id'], $e['Evokation'])) {
-		    					$showFollowButton = false;
-		    					break;
-		    				}
-		    			endforeach;
+					    <?php 
+					    	$lastEvokation = null;
 
-		    			if($showFollowButton) 
-		    				echo $this->element('evokation', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
-		    			else
-		    				echo $this->element('evokation', array('e' => $e, 'mine' => true));
+				    		foreach($evokations as $e):
+				    			$showFollowButton = true;
+				    			foreach($myEvokations as $my) :
+				    				if(array_search($my['Evokation']['id'], $e['Evokation'])) {
+				    					$showFollowButton = false;
+				    					break;
+				    				}
+				    			endforeach;
 
-	    				$lastEvokation = $e['Evokation']['id'];
+				    			if($showFollowButton) 
+				    				echo $this->element('evokation', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+				    			else
+				    				echo $this->element('evokation', array('e' => $e, 'mine' => true));
 
-					endforeach;
-				?>
-				</div>
-				<meta name="lastEvokation" content="<?php echo $lastEvokation; ?>">
+			    				$lastEvokation = $e['Evokation']['id'];
+
+							endforeach;
+						?>
+					<meta name="lastEvokation" content="<?php echo $lastEvokation; ?>">
+			    	<div id="targetEvokation"></div>
 
 			  </div>
 		</div>
@@ -511,30 +512,38 @@
 	?>
 
 	var last = $('meta[name=lastEvidence]').attr('content');
+	var lastEvokation = $('meta[name=lastEvokation]').attr('content');
 	var olderContent = 5;
-
+	var evidence = true;
 
 	//ajax on either evokation or evidence stream
 	$("#evokationTrigger").click(function (){
-		// alert( $('#targetEvokation :last-child').offset().top);
-		if($(window).scrollTop() + $(window).height() >= $('#targetEvokation :last-child').offset().top) {
-			alert('evokation');
-
-		}
+		evidence = false;
 	});
 
 	$("#evidenceTrigger").click(function (){
-		// alert('evidence');
+		evidence = true;
 	});
-
 
 	//checking scrolling info to call ajax function
 	$(window).scroll(function() {   
-		if($(window).scrollTop() + $(window).height() == $(document).height()) {
+		if($(window).scrollTop() + $(window).height() < $(document).height() - 200) {
+			// alert('esta na aba evidence? '+evidence);
+			if(evidence) {
+				var lastLocal = last;
+				var method = 'moreEvidences';
+				var target = '#target';
+				// console.log("Evidence");
+			} else {
+				var lastLocal = lastEvokation;
+				var method = 'moreEvokations';
+				var target = '#targetEvokation';
+				// console.log("Evokation");
+			}
 
 	    	$.ajax({
 			    type: 'get',
-			    url: getCorrectURL('moreEvidences')+"/"+last+"/"+olderContent,
+			    url: getCorrectURL(method)+"/"+lastLocal+"/"+olderContent,
 			    //"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
 			    beforeSend: function(xhr) {
 			        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -542,20 +551,27 @@
 			    success: function(response) {
 			        var responseLast = response.substring(response.search("lastBegin") + 9, response.search("lastEnd"));
 			        
-			        last = responseLast;
+			        if(evidence) {
+						last = responseLast;
+					} else {
+						lastEvokation = responseLast;
+					}
+
 			        response = response.substring(response.search("lastEnd")+7);
 			        
 			        // console.log(response);	
 
-			        $('#target').append((response));
-			        // alert('YAY');
+			        $(target).append((response));
 			        
 			    },
 			    error: function(e) {
 			        // alert("An error occurred: " + e.responseText.message);
 			        console.log(e);
+			        // alert(lastLocal);
+
 			    }
 			});
+			// menuHeight();
 		}
 	});
 	

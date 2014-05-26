@@ -286,7 +286,7 @@ class UsersController extends AppController {
 			'conditions' => array(
 				'Evidence.title != ' => ''
 			),
-			'limit' => 8
+			'limit' => 1 // CHANGE 8
 		));
 
 
@@ -297,7 +297,8 @@ class UsersController extends AppController {
 			),
 			'conditions' => array(
 				'Evokation.sent' => 1
-			)
+			),
+			'limit' => 1 // CHANGE 8
 		));
 
 		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
