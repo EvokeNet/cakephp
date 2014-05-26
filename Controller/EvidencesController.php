@@ -350,16 +350,22 @@ class EvidencesController extends AppController {
 		if (!$this->Evidence->exists()) {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
+
+		$this->autoRender = false;
+
 		//$this->request->onlyAllow('post', 'delete');
 
 		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $id)));
+
+		$mid = $evidence['Evidence']['mission_id'];
+		$pid = $evidence['Evidence']['phase_id'];
 
 		if ($this->Evidence->delete()) {
 			$this->Session->setFlash(__('The evidence has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The evidence could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'], $evidence['Phase']['id']));
+		return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mid, $pid));
 	}
 
 /**
