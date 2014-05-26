@@ -13,7 +13,7 @@ $canReply = ($user && $topic['Topic']['status'] && $this->Forum->hasAccess('Foru
 $this->extend('/Common/topbar');
     $this->start('menu');
 
-    echo $this->element('forum_header', array('user' => $user));
+    echo $this->element('forum_header');
     $this->end(); 
 
 ?>

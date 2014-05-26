@@ -248,6 +248,27 @@
 												
 					<?php endif; ?>
 
+					<?php if($n['Notification']['origin'] == 'voteEvokation'):
+
+						if($action_user['User']['id'] != $users['User']['id']){ ?>
+
+							<li>
+								<?php if($action_user['User']['photo_attachment'] == null) : ?>
+									<?php if($action_user['User']['facebook_id'] == null) : ?>
+										<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+									<?php else : ?>	
+										<img src="https://graph.facebook.com/<?php echo $action_user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+									<?php endif; ?>
+					  			<?php else : ?>
+					  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$action_user['User']['photo_dir'].'/'.$action_user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+					  			<?php endif; ?>
+								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evokation your group posted'), $action_user['User']['name']) ?></a>
+							</li>
+
+						<?php } ?>
+												
+					<?php endif; ?>
+
 				<?php endforeach; ?>
 				<?php endif; ?>
 			</ul>
@@ -466,9 +487,7 @@
 	//checking scrolling info to call ajax function
 	$(window).scroll(function() {   
 		if($(window).scrollTop() + $(window).height() == $(document).height()) {
-	    	
-	    	// alert('YAY0');
-	    	
+
 	    	$.ajax({
 			    type: 'get',
 			    url: getCorrectURL('moreEvidences')+"/"+last+"/"+olderContent,
@@ -500,6 +519,7 @@
 	function htmlEntities(str) {
 	    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 	}
+	
 	function getCorrectURL(afterHome){
     	var str = document.URL;
     	
