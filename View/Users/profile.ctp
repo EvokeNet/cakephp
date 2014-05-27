@@ -18,8 +18,6 @@
 
 <section class="evoke default-background">
 
-	<?php echo $this->Session->flash(); ?>
-
 	<div class="evoke default row full-width-alternate profile">
 
 	  <div class="small-2 medium-2 large-2 columns padding-left">
@@ -27,6 +25,7 @@
 	  </div>
 
 	  <div class="small-10 medium-10 large-10 columns maincolumn body-padding">
+		<?php echo $this->Session->flash(); ?>
 
 	  <div class = "tint">
 	  	<div class="row margin-left-0 margin-right-0 padding top-1">
@@ -188,8 +187,8 @@
 		  	<h3 class = "margin bottom-1"> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
 
 		  	<dl class="default tabs" data-tab>
-			  <dd class="active"><a href="#panel2-1"><?= strtoupper(__('My Evidences')) ?></a></dd>
-			  <dd><a href="#panel2-2"><?= strtoupper(__('My Projects')) ?></a></dd>
+			  <dd class="active"><a id="evidenceTrigger" href="#panel2-1"><?= strtoupper(__('My Evidences')) ?></a></dd>
+			  <dd><a id="evokationTrigger" href="#panel2-2"><?= strtoupper(__('My Projects')) ?></a></dd>
 			</dl>
 			<div class="evoke content-block default tabs-content">
 			  	<div class="content active" id="panel2-1">
@@ -264,7 +263,7 @@
 	//checking scrolling info to call ajax function
 	$(window).scroll(throttle(function() {   
 		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 150)) {
-			// alert(isNaN(lastLocal) + " "+ lastLocal);
+			// alert(lastLocal);
 			if((lastLocal) != "")
 				fillExtraContent();
 			// menuHeight();
@@ -296,6 +295,7 @@
 
 
 	function fillExtraContent(){
+		// alert("hello");
 		$.ajax({
 		    type: 'get',
 		    url: getCorrectURL(method)+"/"+lastLocal+"/"+olderContent,
@@ -328,7 +328,7 @@
     	var str = document.URL;
     	
     	//str = str.substr(7, str.length);
-    	str = str.substr(0, str.indexOf("dashboard"));
+    	str = str.substr(0, str.indexOf("profile"));
     	
     	str = str.substr(0, str.length -1);
     	// alert(str);

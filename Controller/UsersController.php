@@ -803,7 +803,7 @@ class UsersController extends AppController {
 				'Evidence.user_id' => $id,
 				'Evidence.title != ' => ''
 			),
-			'limit' => 8 // CHANGE 8
+			'limit' => 1 // CHANGE 8
 		));
 
 		$this->loadModel('Evokation');
