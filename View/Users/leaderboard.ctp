@@ -71,6 +71,11 @@
 					?>
 
 				</div>
+
+				<div class="content vertical" id="panel1-1">
+
+				</div>
+
 				<?php 
 					$index = 1;
 					foreach ($power_points as $pp) {
@@ -135,6 +140,7 @@
 		<div class="small-2 medium-2 large-2 columns">
 			<dl class="leaderboard tabs vertical margin top-6" data-tab>
 				<dd class="active"><a id="xp" href="#panelXP"><?= strtoupper(__('Levels'))?></a></dd>
+				<!-- <dd><a href="#panel1-1"><?= strtoupper(__('New Agents'))?></a></dd> -->
 				<?php 
 					$index = 1;
 					foreach ($power_points as $pp) {
