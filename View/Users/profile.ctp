@@ -273,7 +273,7 @@
 				fillExtraContent();
 			// menuHeight();
 		}
-	}, 1500));
+	}, 1000));
 	
 	function throttle(fn, threshhold, scope) {
 	  	threshhold || (threshhold = 250);

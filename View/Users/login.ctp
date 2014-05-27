@@ -50,7 +50,7 @@
 						<button class="evoke button general" type="submit">
 							<?php echo __('Sign in'); ?>
 						</button>
-						<a href = "" class = "evoke login password"><?php echo __('Forgot your password?');?></a>
+						<a href = "<?=$this->Html->url(array('action' => 'forgot'))?>" class = "evoke login password"><?php echo __('Forgot your password?');?></a>
 						<?php echo $this->Form->end(); ?>
 				</div>
 			</div>

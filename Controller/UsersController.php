@@ -17,7 +17,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'MathCaptcha', );
 
 	public $uses = array('User', 'Friend');
 
@@ -33,7 +33,29 @@ class UsersController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'login', 'logout', 'register');
+        $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot');
+    }
+
+    public function forgot() {
+    	$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
+
+		$this->set(compact('$flags'));
+        $this->set('captcha', $this->MathCaptcha->getCaptcha());
+
+    	if ($this->request->is('post')) {
+      		$this->User->create();
+      		if ($this->MathCaptcha->validate($this->request->data['User']['captcha'])) {
+        		$this->User->save($this->request->data);
+      		} else {
+        		$this->Session->setFlash('The result of the calculation was incorrect. Please, try again.');
+      		}
+    	} 
     }
 
 
