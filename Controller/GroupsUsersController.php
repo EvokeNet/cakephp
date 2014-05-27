@@ -79,16 +79,6 @@ class GroupsUsersController extends AppController {
 		));
 
 
-		if (!empty($evokation)) {
-			$this->request->data = $evokation;
-			
-			//the group submitted tthe final version, dont allow them to edit no more
-			if($evokation['Evokation']['final_sent'] == 1) {
-				$this->Session->setFlash(__('Your group has already submitted this Evokation. You are not allowed to edit it until admin approval.'), 'flash_message');
-				$this->redirect($this->referer());
-			}
-		}
-
 		$this->loadModel('Group');
 		$thisgroup = $this->Group->find('first', array(
 			'conditions' => array(
@@ -121,6 +111,16 @@ class GroupsUsersController extends AppController {
 		if(!$authorized) {
 			$this->Session->setFlash(__('This evokation does not belong to your group, you can not edit it.'), 'flash_message');
 			$this->redirect($this->referer());
+		}
+
+		if (!empty($evokation)) {
+			$this->request->data = $evokation;
+			
+			//the group submitted tthe final version, dont allow them to edit no more
+			if($evokation['Evokation']['final_sent'] == 1) {
+				$this->Session->setFlash(__('Your group has already submitted this Evokation. You are not allowed to edit it until admin approval.'), 'flash_message');
+				$this->redirect($this->referer());
+			}
 		}
 
 		$response = $client->checkToken();

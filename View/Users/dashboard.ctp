@@ -537,8 +537,8 @@
 	//checking scrolling info to call ajax function
 	$(window).scroll(throttle(function() {   
 		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 150)) {
-			
-			fillExtraContent();
+			if((lastLocal) != "")
+				fillExtraContent();
 			// menuHeight();
 		}
 	}, 1500));
