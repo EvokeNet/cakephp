@@ -22,6 +22,26 @@
 
 	  	<h3 class = "evoke padding top-1 padding bottom-1"> <?= strtoupper(__('Choose a mission')) ?> </h3>
 			
+			<?php if (isset($basic_training)): ?>
+				<h1 style = "position: absolute; color: #fff; z-index: 1; font-size: 1.5vw; left: 130px; margin-top: 20px; font-family: 'AlegreyaBold'; text-shadow: 0 0 12px rgba(0,0,0,0.85);"><?= strtoupper($basic_training['Mission']['title']) ?> </h1>
+				<div class="evoke default view view-first">
+	        		<?php if(!is_null($basic_training['Mission']['cover_dir'])) :?>
+						<img src="<?= $this->webroot.'files/attachment/attachment/'.$basic_training['Mission']['cover_dir'].'/'.$basic_training['Mission']['cover_attachment'] ?>">
+							
+	                <?php else :?>
+						<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+	            	<?php endif ?>
+
+	            	<div class="mask">
+                        <!-- <h2><?= $mission['Mission']['title'] ?></h2> -->
+                        <p><?= substr($basic_training['Mission']['description'], 0, 140) ?></p>
+                        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1)); ?>" class="button general info"><?= __('Go to mission') ?></a>
+                    </div>
+
+            	</div>
+	
+        	<?php endif;?>
+
 			<?php foreach($missions as $mission): ?>
 
 				<h1 style = "position: absolute; color: #fff; z-index: 1; font-size: 1.5vw; left: 130px; margin-top: 20px; font-family: 'AlegreyaBold'; text-shadow: 0 0 12px rgba(0,0,0,0.85);"><?= strtoupper($mission['Mission']['title']) ?> </h1>
