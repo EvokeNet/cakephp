@@ -159,46 +159,42 @@
 		</div>
 
 		<div class="row full-width-alternate margin-left-0 margin-right-0">
-		  <div class="small-6 medium-6 large-6 columns padding top-2 group">
-		  	<h3 class = "margin bottom-1"><?= strtoupper(__("Evokations Groups")) ?></h3>
+		  	<div class="small-6 medium-6 large-6 columns padding top-2 group">
+		  		<h3 class = "margin bottom-1"><?= strtoupper(__("Project Stream")) ?></h3>
+		  		<div class="evoke content-block default">
+			  		<?php 
+			  			$lastEvokation = null;
+			  			foreach($myEvokations as $e):
+			  				$showFollowButton = true;
+				    		foreach($viewerEvokation as $my) :
+				    			if(array_search($my['Evokation']['id'], $e['Evokation'])) {
+				    				$showFollowButton = false;
+				    				break;
+				    			}
+				    		endforeach;
 
-		  	<?php foreach($myEvokations as $e): ?>
-
-		  		<a href = "<?= $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['Group']['id'])) ?>">
-	    			<div class="row padding bottom-2">
-					  <div class="small-3 medium-3 large-3 columns">
-					  	<?php if($e['Group']['photo_dir'] == null) :?>
-			  				<img src="https://graph.facebook.com//picture?type=large"/>
-				  		<?php else : ?>
-							<img src="<?= $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/thumb_'.$e['Group']['photo_attachment'] ?>" />
-						<?php endif; ?>
-					  </div>
-					  <div class="small-9 medium-9 large-9 columns">
-					  	<h4><?= $e['Group']['title'] ?></h4>
-					  </div>
-					</div>
-				</a>
-
-	    	<?php endforeach; ?>
-
-		  </div>
+				    		if($showFollowButton) 
+				    			echo $this->element('evokation', array('e' => $e, 'evokationsFollowing' => $evokationsFollowing));
+				    		else
+				    			echo $this->element('evokation', array('e' => $e, 'mine' => true));
+		    				$lastEvokation = $e['Evokation']['id'];
+    			
+			    		endforeach;
+			    	?>
+			    	<meta name="lastEvokation" content="<?php echo $lastEvokation; ?>">
+			    	<div id="targetEvokation"></div>
+		    	</div>
+		  	</div>
 		  <div class="small-6 medium-6 large-6 columns padding top-2">
 
-		  	<h3 class = "margin bottom-1"> <?= strtoupper(__('Evidence/Project Stream')) ?> </h3>
+		  	<h3 class = "margin bottom-1"> <?= strtoupper(__('Evidence Stream')) ?> </h3>
 
-		  	<dl class="default tabs" data-tab>
-			  <dd class="active"><a id="evidenceTrigger" href="#panel2-1"><?= strtoupper(__('My Evidences')) ?></a></dd>
-			  <dd><a id="evokationTrigger" href="#panel2-2"><?= strtoupper(__('My Projects')) ?></a></dd>
-			</dl>
-			<div class="evoke content-block default tabs-content">
-			  	<div class="content active" id="panel2-1">
+		  	<div class="evoke content-block default"> <!--tabs-content-->
 			    	<?php 
 			    		$lastEvidence = null;
 
 			    		//Lists all projects and evidences
 			    		foreach($myevidences as $e): 
-		    				//echo $this->element('evidence_blue_box', array('e' => $e)); 
-		    				//echo $this->element('evidence_box', array('e' => $e)); 
 		    				echo $this->element('evidence', array('e' => $e)); 
 	    					$lastEvidence = $e['Evidence']['id'];
 
@@ -207,14 +203,7 @@
 					<meta name="lastEvidence" content="<?php echo $lastEvidence; ?>">
 					<div id="target"></div>
 			  </div>
-			  <div class="content" id="panel2-2">
-			    <?php 
-		    		foreach($myEvokations as $e):
-		    			echo $this->element('evokation', array('e' => $e, 'mine' => false)); // HERE
-		    		endforeach;
-		    	?>
-			  </div>
-			</div>
+			
 		  </div>
 		</div>
 
@@ -262,7 +251,7 @@
 
 	//checking scrolling info to call ajax function
 	$(window).scroll(throttle(function() {   
-		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 150)) {
+		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 200)) {
 			// alert(lastLocal);
 			if((lastLocal) != "")
 				fillExtraContent();
@@ -298,7 +287,7 @@
 		// alert("hello");
 		$.ajax({
 		    type: 'get',
-		    url: getCorrectURL(method)+"/"+lastLocal+"/"+olderContent,
+		    url: getCorrectURL(method)+"/"+lastLocal+"/"+olderContent + "/<?=$user['User']['id']?>",
 		    //"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
 		    beforeSend: function(xhr) {
 		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

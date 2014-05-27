@@ -149,7 +149,7 @@ class UsersController extends AppController {
 	}
 
 
-	public function moreEvidences($lastOne, $limit = 1){
+	public function moreEvidences($lastOne, $limit = 1, $user_id = -1){
 		$this->autoRender = false; // We don't render a view in this example
     	$this->request->onlyAllow('ajax'); // No direct access via browser URL
 
@@ -162,16 +162,30 @@ class UsersController extends AppController {
     	if(empty($last))
     			return json_encode(array());
 
-    	$obj = $this->User->Evidence->find('all', array(
-			'order' => array(
-				'Evidence.created DESC'
-			),
-			'conditions' => array(
-				'Evidence.title != ' => '',
-				'Evidence.modified <' => $last['Evidence']['modified']
-			),
-			'limit' => $limit
-		));
+	   	if($user_id==-1) {
+		   	$obj = $this->User->Evidence->find('all', array(
+				'order' => array(
+					'Evidence.created DESC'
+				),
+				'conditions' => array(
+					'Evidence.title != ' => '',
+					'Evidence.modified <' => $last['Evidence']['modified']
+				),
+				'limit' => $limit
+			));
+		} else {
+			$obj = $this->User->Evidence->find('all', array(
+				'order' => array(
+					'Evidence.created DESC'
+				),
+				'conditions' => array(
+					'Evidence.title != ' => '',
+					'Evidence.modified <' => $last['Evidence']['modified'],
+					'Evidence.user_id' => $user_id
+				),
+				'limit' => $limit
+			));
+		}
 
 		$el = 'evidence';
 		$ind = 'Evidence';
@@ -816,26 +830,47 @@ class UsersController extends AppController {
 			)
 		));
 
+
+		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
+			'conditions' => array(
+				'EvokationFollower.user_id' => $this->getUserId()
+			)
+		));
+
+		$viewerEvokation = array();
 		$myEvokations = array();
 		foreach ($evokations as $evokation) {
+			$his = false;
 			$mine = false;
 			if($evokation['Group']['user_id'] == $id)
+				$his = true;
+
+			if($evokation['Group']['user_id'] == $this->getUserId())
 				$mine = true;
+
+			$op = array('GroupsUser.user_id' => $id, 'GroupsUser.user_id' => $this->getUserId());
 
 			$this->loadModel('Group');
 			$group_evokation = $this->Group->GroupsUser->find('first', array(
 				'conditions' => array(
 					'GroupsUser.group_id' => $evokation['Group']['id'],
-					'GroupsUser.user_id' => $id
+					'OR' => $op
 				)
 			));
 			
-			if(!empty($group_evokation))
+			if(!empty($group_evokation) && $group_evokation['GroupsUser']['user_id'] == $id)
+				$his = true;
+
+			if(!empty($group_evokation) && $group_evokation['GroupsUser']['user_id'] == $this->getUserId())
 				$mine = true;
 
-			if($mine){
+			if($his){
 				array_push($myEvokations, $evokation);
 			}	
+
+			if($mine){
+				array_push($viewerEvokation, $evokation);
+			}
 		}
 		
 		$this->loadModel('Badge');
@@ -864,7 +899,7 @@ class UsersController extends AppController {
 		}
 
 		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
-			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 
+			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
 
 	}
