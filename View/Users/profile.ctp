@@ -234,21 +234,6 @@
 	var method = 'moreEvidences';
 	var target = '#target';
 
-	//ajax on either evokation or evidence stream
-	$("#evokationTrigger").click(function (){
-		evidence = false;
-		lastLocal = lastEvokation;
-		method = 'moreEvokations';
-		target = '#targetEvokation';
-	});
-
-	$("#evidenceTrigger").click(function (){
-		evidence = true;
-		lastLocal = last;
-		method = 'moreEvidences';
-		target = '#target';
-	});
-
 	//checking scrolling info to call ajax function
 	$(window).scroll(throttle(function() {   
 		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 200)) {
@@ -311,6 +296,41 @@
 		        console.log(e);
 		    }
 		});
+
+		lastLocal = lastEvokation;
+		method = 'moreEvokations';
+		target = '#targetEvokation';
+
+		$.ajax({
+		    type: 'get',
+		    url: getCorrectURL(method)+"/"+lastLocal+"/"+olderContent + "/<?=$user['User']['id']?>",
+		    //"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
+		    beforeSend: function(xhr) {
+		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		    },
+		    success: function(response) {
+		        var responseLast = response.substring(response.search("lastBegin") + 9, response.search("lastEnd"));
+
+				lastLocal = responseLast;
+								        
+		        if(evidence) {
+					last = lastLocal;
+				} else {
+					lastEvokation = lastLocal;
+				}
+		        response = response.substring(response.search("lastEnd")+7);
+			        
+		        // console.log(response);	
+		        $(target).append((response));
+		    },
+		    error: function(e) {
+		        console.log(e);
+		    }
+		});
+
+		lastLocal = last;
+		method = 'moreEvidences';
+		target = '#target';
 	}
 
 	function getCorrectURL(afterHome){

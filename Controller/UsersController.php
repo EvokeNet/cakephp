@@ -210,7 +210,7 @@ class UsersController extends AppController {
 	}
 
 
-	public function moreEvokations($lastOne, $limit = 1){
+	public function moreEvokations($lastOne, $limit = 1, $user_id = -1){
 		$this->autoRender = false; // We don't render a view in this example
     	$this->request->onlyAllow('ajax'); // No direct access via browser URL
 
@@ -241,27 +241,72 @@ class UsersController extends AppController {
 			)
 		));
 
-		$myEvokations = array();
-		foreach ($obj as $evokation) {
-			$mine = false;
-			if($evokation['Group']['user_id'] == $id)
-				$mine = true;
+		if($user_id == -1) {
+			$myEvokations = array();
+			foreach ($obj as $evokation) {
+				$mine = false;
+				if($evokation['Group']['user_id'] == $id)
+					$mine = true;
 
-			$this->loadModel('Group');
-			$group_evokation = $this->Group->GroupsUser->find('first', array(
-				'conditions' => array(
-					'GroupsUser.group_id' => $evokation['Group']['id'],
-					'GroupsUser.user_id' => $id
-				)
-			));
+				$this->loadModel('Group');
+				$group_evokation = $this->Group->GroupsUser->find('first', array(
+					'conditions' => array(
+						'GroupsUser.group_id' => $evokation['Group']['id'],
+						'GroupsUser.user_id' => $id
+					)
+				));
+				
+				if(!empty($group_evokation))
+					$mine = true;
+
+				if($mine){
+					array_push($myEvokations, $evokation);
+				}	
+			}
+
+			$common = $myEvokations;
+		} else {
+			$viewerEvokation = array();
+			$myEvokations = array();
+			foreach ($evokations as $evokation) {
+				$his = false;
+				$mine = false;
+				if($evokation['Group']['user_id'] == $id)
+					$his = true;
+
+				if($evokation['Group']['user_id'] == $this->getUserId())
+					$mine = true;
+
+				$op = array('GroupsUser.user_id' => $id, 'GroupsUser.user_id' => $this->getUserId());
+
+				$this->loadModel('Group');
+				$group_evokation = $this->Group->GroupsUser->find('first', array(
+					'conditions' => array(
+						'GroupsUser.group_id' => $evokation['Group']['id'],
+						'OR' => $op
+					)
+				));
+				
+				if(!empty($group_evokation) && $group_evokation['GroupsUser']['user_id'] == $id)
+					$his = true;
+
+				if(!empty($group_evokation) && $group_evokation['GroupsUser']['user_id'] == $this->getUserId())
+					$mine = true;
+
+				if($his){
+					array_push($myEvokations, $evokation);
+				}	
+
+				if($mine){
+					array_push($viewerEvokation, $evokation);
+				}
+			}
+			$obj = $myEvokations;
+			$common = $viewerEvokation;
 			
-			if(!empty($group_evokation))
-				$mine = true;
-
-			if($mine){
-				array_push($myEvokations, $evokation);
-			}	
 		}
+
+		
 
 		$el = 'evokation';
 		$ind = 'Evokation';
@@ -273,7 +318,7 @@ class UsersController extends AppController {
 	    $older = "";
     	foreach ($obj as $key => $value) {
     		$showFollowButton = true;
-			foreach($myEvokations as $my) :
+			foreach($common as $my) :
 				if(array_search($my['Evokation']['id'], $value['Evokation'])) {
 					$showFollowButton = false;
 					break;
@@ -817,7 +862,7 @@ class UsersController extends AppController {
 				'Evidence.user_id' => $id,
 				'Evidence.title != ' => ''
 			),
-			'limit' => 1 // CHANGE 8
+			'limit' => 8 // CHANGE 8
 		));
 
 		$this->loadModel('Evokation');
@@ -827,7 +872,8 @@ class UsersController extends AppController {
 			),
 			'conditions' => array(
 				'Evokation.sent' => 1
-			)
+			),
+			'limit' => 8 // CHANGE 8
 		));
 
 
