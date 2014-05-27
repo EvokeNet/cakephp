@@ -18,7 +18,7 @@ if($post_count == 1)
 
     <div class="row full-width-alternate padding bottom-1">
       <div class="small-2 medium-2 large-2 columns">
-        <a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $topic['User']['id'])) ?>">
+        <a href = "<?= $this->Html->url(array('plugin' => '', 'controller' => 'users', 'action' => 'profile', $topic['User']['id'])) ?>">
             <?php if($topic['User']['photo_attachment'] == null) : ?>
                 <?php if($topic['User']['facebook_id'] == null) : ?>
                     <div class = "topic icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>

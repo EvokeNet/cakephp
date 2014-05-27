@@ -24,9 +24,10 @@
 	  	<?php echo $this->element('menu', array('user' => $users));?>
 	  </div>
 
-	  <div class="small-10 medium-10 large-10 columns maincolumn body-padding">
-		<?php echo $this->Session->flash(); ?>
+	  <div class="small-10 medium-10 large-10 columns maincolumn">
 
+	  	<?php echo $this->Session->flash(); ?>
+	  	
 	  <div class = "tint">
 	  	<div class="row margin-left-0 margin-right-0 padding top-1">
 		  <div class="small-4 medium-4 large-4 columns padding bottom-2">
@@ -98,7 +99,7 @@
 		  <div class="small-4 medium-4 large-4 columns">
 
 		  	<div class="row">
-			  <div class="large-6 columns"><h3 class = "margin bottom-1"><?= strtoupper(__('Allies')) ?>&nbsp;&nbsp;(<?= count($allies) ?>)</h3></div>
+			  <div class="large-6 columns"><h3 class = "margin bottom-1"><?= strtoupper(__('Following')) ?>&nbsp;&nbsp;(<?= count($allies) ?>)</h3></div>
 			  <div class="large-6 columns text-align-end"><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'allies', $user['User']['id'])) ?>" class = "info button general"><?php echo __('See All');?></a></div>
 			</div>
 
@@ -107,7 +108,7 @@
 					$k = 0;
 					foreach($allies as $ally):
 						$k++;
-						if($k >8) break;
+						if($k > 4) break;
 						$name = explode(' ', $ally['User']['name']); ?>
 						<li>
 							<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['User']['id'])) ?>">
@@ -128,7 +129,38 @@
 			  	<?php endforeach;?>
 			</ul>
 
-			<div id="myModalAllies" class="reveal-modal small evoke lightbox" data-reveal>
+			<div class="row">
+			  <div class="large-6 columns"><h3 class = "margin bottom-1"><?= strtoupper(__('Followers')) ?>&nbsp;&nbsp;(<?= count($followers) ?>)</h3></div>
+			  <div class="large-6 columns text-align-end"><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'allies', $user['User']['id'])) ?>" class = "info button general"><?php echo __('See All');?></a></div>
+			</div>
+
+		  	<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
+				<?php 
+					$k = 0;
+					foreach($followers as $ally):
+						$k++;
+						if($k > 4) break;
+						$name = explode(' ', $ally['User']['name']); ?>
+						<li>
+							<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['User']['id'])) ?>">
+								
+								<?php if($ally['User']['photo_attachment'] == null) : ?>
+									<?php if($ally['User']['facebook_id'] == null) : ?>
+										<div class = "profile icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
+									<?php else : ?>	
+										<div class = "profile icon"><img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/></div>
+									<?php endif; ?>
+								<?php else : ?>
+									<div class = "profile icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'] ?>"/></div>
+								<?php endif; ?>
+								
+								<span><?= $name[0] ?></span>
+							</a>
+						</li>
+			  	<?php endforeach;?>
+			</ul>
+
+			<!-- <div id="myModalAllies" class="reveal-modal small evoke lightbox" data-reveal>
 			  <h2><?= __('Allies') ?></h2>
 
 			  	<ul class="small-block-grid-1 medium-block-grid-1 large-block-grid-1">
@@ -152,7 +184,7 @@
 				<?php endforeach;?>
 				</ul>
 			  <a class="close-reveal-modal">&#215;</a>
-			</div>
+			</div> -->
 
 		  </div>
 		</div>
@@ -192,7 +224,6 @@
 		  	<div class="evoke content-block default"> <!--tabs-content-->
 			    	<?php 
 			    		$lastEvidence = null;
-
 			    		//Lists all projects and evidences
 			    		foreach($myevidences as $e): 
 		    				echo $this->element('evidence', array('e' => $e)); 

@@ -444,7 +444,7 @@
 			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$topic['User']['photo_dir'].'/'.$topic['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 			  			<?php endif; ?>
 
-					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $topic['Topic']['title'])) ?>"><?= sprintf(__('Agent %s created the topic %s'), $topic['User']['name'], $topic['Topic']['title']) ?></a>
+					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $topic['Topic']['slug'])) ?>"><?= sprintf(__('Agent %s created the topic %s'), $topic['User']['name'], $topic['Topic']['title']) ?></a>
 
 					</li>
 				<?php //endif; ?>
@@ -468,7 +468,7 @@
 			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$post['User']['photo_dir'].'/'.$post['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
 			  			<?php endif; ?>
 
-					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $post['Topic']['title'])) ?>"><?= sprintf(__('Agent %s posted a reply in topic %s'), $post['User']['name'], $post['Topic']['title']) ?></a>
+					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $post['Topic']['slug'])) ?>"><?= sprintf(__('Agent %s posted a reply in topic %s'), $post['User']['name'], $post['Topic']['title']) ?></a>
 
 					</li>
 				<?php //endif; ?>

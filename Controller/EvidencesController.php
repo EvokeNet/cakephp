@@ -265,7 +265,7 @@ class EvidencesController extends AppController {
 					}
 				}
 
-				if(empty($me['Evidence']['content'])) {
+				if(empty($this->request->data['Evidence']['content'])) {
 					//debug($me);
 					$this->Session->setFlash(__('You need to fill the content'),'flash_message');
 					$this->redirect($this->referer());
@@ -352,14 +352,12 @@ class EvidencesController extends AppController {
 		}
 		//$this->request->onlyAllow('post', 'delete');
 
-		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $id)));
-
 		if ($this->Evidence->delete()) {
 			$this->Session->setFlash(__('The evidence has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The evidence could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'], $evidence['Phase']['id']));
+		return $this->redirect(array('controller' => 'users', 'action' => 'dashboard'));
 	}
 
 /**

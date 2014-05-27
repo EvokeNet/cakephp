@@ -771,6 +771,8 @@ class UsersController extends AppController {
 
 		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
+		$followers = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.friend_id' => $id))); //this->getUserId()
+
 		$are_friends = array();
 		//$allies = array();
 
@@ -788,7 +790,7 @@ class UsersController extends AppController {
 			//$notifies = array();
 		}
 
-		$this->set(compact('user', 'users', 'friends', 'allies'));
+		$this->set(compact('followers', 'user', 'users', 'friends', 'allies'));
 	}
 
 /**
@@ -837,6 +839,8 @@ class UsersController extends AppController {
 
 		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
+		$followers = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.friend_id' => $id))); //this->getUserId()
+
 		$are_friends = array();
 		//$allies = array();
 
@@ -849,10 +853,7 @@ class UsersController extends AppController {
 				'conditions' => array(
 					'OR' => $are_friends
 			)));
-		} else{
-			$allies = array();
-			//$notifies = array();
-		}
+		} 
 
 		$myevidences = $this->User->Evidence->find('all', array(
 			'order' => array(
@@ -864,6 +865,30 @@ class UsersController extends AppController {
 			),
 			'limit' => 8 // CHANGE 8
 		));
+
+		$this->loadModel('Group');
+		$this->loadModel('GroupsUser');
+		$users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
+
+		$mygroups_id = array();
+
+		foreach($users_groups as $g):
+			array_push($mygroups_id, array('Evokation.group_id' => $g['GroupsUser']['group_id']));
+		endforeach;
+
+		$myevokations = array();
+
+		if(!empty($mygroups_id)) {
+			//retrieve all organizations I am part of as a list to be displayed in a combobox
+			$myevokations = $this->Group->Evokation->find('all', array(
+				'order' => array(
+					'Evokation.created DESC'
+				),
+				'conditions' => array(
+					'OR' => $mygroups_id
+				)
+			));
+		} 
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array(
@@ -944,7 +969,7 @@ class UsersController extends AppController {
 
 		}
 
-		$this->set(compact('user', 'users', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
+		$this->set(compact('user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
 
@@ -1049,8 +1074,29 @@ class UsersController extends AppController {
 		foreach($myPoints as $point){
 			$sumMyPoints += $point['Point']['value'];
 		}
+
+		$level_one = $this->User->find('all', array('conditions' => array('User.level' => 1)));
+
+		$level_two = $this->User->find('all', array('conditions' => array('User.level' => 2)));
 		
-		$this->set(compact('userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints'));
+		$questing_evi = $this->User->Evidence->find('all', array('order' => array('Evidence.created DESC')));
+
+		$aux_evi = array();
+		$questing_user = array();
+
+		foreach($questing_evi as $evi):
+			array_push($aux_evi, array('User.id' => $evi['Evidence']['user_id']));
+		endforeach;
+
+		if(!empty($aux_evi)){
+			$questing_user = $this->User->find('all', array(
+				'conditions' => array(
+					'OR' => $aux_evi
+				)
+			));
+		}
+
+		$this->set(compact('level_one', 'level_two', 'questing_user', 'userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints'));
 	}
 
 /**

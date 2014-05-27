@@ -128,7 +128,7 @@
 				<div class = "evoke evidence-body edit">
 
 				<div class = "padding30">
-				<?php echo $this->Form->create('Evidence', array('enctype' => 'multipart/form-data')); ?>
+				<?php echo $this->Form->create('Evidence', array('enctype' => 'multipart/form-data', 'onsubmit' => "return check_form()")); ?>
 					<?php //echo __('Edit Evidence'); ?>
 
 					<?php
@@ -216,6 +216,15 @@ echo $this->Html->script('menu_height', array('inline' => false));
 ?>
 
 <script type="text/javascript">
+
+	function check_form() {
+		var editor_val = CKEDITOR.instances.EvidenceEditForm.document.getBody().getChild(0).getText() ;
+	    
+		if (editor_val == '') {
+			alert('Editor value cannot be empty!') ;
+			return document.referrer;
+		}
+	}
 
     <?php
         $i = 0;

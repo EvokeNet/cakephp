@@ -26,7 +26,7 @@ if($post_count == 1)
       <tbody>
         <tr>
           <td width="120" class = "forum right-border">
-            <a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $post['User']['id'])) ?>">
+            <a href = "<?= $this->Html->url(array('plugin' => '', 'controller' => 'users', 'action' => 'profile', $post['User']['id'])) ?>">
                 <?php if($post['User']['photo_attachment'] == null) : ?>
                     <?php if($post['User']['facebook_id'] == null) : ?>
                         <div class = "topic icon margin top"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
