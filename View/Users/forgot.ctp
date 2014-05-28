@@ -16,14 +16,14 @@
 				</div>
 			</div>
 			<div class="small-6 medium-6 large-6 columns">
+				<?php echo $this->Session->flash(); ?>
 				<div class="evoke evidence-tag text-align-center margin bottom-2">
 					<h3><?= __('Password Recovery')?></h3>
 					<?php echo $this->Form->create('User'); ?>
 					
 					<?php 
-						echo $this->Form->input('username');//, array('label' => false));
-						echo $this->Form->input('password');//, array('label' => false));
-						echo $this->Form->input('captcha', array('label' => 'Calculate this: '.$captcha));
+						echo $this->Form->input('email');//, array('label' => false));
+						echo $this->Form->input('captcha', array('label' => __('Calculate').' '.$captcha));
 					?>
 					<button class="evoke button general" type="submit">
 						<?php echo __('Send email'); ?>
