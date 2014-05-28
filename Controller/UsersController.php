@@ -58,6 +58,42 @@ class UsersController extends AppController {
     	} 
     }
 
+    public function changePassword() {
+    	$usr = $this->User->find('first', array(
+    		'conditions' => array(
+    			'User.id' => $this->getUserId()
+    		)
+    	));
+
+    	if(!$usr)
+    		$this->redirect($this->referer());
+
+
+    	if ($this->request->is('post')) {
+    		debug($this->request->data);
+    		if(AuthComponent::password($this->request->data['User']['password']) == $usr['User']['password']) {
+    			debug('match');
+    			if($this->request->data['User']['tmp'] == $this->request->data['User']['tmp2']) {
+    				debug('new password match');
+    				$this->User->id = $this->getUserId();
+    				$insert['User']['id'] = $this->getUserId();
+    				$insert['User']['role_id'] = $this->getUserRole();
+    				$insert['User']['password'] = $this->request->data['User']['tmp'];
+    				$this->User->save($insert);
+
+    			} else {
+    				debug('new password dont match');
+    			}
+    		} else {
+    			debug('not a match');
+    		}
+    		die();
+    	}
+
+    	$this->set(compact('usr'));
+    	// die();
+    }
+
 
 /**
  * login method
@@ -1262,7 +1298,7 @@ class UsersController extends AppController {
 		
 		if($this->getUserRole() != 1) {
 			if($id != $this->getUserId()) {
-				$this->Session->setFlash(__("You can't edit other users. Permission denied."), 'flash_message');	
+				$this->Session->setFlash(__("You can't edit other users. Permission denied."), 'flash_message');
 				$this->redirect(array('action' => 'edit', $this->getUserId()));
 			}
 		}

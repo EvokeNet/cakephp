@@ -73,6 +73,7 @@
 	        <ul class="dropdown">
 	          	<?php if(isset($user['User'])) :?>
 					<li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'edit', $user['User']['id'])) ?>"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;&nbsp;<?= __('Edit information') ?></a></li>
+					<li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'changePassword')) ?>"><i class="fa fa-asterisk"></i>&nbsp;&nbsp;&nbsp;<?= __('Change password') ?></a></li>
 	          		<li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'logout')) ?>"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;&nbsp;<?= __('Sign Out') ?></a></li>
 				<?php else :?>
 					 <li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'login')) ?>"><?= __('Log in') ?></a></li>
