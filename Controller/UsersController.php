@@ -70,24 +70,26 @@ class UsersController extends AppController {
 
 
     	if ($this->request->is('post')) {
-    		debug($this->request->data);
+    		// debug($this->request->data);
     		if(AuthComponent::password($this->request->data['User']['password']) == $usr['User']['password']) {
-    			debug('match');
+    			// debug('match');
     			if($this->request->data['User']['tmp'] == $this->request->data['User']['tmp2']) {
-    				debug('new password match');
+    				// debug('new password match');
     				$this->User->id = $this->getUserId();
     				$insert['User']['id'] = $this->getUserId();
     				$insert['User']['role_id'] = $this->getUserRole();
     				$insert['User']['password'] = $this->request->data['User']['tmp'];
     				$this->User->save($insert);
-
+    				$this->Session->setFlash(__("Your password was changed."), 'flash_message');
+    				$this->redirect(array('action' => 'dashboard'));
     			} else {
-    				debug('new password dont match');
+    				$this->Session->setFlash(__("The new passwords do not match."), 'flash_message');
+    				$this->redirect(array('action' => 'changePassword'));
     			}
     		} else {
-    			debug('not a match');
+    			$this->Session->setFlash(__("The current password does not match."), 'flash_message');
+    			$this->redirect(array('action' => 'changePassword'));
     		}
-    		die();
     	}
 
     	$this->set(compact('usr'));

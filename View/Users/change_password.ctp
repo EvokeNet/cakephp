@@ -16,14 +16,15 @@
 	  	</div>
 
 		<div class="small-10 medium-10 large-10 columns maincolumn margin top-2 body-padding">
+			<?php echo $this->Session->flash(); ?>
 
 		<h3 class = "margin bottom-1"><?= strtoupper(__('Change Password')) ?></h3>
 
-		<?php echo $this->Session->flash(); ?>
+		
 
 			<div class="row full-width-alternate">
 
-			    <div class="small-9 medium-9 large-9 columns evoke no-padding">
+			    <div class="small-12 medium-12 large-12 columns evoke no-padding">
 				  	<div class="evoke edit-bg users form">
 						<?php echo $this->Form->create('User'); ?>
 							<?php
@@ -32,7 +33,7 @@
 								echo $this->Form->input('tmp2', array('label' => __('Re-type new password'), 'type' => 'password', 'required' => true));
 								
 							?>
-						<div class = "evoke text-align"><button type="submit" class= "evoke button general submit-button-margin margin top-2"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save and proceed to your dashboard')) ?></button> </div>
+						<div class = "evoke text-align"><button type="submit" class= "evoke button general submit-button-margin margin top-2"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Confirm new password')) ?></button> </div>
 					</div>
 			  	</div>
 
