@@ -273,7 +273,7 @@
 	}// end function autosave()
 	 
 	// set the autosave interval (60 seconds * 1000 milliseconds per second)
-	setInterval(autosave, 10 * 1000);
+	setInterval(autosave, 60 * 1000);
 
 
     <?php
