@@ -225,7 +225,7 @@
 	    jQuery('form').each(function() {
 
 	    	var ops = $('.cke_wysiwyg_frame').contents().find('.cke_editable').html();
-	    	alert(ops);
+	    	//alert(ops);
 
 	        var formData = $("textarea#EvidenceContent").serializeArray();
 	        formData.push({name: "data[Evidence][content]", value: ops});
