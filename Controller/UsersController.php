@@ -968,7 +968,7 @@ class UsersController extends AppController {
 
 		$this->loadModel('Group');
 		$this->loadModel('GroupsUser');
-		$users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
+		$users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $id)));
 
 		$mygroups_id = array();
 
