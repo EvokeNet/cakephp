@@ -105,7 +105,12 @@ class EvokationsController extends AppController {
 		));
 
 
-		$group = $this->Evokation->Group->find('first');
+		$group = $this->Evokation->Group->find('first', array(
+			'conditions' => array(
+				'Group.id' => $evokation['Evokation']['group_id']
+			)
+		));
+		
 		$can_edit = false;
 		if($group['Group']['user_id'] == $this->getUserId()) $can_edit = true;
 
