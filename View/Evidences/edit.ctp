@@ -140,7 +140,6 @@
 						echo $this->Form->hidden('mission_id');
 						echo $this->Form->hidden('phase_id');
 						echo $this->Media->ckeditor('content', array('label' => __('Content')));
-						echo $this->Form->hidden('content');
 						//echo $this->Media->iframe('Evidence', $this->request->data['Evidence']['id']);
 
 						echo "<label>".__('Attachments'). "</label>";
@@ -163,7 +162,7 @@
 			            echo '<button id="newFile" class="button tiny">+ File</button>';
 					?>
 				<?php //echo $this->Form->end(__('Save Evidence')); ?>
-				<div class = "evoke titles-right"><button type="submit" class= "evoke button general submit-button-margin"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save Evidence')) ?></button></div>
+				<div class = "evoke titles-right"><button type="submit" id = "evidenceButton" class= "evoke button general submit-button-margin"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save Evidence')) ?></button></div>
 				</div>
 				</div>
 			</div>
@@ -226,7 +225,7 @@
 	    jQuery('form').each(function() {
 
 	    	var ops = $('.cke_wysiwyg_frame').contents().find('.cke_editable').html();
-	    	//alert(ops);
+	    	alert(ops);
 
 	        var formData = $("textarea#EvidenceContent").serializeArray();
 	        formData.push({name: "data[Evidence][content]", value: ops});
@@ -274,7 +273,7 @@
 	}// end function autosave()
 	 
 	// set the autosave interval (60 seconds * 1000 milliseconds per second)
-	setInterval(autosave, 60 * 1000);
+	setInterval(autosave, 10 * 1000);
 
 
     <?php
