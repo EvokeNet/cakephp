@@ -5,7 +5,13 @@
 		  <div class='small-3 medium-3 large-3 columns evoke text-align-end'>
 
 		  	<h5 class='headings'><?= $e['User']['name']?></h5>
-		  	<h6 class='headings'><?= date('F j, Y', strtotime($e['Evidence']['created']))?></h6>
+		  	<h6 class='headings'><?= date('F j, Y', strtotime($e['Evidence']['created']))?></h6><br>
+
+		  	<?php if($e['Mission']['basic_training'] == 1): ?>
+		  		<h6 class='headings'><?= $e['Mission']['title'] ?></h6>
+		  	<?php else: ?>
+		  		<h6 class='headings'><?= $e['Mission']['title'] ?>&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;<?= $e['Phase']['name'] ?>&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;<?= $e['Quest']['title'] ?></h6>
+		  	<?php endif; ?>
 		  </div>
 
 		  <div class='small-2 medium-2 large-2 columns evoke text-align-center'>

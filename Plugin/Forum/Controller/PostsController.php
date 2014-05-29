@@ -44,7 +44,7 @@ class PostsController extends ForumAppController {
      */
     public function add($slug, $quote_id = null) {
         $topic = $this->Post->Topic->getBySlug($slug);
-        $user_id = $this->Auth->user('id');
+        $user_id = $this->getUserId();
 
         if (!$topic) {
             throw new NotFoundException();

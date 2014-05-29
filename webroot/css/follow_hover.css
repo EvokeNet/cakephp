@@ -15,8 +15,10 @@
 
 
 .blue-btn{
-  height: 64px;
-  font: normal normal 700 1em/4em Arial,sans-serif;
+  /*height: 64px;*/
+  height: 75px;
+  margin-top: 10px; 
+  font-family:'AlegreyaRegular';
   overflow: hidden;
   /*width: 200px;*/
   /*background-color: #3b5998;*/

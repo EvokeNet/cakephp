@@ -202,3 +202,14 @@
 .breadcrumb a:visited{
 	color:#252525;
 }
+
+.top-bar-section li:not(.has-form) a:not(.button):hover {
+	background: #008cba;
+	font-family: 'AlegreyaBold';
+	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
+	font-size: 1.1vw;
+}
+
+.decoda-textarea textarea{
+	height:300px;
+}
