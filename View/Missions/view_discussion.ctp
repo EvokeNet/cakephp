@@ -224,7 +224,7 @@
 				    		//Lists all projects and evidences
 				    		foreach($liked_evidences as $likeds): 
 				    				foreach ($likeds as $e) {
-				    					echo $this->element('evidence', array('e' => $e)); 
+				    					echo $this->element('evidence', array('e' => $e, 'lang' => $lang)); 
 				    				}
 				    		endforeach; 
 			    		?>
@@ -232,7 +232,7 @@
 					  <div class="content" id="panel12-2">
 					  		<?php 
 					  			foreach($evidences as $e): 
-					   				echo $this->element('evidence', array('e' => $e)); 
+					   				echo $this->element('evidence', array('e' => $e, 'lang' => $lang)); 
 				    			endforeach; 
 				    		?>
 					  </div>

@@ -269,7 +269,7 @@
 				    <?php
 
 				    	foreach($myevidences as $e): 
-			    			echo $this->element('evidence', array('e' => $e));
+			    			echo $this->element('evidence', array('e' => $e, 'lang' => $lang));
 			    		endforeach; 
 			    	?>
 

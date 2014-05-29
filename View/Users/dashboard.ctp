@@ -158,7 +158,7 @@
 		    		//Lists all projects and evidences
 		    		foreach($evidence as $e): 
 	    				
-	    				echo $this->element('evidence', array('e' => $e)); 
+	    				echo $this->element('evidence', array('e' => $e, 'lang' => $lang)); 
 	    				$lastEvidence = $e['Evidence']['id'];
 		    		endforeach; 
 		    		
