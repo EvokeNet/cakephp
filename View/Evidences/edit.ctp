@@ -225,11 +225,12 @@
 	function autosave() {
 	    jQuery('form').each(function() {
 
-	    	var ops = $('.cke_wysiwyg_frame').contents().find('.cke_editable p').html();
-	    	alert(ops);
-	        // For each form on the page, pass the form data via an ajax POST to
-	        // the save/autosave action
-	        $("textarea#EvidenceContent").val(ops);
+	    	var ops = $('.cke_wysiwyg_frame').contents().find('.cke_editable').html();
+	    	//alert(ops);
+
+	        var formData = $("textarea#EvidenceContent").serializeArray();
+	        formData.push({name: "data[Evidence][content]", value: ops});
+	        ops = '';
 
 	        jQuery.ajax({
 	            url: "<?= $me['Evidence']['id'] ?>",
@@ -246,11 +247,34 @@
 	            }// end successful POST function
 	        }); // end jQuery ajax call
 
+	        jQuery.ajax({
+	            url: "<?= $me['Evidence']['id'] ?>",
+	            data: formData,
+	            type: 'POST',
+	            success: function(data){
+	                if(data && data == 'success') {
+	                	$("textarea#EvidenceContent").val(ops);
+	                    // Save successfully completed, no need to do anything
+	                } else{
+	                    // Save failed, report the error if you desire
+	                    // ....
+	                }
+	            }// end successful POST function
+	        });
+
+     		// 	$.post("<?= $me['Evidence']['id'] ?>", formData, function(data){
+			  //   if(data != ""){
+			  //     //do stuff
+			  //   }else{
+			  //     //no data
+			  //   }
+		  	// });
+
 	    }); // end setting up the autosave on every form on the page
 	}// end function autosave()
 	 
 	// set the autosave interval (60 seconds * 1000 milliseconds per second)
-	setInterval(autosave, 10 * 1000);
+	setInterval(autosave, 60 * 1000);
 
 
     <?php
