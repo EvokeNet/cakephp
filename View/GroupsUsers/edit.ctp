@@ -172,6 +172,7 @@
 </section>
 
 <meta name="padID" content="<?php echo $padID; ?>">
+<meta name="userName" content="<?php echo $user['User']['name']; ?>">
 
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));

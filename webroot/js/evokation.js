@@ -4,5 +4,7 @@ $('#evokation_div').pad({
 	'height': 1000,
 	'showControls': true,
 	'noColors': true,
-	'showChat': true,
+	// 'showChat': true,
+	// 'alwaysShowChat' : true,
+	'userName': $('meta[name=userName]').attr('content'),
 });
