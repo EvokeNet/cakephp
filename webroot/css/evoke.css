@@ -302,12 +302,12 @@ button, div, p, span, a,
 }
 
 .evoke .evidence.content-box h5{
-	font-size: 0.85rem;
+	/*font-size: 0.85rem;*/
 	font-family: 'AlegreyaBold';
 }
 
 .evoke .evidence.content-box h6{
-	font-size: 0.75rem;
+	/*font-size: 0.75rem;*/
 }
 
 /* End evidence box */
@@ -1324,7 +1324,8 @@ button, div, p, span, a,
 }
 
 .evoke.evokation.follow{
-	margin-top:20px;
+	/*margin-top:20px;*/
+	margin-top: 2.6vw;
 }
 
 .evoke.parabolic{

@@ -162,7 +162,7 @@
 			            echo '<button id="newFile" class="button tiny">+ File</button>';
 					?>
 				<?php //echo $this->Form->end(__('Save Evidence')); ?>
-				<div class = "evoke titles-right"><button type="submit" class= "evoke button general submit-button-margin"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save Evidence')) ?></button></div>
+				<div class = "evoke titles-right"><button type="submit" id = "evidenceButton" class= "evoke button general submit-button-margin"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save Evidence')) ?></button></div>
 				</div>
 				</div>
 			</div>
@@ -211,20 +211,70 @@
 
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-echo $this->Html->script('menu_height', array('inline' => false));
+	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->script('quest_attachments'); 
 ?>
 
 <script type="text/javascript">
 
-	function check_form() {
-		var editor_val = CKEDITOR.instances.EvidenceEditForm.document.getBody().getChild(0).getText() ;
-	    
-		if (editor_val == '') {
-			alert('Editor value cannot be empty!') ;
-			return document.referrer;
-		}
-	}
+	//var editor = CKEDITOR.editor.replace('EvidenceContent');
+	
+	//alert(data);
+
+	function autosave() {
+	    jQuery('form').each(function() {
+
+	    	var ops = $('.cke_wysiwyg_frame').contents().find('.cke_editable').html();
+	    	//alert(ops);
+
+	        var formData = $("textarea#EvidenceContent").serializeArray();
+	        formData.push({name: "data[Evidence][content]", value: ops});
+	        ops = '';
+
+	        jQuery.ajax({
+	            url: "<?= $me['Evidence']['id'] ?>",
+	            data: 'navigation=save&autosave=true&'+jQuery(this).serialize(),
+	            type: 'POST',
+	            success: function(data){
+	                if(data && data == 'success') {
+	                	$("textarea#EvidenceContent").val(ops);
+	                    // Save successfully completed, no need to do anything
+	                } else{
+	                    // Save failed, report the error if you desire
+	                    // ....
+	                }
+	            }// end successful POST function
+	        }); // end jQuery ajax call
+
+	        jQuery.ajax({
+	            url: "<?= $me['Evidence']['id'] ?>",
+	            data: formData,
+	            type: 'POST',
+	            success: function(data){
+	                if(data && data == 'success') {
+	                	$("textarea#EvidenceContent").val(ops);
+	                    // Save successfully completed, no need to do anything
+	                } else{
+	                    // Save failed, report the error if you desire
+	                    // ....
+	                }
+	            }// end successful POST function
+	        });
+
+     		// 	$.post("<?= $me['Evidence']['id'] ?>", formData, function(data){
+			  //   if(data != ""){
+			  //     //do stuff
+			  //   }else{
+			  //     //no data
+			  //   }
+		  	// });
+
+	    }); // end setting up the autosave on every form on the page
+	}// end function autosave()
+	 
+	// set the autosave interval (60 seconds * 1000 milliseconds per second)
+	setInterval(autosave, 60 * 1000);
+
 
     <?php
         $i = 0;

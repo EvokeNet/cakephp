@@ -196,7 +196,7 @@
 		  		<div class="evoke content-block default">
 			  		<?php 
 			  			$lastEvokation = null;
-			  			foreach($myEvokations as $e):
+			  			foreach($myevokations as $e):
 			  				$showFollowButton = true;
 				    		foreach($viewerEvokation as $my) :
 				    			if(array_search($my['Evokation']['id'], $e['Evokation'])) {
@@ -212,6 +212,12 @@
 		    				$lastEvokation = $e['Evokation']['id'];
     			
 			    		endforeach;
+
+			    		// foreach($myevokations as $e):
+			    		// 	echo $this->element('evokation', array('e' => $e, 'mine' => true));
+			    		// endforeach;
+
+			    		
 			    	?>
 			    	<meta name="lastEvokation" content="<?php echo $lastEvokation; ?>">
 			    	<div id="targetEvokation"></div>
@@ -273,7 +279,7 @@
 				fillExtraContent();
 			// menuHeight();
 		}
-	}, 1500));
+	}, 1000));
 	
 	function throttle(fn, threshhold, scope) {
 	  	threshhold || (threshhold = 250);

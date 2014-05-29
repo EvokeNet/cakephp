@@ -17,7 +17,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'MathCaptcha', );
 
 	public $uses = array('User', 'Friend');
 
@@ -33,7 +33,107 @@ class UsersController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'login', 'logout', 'register');
+        $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot');
+    }
+
+    public function forgot() {
+		if ($this->request->is('post')) {
+      		
+      		if ($this->MathCaptcha->validate($this->request->data['User']['captcha'])) {
+        		$usr = $this->User->find('first', array(
+        			'conditions' => array(
+        				'User.email' => $this->request->data['User']['email']
+        			)
+        		));
+
+        		if(!$usr) {
+        			$this->Session->setFlash('The email does not match with our database.', 'flash_message');
+        			return;
+        		}
+        		$newpass = $this->createTempPassword(8);
+        		$insert['User']['password'] = $newpass;
+        		$insert['User']['id'] = $usr['User']['id'];
+        		$this->User->id = $usr['User']['id'];
+        		if($this->User->save($insert)) {
+
+	        		//sending email with new password
+	        		if($usr['User']['email'] != '' && !is_null($usr['User']['email'])) {
+
+						$Email = new CakeEmail('smtp');
+						//$Email->from(array('no-reply@quanti.ca' => $sender['User']['name']));
+						$Email->to($usr['User']['email']);
+						$Email->subject(__('Evoke - New Password'));
+						// $Email->emailFormat('html');
+						// $Email->template('group', 'group');
+						// $Email->viewVars(array('sender' => $usr, 'recipient' => $usr));
+						$Email->send(__('Your new EVOKE password is') . ' '.$newpass.'. '.__('Please change your password as soon as possible.'));
+						$this->Session->setFlash(__('The email was sent.'), 'flash_message');
+						$this->redirect(array('action' => 'login'));
+					} else {
+						$this->Session->setFlash(__('There was a problem sending the email.', 'flash_message'));
+					}
+				} else {
+					$this->Session->setFlash(__('There was a problem generating the new password.', 'flash_message'));
+				}
+      		} else {
+        		$this->Session->setFlash('The result of the calculation was incorrect. Please, try again.', 'flash_message');
+      		}
+    	} 
+        $this->set('captcha', $this->MathCaptcha->getCaptcha());
+    }
+
+    public function createTempPassword($len) {
+		$pass = '';
+	   	$lchar = 0;
+	   	$char = 0;
+	   	for($i = 0; $i < $len; $i++) {
+	    	while($char == $lchar) {
+	       		$char = rand(48, 109);
+	       		if($char > 57) $char += 7;
+	       		if($char > 90) $char += 6;
+	     	}
+			$pass .= chr($char);
+	     	$lchar = $char;
+	   	}
+	   	return $pass;
+	}
+
+    public function changePassword() {
+    	$usr = $this->User->find('first', array(
+    		'conditions' => array(
+    			'User.id' => $this->getUserId()
+    		)
+    	));
+
+    	if(empty($usr))
+    		$this->redirect($this->referer());
+
+
+    	if ($this->request->is('post')) {
+    		// debug($this->request->data);
+    		if(AuthComponent::password($this->request->data['User']['password']) == $usr['User']['password']) {
+    			// debug('match');
+    			if($this->request->data['User']['tmp'] == $this->request->data['User']['tmp2']) {
+    				// debug('new password match');
+    				$this->User->id = $this->getUserId();
+    				$insert['User']['id'] = $this->getUserId();
+    				$insert['User']['role_id'] = $this->getUserRole();
+    				$insert['User']['password'] = $this->request->data['User']['tmp'];
+    				$this->User->save($insert);
+    				$this->Session->setFlash(__("Your password was changed."), 'flash_message');
+    				$this->redirect(array('action' => 'dashboard'));
+    			} else {
+    				$this->Session->setFlash(__("The new passwords do not match."), 'flash_message');
+    				$this->redirect(array('action' => 'changePassword'));
+    			}
+    		} else {
+    			$this->Session->setFlash(__("The current password does not match."), 'flash_message');
+    			$this->redirect(array('action' => 'changePassword'));
+    		}
+    	}
+
+    	$this->set(compact('usr'));
+    	// die();
     }
 
 
@@ -868,7 +968,7 @@ class UsersController extends AppController {
 
 		$this->loadModel('Group');
 		$this->loadModel('GroupsUser');
-		$users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
+		$users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $id)));
 
 		$mygroups_id = array();
 
@@ -969,7 +1069,7 @@ class UsersController extends AppController {
 
 		}
 
-		$this->set(compact('user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
+		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
 
@@ -1219,7 +1319,7 @@ class UsersController extends AppController {
 		
 		if($this->getUserRole() != 1) {
 			if($id != $this->getUserId()) {
-				$this->Session->setFlash(__("You can't edit other users. Permission denied."), 'flash_message');	
+				$this->Session->setFlash(__("You can't edit other users. Permission denied."), 'flash_message');
 				$this->redirect(array('action' => 'edit', $this->getUserId()));
 			}
 		}
