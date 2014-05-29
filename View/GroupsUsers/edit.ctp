@@ -138,9 +138,10 @@
 
 			<h3><?= strtoupper(__("Team")) ?></h3>
 
-			<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3 evokation">
+			<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3 evokation" data-tooltip data-options="disable_for_touch:true" class="has-tip tip-top radius" title="<?=__('Chat with your group members! Go on &ldquo;View&rdquo; -> &ldquo;Chat&rdquo; to activate this feature')?>">
 				<?php foreach ($users as $usr): ?>
 					<li>
+						
 						<div class = "text-align-center text-center">
 							<div class="image circle">
 								<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['User']['id'])) ?>">
