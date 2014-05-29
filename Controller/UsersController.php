@@ -1071,7 +1071,7 @@ class UsersController extends AppController {
 
 		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'lang'));
 
 	}
 
@@ -1101,6 +1101,30 @@ class UsersController extends AppController {
 			$points_users = array(); // will contain [points][][user]
 
 			$allusers = $this->User->find('all');
+
+			$this->loadModel('Evokation');
+
+			$evokations = $this->Evokation->find('all');
+
+			$votes = $this->Evokation->Vote->find('all');
+
+			$vote_rank = array();
+
+			foreach($evokations as $e):
+				foreach($votes as $v):
+					$var = $v['Vote']['value'] + 1;
+					if($v['Vote']['evokation_id'] == $e['Evokation']['id']){
+						if(isset($vote_rank[$e['Evokation']['id']]))
+							$vote_rank[$e['Evokation']['id']] += $var;
+						else
+							$vote_rank[$e['Evokation']['id']] = $var;
+					}
+				endforeach;
+			endforeach;
+
+			arsort($vote_rank);
+
+			//debug($vote_rank);
 
 			$this->loadModel('PowerPoint');
 			$power_points = $this->PowerPoint->find('all');
@@ -1175,7 +1199,7 @@ class UsersController extends AppController {
 			$sumMyPoints += $point['Point']['value'];
 		}
 		
-		$this->set(compact('userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints'));
+		$this->set(compact('evokations', 'votes', 'vote_rank', 'userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints', 'lang'));
 	}
 
 /**

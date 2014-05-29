@@ -1,3 +1,18 @@
+<?php 
+	$mtitle = $e['Mission']['title'];
+	$ptitle = $e['Phase']['name'];
+	$qtitle = $e['Quest']['title'];
+
+	if($lang == 'es'){
+		if(!empty($e['Mission']['title_es']))
+			$mtitle = $e['Mission']['title_es'];
+		if(!empty($e['Phase']['name_es']))
+			$ptitle = $e['Phase']['name_es'];
+		if(!empty($e['Quest']['title_es']))
+			$qtitle = $e['Quest']['title_es'];
+	}
+?>
+
 <div class='evoke evidence content-box'>
 	<a href='<?php echo $this->Html->url(array("controller" => 'evidences', 'action' => 'view', $e['Evidence']['id']));?>'>
 		<div class='evoke row full-width-alternate'>
@@ -8,9 +23,9 @@
 		  	<h6 class='headings'><?= date('F j, Y', strtotime($e['Evidence']['created']))?></h6><br>
 
 		  	<?php if($e['Mission']['basic_training'] == 1): ?>
-		  		<h6 class='headings'><?= $e['Mission']['title'] ?></h6>
+		  		<h6 class='headings'><?= $mtitle ?></h6>
 		  	<?php else: ?>
-		  		<h6 class='headings'><?= $e['Mission']['title'] ?>&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;<?= $e['Phase']['name'] ?>&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;<?= $e['Quest']['title'] ?></h6>
+		  		<h6 class='headings'><?= $mtitle ?>&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;<?= $ptitle ?>&nbsp;&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;<?= $qtitle ?></h6>
 		  	<?php endif; ?>
 		  </div>
 

@@ -232,7 +232,7 @@
 			    		$lastEvidence = null;
 			    		//Lists all projects and evidences
 			    		foreach($myevidences as $e): 
-		    				echo $this->element('evidence', array('e' => $e)); 
+		    				echo $this->element('evidence', array('e' => $e, 'lang' => $lang)); 
 	    					$lastEvidence = $e['Evidence']['id'];
 
 			    		endforeach; 
