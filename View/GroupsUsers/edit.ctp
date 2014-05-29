@@ -20,7 +20,7 @@
   		<h3><?= strtoupper(__("evokation's Development Area")) ?></h3>
 
 		<div class="row full-width-alternate">
-		<div class="small-2 medium-2 large-2 columns">
+		<div class="small-2 medium-2 large-2 columns" id="leftside">
 
 			<h3><?= strtoupper(__("Assets")) ?></h3>
 			<div class="evoke content-block default">
@@ -134,7 +134,7 @@
 			<div id="evokation_div" data-placeholder=""></div>
 
 		</div>
-		<div class="small-2 medium-2 large-2 columns">
+		<div class="small-2 medium-2 large-2 columns" id="rightside">
 
 			<h3><?= strtoupper(__("Team")) ?></h3>
 
@@ -179,4 +179,13 @@
 	echo $this->Html->script('/components/etherpad/js/etherpad.js', array('inline' => false)); 
 	echo $this->Html->script('evokation', array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
+	echo $this->Html->script('sticky', array('inline' => false));
 ?>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#leftside").stick_in_parent();
+		$("#rightside").stick_in_parent();
+
+	});
+</script>
