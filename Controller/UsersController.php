@@ -755,7 +755,6 @@ class UsersController extends AppController {
 			)
 		));
 		
-
 		foreach ($adminNotificationsToMe as $not) {
 			//he sees it..
 			$insert['AdminNotificationsUser']['user_id'] = $users['User']['id'];
@@ -773,55 +772,6 @@ class UsersController extends AppController {
 	        $this->getEventManager()->dispatch($event);
 	        break;
 		}
-		
-		//$this->loadModel('Badge');
-
-		// $badges = $this->User->UserBadge->find('all', array(
-		// 	'conditions' => array(
-		// 		'UserBadge.user_id' => $id
-		// 	)
-		// ));
-
-		// foreach ($badges as $b => $badge) {
-		// 	$this->loadModel('Attachment');
-		// 	$badge_img = $this->Attachment->find('first', array(
-		// 		'conditions' => array(
-		// 			'Attachment.model' => 'Badge',
-		// 			'Attachment.foreign_key' => $badge['Badge']['id']
-		// 		)
-		// 	));
-		// 	if(!empty($badge_img)) {
-		// 		$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
-		// 		$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
-		// 	} else {
-
-		// 	}
-
-		// }
-		//$this->set(compact('user', 'users', 'adminNotifications', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
-
-		// $badges = $this->User->UserBadge->find('all', array(
-		// 	'conditions' => array(
-		// 		'UserBadge.user_id' => $id
-		// 	)
-		// ));
-
-		// foreach ($badges as $b => $badge) {
-		// 	$this->loadModel('Attachment');
-		// 	$badge_img = $this->Attachment->find('first', array(
-		// 		'conditions' => array(
-		// 			'Attachment.model' => 'Badge',
-		// 			'Attachment.foreign_key' => $badge['Badge']['id']
-		// 		)
-		// 	));
-		// 	if(!empty($badge_img)) {
-		// 		$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
-		// 		$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
-		// 	} else {
-
-		// 	}
-
-		// }
 
 		$this->loadModel('Forum.Post');
 		$this->loadModel('Forum.Topic');
