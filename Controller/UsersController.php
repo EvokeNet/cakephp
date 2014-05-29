@@ -1120,6 +1120,8 @@ class UsersController extends AppController {
 							$vote_rank[$e['Evokation']['id']] = $var;
 					}
 				endforeach;
+				if(!isset($vote_rank[$e['Evokation']['id']])) 
+					$vote_rank[$e['Evokation']['id']] = 0;
 			endforeach;
 
 			arsort($vote_rank);
