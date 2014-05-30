@@ -83,7 +83,8 @@ class NotificationsController extends AppController {
 				'badge_desc' => $badge['Badge']['description'], 'imgPath' => null, 
 				'imgFile' => null));
 		}
-		$this->redirect(array('controller'=>'users','action'=>'dashboard'));
+
+		//$this->redirect(array('controller'=>'users','action'=>'dashboard'));
 	}
 
 	// public function displayPhaseMessage($phase_id = null, $next_phase = null){
