@@ -480,6 +480,35 @@ class MissionsController extends AppController {
 
 		$is_phase_completed = false;
 
+		$count_completed_phases = 0;
+
+		$this->loadModel('Badge');
+
+		$badge = $this->Badge->find('first', array('conditions' => array('Badge.mission_id' => $mission['Mission']['id'])));
+
+		foreach($missionPhases as $m):
+			if(($completed[$m['Phase']['id']] == $total[$m['Phase']['id']]))
+				$count_completed_phases++;
+		endforeach;
+
+		// debug($count_completed_phases);
+		// debug(count($missionPhases));
+		// debug($user['User']['basic_training']);
+		// debug($badge);
+
+		if((count($missionPhases) == $count_completed_phases) && ($user['User']['basic_training'] == 1) && (isset($badge))){
+			$event = new CakeEvent('Controller.Mission.grit', $this, array(
+	            'entity_id' => $mission['Mission']['id'],
+	            'user_id' => $this->getUserId(),
+	            'entity' => 'gritBadge',
+	            'mission_name' => $mission['Mission']['title'],
+	            'badge_id' => $badge['Badge']['id'],
+	            'user_id' => $this->getUserId(),
+	        ));
+
+	        $this->getEventManager()->dispatch($event);
+		}
+		
 		if(isset($completed[$missionPhase['Phase']['id']]) && ($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']])){
 
 			$event = new CakeEvent('Controller.Phase.completed', $this, array(
