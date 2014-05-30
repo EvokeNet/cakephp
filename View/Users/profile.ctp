@@ -275,8 +275,8 @@
 	$(window).scroll(throttle(function() {
 		y = $('#target').parent().height();
 		test = getOffset(document.getElementById('target'));  
-		console.log('position of end of target> '+(test+y));
-		console.log('scroll position> '+$(window).scrollTop());
+		// console.log('position of end of target> '+(test+y));
+		// console.log('scroll position> '+$(window).scrollTop());
 
 		y2 = $('#targetEvokation').parent().height();
 		test2 = getOffset(document.getElementById('targetEvokation'));  
@@ -285,7 +285,7 @@
 			// alert(lastLocal);
 			if((lastLocal) != "") {
 				fillExtraContent();
-				console.log('ativou');
+				// console.log('ativou');
 			}
 			// menuHeight();
 		}
