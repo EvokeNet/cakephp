@@ -259,6 +259,8 @@ class UsersController extends AppController {
     		)
     	));	
 
+    	$lang = $this->getCurrentLanguage();
+
     	if(empty($last))
     			return json_encode(array());
 
@@ -297,7 +299,7 @@ class UsersController extends AppController {
 	    $older = "";
     	foreach ($obj as $key => $value) {
     		$view = new View($this, false);
-			$content = ($view->element($el, array('e' => $value)));
+			$content = ($view->element($el, array('e' => $value, 'lang' => $lang)));
 			
 			$data .= $content .' ';
 
