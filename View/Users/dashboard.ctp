@@ -502,7 +502,7 @@
 
 	var last = $('meta[name=lastEvidence]').attr('content');
 	var lastEvokation = $('meta[name=lastEvokation]').attr('content');
-	var olderContent = 5;// 5
+	var olderContent = 1;// 5
 	var evidence = true;
 	var lastLocal = last;
 	var method = 'moreEvidences';
@@ -526,13 +526,20 @@
 	//checking scrolling info to call ajax function
 	$(window).scroll(throttle(function() {   
 		y = $(target).parent().height();
+		console.log(($(window).scrollTop() + $(window).height())+', document height: '+$(document).height()+', target height:'+ y);
+		x = ($(document).height() - y);
+		if(x<0) {
+			x+= $(window).scrollTop();
+		}
 		// test = test.parentNode;
-		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + " :last-child").height() + 150)) {
+		if($(window).scrollTop() + $(window).height() < x) {
 			// alert($(target + ":last-child").height());
 			if((lastLocal) != "") {
 				fillExtraContent();
+				console.log('ativou');
 				// console.log(($(document).height() - $(target + " :last-child").height() + 150));	
-				console.log(y);
+				// console.log(($(window).scrollTop() + $(window).height())+', document height: '+$(document).height()+', target height:'+ y);
+				// console.log(($(window).scrollTop() + $(window).height()) - ($(document).height() - y));
 			}
 			// menuHeight();
 		}
