@@ -17,7 +17,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'MathCaptcha', );
+	public $components = array('MathCaptcha', );
 
 	public $uses = array('User', 'Friend');
 
@@ -243,10 +243,10 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
-	}
+	// public function index() {
+	// 	$this->User->recursive = 0;
+	// 	$this->set('users', $this->Paginator->paginate());
+	// }
 
 
 	public function moreEvidences($lastOne, $limit = 1, $user_id = -1){
@@ -755,6 +755,7 @@ class UsersController extends AppController {
 			)
 		));
 		
+
 		foreach ($adminNotificationsToMe as $not) {
 			//he sees it..
 			$insert['AdminNotificationsUser']['user_id'] = $users['User']['id'];
@@ -772,6 +773,8 @@ class UsersController extends AppController {
 	        $this->getEventManager()->dispatch($event);
 	        break;
 		}
+		
+
 
 		$this->loadModel('Forum.Post');
 		$this->loadModel('Forum.Topic');
@@ -796,7 +799,7 @@ class UsersController extends AppController {
 			)));
 		}
 		
-		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'evidence', 'myevidences', 'missions', 
+		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'evidence', 'myevidences', 'missions', 'lang',
 			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies', 
 			'show_basic_training', 'evokations', 'evokationsFollowing', 'myEvokations'));
 		//'groups', 'my_photo', 'user_photo',
@@ -1411,10 +1414,10 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function admin_index() {
-		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
-	}
+	// public function admin_index() {
+	// 	$this->User->recursive = 0;
+	// 	$this->set('users', $this->Paginator->paginate());
+	// }
 
 /**
  * admin_view method
