@@ -1554,8 +1554,8 @@ class PanelsController extends AppController {
 			$this->AdminNotification->create();
 			$this->AdminNotification->save($newData);
 
-			debug($newData);
-			die();
+			// debug($newData);
+			// die();
 			if(!$badgeExists || $missionCompleted == 0)
 				continue;
 
