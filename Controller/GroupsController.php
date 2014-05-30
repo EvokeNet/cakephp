@@ -14,7 +14,7 @@ class GroupsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array(/*'Paginator',*/ 'Session');
 
 	public $user = null;
 
@@ -24,9 +24,7 @@ class GroupsController extends AppController {
  * @return void
  */
 	public function index($mission_id = null, $quest_id = null) {
-		$this->Group->recursive = 0;
-		$this->set('groups', $this->Paginator->paginate());
-
+		
 		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$myPoints = $this->Group->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
@@ -123,9 +121,6 @@ class GroupsController extends AppController {
  * @return void
  */
 	public function evokations() {
-
-		$this->Group->recursive = 0;
-		$this->set('groups', $this->Paginator->paginate());
 
 		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
@@ -509,10 +504,10 @@ class GroupsController extends AppController {
  *
  * @return void
  */
-	public function admin_index() {
-		$this->Group->recursive = 0;
-		$this->set('groups', $this->Paginator->paginate());
-	}
+	// public function admin_index() {
+	// 	$this->Group->recursive = 0;
+	// 	$this->set('groups', $this->Paginator->paginate());
+	// }
 
 /**
  * admin_view method

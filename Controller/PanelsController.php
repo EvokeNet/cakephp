@@ -1499,8 +1499,9 @@ class PanelsController extends AppController {
 			$this->request->data['Evokation']['final_sent'] = 0;
 			$missionCompleted = 0;
 		}
+		debug($missionCompleted);
 		$this->Evokation->save($this->request->data);
-
+		// die();
 
 		//set as mission completed to each member of the evokation group
 		$members = $this->GroupsUser->find('all', array(
@@ -1542,17 +1543,19 @@ class PanelsController extends AppController {
 			//dispatch mission completed or evokation failure
 			if($missionCompleted == 1) {
 				$newData['AdminNotification']['title'] = 'Project Approved';
-				$newData['AdminNotification']['description'] = 'Congratulations, agent! Your project '.$evokation['Evokation']['title'].' was approved and you have'.
-					'successfully completed the '. $mission['Mission']['title'] .' mission.';
+				$newData['AdminNotification']['description'] = __('Congratulations, agent! Your project') .' '.$evokation['Evokation']['title'].' ' . 
+					__('was approved and you have successfully completed the').' '. $mission['Mission']['title'] .' '.__('mission').'.';
 			}else{
 				$newData['AdminNotification']['title'] = 'Project Not Approved!';
-				$newData['AdminNotification']['description'] = 'Agent, your project'. $evokation['Evokation']['title'] . ' failed!';
+				$newData['AdminNotification']['description'] = 'Agent, your project '. $evokation['Evokation']['title'] . ' failed!';
 			}
 			$newData['AdminNotification']['user_id'] = $this->getUserId();
 			$newData['AdminNotification']['user_target'] = $member['GroupsUser']['user_id'];
 			$this->AdminNotification->create();
 			$this->AdminNotification->save($newData);
 
+			debug($newData);
+			die();
 			if(!$badgeExists || $missionCompleted == 0)
 				continue;
 
