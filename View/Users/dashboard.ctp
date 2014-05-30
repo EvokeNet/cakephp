@@ -288,6 +288,25 @@
 												
 					<?php endif; ?>
 
+					<?php if($n['Notification']['origin'] == 'gritBadge'): 
+
+							if(!empty($n['badge_name'])):?>
+
+							<li>
+								<?php if($n['User']['photo_attachment'] == null) : ?>
+									<?php if($n['User']['facebook_id'] == null) : ?>
+										<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
+									<?php else : ?>	
+										<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
+									<?php endif; ?>
+					  			<?php else : ?>
+					  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+					  			<?php endif; ?>
+								<a href = "<?= $this->Html->url(array('controller' => 'badges', 'action' => 'index')) ?>"><?= sprintf(__('You won the %s badge'), $n['badge_name']) ?></a> <!-- Tirar -->
+							</li>
+												
+					<?php endif; endif; ?>
+
 				<?php endforeach; ?>
 				<?php endif; ?>
 			</ul>
