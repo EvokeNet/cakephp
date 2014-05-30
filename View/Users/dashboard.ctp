@@ -546,14 +546,14 @@
 	$(window).scroll(throttle(function() {   
 		y = $('#'+target).parent().height();
 		test = getOffset(document.getElementById(target));
-		// console.log('position of end of target> '+(test+y));
-		// console.log('scroll position> '+$(window).scrollTop());
+		console.log('position of end of target> '+(test+y));
+		console.log('scroll position> '+$(window).scrollTop());
 		
-		if($(window).scrollTop() >= (test + y) - 600){//+ $(window).height() < x) {
+		if($(window).scrollTop() + $(window).height() >= (test + y) - 600){//+ $(window).height() < x) {
 			
 			if((lastLocal) != "") {
 				fillExtraContent();
-				// console.log('ativou');
+				console.log('ativou');
 			}
 			// menuHeight();
 		}
