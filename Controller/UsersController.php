@@ -538,7 +538,7 @@ class UsersController extends AppController {
 			'conditions' => array(
 				'Evidence.title != ' => ''
 			),
-			'limit' => 1 // CHANGE 8
+			'limit' => 8 // CHANGE 8
 		));
 
 

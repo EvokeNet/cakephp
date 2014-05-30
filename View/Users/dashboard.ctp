@@ -502,37 +502,37 @@
 
 	var last = $('meta[name=lastEvidence]').attr('content');
 	var lastEvokation = $('meta[name=lastEvokation]').attr('content');
-	var olderContent = 1;// 5
+	var olderContent = 5;// 5
 	var evidence = true;
 	var lastLocal = last;
 	var method = 'moreEvidences';
-	var target = '#target';
+	var target = 'target';
 
 	//ajax on either evokation or evidence stream
 	$("#evokationTrigger").click(function (){
 		evidence = false;
 		lastLocal = lastEvokation;
 		method = 'moreEvokations';
-		target = '#targetEvokation';
+		target = 'targetEvokation';
 	});
 
 	$("#evidenceTrigger").click(function (){
 		evidence = true;
 		lastLocal = last;
 		method = 'moreEvidences';
-		target = '#target';
+		target = 'target';
 	});
 
 	//checking scrolling info to call ajax function
 	$(window).scroll(throttle(function() {   
-		y = $(target).parent().height();
-		console.log(($(window).scrollTop() + $(window).height())+', document height: '+$(document).height()+', target height:'+ y);
-		x = ($(document).height() - y);
-		if(x<0) {
-			x+= $(window).scrollTop();
-		}
+		y = $('#'+target).parent().height();
+		test = getOffset(document.getElementById(target));
+		console.log('position of end of target> '+(test+y));
+		console.log('scroll position> '+$(window).scrollTop());
+		// console.log(($(window).scrollTop() + $(window).height())+', document height: '+$(document).height()+', target height:'+ y);
+		
 		// test = test.parentNode;
-		if($(window).scrollTop() + $(window).height() < x) {
+		if($(window).scrollTop() >= (test + y) - 200){//+ $(window).height() < x) {
 			// alert($(target + ":last-child").height());
 			if((lastLocal) != "") {
 				fillExtraContent();
@@ -545,6 +545,17 @@
 		}
 	}, 1000));
 	
+	function getOffset( el ) {
+	    var _x = 0;
+	    var _y = 0;
+	    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+	        _x += el.offsetLeft - el.scrollLeft;
+	        _y += el.offsetTop - el.scrollTop;
+	        el = el.offsetParent;
+	    }
+	    return _y;
+	}
+
 	function throttle(fn, threshhold, scope) {
 	  	threshhold || (threshhold = 250);
 	  	var last,
@@ -590,7 +601,7 @@
 		        response = response.substring(response.search("lastEnd")+7);
 			        
 		        // console.log(response);	
-		        $(target).append((response));
+		        $('#'+target).append((response));
 		    },
 		    error: function(e) {
 		        console.log(e);
