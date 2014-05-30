@@ -527,8 +527,10 @@
 	$(window).scroll(throttle(function() {   
 		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 150)) {
 			// alert($(target + ":last-child").height());
-			if((lastLocal) != "")
+			if((lastLocal) != "") {
 				fillExtraContent();
+				console.log(($(document).height() - $(target + ":last-child").height() + 150));	
+			}
 			// menuHeight();
 		}
 	}, 1000));
