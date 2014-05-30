@@ -529,17 +529,12 @@
 		test = getOffset(document.getElementById(target));
 		console.log('position of end of target> '+(test+y));
 		console.log('scroll position> '+$(window).scrollTop());
-		// console.log(($(window).scrollTop() + $(window).height())+', document height: '+$(document).height()+', target height:'+ y);
 		
-		// test = test.parentNode;
 		if($(window).scrollTop() >= (test + y) - 600){//+ $(window).height() < x) {
-			// alert($(target + ":last-child").height());
+			
 			if((lastLocal) != "") {
 				fillExtraContent();
 				console.log('ativou');
-				// console.log(($(document).height() - $(target + " :last-child").height() + 150));	
-				// console.log(($(window).scrollTop() + $(window).height())+', document height: '+$(document).height()+', target height:'+ y);
-				// console.log(($(window).scrollTop() + $(window).height()) - ($(document).height() - y));
 			}
 			// menuHeight();
 		}
