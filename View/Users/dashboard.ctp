@@ -532,7 +532,7 @@
 		// console.log(($(window).scrollTop() + $(window).height())+', document height: '+$(document).height()+', target height:'+ y);
 		
 		// test = test.parentNode;
-		if($(window).scrollTop() >= (test + y) - 200){//+ $(window).height() < x) {
+		if($(window).scrollTop() >= (test + y) - 600){//+ $(window).height() < x) {
 			// alert($(target + ":last-child").height());
 			if((lastLocal) != "") {
 				fillExtraContent();
