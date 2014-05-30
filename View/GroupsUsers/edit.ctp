@@ -20,7 +20,7 @@
   		<h3><?= strtoupper(__("evokation's Development Area")) ?></h3>
 
 		<div class="row full-width-alternate">
-		<div class="small-2 medium-2 large-2 columns">
+		<div class="small-2 medium-2 large-2 columns" id="leftside">
 
 			<h3><?= strtoupper(__("Assets")) ?></h3>
 			<div class="evoke content-block default">
@@ -134,13 +134,14 @@
 			<div id="evokation_div" data-placeholder=""></div>
 
 		</div>
-		<div class="small-2 medium-2 large-2 columns">
+		<div class="small-2 medium-2 large-2 columns" id="rightside">
 
 			<h3><?= strtoupper(__("Team")) ?></h3>
 
-			<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3 evokation">
+			<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3 evokation" data-tooltip data-options="disable_for_touch:true" class="has-tip tip-top radius" title="<?=__('Chat with your group members! Go on &ldquo;View&rdquo; -> &ldquo;Chat&rdquo; to activate this feature')?>">
 				<?php foreach ($users as $usr): ?>
 					<li>
+						
 						<div class = "text-align-center text-center">
 							<div class="image circle">
 								<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['User']['id'])) ?>">
@@ -172,10 +173,20 @@
 </section>
 
 <meta name="padID" content="<?php echo $padID; ?>">
+<meta name="userName" content="<?php echo $user['User']['name']; ?>">
 
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
 	echo $this->Html->script('/components/etherpad/js/etherpad.js', array('inline' => false)); 
 	echo $this->Html->script('evokation', array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
+	echo $this->Html->script('sticky', array('inline' => false));
 ?>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#leftside").stick_in_parent();
+		$("#rightside").stick_in_parent();
+
+	});
+</script>

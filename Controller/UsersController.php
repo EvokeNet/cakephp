@@ -17,7 +17,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'MathCaptcha', );
+	public $components = array('MathCaptcha', );
 
 	public $uses = array('User', 'Friend');
 
@@ -243,10 +243,10 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
-	}
+	// public function index() {
+	// 	$this->User->recursive = 0;
+	// 	$this->set('users', $this->Paginator->paginate());
+	// }
 
 
 	public function moreEvidences($lastOne, $limit = 1, $user_id = -1){
@@ -774,54 +774,7 @@ class UsersController extends AppController {
 	        break;
 		}
 		
-		//$this->loadModel('Badge');
 
-		// $badges = $this->User->UserBadge->find('all', array(
-		// 	'conditions' => array(
-		// 		'UserBadge.user_id' => $id
-		// 	)
-		// ));
-
-		// foreach ($badges as $b => $badge) {
-		// 	$this->loadModel('Attachment');
-		// 	$badge_img = $this->Attachment->find('first', array(
-		// 		'conditions' => array(
-		// 			'Attachment.model' => 'Badge',
-		// 			'Attachment.foreign_key' => $badge['Badge']['id']
-		// 		)
-		// 	));
-		// 	if(!empty($badge_img)) {
-		// 		$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
-		// 		$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
-		// 	} else {
-
-		// 	}
-
-		// }
-		//$this->set(compact('user', 'users', 'adminNotifications', 'is_friend', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
-
-		// $badges = $this->User->UserBadge->find('all', array(
-		// 	'conditions' => array(
-		// 		'UserBadge.user_id' => $id
-		// 	)
-		// ));
-
-		// foreach ($badges as $b => $badge) {
-		// 	$this->loadModel('Attachment');
-		// 	$badge_img = $this->Attachment->find('first', array(
-		// 		'conditions' => array(
-		// 			'Attachment.model' => 'Badge',
-		// 			'Attachment.foreign_key' => $badge['Badge']['id']
-		// 		)
-		// 	));
-		// 	if(!empty($badge_img)) {
-		// 		$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
-		// 		$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
-		// 	} else {
-
-		// 	}
-
-		// }
 
 		$this->loadModel('Forum.Post');
 		$this->loadModel('Forum.Topic');
@@ -846,7 +799,7 @@ class UsersController extends AppController {
 			)));
 		}
 		
-		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'evidence', 'myevidences', 'missions', 
+		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'evidence', 'myevidences', 'missions', 'lang',
 			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies', 
 			'show_basic_training', 'evokations', 'evokationsFollowing', 'myEvokations'));
 		//'groups', 'my_photo', 'user_photo',
@@ -1071,7 +1024,7 @@ class UsersController extends AppController {
 
 		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'lang'));
 
 	}
 
@@ -1101,6 +1054,32 @@ class UsersController extends AppController {
 			$points_users = array(); // will contain [points][][user]
 
 			$allusers = $this->User->find('all');
+
+			$this->loadModel('Evokation');
+
+			$evokations = $this->Evokation->find('all');
+
+			$votes = $this->Evokation->Vote->find('all');
+
+			$vote_rank = array();
+
+			foreach($evokations as $e):
+				foreach($votes as $v):
+					$var = $v['Vote']['value'] + 1;
+					if($v['Vote']['evokation_id'] == $e['Evokation']['id']){
+						if(isset($vote_rank[$e['Evokation']['id']]))
+							$vote_rank[$e['Evokation']['id']] += $var;
+						else
+							$vote_rank[$e['Evokation']['id']] = $var;
+					}
+				endforeach;
+				if(!isset($vote_rank[$e['Evokation']['id']])) 
+					$vote_rank[$e['Evokation']['id']] = 0;
+			endforeach;
+
+			arsort($vote_rank);
+
+			//debug($vote_rank);
 
 			$this->loadModel('PowerPoint');
 			$power_points = $this->PowerPoint->find('all');
@@ -1175,7 +1154,7 @@ class UsersController extends AppController {
 			$sumMyPoints += $point['Point']['value'];
 		}
 		
-		$this->set(compact('userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints'));
+		$this->set(compact('evokations', 'votes', 'vote_rank', 'userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints', 'lang'));
 	}
 
 /**
@@ -1435,10 +1414,10 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function admin_index() {
-		$this->User->recursive = 0;
-		$this->set('users', $this->Paginator->paginate());
-	}
+	// public function admin_index() {
+	// 	$this->User->recursive = 0;
+	// 	$this->set('users', $this->Paginator->paginate());
+	// }
 
 /**
  * admin_view method

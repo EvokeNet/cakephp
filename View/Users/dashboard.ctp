@@ -2,7 +2,7 @@
 
 	echo $this->Html->css('mycarousel');
 
-	echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
+	// echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
 
 	// echo $this->Html->css('breadcrumb');
 
@@ -87,10 +87,6 @@
 									<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1))?>">
 										<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px; width:100%">
 										<h1><?= $basic_training['Mission']['title'] ?> </h1>
-										<!-- <div class="summary">
-											<h2>This is the first title</h2>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
-										</div> -->
 									</a>
 								</li>
 
@@ -107,10 +103,7 @@
 
 											<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "max-height: 130px; height: 130px; width:100%">
 											<h1><?= $mission['Mission']['title'] ?> </h1>
-											<!-- <div class="summary">
-												<h2>This is the first title</h2>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
-											</div> -->
+											
 										</a>
 									</li>
 									
@@ -120,12 +113,7 @@
 										<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], 1))?>">
 											<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "max-height: 130px; height: 130px; width:100%">
 											<h1><?= $mission['Mission']['title'] ?> </h1>
-											<!-- <div style = "max-height: 130px; height: 130px; width:100%; overflow:hidden; border: 2px solid #000"><img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'></div> -->
-
-											<!-- <div class="summary">
-												<h2>This is the first title</h2>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget lacus erat, sit amet tempor nibh. Aliquam erat volutpat. Nulla et porta tortor. </p>
-											</div> -->
+											
 										</a>
 									</li>
 
@@ -158,7 +146,7 @@
 		    		//Lists all projects and evidences
 		    		foreach($evidence as $e): 
 	    				
-	    				echo $this->element('evidence', array('e' => $e)); 
+	    				echo $this->element('evidence', array('e' => $e, 'lang' => $lang)); 
 	    				$lastEvidence = $e['Evidence']['id'];
 		    		endforeach; 
 		    		

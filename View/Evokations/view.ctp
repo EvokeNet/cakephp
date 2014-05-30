@@ -65,6 +65,10 @@
 			  		<?php endif ?>	
 			  	<?php endif ?>
 
+			  	<?php if($can_edit) : ?>
+					<div class = "evoke evidence margin-button padding30"><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $evokation['Evokation']['group_id'])); ?>" class = "button general"><?php echo strtoupper(__('EDIT PROJECT'));?></a></div>
+				<?php endif; ?>
+
 			  	<dl class="accordion margin top-5" data-accordion>
 				  <dd>
 				    <a class = "text-align-center title" href="#panel1"><?= strtoupper(__('Latest updates')) ?>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-down fa-lg"></i></a>
@@ -158,7 +162,7 @@
 				<?php if($can_edit) : ?>
 					<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $evokation['Evokation']['group_id'])); ?>" class = "button general"><?php echo __('GO TO PROJECT');?></a></div>
 				<?php else : ?>
-					<?php if(isset($user['User']) && $Follows) :?>
+					<?php if(isset($user['User']) && $follows) :?>
 						<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $evokation['Evokation']['id'])); ?>" class = "button general"><?php echo __('Unfollow');?></a></div>
 					<?php else :?>
 						<div class = "evoke evidence margin-button"><a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $evokation['Evokation']['id'])); ?>" class = "button general"><?php echo __('Follow');?></a></div>

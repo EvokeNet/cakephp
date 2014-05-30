@@ -88,9 +88,9 @@ class GroupsUsersController extends AppController {
 
 		$usersid = array(); //used to set the OR condition used down there
 
-		foreach ($users as $user) {
-			array_push($usersid, array('Evidence.user_id' => $user['User']['id']));
-			if ($user['User']['id'] == $this->getUserId()) {
+		foreach ($users as $usr) {
+			array_push($usersid, array('Evidence.user_id' => $usr['User']['id']));
+			if ($usr['User']['id'] == $this->getUserId()) {
 				$authorized = true;
 			}
 		}
