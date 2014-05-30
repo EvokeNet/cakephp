@@ -82,11 +82,9 @@
 					</ul>
 					<?php 
 						$pos = 1;
-						$outkast = array();
 
 						foreach($vote_rank as $key => $value){
 							foreach ($evokations as $group) {
-
 								if($key == $group['Evokation']['id']){ ?>
 									<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
 										<li><h1 style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></h1></li>
@@ -119,48 +117,9 @@
 									<?php 
 									$pos++;
 								}
-
-								else if(!isset($vote_rank[$group['Evokation']['id']])){
-									if(!isset($outkast[$group['Evokation']['id']])){
-										$outkast[$group['Evokation']['id']] = $group;
-									}
-								} 
 							}
 						}
 
-						foreach($outkast as $key => $group){ ?>
-
-							<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
-									<li><h1 style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></h1></li>
-
-									<li>
-										<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
-										<?php if(isset($user['User'])) :?>
-									 		<a href = "<?= $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']))?>">
-									 			<?php if($group['Group']['photo_dir'] == null) :?>
-								  					<img src="https://graph.facebook.com//picture?type=large" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-									  			<?php else : ?>
-														<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-											  	<?php endif; ?>
-									 		</a>
-									 	<?php else : ?>
-											<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'login'))?>">
-												<?php if($group['Group']['photo_dir'] == null) :?>
-								  					<img src="https://graph.facebook.com//picture?type=large" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-									  			<?php else : ?>
-														<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-											  	<?php endif; ?>
-											</a>
-										<?php endif;?>
-			  							</a>
-			  						</li>
-			  						<li><h3 style = "font-size: 2.5rem;"><?= $group['Evokation']['title'] ?></h3></li>
-		  							<li><h3><?= 0 ?></h3></li>
-		  							<span class = "evoke leaderboard-border"></span>
-	  							</ul>
-								<?php 
-								$pos++;
-							}
 					?>
 
 				</div>
