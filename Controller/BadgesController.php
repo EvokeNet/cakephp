@@ -335,38 +335,6 @@ class BadgesController extends AppController {
 	}
 
 /**
- * save method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function save($id = null, $user_id = null) {
-		if (!$this->Badge->exists($id)) {
-			throw new NotFoundException(__('Invalid badge'));
-		}
-
-		$this->Badge->UserBadge->create();
-
-        $insertData = array(
-            'user_id' => $event->data['user_id'], 
-            'badge_id' => $id,
-        );
-
-		if ($this->Badge->UserBadge->saveAll($insertData)) {
-			$this->Session->setFlash(__('The badge has been saved.'));
-			// return $this->redirect(array('controller' => 'users', 'action' => 'dashboard'));
-		} else{
-			$this->Session->setFlash(__('The badge was not saved.'));
-		}
-
-		$this->redirect($this->referer());
-
-		// $options = array('conditions' => array('Badge.' . $this->Badge->primaryKey => $id));
-		// $this->set('badge', $this->Badge->find('first', $options));
-	}
-
-/**
  * admin_index method
  *
  * @return void

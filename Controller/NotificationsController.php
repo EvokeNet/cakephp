@@ -74,7 +74,7 @@ class NotificationsController extends AppController {
 			)
 		));
 
-		if(isset($attachment)){
+		if(!empty($attachment)){
 			$this->Session->setFlash('', 'flash_badge_message', array('badge_name' => $badge['Badge']['name'], 
 				'badge_desc' => $badge['Badge']['description'], 'imgPath' => $attachment['Attachment']['id'], 
 				'imgFile' => $attachment['Attachment']['attachment']));
@@ -83,7 +83,8 @@ class NotificationsController extends AppController {
 				'badge_desc' => $badge['Badge']['description'], 'imgPath' => null, 
 				'imgFile' => null));
 		}
-		$this->redirect(array('controller'=>'users','action'=>'dashboard'));
+
+		//$this->redirect(array('controller'=>'users','action'=>'dashboard'));
 	}
 
 	// public function displayPhaseMessage($phase_id = null, $next_phase = null){
