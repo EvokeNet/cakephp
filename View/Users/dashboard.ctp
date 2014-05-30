@@ -502,7 +502,7 @@
 
 	var last = $('meta[name=lastEvidence]').attr('content');
 	var lastEvokation = $('meta[name=lastEvokation]').attr('content');
-	var olderContent = 5;
+	var olderContent = 5;// 5
 	var evidence = true;
 	var lastLocal = last;
 	var method = 'moreEvidences';
@@ -525,11 +525,14 @@
 
 	//checking scrolling info to call ajax function
 	$(window).scroll(throttle(function() {   
-		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 150)) {
+		y = $(target).parent().height();
+		// test = test.parentNode;
+		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + " :last-child").height() + 150)) {
 			// alert($(target + ":last-child").height());
 			if((lastLocal) != "") {
 				fillExtraContent();
-				console.log(($(document).height() - $(target + ":last-child").height() + 150));	
+				// console.log(($(document).height() - $(target + " :last-child").height() + 150));	
+				console.log(y);
 			}
 			// menuHeight();
 		}
