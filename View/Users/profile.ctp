@@ -273,12 +273,15 @@
 
 	//checking scrolling info to call ajax function
 	$(window).scroll(throttle(function() {
-		y = $('#'+target).parent().height();
-		test = getOffset(document.getElementById(target));  
+		y = $('#target').parent().height();
+		test = getOffset(document.getElementById('target'));  
 		console.log('position of end of target> '+(test+y));
 		console.log('scroll position> '+$(window).scrollTop());
+
+		y2 = $('#targetEvokation').parent().height();
+		test2 = getOffset(document.getElementById('targetEvokation'));  
 		
-		if($(window).scrollTop() >= (test + y) - 600){//+ $(window).height() < x) {
+		if(($(window).scrollTop() >= (test + y) - 600) || ($(window).scrollTop() >= (test2 + y2) - 600)){//+ $(window).height() < x) {
 			// alert(lastLocal);
 			if((lastLocal) != "") {
 				fillExtraContent();
