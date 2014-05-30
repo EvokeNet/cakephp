@@ -541,6 +541,9 @@ class UsersController extends AppController {
 			'limit' => 8 // CHANGE 8
 		));
 
+		$this->loadModel('Badge');
+
+		$badges = $this->Badge->find('all', array('conditions' => array('Badge.mission_id' > 0)));
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array(
@@ -675,6 +678,15 @@ class UsersController extends AppController {
 		 	 			unset($notifies[$key]);
 		 	 		}
 		 	 	}
+
+		 	 	if($value['Notification']['origin'] == 'gritBadge'){
+					foreach($badges as $badge):
+						if($badge['Badge']['id'] == $value['Notification']['origin_id']){
+							$notifies[$key]['badge_name'] = $badge['Badge']['name'];
+							break;
+						}
+					endforeach;
+				}
 		 	}
 		} 
 
@@ -802,7 +814,8 @@ class UsersController extends AppController {
 			)));
 		}
 		
-		$this->set(compact('feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'adminNotificationsToMe', 'evidence', 'myevidences', 'missions', 'lang',
+
+		$this->set(compact('badges', 'feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'adminNotificationsToMe', 'evidence', 'myevidences', 'missions', 'lang',
 			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies', 
 			'show_basic_training', 'evokations', 'evokationsFollowing', 'myEvokations'));
 		//'groups', 'my_photo', 'user_photo',

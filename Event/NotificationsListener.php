@@ -42,6 +42,29 @@ class NotificationsListener implements CakeEventListener {
 
         $exists = $note->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
 
+        // $note->create();
+
+        //     $insertData = array(
+        //         'user_id' => $event->data['user_id'], 
+        //         'origin_id' => $event->data['entity_id'], 
+        //         'origin' => $event->data['entity'], 
+        //     );
+
+        //     $note->saveAll($insertData);
+
+        //     $userBadge = ClassRegistry::init('UserBadge');
+
+        //     $userBadge->create();
+
+        //     $insertData = array(
+        //         'user_id' => $event->data['user_id'], 
+        //         'badge_id' => $event->data['entity_id'], 
+        //     );
+
+        //     $userBadge->saveAll($insertData);
+
+        //     $note->requestAction(array('controller' => 'notifications', 'action' => 'displayBadgeMessage', $event->data['entity_id']));
+            
         if(!$exists){
             $note->create();
 
@@ -59,12 +82,12 @@ class NotificationsListener implements CakeEventListener {
 
             $insertData = array(
                 'user_id' => $event->data['user_id'], 
-                'badge_id' => $event->data['badge_id'], 
+                'badge_id' => $event->data['entity_id'], 
             );
 
             $userBadge->saveAll($insertData);
 
-            $note->requestAction(array('controller' => 'notifications', 'action' => 'displayBadgeMessage', $event->data['badge_id']));
+            $note->requestAction(array('controller' => 'notifications', 'action' => 'displayBadgeMessage', $event->data['entity_id']));
 
         }
     }
