@@ -1542,12 +1542,12 @@ class PanelsController extends AppController {
 			//debug($mission);
 			//dispatch mission completed or evokation failure
 			if($missionCompleted == 1) {
-				$newData['AdminNotification']['title'] = 'Project Approved';
+				$newData['AdminNotification']['title'] = __('Project Approved');
 				$newData['AdminNotification']['description'] = __('Congratulations, agent! Your project') .' '.$evokation['Evokation']['title'].' ' . 
 					__('was approved and you have successfully completed the').' '. $mission['Mission']['title'] .' '.__('mission').'.';
 			}else{
-				$newData['AdminNotification']['title'] = 'Project Not Approved!';
-				$newData['AdminNotification']['description'] = 'Agent, your project '. $evokation['Evokation']['title'] . ' failed!';
+				$newData['AdminNotification']['title'] = __('Project Not Approved!');
+				$newData['AdminNotification']['description'] = __('Agent, your project').' '. $evokation['Evokation']['title'] . ' '.__('failed!');
 			}
 			$newData['AdminNotification']['user_id'] = $this->getUserId();
 			$newData['AdminNotification']['user_target'] = $member['GroupsUser']['user_id'];
