@@ -1060,7 +1060,11 @@ class UsersController extends AppController {
 
 			$this->loadModel('Evokation');
 
-			$evokations = $this->Evokation->find('all');
+			$evokations = $this->Evokation->find('all', array(
+				'conditions' => array(
+					'Evokation.sent' => 1
+				)
+			));
 
 			$votes = $this->Evokation->Vote->find('all');
 
