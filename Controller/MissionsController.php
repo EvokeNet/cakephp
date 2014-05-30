@@ -498,11 +498,10 @@ class MissionsController extends AppController {
 
 		if((count($missionPhases) == $count_completed_phases) && ($user['User']['basic_training'] == 1) && (isset($badge))){
 			$event = new CakeEvent('Controller.Mission.grit', $this, array(
-	            'entity_id' => $mission['Mission']['id'],
+	            'entity_id' => $badge['Badge']['id'],
 	            'user_id' => $this->getUserId(),
 	            'entity' => 'gritBadge',
 	            'mission_name' => $mission['Mission']['title'],
-	            'badge_id' => $badge['Badge']['id'],
 	            'user_id' => $this->getUserId(),
 	        ));
 
