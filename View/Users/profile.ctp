@@ -281,7 +281,7 @@
 		y2 = $('#targetEvokation').parent().height();
 		test2 = getOffset(document.getElementById('targetEvokation'));  
 		
-		if(($(window).scrollTop() >= (test + y) - 600) || ($(window).scrollTop() >= (test2 + y2) - 600)){//+ $(window).height() < x) {
+		if(($(window).scrollTop() + $(window).height() >= (test + y) - 600) || ($(window).scrollTop() + $(window).height()>= (test2 + y2) - 600)){//+ $(window).height() < x) {
 			// alert(lastLocal);
 			if((lastLocal) != "") {
 				fillExtraContent();
