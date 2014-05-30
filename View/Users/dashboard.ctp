@@ -29,6 +29,7 @@
 
 	  	<?php 
 	  		// debug($adminNotifications);
+	  		$adminNotifications = array_merge($adminNotifications, $adminNotificationsToMe);
 	  		$allNot = "";
 	  		$first = true;
 	  		$hasNotification = null;
