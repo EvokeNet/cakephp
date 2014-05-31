@@ -141,7 +141,7 @@ class AppController extends Controller {
 
     }
 
-    public function saveNotifications($notes){
+    public function saveNotifications($notes, $user_id){
 
         debug($notes);
         
@@ -149,6 +149,7 @@ class AppController extends Controller {
 
         $all = $this->Notification->find('all', array(
             'conditions' => array(
+                'Notification.user_id' => $user_id,
                 'OR' => $notes
             ), 
             'order' => array(

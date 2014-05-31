@@ -42,6 +42,7 @@
 
 	$notesCount = count($userNotifications);
 
+	//debug($userNotifications);
 ?>
 
 <div class = "evoke menu-bg sidebar menucolumn">
@@ -83,7 +84,7 @@
 		//alert("YAY");
 		jQuery.ajax({
 		    type: 'POST',
-		    url: "<?= 'saveNotifications/'. $userNotifications ?>",
+		    url: "<?= 'saveNotifications/'. $userNotifications . '/' . $user['User']['id']?>",
 		    success: function() {
 		        alert("YAY1");
 		    },

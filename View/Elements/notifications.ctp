@@ -20,7 +20,7 @@
 
 		<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', 6));?>">
 		
-			<h1><?= $e['Evokation']['title']?></h1>
+			<h1></h1>
 			<!-- <h5><?= $e['Group']['description']?></h5> -->
 
 		</a>

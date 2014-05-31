@@ -1,5 +1,6 @@
 <?php
-$this->extend('/Common/topbar');
+	
+	$this->extend('/Common/topbar');
 	$this->start('menu');
 
 	echo $this->element('header', array('user' => $user));
