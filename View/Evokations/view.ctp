@@ -125,19 +125,21 @@
 	  		<?php if(isset($user['User'])) :?>
 		 		<a href = "<?= $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']))?>">
 		 			<?php if($group['Group']['photo_dir'] == null) :?>
-	  					<img src="https://graph.facebook.com//picture?type=large" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+	  					<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
 		  			<?php else : ?>
-							<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+						<?php $pic = $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/'.$group['Group']['photo_attachment'];?>
 				  	<?php endif; ?>
+				  	<div style="min-width: 10vw; margin: 3vw 5vw; min-height: 10vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; background-repeat: no-repeat"></div>
 		 			<h1><?= $group['Group']['title']?></h1>
 		 		</a>
 		 	<?php else : ?>
 				<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'login'))?>">
 					<?php if($group['Group']['photo_dir'] == null) :?>
-	  					<img src="https://graph.facebook.com//picture?type=large" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+	  					<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
 		  			<?php else : ?>
-							<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+						<?php $pic = $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/'.$group['Group']['photo_attachment'];?>
 				  	<?php endif; ?>
+				  	<div style="min-width: 10vw; margin: 3vw 5vw; min-height: 10vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; background-repeat: no-repeat"></div>
 					<h1><?= $group['Group']['title']?></h1>
 				</a>
 			<?php endif;?>

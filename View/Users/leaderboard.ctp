@@ -26,7 +26,7 @@
 
 		<div class="evoke sheer-background">
 			<div class="tabs-content evoke headings">
-				<h1 class = "float-right"><?= strtoupper(__("Your position: ")) ?> <span id="positionHolder">5</span></h1>
+				<h1 id="positionh1" class = "float-right"><?= strtoupper(__("Your position: ")) ?> <span id="positionHolder">5</span></h1>
 				<div class="content vertical active" id="panelXP">
 
 					<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5">
@@ -48,15 +48,17 @@
 
 									<li>
 										<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
-										<?php if($usr['photo_attachment'] == null) : ?>
-			  								<div>
-			  									<img src="https://graph.facebook.com/<?php echo $usr['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon"/>
-			  								</div>
-			  							<?php else : ?>
-			  								<div>
-			  									<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/thumb_'.$usr['photo_attachment'] ?>" class = "evoke dashboard users-icon"/>
-			  								</div>
-			  							<?php endif; ?>
+										<?php if($usr['photo_attachment'] == null) : 
+			  								if($usr['facebook_id'] == null) : 
+												$pic = $this->webroot.'img/user_avatar.jpg';
+											else : 
+												$pic = "https://graph.facebook.com/". $usr['facebook_id'] . "/picture?type=large";
+											endif;
+			  							else : 
+			  								$pic =  $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/'.$usr['photo_attachment'];
+			  							endif; ?>
+										<div class="evoke dashboard users-icon" style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
+
 			  							</a>
 			  						</li>
 			  						<li><h3 style = "font-size: 2.5rem;"><?= $usr['name'] ?></h3></li>
@@ -72,7 +74,7 @@
 
 				</div>
 
-				<div class="content vertical" id="panel21-1">
+				<div class="content vertical" id="panelEvo">
 
 					<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
 						<li><h3><?= strtoupper(__("Position")) ?></h3></li>
@@ -90,26 +92,15 @@
 										<li><h1 style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></h1></li>
 
 										<li>
-											<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
-											<?php if(isset($user['User'])) :?>
-										 		<a href = "<?= $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']))?>">
-										 			<?php if($group['Group']['photo_dir'] == null) :?>
-									  					<img src="https://graph.facebook.com//picture?type=large" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-										  			<?php else : ?>
-															<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-												  	<?php endif; ?>
-										 		</a>
-										 	<?php else : ?>
-												<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'login'))?>">
-													<?php if($group['Group']['photo_dir'] == null) :?>
-									  					<img src="https://graph.facebook.com//picture?type=large" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-										  			<?php else : ?>
-															<img src="<?= $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/thumb_'.$group['Group']['photo_attachment'] ?>" style="max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
-												  	<?php endif; ?>
-												</a>
-											<?php endif;?>
-				  							</a>
-				  						</li>
+											<a href = "<?= $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']))?>">
+												<?php if($group['Group']['photo_dir'] == null) :?>
+									  				<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
+												<?php else : ?>
+													<?php $pic = $this->webroot.'files/attachment/attachment/'.$group['Group']['photo_dir'].'/'.$group['Group']['photo_attachment'];?>
+											  	<?php endif; ?>
+											  	<div class="evoke dashboard users-icon" style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
+										 	</a>
+										 </li>
 				  						<li><h3 style = "font-size: 2.5rem;"><?= $group['Evokation']['title'] ?></h3></li>
 			  							<li><h3><?= $vote_rank[$group['Evokation']['id']] ?></h3></li>
 			  							<span class = "evoke leaderboard-border"></span>
@@ -152,15 +143,17 @@
 
 											<li>
 												<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
-												<?php if($usr['photo_attachment'] == null) : ?>
-						  							<div>
-						  								<img src="https://graph.facebook.com/<?php echo $usr['facebook_id']; ?>/picture?type=large" class = "evoke dashboard users-icon"/>
-						  							</div>
-						  						<?php else : ?>
-						  							<div>
-						  								<img src="<?= $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/thumb_'.$usr['photo_attachment'] ?>" class = "evoke dashboard users-icon"/>
-						  							</div>
-						  						<?php endif; ?>
+													<?php if($usr['photo_attachment'] == null) : 
+						  								if($usr['facebook_id'] == null) : 
+															$pic = $this->webroot.'img/user_avatar.jpg';
+														else : 
+															$pic = "https://graph.facebook.com/". $usr['facebook_id'] . "/picture?type=large";
+														endif;
+						  							else : 
+						  								$pic =  $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/'.$usr['photo_attachment'];
+						  							endif; ?>
+													<div class="evoke dashboard users-icon" style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
+
 						  						</a>
 						  					</li>
 						  					<li><h3 style = "font-size: 2.5rem;"><?= $usr['name'] ?></h3></li>
@@ -188,7 +181,7 @@
 		<div class="small-2 medium-2 large-2 columns">
 			<dl class="leaderboard tabs vertical margin top-6" data-tab>
 				<dd class="active"><a id="xp" href="#panelXP"><?= strtoupper(__('Levels'))?></a></dd>
-				<dd><a id = "ops" href="#panel21-1"><?= strtoupper(__('Evokations'))?></a></dd>
+				<dd><a id="evo" href="#panelEvo"><?= strtoupper(__('Evokations'))?></a></dd>
 				<?php 
 					$index = 1;
 					foreach ($power_points as $pp) {
@@ -215,12 +208,19 @@
 	$("#positionHolder").text('<?= $position[0]?>');
 
 	$("#xp").click(function() {
+	   	$("#positionh1").show();
 	   	$("#positionHolder").text('<?= $position[0]?>');
 	});
+
+	$("#evo").click(function() {
+	   	$("#positionh1").hide();
+	   	// text('<?= $position[0]?>');
+	});
+
 	<?php 
 		$i = 1;
 		foreach ($power_points as $pp) {
-			echo '$("#pp-'. $i.'").click(function() { $("#positionHolder").text("' . $position[$i]. '"); });';
+			echo '$("#pp-'. $i.'").click(function() { $("#positionh1").show(); $("#positionHolder").text("' . $position[$i]. '"); });';
 			$i++;
 		}
 

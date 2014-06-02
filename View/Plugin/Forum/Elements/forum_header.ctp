@@ -1,5 +1,9 @@
 <?php
 	$user = $cuser;
+
+	if(!isset($user['User'])){
+		$user['User'] = $user;
+	}
 ?>
 
 <div class="evoke contain-to-grid top-bar-background">

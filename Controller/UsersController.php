@@ -803,7 +803,8 @@ class UsersController extends AppController {
 			$a_posts = $this->Post->find('all', array(
 				'conditions' => array(
 					'OR' => $post_allies
-			)));
+				)
+			));
 		}
 
 		if(!empty($topic_allies)){
@@ -811,7 +812,8 @@ class UsersController extends AppController {
 			$a_topics = $this->Topic->find('all', array(
 				'conditions' => array(
 					'OR' => $topic_allies
-			)));
+				)
+			));
 		}
 		
 
@@ -954,6 +956,7 @@ class UsersController extends AppController {
 					'Evokation.created DESC'
 				),
 				'conditions' => array(
+					'Evokation.sent' => 1,
 					'OR' => $mygroups_id
 				)
 			));
