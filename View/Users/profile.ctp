@@ -39,7 +39,7 @@
 
 		  		<div class="row">
 					  <div class="small-4 medium-4 large-4 columns profile pic no-right-padding">
-					  	<a href = "#">
+					  	
 					  		<?php if($user['User']['photo_attachment'] == null) : ?>
 								<?php if($user['User']['facebook_id'] == null) : ?>
 									<!-- <div class = "icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div> -->
@@ -53,7 +53,7 @@
 								<?php $pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment']; ?>
 							<?php endif; ?>
 							<div class="icon" style="min-width: 7vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
-					  	</a>
+					  	
 					  </div>
 					  <div class="small-8 medium-8 large-8 columns info margin bottom-1">
 						
@@ -103,8 +103,16 @@
 		  <div class="small-4 medium-4 large-4 columns">
 
 		  	<div class="row">
-			  <div class="large-6 columns"><h3 class = "margin bottom-1"><?= strtoupper(__('Following')) ?>&nbsp;&nbsp;(<?= count($allies) ?>)</h3></div>
-			  <div class="large-6 columns text-align-end"><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'allies', $user['User']['id'])) ?>" class = "info button general"><?php echo __('See All');?></a></div>
+			  	<div class="large-6 columns">
+			  		<h3 class = "margin bottom-1">
+			  			<?= strtoupper(__('Following')) ?>&nbsp;&nbsp;(<?= count($allies) ?>)
+			  		</h3>
+			  	</div>
+			  	<div class="large-6 columns text-align-end">
+			  		<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'allies', $user['User']['id'])) ?>" class = "info button general">
+			  			<?php echo __('See All');?>
+			  		</a>
+			  	</div>
 			</div>
 
 		  	<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
