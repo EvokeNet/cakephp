@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-04-28 11:47-0300\n"
+"POT-Creation-Date: 2014-05-30 20:26-0300\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -127,43 +127,43 @@ msgstr ""
 msgid "Path: %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:664
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:665
 msgid "<error>Error:</error> %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:702
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:703
 msgid "<warning>File `%s` exists</warning>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:703
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:704
 msgid "Do you want to overwrite?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:706
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:707
 msgid "<error>Quitting</error>."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:709
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:710
 msgid "Skip `%s`"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:713
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:714
 msgid "Creating file %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:720
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:721
 msgid "<success>Wrote</success> `%s`"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:724
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:725
 msgid "<error>Could not write to `%s`</error>."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:744
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:745
 msgid "PHPUnit is not installed. Do you want to bake unit test files anyway?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:750
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Shell.php:751
 msgid "You can download PHPUnit from %s"
 msgstr ""
 
@@ -195,253 +195,257 @@ msgstr ""
 msgid "There was a problem creating a new %s '%s'."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:157
-msgid "Node Not Deleted"
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:161;165
+msgid "Node Not Deleted. "
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:157
-msgid "There was an error deleting the %s. Check that the node exists."
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:161
+msgid "There was an error deleting the %s."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:159
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:163
 msgid "<success>%s deleted.</success>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:180
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:165
+msgid "There was an error deleting the %s. Node does not exist."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:187
 msgid "Error in setting new parent. Please make sure the parent node exists, and is not a descendant of the node specified."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:182
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:189
 msgid "Node parent set to %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:200
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:207
 msgid "Supplied Node '%s' not found"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:201;317;319;528
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:208;324;326;534
 msgid "No tree returned."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:204
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:211
 msgid "Path:"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:238
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:245
 msgid "%s is <success>allowed</success>."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:240
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:247
 msgid "%s is <error>not allowed</error>."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:253
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:260
 msgid "Permission <success>granted</success>."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:255
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:262
 msgid "Permission was <error>not granted</error>."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:268
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:275
 msgid "Permission denied."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:270
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:277
 msgid "Permission was not denied."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:283
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:290
 msgid "Permission inherited."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:285
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:292
 msgid "Permission was not inherited."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:317;319;528
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:324;326;534
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:92
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/DbConfigTask.php:254
 msgid "%s not found"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:369
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:376
 msgid "Type of node to create."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:373
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:380
 msgid "A console tool for managing the DbAcl"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:375
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:382
 msgid "Create a new ACL node"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:377
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:384
 msgid "Creates a new ACL object <node> under the parent"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:378
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:385
 msgid "You can use `root` as the parent when creating nodes to create top level nodes."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:382
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:389
 msgid "The node selector for the parent."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:386
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:393
 msgid "The alias to use for the newly created node."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:392
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:399
 msgid "Deletes the ACL object with the given <node> reference"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:394
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:401
 msgid "Delete an ACL node."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:398
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:405
 msgid "The node identifier to delete."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:404
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:411
 msgid "Moves the ACL node under a new parent."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:406
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:413
 msgid "Moves the ACL object specified by <node> beneath <parent>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:410
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:417
 msgid "The node to move"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:414
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:421
 msgid "The new parent for <node>."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:420
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:427
 msgid "Print out the path to an ACL node."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:423
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:430
 msgid "Returns the path to the ACL object specified by <node>."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:424
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:431
 msgid "This command is useful in determining the inheritance of permissions for a certain object in the tree."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:429
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:436
 msgid "The node to get the path of"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:435
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:442
 msgid "Check the permissions between an ACO and ARO."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:438
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:445
 msgid "Use this command to check ACL permissions."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:441
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:448
 msgid "ARO to check."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:442
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:449
 msgid "ACO to check."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:443
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:450
 msgid "Action to check"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:447
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:454
 msgid "Grant an ARO permissions to an ACO."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:450
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:457
 msgid "Use this command to grant ACL permissions. Once executed, the ARO specified (and its children, if any) will have ALLOW access to the specified ACO action (and the ACO's children, if any)."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:453
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:460
 msgid "ARO to grant permission to."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:454
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:461
 msgid "ACO to grant access to."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:455
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:462
 msgid "Action to grant"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:459
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:466
 msgid "Deny an ARO permissions to an ACO."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:462
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:469
 msgid "Use this command to deny ACL permissions. Once executed, the ARO specified (and its children, if any) will have DENY access to the specified ACO action (and the ACO's children, if any)."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:465
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:472
 msgid "ARO to deny."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:466
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:473
 msgid "ACO to deny."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:467
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:474
 msgid "Action to deny"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:471
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:478
 msgid "Inherit an ARO's parent permissions."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:474
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:481
 msgid "Use this command to force a child ARO object to inherit its permissions settings from its parent."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:477
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:484
 msgid "ARO to have permissions inherit."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:478
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:485
 msgid "ACO to inherit permissions on."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:479
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:486
 msgid "Action to inherit"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:483
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:490
 msgid "View a tree or a single node's subtree."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:486
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:493
 msgid "The view command will return the ARO or ACO tree."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:487
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:494
 msgid "The optional node parameter allows you to return"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:488
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:495
 msgid "only a portion of the requested tree."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:492
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:499
 msgid "The optional node to view the subtree of."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:496
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:503
 msgid "Initialize the DbAcl tables. Uses this command : cake schema create DbAcl"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:564
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/AclShell.php:570
 msgid "Could not find node using reference \"%s\""
 msgstr ""
 
@@ -457,27 +461,27 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:147
-msgid "Either a full path or type of class (model, behavior, controller, component, view, helper)"
-msgstr ""
-
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:149
-msgid "A CakePHP core class name (e.g: Component, HtmlHelper)."
-msgstr ""
-
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:152
-msgid "The specific method you want help on."
-msgstr ""
-
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:153
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:148
 msgid "Lookup doc block comments for classes in CakePHP."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:190
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:150
+msgid "Either a full path or type of class (model, behavior, controller, component, view, helper)"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:152
+msgid "A CakePHP core class name (e.g: Component, HtmlHelper)."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:155
+msgid "The specific method you want help on."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:194
 msgid "Command %s not found"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:207
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ApiShell.php:211
 msgid "%s could not be found"
 msgstr ""
 
@@ -534,105 +538,141 @@ msgstr ""
 msgid "Bake All could not continue without a valid model"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:212
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:214
 msgid "The Bake script generates controllers, views and models for your application. If run with no command line arguments, Bake guides the user through the class creation process. You can customize the generation process by telling Bake where different parts of your application are using command line arguments."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:217
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:218
 msgid "Bake a complete MVC. optional <name> of a Model"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:219
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:220
 msgid "Bake a new app folder in the path supplied or in current directory if no path is specified"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:222
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:223
 msgid "Bake a new plugin folder in the path supplied or in current directory if no path is specified."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:225
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:226
 msgid "Bake a database.php file in config directory."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:228
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:229
 msgid "Bake a model."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:231
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:232
 msgid "Bake views for controllers."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:234
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:235
 msgid "Bake a controller."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:237
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:238
 msgid "Bake a fixture."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:240
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:241
 msgid "Bake a unit test."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:243
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:244
 msgid "Database connection to use in conjunction with `bake all`."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:248
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:493
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:90
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:998
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ProjectTask.php:437
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:566
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:437
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/BakeShell.php:249
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:494
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:91
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:1020
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ProjectTask.php:438
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:568
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:438
 msgid "Theme to use when baking code."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:45
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:52
 msgid "<info>Current Paths:</info>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:51
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:58
 msgid "<info>Changing Paths:</info>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:52
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:59
 msgid "Your working path should be the same as your application path. To change your path use the '-app' param."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:53
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:60
 msgid "Example: %s or %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:55
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:62
 msgid "<info>Available Shells:</info>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:125
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:90
 msgid "To run an app or core command, type <info>cake shell_name [args]</info>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:126
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:91
 msgid "To run a plugin command, type <info>cake Plugin.shell_name [args]</info>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:127
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:92
 msgid "To get help on a specific command, type <info>cake shell_name --help</info>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:164
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:131
 msgid "Get the list of available shells for this CakePHP application."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:166
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:133
 msgid "Does nothing (deprecated)"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:170
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CommandListShell.php:136
 msgid "Get the listing as XML."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:91;250
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CompletionShell.php:107
+msgid "Used by shells like bash to autocomplete command name, options and arguments"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CompletionShell.php:109
+msgid "Output a list of available commands"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CompletionShell.php:111
+msgid "List all availables"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CompletionShell.php:116
+msgid "Output a list of available subcommands"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CompletionShell.php:118
+msgid "List subcommands for a command"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CompletionShell.php:121;132
+msgid "The command name"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CompletionShell.php:127
+msgid "Output a list of available options"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CompletionShell.php:129
+msgid "List options"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/CompletionShell.php:138
+msgid "This command is not intended to be called manually"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:91;249
 msgid "Model classes:"
 msgstr ""
 
@@ -640,47 +680,47 @@ msgstr ""
 msgid "There was an error loading the routes config. Please check that the file exists and contains no errors."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:212
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:211
 msgid "Invalid command"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:277
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:276
 msgid "Created %s association between %s and %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:280
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:279
 msgid "Please verify you are using valid models and association types"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:314
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:313
 msgid "Removed %s association between %s and %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:317
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:316
 msgid "Please verify you are using valid models, valid current association, and valid association types"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:376
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:375
 msgid "No result set found"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:379
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:378
 msgid "%s is not a valid model"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:403
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:402
 msgid "Saved record for %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:431
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:430
 msgid "Please verify that you selected a valid model"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:442
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:441
 msgid "There was an error loading the routes config. Please check that the file exists and is free of parse errors."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:444
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ConsoleShell.php:443
 msgid "Routes configuration reloaded, %d routes connected"
 msgstr ""
 
@@ -708,15 +748,15 @@ msgstr ""
 msgid "You have made an invalid selection. Please choose a command to execute by entering E, I, H, or Q."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/I18nShell.php:110
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/I18nShell.php:111
 msgid "I18n Shell initializes i18n database table for your application and generates .pot files(s) with translations."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/I18nShell.php:112
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/I18nShell.php:113
 msgid "Initialize the i18n table."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/I18nShell.php:114
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/I18nShell.php:115
 msgid "Extract the po translations from your application"
 msgstr ""
 
@@ -764,7 +804,7 @@ msgstr ""
 msgid "Name: %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:333;393
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:333;399
 msgid "Schema is up to date."
 msgstr ""
 
@@ -772,143 +812,147 @@ msgstr ""
 msgid "The following table(s) will be dropped."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:340
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:342
 msgid "Are you sure you want to drop the table(s)?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:341
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:344
 msgid "Dropping table(s)."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:345
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:348
 msgid "The following table(s) will be created."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:348
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:353
 msgid "Are you sure you want to create the table(s)?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:349
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:355
 msgid "Creating table(s)."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:352
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:358
 msgid "End create."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:366
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:372
 msgid "Comparing Database to Schema..."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:397
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:403
 msgid "The following statements will run."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:399
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:407
 msgid "Are you sure you want to alter the tables?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:401
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:410
 msgid "Updating Database..."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:405
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:414
 msgid "End update."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:418
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:427
 msgid "Sql could not be run"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:426
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:435
 msgid "%s is up to date."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:429
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:438
 msgid "Dry run for %s :"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:447
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:456
 msgid "%s updated."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:462
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:473
 msgid "The plugin to use."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:466
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:477
 msgid "Set the db config to use."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:470
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:481
 msgid "Path to read and write schema.php"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:474
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:485
 msgid "File name to read and write."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:478
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:489
 msgid "Classname to use. If its Plugin.class, both name and plugin options will be set."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:482
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:495
 msgid "Snapshot number to use/make."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:486
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:499
 msgid "Specify models as comma separated list."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:489
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:502
 msgid "Perform a dry run on create and update commands. Queries will be output instead of run."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:494
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:509
 msgid "Force \"generate\" to create a new schema"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:498
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:513
 msgid "Write the dumped SQL to a file."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:501
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:516
 msgid "Tables to exclude as comma separated list."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:506
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:520
+msgid "Do not prompt for confirmation. Be careful!"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:525
 msgid "The Schema Shell generates a schema object from the database and updates the database from the schema."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:508
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:527
 msgid "Read and output the contents of a schema file"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:514
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:533
 msgid "Reads from --connection and writes to --path. Generate snapshots with -s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:518
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:537
 msgid "Generate a snapshot."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:522
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:541
 msgid "Dump database SQL based on a schema file to stdout."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:528
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:547
 msgid "Drop and create tables based on the schema file."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:533;546
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:552;565
 msgid "Name of schema to use."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:536;549
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:555;568
 msgid "Only create the specified table."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:541
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/SchemaShell.php:560
 msgid "Alter the tables based on the schema file."
 msgstr ""
 
@@ -924,193 +968,193 @@ msgstr ""
 msgid "built-in server is running in http://%s%s/"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ServerShell.php:153
-msgid "ServerHost"
-msgstr ""
-
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ServerShell.php:157
-msgid "ListenPort"
-msgstr ""
-
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ServerShell.php:161
-msgid "DocumentRoot"
-msgstr ""
-
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ServerShell.php:165
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ServerShell.php:152
 msgid "PHP Built-in Server for CakePHP"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ServerShell.php:166
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ServerShell.php:153
 msgid "<warning>[WARN] Don't use this at the production environment</warning>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:48
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestsuiteShell.php:42
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ServerShell.php:156
+msgid "ServerHost"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ServerShell.php:159
+msgid "ListenPort"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/ServerShell.php:162
+msgid "DocumentRoot"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:49
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestsuiteShell.php:43
 msgid "The CakePHP Testsuite allows you to run test cases from the command line"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:50
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:51
 msgid "The category for the test, or test file, to test."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:53
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:54
 msgid "The path to the file, or test file, to test."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:56
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:57
 msgid "<file> Log test execution in JUnit XML format to file."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:59
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:60
 msgid "<file> Log test execution in JSON format to file."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:62
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:63
 msgid "<file> Log test execution in TAP format to file."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:65
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:66
 msgid "Log test execution to DBUS."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:68
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:69
 msgid "<dir> Generate code coverage report in HTML format."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:71
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:72
 msgid "<file> Write code coverage data in Clover XML format."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:74
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:75
 msgid "<file> Write agile documentation in HTML format to file."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:77
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:78
 msgid "<file> Write agile documentation in Text format to file."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:80
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:81
 msgid "<pattern> Filter which tests to run."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:83
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:84
 msgid "<name> Only runs tests from the specified group(s)."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:86
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:87
 msgid "<name> Exclude tests from the specified group(s)."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:89
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:90
 msgid "List available test groups."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:92
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:93
 msgid "TestSuiteLoader implementation to use."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:95
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:96
 msgid "<times> Runs the test(s) repeatedly."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:98
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:99
 msgid "Report test execution progress in TAP format."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:101
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:102
 msgid "Report test execution progress in TestDox format."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:105
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:106
 msgid "Do not use colors in output."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:108
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:109
 msgid "Write to STDERR instead of STDOUT."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:111
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:112
 msgid "Stop execution upon first error or failure."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:114
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:115
 msgid "Stop execution upon first failure."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:117
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:118
 msgid "Stop execution upon first skipped test."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:120
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:121
 msgid "Stop execution upon first incomplete test."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:123
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:124
 msgid "Mark a test as incomplete if no assertions are made."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:126
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:127
 msgid "Waits for a keystroke after each test."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:129
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:130
 msgid "Run each test in a separate PHP process."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:132
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:133
 msgid "Do not backup and restore $GLOBALS for each test."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:135
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:136
 msgid "Backup and restore static attributes for each test."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:138
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:139
 msgid "Try to check source files for syntax errors."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:141
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:142
 msgid "<file> A \"bootstrap\" PHP file that is run before the tests."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:144
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:145
 msgid "<file> Read configuration from XML file."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:147
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:148
 msgid "Ignore default configuration file (phpunit.xml)."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:150
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:151
 msgid "<path(s)> Prepend PHP include_path with given path(s)."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:153
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:154
 msgid "key[=value] Sets a php.ini value."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:156
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:157
 msgid "Choose a custom fixture manager."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:158
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:159
 msgid "More verbose output."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:249
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestsuiteShell.php:87
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:250
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestsuiteShell.php:88
 msgid "CakePHP Test Shell"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:298
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:299
 msgid "No test cases available \n\n"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:312
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestShell.php:313
 msgid "What test case would you like to run?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestsuiteShell.php:43
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/TestsuiteShell.php:44
 msgid "<warning>This shell is for backwards-compatibility only</warning>\nuse the test shell instead"
 msgstr ""
 
@@ -1134,83 +1178,87 @@ msgstr ""
 msgid "Upgrading locations for app directory"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:161;588;615;707
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:161;616;643;735
 msgid "Moving %s to %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:730
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:758
 msgid "Updating %s..."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:771
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:799
 msgid " * Updating %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:775
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:803
 msgid "Done updating %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:791
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:821
 msgid "The plugin to update. Only the specified plugin will be updated."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:795
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:825
 msgid "The extension(s) to search. A pipe delimited list, or a preg_match compatible subpattern"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:800
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:830
 msgid "Use git command for moving files around."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:805
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:835
 msgid "Dry run the update, no files will actually be modified."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:812
-msgid "A shell to help automate upgrading from CakePHP 1.3 to 2.0. \nBe sure to have a backup of your application before running these commands."
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:842
+msgid "A tool to help automate upgrading an application or plugin from CakePHP 1.3 to 2.0. Be sure to have a backup of your application before running these commands."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:815
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:846
 msgid "Run all upgrade commands."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:819
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:849
 msgid "Update tests class names to FooTest rather than FooTestCase."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:823
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:852
 msgid "Move files and folders to their new homes."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:827
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:855
 msgid "Update the i18n translation method calls."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:831
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:858
 msgid "Update calls to helpers."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:835
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:861
 msgid "Update removed basics functions to PHP native functions."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:839
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:864
 msgid "Update removed request access, and replace with $this->request."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:843
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:867
 msgid "Update Configure::read() to Configure::read('debug')"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:847
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:870
 msgid "Replace Obsolete constants"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:851
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:873
+msgid "Return early on controller redirect calls."
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:876
 msgid "Update components to extend Component class."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:855
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/UpgradeShell.php:879
 msgid "Replace use of cakeError with exceptions."
 msgstr ""
 
@@ -1316,7 +1364,7 @@ msgid "Enter a number from the list above,\ntype in the name of another controll
 msgstr ""
 
 #: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:450
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:963
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:984
 msgid "Exit"
 msgstr ""
 
@@ -1324,47 +1372,47 @@ msgstr ""
 msgid "The Controller name you supplied was empty,\nor the number you selected was not an option. Please try again."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:476
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:477
 msgid "Bake a controller for a model. Using options you can bake public, admin or both."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:478
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:479
 msgid "Name of the controller to bake. Can use Plugin.name to bake controllers into plugins."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:480
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:481
 msgid "Bake a controller with basic crud actions (index, view, add, edit, delete)."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:483
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:484
 msgid "Bake a controller with crud actions for one of the Routing.prefixes."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:487
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:488
 msgid "Plugin to bake the controller into."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:490
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:491
 msgid "The connection the controller's model is on."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:496
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:93
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:1004
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:572
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:443
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:497
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:94
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:1026
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:574
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:444
 msgid "Force overwriting existing files without prompting."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:498
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:499
 msgid "Bake all controllers with CRUD methods."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:499
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:98
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:1005
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:573
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:446
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ControllerTask.php:501
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:101
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:1028
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:576
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:448
 msgid "Omitting all arguments and options will enter into an interactive mode."
 msgstr ""
 
@@ -1484,7 +1532,7 @@ msgstr ""
 msgid "Use Database Config"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/DbConfigTask.php:378
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/DbConfigTask.php:379
 msgid "Bake new database configuration settings."
 msgstr ""
 
@@ -1536,127 +1584,127 @@ msgstr ""
 msgid "Done."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:305
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:307
 msgid "CakePHP Language String Extraction:"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:306
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:309
 msgid "Directory where your application is located."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:307
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:311
 msgid "Comma separated list of paths."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:309
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:313
 msgid "Merge all domain and category strings into the default.po file."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:312
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:316
 msgid "Full path to output directory."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:313
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:318
 msgid "Comma separated list of files."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:317
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:322
 msgid "Ignores all files in plugins if this command is run inside from the same app directory."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:320
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:324
 msgid "Extracts tokens only from the plugin specified and puts the result in the plugin's Locale directory."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:325
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:328
 msgid "Ignores validation messages in the $validate property. If this flag is not set and the command is run from the same app directory, all messages in model validation rules will be extracted as tokens."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:330
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:333
 msgid "If set to a value, the localization domain to be used for model validation messages."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:333
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:335
 msgid "Comma separated list of directories to exclude. Any path containing a path segment with the provided values will be skipped. E.g. test,vendors"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:339
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:341
 msgid "Always overwrite existing .pot files."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:342
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:343
 msgid "Extract messages from the CakePHP core libs."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:355
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:358
 msgid "Processing %s..."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:630
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:633
 msgid "Error: %s already exists in this location. Overwrite? [Y]es, [N]o, [A]ll"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:637
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:640
 msgid "What would you like to name this file?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:734
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ExtractTask.php:737
 msgid "Invalid marker content in %s:%s\n* %s("
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:70
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:71
 msgid "Generate fixtures for use with the test suite. You can use `bake fixture all` to bake all fixtures."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:72
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:73
 msgid "Name of the fixture to bake. Can use Plugin.name to bake plugin fixtures."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:74
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:75
 msgid "When using generated data, the number of records to include in the fixture(s)."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:78
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:79
 msgid "Which database configuration to use for baking."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:82
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:83
 msgid "CamelCased name of the plugin to bake fixtures for."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:85
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:86
 msgid "Importing schema for fixtures rather than hardcoding it."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:95
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:96
 msgid "Used with --count and <name>/all commands to pull [n] records from the live tables, where [n] is either --count or the default of 10."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:154
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:160
 msgid "Bake Fixture\nPath: %s"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:178
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:184
 msgid "Would you like to import schema for this fixture?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:186
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:192
 msgid "Would you like to use record importing for this fixture?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:192
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:198
 msgid "Would you like to build this fixture with data from %s's table?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:280
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:286
 msgid "Baking test fixture for %s..."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:413
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:419
 msgid "Please provide a SQL fragment to use as conditions\nExample: WHERE 1=1"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:417
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/FixtureTask.php:423
 msgid "How many records do you want to import?"
 msgstr ""
 
@@ -1724,151 +1772,151 @@ msgstr ""
 msgid "Choose a field from the options above:"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:406
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:411
+msgid "or enter in a valid regex validation string.\nAlternatively [s] skip the rest of the fields.\n"
+msgstr ""
+
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:420
 msgid "Field: <info>%s</info>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:407
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:421
 msgid "Type: <info>%s</info>"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:409
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:423
 msgid "Please select one of the following validation options:"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:421
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:435
 msgid "%s - Do not do any validation on this field."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:425
-msgid "... or enter in a valid regex validation string.\n"
-msgstr ""
-
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:457
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:473
 msgid "You have already chosen that validation rule,\nplease choose again"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:461
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:477
 msgid "Please make a valid selection."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:483
-msgid "Would you like to add another validation rule?"
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:499
+msgid "Would you like to add another validation rule\nor skip the rest of the fields?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:500
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:521
 msgid "One moment while the associations are detected."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:530
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:551
 msgid "None found."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:532
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:553
 msgid "Please confirm the following associations:"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:704
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:725
 msgid "Would you like to define some additional model associations?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:709
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:730
 msgid "What is the association type?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:710
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:731
 msgid "Enter a number"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:712
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:733
 msgid "For the following options be very careful to match your setup exactly.\nAny spelling mistakes will cause errors."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:716
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:737
 msgid "What is the alias for this association?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:717
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:738
 msgid "What className will %s use?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:739
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:760
 msgid "What is the table for this model?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:745
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:766
 msgid "A helpful List of possible keys"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:746
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:767
 msgid "What is the foreignKey?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:750
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:771
 msgid "What is the foreignKey? Specify your own."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:753
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:774
 msgid "What is the associationForeignKey?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:754
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:775
 msgid "What is the joinTable?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:766
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:787
 msgid "Define another association?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:838
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:859
 msgid "Baking model class for %s..."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:872
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:893
 msgid "Possible Models based on your current database:"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:904
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:925
 msgid "Given your model named '%s',\nCake would expect a database table named '%s'"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:905
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:926
 msgid "Do you want to use this table?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:908
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:929
 msgid "What is the name of the table?"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:940
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:961
 msgid "Your database does not have any tables."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:959
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:980
 msgid "Enter a number from the list above,\ntype in the name of another model, or 'q' to exit"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:968
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:989
 msgid "The model name you supplied was empty,\nor the number you selected was not an option. Please try again."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:988
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:1010
 msgid "Bake models."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:990
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:1012
 msgid "Name of the model to bake. Can use Plugin.name to bake plugin models."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:992
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:1014
 msgid "Bake all model files with associations and validation."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:995
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:1017
 msgid "Plugin to bake the model into."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:1001
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ModelTask.php:1023
 msgid "The connection the model table is on."
 msgstr ""
 
@@ -1901,11 +1949,11 @@ msgstr ""
 msgid "Choose a plugin path from the paths above."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/PluginTask.php:220
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/PluginTask.php:222
 msgid "Create the directory structure, AppModel and AppController classes for a new plugin. Can create plugins in any of your bootstrapped plugin paths."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/PluginTask.php:224
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/PluginTask.php:225
 msgid "CamelCased name of the plugin to create."
 msgstr ""
 
@@ -2041,19 +2089,19 @@ msgstr ""
 msgid "<error>Unable to write to</error> %s."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ProjectTask.php:429
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ProjectTask.php:430
 msgid "Generate a new CakePHP project skeleton."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ProjectTask.php:431
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ProjectTask.php:432
 msgid "Application directory to make, if it starts with \"/\" the path is absolute."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ProjectTask.php:434
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ProjectTask.php:435
 msgid "Create empty files in each of the directories. Good if you are using git"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ProjectTask.php:440
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ProjectTask.php:441
 msgid "The directory layout to use for the new application skeleton. Defaults to cake/Console/Templates/skel of CakePHP used to create the project."
 msgstr ""
 
@@ -2113,19 +2161,19 @@ msgstr ""
 msgid "Please provide a comma separated list of the fixtures names you'd like to use.\nExample: 'app.comment, app.post, plugin.forums.post'"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:552
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:554
 msgid "Bake test case skeletons for classes."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:554
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:556
 msgid "Type of class to bake, can be any of the following: controller, model, helper, component or behavior."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:563
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:565
 msgid "An existing class to bake tests for."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:569
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/TestTask.php:571
 msgid "CamelCased name of the plugin to bake tests for."
 msgstr ""
 
@@ -2185,35 +2233,35 @@ msgstr ""
 msgid "Baking `%s` view file..."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:422
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:423
 msgid "Bake views for a controller, using built-in or custom templates."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:424
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:425
 msgid "Name of the controller views to bake. Can be Plugin.name as a shortcut for plugin baking."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:426
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:427
 msgid "Will bake a single action's file. core templates are (index, add, edit, view)"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:428
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:429
 msgid "Will bake the template in <action> but create the filename after <alias>."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:431
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:432
 msgid "Plugin to bake the view into."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:433
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:434
 msgid "Set to only bake views for a prefix in Routing.prefixes"
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:440
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:441
 msgid "The connection the connected model is on."
 msgstr ""
 
-#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:445
+#: Vendor/pear-pear.cakephp.org/CakePHP/Cake/Console/Command/Task/ViewTask.php:446
 msgid "Bake all CRUD action views for all controllers. Requires models and controllers to exist."
 msgstr ""
 
