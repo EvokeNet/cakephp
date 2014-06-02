@@ -30,7 +30,8 @@
 	  			<?php endif; ?>		
 	  			<!-- <div class = "evoke top-bar icon" style="background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;">
 	  			</div> -->
-	  			<img src="<?=$pic?>" class = "evoke top-bar icon" />
+	  			<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-top: 0.2vw;"></div>
+	  			<!-- <img src="<?=$pic?>" class = "evoke top-bar icon" /> -->
 	      	</a>
       	  </li>
 
