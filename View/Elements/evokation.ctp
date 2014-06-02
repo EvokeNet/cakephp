@@ -40,17 +40,17 @@
 			    <?php if($showFollowButton) : ?>
 			  		<?php if($follows) : ?>
 			  			<div class = "evoke evokation follow" style = "margin-left: 10px;">
-			  			<div style = "margin-bottom: -15px; font-size:0.7vw"><i class="fa fa-comment-o fa-horizontal"></i>&nbsp;&nbsp;<?= count($e['Comment']) ?></div>
+			  			<div style = "font-size:0.7vw"><i class="fa fa-comment-o fa-horizontal"></i>&nbsp;&nbsp;<?= count($e['Comment']) ?></div>
 			  			<a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'delete', $follower['EvokationFollower']['id'])); ?>" class = "evoke button general" style = "font-size: 0.5vw"><?php echo __('Unfollow');?></a></div>
 			  		<?php else : ?>
 			  			<div class = "evoke evokation follow" style = "margin-left: 10px;">
-			  			<div style = "margin-bottom: -15px; font-size:0.7vw"><i class="fa fa-comment-o fa-horizontal"></i>&nbsp;&nbsp;<?= count($e['Comment']) ?></div>
+			  			<div style = "font-size:0.7vw"><i class="fa fa-comment-o fa-horizontal"></i>&nbsp;&nbsp;<?= count($e['Comment']) ?></div>
 			  			<a href = "<?php echo $this->Html->url(array('controller' => 'evokationFollowers', 'action' => 'add', $e['Evokation']['id'], $my_id)); ?>" class = "evoke button general" style = "font-size: 0.5vw"><?php echo __('Follow');?></a></div>
 			  		<?php endif; ?>
 			  	<?php else: ?>
 
 			  		<div class = "evoke evokation follow" style = "margin-left: 10px;">
-			  		<div style = "margin-bottom: -15px; font-size:0.7vw"><i class="fa fa-comment-o fa-horizontal"></i>&nbsp;&nbsp;<?= count($e['Comment']) ?></div>
+			  		<div style = "font-size:0.7vw"><i class="fa fa-comment-o fa-horizontal"></i>&nbsp;&nbsp;<?= count($e['Comment']) ?></div>
 			  		<a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'edit', $e['Group']['id'])); ?>" class = "evoke button general" style = "font-size: 0.5vw"><?php echo __('Go to project');?></a></div>
 			  	<?php endif; ?>
 			  </a>
