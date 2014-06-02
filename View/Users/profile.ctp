@@ -42,13 +42,17 @@
 					  	<a href = "#">
 					  		<?php if($user['User']['photo_attachment'] == null) : ?>
 								<?php if($user['User']['facebook_id'] == null) : ?>
-									<div class = "icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
+									<!-- <div class = "icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div> -->
+									<?php $pic = $this->webroot.'img/user_avatar.jpg'; ?>
 								<?php else : ?>	
-									<div class = "icon"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"/></div>
+									<!-- <div class = "icon"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"/></div> -->
+									<?php $pic = "https://graph.facebook.com/". $user['User']['facebook_id'] ."/picture?type=large"; ?>
 								<?php endif; ?>
 							<?php else : ?>
-								<div class = "icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>"/></div>
+								<!-- <div class = "icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>"/></div> -->
+								<?php $pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment']; ?>
 							<?php endif; ?>
+							<div class="icon" style="min-width: 7vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
 					  	</a>
 					  </div>
 					  <div class="small-8 medium-8 large-8 columns info margin bottom-1">
@@ -115,15 +119,19 @@
 								
 								<?php if($ally['User']['photo_attachment'] == null) : ?>
 									<?php if($ally['User']['facebook_id'] == null) : ?>
-										<div class = "profile icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
+										<!-- <div class = "profile icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div> -->
+										<?php $pic = $this->webroot.'img/user_avatar.jpg'; ?>
 									<?php else : ?>	
-										<div class = "profile icon"><img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/></div>
+										<!-- <div class = "profile icon"><img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/></div> -->
+										<?php $pic = "https://graph.facebook.com/". $ally['User']['facebook_id']. "/picture?type=large"; ?>
 									<?php endif; ?>
 								<?php else : ?>
-									<div class = "profile icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'] ?>"/></div>
+									<!-- <div class = "profile icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'] ?>"/></div> -->
+									<?php $pic = $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment']; ?>
 								<?php endif; ?>
 								
-								<span><?= $name[0] ?></span>
+								<div class="profile icon" style="background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
+								<h4 style="color:white"><?= $name[0] ?></h4>
 							</a>
 						</li>
 			  	<?php endforeach;?>
@@ -146,15 +154,18 @@
 								
 								<?php if($ally['User']['photo_attachment'] == null) : ?>
 									<?php if($ally['User']['facebook_id'] == null) : ?>
-										<div class = "profile icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
+										<!-- <div class = "profile icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div> -->
+										<?php $pic = $this->webroot.'img/user_avatar.jpg'; ?>
 									<?php else : ?>	
-										<div class = "profile icon"><img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/></div>
+										<!-- <div class = "profile icon"><img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/></div> -->
+										<?php $pic = "https://graph.facebook.com/". $ally['User']['facebook_id']. "/picture?type=large"; ?>
 									<?php endif; ?>
 								<?php else : ?>
-									<div class = "profile icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'] ?>"/></div>
+									<!-- <div class = "profile icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'] ?>"/></div> -->
+									<?php $pic = $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment']; ?>
 								<?php endif; ?>
-								
-								<span><?= $name[0] ?></span>
+								<div class="profile icon" style="background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
+								<h4 style="color:white"><?= $name[0] ?></h4>
 							</a>
 						</li>
 			  	<?php endforeach;?>

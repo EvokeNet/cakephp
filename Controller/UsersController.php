@@ -954,6 +954,7 @@ class UsersController extends AppController {
 					'Evokation.created DESC'
 				),
 				'conditions' => array(
+					'Evokation.sent' => 1,
 					'OR' => $mygroups_id
 				)
 			));
