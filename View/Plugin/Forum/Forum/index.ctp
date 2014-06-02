@@ -10,8 +10,6 @@
 
 <section class="evoke leaderboard default-background">  
 
-    <?php echo $this->Session->flash(); ?>
-
     <div class="evoke row full-width-alternate">
 
         <div class="small-2 medium-2 large-2 columns padding-left">
@@ -20,6 +18,7 @@
         
         <div class="small-9 medium-9 large-9 columns maincolumn padding top-2 bg-min-height">
 
+            <?php echo $this->Session->flash(); ?>
             <div class = "default">
                 <h3 class = "padding bottom-1"> <?= strtoupper(__('Forum')) ?> </h3>
             </div>

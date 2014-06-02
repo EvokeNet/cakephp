@@ -1,17 +1,21 @@
 <?php
-$pages = $this->Forum->topicPages($topic['Topic']);
-$columns = isset($columns) ? $columns : array(); 
+    if(!isset($user['User'])){
+        $user['User'] = $user;
+    }
+    
+    $pages = $this->Forum->topicPages($topic['Topic']);
+    $columns = isset($columns) ? $columns : array(); 
 
-$post_count = 0;
-$reply = strtoupper(_('Replies'));
+    $post_count = 0;
+    $reply = strtoupper(_('Replies'));
 
-if($topic['Topic']['post_count'] == 0)
-    $post_count = $topic['Topic']['post_count'];
-else
-    $post_count = $topic['Topic']['post_count'] - 1;
+    if($topic['Topic']['post_count'] == 0)
+        $post_count = $topic['Topic']['post_count'];
+    else
+        $post_count = $topic['Topic']['post_count'] - 1;
 
-if($post_count == 1)
-    $reply = strtoupper(_('Reply'));
+    if($post_count == 1)
+        $reply = strtoupper(_('Reply'));
 ?>
 
 <div class = "evoke forum-topic-bg">
