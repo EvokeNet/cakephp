@@ -1,17 +1,21 @@
 <?php
-$pages = $this->Forum->topicPages($topic['Topic']);
-$columns = isset($columns) ? $columns : array(); 
+    if(!isset($user['User'])){
+        $user['User'] = $user;
+    }
 
-$post_count = 0;
-$reply = strtoupper(_('Replies'));
+    $pages = $this->Forum->topicPages($topic['Topic']);
+    $columns = isset($columns) ? $columns : array(); 
 
-if($topic['Topic']['post_count'] == 0)
-    $post_count = $topic['Topic']['post_count'];
-else
-    $post_count = $topic['Topic']['post_count'] - 1;
+    $post_count = 0;
+    $reply = strtoupper(_('Replies'));
 
-if($post_count == 1)
-    $reply = strtoupper(_('Reply'));
+    if($topic['Topic']['post_count'] == 0)
+        $post_count = $topic['Topic']['post_count'];
+    else
+        $post_count = $topic['Topic']['post_count'] - 1;
+
+    if($post_count == 1)
+        $reply = strtoupper(_('Reply'));
 ?>
 
 <div class = "evoke forum-topic-bg">
@@ -21,13 +25,14 @@ if($post_count == 1)
         <a href = "<?= $this->Html->url(array('plugin' => '', 'controller' => 'users', 'action' => 'profile', $topic['User']['id'])) ?>">
             <?php if($topic['User']['photo_attachment'] == null) : ?>
                 <?php if($topic['User']['facebook_id'] == null) : ?>
-                    <div class = "topic icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
+                    <?php $pic = $this->webroot.'img/user_avatar.jpg'; ?>
                 <?php else : ?> 
-                    <div class = "topic icon"><img src="https://graph.facebook.com/<?php echo $topic['User']['facebook_id']; ?>/picture?type=large"/></div>
+                    <?php $pic = "https://graph.facebook.com/". $topic['User']['facebook_id']. "/picture?type=large"; ?>
                 <?php endif; ?>
             <?php else : ?>
-                <div class = "topic icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$topic['User']['photo_dir'].'/'.$topic['User']['photo_attachment'] ?>"/></div>
+                <?php $pic = $this->webroot.'files/attachment/attachment/'.$topic['User']['photo_dir'].'/'.$topic['User']['photo_attachment']; ?>
             <?php endif; ?>
+            <div style="min-width: 5vw; max-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
         </a>
       </div>
       <div class="small-8 medium-8 large-8 columns">
