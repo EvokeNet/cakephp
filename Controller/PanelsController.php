@@ -23,6 +23,7 @@ class PanelsController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
+        ini_set('memory_limit', '256M');
         
         $this->user = array();
         //get user data into public var
@@ -342,55 +343,6 @@ class PanelsController extends AppController {
 				$basicTraining_points = $point;
 			}
 		}
-
-		// //points definitions
-		// $register_points = $this->PointsDefinition->find('first', array(
-		// 	'conditions' => array(
-		// 		'type' => 'Register'
-		// 	)
-		// ));
-
-		// $allies_points = $this->PointsDefinition->find('first', array(
-		// 	'conditions' => array(
-		// 		'type' => 'Allies'
-		// 	)
-		// ));
-
-		// $like_points = $this->PointsDefinition->find('first', array(
-		// 	'conditions' => array(
-		// 		'type' => 'Like'
-		// 	)
-		// ));
-
-		// $vote_points = $this->PointsDefinition->find('first', array(
-		// 	'conditions' => array(
-		// 		'type' => 'Vote'
-		// 	)
-		// ));	
-
-		// $evidenceComment_points = $this->PointsDefinition->find('first', array(
-		// 	'conditions' => array(
-		// 		'type' => 'EvidenceComment'
-		// 	)
-		// ));
-
-		// $evokationComment_points = $this->PointsDefinition->find('first', array(
-		// 	'conditions' => array(
-		// 		'type' => 'EvokationComment'
-		// 	)
-		// ));
-
-		// $evokationFollow_points = $this->PointsDefinition->find('first', array(
-		// 	'conditions' => array(
-		// 		'type' => 'EvokationFollow'
-		// 	)
-		// ));
-
-		// $basicTraining_points = $this->PointsDefinition->find('first', array(
-		// 	'conditions' => array(
-		// 		'type' => 'BasicTraining'
-		// 	)
-		// ));
 
 		$this->set(compact('flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations', 
 			'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 'unknown_countries', 'countries',
