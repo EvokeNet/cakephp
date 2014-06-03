@@ -309,54 +309,88 @@ class PanelsController extends AppController {
 			)
 		));		
 		
-		//points definitions
-		$register_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'Register'
-			)
-		));
 
-		$allies_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'Allies'
-			)
-		));
+		$all_points = $this->PointsDefinition->find('all');
+		$register_points = array();
+		$allies_points = array();
+		$like_points = array();
+		$vote_points = array();
+		$evidenceComment_points = array();
+		$evokationFollow_points = array();
+		$basicTraining_points = array();
 
-		$like_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'Like'
-			)
-		));
+		foreach ($all_points as $point) {
+			if($point['PointsDefinition']['type'] == 'Register') {
+				$register_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'Allies') {
+				$allies_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'Like') {
+				$like_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'Vote') {
+				$vote_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'EvidenceComment') {
+				$evidenceComment_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'EvokationFollow') {
+				$evokationFollow_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'BasicTraining') {
+				$basicTraining_points = $point;
+			}
+		}
 
-		$vote_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'Vote'
-			)
-		));	
+		// //points definitions
+		// $register_points = $this->PointsDefinition->find('first', array(
+		// 	'conditions' => array(
+		// 		'type' => 'Register'
+		// 	)
+		// ));
 
-		$evidenceComment_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'EvidenceComment'
-			)
-		));
+		// $allies_points = $this->PointsDefinition->find('first', array(
+		// 	'conditions' => array(
+		// 		'type' => 'Allies'
+		// 	)
+		// ));
 
-		$evokationComment_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'EvokationComment'
-			)
-		));
+		// $like_points = $this->PointsDefinition->find('first', array(
+		// 	'conditions' => array(
+		// 		'type' => 'Like'
+		// 	)
+		// ));
 
-		$evokationFollow_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'EvokationFollow'
-			)
-		));
+		// $vote_points = $this->PointsDefinition->find('first', array(
+		// 	'conditions' => array(
+		// 		'type' => 'Vote'
+		// 	)
+		// ));	
 
-		$basicTraining_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'BasicTraining'
-			)
-		));
+		// $evidenceComment_points = $this->PointsDefinition->find('first', array(
+		// 	'conditions' => array(
+		// 		'type' => 'EvidenceComment'
+		// 	)
+		// ));
+
+		// $evokationComment_points = $this->PointsDefinition->find('first', array(
+		// 	'conditions' => array(
+		// 		'type' => 'EvokationComment'
+		// 	)
+		// ));
+
+		// $evokationFollow_points = $this->PointsDefinition->find('first', array(
+		// 	'conditions' => array(
+		// 		'type' => 'EvokationFollow'
+		// 	)
+		// ));
+
+		// $basicTraining_points = $this->PointsDefinition->find('first', array(
+		// 	'conditions' => array(
+		// 		'type' => 'BasicTraining'
+		// 	)
+		// ));
 
 		$this->set(compact('flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations', 
 			'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 'unknown_countries', 'countries',
