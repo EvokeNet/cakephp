@@ -25,10 +25,12 @@ class NotificationsController extends AppController {
 
 		$user = $this->Notification->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$this->Notification->recursive = 0;
-		$this->set('notifications', $this->Paginator->paginate());
+		$notifications = $this->Notification->find('all', array('conditions' => array('Notification.user_id' => $this->getUserId())));
 
-		$this->set(compact('user'));
+		// $this->Notification->recursive = 0;
+		// $this->set('notifications', $this->Paginator->paginate());
+
+		$this->set(compact('notifications', 'user'));
 	}
 
 /**

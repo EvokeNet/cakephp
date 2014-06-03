@@ -143,6 +143,8 @@ class AppController extends Controller {
 
     public function saveNotifications($notes){
 
+        debug($notes);
+        
         $this->loadModel('Notification');
 
         $all = $this->Notification->find('all', array(

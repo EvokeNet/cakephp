@@ -25,7 +25,7 @@ $this->extend('/Common/topbar');
 
 				<?php
 					foreach($notifications as $n):
-						//echo $this->element('notifications', array('e' => $n, 'user' => $user)); 
+						echo $this->element('notifications', array('n' => $n, 'user' => $user)); 
 					endforeach;
 				?>
 			</div>
