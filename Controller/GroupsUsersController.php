@@ -748,7 +748,7 @@ class GroupsUsersController extends AppController {
 	        	$this->Session->setFlash(__('The request has been sent'));
 	        } else $this->Session->setFlash(__('The request could not be sent'));
 		} else {
-			$this->Session->setFlash(__('This user already requested to join thsi group'));
+			$this->Session->setFlash(__('This user already requested to join this group'));
 		}
 
 		if($recipient['User']['email'] != '' && !is_null($recipient['User']['email'])
@@ -762,9 +762,9 @@ class GroupsUsersController extends AppController {
 			$Email->template('group', 'group');
 			$Email->viewVars(array('sender' => $sender, 'recipient' => $recipient, 'group' => $group));
 			$Email->send();
-			$this->Session->setFlash(__('The email was sent'));
+			$this->Session->setFlash(__('The email was sent'), 'flash_message');
 		} else {
-			$this->Session->setFlash(__('There was a problem sending the email.', 'flash_message'));
+			$this->Session->setFlash(__('There was a problem sending the email.'), 'flash_message');
 		}
 		$this->redirect(array('controller' => 'groups', 'action' => 'index', $group['Group']['mission_id']));
 	}
