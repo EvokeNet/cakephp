@@ -81,7 +81,7 @@
 					</ul>
 
 				</div>
-				<div class="content vertical active" id="panel1-2">
+				<div class="content vertical" id="panel1-2">
 				
 					<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
 				  		<?php foreach($followers as $ally):
