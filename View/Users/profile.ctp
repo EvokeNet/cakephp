@@ -304,7 +304,6 @@
 	  	};
 	}
 
-
 	function fillExtraContent(){
 		// alert("hello");
 		$.ajax({

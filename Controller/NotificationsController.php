@@ -25,12 +25,79 @@ class NotificationsController extends AppController {
 
 		$user = $this->Notification->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$notifications = $this->Notification->find('all', array('conditions' => array('Notification.user_id' => $this->getUserId())));
+		$notifications = $this->Notification->find('all', array('conditions' => array('Notification.user_id' => $user['User']['id']), 'limit' => 5));
 
 		// $this->Notification->recursive = 0;
 		// $this->set('notifications', $this->Paginator->paginate());
 
 		$this->set(compact('notifications', 'user'));
+	}
+
+/**
+*
+ * moreNotifications method
+ *
+ * @return void
+ *
+ */
+	public function moreNotifications($lastOne, $limit = 1, $user_id = -1){
+		$this->autoRender = false; // We don't render a view in this example
+    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+
+   		$last = $this->Notification->find('first', array(
+    		'conditions' => array(
+    			'Notification.id' => $lastOne
+    		)
+    	));	
+
+    	$lang = $this->getCurrentLanguage();
+
+    	if(empty($last))
+    			return json_encode(array());
+
+	   	if($user_id==-1) {
+		   	$obj = $this->Notification->find('all', array(
+				'order' => array(
+					'Notification.created DESC'
+				),
+				'conditions' => array(
+					'Notification.modified <' => $last['Notification']['modified']
+				),
+				'limit' => $limit
+			));
+		} else {
+			$obj = $this->Notification->find('all', array(
+				'order' => array(
+					'Notification.created DESC'
+				),
+				'conditions' => array(
+					'Notification.modified <' => $last['Notification']['modified'],
+					'Notification.user_id' => $user_id
+				),
+				'limit' => $limit
+			));
+		}
+
+		$el = 'notification_box';
+		$ind = 'Notification';
+    	
+
+    	$data = "";
+
+	    $str = "lastBegin-1lastEnd";
+	    $older = "";
+    	foreach ($obj as $key => $value) {
+    		$view = new View($this, false);
+			$content = ($view->element($el, array('e' => $value, 'lang' => $lang)));
+			
+			$data .= $content .' ';
+
+    		$older = $value[$ind]['id'];
+    	}
+    	if($older != "") {
+    		$str = "lastBegin".$older."lastEnd";
+    	}
+    	return $str.$data;
 	}
 
 /**

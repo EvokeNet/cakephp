@@ -18,13 +18,6 @@
 	
 	<div class="small-7 medium-7 large-7 columns">
 
-		<a href = "<?php echo $this->Html->url(array('controller' => 'evokations', 'action' => 'view', 6));?>">
-		
-			<h1></h1>
-			<!-- <h5><?= $e['Group']['description']?></h5> -->
-
-		</a>
-
 	</div>
 
 	<div class="small-3 medium-3 large-3 columns">

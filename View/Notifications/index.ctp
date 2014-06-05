@@ -26,9 +26,12 @@
 
 				<?php
 					foreach($notifications as $n):
-						echo $this->element('notifications', array('n' => $n, 'user' => $user)); 
+						echo $this->element('notification_box', array('n' => $n, 'user' => $user)); 
+						$lastNotification = $n['Notification']['id'];
 					endforeach;
 				?>
+				<meta name = "lastNotification" content = "<?php echo $lastNotification; ?>">
+				<div id="target"></div>
 			</div>
 
 		</div>
@@ -38,3 +41,8 @@
 	</div>
 
 </section>
+
+<?php
+	echo $this->Html->script('/components/jquery/jquery.min.js');
+	echo $this->Html->script('more_notifications');
+?>
