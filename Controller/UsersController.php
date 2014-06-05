@@ -165,6 +165,7 @@ class UsersController extends AppController {
 
 				try {
 					$user_profile = $facebook->api('/me');
+					$this->Session->write('User', $user_profile);
 				} catch (FacebookApiException $e) {
 					error_log($e);
 					$userFbData = null;
