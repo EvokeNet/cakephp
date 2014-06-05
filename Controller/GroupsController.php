@@ -18,6 +18,11 @@ class GroupsController extends AppController {
 
 	public $user = null;
 
+	public function beforeFilter() {
+        parent::beforeFilter();
+        ini_set('memory_limit', '256M'); // emergencial measure
+    }
+
 /**
  * index method
  *
