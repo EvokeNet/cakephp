@@ -5,10 +5,13 @@
 
   			<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['Group']['id']));?>">
   				<?php if($e['Group']['photo_dir'] == null) :?>
-  					<img src="https://graph.facebook.com//picture?type=large"/>
+  					<!-- <img src="https://graph.facebook.com//picture?type=large"/> -->
+  					<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
 	  			<?php else : ?>
-						<img src="<?= $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/thumb_'.$e['Group']['photo_attachment'] ?>" />
+					<!-- <img src="<?= $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/thumb_'.$e['Group']['photo_attachment'] ?>" /> -->
+					<?php $pic = $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/'.$e['Group']['photo_attachment'];?>
 			  	<?php endif; ?>
+			  	<div style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
 				<!-- <h6><?= $e['Group']['created']?></h6> -->
 			</a>
 

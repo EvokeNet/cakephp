@@ -7,15 +7,19 @@ $name = explode(' ', $c['User']['name']);
 
 <div class="evoke row margin bottom-2">
   <div class="small-2 medium-2 large-2 columns evoke text-align">
-  	<?php if($c['User']['photo_attachment'] == null) : ?>
-		<?php if($c['User']['facebook_id'] == null) : ?>
-			<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $c['User']['id'])) ?>"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" width="80px"/></a>
-		<?php else : ?>	
-			<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $c['User']['id'])) ?>"><img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?height=80" width="80px"/></a>
+  	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $c['User']['id'])) ?>">
+	  	<?php if($c['User']['photo_attachment'] == null) : ?>
+			<?php if($c['User']['facebook_id'] == null) : ?>
+				<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
+			<?php else : ?>	
+				<?php $pic = "https://graph.facebook.com/". $c['User']['facebook_id']."/picture?large";?>
+			<?php endif; ?>
+		<?php else : ?>
+			<?php $pic = $this->webroot.'files/attachment/attachment/'.$c['User']['photo_dir'].'/'.$c['User']['photo_attachment'];?>
 		<?php endif; ?>
-	<?php else : ?>
-		<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $c['User']['id'])) ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$c['User']['photo_dir'].'/'.$c['User']['photo_attachment'] ?>" width="80px"/></a>
-	<?php endif; ?>
+		<div style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;">
+		</div>
+	</a>
 
   	<!-- <img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?type=large" width="80px"/> -->
   	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $c['User']['id'])) ?>"><h4 style = "font-size: 0.9vw;"><?php echo (__('Agent ').$name[0]); ?></h4></a>

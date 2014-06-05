@@ -145,14 +145,19 @@
 		  	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $evidence['User']['id']))?>">
 		  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
 					<?php if($evidence['User']['facebook_id'] == null) : ?>
-						<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+						<!-- <img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/> -->
+						<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
 					<?php else : ?>	
-						<img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+						<!-- <img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/> -->
+						<?php $pic = "https://graph.facebook.com/". $evidence['User']['facebook_id']. "/picture?type=large";?>
 					<?php endif; ?>
 				<?php else : ?>
-					<img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/>
+					<!-- <img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/> -->
+					<?php $pic = $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'];?>
 				<?php endif; ?>
 		  		
+		  		<div style="min-width: 10vw; margin: 3vw 5vw; min-height: 10vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;">
+		  		</div>
 			 	<h1><?= $evidence['User']['name']?></h1>
 		 	</a>
 

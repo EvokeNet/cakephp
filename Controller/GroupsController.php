@@ -14,9 +14,14 @@ class GroupsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array(/*'Paginator',*/ 'Session');
 
 	public $user = null;
+
+	public function beforeFilter() {
+        parent::beforeFilter();
+        ini_set('memory_limit', '256M'); // emergencial measure
+    }
 
 /**
  * index method
@@ -24,9 +29,7 @@ class GroupsController extends AppController {
  * @return void
  */
 	public function index($mission_id = null, $quest_id = null) {
-		$this->Group->recursive = 0;
-		$this->set('groups', $this->Paginator->paginate());
-
+		
 		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$myPoints = $this->Group->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
@@ -113,7 +116,7 @@ class GroupsController extends AppController {
 		$this->loadModel('GroupsUser');
 		$users_groups = $this->GroupsUser->find('all');
 
-		$this->set(compact('user', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong', 'users_groups', 'sumMyPoints', 'quest_id'));
+		$this->set(compact('user','groups', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong', 'users_groups', 'sumMyPoints', 'quest_id'));
 		
 	}
 
@@ -123,9 +126,6 @@ class GroupsController extends AppController {
  * @return void
  */
 	public function evokations() {
-
-		$this->Group->recursive = 0;
-		$this->set('groups', $this->Paginator->paginate());
 
 		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
@@ -509,10 +509,10 @@ class GroupsController extends AppController {
  *
  * @return void
  */
-	public function admin_index() {
-		$this->Group->recursive = 0;
-		$this->set('groups', $this->Paginator->paginate());
-	}
+	// public function admin_index() {
+	// 	$this->Group->recursive = 0;
+	// 	$this->set('groups', $this->Paginator->paginate());
+	// }
 
 /**
  * admin_view method

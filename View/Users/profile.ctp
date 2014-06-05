@@ -39,17 +39,21 @@
 
 		  		<div class="row">
 					  <div class="small-4 medium-4 large-4 columns profile pic no-right-padding">
-					  	<a href = "#">
+					  	
 					  		<?php if($user['User']['photo_attachment'] == null) : ?>
 								<?php if($user['User']['facebook_id'] == null) : ?>
-									<div class = "icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
+									<!-- <div class = "icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div> -->
+									<?php $pic = $this->webroot.'img/user_avatar.jpg'; ?>
 								<?php else : ?>	
-									<div class = "icon"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"/></div>
+									<!-- <div class = "icon"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"/></div> -->
+									<?php $pic = "https://graph.facebook.com/". $user['User']['facebook_id'] ."/picture?type=large"; ?>
 								<?php endif; ?>
 							<?php else : ?>
-								<div class = "icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>"/></div>
+								<!-- <div class = "icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>"/></div> -->
+								<?php $pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment']; ?>
 							<?php endif; ?>
-					  	</a>
+							<div class="icon" style="min-width: 7vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
+					  	
 					  </div>
 					  <div class="small-8 medium-8 large-8 columns info margin bottom-1">
 						
@@ -99,8 +103,16 @@
 		  <div class="small-4 medium-4 large-4 columns">
 
 		  	<div class="row">
-			  <div class="large-6 columns"><h3 class = "margin bottom-1"><?= strtoupper(__('Following')) ?>&nbsp;&nbsp;(<?= count($allies) ?>)</h3></div>
-			  <div class="large-6 columns text-align-end"><a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'allies', $user['User']['id'])) ?>" class = "info button general"><?php echo __('See All');?></a></div>
+			  	<div class="large-6 columns">
+			  		<h3 class = "margin bottom-1">
+			  			<?= strtoupper(__('Following')) ?>&nbsp;&nbsp;(<?= count($allies) ?>)
+			  		</h3>
+			  	</div>
+			  	<div class="large-6 columns text-align-end">
+			  		<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'allies', $user['User']['id'])) ?>" class = "info button general">
+			  			<?php echo __('See All');?>
+			  		</a>
+			  	</div>
 			</div>
 
 		  	<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
@@ -115,15 +127,19 @@
 								
 								<?php if($ally['User']['photo_attachment'] == null) : ?>
 									<?php if($ally['User']['facebook_id'] == null) : ?>
-										<div class = "profile icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
+										<!-- <div class = "profile icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div> -->
+										<?php $pic = $this->webroot.'img/user_avatar.jpg'; ?>
 									<?php else : ?>	
-										<div class = "profile icon"><img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/></div>
+										<!-- <div class = "profile icon"><img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/></div> -->
+										<?php $pic = "https://graph.facebook.com/". $ally['User']['facebook_id']. "/picture?type=large"; ?>
 									<?php endif; ?>
 								<?php else : ?>
-									<div class = "profile icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'] ?>"/></div>
+									<!-- <div class = "profile icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'] ?>"/></div> -->
+									<?php $pic = $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment']; ?>
 								<?php endif; ?>
 								
-								<span><?= $name[0] ?></span>
+								<div class="profile icon" style="background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
+								<h4 style="color:white"><?= $name[0] ?></h4>
 							</a>
 						</li>
 			  	<?php endforeach;?>
@@ -146,15 +162,18 @@
 								
 								<?php if($ally['User']['photo_attachment'] == null) : ?>
 									<?php if($ally['User']['facebook_id'] == null) : ?>
-										<div class = "profile icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
+										<!-- <div class = "profile icon"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div> -->
+										<?php $pic = $this->webroot.'img/user_avatar.jpg'; ?>
 									<?php else : ?>	
-										<div class = "profile icon"><img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/></div>
+										<!-- <div class = "profile icon"><img src="https://graph.facebook.com/<?php echo $ally['User']['facebook_id']; ?>/picture?type=large"/></div> -->
+										<?php $pic = "https://graph.facebook.com/". $ally['User']['facebook_id']. "/picture?type=large"; ?>
 									<?php endif; ?>
 								<?php else : ?>
-									<div class = "profile icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'] ?>"/></div>
+									<!-- <div class = "profile icon"><img src="<?= $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'] ?>"/></div> -->
+									<?php $pic = $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment']; ?>
 								<?php endif; ?>
-								
-								<span><?= $name[0] ?></span>
+								<div class="profile icon" style="background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
+								<h4 style="color:white"><?= $name[0] ?></h4>
 							</a>
 						</li>
 			  	<?php endforeach;?>
@@ -269,14 +288,24 @@
 	var evidence = true;
 	var lastLocal = last;
 	var method = 'moreEvidences';
-	var target = '#target';
+	var target = 'target';
 
 	//checking scrolling info to call ajax function
-	$(window).scroll(throttle(function() {   
-		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 200)) {
+	$(window).scroll(throttle(function() {
+		y = $('#target').parent().height();
+		test = getOffset(document.getElementById('target'));  
+		// console.log('position of end of target> '+(test+y));
+		// console.log('scroll position> '+$(window).scrollTop());
+
+		y2 = $('#targetEvokation').parent().height();
+		test2 = getOffset(document.getElementById('targetEvokation'));  
+		
+		if(($(window).scrollTop() + $(window).height() >= (test + y) - 600) || ($(window).scrollTop() + $(window).height()>= (test2 + y2) - 600)){//+ $(window).height() < x) {
 			// alert(lastLocal);
-			if((lastLocal) != "")
+			if((lastLocal) != "") {
 				fillExtraContent();
+				// console.log('ativou');
+			}
 			// menuHeight();
 		}
 	}, 1000));
@@ -327,7 +356,7 @@
 		        response = response.substring(response.search("lastEnd")+7);
 			        
 		        // console.log(response);	
-		        $(target).append((response));
+		        $('#'+target).append((response));
 		    },
 		    error: function(e) {
 		        console.log(e);
@@ -336,7 +365,7 @@
 
 		lastLocal = lastEvokation;
 		method = 'moreEvokations';
-		target = '#targetEvokation';
+		target = 'targetEvokation';
 
 		$.ajax({
 		    type: 'get',
@@ -358,7 +387,7 @@
 		        response = response.substring(response.search("lastEnd")+7);
 			        
 		        // console.log(response);	
-		        $(target).append((response));
+		        $('#'+target).append((response));
 		    },
 		    error: function(e) {
 		        console.log(e);
@@ -367,7 +396,18 @@
 
 		lastLocal = last;
 		method = 'moreEvidences';
-		target = '#target';
+		target = 'target';
+	}
+
+	function getOffset( el ) {
+	    var _x = 0;
+	    var _y = 0;
+	    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+	        _x += el.offsetLeft - el.scrollLeft;
+	        _y += el.offsetTop - el.scrollTop;
+	        el = el.offsetParent;
+	    }
+	    return _y;
 	}
 
 	function getCorrectURL(afterHome){
