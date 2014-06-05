@@ -23,7 +23,7 @@ class PanelsController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
-        ini_set('memory_limit', '256M');
+        ini_set('memory_limit', '256M'); // emergencial measure
         
         $this->user = array();
         //get user data into public var
