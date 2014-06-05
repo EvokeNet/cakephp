@@ -29,6 +29,7 @@
 
 	  	<?php 
 	  		// debug($adminNotifications);
+	  		$adminNotifications = array_merge($adminNotifications, $adminNotificationsToMe);
 	  		$allNot = "";
 	  		$first = true;
 	  		$hasNotification = null;
@@ -204,21 +205,39 @@
 							}
 						endforeach;
 
+						//setting the $pic's var over here to avoid repetitive if's
+						$pic_action = $this->webroot.'img/user_avatar.jpg';
+						$pic = $this->webroot.'img/user_avatar.jpg';
+						
+						if($action_user['User']['photo_attachment'] == null) :
+							if($action_user['User']['facebook_id'] != null) :
+								$pic_action = "https://graph.facebook.com/" . $action_user['User']['facebook_id'] . "/picture?type=large";
+							endif;
+					  	else : 
+					  		$pic_action = $this->webroot.'files/attachment/attachment/'.$action_user['User']['photo_dir'].'/'.$action_user['User']['photo_attachment'];
+					  	endif; 
+
+					  	if($n['User']['photo_attachment'] == null) :
+							if($n['User']['facebook_id'] != null) :
+								$pic = "https://graph.facebook.com/" . $n['User']['facebook_id'] . "/picture?type=large";
+							endif;
+					  	else : 
+					  		$pic = $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'];
+					  	endif; 
+
+
+
+
 						if($n['Notification']['origin'] == 'like'):
 
 						if($action_user['User']['id'] != $users['User']['id']){ ?>
 
 							<li>
-								<?php if($action_user['User']['photo_attachment'] == null) : ?>
-									<?php if($action_user['User']['facebook_id'] == null) : ?>
-										<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-									<?php else : ?>	
-										<img src="https://graph.facebook.com/<?php echo $action_user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-									<?php endif; ?>
-					  			<?php else : ?>
-					  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$action_user['User']['photo_dir'].'/'.$action_user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-					  			<?php endif; ?>
-								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s liked an evidence you posted'), $action_user['User']['name']) ?></a>
+								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>">	
+									<!-- action user picture -->
+									<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic_action?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+									<?= sprintf(__('Agent %s liked an evidence you posted'), $action_user['User']['name']) ?>
+								</a>
 							</li>
 
 						<?php } ?>
@@ -230,16 +249,11 @@
 						if($action_user['User']['id'] != $users['User']['id']){ ?>
 
 							<li>
-								<?php if($action_user['User']['photo_attachment'] == null) : ?>
-									<?php if($action_user['User']['facebook_id'] == null) : ?>
-										<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-									<?php else : ?>	
-										<img src="https://graph.facebook.com/<?php echo $action_user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-									<?php endif; ?>
-					  			<?php else : ?>
-					  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$action_user['User']['photo_dir'].'/'.$action_user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-					  			<?php endif; ?>
-								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evidence you posted'), $action_user['User']['name']) ?></a>
+								<!-- action user picture -->
+								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>">
+									<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic_action?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+									<?= sprintf(__('Agent %s commented an evidence you posted'), $action_user['User']['name']) ?>
+								</a>
 							</li>
 
 						<?php } ?>
@@ -251,16 +265,11 @@
 						if($action_user['User']['id'] != $users['User']['id']){ ?>
 
 							<li>
-								<?php if($action_user['User']['photo_attachment'] == null) : ?>
-									<?php if($action_user['User']['facebook_id'] == null) : ?>
-										<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-									<?php else : ?>	
-										<img src="https://graph.facebook.com/<?php echo $action_user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-									<?php endif; ?>
-					  			<?php else : ?>
-					  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$action_user['User']['photo_dir'].'/'.$action_user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-					  			<?php endif; ?>
-								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evokation your group posted'), $action_user['User']['name']) ?></a>
+								<!-- action user picture -->
+								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>">
+									<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic_action?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+									<?= sprintf(__('Agent %s commented an evokation your group posted'), $action_user['User']['name']) ?>
+								</a>
 							</li>
 
 						<?php } ?>
@@ -272,16 +281,11 @@
 						if($action_user['User']['id'] != $users['User']['id']){ ?>
 
 							<li>
-								<?php if($action_user['User']['photo_attachment'] == null) : ?>
-									<?php if($action_user['User']['facebook_id'] == null) : ?>
-										<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-									<?php else : ?>	
-										<img src="https://graph.facebook.com/<?php echo $action_user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-									<?php endif; ?>
-					  			<?php else : ?>
-					  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$action_user['User']['photo_dir'].'/'.$action_user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-					  			<?php endif; ?>
-								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evokation your group posted'), $action_user['User']['name']) ?></a>
+								<!-- action user picture -->
+								<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>">
+									<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic_action?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+									<?= sprintf(__('Agent %s commented an evokation your group posted'), $action_user['User']['name']) ?>
+								</a>
 							</li>
 
 						<?php } ?>
@@ -293,16 +297,11 @@
 							if(!empty($n['badge_name'])):?>
 
 							<li>
-								<?php if($n['User']['photo_attachment'] == null) : ?>
-									<?php if($n['User']['facebook_id'] == null) : ?>
-										<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-									<?php else : ?>	
-										<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-									<?php endif; ?>
-					  			<?php else : ?>
-					  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-					  			<?php endif; ?>
-								<a href = "<?= $this->Html->url(array('controller' => 'badges', 'action' => 'index')) ?>"><?= sprintf(__('You won the %s badge'), $n['badge_name']) ?></a> <!-- Tirar -->
+								<!-- user picture -->
+								<a href = "<?= $this->Html->url(array('controller' => 'badges', 'action' => 'index')) ?>">
+									<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+									<?= sprintf(__('You won the %s badge'), $n['badge_name']) ?>
+								</a> <!-- Tirar -->
 							</li>
 												
 					<?php endif; endif; ?>
@@ -325,105 +324,92 @@
 			<ul>
 				<?php foreach($feed as $n): 
 
-				if($n['Notification']['origin'] == 'evidence'):?>						
-					<li>
 
-						<?php if($n['User']['photo_attachment'] == null) : ?>
-							<?php if($n['User']['facebook_id'] == null) : ?>
-								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-							<?php else : ?>	
-								<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-							<?php endif; ?>
+					//setting the $pic's var over here to avoid repetitive if's
+					$pic = $this->webroot.'img/user_avatar.jpg';
+					
+					if($n['User']['photo_attachment'] == null) :
+						if($n['User']['facebook_id'] != null) :
+							$pic = "https://graph.facebook.com/" . $n['User']['facebook_id'] . "/picture?type=large";
+						endif;
+					else : 
+						$pic = $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'];
+					endif;
 
-			  			<?php else : ?>
-			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-			  			<?php endif; ?>
+					if($n['Notification']['origin'] == 'evidence'):?>						
+						<li>
+							<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>">
+								<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+								<?= sprintf(__('Agent %s posted an evidence'), $n['User']['name']) ?>
+							</a>
+						</li>
+					<?php endif; ?>
 
-					<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s posted an evidence'), $n['User']['name']) ?></a>
+					<?php if($n['Notification']['origin'] == 'BasicTraining'):?>
+						<li>
+							<a href = "#">
+								<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+								<?= sprintf(__('Agent %s finished the Basic Training'), $n['User']['name']) ?>
+							</a>
+						</li>
+					<?php endif; ?>
 
-					</li>
-				<?php endif; ?>
+					<?php if($n['Notification']['origin'] == 'userUpdate'):?>						
+						<li>
+							<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $n['User']['id'])) ?>">
+								<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+								<?= sprintf(__('Agent %s updated its profile'), $n['User']['name']) ?>
+							</a>
+						</li>
+					<?php endif; ?>
 
-				<?php if($n['Notification']['origin'] == 'BasicTraining'):?>
-					<li>
+					<?php if($n['Notification']['origin'] == 'like'):?>						
+						<!-- <li>
+							<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>">
+								<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+								<?= sprintf(__('Agent %s liked an evidence from '), $n['User']['name']) ?>
+							</a>
+						</li> -->
+					<?php endif; ?>
 
-					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<?php if($n['User']['facebook_id'] == null) : ?>
-							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-						<?php else : ?>	
-							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-						<?php endif; ?>
-		  			<?php else : ?>
-		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-		  			<?php endif; ?>
+					<?php if($n['Notification']['origin'] == 'like'):
+					
+						foreach($allusers as $alluser):
+							if($n['Notification']['action_user_id'] == $alluser['User']['id']){
+								$action_user = $alluser;
+								break;
+							}
+						endforeach;
 
-					<a href = "#"><?= sprintf(__('Agent %s finished the Basic Training'), $n['User']['name']) ?></a>
-					</li>
-				<?php endif; ?>
+						if($action_user['User']['id'] == $users['User']['id']) :
+							$message = sprintf(__('You liked an evidence Agent %s posted'), $n['User']['name']);
+						else:
+							$message = sprintf(__('Agent %s liked an evidence from Agent %s'), $action_user['User']['name'], $n['User']['name']);
+						endif; ?>						
+						
+						<li>
+							<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>">
+								<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+								<?= $message ?>
+							</a>
+						</li>
+					<?php endif; ?>
 
-				<?php if($n['Notification']['origin'] == 'userUpdate'):?>						
-					<li>
-					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<?php if($n['User']['facebook_id'] == null) : ?>
-								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-						<?php else : ?>	
-							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-						<?php endif; ?>
-		  			<?php else : ?>
-		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-		  			<?php endif; ?>	
-					<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $n['User']['id'])) ?>"><?= sprintf(__('Agent %s updated its profile'), $n['User']['name']) ?></a></li>
-				<?php endif; ?>
+					<?php if($n['Notification']['origin'] == 'commentEvidence'):?>						
+						<li>
+							<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>">
+								<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+								<?= sprintf(__('Agent %s commented an evidence'), $n['User']['name']) ?>
+							</a>
+						</li>
+					<?php endif; ?>
 
-				<?php if($n['Notification']['origin'] == 'like'):?>						
-					<!-- <li><a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s liked an evidence from '), $n['User']['name']) ?></a></li> -->
-				<?php endif; ?>
-
-				<?php if($n['Notification']['origin'] == 'like'):
-				
-					foreach($allusers as $alluser):
-						if($n['Notification']['action_user_id'] == $alluser['User']['id']){
-							$action_user = $alluser;
-							break;
-						}
-					endforeach;
-
-					if($action_user['User']['id'] == $users['User']['id']){
-						$message = sprintf(__('You liked an evidence Agent %s posted'), $n['User']['name']);
-					} else{
-						$message = sprintf(__('Agent %s liked an evidence from Agent %s'), $action_user['User']['name'], $n['User']['name']);
-					}
-					?>						
-					<li>
-					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<?php if($n['User']['facebook_id'] == null) : ?>
-							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-						<?php else : ?>	
-							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-						<?php endif; ?>
-		  			<?php else : ?>
-		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-		  			<?php endif; ?>
-					<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= $message ?></a></li>
-				<?php endif; ?>
-
-				<?php if($n['Notification']['origin'] == 'commentEvidence'):?>						
-					<li>
-					<?php if($n['User']['photo_attachment'] == null) : ?>
-						<?php if($n['User']['facebook_id'] == null) : ?>
-							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-						<?php else : ?>	
-							<img src="https://graph.facebook.com/<?php echo $n['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-						<?php endif; ?>
-		  			<?php else : ?>
-		  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$n['User']['photo_dir'].'/'.$n['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-		  			<?php endif; ?>
-					<a href = "<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id'])) ?>"><?= sprintf(__('Agent %s commented an evidence'), $n['User']['name']) ?></a></li>
-				<?php endif; ?>
-
-				<?php if($n['Notification']['origin'] == 'phaseCompleted'):?>						
-					<!-- <li><?= sprintf(__('Agent %s completed a phase'), $n['User']['name']) ?></li> -->
-				<?php endif; ?>
+					<?php if($n['Notification']['origin'] == 'phaseCompleted'):?>						
+						<!-- <li>
+							<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+							<?= sprintf(__('Agent %s completed a phase'), $n['User']['name']) ?>
+						</li> -->
+					<?php endif; ?>
 				
 				<?php endforeach; ?>
 			</ul>
@@ -434,54 +420,56 @@
 
 	  	<h3 class = "margin bottom-1 top"><?= strtoupper(__('Discussions')) ?> </h3>
 	  	<div class = "evoke content-block padding profile feed">
-
 	  		<ul>
-	  		<?php if(!empty($a_topics)): foreach($a_topics as $topic): 
-				//if($n['Notification']['origin'] == 'evidence'):?>						
-					<li>
+	  			<?php foreach($a_topics as $topic): 
 
-						<?php if($topic['User']['photo_attachment'] == null) : ?>
-							<?php if($topic['User']['facebook_id'] == null) : ?>
-								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-							<?php else : ?>	
-								<img src="https://graph.facebook.com/<?php echo $topic['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-							<?php endif; ?>
+	  				//setting the $pic's var over here to avoid repetitive if's
+					$pic = $this->webroot.'img/user_avatar.jpg';
+					
+					if($topic['User']['photo_attachment'] == null) :
+						if($topic['User']['facebook_id'] != null) :
+							$pic = "https://graph.facebook.com/" . $topic['User']['facebook_id'] . "/picture?type=large";
+						endif;
+					else : 
+						$pic = $this->webroot.'files/attachment/attachment/'.$topic['User']['photo_dir'].'/'.$topic['User']['photo_attachment'];
+					endif;
 
-			  			<?php else : ?>
-			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$topic['User']['photo_dir'].'/'.$topic['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-			  			<?php endif; ?>
+					//if($n['Notification']['origin'] == 'evidence'):?>						
+						<li>
+							<a href="<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $topic['Topic']['slug']))?>">
+								<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+								<?= sprintf(__('Agent %s created the topic %s'), $topic['User']['name'], $topic['Topic']['title']) ?>
+							</a>
 
-					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $topic['Topic']['slug'])) ?>"><?= sprintf(__('Agent %s created the topic %s'), $topic['User']['name'], $topic['Topic']['title']) ?></a>
-
-					</li>
-				<?php //endif; ?>
-			<?php endforeach; endif; ?>
+						</li>
+					<?php //endif; ?>
+				<?php endforeach; ?>
 			</ul>
 
 			<ul>
-			<?php if(!empty($a_posts)): foreach($a_posts as $post): 
+				<?php foreach($a_posts as $post): 
 
-				//if($n['Notification']['origin'] == 'evidence'):?>						
-					<li>
+					//setting the $pic's var over here to avoid repetitive if's
+					$pic = $this->webroot.'img/user_avatar.jpg';
+					
+					if($post['User']['photo_attachment'] == null) :
+						if($post['User']['facebook_id'] != null) :
+							$pic = "https://graph.facebook.com/" . $post['User']['facebook_id'] . "/picture?type=large";
+						endif;
+					else : 
+						$pic = $this->webroot.'files/attachment/attachment/'.$post['User']['photo_dir'].'/'.$post['User']['photo_attachment'];
+					endif;
 
-						<?php if($post['User']['photo_attachment'] == null) : ?>
-							<?php if($post['User']['facebook_id'] == null) : ?>
-								<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-							<?php else : ?>	
-								<img src="https://graph.facebook.com/<?php echo $post['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-							<?php endif; ?>
-
-			  			<?php else : ?>
-			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$post['User']['photo_dir'].'/'.$post['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-			  			<?php endif; ?>
-
-					<a href = "<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $post['Topic']['slug'])) ?>"><?= sprintf(__('Agent %s posted a reply in topic %s'), $post['User']['name'], $post['Topic']['title']) ?></a>
-
-					</li>
-				<?php //endif; ?>
-			<?php endforeach; endif;?>
+					//if($n['Notification']['origin'] == 'evidence'):?>						
+						<li>
+							<a href="<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'topics', 'action' => 'view', $post['Topic']['slug']))?>">
+								<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-right: 1vw;"></div>
+								<?= sprintf(__('Agent %s posted a reply in topic %s'), $post['User']['name'], $post['Topic']['title']) ?>
+							</a>
+						</li>
+					<?php //endif; ?>
+				<?php endforeach; ?>
 			</ul>
-
 	  	</div>
 
 	  </div>
@@ -492,11 +480,11 @@
 
 	<?php if ($show_basic_training && $users['User']['role_id'] > 2): ?>
 	<div id="formModal" class="reveal-modal evoke lightbox text-align" data-reveal style = "top: 370px;!important">
-	  <img src = '<?= $this->webroot.'img/alchemy.png' ?>' style = "margin-top: -460px;"/>
-	  <h2><?= sprintf(__("Agent %s, it's time to start your Basic Training"), $name[0]) ?></h2>
-	  <p class="lead"><?= __('This training will show you the steps inside a missions so you can start being an agent of change') ?></p>
-	  <a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1)); ?>" class = "button general"><?php echo __("Let's get started!");?></a>
-	  <a class="close-reveal-modal">&#215;</a>
+		<img src = '<?= $this->webroot.'img/alchemy.png' ?>' style = "margin-top: -460px;"/>
+		<h2><?= sprintf(__("Agent %s, it's time to start your Basic Training"), $name[0]) ?></h2>
+		<p class="lead"><?= __('This training will show you the steps inside a missions so you can start being an agent of change') ?></p>
+		<a href = "<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view', $basic_training['Mission']['id'], 1)); ?>" class = "button general"><?php echo __("Let's get started!");?></a>
+		 <a class="close-reveal-modal">&#215;</a>
 	</div>
 	<?php endif; ?>
 
@@ -520,37 +508,55 @@
 
 	var last = $('meta[name=lastEvidence]').attr('content');
 	var lastEvokation = $('meta[name=lastEvokation]').attr('content');
-	var olderContent = 5;
+	var olderContent = 5;// 5
 	var evidence = true;
 	var lastLocal = last;
 	var method = 'moreEvidences';
-	var target = '#target';
+	var target = 'target';
 
 	//ajax on either evokation or evidence stream
 	$("#evokationTrigger").click(function (){
 		evidence = false;
 		lastLocal = lastEvokation;
 		method = 'moreEvokations';
-		target = '#targetEvokation';
+		target = 'targetEvokation';
 	});
 
 	$("#evidenceTrigger").click(function (){
 		evidence = true;
 		lastLocal = last;
 		method = 'moreEvidences';
-		target = '#target';
+		target = 'target';
 	});
 
 	//checking scrolling info to call ajax function
 	$(window).scroll(throttle(function() {   
-		if($(window).scrollTop() + $(window).height() < ($(document).height() - $(target + ":last-child").height() + 150)) {
-			// alert($(target + ":last-child").height());
-			if((lastLocal) != "")
+		y = $('#'+target).parent().height();
+		test = getOffset(document.getElementById(target));
+		// console.log('position of end of target> '+(test+y));
+		// console.log('scroll position> '+$(window).scrollTop());
+		
+		if($(window).scrollTop() + $(window).height() >= (test + y) - 600){//+ $(window).height() < x) {
+			
+			if((lastLocal) != "") {
 				fillExtraContent();
+				// console.log('ativou');
+			}
 			// menuHeight();
 		}
 	}, 1000));
 	
+	function getOffset( el ) {
+	    var _x = 0;
+	    var _y = 0;
+	    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+	        _x += el.offsetLeft - el.scrollLeft;
+	        _y += el.offsetTop - el.scrollTop;
+	        el = el.offsetParent;
+	    }
+	    return _y;
+	}
+
 	function throttle(fn, threshhold, scope) {
 	  	threshhold || (threshhold = 250);
 	  	var last,
@@ -596,7 +602,7 @@
 		        response = response.substring(response.search("lastEnd")+7);
 			        
 		        // console.log(response);	
-		        $(target).append((response));
+		        $('#'+target).append((response));
 		    },
 		    error: function(e) {
 		        console.log(e);

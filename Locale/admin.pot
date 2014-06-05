@@ -1,0 +1,848 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2014-05-30 20:26-0300\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: Plugin/Admin/Config/bootstrap.php:36
+msgid "Admin"
+msgstr ""
+
+#: Plugin/Admin/Config/bootstrap.php:178
+#: Plugin/Admin/View/Acl/index.ctp:2
+#: Plugin/Admin/View/Upload/index.ctp:114
+msgid "ACL"
+msgstr ""
+
+#: Plugin/Admin/Config/bootstrap.php:183;224
+#: Plugin/Admin/View/Logs/index.ctp:2
+#: Plugin/Admin/View/Logs/read.ctp:2
+msgid "Logs"
+msgstr ""
+
+#: Plugin/Admin/Config/bootstrap.php:188
+#: Plugin/Admin/View/Reports/index.ctp:2
+#: Plugin/Admin/View/Reports/read.ctp:2
+msgid "Reports"
+msgstr ""
+
+#: Plugin/Admin/Config/bootstrap.php:193
+#: Plugin/Admin/View/Upload/index.ctp:2;364
+msgid "Upload"
+msgstr ""
+
+#: Plugin/Admin/Config/bootstrap.php:204
+msgid "Plugins"
+msgstr ""
+
+#: Plugin/Admin/Config/bootstrap.php:208
+#: Plugin/Admin/View/Admin/models.ctp:2;7
+msgid "Models"
+msgstr ""
+
+#: Plugin/Admin/Config/bootstrap.php:212
+#: Plugin/Admin/View/Admin/config.ctp:2;7
+msgid "Configuration"
+msgstr ""
+
+#: Plugin/Admin/Config/bootstrap.php:216
+#: Plugin/Admin/View/Admin/cache.ctp:2;7
+msgid "Cache"
+msgstr ""
+
+#: Plugin/Admin/Config/bootstrap.php:220
+#: Plugin/Admin/View/Admin/routes.ctp:2;30
+msgid "Routes"
+msgstr ""
+
+#: Plugin/Admin/Controller/AclController.php:36
+msgid "Invalid ARO/ACO IDs"
+msgstr ""
+
+#: Plugin/Admin/Controller/AclController.php:43
+msgid "Invalid ARO/ACO Records"
+msgstr ""
+
+#: Plugin/Admin/Controller/AclController.php:55
+msgid "Successfully granted %s permission to %s"
+msgstr ""
+
+#: Plugin/Admin/Controller/AclController.php:57
+msgid "Failed to grant %s permission to %s"
+msgstr ""
+
+#: Plugin/Admin/Controller/AdminAppController.php:78
+msgid "Invalid User"
+msgstr ""
+
+#: Plugin/Admin/Controller/AdminAppController.php:91
+#: Plugin/Admin/Controller/CrudController.php:326
+#: Plugin/Admin/Controller/ReportsController.php:114
+msgid "Insufficient Access Permissions"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:34
+msgid "Batch Access Protected"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:61
+msgid "%s %s have been processed"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:90
+msgid "Successfully created a new %s"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:94
+msgid "Failed to create a new %s"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:117;150;198;250
+#: Plugin/Admin/Controller/ReportsController.php:49
+#: Plugin/Forum/Controller/StationsController.php:215
+msgid "%s Not Found"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:138
+msgid "Update Access Protected"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:163
+msgid "Successfully updated %s with ID %s"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:167
+msgid "Failed to update %s with ID %s"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:186
+msgid "Delete Access Protected"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:205
+#: Plugin/Admin/Controller/ReportsController.php:69
+#: Plugin/Forum/Controller/StationsController.php:225
+msgid "Successfully deleted %s with ID %s"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:209
+#: Plugin/Forum/Controller/StationsController.php:229
+msgid "Failed to delete %s with ID %s"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:231
+msgid "Missing Query"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:256;279
+#: Plugin/Admin/Controller/ReportsController.php:76
+msgid "Triggered %s.%s() process"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:257
+msgid "Processed %s.%s() for ID %s"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:260;283
+msgid "%s does not allow this process"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:280
+msgid "Processed %s.%s() for %s"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:301;340
+msgid "Invalid Model"
+msgstr ""
+
+#: Plugin/Admin/Controller/CrudController.php:308
+msgid "Restricted Model"
+msgstr ""
+
+#: Plugin/Admin/Controller/LogsController.php:36
+msgid "%s Log Not Found"
+msgstr ""
+
+#: Plugin/Admin/Controller/LogsController.php:41
+msgid "Can not read %s as it exceeds 2MB"
+msgstr ""
+
+#: Plugin/Admin/Controller/ReportsController.php:70
+msgid "Via item report #%s"
+msgstr ""
+
+#: Plugin/Admin/Controller/ReportsController.php:77
+msgid "%s.%s() via item report #%s"
+msgstr ""
+
+#: Plugin/Admin/Controller/ReportsController.php:81
+msgid "Invalid Report Action"
+msgstr ""
+
+#: Plugin/Admin/Controller/ReportsController.php:84
+msgid "Changed report status to %s"
+msgstr ""
+
+#: Plugin/Admin/Controller/UploadController.php:24
+msgid "Successfully uploaded a new file"
+msgstr ""
+
+#: Plugin/Admin/Controller/Component/AdminToolbarComponent.php:240
+msgid "Invalid log action type"
+msgstr ""
+
+#: Plugin/Admin/Controller/Component/AdminToolbarComponent.php:380
+msgid "Invalid item report type"
+msgstr ""
+
+#: Plugin/Admin/View/Acl/index.ctp:7
+msgid "Access Control Lists"
+msgstr ""
+
+#: Plugin/Admin/View/Acl/index.ctp:11
+msgid "ACL is divided into 3 parts: objects requesting access (AROs), objects being controlled (ACOs), and permissions providing CRUD access between requesters and controllers."
+msgstr ""
+
+#: Plugin/Admin/View/Acl/index.ctp:12
+msgid "Learn more about how ACL permissions work."
+msgstr ""
+
+#: Plugin/Admin/View/Acl/index.ctp:77
+msgid "Has Access"
+msgstr ""
+
+#: Plugin/Admin/View/Acl/index.ctp:81
+msgid "Inherited from %s"
+msgstr ""
+
+#: Plugin/Admin/View/Acl/index.ctp:85
+msgid "Restricted Access"
+msgstr ""
+
+#: Plugin/Admin/View/Acl/index.ctp:99
+msgid "No access defined. Grant permission?"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/index.ctp:4
+msgid "ACL permissions do not exist within the session and all access has been disabled."
+msgstr ""
+
+#: Plugin/Admin/View/Admin/index.ctp:5
+msgid "Please update session management and re-login."
+msgstr ""
+
+#: Plugin/Admin/View/Admin/index.ctp:41
+#: Plugin/Admin/View/Helper/AdminHelper.php:412
+msgid "Add"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/index.ctp:51
+msgid "Not Installed"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:14
+msgid "Model"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:15
+msgid "Primary Key"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:15
+msgid "PK"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:16
+msgid "Display Field"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:17
+msgid "Database"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:18
+msgid "Table"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:19
+msgid "Schema"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:20
+msgid "Behaviors"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:21
+msgid "Belongs To"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:22
+#: Plugin/Admin/View/Elements/crud/read_extra.ctp:3
+msgid "Has One"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:23
+#: Plugin/Admin/View/Elements/crud/read_extra.ctp:4
+msgid "Has Many"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:24
+#: Plugin/Admin/View/Elements/crud/read_extra.ctp:5
+msgid "Has and Belongs to Many"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/models.ctp:24
+msgid "HABTM"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/routes.ctp:37
+msgid "Route"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/routes.ctp:38
+msgid "Pattern"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/routes.ctp:39
+msgid "Defaults"
+msgstr ""
+
+#: Plugin/Admin/View/Admin/routes.ctp:40
+msgid "Options"
+msgstr ""
+
+#: Plugin/Admin/View/Crud/delete.ctp:8
+#: Plugin/Admin/View/Crud/index.ctp:126
+#: Plugin/Admin/View/Elements/crud/actions.ctp:25
+#: Plugin/Admin/View/Reports/read.ctp:33
+#: Plugin/Forum/View/Stations/admin_delete.ctp:8
+msgid "Delete %s"
+msgstr ""
+
+#: Plugin/Admin/View/Crud/delete.ctp:12
+#: Plugin/Forum/View/Stations/admin_delete.ctp:12
+msgid "Are you sure you want to delete %s?"
+msgstr ""
+
+#: Plugin/Admin/View/Crud/form.ctp:3
+#: Plugin/Admin/View/Elements/crud/actions.ctp:13
+#: Plugin/Admin/View/Elements/crud/has_and_belongs_to_many.ctp:11
+#: Plugin/Admin/View/Elements/crud/has_many.ctp:10
+msgid "Add %s"
+msgstr ""
+
+#: Plugin/Admin/View/Crud/form.ctp:6
+#: Plugin/Admin/View/Elements/crud/actions.ctp:19
+msgid "Edit %s"
+msgstr ""
+
+#: Plugin/Admin/View/Crud/index.ctp:73
+#: Plugin/Admin/View/Elements/admin/config.ctp:68
+msgid "View"
+msgstr ""
+
+#: Plugin/Admin/View/Crud/index.ctp:79
+msgid "Edit"
+msgstr ""
+
+#: Plugin/Admin/View/Crud/index.ctp:85
+msgid "Delete"
+msgstr ""
+
+#: Plugin/Admin/View/Crud/index.ctp:110
+#: Plugin/Admin/View/Logs/index.ctp:91
+#: Plugin/Admin/View/Logs/read.ctp:89
+#: Plugin/Admin/View/Reports/index.ctp:76
+msgid "No results to display"
+msgstr ""
+
+#: Plugin/Admin/View/Crud/index.ctp:153
+msgid "Batch Process"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/filters.ctp:33
+#: Plugin/Admin/View/Elements/input.ctp:41
+msgid "Belongs To Lookup"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/filters.ctp:57
+msgid "Equals"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/filters.ctp:58
+msgid "Not Equals"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/filters.ctp:59
+msgid "Greater Than"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/filters.ctp:60
+msgid "Greater Than or Equal"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/filters.ctp:61
+msgid "Less Than"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/filters.ctp:62
+msgid "Less Than or Equal"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/filters.ctp:92
+#: Plugin/Admin/View/Elements/button/filter.ctp:2
+msgid "Filter"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/filters.ctp:96
+#: Plugin/Admin/View/Elements/form_actions.ctp:63
+msgid "Reset"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/form_actions.ctp:3
+msgid "List of %s"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/form_actions.ctp:4
+msgid "Create new %s"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/form_actions.ctp:9
+msgid "Continue Editing"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/form_actions.ctp:10
+#: Plugin/Admin/View/Upload/index.ctp:357
+msgid "%s Overview"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/form_actions.ctp:17
+msgid "Back to parent %s"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/form_actions.ctp:51
+msgid "Yes, Delete"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/form_actions.ctp:68
+msgid "Cancel"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/input.ctp:94
+msgid "Empty?"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/navigation.ctp:23
+msgid "View Site"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/navigation.ctp:26
+msgid "View Profile"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/navigation.ctp:29
+msgid "Settings"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/navigation.ctp:35
+msgid "Logout"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/pagination.ctp:4
+msgid "First"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/pagination.ctp:5
+msgid "Last"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/pagination.ctp:15
+msgid "Showing %s-%s of %s"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/acl/actions.ctp:3
+msgid "Add Requester"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/acl/actions.ctp:7
+msgid "Add Controller"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/admin/config.ctp:84
+msgid "Close"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/button/process_behavior.ctp:6
+#: Plugin/Admin/View/Elements/button/process_model.ctp:6
+msgid "Process"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/button/process_model.ctp:32
+msgid "Links"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/crud/dependencies.ctp:4
+msgid "The associated records in the following models will also be deleted."
+msgstr ""
+
+#: Plugin/Admin/View/Elements/crud/form_extra.ctp:13
+msgid "Associate With"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/crud/has_and_belongs_to_many.ctp:31
+#: Plugin/Admin/View/Elements/crud/has_many.ctp:28
+msgid "%s of %s"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/field/boolean.ctp:3
+#: Plugin/Admin/View/Elements/input/filter.ctp:20
+msgid "Yes"
+msgstr ""
+
+#: Plugin/Admin/View/Elements/field/boolean.ctp:7
+#: Plugin/Admin/View/Elements/input/filter.ctp:20
+msgid "No"
+msgstr ""
+
+#: Plugin/Admin/View/Helper/AdminHelper.php:127
+msgid "No Title"
+msgstr ""
+
+#: Plugin/Admin/View/Layouts/admin.ctp:26
+msgid "Dashboard"
+msgstr ""
+
+#: Plugin/Admin/View/Layouts/admin.ctp:35
+msgid "Powered by the %s v%s"
+msgstr ""
+
+#: Plugin/Admin/View/Layouts/admin.ctp:36
+msgid "Created by %s"
+msgstr ""
+
+#: Plugin/Admin/View/Logs/read.ctp:3
+msgid "System"
+msgstr ""
+
+#: Plugin/Admin/View/Logs/read.ctp:9
+msgid "System Logs"
+msgstr ""
+
+#: Plugin/Admin/View/Logs/read.ctp:16
+msgid "Code"
+msgstr ""
+
+#: Plugin/Admin/View/Logs/read.ctp:17
+msgid "Exception"
+msgstr ""
+
+#: Plugin/Admin/View/Logs/read.ctp:18
+msgid "URL"
+msgstr ""
+
+#: Plugin/Admin/View/Logs/read.ctp:19
+msgid "Message"
+msgstr ""
+
+#: Plugin/Admin/View/Logs/read.ctp:20
+msgid "Count"
+msgstr ""
+
+#: Plugin/Admin/View/Logs/read.ctp:21
+msgid "Date"
+msgstr ""
+
+#: Plugin/Admin/View/Reports/index.ctp:8
+msgid "Pending Reports"
+msgstr ""
+
+#: Plugin/Admin/View/Reports/index.ctp:11
+msgid "Resolved Reports"
+msgstr ""
+
+#: Plugin/Admin/View/Reports/read.ctp:17
+msgid "Reported %s"
+msgstr ""
+
+#: Plugin/Admin/View/Reports/read.ctp:39
+msgid "Mark As Invalid"
+msgstr ""
+
+#: Plugin/Admin/View/Reports/read.ctp:65
+msgid "Process Report"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:8
+msgid "View All Uploads"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:20
+msgid "Upload all types of files with no restrictions. Uploading also supports image transformation and remote transportation."
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:21
+msgid "Learn more about file uploading."
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:30
+msgid "File"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:37
+msgid "Caption"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:42
+msgid "Transport To"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:47
+msgid "Service"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:51
+msgid "None"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:52
+msgid "AWS S3"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:53
+msgid "AWS Glacier"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:61
+msgid "Access Key"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:67
+msgid "Secret Key"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:73
+msgid "Region"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:75
+msgid "US East - Virginia"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:76
+msgid "US West - California"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:77
+msgid "US West 2 - Oregon"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:78
+msgid "EU West - Ireland"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:79
+msgid "AP Southeast - Singapore"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:80
+msgid "AP Southeast 2 - Sydney"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:81
+msgid "AP Northeast - Tokyo"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:82
+msgid "SA East - Sao Paulo"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:92
+msgid "Bucket"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:98;197
+msgid "Folder"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:99;198
+msgid "Requires trailing slash"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:105
+msgid "Scheme"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:116
+msgid "Public Read"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:117
+msgid "Public Read Write"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:118
+msgid "Authenticated Read"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:119
+msgid "Bucket Owner Read"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:120
+msgid "Bucket Owner Full Control"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:121
+msgid "Private"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:131
+msgid "Vault"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:137
+msgid "Account ID"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:147
+msgid "Resized"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:148
+msgid "Thumbnail"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:160
+msgid "Generate image"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:170
+msgid "Method"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:173
+msgid "Crop"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:174
+msgid "Resize"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:175
+msgid "Flip"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:176
+msgid "Scale"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:177
+msgid "Rotate"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:178
+msgid "Fit"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:185
+msgid "Prepend"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:191
+msgid "Append"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:206;223
+msgid "Width"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:212;224
+msgid "Height"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:221
+msgid "Mode"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:233
+msgid "Allow greater than current dimension"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:243
+msgid "Maintain aspect ratio"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:254
+msgid "Location"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:256
+msgid "Center"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:257
+msgid "Top"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:258
+msgid "Right"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:259
+msgid "Bottom"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:260
+msgid "Left"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:270
+msgid "Direction"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:272
+msgid "Vertical"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:273
+msgid "Horizontal"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:274
+msgid "Both"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:284
+msgid "Percent"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:295
+msgid "Degrees"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:304
+msgid "Fill"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:356
+msgid "Continue Uploading"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:374
+msgid "Install the Uploader to upload files"
+msgstr ""
+
+#: Plugin/Admin/View/Upload/index.ctp:378
+msgid "Install"
+msgstr ""
+

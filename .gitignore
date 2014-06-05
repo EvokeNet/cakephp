@@ -4,6 +4,7 @@ Config/database.php
 webroot/components
 webroot/uploads/*
 webroot/files/*
+webroot/img/uploads/*
 Plugin/AclExtras
 Plugin/CakePdf
 Plugin/Chosen

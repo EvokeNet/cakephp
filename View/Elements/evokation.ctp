@@ -62,10 +62,13 @@
 		  <div class="small-2 medium-2 large-2 columns evoke text-align-center">
 
 		  	<?php if($e['Group']['photo_dir'] == null) :?>
-  				<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "height:5vw"/>
+  				<!-- <img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "height:5vw"/> -->
+  				<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
 	  		<?php else : ?>
-				<img src="<?= $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/thumb_'.$e['Group']['photo_attachment'] ?>" style = "height:5vw"/>
+				<!-- <img src="<?= $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/thumb_'.$e['Group']['photo_attachment'] ?>" style = "height:5vw"/> -->
+				<?php $pic = $this->webroot.'files/attachment/attachment/'.$e['Group']['photo_dir'].'/'.$e['Group']['photo_attachment'];?>
 			<?php endif; ?>
+			<div style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
 
 		  </div>
 

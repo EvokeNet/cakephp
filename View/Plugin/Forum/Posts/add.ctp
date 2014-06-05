@@ -1,4 +1,8 @@
 <?php
+    if(!isset($user['User'])){
+        $user['User'] = $user;
+    }
+
     if (!empty($topic['Forum']['Parent']['slug'])) {
         $this->Breadcrumb->add($topic['Forum']['Parent']['title'], array('controller' => 'stations', 'action' => 'view', $topic['Forum']['Parent']['slug']));
     }

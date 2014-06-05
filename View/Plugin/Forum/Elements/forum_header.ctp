@@ -1,5 +1,9 @@
 <?php
 	$user = $cuser;
+
+	if(!isset($user['User'])){
+		$user['User'] = $user;
+	}
 ?>
 
 <div class="evoke contain-to-grid top-bar-background">
@@ -20,14 +24,17 @@
 	      	<a href="#">
 	      		<?php if($user['User']['photo_attachment'] == null) : ?>
 					<?php if($user['User']['facebook_id'] == null) : ?>
-						<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-					<?php else : ?>	
-						<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-					<?php endif; ?>
-					
-	  			<?php else : ?>
-	  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
+						<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
+					<?php else : ?>							
+						<?php $pic = "https://graph.facebook.com/". $user['User']['facebook_id'] ."/picture?type=large";?>
+					<?php endif; ?>					
+	  			<?php else : ?>	  				
+					<?php $pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'];?>
 	  			<?php endif; ?>		
+	  			
+	  			<!-- <div class = "evoke top-bar icon" style="background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;">
+	  			</div> -->
+	  			<div class="left" style="min-width: 2vw; max-width: 2vw; min-height: 2vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto; margin-top: 0.2vw;"></div>	
 	      	</a>
       	  </li>
 

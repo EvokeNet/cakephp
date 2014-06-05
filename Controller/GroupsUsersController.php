@@ -19,25 +19,25 @@ class GroupsUsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Cookie');
+	public $components = array('Cookie');
 
 /**
  * index method
  *
  * @return void
  */
-	public function index() {
-		$this->GroupsUser->recursive = 0;
-		$this->set('groupsUsers', $this->Paginator->paginate());
+	// public function index() {
+	// 	$this->GroupsUser->recursive = 0;
+	// 	$this->set('groupsUsers', $this->Paginator->paginate());
 		
-		$userid = $this->getUserId();
-		$username = explode(' ', $this->getUserName());
-		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
+	// 	$userid = $this->getUserId();
+	// 	$username = explode(' ', $this->getUserName());
+	// 	$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
 
-		$groups = $this->GroupsUser->Group->find('all');
+	// 	$groups = $this->GroupsUser->Group->find('all');
 
-		$this->set(compact('user', 'userid', 'username', 'groups'));
-	}
+	// 	$this->set(compact('user', 'userid', 'username', 'groups'));
+	// }
 
 /**
  * edit method
@@ -748,7 +748,7 @@ class GroupsUsersController extends AppController {
 	        	$this->Session->setFlash(__('The request has been sent'));
 	        } else $this->Session->setFlash(__('The request could not be sent'));
 		} else {
-			$this->Session->setFlash(__('This user already requested to join thsi group'));
+			$this->Session->setFlash(__('This user already requested to join this group'));
 		}
 
 		if($recipient['User']['email'] != '' && !is_null($recipient['User']['email'])
@@ -762,9 +762,9 @@ class GroupsUsersController extends AppController {
 			$Email->template('group', 'group');
 			$Email->viewVars(array('sender' => $sender, 'recipient' => $recipient, 'group' => $group));
 			$Email->send();
-			$this->Session->setFlash(__('The email was sent'));
+			$this->Session->setFlash(__('The email was sent'), 'flash_message');
 		} else {
-			$this->Session->setFlash(__('There was a problem sending the email.', 'flash_message'));
+			$this->Session->setFlash(__('There was a problem sending the email.'), 'flash_message');
 		}
 		$this->redirect(array('controller' => 'groups', 'action' => 'index', $group['Group']['mission_id']));
 	}
@@ -862,10 +862,10 @@ class GroupsUsersController extends AppController {
  *
  * @return void
  */
-	public function admin_index() {
-		$this->GroupsUser->recursive = 0;
-		$this->set('groupsUsers', $this->Paginator->paginate());
-	}
+	// public function admin_index() {
+	// 	$this->GroupsUser->recursive = 0;
+	// 	$this->set('groupsUsers', $this->Paginator->paginate());
+	// }
 
 /**
  * admin_view method

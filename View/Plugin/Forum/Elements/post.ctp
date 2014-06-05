@@ -1,17 +1,20 @@
 <?php
-$pages = $this->Forum->topicPages($topic['Topic']);
-$columns = isset($columns) ? $columns : array(); 
+    if(!isset($user['User'])){
+        $user['User'] = $user;
+    }
+    $pages = $this->Forum->topicPages($topic['Topic']);
+    $columns = isset($columns) ? $columns : array(); 
 
-$post_count = 0;
-$reply = strtoupper(_('Replies'));
+    $post_count = 0;
+    $reply = strtoupper(_('Replies'));
 
-if($topic['Topic']['post_count'] == 0)
-    $post_count = $topic['Topic']['post_count'];
-else
-    $post_count = $topic['Topic']['post_count'] - 1;
+    if($topic['Topic']['post_count'] == 0)
+        $post_count = $topic['Topic']['post_count'];
+    else
+        $post_count = $topic['Topic']['post_count'] - 1;
 
-if($post_count == 1)
-    $reply = strtoupper(_('Reply'));
+    if($post_count == 1)
+        $reply = strtoupper(_('Reply'));
 
 ?>
 
@@ -29,14 +32,14 @@ if($post_count == 1)
             <a href = "<?= $this->Html->url(array('plugin' => '', 'controller' => 'users', 'action' => 'profile', $post['User']['id'])) ?>">
                 <?php if($post['User']['photo_attachment'] == null) : ?>
                     <?php if($post['User']['facebook_id'] == null) : ?>
-                        <div class = "topic icon margin top"><img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/></div>
+                        <?php $pic = $this->webroot.'img/user_avatar.jpg'; ?>
                     <?php else : ?> 
-                        <div class = "topic icon margin top"><img src="https://graph.facebook.com/<?php echo $post['User']['facebook_id']; ?>/picture?type=large"/></div>
+                        <?php $pic = "https://graph.facebook.com/". $post['User']['facebook_id']. "/picture?type=large"; ?>
                     <?php endif; ?>
                 <?php else : ?>
-                    <div class = "topic icon margin top"><img src="<?= $this->webroot.'files/attachment/attachment/'.$post['User']['photo_dir'].'/'.$post['User']['photo_attachment'] ?>"/></div>
+                    <?php $pic = $this->webroot.'files/attachment/attachment/'.$post['User']['photo_dir'].'/'.$post['User']['photo_attachment']; ?>
                 <?php endif; ?>
-
+                <div style="min-width: 5vw; max-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
                 <h6 class = "white margin top"><?= $post['User']['name'] ?></h6>
             </a>
           </td>

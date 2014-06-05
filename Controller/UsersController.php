@@ -784,8 +784,9 @@ class UsersController extends AppController {
 	            'entity' => 'showNotification'
 	        ));
 
+			// debug($not);
 	        $this->getEventManager()->dispatch($event);
-	        break;
+	        // break;
 		}
 		
 
@@ -802,7 +803,8 @@ class UsersController extends AppController {
 			$a_posts = $this->Post->find('all', array(
 				'conditions' => array(
 					'OR' => $post_allies
-			)));
+				)
+			));
 		}
 
 		if(!empty($topic_allies)){
@@ -810,10 +812,12 @@ class UsersController extends AppController {
 			$a_topics = $this->Topic->find('all', array(
 				'conditions' => array(
 					'OR' => $topic_allies
-			)));
+				)
+			));
 		}
 		
-		$this->set(compact('badges', 'feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'evidence', 'myevidences', 'missions', 'lang',
+
+		$this->set(compact('badges', 'feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'adminNotificationsToMe', 'evidence', 'myevidences', 'missions', 'lang',
 			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies', 
 			'show_basic_training', 'evokations', 'evokationsFollowing', 'myEvokations'));
 		//'groups', 'my_photo', 'user_photo',
@@ -952,6 +956,7 @@ class UsersController extends AppController {
 					'Evokation.created DESC'
 				),
 				'conditions' => array(
+					'Evokation.sent' => 1,
 					'OR' => $mygroups_id
 				)
 			));
@@ -1071,7 +1076,11 @@ class UsersController extends AppController {
 
 			$this->loadModel('Evokation');
 
-			$evokations = $this->Evokation->find('all');
+			$evokations = $this->Evokation->find('all', array(
+				'conditions' => array(
+					'Evokation.sent' => 1
+				)
+			));
 
 			$votes = $this->Evokation->Vote->find('all');
 

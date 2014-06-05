@@ -18,6 +18,7 @@ class Attachment extends AppModel {
                     'xvga' => '1024x768',
                     'vga' => '640x480',
                     'thumb' => '80x80',
+                    'square' => '640x640'
                 ),
             ),
         ),

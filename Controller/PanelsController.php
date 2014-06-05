@@ -7,7 +7,7 @@ class PanelsController extends AppController {
 *
 * @var array
 */
-	public $components = array('Paginator','Access');
+	public $components = array('Access');
 	public $uses = array('User', 'UserIssue', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 
 		'DossierLink', 'UserFriend', 'DossierVideo', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire', 
 		'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level',
@@ -23,6 +23,7 @@ class PanelsController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
+        ini_set('memory_limit', '256M'); // emergencial measure
         
         $this->user = array();
         //get user data into public var
@@ -309,54 +310,39 @@ class PanelsController extends AppController {
 			)
 		));		
 		
-		//points definitions
-		$register_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'Register'
-			)
-		));
 
-		$allies_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'Allies'
-			)
-		));
+		$all_points = $this->PointsDefinition->find('all');
+		$register_points = array();
+		$allies_points = array();
+		$like_points = array();
+		$vote_points = array();
+		$evidenceComment_points = array();
+		$evokationFollow_points = array();
+		$basicTraining_points = array();
 
-		$like_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'Like'
-			)
-		));
-
-		$vote_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'Vote'
-			)
-		));	
-
-		$evidenceComment_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'EvidenceComment'
-			)
-		));
-
-		$evokationComment_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'EvokationComment'
-			)
-		));
-
-		$evokationFollow_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'EvokationFollow'
-			)
-		));
-
-		$basicTraining_points = $this->PointsDefinition->find('first', array(
-			'conditions' => array(
-				'type' => 'BasicTraining'
-			)
-		));
+		foreach ($all_points as $point) {
+			if($point['PointsDefinition']['type'] == 'Register') {
+				$register_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'Allies') {
+				$allies_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'Like') {
+				$like_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'Vote') {
+				$vote_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'EvidenceComment') {
+				$evidenceComment_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'EvokationFollow') {
+				$evokationFollow_points = $point;
+			}
+			if($point['PointsDefinition']['type'] == 'BasicTraining') {
+				$basicTraining_points = $point;
+			}
+		}
 
 		$this->set(compact('flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations', 
 			'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 'unknown_countries', 'countries',
@@ -1499,8 +1485,9 @@ class PanelsController extends AppController {
 			$this->request->data['Evokation']['final_sent'] = 0;
 			$missionCompleted = 0;
 		}
+		debug($missionCompleted);
 		$this->Evokation->save($this->request->data);
-
+		// die();
 
 		//set as mission completed to each member of the evokation group
 		$members = $this->GroupsUser->find('all', array(
@@ -1541,18 +1528,20 @@ class PanelsController extends AppController {
 			//debug($mission);
 			//dispatch mission completed or evokation failure
 			if($missionCompleted == 1) {
-				$newData['AdminNotification']['title'] = 'Project Approved';
-				$newData['AdminNotification']['description'] = 'Congratulations, agent! Your project '.$evokation['Evokation']['title'].' was approved and you have'.
-					'successfully completed the '. $mission['Mission']['title'] .' mission.';
+				$newData['AdminNotification']['title'] = __('Project Approved');
+				$newData['AdminNotification']['description'] = __('Congratulations, agent! Your project') .' '.$evokation['Evokation']['title'].' ' . 
+					__('was approved and you have successfully completed the').' '. $mission['Mission']['title'] .' '.__('mission').'.';
 			}else{
-				$newData['AdminNotification']['title'] = 'Project Not Approved!';
-				$newData['AdminNotification']['description'] = 'Agent, your project'. $evokation['Evokation']['title'] . ' failed!';
+				$newData['AdminNotification']['title'] = __('Project Not Approved!');
+				$newData['AdminNotification']['description'] = __('Agent, your project').' '. $evokation['Evokation']['title'] . ' '.__('failed!');
 			}
 			$newData['AdminNotification']['user_id'] = $this->getUserId();
 			$newData['AdminNotification']['user_target'] = $member['GroupsUser']['user_id'];
 			$this->AdminNotification->create();
 			$this->AdminNotification->save($newData);
 
+			// debug($newData);
+			// die();
 			if(!$badgeExists || $missionCompleted == 0)
 				continue;
 
