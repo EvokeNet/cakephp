@@ -43,6 +43,8 @@
 </section>
 
 <?php
+	// echo $this->Html->scriptBlock("var userId = '" . json_encode($user['User']['id']) . "'", array('inline' => true));
 	echo $this->Html->script('/components/jquery/jquery.min.js');
 	echo $this->Html->script('more_notifications');
+	echo $this->Html->script('menu_height');
 ?>

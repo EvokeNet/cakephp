@@ -3,7 +3,7 @@ $(document).ready( function() {});
 var last = $('meta[name=lastNotification]').attr('content');
 var olderContent = 5;
 var lastLocal = last;
-var method = 'moreNotifications';
+var method = 'notifications/moreNotifications/';
 var target = '#target';
 
 //checking scrolling info to call ajax function
@@ -43,12 +43,13 @@ function fillExtraContent(){
 
 	$.ajax({
 	    type: 'get',
-	    url: getCorrectURL(method)+"/"+lastLocal+"/"+olderContent + "/<?=$user['User']['id']?>",
+	    url: getCorrectURL(method)+lastLocal+"/"+olderContent,
 	    //"<?php echo $this->Html->url(array('action' => 'moreEvidences', $lastEvidence)); ?>",
 	    beforeSend: function(xhr) {
 	        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	    },
 	    success: function(response) {
+	    	//alert(lastLocal);
 	        var responseLast = response.substring(response.search("lastBegin") + 9, response.search("lastEnd"));
 
 			lastLocal = responseLast;

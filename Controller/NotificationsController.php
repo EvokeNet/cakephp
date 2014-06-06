@@ -25,7 +25,51 @@ class NotificationsController extends AppController {
 
 		$user = $this->Notification->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$notifications = $this->Notification->find('all', array('conditions' => array('Notification.user_id' => $user['User']['id']), 'limit' => 5));
+		$users = $this->Notification->User->find('all');
+
+		$notifications = $this->Notification->find('all', array('conditions' => array(
+			'Notification.user_id' => $user['User']['id'],
+			'Notification.origin' => array('like', 'commentEvidence', 'commentEvokation', 'voteEvokation', 'gritBadge'),
+			), 
+			'limit' => 5
+		));
+
+		$this->loadModel('Attachment');
+
+		foreach ($notifications as $key => $value):
+		 	foreach($users as $u):
+				if($u['User']['id'] == $value['Notification']['action_user_id']){
+					$notifications[$key]['user_name'] = $u['User']['name'];
+					$notifications[$key]['user_pa'] = $u['User']['photo_attachment'];
+					$notifications[$key]['user_fb'] = $u['User']['facebook_id'];
+					$notifications[$key]['user_pd'] = $u['User']['photo_dir'];
+					break;
+				}
+			endforeach;
+
+			if($value['Notification']['origin'] == 'gritBadge'){
+				foreach($badges as $badge):
+					if($badge['Badge']['id'] == $value['Notification']['origin_id']){
+						$notifications[$key]['badge_name'] = $badge['Badge']['name'];
+
+						$badge_img = $this->Attachment->find('first', array(
+							'conditions' => array(
+								'Attachment.model' => 'Badge',
+								'Attachment.foreign_key' => $badge['Badge']['id']
+							)
+						));
+
+						if(!empty($badge_img)) {
+							$notifications[$key]['imd'] = $badge_img['Attachment']['dir']; 
+							$notifications[$key]['ima'] = $badge_img['Attachment']['attachment'];
+						}
+						// $notifications[$key]['badge_imd'] = $badge['Badge']['img_dir'];
+						// $notifications[$key]['badge_ima'] = $badge['Badge']['img_attachment'];
+						break;
+					}
+				endforeach;
+			}
+	 	endforeach;
 
 		// $this->Notification->recursive = 0;
 		// $this->set('notifications', $this->Paginator->paginate());
@@ -52,31 +96,26 @@ class NotificationsController extends AppController {
 
     	$lang = $this->getCurrentLanguage();
 
+    	$users = $this->Notification->User->find('all');
+
+    	$this->loadModel('Badge');
+    	$this->loadModel('Attachment');
+		$badges = $this->Badge->find('all');
+
     	if(empty($last))
     			return json_encode(array());
 
-	   	if($user_id==-1) {
-		   	$obj = $this->Notification->find('all', array(
-				'order' => array(
-					'Notification.created DESC'
-				),
-				'conditions' => array(
-					'Notification.modified <' => $last['Notification']['modified']
-				),
-				'limit' => $limit
-			));
-		} else {
-			$obj = $this->Notification->find('all', array(
-				'order' => array(
-					'Notification.created DESC'
-				),
-				'conditions' => array(
-					'Notification.modified <' => $last['Notification']['modified'],
-					'Notification.user_id' => $user_id
-				),
-				'limit' => $limit
-			));
-		}
+	   	$obj = $this->Notification->find('all', array(
+			// 'order' => array(
+			// 	'Notification.created DESC'
+			// ),
+			'conditions' => array(
+				'Notification.created >' => $last['Notification']['created'],
+				'Notification.user_id' => $this->getUserId(),
+				'Notification.origin' => array('like', 'commentEvidence', 'commentEvokation', 'voteEvokation', 'gritBadge'),
+			),
+			'limit' => $limit
+		));
 
 		$el = 'notification_box';
 		$ind = 'Notification';
@@ -86,9 +125,44 @@ class NotificationsController extends AppController {
 
 	    $str = "lastBegin-1lastEnd";
 	    $older = "";
+
     	foreach ($obj as $key => $value) {
+    		
+    		foreach($users as $u):
+				if(($u['User']['id'] == $value['Notification']['action_user_id']) && ($value['Notification']['origin'] != 'gritBadge')){
+					$value['user_name'] = $u['User']['name'];
+					$value['user_pa'] = $u['User']['photo_attachment'];
+					$value['user_fb'] = $u['User']['facebook_id'];
+					$value['user_pd'] = $u['User']['photo_dir'];
+					break;
+				}
+			endforeach;
+
+			if($value['Notification']['origin'] == 'gritBadge'){
+				foreach($badges as $badge):
+					if($badge['Badge']['id'] == $value['Notification']['origin_id']){
+						$value['badge_name'] = $badge['Badge']['name'];
+
+						$badge_img = $this->Attachment->find('first', array(
+							'conditions' => array(
+								'Attachment.model' => 'Badge',
+								'Attachment.foreign_key' => $badge['Badge']['id']
+							)
+						));
+
+						if(!empty($badge_img)) {
+							$obj[$key]['imd'] = $badge_img['Attachment']['dir']; 
+							$obj[$key]['ima'] = $badge_img['Attachment']['attachment'];
+						}
+						// $notifications[$key]['badge_imd'] = $badge['Badge']['img_dir'];
+						// $notifications[$key]['badge_ima'] = $badge['Badge']['img_attachment'];
+						break;
+					}
+				endforeach;
+			}
+
     		$view = new View($this, false);
-			$content = ($view->element($el, array('e' => $value, 'lang' => $lang)));
+			$content = ($view->element($el, array('n' => $value)));
 			
 			$data .= $content .' ';
 
