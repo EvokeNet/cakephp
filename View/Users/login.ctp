@@ -32,8 +32,49 @@
 					<h5><?php echo __('Sign up');?></h5>
 
 					<a href="<?php echo $fbLoginUrl; ?>" class="evoke login button facebook"><i class="fa fa-facebook fa-2x"></i>&nbsp;&nbsp;&nbsp;<?php echo __('Sign in with Facebook');?></a>
-					<!-- <a href="<?php echo $this->Html->url(array('action' => 'google_login')); ?>" class="evoke login button google"><img src = '<?= $this->webroot.'img/evoke_g-login.png' ?>' alt = "">&nbsp;&nbsp;&nbsp;<?php echo __('Sign in with Google');?></a> -->
+					
+					<!-- <a href="<?php echo $this->Html->url(array('action' => 'google')); ?>" class="evoke login button google"><img src = '<?= $this->webroot.'img/evoke_g-login.png' ?>' alt = "">&nbsp;&nbsp;&nbsp;<?php echo __('Sign in with Google');?></a> -->
+					
 					<a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'register'));?>" class="evoke login button signup"><img src = '<?= $this->webroot.'img/evoke_e-login.png' ?>'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Create EVOKE account');?></a>
+
+					<!-- <a href="#" class="evoke login button google google_login"><img src = '<?= $this->webroot.'img/evoke_g-login.png' ?>' alt = "">&nbsp;&nbsp;&nbsp;<?php echo __('Sign in with Google');?></a> -->
+<?php
+					if(isset($authUrl)) //user is not logged in, show login button
+{
+    echo '<a class="login" href="'.$authUrl.'"><img src="images/google-login-button.png" /></a>';
+} 
+else // user logged in 
+{
+   /* connect to database using mysqli */
+    $mysqli = new mysqli('localhost', 'root', '6907388', 'evoke');
+    
+    if ($mysqli->connect_error) {
+        die('Error : ('. $mysqli->connect_errno .') '. $mysqli->connect_error);
+    }
+    
+    debug($user_exist);
+    //compare user id in our database
+    $user_exist = false; 
+    if($user_exist)
+    {
+        echo 'Welcome back '.$user_name.'!';
+    }else{ 
+        //user is new
+        echo 'Hi '.$user_name.', Thanks for Registering!';
+        $mysqli->query("INSERT INTO google_users (google_id, google_name, google_email, google_link, google_picture_link) 
+        VALUES ($user_id, '$user_name','$email','$profile_url','$profile_image_url')");
+    }
+
+    
+    echo '<br /><a href="'.$profile_url.'" target="_blank"><img src="'.$profile_image_url.'?sz=100" /></a>';
+    echo '<br /><a class="logout" href="?reset=1">Logout</a>';
+    
+    //list all user details
+    echo '<pre>'; 
+    print_r($user);
+    echo '</pre>';  
+}
+?>
 
 					<!-- <a href="#" class="evoke login button signup" data-reveal-id="myModal" data-reveal><img src = '<?= $this->webroot.'img/evoke_e-login.png' ?>'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Create EVOKE account');?></a> -->
 				</div>
@@ -79,4 +120,7 @@
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
+	echo $this->Html->script("oauthpopup", array('inline' => false));
+	echo $this->Html->script("google_login", array('inline' => false));
 ?>
+

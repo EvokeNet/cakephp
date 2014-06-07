@@ -2,6 +2,9 @@
 
 require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
 
+require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'Google_Client.php';
+require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'contrib'.DS.'Google_Oauth2Service.php';
+
 App::uses('AppController', 'Controller');
 
 /**
@@ -136,6 +139,38 @@ class UsersController extends AppController {
     	// die();
     }
 
+	public function google(){
+	 
+		$client = new Google_Client();
+		$client->setApplicationName("Evoke");
+		$client->setClientId(Configure::read('google_app_id'));
+		$client->setClientSecret(Configure::read('google_app_secret'));
+		$client->setRedirectUri(Configure::read('google_app_uri'));
+		$client->setApprovalPrompt(Configure::read('APPROVAL_PROMPT'));
+		$client->setAccessType(Configure::read('APPROVAL_TYPE'));
+		$oauth2 = new Google_Oauth2Service($client);
+
+		if (isset($_GET['code'])) {
+		  $client->authenticate($_GET['code']);
+		  $_SESSION['token'] = $client->getAccessToken();
+		}
+		if (isset($_SESSION['token'])) {
+		 $client->setAccessToken($_SESSION['token']);
+		}
+		if (isset($_REQUEST['error'])) {
+		 echo '<script type="text/javascript">window.close();</script>'; exit;
+		}
+		if ($client->getAccessToken()) {
+		  $user = $oauth2->userinfo->get();
+		  $_SESSION['User'] = $user;
+		  $_SESSION['token'] = $client->getAccessToken();
+
+		} else {
+		  $authUrl = $client->createAuthUrl();
+		  header('Location: '.$authUrl);
+
+		}
+	}
 
 /**
  * login method
@@ -143,6 +178,77 @@ class UsersController extends AppController {
  * @return void
  */
 	public function login() {
+
+		########## Google Settings.. Client ID, Client Secret from https://cloud.google.com/console #############
+		$google_client_id       = '502819941527.apps.googleusercontent.com';
+		$google_client_secret   = 'Eg7BI26namI0pQflwYNW8oA7';
+		$google_redirect_url    = 'http://localhost/google/'; //path to your script
+		$google_developer_key   = 'AIzaSyAOS7NDW3LgpeSbHnogXdqxKSFTXDkbPNE';
+
+		// ########## MySql details (Replace with yours) #############
+		// $db_username = "xxxxxxxxx"; //Database Username
+		// $db_password = "xxxxxxxxx"; //Database Password
+		// $hostname = "localhost"; //Mysql Hostname
+		// $db_name = 'xxxxxxxxx'; //Database Name
+		// ###################################################################
+
+		//start session
+		session_start();
+
+		$gClient = new Google_Client();
+		$gClient->setApplicationName('Login to Sanwebe.com');
+		$gClient->setClientId($google_client_id);
+		$gClient->setClientSecret($google_client_secret);
+		$gClient->setRedirectUri($google_redirect_url);
+		$gClient->setDeveloperKey($google_developer_key);
+
+		$google_oauthV2 = new Google_Oauth2Service($gClient);
+
+		//If user wish to log out, we just unset Session variable
+		if (isset($_REQUEST['reset'])) 
+		{
+		  unset($_SESSION['token']);
+		  $gClient->revokeToken();
+		  header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL)); //redirect user back to page
+		}
+
+		//If code is empty, redirect user to google authentication page for code.
+		//Code is required to aquire Access Token from google
+		//Once we have access token, assign token to session variable
+		//and we can redirect user back to page and login.
+		if (isset($_GET['code'])) 
+		{ 
+		    $gClient->authenticate($_GET['code']);
+		    $_SESSION['token'] = $gClient->getAccessToken();
+		    header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
+		    return;
+		}
+
+
+		if (isset($_SESSION['token'])) 
+		{ 
+		    $gClient->setAccessToken($_SESSION['token']);
+		}
+
+
+		if ($gClient->getAccessToken()) 
+		{
+		      //For logged in user, get details from google using access token
+		      $user                 = $google_oauthV2->userinfo->get();
+		      $user_id              = $user['id'];
+		      $user_name            = filter_var($user['name'], FILTER_SANITIZE_SPECIAL_CHARS);
+		      $email                = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
+		      $profile_url          = filter_var($user['link'], FILTER_VALIDATE_URL);
+		      $profile_image_url    = filter_var($user['picture'], FILTER_VALIDATE_URL);
+		      $personMarkup         = "$email<div><img src='$profile_image_url?sz=50'></div>";
+		      $_SESSION['token']    = $gClient->getAccessToken();
+		}
+		else 
+		{
+		    //For Guest user, get google login url
+		    $authUrl = $gClient->createAuthUrl();
+		}
+
 		//debug($this->Auth);
 		$facebook = new Facebook(array(
 			'appId' => Configure::read('fb_app_id'),
@@ -243,10 +349,10 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	// public function index() {
-	// 	$this->User->recursive = 0;
-	// 	$this->set('users', $this->Paginator->paginate());
-	// }
+	public function index() {
+		$this->User->recursive = 0;
+		//$this->set('users', $this->Paginator->paginate());
+	}
 
 
 	public function moreEvidences($lastOne, $limit = 1, $user_id = -1){

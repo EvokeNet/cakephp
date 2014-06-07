@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8842b1147504ab27a08ae7e5ee6b1041",
+    "hash": "547a76036d413b9c6132f3ba5192ba11",
     "packages": [
         {
             "name": "0x46616c6b/etherpad-lite-client",
@@ -688,16 +688,16 @@
         },
         {
             "name": "mjohnson/forum",
-            "version": "5.0.4",
+            "version": "5.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/milesj/forum.git",
-                "reference": "6b2b1cf2e1effa9c5addacf8e925764deeb648bf"
+                "reference": "cb03584cf23489ef909f9d90f2b2fa7ed730a41b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/milesj/forum/zipball/6b2b1cf2e1effa9c5addacf8e925764deeb648bf",
-                "reference": "6b2b1cf2e1effa9c5addacf8e925764deeb648bf",
+                "url": "https://api.github.com/repos/milesj/forum/zipball/cb03584cf23489ef909f9d90f2b2fa7ed730a41b",
+                "reference": "cb03584cf23489ef909f9d90f2b2fa7ed730a41b",
                 "shasum": ""
             },
             "require": {
@@ -727,20 +727,20 @@
                 "forum",
                 "plugin"
             ],
-            "time": "2014-04-23 03:32:47"
+            "time": "2014-06-09 00:56:35"
         },
         {
             "name": "mjohnson/utility",
-            "version": "1.6.9",
+            "version": "1.6.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/milesj/utility.git",
-                "reference": "6bfe0742c5f4fea3439b3478e79651dcd6125146"
+                "reference": "ad285481b7380c2116b05dda3e1a5b9e421e29e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/milesj/utility/zipball/6bfe0742c5f4fea3439b3478e79651dcd6125146",
-                "reference": "6bfe0742c5f4fea3439b3478e79651dcd6125146",
+                "url": "https://api.github.com/repos/milesj/utility/zipball/ad285481b7380c2116b05dda3e1a5b9e421e29e9",
+                "reference": "ad285481b7380c2116b05dda3e1a5b9e421e29e9",
                 "shasum": ""
             },
             "require": {
@@ -794,7 +794,7 @@
                 "utility",
                 "validateable"
             ],
-            "time": "2014-05-22 02:13:35"
+            "time": "2014-06-12 03:23:36"
         },
         {
             "name": "paulredmond/chosen-cakephp",
@@ -872,24 +872,27 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.4.4",
+            "version": "v2.5.0",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "e539602e5455aa086c0e81e604745af7789e4d8a"
+                "reference": "cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/e539602e5455aa086c0e81e604745af7789e4d8a",
-                "reference": "e539602e5455aa086c0e81e604745af7789e4d8a",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8",
+                "reference": "cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "symfony/dependency-injection": "~2.0"
+                "psr/log": "~1.0",
+                "symfony/config": "~2.0",
+                "symfony/dependency-injection": "~2.0",
+                "symfony/stopwatch": "~2.2"
             },
             "suggest": {
                 "symfony/dependency-injection": "",
@@ -898,7 +901,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -924,20 +927,20 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-04-16 10:34:31"
+            "time": "2014-04-29 10:13:57"
         },
         {
             "name": "titon/utility",
-            "version": "0.13.3",
+            "version": "0.13.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/titon/utility.git",
-                "reference": "f8b6cc7a5787c574d52d8a18fc3ce138ad7f0a6e"
+                "reference": "93561fb34277739594341b818a1b089f0c4e0592"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/titon/utility/zipball/f8b6cc7a5787c574d52d8a18fc3ce138ad7f0a6e",
-                "reference": "f8b6cc7a5787c574d52d8a18fc3ce138ad7f0a6e",
+                "url": "https://api.github.com/repos/titon/utility/zipball/93561fb34277739594341b818a1b089f0c4e0592",
+                "reference": "93561fb34277739594341b818a1b089f0c4e0592",
                 "shasum": ""
             },
             "require": {
@@ -993,7 +996,7 @@
                 "uuid",
                 "validate"
             ],
-            "time": "2014-05-22 03:14:09"
+            "time": "2014-05-31 19:00:44"
         }
     ],
     "packages-dev": [
