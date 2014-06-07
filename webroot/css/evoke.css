@@ -91,6 +91,10 @@ button, div, p, span, a,
 	min-height:800px;
 }
 
+.evoke .margin.top-05 {
+	margin-top: 0.5em;
+}
+
 .evoke .margin.top {
 	margin-top: 1em;
 }

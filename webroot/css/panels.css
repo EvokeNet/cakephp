@@ -7,6 +7,10 @@
 	font-family:'AlegreyaRegular';
 }
 
+.table i.fa-plus{
+	color: #eac841;
+}
+
 .table i.fa-pencil{
 	color: #66b5d7;
 }

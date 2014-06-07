@@ -4,7 +4,7 @@
 ?>
 
 <div class="evoke panels contain-to-grid top-bar-background panels-bg">
-  <nav class="top-bar row full-width-alternate padding top-05" data-topbar>
+  <nav class="top-bar row full-width-alternate margin top-05" data-topbar>
     <ul class="title-area">
 	    <li class="name">
 	      <h1><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $user['User']['id'])); ?>"><?= ('Evoke') ?></a></h1>
@@ -385,8 +385,8 @@
 				<div class="content <?php echo $users_tab; ?>" id="users">
 					<?php if($flags['_admin']) :
 						foreach ($all_users as $user) : ?>
-							<button class="button small" id="ShowUser-<?php echo $user['User']['id']; ?>" data-reveal-id="user-<?php echo $user['User']['id']; ?>" style="display:none" data-reveal></button>
-								<!-- Lightbox for editing user role -->
+							<!-- <button class="button small" id="ShowUser-<?php echo $user['User']['id']; ?>" data-reveal-id="user-<?php echo $user['User']['id']; ?>" style="display:none" data-reveal></button>
+								
 							<div id="user-<?php echo $user['User']['id']; ?>" class="reveal-modal tiny" data-reveal>
 								<?php 
 									echo $this->Form->create('User', array(
@@ -413,9 +413,41 @@
 									</button>
 									<?php echo $this->Form->end(); ?>
 								<a class="close-reveal-modal">&#215;</a>
-							</div>
+							</div> -->
 
 							<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'users', 'action' => 'delete', $user['User']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteUser'.$user['User']['id'], 'style' => 'display:none')); ?>
+
+							<button class="button small" id="EditUser-<?= $user['User']['id'] ?>" data-reveal-id="myModalEditUser-<?= $user['User']['id'] ?>" style="display:none" data-reveal></button>
+
+							<div id="myModalEditUser-<?= $user['User']['id'] ?>" class="reveal-modal medium" data-reveal>
+
+								<?php 
+									echo $this->Form->create('User', array(
+								 		'url' => array(
+								 			'controller' => 'panels',
+								 			'action' => 'edit_user_role', 
+								 			$user['User']['id']
+								 		)
+									));
+								 ?>
+								<fieldset>
+									<legend><?php echo __('Change role') .': '. $user['User']['name']; ?></legend>
+								<?php
+									echo $this->Form->hidden('id', array('value' => $user['User']['id']));
+									echo $this->Form->input('role_id', array(
+										'label' => __('Role'),
+										'options' => $roles_list,
+										'value' => $user['User']['role_id']
+									));
+								?>
+								</fieldset>
+									<button class="button tiny" type="submit">
+										<?php echo __('Save Changes')?>
+									</button>
+									<?php echo $this->Form->end(); ?>
+								<a class="close-reveal-modal">&#215;</a>
+							  
+							</div>
 
 						<?php endforeach; ?>
 					<?php endif; ?>
@@ -1754,6 +1786,7 @@
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
             var url = getCorrectURL("missions/view/");
             var strU = '"ShowUser-' + usersId[i-1] + '"';
+            var strEU = '"EditUser-' + usersId[i-1] + '"';
             var strRoleFormat = "<a href='#' onclick='document.getElementById(" + strU +").click();' class='userId name'>{0}</a>";
             var strMissionFormat = "<a href='" + url + usersMissionId[i-1] +"/1' class='name' target='_blank'>{0}</a>";//
             var urlU = getCorrectURL("users/dashboard/");
@@ -1767,7 +1800,7 @@
                 	}
                 ?>
                 name: usersName[i-1],
-                nameFormat: "<a href='" + urlU + usersId[i-1] +"' class='name' target='_blank'>{0}</a>" + userButtons(i-1)
+                nameFormat: "<a href='" + urlU + usersId[i-1] +"' class='name' target='_blank'>{0}</a><a href='#' onclick='document.getElementById(" + strEU +").click();'><i class='fa fa-pencil'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;" + userButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -2259,7 +2292,7 @@
             	trigger: "user log in",
                 triggerFormat: "<a href='#' class='name' target='_blank'>{0}</a>",
                 name: notTitle[i-1],//notification title
-                nameFormat: "<a href='#' onclick='document.getElementById(" + strN +").click();' class='name' >{0}</a><a href='#' onclick='document.getElementById(" + strEN +").click();'><i class='fa fa-pencil'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;</a>" + notButtons(i-1)
+                nameFormat: "<a href='#' onclick='document.getElementById(" + strN +").click();' class='name' >{0}</a><a href='#' onclick='document.getElementById(" + strEN +").click();'><i class='fa fa-pencil'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;" + notButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -2380,9 +2413,9 @@
     }
 
     function userButtons(i) {
-    	var url = getCorrectURL("panels/edit_user/");
+    	//var url = getCorrectURL("panels/edit_user/");
     	var str = "'deleteUser" + usersId[i] + "'";
-    	return '<a href="' + url  + usersId[i] +'" class = "Status"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="document.getElementById(' + str +').click();" ><i class="fa fa-times-circle"></i></a>';
+    	return '<a href="#" onclick="document.getElementById(' + str +').click();" ><i class="fa fa-times-circle"></i></a>';
     }
 
     function getCorrectURL(afterHome){

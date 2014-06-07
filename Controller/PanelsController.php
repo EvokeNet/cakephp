@@ -862,6 +862,22 @@ class PanelsController extends AppController {
 		}
 	}
 
+/*
+* edit_phase method
+* inserts notifications to be display as lightboxes to users as they, for instance, log in
+*/
+
+	public function edit_phase($id = null, $mission_id = null) {
+		if($id == null)
+			$this->redirect($this->referer());
+		
+		$this->Phase->id = $id;
+		
+		if($this->Phase->save($this->request->data))
+			$this->redirect(array('action' => 'edit_mission', $mission_id, 'phase'));
+		else
+			return $this->redirect($this->referer());
+	}
 
 
 /*
@@ -1178,6 +1194,13 @@ class PanelsController extends AppController {
 			)
 		));
 
+		//loading infos to be shown at top bar
+		$username = explode(' ', $this->user['name']);
+		$userid = $this->user['id'];
+		$userrole = $this->user['role_id'];
+
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $userid)));
+
 		//needed to be able to display and edit a quest's questionnaire
 		$questionnaires = $this->Questionnaire->find('all');
 		$answers = $this->Answer->find('all');
@@ -1195,7 +1218,7 @@ class PanelsController extends AppController {
 		$this->Quest->id = $id;
 		$mypp = $this->Quest->QuestPowerPoint->find('all');
 
-		$this->set(compact('phase_id', 'mission_id', 'me', 'questionnaires', 'answers', 'origin', 'attachments', 'mypp', 'powerpoints'));
+		$this->set(compact('phase_id', 'mission_id', 'me', 'questionnaires', 'answers', 'origin', 'attachments', 'mypp', 'powerpoints', 'user'));
 	}
 
 /*
@@ -1212,7 +1235,7 @@ class PanelsController extends AppController {
 				$this->Session->setFlash(__('The phase has been deleted.'));
 				//if it came from add mission, go back to it, else...
 				if($origin == 'add_mission')
-					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
+					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
 				else 
 					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
 			} else {
