@@ -57,13 +57,17 @@
   				<div style="width: 100px; height: 100px; overflow: hidden;">
 					<?php if($npa == null) : ?>
 						<?php if($nfb == null) : ?>
-							<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/>
+							<!-- <img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"/> -->
+							<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
 						<?php else : ?>	
-							<img src="https://graph.facebook.com/<?php echo $nfb; ?>/picture?type=large"/>
+							<!-- <img src="https://graph.facebook.com/<?php echo $nfb; ?>/picture?type=large"/> -->
+							<?php $pic = "https://graph.facebook.com/". $nfb . "/picture?type=large";?>
 						<?php endif; ?>
 					<?php else : ?>
-						<img src="<?= $this->webroot.'files/attachment/attachment/'.$npd.'/'.$npa ?>"/>
+						<!-- <img src="<?= $this->webroot.'files/attachment/attachment/'.$npd.'/'.$npa ?>"/> -->
+						<?php $pic = $this->webroot.'files/attachment/attachment/'.$npd.'/'.$npa;?>
 					<?php endif; ?>
+					<div style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
 				</div>
   			<?php endif; ?>
 
