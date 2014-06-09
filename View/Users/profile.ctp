@@ -26,7 +26,7 @@
 
 	  <div class="small-10 medium-10 large-10 columns maincolumn">
 
-	  	<?php echo $this->Session->flash(); ?>
+	  <?php echo $this->Session->flash(); ?>
 	  	
 	  <div class = "tint">
 	  	<div class="row margin-left-0 margin-right-0 padding top-1">

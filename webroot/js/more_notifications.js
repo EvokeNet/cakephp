@@ -38,7 +38,6 @@ function throttle(fn, threshhold, scope) {
   	};
 }
 
-
 function fillExtraContent(){
 
 	$.ajax({

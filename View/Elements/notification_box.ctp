@@ -21,26 +21,29 @@
 		$npd = $n['User']['photo_dir'];
 
 	$message = '';
+	$link = '';
 
 	if($n['Notification']['origin'] == 'commentEvidence'){
 		$message = sprintf(__('Agent %s commented an evidence you posted'), $n['user_name']);
+		$link = $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id']));
 
 	} if($n['Notification']['origin'] == 'commentEvokation'){
 		$message = sprintf(__('Agent %s commented an evidence you posted'), $n['user_name']);
+		$link = $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $n['Notification']['origin_id']));
 
 	} if($n['Notification']['origin'] == 'like'){
 		$message = sprintf(__('Agent %s liked an evidence you posted'), $n['user_name']);
+		$link = $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id']));
 
 	} if(($n['Notification']['origin'] == 'voteEvokation')){
 		$message = sprintf(__('Agent %s commented an evokation your group posted'), $n['user_name']);
+		$link = $this->Html->url(array('controller' => 'evokations', 'action' => 'view', $n['Notification']['origin_id']));
 
 	} if($n['Notification']['origin'] == 'gritBadge'){
 		$message = sprintf(__('You won the %s badge'), $n['badge_name']);
+		$link = $this->Html->url(array('controller' => 'badges', 'action' => 'index'));
 	}
-
-	if(isset($date)): ?>
-		<h2 class = "white margin top" style = "margin-left:0.5em"><?= $date ?></h2>
-	<?php endif;	
+	
 ?>
 
 <div class="row evoke evokation-red-box">
@@ -69,22 +72,22 @@
 	
 	<div class="small-7 medium-7 large-7 columns">
   		<h1 class='headings'>
-  			<?php
-  				if($n['Notification']['origin'] == 'commentEvidence'){
-					echo $this->Html->link($message, array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id']));
+  			<?= $message; 
+  		// 		if($n['Notification']['origin'] == 'commentEvidence'){
+				// 	echo $this->Html->url($message, array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id']));
 
-				} if($n['Notification']['origin'] == 'commentEvokation'){
-					echo $this->Html->link($message, array('controller' => 'evokations', 'action' => 'view', $n['Notification']['origin_id']));
+				// } if($n['Notification']['origin'] == 'commentEvokation'){
+				// 	echo $this->Html->url($message, array('controller' => 'evokations', 'action' => 'view', $n['Notification']['origin_id']));
 
-				} if($n['Notification']['origin'] == 'like'){
-					echo $this->Html->link($message, array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id']));
+				// } if($n['Notification']['origin'] == 'like'){
+				// 	echo $this->Html->url($message, array('controller' => 'evidences', 'action' => 'view', $n['Notification']['origin_id']));
 
-				} if(($n['Notification']['origin'] == 'voteEvokation')){
-					echo $this->Html->link($message, array('controller' => 'evokations', 'action' => 'view', $n['Notification']['origin_id']));
+				// } if(($n['Notification']['origin'] == 'voteEvokation')){
+				// 	echo $this->Html->url($message, array('controller' => 'evokations', 'action' => 'view', $n['Notification']['origin_id']));
 
-				} if($n['Notification']['origin'] == 'gritBadge'){
-					echo $this->Html->link($message, array('controller' => 'badges', 'action' => 'index'));
-				}
+				// } if($n['Notification']['origin'] == 'gritBadge'){
+				// 	echo $this->Html->url($message, array('controller' => 'badges', 'action' => 'index'));
+				// }
 
 			?>
   		</h1>
@@ -92,7 +95,7 @@
 
 	<div class="small-3 medium-3 large-3 columns">
 		<div class = "evoke text-align">
-			<div class = "button general green"><?= strtoupper(__('View')) ?></div>
+			<a href = "<?= $link ?>" class = "button general green"><?= strtoupper(__('View')) ?></a>
 		</div>	
 	</div>
 </div>

@@ -32,9 +32,8 @@
 	<div class="small-3 medium-3 large-3 columns">
 		<div class = "evoke text-align">
 			<div class = "evoke evidence-icons social margin bottom-1 top">
-				<i class="fa fa-facebook-square fa-lg"></i>&nbsp;
-				<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
-				<i class="fa fa-twitter-square fa-lg"></i>
+				<a href = "//<?= $e['Group']['facebook']?>"><i class="fa fa-facebook-square fa-lg"></i></a>&nbsp;
+				<a href = "//<?= $e['Group']['twitter']?>"><i class="fa fa-twitter-square fa-lg"></i></a>
 			</div>
 			<?php 
 				$count_members = array();

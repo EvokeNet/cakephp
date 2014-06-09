@@ -31,10 +31,16 @@ class NotificationsController extends AppController {
 			'Notification.user_id' => $user['User']['id'],
 			'Notification.origin' => array('like', 'commentEvidence', 'commentEvokation', 'voteEvokation', 'gritBadge'),
 			), 
-			'limit' => 5
+			'limit' => 5,
+			'order' => array(
+				'Notification.created DESC'
+			),
 		));
 
+		$this->loadModel('Badge');
 		$this->loadModel('Attachment');
+
+		$badges = $this->Badge->find('all');
 
 		foreach ($notifications as $key => $value):
 		 	foreach($users as $u):
@@ -89,6 +95,9 @@ class NotificationsController extends AppController {
     	$this->request->onlyAllow('ajax'); // No direct access via browser URL
 
    		$last = $this->Notification->find('first', array(
+   			'order' => array(
+				'Notification.created DESC'
+			),
     		'conditions' => array(
     			'Notification.id' => $lastOne
     		)
@@ -106,11 +115,11 @@ class NotificationsController extends AppController {
     			return json_encode(array());
 
 	   	$obj = $this->Notification->find('all', array(
-			// 'order' => array(
-			// 	'Notification.created DESC'
-			// ),
+			'order' => array(
+				'Notification.created DESC'
+			),
 			'conditions' => array(
-				'Notification.created >' => $last['Notification']['created'],
+				'Notification.created <' => $last['Notification']['created'],
 				'Notification.user_id' => $this->getUserId(),
 				'Notification.origin' => array('like', 'commentEvidence', 'commentEvokation', 'voteEvokation', 'gritBadge'),
 			),
@@ -163,9 +172,9 @@ class NotificationsController extends AppController {
 				endforeach;
 			}
 
-			if($date != date('j-n-Y', strtotime($value['Notification']['modified']))){
+			if($date != date('j-n-Y', strtotime($value['Notification']['created']))){
 				$date = date('j-n-Y', strtotime($value['Notification']['created']));
-				echo $date;
+				//echo $date;
 			}
 
     		$view = new View($this, false);
