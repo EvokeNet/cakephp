@@ -126,6 +126,8 @@ class NotificationsController extends AppController {
 	    $str = "lastBegin-1lastEnd";
 	    $older = "";
 
+	    $date = '';
+
     	foreach ($obj as $key => $value) {
     		
     		foreach($users as $u):
@@ -159,6 +161,11 @@ class NotificationsController extends AppController {
 						break;
 					}
 				endforeach;
+			}
+
+			if($date != date('j-n-Y', strtotime($value['Notification']['modified']))){
+				$date = date('j-n-Y', strtotime($value['Notification']['created']));
+				echo $date;
 			}
 
     		$view = new View($this, false);

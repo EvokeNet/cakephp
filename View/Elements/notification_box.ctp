@@ -38,6 +38,9 @@
 		$message = sprintf(__('You won the %s badge'), $n['badge_name']);
 	}
 
+	if(isset($date)): ?>
+		<h2 class = "white margin top" style = "margin-left:0.5em"><?= $date ?></h2>
+	<?php endif;	
 ?>
 
 <div class="row evoke evokation-red-box">

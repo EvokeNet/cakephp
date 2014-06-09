@@ -25,7 +25,13 @@
 			<div class = "evoke black-bg badges-bg">
 
 				<?php
+					$date = '';
 					foreach($notifications as $n):
+						if($date != date('j-n-Y', strtotime($n['Notification']['modified']))):
+							$date = date('j-n-Y', strtotime($n['Notification']['modified'])); ?>
+							<h2 class = "white margin top" style = "margin-left:0.5em"><?= $date ?></h2>
+					<?php 
+						endif; 
 						echo $this->element('notification_box', array('n' => $n, 'user' => $user)); 
 						$lastNotification = $n['Notification']['id'];
 					endforeach;
