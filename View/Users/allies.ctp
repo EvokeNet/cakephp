@@ -40,7 +40,7 @@
 				  			<li>
 					  			<div class="evoke evidence-tag allies text-align-center margin bottom-2">
 					  		
-						  			<div class = "content evidence-tag">
+						  			<div class = "content evidence-tag" style = "height: 520px;">
 									  	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['User']['id']))?>">
 									  		
 									  		<?php if($ally['User']['photo_attachment'] == null) : ?>
@@ -63,13 +63,12 @@
 
 									 	<div class = "evoke border-bottom"></div>
 
-									 	<p><?php echo $ally['User']['biography']; ?></p>
+									 	<p><?php echo substr($ally['User']['biography'], 0, 200); ?></p>
 
 									 	<div class = "evoke border-bottom"></div>
 									 	
-									 	<i class="fa fa-facebook-square fa-lg"></i>&nbsp;
-										<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
-										<i class="fa fa-twitter-square fa-lg"></i>
+									 	<a href = "//<?= $ally['User']['facebook']?>"><i class="fa fa-facebook-square fa-lg"></i></a>&nbsp;
+										<a href = "//<?= $ally['User']['twitter']?>"><i class="fa fa-twitter-square fa-lg"></i></a>
 
 										<div class = "margin bottom-1"></div>
 
@@ -81,7 +80,7 @@
 					</ul>
 
 				</div>
-				<div class="content vertical active" id="panel1-2">
+				<div class="content vertical" id="panel1-2">
 				
 					<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
 				  		<?php foreach($followers as $ally):
@@ -89,7 +88,7 @@
 				  			<li>
 					  			<div class="evoke evidence-tag allies text-align-center margin bottom-2">
 					  		
-						  			<div class = "content evidence-tag">
+						  			<div class = "content evidence-tag" style = "height: 510px;">
 									  	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['User']['id']))?>">
 									  		<?php if($ally['User']['photo_attachment'] == null) : ?>
 												<?php if($ally['User']['facebook_id'] == null) : ?>
@@ -112,13 +111,12 @@
 
 									 	<div class = "evoke border-bottom"></div>
 
-									 	<p><?php echo $ally['User']['biography']; ?></p>
+									 	<p><?php echo substr($ally['User']['biography'], 0, 200); ?></p>
 
 									 	<div class = "evoke border-bottom"></div>
 									 	
-									 	<i class="fa fa-facebook-square fa-lg"></i>&nbsp;
-										<i class="fa fa-google-plus-square fa-lg"></i>&nbsp;
-										<i class="fa fa-twitter-square fa-lg"></i>
+									 	<a href = "//<?= $ally['User']['facebook']?>"><i class="fa fa-facebook-square fa-lg"></i></a>&nbsp;
+										<a href = "//<?= $ally['User']['twitter']?>"><i class="fa fa-twitter-square fa-lg"></i></a>
 
 										<div class = "margin bottom-1"></div>
 

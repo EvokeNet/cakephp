@@ -61,7 +61,9 @@ class AppController extends Controller {
         $userLevel = $this->getLevel($userPoints);
         $userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
 
-        $this->set(compact('userPoints', 'userLevel', 'userLevelPercentage', 'cuser'));
+        $userNotifications = $this->getNotificationsNumber($this->getUserId());
+
+        $this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userLevelPercentage', 'cuser'));
         
         // $this->set('userPoints', $userPoints);
         // $this->set('userLevel', $userLevel);
@@ -110,6 +112,58 @@ class AppController extends Controller {
             //in order to redirect the user to the page from which it was called
             $this->redirect($this->referer());
         }
+    }
+
+    public function getNotificationsNumber($user_id){
+
+        $this->loadModel('Notification');
+        $all = $this->Notification->find('all', array(
+            'conditions' => array(
+                'Notification.user_id' => $user_id,
+                'Notification.status' => 0,
+            ), 
+            'order' => array(
+                'Notification.created DESC'
+            )
+        ));
+
+        $count = array();
+        
+        foreach($all as $a => $n){
+            if(($n['Notification']['origin'] == 'like') || ($n['Notification']['origin'] == 'commentEvidence') 
+                || ($n['Notification']['origin'] == 'commentEvokation') || ($n['Notification']['origin'] == 'voteEvokation')
+                || ($n['Notification']['origin'] == 'gritBadge')):
+                array_push($count, array('Notification.id' => $n['Notification']['id']));
+            endif;
+        }
+
+        return $count;
+
+    }
+
+    public function saveNotifications($notes, $user_id){
+
+        debug($notes);
+        
+        $this->loadModel('Notification');
+
+        $all = $this->Notification->find('all', array(
+            'conditions' => array(
+                'Notification.user_id' => $user_id,
+                'OR' => $notes
+            ), 
+            'order' => array(
+                'Notification.created DESC'
+            )
+        ));
+
+        $count = array();
+        
+        foreach($all as $n){
+            $this->Notification->id = $n['Notification']['id'];
+            $this->Notification->saveField('status', 1);
+        }
+
     }
 
     public function getPoints($user_id){
