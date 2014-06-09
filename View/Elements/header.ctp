@@ -35,7 +35,8 @@
 	      	<!-- <a href="#">Right Button Active</a> -->
 
 	      	<?php if(isset($user['User'])) :?>
-				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'profile', $user['User']['id'])); ?>"><span><?= $user['User']['name'] ?></span></a>
+	      		<?php $name = split(" ", $user['User']['name']);?>
+				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'profile', $user['User']['id'])); ?>"><span><?= $name[0] ?></span></a>
 			<?php else :?>
 				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'login')); ?>"><span><?= __('Unidentified Agent, please login') ?></span></a>
 			<?php endif; ?>
