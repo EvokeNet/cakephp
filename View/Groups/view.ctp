@@ -102,11 +102,16 @@
 						<li class = "text-align-center">
 							<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $g['User']['id'])) ?>">
 								<?php if($g['User']['photo_attachment'] == null) : ?>
-									<img src = "https://graph.facebook.com/<?php echo $g['User']['facebook_id']; ?>/picture?type=large" style = "height: 5vw">
+									<?php if($g['User']['facebook_id'] == null) : ?>
+										<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
+									<?php else : ?>	
+										<?php $pic = "https://graph.facebook.com/". $g['User']['facebook_id']. "/picture?type=large";?>
+									<?php endif; ?>
 								<?php else : ?>
-									<img src="<?= $this->webroot.'files/attachment/attachment/'.$g['User']['photo_dir'].'/'.$g['User']['photo_attachment'] ?>" style = "height: 6vw"/>
+									<?php $pic = $this->webroot.'files/attachment/attachment/'.$g['User']['photo_dir'].'/'.$g['User']['photo_attachment'];?>
 								<?php endif; ?>
 
+								<div style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
 								<h6 style = "color:#fff"><?= $g['User']['name'] ?></h6>
 							</a>
 							<?php if($flags['_owner'] && $group['User']['id'] != $g['User']['id']) {?>	
