@@ -37,10 +37,13 @@
 
 				<div class = "evoke group agent info tag-padding">
 					<?php if(empty($group_img)) :?>
-			  				<div class = "text-align-center"><img src="https://graph.facebook.com//picture?type=large"/></div>
+			  				<!-- <div class = "text-align-center"><img src="https://graph.facebook.com//picture?type=large"/></div> -->
+			  				<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
 			  			<?php else : ?>
-			  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$group_img['Attachment']['dir'].'/'.$group_img['Attachment']['attachment'] ?>" style = "margin: 20%; width: 60%;"/>
+			  				<!-- <img src="<?= $this->webroot.'files/attachment/attachment/'.$group_img['Attachment']['dir'].'/'.$group_img['Attachment']['attachment'] ?>" style = "margin: 20%; width: 60%;"/> -->
+			  				<?php $pic = $this->webroot.'files/attachment/attachment/'.$group_img['Attachment']['dir'].'/'.$group_img['Attachment']['attachment'];?>
 			  			<?php endif; ?>
+			  			<div style="min-width: 10vw; margin: 2vw 3vw; min-height: 10vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
 					<div class = "evoke text-align"><h4><?= $group['Group']['title']; ?></h4></div>
 					<h5><?= __('Team Owner');?>&nbsp;&nbsp;<div><?= $group['User']['name'] ?></div></h5>
 					<h5><?= __('Members');?>&nbsp;&nbsp;&nbsp;<div><?= $countMembers ?></div></h5>
@@ -99,11 +102,16 @@
 						<li class = "text-align-center">
 							<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $g['User']['id'])) ?>">
 								<?php if($g['User']['photo_attachment'] == null) : ?>
-									<img src = "https://graph.facebook.com/<?php echo $g['User']['facebook_id']; ?>/picture?type=large" style = "height: 5vw">
+									<?php if($g['User']['facebook_id'] == null) : ?>
+										<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
+									<?php else : ?>	
+										<?php $pic = "https://graph.facebook.com/". $g['User']['facebook_id']. "/picture?type=large";?>
+									<?php endif; ?>
 								<?php else : ?>
-									<img src="<?= $this->webroot.'files/attachment/attachment/'.$g['User']['photo_dir'].'/'.$g['User']['photo_attachment'] ?>" style = "height: 6vw"/>
+									<?php $pic = $this->webroot.'files/attachment/attachment/'.$g['User']['photo_dir'].'/'.$g['User']['photo_attachment'];?>
 								<?php endif; ?>
 
+								<div style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
 								<h6 style = "color:#fff"><?= $g['User']['name'] ?></h6>
 							</a>
 							<?php if($flags['_owner'] && $group['User']['id'] != $g['User']['id']) {?>	

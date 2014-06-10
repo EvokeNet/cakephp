@@ -20,6 +20,11 @@ class EvidencesController extends AppController {
 
 	public $helpers = array('Media.Media');
 
+	public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('view');
+    }
+
 /**
  * index method
  *
@@ -161,7 +166,7 @@ class EvidencesController extends AppController {
 
 		$dossier = $this->Dossier->find('first', array(
 			'conditions' => array(
-				'mission_id' => $me['Evidence']['id']
+				'mission_id' => $me['Evidence']['mission_id']
 			)
 		));
 
@@ -190,8 +195,8 @@ class EvidencesController extends AppController {
 		else
 			$langs = 'en';
 
-		$links = $this->Evidence->Mission->DossierLink->find('all', array('conditions' => array('DossierLink.mission_id' => $id, 'DossierLink.language' => $langs)));
-		$video_links = $this->Evidence->Mission->DossierVideo->find('all', array('conditions' => array('DossierVideo.mission_id' => $id, 'DossierVideo.language' => $langs)));
+		$links = $this->Evidence->Mission->DossierLink->find('all', array('conditions' => array('DossierLink.mission_id' => $me['Evidence']['mission_id'], 'DossierLink.language' => $langs)));
+		$video_links = $this->Evidence->Mission->DossierVideo->find('all', array('conditions' => array('DossierVideo.mission_id' => $me['Evidence']['mission_id'], 'DossierVideo.language' => $langs)));
 
 		if($me['Evidence']['user_id'] != $this->getUserId()) {
 			//debug($me);

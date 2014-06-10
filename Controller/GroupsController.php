@@ -268,6 +268,9 @@ class GroupsController extends AppController {
  * @return void
  */
 	public function add($mission_id = null) {
+		if(isset($this->request->data['Group']['quest_id']) && !is_null($this->request->data['Group']['quest_id'])) {
+			$this->redirect($this->referer());
+		}
 		if(isset($this->request->data['Group']['mission_id']))
 			$mission_id = $this->request->data['Group']['mission_id'];
 		if ($this->request->is('post')) {

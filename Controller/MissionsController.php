@@ -487,8 +487,9 @@ class MissionsController extends AppController {
 		$badge = $this->Badge->find('first', array('conditions' => array('Badge.mission_id' => $mission['Mission']['id'])));
 
 		foreach($missionPhases as $m):
-			if(($completed[$m['Phase']['id']] == $total[$m['Phase']['id']]))
-				$count_completed_phases++;
+			if(isset($completed[$m['Phase']['id']]) && isset($total[$m['Phase']['id']]))
+				if(($completed[$m['Phase']['id']] == $total[$m['Phase']['id']]))
+					$count_completed_phases++;
 		endforeach;
 
 		// debug($count_completed_phases);

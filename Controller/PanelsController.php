@@ -694,7 +694,7 @@ class PanelsController extends AppController {
 
 			//sending back to correct address
 			if($origin == 'add_mission')
-				$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
+				$this->redirect($this->referer());
 			else 
 				$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
 
