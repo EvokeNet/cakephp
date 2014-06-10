@@ -27,6 +27,7 @@
 				<?php
 					$date = '';
 					foreach($notifications as $n):
+						// debug($n);
 						if($date != date('j-n-Y', strtotime($n['Notification']['created']))):
 							$date = date('j-n-Y', strtotime($n['Notification']['created'])); ?>
 							<h2 class = "white margin top" style = "margin-left:0.5em"><?= $date ?></h2>

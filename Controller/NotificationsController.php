@@ -14,8 +14,12 @@ class NotificationsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Session');
 
+
+	public function beforeFilter() {
+        parent::beforeFilter();
+    }
 /**
  * index method
  *
@@ -43,17 +47,24 @@ class NotificationsController extends AppController {
 		$badges = $this->Badge->find('all');
 
 		foreach ($notifications as $key => $value):
+		 	$user_match = false;
 		 	foreach($users as $u):
 				if($u['User']['id'] == $value['Notification']['action_user_id']){
 					$notifications[$key]['user_name'] = $u['User']['name'];
 					$notifications[$key]['user_pa'] = $u['User']['photo_attachment'];
 					$notifications[$key]['user_fb'] = $u['User']['facebook_id'];
 					$notifications[$key]['user_pd'] = $u['User']['photo_dir'];
+					$user_match = true;
 					break;
 				}
 			endforeach;
+			if(!$user_match) { // the user refered here does not exist anymore
+				unset($notifications[$key]);
+				continue;
+			}
 
 			if($value['Notification']['origin'] == 'gritBadge'){
+				$badge_match = false;
 				foreach($badges as $badge):
 					if($badge['Badge']['id'] == $value['Notification']['origin_id']){
 						$notifications[$key]['badge_name'] = $badge['Badge']['name'];
@@ -71,9 +82,14 @@ class NotificationsController extends AppController {
 						}
 						// $notifications[$key]['badge_imd'] = $badge['Badge']['img_dir'];
 						// $notifications[$key]['badge_ima'] = $badge['Badge']['img_attachment'];
+						$badge_match = true;
 						break;
-					}
+					} 
 				endforeach;
+				if (!$badge_match) {
+					unset($notifications[$key]);
+					continue;
+				}
 			}
 	 	endforeach;
 
@@ -138,18 +154,25 @@ class NotificationsController extends AppController {
 	    $date = '';
 
     	foreach ($obj as $key => $value) {
-    		
+    		$user_match = false;
     		foreach($users as $u):
 				if(($u['User']['id'] == $value['Notification']['action_user_id']) && ($value['Notification']['origin'] != 'gritBadge')){
 					$value['user_name'] = $u['User']['name'];
 					$value['user_pa'] = $u['User']['photo_attachment'];
 					$value['user_fb'] = $u['User']['facebook_id'];
 					$value['user_pd'] = $u['User']['photo_dir'];
+					$user_match = true;
 					break;
 				}
 			endforeach;
+			if(!$user_match) { // the user refered here does not exist anymore
+				unset($obj[$key]);
+				continue;
+			}
 
+			
 			if($value['Notification']['origin'] == 'gritBadge'){
+				$badge_match = false;
 				foreach($badges as $badge):
 					if($badge['Badge']['id'] == $value['Notification']['origin_id']){
 						$value['badge_name'] = $badge['Badge']['name'];
@@ -170,6 +193,10 @@ class NotificationsController extends AppController {
 						break;
 					}
 				endforeach;
+				if (!$badge_match) {
+					unset($obj[$key]);
+					continue;
+				}
 			}
 
 			if($date != date('j-n-Y', strtotime($value['Notification']['created']))){
@@ -353,10 +380,10 @@ class NotificationsController extends AppController {
  *
  * @return void
  */
-	public function admin_index() {
-		$this->Notification->recursive = 0;
-		$this->set('notifications', $this->Paginator->paginate());
-	}
+	// public function admin_index() {
+	// 	$this->Notification->recursive = 0;
+	// 	$this->set('notifications', $this->Paginator->paginate());
+	// }
 
 /**
  * admin_view method

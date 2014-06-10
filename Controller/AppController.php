@@ -50,7 +50,7 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter() {
-        $this->Auth->allow('add', 'login', 'fb_login', 'index', 'view');
+        // $this->Auth->allow('add', 'login', 'fb_login', 'index', 'view');
         $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
 
         $cuser = $this->Auth->user();

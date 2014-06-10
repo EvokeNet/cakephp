@@ -20,6 +20,11 @@ class EvidencesController extends AppController {
 
 	public $helpers = array('Media.Media');
 
+	public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('view');
+    }
+
 /**
  * index method
  *
