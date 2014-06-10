@@ -34,6 +34,18 @@ class ChatConversationsController extends AppController {
 			)
 		));
 
+		//getting all evokation groups i am in
+		$this->loadModel('GroupsUser');
+		$this->GroupsUser->recursive = 2;
+		$groups = $this->GroupsUser->find('all', array(
+			'conditions' => array(
+				'GroupsUser.user_id' => $this->getUserId()
+			)
+		));
+
+		debug(get_class($this->GroupsUser));
+
+		debug($groups);
 		$this->User->recursive = 0;
 		$users = $this->User->find('all', array(
 			'conditions' => array(
@@ -54,6 +66,8 @@ class ChatConversationsController extends AppController {
 				$others[] = $usr;
 			}
 		}
+
+
 
 		$this->set(compact('user', 'others', 'allies'));
 	}

@@ -20,12 +20,15 @@
 			
 			<?php echo $this->Session->flash(); ?>
 
-			<h3 class = "margin bottom-1"> <?= strtoupper(__('Notifications')) ?> </h3>
+			<h3 class = "margin bottom-1"> <?= strtoupper(__('Messages')) ?> </h3>
 
 			<div class = "evoke black-bg badges-bg">
 
 				<?php
-					
+					foreach ($allies as $usr) {
+						
+					}
+
 				?>
 				
 			</div>
