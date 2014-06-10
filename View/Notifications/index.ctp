@@ -26,6 +26,7 @@
 
 				<?php
 					$date = '';
+					$lastNotification = null;
 					foreach($notifications as $n):
 						// debug($n);
 						if($date != date('j-n-Y', strtotime($n['Notification']['created']))):
