@@ -34,11 +34,14 @@
 			}
 		}
 	}
-
-	if(isset($user['User']['role_id']))
-		$src  = $user['User']['role_id'];
-	else
-		$src = $user['role_id'];
+	if(!isset($user['User'])) {
+		$src = 3;
+	} else {
+		if(isset($user['User']['role_id']))
+			$src  = $user['User']['role_id'];
+		else
+			$src = $user['role_id'];
+	}
 
 	$notesCount = count($userNotifications);
 

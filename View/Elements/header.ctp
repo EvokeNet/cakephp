@@ -2,7 +2,7 @@
   <nav class="top-bar row full-width-alternate" data-topbar>
     <ul class="title-area">
 	    <li class="name padding top-03">
-	      <h1><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $user['User']['id'])); ?>"><?= ('Evoke') ?></a></h1>
+	      <h1><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard')); ?>"><?= ('Evoke') ?></a></h1>
 	    </li>
 	     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
 	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -14,15 +14,18 @@
 
 	      <li class="active">
 	      	<a href="#">
-	      		<?php if($user['User']['photo_attachment'] == null) : ?>
-					<?php if($user['User']['facebook_id'] == null) : ?>
-						<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
-					<?php else : ?>							
-						<?php $pic = "https://graph.facebook.com/". $user['User']['facebook_id'] ."/picture?type=large";?>
-					<?php endif; ?>					
-	  			<?php else : ?>	  				
-					<?php $pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'];?>
-	  			<?php endif; ?>		
+	      		<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
+		      	<?php if(isset($user['User'])) :?>	
+		      		<?php if($user['User']['photo_attachment'] == null) : ?>
+						<?php if($user['User']['facebook_id'] == null) : ?>
+							<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
+						<?php else : ?>							
+							<?php $pic = "https://graph.facebook.com/". $user['User']['facebook_id'] ."/picture?type=large";?>
+						<?php endif; ?>					
+		  			<?php else : ?>	  				
+						<?php $pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'];?>
+		  			<?php endif; ?>	
+		  		<?php endif; ?>	
 	  			
 	  			<!-- <div class = "evoke top-bar icon" style="background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;">
 	  			</div> -->
@@ -43,24 +46,25 @@
 
       	  </li>
 	      
-	      <li class="evoke divider"></li>
+	      	<?php if(isset($user['User'])) :?>
+		    	<li class="evoke divider"></li>
 
-	      <li class="active"><a href="#"><?= __('Level') ?>&nbsp;&nbsp;&nbsp;<span><?= $userLevel ?></span></a></li>
-	      
-	      <li class="evoke divider"></li>
+		      	<li class="active"><a href="#"><?= __('Level') ?>&nbsp;&nbsp;&nbsp;<span><?= $userLevel ?></span></a></li>
+		      
+		      	<li class="evoke divider"></li>
 
-	      <li class="active">
-	      	<a href="#">
-				<div class="evoke top-bar progress small-9 large-9 round">
-				  <span class="meter" style="width: <?= $userLevelPercentage ?>%"></span>
-				</div>
-			</a>
-		  </li>
+		      	<li class="active">
+		      		<a href="#">
+						<div class="evoke top-bar progress small-9 large-9 round">
+					  		<span class="meter" style="width: <?= $userLevelPercentage ?>%"></span>
+						</div>
+					</a>
+			  	</li>
 
-		  <li class="evoke divider"></li>
+			  	<li class="evoke divider"></li>
 
-	      <li class="active"><a href="#"><?= __('Points') ?>&nbsp;&nbsp;&nbsp;<span><?= $userPoints ?></span></a></li>
-
+		      	<li class="active"><a href="#"><?= __('Points') ?>&nbsp;&nbsp;&nbsp;<span><?= $userPoints ?></span></a></li>
+		   	<?php endif; ?>
 	      <li class="evoke divider"></li>
 
 	      <li class="has-dropdown">
