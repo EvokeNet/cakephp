@@ -6,6 +6,7 @@
 	$evokationslink = '';
 	$forumlink = '';
 	$notificationslink = '';
+	$messageslink = '';
 
 	$currentPlugin = $this->params['plugin'];
 	$currentController = $this->params['controller'];
@@ -25,11 +26,21 @@
 		} else {
 			if($currentController == 'missions') {
 				$missionslink = 'class="evoke current"';
-			} if($currentController == 'notifications') {
+			} 
+
+			if($currentController == 'notifications') {
 				$notificationslink = 'class="evoke current"';
-			} if($currentController == 'groups') {
+			} 
+
+			if($currentController == 'groups') {
 				$evokationslink = 'class="evoke current"';
-			} if(($currentPlugin == 'forum') && ($currentController == 'forum'))	{
+			} 
+			
+			if($currentController == 'chatConversations') {
+				$messageslink = 'class="evoke current"';
+			} 
+
+			if(($currentPlugin == 'forum') && ($currentController == 'forum'))	{
 				$forumlink = 'class="evoke current"';
 			}
 		}
@@ -50,30 +61,73 @@
 
 <div class = "evoke menu-bg sidebar menucolumn">
 	<ul>
-	  <li <?=$dashboardlink?>><a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'users', 'action' => 'dashboard')) ?>"><i class="fa fa-folder-open" style="padding-right: 10px;"></i><?= strtoupper(__('Dashboard')) ?></a></li>
-	  
-	  <li <?=$missionslink?>><a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'missions', 'action' => 'index')) ?>"><i class="fa fa-crosshairs" style="padding-right: 10px;"></i><?= strtoupper(__('Missions')) ?></a></li>
-	  
-	  <li <?=$evokationslink?>><a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'groups', 'action' => 'evokations')) ?>"><i class="fa fa-users" style="padding-right: 10px;"></i><?= strtoupper(__('Evokations')) ?></a></li>
-	  
-	  <li <?=$forumlink?>><a href="<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'forum', 'action' => 'index')) ?>"><i class="fa fa-comments" style="padding-right: 10px;"></i></i><?= strtoupper(__('Forum')) ?></a></li>
-	  
-	  <li <?=$badgeslink?>><a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'badges', 'action' => 'index')) ?>"><i class="fa fa-shield" style="padding-right: 10px;"></i><?= strtoupper(__('Badges')) ?></a></li>
-	  
-	  <li <?=$notificationslink?>>
-	  	<a id = "notificationsItem" href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'notifications', 'action' => 'index')) ?>">
-	  		<i class="fa fa-exclamation-triangle" style="padding-right: 10px;"></i><?= strtoupper(__('Notifications')) ?>
-	  		<?php if($notesCount > 0): ?>
-		  		<span class = "circle"><?= $notesCount ?></span>
-		  	<?php endif; ?>
-  		</a>
-  	  </li>
-	  
-	  <li <?=$leaderboardlink?>><a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'users', 'action' => 'leaderboard')) ?>"><i class="fa fa-trophy" style="padding-right: 10px;"></i><?=strtoupper(__('Leaderboard')) ?></a></li>
-	  
-	  <?php if($src <= 2) : ?>
-	  	<li><a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'panels', 'action' => 'index')) ?>"><i class="fa fa-cogs" style="padding-right: 10px;"></i><?= strtoupper(__('Administration')) ?></a></li>
-	  <?php endif ?>
+		<li <?=$dashboardlink?>>
+			<a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'users', 'action' => 'dashboard')) ?>">
+				<i class="fa fa-folder-open" style="padding-right: 10px;"></i>
+				<?= strtoupper(__('Dashboard')) ?>
+			</a>
+		</li>
+		  
+		<li <?=$missionslink?>>
+			<a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'missions', 'action' => 'index')) ?>">
+				<i class="fa fa-crosshairs" style="padding-right: 10px;"></i>
+				<?= strtoupper(__('Missions')) ?>
+			</a>
+		</li>
+		  
+		<li <?=$evokationslink?>>
+			<a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'groups', 'action' => 'evokations')) ?>">
+				<i class="fa fa-users" style="padding-right: 10px;"></i>
+				<?= strtoupper(__('Evokations')) ?>
+			</a>
+		</li>
+		  
+		<li <?=$messageslink?>>
+			<a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'chatConversations', 'action' => 'index')) ?>">
+				<i class="fa fa-comments" style="padding-right: 10px;"></i>
+				<?= strtoupper(__('Messages')) ?>
+			</a>
+		</li>
+
+		<li <?=$forumlink?>>
+			<a href="<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'forum', 'action' => 'index')) ?>">
+				<i class="fa fa-bullhorn" style="padding-right: 10px;"></i>
+				<?= strtoupper(__('Forum')) ?>
+			</a>
+		</li>
+		  
+		<li <?=$badgeslink?>>
+			<a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'badges', 'action' => 'index')) ?>">
+				<i class="fa fa-shield" style="padding-right: 10px;"></i>
+				<?= strtoupper(__('Badges')) ?>
+			</a>
+		</li>
+		  
+		<li <?=$notificationslink?>>
+		  	<a id = "notificationsItem" href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'notifications', 'action' => 'index')) ?>">
+		  		<i class="fa fa-exclamation-triangle" style="padding-right: 10px;"></i>
+		  		<?= strtoupper(__('Notifications')) ?>
+		  		<?php if($notesCount > 0): ?>
+			  		<span class = "circle"><?= $notesCount ?></span>
+			  	<?php endif; ?>
+	  		</a>
+	  	</li>
+		  
+		<li <?=$leaderboardlink?>>
+			<a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'users', 'action' => 'leaderboard')) ?>">
+				<i class="fa fa-trophy" style="padding-right: 10px;"></i>
+				<?=strtoupper(__('Leaderboard')) ?>
+			</a>
+		</li>
+		  
+		<?php if($src <= 2) : ?>
+		  	<li>
+		  		<a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'panels', 'action' => 'index')) ?>">
+		  			<i class="fa fa-cogs" style="padding-right: 10px;"></i>
+		  			<?= strtoupper(__('Administration')) ?>
+		  		</a>
+		  	</li>
+		<?php endif ?>
 	</ul>
 </div>
 
