@@ -1,9 +1,23 @@
 .table {
-	background-color: transparent;
+	/*background-color: transparent;*/
 	border-collapse: collapse;
 	border-spacing: 0;
 	width: 100%;
 	margin-bottom: 20px;
+	font-family:'AlegreyaRegular';
+}
+
+.table i.fa-pencil{
+	color: #66b5d7;
+}
+
+.table i.fa-times-circle{
+	color: #e87352;
+}
+
+.table, .table thead, .table tfoot, .table th, .table td  {
+	background-color:#fff;
+	color: #444;
 }
 
 .table th, .table td {
@@ -19,6 +33,28 @@
 
 .table thead th {
 	vertical-align: bottom;
+	border: none;
+}
+
+.table td {
+	text-align:end;
+}
+
+.table td a.Status {
+	padding: 0.25rem 0.5rem 0.375rem;
+	font-weight: bold;
+}
+
+.table td a.Status.Pending {
+	background-color: #eac841;
+}
+
+.table td a.Status.Approved {
+	background-color: #a0d269;
+}
+
+.table a.name{
+	float:left;
 }
 
 .table tbody+tbody {
@@ -30,35 +66,41 @@
 }
 
 .table-bordered {
-	border: 1px solid #dddddd;
+	/*border: 1px solid #dddddd;*/
 	border-collapse: separate;
+	border: none;
+	border-top: 5px solid #c1c1c1;
 	*border-collapse: collapse;
 	border-left: 0;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
+	padding:5px;
 }
 
 .table-bordered th, .table-bordered td {
-	border-left: 1px solid #dddddd;
+	/*border-left: 1px solid #dddddd;*/
 	padding: 0.8em 1em;
 }
 
 .table-bordered th, .table-bordered td a{
-	color: #767676;
+	/*color: #767676;*/
+	color: #444;
 	font-size:1.0vw;
 }
 
 .table-hover tbody tr:hover>td,.table-hover tbody tr:hover>th {
-	background-color: #f5f5f5;
+	/*background-color: #f5f5f5;*/
 }
 
 .table .sort{
-	background-color: #e9e9e9;
+	/*background-color: #e9e9e9;*/
+	background-color:#fff;
 }
 
 .table .sort a{
-	color: #767676;
+	/*color: #767676;*/
+	color: #444;
 	font-size:1.2vw;
 }
 
@@ -95,11 +137,14 @@
 }
 
 .pagination ul>li>a:hover,.pagination ul>li>a:focus,.pagination ul>.active>a,.pagination ul>.active>span {
-	background-color: #f5f5f5;
+	/*background-color: #f5f5f5;*/
+	background-color: #ddd;
 }
 
 .pagination ul>.active>a,.pagination ul>.active>span {
-	color: #999999;
+	/*background-color: #999999;*/
+	background-color: #c1c1c1;
+	color: #fff;
 	cursor: default;
 }
 
@@ -150,7 +195,12 @@
 }
 
 .evoke .panels.row{
-	background:#f2f4f8;
+	/*background:#f2f4f8;*/
+	background-color:#f9f9f9;
+}
+
+.evoke .panels.tabs.vertical{
+	width: 100%;
 }
 
 .evoke .panels.tabs dd.active a{
@@ -160,13 +210,16 @@
 
 .evoke .panels.tabs dd>a{
 	background: #1f232a;
-	margin-left: 2px;
+	/*margin-left: 2px;*/
 	color: #fff;
-	font-size: 1.1vw;
+	/*font-size: 1.1vw;*/
+	font-size: 1.1em;
 	font-family:'AlegreyaRegular';
 	/*padding: 1em 2em;*/
-	padding: 0.7em 1.5em;
+	/*padding: 0.7em 1.5em;*/
+	padding: 0.8em 1em;
 	border-bottom:2px solid #000;
+	border-top: 1px solid #333;
 	/*border-left:2px solid #000;*/
 }
 
@@ -175,26 +228,61 @@
 	color:#000;
 }
 
-.evoke .panels.tabs-content{
-	background:#f2f4f8;
-	margin-left: 0px;
+.evoke .panels.tabs.vertical .fa{
+	width:30px;
 }
+
+.evoke .panels.tabs.vertical .fa.fa-angle-right {
+	width:15px;
+}
+
+.evoke.admin-panel-bg{
+	background-color: #f9f9f9;
+}
+
+.evoke .panels .default-content{
+	background-color: #fff;
+	border-top: 5px solid #c1c1c1;
+	margin-left: 20px;
+	padding: 20px;
+}
+
+/*.evoke .panels.tabs-content{
+	background:#f2f4f8;
+	background-color:#f9f9f9;
+	margin-left: 0px;
+}*/
 
 .evoke .panels .statistics li{
 	/*margin: 0px 10px;*/
 }
 
 .evoke .panels .statistics li:nth-child(2n+0) .yay{
-	background-color: #ABE3E8;
+	background-color: #31c0be;
 	padding: 15px;
 	color: #555;
 }
 
 .evoke .panels .statistics li:nth-child(2n+1) .yay{
-	background-color: #C9EDFF;
+	background-color: #60cd9b;
 	padding: 15px;
 	color: #555;
 }
+
+.evoke .statistics .tabs{
+	border-bottom: 2px solid #c1c1c1;
+}
+
+.evoke .statistics .tabs dd>a{
+	background-color:#f9f9f9;
+}
+
+.evoke .statistics .tabs dd.active a {
+	border: 2px solid #c1c1c1;
+	/*border-bottom-width: 0px;*/
+	border-bottom-color: transparent;
+}
+
 /*
 .evoke .panels .statistics li:nth-child(2n+3) .yay{
 	background-color: #32CDE8;

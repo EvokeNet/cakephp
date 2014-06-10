@@ -4,7 +4,7 @@
 ?>
 
 <div class="evoke panels contain-to-grid top-bar-background panels-bg">
-  <nav class="top-bar row full-width-alternate" data-topbar>
+  <nav class="top-bar row full-width-alternate padding top-05" data-topbar>
     <ul class="title-area">
 	    <li class="name">
 	      <h1><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $user['User']['id'])); ?>"><?= ('Evoke') ?></a></h1>
@@ -87,330 +87,340 @@
 ?>
 
 <section>
-	<div class="panels row full-width-alternate">
-			<dl class="panels tabs vertical" data-tab>
-				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><i class="fa fa-briefcase fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Organizations')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
-				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><i class="fa fa-folder-open-o fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Missions')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+	<div class="evoke row full-width-alternate admin-panel-bg">
+
+	  <div class="small-2 columns no-padding">
+	  	<div class = "evoke menu-bg sidebar menucolumn" style = "height: 1500px; background-color:#1f232a">
+	  	<dl class="panels tabs vertical" data-tab>
+				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><i class="fa fa-bank"></i><?= strtoupper(__('Organizations')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+
+				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><i class="fa fa-folder-open-o"></i><?= strtoupper(__('Missions')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+				
 				<?php if($flags['_admin']) : ?>
-					<dd class="<?php echo $issues_tab; ?>"><a href="#issues"><i class="fa fa-list-ul fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Issues')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
-					<dd class="<?php echo $levels_tab; ?>"><a href="#levels"><i class="fa fa-trophy fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Levels')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
-					<dd class="<?php echo $powerpoints_tab; ?>"><a href="#powerpoints"><i class="fa fa-star-o fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Power Points')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $issues_tab; ?>"><a href="#issues"><i class="fa fa-list-ul"></i><?= strtoupper(__('Issues')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+
+					<dd class="<?php echo $levels_tab; ?>"><a href="#levels"><i class="fa fa-trophy"></i><?= strtoupper(__('Levels')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+					
+					<dd class="<?php echo $powerpoints_tab; ?>"><a href="#powerpoints"><i class="fa fa-star-o"></i><?= strtoupper(__('Power Points')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
 				<?php endif; ?>	
-				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><i class="fa fa-shield fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Badges')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
-				<dd class="<?php echo $users_tab; ?>"><a href="#users"><i class="fa fa-users fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Users')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+				
+				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><i class="fa fa-shield"></i><?= strtoupper(__('Badges')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+				
+				<dd class="<?php echo $users_tab; ?>"><a href="#users"><i class="fa fa-users"></i><?= strtoupper(__('Users')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+				
 				<?php if($flags['_admin']) : ?>
-					<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><i class="fa fa-inbox fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Evokations')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
-					<dd class="<?php echo $media_tab; ?>"><a href="#media"><i class="fa fa-exclamation-circle fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Notifications & Media')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
-					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><i class="fa fa-cogs fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('General Settings')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><i class="fa fa-inbox"></i><?= strtoupper(__('Evokations')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+					
+					<dd class="<?php echo $media_tab; ?>"><a href="#media"><i class="fa fa-exclamation-circle"></i><?= strtoupper(__('Notifications & Media')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+					
+					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><i class="fa fa-cogs"></i><?= strtoupper(__('General Settings')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
 				<?php endif; ?>	
-				<dd id="test" class="<?php echo $statistics_tab; ?>"><a href="#statistics"><i class="fa fa-bar-chart-o fa-lg"></i>&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper(__('Statistics')) ?><i class="fa fa-angle-right fa-lg" style = "float:right; margin-top:5px"></i></a></dd>
+				
+				<dd id="test" class="<?php echo $statistics_tab; ?>"><a href="#statistics"><i class="fa fa-bar-chart-o"></i><?= strtoupper(__('Statistics')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
 			</dl>
-			<div class="panels tabs-content vertical padding top-2">
+			</div>
+	  </div>
+
+	  <div class="small-10 columns no-padding">
+	  	
+	  	<div class="panels tabs-content vertical padding top-2">
 				<div class="content <?php echo $organizations_tab; ?>" id="organizations">
 					
-						<?php foreach ($organizations as $organization) { ?>
-								<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert', 'id' => 'orgsDelete'.$organization['Organization']['id'], 'style' => 'display:none' )); ?>
-						<?php }	?>
+					<?php foreach ($organizations as $organization) { ?>
+							<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert', 'id' => 'orgsDelete'.$organization['Organization']['id'], 'style' => 'display:none' )); ?>
+					<?php }	?>
 
-						<!-- <button class="button" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></button> -->
+					<!-- <button class="button" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></button> -->
 
-						<a href ="#" class="button general" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></a>
+					<a href ="#" class="button general" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></a>
 
-						<div id="myModalOrganization" class="reveal-modal tiny" data-reveal>
-							<?php echo $this->Form->create('Organization', array(
-	 						   		'url' => array(
-	 						   			'controller' => 'panels',
-	 						   			'action' => 'add_org')
-									)); ?>
-							<fieldset>
-								<legend><?php echo __('Add an Organization'); ?></legend>
-								<?php
-									echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
-									echo $this->Form->input('birthdate', array(
-										'label' => __('Birthdate'),
-										'style' => 'width: auto',
-										'separator' => '/',
-										'dateFormat' => 'DMY',
-    									'minYear' => date('Y') - 100,
-    									'maxYear' => date('Y'),
-									));
+					<div id="myModalOrganization" class="reveal-modal tiny" data-reveal>
+						<?php echo $this->Form->create('Organization', array(
+ 						   		'url' => array(
+ 						   			'controller' => 'panels',
+ 						   			'action' => 'add_org')
+								)); ?>
+						<fieldset>
+							<legend><?php echo __('Add an Organization'); ?></legend>
+							<?php
+								echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
+								echo $this->Form->input('birthdate', array(
+									'label' => __('Date of Establishment'),
+									'style' => 'width: auto',
+									'separator' => ' ',
+									'dateFormat' => 'DMY',
+									'minYear' => date('Y') - 100,
+									'maxYear' => date('Y'),
+								));
 
-									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
-									echo $this->Form->input('website', array('label' => __('Website')));
-									echo $this->Form->input('facebook');
-									echo $this->Form->input('twitter');
-									echo $this->Form->input('blog');
-									if($flags['_admin']) {
-										//if its an admin, use $possible_managers..
-										/*echo $this->Form->input('UserOrganization.users_id', array(
-											'label' => __('Possible Managers'),
-											'options' => $possible_managers,
-											'multiple' => 'checkbox',
-											'required' => true
-										));*/
-										echo $this->Chosen->select(
-										    'UserOrganization.users_id',
-										    $possible_managers,
-										    array(
-										    	'data-placeholder' => __('Select the managers').'...', 
-										    	'multiple' => true, 
-										    	'style' => 'width: 100%; height: 36px;'
-										    )
-										);
-									} else {
-										//else use my id
-										echo $this->Form->hidden('UserOrganization.user_id', array('value' => $userid));
-									}				
-								?>
-							</fieldset>
-							<button class="button small" type="submit">
-								<?php echo __('Add') ?>
-							</button>
-							<?php echo $this->Form->end(); ?>
-							<a class="close-reveal-modal">&#215;</a>
-						</div>
-						<div id="OrganizationsHolder"></div>
+								echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+								echo $this->Form->input('website', array('label' => __('Website')));
+								echo $this->Form->input('facebook');
+								echo $this->Form->input('twitter');
+								echo $this->Form->input('blog');
+								if($flags['_admin']) {
+									//if its an admin, use $possible_managers..
+									/*echo $this->Form->input('UserOrganization.users_id', array(
+										'label' => __('Possible Managers'),
+										'options' => $possible_managers,
+										'multiple' => 'checkbox',
+										'required' => true
+									));*/
+									echo $this->Chosen->select(
+									    'UserOrganization.users_id',
+									    $possible_managers,
+									    array(
+									    	'data-placeholder' => __('Select the managers'), 
+									    	'multiple' => true, 
+									    	'style' => 'width: 100%; height: 36px;'
+									    )
+									);
+								} else {
+									//else use my id
+									echo $this->Form->hidden('UserOrganization.user_id', array('value' => $userid));
+								}				
+							?>
+						</fieldset>
+						<button class="button small" type="submit">
+							<?php echo __('Add') ?>
+						</button>
+						<?php echo $this->Form->end(); ?>
+						<a class="close-reveal-modal">&#215;</a>
+					</div>
+					<div id="OrganizationsHolder"></div>
 					
 				</div>
 				<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
-					<div class="large-10 columns">
-						<?php //echo $this->Html->Link(__('Add new Mission'), array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?>
-				  		
-				  		<a href ="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'add_mission')) ?>" class="button general"><?php echo __('New Mission');?></a>
+					<?php //echo $this->Html->Link(__('Add new Mission'), array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?>
+			  		
+			  		<a href ="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'add_mission')) ?>" class="button general"><?php echo __('New Mission');?></a>
 
-					  		<!-- creating delete post buttons to be referenced at js -->
-					  		<?php foreach ($missions_issues as $mi) : ?>
-					  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteMission'.$mi['Mission']['id'], 'style' => 'display:none')); ?>
-							<?php endforeach; ?>
-						
-						<div id="MissionsHolder" style="width:auto"></div>
-					</div> 
+				  		<!-- creating delete post buttons to be referenced at js -->
+				  		<?php foreach ($missions_issues as $mi) : ?>
+				  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteMission'.$mi['Mission']['id'], 'style' => 'display:none')); ?>
+						<?php endforeach; ?>
+					
+					<div id="MissionsHolder" style="width:auto"></div> 
 				</div>
 				<div class="content <?php echo $issues_tab; ?>" id="issues">
-					<div class="large-10 columns">
-			  			<!-- <button class="button" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></button> -->
+		  			<!-- <button class="button" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></button> -->
 
-			  			<a href = "#" class="button general" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></a>
+		  			<a href = "#" class="button general" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></a>
 
-			    		<div id="myModalIssue" class="reveal-modal tiny" data-reveal>
-							<?php echo $this->Form->create('Issue', array(
-		 				   		'url' => array(
-		 				   			'controller' => 'panels',
-		 				   			'action' => 'add_issue')
-								)); ?>
-							<fieldset>
-								<legend><?php echo __('Add an Issue'); ?></legend>
-								<?php
-									//echo $this->Form->input('parent_id');
-									echo $this->Form->input('name', array('label' => __('Name')));
-									echo $this->Form->input('slug', array('label' => __('Slug')));
-								?>
-							</fieldset>
-							<button class="button general" type="submit">
-								<?php echo __('Add'); ?>
-							</button>
-							<?php echo $this->Form->end(); ?>
+		    		<div id="myModalIssue" class="reveal-modal tiny" data-reveal>
+						<?php echo $this->Form->create('Issue', array(
+	 				   		'url' => array(
+	 				   			'controller' => 'panels',
+	 				   			'action' => 'add_issue')
+							)); ?>
+						<fieldset>
+							<legend><?php echo __('Add an Issue'); ?></legend>
+							<?php
+								//echo $this->Form->input('parent_id');
+								echo $this->Form->input('name', array('label' => __('Name')));
+								echo $this->Form->input('slug', array('label' => __('Slug')));
+							?>
+						</fieldset>
+						<button class="button general" type="submit">
+							<?php echo __('Add'); ?>
+						</button>
+						<?php echo $this->Form->end(); ?>
 
-							<a class="close-reveal-modal">&#215;</a>
-						</div>			    			
+						<a class="close-reveal-modal">&#215;</a>
+					</div>			    			
 
-							<?php foreach ($issues as $i) : ?>
-					  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_issue', $i['Issue']['id']), array( 'class' => 'button tiny alert', 'id' => 'issuesDelete'.$i['Issue']['id'], 'style' => 'display:none')); ?>
-							<?php endforeach; ?>
-							<div id="IssuesHolder"></div>
-					</div>
+						<?php foreach ($issues as $i) : ?>
+				  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_issue', $i['Issue']['id']), array( 'class' => 'button tiny alert', 'id' => 'issuesDelete'.$i['Issue']['id'], 'style' => 'display:none')); ?>
+						<?php endforeach; ?>
+						<div id="IssuesHolder"></div>
 				</div>
-				<div class="content <?php echo $levels_tab; ?>" id="levels">
-					<div class="large-10 columns">
-						<h3><?= strtoupper(__('Define Levels')) ?></h3>
-						<?php 
-							$nextLevel = 1;
-							echo $this->Form->create('Level', array(
-								'url' => array(
-									'controller' => 'panels',
-									'action' => 'level'
-								)
-							));
-							foreach ($levels as $level):
-								echo '<div class="row collapse">';
-								echo '<div class="large-1 columns left inline"><label for="levelOld'.$level['Level']['id'].'">Level '.$level['Level']['level'].'</label></div>';
-								
-								echo $this->Form->input('level.old.'.$level['Level']['id'], array(
-									'label' => false,
-									'value' => $level['Level']['points'],
-									'div' => array(
-	        							'class' => 'large-1 columns left',
-	    							),
-									'required' => true
-								));
-								echo '<div class="large-1 columns left"><span class="postfix">points</span></div>';
-								echo '</div>';
-								
-								$nextLevel++;
-							endforeach;
-
+				<div class="content <?php echo $levels_tab; ?> default-content" id="levels">
+					<h3 class = "margin bottom"><?= strtoupper(__('Define Levels')) ?></h3>
+					<?php 
+						$nextLevel = 1;
+						echo $this->Form->create('Level', array(
+							'url' => array(
+								'controller' => 'panels',
+								'action' => 'level'
+							)
+						));
+						foreach ($levels as $level):
 							echo '<div class="row collapse">';
-							echo '<div class="large-1 columns left inline"><label for="levelNew'.$nextLevel.'">Level '.$nextLevel.'</label></div>';
-								
-							echo $this->Form->input('level.new.'.$nextLevel, array(
+							echo '<div class="large-1 columns left inline"><label for="levelOld'.$level['Level']['id'].'">Level '.$level['Level']['level'].'</label></div>';
+							
+							echo $this->Form->input('level.old.'.$level['Level']['id'], array(
 								'label' => false,
+								'value' => $level['Level']['points'],
 								'div' => array(
-	        						'class' => 'large-1 columns left',
-	    						),
+        							'class' => 'large-1 columns left',
+    							),
 								'required' => true
 							));
 							echo '<div class="large-1 columns left"><span class="postfix">points</span></div>';
 							echo '</div>';
 							
 							$nextLevel++;
-						?>
-						<button class="button general" type="submit">
-							<?php echo __('Save levels'); ?>
-						</button>
-						<?php echo $this->Form->end(); ?>
-					</div>
+						endforeach;
+
+						echo '<div class="row collapse">';
+						echo '<div class="large-1 columns left inline"><label for="levelNew'.$nextLevel.'">Level '.$nextLevel.'</label></div>';
+							
+						echo $this->Form->input('level.new.'.$nextLevel, array(
+							'label' => false,
+							'div' => array(
+        						'class' => 'large-1 columns left',
+    						),
+							'required' => true
+						));
+						echo '<div class="large-1 columns left"><span class="postfix">points</span></div>';
+						echo '</div>';
+						
+						$nextLevel++;
+					?>
+					<button class="button general" type="submit">
+						<?php echo __('Save levels'); ?>
+					</button>
+					<?php echo $this->Form->end(); ?>
 				</div>
 				<div class="content <?php echo $powerpoints_tab; ?>" id="powerpoints">
-					<div class="large-10 columns">
-			  			<!-- <button class="button" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></button> -->
+		  			<!-- <button class="button" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></button> -->
 
-			  			<a href ="#" class="button general" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></a>
+		  			<a href ="#" class="button general" data-reveal-id="myModalPowerPoint" data-reveal><?php echo __('New Power Point');?></a>
 
-			    		<div id="myModalPowerPoint" class="reveal-modal tiny" data-reveal>
-							<?php echo $this->Form->create('PowerPoint', array(
-		 				   		'url' => array(
-		 				   			'controller' => 'panels',
-		 				   			'action' => 'add_powerpoint')
-								)); ?>
-							<fieldset>
-								<legend><?php echo __('Add a Power Point'); ?></legend>
-								<?php
-									echo $this->Form->input('name', array(
-										'label' => __('Name'),
-										'required' => true
-									));
-									echo $this->Form->input('name_es', array(
-										'label' => __('Spanish Name')
-									));
-									echo $this->Form->input('description', array(
-										'label' => __('Description'),
-										'type' => 'textarea',
-										'required' => true
-									));
-									echo $this->Form->input('description_es', array(
-										'label' => __('Spanish Description'),
-										'type' => 'textarea'
-									));
-								?>
-							</fieldset>
-							<button class="button general" type="submit">
-								<?php echo __('Add'); ?>
-							</button>
-							<?php echo $this->Form->end(); ?>
+		    		<div id="myModalPowerPoint" class="reveal-modal tiny" data-reveal>
+						<?php echo $this->Form->create('PowerPoint', array(
+	 				   		'url' => array(
+	 				   			'controller' => 'panels',
+	 				   			'action' => 'add_powerpoint')
+							)); ?>
+						<fieldset>
+							<legend><?php echo __('Add a Power Point'); ?></legend>
+							<?php
+								echo $this->Form->input('name', array(
+									'label' => __('Name'),
+									'required' => true
+								));
+								echo $this->Form->input('name_es', array(
+									'label' => __('Spanish Name')
+								));
+								echo $this->Form->input('description', array(
+									'label' => __('Description'),
+									'type' => 'textarea',
+									'required' => true
+								));
+								echo $this->Form->input('description_es', array(
+									'label' => __('Spanish Description'),
+									'type' => 'textarea'
+								));
+							?>
+						</fieldset>
+						<button class="button general" type="submit">
+							<?php echo __('Add'); ?>
+						</button>
+						<?php echo $this->Form->end(); ?>
 
-							<a class="close-reveal-modal">&#215;</a>
-						</div>			    			
+						<a class="close-reveal-modal">&#215;</a>
+					</div>			    			
 
-							<?php foreach ($powerpoints as $pp) : ?>
-					  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_powerpoint', $pp['PowerPoint']['id']), array( 'class' => 'button tiny alert', 'id' => 'powerpointsDelete'.$pp['PowerPoint']['id'], 'style' => 'display:none')); ?>
-							<?php endforeach; ?>
-							<div id="PowerPointsHolder"></div>
-					</div>
+						<?php foreach ($powerpoints as $pp) : ?>
+				  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_powerpoint', $pp['PowerPoint']['id']), array( 'class' => 'button tiny alert', 'id' => 'powerpointsDelete'.$pp['PowerPoint']['id'], 'style' => 'display:none')); ?>
+						<?php endforeach; ?>
+						<div id="PowerPointsHolder"></div>
 				</div>
 				<div class="content <?php echo $badges_tab; ?>" id="badges">
-					<div class="large-10 columns">
-						<!-- <button class="button" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></button> -->
+					<!-- <button class="button" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></button> -->
 
-						<a href ="#" class="button general" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></a>
+					<a href ="#" class="button general" data-reveal-id="myModalBadge" data-reveal><?php echo __('New Badge');?></a>
 
-						<div id="myModalBadge" class="reveal-modal tiny" data-reveal>
-							<?php echo $this->Form->create('Badge', array(
-	 						   		'url' => array(
-	 						   			'controller' => 'panels',
-	 						   			'action' => 'add_badge'
-	 						   		),
-	 						   		'enctype' => 'multipart/form-data'
-								)); 
+					<div id="myModalBadge" class="reveal-modal tiny" data-reveal>
+						<?php echo $this->Form->create('Badge', array(
+ 						   		'url' => array(
+ 						   			'controller' => 'panels',
+ 						   			'action' => 'add_badge'
+ 						   		),
+ 						   		'enctype' => 'multipart/form-data'
+							)); 
+						?>
+							<fieldset>
+								<legend><?php echo __('Add a Badge'); ?></legend>
+							<?php
+								echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
+								echo $this->Form->input('name_es', array('label' => __('Spanish Name')));
+								echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
+								echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
+								echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
+
+						        echo '<fieldset><legend> ' .__('Necessary Power Points to get Badge') . '</legend>';
+						        foreach ($powerpoints as $power) {
+						            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
+						                'label' => $power['PowerPoint']['name'],
+						                'value' => 0
+						            ));
+						        }
+						        echo $this->Form->input('Power.0.quantity', array(
+						                'label' => 'No specific power',
+						                'value' => 0
+						            ));
+						        echo '</fieldset>';
+								
+								echo $this->Form->radio('power_points_only', array(1 => 'Yes', 0 => 'No'), array('label' => __('Obtained exclusively with power points'), 'required' => true, 'default' => 1));
+								echo $this->Form->input('organization_id', array(
+									'label' => __('Organization'),
+									'options' => $organizations_list
+								));
 							?>
-								<fieldset>
-									<legend><?php echo __('Add a Badge'); ?></legend>
-								<?php
-									echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
-									echo $this->Form->input('name_es', array('label' => __('Spanish Name')));
-									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
-									echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
-									echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
+							</fieldset>
+						<button class="button general" type="submit">
+							<?php echo __('Add') ?>
+						</button>
+						<?php echo $this->Form->end(); ?>
+						<a class="close-reveal-modal">&#215;</a>
+					</div>
 
-							        echo '<fieldset><legend> ' .__('Necessary Power Points to get Badge') . '</legend>';
-							        foreach ($powerpoints as $power) {
-							            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
-							                'label' => $power['PowerPoint']['name'],
-							                'value' => 0
-							            ));
-							        }
-							        echo $this->Form->input('Power.0.quantity', array(
-							                'label' => 'No specific power',
-							                'value' => 0
-							            ));
-							        echo '</fieldset>';
-									
-									echo $this->Form->radio('power_points_only', array(1 => 'Yes', 0 => 'No'), array('label' => __('Obtained exclusively with power points'), 'required' => true, 'default' => 1));
-									echo $this->Form->input('organization_id', array(
-										'label' => __('Organization'),
-										'options' => $organizations_list
+					<?php foreach ($badges as $badge) : ?>
+						<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'badges', 'action' => 'delete', $badge['Badge']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteBadge'.$badge['Badge']['id'], 'style' => 'display:none')); ?>
+					<?php endforeach; ?>
+					<div id="BadgesHolder"></div>
+				</div>
+				<div class="content <?php echo $users_tab; ?>" id="users">
+					<?php if($flags['_admin']) :
+						foreach ($all_users as $user) : ?>
+							<button class="button small" id="ShowUser-<?php echo $user['User']['id']; ?>" data-reveal-id="user-<?php echo $user['User']['id']; ?>" style="display:none" data-reveal></button>
+								<!-- Lightbox for editing user role -->
+							<div id="user-<?php echo $user['User']['id']; ?>" class="reveal-modal tiny" data-reveal>
+								<?php 
+									echo $this->Form->create('User', array(
+								 		'url' => array(
+								 			'controller' => 'panels',
+								 			'action' => 'edit_user_role', 
+								 			$user['User']['id']
+								 		)
+									));
+								 ?>
+								<fieldset>
+									<legend><?php echo __('Change role') .': '. $user['User']['name']; ?></legend>
+								<?php
+									echo $this->Form->hidden('id', array('value' => $user['User']['id']));
+									echo $this->Form->input('role_id', array(
+										'label' => __('Role'),
+										'options' => $roles_list,
+										'value' => $user['User']['role_id']
 									));
 								?>
 								</fieldset>
-							<button class="button general" type="submit">
-								<?php echo __('Add') ?>
-							</button>
-							<?php echo $this->Form->end(); ?>
-							<a class="close-reveal-modal">&#215;</a>
-						</div>
+									<button class="button tiny" type="submit">
+										<?php echo __('Save Changes')?>
+									</button>
+									<?php echo $this->Form->end(); ?>
+								<a class="close-reveal-modal">&#215;</a>
+							</div>
 
-						<?php foreach ($badges as $badge) : ?>
-							<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'badges', 'action' => 'delete', $badge['Badge']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteBadge'.$badge['Badge']['id'], 'style' => 'display:none')); ?>
+							<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'users', 'action' => 'delete', $user['User']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteUser'.$user['User']['id'], 'style' => 'display:none')); ?>
+
 						<?php endforeach; ?>
-						<div id="BadgesHolder"></div>
-					</div>
-				</div>
-				<div class="content <?php echo $users_tab; ?>" id="users">
-					<div class="large-10 columns">
-						<?php if($flags['_admin']) :
-							foreach ($all_users as $user) : ?>
-								<button class="button small" id="ShowUser-<?php echo $user['User']['id']; ?>" data-reveal-id="user-<?php echo $user['User']['id']; ?>" style="display:none" data-reveal></button>
-									<!-- Lightbox for editing user role -->
-								<div id="user-<?php echo $user['User']['id']; ?>" class="reveal-modal tiny" data-reveal>
-									<?php 
-										echo $this->Form->create('User', array(
-									 		'url' => array(
-									 			'controller' => 'panels',
-									 			'action' => 'edit_user_role', 
-									 			$user['User']['id']
-									 		)
-										));
-									 ?>
-									<fieldset>
-										<legend><?php echo __('Change role') .': '. $user['User']['name']; ?></legend>
-									<?php
-										echo $this->Form->hidden('id', array('value' => $user['User']['id']));
-										echo $this->Form->input('role_id', array(
-											'label' => __('Role'),
-											'options' => $roles_list,
-											'value' => $user['User']['role_id']
-										));
-									?>
-									</fieldset>
-										<button class="button tiny" type="submit">
-											<?php echo __('Save Changes')?>
-										</button>
-										<?php echo $this->Form->end(); ?>
-									<a class="close-reveal-modal">&#215;</a>
-								</div>
-							<?php endforeach; ?>
-						<?php endif; ?>
-						<div id="UsersHolder"></div>
-					</div>
+					<?php endif; ?>
+
+					<div id="UsersHolder"></div>
 				</div>
 				<div class="content <?php echo $pending_tab; ?>" id="pending">
 					<?php 
@@ -510,9 +520,50 @@
 						  
 						</div>
 
-						
-
 						<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'deleteNotification', $n['AdminNotification']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteNotification'.$n['AdminNotification']['id'], 'style' => 'display:none')); ?>
+
+						<!-- show him/her how the notification will be seen -->
+						<!-- <button class="button small" id="EditNot-<?php echo $n['AdminNotification']['id']; ?>" data-reveal-id="myModalEditNotification-<?php echo $n['AdminNotification']['id']; ?>" data-reveal>dede</button> -->
+									<!-- Lightbox for editing evokation status -->
+
+						<button class="button small" id="EditNot-<?php echo $n['AdminNotification']['id']; ?>" data-reveal-id="myModalEditNotification-<?php echo $n['AdminNotification']['id']; ?>" style="display:none" data-reveal></button>
+
+						<div id="myModalEditNotification-<?= $n['AdminNotification']['id']?>" class="reveal-modal medium" data-reveal>
+
+							<h3><?= __('Edit Notification') ?></h3>
+							<?php echo $this->Form->create('AdminNotification', array(
+	 						'url' => array(
+	 							'controller' => 'panels',
+	 							'action' => 'editNotification',
+	 							$n['AdminNotification']['id'])
+							)); ?>
+								
+							<?php
+								echo $this->Form->input('title', array(
+									'label' => __('Title'),
+									'value' =>  $n['AdminNotification']['title'],
+									'required' => true
+								));
+								echo $this->Form->input('description', array(
+									'label' => __('Description'), 
+									'required' => true,
+									'value' => $n['AdminNotification']['description'],
+									'type' => 'textarea'
+								));
+								echo $this->Form->hidden('user_id', array(
+									'value' => $userid
+								));
+
+							?>
+							<button class="button general" type="submit">
+								<?php echo __('Edit') ?>
+							</button>
+							<?php echo $this->Form->end(); ?>
+
+						  <a class="close-reveal-modal">&#215;</a>
+						  
+						</div>
+
 					<?php endforeach; ?>
 					<div id="NotificationsHolder"></div>
 				</div>
@@ -635,14 +686,14 @@
 					</button>
 					<?php echo $this->Form->end(); ?>
 				</div>
-				<div class="evoke content <?php echo $statistics_tab; ?> statistics" id="statistics">
+				<div class="content <?php echo $statistics_tab; ?> statistics" id="statistics">
 					<div class="large-12 medium-12 small-12 columns">
 						<dl class="tabs" data-tab>
 							<dd class="active"><a href="#otherMetrics"><?= __('General') ?></a></dd>
 							<dd><a href="#organizationMetrics"><?= __('Organizations') ?></a></dd>
 							<dd><a href="#missionMetrics"><?= __('Missions') ?></a></dd>
 						</dl>
-						<div class="tabs-content ">
+						<div class="tabs-content">
 							<div class="content active" id="otherMetrics">
 								<?php 
 									$average_level = $userLevels['all']/sizeof($all_users);
@@ -667,8 +718,8 @@
 											  	<div class="row full-width-alternate no-margin">
 													<div class="small-6 large-centered columns text-align-center">
 												  		<h1 style = "font-size: 1.5em; color: #555">
-												  			<i class="fa fa-crosshairs fa-2x"></i>
-												  			&nbsp;&nbsp;<?=sizeof($missions_issues).' ' . __('Missions')?>
+												  			<i class="fa fa-folder-open-o fa-2x"></i>&nbsp;
+												  			<?= sizeof($missions_issues). ' ' . __('Mission(s)')?>
 												  		</h1>
 												  	</div>
 												</div>
@@ -679,8 +730,8 @@
 											  	<div class="row full-width-alternate no-margin">
 												  	<div class="small-6 large-centered columns text-align-center">
 												  		<h1 style = "font-size: 1.5em; color: #555">
-												  			<i class="fa fa-bank fa-2x"></i>
-												  			&nbsp;&nbsp;<?=sizeof($organizations).' '.__('Organizations')?>
+												  			<i class="fa fa-bank fa-2x"></i>&nbsp;
+												  			<?=sizeof($organizations). ' ' .__('Organization(s)')?>
 												  		</h1>
 												  	</div>
 												</div>
@@ -691,8 +742,8 @@
 											  	<div class="row full-width-alternate no-margin">
 												  	<div class="small-6 large-centered columns text-align-center">
 												  		<h1 style = "font-size: 1.5em; color: #555">
-												  			<i class="fa fa-shield fa-2x"></i>
-												  			&nbsp;&nbsp;<?=sizeof($badges).' '.__('Badges')?>
+												  			<i class="fa fa-shield fa-2x"></i>&nbsp;
+												  			<?=sizeof($badges).' '.__('Badge(s)')?>
 												  		</h1>
 												  	</div>
 												</div>
@@ -703,8 +754,8 @@
 											  	<div class="row full-width-alternate no-margin">
 												  	<div class="small-6 large-centered columns text-align-center">
 												  		<h1 style = "font-size: 1.5em; color: #555">
-												  			<i class="fa fa-star-o fa-2x"></i>
-												  			&nbsp;&nbsp;<?= sizeof($powerpoints). ' '.__('Powers')?>
+												  			<i class="fa fa-star-o fa-2x"></i>&nbsp;
+												  			<?= sizeof($powerpoints). ' '.__('Power(s)')?>
 												  		</h1>
 												  	</div>
 												</div>
@@ -719,7 +770,7 @@
 													<div class="text-center">
 														<i class="fa fa-users fa-2x"></i>
 													
-													<h1 style = "font-size: 1.5em; color: #555">
+													<h1 style = "font-size: 1.5em; color: #555; font-weight:bold;">
 														<?= __('Users')?>
 													</h1>
 													<h1 style = "color: #555"><?=sizeof($all_users)?></h1>
@@ -730,9 +781,9 @@
 									  	<li>
 									  		<div class = "yay">
 											  	<div class="row full-width-alternate no-margin text-center">
-													<h1 style = "font-size: 1.5em; color: #555">
-												  		<i class="fa fa-bolt"></i>
-												  		<?= ' '.__('Level') ?>
+													<h1 style = "font-size: 1.5em; color: #555; font-weight:bold;">
+												  		<i class="fa fa-trophy"></i>&nbsp;
+												  		<?= __('Level') ?>
 												  	</h1>
 												  	<div class="large-6 medium-6 small-6 columns">
 												  		<h1 style = "font-size: 1.5em; color: #555"><?= __('Average') ?></h1>
@@ -740,7 +791,7 @@
 												  	</div>
 												  	<div class="large-6 medium-6 small-6 columns">
 													  	<h1 style = "font-size: 1.5em; color: #555"><?= __('Highest') ?></h1>
-													  	<h5 style = "font-size: 1.4em; color: #555"><?= $userLevels['max'].' ' ?><i class="fa fa-star"></i></h5>
+													  	<h5 style = "font-size: 1.4em; color: #555"><!--<i class="fa fa-long-arrow-up"></i>&nbsp;--><?= $userLevels['max'].' ' ?></h5>
 												  	</div>
 												</div>
 											</div>
@@ -748,9 +799,9 @@
 										<li>
 									  		<div class = "yay">
 												<div class="row full-width-alternate no-margin text-center">
-													<h1 style = "font-size: 1.5em; color: #555">
-													  	<i class="fa fa-bullseye"></i>
-													  	<?= ' ' .__('Points') ?>
+													<h1 style = "font-size: 1.5em; color: #555; font-weight:bold;">
+													  	<i class="fa fa-bolt"></i>&nbsp;
+													  	<?= __('Points') ?>
 													</h1>
 													<div class="large-6 medium-6 small-6 columns">
 														<h1 style = "font-size: 1.5em; color: #555"><?= __('Average') ?></h1>
@@ -758,7 +809,7 @@
 													</div>
 												  	<div class="large-6 medium-6 small-6 columns">
 												  		<h1 style = "font-size: 1.5em; color: #555"><?= __('Highest') ?></h1>
-													  	<h5 style = "font-size: 1.4em; color: #555"><?= $userLevels['maxP'].' ' ?><i class="fa fa-star"></i></h5>
+													  	<h5 style = "font-size: 1.4em; color: #555"><!-- <i class="fa fa-star"></i> &nbsp;--><?= $userLevels['maxP'].' ' ?></h5>
 												  	</div>
 												</div>
 											</div>	
@@ -769,11 +820,11 @@
 													<i class="fa fa-child fa-2x"></i>
 													<i class="fa fa-child fa-2x"></i>
 													<i class="fa fa-child fa-2x"></i>
-													<h1 style = "font-size: 1.5em; color: #555">
+													<h1 style = "font-size: 1.5em; color: #555; font-weight:bold;">
 												  		<?= __('Allies per user') ?>
 												  	</h1>
 												  	<h1 style = "font-size: 1.5em; color: #555">
-												  		<?= $allies_user?>
+												  		<?= round($allies_user) ?>
 												  	</h1>
 												  	<!-- <h5 style = "color: #555"><?= $allies_user ?></h5> -->
 												</div>
@@ -782,17 +833,21 @@
 										<li>
 											<div class = "yay">
 												<div class="row full-width-alternate no-margin text-center">
-													<h1 style = "font-size: 1.5em; color: #555">
-													  	<i class="fa fa-code"></i>
-													  	<?= ' ' .__('Evokation Teams') ?>
+													<h1 style = "font-size: 1.5em; color: #555; font-weight:bold;">
+													  	<i class="fa fa-file-text-o"></i>&nbsp;
+													  	<?= __('Evokation(s)') ?>
 													</h1>
-													<div class="large-6 medium-6 small-6 columns">
+													<div class="large-4 medium-4 small-4 columns">
 														<h1 style = "font-size: 1.5em; color: #555"><?= __('Created') ?></h1>
-													  	<h5 style = "font-size: 1.4em; color: #555"><?= sizeof($groups).' ' ?><i class="fa fa-edit"></i></h5>
+													  	<h5 style = "font-size: 1.4em; color: #555"><i class="fa fa-edit"></i>&nbsp;<?= sizeof($groups).' ' ?></h5>
 													</div>
-												  	<div class="large-6 medium-6 small-6 columns">
+												  	<div class="large-4 medium-4 small-4 columns">
+												  		<h1 style = "font-size: 1.5em; color: #555"><?= __('Pending') ?></h1>
+													  	<h5 style = "font-size: 1.4em; color: #555"><i class="fa fa-spinner"></i>&nbsp;<?= sizeof($pending_evokations).' ' ?></h5>
+												  	</div>
+												  	<div class="large-4 medium-4 small-4 columns">
 												  		<h1 style = "font-size: 1.5em; color: #555"><?= __('Approved') ?></h1>
-													  	<h5 style = "font-size: 1.4em; color: #555"><?= sizeof($approved_evokations).' ' ?><i class="fa fa-check"></i></h5>
+													  	<h5 style = "font-size: 1.4em; color: #555"><i class="fa fa-check"></i>&nbsp;<?= sizeof($approved_evokations).' ' ?></h5>
 												  	</div>
 												</div>
 											</div>
@@ -800,9 +855,9 @@
 										<li>
 											<div class = "yay">
 												<div class="row full-width-alternate no-margin text-center">
-													<h1 style = "font-size: 1.5em; color: #555">
-														<i class="fa fa-list-ul"></i>
-												  		<?=' '. __('Chosen Issues') ?>
+													<h1 style = "font-size: 1.5em; color: #555; font-weight:bold;">
+														<i class="fa fa-list-ul"></i>&nbsp;
+												  		<?= __('Chosen Issues') ?>
 												  	</h1>
 													<div id="piechart"></div>
 												</div>
@@ -815,7 +870,7 @@
 											  	<div class="row full-width-alternate no-margin">
 													<div class="small-12 large-centered columns text-align-center">
 														<i class="fa fa-globe fa-3x"></i>
-												  		<h1 style = "font-size: 1.5em; color: #555">
+												  		<h1 style = "font-size: 1.5em; color: #555; font-weight:bold;">
 												  			<?= __('Users around the world')?>
 												  		</h1>
 												  	</div>
@@ -859,6 +914,8 @@
 					</div>
 				</div>
 			</div>
+
+	  </div>
 	</div>
 </section>
 
@@ -872,7 +929,7 @@
 	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
 	// echo $this->Html->script("https://www.google.com/jsapi", array('inline' => false));
-	echo $this->Html->script('menu_height', array('inline' => false));
+	echo $this->Html->script('menu_height');
 	echo $this->Html->css('animate');
 	echo $this->Html->script('jquery.watable');
 
@@ -1516,11 +1573,11 @@
                 index: 1, //The order this column should appear in the table
                 type: "string", //The type. Possible are string, number, bool, date(in milliseconds).
                 friendly: "<?= strtoupper(__('Issue')) ?>",  //Name that will be used in header. Can also be any html as shown here.
-                format: "<a href='role.com' class='userId' target='_blank'>{0}</a>",  //Used to format the data anything you want. Use {0} as placeholder for the actual data.
+                format: "<a href='role.com' class='userId name' target='_blank'>{0}</a>",  //Used to format the data anything you want. Use {0} as placeholder for the actual data.
                 //unique: true,  //This is required if you want checkable rows, or to use the rowClicked callback. Be certain the values are really unique or weird things will happen.
                 sortOrder: "asc", //Data will initially be sorted by this column. Possible are "asc" or "desc"
                 tooltip: "<?= __('Each mission is related to an issue')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search missions by issue...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search Missions by Issue')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
                 //filter: "1..400" //Set initial filter.
             },
             name: {
@@ -1529,7 +1586,7 @@
                 friendly: "<?= strtoupper(__('Title')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find missions, edit or even delete them')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search missions by title...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search Missions by Title')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             }
         };
 
@@ -1573,9 +1630,9 @@
             var url2 = getCorrectURL("issues/view/");
             var doc = {
                 userRole: missionIssue(i-1),//"user",//GET ROLE OF USER
-                userRoleFormat: "<a href='"+ url2+ missionIssueId(i-1) +"' class='userId' target='_blank'>{0}</a>",
+                userRoleFormat: "<a href='"+ url2+ missionIssueId(i-1) +"' class='userId name' target='_blank'>{0}</a>",
                 name: missionName(i-1),
-                nameFormat: "<a href='" + url + missionId(i-1) +"/1' class='name' target='_blank'>{0}</a>:     " + missionButtons(i-1)
+                nameFormat: "<a href='" + url + missionId(i-1) +"/1' class='name' target='_blank'>{0}</a>" + missionButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1607,11 +1664,11 @@
                 ?>
                 friendly: '<?= $f ?>',
                   //Name that will be used in header. Can also be any html as shown here.
-                format: "<a href='role.com' class='userId' target='_blank'>{0}</a>",  //Used to format the data anything you want. Use {0} as placeholder for the actual data.
+                format: "<a href='role.com' class='userId name' target='_blank'>{0}</a>",  //Used to format the data anything you want. Use {0} as placeholder for the actual data.
                 //unique: true,  //This is required if you want checkable rows, or to use the rowClicked callback. Be certain the values are really unique or weird things will happen.
                 sortOrder: "asc", //Data will initially be sorted by this column. Possible are "asc" or "desc"
                 tooltip: "<?= __('Check and modify users role')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search users by role...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search Users by Role')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
                 //filter: "1..400" //Set initial filter.
             },
             name: {
@@ -1620,7 +1677,7 @@
                 friendly: "<?= strtoupper(__('User')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find users')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search users by name...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search Users by Name')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             }
         };
 
@@ -1697,7 +1754,7 @@
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
             var url = getCorrectURL("missions/view/");
             var strU = '"ShowUser-' + usersId[i-1] + '"';
-            var strRoleFormat = "<a href='#' onclick='document.getElementById(" + strU +").click();' class='userId'>{0}</a>";
+            var strRoleFormat = "<a href='#' onclick='document.getElementById(" + strU +").click();' class='userId name'>{0}</a>";
             var strMissionFormat = "<a href='" + url + usersMissionId[i-1] +"/1' class='name' target='_blank'>{0}</a>";//
             var urlU = getCorrectURL("users/dashboard/");
 
@@ -1710,7 +1767,7 @@
                 	}
                 ?>
                 name: usersName[i-1],
-                nameFormat: "<a href='" + urlU + usersId[i-1] +"' class='name' target='_blank'>{0}</a>"
+                nameFormat: "<a href='" + urlU + usersId[i-1] +"' class='name' target='_blank'>{0}</a>" + userButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1737,11 +1794,11 @@
                 index: 1, //The order this column should appear in the table
                 type: "string", //The type. Possible are string, number, bool, date(in milliseconds).
                 friendly: "<?= strtoupper(__('Organization')) ?>",  //Name that will be used in header. Can also be any html as shown here.
-                format: "<a href='role.com' class='userId' target='_blank'>{0}</a>",  //Used to format the data anything you want. Use {0} as placeholder for the actual data.
+                format: "<a href='role.com' class='userId name' target='_blank'>{0}</a>",  //Used to format the data anything you want. Use {0} as placeholder for the actual data.
                 //unique: true,  //This is required if you want checkable rows, or to use the rowClicked callback. Be certain the values are really unique or weird things will happen.
                 sortOrder: "asc", //Data will initially be sorted by this column. Possible are "asc" or "desc"
                 tooltip: "<?= __('Organization owner of this badge')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search badges by organizations...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search Badges by Organizations')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
                 //filter: "1..400" //Set initial filter.
             },
             name: {
@@ -1750,7 +1807,7 @@
                 friendly: "<?= strtoupper(__('Badge')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find Badges, edit or even delete them')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search for badges...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search for Badges')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             }
         };
 
@@ -1798,9 +1855,9 @@
             var url2 = getCorrectURL("badges/view/");
             var doc = {
                 userRole: orgsBadgeName[i-1],//"user",//GET ROLE OF USER
-                userRoleFormat: "<a href='" + url + orgsBadgeId[i-1] +"' class='userId' target='_blank'>{0}</a>",
+                userRoleFormat: "<a href='" + url + orgsBadgeId[i-1] +"' class='userId name' target='_blank'>{0}</a>",
                 name: badgesName[i-1],
-                nameFormat: "<a href='"+ url2 + badgesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + badgeButtons(i-1)
+                nameFormat: "<a href='"+ url2 + badgesId[i-1] +"/1' class='name' target='_blank'>{0}</a>" + badgeButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1829,7 +1886,7 @@
                 friendly: "<?= strtoupper(__('Organizations')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find Organizations, edit or even delete them')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search for organizations...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search for Organizations')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             },
         };
 
@@ -1862,7 +1919,7 @@
             var url = getCorrectURL("organizations/view/");
             var doc = {
                 name: orgsName[i-1],
-                nameFormat: "<a href='"+ url + orgsId[i-1] +"' class='name' target='_blank'>{0}</a>:     " + orgsButtons(i-1)
+                nameFormat: "<a href='"+ url + orgsId[i-1] +"' class='name' target='_blank'>{0}</a>" + orgsButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1891,7 +1948,7 @@
                 friendly: "<?= strtoupper(__('Issues')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find issues, edit or even delete them')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search for issue...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search for Issue')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             }
         };
 
@@ -1924,7 +1981,7 @@
             var url = getCorrectURL("issues/view/");
             var doc = {
                 name: issuesName[i-1],
-                nameFormat: "<a href='" + url + issuesId[i-1] +"/1' class='name' target='_blank'>{0}</a>:     " + issuesButtons(i-1)
+                nameFormat: "<a href='" + url + issuesId[i-1] +"/1' class='name' target='_blank'>{0}</a>" + issuesButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -1954,7 +2011,7 @@
                 friendly: "<?= strtoupper(__('Power Points')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('Find power points in Evoke')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search for power point...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search for Power Point')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             }
         };
 
@@ -1987,7 +2044,7 @@
             var url = getCorrectURL("#");
             var doc = {
                 name: ppName[i-1],
-                nameFormat: "<a href='#' class='name' target='_blank'>{0}</a>:     " + ppButtons(i-1)
+                nameFormat: "<a href='#' class='name' target='_blank'>{0}</a>" + ppButtons(i-1)
             };
             rows.push(doc);
             i++;
@@ -2024,7 +2081,7 @@
                 friendly: "<?= strtoupper(__('Status')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('By status')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search evokations by status...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search Evokations by Status')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             },
             group: {
             	index: 2,
@@ -2032,7 +2089,7 @@
                 friendly: "<?= strtoupper(__('Group Title')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('By group')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search evokations by group...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search Evokations by Group')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             },
             name: {
                 index: 3,
@@ -2040,7 +2097,7 @@
                 friendly: "<?= strtoupper(__('Evokation Title')) ?>",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('By title')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search for evokations by title...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search for Evokations by Title')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             }
         };
 
@@ -2091,6 +2148,7 @@
             //We leave some fields intentionally undefined, so you can see how sorting/filtering works with these.
             var urlG = getCorrectURL("groups/view/");
             var urlE = getCorrectURL("evokations/view/");
+            var classStatus = '';
 
             if(eStatus[i-1] == 1) {
             	var str = "Approved";
@@ -2103,7 +2161,7 @@
             var doc = {
             	
             	status: str,
-            	statusFormat: "<a href='#' onclick='document.getElementById(" + strE +").click();' class='userId'>{0}</a>",
+            	statusFormat: "<a href='#' onclick='document.getElementById(" + strE +").click();' class='userId name Status " + str +"'>{0}</a>",
             	group: gName[i-1],
                 groupFormat: "<a href='"+ urlG + gId[i-1] + "' class='name' target='_blank'>{0}</a>",
                 name: eName[i-1],
@@ -2137,7 +2195,7 @@
                 friendly: "Created by",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('By creator')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search by creator...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search by Creator')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             },
             trigger: {
             	index: 2,
@@ -2145,7 +2203,7 @@
                 friendly: "Trigger Event",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('By event')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search by event...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search by Event')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             },
             name: {
                 index: 3,
@@ -2153,7 +2211,7 @@
                 friendly: "Notification Title",
                 format: "<a href='{0}' class='name' target='_blank'>{0}</a>",
                 tooltip: "<?= __('By title')?>", //Show some additional info about column
-                placeHolder: "<?= __('Search by title...')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
+                placeHolder: "<?= __('Search by Title')?>" //Overrides default placeholder and placeholder specified in data types(row 34).
             }
         };
 
@@ -2192,18 +2250,31 @@
 
             //var strE = '"ShowEvokationStatus-' + eId[i-1] + '"';
             strN = '"ShowNot-'+notId[i-1] + '"';
+            var strEN = '"EditNot-'+notId[i-1] + '"';
 
             var doc = {
             	
             	admin: notUser[i-1],//user name
-            	adminFormat: "<a href='#' class='userId'>{0}</a>",
+            	adminFormat: "<a href='#' class='userId name'>{0}</a>",
             	trigger: "user log in",
                 triggerFormat: "<a href='#' class='name' target='_blank'>{0}</a>",
                 name: notTitle[i-1],//notification title
-                nameFormat: "<a href='#' onclick='document.getElementById(" + strN +").click();' class='name' >{0}</a>:  " + notButtons(i-1)
+                nameFormat: "<a href='#' onclick='document.getElementById(" + strN +").click();' class='name' >{0}</a><a href='#' onclick='document.getElementById(" + strEN +").click();'><i class='fa fa-pencil'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;</a>" + notButtons(i-1)
             };
             rows.push(doc);
             i++;
+
+            // strEN = '"EditNot-'+notId[i-1] + '"';
+
+            // var doc = {
+            	
+            // 	admin: notUser[i-1],//user name
+            // 	adminFormat: "<a href='#' class='userId name'>{0}</a>",
+            //     name: notTitle[i-1],//notification title
+            //     nameFormat: "<a href='#' onclick='document.getElementById(" + strEN +").click();' class='name' >de</a>" + notButtons(i-1)
+            // };
+            // rows.push(doc);
+            // i++;
         }
 
         //Create the returning object. Besides cols and rows, you can also pass any other object you would need later on.
@@ -2275,37 +2346,43 @@
     	var url = getCorrectURL("badges/edit/");
     	var str = "'deleteBadge" + badgesId[i] + "'";
     	//<a href="'+ url + badgesId[i] +'" >Edit</a> | 
-    	return '<a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="'+ url + badgesId[i] +'" ><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="document.getElementById(' + str +').click();" ><i class="fa fa-times-circle"></i></a>';
     }
 
     function notButtons(i) {
-    	//var url = getCorrectURL("badges/edit/");
+    	var url = getCorrectURL(" ");
     	var str = "'deleteNotification" + notId[i] + "'";
-    	return '<a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="#" onclick="document.getElementById(' + str +').click();" ><i class="fa fa-times-circle"></i></a>';
     }
 
 	function orgsButtons(i) {
     	var url = getCorrectURL("organizations/edit/");
     	str = "'orgsDelete" + orgsId[i] + "'";
-    	return '<a href="'+ url + orgsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="'+ url + orgsId[i] +'" ><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="document.getElementById(' + str +').click();" ><i class="fa fa-times-circle"></i></a>';
     }
 
 	function ppButtons(i) {
-    	var url = getCorrectURL("");
+    	var url = getCorrectURL("pp/edit/");
     	var str = "'powerpointsDelete" + ppId[i] + "'";
-    	return '<a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="'+ url + ppId[i] +'" ><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="document.getElementById(' + str +').click();" ><i class="fa fa-times-circle"></i></a>';
     }
 
     function issuesButtons(i) {
     	var url = getCorrectURL("issues/edit/");
     	var str = "'issuesDelete" + issuesId[i] + "'";
-    	return '<a href="'+ url + issuesId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="'+ url + issuesId[i] +'" ><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="document.getElementById(' + str +').click();" ><i class="fa fa-times-circle"></i></a>';
     }
 
     function missionButtons(i) {
     	var url = getCorrectURL("panels/edit_mission/");
     	var str = "'deleteMission" + missionsId[i] + "'";
-    	return '<a href="' + url  + missionsId[i] +'" >Edit</a> | <a href="#" onclick="document.getElementById(' + str +').click();" >Delete</a>';
+    	return '<a href="' + url  + missionsId[i] +'" ><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="document.getElementById(' + str +').click();" ><i class="fa fa-times-circle"></i></a>';
+    }
+
+    function userButtons(i) {
+    	var url = getCorrectURL("panels/edit_user/");
+    	var str = "'deleteUser" + usersId[i] + "'";
+    	return '<a href="' + url  + usersId[i] +'" class = "Status"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="document.getElementById(' + str +').click();" ><i class="fa fa-times-circle"></i></a>';
     }
 
     function getCorrectURL(afterHome){

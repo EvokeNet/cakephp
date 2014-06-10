@@ -135,6 +135,10 @@ button, div, p, span, a,
 	padding-top: 0.3em;
 }
 
+.evoke .padding.top-05 {
+	padding-top: 0.5em;
+}
+
 .evoke .padding.top-1 {
 	padding-top: 1em;
 }
@@ -1482,6 +1486,10 @@ button, div, p, span, a,
 }
 
 .evoke.no-padding{
+	padding:0;
+}
+
+.evoke .no-padding{
 	padding:0;
 }
 

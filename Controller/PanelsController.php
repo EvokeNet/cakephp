@@ -1436,6 +1436,22 @@ class PanelsController extends AppController {
 		return $this->redirect(array('action' => 'index', 'media'));
 	}
 
+/*
+* addNotification method
+* inserts notifications to be display as lightboxes to users as they, for instance, log in
+*/
+
+	public function editNotification($id = null) {
+		if($id == null)
+			$this->redirect($this->referer());
+		
+		$this->AdminNotification->id = $id;
+		
+		if($this->AdminNotification->save($this->request->data))
+			return $this->redirect(array('action' => 'index', 'media'));
+		else
+			return $this->redirect($this->referer());
+	}
 
 /*
 * deleteNotification method
