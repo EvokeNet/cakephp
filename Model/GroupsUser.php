@@ -8,7 +8,7 @@ App::uses('AppModel', 'Model');
  */
 class GroupsUser extends AppModel {
 
-
+	var $useTable = 'groups_users';
 	public function getGroupAndUsers($group_id = null) {
 		return $this->Group->find('first', array(
 			'conditions' => array(
