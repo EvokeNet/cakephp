@@ -37,15 +37,26 @@ class ChatConversationsController extends AppController {
 		//getting all evokation groups i am in
 		$this->loadModel('GroupsUser');
 		$this->GroupsUser->recursive = 2;
-		$groups = $this->GroupsUser->find('all', array(
+		$groupsuser = $this->GroupsUser->find('all', array(
 			'conditions' => array(
 				'GroupsUser.user_id' => $this->getUserId()
 			)
 		));
 
-		debug(get_class($this->GroupsUser));
+		$opt = array();
+		foreach ($groupsuser as $groupuser) {
+			array_push($opt, array('Group.id' => $groupuser['GroupsUser']['group_id']));
+		}
 
-		debug($groups);
+		$this->loadModel('Group');
+		$groups = $this->Group->find('all', array(
+			'conditions' => array(
+				'OR' => $opt
+			)
+		));
+		// debug(get_class($this->GroupsUser));
+
+
 		$this->User->recursive = 0;
 		$users = $this->User->find('all', array(
 			'conditions' => array(
@@ -53,12 +64,14 @@ class ChatConversationsController extends AppController {
 			)
 		));		
 
+		$friends = array();
 		$others = array(); // all users except my allies
 		foreach ($users as $usr) {
 			$is_friend = false;
 			foreach($allies as $ally) {
 				if(array_search($ally['UserFriend']['friend_id'], $usr['User'])) {
 				   	$is_friend = true;
+				   	$friends[] = $usr;
 				    break;
 				}
 			}
@@ -68,9 +81,21 @@ class ChatConversationsController extends AppController {
 		}
 
 
-
-		$this->set(compact('user', 'others', 'allies'));
+		$this->set(compact('user', 'others', 'friends', 'groups'));
 	}
+
+
+
+	public function getUserChat($user_id = null) {
+		$this->autoRender = false; // We don't render a view in this example
+    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+
+    	$chats = $this->ChatConversation->findUsersChat($this->getUserId(), $user_id);
+
+		// debug($mychatmemberships);
+		return debug($chats);;
+	}
+
 
 /**
  * view method
