@@ -17,8 +17,6 @@ class ChatConversation extends AppModel {
 	public $actAs = array('Containable');
 
 	public function findUsersChat($alfa_id, $beta_id) {
-		
-
 		//find all chats by these users
 		$tmp = $this->find('all', array(
 			'contain' => array(
@@ -49,7 +47,13 @@ class ChatConversation extends AppModel {
 		}
 
 		//couldnt find their chat, create a new one!
+		$insert['Member'][0]['user_id'] = $alfa_id;
+		$insert['Member'][1]['user_id'] = $beta_id;
+		$this->create();
+		$this->saveAll($insert);
 
+		$data = $this->find('first', array('conditions' => array('ChatConversation.id' => $this->id)));
+		return $data;
 	}
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

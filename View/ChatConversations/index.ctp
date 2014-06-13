@@ -38,14 +38,15 @@
 
 
 			<div>
-
+				<input type='textarea' id='message'>
+				<button class="button large" id="sendMessage"><?=__('Send')?></button>
 			</div>
 		</div>
 
 		<!-- <div class="medium-1 end columns"></div> -->
 
 	</div>
-
+	<meta name="chat" content="-1">
 </section>
 
 <?php
@@ -63,6 +64,16 @@
 				 '});';
 		}
 	?>
+
+	$('#sendMessage').click(function () {
+		//sending message to server
+		var content = $('#message').val();
+		sendMessage(content);
+
+
+		//erase message input field
+		$('#message').val("");
+	});
 
 	function throttle(fn, threshhold, scope) {
 	  	threshhold || (threshhold = 250);
@@ -87,7 +98,24 @@
 	  	};
 	}
 
+	function sendMessage(message){
+		$.ajax({
+		    type: 'post',
+		    url: 'chatConversations/sendMessage',
+		    data: {value:message, chat:currentChat},
+		    beforeSend: function(xhr) {
+		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		    },
+		    success: function(response) {
+		        console.log(response);
+		    },
+		    error: function(e) {
+		        console.log(e);
+		    }
+		});
+	}
 
+	var currentChat = -1;
 	function getUserChat(userid){
 		$.ajax({
 		    type: 'get',
@@ -97,7 +125,14 @@
 		    },
 		    success: function(response) {
 		        console.log(response);
-		        alert(response);
+		        var chatId = response.substring(response.search("metaId-") + 7, response.search("-metaId"));
+		        currentChat = chatId;
+		        // console.log(chatId);
+		        var activity = response.substring(response.search("metaTime-") + 9, response.search("-metaTime"));
+		        // console.log(activity);
+		        var content = response.substring(response.search("-metaTime") + 9);
+		        // console.log(content);
+
 		    },
 		    error: function(e) {
 		        console.log(e);

@@ -87,17 +87,46 @@ class ChatConversationsController extends AppController {
 
 
 	public function getUserChat($user_id = null) {
-		// $this->autoRender = false; // We don't render a view in this example
+		$this->autoRender = false; // We don't render a view in this example
   //   	$this->request->onlyAllow('ajax'); // No direct access via browser URL
 
+		//getting the chat between these users
      	$chat = $this->ChatConversation->findUsersChat($this->getUserId(), $user_id);
 
-		debug($chat);
+     	$chatId = 'metaId-'.$chat['ChatConversation']['id'].'-metaId';
+     	$messages = '';
+     	
+     	foreach ($chat['Member'] as $member) {
+     		if($member['user_id'] == $this->getUserId()) {
+     			$lastActivity = 'metaTime-'.$member['modified'].'-metaTime';
 
+     			//set new last activity
+     			$insertAct['Member']['id'] = $member['id'];
+     			$this->ChatConversation->Member->save($insertAct);
+     		}
+     	}
+     	foreach ($chat['Message'] as $msg) {
+     		$messages .= '<div><span class="author">'. $msg['author'].'</span><span class="msg">'.$msg['content'].'</span></div>';
+     	}
 
+		$result = $chatId . $lastActivity. $messages;
+		return($result);
 	}
 
 
+	public function sendMessage($content = null) {
+		$this->autoRender = false; // We don't render a view in this example
+    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+		$content = $this->request->data['value'];
+		$chat_id = $this->request->data['chat'];
+
+		$insert['Message']['chat_conversation_id'] = $chat_id;
+		$insert['Message']['content'] = $content;
+		$insert['Message']['author'] = $this->getUserName();
+		// $insert['Message']['member_id']
+		$this->ChatConversation->Message->save($insert);
+		return $content;
+	}
 /**
  * view method
  *
