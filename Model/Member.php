@@ -9,6 +9,7 @@ App::uses('AppModel', 'Model');
  */
 class Member extends AppModel {
 
+	public $actAs = array('Containable');
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

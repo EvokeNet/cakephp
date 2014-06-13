@@ -87,13 +87,14 @@ class ChatConversationsController extends AppController {
 
 
 	public function getUserChat($user_id = null) {
-		$this->autoRender = false; // We don't render a view in this example
-    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+		// $this->autoRender = false; // We don't render a view in this example
+  //   	$this->request->onlyAllow('ajax'); // No direct access via browser URL
 
-    	$chats = $this->ChatConversation->findUsersChat($this->getUserId(), $user_id);
+     	$chat = $this->ChatConversation->findUsersChat($this->getUserId(), $user_id);
 
-		// debug($mychatmemberships);
-		return debug($chats);;
+		debug($chat);
+
+
 	}
 
 

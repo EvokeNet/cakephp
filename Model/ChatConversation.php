@@ -14,30 +14,42 @@ class ChatConversation extends AppModel {
  * @var string
  */
 	public $displayField = 'title';
-
-
-	public function findAllUserChats($user_id) {
-		$this->bindModel(array(
-            'hasMany' => array(
-	            'Member' => array(
-	                'conditions' =>array(
-	                	'Member.user_id' => $user_id
-	                )
-	            )
-	        )
-        ));
-        return $this->find('all');
-	}
+	public $actAs = array('Containable');
 
 	public function findUsersChat($alfa_id, $beta_id) {
-		$alfaChats = $this->findUsersChat($alfa_id);
-		$betaChats = $this->findUsersChat($beta_id);
+		
 
-		foreach ($alfaChats as $key => $value) {
-			if($alfaChats['ChatConversation']['custom'] == 0) {
-				//check and return the same chat
+		//find all chats by these users
+		$tmp = $this->find('all', array(
+			'contain' => array(
+			    'Member' => array(
+			        'conditions' => array(
+			        	'OR' => array(
+				        	'Member.user_id =' => $alfa_id,
+				        	'Member.user_id =' => $beta_id
+				        )
+			        )
+			    )
+			),
+			'conditions' => array(
+				'ChatConversation.custom' => 0
+			)
+		));
+
+		//get the correct chat
+		foreach ($tmp as $chat) {
+			if(sizeof($chat['Member']) != 2) continue;
+
+			$doubleOK = 0;
+			foreach ($chat['Member'] as $member) {
+				if($member['user_id'] == $alfa_id || $member['user_id'] == $beta_id) $doubleOK++;
 			}
+
+			if($doubleOK == 2) return $chat;
 		}
+
+		//couldnt find their chat, create a new one!
+
 	}
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
