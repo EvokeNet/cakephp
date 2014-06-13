@@ -106,7 +106,7 @@ class ChatConversationsController extends AppController {
      		}
      	}
      	foreach ($chat['Message'] as $msg) {
-     		$messages .= '<div><span class="author">'. $msg['author'].'</span><span class="msg">'.$msg['content'].'</span></div>';
+     		$messages .= '<div><span class="author">'. $msg['author'].':&nbsp;</span><span class="msg">'.$msg['content'].'</span></div>';
      	}
 
 		$result = $chatId . $lastActivity. $messages;
@@ -123,10 +123,38 @@ class ChatConversationsController extends AppController {
 		$insert['Message']['chat_conversation_id'] = $chat_id;
 		$insert['Message']['content'] = $content;
 		$insert['Message']['author'] = $this->getUserName();
+		$insert['ChatConversation']['id'] = $chat_id;
 		// $insert['Message']['member_id']
-		$this->ChatConversation->Message->save($insert);
-		return $content;
+		$this->ChatConversation->saveAll($insert);
+
+		$result = '<div><span class="author">'. $this->getUserName().':&nbsp;</span><span class="msg">'.$content.'</span></div>';
+		return $result;
 	}
+
+	public function receiveMessages($content = null) {
+		// $this->autoRender = false; // We don't render a view in this example
+    	// $this->request->onlyAllow('ajax'); // No direct access via browser URL
+
+    	$chats = $this->ChatConversation->findNewMessages($this->getUserId());
+
+    	$tmp = "";
+    	foreach ($chats as $chat) {
+    		$tmp .= "chat: ".$chat['ChatConversation']['modified'].' - member: ';
+    		foreach ($chat['Member'] as $member) {
+    			if($member['user_id'] == $this->getUserId()){
+    				$tmp .= $member['modified'].' =>>>> ';
+    				if($member['modified'] < $chat['ChatConversation']['modified']) {
+    					$tmp .= 'true;;;;;;;;;;;';
+    				} else {
+    					$tmp .= 'false;;;;;;;;;;;';
+    				}
+    			}
+    		}
+    	}
+    	debug($chats);
+    	debug($tmp);
+    	return $tmp;
+    }
 /**
  * view method
  *

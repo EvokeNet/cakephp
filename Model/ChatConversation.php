@@ -56,6 +56,37 @@ class ChatConversation extends AppModel {
 		return $data;
 	}
 
+	public function findNewMessages($user_id) {
+		//find all chats by these users
+		$tmp = $this->find('all', array(
+			'contain' => array(
+			    'Member' => array(
+			        'conditions' => array(
+			        	'Member.user_id =' => $user_id,
+			        	'Member.modified < ChatConversation.modified'
+			        )
+			    ),
+			    'Message' => array(
+			    	'conditions' => array(
+			        	'Member.modified < Message.created'
+			        )
+			    )
+			),
+			'conditions' => array(
+				// 'ChatConversation.custom' => 0
+			)
+		));
+
+		$latestChats = array();
+		foreach ($tmp as $chat) {
+			foreach ($chat['Member'] as $member) {
+				if($member['user_id'] == $user_id && $chat['ChatConversation']['modified'] > $member['modified'])
+					$latestChats[] = $chat;
+			}
+		}
+		return $latestChats;
+	}
+
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**

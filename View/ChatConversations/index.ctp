@@ -23,24 +23,28 @@
 			<h3 class = "margin bottom-1"> <?= strtoupper(__('Messages')) ?> </h3>
 
 			<div class = "evoke black-bg badges-bg">
-				<ul>
-					<?php foreach ($friends as $usr) : ?>
-						<li>
-							<div id="chatWithFriend<?=$usr['User']['id']?>">
-								<h3>
-									<?= $usr['User']['name'] ?>
-								</h3>
-							</div>
-						</li>
-					<?php endforeach; ?>
-				</ul>
+				<div class="small-12 medium-12 large-12 columns margin top-2">
+					<div class="small-4 medium-4 large-4 columns margin top-2">
+						<ul>
+							<?php foreach ($friends as $usr) : ?>
+								<li>
+									<div id="chatWithFriend<?=$usr['User']['id']?>">
+										<h3>
+											<?= $usr['User']['name'] ?>
+										</h3>
+									</div>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+					<div class="small-8 medium-8 large-8 columns margin top-2">
+						<div id='container' style="min-width:10vw;min-height:10vw;background-color:white"></div>
+						<input type='textarea' id='message'>
+						<button class="button large" id="sendMessage"><?=__('Send')?></button>
+					</div>		
+				</div>
 			</div>
 
-
-			<div>
-				<input type='textarea' id='message'>
-				<button class="button large" id="sendMessage"><?=__('Send')?></button>
-			</div>
 		</div>
 
 		<!-- <div class="medium-1 end columns"></div> -->
@@ -56,7 +60,8 @@
 
 <script type="text/javascript" charset="utf-8">
 	$(document).ready(function(){});
-	
+	var currentChat = -1;
+	//loading click events based on allies
 	<?php 
 		foreach ($friends as $usr) {
 			echo '$("#chatWithFriend'. $usr['User']['id'] .'").click(function (){'.
@@ -65,6 +70,7 @@
 		}
 	?>
 
+	//button submit message
 	$('#sendMessage').click(function () {
 		//sending message to server
 		var content = $('#message').val();
@@ -75,29 +81,10 @@
 		$('#message').val("");
 	});
 
-	function throttle(fn, threshhold, scope) {
-	  	threshhold || (threshhold = 250);
-	  	var last,
-	    	deferTimer;
-	  	return function () {
-	    	var context = scope || this;
+	//check for new messages every 5 secs
+	setInterval(receiveMessages, 5000);
 
-	    	var now = +new Date,
-	    	    args = arguments;
-	    	if (last && now < last + threshhold) {
-	    	  // hold on to it
-	    		clearTimeout(deferTimer);
-	    		deferTimer = setTimeout(function () {
-	    	    	last = now;
-	        		fn.apply(context, args);
-	      		}, threshhold);
-	    	} else {
-	    		last = now;
-	      		fn.apply(context, args);
-	    	}
-	  	};
-	}
-
+	//send message in a chat ajax
 	function sendMessage(message){
 		$.ajax({
 		    type: 'post',
@@ -107,7 +94,9 @@
 		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		    },
 		    success: function(response) {
-		        console.log(response);
+		        // console.log(response);
+		        $('#container').append(response);
+
 		    },
 		    error: function(e) {
 		        console.log(e);
@@ -115,7 +104,25 @@
 		});
 	}
 
-	var currentChat = -1;
+	//receive messages from all chats
+	function receiveMessages(){
+		$.ajax({
+		    type: 'get',
+		    url: 'chatConversations/receiveMessages',
+		    beforeSend: function(xhr) {
+		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		    },
+		    success: function(response) {
+		        console.log(response);
+		        // $('#container').append(response);
+		    },
+		    error: function(e) {
+		        console.log(e);
+		    }
+		});
+	}
+
+	//find chat and all messages of users
 	function getUserChat(userid){
 		$.ajax({
 		    type: 'get',
@@ -124,14 +131,17 @@
 		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		    },
 		    success: function(response) {
-		        console.log(response);
+		        // console.log(response);
 		        var chatId = response.substring(response.search("metaId-") + 7, response.search("-metaId"));
+		        if(chatId == currentChat) return;
 		        currentChat = chatId;
 		        // console.log(chatId);
 		        var activity = response.substring(response.search("metaTime-") + 9, response.search("-metaTime"));
 		        // console.log(activity);
 		        var content = response.substring(response.search("-metaTime") + 9);
 		        // console.log(content);
+
+		        $('#container').html(content);
 
 		    },
 		    error: function(e) {
