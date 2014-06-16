@@ -136,30 +136,39 @@ class ChatConversationsController extends AppController {
 
 	public function receiveMessages($content = null) {
 		$this->autoRender = false; // We don't render a view in this example
-    	// $this->request->onlyAllow('ajax'); // No direct access via browser URL
+    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
 
 		$current = $this->request->data['current'];
     	$chats = $this->ChatConversation->findNewMessages($this->getUserId(), $current);
 
-    	$tmp = "";
+    	$allyChats = "";
+    	$customChats = "";
     	foreach ($chats as $chat) {
-    		$tmp .= "chat: ".$chat['ChatConversation']['modified'].' - member: ';
+    		$ok = false;
+    		$other = 0;
     		foreach ($chat['Member'] as $member) {
     			if($member['user_id'] == $this->getUserId()){
     				if($member['modified'] < $chat['ChatConversation']['modified']) {
-    					$tmp .= 'alert';
+    					$ok = true;
     				}
+    			} else {
+    				$other = $member['user_id'];
     			}
     		}
+    		
+    		if($chat['ChatConversation']['custom'] != 0)
+    			$customChats .= $chat['ChatConversation']['id'].';';
+    		else
+    			$allyChats .= $other.';';
     	}
-    	// debug($chats);
-    	// debug($tmp);
-    	return $tmp;
+
+    	$result = $allyChats . '<>' . $customChats;
+    	return $result;
     }
 
     public function receiveCurrent(){
     	$this->autoRender = false; // We don't render a view in this example
-    	// $this->request->onlyAllow('ajax'); // No direct access via browser URL
+    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
     	$current = $this->request->data['current'];
     	$userid = $this->getUserId();
     	$chat = $this->ChatConversation->findChatNewMessages($userid, $current);

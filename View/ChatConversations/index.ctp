@@ -29,9 +29,9 @@
 							<?php foreach ($friends as $usr) : ?>
 								<li>
 									<div id="chatWithFriend<?=$usr['User']['id']?>">
-										<h3>
+										<h4 style="color:white">
 											<?= $usr['User']['name'] ?>
-										</h3>
+										</h4>
 									</div>
 								</li>
 							<?php endforeach; ?>
@@ -82,7 +82,7 @@
 	});
 
 	//check for new messages every 5 secs
-	// setInterval(receiveMessages, 5000);
+	setInterval(receiveMessages, 5000);
 
 	//check for new messages from current chat every 1.5 secs
 	setInterval(receiveCurrent, 1500);
@@ -117,6 +117,18 @@
 		    },
 		    success: function(response) {
 		        console.log(response);
+		        //response consists of a string with the id's of the chats with new messages, separated by ';'!
+		        // before <> are the ally chat notifications, after it are the custom chats
+		        var allyIds = response.substring(0, response.search("<>"));
+		        // console.log(allyIds);
+		        var otherIds = response.substring(response.search("<>")+2);
+		        var ids = allyIds.split(";");
+		        for (i = 0; i < ids.length; i++) { 
+		        	if(ids[i] == "") continue;
+		        	var st = "#chatWithFriend"+ids[i]+" h4";
+					$(st).css( "color", "red" );
+					// console.log(ids[i]+" got red");
+				}
 		        // $('#container').append(response);
 		    },
 		    error: function(e) {
@@ -136,8 +148,9 @@
 		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		    },
 		    success: function(response) {
-		        console.log(response);
-		        $('#container').append(response);
+		        // console.log(response);
+		        if(response != "")
+		        	$('#container').append(response);
 		    },
 		    error: function(e) {
 		        console.log(e);
@@ -154,6 +167,10 @@
 		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		    },
 		    success: function(response) {
+		        
+		    	var st = "#chatWithFriend"+userid+" h4";
+				$(st).css( "color", "white" );
+
 		        // console.log(response);
 		        var chatId = response.substring(response.search("metaId-") + 7, response.search("-metaId"));
 		        if(chatId == currentChat) return;
