@@ -106,10 +106,16 @@ class ChatConversationsController extends AppController {
      			$this->ChatConversation->Member->save($insertAct);
      		}
      	}
+     	$ultimo = end($chat['Message']);
      	foreach ($chat['Message'] as $msg) {
-     		$messages .= '<div><span class="author">'. $msg['author'].':&nbsp;</span><span class="msg">'.$msg['content'].'</span></div>';
+     		if($ultimo == $msg)
+     			$messages .= '<div class="last"><span class="author">'. $msg['author'].':&nbsp;</span><span class="msg">'.$msg['content'].'</span></div>';
+     		else 
+     			$messages .= '<div><span class="author">'. $msg['author'].':&nbsp;</span><span class="msg">'.$msg['content'].'</span></div>';
      	}
 
+     	if($messages=='')
+     		$messages='<div class="last"></div>';
 		$result = $chatId . $lastActivity. $messages;
 		return($result);
 	}
