@@ -1,0 +1,1 @@
+ALTER TABLE  `messages` CHANGE  `member_id`  `user_id` INT( 16 ) UNSIGNED NOT NULL

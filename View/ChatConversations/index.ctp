@@ -82,7 +82,10 @@
 	});
 
 	//check for new messages every 5 secs
-	setInterval(receiveMessages, 5000);
+	// setInterval(receiveMessages, 5000);
+
+	//check for new messages from current chat every 1.5 secs
+	setInterval(receiveCurrent, 1500);
 
 	//send message in a chat ajax
 	function sendMessage(message){
@@ -96,7 +99,6 @@
 		    success: function(response) {
 		        // console.log(response);
 		        $('#container').append(response);
-
 		    },
 		    error: function(e) {
 		        console.log(e);
@@ -107,14 +109,35 @@
 	//receive messages from all chats
 	function receiveMessages(){
 		$.ajax({
-		    type: 'get',
+		    type: 'post',
 		    url: 'chatConversations/receiveMessages',
+		    data: {current: currentChat},
 		    beforeSend: function(xhr) {
 		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		    },
 		    success: function(response) {
 		        console.log(response);
 		        // $('#container').append(response);
+		    },
+		    error: function(e) {
+		        console.log(e);
+		    }
+		});
+	}
+
+	//receive messages from current chats
+	function receiveCurrent(){
+		if(currentChat == -1) return;
+		$.ajax({
+		    type: 'post',
+		    url: 'chatConversations/receiveCurrent',
+		    data: {current: currentChat},
+		    beforeSend: function(xhr) {
+		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		    },
+		    success: function(response) {
+		        console.log(response);
+		        $('#container').append(response);
 		    },
 		    error: function(e) {
 		        console.log(e);

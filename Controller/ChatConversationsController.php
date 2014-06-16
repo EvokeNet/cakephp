@@ -89,6 +89,7 @@ class ChatConversationsController extends AppController {
 	public function getUserChat($user_id = null) {
 		$this->autoRender = false; // We don't render a view in this example
   //   	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+		// return "as";
 
 		//getting the chat between these users
      	$chat = $this->ChatConversation->findUsersChat($this->getUserId(), $user_id);
@@ -114,7 +115,7 @@ class ChatConversationsController extends AppController {
 	}
 
 
-	public function sendMessage($content = null) {
+	public function sendMessage() {
 		$this->autoRender = false; // We don't render a view in this example
     	$this->request->onlyAllow('ajax'); // No direct access via browser URL
 		$content = $this->request->data['value'];
@@ -123,38 +124,73 @@ class ChatConversationsController extends AppController {
 		$insert['Message']['chat_conversation_id'] = $chat_id;
 		$insert['Message']['content'] = $content;
 		$insert['Message']['author'] = $this->getUserName();
-		$insert['ChatConversation']['id'] = $chat_id;
-		// $insert['Message']['member_id']
-		$this->ChatConversation->saveAll($insert);
-
-		$result = '<div><span class="author">'. $this->getUserName().':&nbsp;</span><span class="msg">'.$content.'</span></div>';
-		return $result;
+		$insertC['ChatConversation']['id'] = $chat_id;
+		$insert['Message']['user_id'] = $this->getUserId();
+		if($this->ChatConversation->save($insertC) && $this->ChatConversation->Message->save($insert)) {
+			$result = '<div><span class="author">'. $this->getUserName().':&nbsp;</span><span class="msg">'.$content.'</span></div>';
+			return $result;
+		} else {
+			return '<div><span class="error">Problem sending message!</span></div>';
+		}
 	}
 
 	public function receiveMessages($content = null) {
-		// $this->autoRender = false; // We don't render a view in this example
+		$this->autoRender = false; // We don't render a view in this example
     	// $this->request->onlyAllow('ajax'); // No direct access via browser URL
 
-    	$chats = $this->ChatConversation->findNewMessages($this->getUserId());
+		$current = $this->request->data['current'];
+    	$chats = $this->ChatConversation->findNewMessages($this->getUserId(), $current);
 
     	$tmp = "";
     	foreach ($chats as $chat) {
     		$tmp .= "chat: ".$chat['ChatConversation']['modified'].' - member: ';
     		foreach ($chat['Member'] as $member) {
     			if($member['user_id'] == $this->getUserId()){
-    				$tmp .= $member['modified'].' =>>>> ';
     				if($member['modified'] < $chat['ChatConversation']['modified']) {
-    					$tmp .= 'true;;;;;;;;;;;';
-    				} else {
-    					$tmp .= 'false;;;;;;;;;;;';
+    					$tmp .= 'alert';
     				}
     			}
     		}
     	}
-    	debug($chats);
-    	debug($tmp);
+    	// debug($chats);
+    	// debug($tmp);
     	return $tmp;
     }
+
+    public function receiveCurrent(){
+    	$this->autoRender = false; // We don't render a view in this example
+    	// $this->request->onlyAllow('ajax'); // No direct access via browser URL
+    	$current = $this->request->data['current'];
+    	$userid = $this->getUserId();
+    	$chat = $this->ChatConversation->findChatNewMessages($userid, $current);
+
+    	if(!isset($chat['Member'])) return;
+
+    	$ok = false;
+    	foreach ($chat['Member'] as $member) {
+    		if($member['user_id'] == $this->getUserId()){
+    			if($member['modified'] < $chat['ChatConversation']['modified']) {
+    				$ok = true;
+    				$mod = $member['modified'];
+
+			     	//set new last activity
+			     	$insertAct['Member']['id'] = $member['id'];
+			     	$this->ChatConversation->Member->save($insertAct);
+    			}
+    		}
+    	}
+
+    	if(!$ok) return "";
+    	$messages = "";
+    	foreach ($chat['Message'] as $msg) {
+    		if($mod < $msg['created'] && $msg['user_id'] != $this->getUserId()) {
+    			$messages .= '<div><span class="author">'.$msg['author'].':&nbsp;</span><span class="msg">'. $msg['content'].'</span></div>';
+    		}
+    	}
+    	return $messages;
+
+    }
+
 /**
  * view method
  *

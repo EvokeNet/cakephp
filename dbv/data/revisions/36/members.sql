@@ -1,0 +1,1 @@
+ALTER TABLE  `members` CHANGE  `last_activity`  `modified` DATETIME NULL DEFAULT NULL, ALTER TABLE  `members` ADD  `created` DATETIME NULL DEFAULT NULL AFTER  `user_id`
