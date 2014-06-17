@@ -1054,6 +1054,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function leaderboard() {
+		ini_set('memory_limit', '256M'); // emergencial measure
 		$userid = $this->getUserId();
 
 		$username = explode(' ', $this->getUserName());
