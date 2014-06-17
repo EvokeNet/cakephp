@@ -70,7 +70,7 @@
 ?>
 
 <script type="text/javascript" charset="utf-8">
-	$(document).ready(function(){});
+	$(document).ready(function(){
 	var currentChat = -1;
 	var toBottom = false;
 	var started = false;
@@ -79,9 +79,9 @@
 		height: 'auto',
 	});
 
-	$.ajaxSetup({
-        async: true
-    });
+	// $.ajaxSetup({
+ //        async: true
+ //    });
 
 	//loading click events based on allies
 	<?php 
@@ -104,15 +104,15 @@
 	});
 
 	//check for new messages every 8 secs
-	setInterval(receiveMessages, 8000);
+	// setInterval(receiveMessages, 8000);
 
 	//check for new messages from current chat every 1.5 secs
-	setInterval(receiveCurrent, 1900);
+	// setInterval(receiveCurrent, 1900);
 
 	//send message in a chat ajax
 	function sendMessage(message){
 		$.ajax({
-			async: true,
+			// async: true,
 		    type: 'post',
 		    url: 'chatConversations/sendMessage',
 		    data: {value:message, chat:currentChat},
@@ -268,4 +268,5 @@
     	}
     	//alert(str);
     }
+    });
 </script>
