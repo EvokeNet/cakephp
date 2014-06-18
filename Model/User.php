@@ -265,12 +265,12 @@ class User extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'ForumModerator' => array('className' => 'Forum.Moderator'),
-		'ForumPollVote' => array('className' => 'Forum.PollVote'),
-		'ForumPost' => array('className' => 'Forum.Post'),
-		'ForumPostRating' => array('className' => 'Forum.PostRating'),
-		'ForumSubscription' => array('className' => 'Forum.Subscription'),
-		'ForumTopic' => array('className' => 'Forum.Topic'),
+		// 'ForumModerator' => array('className' => 'Forum.Moderator'),
+		// 'ForumPollVote' => array('className' => 'Forum.PollVote'),
+		// 'ForumPost' => array('className' => 'Forum.Post'),
+		// 'ForumPostRating' => array('className' => 'Forum.PostRating'),
+		// 'ForumSubscription' => array('className' => 'Forum.Subscription'),
+		// 'ForumTopic' => array('className' => 'Forum.Topic'),
 		
 		'GroupRequest' => array(
 			'className' => 'GroupRequest',

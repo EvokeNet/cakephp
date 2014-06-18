@@ -29,9 +29,10 @@
 				$notificationslink = 'class="evoke current"';
 			} if($currentController == 'groups') {
 				$evokationslink = 'class="evoke current"';
-			} if(($currentPlugin == 'forum') && ($currentController == 'forum'))	{
-				$forumlink = 'class="evoke current"';
-			}
+			} 
+			// if(($currentPlugin == 'forum') && ($currentController == 'forum'))	{
+			// 	$forumlink = 'class="evoke current"';
+			// }
 		}
 	}
 
@@ -53,7 +54,7 @@
 	  
 	  <li <?=$evokationslink?>><a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'groups', 'action' => 'evokations')) ?>"><i class="fa fa-users" style="padding-right: 10px;"></i><?= strtoupper(__('Evokations')) ?></a></li>
 	  
-	  <li <?=$forumlink?>><a href="<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'forum', 'action' => 'index')) ?>"><i class="fa fa-comments" style="padding-right: 10px;"></i></i><?= strtoupper(__('Forum')) ?></a></li>
+	  <!-- <li <?=$forumlink?>><a href="<?= $this->Html->url(array('plugin' => 'forum', 'controller' => 'forum', 'action' => 'index')) ?>"><i class="fa fa-comments" style="padding-right: 10px;"></i></i><?= strtoupper(__('Forum')) ?></a></li> -->
 	  
 	  <li <?=$badgeslink?>><a href="<?= $this->Html->url(array('plugin' => '', 'controller' => 'badges', 'action' => 'index')) ?>"><i class="fa fa-shield" style="padding-right: 10px;"></i><?= strtoupper(__('Badges')) ?></a></li>
 	  
