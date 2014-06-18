@@ -2,8 +2,11 @@
 
 require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
 
-require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'Google_Client.php';
-require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'contrib'.DS.'Google_Oauth2Service.php';
+// require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'Google_Client.php';
+// require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'contrib'.DS.'Google_Oauth2Service.php';
+
+require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Client.php';
+require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Service'.DS.'Oauth2.php';
 
 App::uses('AppController', 'Controller');
 
@@ -179,139 +182,104 @@ class UsersController extends AppController {
  */
 	public function login() {
 
-		########## Google Settings.. Client ID, Client Secret from https://cloud.google.com/console #############
-		// $google_client_id       = '502819941527.apps.googleusercontent.com';
-		// $google_client_secret   = 'Eg7BI26namI0pQflwYNW8oA7';
-		// //$google_redirect_url    = 'https://localhost/evoke/oauth2callback'; //path to your script
-		// $google_redirect_url = 'https://localhost/evoke/users/dashboard';
-		// $google_developer_key   = 'AIzaSyAOS7NDW3LgpeSbHnogXdqxKSFTXDkbPNE';
+		$client = new Google_Client();
+		$client->setApplicationName('Evoke');
+		$client->setClientId(Configure::read('google_client_id'));
+		$client->setClientSecret(Configure::read('google_client_secret'));
+		$client->setRedirectUri(Configure::read('google_redirect_uri'));
+		$client->setDeveloperKey(Configure::read('google_developer_key'));
 
-		// ########## MySql details (Replace with yours) #############
-		// $db_username = "xxxxxxxxx"; //Database Username
-		// $db_password = "xxxxxxxxx"; //Database Password
-		// $hostname = "localhost"; //Mysql Hostname
-		// $db_name = 'xxxxxxxxx'; //Database Name
-		// ###################################################################
+		// $client->setScopes("https://www.googleapis.com/auth/plus.login");
+		// $client->setAccessType('offline');
+		// $client->setApprovalPrompt('auto');
 
-		//start session
-		//session_start();
+		$google_oauthV2 = new Google_Service_Oauth2($client);
 
-		$gClient = new Google_Client();
-		$gClient->setApplicationName('Evoke');
-		$gClient->setClientId(Configure::read('google_client_id'));
-		$gClient->setClientSecret(Configure::read('google_client_secret'));
-		$gClient->setRedirectUri(Configure::read('google_redirect_uri'));
-		$gClient->setDeveloperKey(Configure::read('google_developer_key'));
+		$client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
+    	$client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
 
-		$google_oauthV2 = new Google_Oauth2Service($gClient);
+		// $authUrl = $client->createAuthUrl();
+		// $this->set('authUrl', $authUrl);
 
-		//If user wish to log out, we just unset Session variable
-		if (isset($_REQUEST['reset'])) {
-		  // unset($_SESSION['token']);
-		  // $gClient->revokeToken();
-		  // header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL)); //redirect user back to page
-			//unset($_SESSION['token']);
-			$this->Session->delete('token');
-			$gClient->revokeToken();
-			header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
-		}
-
-		//If code is empty, redirect user to google authentication page for code.
-		//Code is required to aquire Access Token from google
-		//Once we have access token, assign token to session variable
-		//and we can redirect user back to page and login.
-		// if (isset($_GET['code'])) { 
-		//     $gClient->authenticate($_GET['code']);
-		//     $_SESSION['token'] = $gClient->getAccessToken();
-		//     header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
-		//     return;
+		// $_SESSION['access_token'] = null;
+		// debug($_SESSION['accessToken']);
+		// if(isset($_REQUEST['code'])){
+		//     $_SESSION['accessToken'] = get_oauth2_token($_REQUEST['code']);
 		// }
 
-		// if (isset($_SESSION['token'])) { 
-		//     $gClient->setAccessToken($_SESSION['token']);
-		// }
+		//debug($client);
 
-		//Redirect user to google authentication page for code, if code is empty.
-		//Code is required to aquire Access Token from google
-		//Once we have access token, assign token to session variable
-		//and we can redirect user back to page and login.
-		if (isset($_REQUEST['code'])) {
-			$gClient->authenticate($_REQUEST['code']);
-			$this->Session->write('token', $gClient->getAccessToken());
-			$this->redirect(filter_var($google_redirect_url, FILTER_SANITIZE_URL), null, false);
-			//header('Location: ' . filter_var($google_redirect_url, FILTER_SANITIZE_URL));
-			return;
-		}
+		//debug($this->request['url']['code']);
 
-		if ($this->Session->read('token')) {
-			$gClient->setAccessToken($this->Session->read('token'));
-		}
+		if (isset($this->params['url']['code'])) {
+		  $client->authenticate($this->params['url']['code']);
+		  $_SESSION['access_token'] = $client->getAccessToken();
+		//   $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+		//   header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+			
 
-		if ($gClient->getAccessToken()) {
-		      //For logged in user, get details from google using access token
-		      $user                 = $google_oauthV2->userinfo->get();
-		      $user_id              = $user['id'];
-		      $user_name            = filter_var($user['name'], FILTER_SANITIZE_SPECIAL_CHARS);
-		      $email                = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
-		      $profile_url          = filter_var($user['link'], FILTER_VALIDATE_URL);
-		      $profile_image_url    = filter_var($user['picture'], FILTER_VALIDATE_URL);
-		      $personMarkup         = "$email<div><img src='$profile_image_url?sz=50'></div>";
-		      $_SESSION['token']    = $gClient->getAccessToken();
-		      $this->Session->write('token', $gClient->getAccessToken());
+		// debug($client->getAccessToken());
 
-		      //$this->set(compact('user', 'user_id', 'user_name', 'email', 'profile_url', 'profile_image_url', 'personMarkup'));
-		} else {
-		    //For Guest user, get google login url
-		    $authUrl = $gClient->createAuthUrl();
-		    // $this->set(compact('authUrl'));
-		}
+		if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 
-		if(isset($authUrl)) { //user is not logged in, show login button
-			$this->set('authUrl', $authUrl);
-		}
-		else { // user logged in
-		
-			$result = $this->User->find('count', array('conditions' => array('User.id' => $user_id)));
-			if($result > 0) {
-				$msg = 'Welcome back '.$user_name.'!<br />';
-				$msg .= '<br />';
-				$msg .= '<img src="'.$profile_image_url.'" width="100" align="left" hspace="10" vspace="10" />';
-				$msg .= '<br />';
-				$msg .= '&nbsp;Name: '.$user_name.'<br />';
-				$msg .= '&nbsp;Email: '.$email.'<br />';
-				$msg .= '<br />';
-				$this->set('msg', $msg);
-			}
-			else {
-				$msg1 = 'Hi '.$user_name.', Thanks for Registering!';
-				$msg1 .= '<br />';
-				$msg1 .= '<img src="'.$profile_image_url.'" width="100" align="left" hspace="10" vspace="10" />';
-				$msg1 .= '<br />';
-				$msg1 .= '&nbsp;Name: '.$user_name.'<br />';
-				$msg1 .= '&nbsp;Email: '.$email.'<br />';
-				$msg1 .= '<br />';
-				$this->set('msg', $msg1);
-				$this->User->query("INSERT INTO google_users (google_id, google_name, google_email, google_link, google_picture_link) VALUES ($user_id, '$user_name', '$email', '$profile_url', '$profile_image_url')");
+		 	// $client->setAccessToken($_SESSION['access_token']);
 
+			// $attributes = $client->verifyIdToken($token->id_token, '502819941527.apps.googleusercontent.com')->getAttributes();
+   //      	$gplus_id = $attributes["payload"]["sub"];
+
+		 	$user_profile = $google_oauthV2->userinfo->get();
+		 	$_SESSION['user']['name'] = $user_profile['name'];
+		 	$_SESSION['user']['google_id'] = $user_profile['id'];
+            $_SESSION['user']['email'] = $user_profile['email'];
+
+		  	$user_google = $this->User->find('first', array('conditions' => array('User.id' => $_SESSION['user']['email'])));
+
+			if(empty($user_google)) {
+
+				// User does not exist in DB, so we are going to create
 				$this->User->create();
-				$result['User']['name'] = $user_name;
-				$result['User']['email'] = $google_email;
-				$result['User']['photo_dir'] = $google_picture_link;
+				$user_google['User']['google_id'] = $user_profile['id'];
+				$user_google['User']['google_token'] = $client->getAccessToken();
+				$user_google['User']['name'] = $user_profile['name'];
+				$user_google['User']['email'] = $user_profile['email'];
+				$user_google['User']['role_id'] = 3;
 
-				if($this->User->save($result)) {
-					$result['User']['id'] = $this->User->id;
-					$this->Auth->login($result);
+				if($this->User->save($user_google)) {
+					$user_google['User']['id'] = $this->User->id;
+					$this->Auth->login($user_google);
 					// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
 					//return $this->redirect(array('action' => 'dashboard'));
-					$this->Session->setFlash('', 'opening_lightbox_message');
+					// $this->Session->setFlash('', 'opening_lightbox_message');
 					return $this->redirect(array('action' => 'edit', $this->User->id));
 				} else {
 					$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
 					return $this->redirect(array('action' => 'login'));
 				}
 
+			} else {
+
+				// User exists, so we just force login
+				// TODO: check if any data changed since last Facebook login, then update in our table
+
+				// We need to update the Facebook token, once web tokens are short-term only
+				$this->User->id = $user_google['User']['id'];
+				$this->User->set('google_token', $client->getAccessToken());
+				$this->User->save();
+
+				$user_google['User']['id'] = $this->User->id;
+				$this->Auth->login($user_google);
+				// $this->Session->write('Auth.User.id', $user['User']['id']);
+				return $this->redirect(array('action' => 'dashboard', $this->User->id));
+
 			}
-	}
+		} 
+		}else {
+			$authUrl = $client->createAuthUrl();
+
+			if(isset($authUrl)) { //user is not logged in, show login button
+				$this->set('authUrl', $authUrl);
+			}
+		}
 
 		//debug($this->Auth);
 		$facebook = new Facebook(array(
@@ -395,7 +363,6 @@ class UsersController extends AppController {
 			$this->set(compact('fbLoginUrl'));
 		}
 	}
-
 
 /**
  * logout method

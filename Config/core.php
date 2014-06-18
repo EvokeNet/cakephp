@@ -380,7 +380,7 @@ Configure::write('etherpad_api_key', '03d669e40fa104737fb405ac8dc8e9571eef846525
 
 Configure::write('google_client_id', '502819941527.apps.googleusercontent.com');
 Configure::write('google_client_secret', 'Eg7BI26namI0pQflwYNW8oA7');
-Configure::write('google_redirect_uri', 'https://localhost/evoke/users/dashboard');
+Configure::write('google_redirect_uri', 'http://localhost/evoke/users/login');
 Configure::write('google_developer_key', 'AIzaSyAOS7NDW3LgpeSbHnogXdqxKSFTXDkbPNE');
 Configure::write('APPROVAL_PROMPT', 'auto');
 Configure::write('ACCESS_TYPE', 'offline');
