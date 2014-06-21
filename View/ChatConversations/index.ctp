@@ -74,6 +74,8 @@
 	var currentChat = -1;
 	var toBottom = false;
 	var started = false;
+	var name = "<?=$user['User']['name']?>";
+	var currentConection = null;
 
 	$("#container").slimScroll({
 		height: 'auto',
@@ -87,7 +89,7 @@
 	<?php 
 		foreach ($friends as $usr) {
 			echo '$("#chatWithFriend'. $usr['User']['id'] .'").click(function (){'.
-				 'getUserChat('. $usr['User']['id'] .');'.
+				 'getUserChat('. $usr['User']['id'] .'); return false;'.//.'setTimeout(receiveCurrent(), 3000);'.
 				 '});';
 		}
 	?>
@@ -96,6 +98,9 @@
 	$('#sendMessage').click(function () {
 		//sending message to server
 		var content = $('#message').val();
+		var insert = '<div><span class="author">'+name+':&nbsp;</span><span class="msg">'+content+'</span></div>';
+		$('#container').append(insert);
+		goBottom();
 		sendMessage(content);
 
 
@@ -105,13 +110,23 @@
 
 	//check for new messages every 8 secs
 	// setInterval(receiveMessages, 8000);
+	// receiveMessages();
 
 	//check for new messages from current chat every 1.5 secs
 	// setInterval(receiveCurrent, 1900);
 
+	function killConection() {
+		if(currentConection!=null) {
+			console.log(currentConection);
+			currentConection.abort();
+		}
+	}
+
 	//send message in a chat ajax
 	function sendMessage(message){
-		$.ajax({
+		killConection();
+
+		currentConection = $.ajax({
 			// async: true,
 		    type: 'post',
 		    url: 'chatConversations/sendMessage',
@@ -120,12 +135,14 @@
 		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		    },
 		    success: function(response) {
-		        // console.log(response);
-		        $('#container').append(response);
-		        goBottom();
+		        console.log(response);
+		        // $('#container').append(response);
+		        // goBottom();
+		        receiveCurrent();
 		    },
 		    error: function(e) {
 		        console.log(e);
+		        console.log("could not send message");
 		    }
 		});
 	}
@@ -140,7 +157,7 @@
 		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		    },
 		    success: function(response) {
-		        // console.log(response);
+		        console.log(response);
 
 		        //response consists of a string with the id's of the chats with new messages, separated by ';'!
 		        // before <> are the ally chat notifications, after it are the custom chats
@@ -155,6 +172,8 @@
 					// console.log(ids[i]+" got red");
 				}
 		        // $('#container').append(response);
+		        setTimeout(receiveMessages(), 8000);
+
 		    },
 		    error: function(e) {
 		        console.log(e);
@@ -165,7 +184,8 @@
 	//receive messages from current chats
 	function receiveCurrent(){
 		if(currentChat == -1) return;
-		$.ajax({
+		// console.log("comencing requisition");
+		currentConection = $.ajax({
 		    type: 'post',
 		    url: 'chatConversations/receiveCurrent',
 		    data: {current: currentChat},
@@ -173,11 +193,12 @@
 		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		    },
 		    success: function(response) {
-		        // console.log(response);
+		        // console.log("server answered");
 		        if(response != "") {
 		        	$('#container').append(response);
 		        	goBottom();
 		        }
+		        setTimeout(receiveCurrent(), 2000);
 		    },
 		    error: function(e) {
 		        console.log(e);
@@ -187,7 +208,9 @@
 
 	//find chat and all messages of users
 	function getUserChat(userid){
-		$.ajax({
+		killConection();
+
+		currentConection = $.ajax({
 		    type: 'get',
 		    url: 'chatConversations/getUserChat'+"/"+userid,
 		    beforeSend: function(xhr) {
@@ -219,6 +242,7 @@
 					start: $('.last'),
 				});
 
+		        receiveCurrent();
 		   //      console.log($('#container').scrollTop());
 		    },
 		    error: function(e) {

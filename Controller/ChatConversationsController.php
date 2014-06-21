@@ -143,33 +143,41 @@ class ChatConversationsController extends AppController {
 	public function receiveMessages($content = null) {
 		$this->autoRender = false; // We don't render a view in this example
     	$this->request->onlyAllow('ajax'); // No direct access via browser URL
-
 		$current = $this->request->data['current'];
-    	$chats = $this->ChatConversation->findNewMessages($this->getUserId(), $current);
 
-    	$allyChats = "";
-    	$customChats = "";
-    	foreach ($chats as $chat) {
-    		$ok = false;
-    		$other = 0;
-    		foreach ($chat['Member'] as $member) {
-    			if($member['user_id'] == $this->getUserId()){
-    				if($member['modified'] < $chat['ChatConversation']['modified']) {
-    					$ok = true;
-    				}
-    			} else {
-    				$other = $member['user_id'];
-    			}
-    		}
-    		
-    		if($chat['ChatConversation']['custom'] != 0)
-    			$customChats .= $chat['ChatConversation']['id'].';';
-    		else
-    			$allyChats .= $other.';';
-    	}
+		$count = 0;
+    	while($count<4) {
+	    	$chats = $this->ChatConversation->findNewMessages($this->getUserId(), $current);
 
-    	$result = $allyChats . '<>' . $customChats;
-    	return $result;
+	    	$allyChats = "";
+	    	$customChats = "";
+	    	foreach ($chats as $chat) {
+	    		$ok = false;
+	    		$other = 0;
+	    		foreach ($chat['Member'] as $member) {
+	    			if($member['user_id'] == $this->getUserId()){
+	    				if($member['modified'] < $chat['ChatConversation']['modified']) {
+	    					$ok = true;
+	    				}
+	    			} else {
+	    				$other = $member['user_id'];
+	    			}
+	    		}
+	    		
+	    		if($chat['ChatConversation']['custom'] != 0)
+	    			$customChats .= $chat['ChatConversation']['id'].';';
+	    		else
+	    			$allyChats .= $other.';';
+	    	}
+
+	    	$result = $allyChats . '<>' . $customChats;
+	    	
+	    	if($result != "<>") return $result;
+
+	    	sleep(1);
+	    	$count++;
+	    }
+	    return "<>";
     }
 
     public function receiveCurrent(){
@@ -177,32 +185,45 @@ class ChatConversationsController extends AppController {
     	$this->request->onlyAllow('ajax'); // No direct access via browser URL
     	$current = $this->request->data['current'];
     	$userid = $this->getUserId();
-    	$chat = $this->ChatConversation->findChatNewMessages($userid, $current);
+    	
+    	$count = 0;
+    	while($count<15) {
+    		$chat = $this->ChatConversation->findChatNewMessages($userid, $current);
 
-    	if(!isset($chat['Member'])) return;
+    		if(isset($chat['Member'])) {
 
-    	$ok = false;
-    	foreach ($chat['Member'] as $member) {
-    		if($member['user_id'] == $this->getUserId()){
-    			if($member['modified'] < $chat['ChatConversation']['modified']) {
-    				$ok = true;
-    				$mod = $member['modified'];
+		    	$ok = false;
+		    	foreach ($chat['Member'] as $member) {
+		    		if($member['user_id'] == $this->getUserId()){
+		    			if($member['modified'] < $chat['ChatConversation']['modified']) {
+		    				$ok = true;
+		    				$mod = $member['modified'];
 
-			     	//set new last activity
-			     	$insertAct['Member']['id'] = $member['id'];
-			     	$this->ChatConversation->Member->save($insertAct);
-    			}
-    		}
-    	}
+					     	//set new last activity
+					     	$insertAct['Member']['id'] = $member['id'];
+					     	$this->ChatConversation->Member->save($insertAct);
+		    			}
+		    		}
+		    	}
 
-    	if(!$ok) return "";
-    	$messages = "";
-    	foreach ($chat['Message'] as $msg) {
-    		if($mod < $msg['created'] && $msg['user_id'] != $this->getUserId()) {
-    			$messages .= '<div><span class="author">'.$msg['author'].':&nbsp;</span><span class="msg">'. $msg['content'].'</span></div>';
-    		}
-    	}
-    	return $messages;
+		    	if(!$ok) {
+		    		sleep(1);
+	    			$count++;
+	    			continue;
+		    	}
+		    	$messages = "";
+		    	foreach ($chat['Message'] as $msg) {
+		    		if($mod < $msg['created'] && $msg['user_id'] != $this->getUserId()) {
+		    			$messages .= '<div><span class="author">'.$msg['author'].':&nbsp;</span><span class="msg">'. $msg['content'].'</span></div>';
+		    		}
+		    	}
+		    	return $messages;
+	    	} else {
+	    		sleep(1);
+	    		$count++;
+	    	}
+	    }
+    	return "";
 
     }
 
