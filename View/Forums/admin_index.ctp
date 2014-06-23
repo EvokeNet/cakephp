@@ -9,8 +9,8 @@
 			<th><?php echo $this->Paginator->sort('description'); ?></th>
 			<th><?php echo $this->Paginator->sort('topic_count'); ?></th>
 			<th><?php echo $this->Paginator->sort('post_count'); ?></th>
-			<th><?php echo $this->Paginator->sort('forum_topic_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('forum_post_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('lastTopic_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('lastPost_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -26,8 +26,8 @@
 		<td><?php echo h($forum['Forum']['description']); ?>&nbsp;</td>
 		<td><?php echo h($forum['Forum']['topic_count']); ?>&nbsp;</td>
 		<td><?php echo h($forum['Forum']['post_count']); ?>&nbsp;</td>
-		<td><?php echo h($forum['Forum']['forum_topic_id']); ?>&nbsp;</td>
-		<td><?php echo h($forum['Forum']['forum_post_id']); ?>&nbsp;</td>
+		<td><?php echo h($forum['Forum']['lastTopic_id']); ?>&nbsp;</td>
+		<td><?php echo h($forum['Forum']['lastPost_id']); ?>&nbsp;</td>
 		<td><?php echo h($forum['Forum']['created']); ?>&nbsp;</td>
 		<td><?php echo h($forum['Forum']['modified']); ?>&nbsp;</td>
 		<td class="actions">
@@ -60,8 +60,6 @@
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Forum Posts'), array('controller' => 'forum_posts', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Forum Post'), array('controller' => 'forum_posts', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Forum Subscriptions'), array('controller' => 'forum_subscriptions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Forum Subscription'), array('controller' => 'forum_subscriptions', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Forum Topics'), array('controller' => 'forum_topics', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Forum Topic'), array('controller' => 'forum_topics', 'action' => 'add')); ?> </li>
 	</ul>

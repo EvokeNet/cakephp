@@ -10,8 +10,8 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('topic_count');
 		echo $this->Form->input('post_count');
-		echo $this->Form->input('forum_topic_id');
-		echo $this->Form->input('forum_post_id');
+		echo $this->Form->input('lastTopic_id');
+		echo $this->Form->input('lastPost_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -26,8 +26,6 @@
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Forum Posts'), array('controller' => 'forum_posts', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Forum Post'), array('controller' => 'forum_posts', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Forum Subscriptions'), array('controller' => 'forum_subscriptions', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Forum Subscription'), array('controller' => 'forum_subscriptions', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Forum Topics'), array('controller' => 'forum_topics', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Forum Topic'), array('controller' => 'forum_topics', 'action' => 'add')); ?> </li>
 	</ul>

@@ -142,39 +142,6 @@ class UsersController extends AppController {
     	// die();
     }
 
-	public function google(){
-	 
-		$client = new Google_Client();
-		$client->setApplicationName("Evoke");
-		$client->setClientId(Configure::read('google_app_id'));
-		$client->setClientSecret(Configure::read('google_app_secret'));
-		$client->setRedirectUri(Configure::read('google_app_uri'));
-		$client->setApprovalPrompt(Configure::read('APPROVAL_PROMPT'));
-		$client->setAccessType(Configure::read('APPROVAL_TYPE'));
-		$oauth2 = new Google_Oauth2Service($client);
-
-		if (isset($_GET['code'])) {
-		  $client->authenticate($_GET['code']);
-		  $_SESSION['token'] = $client->getAccessToken();
-		}
-		if (isset($_SESSION['token'])) {
-		 $client->setAccessToken($_SESSION['token']);
-		}
-		if (isset($_REQUEST['error'])) {
-		 echo '<script type="text/javascript">window.close();</script>'; exit;
-		}
-		if ($client->getAccessToken()) {
-		  $user = $oauth2->userinfo->get();
-		  $_SESSION['User'] = $user;
-		  $_SESSION['token'] = $client->getAccessToken();
-
-		} else {
-		  $authUrl = $client->createAuthUrl();
-		  header('Location: '.$authUrl);
-
-		}
-	}
-
 /**
  * login method
  *

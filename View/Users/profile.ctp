@@ -306,7 +306,7 @@
 		test2 = getOffset(document.getElementById('targetEvokation'));  
 		
 		if(($(window).scrollTop() + $(window).height() >= (test + y) - 600) || ($(window).scrollTop() + $(window).height()>= (test2 + y2) - 600)){//+ $(window).height() < x) {
-			// alert(lastLocal);
+			
 			if((lastLocal) != "") {
 				fillExtraContent();
 				// console.log('ativou');
@@ -358,8 +358,7 @@
 					lastEvokation = lastLocal;
 				}
 		        response = response.substring(response.search("lastEnd")+7);
-			        
-		        // console.log(response);	
+			        	
 		        $('#'+target).append((response));
 		    },
 		    error: function(e) {
@@ -390,7 +389,6 @@
 				}
 		        response = response.substring(response.search("lastEnd")+7);
 			        
-		        // console.log(response);	
 		        $('#'+target).append((response));
 		    },
 		    error: function(e) {
@@ -421,16 +419,16 @@
     	str = str.substr(0, str.indexOf("profile"));
     	
     	str = str.substr(0, str.length -1);
-    	// alert(str);
+    	
     	if(str.length>1) {
     		// str = str.substr(0, str.indexOf('/', 1));
-    		//alert(str);	
+    			
     		str = str + '/' + afterHome;
     		return str;
     	} else {
-    		//alert(str);	
+    		
     		return afterHome;
     	}
-    	//alert(str);
+    	
     }
 </script>

@@ -2,10 +2,6 @@
 
 	echo $this->Html->css('mycarousel');
 
-	// echo $this->Html->css('/components/tinyscrollbar/examples/responsive/tinyscrollbar');
-
-	// echo $this->Html->css('breadcrumb');
-
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 
@@ -533,14 +529,11 @@
 	$(window).scroll(throttle(function() {   
 		y = $('#'+target).parent().height();
 		test = getOffset(document.getElementById(target));
-		// console.log('position of end of target> '+(test+y));
-		// console.log('scroll position> '+$(window).scrollTop());
 		
 		if($(window).scrollTop() + $(window).height() >= (test + y) - 600){//+ $(window).height() < x) {
 			
 			if((lastLocal) != "") {
 				fillExtraContent();
-				// console.log('ativou');
 			}
 			// menuHeight();
 		}
@@ -601,7 +594,6 @@
 				}
 		        response = response.substring(response.search("lastEnd")+7);
 			        
-		        // console.log(response);	
 		        $('#'+target).append((response));
 		    },
 		    error: function(e) {
@@ -613,20 +605,14 @@
 	function getCorrectURL(afterHome){
     	var str = document.URL;
     	
-    	//str = str.substr(7, str.length);
     	str = str.substr(0, str.indexOf("dashboard"));
     	
     	str = str.substr(0, str.length -1);
-    	// alert(str);
-    	if(str.length>1) {
-    		// str = str.substr(0, str.indexOf('/', 1));
-    		//alert(str);	
+    	if(str.length>1) {	
     		str = str + '/' + afterHome;
     		return str;
-    	} else {
-    		//alert(str);	
+    	} else {	
     		return afterHome;
     	}
-    	//alert(str);
     }
 </script>

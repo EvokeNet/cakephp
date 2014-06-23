@@ -5,6 +5,6 @@ $(document).ready(function() {
 function menuHeight(){
 	$(".maincolumn").each(function() {
         $('.menucolumn').css("height", $(this).innerHeight());
-        alert($(this).innerHeight());
+        //alert($(this).innerHeight());
     });
 }
