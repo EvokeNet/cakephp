@@ -33,28 +33,30 @@
             ?>
         </div>
 
-        <div class="evoke sheer-background">
+        <div class="evoke sheer-background forum index">
+
+        	<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
+                <li><h2><?= strtoupper(__("Forum")) ?></h2></li>
+                <li><h2><?= strtoupper(__("Topics")) ?></h2></li>
+                <li><h2><?= strtoupper(__("Posts")) ?></h2></li>
+                <li><h2><?= strtoupper(__("Last Activity")) ?></h2></li>
+            </ul>
+
             <?php
+            
             if (isset($forums)):
                 foreach ($forums as $forum): ?>
 
-            <div class = "evoke forum index">
-                <ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
-                    <li><h2><?= strtoupper(__("Forum")) ?></h2></li>
-                    <li><h2><?= strtoupper(__("Topics")) ?></h2></li>
-                    <li><h2><?= strtoupper(__("Posts")) ?></h2></li>
-                    <li><h2><?= strtoupper(__("Last Activity")) ?></h2></li>
-                </ul>
+            <ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
+                <li><h2><a href = "<?= $this->Html->url(array('controller' => 'forums', 'action' => 'view', $forum['Forum']['id'])) ?>"><?= $forum['Forum']['title'] ?></a></h2></li>
+                <li><h2><?= $forum['Forum']['topic_count'] ?></h2></li>
+                <li><h2><?= $forum['Forum']['post_count'] ?></h2></li>
+                <li><h2><?= $forum['Forum']['lastPost_id'] ?></h2></li>
+            </ul>
 
-                <ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
-                    <li><h2><a href = "<?= $this->Html->url(array('controller' => 'forums', 'action' => 'view', $forum['Forum']['id'])) ?>"><?= $forum['Forum']['title'] ?></a></h2></li>
-                    <li><h2><?= $forum['Forum']['topic_count'] ?></h2></li>
-                    <li><h2><?= $forum['Forum']['post_count'] ?></h2></li>
-                    <li><h2><?= $forum['Forum']['lastPost_id'] ?></h2></li>
-                </ul>
+            <?php endforeach; endif; ?>
+        	
 
-                <?php endforeach; endif; ?>
-            </div>
         </div>
 
 	  </div>

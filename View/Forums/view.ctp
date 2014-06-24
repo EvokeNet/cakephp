@@ -36,18 +36,21 @@
         <div class="evoke sheer-background">
             <?php
             if (isset($topics)):
-                foreach ($topics as $topic): ?>
+                foreach ($topics as $topic):
 
-            <div class = "evoke forum-topic-bg">
+            	echo $this->element('forums/topic', array('topic' => $topic));
+
+                endforeach; endif; ?>
+
+            <!-- <div class = "evoke forum-topic-bg">
             	<div class = "row full-width-alternate padding bottom-1">
 
             		<div class = "small-2 medium-2 large-2 columns"></div>
             		<div class = "small-8 medium-8 large-8 columns"><a href = "<?= $this->Html->url(array('controller' => 'forum_topics', 'action' => 'view', $topic['ForumTopic']['id'])) ?>"><?= $topic['ForumTopic']['title'] ?></a></div>
             		<div class = "small-2 medium-2 large-2 columns"><?= $topic['ForumTopic']['forumPost_count'] ?></div>
 
-                </div>
+                </div> -->
 
-                <?php endforeach; endif; ?>
             </div>
         </div>
 

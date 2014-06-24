@@ -325,7 +325,17 @@ class UsersController extends AppController {
 
 			return $this->redirect(array('action' => 'dashboard', $this->User->id));
 
+		} else if(isset($this->request->data['User']['username'])){
+
+			$user2 = $this->User->find('first', array('conditions' => array('User.username' => $this->request->data['User']['username'])));
+
+			if(empty($user2)){
+				$this->Session->setFlash(__('Your login and/or password was incorrect. Please try again.'));
+				return $this->redirect(array('action' => 'login'));
+			}
+
 		} else {
+
 			$fbLoginUrl = $facebook->getLoginUrl();
 			$this->set(compact('fbLoginUrl'));
 		}

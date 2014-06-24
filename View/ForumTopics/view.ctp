@@ -20,10 +20,10 @@
 	  	<?php echo $this->Session->flash(); ?>
 
 	  	<div class = "default">
-            <h3 class = "padding bottom-1"> <?= strtoupper(__('Forum')) ?> </h3>
+            <h3 class = "margin top"> <?= strtoupper(__('Forum')) ?> </h3>
         </div>
 
-        <div class="text-align-end">
+        <!-- <div class="text-align-end">
             <?php 
                 if ($user['User']['role_id'] == 1): ?>
 
@@ -31,25 +31,38 @@
             <?php
                 endif;
             ?>
-        </div>
+        </div> -->
 
         <div class="evoke sheer-background">
             <?php
+
+            echo $this->element('forums/topic', array('topic' => $forumTopic));
+
             if (isset($posts)):
-                foreach ($posts as $post): ?>
+                foreach ($posts as $post): 
+                	echo $this->element('forums/post', array('post' => $post)); 
+            	endforeach; endif; 
 
-            <div class = "evoke forum-topic-bg">
-            	<div class = "row full-width-alternate padding bottom-1">
+        	?>
 
-            		<div class = "small-2 medium-2 large-2 columns"></div>
-            		<div class = "small-8 medium-8 large-8 columns"><?= $post['ForumPost']['content'] ?></div>
-            		<div class = "small-2 medium-2 large-2 columns"></div>
-
-                </div>
-
-                <?php endforeach; endif; ?>
-            </div>
         </div>
+
+     	<div class = "forum reply panel text-align-center">
+
+            <div class = "margin bottom-1"><a class = "title" name = "anchor"><?php echo __d('forum', 'Reply'); ?></a></div>
+
+            <div class="panel-body">
+				<?php echo $this->Form->create('ForumPost'); ?>
+				<?php
+					echo $this->Form->hidden('user_id', array('value' => $user['User']['id']));
+					echo $this->Form->hidden('forum_id', array('value' => $forumTopic['Forum']['id']));
+					echo $this->Form->hidden('forum_topic_id', array('value' => $forumTopic['ForumTopic']['id']));
+					echo $this->Media->ckeditor('content'); //echo $this->Form->input('content');
+				?>
+				<?php echo $this->Form->end(__('Submit')); ?>
+			</div>
+		</div>
+
 
 	  </div>
 	

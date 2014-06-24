@@ -22,16 +22,14 @@
 	} else {
 		if($currentController == 'badges') {
 			$badgeslink = 'class="evoke current"';
-		} else {
-			if($currentController == 'missions') {
-				$missionslink = 'class="evoke current"';
-			} if($currentController == 'notifications') {
-				$notificationslink = 'class="evoke current"';
-			} if($currentController == 'groups') {
-				$evokationslink = 'class="evoke current"';
-			} if($currentController == 'forums')	{
-				$forumlink = 'class="evoke current"';
-			}
+		} if($currentController == 'missions') {
+			$missionslink = 'class="evoke current"';
+		} if($currentController == 'notifications') {
+			$notificationslink = 'class="evoke current"';
+		} if($currentController == 'groups') {
+			$evokationslink = 'class="evoke current"';
+		} if($currentController == 'forums')	{
+			$forumslink = 'class="evoke current"';
 		}
 	}
 

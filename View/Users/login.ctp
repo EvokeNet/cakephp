@@ -53,7 +53,7 @@
 				</div>
 				<!-- <i class="fa fa-google-plus fa-2x" style = "position: absolute; top: 10px; left: 20px;"></i> -->
 				<div class="evoke login users form top-border bottom-border">
-					<?php echo $this->Session->flash('auth'); ?>
+					<?php echo $this->Session->flash(); ?>
 					<?php echo $this->Form->create('User'); ?>
 							<!-- <legend><?php echo __('Please enter your username and password'); ?></legend> -->
 							<h5><?php echo __('Sign in');?></h5>

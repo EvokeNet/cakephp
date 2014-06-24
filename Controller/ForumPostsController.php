@@ -46,20 +46,51 @@ class ForumPostsController extends AppController {
  *
  * @return void
  */
-	public function add($forum_id = null, $topic_id = null) {
+	public function add($topic_id = null) {
 		if ($this->request->is('post')) {
 			$this->ForumPost->create();
 			if ($this->ForumPost->save($this->request->data)) {
-				$this->Session->setFlash(__('The forum post has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				//$this->Session->setFlash(__('The forum post has been saved.'));
+				return $this->redirect(array('controller' => 'forum_topics', 'action' => 'view', $this->request->data['ForumPost']['forum_topic_id']));
 			} else {
 				$this->Session->setFlash(__('The forum post could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->ForumPost->User->find('list');
-		$forums = $this->ForumPost->Forum->find('list');
-		$forumTopics = $this->ForumPost->ForumTopic->find('list');
-		$this->set(compact('users', 'forums', 'forumTopics'));
+
+		$user = $this->ForumPost->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		$forumTopic = $this->ForumPost->ForumTopic->find('first', array('conditions' => array('ForumTopic.id' => $topic_id)));
+		$this->set(compact('user', 'forumTopic'));
+	}
+
+/**
+ * reply method
+ *
+ * @return void
+ */
+	public function reply($topic_id = null, $post_id = null) {
+		if ($this->request->is('post')) {
+			$this->ForumPost->create();
+			if ($this->ForumPost->save($this->request->data)) {
+				//$this->Session->setFlash(__('The forum post has been saved.'));
+				return $this->redirect(array('controller' => 'forum_topics', 'action' => 'view', $this->request->data['ForumPost']['forum_topic_id']));
+			} else {
+				$this->Session->setFlash(__('The forum post could not be saved. Please, try again.'));
+			}
+		}
+		
+		$user = $this->ForumPost->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		$forumTopic = $this->ForumPost->ForumTopic->find('first', array('conditions' => array('ForumTopic.id' => $topic_id)));
+		$forumPost = $this->ForumPost->find('first', array('conditions' => array('ForumPost.id' => $post_id)));
+
+		if(isset($forumPost)):
+			$this->request->data['ForumPost']['content'] = sprintf('[quote="%s" date="%s"]%s[/quote]',
+	            $forumPost['User']['name'],
+	            $forumPost['ForumPost']['created'],
+	            $forumPost['ForumPost']['content']
+	        ) . PHP_EOL;
+		endif;
+
+		$this->set(compact('user', 'forumPost', 'forumTopic'));
 	}
 
 /**
@@ -75,8 +106,8 @@ class ForumPostsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->ForumPost->save($this->request->data)) {
-				$this->Session->setFlash(__('The forum post has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				//$this->Session->setFlash(__('The forum post has been saved.'));
+				return $this->redirect(array('controller' => 'forum_topics', 'action' => 'view', $this->request->data['ForumPost']['forum_topic_id']));
 			} else {
 				$this->Session->setFlash(__('The forum post could not be saved. Please, try again.'));
 			}
@@ -84,10 +115,11 @@ class ForumPostsController extends AppController {
 			$options = array('conditions' => array('ForumPost.' . $this->ForumPost->primaryKey => $id));
 			$this->request->data = $this->ForumPost->find('first', $options);
 		}
+		$user = $this->ForumPost->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 		$users = $this->ForumPost->User->find('list');
 		$forums = $this->ForumPost->Forum->find('list');
 		$forumTopics = $this->ForumPost->ForumTopic->find('list');
-		$this->set(compact('users', 'forums', 'forumTopics'));
+		$this->set(compact('user', 'users', 'forums', 'forumTopics'));
 	}
 
 /**
@@ -102,13 +134,13 @@ class ForumPostsController extends AppController {
 		if (!$this->ForumPost->exists()) {
 			throw new NotFoundException(__('Invalid forum post'));
 		}
-		$this->request->allowMethod('post', 'delete');
+		// $this->request->allowMethod('post', 'delete');
 		if ($this->ForumPost->delete()) {
 			$this->Session->setFlash(__('The forum post has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The forum post could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 
 /**
