@@ -46,7 +46,7 @@ class ForumPostsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($forum_id = null, $topic_id = null) {
 		if ($this->request->is('post')) {
 			$this->ForumPost->create();
 			if ($this->ForumPost->save($this->request->data)) {
