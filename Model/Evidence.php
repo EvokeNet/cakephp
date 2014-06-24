@@ -23,12 +23,7 @@ class Evidence extends AppModel {
 	public $displayField = 'title';
 
 	public $actsAs = array(
-        'Containable',
-        'Media.Media' => array(
-            // You can set up the path where your medias will be saved (optional)
-            'path' => 'img/uploads/%y/%m/%f',
-            'extensions' => array('jpg', 'png', 'avi', 'mp4')
-        )
+        'Containable'
     );
 
 	public function createWithAttachments($data, $hasPrev = false, $id = null) {

@@ -13,7 +13,7 @@ class PanelsController extends AppController {
 		'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level',
 		'AdminNotification', 'Novel', 'Launcher');
 	public $user = null;
-	public $helpers = array('Media.Media', 'Chosen.Chosen');
+	public $helpers = array('Chosen.Chosen');
 
 /**
 *

@@ -38,7 +38,7 @@ class AppController extends Controller {
     );
 
     public $helpers = array(
-        'Chosen.Chosen', 'Media.Media',
+        'Chosen.Chosen'
     );
 
     public $user = null;
@@ -241,7 +241,7 @@ class AppController extends Controller {
         return $currentuser['User']['role_id'];
     }
 
-    public function canUploadMedias($model, $id) {
-        return true;
-    }
+    // public function canUploadMedias($model, $id) {
+    //     return true;
+    // }
 }

@@ -1,4 +1,8 @@
 <?php
+
+	echo $this->Html->css('/components/medium-editor/dist/css/medium-editor');
+	echo $this->Html->css('/components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin');
+
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 
@@ -119,7 +123,9 @@
 		</div>
 
 		<div class="small-7 medium-7 large-7 columns maincolumn">
-				
+			
+			<div class = "editable"></div>
+			
 			<h1 class = "white"><?= $q['Quest']['title'] ?></h1>
 			<h6 class = "white"><?= $q['Quest']['description'] ?></h6>
 
@@ -139,7 +145,8 @@
 						//echo $this->Form->input('quest_id', array('empty' => true));
 						echo $this->Form->hidden('mission_id');
 						echo $this->Form->hidden('phase_id');
-						echo $this->Media->ckeditor('content', array('label' => __('Content')));
+						echo $this->Form->hidden('content');
+						//echo $this->Media->ckeditor('content', array('label' => __('Content')));
 						//echo $this->Media->iframe('Evidence', $this->request->data['Evidence']['id']);
 
 						echo "<label>".__('Attachments'). "</label>";
@@ -211,7 +218,10 @@
 
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
+	echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min.js');//, array('inline' => false));
+	echo $this->Html->script('/components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.all.min.js');//, array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
+	echo $this->Html->script('medium');
 	echo $this->Html->script('quest_attachments'); 
 ?>
 
@@ -222,7 +232,8 @@
 	function autosave() {
 	    jQuery('form').each(function() {
 
-	    	var ops = $('.cke_wysiwyg_frame').contents().find('.cke_editable').html();
+	    	// var ops = $('.editable').contents();
+	    	var ops = $('.editable').html();
 
 	        var formData = $("textarea#EvidenceContent").serializeArray();
 	        formData.push({name: "data[Evidence][content]", value: ops});
@@ -270,7 +281,7 @@
 	}// end function autosave()
 	 
 	// set the autosave interval (60 seconds * 1000 milliseconds per second)
-	setInterval(autosave, 60 * 1000);
+	setInterval(autosave, 5 * 1000);
 
 
     <?php

@@ -57,7 +57,7 @@
 					echo $this->Form->hidden('user_id', array('value' => $user['User']['id']));
 					echo $this->Form->hidden('forum_id', array('value' => $forumTopic['Forum']['id']));
 					echo $this->Form->hidden('forum_topic_id', array('value' => $forumTopic['ForumTopic']['id']));
-					echo $this->Media->ckeditor('content'); //echo $this->Form->input('content');
+					echo $this->Form->input('content'); //echo $this->Form->input('content');
 				?>
 				<?php echo $this->Form->end(__('Submit')); ?>
 			</div>

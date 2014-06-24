@@ -18,7 +18,7 @@ class EvidencesController extends AppController {
 
 	public $user = null;
 
-	public $helpers = array('Media.Media');
+	//public $helpers = array('Media.Media');
 
 /**
  * index method

@@ -30,7 +30,7 @@
 				echo $this->Form->hidden('user_id');
 				echo $this->Form->hidden('forum_id');
 				echo $this->Form->hidden('forum_topic_id');
-				echo $this->Media->ckeditor('content', array('label' => __('Content')));
+				echo $this->Form->input('content', array('label' => __('Content')));
 				?>
 			<?php echo $this->Form->end(__('Submit')); ?>
 		</div>
