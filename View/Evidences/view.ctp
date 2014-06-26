@@ -50,7 +50,7 @@
 		  <div class="small-9 medium-9 large-9 columns">
 		 	<div class = "evoke evidence-body view">
 		 	<div class = "content padding30">
-			  	<h1><?php echo h($evidence['Evidence']['title']); ?></h1>
+			  	<h1><?php echo urldecode($evidence['Evidence']['title']); ?></h1>
 			  	<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
 			  	<div class = "imgtag"><?php echo urldecode($evidence['Evidence']['content']); ?></div>
 

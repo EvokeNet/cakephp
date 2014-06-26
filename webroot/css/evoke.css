@@ -2175,3 +2175,8 @@ button, div, p, span, a,
 .decoda-textarea textarea{
 	height:300px;
 }
+
+.evoke .input.file.border{
+	margin-top:10px;
+	border-top:2px solid #444;
+}

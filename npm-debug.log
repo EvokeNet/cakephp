@@ -1,0 +1,98 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'medium-editor' ]
+2 info using npm@1.3.24
+3 info using node@v0.10.25
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ 'medium-editor', null ]
+6 verbose cache add name=undefined spec="medium-editor" args=["medium-editor",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'medium-editor',
+7 verbose parsed url   path: 'medium-editor',
+7 verbose parsed url   href: 'medium-editor' }
+8 silly lockFile 22fd0b49-medium-editor medium-editor
+9 verbose lock medium-editor /home/rjapur/.npm/22fd0b49-medium-editor.lock
+10 silly lockFile 22fd0b49-medium-editor medium-editor
+11 silly lockFile 22fd0b49-medium-editor medium-editor
+12 verbose addNamed [ 'medium-editor', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile a6bb6b1e-medium-editor medium-editor@
+15 verbose lock medium-editor@ /home/rjapur/.npm/a6bb6b1e-medium-editor.lock
+16 silly addNameRange { name: 'medium-editor', range: '*', hasData: false }
+17 verbose url raw medium-editor
+18 verbose url resolving [ 'https://registry.npmjs.org/', './medium-editor' ]
+19 verbose url resolved https://registry.npmjs.org/medium-editor
+20 info trying registry request attempt 1 at 12:22:59
+21 http GET https://registry.npmjs.org/medium-editor
+22 http 200 https://registry.npmjs.org/medium-editor
+23 silly registry.get cb [ 200,
+23 silly registry.get   { date: 'Wed, 25 Jun 2014 15:23:00 GMT',
+23 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+23 silly registry.get     etag: '"B8OZTVUK8S66G7ND62TM638FF"',
+23 silly registry.get     'content-type': 'application/json',
+23 silly registry.get     'cache-control': 'max-age=30',
+23 silly registry.get     'content-length': '34877',
+23 silly registry.get     'accept-ranges': 'bytes',
+23 silly registry.get     via: '1.1 varnish',
+23 silly registry.get     age: '0',
+23 silly registry.get     'x-served-by': 'cache-at52-ATL',
+23 silly registry.get     'x-cache': 'MISS',
+23 silly registry.get     'x-cache-hits': '0',
+23 silly registry.get     'x-timer': 'S1403709780.195806,VS0,VE43',
+23 silly registry.get     vary: 'Accept',
+23 silly registry.get     'keep-alive': 'timeout=10, max=50',
+23 silly registry.get     connection: 'Keep-Alive' } ]
+24 silly addNameRange number 2 { name: 'medium-editor', range: '*', hasData: true }
+25 silly addNameRange versions [ 'medium-editor',
+25 silly addNameRange   [ '1.1.1',
+25 silly addNameRange     '1.7.1',
+25 silly addNameRange     '1.7.0',
+25 silly addNameRange     '1.6.0',
+25 silly addNameRange     '1.5.0',
+25 silly addNameRange     '1.4.0',
+25 silly addNameRange     '1.3.0',
+25 silly addNameRange     '1.7.2',
+25 silly addNameRange     '1.7.3',
+25 silly addNameRange     '1.7.5',
+25 silly addNameRange     '1.8.0',
+25 silly addNameRange     '1.8.5',
+25 silly addNameRange     '1.8.6',
+25 silly addNameRange     '1.8.8',
+25 silly addNameRange     '1.8.14' ] ]
+26 verbose addNamed [ 'medium-editor', '1.8.14' ]
+27 verbose addNamed [ '1.8.14', '1.8.14' ]
+28 silly lockFile 08748d5f-medium-editor-1-8-14 medium-editor@1.8.14
+29 verbose lock medium-editor@1.8.14 /home/rjapur/.npm/08748d5f-medium-editor-1-8-14.lock
+30 silly lockFile 39b451cd--editor-medium-editor-1-8-14-tgz https://registry.npmjs.org/medium-editor/-/medium-editor-1.8.14.tgz
+31 verbose lock https://registry.npmjs.org/medium-editor/-/medium-editor-1.8.14.tgz /home/rjapur/.npm/39b451cd--editor-medium-editor-1-8-14-tgz.lock
+32 verbose addRemoteTarball [ 'https://registry.npmjs.org/medium-editor/-/medium-editor-1.8.14.tgz',
+32 verbose addRemoteTarball   '4e5db4c18d3c467967e38ea21ec7cce1af087c62' ]
+33 silly lockFile 39b451cd--editor-medium-editor-1-8-14-tgz https://registry.npmjs.org/medium-editor/-/medium-editor-1.8.14.tgz
+34 silly lockFile 39b451cd--editor-medium-editor-1-8-14-tgz https://registry.npmjs.org/medium-editor/-/medium-editor-1.8.14.tgz
+35 silly lockFile 08748d5f-medium-editor-1-8-14 medium-editor@1.8.14
+36 silly lockFile 08748d5f-medium-editor-1-8-14 medium-editor@1.8.14
+37 silly lockFile a6bb6b1e-medium-editor medium-editor@
+38 silly lockFile a6bb6b1e-medium-editor medium-editor@
+39 error Error: EACCES, mkdir '/home/rjapur/tmp/npm-2174-y1aaq8mm'
+39 error  { [Error: EACCES, mkdir '/home/rjapur/tmp/npm-2174-y1aaq8mm']
+39 error   errno: 3,
+39 error   code: 'EACCES',
+39 error   path: '/home/rjapur/tmp/npm-2174-y1aaq8mm' }
+40 error Please try running this command again as root/Administrator.
+41 error System Linux 3.11.0-15-generic
+42 error command "/usr/bin/node" "/usr/bin/npm" "install" "medium-editor"
+43 error cwd /srv/www/evoke
+44 error node -v v0.10.25
+45 error npm -v 1.3.24
+46 error path /home/rjapur/tmp/npm-2174-y1aaq8mm
+47 error code EACCES
+48 error errno 3
+49 error stack Error: EACCES, mkdir '/home/rjapur/tmp/npm-2174-y1aaq8mm'
+50 verbose exit [ 3, true ]

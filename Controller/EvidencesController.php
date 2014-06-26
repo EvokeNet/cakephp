@@ -1,5 +1,8 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Folder', 'Utility');
+App::uses('File', 'Utility');
+
 /**
  * Evidences Controller
  *
@@ -102,37 +105,98 @@ class EvidencesController extends AppController {
 
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
+		//$insertData = array('user_id' => $this->getUserId(), 'mission_id' => $mission_id, 'phase_id' => $phase_id, 'quest_id' => $quest_id); 
+		
+		$this->loadModel('Dossier');
+		$this->loadModel('Attachment');
+		$this->loadModel('Quest');
 
-		$insertData = array('user_id' => $this->getUserId(), 'mission_id' => $mission_id, 'phase_id' => $phase_id, 'quest_id' => $quest_id); 
+		$q = $this->Evidence->Quest->find('first', array('conditions' => array('Quest.id' => $quest_id)));
+
+		$dossier = $this->Dossier->find('first', array(
+			'conditions' => array(
+				'mission_id' => $mission_id
+			)
+		));
+
+		if(!empty($dossier)) {
+			//dossier files
+			$dossier_files = $this->Attachment->find('all', array(
+				'conditions' => array(
+					'Attachment.foreign_key' => $dossier['Dossier']['id'],
+					'Attachment.model' => 'Dossier'
+				)
+			));
+		} else {
+			$dossier_files = array();
+		}
+
+		$lang = $this->getCurrentLanguage();
+		$flags['_en'] = true;
+		$flags['_es'] = false;
+		if($lang=='es') {
+			$flags['_en'] = false;
+			$flags['_es'] = true;
+		}
+
+		if($flags['_es'])
+			$langs = 'es';
+		else
+			$langs = 'en';
+
+		$links = $this->Evidence->Mission->DossierLink->find('all', array('conditions' => array('DossierLink.mission_id' => $mission_id, 'DossierLink.language' => $langs)));
+		$video_links = $this->Evidence->Mission->DossierVideo->find('all', array('conditions' => array('DossierVideo.mission_id' => $mission_id, 'DossierVideo.language' => $langs)));
 
 		if($evokation) $insertData['evokation'] = '1';
 		else $insertData['evokation'] = '0';
 
-		$this->Evidence->create();
-		if ($this->Evidence->save($insertData)) {
-			
-			//$this->Session->setFlash(__('The evidence has been saved.')); 
-			 
-			//$this->Session->setFlash(__('The evidence has been saved.'), 'flash_message');
+		if ($this->request->is('post')) {
+			$this->Evidence->create();
 
-			//user has completed a quest, so if he doesnt exist in 'usersmissions', add him now!
-			$this->loadModel('UserMission');
-			$is_in = $this->UserMission->find('first', array('conditions' => array('UserMission.user_id' => $this->getUserId(), 'UserMission.mission_id' => $mission_id)));
-			if(empty($is_in)) {
-				$this->UserMission->create();
-				$data['UserMission']['user_id'] = $this->getUserId();
-				$data['UserMission']['mission_id'] = $mission_id;
+			// $json = $this->request->data['Evidence']['content'];
+			// $json = json_decode($json);
 
-				if ($this->UserMission->save($data)) {
-					//$this->Session->setFlash(__('The user mission has been saved.'));
-				} else {
-					//$this->Session->setFlash(__('The user mission could not be saved. Please, try again.'));
-				}
+			// //$data = $this->request->input('json_decode', true);
+			// //unset($this->request->data['Evidence']['content']);
+
+			// $this->request->data['Evidence']['content'] = $json;
+			// debug($this->request->data);
+
+			// die();
+			if ($this->Evidence->save($this->request->data)) {
+				
+				//$this->Session->setFlash(__('The evidence has been saved.')); 
+				 
+				//$this->Session->setFlash(__('The evidence has been saved.'), 'flash_message');
+
+				// if ($this->UserMission->save($data)) {
+				// 	//$this->Session->setFlash(__('The user mission has been saved.'));
+				// } else {
+				// 	//$this->Session->setFlash(__('The user mission could not be saved. Please, try again.'));
+				// }
+
+				//user has completed a quest, so if he doesnt exist in 'usersmissions', add him now!
+
+				// $this->loadModel('UserMission');
+				// $is_in = $this->UserMission->find('first', array('conditions' => array('UserMission.user_id' => $this->getUserId(), 'UserMission.mission_id' => $mission_id)));
+				// if(empty($is_in)) {
+				// 	$this->UserMission->create();
+				// 	$data['UserMission']['user_id'] = $this->getUserId();
+				// 	$data['UserMission']['mission_id'] = $mission_id;
+
+				// 	if ($this->UserMission->save($data)) {
+				// 		//$this->Session->setFlash(__('The user mission has been saved.'));
+				// 	} else {
+				// 		//$this->Session->setFlash(__('The user mission could not be saved. Please, try again.'));
+				// 	}
+				// }
+				return $this->redirect(array('action' => 'view', $this->Evidence->id));
+			} else {
+				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}
-			return $this->redirect(array('action' => 'edit', $this->Evidence->id));
-		} else {
-			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 		}
+
+		$this->set(compact('dossier_files', 'user', 'lang', 'langs', 'links', 'video_links', 'q', 'mission_id', 'phase_id', 'quest_id'));
 	}
 
 /**
@@ -265,18 +329,18 @@ class EvidencesController extends AppController {
 					}
 				}
 
-				if(empty($this->request->data['Evidence']['content'])) {
-					//debug($me);
-					$this->Session->setFlash(__('You need to fill the content'),'flash_message');
-					$this->redirect($this->referer());
-				}
+				// if(empty($this->request->data['Evidence']['content'])) {
+				// 	//debug($me);
+				// 	$this->Session->setFlash(__('You need to fill the content'),'flash_message');
+				// 	$this->redirect($this->referer());
+				// }
 
 		        $this->Session->setFlash(__('The evidence has been saved'), 'flash_message');
 
 				/* Ends event */
 
 				//$this->Session->setFlash(__('The evidence has been saved'), 'flash_message');
-				return $this->redirect(array('controller' => 'missions', 'action' => 'view', $me['Evidence']['mission_id'], $me['Phase']['position']));
+				return $this->redirect(array('controller' => 'evidences', 'action' => 'view', $me['Evidence']['id']));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}
@@ -337,6 +401,137 @@ class EvidencesController extends AppController {
 		}
 	}
 
+	/**
+	 * Verifica se o diretório existe, se não ele cria.
+	 * @access public
+	 * @param Array $imagem
+	 * @param String $data
+	*/ 
+	public function checa_dir($dir)
+	{
+		$folder = new Folder();
+		if (!is_dir($dir)){
+			$folder->create($dir);
+		}
+	}
+
+	/**
+	 * Verifica se o nome do arquivo já existe, se existir adiciona um numero ao nome e verifica novamente
+	 * @access public
+	 * @param Array $imagem
+	 * @param String $data
+	 * @return nome da imagem
+	*/ 
+	public function checa_nome($imagem, $dir)
+	{
+		$imagem_info = pathinfo($dir.$imagem['name']);
+		$imagem_nome = $this->trata_nome($imagem_info['filename']).'.'.$imagem_info['extension'];
+		debug($imagem_nome);
+		$conta = 2;
+		while (file_exists($dir.$imagem_nome)) {
+			$imagem_nome  = $this->trata_nome($imagem_info['filename']).'-'.$conta;
+			$imagem_nome .= '.'.$imagem_info['extension'];
+			$conta++;
+			debug($imagem_nome);
+		}
+		$imagem['name'] = $imagem_nome;
+		return $imagem;
+	}
+
+	/**
+	 * Trata o nome removendo espaços, acentos e caracteres em maiúsculo.
+	 * @access public
+	 * @param Array $imagem
+	 * @param String $data
+	*/ 
+	public function trata_nome($imagem_nome)
+	{
+		$imagem_nome = strtolower(Inflector::slug($imagem_nome,'-'));
+		return $imagem_nome;
+	}
+
+	/**
+	 * Move o arquivo para a pasta de destino.
+	 * @access public
+	 * @param Array $imagem
+	 * @param String $data
+	*/ 
+	public function move_arquivos($imagem, $dir)
+	{
+		$arquivo = new File($imagem['tmp_name']);
+		$arquivo->copy($dir.$imagem['name']);
+		$arquivo->close();
+	}
+
+/**
+ * upload method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function uploadPicMedium($id = null) {
+
+		$this->layout = false;
+		$this->autoRender = false;
+
+		$img = $_FILES['file'];
+
+		$dir = WWW_ROOT . 'files' . DS . 'attachment' . DS . 'attachment' . DS . 'medium' . DS;
+
+		if(($img['error']!=0) and ($img['size']==0)) {
+			throw new NotImplementedException('Something went wrong. Error '.$img['error'].' Size: '.$img['size']);
+		}
+
+		// $this->checa_dir($dir);
+
+		$folder = new Folder();
+		
+		if (!is_dir($dir)){
+			$folder->create($dir);
+		}
+
+		// $img = $this->checa_nome($img, $dir);
+
+		$img_info = pathinfo($dir.$img['name']);
+		$img_nome = $this->trata_nome($img_info['filename']).'.'.$img_info['extension'];
+		//debug($img_nome);
+		$counter = 2;
+
+		while (file_exists($dir.$img_nome)) {
+			$img_nome  = $this->trata_nome($img_info['filename']).'-'.$counter;
+			$img_nome .= '.'.$img_info['extension'];
+			$counter++;
+			//debug($img_nome);
+		}
+
+		$img['name'] = $img_nome;
+
+		// $this->move_arquivos($img, $dir);
+
+		$file = new File($img['tmp_name']);
+		$file->copy($dir . $img['name']);
+		$file->close();
+
+		// debug($dir. $img['name']);
+		//echo $dir. $img['name'];
+		echo $this->webroot . 'webroot' . DS . 'files' . DS . 'attachment' . DS . 'attachment' . DS . 'medium' . DS . $img['name'];
+
+	}
+
+/**
+ * upload method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function deletePicMedium() {
+
+		// debug($_POST['file']['name']);
+		// debug($_POST['name']);
+
+	}
 
 /**
  * delete method
