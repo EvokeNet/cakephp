@@ -209,6 +209,8 @@ class NotificationsListener implements CakeEventListener {
 
         $note->saveAll($insertData);
 
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'runScript'));
+
     }
 
     public function notifyCommentedEvokation($event){

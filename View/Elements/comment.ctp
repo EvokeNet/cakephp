@@ -8,7 +8,7 @@
 			echo $this->Form->input('content', array('label' => false));
 		?>
 
-	<button type="submit" class= "evoke button general submit-button-margin">
+	<button type="submit" id = "AddComment" class= "evoke button general submit-button-margin">
 		<i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i>
 		<?= strtoupper(__('Post')) ?>
 	</button>
@@ -22,3 +22,21 @@
 		<?= strtoupper(__('Log in')) ?>
 	</a>
 <?php endif; ?>
+
+<?php 
+	echo $this->Html->script('/components/jquery/jquery.min.js');
+?>
+
+<!-- <script src="/socket.io/socket.io.js"></script>
+<script>
+	jQuery('#AddComment').click(function(event) {
+        // jQuery.getScript("/evoke/webroot/js/notifications/send.js");
+        var socket = io('http://localhost');
+  
+		socket.emit('notification_from_server', { hey: 'it works' });
+
+		alert('YAY');
+
+        return false;
+    });
+</script> -->

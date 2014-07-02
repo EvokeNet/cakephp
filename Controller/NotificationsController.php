@@ -266,6 +266,10 @@ class NotificationsController extends AppController {
 		$this->Session->setFlash('', 'flash_basic_training', array('user_id' => $user_id));
 	}
 
+	public function runScript(){
+		$this->render('run_script');
+	}
+
 	public function displayAdminMessage($user_id, $admin_notification_id){
 		$this->loadModel('AdminNotification');
 		$notification = $this->AdminNotification->find('first', array(
