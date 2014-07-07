@@ -31,34 +31,38 @@
 						<fieldset>
 							<?php
 								
-									echo '<legend>'. __('Add a Mission') . '</legend>'; 
-									echo $this->Form->input('title', array('label' => __('Title'), 'required' => true));
-									echo $this->Form->input('title_es', array('label' => __('Spanish Title')));
-									echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
-									echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
-									echo $this->Form->input('video_link', array('label' => __('Video Link')));
-									echo $this->Form->input('video_link_es', array('label' => __('Spanish Video Link')));
-									echo $this->Form->radio('basic_training', array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=> 0));
-									if(!is_null($mission['Mission']['image_dir'])) :
-										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['image_dir'].'/thumb_'.$mission['Mission']['image_attachment'] . '"/>';
-										echo '<div class="input file"><label for="AttachmentImgAttachment">Change Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
-									else :
-										echo '<div class="input file"><label for="AttachmentImgAttachment">Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
-									endif;
-									if(!is_null($mission['Mission']['cover_dir'])) :
-										echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/thumb_'.$mission['Mission']['cover_attachment'] . '"/>';
-										echo '<div class="input file"><label for="AttachmentCoverAttachment">Change Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
-									else :
-										echo '<div class="input file"><label for="AttachmentCoverAttachment">Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
-									endif;
-									echo $this->Form->hidden('form_type', array('value' => 'mission'));
-									echo $this->Form->input('MissionIssue.issue_id', array(
-            							'options' => $issues
-            						));
-            						echo $this->Form->input('organization_id', array(
-											'label' => __('Created by'),
-											'options' => $organizations
-									));
+								echo '<legend>'. __('Add a Mission') . '</legend>'; 
+								echo $this->Form->input('Mission.title.eng', array('label' => __('Title'), 'required' => true));
+								echo $this->Form->input('Mission.title.spa', array('label' => __('Spanish Title')));
+								echo $this->Form->input('Mission.title.por_br', array('label' => __('Portuguese Title')));
+								//echo $this->Form->input('title_es', array('label' => __('Spanish Title')));
+								echo $this->Form->input('Mission.description.eng', array('label' => __('Description'), 'required' => true));
+								echo $this->Form->input('Mission.description.spa', array('label' => __('Spanish Description')));
+								echo $this->Form->input('Mission.description.por_br', array('label' => __('Portuguese Description')));
+								//echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
+								echo $this->Form->input('video_link', array('label' => __('Video Link')));
+								echo $this->Form->input('video_link_es', array('label' => __('Spanish Video Link')));
+								echo $this->Form->radio('basic_training', array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=> 0));
+								if(!is_null($mission['Mission']['image_dir'])) :
+									echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['image_dir'].'/thumb_'.$mission['Mission']['image_attachment'] . '"/>';
+									echo '<div class="input file"><label for="AttachmentImgAttachment">Change Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
+								else :
+									echo '<div class="input file"><label for="AttachmentImgAttachment">Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
+								endif;
+								if(!is_null($mission['Mission']['cover_dir'])) :
+									echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/thumb_'.$mission['Mission']['cover_attachment'] . '"/>';
+									echo '<div class="input file"><label for="AttachmentCoverAttachment">Change Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
+								else :
+									echo '<div class="input file"><label for="AttachmentCoverAttachment">Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
+								endif;
+								echo $this->Form->hidden('form_type', array('value' => 'mission'));
+								echo $this->Form->input('MissionIssue.issue_id', array(
+        							'options' => $issues
+        						));
+        						echo $this->Form->input('organization_id', array(
+										'label' => __('Created by'),
+										'options' => $organizations
+								));
 							?>
 						</fieldset>
 						<button class="button small" type="submit">

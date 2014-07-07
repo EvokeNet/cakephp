@@ -805,9 +805,14 @@ class UsersController extends AppController {
 		} 
 
 		$this->loadModel('Mission');
+		$this->Mission->locale = $this->langToLocale(Configure::read('Config.language'));
 		$missions = $this->Mission->find('all', array(
 			'order' => array('Mission.created')
 		));
+
+		// debug(count($missions));
+		// debug(Configure::read('Config.language'));
+		// debug($this->langToLocale(Configure::read('Config.language')));
 
 		$show_basic_training = false;
 		$mission_ids = array();

@@ -17,6 +17,16 @@ class Mission extends AppModel {
  */
 	public $displayField = 'title';
 
+/**
+ * actsAs array
+ *
+ * 
+ */
+	public $actsAs = array(
+        'Translate' => array(
+            'title', 'description'
+        )
+    );
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	
