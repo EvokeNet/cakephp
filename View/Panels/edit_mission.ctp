@@ -87,15 +87,27 @@
 
 	<div class="evoke row full-width-alternate admin-panel-bg">
 
-	  <div class="small-2 columns no-padding">
+	  <div class="small-1 columns no-padding">
 
 	  	<div class = "evoke menu-bg sidebar menucolumn" style = "height: 1500px; background-color:#1f232a">
 		  	<dl class="panels tabs vertical" data-tab>
-				<dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= strtoupper(__('Mission Data')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+				<!-- <dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= strtoupper(__('Mission Data')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd> -->
+
+				<dd class="<?php echo $mission_tag ?>" style = "text-align:center"><a href="#mission"><i class="fa fa-clipboard" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Mission Data')) ?></a></dd>
+
 				<?php if(isset($id) && !is_null($id)) : ?>
-					<dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= strtoupper(__('Phases')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
-					<dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= strtoupper(__('Mission Dossier')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
-					<dd class="<?php echo $novel_tag ?>"><a href="#graphic"><?= strtoupper(__('Graphic Novel')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+					<!-- <dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= strtoupper(__('Phases')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd> -->
+
+					<dd class="<?php echo $phases_tag ?>" style = "text-align:center"><a href="#phases"><i class="fa fa-list-alt" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Phases')) ?></a></dd>
+
+					<!-- <dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= strtoupper(__('Mission Dossier')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd> -->
+
+					<dd class="<?php echo $dossier_tag ?>" style = "text-align:center"><a href="#dossier"><i class="fa fa-file-text-o" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Mission Dossier')) ?></a></dd>
+
+					<!-- <dd class="<?php echo $novel_tag ?>"><a href="#graphic"><?= strtoupper(__('Graphic Novel')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd> -->
+
+					<dd class="<?php echo $novel_tag ?>" style = "text-align:center"><a href="#graphic"><i class="fa fa-picture-o" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Graphic Novel')) ?></a></dd>
+
 				<?php endif; ?>
 
 			</dl>
@@ -104,13 +116,13 @@
 
 	  </div>
 
-	  <div class="small-10 columns no-padding">
+	  <div class="small-11 columns no-padding">
 
 	  	<div class="panels tabs-content vertical">
 
 		  	<?php 
 				if((empty($phases) || is_null($phases)) && isset($id) && !is_null($id)):?>
-					<button class="button small" href="#" data-reveal-id="myModalExit" data-reveal><?php echo __('Return to Admin Panel');?></button>
+					<button class="button general" href="#" data-reveal-id="myModalExit" data-reveal><?php echo __('Return to Admin Panel');?></button>
 					<div id="myModalExit" class="reveal-modal tiny" data-reveal>
 						<h4><?= __('Are you sure you want to exit to Admin Panel?') ?></h4>
 						<p><?= __('Your mission has no Phase and, therefore, will not be displayed to other agents. Please add a Phase to your mission!') ?></p>
@@ -194,7 +206,7 @@
 					
 					<!-- <a href ="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'add_mission')) ?>" class="button general"><?php echo __('New Mission');?></a> -->
 
-					<!-- <button class="button general" href="#" data-reveal-id="myModalPhase" data-reveal><?php echo __('Add a Phase');?></button> -->
+					<a class="button general" href="#" data-reveal-id="myModalPhase" data-reveal><?php echo __('Add a Phase');?></a>
 
 					<?php if(empty($phases)) :
 							echo '<h4>' . __('Your mission will not be accessible until it has at least one phase.') . '</h4>';
