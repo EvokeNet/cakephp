@@ -1167,7 +1167,14 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function leaderboard() {
+	public function leaderboard($label = null) {
+			
+		$user = $this->User->find('first', array(
+			'conditions' => array(
+				'User.id' => $this->getUserId()
+			)
+		));
+
 		$userid = $this->getUserId();
 
 		$username = explode(' ', $this->getUserName());
@@ -1182,39 +1189,12 @@ class UsersController extends AppController {
 		}
 		//getting leaderboard data:
 			//getting user power points
-			$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
 
-			$points_users = array(); // will contain [points][][user]
+		$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
 
-			$allusers = $this->User->find('all');
+		$points_users = array(); // will contain [points][][user]
 
-			$this->loadModel('Evokation');
-
-			$evokations = $this->Evokation->find('all', array(
-				'conditions' => array(
-					'Evokation.sent' => 1
-				)
-			));
-
-			$votes = $this->Evokation->Vote->find('all');
-
-			$vote_rank = array();
-
-			foreach($evokations as $e):
-				foreach($votes as $v):
-					$var = $v['Vote']['value'] + 1;
-					if($v['Vote']['evokation_id'] == $e['Evokation']['id']){
-						if(isset($vote_rank[$e['Evokation']['id']]))
-							$vote_rank[$e['Evokation']['id']] += $var;
-						else
-							$vote_rank[$e['Evokation']['id']] = $var;
-					}
-				endforeach;
-				if(!isset($vote_rank[$e['Evokation']['id']])) 
-					$vote_rank[$e['Evokation']['id']] = 0;
-			endforeach;
-
-			arsort($vote_rank);
+		$allusers = $this->User->find('all');
 
 			//debug($vote_rank);
 
@@ -1237,8 +1217,6 @@ class UsersController extends AppController {
 
 				$usr['User']['level'] = $this->getLevel($usrpoints);
 				$points_users[$usrpoints][] = $usr['User'];
-
-
 
 				$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
 					'conditions' => array(
@@ -1277,21 +1255,62 @@ class UsersController extends AppController {
 			}
 			krsort($points_users);
 
-		$user = $this->User->find('first', array(
-			'conditions' => array(
-				'User.id' => $this->getUserId()
-			)
-		));
+		$this->set(compact('label', 'userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'lang'));
 
-		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
-
-		$sumMyPoints = 0;
-		
-		foreach($myPoints as $point){
-			$sumMyPoints += $point['Point']['value'];
+		if(empty($label)) {
+			$this->render('categories/levels');
 		}
-		
-		$this->set(compact('evokations', 'votes', 'vote_rank', 'userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints', 'lang'));
+
+		if($label == 'evokation') {
+
+			$this->loadModel('Evokation');
+
+			$evokations = $this->Evokation->find('all', array(
+				'conditions' => array(
+					'Evokation.sent' => 1
+				)
+			));
+
+			$votes = $this->Evokation->Vote->find('all');
+
+			$vote_rank = array();
+
+			foreach($evokations as $e):
+				foreach($votes as $v):
+					$var = $v['Vote']['value'] + 1;
+					if($v['Vote']['evokation_id'] == $e['Evokation']['id']){
+						if(isset($vote_rank[$e['Evokation']['id']]))
+							$vote_rank[$e['Evokation']['id']] += $var;
+						else
+							$vote_rank[$e['Evokation']['id']] = $var;
+					}
+				endforeach;
+				if(!isset($vote_rank[$e['Evokation']['id']])) 
+					$vote_rank[$e['Evokation']['id']] = 0;
+			endforeach;
+
+			arsort($vote_rank);
+
+			$this->set(compact('evokations', 'votes', 'vote_rank'));
+
+			$this->render('categories/evokation');
+		}
+
+		if(is_numeric($label)) {
+
+			$this->loadModel('PowerPoint');
+
+			$powerlabel = $this->PowerPoint->find('first', array(
+				'conditions' => array(
+					'PowerPoint.id' => $label
+				)
+			));
+
+			$this->set(compact('powerlabel'));
+
+			$this->render('categories/power_points');
+		}
+
 	}
 
 /**

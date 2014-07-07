@@ -1,10 +1,11 @@
 {
   "name": "Evoke",
   "dependencies": {
-    "foundation": "5.0.3",
+    "foundation": "5.3.0",
     "font-awesome": "v4.1",
     "mrmrs-colors": "master",
     "medium-editor": "master",
+    "skrollr": "0.6.26",
     "medium-editor-insert-plugin": "~0.2.4",
     "jcarousel": "git://github.com/jsor/jcarousel",
     "kibo": "git://github.com/marquete/kibo",

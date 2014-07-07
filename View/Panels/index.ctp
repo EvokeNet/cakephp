@@ -89,39 +89,39 @@
 <section>
 	<div class="evoke row full-width-alternate admin-panel-bg">
 
-	  <div class="small-2 columns no-padding">
+	  <div class="small-1 columns no-padding">
 	  	<div class = "evoke menu-bg sidebar menucolumn" style = "height: 1500px; background-color:#1f232a">
 	  	<dl class="panels tabs vertical" data-tab>
-				<dd class="<?php echo $organizations_tab; ?>"><a href="#organizations"><i class="fa fa-bank"></i><?= strtoupper(__('Organizations')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+				<dd class="<?php echo $organizations_tab; ?>" style = "text-align:center"><a href="#organizations"><i class="fa fa-bank fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Organizations')) ?></a></dd>
 
-				<dd class="<?php echo $missions_tab; ?>"><a href="#missions"><i class="fa fa-folder-open-o"></i><?= strtoupper(__('Missions')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+				<dd class="<?php echo $missions_tab; ?>" style = "text-align:center"><a href="#missions"><i class="fa fa-folder-open-o fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Missions')) ?></a></dd>
 				
 				<?php if($flags['_admin']) : ?>
-					<dd class="<?php echo $issues_tab; ?>"><a href="#issues"><i class="fa fa-list-ul"></i><?= strtoupper(__('Issues')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $issues_tab; ?>" style = "text-align:center"><a href="#issues"><i class="fa fa-list-ul fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Issues')) ?></a></dd>
 
-					<dd class="<?php echo $levels_tab; ?>"><a href="#levels"><i class="fa fa-trophy"></i><?= strtoupper(__('Levels')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $levels_tab; ?>" style = "text-align:center"><a href="#levels"><i class="fa fa-trophy fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Levels')) ?></a></dd>
 					
-					<dd class="<?php echo $powerpoints_tab; ?>"><a href="#powerpoints"><i class="fa fa-star-o"></i><?= strtoupper(__('Power Points')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $powerpoints_tab; ?>" style = "text-align:center"><a href="#powerpoints"><i class="fa fa-star-o fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Power Points')) ?></a></dd>
 				<?php endif; ?>	
 				
-				<dd class="<?php echo $badges_tab; ?>"><a href="#badges"><i class="fa fa-shield"></i><?= strtoupper(__('Badges')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+				<dd class="<?php echo $badges_tab; ?>" style = "text-align:center"><a href="#badges"><i class="fa fa-shield fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Badges')) ?></a></dd>
 				
-				<dd class="<?php echo $users_tab; ?>"><a href="#users"><i class="fa fa-users"></i><?= strtoupper(__('Users')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+				<dd class="<?php echo $users_tab; ?>" style = "text-align:center"><a href="#users"><i class="fa fa-users fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Users')) ?></a></dd>
 				
 				<?php if($flags['_admin']) : ?>
-					<dd class="<?php echo $pending_tab; ?>"><a href="#pending"><i class="fa fa-inbox"></i><?= strtoupper(__('Evokations')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $pending_tab; ?>" style = "text-align:center"><a href="#pending"><i class="fa fa-inbox fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Evokations')) ?></a></dd>
 					
-					<dd class="<?php echo $media_tab; ?>"><a href="#media"><i class="fa fa-exclamation-circle"></i><?= strtoupper(__('Notifications & Media')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $media_tab; ?>" style = "text-align:center"><a href="#media"><i class="fa fa-exclamation-circle fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Notifications & Media')) ?></a></dd>
 					
-					<dd class="<?php echo $settings_tab; ?>"><a href="#settings"><i class="fa fa-cogs"></i><?= strtoupper(__('General Settings')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+					<dd class="<?php echo $settings_tab; ?>" style = "text-align:center"><a href="#settings"><i class="fa fa-cogs fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('General Settings')) ?></a></dd>
 				<?php endif; ?>	
 				
-				<dd id="test" class="<?php echo $statistics_tab; ?>"><a href="#statistics"><i class="fa fa-bar-chart-o"></i><?= strtoupper(__('Statistics')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd>
+				<dd id="test" class="<?php echo $statistics_tab; ?>" style = "text-align:center"><a href="#statistics"><i class="fa fa-bar-chart-o fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Statistics')) ?></a></dd>
 			</dl>
 			</div>
 	  </div>
 
-	  <div class="small-10 columns no-padding">
+	  <div class="small-11 columns no-padding">
 	  	
 	  	<div class="panels tabs-content vertical padding top-2">
 				<div class="content <?php echo $organizations_tab; ?>" id="organizations">

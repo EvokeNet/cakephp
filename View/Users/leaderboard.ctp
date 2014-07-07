@@ -74,7 +74,7 @@
 
 				</div>
 
-				<div class="content vertical" id="panelEvo">
+				<!-- <div class="content vertical" id="panelEvo">
 
 					<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
 						<li><h3><?= strtoupper(__("Position")) ?></h3></li>
@@ -113,7 +113,7 @@
 
 					?>
 
-				</div>
+				</div> -->
 
 				<?php 
 					$index = 1;
@@ -179,6 +179,31 @@
 		</div>
 		
 		<div class="small-2 medium-2 large-2 columns">
+
+			<div class="icon-bar vertical six-up margin top-6">
+			  <a class="item" href = "<?= 'leaderboard' ?>">
+			    <i class="fa fa-heart"></i>
+			    <label>Levels</label>
+			  </a>
+			  <a class="item" href = "<?= 'leaderboard/evokation' ?>">
+			    <i class="fa fa-heart"></i>
+			    <label>Evokation</label>
+			  </a>
+
+			  <?php 
+				$index = 1;
+				foreach ($power_points as $pp): ?>
+
+				<a class="item" href = "<?= 'leaderboard/'.$index ?>">
+				    <i class="fa fa-heart"></i>
+				    <label><?= strtoupper($pp['PowerPoint']['name']) ?></label>
+				</a>
+
+				<?php endforeach;
+			?>
+
+			</div>
+
 			<dl class="leaderboard tabs vertical margin top-6" data-tab>
 				<dd class="active"><a id="xp" href="#panelXP"><?= strtoupper(__('Levels'))?></a></dd>
 				<dd><a id="evo" href="#panelEvo"><?= strtoupper(__('Evokations'))?></a></dd>

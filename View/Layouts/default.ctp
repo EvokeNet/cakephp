@@ -26,7 +26,7 @@ $title = __('Evoke Network');
 
 		//echo $this->Html->script('/components/jquery/jquery.min');
 
-		echo $this->Html->css('/components/foundation/css/foundation.min');
+		echo $this->Html->css('/components/foundation/css/foundation');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
 
