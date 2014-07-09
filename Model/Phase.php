@@ -16,6 +16,17 @@ class Phase extends AppModel {
  */
 	public $displayField = 'name';
 
+/**
+ * actsAs array
+ *
+ * 
+ */
+	public $actsAs = array(
+        'Translate' => array(
+            'name' => 'phaseName', 
+            'description' => 'phaseDescription'
+        )
+    );
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

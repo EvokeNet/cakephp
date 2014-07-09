@@ -24,7 +24,9 @@ class Mission extends AppModel {
  */
 	public $actsAs = array(
         'Translate' => array(
-            'title', 'description'
+            'title' => 'missionTitle', 
+            'description' => 'missionDescription',
+            'video_link' => 'missionVideoLink'
         )
     );
 

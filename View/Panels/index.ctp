@@ -213,14 +213,14 @@
 	 				   			'controller' => 'panels',
 	 				   			'action' => 'add_issue')
 							)); ?>
-						<fieldset>
-							<legend><?php echo __('Add an Issue'); ?></legend>
-							<?php
-								//echo $this->Form->input('parent_id');
-								echo $this->Form->input('name', array('label' => __('Name')));
-								echo $this->Form->input('slug', array('label' => __('Slug')));
-							?>
-						</fieldset>
+						
+						<?php echo __('Add an Issue'); ?>
+						<?php
+							//echo $this->Form->input('parent_id');
+							echo $this->Form->input('name', array('label' => __('Name')));
+							echo $this->Form->input('slug', array('label' => __('Slug')));
+						?>
+						
 						<button class="button general" type="submit">
 							<?php echo __('Add'); ?>
 						</button>

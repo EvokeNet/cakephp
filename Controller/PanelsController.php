@@ -850,7 +850,7 @@ class PanelsController extends AppController {
 	function add_phase($id, $origin = 'add_mission') {
 		if ($this->request->is('post')) {
 			$this->request->data['Phase']['mission_id'] = $id;
-			if($this->Phase->save($this->request->data)){
+			if($this->Phase->saveMany($this->request->data)){
 				$this->Session->setFlash(__('phase saved.'));
 				//if it came from add mission, go back to it, else...
 				$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
@@ -868,15 +868,34 @@ class PanelsController extends AppController {
 */
 
 	public function edit_phase($id = null, $mission_id = null) {
-		if($id == null)
-			$this->redirect($this->referer());
+		// if($id == null)
+		// 	$this->redirect($this->referer());
 		
+		// $this->Phase->id = $id;
+		
+		// if($this->Phase->saveAll($this->request->data))
+		// 	$this->redirect(array('action' => 'edit_mission', $mission_id, 'phase'));
+		// else
+		// 	return $this->redirect($this->referer());
+
+		if (!$this->Phase->exists($id)) {
+			throw new NotFoundException(__('Invalid phase'));
+		}
+
 		$this->Phase->id = $id;
-		
-		if($this->Phase->save($this->request->data))
-			$this->redirect(array('action' => 'edit_mission', $mission_id, 'phase'));
-		else
+
+		if ($this->request->is(array('post', 'put'))) {
+			
+			if ($this->Phase->saveAll($this->request->data)) {
+				$this->Session->setFlash(__('The user has been saved.'));
+				return $this->redirect(array('action' => 'edit_mission', $mission_id, 'phase'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		} else {
 			return $this->redirect($this->referer());
+		}
+
 	}
 
 
