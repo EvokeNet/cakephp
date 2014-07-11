@@ -58,8 +58,11 @@
 	  <li <?=$notificationslink?>>
 	  	<a id = "notificationsItem" href="<?= $this->Html->url(array('controller' => 'notifications', 'action' => 'index')) ?>">
 	  		<i class="fa fa-exclamation-triangle" style="padding-right: 10px;"></i><?= strtoupper(__('Notifications')) ?>
+
+	  		<div id="messages circle"><div class="message"></div></div>
+
 	  		<?php if($notesCount > 0): ?>
-		  		<span class = "circle"><?= $notesCount ?></span>
+		  		<!-- <span class = "circle"><?= $notesCount ?></span> -->
 		  	<?php endif; ?>
   		</a>
   	  </li>
@@ -70,30 +73,59 @@
 	  	<li><a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'index')) ?>"><i class="fa fa-cogs" style="padding-right: 10px;"></i><?= strtoupper(__('Administration')) ?></a></li>
 	  <?php endif ?>
 	</ul>
+
 </div>
+
+<script src="http://localhost:8000/socket.io/socket.io.js"></script>
 
 <?php
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
 ?>
 
-<script type="text/javascript" charset="utf-8">
+<script>
 
-	function saveReadNotifications(){
-		//alert("YAY");
-		jQuery.ajax({
-		    type: 'POST',
-		    url: "<?= 'saveNotifications/'. $userNotifications . '/' . $user['User']['id']?>",
-		    success: function() {
-		        alert("YAY1");
-		    },
-		    error: function() {
-		        // console.log(e);
-		    }
-		});
-	}
+  //socket io client
+  var socket = io.connect('http://localhost:8000');
 
-	jQuery("#notificationsItem").click(function (){
-		saveReadNotifications();
-	});
+  //on connetion, updates connection state and sends subscribe request
+  socket.on('connect', function(data){
+    setStatus('connected');
+    socket.emit('subscribe', {channel:'notif'});
+  });
+
+  //when reconnection is attempted, updates status 
+  socket.on('reconnecting', function(data){
+    setStatus('reconnecting');
+  });
+
+  //on new message adds a new message to display
+  socket.on('message', function (data) {
+    // var msg = "";
+    //var msg = data.text;
+    var msg = data;
+    // if (data.channel) {
+    //   msg += 'Channel:' + data.channel + ', ' + data.text; 
+    // } else {
+    //   msg = data.text;
+    // }
+    addMessage(msg);
+  });
+
+  $(function() {
+  	var datas = {user_id:"<?= $user['User']['id'] ?>"};
+  	socket.emit('what', datas);
+  });
+
+  //updates status to the status div
+  function setStatus(msg) {
+    $('#status').html('Connection Status : ' + msg);
+  }
+
+  //adds message to messages div
+  function addMessage(msg) {
+    var str = '<div class="message">' + msg + '</div>';
+    console.log(str)
+    $('.message').replaceWith(str)
+  }
 
 </script>

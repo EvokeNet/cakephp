@@ -209,7 +209,7 @@ class NotificationsListener implements CakeEventListener {
 
         $note->saveAll($insertData);
 
-        $note->requestAction(array('controller' => 'notifications', 'action' => 'runScript'));
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', $event->data['user_id'], $note->id));
 
     }
 

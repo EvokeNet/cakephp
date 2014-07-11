@@ -226,6 +226,11 @@
 	Configure::write('Security.cipherSeed', '353865393630643863356465346338');
 
 /**
+ * Configure session to redis
+ */
+	// Configure::write('Session.save', 'redis_session');
+
+/**
  * Apply timestamps with the last modified time to static assets (js, css, images).
  * Will append a query string parameter containing the time the file was modified. This is
  * useful for invalidating browser caches.

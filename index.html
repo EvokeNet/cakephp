@@ -19,13 +19,14 @@
 
       //on new message adds a new message to display
       socket.on('message', function (data) {
-        var msg = "";
-        if (data.channel) {
-          msg += 'Channel:' + data.channel + ', ' + data.text; 
-        } else {
-          msg = data.text;
-        }
-      addMessage(msg);
+        // var msg = "";
+        var msg = data.text;
+        // if (data.channel) {
+        //   msg += 'Channel:' + data.channel + ', ' + data.text; 
+        // } else {
+        //   msg = data.text;
+        // }
+        addMessage(msg);
       });
 
       //updates status to the status div
@@ -38,7 +39,7 @@
         var str = '<div class="message">' + msg + '</div><hr>';
         console.log(str)
         $('#messages').append(str)
-}
+      }
     </script>
   </head>
   <body>

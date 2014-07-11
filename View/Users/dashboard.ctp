@@ -1,10 +1,4 @@
 <?php
-	
-	include 'file_trial.php';
-
-	var_dump("HAHAHA");
-	
-	var_dump($users['User']['name']);
 
 	echo $this->Html->css('mycarousel');
 

@@ -38,17 +38,33 @@
 	// reading
 	 
 	foreach($redis->hKeys('user-derfichtl') as $key) {
-	    var_dump($key.': '.$redis->hGet('user-derfichtl', $key)); // prints the key/value map from 'user-derfichtl'
+	    //var_dump($key.': '.$redis->hGet('user-derfichtl', $key)); // prints the key/value map from 'user-derfichtl'
 	}
 	 
 	// or so:
 	 
-	var_dump($redis->hVals('user-derfichtl')); // prints the array
-	var_dump($redis->hGetAll('user-derfichtl')); // prints the array by key
+	// var_dump($redis->hVals('user-derfichtl')); // prints the array
+	// var_dump($redis->hGetAll('user-derfichtl')); // prints the array by key
 	 
 	if($redis->hExists('user-derfichtl', 'name')) {
-	    var_dump($redis->hGet('user-derfichtl', 'name')); //get single
+	    //var_dump($redis->hGet('user-derfichtl', 'name')); //get single
 	}
+
+	$redis->publish('notif', $redis->hGet('user-derfichtl', 'name'));
+
+	$redis->lpush('aa', 'yep');
+	$redis->lpush('aa', 'derfichtl@gmail.com');
+	$redis->lpush('aa', 'Michael Feichtinger');
+
+	$yay = 0;
+
+	$redis->lpush($yay.'a', 'yep');
+	$redis->lpush($yay.'a', 'derfichtl@gmail.com');
+
+	var_dump($yay.'a');
+	var_dump($redis->llen('aa'));
+	var_dump($redis->llen($yay.'a'));
+	var_dump($redis->lrange($yay.'a', 0, 200));
 
 	/* Simple insertions */
 

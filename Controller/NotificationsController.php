@@ -266,10 +266,6 @@ class NotificationsController extends AppController {
 		$this->Session->setFlash('', 'flash_basic_training', array('user_id' => $user_id));
 	}
 
-	public function runScript(){
-		$this->render('run_script');
-	}
-
 	public function displayAdminMessage($user_id, $admin_notification_id){
 		$this->loadModel('AdminNotification');
 		$notification = $this->AdminNotification->find('first', array(
@@ -284,6 +280,31 @@ class NotificationsController extends AppController {
 		 'notificationId' => $notification['AdminNotification']['id'],
 		 'notificationTitle' => $notification['AdminNotification']['title'],
 		 'notificationDescription' => $notification['AdminNotification']['description']), 'admin'.$notification['AdminNotification']['id']);
+	}
+
+/**
+ * flushToRedis method
+ *
+ * After a notification was triggered
+ * 
+ * @return void
+ */
+	public function flushToRedis($user_id = null, $notification_id = null) {
+
+		$redis = new Redis() or die("Cannot load Redis module.");
+		$redis->connect('127.0.0.1');
+
+		$redis->lpush($user_id.'_new_notifications', $notification_id);
+
+		// var_dump($user_id.'_new_notifications');
+		// var_dump($redis->llen($user_id.'_new_notifications'));
+		// var_dump($redis->llen($user_id.'_new_notifications'));
+		// var_dump($redis->lrange($user_id.'_new_notifications', 0, 200));
+
+		// $redis->publish('notif', 'User: ' . $user_id);
+		// $redis->publish('notif', 'Name: ' . ($user_id.'_new_notifications'));
+		// $redis->publish('notif', 'Notes: ' . $notification_id);
+		$redis->publish('notif', $redis->llen($user_id.'_new_notifications'));
 	}
 
 /**
