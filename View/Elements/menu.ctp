@@ -56,10 +56,10 @@
 	  <li <?=$badgeslink?>><a href="<?= $this->Html->url(array('controller' => 'badges', 'action' => 'index')) ?>"><i class="fa fa-shield" style="padding-right: 10px;"></i><?= strtoupper(__('Badges')) ?></a></li>
 	  
 	  <li <?=$notificationslink?>>
-	  	<a id = "notificationsItem" href="<?= $this->Html->url(array('controller' => 'notifications', 'action' => 'index')) ?>">
+	  	<a id = "notificationsItem" href="#">
 	  		<i class="fa fa-exclamation-triangle" style="padding-right: 10px;"></i><?= strtoupper(__('Notifications')) ?>
 
-	  		<div id="messages circle"><div class="message"></div></div>
+	  		<div id="messages" style = "display:inline"><div class="message circle"></div></div>
 
 	  		<?php if($notesCount > 0): ?>
 		  		<!-- <span class = "circle"><?= $notesCount ?></span> -->
@@ -111,9 +111,14 @@
     addMessage(msg);
   });
 
-  $(function() {
-  	var datas = {user_id:"<?= $user['User']['id'] ?>"};
-  	socket.emit('what', datas);
+  $(document).ready(function() {
+  	var data = {user_id:"<?= $user['User']['id'] ?>"};
+  	socket.emit('reload', data);
+  });
+
+  $('#notificationsItem').click(function(){
+  	var data = {user_id:"<?= $user['User']['id'] ?>"};
+  	socket.emit('history', data);
   });
 
   //updates status to the status div
@@ -123,9 +128,18 @@
 
   //adds message to messages div
   function addMessage(msg) {
-    var str = '<div class="message">' + msg + '</div>';
-    console.log(str)
-    $('.message').replaceWith(str)
+    // var str = '<div class="circle message">' + msg + '</div>';
+    // $('.message').replaceWith(str)
+    // console.log(str)
+
+    var str = '';
+    if(msg != '0'){
+    	str = '<div class="circle message">' + msg + '</div>';
+    } else {
+    	str = '<div class="message"></div>';
+    }
+
+    $('.message').replaceWith(str);
   }
 
 </script>

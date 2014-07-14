@@ -682,30 +682,23 @@ button, div, p, span, a,
 }
 
 .evoke .circle {
-	/*position: absolute;
-	  top: -1px;
-	  right: 1px;*/
-	  min-width: 20px;
-	  height: 20px;
-	  line-height: 1px;
-	  /* margin-top: 20px; */
-	  margin-left: 10px;
-	  padding: 15px 5px;
-	  font-weight: normal;
-	  color: #000;
-	  font-family:'AlegreyaBold';
-	  font-size: 1.1em;
-	  text-align: center;
-	  text-shadow: 0 1px rgba(black, .2);
-	  background: #0cd377;
-	  border: 1px solid #2E7F5A;
-	  border-radius: 50px;
-	  display: inline-block;
-	  -webkit-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.75);
-	  -moz-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.75);
-	  box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.75);
-	  position: relative;
-	  top: -2px;
+	min-width: 30px;
+	line-height: 1px;
+	float: right;
+	padding: 15px 3px;
+	color: #000;
+	font-family: 'AlegreyaBold';
+	font-size: 1.1em;
+	text-align: center;
+	text-shadow: 0 1px rgba(black, .2);
+	background: #0cd377;
+	border: 1px solid #2E7F5A;
+	border-radius: 50px;
+	-webkit-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.75);
+	box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.75);
+	position: relative;
+	top: -2px;
 }
 
 /* End topbar section */
@@ -782,6 +775,12 @@ button, div, p, span, a,
 
 .message {
 	font-size: 0.65em;
+}
+
+.evoke .message {
+	/*font-size: 0.65em;*/
+	font-size: 1em;
+	font-family: 'AlegreyaBold';
 }
 
 .evoke.background{

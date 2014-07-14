@@ -65,12 +65,37 @@ io.sockets.on('connection', function (socket) {
     socket.join(data.channel);
   });
 
-  socket.on('what', function (data) {
-    console.log(data.user_id);
-    redisPublishClient.llen(data.user_id + '_new_notifications', function (err, replies) {
-      console.log(replies);
-      io.to(socket.id).emit('message', replies);
+  //on page reload, the client emits a message with its data
+  //the serevr responds with total of notifications
+  socket.on('reload', function (data) {
+    //console.log(data.user_id);
+    redisPublishClient.llen(
+      data.user_id + '_new_notifications', 
+      function (err, replies) {
+        //console.log(replies);
+        io.to(socket.id).emit('message', replies);
     });
+  });
+
+  //if bubble is clicked, the list is flushed and a new one for history created
+  socket.on('history', function (data) {
+    console.log('one');
+    redisPublishClient.del(data.user_id + '_new_notifications', redis.print);
+    redisPublishClient.llen(
+      data.user_id + '_new_notifications', 
+      function (err, replies) {
+        console.log(replies);
+        io.to(socket.id).emit('message', replies);
+    });
+    // redisPublishClient.llen(
+    //   data.user_id + '_new_notifications', 
+    //   function (err, replies) {
+    //     console.log(replies);
+    //     //redisPublishClient.ltrim(data.user_id + '_new_notifications', 0, replies-1);
+    //     redisPublishClient.del(data.user_id + '_new_notifications');
+    //     io.to(socket.id).emit('message', replies);
+    //     console.log(replies);
+    // });
   });
 
 });

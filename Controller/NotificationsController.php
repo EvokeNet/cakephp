@@ -295,6 +295,7 @@ class NotificationsController extends AppController {
 		$redis->connect('127.0.0.1');
 
 		$redis->lpush($user_id.'_new_notifications', $notification_id);
+		$redis->lpush($user_id.'_notifications_history', $notification_id);
 
 		// var_dump($user_id.'_new_notifications');
 		// var_dump($redis->llen($user_id.'_new_notifications'));
