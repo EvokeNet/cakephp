@@ -27,14 +27,15 @@
 
 	/* Inserting mutiple keys and values -- Hashmaps or Hash: It’s a key/value map stored under a distinct id. For example a user with the key user-1 can have a key/value map with {name:’derfichtl’, ‘email’:'test@test.at’} */
 
-	$redis->hSet('user-derfichtl', 'username', 'derfichtl');
-	$redis->hSet('user-derfichtl', 'email', 'derfichtl[AT]gmail.com');
-	$redis->hSet('user-derfichtl', 'name', 'Michael Feichtinger');
+	// $redis->hSet('user-derfichtl', 'username', 'derfichtl');
+	// $redis->hSet('user-derfichtl', 'email', 'derfichtl[AT]gmail.com');
+	// $redis->hSet('user-derfichtl', 'name', 'Michael Feichtinger');
 	 
 	// or so:
 	 
 	$redis->hMset('user-derfichtl', array('username'=>'derfichtl', 'email'=>'derfichtl@gmail.com', 'name'=>'Michael Feichtinger')); // user-derfichtl is the key and username, email and name are keys for map
-	 
+	$redis->hMset('user-derfichtl2', array('username'=>'johannes', 'email'=>'johannes@gmail.com', 'name'=>'Johannes Feichtinger'));
+
 	// reading
 	 
 	foreach($redis->hKeys('user-derfichtl') as $key) {
@@ -46,25 +47,25 @@
 	// var_dump($redis->hVals('user-derfichtl')); // prints the array
 	// var_dump($redis->hGetAll('user-derfichtl')); // prints the array by key
 	 
-	if($redis->hExists('user-derfichtl', 'name')) {
+	//if($redis->hExists('user-derfichtl', 'name')) {
 	    //var_dump($redis->hGet('user-derfichtl', 'name')); //get single
-	}
+	//}
 
-	$redis->publish('notif', $redis->hGet('user-derfichtl', 'name'));
+	$redis->publish('notifs', $redis->hGet('user-derfichtl', 'name'));
+	$redis->publish('notifs', $redis->hGet('user-derfichtl2', 'name'));
 
-	$redis->lpush('aa', 'yep');
-	$redis->lpush('aa', 'derfichtl@gmail.com');
-	$redis->lpush('aa', 'Michael Feichtinger');
+	$redis->lpush('hashed', 'user-derfichtl');
+	$redis->lpush('hashed', 'user-derfichtl2');
 
-	$yay = 0;
+	// $yay = 0;
 
-	$redis->lpush($yay.'a', 'yep');
-	$redis->lpush($yay.'a', 'derfichtl@gmail.com');
+	// $redis->lpush($yay.'a', 'yep');
+	// $redis->lpush($yay.'a', 'derfichtl@gmail.com');
 
-	var_dump($yay.'a');
-	var_dump($redis->llen('aa'));
-	var_dump($redis->llen($yay.'a'));
-	var_dump($redis->lrange($yay.'a', 0, 200));
+	// var_dump($yay.'a');
+	var_dump($redis->llen('hashed'));
+	// var_dump($redis->llen($yay.'a'));
+	// var_dump($redis->lrange($yay.'a', 0, 200));
 
 	/* Simple insertions */
 

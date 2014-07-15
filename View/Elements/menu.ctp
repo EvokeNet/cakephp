@@ -38,7 +38,7 @@
 	else
 		$src = $user['role_id'];
 
-	$notesCount = count($userNotifications);
+	// $notesCount = count($userNotifications);
 
 	//debug($userNotifications);
 ?>
@@ -58,12 +58,7 @@
 	  <li <?=$notificationslink?>>
 	  	<a id = "notificationsItem" href="#">
 	  		<i class="fa fa-exclamation-triangle" style="padding-right: 10px;"></i><?= strtoupper(__('Notifications')) ?>
-
 	  		<div id="messages" style = "display:inline"><div class="message circle"></div></div>
-
-	  		<?php if($notesCount > 0): ?>
-		  		<!-- <span class = "circle"><?= $notesCount ?></span> -->
-		  	<?php endif; ?>
   		</a>
   	  </li>
 	  
@@ -73,6 +68,8 @@
 	  	<li><a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'index')) ?>"><i class="fa fa-cogs" style="padding-right: 10px;"></i><?= strtoupper(__('Administration')) ?></a></li>
 	  <?php endif ?>
 	</ul>
+
+	<div id="wh"></div>
 
 </div>
 
@@ -100,15 +97,22 @@
 
   //on new message adds a new message to display
   socket.on('message', function (data) {
-    // var msg = "";
-    //var msg = data.text;
     var msg = data;
-    // if (data.channel) {
-    //   msg += 'Channel:' + data.channel + ', ' + data.text; 
-    // } else {
-    //   msg = data.text;
-    // }
     addMessage(msg);
+
+    //get notifications from user
+	  var data = {user_id:"<?= $user['User']['id'] ?>"};
+	  socket.emit('get_notifications', data);
+  });
+
+  //get notifications from user
+  // var data = {user_id:"<?= $user['User']['id'] ?>"};
+  // socket.emit('get_notifications', data);
+
+  //returns notifications
+  socket.on('retrieve_notifications', function (data) {
+    console.log('user_id '+data.user_name);
+    addNotification(data);
   });
 
   $(document).ready(function() {
@@ -140,6 +144,17 @@
     }
 
     $('.message').replaceWith(str);
+  }
+
+  //adds notfications to div
+  function addNotification(data) {
+    // var str = '<div class="circle message">' + msg + '</div>';
+    // $('.message').replaceWith(str)
+    // console.log(str)
+
+    var str = '<div class="ww">' + data.user_name + '</div><br>';
+
+    $(str).appendTo('#wh');
   }
 
 </script>

@@ -89,6 +89,8 @@ class NotificationsListener implements CakeEventListener {
 
             $note->requestAction(array('controller' => 'notifications', 'action' => 'displayBadgeMessage', $event->data['entity_id']));
 
+            $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', $event->data['user_id'], $note->id));
+
         }
     }
 
@@ -142,6 +144,8 @@ class NotificationsListener implements CakeEventListener {
             //$note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['entity_id'], $event->data['next_phase']));
             $note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['phase_name'], $event->data['next_phase'], $event->data['mission_id']));
 
+            $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', $event->data['user_id'], $note->id));
+
         }
 
         //$note->requestAction(array('controller' => 'notifications', 'action' => 'displayPhaseMessage', $event->data['phase_name'], $event->data['next_phase'], $event->data['mission_id']));
@@ -164,6 +168,8 @@ class NotificationsListener implements CakeEventListener {
         $note->saveAll($insertData);
 
         $note->requestAction(array('controller' => 'notifications', 'action' => 'displayBasicTrainingMessage', $event->data['user_id']));
+
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', $event->data['user_id'], $note->id));
 
     }
 
@@ -192,6 +198,8 @@ class NotificationsListener implements CakeEventListener {
 
         $note->saveAll($insertData);
 
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', $event->data['user_id'], $note->id));
+
     }
 
     public function notifyCommentedEvidence($event){
@@ -209,7 +217,8 @@ class NotificationsListener implements CakeEventListener {
 
         $note->saveAll($insertData);
 
-        $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', $event->data['user_id'], $note->id));
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', 
+            $event->data['user_id'], $note->id, $event->subject()->data['Comment']['user_id'], $event->subject()->data['Comment']['evidence_id'], 'comment'));
 
     }
 
@@ -233,6 +242,9 @@ class NotificationsListener implements CakeEventListener {
             );
 
             $note->saveAll($insertData);
+
+            $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', $event->data['user_id'], $note->id));
+
         }
 
     }
@@ -257,6 +269,9 @@ class NotificationsListener implements CakeEventListener {
             );
 
             $note->saveAll($insertData);
+
+            $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', $event->data['user_id'], $note->id));
+
         }
 
     }
@@ -325,6 +340,8 @@ class NotificationsListener implements CakeEventListener {
         );
 
         $note->saveAll($insertData);
+
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', $event->data['user_id'], $note->id));
 
     }
 }
