@@ -58,7 +58,7 @@
 	  <li <?=$notificationslink?>>
 	  	<a id = "notificationsItem" href="#">
 	  		<i class="fa fa-exclamation-triangle" style="padding-right: 10px;"></i><?= strtoupper(__('Notifications')) ?>
-	  		<div id="messages" style = "display:inline"><div class="message circle"></div></div>
+	  		<div id="messages" style = "display:inline"><div class="message"></div></div>
   		</a>
   	  </li>
 	  
@@ -69,7 +69,7 @@
 	  <?php endif ?>
 	</ul>
 
-	<div id="wh"></div>
+	<div id="wh"><div class="ww"></div></div>
 
 </div>
 
@@ -88,6 +88,7 @@
   socket.on('connect', function(data){
     setStatus('connected');
     socket.emit('subscribe', {channel:'notif'});
+    socket.emit('subscribe', {channel:'notifs'});
   });
 
   //when reconnection is attempted, updates status 
@@ -97,12 +98,26 @@
 
   //on new message adds a new message to display
   socket.on('message', function (data) {
-    var msg = data;
-    addMessage(msg);
+    // var msg = data;
+
+    if(data.total_msgs){
+    	addMessage(data.total_msgs);
+    }
+    else if(data.notification_id){
+    	var datas = {user_id:"<?= $user['User']['id'] ?>"};
+    	socket.emit('get_notifications', datas);
+    	//addNotification(data.notification_id);
+    }
+
+    // var datas = {user_id:"<?= $user['User']['id'] ?>"};
+    // var i = msg.split('nid');
+    // if(i[0]){
+    // 	datas = {user_id:"<?= $user['User']['id'] ?>", notification_id:i[1]}; 
+    // } 
 
     //get notifications from user
-	  var data = {user_id:"<?= $user['User']['id'] ?>"};
-	  socket.emit('get_notifications', data);
+	  //var datas = {user_id:"<?= $user['User']['id'] ?>", notification_id:i};
+	  // socket.emit('get_notifications', datas);
   });
 
   //get notifications from user
@@ -111,13 +126,14 @@
 
   //returns notifications
   socket.on('retrieve_notifications', function (data) {
-    console.log('user_id '+data.user_name);
+    console.log(data);
     addNotification(data);
   });
 
   $(document).ready(function() {
   	var data = {user_id:"<?= $user['User']['id'] ?>"};
-  	socket.emit('reload', data);
+  	socket.emit('reload', data); //Places the counter when the page is reloaded
+  	socket.emit('get_notifications', data); //Places notifications when the page is reloaded
   });
 
   $('#notificationsItem').click(function(){
@@ -137,7 +153,7 @@
     // console.log(str)
 
     var str = '';
-    if(msg != '0'){
+    if(msg){
     	str = '<div class="circle message">' + msg + '</div>';
     } else {
     	str = '<div class="message"></div>';
@@ -152,9 +168,11 @@
     // $('.message').replaceWith(str)
     // console.log(str)
 
-    var str = '<div class="ww">' + data.user_name + '</div><br>';
+    var str = '<div class="ww">' + data + '</div><br>';
 
-    $(str).appendTo('#wh');
+    $('.ww').replaceWith(str);
+
+    // $(str).appendTo('#wh');
   }
 
 </script>

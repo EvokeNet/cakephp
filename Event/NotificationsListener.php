@@ -198,7 +198,10 @@ class NotificationsListener implements CakeEventListener {
 
         $note->saveAll($insertData);
 
-        $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', $event->data['user_id'], $note->id));
+        // $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', $event->data['user_id'], $note->id));
+
+        $note->requestAction(array('controller' => 'notifications', 'action' => 'flushToRedis', 
+            $event->data['user_id'], $note->id, $event->subject()->data['Like']['user_id'], $event->subject()->data['Like']['evidence_id'], 'like'));
 
     }
 

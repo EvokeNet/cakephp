@@ -67,21 +67,89 @@ io.sockets.on('connection', function (socket) {
 
   //retrieve notfications from logged in user
   socket.on('get_notifications', function (data) {
+  	// console.log('u '+data.user_id);
+  	// console.log('nn '+data.notification_id);
+  	// if(data.notification_id){
+  	// 	console.log('nn '+data.notification_id);
+  	// }
+    redisPublishClient.lrange(
+      data.user_id+'_list_notifications', 0, 10,
+      function (err, replies) {
+        //console.log(replies);
+        //io.to(socket.id).emit('message', replies);
+
+        var counter = replies.length;
+        var tag = '';
+        replies.forEach(function (reply, i) {
+
+            redisPublishClient.hgetall(reply, function (err, obj) {
+
+            	var url = "/evoke/evidences/view/"+obj.entity_id;
+            	// console.log('jiou'+obj.notification_id)
+            	tag += "<a href ="+url+">"+obj.action_user_name+' '+obj.entity_type+' your evidence '+obj.entity_title+'</a><br>';
+
+            	if(--counter === 0){
+            		io.to(socket.id).emit('retrieve_notifications', tag);
+            	}
+            	
+            //console.log(obj.notification_id);
+            // console.log(obj.user_name);
+            // console.log(obj.type);
+            // console.log(obj.entity_title);
+            // console.log(obj.action_user_name);
+
+            // io.to(socket.id).emit('retrieve_notifications', obj);
+
+          });
+        });
+
+    });
+  });
+
+  //retrieve notfications from logged in user
+  socket.on('get_all_notifications', function (data) {
+  	// console.log('u '+data.user_id);
+  	// console.log('nn '+data.notification_id);
+  	// if(data.notification_id){
+  	// 	console.log('nn '+data.notification_id);
+  	// }
     redisPublishClient.lrange(
       data.user_id+'_list_notifications', 0, -1,
       function (err, replies) {
         //console.log(replies);
         //io.to(socket.id).emit('message', replies);
 
+        var counter = replies.length;
+        var tag = '';
+        var last = '';
         replies.forEach(function (reply, i) {
+
             redisPublishClient.hgetall(reply, function (err, obj) {
 
-            console.log(obj.user_name);
-            console.log(obj.type);
-            console.log(obj.entity_title);
-            console.log(obj.action_user_name);
+            	var i2 = '';
+            	var date = obj.timestamp.split(' ');
 
-            io.to(socket.id).emit('retrieve_notifications', obj);
+            	if(last !== date[0]){
+            		i2 = '<br><div style = "color:white">'+obj.timestamp+'</div><br>';
+            	}
+
+            	var url = "/evoke/evidences/view/"+obj.entity_id;
+            	// console.log('jiou'+obj.notification_id)
+            	tag += i2+'<div style = "color:white; display:inline">'+date[1]+"</div>&nbsp;&nbsp;&nbsp;<a href ="+url+">"+obj.action_user_name+' '+obj.entity_type+' your evidence '+obj.entity_title+'</a><br>';
+
+            	if(--counter === 0){
+            		io.to(socket.id).emit('retrieve_all_notifications', tag);
+            	}
+
+            	last = date[0];
+            	
+            //console.log(obj.notification_id);
+            // console.log(obj.user_name);
+            // console.log(obj.type);
+            // console.log(obj.entity_title);
+            // console.log(obj.action_user_name);
+
+            // io.to(socket.id).emit('retrieve_notifications', obj);
 
           });
         });
@@ -97,7 +165,8 @@ io.sockets.on('connection', function (socket) {
       data.user_id + '_new_notifications', 
       function (err, replies) {
         //console.log(replies);
-        io.to(socket.id).emit('message', replies);
+        var msg = {total_msgs:replies}
+        io.to(socket.id).emit('message', msg);
     });
 
     // redisPublishClient.lrange(
@@ -176,9 +245,22 @@ io.sockets.on('connection', function (socket) {
    * This sends updates to users. 
    */
   redisSubscribeClient.on("message", function(channel, message){
-    var resp = {'text': message, 'channel':channel}
-    io.sockets.in(channel).emit('message', message);
-});
+    // var resp = {'text': message, 'channel':channel}
+    // io.sockets.in(channel).emit('message', message);
+    var va = message.split(':');
+    var m = '';
+    if(va[1]){
+    	m = {notification_id:va[1]};	
+    	console.log('YAY'+m.notification_id);
+    }
+	else{
+		m = {total_msgs:va[0]}
+		console.log('NO'+va[0]);
+	}
+
+	io.sockets.in(channel).emit('message', m);
+    
+  });
 
 /**
  * Simulates publish to redis channels
