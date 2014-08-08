@@ -65,18 +65,195 @@ io.sockets.on('connection', function (socket) {
     socket.join(data.channel);
   });
 
+  //post_comments
+  socket.on('like', function (data) {
+
+    var now = new Date();
+    var date = now.getFullYear()+'-'
+            + ("0" + (now.getMonth()+1)).slice(-2) +'-'
+            + ("0" + now.getDate()).slice(-2) +' '
+            + ("0" + now.getHours()).slice(-2) +':'
+            + ("0" + now.getMinutes()).slice(-2) +':'
+            + ("0" + now.getSeconds()).slice(-2);
+
+    redisPublishClient.hmset([
+      "like_" + data.evidence_id + "_" + data.user_id, //key
+      "user_id", data.user_id, 
+      "user_name", data.user_name, 
+      "user_pic_url", data.user_pic_url, 
+      "evidence_id", data.evidence_id,
+      'created', date,
+      "modified", date, 
+    ], function(err, reply){});
+
+    redisPublishClient.lpush("likes_list_"+ data.evidence_id, "like_" + data.evidence_id + "_" + data.user_id, 
+      function(err, reply){});
+
+    redisPublishClient.llen(
+      "likes_list_"+ data.evidence_id, 
+      function (err, replies) {
+
+        // var tag = '<li class="mine">'+data.user_name+": "+data.msg+'</li>';
+        // var json = {tag:tag, replies:replies};
+        io.sockets.emit('retrieve_likes', replies);
+    });
+
+  });
+
+  socket.on('get_likes', function (data) {
+    redisPublishClient.lrange(
+      "likes_list_"+ data.evidence_id, 0, -1,
+      function (err, replies) {
+
+        io.sockets.emit('retrieve_likes', replies.length);
+
+        var counter = 0;
+        var tag = '';
+
+        getTotal = function (callback) {
+          replies.forEach(function (reply, i) {
+
+              redisPublishClient.hgetall(reply, function (err, obj) {
+                console.log('out');
+                console.log(data.user_id === obj.user_id);
+                if(data.user_id === obj.user_id){
+                  console.log('inside');
+                  console.log(data.user_id === obj.user_id);
+                  console.log(data.user_id);
+                  console.log(obj.user_id);
+                   console.log("taaag"+tag);
+                  
+                  tag = obj.user_id;
+                  // callback(tag);  
+                  return;
+                }
+                callback(tag);
+                
+            });
+          });
+        }
+
+        getTotal(function(tag) {
+          // var json = {tag:tag, replies:replies.length};
+          io.to(socket.id).emit('block_like', tag);
+          console.log("TASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"+tag);
+        });
+
+
+    });
+
+  });
+
+  socket.on('check_likes', function (data) {
+    redisPublishClient.lrange(
+      "likes_list_"+ data.evidence_id, 0, -1,
+      function (err, replies) {
+
+        io.to(socket.id).emit('retrieve_likes', replies.length);
+
+    });
+  });
+
+  var mysql      = require('mysql');
+  var connection = mysql.createConnection({
+    host     : 'localhost',
+    database : 'evoke',
+    user     : 'root',
+    password : '6907388'
+  });
+
+  connection.connect(function(err) {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+    console.log('connected as id ' + connection.threadId);
+  });
+
+  //post_comments
+  socket.on('post_comment', function (data) {
+
+    var now = new Date();
+    var date = now.getFullYear()+'-'
+            + ("0" + (now.getMonth()+1)).slice(-2) +'-'
+            + ("0" + now.getDate()).slice(-2) +' '
+            + ("0" + now.getHours()).slice(-2) +':'
+            + ("0" + now.getMinutes()).slice(-2) +':'
+            + ("0" + now.getSeconds()).slice(-2);
+
+    console.log(date);
+
+    var post  = { 
+          evidence_id: data.evidence_id, 
+          user_id: data.user_id, 
+          content: data.msg,
+          created: date,
+          modified: date
+    };
+
+    var query = connection.query('INSERT INTO comments SET ?', post, function(err, result) {
+      console.log(data.evidence_id);
+      console.log(data.user_id);
+      console.log(data.msg);
+      console.log("comment id "+result.insertId);
+      // cid = result.insertId;
+      redisPublishClient.hmset([
+        "comment_" + data.evidence_id + "_" + result.insertId, //key
+        "user_id", data.user_id, 
+        "user_name", data.user_name, 
+        "user_pic_url", data.user_pic_url, 
+        "evidence_id", data.evidence_id,
+        'created', date,
+        "modified", date, 
+        "msg", data.msg 
+      ], function(err, reply){});
+
+      redisPublishClient.rpush("comments_list_"+ data.evidence_id, "comment_" + data.evidence_id + "_" + result.insertId, 
+        function(err, reply){});
+
+      redisPublishClient.llen(
+        "comments_list_"+ data.evidence_id, 
+        function (err, replies) {
+
+          var tag = '<li class="mine">'+data.user_name+": "+data.msg+'</li>';
+          var json = {tag:tag, replies:replies};
+          io.sockets.emit('retrieve_comments', json);
+      });
+
+    });
+
+  });
+
+  socket.on('get_comments', function (data) {
+    redisPublishClient.lrange(
+      "comments_list_"+ data.evidence_id, 0, -1,
+      function (err, replies) {
+
+        console.log(replies.length);
+        io.to(socket.id).emit('get_comments_count', replies.length);
+
+        var counter = 0;
+        var tag = '';
+        replies.forEach(function (reply, i) {
+
+            redisPublishClient.hgetall(reply, function (err, obj) {
+            tag += '<li class="mine">'+obj.user_name+": msg "+obj.msg+' counter '+counter+'</li>';
+
+            if(++counter === (replies.length)){
+              var json = {tag:tag, replies:replies.length};
+              io.to(socket.id).emit('retrieve_comments', json);
+            }
+          });
+        });
+
+    });
+  });
+
   //retrieve notfications from logged in user
   socket.on('get_notifications', function (data) {
-  	// console.log('u '+data.user_id);
-  	// console.log('nn '+data.notification_id);
-  	// if(data.notification_id){
-  	// 	console.log('nn '+data.notification_id);
-  	// }
     redisPublishClient.lrange(
       data.user_id+'_list_notifications', 0, 10,
       function (err, replies) {
-        //console.log(replies);
-        //io.to(socket.id).emit('message', replies);
 
         var counter = replies.length;
         var tag = '';
@@ -85,21 +262,12 @@ io.sockets.on('connection', function (socket) {
             redisPublishClient.hgetall(reply, function (err, obj) {
 
             	var url = "/evoke/evidences/view/"+obj.entity_id;
-            	// console.log('jiou'+obj.notification_id)
             	tag += "<a href ="+url+">"+obj.action_user_name+' '+obj.entity_type+' your evidence '+obj.entity_title+'</a><br>';
 
             	if(--counter === 0){
             		io.to(socket.id).emit('retrieve_notifications', tag);
             	}
             	
-            //console.log(obj.notification_id);
-            // console.log(obj.user_name);
-            // console.log(obj.type);
-            // console.log(obj.entity_title);
-            // console.log(obj.action_user_name);
-
-            // io.to(socket.id).emit('retrieve_notifications', obj);
-
           });
         });
 
@@ -108,16 +276,9 @@ io.sockets.on('connection', function (socket) {
 
   //retrieve notfications from logged in user
   socket.on('get_all_notifications', function (data) {
-  	// console.log('u '+data.user_id);
-  	// console.log('nn '+data.notification_id);
-  	// if(data.notification_id){
-  	// 	console.log('nn '+data.notification_id);
-  	// }
     redisPublishClient.lrange(
       data.user_id+'_list_notifications', 0, -1,
       function (err, replies) {
-        //console.log(replies);
-        //io.to(socket.id).emit('message', replies);
 
         var counter = replies.length;
         var tag = '';
@@ -143,14 +304,6 @@ io.sockets.on('connection', function (socket) {
 
             	last = date[0];
             	
-            //console.log(obj.notification_id);
-            // console.log(obj.user_name);
-            // console.log(obj.type);
-            // console.log(obj.entity_title);
-            // console.log(obj.action_user_name);
-
-            // io.to(socket.id).emit('retrieve_notifications', obj);
-
           });
         });
 
@@ -168,40 +321,6 @@ io.sockets.on('connection', function (socket) {
         var msg = {total_msgs:replies}
         io.to(socket.id).emit('message', msg);
     });
-
-    // redisPublishClient.lrange(
-    //   data.user_id+'_list_notifications', 0, -1,
-    //   function (err, replies) {
-    //     //console.log(replies);
-    //     //io.to(socket.id).emit('message', replies);
-
-    //     replies.forEach(function (reply, i) {
-    //         redisPublishClient.hgetall(reply, function (err, obj) {
-          
-    //         // history += obj.content;
-
-    //         // if(--counter === 0 || k>=data.limit){
-    //         // var hist = {
-    //         //   chat: data.chat_id,
-    //         //   messages: history,
-
-    //         // }
-
-    //         // io.to(socket.id).emit('chatHistory', hist);
-    //         // }
-
-    //         // k++;
-
-    //         console.log(obj.user_name);
-    //         console.log(obj.type);
-    //         console.log(obj.entity_title);
-    //         console.log(obj.action_user_name);
-
-    //       });
-    //     });
-
-    // });
-
   });
 
   //if bubble is clicked, the list is cleaned and a new one for notification history is created
@@ -214,15 +333,6 @@ io.sockets.on('connection', function (socket) {
         console.log(replies);
         io.to(socket.id).emit('message', replies);
     });
-    // redisPublishClient.llen(
-    //   data.user_id + '_new_notifications', 
-    //   function (err, replies) {
-    //     console.log(replies);
-    //     //redisPublishClient.ltrim(data.user_id + '_new_notifications', 0, replies-1);
-    //     redisPublishClient.del(data.user_id + '_new_notifications');
-    //     io.to(socket.id).emit('message', replies);
-    //     console.log(replies);
-    // });
   });
 
 });
@@ -261,13 +371,3 @@ io.sockets.on('connection', function (socket) {
 	io.sockets.in(channel).emit('message', m);
     
   });
-
-/**
- * Simulates publish to redis channels
- * Currently it publishes updates to redis every 5 seconds.
- */
-
-// setInterval(function() {
-//   var no = Math.floor(Math.random() * 100);
-//   redisPublishClient.publish('notif', 'Generated random no ' + no);
-// }, 5000);

@@ -43,7 +43,7 @@
 	//debug($userNotifications);
 ?>
 
-<div class = "evoke menu-bg sidebar menucolumn">
+<div class = "evoke menu-bg sidebar">
 	<ul>
 	  <li <?=$dashboardlink?>><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard')) ?>"><i class="fa fa-folder-open" style="padding-right: 10px;"></i><?= strtoupper(__('Dashboard')) ?></a></li>
 	  
@@ -58,7 +58,7 @@
 	  <li <?=$notificationslink?>>
 	  	<a id = "notificationsItem" href="#">
 	  		<i class="fa fa-exclamation-triangle" style="padding-right: 10px;"></i><?= strtoupper(__('Notifications')) ?>
-	  		<div id="messages" style = "display:inline"><div class="message"></div></div>
+	  		<div id="msgs" style = "display:inline"><div class="message"></div></div>
   		</a>
   	  </li>
 	  
