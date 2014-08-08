@@ -284,8 +284,7 @@
         this.innerHTML = 'unlike';
 
         return false;
-    }
-    else{
+    } else{
     	//alert( "Handler for .click() called." );
 
     	console.log("WHYYYs");
@@ -311,14 +310,17 @@
 
     socket.on('block_like', function (data) {
 
+    	console.log('YAAAAAAAY');
+
     	var li = document.createElement('button');
 
     	if(data === "<?= $user['User']['id'] ?>"){
+    		console.log('YAAAAAAAY2');
     		li.className = 'like-buttons';
     		li.id = 'unlikeIt';
       		li.innerHTML = 'unlike';
-    	}
-    	else{
+    	} else{
+    		console.log('YAAAAAAAY4');
     		li.className = 'like-buttons';
     		li.id = 'likeIt';
       		li.innerHTML = 'like';

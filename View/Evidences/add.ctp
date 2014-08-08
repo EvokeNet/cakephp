@@ -194,7 +194,7 @@
 	echo $this->Html->script('/components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.all.min.js');//, array('inline' => false));
 	//echo $this->Html->script('menu_height', array('inline' => false));
 	//echo $this->Html->script('medium');
-	//echo $this->Html->script('quest_attachments'); 
+	echo $this->Html->script('quest_attachments'); 
 ?>
 
 <script type="text/javascript">

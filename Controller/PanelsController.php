@@ -42,12 +42,12 @@ class PanelsController extends AppController {
 			$this->redirect($this->referer());
 		}
 	}
-	
 /*
 * index method
 * Loads basic informations from database to local variables to be shown in the administrator's panel
 */
 	public function index($args = 'organizations') {
+
 		//debug($this->getCurrentLanguage());
 		$organizations_tab = $this->defineCurrentTab('organizations', $args);
 		$missions_tab = $this->defineCurrentTab('missions', $args);
@@ -349,6 +349,40 @@ class PanelsController extends AppController {
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels', 'pending_evokations', 'approved_evokations', 'notifications',
 			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
 			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'powerpoints_tab', 'badges_tab', 'users_tab', 'pending_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
+
+		// $this->render('main');
+	}
+
+	public function main(){
+
+		$this->loadModel('Organization');
+
+		$organizations = 
+			$this->Organization->find('all', array(
+			'order' => array(
+				'Organization.name ASC'
+			),
+		));
+
+		$this->set(compact('organizations'));
+
+		$this->render('main');
+	}
+
+	public function dashboard($org_id = null){
+
+		$missions_issues = 
+			$this->MissionIssue->Mission->find('all', array(
+			'order' => array(
+				'Mission.title ASC'
+			)
+		));
+
+		$issues = $this->Issue->getIssues();
+
+		$this->set(compact('issues', 'missions_issues'));
+
+		$this->render('dashboard');
 	}
 
 /*

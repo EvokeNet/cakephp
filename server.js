@@ -87,16 +87,18 @@ io.sockets.on('connection', function (socket) {
     ], function(err, reply){});
 
     redisPublishClient.lpush("likes_list_"+ data.evidence_id, "like_" + data.evidence_id + "_" + data.user_id, 
-      function(err, reply){});
+      function(err, reply){
+        io.to(socket.id).emit('retrieve_likes', reply);
+      });
 
-    redisPublishClient.llen(
-      "likes_list_"+ data.evidence_id, 
-      function (err, replies) {
+    // redisPublishClient.llen(
+    //   "likes_list_"+ data.evidence_id, 
+    //   function (err, replies) {
 
-        // var tag = '<li class="mine">'+data.user_name+": "+data.msg+'</li>';
-        // var json = {tag:tag, replies:replies};
-        io.sockets.emit('retrieve_likes', replies);
-    });
+    //     // var tag = '<li class="mine">'+data.user_name+": "+data.msg+'</li>';
+    //     // var json = {tag:tag, replies:replies};
+    //     io.sockets.emit('retrieve_likes', replies);
+    // });
 
   });
 
@@ -108,17 +110,18 @@ io.sockets.on('connection', function (socket) {
       "likes_list_"+ data.evidence_id, 0, "like_" + data.evidence_id + "_" + data.user_id,
       function (err, reply) {
         console.log('REPLY'+reply);
+
+        redisPublishClient.llen(
+          "likes_list_"+ data.evidence_id, 
+          function (err, replies) {
+
+            // var tag = '<li class="mine">'+data.user_name+": "+data.msg+'</li>';
+            // var json = {tag:tag, replies:replies};
+            io.to(socket.id).emit('retrieve_likes', replies);
+        });
+
       }
     )
-
-    redisPublishClient.llen(
-      "likes_list_"+ data.evidence_id, 
-      function (err, replies) {
-
-        // var tag = '<li class="mine">'+data.user_name+": "+data.msg+'</li>';
-        // var json = {tag:tag, replies:replies};
-        io.sockets.emit('retrieve_likes', replies);
-    });
 
   });
 
@@ -133,29 +136,39 @@ io.sockets.on('connection', function (socket) {
         var tag = '';
 
         getTotal = function (callback) {
-          replies.forEach(function (reply, i) {
 
-              redisPublishClient.hgetall(reply, function (err, obj) {
-                // console.log('out');
-                // console.log(data.user_id === obj.user_id);
-                if(data.user_id === obj.user_id){
-                  // console.log('inside');
+          console.log('YAAAAAAAY s');
+
+          if(replies.length == 0){
+            callback(tag);
+            console.log('YAAAAAAAY s33');
+          } else{
+            console.log('YAAAAAAAY s12'+replies.length);
+            replies.forEach(function (reply, i) {
+
+                redisPublishClient.hgetall(reply, function (err, obj) {
+                  // console.log('out');
                   // console.log(data.user_id === obj.user_id);
-                  // console.log(data.user_id);
-                  // console.log(obj.user_id);
-                   // console.log("taaag"+tag);
+                  if(data.user_id === obj.user_id){
+                    // console.log('inside');
+                    // console.log(data.user_id === obj.user_id);
+                    // console.log(data.user_id);
+                    // console.log(obj.user_id);
+                     // console.log("taaag"+tag);
+                    
+                    tag = obj.user_id;
+                    callback(tag);  
+                    return;
+                  }
+                  //callback(tag);
                   
-                  tag = obj.user_id;
-                  // callback(tag);  
-                  return;
-                }
-                callback(tag);
-                
+              });
             });
-          });
+          }
         }
 
         getTotal(function(tag) {
+          console.log('YAAAAAAAY s2');
           // var json = {tag:tag, replies:replies.length};
           io.to(socket.id).emit('block_like', tag);
           // console.log("TASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"+tag);
@@ -293,7 +306,6 @@ io.sockets.on('connection', function (socket) {
           quest_id: data.quest_id,
           mission_id: data.mission_id,
           phase_id: data.phase_id,
-          created: date,
           modified: date
     };
 
@@ -302,7 +314,9 @@ io.sockets.on('connection', function (socket) {
     // });
 
     if(data.iid == ''){
-      var query = connection.query('INSERT INTO ? SET ?', ['evidences', post], function(err, result) {
+      post.created = date;
+      var query = connection.query('INSERT INTO evidences SET ?', post, function(err, result) {
+        if (err) throw err;
         console.log(data.evidence_id);
         console.log(data.user_id);
         console.log(data.msg);
@@ -311,7 +325,7 @@ io.sockets.on('connection', function (socket) {
       });
       console.log('iu');
     } else{
-      var query = connection.query('UPDATE ? SET ? WHERE id = ?', ['evidences', post, data.iid], function(err, results) {
+      var query = connection.query('UPDATE evidences SET ? WHERE id = ?', [post, data.iid], function(err, results) {
         console.log('HAHAHA');
       });
     }
