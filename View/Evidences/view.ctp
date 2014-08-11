@@ -135,12 +135,7 @@
 				  	
 				<?php endif ?>
 
-			  	<div class="row full-width-alternate comment-blocks">
-				  <div class="large-8 columns"><h2><?= strtoupper(__('Share a Thought')) ?></h2></div>
-				  <div class="large-4 columns">
-				  	<a href ="#" class= "evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;<h6><?= __('Comment');?></h6></a>
-				  </div>
-				</div>
+			  	<h2><?= strtoupper(__('Share a Thought')) ?></h2>
 
 				<input id="mm" style = "width:100%; height:70px" />
 				<br><br>
@@ -213,19 +208,8 @@
 		<h3> <?= strtoupper(__('Rating')) ?> </h3>
 
 		<div class = "evoke evidence-share">
-		  	
-		  	<!-- like button -->
-		  	<?php if(empty($like)) : ?>
-		  		<!-- <div class="evoke button-bg"><a href = "<?php echo $this->Html->url(array('controller' => 'likes', 'action' => 'add', $evidence['Evidence']['id'])); ?>"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div><span><?= count($likes) ?></span></a></div> -->
-			<?php else : ?>
-				<!-- <div class="evoke button-bg"><a href = "<?php echo $this->Html->url(array('controller'=>'likes', 'action' => 'delete', $like['Like']['id'])); ?>"><div class="evoke button like-button"><i class="fa fa-heart fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Unlike');?></h6></div><span><?= count($likes) ?></span></a></div> -->
-			<?php endif; ?>
-
-			<div class="like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<span class = "likesCount"></span></div>
-
-		  	<!-- Commenting lightbox button -->
-		  	<div class = "evoke button-bg"><div class="evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Comment');?></h6></div>&nbsp;&nbsp;&nbsp;<span class = "commentCount"></span></div>
-			
+			<span class = "likesCount"></span>
+			<div id = "links"><button class="like-buttons"></button></div>
 		</div>
 
 		<h3> <?= strtoupper(__('Share')) ?> </h3>
@@ -254,14 +238,14 @@
 
 </section>
 
-<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
 
 <?php
 	echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
-	echo $this->Html->script('facebook_share', array('inline' => false));
-	echo $this->Html->script('google_share', array('inline' => false));
-	echo $this->Html->script('target_blank', array('inline' => false));
+	//echo $this->Html->script('facebook_share', array('inline' => false));
+	//echo $this->Html->script('google_share', array('inline' => false));
+	//echo $this->Html->script('target_blank', array('inline' => false));
 ?>
 
 <script>
@@ -281,14 +265,29 @@
     setStatus('reconnecting');
   });
 
-    function fbShare(url, title, descr, image, winWidth, winHeight) {
-        var winTop = (screen.height / 2) - (winHeight / 2);
-        var winLeft = (screen.width / 2) - (winWidth / 2);
-        window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
-    }
 
-    //sending message mechanism
-    $('.like-button').click(function(){
+  function dynamicEvent() {
+    
+    // this.id = 'unlike';
+    if(this.id == 'likeIt'){
+    	console.log("WHYYYw");
+
+        var data = {
+            user_id: "<?= $user['User']['id'] ?>",
+            user_name: "<?= $user['User']['name'] ?>",
+            user_pic_url: "<?= $pic ?>",
+            evidence_id: "<?= $evidence['Evidence']['id'] ?>",
+        }
+
+        socket.emit('like', data); //save comment in database
+        this.id = 'unlikeIt';
+        this.innerHTML = 'unlike';
+
+        return false;
+    } else{
+    	//alert( "Handler for .click() called." );
+
+    	console.log("WHYYYs");
 
         //creating json with the contents of the message
         var data = {
@@ -298,19 +297,53 @@
             evidence_id: "<?= $evidence['Evidence']['id'] ?>",
         }
 
-        socket.emit('like', data); //save comment in database
+        socket.emit('unlike', data); //save comment in database
+        this.id = 'likeIt';
+        this.innerHTML = 'like';
 
         return false;
-    });
+    }
+  }
 
-  	// socket.on('block_like', function (data) {
-   //  	addLikesCount(data);
-  	// });
+  	var links = document.getElementById("links").getElementsByTagName('button');
+  	links.onclick = dynamicEvent;
 
-  	// function addLikesCount(data) {
-   //  	var str = '<span class = "likesCount">'+data+'</span>';
-   //  	$('.likesCount').replaceWith(str);
-  	// }
+    socket.on('block_like', function (data) {
+
+    	console.log('YAAAAAAAY');
+
+    	var li = document.createElement('button');
+
+    	if(data === "<?= $user['User']['id'] ?>"){
+    		console.log('YAAAAAAAY2');
+    		li.className = 'like-buttons';
+    		li.id = 'unlikeIt';
+      		li.innerHTML = 'unlike';
+    	} else{
+    		console.log('YAAAAAAAY4');
+    		li.className = 'like-buttons';
+    		li.id = 'likeIt';
+      		li.innerHTML = 'like';
+    	}
+
+		$('.like-buttons').replaceWith(li);
+		li.onclick = dynamicEvent;
+  	});
+
+  	//retrive likes number
+    socket.on('retrieve_likes', function (data) {
+    	addLikesCount(data);
+  	});
+
+  	function addLikesCount(data) {
+  		var plural = 'likes';
+  		
+  		if(data == '1')
+  			plural = 'like';
+
+    	var str = '<span class = "likesCount">'+data+' '+plural+'</span>';
+		$('.likesCount').replaceWith(str);
+  	}
 
     //sending message mechanism
     $('#commenties').click(function(){
@@ -342,28 +375,7 @@
 	  	socket.emit('get_comments', data); //Places the counter when the page is reloaded
 	  	socket.emit('get_likes', data2); //Places the counter when the page is reloaded
 	});
-
-    socket.on('retrieve_likes', function (data) {
-    	addLikesCount(data);
-  	});
-
-  	function addLikesCount(data) {
-  		// console.log("YA"+data.tag);
-  		// if(data.tag == true){
-  		// 	var str = '<span class = "likesCount">'+data.replies+' unlike</span>';
-    // 		$('.likesCount').replaceWith(str);
-  		// } else if(data.tag == false){
-  		// 	var str = '<span class = "likesCount">'+data.replies+' Like</span>';
-    // 		$('.likesCount').replaceWith(str);
-  		// }
-    	var str = '<span class = "likesCount">'+data.replies+' Like</span>';
-		$('.likesCount').replaceWith(str);
-  	}
-    //returns comments count
-  	// socket.on('get_comments_count', function (data) {
-   //  	addCommentCount(data);
-  	// });
-
+  	
     //returns comments
   	socket.on('retrieve_comments', function (data) {
     	addComment(data);

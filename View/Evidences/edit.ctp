@@ -222,6 +222,8 @@
 	</div>
 </section>
 
+<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
 	echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min.js');//, array('inline' => false));
@@ -232,6 +234,9 @@
 ?>
 
 <script type="text/javascript">
+
+	//socket io client
+	var socket = io.connect('http://localhost:8000');
 
 	var editor = new MediumEditor('.editableContent', {
 	    buttons: [
@@ -299,6 +304,36 @@
         $('#EvidenceContent').val(MyDiv1.innerHTML);
 
     });
+
+	//retrive likes number
+    socket.on('return_evidence_id', function (data) {
+    	id = data;
+    	console.log(id);
+  	});
+  	
+    function autosave() {
+		var MyDiv = document.getElementById('evidenceTitle');
+		var MyDiv1 = document.getElementById('evidenceContent');
+
+        // $('#EvidenceTitle').val(MyDiv.innerHTML);
+        // $('#EvidenceContent').val(MyDiv1.innerHTML);
+
+		var data = {
+			ititle:MyDiv.innerHTML, 
+			icontent:MyDiv1.innerHTML, 
+			user_id:"<?= $me['Evidence']['user_id'] ?>", 
+			quest_id:"<?= $me['Evidence']['quest_id'] ?>",
+			mission_id:"<?= $me['Evidence']['mission_id'] ?>",
+			phase_id:"<?= $me['Evidence']['phase_id'] ?>",
+			iid:"<?= $me['Evidence']['id'] ?>"
+		};
+
+		console.log(decodeURIComponent(MyDiv.innerHTML));
+		//console.log(decodeURIComponent(MyDiv1.innerHTML));
+		socket.emit('autosave_evidence', data); //Places the counter when the page is reloaded
+	}
+
+	setInterval(autosave, 5 * 1000);
 
 	//To prevent image button from redirecting
     $('.mediumInsert-action').click(function(event) {

@@ -1,0 +1,12 @@
+.menu-column{
+	background-color:#2F3540;
+	height:600px; 
+}
+
+.paginated{
+	width:80%;
+}
+
+div.pager span.active {
+    background: #c00;
+}

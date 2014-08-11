@@ -344,13 +344,13 @@ io.sockets.on('connection', function (socket) {
 
             redisPublishClient.hgetall(reply, function (err, obj) {
 
-              var url = "/evoke/evidences/view/"+obj.entity_id;
-              tag += "<a href ="+url+">"+obj.action_user_name+' '+obj.entity_type+' your evidence '+obj.entity_title+'</a><br>';
+            	var url = "/evoke/evidences/view/"+obj.entity_id;
+            	tag += "<a href ="+url+">"+obj.action_user_name+' '+obj.entity_type+' your evidence '+obj.entity_title+'</a><br>';
 
-              if(--counter === 0){
-                io.to(socket.id).emit('retrieve_notifications', tag);
-              }
-              
+            	if(--counter === 0){
+            		io.to(socket.id).emit('retrieve_notifications', tag);
+            	}
+            	
           });
         });
 
@@ -370,23 +370,23 @@ io.sockets.on('connection', function (socket) {
 
             redisPublishClient.hgetall(reply, function (err, obj) {
 
-              var i2 = '';
-              var date = obj.timestamp.split(' ');
+            	var i2 = '';
+            	var date = obj.timestamp.split(' ');
 
-              if(last !== date[0]){
-                i2 = '<br><div style = "color:white">'+obj.timestamp+'</div><br>';
-              }
+            	if(last !== date[0]){
+            		i2 = '<br><div style = "color:white">'+obj.timestamp+'</div><br>';
+            	}
 
-              var url = "/evoke/evidences/view/"+obj.entity_id;
-              // console.log('jiou'+obj.notification_id)
-              tag += i2+'<div style = "color:white; display:inline">'+date[1]+"</div>&nbsp;&nbsp;&nbsp;<a href ="+url+">"+obj.action_user_name+' '+obj.entity_type+' your evidence '+obj.entity_title+'</a><br>';
+            	var url = "/evoke/evidences/view/"+obj.entity_id;
+            	// console.log('jiou'+obj.notification_id)
+            	tag += i2+'<div style = "color:white; display:inline">'+date[1]+"</div>&nbsp;&nbsp;&nbsp;<a href ="+url+">"+obj.action_user_name+' '+obj.entity_type+' your evidence '+obj.entity_title+'</a><br>';
 
-              if(--counter === 0){
-                io.to(socket.id).emit('retrieve_all_notifications', tag);
-              }
+            	if(--counter === 0){
+            		io.to(socket.id).emit('retrieve_all_notifications', tag);
+            	}
 
-              last = date[0];
-              
+            	last = date[0];
+            	
           });
         });
 
@@ -443,14 +443,14 @@ io.sockets.on('connection', function (socket) {
     var va = message.split(':');
     var m = '';
     if(va[1]){
-      m = {notification_id:va[1]};  
-      console.log('YAY'+m.notification_id);
+    	m = {notification_id:va[1]};	
+    	console.log('YAY'+m.notification_id);
     }
-  else{
-    m = {total_msgs:va[0]}
-    console.log('NO'+va[0]);
-  }
+	else{
+		m = {total_msgs:va[0]}
+		console.log('NO'+va[0]);
+	}
 
-  io.sockets.in(channel).emit('message', m);
+	io.sockets.in(channel).emit('message', m);
     
   });

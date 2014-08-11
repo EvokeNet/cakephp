@@ -186,16 +186,33 @@
 	</div>
 </section>
 
+<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
 	echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min.js');//, array('inline' => false));
 	echo $this->Html->script('/components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.all.min.js');//, array('inline' => false));
-	echo $this->Html->script('menu_height', array('inline' => false));
+	//echo $this->Html->script('menu_height', array('inline' => false));
 	//echo $this->Html->script('medium');
 	echo $this->Html->script('quest_attachments'); 
 ?>
 
 <script type="text/javascript">
+
+	//socket io client
+	  var socket = io.connect('http://localhost:8000');
+
+	  //on connetion, updates connection state and sends subscribe request
+	  // socket.on('connect', function(data){
+	  //   setStatus('connected');
+	  //   socket.emit('subscribe', {channel:'notif'});
+	  //   socket.emit('subscribe', {channel:'notifs'});
+	  // });
+
+	  // //when reconnection is attempted, updates status 
+	  // socket.on('reconnecting', function(data){
+	  //   setStatus('reconnecting');
+	  // });
 
 	var editor = new MediumEditor('.editableContent', {
 	    buttons: [
@@ -249,7 +266,38 @@
 
     });
 
+	var id = '';
+
+	//retrive likes number
+    socket.on('return_evidence_id', function (data) {
+    	id = data;
+    	console.log(id);
+  	});
+
 	function autosave() {
+		var MyDiv = document.getElementById('evidenceTitle');
+		var MyDiv1 = document.getElementById('evidenceContent');
+
+        // $('#EvidenceTitle').val(MyDiv.innerHTML);
+        // $('#EvidenceContent').val(MyDiv1.innerHTML);
+
+		var data = {
+			ititle:MyDiv.innerHTML, 
+			icontent:MyDiv1.innerHTML, 
+			user_id:"<?= $user['User']['id'] ?>", 
+			quest_id:"<?= $quest_id ?>",
+			mission_id:"<?= $mission_id ?>",
+			phase_id:"<?= $phase_id ?>",
+			iid:id
+		};
+
+		console.log(decodeURIComponent(MyDiv.innerHTML));
+		socket.emit('autosave_evidence', data); //Places the counter when the page is reloaded
+	}
+
+	setInterval(autosave, 5 * 1000);
+
+	//function autosave() {
 	  //   jQuery('#EvidenceAddForm').submit(function() {
 
 	  //   	var editor = new MediumEditor('.editableContent', {
@@ -308,7 +356,7 @@
 			// });
 
 	    // }); // end setting up the autosave on every form on the page
-	}// end function autosave()
+	//}// end function autosave()
 	 
 	// set the autosave interval (60 seconds * 1000 milliseconds per second)
 	//setInterval(autosave, 5 * 1000);

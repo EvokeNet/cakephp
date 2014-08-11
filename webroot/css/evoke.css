@@ -570,7 +570,7 @@ button, div, p, span, a,
 
 /* New topbar section */
 
-.evoke .top-bar-background{
+/*.evoke .top-bar-background{
 	background-color: #008cba;
 }
 
@@ -592,7 +592,7 @@ button, div, p, span, a,
 
 #top-bar-name a{
 	padding-left:0;
-}
+}*/
 
 .evoke.top-bar.progress{
 	background-color: #252525;
@@ -999,10 +999,10 @@ button, div, p, span, a,
 	max-width: none;
 }
 
-.evoke  nav{
+/*.evoke  nav{
 	border: none;
 	background: none;
-}
+}*/
 
 .name h1{
 	color:#FFF;
@@ -2164,12 +2164,12 @@ button, div, p, span, a,
 	color:#252525;
 }
 
-.top-bar-section li:not(.has-form) a:not(.button):hover {
+/*.top-bar-section li:not(.has-form) a:not(.button):hover {
 	background: #008cba;
 	font-family: 'AlegreyaBold';
 	text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
 	font-size: 1.1vw;
-}
+}*/
 
 .decoda-textarea textarea{
 	height:300px;
