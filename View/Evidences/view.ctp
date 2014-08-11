@@ -7,6 +7,17 @@
 	echo $this->element('header', array('user' => $user));
 	$this->end(); 
 
+	$pic = null;
+
+	if($user['User']['photo_attachment'] == null) :
+		if($user['User']['facebook_id'] == null) :
+			$pic = $this->webroot.'img/user_avatar.jpg';
+		else :
+			$pic = "https://graph.facebook.com/". $user['User']['facebook_id']."/picture?large";
+		endif;
+	else :
+		$pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'];
+	endif;
 ?>
 
 <?php //$this->start('social-metatags'); ?>
@@ -131,10 +142,17 @@
 				  </div>
 				</div>
 
-			  	<?php foreach ($comment as $c): 
-						echo $this->element('comment_box', array('c' => $c, 'user' => $user));
-		  			endforeach; 
+				<input id="mm" style = "width:100%; height:70px" />
+				<br><br>
+                <button id="commenties" class="button general">Send</button>
+
+			  	<?php 
+			  	// 	foreach ($comment as $c): 
+						// echo $this->element('comment_box', array('c' => $c, 'user' => $user));
+		  		// 	endforeach; 
 	  			?>
+
+	  			<div class = "newcomments" id = "ncom"></div>
 	  			</div>
 			</div>
 		  </div>
@@ -198,18 +216,15 @@
 		  	
 		  	<!-- like button -->
 		  	<?php if(empty($like)) : ?>
-		  		<!-- <div  onClick="location.href='/evoke/likes/like/<?php echo $evidence['Evidence']['id']; ?>'" class="evoke button-bg"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div><span><?= count($likes) ?></span></div> -->
-		  		<div class="evoke button-bg"><a href = "<?php echo $this->Html->url(array('controller' => 'likes', 'action' => 'add', $evidence['Evidence']['id'])); ?>"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div><span><?= count($likes) ?></span></a></div>
+		  		<!-- <div class="evoke button-bg"><a href = "<?php echo $this->Html->url(array('controller' => 'likes', 'action' => 'add', $evidence['Evidence']['id'])); ?>"><div class="evoke button like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div><span><?= count($likes) ?></span></a></div> -->
 			<?php else : ?>
-				<!-- <div  onClick="location.href='/evoke/likes/like/<?php echo $evidence['Evidence']['id']; ?>'" class="evoke button-bg"><div class="evoke button like-button"><i class="fa fa-heart fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Unlike');?></h6></div><span><?= count($likes) ?></span></div> -->
-				<div class="evoke button-bg"><a href = "<?php echo $this->Html->url(array('controller'=>'likes', 'action' => 'delete', $like['Like']['id'])); ?>"><div class="evoke button like-button"><i class="fa fa-heart fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Unlike');?></h6></div><span><?= count($likes) ?></span></a></div>
+				<!-- <div class="evoke button-bg"><a href = "<?php echo $this->Html->url(array('controller'=>'likes', 'action' => 'delete', $like['Like']['id'])); ?>"><div class="evoke button like-button"><i class="fa fa-heart fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Unlike');?></h6></div><span><?= count($likes) ?></span></a></div> -->
 			<?php endif; ?>
 
-			<!-- Voting lightbox button -->
-		  	<!-- <div class = "evoke button-bg"><div class="evoke button like-button" data-reveal-id="myModalVote" data-reveal><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Like');?></h6></div></div> -->
+			<div class="like-button"><i class="fa fa-heart-o fa-lg"></i>&nbsp;&nbsp;<span class = "likesCount"></span></div>
 
 		  	<!-- Commenting lightbox button -->
-		  	<div class = "evoke button-bg"><div class="evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Comment');?></h6></div><span><?= count($comment) ?></span></div>
+		  	<div class = "evoke button-bg"><div class="evoke button like-button comment-button" data-reveal-id="myModalComment" data-reveal><i class="fa fa-comment-o fa-flip-horizontal fa-lg"></i>&nbsp;&nbsp;<h6><?= __('Comment');?></h6></div>&nbsp;&nbsp;&nbsp;<span class = "commentCount"></span></div>
 			
 		</div>
 
@@ -236,41 +251,142 @@
 	  <!-- <div class="medium-1 end columns"></div> -->
 
   	</div>
+
 </section>
 
-<!-- Lightbox for voting form -->
-<div id="myModalVote" class="reveal-modal tiny" data-reveal>
-  <?php 
-	// if(!$vote) echo $this->element('vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id']));
-	// else echo $this->element('see_vote', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'], 'vote_id' => $vote['Vote']['id'], 'vote_value' => $vote['Vote']['value']));
-  ?>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<!-- Lightbox for commenting form -->
-<div id="myModalComment" class="reveal-modal small evoke lightbox-bg" data-reveal>
-  	<?php if(isset($user['User'])) :?>
-  		<?php echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'])); ?>
-  	<?php else :?>
-  		<?php echo $this->element('comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => null)); ?>
-  	<?php endif;?>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
+<script src="http://localhost:8000/socket.io/socket.io.js"></script>
 
 <?php
-
 	echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->script('facebook_share', array('inline' => false));
 	echo $this->Html->script('google_share', array('inline' => false));
 	echo $this->Html->script('target_blank', array('inline' => false));
-
 ?>
 
 <script>
+
+  //socket io client
+  var socket = io.connect('http://localhost:8000');
+
+  //on connetion, updates connection state and sends subscribe request
+  socket.on('connect', function(data){
+    setStatus('connected');
+    socket.emit('subscribe', {channel:'notif'});
+    socket.emit('subscribe', {channel:'notifs'});
+  });
+
+  //when reconnection is attempted, updates status 
+  socket.on('reconnecting', function(data){
+    setStatus('reconnecting');
+  });
+
     function fbShare(url, title, descr, image, winWidth, winHeight) {
         var winTop = (screen.height / 2) - (winHeight / 2);
         var winLeft = (screen.width / 2) - (winWidth / 2);
         window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + title + '&p[summary]=' + descr + '&p[url]=' + url + '&p[images][0]=' + image, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
     }
+
+    //sending message mechanism
+    $('.like-button').click(function(){
+
+        //creating json with the contents of the message
+        var data = {
+            user_id: "<?= $user['User']['id'] ?>",
+            user_name: "<?= $user['User']['name'] ?>",
+            user_pic_url: "<?= $pic ?>",
+            evidence_id: "<?= $evidence['Evidence']['id'] ?>",
+        }
+
+        socket.emit('like', data); //save comment in database
+
+        return false;
+    });
+
+  	// socket.on('block_like', function (data) {
+   //  	addLikesCount(data);
+  	// });
+
+  	// function addLikesCount(data) {
+   //  	var str = '<span class = "likesCount">'+data+'</span>';
+   //  	$('.likesCount').replaceWith(str);
+  	// }
+
+    //sending message mechanism
+    $('#commenties').click(function(){
+        //if there's nothing to say..
+        if($("#mm").val() == ""){
+            return false;
+        }
+
+        //creating json with the contents of the message
+        var data = {
+            user_id: "<?= $user['User']['id'] ?>",
+            user_name: "<?= $user['User']['name'] ?>",
+            user_pic_url: "<?= $pic ?>",
+            evidence_id: "<?= $evidence['Evidence']['id'] ?>",
+            msg: $('#mm').val()
+        }
+
+        socket.emit('post_comment', data); //save comment in database
+
+        document.getElementById('mm').value = '';
+
+        return false;
+    });
+
+    //Get comments when page is loading/reloading
+    $(document).ready(function() {
+	  	var data = {evidence_id:"<?= $evidence['Evidence']['id'] ?>"};
+	  	var data2 = {user_id:"<?= $user['User']['id'] ?>", evidence_id:"<?= $evidence['Evidence']['id'] ?>"};
+	  	socket.emit('get_comments', data); //Places the counter when the page is reloaded
+	  	socket.emit('get_likes', data2); //Places the counter when the page is reloaded
+	});
+
+    socket.on('retrieve_likes', function (data) {
+    	addLikesCount(data);
+  	});
+
+  	function addLikesCount(data) {
+  		// console.log("YA"+data.tag);
+  		// if(data.tag == true){
+  		// 	var str = '<span class = "likesCount">'+data.replies+' unlike</span>';
+    // 		$('.likesCount').replaceWith(str);
+  		// } else if(data.tag == false){
+  		// 	var str = '<span class = "likesCount">'+data.replies+' Like</span>';
+    // 		$('.likesCount').replaceWith(str);
+  		// }
+    	var str = '<span class = "likesCount">'+data.replies+' Like</span>';
+		$('.likesCount').replaceWith(str);
+  	}
+    //returns comments count
+  	// socket.on('get_comments_count', function (data) {
+   //  	addCommentCount(data);
+  	// });
+
+    //returns comments
+  	socket.on('retrieve_comments', function (data) {
+    	addComment(data);
+  	});
+
+    //returns notifications
+  	// socket.on('retrieve_all_comments', function (data) {
+   //  	addComment(data.tag);
+   //  	addCommentCount(data.replies);
+  	// });
+
+    //adds notfications to div
+  	function addComment(data) {
+    	$('#ncom').append(data.tag);
+
+    	var str = '<span class = "commentCount">'+data.replies+'</span>';
+    	$('.commentCount').replaceWith(str);
+  	}
+
+  	//adds notfications to div
+  	// function addCommentCount(data) {
+  	// 	var str = '<span class = "commentCount">'+data+'</span>';
+   //  	$('.commentCount').replaceWith(str);
+  	// }
+
 </script>
