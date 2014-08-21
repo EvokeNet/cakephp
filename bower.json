@@ -11,6 +11,7 @@
     "kibo": "git://github.com/marquete/kibo",
     "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar",
     "etherpad": "git://github.com/ether/etherpad-lite-jquery-plugin.git",
-    "jquery.cookie": "1.4.1"
+    "jquery.cookie": "1.4.1",
+    // "jQuery-Knob": "git://github.com/aterrien/jQuery-Knob.git"
   }
 }

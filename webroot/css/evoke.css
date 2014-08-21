@@ -974,7 +974,7 @@ button, div, p, span, a,
 .evoke .panel h4,
 .evoke .panel h5,
 .evoke .panel h6 {
-	color: #fff;
+	/*color: #fff;*/
 }
 
 .evoke .clearfix {

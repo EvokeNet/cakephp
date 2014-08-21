@@ -501,8 +501,7 @@ class MissionsController extends AppController {
 	            'entity_id' => $badge['Badge']['id'],
 	            'user_id' => $this->getUserId(),
 	            'entity' => 'gritBadge',
-	            'mission_name' => $mission['Mission']['title'],
-	            'user_id' => $this->getUserId(),
+	            'mission_name' => $mission['Mission']['title']
 	        ));
 
 	        $this->getEventManager()->dispatch($event);

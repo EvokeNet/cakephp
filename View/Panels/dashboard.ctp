@@ -48,6 +48,14 @@
   <div class="large-10 columns">
 
 	<ul class="small-block-grid-3">
+		<!-- <li>
+			<div class = "smart-forms smart-container">
+		  		<div class = "form-header header-primary">
+		  			oi
+		  		</div>
+			</div>
+		</li> -->
+		
 	  <li>
 	  	<!-- Missions Table --> 
 	  	<table class="paginated">
@@ -95,6 +103,7 @@
 	  	<table class="paginated">
 		  <thead>
 		    <tr>
+		      <th width="25"><input class = "margins-0" type="checkbox" id="selecctall"/></th>
 		      <th><?= _('Missions') ?></th>
 		      <th width="25"><i class="fa fa-plus fa-lg"></i></th>
 		      <th width="25"><i class="fa fa-cog fa-lg"></i></th>
@@ -103,6 +112,7 @@
 		  <tbody>
 		  	<?php foreach($missions_issues as $m): ?>
 		  		<tr>
+		  		  <td><input class="checkbox1 margins-0" type="checkbox" name="check[]" value="<?= $m['Mission']['id'] ?>"></td>
 			      <td><?= $m['Mission']['title'] ?></td>
 			      <td><i class="fa fa-pencil-square-o fa-lg"></i></td>
 			      <td><i class="fa fa-times fa-lg"></i></td>
@@ -116,6 +126,17 @@
 
   </div>
 </div>
+
+<!-- <ul class="chk-container">
+<li><input type="checkbox" id="selecctall"/> Selecct All</li>
+<li><input class="checkbox1" type="checkbox" name="check[]" value="item1"> This is Item 1</li>
+<li><input class="checkbox1" type="checkbox" name="check[]" value="item2"> This is Item 2</li>
+<li><input class="checkbox1" type="checkbox" name="check[]" value="item3"> This is Item 3</li>
+<li><input class="checkbox1" type="checkbox" name="check[]" value="item4"> This is Item 4</li>
+<li><input class="checkbox1" type="checkbox" name="check[]" value="item5"> This is Item 5</li>
+<li><input class="checkbox1" type="checkbox" name="check[]" value="item6"> This is Item 6</li>
+<li><input class="checkbox2" type="checkbox" name="check[]" value="item6"> Do not select this</li>
+</ul> -->
 
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');
@@ -144,6 +165,21 @@
 	        }).appendTo($pager).addClass('clickable');
 	    }
 	    $pager.insertAfter($table).find('span.page-number:first').addClass('active');
+	});
+
+    $(document).ready(function() {
+	    $('#selecctall').click(function(event) {  //on click 
+	        if(this.checked) { // check select status
+	            $('.checkbox1').each(function() { //loop through each checkbox
+	                this.checked = true;  //select all checkboxes with class "checkbox1"               
+	            });
+	        }else{
+	            $('.checkbox1').each(function() { //loop through each checkbox
+	                this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+	            });         
+	        }
+	    });
+	    
 	});
 
 </script>

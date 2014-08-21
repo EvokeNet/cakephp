@@ -23,7 +23,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('MathCaptcha', );
+	public $components = array('MathCaptcha', 'Visit');
 
 	public $uses = array('User', 'Friend');
 
@@ -217,6 +217,17 @@ class UsersController extends AppController {
 					// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
 					//return $this->redirect(array('action' => 'dashboard'));
 					// $this->Session->setFlash('', 'opening_lightbox_message');
+					// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+			  //           'user_id' => $this->User->id,
+			  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+			  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+			  //       ));
+
+			  //       $this->getEventManager()->dispatch($event);
+					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $date);
+
 					return $this->redirect(array('action' => 'edit', $this->User->id));
 				} else {
 					$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
@@ -236,6 +247,19 @@ class UsersController extends AppController {
 				$user_google['User']['id'] = $this->User->id;
 				$this->Auth->login($user_google);
 				// $this->Session->write('Auth.User.id', $user['User']['id']);
+
+				// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+		  //           'user_id' => $this->User->id,
+		  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+		  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+		  //       ));
+
+		  //       $this->getEventManager()->dispatch($event);
+
+				$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $date);
+
 				return $this->redirect(array('action' => 'dashboard', $this->User->id));
 
 			}
@@ -296,6 +320,19 @@ class UsersController extends AppController {
 						// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
 						//return $this->redirect(array('action' => 'dashboard'));
 						$this->Session->setFlash('', 'opening_lightbox_message');
+
+						// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+				  //           'user_id' => $this->User->id,
+				  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+				  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+				  //       ));
+
+				  //       $this->getEventManager()->dispatch($event);
+
+						$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $date);
+
 						return $this->redirect(array('action' => 'edit', $this->User->id));
 					} else {
 						$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
@@ -315,6 +352,18 @@ class UsersController extends AppController {
 					$user['User']['id'] = $this->User->id;
 					$this->Auth->login($user);
 					// $this->Session->write('Auth.User.id', $user['User']['id']);
+					// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+			  //           'user_id' => $this->User->id,
+			  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+			  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+			  //       ));
+
+			  //       $this->getEventManager()->dispatch($event);
+
+					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $date);
+
 					return $this->redirect(array('action' => 'dashboard', $this->User->id));
 
 				}
@@ -322,6 +371,18 @@ class UsersController extends AppController {
 			}
 
 		} else if ($this->Auth->login()) {
+
+			// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+	  //           'user_id' => $this->User->id,
+	  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+	  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+	  //       ));
+
+	  //       $this->getEventManager()->dispatch($event);
+
+			$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $date);
 
 			return $this->redirect(array('action' => 'dashboard', $this->User->id));
 

@@ -3,6 +3,57 @@
 	$redis = new Redis() or die("Cannot load Redis module.");
 	$redis->connect('127.0.0.1');
 
+	//include domain here starting with "."
+	$cookie_domain = 'localhost/evoke';
+	 
+	//unique visitor timeframe in seconds
+	$unique_timeframe = 1800;
+	 
+	//track a unique visitor
+	$unique = FALSE;
+	 
+	//set initial visitor cookie
+	if (!isset($_COOKIE['vst'])) {
+	        setcookie("vst", 1, time() + $unique_timeframe, "/", $cookie_domain);
+	        $unique = TRUE;
+	}
+	 
+	//set time variables
+	$day = date('Y-m-d');
+	$day_hour = date('Y-m-d:G');
+	 
+	//get handle to Predis client
+	try {
+	        $redis = new Redis();
+	        $redis->connect('127.0.0.1');
+	} catch (Exception $e) {
+	        die("Cannot load Redis module.");
+	}
+	 
+	//track pageviews
+	$redis->incr('pageviews-by-day:' . $day);
+	 
+	if ($unique) {
+	        //track unique visitors
+	        $redis->incr('uniques-by-day:' . $day);
+	}
+
+	$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+
+	$redis->incr($date.':visitors');
+	$redis->sadd($date.':uniqueVisitors', $user_ip);
+	$redis->sadd($date.':uniqueVisitorsID', $user_id);
+	
+	var_dump($redis->get($date.':visitors'));
+	var_dump($redis->scard($date.':uniqueVisitors'));
+	//output appropiate headers and serve pixel
+	// $pixel = '1x1.gif';
+	// header('Content-Length: ' . filesize($pixel));
+	// header('Content-Type: image/gif');
+	// header("Cache-Control: no-cache, must-revalidate");
+	// header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+	// print file_get_contents($pixel);
+
 	/* Multiple redis functions for seeing what's inside */
 
 	// $redis->sAdd('myset', 'item1');

@@ -65,6 +65,9 @@ io.sockets.on('connection', function (socket) {
     socket.join(data.channel);
   });
 
+  // socket.emit('popup', function (data) {
+  // });
+
   //post_comments
   socket.on('like', function (data) {
 
