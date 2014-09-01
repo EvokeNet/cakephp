@@ -12,14 +12,17 @@
 	$this->end(); 
 
 	$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+	$monthly = date('F:Y', $_SERVER['REQUEST_TIME']);
 	//echo $_SERVER['SERVER_ADDR'];
 
 	$redis = new Redis() or die("Cannot load Redis module.");
 	$redis->connect('127.0.0.1');
 
-	echo 'Visitor:'.$redis->get($date.':visitors');
-	echo 'Unique:'.$redis->scard($date.':uniqueVisitors');
-	echo $_SERVER["HTTP_USER_AGENT"];
+	// echo 'Visitor:'.$redis->get($date.':visitors').'<br>';
+	// echo 'Unique:'.$redis->scard($date.':uniqueVisitors').'<br>';
+	// echo 'MVisitor:'.$redis->get($monthly.':visitors').'<br>';
+	// echo 'MUnique:'.$redis->scard($monthly.':uniqueVisitors').'<br>';
+
 ?>
 
 <section class="evoke default-background">

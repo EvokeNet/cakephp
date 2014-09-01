@@ -226,7 +226,7 @@ class UsersController extends AppController {
 			  //       $this->getEventManager()->dispatch($event);
 					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
 
-					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $date);
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 					return $this->redirect(array('action' => 'edit', $this->User->id));
 				} else {
@@ -258,7 +258,7 @@ class UsersController extends AppController {
 
 				$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
 
-					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $date);
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 				return $this->redirect(array('action' => 'dashboard', $this->User->id));
 
@@ -331,7 +331,7 @@ class UsersController extends AppController {
 
 						$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
 
-					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $date);
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 						return $this->redirect(array('action' => 'edit', $this->User->id));
 					} else {
@@ -362,7 +362,7 @@ class UsersController extends AppController {
 
 					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
 
-					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $date);
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 					return $this->redirect(array('action' => 'dashboard', $this->User->id));
 
@@ -382,7 +382,7 @@ class UsersController extends AppController {
 
 			$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
 
-					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $date);
+			$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 			return $this->redirect(array('action' => 'dashboard', $this->User->id));
 
@@ -1498,7 +1498,7 @@ class UsersController extends AppController {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
@@ -1507,6 +1507,53 @@ class UsersController extends AppController {
 		$roles = $this->User->Role->find('list');		
 		$this->set(compact("roles"));
 
+	}
+
+/**
+ * admin_edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function panel_edit($id = null) {
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+
+		$this->User->id = $id;
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('The user has been saved.'));
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$this->request->data = $this->User->find('first', $options);
+		}
+	}
+
+/**
+ * admin_delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function panel_delete($id = null) {
+		$this->User->id = $id;
+		if (!$this->User->exists()) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		//$this->request->onlyAllow('post', 'delete');
+		if ($this->User->delete()) {
+			$this->Session->setFlash(__('The user has been deleted.'));
+		} else {
+			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
+		}
+		return $this->redirect($this->referer());
 	}
 
 /**

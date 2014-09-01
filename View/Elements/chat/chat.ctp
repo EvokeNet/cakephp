@@ -32,7 +32,7 @@
 
   <!-- needed to use socket io -->
   <!-- <script src="/socket.io/socket.io.js"></script> -->
-  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <!-- <script src="http://localhost:3000/socket.io/socket.io.js"></script> -->
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 
   <!-- using to make it shine -->

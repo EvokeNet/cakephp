@@ -226,7 +226,7 @@ class BadgesController extends AppController {
 			$this->Badge->create();
 			if ($this->Badge->save($this->request->data)) {
 				$this->Session->setFlash(__('The badge has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
 			}
@@ -244,6 +244,8 @@ class BadgesController extends AppController {
 		if (!$this->Badge->exists($id)) {
 			throw new NotFoundException(__('Invalid badge'));
 		}
+
+		$this->Badge->id = $id;
 		if ($this->request->is(array('post', 'put'))) {
 
 			$powerInsert['Power'] = $this->request->data['Power'];
@@ -276,7 +278,7 @@ class BadgesController extends AppController {
 
 			if ($this->Badge->save($this->request->data)) {
 				$this->Session->setFlash(__('The badge has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
 			}
@@ -324,14 +326,15 @@ class BadgesController extends AppController {
 		if (!$this->Badge->exists()) {
 			throw new NotFoundException(__('Invalid badge'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		//$this->request->onlyAllow('post', 'delete');
 		if ($this->Badge->delete()) {
 			$this->Session->setFlash(__('The badge has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The badge could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panel
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'badges'));
+		// return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'badges'));
+		return $this->redirect($this->referer());
 	}
 
 /**

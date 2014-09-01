@@ -36,7 +36,7 @@
 
 </section>
 
-<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
 
 <?php
 	// echo $this->Html->scriptBlock("var userId = '" . json_encode($user['User']['id']) . "'", array('inline' => true));

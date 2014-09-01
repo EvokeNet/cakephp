@@ -208,6 +208,11 @@ io.sockets.on('connection', function (socket) {
     console.log('connected as id ' + connection.threadId);
   });
 
+  //submit panels' forms
+  socket.on('submit_panel_form', function (data) {
+    window.location.reload(true);
+  });
+
   //post_comments
   socket.on('post_comment', function (data) {
 
@@ -287,7 +292,7 @@ io.sockets.on('connection', function (socket) {
     });
   });
 
-  //post_comments
+  //autosave evidences when cretaing/editing
   socket.on('autosave_evidence', function (data) {
 
     console.log('WORK');

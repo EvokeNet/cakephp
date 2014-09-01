@@ -74,7 +74,7 @@ class OrganizationsController extends AppController {
 			$this->Organization->create();
 			if ($this->Organization->save($this->request->data)) {
 				$this->Session->setFlash(__('The organization has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}
@@ -132,13 +132,13 @@ class OrganizationsController extends AppController {
 		}
 
 
-		$this->request->onlyAllow('post', 'delete');
+		//$this->request->onlyAllow('post', 'delete');
 		if ($this->Organization->delete()) {
 			$this->Session->setFlash(__('The organization has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panel
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 }

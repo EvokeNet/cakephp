@@ -356,6 +356,10 @@ class PanelsController extends AppController {
 	public function main(){
 
 		$this->loadModel('Badge');
+		$this->loadModel('Level');
+		$this->loadModel('PowerPoint');
+		$this->loadModel('Role');
+		$this->loadModel('Evokation');
 		$this->loadModel('AdminNotification');
 		$this->loadModel('MissionIssue');
 		$this->loadModel('Organization');
@@ -365,12 +369,19 @@ class PanelsController extends AppController {
 		$this->loadModel('UserIssue');
 		$this->loadModel('UserFriend');
 
+		$roles_list = $this->Role->find('list');
+		$roles = $this->Role->getRoles();
+
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
 		$organizations = 
 			$this->Organization->find('all', array(
 			'order' => array(
 				'Organization.name ASC'
 			),
 		));
+
+		$levels = $this->Level->find('all');
 
 		$badges = $this->Badge->getBadges(array(
 			'order' => array(
@@ -384,17 +395,41 @@ class PanelsController extends AppController {
 			)
 		));
 
+		$issues = $this->MissionIssue->Issue->find('all');
+
 		$admin_notifications = $this->AdminNotification->find('all', array(
 			'conditions' => array(
 				'AdminNotification.user_target' => null
 			)
 		));
 
+		$all_evokations = $this->Evokation->find('all');
+
+		$pending_evokations = $this->Evokation->find('all', array(
+			'conditions' => array(
+				'Evokation.final_sent' => 1,
+				'Evokation.approved' => null
+			)
+		));
+
+		$approved_evokations = $this->Evokation->find('all', array(
+			'conditions' => array(
+				'Evokation.final_sent' => 1,
+				'Evokation.approved' => 1
+			)
+		));
+
 		$users = $this->User->find('all', array(
-				'order' => array(
-					'User.name ASC'
-				)
-			));
+			'order' => array(
+				'User.created DESC'
+			)
+		));
+
+		$power_points = $this->PowerPoint->find('all', array(
+			'order' => array(
+				'PowerPoint.name DESC'
+			)
+		));
 
 		$users_of_my_missions = $this->User->UserMission->find('all', array(
 				'order' => array(
@@ -532,10 +567,10 @@ class PanelsController extends AppController {
 			)
 		));
 
-		$this->set(compact('users', 'flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations', 
+		$this->set(compact('user', 'users', 'all_evokations', 'flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations', 
 			'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 'unknown_countries', 'countries',
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels', 'pending_evokations', 'approved_evokations', 'admin_notifications', 'notifications',
-			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
+			'register_points', 'allies_points', 'power_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
 			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'powerpoints_tab', 'badges_tab', 'users_tab', 'pending_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
 
 
@@ -546,6 +581,22 @@ class PanelsController extends AppController {
 
 	public function dashboard($org_id = null){
 
+		$this->loadModel('Badges');
+		$this->loadModel('Organization');
+		$this->loadModel('MissionIssue');
+		$this->loadModel('User');
+
+		$this->loadModel('PowerPoint');
+
+		$this->loadModel('Role');
+		
+		$roles_list = $this->Role->find('list');
+		$roles = $this->Role->getRoles();
+
+		$powerpoints = $this->PowerPoint->find('all');
+		
+		$mypp = $this->Badge->BadgePowerPoint->find('all');
+
 		$missions_issues = 
 			$this->MissionIssue->Mission->find('all', array(
 			'order' => array(
@@ -553,11 +604,40 @@ class PanelsController extends AppController {
 			)
 		));
 
+		$missions = 
+			$this->MissionIssue->Mission->find('all', array(
+			'order' => array(
+				'Mission.title DESC'
+			),
+			'conditions' => array(
+				'Mission.organization_id' => $org_id
+			)
+		));
+
+		$badges = 
+			$this->Badge->find('all', array(
+			'order' => array(
+				'Badge.name DESC'
+			),
+			'conditions' => array(
+				'Badge.organization_id' => $org_id
+			)
+		));
+
+		$users = $this->User->UserOrganization->find('all', array(
+			'order' => array(
+				'User.created DESC'
+			),
+			'conditions' => array(
+				'UserOrganization.organization_id' => $org_id
+			)
+		));
+
 		$issues = $this->Issue->getIssues();
 
-		$this->set(compact('issues', 'missions_issues'));
+		$this->set(compact('mypp', 'powerpoints', 'me', 'badges', 'issues', 'missions', 'missions_issues', 'roles', 'roles_list', 'users'));
 
-		$this->render('dashboard');
+		// $this->render('dashboard');
 	}
 
 /*
@@ -646,6 +726,218 @@ class PanelsController extends AppController {
 		} 
 		
 		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'id','mission', 'issues', 'organizations'));
+	}
+
+/*
+* edit_mission method
+* edit an existing mission via admin panel, setting its issue and phases 
+*/
+	public function mission_edition($id = null, $args = 'mission') {
+		
+		$language = $this->getCurrentLanguage();
+
+		//loading infos to be shown at top bar
+		$username = explode(' ', $this->user['name']);
+		$userid = $this->user['id'];
+		$userrole = $this->user['role_id'];
+
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $userid)));
+
+		//list of issues to be loaded at the combo box..
+		$issues = $this->Issue->find('list');
+
+		$powerpoints = $this->PowerPoint->find('all');
+
+		//list of phases to be shown at the 'add phases to a mission' scenario..
+		$phases = $this->Phase->find('all', array(
+			'conditions' => array(
+				'mission_id' => $id
+			),
+			'order' => array(
+				'Phase.position'
+			)
+		));
+
+		//image attached to mission, to be displayed in mission data tab
+		// $mission_img = null;
+		// if(!is_null($id)){
+		// 	$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
+		// }
+
+		$dossier_files = null;
+		$dossier = null;
+		//checking to see if i already have a dossier and, if so, if I already have files attached to it
+		if(!is_null($id)){
+			$dossier = $this->Dossier->find('first', array('conditions' => array('Dossier.mission_id' => $id)));
+			if(!is_null($dossier) && !empty($dossier)) {
+				$dossier_files = $this->Attachment->find('all', array('conditions' => array('Model' => 'Dossier', 'foreign_key' => $dossier['Dossier']['id'])));
+			}
+		}
+
+		$dossier_links = $this->DossierLink->find('all', array(
+			'conditions' => array(
+				'DossierLink.mission_id' => $id
+			)
+		));
+
+		$dossier_videos = $this->DossierVideo->find('all', array(
+			'conditions' => array(
+				'DossierVideo.mission_id' => $id
+			)
+		));	
+
+		$launcher = $this->Launcher->find('all', array(
+			'conditions' => array(
+				'Launcher.mission_id' => $id
+			)
+		));
+
+		$launchers = array();
+		foreach ($launcher as $lkey => $l) {
+			$launcherImg = $this->Attachment->find('first', array(
+				'order' => array(
+					'Attachment.id Desc'
+				),
+				'conditions' => array(
+					'Attachment.model' => 'Launcher',
+					'Attachment.foreign_key' => $l['Launcher']['id']
+				)
+			));	
+			$launcher[$lkey]['Launcher']['image_dir'] = null;
+			$launcher[$lkey]['Launcher']['image_name'] = null;
+			if(!empty($launcherImg)){
+				$launcher[$lkey]['Launcher']['image_dir'] = $launcherImg['Attachment']['dir'];
+				$launcher[$lkey]['Launcher']['image_name'] = $launcherImg['Attachment']['attachment'];
+			}
+
+			$launchers[$l['Launcher']['phase_id']] = $launcher[$lkey]['Launcher'];
+		}
+
+		$novels_en = $this->Novel->find('all', array(
+			'order' => array(
+				'Novel.page Asc'
+			),
+			'conditions' => array(
+				'Novel.mission_id' => $id,
+				'Novel.language' => 'en'
+			)
+		));
+
+		$novels_es = $this->Novel->find('all', array(
+			'order' => array(
+				'Novel.page Asc'
+			),
+			'conditions' => array(
+				'Novel.mission_id' => $id,
+				'Novel.language' => 'es'
+			)
+		));
+
+		if($this->user['role_id'] == 1){
+			$flags = array(
+				'_admin' => true 
+			);
+
+			//as admin, he can set any organization as responsable for this mission
+			$organizations = $this->Organization->find('list', array(
+				'order' => array(
+					'Organization.name ASC'
+				)
+			));
+		} else {
+			$flags = array(
+				'_admin' => false 
+			);
+
+			//the possible organizations to be responsable for this mission are his own
+			$my_orgs = $this->UserOrganization->find('all', array(
+				'conditions' => array(
+					array(
+						'UserOrganization.user_id' => $this->user['id']
+					)
+				)
+			));
+
+			$my_orgs_id = array();
+			$my_orgs_id2 = array();
+			$k = 0;
+			foreach ($my_orgs as $my_org) {
+				$my_orgs_id[$k] = array('Organization.id' => $my_org['Organization']['id']);
+				$my_orgs_id2[$k] = array('Mission.organization_id' => $my_org['Organization']['id']);
+				$k++;
+			}
+
+			$organizations = $this->Organization->find('list', array(
+				'order' => array('Organization.name ASC'),
+				'conditions' => array(
+					'OR' => $my_orgs_id
+				)
+			));
+
+			//check if I am allowed to edit this (if its a mission of an org of mine)!
+			$smth = $this->Mission->find('first', array(
+				'conditions' => array(
+					'Mission.id' => $id,
+					'OR' => $my_orgs_id2
+				)
+			));
+			//ops, it's not my mission to edit it.. Going away..
+			if(empty($smth)) $this->redirect(array('action' => 'index'));
+			
+		}
+
+		$mission = null;
+
+		if ($this->request->is('post')) {
+			
+			if($this->Mission->exists($id)) {
+				//first, check if he sended another img for the mission...
+				
+				//it already exists, so let's save any alterations and move on..
+				if ($this->Mission->createWithAttachments($this->request->data, true, $id)) {
+					$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
+					
+					//saves the issue related to it..
+					$this->request->data['MissionIssue']['mission_id'] = $id;
+					$this->MissionIssue->id = $this->MissionIssue->find('first', array('conditions' => array('mission_id' => $id)));
+					if($this->MissionIssue->save($this->request->data)) {
+						$this->Session->setFlash(__('mission issue saved'));
+
+						//redirects to the same page, but with the tab phase active
+						$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+					} else {
+						$this->Session->setFlash(__('mission issue failed saving.'));
+					}
+				} else {
+					$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
+				}
+			} else{
+				//you shouldn't be here, go back to the admin panel
+				$this->redirect(array('action' => 'index'));
+			}
+		} else{
+			//you shouldn't be here, go back to the admin panel
+			if(is_null($id)) $this->redirect(array('action' => 'index'));
+			//it could be a request from one of the other tabs
+			if(!is_null($id) && $args == 'phase'){
+				//sets variable mission to be the mission being added now..
+				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
+			}
+			if(!is_null($id) && $args == 'mission'){
+				//sets variable mission to be the mission being added now..
+				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
+			}
+		}
+
+		/*$this->Quest->create();
+		$data['Quest']['description'] = "Quest description goes here..";
+		$data['Quest']['mission_id'] = $id;
+		$newQuest = $this->Quest->save($data);
+		debug($newQuest);*/
+
+		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 
+			'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en', 'dossier_links', 'dossier_videos', 'launchers',
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
 /*

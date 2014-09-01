@@ -73,7 +73,7 @@
 
 </div>
 
-<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
 
 <?php
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));

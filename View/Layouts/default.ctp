@@ -43,6 +43,8 @@ $title = __('Evoke Network');
 		echo $this->fetch('social-metatags');
 
 	?>
+	<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+	<script src="http://localhost:3000/socket.io/socket.io.js"></script>
 </head>
 <body class="evoke">
 
@@ -77,7 +79,7 @@ $title = __('Evoke Network');
 		</div>
 	</footer>
 
-	<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+	<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
 
 	<?php
 
