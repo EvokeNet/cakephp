@@ -593,6 +593,12 @@ class PanelsController extends AppController {
 		$roles_list = $this->Role->find('list');
 		$roles = $this->Role->getRoles();
 
+		$organization = $this->Organization->find('first', array(
+			'conditions' => array(
+				'Organization.id' => $org_id
+			)
+		));
+
 		$powerpoints = $this->PowerPoint->find('all');
 		
 		$mypp = $this->Badge->BadgePowerPoint->find('all');
@@ -624,18 +630,18 @@ class PanelsController extends AppController {
 			)
 		));
 
-		$users = $this->User->UserOrganization->find('all', array(
+		$users = $this->User->find('all', array(
 			'order' => array(
 				'User.created DESC'
 			),
 			'conditions' => array(
-				'UserOrganization.organization_id' => $org_id
+				'User.organization_id' => $org_id
 			)
 		));
 
 		$issues = $this->Issue->getIssues();
 
-		$this->set(compact('mypp', 'powerpoints', 'me', 'badges', 'issues', 'missions', 'missions_issues', 'roles', 'roles_list', 'users'));
+		$this->set(compact('mypp', 'powerpoints', 'me', 'badges', 'issues', 'missions', 'missions_issues', 'roles', 'roles_list', 'users', 'organization'));
 
 		// $this->render('dashboard');
 	}

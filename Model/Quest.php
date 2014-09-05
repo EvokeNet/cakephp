@@ -17,7 +17,11 @@ class Quest extends AppModel {
 	public $displayField = 'title';
 
 	public $actsAs = array(
-        'Containable'
+        'Containable',
+        'Translate' => array(
+            'title' => 'questTitle', 
+            'description' => 'questDescription',
+        )
     );
 
 	public function createWithAttachments($data, $hasPrev = false, $id = null) {

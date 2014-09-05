@@ -331,7 +331,14 @@
 			<?= $this->Form->input('description', array('label' => __('Description'), 'type' => 'textarea', 'required' => true)) ?>
 		</div>
 	</div>
-	<?php echo $this->Form->end('Add New User'); ?>
+	<?php 
+
+		if($origin == 'dashboard'){
+			echo $this->Form->hidden('organization_id', array('value' => $organization['Organization']['id']));
+		}
+		
+		echo $this->Form->end('Add New User'); 
+	?>
 
   <a class="close-reveal-modal">&#215;</a>
 </div>

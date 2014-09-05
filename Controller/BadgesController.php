@@ -233,6 +233,46 @@ class BadgesController extends AppController {
 		}
 	}
 
+/*
+* add_badge method
+* adds a badge via admin panel and returns to it
+*/
+	public function panel_add() {
+
+		if ($this->request->is('post')) {
+			
+			$powerInsert['Power'] = $this->request->data['Power'];
+			unset($this->request->data['Power']);
+
+			$this->Badge->create();
+			if ($this->Badge->createWithAttachments($this->request->data)) {
+
+				$badge_id = $this->Badge->id;
+				//create questpowerpoints entries..
+				
+				foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
+					if($powerEntry['quantity'] > 0){
+						$insert['BadgePowerPoint']['badge_id'] = $badge_id;
+						$insertId = $powerId;
+						if($powerId == 0) {
+							$insertId = null;
+						}
+						$insert['BadgePowerPoint']['power_points_id'] = $insertId;
+						$insert['BadgePowerPoint']['quantity'] = $powerEntry['quantity'];
+
+						$this->Badge->BadgePowerPoint->create();
+						$this->Badge->BadgePowerPoint->save($insert);
+					}
+				}
+
+				$this->Session->setFlash(__('The badge has been saved.'));
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
+			}
+		}
+	}
+
 /**
  * edit method
  *

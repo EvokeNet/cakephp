@@ -99,10 +99,12 @@ class OrganizationsController extends AppController {
 			$this->redirect($this->referer());
 		}
 
+		$this->Organization->id = $id;
+		
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Organization->save($this->request->data)) {
 				$this->Session->setFlash(__('The organization has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The organization could not be saved. Please, try again.'));
 			}

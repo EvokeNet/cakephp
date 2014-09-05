@@ -365,7 +365,8 @@
 										'separator' => ' ',
 										'dateFormat' => 'DMY',
 										'minYear' => date('Y') - 100,
-										'maxYear' => date('Y')
+										'maxYear' => date('Y'),
+										'value' => $m['Organization']['birthdate']
 									)); 
 								?>
 						      </label>

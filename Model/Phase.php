@@ -5,7 +5,10 @@ App::uses('AppModel', 'Model');
  *
  * @property Mission $Mission
  * @property Evidence $Evidence
+ * @property Launcher $Launcher
+ * @property PhaseChecklist $PhaseChecklist
  * @property Quest $Quest
+ * @property UserPhaseChecklist $UserPhaseChecklist
  */
 class Phase extends AppModel {
 
@@ -14,6 +17,8 @@ class Phase extends AppModel {
  *
  * @var string
  */
+	
+	// public $name = 'Phase';
 	public $displayField = 'name';
 
 /**
@@ -22,11 +27,15 @@ class Phase extends AppModel {
  * 
  */
 	public $actsAs = array(
+		'Containable',
         'Translate' => array(
             'name' => 'phaseName', 
             'description' => 'phaseDescription'
         )
     );
+
+    public $translateModel = 'PhaseTranslation';
+    public $translateTable = 'phase_translations';
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -68,6 +77,8 @@ class Phase extends AppModel {
 
 	}
 
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
 /**
  * belongsTo associations
  *
@@ -84,7 +95,6 @@ class Phase extends AppModel {
 	);
 
 /**
- *
  * hasMany associations
  *
  * @var array
@@ -92,6 +102,19 @@ class Phase extends AppModel {
 	public $hasMany = array(
 		'Evidence' => array(
 			'className' => 'Evidence',
+			'foreignKey' => 'phase_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Launcher' => array(
+			'className' => 'Launcher',
 			'foreignKey' => 'phase_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -118,6 +141,19 @@ class Phase extends AppModel {
 		),
 		'Quest' => array(
 			'className' => 'Quest',
+			'foreignKey' => 'phase_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'UserPhaseChecklist' => array(
+			'className' => 'UserPhaseChecklist',
 			'foreignKey' => 'phase_id',
 			'dependent' => false,
 			'conditions' => '',

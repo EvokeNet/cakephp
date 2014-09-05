@@ -23,6 +23,7 @@ class Mission extends AppModel {
  * 
  */
 	public $actsAs = array(
+		'Containable',
         'Translate' => array(
             'title' => 'missionTitle', 
             'description' => 'missionDescription',
