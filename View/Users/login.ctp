@@ -4,66 +4,22 @@
 	$this->end(); 
 ?>
 
-<section class = "evoke login background">
-	<div class="row full-width">
-	
-		<div class="small-7 medium-7 large-7 columns">
-			
-			<img src = '<?= $this->webroot.'img/bar.png' ?>' alt = "" class = "evoke login video-bar">
-
-			<div class="flex-video widescreen vimeo" style = "margin-top:50px">
-			  <iframe src="<?= $video_url ?>" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-			</div>
-			
-		</div>
-
-		<div class="small-5 medium-5 large-5 columns">
-			<img src = '<?= $this->webroot.'img/evoke-69.png' ?>' alt = "" class = "evoke login padding-bottom">
-			
-			<div id = "login-columns">
-				<h4><?php echo __('Evoke Panel Login'); ?></h4>
-
-				<div class = "evoke login top-border">
-					<h5><?php echo __('Sign up');?></h5>
-
-					<a href="<?php echo $fbLoginUrl; ?>" class="evoke login button facebook"><i class="fa fa-facebook fa-2x"></i>&nbsp;&nbsp;&nbsp;<?php echo __('Sign in with Facebook');?></a>
-					
-					<!-- <a href="<?php echo $this->Html->url(array('action' => 'google')); ?>" class="evoke login button google"><img src = '<?= $this->webroot.'img/evoke_g-login.png' ?>' alt = "">&nbsp;&nbsp;&nbsp;<?php echo __('Sign in with Google');?></a> -->
-
-					<!-- <a href="#" class="evoke login button google google_login"><img src = '<?= $this->webroot.'img/evoke_g-login.png' ?>' alt = "">&nbsp;&nbsp;&nbsp;<?php echo __('Sign in with Google');?></a> -->
-
-					<?php
-					
-						if(isset($authUrl)) {
-							echo '<a class="evoke login button facebook google" href="'.$authUrl.'"><i class="fa fa-google fa-2x"></i>'.__('Sign in with Google').'</a>';
-						} else {
-							echo '<p><a class="logout" href="?reset=1">Logout</a></p>';
-						}
-
+<div class="row standard-width">
+	<div class="small-5 medium-5 large-5 columns">
+		<div class="evoke login users form top-border bottom-border">
+			<?php echo $this->Session->flash(); ?>
+			<?php echo $this->Form->create('User'); ?>
+					<!-- <legend><?php echo __('Please enter your username and password'); ?></legend> -->
+					<h5><?php echo __('Sign in');?></h5>
+					<?php 
+						echo $this->Form->input('username', array('label' => false));
+						echo $this->Form->input('password', array('label' => false));
 					?>
-
-					<a href = "<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'register'));?>" class="evoke login button signup"><img src = '<?= $this->webroot.'img/evoke_e-login.png' ?>'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Create EVOKE account');?></a>
-
-					<!-- <a href="#" class="evoke login button signup" data-reveal-id="myModal" data-reveal><img src = '<?= $this->webroot.'img/evoke_e-login.png' ?>'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo __('Create EVOKE account');?></a> -->
-				</div>
-				<!-- <i class="fa fa-google-plus fa-2x" style = "position: absolute; top: 10px; left: 20px;"></i> -->
-				<div class="evoke login users form top-border bottom-border">
-					<?php echo $this->Session->flash(); ?>
-					<?php echo $this->Form->create('User'); ?>
-							<!-- <legend><?php echo __('Please enter your username and password'); ?></legend> -->
-							<h5><?php echo __('Sign in');?></h5>
-							<?php 
-								echo $this->Form->input('username', array('label' => false));
-								echo $this->Form->input('password', array('label' => false));
-							?>
-						<button class="evoke button general" type="submit">
-							<?php echo __('Sign in'); ?>
-						</button>
-						<a href = "#" class = "evoke login password"><?php echo __('Forgot your password?');?></a><!--send to correct address-->
-						<?php echo $this->Form->end(); ?>
-				</div>
-			</div>
-
+				<button class="evoke button general" type="submit">
+					<?php echo __('Sign in'); ?>
+				</button>
+				<a href = "#" class = "evoke login password"><?php echo __('Forgot your password?');?></a><!--send to correct address-->
+				<?php echo $this->Form->end(); ?>
 		</div>
 	</div>
 </section>
@@ -85,10 +41,7 @@
 
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
-	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
 	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
 	echo $this->Html->script("oauthpopup", array('inline' => false));
 	echo $this->Html->script("google_login", array('inline' => false));
 ?>
-
