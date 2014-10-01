@@ -2,9 +2,9 @@
 
 	<div class="row">
 		<div class="large-12 columns">
-			<div class = "evoke text-align-center"><img src = '<?= $this->webroot.'img/Logo-Evoke-Vectorizado.png' ?>' width = "40%"></div>
+			<div class = "evoke text-align-center"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>' width = "40%"></div>
 			<h4><?= strtoupper(__('WELCOME TO EVOKE NETWORK'));?></h4>
-			<?php echo $this->fetch('menu'); ?>
+			<?php //echo $this->fetch('menu'); ?>
 		</div>
 	</div>
 </section>

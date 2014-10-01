@@ -12,12 +12,16 @@ $title = __('Evoke Network');
 <!DOCTYPE html>
 <html>
 <head>
+
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $title; ?>
 	</title>
 	<?php
-
 		$cssInclude = strtolower($this->name);
 		$cssFileName = strtolower($this->name).'.css';
 		$cssBaseUrl = Configure::read('App.cssBaseUrl');

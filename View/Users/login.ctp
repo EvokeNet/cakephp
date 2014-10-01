@@ -2,11 +2,6 @@
 	$this->extend('/Common/login-topbar');
 	$this->start('menu');
 	$this->end(); 
-
-	if($browserLanguage == 'es')
-		$video_url = 'http://player.vimeo.com/video/93164917';
-	else
-		$video_url = 'http://player.vimeo.com/video/94984840';
 ?>
 
 <section class = "evoke login background">
