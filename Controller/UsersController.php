@@ -23,7 +23,9 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('MathCaptcha', 'Visit');
+	//public $components = array('MathCaptcha', 'Visit');
+    
+    public $components = array('Visit');
 
 	public $uses = array('User', 'Friend');
 
@@ -42,51 +44,51 @@ class UsersController extends AppController {
         $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot');
     }
 
-    public function forgot() {
-		if ($this->request->is('post')) {
-      		
-      		if ($this->MathCaptcha->validate($this->request->data['User']['captcha'])) {
-        		$usr = $this->User->find('first', array(
-        			'conditions' => array(
-        				'User.email' => $this->request->data['User']['email']
-        			)
-        		));
-
-        		if(!$usr) {
-        			$this->Session->setFlash('The email does not match with our database.', 'flash_message');
-        			return;
-        		}
-        		$newpass = $this->createTempPassword(8);
-        		$insert['User']['password'] = $newpass;
-        		$insert['User']['id'] = $usr['User']['id'];
-        		$this->User->id = $usr['User']['id'];
-        		if($this->User->save($insert)) {
-
-	        		//sending email with new password
-	        		if($usr['User']['email'] != '' && !is_null($usr['User']['email'])) {
-
-						$Email = new CakeEmail('smtp');
-						//$Email->from(array('no-reply@quanti.ca' => $sender['User']['name']));
-						$Email->to($usr['User']['email']);
-						$Email->subject(__('Evoke - New Password'));
-						// $Email->emailFormat('html');
-						// $Email->template('group', 'group');
-						// $Email->viewVars(array('sender' => $usr, 'recipient' => $usr));
-						$Email->send(__('Your new EVOKE password is') . ' '.$newpass.'. '.__('Please change your password as soon as possible.'));
-						$this->Session->setFlash(__('The email was sent.'), 'flash_message');
-						$this->redirect(array('action' => 'login'));
-					} else {
-						$this->Session->setFlash(__('There was a problem sending the email.', 'flash_message'));
-					}
-				} else {
-					$this->Session->setFlash(__('There was a problem generating the new password.', 'flash_message'));
-				}
-      		} else {
-        		$this->Session->setFlash('The result of the calculation was incorrect. Please, try again.', 'flash_message');
-      		}
-    	} 
-        $this->set('captcha', $this->MathCaptcha->getCaptcha());
-    }
+//    public function forgot() {
+//		if ($this->request->is('post')) {
+//      		
+//      		if ($this->MathCaptcha->validate($this->request->data['User']['captcha'])) {
+//        		$usr = $this->User->find('first', array(
+//        			'conditions' => array(
+//        				'User.email' => $this->request->data['User']['email']
+//        			)
+//        		));
+//
+//        		if(!$usr) {
+//        			$this->Session->setFlash('The email does not match with our database.', 'flash_message');
+//        			return;
+//        		}
+//        		$newpass = $this->createTempPassword(8);
+//        		$insert['User']['password'] = $newpass;
+//        		$insert['User']['id'] = $usr['User']['id'];
+//        		$this->User->id = $usr['User']['id'];
+//        		if($this->User->save($insert)) {
+//
+//	        		//sending email with new password
+//	        		if($usr['User']['email'] != '' && !is_null($usr['User']['email'])) {
+//
+//						$Email = new CakeEmail('smtp');
+//						//$Email->from(array('no-reply@quanti.ca' => $sender['User']['name']));
+//						$Email->to($usr['User']['email']);
+//						$Email->subject(__('Evoke - New Password'));
+//						// $Email->emailFormat('html');
+//						// $Email->template('group', 'group');
+//						// $Email->viewVars(array('sender' => $usr, 'recipient' => $usr));
+//						$Email->send(__('Your new EVOKE password is') . ' '.$newpass.'. '.__('Please change your password as soon as possible.'));
+//						$this->Session->setFlash(__('The email was sent.'), 'flash_message');
+//						$this->redirect(array('action' => 'login'));
+//					} else {
+//						$this->Session->setFlash(__('There was a problem sending the email.', 'flash_message'));
+//					}
+//				} else {
+//					$this->Session->setFlash(__('There was a problem generating the new password.', 'flash_message'));
+//				}
+//      		} else {
+//        		$this->Session->setFlash('The result of the calculation was incorrect. Please, try again.', 'flash_message');
+//      		}
+//    	} 
+//        $this->set('captcha', $this->MathCaptcha->getCaptcha());
+//    }
 
     public function createTempPassword($len) {
 		$pass = '';

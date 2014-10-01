@@ -34,7 +34,7 @@ class AppController extends Controller {
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
         ),
         // 'DebugKit.Toolbar',
-        'Acl'
+//        'Acl'
     );
 
     public $helpers = array(

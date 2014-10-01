@@ -7,7 +7,7 @@ class PanelsController extends AppController {
 *
 * @var array
 */
-	public $components = array('Access');
+//	public $components = array('Access');
 	public $uses = array('User', 'UserIssue', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 
 		'DossierLink', 'UserFriend', 'DossierVideo', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire', 
 		'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level',
@@ -37,10 +37,10 @@ class PanelsController extends AppController {
 		}
 
 		//checking Acl permission
-		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
-			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."), 'flash_message');	
-			$this->redirect($this->referer());
-		}
+//		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
+//			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."), 'flash_message');	
+//			$this->redirect($this->referer());
+//		}
 	}
 /*
 * index method
