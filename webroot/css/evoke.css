@@ -9,14 +9,26 @@ html, body {
 *, html, body,
 button, div, p, span, a,
 .button {
-	font-family: 'Open Sans', 'Arial', sans-serif;
+	font-family: 'Raleway', 'Arial', sans-serif;
 	font-weight: 300;
 	color: #cccccc;
 	-webkit-text-stroke: 0.1px;
 	-webkit-font-smoothing: antialiased;
 }
 
-.button {
+h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a, h5, h5 a, h6, h6 a {
+	font-family: 'Orbitron';
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #cccccc;
+}
+
+.cor-destaque {
+	color: #26dee0;
+}
+
+button, .button {
 	text-transform: uppercase;
 	color: #26dee0;
 	background-color: #333333;
@@ -153,13 +165,47 @@ button, div, p, span, a,
 	height:500px;
 }
 
+/* Alignment */
+.evoke .vertical-align-top {
+	vertical-align: top;
+}
+
+/* Forms */
+input[type=text]:focus, input[type=email]:focus, input[type=number]:focus, 
+input[type=password]:focus, input[type=search]:focus, input[type=url]:focus,  textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  border: 1px solid #DDDDDD;
+}
+
+input[type=text]:focus, input[type=email]:focus, input[type=number]:focus, 
+input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, textarea:focus {
+  box-shadow: 0 0 5px #26dee0;
+  border: 1px solid #26dee0;
+}
+
 /* --------------------------- */
 /* LOGIN */
 /* --------------------------- */
 
 .evoke .login.facebook-icon {
 	color: #1d649f;
+	margin-top: 0.2em;
 }
 .evoke .login.google-icon {
 	color: #9c4040;
+	margin-top: 0.2em;
+}
+
+
+
+/* --------------------------- */
+/* FOOTER */
+/* --------------------------- */
+.evoke .footer{
+	background: #292929;
+	text-align: center;
 }

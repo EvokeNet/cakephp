@@ -56,29 +56,18 @@ $title = __('Evoke Network');
 		<?php echo $this->fetch('content'); ?>
 	</section>
 
-	<footer class="footer" id="footer">
-		<div class="row">
+	<footer class="evoke footer" id="footer">
+		<div class="row standard-width padding top-1 bottom-1">
 			<div class="small-12 medium-12 large-12 columns">
-				<div class="row">
-				  <div class="small-5 small-centered columns">
-				  
-				  	<div class = "evoke footer-margin-top">
-					  	<h2><?php echo strtoupper(__('Evoke'));?></h2>
-					  	<h6>2014 &nbsp;&nbsp; EVOKE | <?= __('Report an issue') ?> | <a href = "<?= $this->Html->url(array('controller' => 'pages', 'action' => 'terms'))?>" target="_blank"><?= __('Terms of Service') ?></a></h6>
-						<div class = "evoke footer-world-bank"><img src = '<?= $this->webroot.'img/wblogo.png' ?>' alt = ""/></div>
-					</div>
+			  		&copy;
 
-					<!-- Reveal Modals begin -->
-					<div id="firstModal" class="reveal-modal" data-reveal>
-					  <h2>This is a modal.</h2>
-					  <p>Reveal makes these very easy to summon and dismiss. The close button is simply an anchor with a unicode character icon and a class of <code>close-reveal-modal</code>. Clicking anywhere outside the modal will also dismiss it.</p>
-					  <p>Finally, if your modal summons another Reveal modal, the plugin will handle that for you gracefully.</p>
-					  <p><a href="#" data-reveal-id="secondModal" class="secondary button">Second Modal...</a></p>
-					  <a class="close-reveal-modal">&#215;</a>
-					</div>
+			  		<?= __('2014') ?> <?php echo strtoupper(__('Evoke'));?> 
+			  		
+			  		| <?= __('Report an issue') ?>
+
+			  		| <a href = "<?= $this->Html->url(array('controller' => 'pages', 'action' => 'terms'))?>" target="_blank"><?= __('Terms of Service') ?></a>
 					
-				  </div>
-				</div>
+					<a href = "http://www.worldbank.org/" target="_blank"><img src='<?= $this->webroot.'img/wblogo.png' ?>' alt = "<?= __('The World Bank') ?>"/></a>
 			</div>
 		</div>
 	</footer>
