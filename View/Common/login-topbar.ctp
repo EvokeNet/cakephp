@@ -47,12 +47,12 @@
 					<div class="right">
 						<?php echo __('OR'); ?>
 
-						<a href="<?php echo $fbLoginUrl; ?>">
+						<a href="<?php echo $fbLoginUrl; ?>" class="a-hover-no-changes">
 							<i class="fa fa-facebook fa-2x evoke login facebook-icon"></i>
 						</a>
 
-						<a href="<?php echo $fbLoginUrl; ?>">
-							<i class="fa fa-google fa-2x evoke login google-icon"></i>
+						<a href="<?php echo $fbLoginUrl; ?>" class="a-hover-no-changes">
+							<i class="fa fa-google-plus fa-2x evoke login google-icon"></i>
 						</a>
 					</div>
 				</li>

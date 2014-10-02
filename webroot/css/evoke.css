@@ -187,17 +187,30 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
   border: 1px solid #26dee0;
 }
 
+/* Images */
+/*.evoke .a-hover-no-changes a:hover {
+	background-color: transparent;
+	outline: 0;
+	text-decoration: none;
+}*/
+
+a:hover img {
+	border-bottom: 0px;
+}
+
+
+
 /* --------------------------- */
 /* LOGIN */
 /* --------------------------- */
 
 .evoke .login.facebook-icon {
 	color: #1d649f;
-	margin-top: 0.2em;
 }
 .evoke .login.google-icon {
 	color: #9c4040;
 	margin-top: 0.2em;
+
 }
 
 
