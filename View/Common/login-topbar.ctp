@@ -1,5 +1,7 @@
+
+
 <!-- TOP-BAR -->
-<div class="row standard-width padding top-1 bottom-1 vertical-align-top">
+<div class="evoke login-top-bar row full-width padding top-1 bottom-1 vertical-align-top fixed sticky" id="top-bar-login">
 	<nav class="top-bar" data-topbar role="navigation">
 		<ul class="title-area">
 			<li class="name">
@@ -47,17 +49,17 @@
 					<div class="right">
 						<?php echo __('OR'); ?>
 
-						<a href="<?php echo $fbLoginUrl; ?>" class="a-hover-no-changes">
+						<a href="<?php echo $fbLoginUrl; ?>">
 							<i class="fa fa-facebook fa-2x evoke login facebook-icon"></i>
 						</a>
 
-						<a href="<?php echo $fbLoginUrl; ?>" class="a-hover-no-changes">
+						<a href="<?php echo $fbLoginUrl; ?>">
 							<i class="fa fa-google-plus fa-2x evoke login google-icon"></i>
 						</a>
 					</div>
 				</li>
 				<!-- FORGOT PASSWORD (NOT USED FOR NOW) -->
-				<!--<a href = "#" class = "evoke login password"><?php echo __('Forgot your password?');?></a> -->
+				<!--<a href = "#" class = "evoke login password"><?php //echo __('Forgot your password?');?></a> -->
 				<!--send to correct address-->
 			</ul>
 			<?php echo $this->Form->end(); ?>
@@ -69,15 +71,15 @@
 <!--
 <div id="myModal" class="reveal-modal tiny evoke login-lightbox" data-reveal>
 	<h2><?= __('Evoke Registration') ?></h2>
-	<?php echo $this->Form->create('User'); ?>
+	<?php //echo $this->Form->create('User'); ?>
 	<?php
-		echo $this->Form->input('name', array('required' => true, 'label' => __('Name')));
-		echo $this->Form->input('username', array('required' => true, 'label' => __('Username')));
-		echo $this->Form->input('email', array('type' => 'email', 'required' => true));
-		echo $this->Form->input('password', array('required' => true, 'label' => __('Password')));
+		//echo $this->Form->input('name', array('required' => true, 'label' => __('Name')));
+		//echo $this->Form->input('username', array('required' => true, 'label' => __('Username')));
+		//echo $this->Form->input('email', array('type' => 'email', 'required' => true));
+		//echo $this->Form->input('password', array('required' => true, 'label' => __('Password')));
 	?>
 	<?php //echo $this->Form->end(__('Submit')); ?>
-	<button class="evoke button general" type="submit"><?php echo __('Register') ?></button>
+	<button class="evoke button general" type="submit"><?php //echo __('Register') ?></button>
   <a class="close-reveal-modal">&#215;</a>
 </div>
 -->

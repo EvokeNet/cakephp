@@ -33,10 +33,11 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/components/foundation/css/foundation');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
+		echo $this->Html->css('/components/foundation/css/foundation');
+		echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css');
 
 		echo $this->Html->css('evoke');
-
-
+		
 		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
 			echo $this->Html->css($cssInclude);
 		}
@@ -56,8 +57,8 @@ $title = __('Evoke Network');
 		<?php echo $this->fetch('content'); ?>
 	</section>
 
-	<footer class="evoke footer" id="footer">
-		<div class="row standard-width padding top-1 bottom-1">
+	<footer class="evoke footer fixed sticky" id="footer">
+		<div class="row standard-width  padding top-1 bottom-1">
 			<div class="small-12 medium-12 large-12 columns">
 			  		&copy;
 
@@ -77,9 +78,13 @@ $title = __('Evoke Network');
 	<?php
 
 		echo $this->Html->script('/components/jquery/jquery.min.js');
-		echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js");
+		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js");
 		echo $this->Html->script('/components/modernizr/modernizr.js');
 		echo $this->Html->script('/components/foundation/js/foundation.min.js');
+		echo $this->Html->script('/components/fullpage.js/jquery.fullPage.js');
+		echo $this->Html->script('/components/fullpage.js/vendors/jquery.easings.min.js');
+		echo $this->Html->script('/components/fullpage.js/vendors/jquery.slimscroll.min.js');
+
 		echo $this->Html->script('evoke');
 		echo $this->Html->script('footer_bind');
 
@@ -103,11 +108,32 @@ $title = __('Evoke Network');
 	    setStatus('reconnecting');
 	  });
 
+/*
 	  socket.on('popup', function (data) {
 	  	$('#firstModal').foundation('reveal', 'open');
   	  });
-
+*/
 	</script>
 
+	<!-- FullPage Login -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('.fullpage').fullpage({
+		    	verticalCentered: true,
+		    	paddingTop: ($('#top-bar-login').height()*(-2)).toString()+"px",
+		    	paddingBottom: ($('.footer').height()*2).toString()+"px",
+		        resize : true,
+		        scrollOverflow: true,
+		        fixedElements: '#top-bar-login',
+				navigation: true, 
+				navigationTooltips: ["<?php echo __('Examples of missions'); ?>",
+					"<?php echo __('What is Evoke?'); ?>",
+					"<?php echo __('Why was Evoke created?'); ?>",
+					"<?php echo __('Gameplay'); ?>",
+					"<?php echo __('Who is behind Evoke?'); ?>",
+					"<?php echo __('How to become an agent?'); ?>"]
+		    });
+		});
+	</script>
 </body>
 </html>
