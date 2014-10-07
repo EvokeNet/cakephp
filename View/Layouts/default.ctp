@@ -34,7 +34,8 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
 		echo $this->Html->css('/components/foundation/css/foundation');
-		echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css');
+		echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
+		echo $this->Html->css('/components/slick-carousel/slick/slick.css'); //Slick plugin para carousel
 
 		echo $this->Html->css('evoke');
 		
@@ -81,9 +82,14 @@ $title = __('Evoke Network');
 		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js");
 		echo $this->Html->script('/components/modernizr/modernizr.js');
 		echo $this->Html->script('/components/foundation/js/foundation.min.js');
+
+		//FULLPAGE
 		echo $this->Html->script('/components/fullpage.js/jquery.fullPage.js');
 		echo $this->Html->script('/components/fullpage.js/vendors/jquery.easings.min.js');
 		echo $this->Html->script('/components/fullpage.js/vendors/jquery.slimscroll.min.js');
+
+		//SLICK
+		echo $this->Html->script('/components/slick-carousel/slick/slick.min.js');
 
 		echo $this->Html->script('evoke');
 		echo $this->Html->script('footer_bind');
@@ -133,7 +139,22 @@ $title = __('Evoke Network');
 					"<?php echo __('Who is behind Evoke?'); ?>",
 					"<?php echo __('How to become an agent?'); ?>"]
 		    });
+
+		    $('.fp-controlArrow').css("margin-top", ($('#top-bar-login').height()*(-2)).toString()+"px")
 		});
 	</script>
+
+
+	<!-- Slick -->
+	<!--
+	<script type="text/javascript">
+        $(document).ready(function(){
+            $('.missions-carousel').slick({
+            	adaptiveHeight: true,
+            	centeredMode: true,
+            	slide: 'div.carousel-slide'
+            });
+        });
+    </script>-->
 </body>
 </html>

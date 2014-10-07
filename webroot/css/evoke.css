@@ -69,16 +69,22 @@ button, .button {
     width: 100%;
     height: 100%; }
 
-/* OVERRIDES STANDARD ROW WIDTH */
+/* OVERRIDES STANDARD ROW WIDTH WITH OUR STANDARD */
 .evoke .row.standard-width {
     width: 90%;
     max-width: 90%;
 }
 
-/* OVERRIDES STANDARD ROW WIDTH */
+/* OVERRIDES STANDARD ROW WIDTH WITH FULL WIDTH */
 .evoke .row.full-width {
     width: 100%;
     max-width: 100%;
+}
+
+/* HEIGHT */
+.evoke .full-height {
+	height: 100%;
+	max-height: 100%;
 }
 
 /* SPACINGS, MARGINS, PADDINGS */
@@ -115,6 +121,10 @@ button, .button {
 	margin-left: 2em;
 }
 
+.evoke .margin-left-13{
+	margin-left: 13%;
+}
+
 .evoke .margin.bottom-0 {
 	margin-bottom: 0;
 }
@@ -129,6 +139,14 @@ button, .button {
 
 .evoke .margin.bottom-2 {
 	margin-bottom: 2em;
+}
+
+.evoke .margin.bottom-4 {
+	margin-bottom: 4em;
+}
+
+.evoke .padding.all-05 {
+	padding: 0.5em;
 }
 
 .evoke .padding.top-03 {
@@ -151,6 +169,10 @@ button, .button {
 	padding-top: 5em;
 }
 
+.evoke .padding.left-2 {
+	padding-left: 2em;
+}
+
 .evoke .padding.bottom-1 {
 	padding-bottom: 1em;
 }
@@ -159,8 +181,8 @@ button, .button {
 	padding-bottom: 2em;
 }
 
-.evoke .margin-left-13{
-	margin-left: 13%;
+.evoke .padding.right-2 {
+	padding-right: 2em;
 }
 
 .evoke .body-padding{
@@ -182,6 +204,20 @@ button, .button {
 
 .evoke .vertical-align-bottom {
 	vertical-align: bottom;
+}
+
+.evoke .table {
+	display: table;
+}
+
+.evoke .table-cell {
+	display: table-cell;
+}
+
+/* Opacity */
+.evoke .opacity-05 {
+	opacity: 0.5;
+	filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 
 /* Forms */
@@ -217,9 +253,136 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#333333', GradientType=0 );/* IE6-9 */
 }
 
+
+/* --------------------------- */
+/* IMAGES */
+/* --------------------------- */
+.evoke .img-caption-bottom {
+	position: absolute;
+	bottom: 0em;
+	left: 0em;
+}
+
+
+/* --------------------------- */
+/* BACKGROUND */
+/* --------------------------- */
+.evoke .background-center {
+	background-position: center;
+}
+
+.evoke .background-cover {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.evoke .background-color-dark-opacity-05 {
+	background: rgba(0,0,0,.5);
+}
+
+.evoke .img-circular {
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+}
+
+/* --------------------------- */
+/* BORDER */
+/* --------------------------- */
+.evoke .border-style-solid {
+	border-style: solid;
+}
+
+.evoke .border-color-highlight {
+	border-color: #26dee0;
+}
+
+.evoke .border-width-02 {
+	border-width: 0.2em;
+}
+
+/*****************************/
+/* TABS - Triangle and line  */
+/*****************************/
+.tabs-style-linetriangle .tab-image {
+	max-width: 100px;
+	height: auto;
+}
+@media screen {
+  .tabs-style-linetriangle .tab-image { 
+  	width: auto; /* for ie 8 */
+  }
+}
+
+.tabs-style-linetriangle {
+	height: 100%;
+	width: 100%;
+}
+
+.tabs-style-linetriangle ul a:hover, .tabs-style-linetriangle ul li.tab-title a:hover {
+	background-color: transparent;
+}
+
+.tabs-style-linetriangle ul a, .tabs-style-linetriangle ul li.tab-title a {
+	overflow: visible;
+	border-bottom: 1px solid #26dee0;
+	-webkit-transition: color 0.2s;
+	transition: color 0.2s;
+	background-color: transparent;
+}
+
+.tabs-style-linetriangle ul li.tab-title.active a {
+	background-color: transparent;
+}
+
+.tabs-style-linetriangle ul a span, .tabs-style-linetriangle ul li.tab-title.active a span {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 1em;
+}
+
+.tabs-style-linetriangle ul li.tab-title.active a:after, 
+.tabs-style-linetriangle ul li.tab-title.active a:before {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: solid transparent;
+	content: '';
+	pointer-events: none;
+}
+
+.tabs-style-linetriangle ul li.tab-title.active a:after {
+	margin-left: -10px;
+	border-width: 10px;
+	border-top-color: #26dee0;
+}
+
+.tabs-style-linetriangle ul li.tab-title.active a:before {
+	margin-left: -11px;
+	border-width: 11px;
+	border-top-color: #26dee0;
+}
+
+@media screen and (max-width: 58em) {
+	.tabs-style-linetriangle ul {
+		font-size: 0.6em;
+	}
+}
+
 /* --------------------------- */
 /* LOGIN */
 /* --------------------------- */
+.evoke .login-top-bar {
+	z-index: 1;
+	background-color: #333;
+}
+
 .evoke .login.facebook-icon {
 	color: #1d649f;
 	margin-top: 0.2em;
@@ -240,16 +403,21 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	vertical-align: center;
 }
 
-
 .evoke .login .fullpage {
 	z-index: 0;
 }
 
-.evoke .login-top-bar {
-	z-index: 1;
-	background-color: #333;
+.evoke .login .tabs {
+	line-height: 92px;
 }
 
+div.evoke.slide.background-cover.active div.img-caption-bottom {
+	width: 50%;
+}
+
+.fp-nav span {
+	border-radius: 0;
+}
 
 /* --------------------------- */
 /* FOOTER */
