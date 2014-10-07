@@ -96,7 +96,7 @@ $title = __('Evoke Network');
 	?>
 
 	<script>
-
+/*
 	  //socket io client
 	  var socket = io.connect('http://localhost:8000');
 
@@ -112,7 +112,7 @@ $title = __('Evoke Network');
 	    setStatus('reconnecting');
 	  });
 
-/*
+
 	  socket.on('popup', function (data) {
 	  	$('#firstModal').foundation('reveal', 'open');
   	  });
@@ -122,6 +122,7 @@ $title = __('Evoke Network');
 	<!-- FullPage Login -->
 	<script type="text/javascript">
 		$(document).ready(function() {
+			/* Cria a full page */
 		    $('.fullpage').fullpage({
 		    	verticalCentered: true,
 		    	paddingTop: ($('#top-bar-login').height()*(-2)).toString()+"px",
@@ -129,7 +130,7 @@ $title = __('Evoke Network');
 		        resize : true,
 		        scrollOverflow: true,
 		        fixedElements: '#top-bar-login',
-				navigation: true, 
+				navigation: true,
 				navigationTooltips: ["<?php echo __('Examples of missions'); ?>",
 					"<?php echo __('What is Evoke?'); ?>",
 					"<?php echo __('Why was Evoke created?'); ?>",
@@ -138,8 +139,11 @@ $title = __('Evoke Network');
 					"<?php echo __('How to become an agent?'); ?>"]
 		    });
 
+		    /* Ajusta margens em relacao ao top-bar */
 		    $('.fp-controlArrow').css("margin-top", ($('#top-bar-login').height()*(-2)).toString()+"px");
 		});
+
+		
 	</script>
 </body>
 </html>

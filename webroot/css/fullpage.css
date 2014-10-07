@@ -33,3 +33,12 @@
 	width: 14px;
 	height: 14px;
 }
+
+.fp-tooltip {
+	font-family: 'Raleway', 'Arial', sans-serif;
+	background: #000;
+	color: #26dee0;
+	padding: 5px 15px;
+	border-radius: 3px;
+	border: 1px solid #0A3838;
+}
