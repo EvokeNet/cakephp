@@ -361,7 +361,14 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	-webkit-transition: color 0.2s;
 	transition: color 0.2s;
 	background-color: transparent;
-	padding: 1rem 2rem;
+	padding: 1rem 1.5rem;
+}
+
+
+@media(max-width: 18em) {
+	.tabs-style-linetriangle ul li.tab-title a {
+		padding: 1rem 1rem;
+	}
 }
 
 .tabs-style-linetriangle ul li.tab-title.active a {

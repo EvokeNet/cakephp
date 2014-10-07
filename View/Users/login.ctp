@@ -54,17 +54,12 @@
 	    	</div>
 	    </div>
 	    
-	    <div class="section evoke login gradient-on-top">
-	    	<div class="evoke section-icon">
-	    		<span class="evoke vertical-align-middle">
-			    	<img src="<?= $this->webroot.'/img/icon_power.png' ?>" />
-			    </span>
-		    </div>
+	    <div class="section evoke login gradient-on-top padding top-2">
 		    <div id="teste3"></div>
 	    	<div class="row standard-width">
 		    	<h1 class="text-color-important text-center"><?php echo __('What is Evoke?'); ?></h1>
-		    	<h2 class="text-color-important text-center">teste</h2>
-		    	<h3 class="text-color-important text-center">The Grid</h3>
+		    	<h2 class="text-color-important text-center">Titulo 2</h2>
+		    	<h3 class="text-color-important text-center">Titulo 3</h3>
 				Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.
 				Need a head start on some of your designs or some extra inspiration to see the full potential of a responsive front-end framework? Check out a list of our Foundation resources!<br />
 				Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.<br />
