@@ -19,3 +19,17 @@
 .fp-controlArrow {
 	top: auto;
 }
+
+#fp-nav li, .fp-slidesNav li {
+	margin-top: 18px;
+}
+
+#fp-nav li .active span, .fp-slidesNav .active span {
+	background-color: #fff;
+}
+
+#fp-nav span, .fp-slidesNav span {
+	border: 2px solid #26dee0;
+	width: 14px;
+	height: 14px;
+}

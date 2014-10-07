@@ -419,6 +419,4 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	z-index: 2;
 	background: #292929;
 	text-align: center;
-	position: fixed;
-	bottom: 0;
 }

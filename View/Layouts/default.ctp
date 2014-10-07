@@ -36,7 +36,6 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
 		echo $this->Html->css('/components/foundation/css/foundation');
 		echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
-		echo $this->Html->css('/components/slick-carousel/slick/slick.css'); //Slick plugin para carousel
 
 		echo $this->Html->css('evoke');
 		echo $this->Html->css('foundation'); //Overriding some of the foundation css
@@ -139,21 +138,8 @@ $title = __('Evoke Network');
 					"<?php echo __('How to become an agent?'); ?>"]
 		    });
 
-		    //$('.fp-controlArrow').css("margin-top", ($('#top-bar-login').height()*(-2)).toString()+"px")
+		    $('.fp-controlArrow').css("margin-top", ($('#top-bar-login').height()*(-2)).toString()+"px");
 		});
 	</script>
-
-
-	<!-- Slick -->
-	<!--
-	<script type="text/javascript">
-        $(document).ready(function(){
-            $('.missions-carousel').slick({
-            	adaptiveHeight: true,
-            	centeredMode: true,
-            	slide: 'div.carousel-slide'
-            });
-        });
-    </script>-->
 </body>
 </html>
