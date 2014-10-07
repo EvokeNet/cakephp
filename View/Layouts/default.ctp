@@ -16,6 +16,7 @@ $title = __('Evoke Network');
 	<!-- FONTS -->
 	<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
 	<?php echo $this->Html->charset(); ?>
 	<title>
@@ -38,6 +39,7 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/components/slick-carousel/slick/slick.css'); //Slick plugin para carousel
 
 		echo $this->Html->css('evoke');
+		echo $this->Html->css('foundation'); //Overriding some of the foundation css
 		
 		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
 			echo $this->Html->css($cssInclude);
@@ -49,8 +51,8 @@ $title = __('Evoke Network');
 		echo $this->fetch('social-metatags');
 
 	?>
-	<script src="http://localhost:8000/socket.io/socket.io.js"></script>
-	<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+	<!--<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+	<script src="http://localhost:3000/socket.io/socket.io.js"></script>-->
 </head>
 <body class="evoke">
 
@@ -78,8 +80,8 @@ $title = __('Evoke Network');
 
 	<?php
 
-		echo $this->Html->script('/components/jquery/jquery.min.js');
-		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js");
+		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
+		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
 		echo $this->Html->script('/components/modernizr/modernizr.js');
 		echo $this->Html->script('/components/foundation/js/foundation.min.js');
 
@@ -87,9 +89,6 @@ $title = __('Evoke Network');
 		echo $this->Html->script('/components/fullpage.js/jquery.fullPage.js');
 		echo $this->Html->script('/components/fullpage.js/vendors/jquery.easings.min.js');
 		echo $this->Html->script('/components/fullpage.js/vendors/jquery.slimscroll.min.js');
-
-		//SLICK
-		echo $this->Html->script('/components/slick-carousel/slick/slick.min.js');
 
 		echo $this->Html->script('evoke');
 		echo $this->Html->script('footer_bind');
@@ -140,7 +139,7 @@ $title = __('Evoke Network');
 					"<?php echo __('How to become an agent?'); ?>"]
 		    });
 
-		    $('.fp-controlArrow').css("margin-top", ($('#top-bar-login').height()*(-2)).toString()+"px")
+		    //$('.fp-controlArrow').css("margin-top", ($('#top-bar-login').height()*(-2)).toString()+"px")
 		});
 	</script>
 

@@ -18,8 +18,8 @@
 		    			[<?= $this->webroot.'/img/mission_1_NameMission-large.png' ?>, (large)]">
 					<noscript><img src="<?= $this->webroot.'/img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 1 - Name'); ?>"></noscript>
 
-					<div class="table row full-width full-height"><div class="table-cell vertical-align-bottom">
-						<div class="evoke padding top-1 bottom-1 left-2 right-2 background-color-dark-opacity-05">
+					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
+						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
 							<h2 class="text-color-important">Mission 1</h2>
 							<p>Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.</p>
 						</div></div>
@@ -44,7 +44,7 @@
 
 					<noscript><img src="<?= $this->webroot.'/img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 2 - Name'); ?>"></noscript>
 
-					<div class="table row full-width full-height"><div class="table-cell vertical-align-bottom">
+					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
 						<div class="evoke padding top-1 bottom-1 left-2 right-2 background-color-dark-opacity-05">
 							<h2 class="text-color-important">Mission 2</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.</p>
@@ -62,9 +62,9 @@
 		    </div>
 		    <div id="teste3"></div>
 	    	<div class="row standard-width">
-		    	<h1 class="text-color-important"><?php echo __('What is Evoke?'); ?></h1>
-		    	<h2 class="text-color-important">teste</h2>
-		    	<h3 class="text-color-important">The Grid</h3>
+		    	<h1 class="text-color-important text-center"><?php echo __('What is Evoke?'); ?></h1>
+		    	<h2 class="text-color-important text-center">teste</h2>
+		    	<h3 class="text-color-important text-center">The Grid</h3>
 				Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.
 				Need a head start on some of your designs or some extra inspiration to see the full potential of a responsive front-end framework? Check out a list of our Foundation resources!<br />
 				Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.<br />
@@ -78,7 +78,7 @@
 	    </div>
 	    <div class="section evoke login gradient-on-top padding top-2">
 	    	<div class="row standard-width">
-		    	<h2 class="text-color-important"><?php echo __('Why was Evoke created?'); ?></h2>
+		    	<h2 class="text-color-important text-center"><?php echo __('Why was Evoke created?'); ?></h2>
 		    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.
 				<br />
 				Nunc sed scelerisque nunc. Mauris a pulvinar velit. Vivamus eu metus sed risus dignissim pharetra eget in urna. Proin elementum ultricies ligula eu tempor. Donec in dui vel nulla viverra venenatis ac aliquam nulla. Pellentesque at iaculis massa. Proin faucibus congue porta. Mauris sit amet ante nec justo dignissim tincidunt. Donec nec faucibus diam. Praesent elementum erat metus, pharetra consectetur libero volutpat rhoncus. Aliquam sed egestas nibh. Aenean nisi lorem, facilisis eget scelerisque ac, pellentesque et quam.
@@ -96,14 +96,14 @@
 			</div>
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
-	    	<div class="row standard-width">
-		    	<h2 class="text-color-important"><?php echo __('Gameplay'); ?></h2>
+	    	<div class="row standard-width full-height centering-block table padding top-5">
+		    	<h2 class="text-color-important text-center"><?php echo __('Gameplay'); ?></h2>
 
-				<div class="evoke text-center small-block-grid-5 table-cell tabs-style-linetriangle">
+				<div class="evoke small-block-grid-5 tabs-style-linetriangle centered-block">
 					<ul id="tabs-gameplay" class="tabs" data-tab role="tablist">
 						<li class="tab-title active" role="presentational">
 							<a href="#panelMissions" role="tab" aria-selected="true" controls="panelMissions">
-								<div class="tab-image table-cell border-width-02 border-style-solid border-color-highlight padding.all-05 img-circular">
+								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular">
 									<img class="evoke img-circular vertical-align-middle not-active hidden"
 										src="<?= $this->webroot.'img/icon_award_ribbon.png' ?>" alt="<?php echo __('Missions'); ?>" />
 									<img class="evoke img-circular vertical-align-middle active"
@@ -114,7 +114,7 @@
 						</li>
 						<li class="tab-title" role="presentational">
 							<a href="#panelQuests" role="tab" aria-selected="false" controls="panelQuests">
-								<div class="tab-image table-cell border-width-02 border-style-solid border-color-highlight padding.all-05 img-circular">
+								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular">
 									<img class="evoke img-circular vertical-align-middle not-active"
 										src="<?= $this->webroot.'img/icon_compass.png' ?>" alt="<?php echo __('Quests'); ?>" />
 									<img class="evoke img-circular vertical-align-middle active hidden"
@@ -125,7 +125,7 @@
 						</li>
 						<li class="tab-title" role="presentational">
 							<a href="#panelEvidences" role="tab" aria-selected="true" controls="panelEvidences">
-								<div class="tab-image table-cell border-width-02 border-style-solid border-color-highlight padding.all-05 img-circular">
+								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular">
 									<img class="evoke img-circular vertical-align-middle not-active"
 										src="<?= $this->webroot.'img/icon_wallet.png' ?>" alt="<?php echo __('Evidences'); ?>" />
 									<img class="evoke img-circular vertical-align-middle active hidden"
@@ -136,7 +136,7 @@
 						</li>
 						<li class="tab-title" role="presentational">
 							<a href="#panelBadges" role="tab" aria-selected="false" controls="panelBadges">
-								<div class="tab-image table-cell border-width-02 border-style-solid border-color-highlight padding.all-05 img-circular">
+								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular">
 									<img class="evoke img-circular vertical-align-middle not-active"
 										src="<?= $this->webroot.'img/icon_award_ribbon.png' ?>" alt="<?php echo __('Badges'); ?>" />
 									<img class="evoke img-circular vertical-align-middle active hidden"
@@ -147,7 +147,7 @@
 						</li>
 						<li class="tab-title" role="presentational">
 							<a href="#panelPower" role="tab" aria-selected="false" controls="panelPower">
-								<div class="tab-image table-cell border-width-02 border-style-solid border-color-highlight padding.all-05 img-circular">
+								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular">
 									<img class="evoke img-circular vertical-align-middle not-active"
 										src="<?= $this->webroot.'img/icon_radioactive.png' ?>" alt="<?php echo __('Powers'); ?>" />
 									<img class="evoke img-circular vertical-align-middle active hidden"
@@ -179,13 +179,13 @@
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row standard-width">
-	    		<h2 class="text-color-important"><?php echo __('Who is behind Evoke?'); ?></h2>
+	    		<h2 class="text-color-important text-center"><?php echo __('Who is behind Evoke?'); ?></h2>
 		    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.
 		    </div>
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row standard-width">
-	    		<h2 class="text-color-important"><?php echo __('How to become an agent?'); ?></h2>
+	    		<h2 class="text-color-important text-center"><?php echo __('How to become an agent?'); ?></h2>
 		    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.
 		    </div>
 	    </div>
@@ -194,21 +194,35 @@
 
 
 <?php 
-	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
-	echo $this->Html->script("oauthpopup", array('inline' => false));
-	echo $this->Html->script("google_login", array('inline' => false));
+
+		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
+		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
+
+	//echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
+	//echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js", array('inline' => false));
+	//echo $this->Html->script("oauthpopup", array('inline' => false));
+	//echo $this->Html->script("google_login", array('inline' => false));
 ?>
 
 	<!-- GamePlay tabs -->
 	<script type="text/javascript">
 		$(document).ready(function () {
-			/* Hide images in tabs that are not active, and show only in the one that is active */
+			/* Show special image only in the tab that is active */
 			$('#tabs-gameplay li').click(function() {
 				$('li img.active').addClass("hidden");
 				$('li img.not-active').removeClass("hidden");
 				$(this).find('img.not-active').addClass("hidden");
 				$(this).find('img.active').removeClass("hidden");
+			});
+
+			/* MouseOver and MouseOut show special image */
+			$('#tabs-gameplay li:not(".active")').mouseover(function() {
+				$(this).find('img.not-active').addClass("hidden");
+				$(this).find('img.active').removeClass("hidden");
+			});
+			$('#tabs-gameplay li:not(".active")').mouseout(function() {
+				$(this).find('img.active').addClass("hidden");
+				$(this).find('img.not-active').removeClass("hidden");
 			});
 		});
 	</script>

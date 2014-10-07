@@ -12,5 +12,9 @@
     "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar",
     "etherpad": "git://github.com/ether/etherpad-lite-jquery-plugin.git",
     "jquery.cookie": "1.4.1"
+  },
+  "resolutions": {
+    "medium-editor": "~1.9",
+    "jquery": "2.1.1"
   }
 }

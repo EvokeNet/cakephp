@@ -1,0 +1,21 @@
+/* OVERRIDE STYLES - FULLPAGE.JS PLUGIN */
+
+/* Slides */
+.fp-slidesNav {
+	position: absolute;
+	left: 0;
+	margin-left: 0 !important;
+	width: 100%;
+	text-align: center;
+	background-color: #ccc;
+	opacity: 0.5;
+	filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.fp-slidesNav.bottom {
+	bottom: 200px;
+}
+
+.fp-controlArrow {
+	top: auto;
+}

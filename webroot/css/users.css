@@ -1,0 +1,44 @@
+
+/* --------------------------- */
+/* LOGIN */
+/* --------------------------- */
+.evoke .login-top-bar {
+	z-index: 1;
+	background-color: #333;
+}
+
+.evoke .login.facebook-icon {
+	color: #1d649f;
+	margin-top: 0.2em;
+}
+.evoke .login.google-icon {
+	color: #9c4040;
+	margin-top: 0.2em;
+	font-weight: bold;
+}
+
+.evoke .section-icon {
+	text-align: center;
+	background-image: url('../img/ellipse_small.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	padding-top: -2em;
+	min-height: 61px;
+	vertical-align: center;
+}
+
+.evoke .login .fullpage {
+	z-index: 0;
+}
+
+.evoke .login .tabs {
+	line-height: 92px;
+}
+
+div.evoke.slide.background-cover.active div.img-caption-bottom {
+	width: 50%;
+}
+
+.fp-nav span {
+	border-radius: 0;
+}
