@@ -194,14 +194,8 @@
 
 
 <?php 
-
 		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
 		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
-
-	//echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-	//echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js", array('inline' => false));
-	//echo $this->Html->script("oauthpopup", array('inline' => false));
-	//echo $this->Html->script("google_login", array('inline' => false));
 ?>
 
 	<!-- GamePlay tabs -->
@@ -213,16 +207,14 @@
 				$('li img.not-active').removeClass("hidden");
 				$(this).find('img.not-active').addClass("hidden");
 				$(this).find('img.active').removeClass("hidden");
-			});
-
-			/* MouseOver and MouseOut show special image */
-			$('#tabs-gameplay li:not(".active")').mouseover(function() {
+			}).mouseover(function() {
 				$(this).find('img.not-active').addClass("hidden");
 				$(this).find('img.active').removeClass("hidden");
-			});
-			$('#tabs-gameplay li:not(".active")').mouseout(function() {
-				$(this).find('img.active').addClass("hidden");
-				$(this).find('img.not-active').removeClass("hidden");
+			}).mouseout(function() {
+				if (!$(this).hasClass("active")) {
+					$(this).find('img.active').addClass("hidden");
+					$(this).find('img.not-active').removeClass("hidden");
+				}
 			});
 		});
 	</script>
