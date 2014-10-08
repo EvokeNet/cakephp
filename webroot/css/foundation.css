@@ -66,9 +66,10 @@
 }
 
 .tabs-style-linetriangle ul li.tab-title.active a:after {
+	margin-top: -1px;
 	margin-left: -10px;
 	border-width: 10px;
-	border-top-color: #26dee0;
+	border-top-color: #333;
 }
 
 .tabs-style-linetriangle ul li.tab-title.active a:before {
