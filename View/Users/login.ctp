@@ -198,10 +198,15 @@
 		$(document).ready(function () {
 			/* Show special image only in the tab that is active */
 			$('#tabs-gameplay li').click(function() {
+				//Hide thumb and glow in all others
 				$('li img.active').addClass("hidden");
 				$('li img.not-active').removeClass("hidden");
+				$('li h5').removeClass("text-glow");
+				//Show in this one
 				$(this).find('img.not-active').addClass("hidden");
 				$(this).find('img.active').removeClass("hidden");
+				$(this).find('h5').addClass("text-glow");
+
 			}).mouseover(function() {
 				$(this).find('img.not-active').addClass("hidden");
 				$(this).find('img.active').removeClass("hidden");
