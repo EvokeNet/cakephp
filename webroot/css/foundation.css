@@ -1,9 +1,21 @@
 /* OVERRIDE STYLES - FOUNDATION */
 
+/* --------------------------- */
+/* BUTTONS */
+/* --------------------------- */
+button.disabled, button[disabled], .button.disabled, .button[disabled] {
+	color: #808080;
+	background-color: #333;
+}
 
-/*****************************/
-/*     COMPLEMENTING TABS    */
-/*****************************/
+button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
+	color: #808080;
+	background-color: #333;
+}
+
+/* --------------------------- */
+/* COMPLEMENTING TABS */
+/* --------------------------- */
 /* Triangle and line  */
 .tabs-style-linetriangle .tab-image {
 	max-width: 200px;

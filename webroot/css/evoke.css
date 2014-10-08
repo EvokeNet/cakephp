@@ -45,6 +45,11 @@ button, .button {
 	color: #26dee0;
 }
 
+/* Font */
+.font-weight-bold {
+	font-weight: bold;
+}
+
 /* Foundation elements */
 .reveal-modal.large {
 	margin-left: -35%;
@@ -418,4 +423,16 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 /* --------------------------- */
 .evoke #navigationBar {
 	top: 90%;
+}
+
+/* --------------------------- */
+/* MISSIONS */
+/* --------------------------- */
+.evoke .phases-bar .past {
+	background-color: #275761;
+	color: #fff;
+}
+.evoke .phases-bar .present {
+	background-color: #26dee0;
+	color: #000;
 }
