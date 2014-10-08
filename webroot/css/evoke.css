@@ -334,90 +334,57 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	border-width: 0.2em;
 }
 
-/*****************************/
-/* TABS - Triangle and line  */
-/*****************************/
-.tabs-style-linetriangle .tab-image {
-	max-width: 200px;
-	width: 100px; /* Fallback for older browsers */
-	height: 100px; /* Fallback for older browsers */
-	width: 10vw; /* Newer browsers */
-	height: 10vw; /* Newer browsers */
+/* --------------------------- */
+/* GLOW */
+/* --------------------------- */
+.evoke .text-glow {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: rgba(255,255,255,1);
+	-o-text-overflow: clip;
+	text-overflow: clip;
+	text-shadow: 0 0 5px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 1px #26dee0, 0 0 5px #26dee0, 0 0 15px #26dee0, 0 0 10px #26dee0;
+	-webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	-moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	-o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-.tabs-style-linetriangle .tab-image img {
-	padding: 10%;
-	width: 100%;
-	height: 100%;
+.evoke .text-glow-on-hover:hover {
+	text-shadow: 0 0 5px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 1px #26dee0, 0 0 5px #26dee0, 0 0 15px #26dee0, 0 0 10px #26dee0;
 }
 
-.tabs-style-linetriangle ul li.tab-title a:hover {
-	background-color: transparent;
+.img-glow {
+	border: 0.5em solid #fff;
+	-webkit-box-shadow: 0px 0px 3px 5px #26dee0;
+	-moz-box-shadow: 0px 0px 3px 5px #26dee0;
+	box-shadow: 0px 0px 3px 5px #26dee0; 
+	filter:progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='7');
+	filter: glow(color=white, strength=2) 
+		blur(add=false, direction=0, strength=1) 
+		blur(add=false, direction=180, strength=1) 
+		blur(add=false, direction=270, strength=1) 
+		blur(add=false, direction=90, strength=1);
 }
 
-.tabs-style-linetriangle ul li.tab-title a {
-	overflow: visible;
-	border-bottom: 1px solid #26dee0;
-	-webkit-transition: color 0.2s;
-	transition: color 0.2s;
-	background-color: transparent;
-	padding: 1rem 1.5rem;
+.blur { 
+	filter: blur(3px);
+	-webkit-filter: blur(3px);
+	-moz-filter: blur(3px);
+	-o-filter: blur(3px); 
+	-ms-filter: blur(3px);
+	filter: url(blur.svg#blur);
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3'); 
 }
 
-
-@media(max-width: 18em) {
-	.tabs-style-linetriangle ul li.tab-title a {
-		padding: 1rem 1rem;
-	}
+/* --------------------------- */
+/* TOP BAR */
+/* --------------------------- */
+.evoke .login-top-bar {
+	z-index: 1;
+	background-color: #333;
 }
-
-.tabs-style-linetriangle ul li.tab-title.active a {
-	background-color: transparent;
-}
-
-.tabs-style-linetriangle ul a span, .tabs-style-linetriangle ul li.tab-title.active a span {
-	display: block;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	font-size: 1em;
-}
-
-.tabs-style-linetriangle ul li.tab-title.active a:after, 
-.tabs-style-linetriangle ul li.tab-title.active a:before {
-	position: absolute;
-	top: 100%;
-	left: 50%;
-	width: 0;
-	height: 0;
-	border: solid transparent;
-	content: '';
-	pointer-events: none;
-}
-
-.tabs-style-linetriangle ul li.tab-title.active a:after {
-	margin-left: -10px;
-	border-width: 10px;
-	border-top-color: #26dee0;
-}
-
-.tabs-style-linetriangle ul li.tab-title.active a:before {
-	margin-left: -11px;
-	border-width: 11px;
-	border-top-color: #26dee0;
-}
-
-@media screen and (max-width: 18em) {
-	.tabs-style-linetriangle ul li.tab-title a {
-		padding: 1rem 1rem;
-	}
-}
-/*
-@media screen and (max-width: 58em) {
-	.tabs-style-linetriangle ul {
-		font-size: 0.6em;
-	}
-}*/
 
 /* --------------------------- */
 /* FOOTER */

@@ -45,7 +45,7 @@
 					<noscript><img src="<?= $this->webroot.'/img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 2 - Name'); ?>"></noscript>
 
 					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
-						<div class="evoke padding top-1 bottom-1 left-2 right-2 background-color-dark-opacity-05">
+						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
 							<h2 class="text-color-important">Mission 2</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.</p>
 						</div>
@@ -98,18 +98,18 @@
 					<ul id="tabs-gameplay" class="tabs" data-tab role="tablist">
 						<li class="tab-title active" role="presentational">
 							<a href="#panelMissions" role="tab" aria-selected="true" controls="panelMissions">
-								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular">
+								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular img-glow">
 									<img class="evoke img-circular vertical-align-middle not-active hidden"
 										src="<?= $this->webroot.'img/icon_award_ribbon.png' ?>" alt="<?php echo __('Missions'); ?>" />
 									<img class="evoke img-circular vertical-align-middle active"
 										src="<?= $this->webroot.'img/icon_missions_active.png' ?>" alt="<?php echo __('Missions'); ?>" />
 								</div>
-								<h5 class="text-color-important"><?php echo __('Missions'); ?></h5>
+								<h5 class="text-color-important text-glow"><?php echo __('Missions'); ?></h5>
 							</a>
 						</li>
 						<li class="tab-title" role="presentational">
 							<a href="#panelQuests" role="tab" aria-selected="false" controls="panelQuests">
-								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular">
+								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular glow">
 									<img class="evoke img-circular vertical-align-middle not-active"
 										src="<?= $this->webroot.'img/icon_compass.png' ?>" alt="<?php echo __('Quests'); ?>" />
 									<img class="evoke img-circular vertical-align-middle active hidden"
