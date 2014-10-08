@@ -234,8 +234,7 @@ button, .button {
  
 .evoke .centering-block:before {
 	content: '';
-	display: inline-block;
-	height: 100%; 
+	display: inline-block; 
 	vertical-align: middle;
 	margin-right: -0.25em; /* Adjusts for spacing */
  }
