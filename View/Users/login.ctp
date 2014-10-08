@@ -98,62 +98,62 @@
 					<ul id="tabs-gameplay" class="tabs" data-tab role="tablist">
 						<li class="tab-title active" role="presentational">
 							<a href="#panelMissions" role="tab" aria-selected="true" controls="panelMissions">
-								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular img-glow">
-									<img class="evoke img-circular vertical-align-middle not-active hidden"
-										src="<?= $this->webroot.'img/icon_award_ribbon.png' ?>" alt="<?php echo __('Missions'); ?>" />
-									<img class="evoke img-circular vertical-align-middle active"
-										src="<?= $this->webroot.'img/icon_missions_active.png' ?>" alt="<?php echo __('Missions'); ?>" />
+								<div class="tab-image centered-block img-circular">
+									<img class="evoke img-circular vertical-align-middle not-active hidden border-width-02 border-style-solid border-color-highlight padding all-1"
+										src="<?= $this->webroot.'img/icon-missions.png' ?>" alt="<?php echo __('Missions'); ?>" />
+									<img class="evoke img-circular vertical-align-middle active img-glow"
+										src="<?= $this->webroot.'img/thumb-missions.jpg' ?>" alt="<?php echo __('Missions'); ?>" />
 								</div>
 								<h5 class="text-color-important text-glow"><?php echo __('Missions'); ?></h5>
 							</a>
 						</li>
 						<li class="tab-title" role="presentational">
 							<a href="#panelQuests" role="tab" aria-selected="false" controls="panelQuests">
-								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular glow">
-									<img class="evoke img-circular vertical-align-middle not-active"
-										src="<?= $this->webroot.'img/icon_compass.png' ?>" alt="<?php echo __('Quests'); ?>" />
-									<img class="evoke img-circular vertical-align-middle active hidden"
-										src="<?= $this->webroot.'img/icon_missions_active.png' ?>" alt="<?php echo __('Quests'); ?>" />
+								<div class="tab-image centered-block img-circular">
+									<img class="evoke img-circular vertical-align-middle not-active border-width-02 border-style-solid border-color-highlight padding all-1"
+										src="<?= $this->webroot.'img/icon-quests.png' ?>" alt="<?php echo __('Quests'); ?>" />
+									<img class="evoke img-circular vertical-align-middle active img-glow hidden"
+										src="<?= $this->webroot.'img/thumb-quests.jpg' ?>" alt="<?php echo __('Quests'); ?>" />
 								</div>
 								<h5 class="text-color-important"><?php echo __('Quests'); ?></h5>
 							</a>
 						</li>
 						<li class="tab-title" role="presentational">
 							<a href="#panelEvidences" role="tab" aria-selected="true" controls="panelEvidences">
-								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular">
-									<img class="evoke img-circular vertical-align-middle not-active"
-										src="<?= $this->webroot.'img/icon_wallet.png' ?>" alt="<?php echo __('Evidences'); ?>" />
-									<img class="evoke img-circular vertical-align-middle active hidden"
-										src="<?= $this->webroot.'img/icon_missions_active.png' ?>" alt="<?php echo __('Evidences'); ?>" />
+								<div class="tab-image centered-block img-circular">
+									<img class="evoke img-circular vertical-align-middle not-active border-width-02 border-style-solid border-color-highlight padding all-1"
+										src="<?= $this->webroot.'img/icon-evidences.png' ?>" alt="<?php echo __('Evidences'); ?>" />
+									<img class="evoke img-circular vertical-align-middle active img-glow hidden"
+										src="<?= $this->webroot.'img/thumb-evidences.jpg' ?>" alt="<?php echo __('Evidences'); ?>" />
 								</div>
 								<h5 class="text-color-important"><?php echo __('Evidences'); ?></h5>
 							</a>
 						</li>
 						<li class="tab-title" role="presentational">
 							<a href="#panelBadges" role="tab" aria-selected="false" controls="panelBadges">
-								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular">
-									<img class="evoke img-circular vertical-align-middle not-active"
-										src="<?= $this->webroot.'img/icon_award_ribbon.png' ?>" alt="<?php echo __('Badges'); ?>" />
-									<img class="evoke img-circular vertical-align-middle active hidden"
-										src="<?= $this->webroot.'img/icon_missions_active.png' ?>" alt="<?php echo __('Badges'); ?>" />
+								<div class="tab-image centered-block img-circular">
+									<img class="evoke img-circular vertical-align-middle not-active border-width-02 border-style-solid border-color-highlight padding all-1"
+										src="<?= $this->webroot.'img/icon-badges.png' ?>" alt="<?php echo __('Badges'); ?>" />
+									<img class="evoke img-circular vertical-align-middle active img-glow hidden"
+										src="<?= $this->webroot.'img/thumb-badges.jpg' ?>" alt="<?php echo __('Badges'); ?>" />
 								</div>
 								<h5 class="text-color-important"><?php echo __('Badges'); ?></h5>
 							</a>
 						</li>
 						<li class="tab-title" role="presentational">
 							<a href="#panelPower" role="tab" aria-selected="false" controls="panelPower">
-								<div class="tab-image centered-block border-width-02 border-style-solid border-color-highlight img-circular">
-									<img class="evoke img-circular vertical-align-middle not-active"
-										src="<?= $this->webroot.'img/icon_radioactive.png' ?>" alt="<?php echo __('Powers'); ?>" />
-									<img class="evoke img-circular vertical-align-middle active hidden"
-										src="<?= $this->webroot.'img/icon_missions_active.png' ?>" alt="<?php echo __('Powers'); ?>" />
+								<div class="tab-image centered-block img-circular">
+									<img class="evoke img-circular vertical-align-middle not-active border-width-02 border-style-solid border-color-highlight padding all-1"
+										src="<?= $this->webroot.'img/icon-powers.png' ?>" alt="<?php echo __('Powers'); ?>" />
+									<img class="evoke img-circular vertical-align-middle active img-glow hidden"
+										src="<?= $this->webroot.'img/thumb-powers.jpg' ?>" alt="<?php echo __('Powers'); ?>" />
 								</div>
 								<h5 class="text-color-important"><?php echo __('Powers'); ?></h5>
 							</a>
 						</li>
 					</ul>
 				</div>
-				<div class="tabs-content text-left">
+				<div class="tabs-content text-left padding top-2">
 					<section role="tabpanel" aria-hidden="false" class="content active" id="panelMissions">
 						<p>Morbi ex ex, efficitur vitae leo vel, suscipit fringilla sem. Nunc malesuada dignissim sapien in fermentum. Sed sodales rutrum est sit amet iaculis. Aliquam in cursus tellus, at mollis tortor. Nullam id tortor at metus aliquam molestie. Fusce nec justo vestibulum, imperdiet urna vitae, blandit tortor. Mauris laoreet hendrerit ex. Donec sit amet sem lorem. Proin posuere ac tellus id tempor. Donec scelerisque turpis risus, vulputate bibendum tellus mattis nec. Nulla aliquet diam eget ipsum sodales venenatis. Ut eu sem sollicitudin, varius velit vitae, sodales justo.</p>
 					</section>

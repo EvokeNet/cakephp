@@ -3,6 +3,11 @@
 /* LOGIN */
 /* --------------------------- */
 
+.evoke .login .fullpage {
+	z-index: 0;
+}
+
+/* Top bar */
 .evoke .login.facebook-icon {
 	color: #1d649f;
 	margin-top: 0.2em;
@@ -13,14 +18,25 @@
 	font-weight: bold;
 }
 
-.evoke .login .fullpage {
-	z-index: 0;
-}
+/* Tabs */
 
 .evoke .login .tabs {
 	line-height: 92px;
 }
 
+.tabs-content {
+	width: 90%;
+	margin: auto;
+}
+
+@media all and (min-width: 650px) {
+	.tabs-content {
+		width: 70%;
+	}
+}
+
+
+/* Slide */
 div.evoke.slide.background-cover.active div.img-caption-bottom {
 	width: 50%;
 }
