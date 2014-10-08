@@ -57,7 +57,7 @@
 	    <div class="section evoke login gradient-on-top padding top-2">
 		    <div id="teste3"></div>
 	    	<div class="row standard-width">
-		    	<h1 class="text-color-important text-center"><?php echo __('What is Evoke?'); ?></h1>
+		    	<h1 class="text-color-important text-center margin bottom-1"><?php echo __('What is Evoke?'); ?></h1>
 		    	<h2 class="text-color-important text-center">Titulo 2</h2>
 		    	<h3 class="text-color-important text-center">Titulo 3</h3>
 				Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.
@@ -73,7 +73,7 @@
 	    </div>
 	    <div class="section evoke login gradient-on-top padding top-2">
 	    	<div class="row standard-width">
-		    	<h2 class="text-color-important text-center"><?php echo __('Why was Evoke created?'); ?></h2>
+		    	<h2 class="text-color-important text-center margin bottom-1"><?php echo __('Why was Evoke created?'); ?></h2>
 		    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.
 				<br />
 				Nunc sed scelerisque nunc. Mauris a pulvinar velit. Vivamus eu metus sed risus dignissim pharetra eget in urna. Proin elementum ultricies ligula eu tempor. Donec in dui vel nulla viverra venenatis ac aliquam nulla. Pellentesque at iaculis massa. Proin faucibus congue porta. Mauris sit amet ante nec justo dignissim tincidunt. Donec nec faucibus diam. Praesent elementum erat metus, pharetra consectetur libero volutpat rhoncus. Aliquam sed egestas nibh. Aenean nisi lorem, facilisis eget scelerisque ac, pellentesque et quam.
@@ -92,7 +92,7 @@
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row standard-width full-height centering-block table padding top-5">
-		    	<h2 class="text-color-important text-center"><?php echo __('Gameplay'); ?></h2>
+		    	<h2 class="text-color-important text-center margin bottom-1"><?php echo __('Gameplay'); ?></h2>
 
 				<div class="evoke small-block-grid-5 tabs-style-linetriangle centered-block">
 					<ul id="tabs-gameplay" class="tabs" data-tab role="tablist">
@@ -174,13 +174,13 @@
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row standard-width">
-	    		<h2 class="text-color-important text-center"><?php echo __('Who is behind Evoke?'); ?></h2>
+	    		<h2 class="text-color-important text-center margin bottom-1"><?php echo __('Who is behind Evoke?'); ?></h2>
 		    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.
 		    </div>
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row standard-width">
-	    		<h2 class="text-color-important text-center"><?php echo __('How to become an agent?'); ?></h2>
+	    		<h2 class="text-color-important text-center margin bottom-1"><?php echo __('How to become an agent?'); ?></h2>
 		    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.
 		    </div>
 	    </div>
