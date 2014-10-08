@@ -27,9 +27,11 @@ class MissionsController extends AppController {
 		$this->user['name'] = $this->getUserName();
 		
 		//there was some problem in retrieving user's info concerning his/her role : send him home
-		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
-			$this->redirect(array('controller' => 'users', 'action' => 'login'));
-		}
+		// if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
+		// 	$this->redirect(array('controller' => 'users', 'action' => 'login'));
+		// }
+
+		$this->Auth->allow('view_sample');
 
 		//checking Acl permission
 		/*if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
@@ -610,11 +612,14 @@ class MissionsController extends AppController {
 	}
 
 
-/** View the missions that are open to everybody as examples before they register
+/**
+ * View the missions that are open to everybody as examples before they register
+ * @param string $id - Optional ID to see a specific mission
  */
-
 	public function view_sample($id = null) {
-		$this->render('view_basic_layout'); 
+		$fbLoginUrl = $this->Session->read('fbLoginUrl');
+		$this->set(compact('fbLoginUrl'));
+		$this->render('/Common/view-mission'); 
 	}
 
 /**

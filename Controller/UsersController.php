@@ -398,9 +398,9 @@ class UsersController extends AppController {
 			}
 
 		} else {
-
 			$fbLoginUrl = $facebook->getLoginUrl();
 			$this->set(compact('fbLoginUrl'));
+			$this->Session->write('fbLoginUrl', $fbLoginUrl); //Stores facebook URL in session to be accessed by other views/controllers
 		}
 	}
 
