@@ -180,6 +180,12 @@
 	</div>
 
 
+<!-- FOOTER -->
+<?php
+	//$this->extend('/Common/footer');
+?>
+<!-- FOOTER -->
+
 
 <?php 
 		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
@@ -244,4 +250,14 @@
 				}
 			});
 		});
+	</script>
+
+
+	<!-- GamePlay tabs -->
+	<script type="text/javascript">
+		$(window).ready(function() {
+			if ($('.footer').length) {
+				$('.footer').addClass("sticky").addClass("fixed");
+			}
+		}
 	</script>

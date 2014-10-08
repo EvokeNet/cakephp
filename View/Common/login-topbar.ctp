@@ -50,11 +50,17 @@
 						<?php echo __('OR'); ?>
 
 						<a href="<?php echo $fbLoginUrl; ?>">
-							<i class="fa fa-facebook fa-2x evoke login facebook-icon"></i>
+							<span class="fa-stack fa-lg">
+								<i class="fa fa-square fa-stack-2x evoke login facebook-icon"></i>
+								<i class="fa fa-facebook fa-stack-1x fa-inverse "></i>
+							</span>
 						</a>
 
 						<a href="<?php echo $fbLoginUrl; ?>">
-							<i class="fa fa-google-plus fa-2x evoke login google-icon"></i>
+							<span class="fa-stack fa-lg">
+								<i class="fa fa-square fa-stack-2x evoke login google-icon"></i>
+								<i class="fa fa-google-plus fa-stack-1x fa-inverse "></i>
+							</span>
 						</a>
 					</div>
 				</li>

@@ -7,17 +7,6 @@
 	z-index: 0;
 }
 
-/* Top bar */
-.evoke .login.facebook-icon {
-	color: #1d649f;
-	margin-top: 0.2em;
-}
-.evoke .login.google-icon {
-	color: #9c4040;
-	margin-top: 0.2em;
-	font-weight: bold;
-}
-
 /* Tabs */
 
 .evoke .login .tabs {

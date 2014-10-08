@@ -59,7 +59,7 @@ $title = __('Evoke Network');
 		<?php echo $this->fetch('content'); ?>
 	</section>
 
-	<footer class="evoke footer fixed sticky" id="footer">
+	<footer class="evoke footer" id="footer">
 		<div class="row standard-width  padding top-1 bottom-1">
 			<div class="small-12 medium-12 large-12 columns">
 			  		&copy;

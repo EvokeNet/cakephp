@@ -358,7 +358,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	text-shadow: 0 0 5px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 1px #26dee0, 0 0 5px #26dee0, 0 0 15px #26dee0, 0 0 10px #26dee0;
 }
 
-.img-glow {
+.evoke .img-glow {
 	-webkit-box-shadow: 0px 0px 16px 8px #26dee0;
 	-moz-box-shadow: 0px 0px 16px 8px #26dee0;
 	box-shadow: 0px 0px 16px 8px #26dee0; 
@@ -370,7 +370,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 		blur(add=false, direction=90, strength=5);
 }
 
-.blur { 
+.evoke .blur { 
 	filter: blur(3px);
 	-webkit-filter: blur(3px);
 	-moz-filter: blur(3px);
@@ -381,12 +381,27 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 }
 
 /* --------------------------- */
-/* TOP BAR */
+/* TOP BAR - LOGIN */
 /* --------------------------- */
 .evoke .login-top-bar {
 	z-index: 1;
 	background-color: #333;
 }
+.evoke .login.facebook-icon {
+	color: #1d649f;
+}
+.evoke .login.google-icon {
+	color: #9c4040;
+}
+
+.evoke .top-bar-section li:not(.has-form) a:not(.button) {
+	padding: 0 5px;
+}
+
+.evoke .top-bar-section {
+	margin-right: 10px;
+}
+
 
 /* --------------------------- */
 /* FOOTER */
@@ -395,4 +410,12 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	z-index: 2;
 	background: #292929;
 	text-align: center;
+}
+
+
+/* --------------------------- */
+/* FOOTER */
+/* --------------------------- */
+.evoke #navigationBar {
+	top: 90%;
 }

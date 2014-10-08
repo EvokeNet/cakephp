@@ -613,9 +613,10 @@ class MissionsController extends AppController {
 /** View the missions that are open to everybody as examples before they register
  */
 
-	public function view_example($id = null) {
+	public function view_sample($id = null) {
+		$this->render('view_basic_layout'); 
 	}
-	
+
 /**
  * basic training method
  *
