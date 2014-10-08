@@ -1,6 +1,7 @@
 <?php
 	//CSS overriding fullpage.js plugin
 	$cssBaseUrl = Configure::read('App.cssBaseUrl');
+	echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
 	echo $this->Html->css('fullpage.css');
 
 	$this->extend('/Common/login-topbar');
@@ -33,15 +34,7 @@
 		    			[<?= $this->webroot.'/img/mission_1_NameMission-default.png' ?>, (default)], 
 		    			[<?= $this->webroot.'/img/mission_1_NameMission-medium.png' ?>, (medium)],
 		    			[<?= $this->webroot.'/img/mission_1_NameMission-large.png' ?>, (large)]">
-
-		    	<!-- 
-		    	<div class="slide">
-		    		<img data-interchange="
-		    			[<?= $this->webroot.'/img/mission_1_NameMission-default.png' ?>, (default)], 
-		    			[<?= $this->webroot.'/img/mission_1_NameMission-medium.png' ?>, (medium)],
-		    			[<?= $this->webroot.'/img/mission_1_NameMission-large.png' ?>, (large)]">
-					<noscript><img src="<?= $this->webroot.'/img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 2 - Name'); ?>"></noscript>-->
-
+		    			
 					<noscript><img src="<?= $this->webroot.'/img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 2 - Name'); ?>"></noscript>
 
 					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
@@ -191,7 +184,41 @@
 <?php 
 		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
 		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
+
+		//FULLPAGE
+		echo $this->Html->script('/components/fullpage.js/jquery.fullPage.js');
+		echo $this->Html->script('/components/fullpage.js/vendors/jquery.easings.min.js');
+		echo $this->Html->script('/components/fullpage.js/vendors/jquery.slimscroll.min.js');
 ?>
+
+
+	<!-- FullPage Login -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/* Cria a full page */
+			if ($('.fullpage').length) {
+			    $('.fullpage').fullpage({
+			    	verticalCentered: true,
+			    	paddingTop: ($('#top-bar-login').height()*(-2)).toString()+"px",
+			    	paddingBottom: ($('.footer').height()*2).toString()+"px",
+			        resize : true,
+			        scrollOverflow: true,
+			        fixedElements: '#top-bar-login',
+					navigation: true,
+					navigationTooltips: ["<?php echo __('Examples of missions'); ?>",
+						"<?php echo __('What is Evoke?'); ?>",
+						"<?php echo __('Why was Evoke created?'); ?>",
+						"<?php echo __('Gameplay'); ?>",
+						"<?php echo __('Who is behind Evoke?'); ?>",
+						"<?php echo __('How to become an agent?'); ?>"]
+			    });
+
+			    /* Ajusta margens em relacao ao top-bar */
+			    $('.fp-controlArrow').css("margin-top", ($('#top-bar-login').height()*(-2)).toString()+"px");
+			}
+		});
+	</script>
+
 
 	<!-- GamePlay tabs -->
 	<script type="text/javascript">

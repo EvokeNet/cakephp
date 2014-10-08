@@ -32,10 +32,10 @@ class MissionsController extends AppController {
 		}
 
 		//checking Acl permission
-		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
+		/*if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
 			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."), 'flash_error_message');	
 			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $this->user['id']));
-		}
+		}*/
     }
 
 /**
@@ -607,6 +607,13 @@ class MissionsController extends AppController {
 			$this->render('view_discussion');
 		else
 			$this->render('view_project');
+	}
+
+
+/** View the missions that are open to everybody as examples before they register
+ */
+
+	public function view_example($id = null) {
 	}
 	
 /**
