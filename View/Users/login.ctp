@@ -12,10 +12,10 @@
 	    	<div class="row full-width missions-carousel">
 	    		<!-- MISSAO 1 -->
 			    <div class="evoke slide background-cover" data-interchange="
-		    			[<?= $this->webroot.'/img/mission_1_NameMission-default.png' ?>, (default)], 
-		    			[<?= $this->webroot.'/img/mission_1_NameMission-medium.png' ?>, (medium)],
-		    			[<?= $this->webroot.'/img/mission_1_NameMission-large.png' ?>, (large)]">
-					<noscript><img src="<?= $this->webroot.'/img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 1 - Name'); ?>"></noscript>
+		    			[<?= $this->webroot.'img/mission_1_NameMission-default.png' ?>, (default)], 
+		    			[<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>, (medium)],
+		    			[<?= $this->webroot.'img/mission_1_NameMission-large.png' ?>, (large)]">
+					<noscript><img src="<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 1 - Name'); ?>"></noscript>
 
 					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
 						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
@@ -29,11 +29,11 @@
 		    	<!-- MISSAO 2 -->
 		    	
 		    	<div class="evoke slide background-cover" data-interchange="
-		    			[<?= $this->webroot.'/img/mission_1_NameMission-default.png' ?>, (default)], 
-		    			[<?= $this->webroot.'/img/mission_1_NameMission-medium.png' ?>, (medium)],
-		    			[<?= $this->webroot.'/img/mission_1_NameMission-large.png' ?>, (large)]">
+		    			[<?= $this->webroot.'img/mission_1_NameMission-default.png' ?>, (default)], 
+		    			[<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>, (medium)],
+		    			[<?= $this->webroot.'img/mission_1_NameMission-large.png' ?>, (large)]">
 		    			
-					<noscript><img src="<?= $this->webroot.'/img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 2 - Name'); ?>"></noscript>
+					<noscript><img src="<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 2 - Name'); ?>"></noscript>
 
 					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
 						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">

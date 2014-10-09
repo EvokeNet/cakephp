@@ -17,13 +17,13 @@
 				<nav class="tab-bar full-height">
 				  <section class="right-small text-center">
 				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabQuests">
-				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'/img/icon-quests-gray.png' ?>" alt="Quests" />
+				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-quests-gray.png' ?>" alt="Quests" />
 				    </a>
 				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabDossier">
-				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'/img/icon-dossier-gray.png' ?>" alt="Dossier" />
+				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-dossier-gray.png' ?>" alt="Dossier" />
 				    </a>
 				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabEvidences">
-				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'/img/icon-evidences-gray.png' ?>" alt="Evidences" />
+				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-evidences-gray.png' ?>" alt="Evidences" />
 				    </a>
 				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabMenu">
 				    	<i class="fa fa-th-large fa-2x text-color-gray vertical-align-middle"></i>
@@ -49,9 +49,9 @@
 						    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 						    <p class="text-center">
 						    	
-						    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'/img/badge1.png' ?>" alt="Quests" />
-						    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'/img/badge2.png' ?>" alt="Quests" />
-						    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'/img/badge3.png' ?>" alt="Quests" />
+						    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
+						    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
+						    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
 						    </p>
 						  </div>
 
@@ -101,16 +101,16 @@
 				    		<!-- MISSAO 1 -->
 						    <div>
 						    	<img data-interchange="
-					    			[<?= $this->webroot.'/img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>, (default)], 
-					    			[<?= $this->webroot.'/img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>, (medium)],
-					    			[<?= $this->webroot.'/img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>, (large)]"
+					    			[<?= $this->webroot.'img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>, (default)], 
+					    			[<?= $this->webroot.'img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>, (medium)],
+					    			[<?= $this->webroot.'img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>, (large)]"
 					    			alt="<?php echo __('Mission 1 - Name'); ?>" class="full-width" />
-								<noscript><img src="<?= $this->webroot.'/img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>" class="full-width" alt="<?php echo __('Mission 1 - Name'); ?>" /></noscript>
+								<noscript><img src="<?= $this->webroot.'img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>" class="full-width" alt="<?php echo __('Mission 1 - Name'); ?>" /></noscript>
 					    	</div>
 					    	
 					    	<!-- MISSAO 2 -->
 					    	<div>
-						    	<img src="<?= $this->webroot.'/img/episodes-example/Evoke_00_Eng_0000_Pg01.jpg' ?>" class="full-width" alt="<?php echo __('Mission 1 - Name'); ?>" />
+						    	<img src="<?= $this->webroot.'img/episodes-example/Evoke_00_Eng_0000_Pg01.jpg' ?>" class="full-width" alt="<?php echo __('Mission 1 - Name'); ?>" />
 					    	</div>
 				    	</div>
 
@@ -227,18 +227,23 @@
 					open_method: 'overlap',
 					close_on_click : false
 				}
-			})
+			});
+
+			$(document)
 			.on('open.fndtn.offcanvas', '[data-offcanvas]', function() {
 				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-05');
         		$('div.missions-submenu').removeClass("hidden"); //Show submenu
         		//$('.right-small').css("right",$('.right-off-canvas-menu').width());
         		$('.right-small').css("transform",'translate3d(-'+$('.right-off-canvas-menu').width()+'px, 0, 0)');
-			})
+			});
+
+			$(document)
 			.on('close.fndtn.offcanvas', '[data-offcanvas]', function() {
 				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-05');
 				$('div.missions-submenu').addClass("hidden"); //Hide submenu
 				//$('.right-small').css("right","0");
 				$('.right-small').css("transform",'translate3d(0, 0, 0)');
+				console.log('closed');
 			});
 
 	</script>
