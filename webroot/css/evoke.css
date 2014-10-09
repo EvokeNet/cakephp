@@ -2,7 +2,6 @@
 
 html, body {
 	background-color: #333;
-	/*overflow-x: hidden;*/
 }
 
 *, html, body,
@@ -43,6 +42,9 @@ button.thin, .button.thin {
 	visibility: hidden;
 	display: none;
 }
+.overflow-hidden {
+	overflow: hidden;
+}
 
 /* Colors */
 .text-color-important {
@@ -51,6 +53,10 @@ button.thin, .button.thin {
 
 .text-color-highlight {
 	color: #26dee0;
+}
+
+.text-color-gray {
+	color: #ccc;
 }
 
 /* Font */
@@ -162,6 +168,18 @@ button.thin, .button.thin {
 	margin-bottom: 4em;
 }
 
+.evoke .margin.right-1 {
+	margin-right: 1em;
+}
+
+.evoke .margin.right-3 {
+	margin-right: 3em;
+}
+
+.evoke .paddings-0 {
+	padding: 0!important;
+}
+
 .evoke .padding.all-05 {
 	padding: 0.5em;
 }
@@ -198,6 +216,10 @@ button.thin, .button.thin {
 	padding-left: 2em;
 }
 
+.evoke .padding.left-3 {
+	padding-left: 2em;
+}
+
 .evoke .padding.left-5 {
 	padding-left: 5em;
 }
@@ -220,6 +242,10 @@ button.thin, .button.thin {
 
 .evoke .padding.right-2 {
 	padding-right: 2em;
+}
+
+.evoke .padding.right-3 {
+	padding-right: 3em;
 }
 
 .evoke .padding.right-5 {
@@ -341,6 +367,10 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background: rgba(0,0,0,.5);
 }
 
+.evoke .background-color-standard {
+	background-color: #333;
+}
+
 .evoke .img-circular {
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
@@ -380,10 +410,32 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 }
 
 .evoke .text-glow-on-hover:hover {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: rgba(255,255,255,1);
+	-o-text-overflow: clip;
+	text-overflow: clip;
 	text-shadow: 0 0 5px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 1px #26dee0, 0 0 5px #26dee0, 0 0 15px #26dee0, 0 0 10px #26dee0;
+	-webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	-moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	-o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 
 .evoke .img-glow {
+	-webkit-box-shadow: 0px 0px 16px 8px #26dee0;
+	-moz-box-shadow: 0px 0px 16px 8px #26dee0;
+	box-shadow: 0px 0px 16px 8px #26dee0; 
+	filter:progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='8');
+	filter: glow(color=white, strength=8) 
+		blur(add=false, direction=0, strength=8) 
+		blur(add=false, direction=180, strength=8) 
+		blur(add=false, direction=270, strength=8) 
+		blur(add=false, direction=90, strength=8);
+}
+
+.evoke .img-glow-on-hover:hover {
 	-webkit-box-shadow: 0px 0px 16px 8px #26dee0;
 	-moz-box-shadow: 0px 0px 16px 8px #26dee0;
 	box-shadow: 0px 0px 16px 8px #26dee0; 
@@ -408,6 +460,9 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 }
 
 
+/* --------------------------- */
+/* BLUR */
+/* --------------------------- */
 .evoke .blur-weak { 
 	filter: blur(3px);
 	-webkit-filter: blur(3px);
@@ -426,6 +481,13 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	-ms-filter: blur(8px);
 	filter: url(blur.svg#blur-8);
 	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='8'); 
+}
+
+/* --------------------------- */
+/* COLOR EFFECTS */
+/* --------------------------- */
+.saturation-0 {
+	filter: url(saturation.svg#saturation-0);
 }
 
 /* --------------------------- */
@@ -468,49 +530,3 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	top: 90%;
 }
 
-/* --------------------------- */
-/* MISSIONS */
-/* --------------------------- */
-.evoke .phases-bar  {
-	background-color: #000;
-}
-
-.evoke .phases-bar a, .evoke .phases-bar .radius a {
-	border-color: #26dee0;
-	margin: 0;
-}
-
-.evoke .phases-bar a:not(.disabled):hover {
-	-webkit-box-shadow: 0px 0px 4px 2px #26dee0;
-	-moz-box-shadow: 0px 0px 4px 2px #26dee0;
-	box-shadow: 0px 0px 4px 2px #26dee0; 
-	filter:progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='4');
-	filter: glow(color=white, strength=4) 
-		blur(add=false, direction=0, strength=4) 
-		blur(add=false, direction=180, strength=4) 
-		blur(add=false, direction=270, strength=4) 
-		blur(add=false, direction=90, strength=4);
-}
-
-.evoke .phases-bar a, .evoke .phases-bar .radius a {
-	border-color: #26dee0;
-	margin: 0;
-}
-
-.evoke .phases-bar .past {
-	background-color: #275761;
-}
-.evoke .phases-bar .past, .evoke .phases-bar .past i {
-	color: #ccc;
-}
-
-.evoke .phases-bar .present {
-	background-color: #26dee0;
-}
-.evoke .phases-bar .present, .evoke .phases-bar .present i {
-	color: #000;
-}
-
-.evoke .missions .right-off-canvas-menu {
-	width: 30rem;
-}
