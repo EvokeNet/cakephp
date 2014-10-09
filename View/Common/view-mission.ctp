@@ -135,6 +135,14 @@
 		</div>
 	</div>
 
+	<!-- FOOTER -->
+	<?php
+		$this->start('footer');
+		echo $this->element('footer', array('fixed' => ''));
+		$this->end();
+	?>
+	<!-- FOOTER -->
+
 <?php 
 		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
 		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");

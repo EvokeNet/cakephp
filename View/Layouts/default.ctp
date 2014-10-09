@@ -59,7 +59,11 @@ $title = __('Evoke Network');
 		<?php echo $this->fetch('content'); ?>
 	</section>
 
-	<?php echo $this->fetch('footer', array('fixed' => 'fixed')); ?>
+	<?php 
+	if ($this->fetch('footer')) {
+		echo $this->fetch('footer'); 
+	}
+	?>
 
 	<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
 

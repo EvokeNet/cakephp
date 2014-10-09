@@ -152,17 +152,17 @@
 	    		<h2 class="text-color-important text-center margin bottom-1"><?php echo __('How to become an agent?'); ?></h2>
 		    	 <p class="font-size-important"><?php echo __('If you have found this message, it is your destiny to follow us.  To start your journey toward becoming an Evoke Agent, you simply need to engage by providing your information here.'); ?></p>
 		    </div>
+
+		    <!-- FOOTER -->
+			<?php
+				//$this->start('footer');
+				echo $this->element('footer', array('fixed' => ''));
+				//$this->end();
+			?>
+			<!-- FOOTER -->
 	    </div>
 	</div>
 
-
-<!-- FOOTER -->
-<?php
-	$this->start('footer');
-	echo $this->element('footer');
-	$this->end();
-?>
-<!-- FOOTER -->
 
 
 <!-- SCRIPT -->
@@ -185,7 +185,7 @@
 			    $('.fullpage').fullpage({
 			    	verticalCentered: true,
 			    	paddingTop: ($('#top-bar-login').height()*(-1.3)).toString()+"px",
-			    	paddingBottom: ($('.footer').height()*1.9).toString()+"px",
+			    	//paddingBottom: ($('.footer').height()*1.9).toString()+"px",
 			        resize : true,
 			        scrollOverflow: true,
 			        fixedElements: '#top-bar-login',
@@ -236,7 +236,7 @@
 	<script type="text/javascript">
 		$(window).ready(function() {
 			if ($('.footer').length) {
-				$('.footer').addClass("sticky").addClass("fixed");
+				//$('.footer').addClass("sticky").addClass("fixed");
 			}
 		}
 	</script>
