@@ -25,7 +25,7 @@ class UsersController extends AppController {
  */
 	//public $components = array('MathCaptcha', 'Visit');
     
-    public $components = array('Visit');
+    //public $components = array('Visit');
 
 	public $uses = array('User', 'Friend');
 
