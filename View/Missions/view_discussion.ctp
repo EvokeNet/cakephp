@@ -92,11 +92,33 @@
 
 				  </div>
 				  <div class="content" id="panel2-2">
+
 				    <ul class="small-block-grid-4">
 
 						<?php foreach($quests as $q): ?>
 							<li>
-								<div class = "quests" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
+
+								<a href="#" data-reveal-id="firstModal-<?= $q['Quest']['id'] ?>" class="radius button"><?= $q['Quest']['title']?>&hellip;</a>
+
+								<!-- Reveal Modals begin -->
+								<div id="firstModal-<?= $q['Quest']['id'] ?>" class="reveal-modal" data-reveal>
+								  <?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers,
+										 'allPowerPoints' => $allPowerPoints, 'allBadges' => $allBadges))?>
+								  <a class="close-reveal-modal">&#215;</a>
+								</div>
+
+								<!-- <a href="#" data-reveal-id="<?= $q['Quest']['id'] ?>" class="radius button"><?= $q['Quest']['title']?>&hellip;</a> -->
+
+								<!-- Reveal Modals begin -->
+								<!-- <div id="<?= $q['Quest']['id'] ?>" class="reveal-modal" data-reveal>
+								  <h2>This is a modal.</h2>
+								  <p>Reveal makes these very easy to summon and dismiss. The close button is simply an anchor with a unicode character icon and a class of <code>close-reveal-modal</code>. Clicking anywhere outside the modal will also dismiss it.</p>
+								  <p>Finally, if your modal summons another Reveal modal, the plugin will handle that for you gracefully.</p>
+								  <p><a href="#" data-reveal-id="secondModal" class="secondary button">Second Modal...</a></p>
+								  <a class="close-reveal-modal">&#215;</a>
+								</div> -->
+
+								<!-- <div class = "quests" href="" data-reveal-id="<?= $q['Quest']['id'] ?>" data-reveal>
 									<h1><?= $q['Quest']['title']?></h1>
 								</div>
 							
@@ -104,7 +126,7 @@
 									<?= $this->element('quest', array('q' => $q, 'questionnaires' => $questionnaires, 'answers' => $answers,
 										 'allPowerPoints' => $allPowerPoints, 'allBadges' => $allBadges))?>
 									<a class="evoke mission close-reveal-modal">&#215;</a>
-								</div>
+								</div> -->
 							</li>
 						<?php endforeach; ?>
 	                </ul>

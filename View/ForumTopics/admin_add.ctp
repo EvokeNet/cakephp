@@ -1,0 +1,33 @@
+<div class="forumTopics form">
+<?php echo $this->Form->create('ForumTopic'); ?>
+	<fieldset>
+		<legend><?php echo __('Admin Add Forum Topic'); ?></legend>
+	<?php
+		echo $this->Form->input('user_id');
+		echo $this->Form->input('forum_id');
+		echo $this->Form->input('title');
+		echo $this->Form->input('slug');
+		echo $this->Form->input('content');
+		echo $this->Form->input('status');
+		echo $this->Form->input('view_count');
+		echo $this->Form->input('forumPost_count');
+		echo $this->Form->input('firstPost_id');
+		echo $this->Form->input('lastPost_id');
+		echo $this->Form->input('lastUser_id');
+	?>
+	</fieldset>
+<?php echo $this->Form->end(__('Submit')); ?>
+</div>
+<div class="actions">
+	<h3><?php echo __('Actions'); ?></h3>
+	<ul>
+
+		<li><?php echo $this->Html->link(__('List Forum Topics'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Forums'), array('controller' => 'forums', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Forum'), array('controller' => 'forums', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Forum Posts'), array('controller' => 'forum_posts', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Forum Post'), array('controller' => 'forum_posts', 'action' => 'add')); ?> </li>
+	</ul>
+</div>

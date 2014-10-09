@@ -72,7 +72,7 @@ class PhasesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Phase->create();
-			if ($this->Phase->save($this->request->data)) {
+			if ($this->Phase->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The phase has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -91,22 +91,48 @@ class PhasesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		if (!$this->Phase->exists($id)) {
+		// if (!$this->Phase->exists($id)) {
+		// 	throw new NotFoundException(__('Invalid phase'));
+		// }
+
+		// $this->Phase->id = $id;
+
+		// if ($this->request->is(array('post', 'put'))) {
+		// 	if ($this->Phase->saveAll($this->request->data)) {
+		// 		$this->Session->setFlash(__('The user has been saved.'));
+		// 		return $this->redirect($this->referer());
+		// 	} else {
+		// 		$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+		// 	}
+		// } else {
+		// 	return $this->redirect($this->referer());
+		// }
+		
+		$this->Phase->id = $id;
+
+		if (!$this->Phase->exists()) {
 			throw new NotFoundException(__('Invalid phase'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Phase->save($this->request->data)) {
-				$this->Session->setFlash(__('The phase has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+
+		//$phase = $this->Phase->find('first', array('conditions' => array('Phase.id' => $id)));
+
+		//$this->Phase->locale = Configure::read('Config.languages');
+		
+		if ($this->request->is('post', 'put')) {
+
+			if ($this->Phase->saveAll($this->request->data)) {
+				$this->Session->setFlash(__('The phase has been saved.'.$id));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The phase could not be saved. Please, try again.'));
 			}
-		} else {
-			$options = array('conditions' => array('Phase.' . $this->Phase->primaryKey => $id));
-			$this->request->data = $this->Phase->find('first', $options);
-		}
-		$missions = $this->Phase->Mission->find('list');
-		$this->set(compact('missions'));
+		} 
+		// else {
+		// 	$options = array('conditions' => array('Phase.' . $this->Phase->primaryKey => $id));
+		// 	$this->request->data = $this->Phase->find('first', $options);
+		// }
+		// $missions = $this->Phase->Mission->find('list');
+		// $this->set(compact('missions'));
 	}
 
 /**
@@ -121,13 +147,13 @@ class PhasesController extends AppController {
 		if (!$this->Phase->exists()) {
 			throw new NotFoundException(__('Invalid phase'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		//$this->request->onlyAllow('post', 'delete');
 		if ($this->Phase->delete()) {
 			$this->Session->setFlash(__('The phase has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The phase could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		$this->redirect($this->referer());
 	}
 
 /**

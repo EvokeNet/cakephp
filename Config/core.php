@@ -226,6 +226,11 @@
 	Configure::write('Security.cipherSeed', '353865393630643863356465346338');
 
 /**
+ * Configure session to redis
+ */
+	// Configure::write('Session.save', 'redis_session');
+
+/**
  * Apply timestamps with the last modified time to static assets (js, css, images).
  * Will append a query string parameter containing the time the file was modified. This is
  * useful for invalidating browser caches.
@@ -377,3 +382,10 @@ Configure::write('fb_app_secret', '8f56121cd2840b321cf64d8aa156f3ce');
 Configure::write('fb_app_requests', '');
 
 Configure::write('etherpad_api_key', '03d669e40fa104737fb405ac8dc8e9571eef846525314fc67d0562486c539da0');
+
+Configure::write('google_client_id', '502819941527.apps.googleusercontent.com');
+Configure::write('google_client_secret', 'Eg7BI26namI0pQflwYNW8oA7');
+Configure::write('google_redirect_uri', 'http://localhost/evoke/users/login');
+Configure::write('google_developer_key', 'AIzaSyAOS7NDW3LgpeSbHnogXdqxKSFTXDkbPNE');
+Configure::write('APPROVAL_PROMPT', 'auto');
+Configure::write('ACCESS_TYPE', 'offline');

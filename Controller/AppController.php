@@ -34,15 +34,198 @@ class AppController extends Controller {
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
         ),
         // 'DebugKit.Toolbar',
-        'Acl'
+//        'Acl'
     );
 
     public $helpers = array(
-        'Chosen.Chosen', 'Media.Media',
+        'Chosen.Chosen'
     );
 
     public $user = null;
     public $lang = null;
+
+/**
+ * langToLocale method
+ *
+ * @return array
+ */
+    public function langToLocale($language) {
+        static $language_codes = array(
+            'ab'=>'abk', // Abkhazian
+            'af'=>'afr', // Afrikaans
+            'ak'=>'aka', // Akan
+            'sq'=>'alb', // Albanian
+            'am'=>'amh', // Amharic
+            'ar'=>'ara', // Arabic
+            'an'=>'arg', // Aragonese
+            'hy'=>'arm', // Armenian
+            'as'=>'asm', // Assamese
+            'av'=>'ava', // Avaric
+            'ay'=>'aym', // Aymara
+            'az'=>'aze', // Azerbaijani
+            'bm'=>'bam', // Bambara
+            'eu'=>'baq', // Basque
+            'be'=>'bel', // Belarusian
+            'bn'=>'ben', // Bengali
+            'bs'=>'bos', // Bosnian
+            'br'=>'bre', // Breton
+            'bg'=>'bul', // Bulgarian
+            'my'=>'bur', // Burmese
+            'ca'=>'cat', // Catalan
+            'ch'=>'cha', // Chamorro
+            'ce'=>'che', // Chechen
+            'zh-CN'=>'chi_hans', // Chinese (Simplified)
+            'zh-TW'=>'chi_hant', // Chinese (Traditional)
+            'cv'=>'chv', // Chuvash
+            'kw'=>'cor', // Cornish
+            'co'=>'cos', // Corsican
+            'cr'=>'cre', // Cree
+            'cs'=>'cze', // Czech
+            'da'=>'dan', // Danish
+            'dv'=>'div', // Dhivehi
+            'nl'=>'dut', // Dutch
+            'dz'=>'dzo', // Dzongkha
+            'en'=>'eng', // English
+            'et'=>'est', // Estonian
+            'ee'=>'ewe', // Ewe
+            'fo'=>'fao', // Faroese
+            'fj'=>'fij', // Fijian
+            'fi'=>'fin', // Finnish
+            'fr-CA'=>'fre_ca', //   French (Canadian)
+            'fr-FR'=>'fre_fr', //   French (French)
+            'fy'=>'fry', // Western Frisian
+            'ff'=>'ful', // Fulah
+            'ka'=>'geo', // Georgian
+            'de'=>'ger', // German
+            'gd'=>'gla', // Scottish Gaelic
+            'ga'=>'gle', // Irish
+            'gl'=>'glg', // Galician
+            'gv'=>'glv', // Manx
+            'el'=>'gre', // Modern Greek (1453-)
+            'gn'=>'grn', // Guarani
+            'gu'=>'guj', // Gujarati
+            'ht'=>'hat', // Haitian
+            'ha'=>'hau', // Hausa
+            'he'=>'heb', // Hebrew
+            'hz'=>'her', // Herero
+            'hi'=>'hin', // Hindi
+            'ho'=>'hmo', // Hiri Motu
+            'hu'=>'hun', // Hungarian
+            'ig'=>'ibo', // Igbo
+            'is'=>'ice', // Icelandic
+            'ii'=>'iii', // Sichuan Yi
+            'iu'=>'iku', // Inuktitut
+            'id'=>'ind', // Indonesian
+            'ik'=>'ipk', // Inupiaq
+            'it'=>'ita', // Italian
+            'jv'=>'jav', // Javanese
+            'ja'=>'jpn', // Japanese
+            'kl'=>'kal', // Kalaallisut
+            'kn'=>'kan', // Kannada
+            'ks'=>'kas', // Kashmiri
+            'kr'=>'kau', // Kanuri
+            'kk'=>'kaz', // Kazakh
+            'km'=>'khm', // Central Khmer
+            'ki'=>'kik', // Kikuyu
+            'rw'=>'kin', // Kinyarwanda
+            'ky'=>'kir', // Kirghiz
+            'kv'=>'kom', // Komi
+            'kg'=>'kon', // Kongo
+            'ko'=>'kor', // Korean
+            'kj'=>'kua', // Kuanyama
+            'ku'=>'kur', // Kurdish
+            'lo'=>'lao', // Lao
+            'lv'=>'lav', // Latvian
+            'li'=>'lim', // Limburgan
+            'ln'=>'lin', // Lingala
+            'lt'=>'lit', // Lithuanian
+            'lb'=>'ltz', // Luxembourgish
+            'lu'=>'lub', // Luba-Katanga
+            'lg'=>'lug', // Ganda
+            'mk'=>'mac', // Macedonian
+            'mh'=>'mah', // Marshallese
+            'ml'=>'mal', // Malayalam
+            'mi'=>'mao', // Maori
+            'mr'=>'mar', // Marathi
+            'ms'=>'may', // Malay (macrolanguage)
+            'mg'=>'mlg', // Malagasy
+            'mt'=>'mlt', // Maltese
+            'mn'=>'mon', // Mongolian
+            'na'=>'nau', // Nauru
+            'nv'=>'nav', // Navajo
+            'nr'=>'nbl', // South Ndebele
+            'nd'=>'nde', // North Ndebele
+            'ng'=>'ndo', // Ndonga
+            'ne'=>'nep', // Nepali
+            'nb'=>'nob', // Norwegian BokmŒl
+            'no'=>'nor', // Norwegian
+            'ny'=>'nya', // Nyanja
+            'oc'=>'oci', // Occitan (post 1500)
+            'oj'=>'oji', // Ojibwa
+            'or'=>'ori', // Oriya
+            'om'=>'orm', // Oromo
+            'os'=>'oss', // Ossetian
+            'pa'=>'pan', // Panjabi
+            'fa'=>'per', // Persian
+            'pl'=>'pol', // Polish
+            'pt-BR'=>'por_br', //   Portuguese (Brazil)
+            'pt-PT'=>'por_pt', //   Portuguese (Portugal)
+            'ps'=>'pus', // Pushto
+            'qu'=>'que', // Quechua
+            'rm'=>'roh', // Romansh
+            'ro'=>'rum', // Romanian
+            'rn'=>'run', // Rundi
+            'ru'=>'rus', // Russian
+            'sg'=>'sag', // Sango
+            'si'=>'sin', // Sinhala
+            'sk'=>'slo', // Slovak
+            'sl'=>'slv', // Slovenian
+            'se'=>'sme', // Northern Sami
+            'sm'=>'smo', // Samoan
+            'sn'=>'sna', // Shona
+            'sd'=>'snd', // Sindhi
+            'so'=>'som', // Somali
+            'st'=>'sot', // Southern Sotho
+            'es'=>'spa', // Spanish
+            'sc'=>'srd', // Sardinian
+            'ss'=>'ssw', // Swati
+            'su'=>'sun', // Sundanese
+            'sw'=>'swa', // Swahili (macrolanguage)
+            'sv'=>'swe', // Swedish
+            'ty'=>'tah', // Tahitian
+            'ta'=>'tam', // Tamil
+            'tt'=>'tat', // Tatar
+            'te'=>'tel', // Telugu
+            'tg'=>'tgk', // Tajik
+            'tl'=>'tgl', // Tagalog
+            'th'=>'tha', // Thai
+            'bo'=>'tib', // Tibetan
+            'ti'=>'tir', // Tigrinya
+            'to'=>'ton', // Tonga (Tonga Islands)
+            'tn'=>'tsn', // Tswana
+            'ts'=>'tso', // Tsonga
+            'tk'=>'tuk', // Turkmen
+            'tr'=>'tur', // Turkish
+            'tw'=>'twi', // Twi
+            'ug'=>'uig', // Uighur
+            'uk'=>'ukr', // Ukrainian
+            'ur'=>'urd', // Urdu
+            'uz'=>'uzb', // Uzbek
+            've'=>'ven', // Venda
+            'vi'=>'vie', // Vietnamese
+            'cy'=>'wel', // Welsh
+            'wa'=>'wln', // Walloon
+            'wo'=>'wol', // Wolof
+            'xh'=>'xho', // Xhosa
+            'yi'=>'yid', // Yiddish
+            'yo'=>'yor', // Yoruba
+            'za'=>'zha', // Zhuang
+            'zu'=>'zul'  // Zulu
+        );
+
+        return $language_codes[$language];
+
+    }
 
 /**
  * beforeFilter method
@@ -241,7 +424,7 @@ class AppController extends Controller {
         return $currentuser['User']['role_id'];
     }
 
-    public function canUploadMedias($model, $id) {
-        return true;
-    }
+    // public function canUploadMedias($model, $id) {
+    //     return true;
+    // }
 }

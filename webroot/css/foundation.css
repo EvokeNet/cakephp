@@ -1,0 +1,180 @@
+/* OVERRIDE STYLES - FOUNDATION */
+
+/* --------------------------- */
+/* BUTTONS */
+/* --------------------------- */
+button.disabled, button[disabled], .button.disabled, .button[disabled] {
+	color: #808080;
+	background-color: #333;
+}
+
+button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
+	color: #808080;
+	background-color: #333;
+}
+
+/* --------------------------- */
+/* TOP-BAR */
+/* --------------------------- */
+.top-bar {
+	background-color: #333;
+}
+
+/* --------------------------- */
+/* OFF-CANVAS */
+/* --------------------------- */
+.tab-bar-section {
+	padding: 0;
+}
+
+.tab-bar-section.left {
+	right: 0;
+}
+
+.tab-bar {
+	height: 3.4em;
+}
+
+.tab-bar .menu-icon {
+	text-indent: 0;
+	padding: 0.5rem 0.2rem;
+	height: 3.8125rem;
+}
+
+.offcanvas-overlap .left-off-canvas-menu, .offcanvas-overlap .right-off-canvas-menu {
+	z-index: 10;
+}
+
+.right-off-canvas-menu * {
+	-webkit-backface-visibility: visible; /* Chrome, Safari, Opera */
+   	backface-visibility: visible;
+}
+
+.right-small {
+	z-index: 11;
+}
+
+/* --------------------------- */
+/* COMPLEMENTING TABS */
+/* --------------------------- */
+/**** Triangle and line  ****/
+.tabs-style-linetriangle .tab-image {
+	max-width: 200px;
+	/* Fallback for older browsers */
+	width: 100px;
+	height: 100px;
+	margin-bottom: 20px;
+	/* Newer browsers */
+	width: 10vw; 
+	height: 10vw;
+	margin-bottom: 2vh;
+}
+
+.tabs-style-linetriangle .tab-image img {
+	width: 100%;
+	height: 100%;
+}
+
+.tabs-style-linetriangle ul li.tab-title a:hover {
+	background-color: transparent;
+}
+
+.tabs-style-linetriangle ul li.tab-title a {
+	overflow: visible;
+	border-bottom: 1px solid #26dee0;
+	-webkit-transition: color 0.2s;
+	transition: color 0.2s;
+	background-color: transparent;
+	padding: 1rem 1.5rem;
+}
+
+@media(max-width: 18em) {
+	.tabs-style-linetriangle ul li.tab-title a {
+		padding: 1rem 1rem;
+	}
+}
+
+.tabs-style-linetriangle ul li.tab-title.active a {
+	background-color: transparent;
+}
+
+.tabs-style-linetriangle ul a span, .tabs-style-linetriangle ul li.tab-title.active a span {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 1em;
+}
+
+.tabs-style-linetriangle ul li.tab-title.active a:after, 
+.tabs-style-linetriangle ul li.tab-title.active a:before {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: solid transparent;
+	content: '';
+	pointer-events: none;
+}
+
+.tabs-style-linetriangle ul li.tab-title.active a:after {
+	margin-top: -1px;
+	margin-left: -10px;
+	border-width: 10px;
+	border-top-color: #333;
+}
+
+.tabs-style-linetriangle ul li.tab-title.active a:before {
+	margin-left: -11px;
+	border-width: 11px;
+	border-top-color: #26dee0;
+}
+
+/*
+@media screen and (max-width: 58em) {
+	.tabs-style-linetriangle ul {
+		font-size: 0.6em;
+	}
+}*/
+
+
+/**** Small-image  ****/
+.tabs-style-small-image dd a {
+	padding: 0.5rem 1rem;
+}
+
+.tabs-style-small-image dd {
+	background-color: #333;
+}
+
+.tabs-style-small-image .right dd {
+	border: 1px solid rgb(70, 75, 77);
+}
+
+.tabs-style-small-image .tabs-content {
+	background-color: rgb(70, 75, 77);
+}
+
+
+.tabs-style-small-image dd.active a, 
+.tabs-style-small-image .tab-title.active a {
+	background-color: #333;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: rgba(255,255,255,1);
+	-o-text-overflow: clip;
+	text-overflow: clip;
+	text-shadow: 0 0 5px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 1px #26dee0, 0 0 5px #26dee0, 0 0 15px #26dee0, 0 0 10px #26dee0;
+	-webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	-moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	-o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.tabs-style-small-image dd > a, .tabs-style-small-image .tab-title > a {
+	border-bottom: 1px solid rgb(70, 75, 77);
+	background-color: #333;
+	color: #ccc;
+}

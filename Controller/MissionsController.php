@@ -27,15 +27,17 @@ class MissionsController extends AppController {
 		$this->user['name'] = $this->getUserName();
 		
 		//there was some problem in retrieving user's info concerning his/her role : send him home
-		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
-			$this->redirect(array('controller' => 'users', 'action' => 'login'));
-		}
+		// if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
+		// 	$this->redirect(array('controller' => 'users', 'action' => 'login'));
+		// }
+
+		$this->Auth->allow('view_sample');
 
 		//checking Acl permission
-		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
+		/*if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
 			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."), 'flash_error_message');	
 			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $this->user['id']));
-		}
+		}*/
     }
 
 /**
@@ -484,13 +486,12 @@ class MissionsController extends AppController {
 
 		$this->loadModel('Badge');
 
-		$badge = $this->Badge->find('first', array('conditions' => array('Badge.mission_id' => $mission['Mission']['id'])));
+		// $badge = $this->Badge->find('first', array('conditions' => array('Badge.mission_id' => $mission['Mission']['id'])));
 
-		foreach($missionPhases as $m):
-			if(isset($completed[$m['Phase']['id']]) && isset($total[$m['Phase']['id']]))
-				if(($completed[$m['Phase']['id']] == $total[$m['Phase']['id']]))
-					$count_completed_phases++;
-		endforeach;
+		// foreach($missionPhases as $m):
+		// 	if(($completed[$m['Phase']['id']] == $total[$m['Phase']['id']]))
+		// 		$count_completed_phases++;
+		// endforeach;
 
 		// debug($count_completed_phases);
 		// debug(count($missionPhases));
@@ -502,8 +503,7 @@ class MissionsController extends AppController {
 	            'entity_id' => $badge['Badge']['id'],
 	            'user_id' => $this->getUserId(),
 	            'entity' => 'gritBadge',
-	            'mission_name' => $mission['Mission']['title'],
-	            'user_id' => $this->getUserId(),
+	            'mission_name' => $mission['Mission']['title']
 	        ));
 
 	        $this->getEventManager()->dispatch($event);
@@ -610,7 +610,21 @@ class MissionsController extends AppController {
 		else
 			$this->render('view_project');
 	}
-	
+
+
+/**
+ * View the missions that are open to everybody as examples before they register
+ * @param string $id - Optional ID to see a specific mission
+ */
+	public function view_sample($id = null) {
+		//Facebook login URL comes from session
+		$fbLoginUrl = $this->Session->read('fbLoginUrl');
+		$this->set(compact('fbLoginUrl'));
+
+		//Render simple layout
+		$this->render('/Common/view-mission'); 
+	}
+
 /**
  * basic training method
  *

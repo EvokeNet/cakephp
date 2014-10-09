@@ -1,0 +1,1 @@
+ALTER TABLE  `forum_posts` CHANGE  `topic_id`  `forum_topic_id` INT( 16 ) UNSIGNED NOT NULL;

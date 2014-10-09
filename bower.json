@@ -1,14 +1,20 @@
 {
   "name": "Evoke",
   "dependencies": {
-    "foundation": "5.0.3",
+    "foundation": "5.3.0",
     "font-awesome": "v4.1",
     "mrmrs-colors": "master",
     "medium-editor": "master",
-    "medium-editor-insert-plugin": "git://github.com/orthes/medium-editor-insert-plugin.git",
+    "skrollr": "0.6.26",
+    "medium-editor-insert-plugin": "~0.2.4",
     "jcarousel": "git://github.com/jsor/jcarousel",
     "kibo": "git://github.com/marquete/kibo",
     "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar",
-    "etherpad": "git://github.com/ether/etherpad-lite-jquery-plugin.git"
+    "etherpad": "git://github.com/ether/etherpad-lite-jquery-plugin.git",
+    "jquery.cookie": "1.4.1"
+  },
+  "resolutions": {
+    "medium-editor": "~1.9",
+    "jquery": "2.1.1"
   }
 }
