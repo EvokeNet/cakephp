@@ -21,6 +21,22 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 }
 
 /* --------------------------- */
+/* OFF-CANVAS */
+/* --------------------------- */
+.tab-bar-section {
+	padding: 0;
+}
+
+.tab-bar {
+	height: 3.4em;
+}
+
+.right-off-canvas-menu * {
+	-webkit-backface-visibility: visible; /* Chrome, Safari, Opera */
+   	backface-visibility: visible;
+}
+
+/* --------------------------- */
 /* COMPLEMENTING TABS */
 /* --------------------------- */
 /* Triangle and line  */
