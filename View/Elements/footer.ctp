@@ -1,5 +1,5 @@
-	<footer class="evoke footer" id="footer">
-		<div class="row standard-width  padding top-1 bottom-1">
+	<footer class="evoke footer <?php echo isset($fixed) ? $fixed : 'fixed'; ?>" id="footer">
+		<div class="row standard-width padding top-05 bottom-05">
 			<div class="small-12 medium-12 large-12 columns">
 			  		&copy;
 

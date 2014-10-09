@@ -2,7 +2,7 @@
 
 <!-- TOP-BAR -->
 <div id="top-bar-login"
-	 class="evoke login-top-bar row full-width padding top-1 bottom-1 vertical-align-top
+	 class="evoke login-top-bar row full-width padding top-05 bottom-05 vertical-align-top
 			<?php echo isset($sticky) ? $sticky : 'sticky'; ?> <?php echo isset($fixed) ? $fixed : 'fixed'; ?>" >
 	<nav class="top-bar" data-topbar role="navigation">
 		<ul class="title-area">

@@ -19,6 +19,9 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 .top-bar {
 	background-color: #333;
 }
+.top-bar input, .top-bar .button, .top-bar button {
+	font-size: 0.7rem;
+}
 
 /* --------------------------- */
 /* OFF-CANVAS */
