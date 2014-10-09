@@ -4,7 +4,7 @@
 	echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
 	echo $this->Html->css('fullpage.css');
 
-	echo $this->element('topbar-login');
+	echo $this->element('topbar');
 ?>
 
 	<div class="evoke login fullpage">
@@ -147,7 +147,7 @@
 		    	<p class="font-size-important"><?php echo __('Evoke is an innovation project of the World Bank in collaboration with partners around the world.'); ?></p>
 		    </div>
 	    </div>
-	    <div class="section evoke gradient-on-top padding top-2 ">
+	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
 	    		<h2 class="text-color-important text-center margin bottom-1"><?php echo __('How to become an agent?'); ?></h2>
 		    	 <p class="font-size-important"><?php echo __('If you have found this message, it is your destiny to follow us.  To start your journey toward becoming an Evoke Agent, you simply need to engage by providing your information here.'); ?></p>
@@ -155,9 +155,7 @@
 
 		    <!-- FOOTER -->
 			<?php
-				//$this->start('footer');
 				echo $this->element('footer', array('fixed' => '', 'absolute' => 'absolute'));
-				//$this->end();
 			?>
 			<!-- FOOTER -->
 	    </div>

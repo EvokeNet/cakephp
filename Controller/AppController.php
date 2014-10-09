@@ -233,7 +233,23 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter() {
-        // $this->Auth->allow('add', 'login', 'fb_login', 'index', 'view');
+        //$loggedIn = $this->Auth->loggedIn();
+        $this->set('loggedIn', $this->Auth->loggedIn());
+        /*if ($this->loggedIn) {
+            debug('teste'.$loggedIn);
+        } else {
+            debug('hello ahh');
+        }
+
+
+        if ($this->Auth->loggedIn()) {
+            var_dump('deles SIM deu certo');
+        }
+        else {
+            var_dump('deles nao deu certo');
+        }*/
+
+
         $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
 
         $cuser = $this->Auth->user();
@@ -251,6 +267,7 @@ class AppController extends Controller {
         // $this->set('userPoints', $userPoints);
         // $this->set('userLevel', $userLevel);
         // $this->set('userLevelPercentage', $userLevelPercentage);
+
     }
 
     /**
