@@ -1,7 +1,7 @@
 /* GENERAL STYLES */
 
 html, body {
-	background-color: #333333;
+	background-color: #333;
 	/*overflow-x: hidden;*/
 }
 
@@ -27,8 +27,16 @@ h1, h2, h3, h4, h5, h6 {
 button, .button {
 	text-transform: uppercase;
 	color: #26dee0;
-	background-color: #333333;
+	background-color: #333;
 	border: 1px solid #26dee0;
+}
+
+button.thin, .button.thin {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 3rem;
+	padding-right: 3rem;
+	background-color: red;
 }
 
 .hidden {
@@ -182,6 +190,10 @@ button, .button {
 	padding-top: 5em;
 }
 
+.evoke .padding.left-1 {
+	padding-left: 1em;
+}
+
 .evoke .padding.left-2 {
 	padding-left: 2em;
 }
@@ -190,12 +202,20 @@ button, .button {
 	padding-left: 5em;
 }
 
+.evoke .padding.bottom-05 {
+	padding-bottom: 0.5em;
+}
+
 .evoke .padding.bottom-1 {
 	padding-bottom: 1em;
 }
 
 .evoke .padding.bottom-2 {
 	padding-bottom: 2em;
+}
+
+.evoke .padding.right-1 {
+	padding-right: 1em;
 }
 
 .evoke .padding.right-2 {
@@ -283,13 +303,13 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 /* --------------------------- */
 .evoke .gradient-on-top {
 	background: #292929;/* Old Browsers */
-	background: -moz-linear-gradient(top, #292929 0%, #333333 50px); /* FF3.6+ */
-	background: -webkit-gradient(left top, left bottom, color-stop(0%, #292929), color-stop(50px, #333333));/* Chrome, Safari4+ */
-	background: -webkit-linear-gradient(top, #292929 0%, #333333 50px); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #292929 0%, #333333 50px); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #292929 0%, #333333 50px); /* IE 10+ */
-	background: linear-gradient(to bottom, #292929 0%, #333333 50px);/* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#333333', GradientType=0 );/* IE6-9 */
+	background: -moz-linear-gradient(top, #292929 0%, #333 50px); /* FF3.6+ */
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, #292929), color-stop(50px, #333));/* Chrome, Safari4+ */
+	background: -webkit-linear-gradient(top, #292929 0%, #333 50px); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #292929 0%, #333 50px); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #292929 0%, #333 50px); /* IE 10+ */
+	background: linear-gradient(to bottom, #292929 0%, #333 50px);/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#333', GradientType=0 );/* IE6-9 */
 }
 
 
@@ -368,12 +388,25 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	-moz-box-shadow: 0px 0px 16px 8px #26dee0;
 	box-shadow: 0px 0px 16px 8px #26dee0; 
 	filter:progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='8');
-	filter: glow(color=white, strength=5) 
-		blur(add=false, direction=0, strength=5) 
-		blur(add=false, direction=180, strength=5) 
-		blur(add=false, direction=270, strength=5) 
-		blur(add=false, direction=90, strength=5);
+	filter: glow(color=white, strength=8) 
+		blur(add=false, direction=0, strength=8) 
+		blur(add=false, direction=180, strength=8) 
+		blur(add=false, direction=270, strength=8) 
+		blur(add=false, direction=90, strength=8);
 }
+
+.evoke .img-glow-small {
+	-webkit-box-shadow: 0px 0px 4px 2px #26dee0;
+	-moz-box-shadow: 0px 0px 4px 2px #26dee0;
+	box-shadow: 0px 0px 4px 2px #26dee0; 
+	filter:progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='4');
+	filter: glow(color=white, strength=4) 
+		blur(add=false, direction=0, strength=4) 
+		blur(add=false, direction=180, strength=4) 
+		blur(add=false, direction=270, strength=4) 
+		blur(add=false, direction=90, strength=4);
+}
+
 
 .evoke .blur { 
 	filter: blur(3px);
@@ -428,11 +461,42 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 /* --------------------------- */
 /* MISSIONS */
 /* --------------------------- */
+.evoke .phases-bar  {
+	background-color: #000;
+}
+
+.evoke .phases-bar a, .evoke .phases-bar .radius a {
+	border-color: #26dee0;
+	margin: 0;
+}
+
+.evoke .phases-bar a:not(.disabled):hover {
+	-webkit-box-shadow: 0px 0px 4px 2px #26dee0;
+	-moz-box-shadow: 0px 0px 4px 2px #26dee0;
+	box-shadow: 0px 0px 4px 2px #26dee0; 
+	filter:progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='4');
+	filter: glow(color=white, strength=4) 
+		blur(add=false, direction=0, strength=4) 
+		blur(add=false, direction=180, strength=4) 
+		blur(add=false, direction=270, strength=4) 
+		blur(add=false, direction=90, strength=4);
+}
+
+.evoke .phases-bar a, .evoke .phases-bar .radius a {
+	border-color: #26dee0;
+	margin: 0;
+}
+
 .evoke .phases-bar .past {
 	background-color: #275761;
-	color: #fff;
 }
+.evoke .phases-bar .past, .evoke .phases-bar .past i {
+	color: #ccc;
+}
+
 .evoke .phases-bar .present {
 	background-color: #26dee0;
+}
+.evoke .phases-bar .present, .evoke .phases-bar .present i {
 	color: #000;
 }

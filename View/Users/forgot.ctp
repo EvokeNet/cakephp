@@ -1,7 +1,7 @@
 <?php
-	$this->extend('/Common/login-topbar');
-	$this->start('menu');
-	$this->end(); 
+	//Facebook login URL comes from session
+	$fbLoginUrl = $this->Session->read('fbLoginUrl');
+	echo $this->element('topbar-login');
 ?>
 
 <section class = "evoke login background">

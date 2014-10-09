@@ -3,11 +3,7 @@
 	$cssBaseUrl = Configure::read('App.cssBaseUrl');
 	echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
 	echo $this->Html->css('fullpage.css');
-/*
-	$this->extend('/Common/login-topbar');
-	$this->start('menu');
-	$this->end(); 
-*/
+
 	echo $this->element('topbar-login');
 ?>
 

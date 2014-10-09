@@ -617,8 +617,11 @@ class MissionsController extends AppController {
  * @param string $id - Optional ID to see a specific mission
  */
 	public function view_sample($id = null) {
+		//Facebook login URL comes from session
 		$fbLoginUrl = $this->Session->read('fbLoginUrl');
 		$this->set(compact('fbLoginUrl'));
+
+		//Render simple layout
 		$this->render('/Common/view-mission'); 
 	}
 
