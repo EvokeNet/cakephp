@@ -1,3 +1,4 @@
+<!-- MENU LOGGED IN -->
 <ul class="<?php echo isset($ulClass) ? $ulClass : ''; ?>">
 	<li>
 		<div class="column">
@@ -30,3 +31,4 @@
 	<!--send to correct address-->
 </ul>
 <?php echo $this->Form->end(); ?>
+<!-- MENU LOGGED IN -->
