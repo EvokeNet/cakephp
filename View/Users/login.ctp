@@ -12,7 +12,26 @@
 	    	<div class="row full-width full-height missions-carousel">
 
 
-	    		
+	    		<?php foreach($missions as $mission): ?>
+
+	    		<!-- MISSAO 1 -->
+			    <div class="evoke slide background-cover full-width" data-interchange="
+		    			[<?= $this->webroot.'img/mission_1_NameMission-default.png' ?>, (default)], 
+		    			[<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>, (medium)],
+		    			[<?= $this->webroot.'img/mission_1_NameMission-large.jpg' ?>, (large)]">
+					<noscript><img src="<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>" alt="<?= $mission['Mission']['title'] ?>"></noscript>
+
+					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
+						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
+							<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view_sample', $mission['Mission']['id']))?>">
+								<h2 class="text-color-important"><?= $mission['Mission']['title'] ?></h2>
+								<p><?= $mission['Mission']['description'] ?></p>
+							</a>
+						</div></div>
+					</div>
+		    	</div>
+		    	
+		    	<?php endforeach; ?>
 	    	</div>
 	    </div>
 	    
