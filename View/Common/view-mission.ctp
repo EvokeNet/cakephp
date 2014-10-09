@@ -4,14 +4,15 @@
 	
 	echo $this->Html->css('/components/slick-carousel/slick/slick.css');
 	echo $this->Html->css('slick.css');
-
-
 ?>
 
 	<!-- TOPBAR MENU -->
+	<?php $this->start('topbar'); ?>
 	<div id="missions-menu" class="sticky fixed">
 		<?php echo $this->element('topbar', array('sticky' => '', 'fixed' => '')); ?>
 	</div>
+	<?php $this->end(); ?>
+	<!-- TOPBAR MENU -->
 
 	<div id="missions-body" class="missions">
 		<div class="off-canvas-wrap" data-offcanvas>
@@ -183,7 +184,7 @@
 	<!-- FOOTER -->
 	<?php
 		$this->start('footer');
-		echo $this->element('footer', array('fixed' => ''));
+		echo $this->element('footer');
 		$this->end();
 	?>
 	<!-- FOOTER -->

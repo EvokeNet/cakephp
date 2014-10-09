@@ -1,3 +1,7 @@
+<?php //Facebook login URL comes from session
+	$fbLoginUrl = $this->Session->read('fbLoginUrl');
+?>
+
 <!-- Form with Foundation validation -->
 <?php echo $this->Form->create('User', array('data-abide',
 											 'url' => array('controller' => 'users', 'action' => 'login'))); ?>

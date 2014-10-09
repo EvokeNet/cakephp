@@ -1249,6 +1249,28 @@ class UsersController extends AppController {
 
 	}
 
+
+
+/**
+ *
+ * matching questions
+ *
+ * @return void
+ */
+	public function matching($id = null) {
+	}
+
+/**
+ *
+ * matching results
+ *
+ * @return void
+ */
+	public function matching_results($id = null) {
+	}
+
+
+
 /**
  *
  * leaderboard

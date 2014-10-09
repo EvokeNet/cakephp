@@ -530,6 +530,13 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	margin-right: 10px;
 }
 
+/* --------------------------- */
+/* IMAGE HEADER */
+/* --------------------------- */
+.evoke .image-header {
+	height: 200px;
+}
+
 
 /* --------------------------- */
 /* FOOTER */

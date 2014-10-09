@@ -1,5 +1,7 @@
 <?php
+	$this->start('top-bar');
 	echo $this->element('topbar');
+	$this->end();
 ?>
 
 <div class="full-width full-height">
