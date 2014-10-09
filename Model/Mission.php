@@ -24,11 +24,11 @@ class Mission extends AppModel {
  */
 	public $actsAs = array(
 		'Containable',
-        'Translate' => array(
-            'title' => 'missionTitle', 
-            'description' => 'missionDescription',
-            'video_link' => 'missionVideoLink'
-        )
+        // 'Translate' => array(
+        //     'title' => 'missionTitle', 
+        //     'description' => 'missionDescription',
+        //     'video_link' => 'missionVideoLink'
+        // )
     );
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

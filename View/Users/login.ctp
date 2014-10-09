@@ -9,26 +9,31 @@
 
 	<div class="evoke login fullpage">
 		<div class="section">
-	    	<div class="row full-width missions-carousel">
+	    	<div class="row full-width full-height missions-carousel">
+
+
+	    		<?php foreach($missions as $mission): ?>
+
 	    		<!-- MISSAO 1 -->
 			    <div class="evoke slide background-cover" data-interchange="
 		    			[<?= $this->webroot.'img/mission_1_NameMission-default.png' ?>, (default)], 
 		    			[<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>, (medium)],
 		    			[<?= $this->webroot.'img/mission_1_NameMission-large.jpg' ?>, (large)]">
-					<noscript><img src="<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 1 - Name'); ?>"></noscript>
+					<noscript><img src="<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>" alt="<?= $mission['Mission']['title'] ?>"></noscript>
 
 					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
 						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
-							<h2 class="text-color-important">Mission 1</h2>
-							<p>Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.</p>
+							<a href = "<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view_sample', $mission['Mission']['id']))?>"><h2 class="text-color-important"><?= $mission['Mission']['title'] ?></h2>
+							<p><?= $mission['Mission']['description'] ?></p></a>
 						</div></div>
 					</div>
 		    	</div>
 		    	
-
+		    	<?php endforeach; ?>
+		    	
 		    	<!-- MISSAO 2 -->
 		    	
-		    	<div class="evoke slide background-cover" data-interchange="
+		    	<!-- <div class="evoke slide background-cover" data-interchange="
 		    			[<?= $this->webroot.'img/mission_1_NameMission-default.png' ?>, (default)], 
 		    			[<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>, (medium)],
 		    			[<?= $this->webroot.'img/mission_1_NameMission-large.jpg' ?>, (large)]">
@@ -41,16 +46,16 @@
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.</p>
 						</div>
 					</div></div>
-		    	</div>
+		    	</div> -->
 	    	</div>
 	    </div>
 	    
 	    <div class="section evoke login gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
 		    	<h1 class="text-color-important text-center margin bottom-1"><?php echo __('What is Evoke?'); ?></h1>
-				<p class="font-size-important"><?php echo __('Welcome to the Evoke network!'); ?></p>
-				<p class="font-size-important"><?php echo __('If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?> <br />
-					<?php echo __('As an Evoke agent, you will choose your mission, develop your powers, and together will agents around the world create your own <strong>world changing idea</strong>.'); ?></p>
+				<!-- <p class="font-size-important"><?php echo __('Welcome to the Evoke network!'); ?></p> -->
+				<p class="font-size-important"><?php echo __('Welcome to the Evoke network! If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?>
+					<?php echo __('As an Evoke agent, you will choose your mission, develop your powers, and together will agents around the world create your <strong>own world changing idea</strong>.'); ?></p>
 			</div>
 	    </div>
 	    <div class="section evoke login gradient-on-top padding top-2">

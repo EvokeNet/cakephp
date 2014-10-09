@@ -52,7 +52,8 @@
 
 /* Off canvas */
 .evoke .missions .right-off-canvas-menu {
-	width: 30rem;
+	/*width: 30rem;*/
+	width:45rem;
 }
 .evoke .missions .right-small {
 	transition: transform 500ms ease 0s;

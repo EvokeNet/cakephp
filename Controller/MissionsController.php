@@ -619,7 +619,9 @@ class MissionsController extends AppController {
 	public function view_sample($id = null) {
 		//Facebook login URL comes from session
 		$fbLoginUrl = $this->Session->read('fbLoginUrl');
-		$this->set(compact('fbLoginUrl'));
+
+		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
+		$this->set(compact('fbLoginUrl', 'mission'));
 
 		//Render simple layout
 		$this->render('/Common/view-mission'); 

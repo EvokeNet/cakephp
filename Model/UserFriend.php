@@ -37,22 +37,22 @@ class UserFriend extends AppModel {
 	    }	
     }
 
-    public function beforeDelete() {
+  //   public function beforeDelete() {
        
-       $follower = $this->find('first', array(
-			'conditions' => array('UserFriend.id' => $this->id))
-		);
+  //      $follower = $this->find('first', array(
+		// 	'conditions' => array('UserFriend.id' => $this->id))
+		// );
 
-       $event = new CakeEvent('Model.UserFriend.unfollow', $this, array(
-            'entity_id' => $follower['UserFriend']['friend_id'],
-            'user_id' => $follower['UserFriend']['user_id'],
-            'entity' => 'followUser'
-        ));
+  //      $event = new CakeEvent('Model.UserFriend.unfollow', $this, array(
+  //           'entity_id' => $follower['UserFriend']['friend_id'],
+  //           'user_id' => $follower['UserFriend']['user_id'],
+  //           'entity' => 'followUser'
+  //       ));
 
-       $this->getEventManager()->dispatch($event);
+  //      $this->getEventManager()->dispatch($event);
 		
-		return true;	
-    }
+		// return true;	
+  //   }
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

@@ -4,7 +4,9 @@
 	
 	echo $this->Html->css('/components/slick-carousel/slick/slick.css');
 	echo $this->Html->css('slick.css');
-	?>
+
+
+?>
 
 	<!-- TOPBAR MENU -->
 	<div id="missions-menu" class="sticky fixed">
@@ -34,18 +36,51 @@
 				<aside class="right-off-canvas-menu tabQuests">
 					<div class="large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0">
 						<!-- TABS COM MENU -->
-						<dl class="tabs vertical full-height margin right-3 background-color-standard" data-tab>
-						  <dd class="active"><a href="#panel1">Quest 1</a></dd>
+						<dl class="tabs vertical full-height margin right-1 background-color-standard" data-tab>
+						  <!-- <dd class="active"><a href="#panel1">Quest 1</a></dd>
 						  <dd><a href="#panel2">Quest 2</a></dd>
 						  <dd><a href="#panel3" class="deactivated">Quest 3</a></dd>
-						  <dd><a href="#panel4">Quest 4</a></dd>
+						  <dd><a href="#panel4">Quest 4</a></dd> -->
+
+							<?php 
+								$counter = 1;
+								$active = 'class = "active"';
+
+								foreach($mission['Quest'] as $m): 
+									if($counter != 1)
+										$active = null;
+									?>
+								<dd <?= $active ?>><a href="#panel<?= $counter ?>"><?= $m['title'] ?></a></dd>
+							<?php $counter++; endforeach; ?>
 						</dl>
+
 						<div class="tabs-content full-height">
+
+							<?php 
+								$counter = 1;
+								$active = 'active'; ?>
+
+							<?php foreach($mission['Quest'] as $m): 
+									if($counter != 1)
+										$active = null;
+									?>
+								
+								<div class="content <?= $active ?> text-center" id="panel<?= $counter ?>">
+									<div class = "margin right-1">
+										<h3 class="text-color-highlight"><?= $m['title'] ?></h3>
+										<?= $m['description'] ?>
+										<h5 class="text-color-highlight">REWARDS</h5>
+							    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							    	</div>
+								</div>
+
+							<?php $counter++; endforeach; ?>
+
 						  <!-- TAB QUESTS -->
-						  <div class="content active padding top-2 right-3" id="panel1">
+						  <!-- <div class="content active" id="panel1">
 						  	<h3 class="text-color-highlight text-center">QUEST 1</h3>
 						    <p>Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						    <h3 class="text-color-highlight text-center">REWARDS</h3>
+						    <h5 class="text-color-highlight text-center">REWARDS</h5>
 						    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 						    <p class="text-center">
 						    	
@@ -53,22 +88,22 @@
 						    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
 						    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
 						    </p>
-						  </div>
+						  </div> -->
 
 						  <!-- TAB DOSSIER -->
-						  <div class="content" id="panel2">
+						  <!-- <div class="content" id="panel2">
 						    <p>Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						  </div>
+						  </div> -->
 
 						  <!-- TAB EVIDENCES -->
-						  <div class="content" id="panel3">
+						  <!-- <div class="content" id="panel3">
 						    <p>Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						  </div>
+						  </div> -->
 
 						  <!-- TAB MENU -->
-						  <div class="content" id="panel4">
+						  <!-- <div class="content" id="panel4">
 						    <p>Panel 4. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						  </div>
+						  </div> -->
 						</div>
 					</div>
 				</aside>
@@ -82,7 +117,8 @@
 				<section class="main-section">
 					<!-- SUBMENU -->
 					<div class="missions-submenu fixed hidden padding top-1 left-3">
-						<h2 class="text-glow">Mission name here</h2>
+
+						<h1 class="text-glow"><?= $mission['Mission']['title'] ?></h1>
 
 						<!-- PROGRESS BAR -->
 						<div class="button-bar phases-bar padding top-05 bottom-05">
@@ -118,7 +154,7 @@
 				    	<div id="navigationBar" class="evoke row full-width fixed sticky contain-to-grid padding top-1 bottom-1 text-center background-color-dark-opacity-05 bottom-0">
 								<div class="small-12 medium-12 large-12 columns centering-block">
 									<ul class="inline-list centered-block margins-0">
-										<li><h5 class="text-glow">Mission name</h5></li>
+										<li><h5 class="text-glow"><?= $mission['Mission']['title'] ?></h5></li>
 										<li><div id="slickPrevArrow"></div></li>
 										<li><h5 class="text-glow">Page 1</h5></li>
 										<li><div id="slickNextArrow"></div></li>
