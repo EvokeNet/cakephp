@@ -147,7 +147,7 @@
 		    	<p class="font-size-important"><?php echo __('Evoke is an innovation project of the World Bank in collaboration with partners around the world.'); ?></p>
 		    </div>
 	    </div>
-	    <div class="section evoke gradient-on-top padding top-2">
+	    <div class="section evoke gradient-on-top padding top-2 ">
 	    	<div class="row small-width text-center">
 	    		<h2 class="text-color-important text-center margin bottom-1"><?php echo __('How to become an agent?'); ?></h2>
 		    	 <p class="font-size-important"><?php echo __('If you have found this message, it is your destiny to follow us.  To start your journey toward becoming an Evoke Agent, you simply need to engage by providing your information here.'); ?></p>
@@ -156,7 +156,7 @@
 		    <!-- FOOTER -->
 			<?php
 				//$this->start('footer');
-				echo $this->element('footer', array('fixed' => ''));
+				echo $this->element('footer', array('fixed' => '', 'absolute' => 'absolute'));
 				//$this->end();
 			?>
 			<!-- FOOTER -->
@@ -185,7 +185,7 @@
 			    $('.fullpage').fullpage({
 			    	verticalCentered: true,
 			    	paddingTop: ($('#top-bar-login').height()*(-1.3)).toString()+"px",
-			    	//paddingBottom: ($('.footer').height()*1.9).toString()+"px",
+			    	paddingBottom: ($('#top-bar-login').height()*1.3).toString()+"px",
 			        resize : true,
 			        scrollOverflow: true,
 			        fixedElements: '#top-bar-login',
@@ -199,7 +199,7 @@
 			    });
 
 			    /* Ajusta margens em relacao ao top-bar */
-			    $('.fp-controlArrow').css("margin-top", ($('.footer').height()*(-1.3)).toString()+"px");
+			    $('.fp-controlArrow').css("margin-top", ($('#top-bar-login').height()*(-2)).toString()+"px");
 			}
 		});
 	</script>
@@ -229,15 +229,5 @@
 				}
 			});
 		});
-	</script>
-
-
-	<!-- GamePlay tabs -->
-	<script type="text/javascript">
-		$(window).ready(function() {
-			if ($('.footer').length) {
-				//$('.footer').addClass("sticky").addClass("fixed");
-			}
-		}
 	</script>
 <!-- SCRIPT -->

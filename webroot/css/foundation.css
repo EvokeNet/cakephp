@@ -14,6 +14,13 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 }
 
 /* --------------------------- */
+/* TABLE-CELL*/
+/* --------------------------- */
+.fp-tableCell {
+	position: relative;
+}
+
+/* --------------------------- */
 /* TOP-BAR */
 /* --------------------------- */
 .top-bar {

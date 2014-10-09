@@ -242,7 +242,7 @@
 				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-05');
         		$('div.missions-submenu').removeClass("hidden"); //Show submenu
         		//$('.right-small').css("right",$('.right-off-canvas-menu').width());
-        		$('.right-small').css("transform",'translate3d(-'+$('.right-off-canvas-menu').width()+'px, 0, 0)');
+        		$('.right-small').css("transform",'translate3d(-'+$('.right-off-canvas-menu').width()+'px, 0, 0)'); //Off-canvas buttons go to the left
 			});
 
 			$(document)
@@ -250,8 +250,7 @@
 				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-05');
 				$('div.missions-submenu').addClass("hidden"); //Hide submenu
 				//$('.right-small').css("right","0");
-				$('.right-small').css("transform",'translate3d(0, 0, 0)');
-				console.log('closed');
+				$('.right-small').css("transform",'translate3d(0, 0, 0)'); //Off-canvas buttons go to the left
 			});
 
 	</script>
