@@ -638,36 +638,38 @@ class UsersController extends AppController {
 			$this->User->create();
 			$this->request->data['User']['role_id'] = 3;//sets user as a common user
 
-			$redis = new Redis() or die("Cannot load Redis module.");
-			$redis->connect('127.0.0.1');
+			//DISABLING REDIS TEMPORARILY - START
+			// $redis = new Redis() or die("Cannot load Redis module.");
+			// $redis->connect('127.0.0.1');
 
-			$redis->hMset('user:'.$this->request->data['User']['username'], array(
-				'username' => $this->request->data['User']['username'],
-				'name' => $this->request->data['User']['name'],
-				'password' => $this->request->data['User']['username']
-			));
+			// $redis->hMset('user:'.$this->request->data['User']['username'], array(
+			// 	'username' => $this->request->data['User']['username'],
+			// 	'name' => $this->request->data['User']['name'],
+			// 	'password' => $this->request->data['User']['username']
+			// ));
 
-			$redis->sadd('users', 'user:'.$this->request->data['User']['username']);
+			// $redis->sadd('users', 'user:'.$this->request->data['User']['username']);
 
-			if ($this->User->save($this->request->data)) {
-				$user = $this->User->save($this->request->data);
-				// $this->Session->setFlash(__('The user has been saved.'));
-				$user['User']['id'] = $this->User->id;
-				$user['User']['role_id'] = $this->User->role_id;
-				$this->Auth->login($user);
+			// if ($this->User->save($this->request->data)) {
+			// 	$user = $this->User->save($this->request->data);
+			// 	// $this->Session->setFlash(__('The user has been saved.'));
+			// 	$user['User']['id'] = $this->User->id;
+			// 	$user['User']['role_id'] = $this->User->role_id;
+			// 	$this->Auth->login($user);
 
-				if(empty($user['User']['biography'])){
-					//echo $this->element('menu', array('user' => $user));
-					$this->Session->setFlash('', 'opening_lightbox_message');
-				}
+			// 	if(empty($user['User']['biography'])){
+			// 		//echo $this->element('menu', array('user' => $user));
+			// 		$this->Session->setFlash('', 'opening_lightbox_message');
+			// 	}
 
-				$this->Session->setFlash('', 'opening_lightbox_message');
+			// 	$this->Session->setFlash('', 'opening_lightbox_message');
 
-				return $this->redirect(array('action' => 'edit', $this->User->id));
-				//return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-			}
+			// 	return $this->redirect(array('action' => 'edit', $this->User->id));
+			// 	//return $this->redirect(array('action' => 'index'));
+			// } else {
+			// 	$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			// }
+			//DISABLING REDIS TEMPORARILY - END
 		}
 		$roles = $this->User->Role->find('list');		
 		$this->set(compact("roles"));

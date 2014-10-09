@@ -150,8 +150,9 @@ App::uses('CakeEventManager', 'Event');
 App::uses('PointListener', 'Event');
 CakeEventManager::instance()->attach(new PointListener());
 
-App::uses('NotificationsListener', 'Event');
-CakeEventManager::instance()->attach(new NotificationsListener());
+//DISABLING REDIS TEMPORARILY
+// App::uses('NotificationsListener', 'Event');
+// CakeEventManager::instance()->attach(new NotificationsListener());
 
 App::uses('BadgeListener', 'Event');
 CakeEventManager::instance()->attach(new BadgeListener());

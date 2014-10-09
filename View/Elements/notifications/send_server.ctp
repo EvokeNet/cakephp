@@ -1,4 +1,5 @@
-<script src="/socket.io/socket.io.js"></script>
+
+<!--<script src="/socket.io/socket.io.js"></script>
 <script>
 
 	var socket = io('http://localhost');
@@ -7,4 +8,4 @@
 
 	alert('YAY'
 
-</script>
+</script>-->
