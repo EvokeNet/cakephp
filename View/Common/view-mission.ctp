@@ -18,17 +18,17 @@
 		<div class="off-canvas-wrap" data-offcanvas>
 			<div class="inner-wrap">
 				<nav class="tab-bar full-height">
-				  <section class="right-small text-center">
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabQuests">
+				  <section class="right-small text-center opacity-07">
+				    <a class="right-off-canvas-toggle menu-icon background-color-standard text-glow-on-hover" href="#" data-tabname="tabQuests">
 				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-quests-gray.png' ?>" alt="Quests" />
 				    </a>
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabDossier">
+				    <a class="right-off-canvas-toggle menu-icon background-color-standard text-glow-on-hover" href="#" data-tabname="tabDossier">
 				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-dossier-gray.png' ?>" alt="Dossier" />
 				    </a>
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabEvidences">
+				    <a class="right-off-canvas-toggle menu-icon background-color-standard text-glow-on-hover" href="#" data-tabname="tabEvidences">
 				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-evidences-gray.png' ?>" alt="Evidences" />
 				    </a>
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabMenu">
+				    <a class="right-off-canvas-toggle menu-icon background-color-standard text-glow-on-hover" href="#" data-tabname="tabMenu">
 				    	<i class="fa fa-th-large fa-2x text-color-gray vertical-align-middle"></i>
 				    </a>
 				  </section>
@@ -52,7 +52,7 @@
 										if($counter != 1)
 											$active = null;
 										?>
-										<dd <?= $active ?>><a href="#panel<?= $counter ?>"><?= $m['title'] ?></a></dd>
+										<dd <?= $active ?>><a href="#panel<?= $counter ?>" class="text-glow-on-hover"><?= $m['title'] ?></a></dd>
 										<?php
 										$counter++;
 									endforeach;
