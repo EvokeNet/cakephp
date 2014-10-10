@@ -482,6 +482,19 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 		blur(add=false, direction=90, strength=4);
 }
 
+.evoke .img-glow-on-hover-small:hover {
+	-webkit-box-shadow: 0px 0px 4px 2px #26dee0;
+	-moz-box-shadow: 0px 0px 4px 2px #26dee0;
+	box-shadow: 0px 0px 4px 2px #26dee0; 
+	filter:progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='4');
+	filter: glow(color=white, strength=4) 
+		blur(add=false, direction=0, strength=4) 
+		blur(add=false, direction=180, strength=4) 
+		blur(add=false, direction=270, strength=4) 
+		blur(add=false, direction=90, strength=4);
+}
+
+
 
 /* --------------------------- */
 /* BLUR */

@@ -1,5 +1,5 @@
 <?php
-	$this->start('top-bar');
+	$this->start('topbar');
 	echo $this->element('topbar');
 	$this->end();
 ?>

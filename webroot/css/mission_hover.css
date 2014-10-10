@@ -29,7 +29,6 @@
    width: 100%;
 }
 .view h2 {
-   font-family: 'AlegreyaRegular';
    text-transform: uppercase;
    color: #fff;
    text-align: center;
@@ -40,7 +39,6 @@
    margin: 20px 0 0 0;
 }
 .view p {
-   font-family: 'AlegreyaRegular';
    /*font-size: 1.0em;*/
    /*font-size: 1.5vw;*/
    /*font-size: 1.7vw;*/

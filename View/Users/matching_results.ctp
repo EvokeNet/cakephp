@@ -6,12 +6,12 @@
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => 'Profile results', 'imgSrc' => ($this->webroot.'img/header-profile.jpg')));
+	echo $this->element('image_header',array('imgHeaderTitle' => 'Agent key strengths', 'imgSrc' => ($this->webroot.'img/header-profile.jpg')));
 	$this->end();
 ?>
 
 <div class="standard-width">
-	<img src="<?= $this->webroot.'img/mockup-3-matching-questions.jpg' ?>" class="full-width" />
+	<img src="<?= $this->webroot.'img/mockup-4-matching-results.jpg' ?>" class="full-width" />
 </div>
 
 <?php

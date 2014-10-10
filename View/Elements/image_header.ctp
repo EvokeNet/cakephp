@@ -1,9 +1,12 @@
 <!-- IMAGE HEADER -->
 <?php if (isset($imgSrc)) { ?>
-<div class="full-width image-header centering-block">
-	<div class="centered-block">
-		<h1> <?= (isset($imgHeaderTitle) ? $imgHeaderTitle ? '') ?></h1>
+<div class="background-cover full-width image-header table centering-block"
+	data-interchange="[<?= (isset($imgSrc) ? $imgSrc : '') ?>, (default)]">
+	<noscript><img src="<?= (isset($imgSrc) ? $imgSrc : '') ?>" class="full-width"></noscript>
+	<div class="table-cell vertical-align-middle">
+		<div class="centered-block">
+			<h1 class="text-color-highlight text-glow"><?= (isset($imgHeaderTitle) ? $imgHeaderTitle : '') ?></h1>
+		</div>
 	</div>
-	<img src="<?= $imgSrc ?>" class="standard-width" />
 </div>
 <?php } ?>
