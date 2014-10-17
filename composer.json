@@ -19,12 +19,12 @@
         "cakephp/debug_kit": "2.2.*",
         "josegonzalez/cakephp-upload": "1.0.0",
         "facebook/php-sdk": "v3.2.3",
+        "google/apiclient": "1.0.*@beta",
         "google/apiclient": "1.0.3-beta",
         "markstory/acl_extras": "dev-master",
         "paulredmond/chosen-cakephp": "*",
         "0x46616c6b/etherpad-lite-client": "dev-master",
-        "ceeram/cakepdf": "1.0.1",
-        "mjohnson/forum": "*"
+        "ceeram/cakepdf": "1.0.1"
     },
     "config": {
         "vendor-dir": "Vendor/"

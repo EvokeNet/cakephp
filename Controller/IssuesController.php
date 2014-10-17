@@ -77,7 +77,7 @@ class IssuesController extends AppController {
 			$this->Issue->create();
 			if ($this->Issue->save($this->request->data)) {
 				$this->Session->setFlash(__('The issue has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
 			}
@@ -97,10 +97,12 @@ class IssuesController extends AppController {
 		if (!$this->Issue->exists($id)) {
 			throw new NotFoundException(__('Invalid issue'));
 		}
+
+		$this->Issue->id = $id;
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Issue->save($this->request->data)) {
 				$this->Session->setFlash(__('The issue has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
 			}
@@ -124,7 +126,7 @@ class IssuesController extends AppController {
 		if (!$this->Issue->exists()) {
 			throw new NotFoundException(__('Invalid issue'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		//$this->request->onlyAllow('post', 'delete');
 		if ($this->Issue->delete()) {
 			$this->Session->setFlash(__('The issue has been deleted.'));
 
@@ -135,7 +137,7 @@ class IssuesController extends AppController {
 			$this->Session->setFlash(__('The issue could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panel
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 
 /**

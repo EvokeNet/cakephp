@@ -14,7 +14,7 @@
             $('#fileInputHolder').children().remove();
             qtd = 1;
         }
-        $('#fileInputHolder').append('<div class="input file" id="'+qtd+'"><label for="Attachment'+qtd+'Attachment">Media File</label><input type="file" name="data[Attachment]['+qtd+'][attachment]" id="Attachment'+qtd+'Attachment"></div>');
+        $('#fileInputHolder').append('<div class="input file" id="'+qtd+'"><label for="Attachment'+qtd+'Attachment"></label><input type="file" name="data[Attachment]['+qtd+'][attachment]" id="Attachment'+qtd+'Attachment"></div>');
         qtd++;
         $('#questionnaire').hide();
         $('#questtype1').removeAttribute("checked");
@@ -30,7 +30,7 @@
             $('#fileInputHolder').children().remove();
             qtd = 1;
         }
-        $('#fileInputHolder').append('<div class="input file" id="'+qtd+'"><label for="Attachment'+qtd+'Attachment">Media File</label><input type="file" name="data[Attachment]['+qtd+'][attachment]" id="Attachment'+qtd+'Attachment"></div>');
+        $('#fileInputHolder').append('<div class="input file" id="'+qtd+'"><label for="Attachment'+qtd+'Attachment"></label><input type="file" name="data[Attachment]['+qtd+'][attachment]" id="Attachment'+qtd+'Attachment"></div>');
         qtd++;
         $('#questionnaire').hide();
         $('#questtype1').removeAttribute("checked");
@@ -46,7 +46,7 @@
             $('#fileInputHolder').children().remove();
             qtd = 1;
         }
-        $('#fileInputHolder').append('<div class="input file" id="'+qtd+'"><label for="Attachment'+qtd+'Attachment">Media File</label><input type="file" name="data[Attachment]['+qtd+'][attachment]" id="Attachment'+qtd+'Attachment"></div>');
+        $('#fileInputHolder').append('<div class="input file" id="'+qtd+'"><label for="Attachment'+qtd+'Attachment"></label><input type="file" name="data[Attachment]['+qtd+'][attachment]" id="Attachment'+qtd+'Attachment"></div>');
         qtd++;
         $('#questionnaire').hide();
         $('#questtype1').removeAttribute("checked");
@@ -59,7 +59,7 @@
     var qtd = 1;
 
     $('#newFile').click(function(){
-        $('#fileInputHolder').append('<div class="input file" id="'+qtd+'"><label for="Attachment'+qtd+'Attachment">Media File</label><input type="file" name="data[Attachment]['+qtd+'][attachment]" id="Attachment'+qtd+'Attachment"><button class="button tiny alert" onClick="deleteDiv('+qtd+')">delete</button></div>');
+        $('#fileInputHolder').append('<div class="evoke input file border" id="'+qtd+'"><label for="Attachment'+qtd+'Attachment"></label><input type="file" name="data[Attachment]['+qtd+'][attachment]" id="Attachment'+qtd+'Attachment"><button class="button tiny alert" onClick="deleteDiv('+qtd+')">delete</button></div>');
         qtd++;
         return false;
     });

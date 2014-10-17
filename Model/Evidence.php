@@ -23,12 +23,7 @@ class Evidence extends AppModel {
 	public $displayField = 'title';
 
 	public $actsAs = array(
-        'Containable',
-        'Media.Media' => array(
-            // You can set up the path where your medias will be saved (optional)
-            'path' => 'img/uploads/%y/%m/%f',
-            'extensions' => array('jpg', 'png', 'avi', 'mp4')
-        )
+        'Containable'
     );
 
 	public function createWithAttachments($data, $hasPrev = false, $id = null) {
@@ -101,6 +96,9 @@ class Evidence extends AppModel {
 	  //   }	
    //  }
 
+
+	/* 
+	// Comentado pois havia erro na pagina de login
     public function beforeDelete() {
        
        $evidence = $this->find('first', array(
@@ -116,7 +114,7 @@ class Evidence extends AppModel {
        $this->getEventManager()->dispatch($event);
 		
 	   return true;	
-    }
+    }*/
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

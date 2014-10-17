@@ -2,6 +2,12 @@
 
 require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
 
+// require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'Google_Client.php';
+// require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'contrib'.DS.'Google_Oauth2Service.php';
+
+require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Client.php';
+require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Service'.DS.'Oauth2.php';
+
 App::uses('AppController', 'Controller');
 
 /**
@@ -17,7 +23,9 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('MathCaptcha', );
+	//public $components = array('MathCaptcha', 'Visit');
+    
+    public $components = array('Visit');
 
 	public $uses = array('User', 'Friend');
 
@@ -36,51 +44,51 @@ class UsersController extends AppController {
         $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot');
     }
 
-    public function forgot() {
-		if ($this->request->is('post')) {
-      		
-      		if ($this->MathCaptcha->validate($this->request->data['User']['captcha'])) {
-        		$usr = $this->User->find('first', array(
-        			'conditions' => array(
-        				'User.email' => $this->request->data['User']['email']
-        			)
-        		));
-
-        		if(!$usr) {
-        			$this->Session->setFlash('The email does not match with our database.', 'flash_message');
-        			return;
-        		}
-        		$newpass = $this->createTempPassword(8);
-        		$insert['User']['password'] = $newpass;
-        		$insert['User']['id'] = $usr['User']['id'];
-        		$this->User->id = $usr['User']['id'];
-        		if($this->User->save($insert)) {
-
-	        		//sending email with new password
-	        		if($usr['User']['email'] != '' && !is_null($usr['User']['email'])) {
-
-						$Email = new CakeEmail('smtp');
-						//$Email->from(array('no-reply@quanti.ca' => $sender['User']['name']));
-						$Email->to($usr['User']['email']);
-						$Email->subject(__('Evoke - New Password'));
-						// $Email->emailFormat('html');
-						// $Email->template('group', 'group');
-						// $Email->viewVars(array('sender' => $usr, 'recipient' => $usr));
-						$Email->send(__('Your new EVOKE password is') . ' '.$newpass.'. '.__('Please change your password as soon as possible.'));
-						$this->Session->setFlash(__('The email was sent.'), 'flash_message');
-						$this->redirect(array('action' => 'login'));
-					} else {
-						$this->Session->setFlash(__('There was a problem sending the email.', 'flash_message'));
-					}
-				} else {
-					$this->Session->setFlash(__('There was a problem generating the new password.', 'flash_message'));
-				}
-      		} else {
-        		$this->Session->setFlash('The result of the calculation was incorrect. Please, try again.', 'flash_message');
-      		}
-    	} 
-        $this->set('captcha', $this->MathCaptcha->getCaptcha());
-    }
+//    public function forgot() {
+//		if ($this->request->is('post')) {
+//      		
+//      		if ($this->MathCaptcha->validate($this->request->data['User']['captcha'])) {
+//        		$usr = $this->User->find('first', array(
+//        			'conditions' => array(
+//        				'User.email' => $this->request->data['User']['email']
+//        			)
+//        		));
+//
+//        		if(!$usr) {
+//        			$this->Session->setFlash('The email does not match with our database.', 'flash_message');
+//        			return;
+//        		}
+//        		$newpass = $this->createTempPassword(8);
+//        		$insert['User']['password'] = $newpass;
+//        		$insert['User']['id'] = $usr['User']['id'];
+//        		$this->User->id = $usr['User']['id'];
+//        		if($this->User->save($insert)) {
+//
+//	        		//sending email with new password
+//	        		if($usr['User']['email'] != '' && !is_null($usr['User']['email'])) {
+//
+//						$Email = new CakeEmail('smtp');
+//						//$Email->from(array('no-reply@quanti.ca' => $sender['User']['name']));
+//						$Email->to($usr['User']['email']);
+//						$Email->subject(__('Evoke - New Password'));
+//						// $Email->emailFormat('html');
+//						// $Email->template('group', 'group');
+//						// $Email->viewVars(array('sender' => $usr, 'recipient' => $usr));
+//						$Email->send(__('Your new EVOKE password is') . ' '.$newpass.'. '.__('Please change your password as soon as possible.'));
+//						$this->Session->setFlash(__('The email was sent.'), 'flash_message');
+//						$this->redirect(array('action' => 'login'));
+//					} else {
+//						$this->Session->setFlash(__('There was a problem sending the email.', 'flash_message'));
+//					}
+//				} else {
+//					$this->Session->setFlash(__('There was a problem generating the new password.', 'flash_message'));
+//				}
+//      		} else {
+//        		$this->Session->setFlash('The result of the calculation was incorrect. Please, try again.', 'flash_message');
+//      		}
+//    	} 
+//        $this->set('captcha', $this->MathCaptcha->getCaptcha());
+//    }
 
     public function createTempPassword($len) {
 		$pass = '';
@@ -136,13 +144,136 @@ class UsersController extends AppController {
     	// die();
     }
 
-
 /**
  * login method
  *
  * @return void
  */
 	public function login() {
+
+		$client = new Google_Client();
+		$client->setApplicationName('Evoke');
+		$client->setClientId(Configure::read('google_client_id'));
+		$client->setClientSecret(Configure::read('google_client_secret'));
+		$client->setRedirectUri(Configure::read('google_redirect_uri'));
+		$client->setDeveloperKey(Configure::read('google_developer_key'));
+
+		// $client->setScopes("https://www.googleapis.com/auth/plus.login");
+		// $client->setAccessType('offline');
+		// $client->setApprovalPrompt('auto');
+
+		$google_oauthV2 = new Google_Service_Oauth2($client);
+
+		$client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
+    	$client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
+
+		// $authUrl = $client->createAuthUrl();
+		// $this->set('authUrl', $authUrl);
+
+		// $_SESSION['access_token'] = null;
+		// debug($_SESSION['accessToken']);
+		// if(isset($_REQUEST['code'])){
+		//     $_SESSION['accessToken'] = get_oauth2_token($_REQUEST['code']);
+		// }
+
+		//debug($client);
+
+		//debug($this->request['url']['code']);
+
+		if (isset($this->params['url']['code'])) {
+		  $client->authenticate($this->params['url']['code']);
+		  $_SESSION['access_token'] = $client->getAccessToken();
+		//   $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+		//   header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+			
+
+		// debug($client->getAccessToken());
+
+		if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+
+		 	// $client->setAccessToken($_SESSION['access_token']);
+
+			// $attributes = $client->verifyIdToken($token->id_token, '502819941527.apps.googleusercontent.com')->getAttributes();
+   //      	$gplus_id = $attributes["payload"]["sub"];
+
+		 	$user_profile = $google_oauthV2->userinfo->get();
+		 	$_SESSION['user']['name'] = $user_profile['name'];
+		 	$_SESSION['user']['google_id'] = $user_profile['id'];
+            $_SESSION['user']['email'] = $user_profile['email'];
+
+		  	$user_google = $this->User->find('first', array('conditions' => array('User.id' => $_SESSION['user']['email'])));
+
+			if(empty($user_google)) {
+
+				// User does not exist in DB, so we are going to create
+				$this->User->create();
+				$user_google['User']['google_id'] = $user_profile['id'];
+				$user_google['User']['google_token'] = $client->getAccessToken();
+				$user_google['User']['name'] = $user_profile['name'];
+				$user_google['User']['email'] = $user_profile['email'];
+				$user_google['User']['role_id'] = 3;
+
+				if($this->User->save($user_google)) {
+					$user_google['User']['id'] = $this->User->id;
+					$this->Auth->login($user_google);
+					// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
+					//return $this->redirect(array('action' => 'dashboard'));
+					// $this->Session->setFlash('', 'opening_lightbox_message');
+					// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+			  //           'user_id' => $this->User->id,
+			  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+			  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+			  //       ));
+
+			  //       $this->getEventManager()->dispatch($event);
+					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+
+					return $this->redirect(array('action' => 'edit', $this->User->id));
+				} else {
+					$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
+					return $this->redirect(array('action' => 'login'));
+				}
+
+			} else {
+
+				// User exists, so we just force login
+				// TODO: check if any data changed since last Facebook login, then update in our table
+
+				// We need to update the Facebook token, once web tokens are short-term only
+				$this->User->id = $user_google['User']['id'];
+				$this->User->set('google_token', $client->getAccessToken());
+				$this->User->save();
+
+				$user_google['User']['id'] = $this->User->id;
+				$this->Auth->login($user_google);
+				// $this->Session->write('Auth.User.id', $user['User']['id']);
+
+				// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+		  //           'user_id' => $this->User->id,
+		  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+		  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+		  //       ));
+
+		  //       $this->getEventManager()->dispatch($event);
+
+				$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+
+				return $this->redirect(array('controller' => 'missions', 'action' => 'view_sample'));
+
+			}
+		} 
+		}else {
+			$authUrl = $client->createAuthUrl();
+
+			if(isset($authUrl)) { //user is not logged in, show login button
+				$this->set('authUrl', $authUrl);
+			}
+		}
+
 		//debug($this->Auth);
 		$facebook = new Facebook(array(
 			'appId' => Configure::read('fb_app_id'),
@@ -192,6 +323,19 @@ class UsersController extends AppController {
 						// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
 						//return $this->redirect(array('action' => 'dashboard'));
 						$this->Session->setFlash('', 'opening_lightbox_message');
+
+						// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+				  //           'user_id' => $this->User->id,
+				  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+				  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+				  //       ));
+
+				  //       $this->getEventManager()->dispatch($event);
+
+						$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+
 						return $this->redirect(array('action' => 'edit', $this->User->id));
 					} else {
 						$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
@@ -211,7 +355,19 @@ class UsersController extends AppController {
 					$user['User']['id'] = $this->User->id;
 					$this->Auth->login($user);
 					// $this->Session->write('Auth.User.id', $user['User']['id']);
-					return $this->redirect(array('action' => 'dashboard', $this->User->id));
+					// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+			  //           'user_id' => $this->User->id,
+			  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+			  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+			  //       ));
+
+			  //       $this->getEventManager()->dispatch($event);
+
+					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+
+					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+
+					return $this->redirect(array('controller' => 'missions', 'action' => 'view_sample'));
 
 				}
 				
@@ -219,14 +375,35 @@ class UsersController extends AppController {
 
 		} else if ($this->Auth->login()) {
 
-			return $this->redirect(array('action' => 'dashboard', $this->User->id));
+			// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+	  //           'user_id' => $this->User->id,
+	  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+	  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+	  //       ));
+
+	  //       $this->getEventManager()->dispatch($event);
+
+			$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+
+			$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+
+			return $this->redirect(array('controller' => 'missions', 'action' => 'view_sample'));
+
+		} else if(isset($this->request->data['User']['username'])){
+
+			$user2 = $this->User->find('first', array('conditions' => array('User.username' => $this->request->data['User']['username'])));
+
+			if(empty($user2)){
+				$this->Session->setFlash(__('Your login and/or password was incorrect. Please try again.'));
+				return $this->redirect(array('action' => 'login'));
+			}
 
 		} else {
 			$fbLoginUrl = $facebook->getLoginUrl();
 			$this->set(compact('fbLoginUrl'));
+			$this->Session->write('fbLoginUrl', $fbLoginUrl); //Stores facebook URL in session to be accessed by other views/controllers
 		}
 	}
-
 
 /**
  * logout method
@@ -244,10 +421,10 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	// public function index() {
-	// 	$this->User->recursive = 0;
-	// 	$this->set('users', $this->Paginator->paginate());
-	// }
+	public function index() {
+		$this->User->recursive = 0;
+		//$this->set('users', $this->Paginator->paginate());
+	}
 
 
 	public function moreEvidences($lastOne, $limit = 1, $user_id = -1){
@@ -461,25 +638,39 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			$this->request->data['User']['role_id'] = 3;//sets user as a common user
-			if ($this->User->save($this->request->data)) {
-				$user = $this->User->save($this->request->data);
-				// $this->Session->setFlash(__('The user has been saved.'));
-				$user['User']['id'] = $this->User->id;
-				$user['User']['role_id'] = $this->User->role_id;
-				$this->Auth->login($user);
 
-				if(empty($user['User']['biography'])){
-					//echo $this->element('menu', array('user' => $user));
-					$this->Session->setFlash('', 'opening_lightbox_message');
-				}
+			//DISABLING REDIS TEMPORARILY - START
+			// $redis = new Redis() or die("Cannot load Redis module.");
+			// $redis->connect('127.0.0.1');
 
-				$this->Session->setFlash('', 'opening_lightbox_message');
+			// $redis->hMset('user:'.$this->request->data['User']['username'], array(
+			// 	'username' => $this->request->data['User']['username'],
+			// 	'name' => $this->request->data['User']['name'],
+			// 	'password' => $this->request->data['User']['username']
+			// ));
 
-				return $this->redirect(array('action' => 'edit', $this->User->id));
-				//return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-			}
+			// $redis->sadd('users', 'user:'.$this->request->data['User']['username']);
+
+			// if ($this->User->save($this->request->data)) {
+			// 	$user = $this->User->save($this->request->data);
+			// 	// $this->Session->setFlash(__('The user has been saved.'));
+			// 	$user['User']['id'] = $this->User->id;
+			// 	$user['User']['role_id'] = $this->User->role_id;
+			// 	$this->Auth->login($user);
+
+			// 	if(empty($user['User']['biography'])){
+			// 		//echo $this->element('menu', array('user' => $user));
+			// 		$this->Session->setFlash('', 'opening_lightbox_message');
+			// 	}
+
+			// 	$this->Session->setFlash('', 'opening_lightbox_message');
+
+			// 	return $this->redirect(array('action' => 'edit', $this->User->id));
+			// 	//return $this->redirect(array('action' => 'index'));
+			// } else {
+			// 	$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			// }
+			//DISABLING REDIS TEMPORARILY - END
 		}
 		$roles = $this->User->Role->find('list');		
 		$this->set(compact("roles"));
@@ -692,9 +883,14 @@ class UsersController extends AppController {
 		} 
 
 		$this->loadModel('Mission');
+		$this->Mission->locale = $this->langToLocale(Configure::read('Config.language'));
 		$missions = $this->Mission->find('all', array(
 			'order' => array('Mission.created')
 		));
+
+		// debug(count($missions));
+		// debug(Configure::read('Config.language'));
+		// debug($this->langToLocale(Configure::read('Config.language')));
 
 		$show_basic_training = false;
 		$mission_ids = array();
@@ -792,30 +988,30 @@ class UsersController extends AppController {
 		
 
 
-		$this->loadModel('Forum.Post');
-		$this->loadModel('Forum.Topic');
+		// $this->loadModel('Forum.Post');
+		// $this->loadModel('Forum.Topic');
 
 		$a_posts = array();
 		$a_topics = array();
 
 		
-		if(!empty($post_allies)){
-			$this->Post->recursive = 1;
-			$a_posts = $this->Post->find('all', array(
-				'conditions' => array(
-					'OR' => $post_allies
-				)
-			));
-		}
+		// if(!empty($post_allies)){
+		// 	$this->Post->recursive = 1;
+		// 	$a_posts = $this->Post->find('all', array(
+		// 		'conditions' => array(
+		// 			'OR' => $post_allies
+		// 		)
+		// 	));
+		// }
 
-		if(!empty($topic_allies)){
-			$this->Topic->recursive = 1;
-			$a_topics = $this->Topic->find('all', array(
-				'conditions' => array(
-					'OR' => $topic_allies
-				)
-			));
-		}
+		// if(!empty($topic_allies)){
+		// 	$this->Topic->recursive = 1;
+		// 	$a_topics = $this->Topic->find('all', array(
+		// 		'conditions' => array(
+		// 			'OR' => $topic_allies
+		// 		)
+		// 	));
+		// }
 		
 
 		$this->set(compact('badges', 'feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'adminNotificationsToMe', 'evidence', 'myevidences', 'missions', 'lang',
@@ -1054,8 +1250,14 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function leaderboard() {
-		ini_set('memory_limit', '256M'); // emergencial measure
+	public function leaderboard($label = null) {
+			
+		$user = $this->User->find('first', array(
+			'conditions' => array(
+				'User.id' => $this->getUserId()
+			)
+		));
+
 		$userid = $this->getUserId();
 
 		$username = explode(' ', $this->getUserName());
@@ -1070,39 +1272,12 @@ class UsersController extends AppController {
 		}
 		//getting leaderboard data:
 			//getting user power points
-			$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
 
-			$points_users = array(); // will contain [points][][user]
+		$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
 
-			$allusers = $this->User->find('all');
+		$points_users = array(); // will contain [points][][user]
 
-			$this->loadModel('Evokation');
-
-			$evokations = $this->Evokation->find('all', array(
-				'conditions' => array(
-					'Evokation.sent' => 1
-				)
-			));
-
-			$votes = $this->Evokation->Vote->find('all');
-
-			$vote_rank = array();
-
-			foreach($evokations as $e):
-				foreach($votes as $v):
-					$var = $v['Vote']['value'] + 1;
-					if($v['Vote']['evokation_id'] == $e['Evokation']['id']){
-						if(isset($vote_rank[$e['Evokation']['id']]))
-							$vote_rank[$e['Evokation']['id']] += $var;
-						else
-							$vote_rank[$e['Evokation']['id']] = $var;
-					}
-				endforeach;
-				if(!isset($vote_rank[$e['Evokation']['id']])) 
-					$vote_rank[$e['Evokation']['id']] = 0;
-			endforeach;
-
-			arsort($vote_rank);
+		$allusers = $this->User->find('all');
 
 			//debug($vote_rank);
 
@@ -1125,8 +1300,6 @@ class UsersController extends AppController {
 
 				$usr['User']['level'] = $this->getLevel($usrpoints);
 				$points_users[$usrpoints][] = $usr['User'];
-
-
 
 				$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
 					'conditions' => array(
@@ -1165,21 +1338,62 @@ class UsersController extends AppController {
 			}
 			krsort($points_users);
 
-		$user = $this->User->find('first', array(
-			'conditions' => array(
-				'User.id' => $this->getUserId()
-			)
-		));
+		$this->set(compact('label', 'userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'lang'));
 
-		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
-
-		$sumMyPoints = 0;
-		
-		foreach($myPoints as $point){
-			$sumMyPoints += $point['Point']['value'];
+		if(empty($label)) {
+			$this->render('categories/levels');
 		}
-		
-		$this->set(compact('evokations', 'votes', 'vote_rank', 'userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'sumMyPoints', 'lang'));
+
+		if($label == 'evokation') {
+
+			$this->loadModel('Evokation');
+
+			$evokations = $this->Evokation->find('all', array(
+				'conditions' => array(
+					'Evokation.sent' => 1
+				)
+			));
+
+			$votes = $this->Evokation->Vote->find('all');
+
+			$vote_rank = array();
+
+			foreach($evokations as $e):
+				foreach($votes as $v):
+					$var = $v['Vote']['value'] + 1;
+					if($v['Vote']['evokation_id'] == $e['Evokation']['id']){
+						if(isset($vote_rank[$e['Evokation']['id']]))
+							$vote_rank[$e['Evokation']['id']] += $var;
+						else
+							$vote_rank[$e['Evokation']['id']] = $var;
+					}
+				endforeach;
+				if(!isset($vote_rank[$e['Evokation']['id']])) 
+					$vote_rank[$e['Evokation']['id']] = 0;
+			endforeach;
+
+			arsort($vote_rank);
+
+			$this->set(compact('evokations', 'votes', 'vote_rank'));
+
+			$this->render('categories/evokation');
+		}
+
+		if(is_numeric($label)) {
+
+			$this->loadModel('PowerPoint');
+
+			$powerlabel = $this->PowerPoint->find('first', array(
+				'conditions' => array(
+					'PowerPoint.id' => $label
+				)
+			));
+
+			$this->set(compact('powerlabel'));
+
+			$this->render('categories/power_points');
+		}
+
 	}
 
 /**
@@ -1289,7 +1503,7 @@ class UsersController extends AppController {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
@@ -1298,6 +1512,53 @@ class UsersController extends AppController {
 		$roles = $this->User->Role->find('list');		
 		$this->set(compact("roles"));
 
+	}
+
+/**
+ * admin_edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function panel_edit($id = null) {
+		if (!$this->User->exists($id)) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+
+		$this->User->id = $id;
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('The user has been saved.'));
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			$this->request->data = $this->User->find('first', $options);
+		}
+	}
+
+/**
+ * admin_delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function panel_delete($id = null) {
+		$this->User->id = $id;
+		if (!$this->User->exists()) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		//$this->request->onlyAllow('post', 'delete');
+		if ($this->User->delete()) {
+			$this->Session->setFlash(__('The user has been deleted.'));
+		} else {
+			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
+		}
+		return $this->redirect($this->referer());
 	}
 
 /**
@@ -1385,7 +1646,7 @@ class UsersController extends AppController {
 			    	$this->Auth->login($user);
 			    	//$this->Session->setFlash(__('The user has been saved.'));
 			    	$this->Session->setFlash(__('Your informations were succefully saved'), 'flash_message');
-					return $this->redirect(array('action' => 'dashboard', $id));
+					return $this->redirect(array('controller' => 'missions', 'action' => 'view_sample'));
 
 				} 
 		        
@@ -1431,7 +1692,8 @@ class UsersController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		// return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 
 /**

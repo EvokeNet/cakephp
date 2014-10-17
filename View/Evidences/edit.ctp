@@ -1,4 +1,12 @@
 <?php
+
+	echo $this->Html->css(
+		array(
+			'/components/medium-editor/dist/css/medium-editor.css',
+			'/components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.css',
+		)
+	);
+
 	$this->extend('/Common/topbar');
 	$this->start('menu');
 
@@ -119,7 +127,7 @@
 		</div>
 
 		<div class="small-7 medium-7 large-7 columns maincolumn">
-				
+			
 			<h1 class = "white"><?= $q['Quest']['title'] ?></h1>
 			<h6 class = "white"><?= $q['Quest']['description'] ?></h6>
 
@@ -128,38 +136,43 @@
 				<div class = "evoke evidence-body edit">
 
 				<div class = "padding30">
-				<?php echo $this->Form->create('Evidence', array('enctype' => 'multipart/form-data', 'onsubmit' => "return check_form()")); ?>
+
+				<?php echo $this->Form->create('Evidence', array('type' => 'file')); ?>
 					<?php //echo __('Edit Evidence'); ?>
 
 					<?php
+
 						echo $this->Form->input('id');
-						echo $this->Form->input('title', array('label' => __('Title'), 'required' => true));
-						//echo $this->Form->input('content');
+						echo $this->Form->hidden('title');
 						echo $this->Form->hidden('user_id');
-						//echo $this->Form->input('quest_id', array('empty' => true));
+						echo $this->Form->hidden('content');
+						echo $this->Form->hidden('quest_id');
 						echo $this->Form->hidden('mission_id');
 						echo $this->Form->hidden('phase_id');
-						echo $this->Media->ckeditor('content', array('label' => __('Content')));
-						//echo $this->Media->iframe('Evidence', $this->request->data['Evidence']['id']);
+
+						echo '<div class = "editableTitle" id = "evidenceTitle">'. $me["Evidence"]["title"] .'</div>';
+						echo '<div class = "editableContent" id = "evidenceContent">'.$me["Evidence"]["content"] .'</div>';
 
 						echo "<label>".__('Attachments'). "</label>";
+						echo '<button id="newFile" class="button general">'.__('+ File').'</button>';
 			            echo '<div id="fileInputHolder">';
 			            echo "<ul>";
-			            $k = 0;
-			            foreach ($attachments as $media) {
-			                echo "<li>";
-			                echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $media['Attachment']['attachment'] .'</label>';
+			            
+			            // $k = 0;
+			            // foreach ($attachments as $media) {
+			            //     echo "<li>";
+			            //     echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $media['Attachment']['attachment'] .'</label>';
 			                
-			                echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $media['Attachment']['id'] .'">';
-			                echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$media['Attachment']['dir'].'/thumb_'.$media['Attachment']['attachment'] . '"/>';
+			            //     echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $media['Attachment']['id'] .'">';
+			            //     echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$media['Attachment']['dir'].'/thumb_'.$media['Attachment']['attachment'] . '"/>';
 
-			                echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
+			            //     echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
 
-			                $k++;
-			            }
+			            //     $k++;
+			            // }
+
 			            echo "</ul>";
 			            echo '</div>';
-			            echo '<button id="newFile" class="button tiny">+ File</button>';
 					?>
 				<?php //echo $this->Form->end(__('Save Evidence')); ?>
 				<div class = "evoke titles-right"><button type="submit" id = "evidenceButton" class= "evoke button general submit-button-margin"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save Evidence')) ?></button></div>
@@ -209,85 +222,137 @@
 	</div>
 </section>
 
+<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
+
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
+	echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min.js');//, array('inline' => false));
+	echo $this->Html->script('/components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.all.min.js');//, array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
+	//echo $this->Html->script('medium');
 	echo $this->Html->script('quest_attachments'); 
 ?>
 
 <script type="text/javascript">
 
-	//var editor = CKEDITOR.editor.replace('EvidenceContent');
-	
-	//alert(data);
+	//socket io client
+	var socket = io.connect('http://localhost:8000');
 
-	function autosave() {
-	    jQuery('form').each(function() {
+	var editor = new MediumEditor('.editableContent', {
+	    buttons: [
+	    	'bold',
+	        'italic',
+	        'underline',
+	        'header1',
+	        'header2',
+	        'orderedlist',
+	        'unorderedlist',
+	        'anchor',
+	        'quote',
+	        'superscript',
+	        'subscript',
+	        'strikethrough',
+	    ],
+	    checkLinkFormat: true,
+	    cleanPastedHTML: true,
+	    placeholder: "<?= __('Write here your Evidence') ?>",
+	    targetBlank: true,
+	    buttonLabels: 'fontawesome'
+  	});
 
-	    	var ops = $('.cke_wysiwyg_frame').contents().find('.cke_editable').html();
-	    	//alert(ops);
+  	$(function () {
+	  $('.editableContent').mediumInsert({
+	    editor: editor,
+	    addons: {
+	      images: {
+	      	imagesUploadScript:"<?= $this->webroot. 'evidences/uploadPicMedium' ?>",
+	      	imagesDeleteScript:"<?= $this->webroot. 'evidences/deletePicMedium' ?>",
+      	},
+	   	embeds: {}
+	    }
+	  });
+	});
 
-	        var formData = $("textarea#EvidenceContent").serializeArray();
-	        formData.push({name: "data[Evidence][content]", value: ops});
-	        ops = '';
+	var editor1 = new MediumEditor('.editableTitle', {
+	    buttons: [
+	    	'bold',
+	        'italic',
+	        'underline',
+	        'header1',
+	        'header2',
+	        'orderedlist',
+	        'unorderedlist',
+	        'anchor',
+	        'quote',
+	        'superscript',
+	        'subscript',
+	        'strikethrough',
+	    ],
+	    checkLinkFormat: true,
+	    cleanPastedHTML: true,
+	    placeholder: "<?= __('Write here the title for your Evidence') ?>",
+	    targetBlank: true,
+  	});
 
-	        jQuery.ajax({
-	            url: "<?= $me['Evidence']['id'] ?>",
-	            data: 'navigation=save&autosave=true&'+jQuery(this).serialize(),
-	            type: 'POST',
-	            success: function(data){
-	                if(data && data == 'success') {
-	                	$("textarea#EvidenceContent").val(ops);
-	                    // Save successfully completed, no need to do anything
-	                } else{
-	                    // Save failed, report the error if you desire
-	                    // ....
-	                }
-	            }// end successful POST function
-	        }); // end jQuery ajax call
+	// When clicking on submit button, title and content are the value for the form fields
+	jQuery('#evidenceButton').click(function() {
 
-	        jQuery.ajax({
-	            url: "<?= $me['Evidence']['id'] ?>",
-	            data: formData,
-	            type: 'POST',
-	            success: function(data){
-	                if(data && data == 'success') {
-	                	$("textarea#EvidenceContent").val(ops);
-	                    // Save successfully completed, no need to do anything
-	                } else{
-	                    // Save failed, report the error if you desire
-	                    // ....
-	                }
-	            }// end successful POST function
-	        });
+		var MyDiv = document.getElementById('evidenceTitle');
+		var MyDiv1 = document.getElementById('evidenceContent');
 
-     		// 	$.post("<?= $me['Evidence']['id'] ?>", formData, function(data){
-			  //   if(data != ""){
-			  //     //do stuff
-			  //   }else{
-			  //     //no data
-			  //   }
-		  	// });
+        $('#EvidenceTitle').val(MyDiv.innerHTML);
+        $('#EvidenceContent').val(MyDiv1.innerHTML);
 
-	    }); // end setting up the autosave on every form on the page
-	}// end function autosave()
-	 
-	// set the autosave interval (60 seconds * 1000 milliseconds per second)
-	setInterval(autosave, 60 * 1000);
+    });
 
+	//retrive likes number
+    socket.on('return_evidence_id', function (data) {
+    	id = data;
+    	console.log(id);
+  	});
+  	
+    function autosave() {
+		var MyDiv = document.getElementById('evidenceTitle');
+		var MyDiv1 = document.getElementById('evidenceContent');
+
+        // $('#EvidenceTitle').val(MyDiv.innerHTML);
+        // $('#EvidenceContent').val(MyDiv1.innerHTML);
+
+		var data = {
+			ititle:MyDiv.innerHTML, 
+			icontent:MyDiv1.innerHTML, 
+			user_id:"<?= $me['Evidence']['user_id'] ?>", 
+			quest_id:"<?= $me['Evidence']['quest_id'] ?>",
+			mission_id:"<?= $me['Evidence']['mission_id'] ?>",
+			phase_id:"<?= $me['Evidence']['phase_id'] ?>",
+			iid:"<?= $me['Evidence']['id'] ?>"
+		};
+
+		console.log(decodeURIComponent(MyDiv.innerHTML));
+		//console.log(decodeURIComponent(MyDiv1.innerHTML));
+		socket.emit('autosave_evidence', data); //Places the counter when the page is reloaded
+	}
+
+	setInterval(autosave, 5 * 1000);
+
+	//To prevent image button from redirecting
+    $('.mediumInsert-action').click(function(event) {
+        event.preventDefault();
+        // return false;
+    }); 
 
     <?php
-        $i = 0;
-        for($i=0; $i<$k;$i++) {
+    //     $i = 0;
+    //     for($i=0; $i<$k;$i++) {
     
-            echo "$('#-". $i ."').click(function() {
-                    var attId = $('#Attachmentprev-". $i ."Id').val().replace('NO-', '');
-                    $('#img-". $i ."').remove();
-                    $('#label-". $i ."').remove();
-                    $('#Attachmentprev-". $i ."Id').val(attId);
-                    $('#-". $i ."').remove();
-                    return false;
-                });";                
-    }?>
+    //         echo "$('#-". $i ."').click(function() {
+    //                 var attId = $('#Attachmentprev-". $i ."Id').val().replace('NO-', '');
+    //                 $('#img-". $i ."').remove();
+    //                 $('#label-". $i ."').remove();
+    //                 $('#Attachmentprev-". $i ."Id').val(attId);
+    //                 $('#-". $i ."').remove();
+    //                 return false;
+    //             });";                
+    // }?>
 
 </script>

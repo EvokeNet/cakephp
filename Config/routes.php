@@ -45,6 +45,10 @@
     	array('controller' => 'pages', 'action' => 'dmcanotifications')
 	);
 
+	if (!defined('WEB_ROOT')){
+		define('WEB_ROOT', "http://".$_SERVER['HTTP_HOST']."/yourdomainname/images/");
+	}
+
 /*	Router::connect(
     	'/admin/*',
     	array('controller' => 'panels')

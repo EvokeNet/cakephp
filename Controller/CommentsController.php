@@ -53,6 +53,8 @@ class CommentsController extends AppController {
 			if ($this->Comment->save($this->request->data)) {
 				//$this->Session->setFlash(__('The comment has been saved.'));
 
+				// echo $this->Html->script('notifications/send.js');
+
 				$this->Session->setFlash(__('Your comment was saved'), 'flash_message');
 
 				if($this->request->data['Comment']['evidence_id'])

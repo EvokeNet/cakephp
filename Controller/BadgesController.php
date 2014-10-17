@@ -32,10 +32,11 @@ class BadgesController extends AppController {
 		}
 
 		//checking Acl permission
+		/*
 		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
 			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
 			$this->redirect($this->referer());
-		}
+		}*/
     }
 
 /**
@@ -226,7 +227,47 @@ class BadgesController extends AppController {
 			$this->Badge->create();
 			if ($this->Badge->save($this->request->data)) {
 				$this->Session->setFlash(__('The badge has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
+			}
+		}
+	}
+
+/*
+* add_badge method
+* adds a badge via admin panel and returns to it
+*/
+	public function panel_add() {
+
+		if ($this->request->is('post')) {
+			
+			$powerInsert['Power'] = $this->request->data['Power'];
+			unset($this->request->data['Power']);
+
+			$this->Badge->create();
+			if ($this->Badge->createWithAttachments($this->request->data)) {
+
+				$badge_id = $this->Badge->id;
+				//create questpowerpoints entries..
+				
+				foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
+					if($powerEntry['quantity'] > 0){
+						$insert['BadgePowerPoint']['badge_id'] = $badge_id;
+						$insertId = $powerId;
+						if($powerId == 0) {
+							$insertId = null;
+						}
+						$insert['BadgePowerPoint']['power_points_id'] = $insertId;
+						$insert['BadgePowerPoint']['quantity'] = $powerEntry['quantity'];
+
+						$this->Badge->BadgePowerPoint->create();
+						$this->Badge->BadgePowerPoint->save($insert);
+					}
+				}
+
+				$this->Session->setFlash(__('The badge has been saved.'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
 			}
@@ -244,6 +285,8 @@ class BadgesController extends AppController {
 		if (!$this->Badge->exists($id)) {
 			throw new NotFoundException(__('Invalid badge'));
 		}
+
+		$this->Badge->id = $id;
 		if ($this->request->is(array('post', 'put'))) {
 
 			$powerInsert['Power'] = $this->request->data['Power'];
@@ -276,7 +319,7 @@ class BadgesController extends AppController {
 
 			if ($this->Badge->save($this->request->data)) {
 				$this->Session->setFlash(__('The badge has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
 			}
@@ -324,14 +367,15 @@ class BadgesController extends AppController {
 		if (!$this->Badge->exists()) {
 			throw new NotFoundException(__('Invalid badge'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		//$this->request->onlyAllow('post', 'delete');
 		if ($this->Badge->delete()) {
 			$this->Session->setFlash(__('The badge has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The badge could not be deleted. Please, try again.'));
 		}
 		//returning to the admin panel
-		return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'badges'));
+		// return $this->redirect(array('controller' => 'panels', 'action' => 'index', 'badges'));
+		return $this->redirect($this->referer());
 	}
 
 /**

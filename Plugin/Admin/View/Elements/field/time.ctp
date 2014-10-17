@@ -1,1 +1,0 @@
-<span class="type time"><?php echo $value; ?></span>

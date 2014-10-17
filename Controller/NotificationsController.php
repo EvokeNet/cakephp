@@ -310,6 +310,76 @@ class NotificationsController extends AppController {
 	}
 
 /**
+ * flushToRedis method
+ *
+ * After a notification was triggered
+ * 
+ * @return void
+ */
+	public function flushToRedis($user_id = null, $notification_id = null, $action_user_id = null, $entity_id = null, $type = null) {
+
+		$redis = new Redis() or die("Cannot load Redis module.");
+		$redis->connect('127.0.0.1');
+
+		$redis->lpush($user_id.'_new_notifications', $notification_id);
+		$redis->lpush($user_id.'_notifications_history', $notification_id);
+
+		$user = $this->Notification->User->find('first', array('conditions' => array('User.id' => $user_id)));
+		$notification = $this->Notification->find('first', array('conditions' => array('Notification.id' => $notification_id)));
+
+		$entity_title = $action_user_name = '';
+
+		if($type == 'comment'){
+			$this->loadModel('Evidence');
+			$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $entity_id)));
+			$entity_title = strip_tags($evidence['Evidence']['title']);
+
+			$user2 = $this->Notification->User->find('first', array('conditions' => array('User.id' => $action_user_id)));
+			$action_user_name = $user2['User']['name'];
+			$type = 'commented';
+			
+		} else if($type == 'like'){
+			$this->loadModel('Evidence');
+			$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $entity_id)));
+			$entity_title = strip_tags($evidence['Evidence']['title']);
+
+			$user2 = $this->Notification->User->find('first', array('conditions' => array('User.id' => $action_user_id)));
+			$action_user_name = $user2['User']['name'];
+			$type = 'liked';
+		}
+
+		$redis->hMset($user_id.'_'.$notification_id.'_hash_notifications', array(
+			'user_id'=> $user_id,
+			'user_name' => $user['User']['name'],
+			'timestamp' => $notification['Notification']['created'],
+			'entity_type' => $type,
+			'entity_id' => $entity_id,
+			'entity_title' => $entity_title,
+			'action_user_id' => $action_user_id,
+			'action_user_name' => $action_user_name,
+			'notification_id' => $notification_id
+		));
+
+		$redis->lpush($user_id.'_list_notifications', $user_id.'_'.$notification_id.'_hash_notifications');
+
+		// $redis->zadd($user_id.'_set', $notification['Notification']['created'], $user_id.'_hash_notifications');
+
+		// var_dump($user_id.'_new_notifications');
+		// var_dump($redis->llen($user_id.'_new_notifications'));
+		// var_dump($redis->llen($user_id.'_new_notifications'));
+		// var_dump($redis->lrange($user_id.'_new_notifications', 0, 200));
+
+		// $redis->publish('notif', 'User: ' . $user_id);
+		// $redis->publish('notif', 'Name: ' . ($user_id.'_new_notifications'));
+		// $redis->publish('notif', 'Notes: ' . $notification_id);
+
+		// $array = "{user_id:$user_id, notification_id:$notification_id}";
+
+		$redis->publish('notif', $redis->llen($user_id.'_new_notifications'));
+		$redis->publish('notif', 'n:'.$notification_id);
+	}
+
+/**
  * add method
  *
  * @return void

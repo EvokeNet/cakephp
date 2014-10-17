@@ -1,1 +1,0 @@
-<span class="type float"><?php echo $value; ?></span>
