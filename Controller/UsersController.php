@@ -228,7 +228,7 @@ class UsersController extends AppController {
 			  //       $this->getEventManager()->dispatch($event);
 					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
 
-					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 					return $this->redirect(array('action' => 'edit', $this->User->id));
 				} else {
@@ -260,7 +260,7 @@ class UsersController extends AppController {
 
 				$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
 
-					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 				return $this->redirect(array('controller' => 'missions', 'action' => 'view_sample'));
 
@@ -334,7 +334,7 @@ class UsersController extends AppController {
 
 						$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
 
-					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 						return $this->redirect(array('action' => 'edit', $this->User->id));
 					} else {
@@ -365,7 +365,7 @@ class UsersController extends AppController {
 
 					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
 
-					$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 					return $this->redirect(array('controller' => 'missions', 'action' => 'view_sample'));
 
@@ -385,7 +385,7 @@ class UsersController extends AppController {
 
 			$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
 
-			$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+			//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 			return $this->redirect(array('controller' => 'missions', 'action' => 'view_sample'));
 
