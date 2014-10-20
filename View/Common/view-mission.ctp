@@ -5,12 +5,13 @@
 	echo $this->Html->css('/components/slick-carousel/slick/slick.css');
 	echo $this->Html->css('slick.css');
 
+
 ?>
+
 	<!-- TOPBAR MENU -->
 	<div id="missions-menu" class="sticky fixed">
-		<?php echo $this->element('topbar-login', array('sticky' => '', 'fixed' => '')); ?>
+		<?php echo $this->element('topbar', array('sticky' => '', 'fixed' => '')); ?>
 	</div>
-
 
 	<div id="missions-body" class="missions">
 		<div class="off-canvas-wrap" data-offcanvas>
@@ -116,6 +117,7 @@
 				<section class="main-section">
 					<!-- SUBMENU -->
 					<div class="missions-submenu fixed hidden padding top-1 left-3">
+
 						<h1 class="text-glow"><?= $mission['Mission']['title'] ?></h1>
 
 						<!-- PROGRESS BAR -->
@@ -271,15 +273,15 @@
 				}
 			});
 
-			$(document)
+		$(document)
 			.on('open.fndtn.offcanvas', '[data-offcanvas]', function() {
 				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-05');
-        		$('div.missions-submenu').removeClass("hidden"); //Show submenu
-        		//$('.right-small').css("right",$('.right-off-canvas-menu').width());
-        		$('.right-small').css("transform",'translate3d(-'+$('.right-off-canvas-menu').width()+'px, 0, 0)'); //Off-canvas buttons go to the left
+	    		$('div.missions-submenu').removeClass("hidden"); //Show submenu
+	    		//$('.right-small').css("right",$('.right-off-canvas-menu').width());
+	    		$('.right-small').css("transform",'translate3d(-'+$('.right-off-canvas-menu').width()+'px, 0, 0)'); //Off-canvas buttons go to the left
 			});
 
-			$(document)
+		$(document)
 			.on('close.fndtn.offcanvas', '[data-offcanvas]', function() {
 				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-05');
 				$('div.missions-submenu').addClass("hidden"); //Hide submenu

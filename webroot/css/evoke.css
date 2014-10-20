@@ -33,9 +33,6 @@ button, .button {
 button.thin, .button.thin {
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
-	padding-left: 3rem;
-	padding-right: 3rem;
-	background-color: red;
 }
 
 .hidden {
