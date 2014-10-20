@@ -181,6 +181,10 @@ button.thin, .button.thin {
 	margin-right: 1em;
 }
 
+.evoke .margin.right-2 {
+	margin-right: 2em;
+}
+
 .evoke .margin.right-3 {
 	margin-right: 3em;
 }

@@ -35,7 +35,7 @@
 				<aside class="right-off-canvas-menu tabQuests">
 					<div class="large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0">
 						<!-- TABS COM MENU -->
-						<dl class="tabs vertical full-height margin right-3 background-color-standard" data-tab>
+						<dl class="tabs vertical full-height margin right-1 background-color-standard" data-tab>
 						  <!-- <dd class="active"><a href="#panel1">Quest 1</a></dd>
 						  <dd><a href="#panel2">Quest 2</a></dd>
 						  <dd><a href="#panel3" class="deactivated">Quest 3</a></dd>
@@ -64,8 +64,13 @@
 										$active = null;
 									?>
 								
-								<div class="content <?= $active ?>" id="panel<?= $counter ?>">
-									<p><?= $m['description'] ?></p>
+								<div class="content <?= $active ?> text-center" id="panel<?= $counter ?>">
+									<div class = "margin right-1">
+										<h3 class="text-color-highlight"><?= $m['title'] ?></h3>
+										<?= $m['description'] ?>
+										<h5 class="text-color-highlight">REWARDS</h5>
+							    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							    	</div>
 								</div>
 
 							<?php $counter++; endforeach; ?>
