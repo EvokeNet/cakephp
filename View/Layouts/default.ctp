@@ -49,6 +49,11 @@ $title = __('Evoke Network');
 
 		echo $this->fetch('social-metatags');
 
+		echo $this->fetch('script'); 
+		
+		echo $this->Html->script('/webroot/components/jquery/dist/jquery.min.js');
+		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
+
 	?>
 	<!--<script src="http://localhost:8000/socket.io/socket.io.js"></script>
 	<script src="http://localhost:3000/socket.io/socket.io.js"></script>-->
@@ -59,21 +64,21 @@ $title = __('Evoke Network');
 		<?php echo $this->fetch('content'); ?>
 	</section>
 
-	<?php echo $this->fetch('footer', array('fixed' => 'fixed')); ?>
+	<?php echo $this->fetch('footer'); ?>
 
 	<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
 
 	<?php
 
-		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
-		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
+		// echo $this->Html->script('/webroot/components/jquery/dist/jquery.min.js');
+		// echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
 		echo $this->Html->script('/components/modernizr/modernizr.js');
 		echo $this->Html->script('/components/foundation/js/foundation.min.js');
 
 		echo $this->Html->script('evoke');
-		echo $this->Html->script('footer_bind');
+		//echo $this->Html->script('footer_bind');
 
-		echo $this->fetch('script'); 
+		// echo $this->fetch('script'); 
 		//echo $this->fetch('page-specific-script'); 
 	?>
 

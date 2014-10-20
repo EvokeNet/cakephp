@@ -9,26 +9,31 @@
 
 	<div class="evoke login fullpage">
 		<div class="section">
-	    	<div class="row full-width missions-carousel">
+	    	<div class="row full-width full-height missions-carousel">
+
+
+	    		<?php foreach($missions as $mission): ?>
+
 	    		<!-- MISSAO 1 -->
 			    <div class="evoke slide background-cover" data-interchange="
 		    			[<?= $this->webroot.'img/mission_1_NameMission-default.png' ?>, (default)], 
 		    			[<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>, (medium)],
 		    			[<?= $this->webroot.'img/mission_1_NameMission-large.jpg' ?>, (large)]">
-					<noscript><img src="<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 1 - Name'); ?>"></noscript>
+					<noscript><img src="<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>" alt="<?= $mission['Mission']['title'] ?>"></noscript>
 
 					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
 						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
-							<h2 class="text-color-important">Mission 1</h2>
+							<h2 class="text-color-important"><?= $mission['Mission']['title'] ?></h2>
 							<p>Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.</p>
 						</div></div>
 					</div>
 		    	</div>
 		    	
-
+		    	<?php endforeach; ?>
+		    	
 		    	<!-- MISSAO 2 -->
 		    	
-		    	<div class="evoke slide background-cover" data-interchange="
+		    	<!-- <div class="evoke slide background-cover" data-interchange="
 		    			[<?= $this->webroot.'img/mission_1_NameMission-default.png' ?>, (default)], 
 		    			[<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>, (medium)],
 		    			[<?= $this->webroot.'img/mission_1_NameMission-large.jpg' ?>, (large)]">
@@ -41,7 +46,7 @@
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.</p>
 						</div>
 					</div></div>
-		    	</div>
+		    	</div> -->
 	    	</div>
 	    </div>
 	    
