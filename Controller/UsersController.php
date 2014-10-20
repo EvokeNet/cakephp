@@ -151,6 +151,9 @@ class UsersController extends AppController {
  */
 	public function login() {
 
+		$this->loadModel('Mission');
+		$missions = $this->Mission->find('all');
+
 		$client = new Google_Client();
 		$client->setApplicationName('Evoke');
 		$client->setClientId(Configure::read('google_client_id'));
@@ -403,6 +406,8 @@ class UsersController extends AppController {
 			$this->set(compact('fbLoginUrl'));
 			$this->Session->write('fbLoginUrl', $fbLoginUrl); //Stores facebook URL in session to be accessed by other views/controllers
 		}
+
+		$this->set(compact('missions'));
 	}
 
 /**

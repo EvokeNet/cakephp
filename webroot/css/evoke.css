@@ -33,9 +33,6 @@ button, .button {
 button.thin, .button.thin {
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
-	padding-left: 3rem;
-	padding-right: 3rem;
-	background-color: red;
 }
 
 .hidden {
@@ -46,7 +43,12 @@ button.thin, .button.thin {
 	overflow: hidden;
 }
 
-/* Colors */
+/* Font sizes */
+.font-size-important {
+	font-size: 120%;
+}
+
+/* Text colors */
 .text-color-important {
 	color: #26dee0;
 }
@@ -88,13 +90,17 @@ button.thin, .button.thin {
     width: 100%;
     height: 100%; }
 
-/* OVERRIDES STANDARD ROW WIDTH WITH OUR STANDARD */
+/* ROW WIDTH */
 .evoke .row.standard-width {
     width: 90%;
     max-width: 90%;
 }
 
-/* OVERRIDES STANDARD ROW WIDTH WITH FULL WIDTH */
+.evoke .row.small-width {
+    width: 70%;
+    max-width: 70%;
+}
+
 .evoke .full-width {
     width: 100%;
     max-width: 100%;
@@ -170,6 +176,10 @@ button.thin, .button.thin {
 
 .evoke .margin.right-1 {
 	margin-right: 1em;
+}
+
+.evoke .margin.right-2 {
+	margin-right: 2em;
 }
 
 .evoke .margin.right-3 {
@@ -258,6 +268,14 @@ button.thin, .button.thin {
 
 .evoke .min-height{
 	height:500px;
+}
+
+/* Position */
+.evoke .absolute {
+	position: absolute;
+}
+.evoke .relative {
+	position: relative;
 }
 
 /* Alignment */
@@ -520,13 +538,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	z-index: 2;
 	background: #292929;
 	text-align: center;
+	bottom: 0;
 }
 
-
-/* --------------------------- */
-/* FOOTER */
-/* --------------------------- */
-.evoke #navigationBar {
-	top: 90%;
-}
 

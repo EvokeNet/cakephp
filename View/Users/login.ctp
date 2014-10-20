@@ -4,85 +4,53 @@
 	echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
 	echo $this->Html->css('fullpage.css');
 
-	echo $this->element('topbar-login');
+	echo $this->element('topbar');
 ?>
 
 	<div class="evoke login fullpage">
 		<div class="section">
-	    	<div class="row full-width missions-carousel">
+	    	<div class="row full-width full-height missions-carousel">
+
+
+	    		<?php foreach($missions as $mission): ?>
+
 	    		<!-- MISSAO 1 -->
-			    <div class="evoke slide background-cover" data-interchange="
+			    <div class="evoke slide background-cover full-width" data-interchange="
 		    			[<?= $this->webroot.'img/mission_1_NameMission-default.png' ?>, (default)], 
 		    			[<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>, (medium)],
-		    			[<?= $this->webroot.'img/mission_1_NameMission-large.png' ?>, (large)]">
-					<noscript><img src="<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 1 - Name'); ?>"></noscript>
+		    			[<?= $this->webroot.'img/mission_1_NameMission-large.jpg' ?>, (large)]">
+					<noscript><img src="<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>" alt="<?= $mission['Mission']['title'] ?>"></noscript>
 
 					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
 						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
-							<h2 class="text-color-important">Mission 1</h2>
-							<p>Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.</p>
+							<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view_sample', $mission['Mission']['id']))?>">
+								<h2 class="text-color-important"><?= $mission['Mission']['title'] ?></h2>
+								<p><?= $mission['Mission']['description'] ?></p>
+							</a>
 						</div></div>
 					</div>
 		    	</div>
 		    	
-
-		    	<!-- MISSAO 2 -->
-		    	
-		    	<div class="evoke slide background-cover" data-interchange="
-		    			[<?= $this->webroot.'img/mission_1_NameMission-default.png' ?>, (default)], 
-		    			[<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>, (medium)],
-		    			[<?= $this->webroot.'img/mission_1_NameMission-large.png' ?>, (large)]">
-		    			
-					<noscript><img src="<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>" alt="<?php echo __('Mission 2 - Name'); ?>"></noscript>
-
-					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
-						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
-							<h2 class="text-color-important">Mission 2</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.</p>
-						</div>
-					</div></div>
-		    	</div>
+		    	<?php endforeach; ?>
 	    	</div>
 	    </div>
 	    
 	    <div class="section evoke login gradient-on-top padding top-2">
-		    <div id="teste3"></div>
-	    	<div class="row standard-width">
+	    	<div class="row small-width text-center">
 		    	<h1 class="text-color-important text-center margin bottom-1"><?php echo __('What is Evoke?'); ?></h1>
-		    	<h2 class="text-color-important text-center">Titulo 2</h2>
-		    	<h3 class="text-color-important text-center">Titulo 3</h3>
-				Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.
-				Need a head start on some of your designs or some extra inspiration to see the full potential of a responsive front-end framework? Check out a list of our Foundation resources!<br />
-				Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.<br />
-				Need a head start on some of your designs or some extra inspiration to see the full potential of a responsive front-end framework? Check out a list of our Foundation resources!<br />
-				Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.<br />
-				Need a head start on some of your designs or some extra inspiration to see the full potential of a responsive front-end framework? Check out a list of our Foundation resources!<br />
-				Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.
-				Need a head start on some of your designs or some extra inspiration to see the full potential of a responsive front-end framework? Check out a list of our Foundation resources!<br />Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.<br />
-				Need a head start on some of your designs or some extra inspiration to see the full potential of a responsive front-end framework? Check out a list of our Foundation resources!
+				<!-- <p class="font-size-important"><?php echo __('Welcome to the Evoke network!'); ?></p> -->
+				<p class="font-size-important"><?php echo __('Welcome to the Evoke network! If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?>
+					<?php echo __('As an Evoke agent, you will choose your mission, develop your powers, and together will agents around the world create your <strong>own world changing idea</strong>.'); ?></p>
 			</div>
 	    </div>
 	    <div class="section evoke login gradient-on-top padding top-2">
-	    	<div class="row standard-width">
+	    	<div class="row small-width text-center">
 		    	<h2 class="text-color-important text-center margin bottom-1"><?php echo __('Why was Evoke created?'); ?></h2>
-		    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.
-				<br />
-				Nunc sed scelerisque nunc. Mauris a pulvinar velit. Vivamus eu metus sed risus dignissim pharetra eget in urna. Proin elementum ultricies ligula eu tempor. Donec in dui vel nulla viverra venenatis ac aliquam nulla. Pellentesque at iaculis massa. Proin faucibus congue porta. Mauris sit amet ante nec justo dignissim tincidunt. Donec nec faucibus diam. Praesent elementum erat metus, pharetra consectetur libero volutpat rhoncus. Aliquam sed egestas nibh. Aenean nisi lorem, facilisis eget scelerisque ac, pellentesque et quam.
-				<br />
-				Etiam malesuada libero in viverra consequat. Aenean et lacinia nunc. Phasellus sed sapien velit. Curabitur in enim feugiat, lacinia nulla ac, hendrerit lacus. Aenean sapien elit, fermentum quis luctus in, pulvinar eget orci. Suspendisse sed enim non quam malesuada sagittis. Duis scelerisque pretium lobortis. Sed lectus lorem, ultrices sit amet odio a, tristique tincidunt ipsum. Pellentesque blandit ut arcu in ullamcorper. Suspendisse congue, turpis ut tincidunt sollicitudin, dui neque aliquet mi, posuere molestie dolor lacus at arcu. Nulla vitae lectus pellentesque, blandit diam quis, maximus sapien.
-				<br />
-				Pellentesque porttitor felis mauris, quis dignissim eros eleifend sed. Pellentesque ornare et elit non tristique. Aenean finibus magna mi. Cras varius sed lacus sit amet finibus. Nullam bibendum velit odio. Proin vestibulum ex eu ante ultrices finibus. Quisque ultrices ante eros, vitae rutrum nisl rutrum et. Aenean sed est ultricies, facilisis metus eu, condimentum neque. Vestibulum vehicula nec lectus sed ornare. Pellentesque condimentum nec metus sit amet rutrum.
-				<p>
-				Morbi ex ex, efficitur vitae leo vel, suscipit fringilla sem. Nunc malesuada dignissim sapien in fermentum. Sed sodales rutrum est sit amet iaculis. Aliquam in cursus tellus, at mollis tortor. Nullam id tortor at metus aliquam molestie. Fusce nec justo vestibulum, imperdiet urna vitae, blandit tortor. Mauris laoreet hendrerit ex. Donec sit amet sem lorem. Proin posuere ac tellus id tempor. Donec scelerisque turpis risus, vulputate bibendum tellus mattis nec. Nulla aliquet diam eget ipsum sodales venenatis. Ut eu sem sollicitudin, varius velit vitae, sodales justo.
-				</p><p>
-				Praesent eget diam sapien. Curabitur non rhoncus ante. Maecenas nec nisl vestibulum, vulputate turpis et, lacinia ante. Vivamus commodo sapien non arcu ultrices sagittis. Phasellus diam tortor, gravida vitae lorem et, ullamcorper malesuada velit. Sed massa odio, rhoncus sit amet tellus id, ultrices feugiat sapien. Morbi accumsan est elit, sit amet semper massa laoreet suscipit. Morbi tincidunt ante a nisl hendrerit tempus. Quisque at pellentesque diam, nec venenatis enim. Vestibulum pulvinar lacus vel metus aliquet malesuada varius a nunc.
-				</p><p>
-				Phasellus facilisis suscipit lacus. Vestibulum tincidunt libero vel justo aliquam convallis. Nunc sodales risus eu venenatis tincidunt. Phasellus ut ipsum at diam convallis condimentum ut nec sem. Aliquam in odio nec urna commodo mattis consequat quis ipsum. In pulvinar, risus eu convallis mattis, lacus nulla tempus mauris, non semper nibh lacus vel ligula. Phasellus luctus dui at massa venenatis consequat. Donec consectetur nunc et dolor sollicitudin facilisis. Integer tristique diam at cursus suscipit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce nec euismod urna. Pellentesque sed ullamcorper diam. Morbi non massa aliquet, facilisis sem sed, lacinia tellus. Nunc sed gravida est, in iaculis diam.
-				</p>
+		    	<p class="font-size-important"><?php echo __('The Evoke network was created to identify voices that are not heard and to give them the tools and support to change their community, their world.  The network believes that every individual can make a difference and when connected to others, change the world.'); ?></p>
 			</div>
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
-	    	<div class="row standard-width full-height centering-block table padding top-5">
+	    	<div class="row standard-width full-height centering-block table padding top-2 text-center">
 		    	<h2 class="text-color-important text-center margin bottom-1"><?php echo __('Gameplay'); ?></h2>
 
 				<div class="evoke small-block-grid-5 tabs-style-linetriangle centered-block">
@@ -146,46 +114,47 @@
 				</div>
 				<div class="tabs-content text-left padding top-2">
 					<section role="tabpanel" aria-hidden="false" class="content active" id="panelMissions">
-						<p>Morbi ex ex, efficitur vitae leo vel, suscipit fringilla sem. Nunc malesuada dignissim sapien in fermentum. Sed sodales rutrum est sit amet iaculis. Aliquam in cursus tellus, at mollis tortor. Nullam id tortor at metus aliquam molestie. Fusce nec justo vestibulum, imperdiet urna vitae, blandit tortor. Mauris laoreet hendrerit ex. Donec sit amet sem lorem. Proin posuere ac tellus id tempor. Donec scelerisque turpis risus, vulputate bibendum tellus mattis nec. Nulla aliquet diam eget ipsum sodales venenatis. Ut eu sem sollicitudin, varius velit vitae, sodales justo.</p>
+						<p class="font-size-important"><?php echo __('As an Evoke agent you are presented with a range of missions that reflect the greatest challenges our world faces – from hunger, to sustainable energy, to clean water and literacy.  As an agent you are called upon to explore these challenges, imagine a better world, act to change the world, and evoke your own solution.'); ?></p>
 					</section>
 					<section role="tabpanel" aria-hidden="true" class="content" id="panelQuests">
-						<p>Etiam malesuada libero in viverra consequat. Aenean et lacinia nunc. Phasellus sed sapien velit. Curabitur in enim feugiat, lacinia nulla ac, hendrerit lacus. Aenean sapien elit, fermentum quis luctus in, pulvinar eget orci. Suspendisse sed enim non quam malesuada sagittis. Duis scelerisque pretium lobortis. Sed lectus lorem, ultrices sit amet odio a, tristique tincidunt ipsum. Pellentesque blandit ut arcu in ullamcorper. Suspendisse congue, turpis ut tincidunt sollicitudin, dui neque aliquet mi, posuere molestie dolor lacus at arcu. Nulla vitae lectus pellentesque, blandit diam quis, maximus sapien.</p>
+						<p class="font-size-important"><?php echo __('Each mission will present a set of quests that will give you powers as an agent.  Each quest will move you toward your understanding of the mission challenge, to learn how others are addressing it and how you as an agent can reshape our world.'); ?></p>
 					</section>
 					<section role="tabpanel" aria-hidden="true" class="content" id="panelEvidences">
-						<p>Praesent eget diam sapien. Curabitur non rhoncus ante. Maecenas nec nisl vestibulum, vulputate turpis et, lacinia ante. Vivamus commodo sapien non arcu ultrices sagittis. Phasellus diam tortor, gravida vitae lorem et, ullamcorper malesuada velit. Sed massa odio, rhoncus sit amet tellus id, ultrices feugiat sapien. Morbi accumsan est elit, sit amet semper massa laoreet suscipit. Morbi tincidunt ante a nisl hendrerit tempus. Quisque at pellentesque diam, nec venenatis enim. Vestibulum pulvinar lacus vel metus aliquet malesuada varius a nunc.</p>
+						<p class="font-size-important"><?php echo __('Evidence is what you do.  For each quest, you will be asked to post your evidence to the Evoke Network in the form of a blog, video, or photo.  Your evidence will be reviewed by the entire network and you will receive comments and power points.'); ?></p>
 					</section>
 					<section role="tabpanel" aria-hidden="true" class="content" id="panelBadges">
-						<p>Phasellus facilisis suscipit lacus. Vestibulum tincidunt libero vel justo aliquam convallis. Nunc sodales risus eu venenatis tincidunt. Phasellus ut ipsum at diam convallis condimentum ut nec sem. Aliquam in odio nec urna commodo mattis consequat quis ipsum. In pulvinar, risus eu convallis mattis, lacus nulla tempus mauris, non semper nibh lacus vel ligula. Phasellus luctus dui at massa venenatis consequat. Donec consectetur nunc et dolor sollicitudin facilisis. Integer tristique diam at cursus suscipit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce nec euismod urna. Pellentesque sed ullamcorper diam. Morbi non massa aliquet, facilisis sem sed, lacinia tellus. Nunc sed gravida est, in iaculis diam.</p>
+						<p class="font-size-important"><?php echo __('Powers are what you give and earn through your participation in the network and your response to quests.  An Evoke agent aims to be a creative visionary, a deep collaborator, a systems thinker, and a social activist.  Powers you earn will build your skills in these areas.'); ?></p>
 					</section>
 					<section role="tabpanel" aria-hidden="true" class="content" id="panelPower">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.</p>
+						<p class="font-size-important"><?php echo __('As you gain strength and earn powers, you will earn badges – the official recognition of the Evoke network that you have developed the skills and the fortitude to become an agent capable of changing the world.'); ?></p>
 					</section>
 				</div>
 			</div>
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
-	    	<div class="row standard-width">
+	    	<div class="row small-width text-center">
 	    		<h2 class="text-color-important text-center margin bottom-1"><?php echo __('Who is behind Evoke?'); ?></h2>
-		    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.
+		    	<p class="font-size-important"><?php echo __('Evoke is an innovation project of the World Bank in collaboration with partners around the world.'); ?></p>
 		    </div>
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
-	    	<div class="row standard-width">
+	    	<div class="row small-width text-center">
 	    		<h2 class="text-color-important text-center margin bottom-1"><?php echo __('How to become an agent?'); ?></h2>
-		    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at tristique mauris, in tempor nulla. Praesent malesuada, mi et aliquam luctus, nisi enim mollis lacus, et vehicula libero sem in metus. Fusce cursus orci id laoreet rutrum. Etiam sapien arcu, porttitor scelerisque metus vel, egestas vulputate velit. Phasellus risus augue, feugiat vitae accumsan non, vulputate sagittis nisi. Vivamus consequat rhoncus tincidunt. Suspendisse auctor sapien a nisl hendrerit lobortis. Nam consectetur sem erat. Sed at dapibus nibh, non pellentesque magna. Nullam quis viverra ex.
+		    	 <p class="font-size-important"><?php echo __('If you have found this message, it is your destiny to follow us.  To start your journey toward becoming an Evoke Agent, you simply need to engage by providing your information here.'); ?></p>
 		    </div>
+
+		    <!-- FOOTER -->
+			<?php
+				echo $this->element('footer', array('fixed' => '', 'absolute' => 'absolute'));
+			?>
+			<!-- FOOTER -->
 	    </div>
 	</div>
 
 
-<!-- FOOTER -->
+
+<!-- SCRIPT -->
 <?php
-	//$this->extend('/Common/footer');
-?>
-<!-- FOOTER -->
-
-
-<?php 
 		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
 		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
 
@@ -203,8 +172,8 @@
 			if ($('.fullpage').length) {
 			    $('.fullpage').fullpage({
 			    	verticalCentered: true,
-			    	paddingTop: ($('#top-bar-login').height()*(-2)).toString()+"px",
-			    	paddingBottom: ($('.footer').height()*2).toString()+"px",
+			    	paddingTop: ($('#top-bar-login').height()*(-1.3)).toString()+"px",
+			    	paddingBottom: ($('#top-bar-login').height()*1.3).toString()+"px",
 			        resize : true,
 			        scrollOverflow: true,
 			        fixedElements: '#top-bar-login',
@@ -249,13 +218,4 @@
 			});
 		});
 	</script>
-
-
-	<!-- GamePlay tabs -->
-	<script type="text/javascript">
-		$(window).ready(function() {
-			if ($('.footer').length) {
-				$('.footer').addClass("sticky").addClass("fixed");
-			}
-		}
-	</script>
+<!-- SCRIPT -->

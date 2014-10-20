@@ -107,22 +107,22 @@ class Group extends AppModel {
         throw new Exception(__("This post could not be saved. Please try again"));
     }
 
-    public function beforeDelete() {
+  //   public function beforeDelete() {
        
-       $group = $this->find('first', array(
-			'conditions' => array('Group.id' => $this->id))
-		);
+  //      $group = $this->find('first', array(
+		// 	'conditions' => array('Group.id' => $this->id))
+		// );
 
-       $event = new CakeEvent('Model.Group.delete', $this, array(
-            'entity_id' => $group['Group']['id'],
-            'user_id' => $group['Group']['user_id'],
-            'entity' => 'group'
-        ));
+  //      $event = new CakeEvent('Model.Group.delete', $this, array(
+  //           'entity_id' => $group['Group']['id'],
+  //           'user_id' => $group['Group']['user_id'],
+  //           'entity' => 'group'
+  //       ));
 
-       $this->getEventManager()->dispatch($event);
+  //      $this->getEventManager()->dispatch($event);
 		
-	   return true;	
-    }
+	 //   return true;	
+  //   }
 	
 /**
  * belongsTo associations

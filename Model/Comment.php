@@ -96,32 +96,32 @@ class Comment extends AppModel {
 	    }	
     }
 
-    public function beforeDelete() {
+  //   public function beforeDelete() {
        
-       $comment = $this->find('first', array(
-			'conditions' => array('Comment.id' => $this->id))
-		);
+  //      $comment = $this->find('first', array(
+		// 	'conditions' => array('Comment.id' => $this->id))
+		// );
 
-       if(isset($comment['Comment']['evidence_id'])){
-	       $event = new CakeEvent('Model.CommentRemove.evidence', $this, array(
-	            'entity_id' => $comment['Comment']['id'],
-	            'user_id' => $comment['Comment']['user_id'],
-	            'entity' => 'commentEvidence'
-	        ));
+  //      if(isset($comment['Comment']['evidence_id'])){
+	 //       $event = new CakeEvent('Model.CommentRemove.evidence', $this, array(
+	 //            'entity_id' => $comment['Comment']['id'],
+	 //            'user_id' => $comment['Comment']['user_id'],
+	 //            'entity' => 'commentEvidence'
+	 //        ));
 
-	       $this->getEventManager()->dispatch($event);
-	   } else if(isset($comment['Comment']['evokation_id'])){
-	       $event = new CakeEvent('Model.CommentRemove.evidence', $this, array(
-	            'entity_id' => $comment['Comment']['id'],
-	            'user_id' => $comment['Comment']['user_id'],
-	            'entity' => 'commentEvokation'
-	        ));
+	 //       $this->getEventManager()->dispatch($event);
+	 //   } else if(isset($comment['Comment']['evokation_id'])){
+	 //       $event = new CakeEvent('Model.CommentRemove.evidence', $this, array(
+	 //            'entity_id' => $comment['Comment']['id'],
+	 //            'user_id' => $comment['Comment']['user_id'],
+	 //            'entity' => 'commentEvokation'
+	 //        ));
 
-	       $this->getEventManager()->dispatch($event);
-	   }
+	 //       $this->getEventManager()->dispatch($event);
+	 //   }
 		
-		return true;	
-    }
+		// return true;	
+  //   }
 
 /**
  * belongsTo associations
