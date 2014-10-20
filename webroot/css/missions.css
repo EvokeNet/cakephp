@@ -48,10 +48,16 @@
 
 /* Off canvas */
 .evoke .missions .right-off-canvas-menu {
-	width: 30rem;
+	width: 30%;
 }
 .evoke .missions .right-small {
 	transition: transform 500ms ease 0s;
+}
+
+
+/* NAVIGATION BAR */
+.evoke #navigationBar {
+	top: 90%;
 }
 
 

@@ -269,6 +269,14 @@ button.thin, .button.thin {
 	height:500px;
 }
 
+/* Position */
+.evoke .absolute {
+	position: absolute;
+}
+.evoke .relative {
+	position: relative;
+}
+
 /* Alignment */
 /* Align with table and table-cell */
 .evoke .vertical-align-top {
@@ -529,13 +537,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	z-index: 2;
 	background: #292929;
 	text-align: center;
+	bottom: 0;
 }
 
-
-/* --------------------------- */
-/* FOOTER */
-/* --------------------------- */
-.evoke #navigationBar {
-	top: 90%;
-}
 

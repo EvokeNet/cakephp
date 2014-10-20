@@ -14,6 +14,13 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 }
 
 /* --------------------------- */
+/* TABLE-CELL*/
+/* --------------------------- */
+.fp-tableCell {
+	position: relative;
+}
+
+/* --------------------------- */
 /* TOP-BAR */
 /* --------------------------- */
 .top-bar {
@@ -60,6 +67,12 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 /* --------------------------- */
 /* COMPLEMENTING TABS */
 /* --------------------------- */
+
+.tabs.vertical{
+	width:25%;
+	height:60px;
+}
+
 /**** Triangle and line  ****/
 .tabs-style-linetriangle .tab-image {
 	max-width: 200px;

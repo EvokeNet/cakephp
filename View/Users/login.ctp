@@ -23,8 +23,8 @@
 
 					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
 						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
-							<h2 class="text-color-important"><?= $mission['Mission']['title'] ?></h2>
-							<p>Our grid works on almost any device and has support for nesting, source ordering, offsets and device presentation. Frankly, it's a little too easy. In no time, you'll be creating complex layouts like this.</p>
+							<a href = "<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view_sample', $mission['Mission']['id']))?>"><h2 class="text-color-important"><?= $mission['Mission']['title'] ?></h2>
+							<p><?= $mission['Mission']['description'] ?></p></a>
 						</div></div>
 					</div>
 		    	</div>
@@ -53,9 +53,9 @@
 	    <div class="section evoke login gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
 		    	<h1 class="text-color-important text-center margin bottom-1"><?php echo __('What is Evoke?'); ?></h1>
-				<p class="font-size-important"><?php echo __('Welcome to the Evoke network!'); ?></p>
-				<p class="font-size-important"><?php echo __('If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?> <br />
-					<?php echo __('As an Evoke agent, you will choose your mission, develop your powers, and together will agents around the world create your own <strong>world changing idea</strong>.'); ?></p>
+				<!-- <p class="font-size-important"><?php echo __('Welcome to the Evoke network!'); ?></p> -->
+				<p class="font-size-important"><?php echo __('Welcome to the Evoke network! If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?>
+					<?php echo __('As an Evoke agent, you will choose your mission, develop your powers, and together will agents around the world create your <strong>own world changing idea</strong>.'); ?></p>
 			</div>
 	    </div>
 	    <div class="section evoke login gradient-on-top padding top-2">
@@ -152,22 +152,22 @@
 		    	<p class="font-size-important"><?php echo __('Evoke is an innovation project of the World Bank in collaboration with partners around the world.'); ?></p>
 		    </div>
 	    </div>
-	    <div class="section evoke gradient-on-top padding top-2">
+	    <div class="section evoke gradient-on-top padding top-2 ">
 	    	<div class="row small-width text-center">
 	    		<h2 class="text-color-important text-center margin bottom-1"><?php echo __('How to become an agent?'); ?></h2>
 		    	 <p class="font-size-important"><?php echo __('If you have found this message, it is your destiny to follow us.  To start your journey toward becoming an Evoke Agent, you simply need to engage by providing your information here.'); ?></p>
 		    </div>
+
+		    <!-- FOOTER -->
+			<?php
+				//$this->start('footer');
+				echo $this->element('footer', array('fixed' => '', 'absolute' => 'absolute'));
+				//$this->end();
+			?>
+			<!-- FOOTER -->
 	    </div>
 	</div>
 
-
-<!-- FOOTER -->
-<?php
-	$this->start('footer');
-	echo $this->element('footer');
-	$this->end();
-?>
-<!-- FOOTER -->
 
 
 <!-- SCRIPT -->
@@ -190,7 +190,7 @@
 			    $('.fullpage').fullpage({
 			    	verticalCentered: true,
 			    	paddingTop: ($('#top-bar-login').height()*(-1.3)).toString()+"px",
-			    	paddingBottom: ($('.footer').height()*1.9).toString()+"px",
+			    	paddingBottom: ($('#top-bar-login').height()*1.3).toString()+"px",
 			        resize : true,
 			        scrollOverflow: true,
 			        fixedElements: '#top-bar-login',
@@ -204,7 +204,7 @@
 			    });
 
 			    /* Ajusta margens em relacao ao top-bar */
-			    $('.fp-controlArrow').css("margin-top", ($('.footer').height()*(-1.3)).toString()+"px");
+			    $('.fp-controlArrow').css("margin-top", ($('#top-bar-login').height()*(-2)).toString()+"px");
 			}
 		});
 	</script>
@@ -234,15 +234,5 @@
 				}
 			});
 		});
-	</script>
-
-
-	<!-- GamePlay tabs -->
-	<script type="text/javascript">
-		$(window).ready(function() {
-			if ($('.footer').length) {
-				$('.footer').addClass("sticky").addClass("fixed");
-			}
-		}
 	</script>
 <!-- SCRIPT -->
