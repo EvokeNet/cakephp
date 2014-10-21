@@ -9,37 +9,12 @@
 
 ?>
 
-<div class="sticky">
-	<nav class="top-bar" data-topbar data-options="sticky_on: large">
-	  <ul class="title-area">
-	    <li class="name">
-	      <h1><a href="#">My Site</a></h1>
-	    </li>
-	     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-	  </ul>
-
-	  <section class="top-bar-section">
-	    <!-- Right Nav Section -->
-	    <ul class="right">
-	      <li class="active"><a href="#">Right Button Active</a></li>
-	      <li class="has-dropdown">
-	        <a href="#">Right Button Dropdown</a>
-	        <ul class="dropdown">
-	          <li><a href="#">First link in dropdown</a></li>
-	        </ul>
-	      </li>
-	    </ul>
-
-	    <!-- Left Nav Section -->
-	    <ul class="left">
-	      <li><a href="#">Left Nav Button</a></li>
-	    </ul>
-	  </section>
-	</nav>
+<!-- TOPBAR MENU -->
+<div id="missions-menu" class="sticky fixed">
+	<?php echo $this->element('topbar', array('sticky' => '', 'fixed' => '')); ?>
 </div>
 
-<div class="row row-full-width">
+<div class="row row-full-width padding top-4">
   <div class="large-2 columns padding-left-0">
   	<div class = "menu-column">
   		<dl class="tabs vertical" data-tab style = "width:100%">
@@ -73,18 +48,18 @@
 
 			echo $this->Session->flash();
 
-			echo $this->Form->input('Mission.title.eng', array('value' => $mission['missionTitle'][0]['content'], 'label' => __('English Title'), 'required' => true));
+			// echo $this->Form->input('Mission.title.eng', array('value' => $mission['Mission']['title'], 'label' => __('English Title'), 'required' => true));
 			
-			echo $this->Form->input('Mission.title.spa', array('value' => $mission['missionTitle'][1]['content'], 'label' => __('Spanish Title')));
+			// echo $this->Form->input('Mission.title.spa', array('value' => $mission['missionTitle'][1]['content'], 'label' => __('Spanish Title')));
 
-			echo $this->Form->input('Mission.description.eng', array('value' => $mission['missionDescription'][0]['content'], 'label' => __('English Description'), 'required' => true));
+			// echo $this->Form->input('Mission.description.eng', array('value' => $mission['missionDescription'][0]['content'], 'label' => __('English Description'), 'required' => true));
 			
-			echo $this->Form->input('Mission.description.spa', array('value' => $mission['missionDescription'][1]['content'], 'label' => __('Spanish Description')));
+			// echo $this->Form->input('Mission.description.spa', array('value' => $mission['missionDescription'][1]['content'], 'label' => __('Spanish Description')));
 
-			// echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title'), 'required' => true));
-			// echo $this->Form->input('title_es', array('value' => $mission['Mission']['title_es'], 'label' => __('Spanish Title')));
-			// echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description'), 'required' => true));
-			// echo $this->Form->input('description_es', array('value' => $mission['Mission']['description_es'], 'label' => __('Spanish Description')));
+			echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title'), 'required' => true));
+			echo $this->Form->input('title_es', array('value' => $mission['Mission']['title_es'], 'label' => __('Spanish Title')));
+			echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description'), 'required' => true));
+			echo $this->Form->input('description_es', array('value' => $mission['Mission']['description_es'], 'label' => __('Spanish Description')));
 
 			echo $this->Form->input('video_link', array('value' => $mission['Mission']['video_link_es'], 'label' => __('Video Link')));
 			echo $this->Form->input('video_link_es', array('value' => $mission['Mission']['video_link_es'], 'label' => __('Spanish Video Link')));

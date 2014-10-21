@@ -214,6 +214,14 @@ button.thin, .button.thin {
 	padding-top: 2em;
 }
 
+.evoke .padding.top-3 {
+	padding-top: 3em;
+}
+
+.evoke .padding.top-4 {
+	padding-top: 4em;
+}
+
 .evoke .padding.top-5 {
 	padding-top: 5em;
 }

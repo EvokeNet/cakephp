@@ -9,37 +9,12 @@
 
 ?>
 
-<div class="sticky">
-	<nav class="top-bar" data-topbar data-options="sticky_on: large">
-	  <ul class="title-area">
-	    <li class="name">
-	      <h1><a href="#">My Site</a></h1>
-	    </li>
-	     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-	  </ul>
-
-	  <section class="top-bar-section">
-	    <!-- Right Nav Section -->
-	    <ul class="right">
-	      <li class="active"><a href="#">Right Button Active</a></li>
-	      <li class="has-dropdown">
-	        <a href="#">Right Button Dropdown</a>
-	        <ul class="dropdown">
-	          <li><a href="#">First link in dropdown</a></li>
-	        </ul>
-	      </li>
-	    </ul>
-
-	    <!-- Left Nav Section -->
-	    <ul class="left">
-	      <li><a href="#">Left Nav Button</a></li>
-	    </ul>
-	  </section>
-	</nav>
+<!-- TOPBAR MENU -->
+<div id="missions-menu" class="sticky fixed">
+	<?php echo $this->element('topbar', array('sticky' => '', 'fixed' => '')); ?>
 </div>
 
-<div class="row row-full-width">
+<div class="evoke row row-full-width padding top-4">
   <div class="large-2 columns padding-left-0">
 	  <div class = "menu-column">
 	  </div>
@@ -55,8 +30,8 @@
 				<tr>
 					<th width="25"><input type="checkbox" onclick="checkAll('missionsTable', 'mis')" name="chk[]" id="mis" /></th>
 					<th><?= _('Missions') ?></th>
-		      		<th width="25"></th>
-		      		<th width="25"><a href="#" data-reveal-id="myModalAddOrg"><i class="fa fa-plus fa-lg"></i></a></th><!-- Button to add new organization -->
+		      		<th width="25"></th>   
+		      		<th width="25"><a href="#" data-reveal-id="myModalAddMission"><i class="fa fa-plus fa-lg"></i></a></th><!-- Button to add new organization -->
 				</tr>
 			</thead>
 			<tbody>
@@ -64,12 +39,69 @@
 				<tr>
 				  <td><input type="checkbox" name="chkbox[]"></td>
 			      <td><?= $m['Mission']['title'] ?></td>
-			      <td><a href="<?php echo $this->Html->url(array('controller'=>'panels', 'action' => 'edit_mission', $m['Mission']['id'])); ?>"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
+			      <td><a href="<?php echo $this->Html->url(array('controller'=>'panels', 'action' => 'mission_edition', $m['Mission']['id'])); ?>"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
 			      <td><a href="<?php echo $this->Html->url(array('controller'=>'missions', 'action' => 'delete', $m['Mission']['id'])); ?>"><i class="fa fa-times fa-lg"></i></a></td>
 			    </tr>
 			<?php endforeach; ?>	
 			</tbody>
 		</table>
+
+		<!-- Add new organization form -->
+			<div id="myModalAddMission" class="reveal-modal tiny" data-reveal>
+			  
+			  <?php 
+					echo $this->Form->create('Mission', array(
+						   	'url' => array(
+						   		'controller' => 'panels',
+						   		'action' => 'add_mission'
+							),
+							'enctype' => 'multipart/form-data'
+					));
+					 
+				?>
+				
+				<?php
+					
+					echo __('Add a Mission'); 
+					echo $this->Form->input('Mission.title.eng', array('label' => __('Title'), 'required' => true));
+					echo $this->Form->input('Mission.title.spa', array('label' => __('Spanish Title')));
+					//echo $this->Form->input('title_es', array('label' => __('Spanish Title')));
+					echo $this->Form->input('Mission.description.eng', array('label' => __('Description'), 'required' => true));
+					echo $this->Form->input('Mission.description.spa', array('label' => __('Spanish Description')));
+					//echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
+					echo $this->Form->input('video_link', array('label' => __('Video Link')));
+					echo $this->Form->input('video_link_es', array('label' => __('Spanish Video Link')));
+					echo $this->Form->radio('basic_training', array(0 => 'No', 1=>'Yes'), array('required' => true, 'default'=> 0));
+					if(!is_null($mission['Mission']['image_dir'])) :
+						echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['image_dir'].'/thumb_'.$mission['Mission']['image_attachment'] . '"/>';
+						echo '<div class="input file"><label for="AttachmentImgAttachment">Change Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
+					else :
+						echo '<div class="input file"><label for="AttachmentImgAttachment">Image</label><input type="file" name="data[Attachment][Img][attachment]" id="AttachmentImgAttachment"></div>';
+					endif;
+					if(!is_null($mission['Mission']['cover_dir'])) :
+						echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/thumb_'.$mission['Mission']['cover_attachment'] . '"/>';
+						echo '<div class="input file"><label for="AttachmentCoverAttachment">Change Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
+					else :
+						echo '<div class="input file"><label for="AttachmentCoverAttachment">Cover</label><input type="file" name="data[Attachment][Cover][attachment]" id="AttachmentCoverAttachment"></div>';
+					endif;
+					echo $this->Form->hidden('form_type', array('value' => 'mission'));
+					echo $this->Form->input('MissionIssue.issue_id', array(
+						'options' => $issues
+					));
+					echo $this->Form->input('organization_id', array(
+							'label' => __('Created by'),
+							'options' => $organizations
+					));
+				?>
+				
+				<button class="button small" type="submit">
+					<?php echo __('Save and continue') ?>
+				</button>
+				<?php echo $this->Form->end(); ?>
+
+				<a class="close-reveal-modal">&#215;</a>
+			</div>
+
 	  </li>
 
 	  <li>
@@ -271,87 +303,87 @@
 	
 	$(document).foundation(); 
 	
-	// function checkAll(id, id1){
-	//     var tab = document.getElementById(id); // table with id tbl1
-	//     var elems = tab.getElementsByTagName('input');
-	//     var len = elems.length;
+	function checkAll(id, id1){
+	    var tab = document.getElementById(id); // table with id tbl1
+	    var elems = tab.getElementsByTagName('input');
+	    var len = elems.length;
 
-	//     if($('#' + id1).is(":checked")) {
-	// 	    for(var i = 0; i<len; i++){
-	// 	    	if(elems[i].type == "checkbox")
-	// 	    		elems[i].checked = true;
-	// 	    }
-	// 	} else{
-	// 		for(var i = 0; i<len; i++){
-	// 	    	if(elems[i].type == "checkbox")
-	// 	    		elems[i].checked = false;
-	// 	    }
-	// 	}
-	// }
+	    if($('#' + id1).is(":checked")) {
+		    for(var i = 0; i<len; i++){
+		    	if(elems[i].type == "checkbox")
+		    		elems[i].checked = true;
+		    }
+		} else{
+			for(var i = 0; i<len; i++){
+		    	if(elems[i].type == "checkbox")
+		    		elems[i].checked = false;
+		    }
+		}
+	}
 
-	// // Implements search in tables
-	// (function(document) {
-	// 	'use strict';
+	// Implements search in tables
+	(function(document) {
+		'use strict';
 
-	// 	var LightTableFilter = (function(Arr) {
+		var LightTableFilter = (function(Arr) {
 
-	// 		var _input;
+			var _input;
 
-	// 		function _onInputEvent(e) {
-	// 			_input = e.target;
-	// 			var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-	// 			Arr.forEach.call(tables, function(table) {
-	// 				Arr.forEach.call(table.tBodies, function(tbody) {
-	// 					Arr.forEach.call(tbody.rows, _filter);
-	// 				});
-	// 			});
-	// 		}
+			function _onInputEvent(e) {
+				_input = e.target;
+				var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+				Arr.forEach.call(tables, function(table) {
+					Arr.forEach.call(table.tBodies, function(tbody) {
+						Arr.forEach.call(tbody.rows, _filter);
+					});
+				});
+			}
 
-	// 		function _filter(row) {
-	// 			var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-	// 			row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-	// 		}
+			function _filter(row) {
+				var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+				row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+			}
 
-	// 		return {
-	// 			init: function() {
-	// 				var inputs = document.getElementsByClassName('light-table-filter');
-	// 				Arr.forEach.call(inputs, function(input) {
-	// 					input.oninput = _onInputEvent;
-	// 				});
-	// 			}
-	// 		};
-	// 	})(Array.prototype);
+			return {
+				init: function() {
+					var inputs = document.getElementsByClassName('light-table-filter');
+					Arr.forEach.call(inputs, function(input) {
+						input.oninput = _onInputEvent;
+					});
+				}
+			};
+		})(Array.prototype);
 
-	// 	document.addEventListener('readystatechange', function() {
-	// 		if (document.readyState === 'complete') {
-	// 			LightTableFilter.init();
-	// 		}
-	// 	});
+		document.addEventListener('readystatechange', function() {
+			if (document.readyState === 'complete') {
+				LightTableFilter.init();
+			}
+		});
 
-	// })(document);
+	})(document);
 
-	//Paginates tables
-	// $('table.paginated').each(function() {
-	//     var currentPage = 0;
-	//     var numPerPage = 10;
-	//     var $table = $(this);
-	//     $table.bind('repaginate', function() {
-	//         $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
-	//     });
-	//     $table.trigger('repaginate');
-	//     var numRows = $table.find('tbody tr').length;
-	//     var numPages = Math.ceil(numRows / numPerPage);
-	//     var $pager = $('<div class="pager"></div>');
-	//     for (var page = 0; page < numPages; page++) {
-	//         $('<a class="page-number"></a>').text(page + 1).bind('click', {
-	//             newPage: page
-	//         }, function(event) {
-	//             currentPage = event.data['newPage'];
-	//             $table.trigger('repaginate');
-	//             $(this).addClass('active').siblings().removeClass('active');
-	//         }).appendTo($pager).addClass('clickable');
-	//     }
-	//     $pager.insertAfter($table).find('a.page-number:first').addClass('active');
-	// });
+	Paginates tables
+	$('table.paginated').each(function() {
+	    var currentPage = 0;
+	    var numPerPage = 10;
+	    var $table = $(this);
+	    $table.bind('repaginate', function() {
+	        $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+	    });
+	    $table.trigger('repaginate');
+	    var numRows = $table.find('tbody tr').length;
+	    var numPages = Math.ceil(numRows / numPerPage);
+	    var $pager = $('<div class="pager"></div>');
+	    for (var page = 0; page < numPages; page++) {
+	        $('<a class="page-number"></a>').text(page + 1).bind('click', {
+	            newPage: page
+	        }, function(event) {
+	            currentPage = event.data['newPage'];
+	            $table.trigger('repaginate');
+	            $(this).addClass('active').siblings().removeClass('active');
+	        }).appendTo($pager).addClass('clickable');
+	    }
+	    $pager.insertAfter($table).find('a.page-number:first').addClass('active');
+	});
 
 </script>

@@ -23,7 +23,7 @@ class PanelsController extends AppController {
 */
 	public function beforeFilter() {
         parent::beforeFilter();
-        ini_set('memory_limit', '256M'); // emergencial measure
+        ini_set('memory_limit', '512M'); // emergencial measure
         
         $this->user = array();
         //get user data into public var
@@ -579,7 +579,7 @@ class PanelsController extends AppController {
 		$this->render('main');
 	}
 
-	public function dashboard($org_id = null){
+	public function organization($org_id = null){
 
 		$this->loadModel('Badges');
 		$this->loadModel('Organization');
@@ -641,7 +641,70 @@ class PanelsController extends AppController {
 
 		$issues = $this->Issue->getIssues();
 
-		$this->set(compact('mypp', 'powerpoints', 'me', 'badges', 'issues', 'missions', 'missions_issues', 'roles', 'roles_list', 'users', 'organization'));
+		$mission = null;
+
+		if ($this->request->is('post')) {
+			
+			//it's a new mission, so let's add it.. creating it with possible attachments (mission img)
+			if ($mission = $this->Mission->createWithAttachments($this->request->data)) {
+			
+				$id = $mission['Mission']['id'];
+				//saves the issue related to it..
+				$this->request->data['MissionIssue']['mission_id'] = $id;
+				if($this->MissionIssue->save($this->request->data)) {
+					$this->Session->setFlash(__('mission issue saved'));
+					
+					//redirects to the same page, but with the tab phase activated
+					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
+				} else {
+					$this->Session->setFlash(__('mission issue failed saving.'));
+				}
+			} else {
+				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
+			}		 
+		} 
+
+		if($this->user['role_id'] == 1){
+			$flags = array(
+				'_admin' => true 
+			);
+
+			//as admin, he can set any organization as responsable for this mission
+			$organizations = $this->Organization->find('list', array(
+				'order' => array(
+					'Organization.name ASC'
+				)
+			));
+		} else {
+			$flags = array(
+				'_admin' => false 
+			);
+
+			//the possible organizations to be responsable for this mission are his own
+			$my_orgs = $this->UserOrganization->find('all', array(
+				'conditions' => array(
+					array(
+						'UserOrganization.user_id' => $this->user['id']
+					)
+				)
+			));
+
+			$my_orgs_id = array();
+			$k = 0;
+			foreach ($my_orgs as $my_org) {
+				$my_orgs_id[$k] = array('id' => $my_org['Organization']['id']);
+				$k++;
+			}
+
+			$organizations = $this->Organization->find('list', array(
+				'order' => array('Organization.name ASC'),
+				'conditions' => array(
+					'OR' => $my_orgs_id
+				)
+			));
+		}
+
+		$this->set(compact('mypp', 'powerpoints', 'me', 'badges', 'issues', 'mission', 'missions', 'missions_issues', 'roles', 'roles_list', 'users', 'organization', 'organizations'));
 
 		// $this->render('dashboard');
 	}
