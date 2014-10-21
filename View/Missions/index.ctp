@@ -27,7 +27,7 @@
 			<?php foreach($missions as $mission): ?>
 
 				<h1 class="text-color-highlight"
-					style="position: absolute; z-index: 1; font-size: 1.5vw; left: 80px; margin-top: 20px;">
+					style="position: absolute; z-index: 1; font-size: 1.5vw; left: 80px; margin-top: 20px; text-shadow: 0 0 12px rgba(0,0,0,0.85);">
 					<?= strtoupper($mission['Mission']['title']) ?>
 				</h1>
                 <div class="evoke default view view-first">
