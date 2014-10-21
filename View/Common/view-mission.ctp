@@ -135,19 +135,13 @@
 					<div class="section missions-content">
 				    	<div class="row missions-carousel full-width">
 				    		<!-- MISSAO 1 -->
-						    <div>
-						    	<img data-interchange="
-					    			[<?= $this->webroot.'img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>, (default)], 
-					    			[<?= $this->webroot.'img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>, (medium)],
-					    			[<?= $this->webroot.'img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>, (large)]"
-					    			alt="<?php echo __('Mission 1 - Name'); ?>" class="full-width" />
-								<noscript><img src="<?= $this->webroot.'img/episodes-example/Evoke_00_Eng_0000_cover.jpg' ?>" class="full-width" alt="<?php echo __('Mission 1 - Name'); ?>" /></noscript>
-					    	</div>
-					    	
-					    	<!-- MISSAO 2 -->
-					    	<div>
-						    	<img src="<?= $this->webroot.'img/episodes-example/Evoke_00_Eng_0000_Pg01.jpg' ?>" class="full-width" alt="<?php echo __('Mission 1 - Name'); ?>" />
-					    	</div>
+
+				    		<?php foreach ($novels as $novel) : ?>
+								<div>
+									<img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%">
+								</div>
+							<?php endforeach; ?>
+
 				    	</div>
 
 				    	<!-- NAVIGATION BAR -->
