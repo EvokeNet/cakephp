@@ -46,12 +46,16 @@
 								$counter = 1;
 								$active = 'class = "active"';
 
-								foreach($mission['Quest'] as $m): 
-									if($counter != 1)
-										$active = null;
-									?>
-								<dd <?= $active ?>><a href="#panel<?= $counter ?>"><?= $m['title'] ?></a></dd>
-							<?php $counter++; endforeach; ?>
+								if (isset($mission['Quest'])) {
+									foreach($mission['Quest'] as $m): 
+										if($counter != 1)
+											$active = null;
+										?>
+										<dd <?= $active ?>><a href="#panel<?= $counter ?>"><?= $m['title'] ?></a></dd>
+										<?php
+										$counter++;
+									endforeach;
+								} ?>
 						</dl>
 
 						<div class="tabs-content full-height">
@@ -60,10 +64,12 @@
 								$counter = 1;
 								$active = 'active'; ?>
 
-							<?php foreach($mission['Quest'] as $m): 
-									if($counter != 1)
-										$active = null;
-									?>
+							<?php 
+								if (isset($mission['Quest'])) {
+									foreach($mission['Quest'] as $m): 
+										if($counter != 1)
+											$active = null;
+										?>
 								
 								<div class="content <?= $active ?> text-center" id="panel<?= $counter ?>">
 									<div class = "margin right-1">
@@ -74,7 +80,10 @@
 							    	</div>
 								</div>
 
-							<?php $counter++; endforeach; ?>
+							<?php
+									$counter++;
+									endforeach;
+								} ?>
 
 						  <!-- TAB QUESTS -->
 						  <!-- <div class="content active" id="panel1">
@@ -118,7 +127,7 @@
 					<!-- SUBMENU -->
 					<div class="missions-submenu fixed hidden padding top-1 left-3">
 
-						<h1 class="text-glow"><?= $mission['Mission']['title'] ?></h1>
+						<h1 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h1>
 
 						<!-- PROGRESS BAR -->
 						<div class="button-bar phases-bar padding top-05 bottom-05">
@@ -148,7 +157,7 @@
 				    	<div id="navigationBar" class="evoke row full-width fixed sticky contain-to-grid padding top-1 bottom-1 text-center background-color-dark-opacity-05 bottom-0">
 								<div class="small-12 medium-12 large-12 columns centering-block">
 									<ul class="inline-list centered-block margins-0">
-										<li><h5 class="text-glow"><?= $mission['Mission']['title'] ?></h5></li>
+										<li><h5 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h5></li>
 										<li><div id="slickPrevArrow"></div></li>
 										<li><h5 class="text-glow">Page 1</h5></li>
 										<li><div id="slickNextArrow"></div></li>
