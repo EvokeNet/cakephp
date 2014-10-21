@@ -265,7 +265,7 @@ class UsersController extends AppController {
 
 					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-				return $this->redirect(array('controller' => 'missions', 'action' => 'view_sample'));
+				return $this->redirect(array('controller' => 'users', 'action' => 'enter_site'));
 
 			}
 		} 
@@ -370,7 +370,7 @@ class UsersController extends AppController {
 
 					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-					return $this->redirect(array('controller' => 'missions', 'action' => 'view_sample'));
+					return $this->redirect(array('controller' => 'users', 'action' => 'enter_site'));
 
 				}
 				
@@ -390,7 +390,7 @@ class UsersController extends AppController {
 
 			//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-			return $this->redirect(array('controller' => 'missions', 'action' => 'view_sample'));
+			return $this->redirect(array('controller' => 'users', 'action' => 'enter_site'));
 
 		} else if(isset($this->request->data['User']['username'])){
 
@@ -1249,6 +1249,46 @@ class UsersController extends AppController {
 
 	}
 
+
+
+/**
+ *
+ * matching questions
+ *
+ * @return void
+ */
+	public function matching($id = null) {
+	}
+
+/**
+ *
+ * matching results
+ *
+ * @return void
+ */
+	public function matching_results($id = null) {
+	}
+
+/**
+ *
+ * enter site
+ *
+ * @return void
+ */
+	public function enter_site($id = null) {
+		$this->set('user_id', $this->getUserId());
+	}
+
+/**
+ * see a preview of the evokation page
+ *
+ * @return void
+ */
+	public function evokation() {
+
+	}
+
+
 /**
  *
  * leaderboard
@@ -1651,7 +1691,7 @@ class UsersController extends AppController {
 			    	$this->Auth->login($user);
 			    	//$this->Session->setFlash(__('The user has been saved.'));
 			    	$this->Session->setFlash(__('Your informations were succefully saved'), 'flash_message');
-					return $this->redirect(array('controller' => 'missions', 'action' => 'view_sample'));
+					return $this->redirect(array('controller' => 'users', 'action' => 'enter_site'));
 
 				} 
 		        

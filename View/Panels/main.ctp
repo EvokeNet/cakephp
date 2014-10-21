@@ -31,42 +31,17 @@
 
 ?>
 
-<div class="sticky">
-	<nav class="top-bar" data-topbar data-options="sticky_on: large">
-	  <ul class="title-area">
-	    <li class="name">
-	      <h1><a href="#">My Site</a></h1>
-	    </li>
-	     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-	  </ul>
-
-	  <section class="top-bar-section">
-	    <!-- Right Nav Section -->
-	    <ul class="right">
-	      <li class="active"><a href="#">Right Button Active</a></li>
-	      <li class="has-dropdown">
-	        <a href="#">Right Button Dropdown</a>
-	        <ul class="dropdown">
-	          <li><a href="#">First link in dropdown</a></li>
-	        </ul>
-	      </li>
-	    </ul>
-
-	    <!-- Left Nav Section -->
-	    <ul class="left">
-	      <li><a href="#">Left Nav Button</a></li>
-	    </ul>
-	  </section>
-	</nav>
+<!-- TOPBAR MENU -->
+<div id="missions-menu" class="sticky fixed">
+	<?php echo $this->element('topbar', array('sticky' => '', 'fixed' => '')); ?>
 </div>
 
-<div class="row row-full-width" data-equalizer>
+<div class="row row-full-width padding top-4" data-equalizer>
   <div class="large-2 columns padding-left-0" data-equalizer-watch>
 	  <div class = "menu-column">
 	  	<div class = "text-align-center padding-05" style = "color:white"><?= _('Choose an organization') ?></div>
 		<?php foreach($organizations as $o): ?>
-	  			<a href = "<?= $this->Html->url(array('controller' => 'panels', 'action' => 'dashboard', $o['Organization']['id'])) ?>">
+	  			<a href = "<?= $this->Html->url(array('controller' => 'panels', 'action' => 'organization', $o['Organization']['id'])) ?>">
 	  				<div class = "padding-05"><i class="fa fa-university fa-lg"></i>&nbsp;&nbsp;&nbsp;<span><?= $o['Organization']['name'] ?></span></div>
 	  			</a>
 		<?php endforeach; ?>

@@ -21,7 +21,7 @@ class EvokationsController extends AppController {
 	
 	public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('view');
+        //$this->Auth->allow('view');
     }
 /**
  * index method

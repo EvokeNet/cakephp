@@ -6,10 +6,19 @@
 		<ul class="title-area">
 			<li class="name">
 				<h1>
-					<a href="#"><span>
-						<!-- Logo -->
-						<div class="left"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>'></div>
-					</span></a>
+					<?php  ?>
+					<a href="<?php
+						if (isset($loggedIn) && (!$loggedIn)) {
+							echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site'));
+						}
+						else {
+							echo $this->Html->url(array('controller' => 'users', 'action' => 'login'));
+						} ?>">
+						<span>
+							<!-- Logo -->
+							<div class="left"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>'></div>
+						</span>
+					</a>
 				</h1>
 			</li>
 			
