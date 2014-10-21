@@ -28,10 +28,10 @@ class Phase extends AppModel {
  */
 	public $actsAs = array(
 		'Containable',
-        'Translate' => array(
-            'name' => 'phaseName', 
-            'description' => 'phaseDescription'
-        )
+        // 'Translate' => array(
+        //     'name' => 'phaseName', 
+        //     'description' => 'phaseDescription'
+        // )
     );
 
     public $translateModel = 'PhaseTranslation';
