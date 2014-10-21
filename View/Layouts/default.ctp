@@ -55,7 +55,19 @@ $title = __('Evoke Network');
 </head>
 <body class="evoke">
 
+	<?php 
+	if ($this->fetch('topbar')) {
+		echo $this->fetch('topbar'); 
+	}
+	?>
+
 	<section role="main body">
+		<?php 
+		if ($this->fetch('image_header')) {
+			echo $this->fetch('image_header'); 
+		}
+		?>
+
 		<?php echo $this->fetch('content'); ?>
 	</section>
 

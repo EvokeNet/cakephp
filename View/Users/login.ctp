@@ -4,7 +4,9 @@
 	echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
 	echo $this->Html->css('fullpage.css');
 
+	$this->start('topbar');
 	echo $this->element('topbar');
+	$this->end();
 ?>
 
 	<div class="evoke login fullpage">
@@ -145,7 +147,7 @@
 
 		    <!-- FOOTER -->
 			<?php
-				echo $this->element('footer', array('fixed' => '', 'absolute' => 'absolute'));
+				echo $this->element('footer', array('footerClass' => 'absolute'));
 			?>
 			<!-- FOOTER -->
 	    </div>

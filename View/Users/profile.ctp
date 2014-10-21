@@ -1,5 +1,7 @@
 <?php
+	$this->start('topbar');
 	echo $this->element('topbar');
+	$this->end();
 ?>
 
 <div class="evoke row background-color-standard full-width">
