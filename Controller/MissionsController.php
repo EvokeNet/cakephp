@@ -621,7 +621,18 @@ class MissionsController extends AppController {
 		$fbLoginUrl = $this->Session->read('fbLoginUrl');
 
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
-		$this->set(compact('fbLoginUrl', 'mission'));
+
+		$novels = $this->Mission->Novel->find('all', array(
+			'order' => array(
+				'Novel.page Asc'
+			),
+			'conditions' => array(
+				'Novel.mission_id' => $id,
+				'Novel.language' => 'en'
+			)
+		));
+
+		$this->set(compact('fbLoginUrl', 'mission', 'novels'));
 
 		//Render simple layout
 		$this->render('/Common/view-mission'); 
