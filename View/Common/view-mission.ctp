@@ -8,6 +8,7 @@
 			'slick.css',
 			'/components/medium-editor/dist/css/medium-editor.css',
 			'/components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.css',
+			'medium.css'
 		)
 	);
 ?>
@@ -96,7 +97,9 @@
 									    </p>
 									   
 									    <p class="text-center margin top-2">
+									    	<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
 									    		<a class="button small submit-evidence" data-quest-id="<?= $counter ?>">Submit your evidence</a>
+									    	</span>
 									    </p>
 
 									    <!-- SUBMIT EVIDENCE -->
@@ -117,14 +120,13 @@
 												echo $this->Form->hidden('phase_id', array('value' => $m['phase_id']));
 
 												?>
-												<span data-tooltip aria-haspopup="true" class="has-tip" title="Test the evidence editor!">
+												
 												<?php
 												echo '<div class = "editableTitle" id = "evidenceTitle"></div>';
 												echo '<div class = "editableContent margin bottom-3" id = "evidenceContent"></div>';
 												?>
-												</span>
 
-												<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview, it is not possible to add attachments.">
+												<span data-tooltip aria-haspopup="true" class="has-tip tip-top" title="In preview, it is not possible to add attachments.">
 												<?php
 												// echo "<label>".__('Attachments'). "</label>";
 												echo '<button class="button small general" style = "display:inline" disabled>'.__('+ File').'</button>';
@@ -148,11 +150,13 @@
 									            // echo "</ul>";
 									            // echo '</div>';
 											?>
+											
 											<div class = "evoke titles-right" style = "display: inline;">
-												<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview, it is not possible to save your evidence.">
+												<span data-tooltip aria-haspopup="true" class="has-tip tip-top" title="In preview, it is not possible to save your evidence.">
 													<button type="submit" id = "evidenceButton" class= "evoke button general small" disabled><?= strtoupper(__('Save Evidence')) ?></button>
 												</span>
 											</div>
+											
 									    </div>
 							    	</div>
 								</div>
