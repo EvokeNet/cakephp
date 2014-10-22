@@ -97,7 +97,7 @@
 									    </p>
 									   
 									    <p class="text-center margin top-2">
-									    	<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
+									    	<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to here to try it out!">
 									    		<a class="button small submit-evidence" data-quest-id="<?= $counter ?>">Submit your evidence</a>
 									    	</span>
 									    </p>
