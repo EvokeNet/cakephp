@@ -1,17 +1,6 @@
 <?php
-	
 	echo $this->Html->css('mission_hover');
-/*
-	$this->extend('/Common/topbar');
-	$this->start('menu');
 
-	echo $this->element('header', array('user' => $user));
-
-	$this->end(); 
-	*/
-?>
-
-<?php
 	/* Top bar */
 	$this->start('topbar');
 	echo $this->element('topbar');
@@ -21,7 +10,6 @@
 	  <div class="small-10 medium-10 large-10 columns maincolumn body-padding text-center full-width">
 
 	  	<?php echo $this->Session->flash(); ?>
-
 	  	
 	  	<h3 class = "evoke padding top-1 padding bottom-1"> <?= strtoupper(__('Choose a mission')) ?> </h3>
 			
