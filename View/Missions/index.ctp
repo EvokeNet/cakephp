@@ -22,14 +22,17 @@
 
 	  	<?php echo $this->Session->flash(); ?>
 
+	  	
 	  	<h3 class = "evoke padding top-1 padding bottom-1"> <?= strtoupper(__('Choose a mission')) ?> </h3>
 			
 			<?php foreach($missions as $mission): ?>
+				<div class="background-color-dark-opacity-05 padding left-1 right-1" style="position: absolute; z-index: 1; left: 80px; margin-top: 20px;">
+					<h1 class="text-color-highlight"
+						style="font-size: 1.5vw; text-shadow: 0 0 12px rgba(0,0,0,0.85);">
+						<?= strtoupper($mission['Mission']['title']) ?>
+					</h1>
+				</div>
 
-				<h1 class="text-color-highlight"
-					style="position: absolute; z-index: 1; font-size: 1.5vw; left: 80px; margin-top: 20px; text-shadow: 0 0 12px rgba(0,0,0,0.85);">
-					<?= strtoupper($mission['Mission']['title']) ?>
-				</h1>
                 <div class="evoke default view view-first">
                     <?php if(!is_null($mission['Mission']['cover_dir'])) :?>
 						<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
