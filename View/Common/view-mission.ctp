@@ -226,6 +226,32 @@
 
 	<!-- FullPage Login -->
 	<script type="text/javascript">
+		//OFF-CANVAS
+		$(document)
+			.foundation({
+				offcanvas : {
+					open_method: 'overlap',
+					close_on_click : false
+				}
+			});
+
+		$(document)
+			.on('open.fndtn.offcanvas', '[data-offcanvas]', function() {
+				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-05');
+	    		$('div.missions-submenu').removeClass("hidden"); //Show submenu
+	    		//$('.right-small').css("right",$('.right-off-canvas-menu').width());
+	    		$('.right-small').css("transform",'translate3d(-'+$('.right-off-canvas-menu').width()+'px, 0, 0)'); //Off-canvas buttons go to the left
+			});
+
+		$(document)
+			.on('close.fndtn.offcanvas', '[data-offcanvas]', function() {
+				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-05');
+				$('div.missions-submenu').addClass("hidden"); //Hide submenu
+				//$('.right-small').css("right","0");
+				$('.right-small').css("transform",'translate3d(0, 0, 0)'); //Off-canvas buttons go to the left
+			});
+
+
 		$(document).ready(function() {
 			//Creates carousel
 			$('.missions-carousel').slick({
@@ -296,29 +322,5 @@
 	        $(".sticky_column").stick_in_parent();*/
 		//});
 
-		//OFF-CANVAS
-		$(document)
-			.foundation({
-				offcanvas : {
-					open_method: 'overlap',
-					close_on_click : false
-				}
-			});
-
-		$(document)
-			.on('open.fndtn.offcanvas', '[data-offcanvas]', function() {
-				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-05');
-	    		$('div.missions-submenu').removeClass("hidden"); //Show submenu
-	    		//$('.right-small').css("right",$('.right-off-canvas-menu').width());
-	    		$('.right-small').css("transform",'translate3d(-'+$('.right-off-canvas-menu').width()+'px, 0, 0)'); //Off-canvas buttons go to the left
-			});
-
-		$(document)
-			.on('close.fndtn.offcanvas', '[data-offcanvas]', function() {
-				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-05');
-				$('div.missions-submenu').addClass("hidden"); //Hide submenu
-				//$('.right-small').css("right","0");
-				$('.right-small').css("transform",'translate3d(0, 0, 0)'); //Off-canvas buttons go to the left
-			});
 
 	</script>
