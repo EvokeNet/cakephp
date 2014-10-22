@@ -90,8 +90,13 @@
 									    </p>
 									    
 									    <p class="text-center margin top-2">
-									    	<a class="button small">Submit your evidence</a>
+									    	<a class="button small submit-evidence" data-quest-id="<?= $counter ?>">Submit your evidence</a>
 									    </p>
+
+									    <!-- SUBMIT EVIDENCE -->
+									    <div class="evidence-quest-<?= $counter ?> hidden">
+									    	
+									    </div>
 							    	</div>
 								</div>
 
@@ -101,7 +106,7 @@
 								} ?>
 
 						  <!-- TAB QUESTS -->
-						  <!--
+						  
 						   <div class="content active" id="panel1">
 						  	<h3 class="text-color-highlight text-center">QUEST 1</h3>
 						    <p>Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -113,9 +118,14 @@
 									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
 									    </p>
 									    <p class="text-center margin top-2">
-									    	<a class="button small">Submit your evidence</a>
+									    	<a class="submit-evidence button small" data-quest-id="<?= $counter ?>">Submit your evidence</a>
 									    </p>
-						  </div> -->
+
+									    <!-- SUBMIT EVIDENCE -->
+									    <div class="evidence-quest-<?= $counter ?> hidden">
+									    	QUEST
+									    </div>
+						  </div> 
 
 						  <!-- TAB DOSSIER -->
 						  <!-- <div class="content" id="panel2">
@@ -293,6 +303,15 @@
         		$("." + $(this).data("tabname")).removeClass("hidden");
 			});
 
+			//SUBMIT EVIDENCE BUTTON
+			$(".submit-evidence.button").click(function(){				
+				var evidence = $(".evidence-quest-" + $(this).data("quest-id"));
+				if ($(".evidence-quest-" + $(this).data("quest-id")).hasClass("hidden")) {
+        			$(".evidence-quest-" + $(this).data("quest-id")).removeClass("hidden");
+				} else {
+					$(".evidence-quest-" + $(this).data("quest-id")).addClass("hidden");
+				}
+			});
 			/*
 			//http://blog.jonathanargentiero.com/?p=335
 			//Using lazy load with foundation interchange
