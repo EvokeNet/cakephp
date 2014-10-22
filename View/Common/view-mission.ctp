@@ -76,12 +76,22 @@
 											$active = null;
 										?>
 								
-								<div class="content <?= $active ?> text-center" id="panel<?= $counter ?>">
+								<div class="content <?= $active ?>" id="panel<?= $counter ?>">
 									<div class = "margin right-1">
-										<h3 class="text-color-highlight"><?= $m['title'] ?></h3>
+										<h3 class="text-color-highlight text-center"><?= $m['title'] ?></h3>
 										<?= $m['description'] ?>
-										<h5 class="text-color-highlight">REWARDS</h5>
-							    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+										<h5 class="text-color-highlight text-center">REWARDS</h5>
+							    		<p class="text-center">Submitting an evidence for this quest is worth 3 badges:</p>
+							    		<p class="text-center">
+									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
+									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
+									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
+									    </p>
+									    
+									    <p class="text-center margin top-2">
+									    	<a class="button small">Submit your evidence</a>
+									    </p>
 							    	</div>
 								</div>
 
@@ -91,17 +101,20 @@
 								} ?>
 
 						  <!-- TAB QUESTS -->
-						  <!-- <div class="content active" id="panel1">
+						  <!--
+						   <div class="content active" id="panel1">
 						  	<h3 class="text-color-highlight text-center">QUEST 1</h3>
 						    <p>Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 						    <h5 class="text-color-highlight text-center">REWARDS</h5>
-						    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						    <p class="text-center">
-						    	
-						    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
-						    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
-						    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
-						    </p>
+						    <p class="text-center">Submitting an evidence for this quest is worth 3 badges:</p>
+							    		<p class="text-center">
+									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
+									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
+									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
+									    </p>
+									    <p class="text-center margin top-2">
+									    	<a class="button small">Submit your evidence</a>
+									    </p>
 						  </div> -->
 
 						  <!-- TAB DOSSIER -->
@@ -230,8 +243,8 @@
 		$(document)
 			.foundation({
 				offcanvas : {
-					open_method: 'overlap',
-					close_on_click : false
+					close_on_click: false,
+					open_method: 'overlap'
 				}
 			});
 
@@ -251,7 +264,6 @@
 				$('.right-small').css("transform",'translate3d(0, 0, 0)'); //Off-canvas buttons go to the left
 			});
 
-
 		$(document).ready(function() {
 			//Creates carousel
 			$('.missions-carousel').slick({
@@ -269,8 +281,6 @@
 			$('#slickPrevArrow').append($('.slick-prev'));
 			$('#slickNextArrow').append($('.slick-next'));
 
-			//When 
-
 			//Adds margin so that the menu won't be on top of the container
 			$('#missions-body').css("margin-top",$('#missions-menu').height());
 			$('.missions-submenu').css("top",$('#missions-menu').height());
@@ -282,7 +292,6 @@
 				$(".right-off-canvas-menu").addClass("hidden");
         		$("." + $(this).data("tabname")).removeClass("hidden");
 			});
-
 
 			/*
 			//http://blog.jonathanargentiero.com/?p=335
@@ -321,6 +330,4 @@
 
 	        $(".sticky_column").stick_in_parent();*/
 		//});
-
-
 	</script>
