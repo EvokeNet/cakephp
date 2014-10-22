@@ -8,7 +8,7 @@
 				<h1>
 					<?php  ?>
 					<a href="<?php
-						if (isset($loggedIn) && (!$loggedIn)) {
+						if (isset($loggedIn) && ($loggedIn)) {
 							echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site'));
 						}
 						else {

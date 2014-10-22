@@ -192,3 +192,16 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 	background-color: #333;
 	color: #ccc;
 }
+
+
+/* --------------------------- */
+/* TOOLTIPS */
+/* --------------------------- */
+.tooltip {
+	background-color: #26dee0;
+	color: #333;
+}
+
+.has-tip {
+	border-bottom: none;
+}
