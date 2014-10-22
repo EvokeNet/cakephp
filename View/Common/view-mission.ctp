@@ -19,16 +19,16 @@
 			<div class="inner-wrap">
 				<nav class="tab-bar full-height">
 				  <section class="right-small text-center opacity-07">
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard text-glow-on-hover" href="#" data-tabname="tabQuests">
+				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabQuests">
 				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-quests-gray.png' ?>" alt="Quests" />
 				    </a>
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard text-glow-on-hover" href="#" data-tabname="tabDossier">
+				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabDossier">
 				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-dossier-gray.png' ?>" alt="Dossier" />
 				    </a>
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard text-glow-on-hover" href="#" data-tabname="tabEvidences">
+				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabEvidences">
 				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-evidences-gray.png' ?>" alt="Evidences" />
 				    </a>
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard text-glow-on-hover" href="#" data-tabname="tabMenu">
+				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabMenu">
 				    	<i class="fa fa-th-large fa-2x text-color-gray vertical-align-middle"></i>
 				    </a>
 				  </section>
@@ -51,15 +51,16 @@
 										<?php
 										$counter++;
 									endforeach;
-								}
 
-								//FOR TESTS
-								else { ?>
-								  <dd class="active"><a href="#panel1" class="text-glow-on-hover">Quest 1</a></dd>
-								  <dd><a href="#panel2" class="text-glow-on-hover">Quest 2</a></dd>
-								  <dd><a href="#panel3" class="deactivated">Quest 3</a></dd>
-								  <dd><a href="#panel4" class="text-glow-on-hover">Quest 4</a></dd>
-								<?php } ?>
+									//ONLY FOR TESTS
+									if (count($mission['Quest']) < 1) { ?>
+									  <dd class="active"><a href="#panel1" class="text-glow-on-hover">Quest 1</a></dd>
+									  <dd><a href="#panel2" class="text-glow-on-hover">Quest 2</a></dd>
+									  <dd><a href="#panel3" class="deactivated">Quest 3</a></dd>
+									  <dd><a href="#panel4" class="text-glow-on-hover">Quest 4</a></dd>
+									<?php }
+								}
+							?>
 						</dl>
 
 						<div class="tabs-content full-height">
@@ -194,8 +195,6 @@
 				    </div>
 				</section>
 
-				<a class="exit-off-canvas"></a>
-
 			</div>
 		</div>
 	</div>
@@ -222,7 +221,6 @@
 		//FOUNDATION
 		echo $this->Html->script('/components/foundation/js/foundation/foundation.js');
 		echo $this->Html->script('/components/foundation/js/foundation/foundation.offcanvas.js');
-		echo $this->Html->script('/components/foundation/js/foundation/foundation.accordion.js');
 ?>
 
 
@@ -277,7 +275,7 @@
 		});
 
 		//Sticky navigation bar, respecting parent element
-		$(window).ready(function() {
+		//$(window).ready(function() {
 			//$(".sticky").stick_in_parent();
 			/*var offset_top = $(window).height() * 0.9;
 			$("#navigationBar").css("top",offset_top+"px");
@@ -296,7 +294,7 @@
 	        });
 
 	        $(".sticky_column").stick_in_parent();*/
-		});
+		//});
 
 		//OFF-CANVAS
 		$(document)
