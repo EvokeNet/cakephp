@@ -2,8 +2,15 @@
 	//CSS overriding fullpage.js plugin
 	$cssBaseUrl = Configure::read('App.cssBaseUrl');
 	
-	echo $this->Html->css('/components/slick-carousel/slick/slick.css');
-	echo $this->Html->css('slick.css');
+	echo $this->Html->css(
+		array(
+			'/components/slick-carousel/slick/slick.css',
+			'slick.css',
+			'/components/medium-editor/dist/css/medium-editor.css',
+			'/components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.css',
+			'medium.css'
+		)
+	);
 ?>
 
 	<!-- TOPBAR MENU -->
@@ -88,10 +95,68 @@
 									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
 									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
 									    </p>
-									    
+									   
 									    <p class="text-center margin top-2">
-									    	<a class="button small">Submit your evidence</a>
+									    	<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
+									    		<a class="button small submit-evidence" data-quest-id="<?= $counter ?>">Submit your evidence</a>
+									    	</span>
 									    </p>
+
+									    <!-- SUBMIT EVIDENCE -->
+									    <div class="evidence-quest-<?= $counter ?> hidden text-center margin top-2" style="width: 70%;float: right;">
+									    	
+									    	<?php echo $this->Form->create('Evidence', array('enctype' => 'multipart/form-data')); ?>
+											<?php //echo __('Edit Evidence'); ?>
+
+											<?php
+												// echo $this->Form->input('id');
+												echo $this->Form->hidden('title');
+												echo $this->Form->hidden('content');
+
+												// echo $this->Form->hidden('user_id', array('value' => $user['User']['id']));
+
+												echo $this->Form->hidden('quest_id', array('value' => $m['id']));
+												echo $this->Form->hidden('mission_id', array('value' => $mission['Mission']['id']));
+												echo $this->Form->hidden('phase_id', array('value' => $m['phase_id']));
+
+												?>
+												
+												<?php
+												echo '<div class = "editableTitle" id = "evidenceTitle"></div>';
+												echo '<div class = "editableContent margin bottom-3" id = "evidenceContent"></div>';
+												?>
+
+												<span data-tooltip aria-haspopup="true" class="has-tip tip-top" title="In preview, it is not possible to add attachments.">
+												<?php
+												// echo "<label>".__('Attachments'). "</label>";
+												echo '<button class="button small general" style = "display:inline" disabled>'.__('+ File').'</button>';
+												?>
+												</span>
+												<?php
+									            // echo '<div id="fileInputHolder">';
+									            // echo "<ul>";
+									            // $k = 0;
+									            // foreach ($attachments as $media) {
+									            //     echo "<li>";
+									            //     echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $media['Attachment']['attachment'] .'</label>';
+									                
+									            //     echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $media['Attachment']['id'] .'">';
+									            //     echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$media['Attachment']['dir'].'/thumb_'.$media['Attachment']['attachment'] . '"/>';
+
+									            //     echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
+
+									            //     $k++;
+									            // }
+									            // echo "</ul>";
+									            // echo '</div>';
+											?>
+											
+											<div class = "evoke titles-right" style = "display: inline;">
+												<span data-tooltip aria-haspopup="true" class="has-tip tip-top" title="In preview, it is not possible to save your evidence.">
+													<button type="submit" id = "evidenceButton" class= "evoke button general small" disabled><?= strtoupper(__('Save Evidence')) ?></button>
+												</span>	
+											</div>
+									    </div>
 							    	</div>
 								</div>
 
@@ -100,22 +165,6 @@
 									endforeach;
 								} ?>
 
-						  <!-- TAB QUESTS -->
-						  <!--
-						   <div class="content active" id="panel1">
-						  	<h3 class="text-color-highlight text-center">QUEST 1</h3>
-						    <p>Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						    <h5 class="text-color-highlight text-center">REWARDS</h5>
-						    <p class="text-center">Submitting an evidence for this quest is worth 3 badges:</p>
-							    		<p class="text-center">
-									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
-									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
-									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
-									    </p>
-									    <p class="text-center margin top-2">
-									    	<a class="button small">Submit your evidence</a>
-									    </p>
-						  </div> -->
 
 						  <!-- TAB DOSSIER -->
 						  <!-- <div class="content" id="panel2">
@@ -221,19 +270,23 @@
 	<!-- FOOTER -->
 
 <?php 
-		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
-		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
+	echo $this->Html->script('/components/jquery/dist/jquery.min.js');
+	echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
 
-		//SLICK CAROUSEL
-		echo $this->Html->script('/components/slick-carousel/slick/slick.min.js');
-		echo $this->Html->script('//code.jquery.com/jquery-migrate-1.2.1.min.js');
+	//SLICK CAROUSEL
+	echo $this->Html->script('/components/slick-carousel/slick/slick.min.js');
+	echo $this->Html->script('//code.jquery.com/jquery-migrate-1.2.1.min.js');
 
-		//STICKY KIT
-		echo $this->Html->script('/components/sticky-kit/jquery.sticky-kit.min.js');
-		
-		//FOUNDATION
-		echo $this->Html->script('/components/foundation/js/foundation/foundation.js');
-		echo $this->Html->script('/components/foundation/js/foundation/foundation.offcanvas.js');
+	//STICKY KIT
+	echo $this->Html->script('/components/sticky-kit/jquery.sticky-kit.min.js');
+	
+	//FOUNDATION
+	echo $this->Html->script('/components/foundation/js/foundation/foundation.js');
+	echo $this->Html->script('/components/foundation/js/foundation/foundation.offcanvas.js');
+
+	echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min.js');//, array('inline' => false));
+	echo $this->Html->script('/components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.all.min.js');
+	echo $this->Html->script('quest_attachments'); 
 ?>
 
 
@@ -293,6 +346,15 @@
         		$("." + $(this).data("tabname")).removeClass("hidden");
 			});
 
+			//SUBMIT EVIDENCE BUTTON
+			$(".submit-evidence.button").click(function(){				
+				var evidence = $(".evidence-quest-" + $(this).data("quest-id"));
+				if ($(".evidence-quest-" + $(this).data("quest-id")).hasClass("hidden")) {
+        			$(".evidence-quest-" + $(this).data("quest-id")).removeClass("hidden");
+				} else {
+					$(".evidence-quest-" + $(this).data("quest-id")).addClass("hidden");
+				}
+			});
 			/*
 			//http://blog.jonathanargentiero.com/?p=335
 			//Using lazy load with foundation interchange
@@ -330,4 +392,56 @@
 
 	        $(".sticky_column").stick_in_parent();*/
 		//});
+
+		var editor = new MediumEditor('.editableContent', {
+		    buttons: [
+		    	'bold',
+		        'italic',
+		        'underline',
+		        'header1',
+		        'header2',
+		        'orderedlist',
+		        'unorderedlist',
+		        'anchor',
+		        'quote',
+		        'superscript',
+		        'subscript',
+		        'strikethrough',
+		    ],
+		    checkLinkFormat: true,
+		    cleanPastedHTML: true,
+		    placeholder: "<?= __('Write here your Evidence') ?>",
+		    targetBlank: true,
+	  	});
+
+		var editor1 = new MediumEditor('.editableTitle', {
+		    buttons: [
+		    	'bold',
+		        'italic',
+		        'underline',
+		        'header1',
+		        'header2',
+		        'orderedlist',
+		        'unorderedlist',
+		        'anchor',
+		        'quote',
+		        'superscript',
+		        'subscript',
+		        'strikethrough',
+		    ],
+		    checkLinkFormat: true,
+		    cleanPastedHTML: true,
+		    placeholder: "<?= __('Write here the title for your Evidence') ?>",
+		    targetBlank: true,
+	  	});
+
+		jQuery('#evidenceButton').click(function() {
+
+			var MyDiv = document.getElementById('evidenceTitle');
+			var MyDiv1 = document.getElementById('evidenceContent');
+
+	        $('#EvidenceTitle').val(MyDiv.innerHTML);
+	        $('#EvidenceContent').val(MyDiv1.innerHTML);
+
+	    });
 	</script>

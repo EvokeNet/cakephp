@@ -225,9 +225,10 @@
 <!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
 
 <?php 
-	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-	echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min.js');//, array('inline' => false));
-	echo $this->Html->script('/components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.all.min.js');//, array('inline' => false));
+	// echo $this->Html->script('/webroot/components/jquery/jquery.min.js');//, array('inline' => false));
+	echo $this->Html->script('/components/jquery/dist/jquery.min.js');
+	echo $this->Html->script('/webroot/components/medium-editor/dist/js/medium-editor.min.js');//, array('inline' => false));
+	echo $this->Html->script('/webroot/components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.all.min.js');//, array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
 	//echo $this->Html->script('medium');
 	echo $this->Html->script('quest_attachments'); 
@@ -236,7 +237,7 @@
 <script type="text/javascript">
 
 	//socket io client
-	var socket = io.connect('http://localhost:8000');
+	//var socket = io.connect('http://localhost:8000');
 
 	var editor = new MediumEditor('.editableContent', {
 	    buttons: [
@@ -306,40 +307,40 @@
     });
 
 	//retrive likes number
-    socket.on('return_evidence_id', function (data) {
-    	id = data;
-    	console.log(id);
-  	});
+ //    socket.on('return_evidence_id', function (data) {
+ //    	id = data;
+ //    	console.log(id);
+ //  	});
   	
-    function autosave() {
-		var MyDiv = document.getElementById('evidenceTitle');
-		var MyDiv1 = document.getElementById('evidenceContent');
+ //    function autosave() {
+	// 	var MyDiv = document.getElementById('evidenceTitle');
+	// 	var MyDiv1 = document.getElementById('evidenceContent');
 
-        // $('#EvidenceTitle').val(MyDiv.innerHTML);
-        // $('#EvidenceContent').val(MyDiv1.innerHTML);
+ //        // $('#EvidenceTitle').val(MyDiv.innerHTML);
+ //        // $('#EvidenceContent').val(MyDiv1.innerHTML);
 
-		var data = {
-			ititle:MyDiv.innerHTML, 
-			icontent:MyDiv1.innerHTML, 
-			user_id:"<?= $me['Evidence']['user_id'] ?>", 
-			quest_id:"<?= $me['Evidence']['quest_id'] ?>",
-			mission_id:"<?= $me['Evidence']['mission_id'] ?>",
-			phase_id:"<?= $me['Evidence']['phase_id'] ?>",
-			iid:"<?= $me['Evidence']['id'] ?>"
-		};
+	// 	var data = {
+	// 		ititle:MyDiv.innerHTML, 
+	// 		icontent:MyDiv1.innerHTML, 
+	// 		user_id:"<?= $me['Evidence']['user_id'] ?>", 
+	// 		quest_id:"<?= $me['Evidence']['quest_id'] ?>",
+	// 		mission_id:"<?= $me['Evidence']['mission_id'] ?>",
+	// 		phase_id:"<?= $me['Evidence']['phase_id'] ?>",
+	// 		iid:"<?= $me['Evidence']['id'] ?>"
+	// 	};
 
-		console.log(decodeURIComponent(MyDiv.innerHTML));
-		//console.log(decodeURIComponent(MyDiv1.innerHTML));
-		socket.emit('autosave_evidence', data); //Places the counter when the page is reloaded
-	}
+	// 	console.log(decodeURIComponent(MyDiv.innerHTML));
+	// 	//console.log(decodeURIComponent(MyDiv1.innerHTML));
+	// 	socket.emit('autosave_evidence', data); //Places the counter when the page is reloaded
+	// }
 
-	setInterval(autosave, 5 * 1000);
+	// setInterval(autosave, 5 * 1000);
 
-	//To prevent image button from redirecting
-    $('.mediumInsert-action').click(function(event) {
-        event.preventDefault();
-        // return false;
-    }); 
+	// //To prevent image button from redirecting
+ //    $('.mediumInsert-action').click(function(event) {
+ //        event.preventDefault();
+ //        // return false;
+ //    }); 
 
     <?php
     //     $i = 0;

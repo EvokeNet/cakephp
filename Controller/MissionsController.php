@@ -620,6 +620,9 @@ class MissionsController extends AppController {
 		//Facebook login URL comes from session
 		$fbLoginUrl = $this->Session->read('fbLoginUrl');
 
+		$this->loadModel('User');
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
 
 		$novels = $this->Mission->Novel->find('all', array(
@@ -632,7 +635,7 @@ class MissionsController extends AppController {
 			)
 		));
 
-		$this->set(compact('fbLoginUrl', 'mission', 'novels'));
+		$this->set(compact('fbLoginUrl', 'mission', 'novels', 'user'));
 
 		//Render simple layout
 		$this->render('/Common/view-mission'); 

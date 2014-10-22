@@ -200,7 +200,7 @@
 <script type="text/javascript">
 
 	//socket io client
-	  var socket = io.connect('http://localhost:8000');
+	  //var socket = io.connect('http://localhost:8000');
 
 	  //on connetion, updates connection state and sends subscribe request
 	  // socket.on('connect', function(data){
@@ -269,33 +269,33 @@
 	var id = '';
 
 	//retrive likes number
-    socket.on('return_evidence_id', function (data) {
-    	id = data;
-    	console.log(id);
-  	});
+   //  socket.on('return_evidence_id', function (data) {
+   //  	id = data;
+   //  	console.log(id);
+  	// });
 
-	function autosave() {
-		var MyDiv = document.getElementById('evidenceTitle');
-		var MyDiv1 = document.getElementById('evidenceContent');
+	// function autosave() {
+	// 	var MyDiv = document.getElementById('evidenceTitle');
+	// 	var MyDiv1 = document.getElementById('evidenceContent');
 
-        // $('#EvidenceTitle').val(MyDiv.innerHTML);
-        // $('#EvidenceContent').val(MyDiv1.innerHTML);
+ //        // $('#EvidenceTitle').val(MyDiv.innerHTML);
+ //        // $('#EvidenceContent').val(MyDiv1.innerHTML);
 
-		var data = {
-			ititle:MyDiv.innerHTML, 
-			icontent:MyDiv1.innerHTML, 
-			user_id:"<?= $user['User']['id'] ?>", 
-			quest_id:"<?= $quest_id ?>",
-			mission_id:"<?= $mission_id ?>",
-			phase_id:"<?= $phase_id ?>",
-			iid:id
-		};
+	// 	var data = {
+	// 		ititle:MyDiv.innerHTML, 
+	// 		icontent:MyDiv1.innerHTML, 
+	// 		user_id:"<?= $user['User']['id'] ?>", 
+	// 		quest_id:"<?= $quest_id ?>",
+	// 		mission_id:"<?= $mission_id ?>",
+	// 		phase_id:"<?= $phase_id ?>",
+	// 		iid:id
+	// 	};
 
-		console.log(decodeURIComponent(MyDiv.innerHTML));
-		socket.emit('autosave_evidence', data); //Places the counter when the page is reloaded
-	}
+	// 	console.log(decodeURIComponent(MyDiv.innerHTML));
+	// 	socket.emit('autosave_evidence', data); //Places the counter when the page is reloaded
+	// }
 
-	setInterval(autosave, 5 * 1000);
+	// setInterval(autosave, 5 * 1000);
 
 	//function autosave() {
 	  //   jQuery('#EvidenceAddForm').submit(function() {
