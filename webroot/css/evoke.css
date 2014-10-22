@@ -398,6 +398,10 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background: rgba(0,0,0,.5);
 }
 
+.evoke .background-color-dark-opacity-08 {
+	background: rgba(0,0,0,.8);
+}
+
 .evoke .background-color-standard {
 	background-color: #333;
 }
