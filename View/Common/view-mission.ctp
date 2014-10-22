@@ -148,11 +148,13 @@
 									            // echo "</ul>";
 									            // echo '</div>';
 											?>
+											<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview, it is not possible to save your evidence.">
 											<div class = "evoke titles-right" style = "display: inline;">
-												<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview, it is not possible to save your evidence.">
+												
 													<button type="submit" id = "evidenceButton" class= "evoke button general small" disabled><?= strtoupper(__('Save Evidence')) ?></button>
-												</span>
+												
 											</div>
+											</span>
 									    </div>
 							    	</div>
 								</div>
