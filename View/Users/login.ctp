@@ -14,14 +14,23 @@
 	    	<div class="row full-width full-height missions-carousel">
 
 
-	    		<?php foreach($missions as $mission): ?>
+	    		<?php foreach($missions as $mission): 
 
-	    		<!-- MISSAO 1 -->
+    			//COVER IMAGE
+	    		if (!is_null($mission['Mission']['cover_dir'])) {
+	    			$cover_url = $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'];
+                }
+                else {
+                	$cover_url = $this->webroot.'img/episodes-example/E01G01P02.jpg';
+                } ?>
+
 			    <div class="evoke slide background-cover full-width" data-interchange="
-		    			[<?= $this->webroot.'img/mission_1_NameMission-default.png' ?>, (default)], 
-		    			[<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>, (medium)],
-		    			[<?= $this->webroot.'img/mission_1_NameMission-large.jpg' ?>, (large)]">
-					<noscript><img src="<?= $this->webroot.'img/mission_1_NameMission-medium.png' ?>" alt="<?= $mission['Mission']['title'] ?>"></noscript>
+		    			['<?= $cover_url ?>',(default)]">
+
+
+					<noscript>
+						<img src="<?= $cover_url ?>" alt="<?= $mission['Mission']['title'] ?>">
+					</noscript>
 
 					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
 						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
