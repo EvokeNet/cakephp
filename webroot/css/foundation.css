@@ -150,12 +150,12 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 
 
 /**** Small-image  ****/
-.tabs-style-small-image dd a {
-	padding: 0.5rem 1rem;
-}
-
 .tabs-style-small-image dd {
 	background-color: #333;
+}
+
+.tabs-style-small-image dd a {
+	padding: 0.5rem 1rem;
 }
 
 .tabs-style-small-image .right dd {
