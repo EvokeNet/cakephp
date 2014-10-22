@@ -38,11 +38,6 @@
 					<div class="large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0">
 						<!-- TABS COM MENU -->
 						<dl class="tabs vertical full-height margin right-1 background-color-standard" data-tab>
-						  <!-- <dd class="active"><a href="#panel1">Quest 1</a></dd>
-						  <dd><a href="#panel2">Quest 2</a></dd>
-						  <dd><a href="#panel3" class="deactivated">Quest 3</a></dd>
-						  <dd><a href="#panel4">Quest 4</a></dd> -->
-
 							<?php 
 								$counter = 1;
 								$active = 'class = "active"';
@@ -56,7 +51,15 @@
 										<?php
 										$counter++;
 									endforeach;
-								} ?>
+								}
+
+								//FOR TESTS
+								else { ?>
+								  <dd class="active"><a href="#panel1" class="text-glow-on-hover">Quest 1</a></dd>
+								  <dd><a href="#panel2" class="text-glow-on-hover">Quest 2</a></dd>
+								  <dd><a href="#panel3" class="deactivated">Quest 3</a></dd>
+								  <dd><a href="#panel4" class="text-glow-on-hover">Quest 4</a></dd>
+								<?php } ?>
 						</dl>
 
 						<div class="tabs-content full-height">
@@ -120,7 +123,19 @@
 
 				<aside class="right-off-canvas-menu tabDossier">
 					<div class="large-12 large-centered columns">
-						
+						This section is not available in preview.
+					</div>
+				</aside>
+
+				<aside class="right-off-canvas-menu tabEvidences">
+					<div class="large-12 large-centered columns">
+						This section is not available in preview.
+					</div>
+				</aside>
+
+				<aside class="right-off-canvas-menu tabMenu">
+					<div class="large-12 large-centered columns">
+						This section is not available in preview.
 					</div>
 				</aside>
 
@@ -148,9 +163,19 @@
 
 				    		<?php foreach ($novels as $novel) : ?>
 								<div>
-									<img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%">
+									<img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" class="full-width" />
 								</div>
-							<?php endforeach; ?>
+							<?php endforeach; 
+
+							//ONLY FOR TESTS
+							if (count($novels) < 1) {?>
+							<div>
+								<img src="<?= $this->webroot.'img/episodes-example/E01G01P02.jpg' ?>"  class="full-width" />
+							</div>
+							<div>
+								<img src="<?= $this->webroot.'img/episodes-example/E01G01P02.jpg' ?>"  class="full-width" />
+							</div>
+							<?php } ?>
 
 				    	</div>
 
@@ -160,7 +185,7 @@
 									<ul class="inline-list centered-block margins-0">
 										<li><h5 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h5></li>
 										<li><div id="slickPrevArrow"></div></li>
-										<li><h5 class="text-glow">Page 1</h5></li>
+										<li><h5 class="text-glow">Page <span id="page-number">1</span></h5></li>
 										<li><div id="slickNextArrow"></div></li>
 										<li><div id="slickArrows"></div></li>
 									</ul>
@@ -210,12 +235,17 @@
 			  variableHeight: true,
 			  responsive: true,
 			  lazyLoad: 'progressive',
-			  arrows: true
+			  arrows: true,
+			  onAfterChange: function(slider,index){
+			  	$('#page-number').html(index+1);
+			  }
 			});
 
 			//Changes the position of the arrows
 			$('#slickPrevArrow').append($('.slick-prev'));
 			$('#slickNextArrow').append($('.slick-next'));
+
+			//When 
 
 			//Adds margin so that the menu won't be on top of the container
 			$('#missions-body').css("margin-top",$('#missions-menu').height());
