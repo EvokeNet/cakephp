@@ -265,7 +265,7 @@ class UsersController extends AppController {
 
 					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-				return $this->redirect(array('controller' => 'users', 'action' => 'enter_site'));
+				return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
 
 			}
 		} 
@@ -370,7 +370,7 @@ class UsersController extends AppController {
 
 					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-					return $this->redirect(array('controller' => 'users', 'action' => 'enter_site'));
+					return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
 
 				}
 				
@@ -390,7 +390,7 @@ class UsersController extends AppController {
 
 			//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-			return $this->redirect(array('controller' => 'users', 'action' => 'enter_site'));
+			return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
 
 		} else if(isset($this->request->data['User']['username'])){
 
@@ -1691,7 +1691,7 @@ class UsersController extends AppController {
 			    	$this->Auth->login($user);
 			    	//$this->Session->setFlash(__('The user has been saved.'));
 			    	$this->Session->setFlash(__('Your informations were succefully saved'), 'flash_message');
-					return $this->redirect(array('controller' => 'users', 'action' => 'enter_site'));
+					return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
 
 				} 
 		        

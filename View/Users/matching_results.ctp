@@ -11,7 +11,9 @@
 ?>
 
 <div class="standard-width">
-	<img src="<?= $this->webroot.'img/mockup-4-matching-results.jpg' ?>" class="full-width" />
+	<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site')); ?>">
+		<img src="<?= $this->webroot.'img/mockup-4-matching-results.jpg' ?>" class="full-width" />
+	</a>
 </div>
 
 <?php

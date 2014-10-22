@@ -402,6 +402,10 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background-color: #333;
 }
 
+.evoke .background-color-highlight {
+	background-color: #26dee0;
+}
+
 .evoke .img-circular {
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
