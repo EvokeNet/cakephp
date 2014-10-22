@@ -109,7 +109,7 @@
 												// echo $this->Form->input('id');
 												echo $this->Form->hidden('title');
 												echo $this->Form->hidden('content');
-												echo $this->Form->hidden('user_id', array('value' => $user['User']['id']));
+												// echo $this->Form->hidden('user_id', array('value' => $user['User']['id']));
 												echo $this->Form->hidden('quest_id', array('value' => $m['id']));
 												echo $this->Form->hidden('mission_id', array('value' => $mission['Mission']['id']));
 												echo $this->Form->hidden('phase_id', array('value' => $m['phase_id']));
