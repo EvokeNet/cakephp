@@ -2,8 +2,14 @@
 	//CSS overriding fullpage.js plugin
 	$cssBaseUrl = Configure::read('App.cssBaseUrl');
 	
-	echo $this->Html->css('/components/slick-carousel/slick/slick.css');
-	echo $this->Html->css('slick.css');
+	echo $this->Html->css(
+		array(
+			'/components/slick-carousel/slick/slick.css',
+			'slick.css',
+			'/components/medium-editor/dist/css/medium-editor.css',
+			'/components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.css',
+		)
+	);
 ?>
 
 	<!-- TOPBAR MENU -->
@@ -89,9 +95,45 @@
 									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
 									    </p>
 									    
-									    <p class="text-center margin top-2">
-									    	<a class="button small">Submit your evidence</a>
-									    </p>
+									    <div class="text-center margin top-2" style="width: 70%;float: right;">
+									    	
+									    	<?php echo $this->Form->create('Evidence', array('enctype' => 'multipart/form-data')); ?>
+											<?php //echo __('Edit Evidence'); ?>
+
+											<?php
+												// echo $this->Form->input('id');
+												echo $this->Form->hidden('title');
+												echo $this->Form->hidden('content');
+												echo $this->Form->hidden('user_id', array('value' => $user['User']['id']));
+												echo $this->Form->hidden('quest_id', array('value' => $m['id']));
+												echo $this->Form->hidden('mission_id', array('value' => $mission['Mission']['id']));
+												echo $this->Form->hidden('phase_id', array('value' => $m['phase_id']));
+
+												echo '<div class = "editableTitle" id = "evidenceTitle"></div>';
+												echo '<div class = "editableContent margin bottom-3" id = "evidenceContent"></div>';
+
+												// echo "<label>".__('Attachments'). "</label>";
+												echo '<button class="button general" disabled>'.__('+ File').'</button>';
+									            // echo '<div id="fileInputHolder">';
+									            // echo "<ul>";
+									            // $k = 0;
+									            // foreach ($attachments as $media) {
+									            //     echo "<li>";
+									            //     echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $media['Attachment']['attachment'] .'</label>';
+									                
+									            //     echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $media['Attachment']['id'] .'">';
+									            //     echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$media['Attachment']['dir'].'/thumb_'.$media['Attachment']['attachment'] . '"/>';
+
+									            //     echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
+
+									            //     $k++;
+									            // }
+									            // echo "</ul>";
+									            // echo '</div>';
+											?>
+											<div class = "evoke titles-right"><button type="submit" id = "evidenceButton" class= "evoke button general submit-button-margin" disabled><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save Evidence')) ?></button></div>
+
+									    </div>
 							    	</div>
 								</div>
 
@@ -221,19 +263,23 @@
 	<!-- FOOTER -->
 
 <?php 
-		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
-		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
+	echo $this->Html->script('/components/jquery/dist/jquery.min.js');
+	echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
 
-		//SLICK CAROUSEL
-		echo $this->Html->script('/components/slick-carousel/slick/slick.min.js');
-		echo $this->Html->script('//code.jquery.com/jquery-migrate-1.2.1.min.js');
+	//SLICK CAROUSEL
+	echo $this->Html->script('/components/slick-carousel/slick/slick.min.js');
+	echo $this->Html->script('//code.jquery.com/jquery-migrate-1.2.1.min.js');
 
-		//STICKY KIT
-		echo $this->Html->script('/components/sticky-kit/jquery.sticky-kit.min.js');
-		
-		//FOUNDATION
-		echo $this->Html->script('/components/foundation/js/foundation/foundation.js');
-		echo $this->Html->script('/components/foundation/js/foundation/foundation.offcanvas.js');
+	//STICKY KIT
+	echo $this->Html->script('/components/sticky-kit/jquery.sticky-kit.min.js');
+	
+	//FOUNDATION
+	echo $this->Html->script('/components/foundation/js/foundation/foundation.js');
+	echo $this->Html->script('/components/foundation/js/foundation/foundation.offcanvas.js');
+
+	echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min.js');//, array('inline' => false));
+	echo $this->Html->script('/components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.all.min.js');
+	echo $this->Html->script('quest_attachments'); 
 ?>
 
 
@@ -330,4 +376,56 @@
 
 	        $(".sticky_column").stick_in_parent();*/
 		//});
+
+		var editor = new MediumEditor('.editableContent', {
+		    buttons: [
+		    	'bold',
+		        'italic',
+		        'underline',
+		        'header1',
+		        'header2',
+		        'orderedlist',
+		        'unorderedlist',
+		        'anchor',
+		        'quote',
+		        'superscript',
+		        'subscript',
+		        'strikethrough',
+		    ],
+		    checkLinkFormat: true,
+		    cleanPastedHTML: true,
+		    placeholder: "<?= __('Write here your Evidence') ?>",
+		    targetBlank: true,
+	  	});
+
+		var editor1 = new MediumEditor('.editableTitle', {
+		    buttons: [
+		    	'bold',
+		        'italic',
+		        'underline',
+		        'header1',
+		        'header2',
+		        'orderedlist',
+		        'unorderedlist',
+		        'anchor',
+		        'quote',
+		        'superscript',
+		        'subscript',
+		        'strikethrough',
+		    ],
+		    checkLinkFormat: true,
+		    cleanPastedHTML: true,
+		    placeholder: "<?= __('Write here the title for your Evidence') ?>",
+		    targetBlank: true,
+	  	});
+
+		jQuery('#evidenceButton').click(function() {
+
+			var MyDiv = document.getElementById('evidenceTitle');
+			var MyDiv1 = document.getElementById('evidenceContent');
+
+	        $('#EvidenceTitle').val(MyDiv.innerHTML);
+	        $('#EvidenceContent').val(MyDiv1.innerHTML);
+
+	    });
 	</script>

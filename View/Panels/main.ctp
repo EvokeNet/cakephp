@@ -954,10 +954,94 @@
 </div>
 
 <?php 
-	echo $this->Html->script('/components/jquery/jquery.min.js');
+	//echo $this->Html->script('/webroot/components/jquery/jquery.min.js');
 ?>
 
-<!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
 <script type="text/javascript">
 	
-</script> -->
+	function checkAll(id, id1){
+	    var tab = document.getElementById(id); // table with id tbl1
+	    var elems = tab.getElementsByTagName('input');
+	    var len = elems.length;
+
+	    if($('#' + id1).is(":checked")) {
+		    for(var i = 0; i<len; i++){
+		    	if(elems[i].type == "checkbox")
+		    		elems[i].checked = true;
+		    }
+		} else{
+			for(var i = 0; i<len; i++){
+		    	if(elems[i].type == "checkbox")
+		    		elems[i].checked = false;
+		    }
+		}
+	}
+
+	// Implements search in tables
+	(function(document) {
+		'use strict';
+
+		var LightTableFilter = (function(Arr) {
+
+			var _input;
+
+			function _onInputEvent(e) {
+				_input = e.target;
+				var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+				Arr.forEach.call(tables, function(table) {
+					Arr.forEach.call(table.tBodies, function(tbody) {
+						Arr.forEach.call(tbody.rows, _filter);
+					});
+				});
+			}
+
+			function _filter(row) {
+				var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+				row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+			}
+
+			return {
+				init: function() {
+					var inputs = document.getElementsByClassName('light-table-filter');
+					Arr.forEach.call(inputs, function(input) {
+						input.oninput = _onInputEvent;
+					});
+				}
+			};
+		})(Array.prototype);
+
+		document.addEventListener('readystatechange', function() {
+			if (document.readyState === 'complete') {
+				LightTableFilter.init();
+			}
+		});
+
+	})(document);
+
+	//Paginates tables
+	$('table.paginated').each(function() {
+	    var currentPage = 0;
+	    var numPerPage = 10;
+	    var $table = $(this);
+	    $table.bind('repaginate', function() {
+	        $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+	    });
+	    $table.trigger('repaginate');
+	    var numRows = $table.find('tbody tr').length;
+	    var numPages = Math.ceil(numRows / numPerPage);
+	    var $pager = $('<div class="pager"></div>');
+	    for (var page = 0; page < numPages; page++) {
+	        $('<a class="page-number"></a>').text(page + 1).bind('click', {
+	            newPage: page
+	        }, function(event) {
+	            currentPage = event.data['newPage'];
+	            $table.trigger('repaginate');
+	            $(this).addClass('active').siblings().removeClass('active');
+	        }).appendTo($pager).addClass('clickable');
+	    }
+	    $pager.insertAfter($table).find('a.page-number:first').addClass('active');
+	});
+
+
+</script>
