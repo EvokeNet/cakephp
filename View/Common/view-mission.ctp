@@ -51,15 +51,16 @@
 										<?php
 										$counter++;
 									endforeach;
-								}
 
-								//FOR TESTS
-								else { ?>
-								  <dd class="active"><a href="#panel1" class="text-glow-on-hover">Quest 1</a></dd>
-								  <dd><a href="#panel2" class="text-glow-on-hover">Quest 2</a></dd>
-								  <dd><a href="#panel3" class="deactivated">Quest 3</a></dd>
-								  <dd><a href="#panel4" class="text-glow-on-hover">Quest 4</a></dd>
-								<?php } ?>
+									//ONLY FOR TESTS
+									if (count($mission['Quest']) < 1) { ?>
+									  <dd class="active"><a href="#panel1" class="text-glow-on-hover">Quest 1</a></dd>
+									  <dd><a href="#panel2" class="text-glow-on-hover">Quest 2</a></dd>
+									  <dd><a href="#panel3" class="deactivated">Quest 3</a></dd>
+									  <dd><a href="#panel4" class="text-glow-on-hover">Quest 4</a></dd>
+									<?php }
+								}
+							?>
 						</dl>
 
 						<div class="tabs-content full-height">
