@@ -109,7 +109,9 @@
 												// echo $this->Form->input('id');
 												echo $this->Form->hidden('title');
 												echo $this->Form->hidden('content');
+
 												// echo $this->Form->hidden('user_id', array('value' => $user['User']['id']));
+
 												echo $this->Form->hidden('quest_id', array('value' => $m['id']));
 												echo $this->Form->hidden('mission_id', array('value' => $mission['Mission']['id']));
 												echo $this->Form->hidden('phase_id', array('value' => $m['phase_id']));
@@ -118,7 +120,7 @@
 												echo '<div class = "editableContent margin bottom-3" id = "evidenceContent"></div>';
 
 												// echo "<label>".__('Attachments'). "</label>";
-												echo '<button class="button general" disabled>'.__('+ File').'</button>';
+												echo '<button class="button small general" style = "display:inline" disabled>'.__('+ File').'</button>';
 									            // echo '<div id="fileInputHolder">';
 									            // echo "<ul>";
 									            // $k = 0;
@@ -136,7 +138,7 @@
 									            // echo "</ul>";
 									            // echo '</div>';
 											?>
-											<div class = "evoke titles-right"><button type="submit" id = "evidenceButton" class= "evoke button general submit-button-margin" disabled><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save Evidence')) ?></button></div>
+											<div class = "evoke titles-right" style = "display: inline;"><button type="submit" id = "evidenceButton" class= "evoke button general small" disabled><?= strtoupper(__('Save Evidence')) ?></button></div>
 									    </div>
 							    	</div>
 								</div>
