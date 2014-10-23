@@ -1258,6 +1258,10 @@ class UsersController extends AppController {
  * @return void
  */
 	public function matching($id = null) {
+
+		$issues = $this->User->UserIssue->Issue->find('list');
+		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
+		$this->set(compact('issues', 'selectedIssues'));
 	}
 
 /**

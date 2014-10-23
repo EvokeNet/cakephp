@@ -1,19 +1,19 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Message Model
+ * UserMatchingAnswer Model
  *
- * @property ChatConversation $ChatConversation
- * @property Member $Member
+ * @property User $User
+ * @property MatchingQuestion $MatchingQuestion
  */
-class Message extends AppModel {
+class UserMatchingAnswer extends AppModel {
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'content';
+	public $displayField = 'matching_answer';
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -24,16 +24,16 @@ class Message extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'ChatConversation' => array(
-			'className' => 'ChatConversation',
-			'foreignKey' => 'chat_conversation_id',
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Member' => array(
-			'className' => 'Member',
-			'foreignKey' => 'member_id',
+		'MatchingQuestion' => array(
+			'className' => 'MatchingQuestion',
+			'foreignKey' => 'matching_question_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
