@@ -1,12 +1,21 @@
-/* GENERAL STYLES */
+/* FONTS */
+@font-face {
+    font-family: 'Brankic';
+    src: url('../css/font/Brankic.ttf') format('truetype');
+}
 
+.evoke .icon-brankic {
+	font-family: 'Brankic';
+}
+
+/* GENERAL STYLES */
 html, body {
 	background-color: #333;
 }
 
 *, html, body,
 button, div, p, span, a,
-.button {
+.evoke .button {
 	font-family: 'Raleway', 'Arial', sans-serif;
 	font-size: 100%;
 	/*line-height: 1.618;*/
@@ -15,11 +24,12 @@ button, div, p, span, a,
 	-webkit-font-smoothing: antialiased;
 }
 
-h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a, h5, h5 a, h6, h6 a {
+.evoke h1, .evoke h1 a, .evoke h2, .evoke h2 a, .evoke h3, .evoke h3 a,
+.evoke h4, .evoke h4 a, .evoke h5, .evoke h5 a, .evoke h6, .evoke h6 a {
 	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.evoke h1, .evoke h2, .evoke h3, .evoke h4, .evoke h5, .evoke h6 {
 	color: #cccccc;
 }
 
@@ -30,49 +40,49 @@ button, .button {
 	border: 1px solid #26dee0;
 }
 
-button.thin, .button.thin {
+.evoke button.thin, .evoke .button.thin {
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 }
 
-.hidden {
+.evoke .hidden {
 	visibility: hidden;
 	display: none;
 }
-.overflow-hidden {
+.evoke .overflow-hidden {
 	overflow: hidden;
 }
 
 /* Font sizes */
-.font-size-important {
+.evoke .font-size-important {
 	font-size: 120%;
 }
 
 /* Text colors */
-.text-color-important {
+.evoke .text-color-important {
 	color: #26dee0;
 }
 
-.text-color-highlight {
+.evoke .text-color-highlight {
 	color: #26dee0;
 }
 
-.text-color-gray {
+.evoke .text-color-gray {
 	color: #ccc;
 }
 
 /* Font */
-.font-weight-bold {
+.evoke .font-weight-bold {
 	font-weight: bold;
 }
 
 /* Foundation elements */
-.reveal-modal.large {
+.evoke .reveal-modal.large {
 	margin-left: -35%;
 	width: 70%!important;
 }
 
-.flex-video-new {
+.evoke .flex-video-new {
   position: relative;
   padding-top: 1.5625rem;
   padding-bottom: 67.5%;
@@ -118,7 +128,7 @@ button.thin, .button.thin {
 	min-height:800px;
 }
 
-.margins-0{
+.evoke .margins-0{
 	margin:0!important;
 }
 
@@ -542,22 +552,30 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 /* --------------------------- */
 /* COLOR EFFECTS */
 /* --------------------------- */
-.saturation-0 {
+.evoke .saturation-0 {
 	filter: url(saturation.svg#saturation-0);
 }
 
 /* --------------------------- */
-/* TOP BAR - LOGIN */
+/* ICONS */
 /* --------------------------- */
-.evoke .login-top-bar {
-	z-index: 1;
-	background-color: #333;
+.evoke .icon-size-medium {
+	font-size: 2.4em;
 }
+
 .evoke .login.facebook-icon {
 	color: #1d649f;
 }
 .evoke .login.google-icon {
 	color: #9c4040;
+}
+
+/* --------------------------- */
+/* TOP BAR */
+/* --------------------------- */
+.evoke .login-top-bar {
+	z-index: 1;
+	background-color: #333;
 }
 
 .evoke .top-bar-section li:not(.has-form) a:not(.button) {
