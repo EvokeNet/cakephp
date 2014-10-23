@@ -46,22 +46,22 @@ class GroupsUser extends AppModel {
 	    }	
     }
 
-    public function beforeDelete() {
+  //   public function beforeDelete() {
        
-       $group = $this->find('first', array(
-			'conditions' => array('GroupsUser.id' => $this->id))
-		);
+  //      $group = $this->find('first', array(
+		// 	'conditions' => array('GroupsUser.id' => $this->id))
+		// );
 
-       $event = new CakeEvent('Model.GroupsUser.unjoin', $this, array(
-            'entity_id' => $group['GroupsUser']['group_id'],
-            'user_id' => $group['GroupsUser']['user_id'],
-            'entity' => 'groupJoin'
-        ));
+  //      $event = new CakeEvent('Model.GroupsUser.unjoin', $this, array(
+  //           'entity_id' => $group['GroupsUser']['group_id'],
+  //           'user_id' => $group['GroupsUser']['user_id'],
+  //           'entity' => 'groupJoin'
+  //       ));
 
-       $this->getEventManager()->dispatch($event);
+  //      $this->getEventManager()->dispatch($event);
 		
-	   return true;	
-    }
+	 //   return true;	
+  //   }
 
 /**
  * belongsTo associations
