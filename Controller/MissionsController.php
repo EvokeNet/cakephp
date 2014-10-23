@@ -31,7 +31,7 @@ class MissionsController extends AppController {
 		// 	$this->redirect(array('controller' => 'users', 'action' => 'login'));
 		// }
 
-		$this->Auth->allow('view_sample');
+		$this->Auth->allow('view_sample', 'view_test');
 
 		//checking Acl permission
 		/*if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
