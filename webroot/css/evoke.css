@@ -9,7 +9,7 @@ button, div, p, span, a,
 .button {
 	font-family: 'Raleway', 'Arial', sans-serif;
 	font-size: 100%;
-	line-height: 1.618;
+	/*line-height: 1.618;*/
 	color: #cccccc;
 	-webkit-text-stroke: 0.1px;
 	-webkit-font-smoothing: antialiased;

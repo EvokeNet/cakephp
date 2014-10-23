@@ -611,6 +611,34 @@ class MissionsController extends AppController {
 			$this->render('view_project');
 	}
 
+/**
+ * View the missions that are open to everybody as examples before they register
+ * @param string $id - Optional ID to see a specific mission
+ */
+	public function view_test($id = null) {
+		//Facebook login URL comes from session
+		$fbLoginUrl = $this->Session->read('fbLoginUrl');
+
+		$this->loadModel('User');
+		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
+
+		$novels = $this->Mission->Novel->find('all', array(
+			'order' => array(
+				'Novel.page Asc'
+			),
+			'conditions' => array(
+				'Novel.mission_id' => $id,
+				'Novel.language' => 'en'
+			)
+		));
+
+		$this->set(compact('fbLoginUrl', 'mission', 'novels', 'user'));
+
+		//Render simple layout
+		// $this->render('/Common/view-mission'); 
+	}
 
 /**
  * View the missions that are open to everybody as examples before they register

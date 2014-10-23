@@ -1,0 +1,10 @@
+.evoke .sidr{
+	width:500px;
+	font-family: 'Raleway', 'Arial', sans-serif;
+	z-index:99;
+	top:60px;
+	overflow-y:none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	 box-shadow: none; 
+}
