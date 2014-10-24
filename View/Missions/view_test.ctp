@@ -28,16 +28,16 @@
 				<nav class="tab-bar full-height">
 					<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
 					<section class="right-small text-center opacity-07">
-					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabQuests" data-tab-content="tabQuests" href="#tabQuests">
+					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabQuests" data-tab-content="tabQuests">
 					    	<span class="icon-brankic icon-compass fa-2x vertical-align-middle text-color-gray"></span>
 					    </a>
-					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabDossier" data-tab-content="tabDossier" href="#tabDossier">
+					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabDossier" data-tab-content="tabDossier">
 					    	<span class="icon-brankic icon-cabinet2 fa-2x vertical-align-middle text-color-gray"></span>
 					    </a>
-					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabEvidences" data-tab-content="tabEvidences" href="#tabEvidences">
+					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
 					    	<span class="icon-brankic icon-wallet fa-2x vertical-align-middle text-color-gray"></span>
 					    </a>
-					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabMenu" data-tab-content="tabMenu" href="#tabMenu">
+					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabMenu" data-tab-content="tabMenu">
 					    	<span class="icon-brankic icon-grid icon-size-medium vertical-align-middle text-color-gray"></span>
 					    </a>
 				  </section>
@@ -56,7 +56,7 @@
 										if($counter != 1)
 											$active = null;
 										?>
-										<dd <?= $active ?>><a href="#panel<?= $counter ?>" class="text-glow-on-hover"><?= $m['title'] ?></a></dd>
+										<dd <?= $active ?>><a href="#quest<?= $counter ?>" class="text-glow-on-hover"><?= $m['title'] ?></a></dd>
 										<?php
 										$counter++;
 									endforeach;
@@ -85,7 +85,7 @@
 											$active = null;
 										?>
 								
-								<div class="content <?= $active ?>" id="panel<?= $counter ?>">
+								<div class="content <?= $active ?>" id="quest<?= $counter ?>">
 									<div class = "margin right-1">
 										<h3 class="text-color-highlight text-center"><?= $m['title'] ?></h3>
 										<?= $m['description'] ?>
@@ -247,6 +247,8 @@
 		</div>
 	</div>
 
+
+
 <?php 
 	echo $this->Html->script('/components/jquery/dist/jquery.min.js');
 	echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
@@ -257,15 +259,15 @@
 
 	//STICKY KIT
 	echo $this->Html->script('/components/sticky-kit/jquery.sticky-kit.min.js');
-	
+
 	//FOUNDATION
 	echo $this->Html->script('/components/foundation/js/foundation/foundation.js');
-
+	echo $this->Html->script('/components/foundation/js/foundation/foundation.tab.js');
+	
 	//MEDIUM EDITOR
-	echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min.js');//, array('inline' => false));
+	echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min.js');
 	echo $this->Html->script('/components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.all.min.js');
-	echo $this->Html->script('quest_attachments'); 
-
+	
 	//SIDR (offcanvas)
 	echo $this->Html->script('/components/sidr/jquery.sidr.min.js');
 ?>
@@ -357,13 +359,9 @@
 				onOpen: function() { open_sidr('#menu-icon-tabMenu','#sidr-tabMenu'); },
 				onClose: function() { close_sidr('#menu-icon-tabMenu','#sidr-tabMenu'); }
 			});
-			
-			// //MULTIPLE OFFCANVAS
-			// $(".right-off-canvas-toggle").click(function(){
-			// 	//Show right offcanvas
-			// 	$(".right-off-canvas-menu").addClass("hidden");
-   //      		$("." + $(this).data("tabname")).removeClass("hidden");
-			// });
+
+			//REFLOW FOUNDATION - After setting up slick, foundation needs to be updated
+			$(document).foundation('reflow');
 
 			//SUBMIT EVIDENCE BUTTON
 			$(".submit-evidence.button").click(function(){				
@@ -374,6 +372,8 @@
 					$(".evidence-quest-" + $(this).data("quest-id")).addClass("hidden");
 				}
 			});
+
+			
 			/*
 			//http://blog.jonathanargentiero.com/?p=335
 			//Using lazy load with foundation interchange
@@ -381,7 +381,6 @@
 			       if($(selector).attr('data-lazy')){
 			                $(selector).attr('data-interchange',$(selector).attr('data-lazy'));
 			                $(document).foundation('reflow');
-			                $(document).foundation('interchange', 'reflow');
 			                $(selector).removeAttr('data-lazy');
 			        }
 			}
@@ -389,6 +388,8 @@
 			lazyInterchange($('#my_element'));
 			*/
 		});
+
+		//$(document).foundation();
 
 		//Sticky navigation bar, respecting parent element
 		//$(window).ready(function() {
@@ -412,6 +413,7 @@
 	        $(".sticky_column").stick_in_parent();*/
 		//});
 
+		//MEDIUM EDITOR FOR EVIDENCES
 		var editor = new MediumEditor('.editableContent', {
 		    buttons: [
 		    	'bold',

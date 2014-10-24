@@ -86,10 +86,9 @@ $title = __('Evoke Network');
 		echo $this->Html->script('/components/foundation/js/foundation.min.js');
 
 		echo $this->Html->script('evoke');
-		//echo $this->Html->script('footer_bind');
-
 		echo $this->fetch('script');
 	?>
+
 
 	<script>
 /*

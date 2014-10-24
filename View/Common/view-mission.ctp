@@ -8,7 +8,8 @@
 			'slick.css',
 			'/components/medium-editor/dist/css/medium-editor.css',
 			'/components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.css',
-			'medium.css'
+			'medium.css',
+			'sidr.css'
 		)
 	);
 ?>
@@ -20,30 +21,31 @@
 	</div>
 	<?php $this->end(); ?>
 	<!-- TOPBAR MENU -->
-
+	
 	<div id="missions-body" class="missions">
 		<div class="off-canvas-wrap" data-offcanvas>
 			<div class="inner-wrap">
 				<nav class="tab-bar full-height">
-				  <section class="right-small text-center opacity-07">
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabQuests">
-				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-quests-gray.png' ?>" alt="Quests" />
-				    </a>
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabDossier">
-				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-dossier-gray.png' ?>" alt="Dossier" />
-				    </a>
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabEvidences">
-				    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/icon-evidences-gray.png' ?>" alt="Evidences" />
-				    </a>
-				    <a class="right-off-canvas-toggle menu-icon background-color-standard" href="#" data-tabname="tabMenu">
-				    	<i class="fa fa-th-large fa-2x text-color-gray vertical-align-middle"></i>
-				    </a>
+					<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
+					<section class="right-small text-center opacity-07">
+					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabQuests" data-tab-content="tabQuests">
+					    	<span class="icon-brankic icon-compass fa-2x vertical-align-middle text-color-gray"></span>
+					    </a>
+					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabDossier" data-tab-content="tabDossier">
+					    	<span class="icon-brankic icon-cabinet2 fa-2x vertical-align-middle text-color-gray"></span>
+					    </a>
+					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
+					    	<span class="icon-brankic icon-wallet fa-2x vertical-align-middle text-color-gray"></span>
+					    </a>
+					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabMenu" data-tab-content="tabMenu">
+					    	<span class="icon-brankic icon-grid icon-size-medium vertical-align-middle text-color-gray"></span>
+					    </a>
 				  </section>
 				</nav>
 
-				<aside class="right-off-canvas-menu tabQuests">
+				<aside class="right-off-canvas-menu tabQuests" id="tabQuests">
 					<div class="large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0">
-						<!-- TABS COM MENU -->
+						<!-- TABS COM QUESTS -->
 						<dl class="tabs vertical full-height margin right-1 background-color-standard" data-tab>
 							<?php 
 								$counter = 1;
@@ -54,17 +56,17 @@
 										if($counter != 1)
 											$active = null;
 										?>
-										<dd <?= $active ?>><a href="#panel<?= $counter ?>" class="text-glow-on-hover"><?= $m['title'] ?></a></dd>
+										<dd <?= $active ?>><a href="#quest<?= $counter ?>" class="text-glow-on-hover"><?= $m['title'] ?></a></dd>
 										<?php
 										$counter++;
 									endforeach;
 
 									//ONLY FOR TESTS
 									if (count($mission['Quest']) < 1) { ?>
-									  <dd class="active"><a href="#panel1" class="text-glow-on-hover">Quest 1</a></dd>
-									  <dd><a href="#panel2" class="text-glow-on-hover">Quest 2</a></dd>
-									  <dd><a href="#panel3" class="deactivated">Quest 3</a></dd>
-									  <dd><a href="#panel4" class="text-glow-on-hover">Quest 4</a></dd>
+										<div data-alert="" class="alert-box radius">
+											There are no quests available in this mission.
+											<a href="" class="close">×</a>
+										</div>
 									<?php }
 								}
 							?>
@@ -83,7 +85,7 @@
 											$active = null;
 										?>
 								
-								<div class="content <?= $active ?>" id="panel<?= $counter ?>">
+								<div class="content <?= $active ?>" id="quest<?= $counter ?>">
 									<div class = "margin right-1">
 										<h3 class="text-color-highlight text-center"><?= $m['title'] ?></h3>
 										<?= $m['description'] ?>
@@ -97,7 +99,7 @@
 									    </p>
 									   
 									    <p class="text-center margin top-2">
-									    	<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to here to try it out!">
+									    	<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
 									    		<a class="button small submit-evidence" data-quest-id="<?= $counter ?>">Submit your evidence</a>
 									    	</span>
 									    </p>
@@ -165,39 +167,24 @@
 									endforeach;
 								} ?>
 
-
-						  <!-- TAB DOSSIER -->
-						  <!-- <div class="content" id="panel2">
-						    <p>Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						  </div> -->
-
-						  <!-- TAB EVIDENCES -->
-						  <!-- <div class="content" id="panel3">
-						    <p>Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						  </div> -->
-
-						  <!-- TAB MENU -->
-						  <!-- <div class="content" id="panel4">
-						    <p>Panel 4. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						  </div> -->
 						</div>
 					</div>
 				</aside>
 
-				<aside class="right-off-canvas-menu tabDossier">
-					<div class="large-12 large-centered columns">
+				<aside class="right-off-canvas-menu tabDossier" id="tabDossier">
+					<div class="large-12 large-centered columns full-height background-color-standard margin right-1">
 						This section is not available in preview.
 					</div>
 				</aside>
 
-				<aside class="right-off-canvas-menu tabEvidences">
-					<div class="large-12 large-centered columns">
+				<aside class="right-off-canvas-menu tabEvidences" id="tabEvidences">
+					<div class="large-12 large-centered columns full-height background-color-standard margin right-1">
 						This section is not available in preview.
 					</div>
 				</aside>
 
-				<aside class="right-off-canvas-menu tabMenu">
-					<div class="large-12 large-centered columns">
+				<aside class="right-off-canvas-menu tabMenu" id="tabMenu">
+					<div class="large-12 large-centered columns full-height background-color-standard margin right-1">
 						This section is not available in preview.
 					</div>
 				</aside>
@@ -221,7 +208,7 @@
 
 					<!-- MISSOES -->
 					<div class="section missions-content">
-				    	<div class="row missions-carousel full-width">
+				    	<div class="missions-carousel full-width">
 				    		<!-- MISSAO 1 -->
 
 				    		<?php foreach ($novels as $novel) : ?>
@@ -230,16 +217,15 @@
 								</div>
 							<?php endforeach; 
 
+
+
 							//ONLY FOR TESTS
 							if (count($novels) < 1) {?>
-							<div>
-								<img src="<?= $this->webroot.'img/episodes-example/E01G01P02.jpg' ?>"  class="full-width" />
-							</div>
-							<div>
-								<img src="<?= $this->webroot.'img/episodes-example/E01G01P02.jpg' ?>"  class="full-width" />
+							<div data-alert="" class="alert-box radius">
+								Alert: There is no graphic novel available in this mission.
+								<a href="" class="close">×</a>
 							</div>
 							<?php } ?>
-
 				    	</div>
 
 				    	<!-- NAVIGATION BAR -->
@@ -261,13 +247,7 @@
 		</div>
 	</div>
 
-	<!-- FOOTER -->
-	<?php
-		$this->start('footer');
-		echo $this->element('footer');
-		$this->end();
-	?>
-	<!-- FOOTER -->
+
 
 <?php 
 	echo $this->Html->script('/components/jquery/dist/jquery.min.js');
@@ -279,43 +259,22 @@
 
 	//STICKY KIT
 	echo $this->Html->script('/components/sticky-kit/jquery.sticky-kit.min.js');
-	
+
 	//FOUNDATION
 	echo $this->Html->script('/components/foundation/js/foundation/foundation.js');
-	echo $this->Html->script('/components/foundation/js/foundation/foundation.offcanvas.js');
-
-	echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min.js');//, array('inline' => false));
+	echo $this->Html->script('/components/foundation/js/foundation/foundation.tab.js');
+	
+	//MEDIUM EDITOR
+	echo $this->Html->script('/components/medium-editor/dist/js/medium-editor.min.js');
 	echo $this->Html->script('/components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.all.min.js');
-	echo $this->Html->script('quest_attachments'); 
+	
+	//SIDR (offcanvas)
+	echo $this->Html->script('/components/sidr/jquery.sidr.min.js');
 ?>
 
 
 	<!-- FullPage Login -->
 	<script type="text/javascript">
-		//OFF-CANVAS
-		$(document)
-			.foundation({
-				offcanvas : {
-					close_on_click: false,
-					open_method: 'overlap'
-				}
-			});
-
-		$(document)
-			.on('open.fndtn.offcanvas', '[data-offcanvas]', function() {
-				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-05');
-	    		$('div.missions-submenu').removeClass("hidden"); //Show submenu
-	    		//$('.right-small').css("right",$('.right-off-canvas-menu').width());
-	    		$('.right-small').css("transform",'translate3d(-'+$('.right-off-canvas-menu').width()+'px, 0, 0)'); //Off-canvas buttons go to the left
-			});
-
-		$(document)
-			.on('close.fndtn.offcanvas', '[data-offcanvas]', function() {
-				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-05');
-				$('div.missions-submenu').addClass("hidden"); //Hide submenu
-				//$('.right-small').css("right","0");
-				$('.right-small').css("transform",'translate3d(0, 0, 0)'); //Off-canvas buttons go to the left
-			});
 
 		$(document).ready(function() {
 			//Creates carousel
@@ -325,10 +284,22 @@
 			  responsive: true,
 			  lazyLoad: 'progressive',
 			  arrows: true,
+			  onInit: function(slider) {
+			  	$('.slick-slide img:not(.slick-active)').addClass("hidden");
+			  },
+			  onBeforeChange: function(slider, currentIndex, targetIndex){
+			  	//Hide previous image, so that it's height does not count in parent
+			  	$('.slick-slide img').addClass("hidden");
+			  },
 			  onAfterChange: function(slider,index){
+			  	//Show this image
+			  	$('.slick-active img').removeClass("hidden");
+			  	//Page number
 			  	$('#page-number').html(index+1);
 			  }
 			});
+
+			$('.missions-carousel').slickGoTo(0);
 
 			//Changes the position of the arrows
 			$('#slickPrevArrow').append($('.slick-prev'));
@@ -338,13 +309,59 @@
 			$('#missions-body').css("margin-top",$('#missions-menu').height());
 			$('.missions-submenu').css("top",$('#missions-menu').height());
 
+			//Off canvas
+			function open_sidr(sidr_button,sidr_source) {
+				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
+				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-05'); //Blur everything else
+	    		$('div.missions-submenu').removeClass("hidden"); //Show submenu
+	    		$('.right-small').css("right",$(sidr_source).width()); //Off-canvas buttons go to the left
+			}
 
-			//MULTIPLE OFFCANVAS
-			$(".right-off-canvas-toggle").click(function(){
-				//Show right offcanvas
-				$(".right-off-canvas-menu").addClass("hidden");
-        		$("." + $(this).data("tabname")).removeClass("hidden");
+			function close_sidr(sidr_button,sidr_source) {
+				$(sidr_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
+				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-05'); //Blur everything else
+				$('div.missions-submenu').addClass("hidden"); //Hide submenu
+				$('.right-small').css("right","0"); //Off-canvas buttons go back to the right
+			}
+
+			$('#menu-icon-tabQuests').sidr({
+				name: 'sidr-tabQuests',
+				side: 'right',
+				source: '#tabQuests',
+				displace: false, renaming: false,
+				onOpen: function() { open_sidr('#menu-icon-tabQuests','#sidr-tabQuests'); },
+				onClose: function() { close_sidr('#menu-icon-tabQuests','#sidr-tabQuests'); }
 			});
+
+			$('#menu-icon-tabDossier').sidr({
+				name: 'sidr-tabDossier',
+				side: 'right',
+				source: '#tabDossier',
+				displace: false, renaming: false,
+				onOpen: function() { open_sidr('#menu-icon-tabDossier','#sidr-tabDossier'); },
+				onClose: function() { close_sidr('#menu-icon-tabDossier','#sidr-tabDossier'); }
+			});
+
+			$('#menu-icon-tabEvidences').sidr({
+				name: 'sidr-tabEvidences',
+				side: 'right',
+				source: '#tabEvidences',
+				displace: false, renaming: false,
+				onOpen: function() { open_sidr('#menu-icon-tabEvidences','#sidr-tabEvidences'); },
+				onClose: function() { close_sidr('#menu-icon-tabEvidences','#sidr-tabEvidences'); }
+			});
+
+			$('#menu-icon-tabMenu').sidr({
+				name: 'sidr-tabMenu',
+				side: 'right',
+				source: '#tabMenu',
+				displace: false, renaming: false,
+				onOpen: function() { open_sidr('#menu-icon-tabMenu','#sidr-tabMenu'); },
+				onClose: function() { close_sidr('#menu-icon-tabMenu','#sidr-tabMenu'); }
+			});
+
+			//REFLOW FOUNDATION - After setting up slick, foundation needs to be updated
+			$(document).foundation('reflow');
 
 			//SUBMIT EVIDENCE BUTTON
 			$(".submit-evidence.button").click(function(){				
@@ -355,6 +372,8 @@
 					$(".evidence-quest-" + $(this).data("quest-id")).addClass("hidden");
 				}
 			});
+
+			
 			/*
 			//http://blog.jonathanargentiero.com/?p=335
 			//Using lazy load with foundation interchange
@@ -362,7 +381,6 @@
 			       if($(selector).attr('data-lazy')){
 			                $(selector).attr('data-interchange',$(selector).attr('data-lazy'));
 			                $(document).foundation('reflow');
-			                $(document).foundation('interchange', 'reflow');
 			                $(selector).removeAttr('data-lazy');
 			        }
 			}
@@ -370,6 +388,8 @@
 			lazyInterchange($('#my_element'));
 			*/
 		});
+
+		//$(document).foundation();
 
 		//Sticky navigation bar, respecting parent element
 		//$(window).ready(function() {
@@ -393,6 +413,7 @@
 	        $(".sticky_column").stick_in_parent();*/
 		//});
 
+		//MEDIUM EDITOR FOR EVIDENCES
 		var editor = new MediumEditor('.editableContent', {
 		    buttons: [
 		    	'bold',
