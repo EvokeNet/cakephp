@@ -23,8 +23,8 @@ class MatchingQuestion extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'UsersMatchingAnswer' => array(
-			'className' => 'UsersMatchingAnswer',
+		'UserMatchingAnswer' => array(
+			'className' => 'UserMatchingAnswer',
 			'foreignKey' => 'matching_question_id',
 			'dependent' => false,
 			'conditions' => '',

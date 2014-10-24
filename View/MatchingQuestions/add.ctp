@@ -13,7 +13,7 @@
 	<ul>
 
 		<li><?php echo $this->Html->link(__('List Matching Questions'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users Matching Answers'), array('controller' => 'users_matching_answers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Users Matching Answer'), array('controller' => 'users_matching_answers', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List User Matching Answers'), array('controller' => 'user_matching_answers', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User Matching Answer'), array('controller' => 'user_matching_answers', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
