@@ -224,6 +224,19 @@ class User extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'UserMatchingAnswer' => array(
+			'className' => 'UserMatchingAnswer',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Comment' => array(
 			'className' => 'Comment',
 			'foreignKey' => 'user_id',
