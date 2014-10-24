@@ -48,6 +48,20 @@ class UserMatchingAnswersController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			debug($this->request->data);
+			debug($this->request->data['UserMatchingAnswer']['matching_question_id'][0]);
+			$counter = 0;
+			foreach($this->request->data['UserMatchingAnswer'] as $key => $u):
+				debug('key '.$key);
+				debug('counter '.$counter);
+				// $counter++;
+				debug($u[$key][$counter]);
+				$this->UserMatchingAnswer->create();
+				$this->UserMatchingAnswer->saveMany($u);
+				$counter++;
+			endforeach;
+			die();
+
 			$this->UserMatchingAnswer->create();
 			if ($this->UserMatchingAnswer->save($this->request->data)) {
 				$this->Session->setFlash(__('The user matching answer has been saved.'));

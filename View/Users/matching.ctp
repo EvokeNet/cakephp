@@ -19,6 +19,24 @@
 	<div class="row full-width">
 	  <div class="medium-6 columns">
 	  	<h2><?= __('Matching') ?></h2>
+	  	<?php
+			echo $this->Form->create('UserMatchingAnswer', array(
+			    'url' => array('controller' => 'UserMatchingAnswers', 'action' => 'add')
+			));
+	  		echo $this->Form->hidden('user_id', array('value' => $user_id));
+	  		
+	  		foreach($matching_questions as $m):
+			  	echo $this->Form->hidden('matching_question_id.', array('multiple' => true, 'value' => $m['MatchingQuestion']['id']));
+				echo $this->Form->input('matching_answer.', array('multiple' => true, 'placeholder' => $m['MatchingQuestion']['matching_question'], 'label' => false));
+			endforeach;
+
+			// foreach($matching_questions as $key => $m):
+			//   	echo $this->Form->hidden($key.'.matching_question_id', array('multiple' => true, 'value' => $m['MatchingQuestion']['id']));
+			// 	echo $this->Form->input($key.'.matching_answer', array('multiple' => true, 'placeholder' => $m['MatchingQuestion']['matching_question'], 'label' => false));
+			// endforeach;
+
+			echo $this->Form->end(__('Submit'));
+		?>
 	  </div>
 	  <div class="medium-6 columns">
 	  	<h2><?= __('Check the items most interesting to you') ?></h2>
