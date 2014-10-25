@@ -1,4 +1,12 @@
 /* FONTS */
+.evoke .font-highlight {
+	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+}
+
+.evoke .font-regular {
+	font-family: 'Raleway', 'Arial', sans-serif;
+}
+
 @font-face {
     font-family: 'Brankic';
     src: url('../css/font/Brankic.ttf') format('truetype');
@@ -365,6 +373,15 @@ input[type=text]:focus, input[type=email]:focus, input[type=number]:focus,
 input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, textarea:focus {
   box-shadow: 0 0 5px #26dee0;
   border: 1px solid #26dee0;
+}
+
+.evoke label {
+	color: #cccccc;
+}
+
+.evoke .form-evoke-style input, .evoke .form-evoke-style label {
+	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	text-transform: uppercase;
 }
 
 

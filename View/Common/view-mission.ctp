@@ -61,7 +61,7 @@
 										$counter++;
 									endforeach;
 
-									//ONLY FOR TESTS
+									//NO QUESTS: Show alert
 									if (count($mission['Quest']) < 1) { ?>
 										<div data-alert="" class="alert-box radius">
 											There are no quests available in this mission.
