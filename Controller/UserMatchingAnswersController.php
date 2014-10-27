@@ -47,10 +47,10 @@ class UserMatchingAnswersController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
-			debug($this->request->data);
-			debug($this->request->data['UserMatchingAnswer']['matching_question_id'][0]);
-			debug($this->request->data['UserIssue']['issue_id']);
+		if ($this->request->is('post', 'put')) {
+			// debug($this->request->data);
+			// debug($this->request->data['UserMatchingAnswer']['matching_question_id'][0]);
+			// debug($this->request->data['UserIssue']['issue_id']);
 			$counter = 0;
 			$check = null;
 			foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $key => $u):

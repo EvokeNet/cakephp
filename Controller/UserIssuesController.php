@@ -47,7 +47,7 @@ class UserIssuesController extends AppController {
  */
 	public function add() {
 		$id = null;
-		if ($this->request->is('post')) {
+		if ($this->request->is('post', 'put')) {
 			// debug($this->request->data);
 			// die();
 			$status = false;

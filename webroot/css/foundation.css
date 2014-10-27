@@ -51,6 +51,10 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 	height: 3.8125rem;
 }
 
+.tab-bar .menu-icon span::after {
+	display: none;
+}
+
 .offcanvas-overlap .left-off-canvas-menu, .offcanvas-overlap .right-off-canvas-menu {
 	z-index: 10;
 }

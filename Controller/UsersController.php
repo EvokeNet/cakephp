@@ -265,7 +265,7 @@ class UsersController extends AppController {
 
 					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-				return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
+				return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
 
 			}
 		} 
@@ -370,7 +370,7 @@ class UsersController extends AppController {
 
 					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-					return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
+					return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
 
 				}
 				
@@ -390,7 +390,7 @@ class UsersController extends AppController {
 
 			//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-			return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
+			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
 
 		} else if(isset($this->request->data['User']['username'])){
 
@@ -1269,6 +1269,28 @@ class UsersController extends AppController {
 
 		$user_id = $id;
 
+		if ($this->request->is('post', 'put')) {
+
+			$counter = 0;
+			foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $key => $u):
+				$insert['UserMatchingAnswer']['user_id'] = $this->request->data['UserMatchingAnswer']['user_id'];
+				$insert['UserMatchingAnswer']['matching_question_id'] = $this->request->data['UserMatchingAnswer']['matching_question_id'][$counter];
+				$insert['UserMatchingAnswer']['matching_answer'] = $u;
+				$this->User->UserMatchingAnswer->create();
+				$this->User->UserMatchingAnswer->save($insert);
+				$counter++;
+			endforeach;
+
+			foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
+		        $insert = array('user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'issue_id' => $a);
+
+		        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'UserIssue.issue_id' => $a)));
+		        if(!$exists) $this->User->UserIssue->save($insert);
+		    }
+
+			return $this->redirect(array('controller' => 'users', 'action' => 'matching_results', $id));
+		}
+
 		$this->set(compact('matching_questions', 'selected_matching_answer', 'user_id', 'issues', 'selectedIssues'));
 	}
 
@@ -1703,7 +1725,7 @@ class UsersController extends AppController {
 			    	$this->Auth->login($user);
 			    	//$this->Session->setFlash(__('The user has been saved.'));
 			    	$this->Session->setFlash(__('Your informations were succefully saved'), 'flash_message');
-					return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
+					return $this->redirect(array('controller' => 'users', 'action' => 'matching', $id));
 
 				} 
 		        
