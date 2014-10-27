@@ -20,12 +20,11 @@
 			if (count($matching_questions) < 1): ?>
 				<div data-alert="" class="alert-box radius">
 					<?= __('There are no matching questions available at this moment.') ?>
-					<a href="" class="close">×</a>
+					<a href="" class="close">Ã—</a>
 				</div>
 			<?php
 			else:
 				echo $this->Form->create('UserMatchingAnswer', array(
-				    'url' => array('controller' => 'UserMatchingAnswers', 'action' => 'add'),
 					'data-abide'
 				));
 		  		echo $this->Form->hidden('user_id', array('value' => $user_id));
@@ -63,7 +62,7 @@
 			if (!$issues): ?>
 				<div data-alert="" class="alert-box radius">
 					<?= __('There are no matching interests available at this moment.') ?>
-					<a href="" class="close">×</a>
+					<a href="" class="close">Ã—</a>
 				</div>
 			<?php
 			//HAS ISSUES AND QUESTIONS (has a form that can be sent)

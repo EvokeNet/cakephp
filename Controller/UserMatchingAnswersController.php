@@ -47,28 +47,36 @@ class UserMatchingAnswersController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
-			debug($this->request->data);
-			debug($this->request->data['UserMatchingAnswer']['matching_question_id'][0]);
+		if ($this->request->is('post', 'put')) {
+			// debug($this->request->data);
+			// debug($this->request->data['UserMatchingAnswer']['matching_question_id'][0]);
+			// debug($this->request->data['UserIssue']['issue_id']);
 			$counter = 0;
-			foreach($this->request->data['UserMatchingAnswer'] as $key => $u):
-				debug('key '.$key);
-				debug('counter '.$counter);
+			$check = null;
+			foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $key => $u):
+				// debug('key '.$key);
+				// debug('counter '.$counter);
 				// $counter++;
-				debug($u[$key][$counter]);
+				// debug($this->request->data['UserMatchingAnswer']['matching_question_id'][$counter]);
+				// debug($u);
+
+				$insert['UserMatchingAnswer']['user_id'] = $this->request->data['UserMatchingAnswer']['user_id'];
+				$insert['UserMatchingAnswer']['matching_question_id'] = $this->request->data['UserMatchingAnswer']['matching_question_id'][$counter];
+				$insert['UserMatchingAnswer']['matching_answer'] = $u;
 				$this->UserMatchingAnswer->create();
-				$this->UserMatchingAnswer->saveMany($u);
+				$this->UserMatchingAnswer->save($insert);
+
 				$counter++;
 			endforeach;
-			die();
+			// die();
 
-			$this->UserMatchingAnswer->create();
-			if ($this->UserMatchingAnswer->save($this->request->data)) {
-				$this->Session->setFlash(__('The user matching answer has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The user matching answer could not be saved. Please, try again.'));
-			}
+			// $this->UserMatchingAnswer->create();
+			// if ($this->UserMatchingAnswer->save($this->request->data)) {
+			// 	$this->Session->setFlash(__('The user matching answer has been saved.'));
+			// 	//return $this->redirect(array('action' => 'index'));
+			// } else {
+			// 	$this->Session->setFlash(__('The user matching answer could not be saved. Please, try again.'));
+			// }
 		}
 		$users = $this->UserMatchingAnswer->User->find('list');
 		$matchingQuestions = $this->UserMatchingAnswer->MatchingQuestion->find('list');

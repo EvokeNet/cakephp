@@ -379,7 +379,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	color: #cccccc;
 }
 
-.evoke .form-evoke-style input, .evoke .form-evoke-style label {
+.evoke .form-evoke-style label {
 	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
 	text-transform: uppercase;
 }

@@ -62,9 +62,9 @@
 					?>
 
 					<!-- SIGN UP BUTTON -->
-					<div class="text-center">
+					
 						<button class="button small full-width margin top-05 bottom-0" type="submit"><?php echo __('Sign up') ?></button>
-					</div>
+					
 
 					<p class="text-right"><small class="text-color-highlight"><?php echo __('Already an agent? Sign in on the top bar!') ?></small></p>
 				</div>
