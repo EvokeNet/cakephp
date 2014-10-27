@@ -35,16 +35,26 @@
 			// 	echo $this->Form->input($key.'.matching_answer', array('multiple' => true, 'placeholder' => $m['MatchingQuestion']['matching_question'], 'label' => false));
 			// endforeach;
 
-			echo $this->Form->end(__('Submit'));
+			echo $this->Form->end();
 		?>
 	  </div>
 	  <div class="medium-6 columns">
 	  	<h2><?= __('Check the items most interesting to you') ?></h2>
 	  	<?php
+	  		echo $this->Form->create('UserIssue', array(
+			    'url' => array('controller' => 'UserIssues', 'action' => 'add')
+			));
+
+			echo $this->Form->hidden('user_id', array('value' => $user_id));
+			
 			if($issues):
 				echo $this->Form->input('UserIssue.issue_id', array('class' => 'edit-user-issues', 'type' => 'select', 'multiple' => 'checkbox', 'selected' => $selectedIssues, 'label' => false));
 			endif;
+			echo $this->Form->end();
 		?>
+
+		<!-- <div class = "submit"><input type="submit" value="Submit" id = "bothForms"></div> -->
+		<button id = "formss">Enviar</button>
 	  </div>
 	</div>
 
@@ -53,4 +63,55 @@
 	$this->start('footer');
 	echo $this->element('footer');
 	$this->end();
+
+	echo $this->Html->script('/webroot/components/jquery/dist/jquery.min.js');
 ?>
+
+<script>
+// $(document).ready(function() {
+// 	$('#formss').click(function(){
+// 		alert('alert');
+// 		$('#UserMatchingAnswerMatchingForm').submit();
+// 		$('#UserIssueMatchingForm').submit();
+// 	})
+// });
+
+// $('input[type="submit"]').click(function(){
+// 		alert('alert');
+// 		$('#UserMatchingAnswerMatchingForm').submit();
+// 		$('#UserIssueMatchingForm').submit();
+// });
+
+// $(document).ready(function () {
+//     $("#formss").click(function () {
+//         var $form1 = $("#UserMatchingAnswerMatchingForm");
+//         $.post($form1.attr("action"), $form1.serialize(), function () {
+//             alert('Form 1 submitted');
+//         });
+
+//         var $form2 = $("#UserIssueMatchingForm");
+//         $.post($form2.attr("action"), $form2.serialize(), function () {
+//             alert('Form 1 submitted');
+//         });
+
+//         // $('form[name="formsub"]').each(function () {
+//         //     var $form = $(this);
+//         //     $.post($form.attr("action"), $form.serialize(), function () {
+//         //         alert('Form 2 submitted');
+//         //     });
+//         // })
+//     });
+// });
+
+function submitTwoForms() {
+	$('#UserIssueMatchingForm').submit();
+	event.preventDefault();   //to prevent submit
+}
+
+$('#formss').click(function(){
+    $('#UserMatchingAnswerMatchingForm').submit(function() {
+	    submitTwoForms();
+	});
+});
+
+</script>
