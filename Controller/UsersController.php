@@ -1305,6 +1305,10 @@ class UsersController extends AppController {
  * @return void
  */
 	public function matching_results($id = null) {
+		//List of similar users (for now, any 4 users)
+		$similar_users = $this->User->find('all', array('limit' => 4));
+
+		$this->set(compact('similar_users'));
 	}
 
 /**

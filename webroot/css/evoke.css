@@ -437,6 +437,14 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background-color: #333;
 }
 
+.evoke .background-color-dark {
+	background-color: #252525;
+}
+
+.evoke .background-color-darkest {
+	background-color: #111;
+}
+
 .evoke .background-color-highlight {
 	background-color: #26dee0;
 }
@@ -458,8 +466,16 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	border-color: #26dee0;
 }
 
+.evoke .border-color-dark {
+	border-color: #111;
+}
+
 .evoke .border-width-02 {
 	border-width: 0.2em;
+}
+
+.evoke .radius {
+	border-radius: 5px;
 }
 
 /* --------------------------- */

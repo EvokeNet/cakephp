@@ -8,7 +8,6 @@
 }
 
 /* Tabs */
-
 .evoke .login .tabs {
 	line-height: 92px;
 }
@@ -28,4 +27,19 @@
 /* Slide */
 div.evoke.slide.background-cover.active div.img-caption-bottom {
 	width: 50%;
+}
+
+
+/* --------------------------- */
+/* MATCHING RESULTS */
+/* --------------------------- */
+.evoke .user-panel .profile-picture {
+	height: 150px;
+	width: 125px;
+	margin: -100px auto 20px auto;
+	background-size: cover;
+}
+
+.evoke .user-panel .profile-content {
+	margin-top: 100px;
 }

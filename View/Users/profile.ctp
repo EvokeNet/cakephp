@@ -4,7 +4,7 @@
 	$this->end();
 ?>
 
-<!--
+
 <div class="evoke row background-color-standard full-width">
   <div class="medium-2 columns">
   	<?php if($user['User']['photo_attachment'] == null) : ?>
@@ -22,7 +22,7 @@
   <div class="medium-8 columns">...</div>
   <div class="medium-2 columns">...</div>
 </div>
--->
+
 
 <div class="full-width full-height">
 	<img src="<?= $this->webroot.'img/mockup-1-evoke-profile-.jpg' ?>"  class="full-width" />
