@@ -1258,16 +1258,17 @@ class UsersController extends AppController {
  * @return void
  */
 	public function matching($id = null) {
+		$user_id = $id;
 
+		//List issues (all, and already saved)
 		$issues = $this->User->UserIssue->Issue->find('list');
 		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
 
+		//List questions (all, and already saved)
 		$this->loadModel('MatchingQuestion');
 		$this->loadModel('UserMatchingAnswer');
 		$matching_questions = $this->MatchingQuestion->find('all');
 		$selected_matching_answer = $this->User->UserMatchingAnswer->find('all', array('conditions' => array('UserMatchingAnswer.user_id' => $id)));
-
-		$user_id = $id;
 
 		$this->set(compact('matching_questions', 'selected_matching_answer', 'user_id', 'issues', 'selectedIssues'));
 	}

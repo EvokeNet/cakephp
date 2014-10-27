@@ -290,12 +290,12 @@
 			  onBeforeChange: function(slider, currentIndex, targetIndex){
 			  	//Hide previous image, so that it's height does not count in parent
 			  	$('.slick-slide img').addClass("hidden");
+			  	//Page number
+			  	$('#page-number').html(targetIndex+1);
 			  },
 			  onAfterChange: function(slider,index){
 			  	//Show this image
 			  	$('.slick-active img').removeClass("hidden");
-			  	//Page number
-			  	$('#page-number').html(index+1);
 			  }
 			});
 

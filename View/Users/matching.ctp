@@ -94,7 +94,6 @@
 				$(this).addClass('img-glow-small');
 				$("label[for='"+$(this).attr("id")+"']").addClass('text-glow');
 			}
-			
 		});
 	</script> <?php
 	$this->end(); ?>
