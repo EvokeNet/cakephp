@@ -31,19 +31,21 @@ div.evoke.slide.background-cover.active div.img-caption-bottom {
 
 
 /* --------------------------- */
-/* MATCHING RESULTS */
+/* MATCHING RESULTS AND PROFILE */
 /* --------------------------- */
 .evoke .user-panel .profile-picture {
+	margin: -100px auto 20px auto;
+}
+
+.evoke .profile-picture {
 	height: 150px;
 	width: 125px;
-	margin: -100px auto 20px auto;
 	background-size: cover;
 }
 
-.evoke .reveal-modal .profile-picture {
-	height: 150px;
-	width: 125px;
-	background-size: cover;
+.evoke .profile-picture.small {
+	height: 100px;
+	width: 80px;
 }
 
 .evoke .user-panel .profile-content {
@@ -52,4 +54,11 @@ div.evoke.slide.background-cover.active div.img-caption-bottom {
 
 .evoke #radar-graph {
 	margin-top: -50px;
+}
+
+.evoke .border-top-divisor {
+	border-top: 1px solid #292929;
+}
+.evoke .border-right-divisor {
+	border-right: 1px solid #292929;
 }

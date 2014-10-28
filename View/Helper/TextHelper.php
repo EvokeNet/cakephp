@@ -19,6 +19,11 @@ class TextHelper extends AppHelper {
      * @return string First N words from the text, without HTML
      */
     public function getExcerpt($text, $number_of_words, $after_excerpt = "") {
+        // Replace new lines with space
+        $text = str_replace("</p>", " ", $text);
+        $text = str_replace("<br />", " ", $text);
+        str_replace("\n", " ", $text);
+
         // Remove HTML
         $text = strip_tags($text);
 
@@ -28,6 +33,6 @@ class TextHelper extends AppHelper {
         $text = preg_replace("/^\W*((\w[\w'-]*\b\W*){1,$number_of_words}).*/ms", '\\1', $text);
 
         // strip out newline characters from our excerpt
-        return str_replace("\n", "", $text).$after_excerpt;
+        return $text.$after_excerpt;
     }
 }

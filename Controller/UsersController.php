@@ -1243,9 +1243,12 @@ class UsersController extends AppController {
 
 		}
 
+		//List of similar users (for now, any 4 users; later, matching results)
+		$similar_users = $this->User->find('all', array('limit' => 6));
+
 		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'lang'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'lang', 'similar_users'));
 
 	}
 
@@ -1305,7 +1308,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function matching_results($id = null) {
-		//List of similar users (for now, any 4 users)
+		//List of similar users (for now, any 4 users; later, matching results)
 		$similar_users = $this->User->find('all', array('limit' => 4));
 
 		$this->set(compact('similar_users'));

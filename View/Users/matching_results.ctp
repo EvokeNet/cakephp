@@ -21,8 +21,9 @@
 			<div class="text-center">
 				<a class="button" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site')); ?>"><?php echo __('Explore evoke!'); ?></a>
 			</div>
-
 		</div>
+
+		<!-- RADAR GRAPH FOR MATCHING RESULTS -->
 		<div class="medium-6 columns centering-block">
 			<div class="text-center vertical-align-middle centered-block">
 				<h4 class="text-color-highlight"><?= __('Assessment') ?></h4>
@@ -32,68 +33,46 @@
 	</div>
 
 	<div class="row">
+		<!-- SIMILAR AGENTS TITLE -->
 		<div class="small-12 columns margin top-2">
 			<?php if (count($similar_users) > 0): ?>
 			<h3><?= __('These are agents with a profile similar to yours') ?></h3>
 			<?php endif; ?>
 		</div>
 
+		<!-- SIMILAR AGENTS -->
 		<div class="row user-panel">
 			<?php
 				$counter = 0;
-				foreach($similar_users as $user):
+				foreach($similar_users as $similar_user):
 					$pic = $this->webroot.'webroot/img/user_avatar.jpg';
-					if($user['User']['photo_attachment'] == null) {
-						if($user['User']['facebook_id'] != null) {
-							$pic = "https://graph.facebook.com/". $user['User']['facebook_id'] ."/picture?type=large";
+					if($similar_user['User']['photo_attachment'] == null) {
+						if($similar_user['User']['facebook_id'] != null) {
+							$pic = "https://graph.facebook.com/". $similar_user['User']['facebook_id'] ."/picture?type=large";
 						}
 					}
 					else {
-						$pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'];
+						$pic = $this->webroot.'files/attachment/attachment/'.$similar_user['User']['photo_dir'].'/'.$similar_user['User']['photo_attachment'];
 					}
 			?>
 			<div class="large-3 medium-6 small-6 columns">
+				<!-- PANEL -->
 				<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
 					<div class="profile-content panel radius text-center margin right-05">
+						<!-- USER PICTURE -->
 						<div class="profile-picture radius"
 				    		data-interchange="['<?= $pic ?>',(default)]">
 						</div>
 
-						<h4 class="text-color-highlight"><?= $user['User']['name'] ?></h4>
-						<p><?= $this->Text->getExcerpt($user['User']['biography'], 30, '...') ?></p>
+						<!-- USER SHORT BIOGRAPHY -->
+						<h4 class="text-color-highlight"><?= $similar_user['User']['name'] ?></h4>
+						<p><?= $this->Text->getExcerpt($similar_user['User']['biography'], 30, '...') ?></p>
 						<button class="submit small"><?php echo __('View Agent'); ?></button>
 					</div>
 				</a>
 
-				<div id="modalProfile<?= $counter ?>" class="reveal-modal background-color-darkest" data-reveal>
-					<div class="left margin right-2">
-						<!-- PICTURE -->
-						<div class="profile-picture radius border-style-solid border-color-highlight border-width-01"
-				    		data-interchange="['<?= $pic ?>',(default)]">
-						</div>
-
-						<!-- SOCIAL NETWORKS -->
-						<div>
-						</div>
-					</div>
-
-					<div>
-						<!-- USER NAME -->
-						<h4 class="text-color-highlight"><?= __('Agent ').$user['User']['name'] ?></h4>
-
-						<!-- LEVEL PROGRESS BAR -->
-
-						<!-- BIOGRAPHY -->
-						<?= $user['User']['biography'] ?>
-
-						<!-- ADD -->
-						<div class="text-center">
-							<a class="button small addally" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'add_friend', $user['User']['id'], 'false')); ?>"><?php echo __('ADD ALLY'); ?></a>
-						</div>
-
-						<a class="close-reveal-modal">&#215;</a>
-					</div>
-				</div>
+				<!-- VIEW AGENT DETAILS MODAL -->
+				<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'similar_user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
 			</div>
 			<?php
 					$counter++;
