@@ -15,6 +15,8 @@
 		<div class="medium-6 columns">
 			<h3><?= __('You are an entrepreneurial agent!') ?></h3>
 			<p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
+			<p><?= __('You have the heart of a Local Leader!') ?></p>
+			<p><?= __('Your Entrepreneurship and Local Insight are key to you. Embrace your qualities and use them for the better.') ?></p>
 			<p><?= __('Continue to explore who you are, who you could be, on your profile page. Or start your mission. Or begin to think about your world chanding idea!') ?></p>
 			<div class="text-center">
 				<a class="button" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site')); ?>"><?php echo __('Explore evoke!'); ?></a>
@@ -22,7 +24,10 @@
 
 		</div>
 		<div class="medium-6 columns centering-block">
-			<div class="text-center vertical-align-middle centered-block">(GRAPH HERE)</div>
+			<div class="text-center vertical-align-middle centered-block">
+				<h4 class="text-color-highlight"><?= __('Assessment') ?></h4>
+				<canvas id="radar-graph" height="450" width="500" ></canvas>
+			</div>
 		</div>
 	</div>
 
@@ -100,7 +105,11 @@
 
 <?php
 	/* Script */
-	$this->start('script'); ?>
+	$this->start('script');
+
+	//CHARTJS
+	echo $this->Html->script('/components/chartjs/Chart.js');
+?>
 	<script type="text/javascript">
 		//Checkbox glows when selected
 		$("div.profile-content")
@@ -115,18 +124,42 @@
 			$(this).find('button').removeClass('img-glow-small').removeClass('text-glow');
 		});
 
+		//Add ally
+		$('.addally').on('click', function() {
+			if ($(this).attr('href') != "#") {
+			    $(this).load(
+			        $(this).attr('href') 
+			    	, function () {
+			        $(this).html('<?= __('Congratulations! The user has been added.') ?>');
+			        $(this).attr('href','#');
+			    }); 
+			}
+		    // Prevent link going somewhere
+		    return false; 
+		});
+
+		//Radar chart
 		$(document).ready(function() {
-			$('.addally').on('click', function() {
-				if ($(this).attr('href') != "#") {
-				    $(this).load(
-				        $(this).attr('href') 
-				    	, function () {
-				        $(this).html('<?= __('Congratulations! The user has been added.') ?>');
-				        $(this).attr('href','#');
-				    }); 
-				}
-			    // Prevent link going somewhere
-			    return false; 
+			var radarChartData = {
+				labels : ["Activism","Connecting Ideas","Creativity","Data Analysis","Entrepreneurship","Knowledge Building","Local Insight","Problem Solving"],
+				datasets : [
+					{
+						fillColor : "rgba(151,187,205,0.5)",
+						strokeColor : "rgba(151,187,205,1)",
+						pointColor : "rgba(151,187,205,1)",
+						pointStrokeColor : "#fff",
+						data : [28,48,40,19,96,27,100,50]
+					}
+				]
+			}
+
+			var myRadar = new Chart(document.getElementById("radar-graph").getContext("2d")).Radar(radarChartData,
+			{
+				scaleShowLabels : false,
+				tooltipYPadding: 0,
+				tooltipXPadding: 0,
+				pointLabelFontFamily : "'Orbitron'",
+				pointLabelFontSize : 10
 			});
 		});
 	</script>

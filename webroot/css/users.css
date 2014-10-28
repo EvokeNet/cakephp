@@ -49,3 +49,7 @@ div.evoke.slide.background-cover.active div.img-caption-bottom {
 .evoke .user-panel .profile-content {
 	margin-top: 100px;
 }
+
+.evoke #radar-graph {
+	margin-top: -50px;
+}
