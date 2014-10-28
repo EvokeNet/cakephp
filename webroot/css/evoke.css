@@ -41,6 +41,10 @@ button, div, p, span, a,
 	color: #cccccc;
 }
 
+.evoke h3, .evoke h4, .evoke h5, .evoke h6 {
+	text-transform: uppercase;
+}
+
 button, .button {
 	text-transform: uppercase;
 	color: #26dee0;
@@ -470,6 +474,9 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	border-color: #111;
 }
 
+.evoke .border-width-01 {
+	border-width: 0.1em;
+}
 .evoke .border-width-02 {
 	border-width: 0.2em;
 }

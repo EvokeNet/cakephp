@@ -1490,20 +1490,22 @@ class UsersController extends AppController {
  * we created a relationship from model User to itselft, using friends table as join table,
  * which holds two user's id and the DATETIME created to keep track of a friendship start.
  *
- * @return void
+ * @param int $user_to User id of the friend that will be added
+ * @param bool $redirect Boolean indicating if the function should redirect after adding the friend. Default true.
+ * @return string Text saying if the user has been added or not. Returned when the user is not redirected.
  */
-	public function add_friend($user_to = null) {
-
-		
+	public function add_friend($user_to = null, $redirect = null) {
 		$this->request->data['User']['id'] = $this->getUserId();
 		$this->request->data['Friend']['id'] = $user_to;
 
 		if($result = $this->User->saveAll($this->request->data)) {
-			$this->redirect(array('action' => 'view', $user_to));
-		} else {
+			if (is_null($redirect)) {
+				$this->redirect(array('action' => 'view', $user_to));
+			}
+		}
+		elseif (is_null($redirect)) {
 			$this->redirect(array('action' => 'view', $user_to));
 		}
-
 	}
 
 /**

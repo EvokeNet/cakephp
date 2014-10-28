@@ -35,6 +35,7 @@
 
 		<div class="row user-panel">
 			<?php
+				$counter = 0;
 				foreach($similar_users as $user):
 					$pic = $this->webroot.'webroot/img/user_avatar.jpg';
 					if($user['User']['photo_attachment'] == null) {
@@ -47,17 +48,52 @@
 					}
 			?>
 			<div class="large-3 medium-6 small-6 columns">
-				<div class="profile-content panel radius text-center margin right-05">
-					<div class="profile-picture radius"
-			    		data-interchange="['<?= $pic ?>',(default)]">
+				<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
+					<div class="profile-content panel radius text-center margin right-05">
+						<div class="profile-picture radius"
+				    		data-interchange="['<?= $pic ?>',(default)]">
+						</div>
+
+						<h4 class="text-color-highlight"><?= $user['User']['name'] ?></h4>
+						<p><?= $this->Text->getExcerpt($user['User']['biography'], 30, '...') ?></p>
+						<button class="submit small"><?php echo __('View Agent'); ?></button>
+					</div>
+				</a>
+
+				<div id="modalProfile<?= $counter ?>" class="reveal-modal background-color-darkest" data-reveal>
+					<div class="left margin right-2">
+						<!-- PICTURE -->
+						<div class="profile-picture radius border-style-solid border-color-highlight border-width-01"
+				    		data-interchange="['<?= $pic ?>',(default)]">
+						</div>
+
+						<!-- SOCIAL NETWORKS -->
+						<div>
+						</div>
 					</div>
 
-					<p class="font-highlight text-color-highlight"><?= $user['User']['name'] ?></p>
-					<?= $user['User']['biography'] ?>
-					<button class="submit small"><?php echo __('View Agent'); ?></button>
+					<div>
+						<!-- USER NAME -->
+						<h4 class="text-color-highlight"><?= __('Agent ').$user['User']['name'] ?></h4>
+
+						<!-- LEVEL PROGRESS BAR -->
+
+						<!-- BIOGRAPHY -->
+						<?= $user['User']['biography'] ?>
+
+						<!-- ADD -->
+						<div class="text-center">
+							<a class="button small addally" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'add_friend', $user['User']['id'], 'false')); ?>"><?php echo __('ADD ALLY'); ?></a>
+						</div>
+
+						<a class="close-reveal-modal">&#215;</a>
+					</div>
 				</div>
 			</div>
-			<?php endforeach; ?>
+			<?php
+					$counter++;
+				endforeach;
+			?>
 		</div>
 	</div>
 </div>
@@ -77,6 +113,21 @@
 			$(this).removeClass('img-glow-small');
 			$(this).find('.profile-picture').removeClass('img-glow-small');
 			$(this).find('button').removeClass('img-glow-small').removeClass('text-glow');
+		});
+
+		$(document).ready(function() {
+			$('.addally').on('click', function() {
+				if ($(this).attr('href') != "#") {
+				    $(this).load(
+				        $(this).attr('href') 
+				    	, function () {
+				        $(this).html('<?= __('Congratulations! The user has been added.') ?>');
+				        $(this).attr('href','#');
+				    }); 
+				}
+			    // Prevent link going somewhere
+			    return false; 
+			});
 		});
 	</script>
 	<?php $this->end(); ?>

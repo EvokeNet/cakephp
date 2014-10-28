@@ -38,7 +38,7 @@ class AppController extends Controller {
     );
 
     public $helpers = array(
-        'Chosen.Chosen'
+        'Chosen.Chosen', 'Text'
     );
 
     public $user = null;

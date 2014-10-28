@@ -40,6 +40,12 @@ div.evoke.slide.background-cover.active div.img-caption-bottom {
 	background-size: cover;
 }
 
+.evoke .reveal-modal .profile-picture {
+	height: 150px;
+	width: 125px;
+	background-size: cover;
+}
+
 .evoke .user-panel .profile-content {
 	margin-top: 100px;
 }
