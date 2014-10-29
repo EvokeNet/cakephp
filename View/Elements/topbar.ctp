@@ -27,24 +27,38 @@
 
 	
 		<section class="top-bar-section">
-			<?php 
-			//TOP BAR LOGIN
-			if (isset($loggedIn) && (!$loggedIn)) {
-				echo $this->element('topbar-login', array('ulClass' => 'right'));
-			}
+			<ul class="right">
+				<?php 
+				//MENU BEFORE SIGN IN
+				if (isset($loggedIn) && (!$loggedIn)) {
+					echo $this->element('topbar-login', array('ulClass' => 'right'));
+				}
 
-			//MENU
-			if (!isset($topBarCustomMenu)) {
-				$topBarCustomMenu = 'topbar-loggedIn';
-			}
-			if (!isset($canShowIfNotLoggedIn)) {
-				$canShowIfNotLoggedIn = false;
-			}
+				//MENU AFTER SIGN IN
+				if (!isset($topBarCustomMenu)) {
+					$topBarCustomMenu = 'topbar-loggedIn';
+				}
+				if (!isset($canShowIfNotLoggedIn)) {
+					$canShowIfNotLoggedIn = false;
+				}
 
-			if (($loggedIn) || ($canShowIfNotLoggedIn)) {
-				echo $this->element($topBarCustomMenu, array('ulClass' => 'right'));
-			}
-			?>
+				if (($loggedIn) || ($canShowIfNotLoggedIn)) {
+					echo $this->element($topBarCustomMenu, array('ulClass' => 'right'));
+				}
+				?>
+
+				<li class="divider"></li>
+
+				<!-- CHANGE LANGUAGE -->
+				<li class="has-dropdown">
+					<a href="#"><?= __('Language') ?></a>
+					<ul class="dropdown">
+						<li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'en')) ?>"><?= __('English') ?></a></li>
+						<li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'es')) ?>"><?= __('Spanish') ?></a></li>
+					</ul>
+				</li>
+			</ul>
+
 		</section>
 	</nav>
 </div>

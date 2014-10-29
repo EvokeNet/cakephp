@@ -40,12 +40,12 @@
 
 		<!-- LEVEL -->
 		<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor">
-				Level
+			
 		</div>
 
 		<!-- POTENTIAL ALLIES -->
 		<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor">
-				<h4><?= __('Potential allies') ?></h4>
+			<h4><?= __('Potential allies') ?></h4>
 		</div>
 	</div>
 

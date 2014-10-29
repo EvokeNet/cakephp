@@ -682,12 +682,28 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background-color: #333;
 }
 
-.evoke .top-bar-section li:not(.has-form) a:not(.button) {
-	padding: 0 5px;
-}
-
 .evoke .top-bar-section {
 	margin-right: 10px;
+}
+
+.evoke .top-bar-section .column {
+	padding: 0;
+}
+
+.evoke .top-bar-section ul li a {
+	display: inline-block;
+	height: 100%;
+}
+
+.evoke .top-bar-section li:not(.has-form) a:not(.button) {
+	padding: 0 15px;
+}
+
+.evoke .top-bar-section ul li, .evoke .top-bar-section ul li > a,
+.evoke .top-bar-section ul li > a:hover, .evoke .top-bar-section ul li > a:active {
+	font-family: inherit;
+	color: inherit;
+	font-size: 0.9rem;
 }
 
 /* --------------------------- */

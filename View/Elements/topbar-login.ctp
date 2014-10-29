@@ -6,7 +6,6 @@
 <?php echo $this->Form->create('User', array('data-abide',
 											 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
 
-<ul class="<?php echo isset($ulClass) ? $ulClass : ''; ?>">
 	<!-- USERNAME, PASSWORD, AND SUBMIT BUTTON -->
 	<li>
 		<div class="column">
@@ -51,5 +50,4 @@
 	<!-- FORGOT PASSWORD (NOT USED FOR NOW) -->
 	<!--<a href = "#" class = "evoke login password"><?php //echo __('Forgot your password?');?></a> -->
 	<!--send to correct address-->
-</ul>
 <?php echo $this->Form->end(); ?>
