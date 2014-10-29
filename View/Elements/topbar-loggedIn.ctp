@@ -3,13 +3,13 @@
 	<li>
 		<div class="column">
 			<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
-				<a href="#"><?php echo __('How to play'); ?></a>
+				<a href="#" class="text-glow-on-hover"><?php echo __('How to play'); ?></a>
 			</span>
 		</div>
 	</li>
 	<li>
 		<div class="column">
-			<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>">
+			<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class="text-glow-on-hover text-color-highlight">
 				<?php echo __('Missions'); ?>
 			</a>
 		</div>
@@ -17,25 +17,52 @@
 	<li>
 		<div class="column">
 			<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
-				<a href="#"><?php echo __('Evokations'); ?></a>
+				<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('Evokations'); ?></a>
 			</span>
 		</div>
 	</li>
 	<li>
 		<div class="column">
 			<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
-				<a href="#"><?php echo __('Forum'); ?></a>
+				<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('Forum'); ?></a>
 			</span>
 		</div>
 	</li>
 	<li>
 		<div class="column">
 			<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
-				<a href="#"><?php echo __('Admin'); ?></a>
+				<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('Admin'); ?></a>
 			</span>
 		</div>
 	</li>
-	<li class="active">
+
+	<!-- LEVEL -->
+	<li class="evoke divider"></li>
+
+	<li>
+		<div class="row collapse margin left-1 right-1">
+			<div class="row">
+				<?= __('Level') ?>&nbsp;&nbsp;&nbsp;<span><?= $userLevel ?></span>
+				<div class="right">
+					<span><?= $userPoints ?></span>
+				</div>
+			</div>
+			<div class="row" style="min-width: 160px;">
+				<div class="progress">
+					<span class="meter" style="width: <?= $userLevelPercentage ?>%"></span>
+				</div>
+			</div>
+		</div>
+	</li>
+
+	<li class="evoke divider"></li>
+
+
+	<!-- USER PROFILE PICTURE -->
+	<li>
+		<p><?= __('Agent ').$loggedInUser['name'] ?></p>
+	</li>
+	<li>
 		<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>" class="button-icon">
 			<?php
 			$pic = $this->webroot.'webroot/img/user_avatar.jpg';
@@ -54,10 +81,12 @@
 			</div>
 		</a>
 	</li>
+
+	<!-- LOGOUT -->
 	<li>
 		<div class="column">
-			<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>">
-				<?php echo __('Logout'); ?>
+			<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>" class="text-glow-on-hover text-color-highlight">
+				<?php echo __('Sign out'); ?>
 			</a>
 		</div>
 	</li>

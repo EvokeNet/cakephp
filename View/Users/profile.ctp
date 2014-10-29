@@ -27,9 +27,11 @@
 			}
 			?>
 
-			<div class="centering-block"><img src="<?=$pic?>" class="img-circular" alt="<?= __('Your profile picture') ?>" /></div>
+			<div class="centering-block medium-12 small-6 margins-auto">
+				<img src="<?=$pic?>" class="img-circular" alt="<?= __('Your profile picture') ?>" />
+			</div>
 
-			<h4 class="text-color-highlight text-center"><?= $user['User']['name'] ?></h4>
+			<h4 class="text-color-highlight text-center margin top-1"><?= $user['User']['name'] ?></h4>
 			<div><p><?= $user['User']['biography'] ?>lorem ipsum</p></div>
 		</div>
 
@@ -53,7 +55,7 @@
 	<div class="medium-8 columns padding top-2 bottom-2 left-4 right-4" data-equalizer-watch>
 		<div class="row">
 			<!-- PSYCHOMETRIC ANALYSIS -->
-			<div class="medium-6 columns">
+			<div class="large-6 medium-12 columns">
 				<h3><?= __('Psychometric Analysis') ?></h3>
 				<p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
 				<p><?= __('You have the heart of a Local Leader!') ?></p>
@@ -61,7 +63,7 @@
 			</div>
 
 			<!-- RADAR GRAPH FOR MATCHING RESULTS -->
-			<div class="medium-6 columns centering-block">
+			<div class="large-6 medium-12 columns centering-block">
 				<div class="text-center vertical-align-middle centered-block">
 					<?php echo $this->element('matching_graph', array('height' => '350', 'width' => '400')); ?>
 				</div>
@@ -69,8 +71,8 @@
 		</div>
 
 		<!-- ALLIES -->
-		<div class="row border-top-panel">
-			<div class="small-12 columns">
+		<div class="row border-top-divisor">
+			<div class="small-12 columns margin top-2">
 				<h3><?= __('About') ?></h3>
 				<?= $user['User']['biography'] ?>
 			</div>

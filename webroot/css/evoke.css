@@ -146,7 +146,7 @@ button, div, p, span, a,
 	margin-top: 0.5em;
 }
 
-.evoke .margin.top {
+.evoke .margin.top-1 {
 	margin-top: 1em;
 }
 
@@ -160,6 +160,10 @@ button, div, p, span, a,
 
 .evoke .margin.top-6{
 	margin-top: 6vw;
+}
+
+.evoke .margin.left-1 {
+	margin-left: 1em;
 }
 
 .evoke .margin.left-2 {
@@ -723,16 +727,32 @@ button, .button {
 }
 
 /* Foundation overriding */
-.evoke .top-bar-section ul li, .evoke .top-bar-section ul li > a,
+.evoke .top-bar-section ul li p {
+	line-height: 45px; padding: 0 10px;
+}
+
+.evoke .top-bar-section ul li, .evoke .top-bar-section ul li a, .evoke .top-bar-section ul li > a,
 .evoke .top-bar-section ul li > a:hover, .evoke .top-bar-section ul li > a:active {
-	font-family: inherit;
-	color: inherit;
-	font-size: 0.9rem;
+	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	font-size: 0.8rem;
 }
 
 .top-bar-section li.active:not(.has-form) a:not(.button), .top-bar-section li.active:not(.has-form) a:not(.button):hover {
 	background-color: inherit;
 	text-transform: none;
+}
+
+.top-bar-section li:not(.has-form) a.button:hover, .top-bar-section li:not(.has-form) a.button-icon:hover {
+	background-color: inherit;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):not(.button-icon):hover {
+	background-color: #272727;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):not(.button-icon):hover {
+	border-bottom: 2px solid #26dee0;
+	margin-bottom: -2px;
 }
 
 /* --------------------------- */
