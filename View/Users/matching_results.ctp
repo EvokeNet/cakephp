@@ -26,8 +26,8 @@
 		<!-- RADAR GRAPH FOR MATCHING RESULTS -->
 		<div class="medium-6 columns centering-block">
 			<div class="text-center vertical-align-middle centered-block">
-				<h4 class="text-color-highlight"><?= __('Assessment') ?></h4>
-				<canvas id="radar-graph" height="450" width="500" ></canvas>
+				<h4><?= __('Assessment') ?></h4>
+				<?php echo $this->element('matching_graph', array('height' => '450', 'width' => '500')); ?>
 			</div>
 		</div>
 	</div>
@@ -41,7 +41,7 @@
 		</div>
 
 		<!-- SIMILAR AGENTS -->
-		<div class="row user-panel">
+		<ul class="user-panel large-block-grid-4 medium-block-grid-3 small-block-grid-2" data-equalizer>
 			<?php
 				$counter = 0;
 				foreach($similar_users as $similar_user):
@@ -55,10 +55,10 @@
 						$pic = $this->webroot.'files/attachment/attachment/'.$similar_user['User']['photo_dir'].'/'.$similar_user['User']['photo_attachment'];
 					}
 			?>
-			<div class="large-3 medium-6 small-6 columns">
+			<li>
 				<!-- PANEL -->
 				<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
-					<div class="profile-content panel radius text-center margin right-05">
+					<div class="profile-content panel radius text-center margin right-05" data-equalizer-watch>
 						<!-- USER PICTURE -->
 						<div class="profile-picture radius"
 				    		data-interchange="['<?= $pic ?>',(default)]">
@@ -67,13 +67,13 @@
 						<!-- USER SHORT BIOGRAPHY -->
 						<h4 class="text-color-highlight"><?= $similar_user['User']['name'] ?></h4>
 						<p><?= $this->Text->getExcerpt($similar_user['User']['biography'], 30, '...') ?></p>
-						<button class="submit small"><?php echo __('View Agent'); ?></button>
+						<button class="submit small "><?php echo __('View Agent'); ?></button>
 					</div>
 				</a>
 
 				<!-- VIEW AGENT DETAILS MODAL -->
 				<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'similar_user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
-			</div>
+			</li>
 			<?php
 					$counter++;
 				endforeach;
@@ -85,9 +85,6 @@
 <?php
 	/* Script */
 	$this->start('script');
-
-	//CHARTJS
-	echo $this->Html->script('/components/chartjs/Chart.js');
 ?>
 	<script type="text/javascript">
 		//Checkbox glows when selected
@@ -115,31 +112,6 @@
 			}
 		    // Prevent link going somewhere
 		    return false; 
-		});
-
-		//Radar chart
-		$(document).ready(function() {
-			var radarChartData = {
-				labels : ["Activism","Connecting Ideas","Creativity","Data Analysis","Entrepreneurship","Knowledge Building","Local Insight","Problem Solving"],
-				datasets : [
-					{
-						fillColor : "rgba(151,187,205,0.5)",
-						strokeColor : "rgba(151,187,205,1)",
-						pointColor : "rgba(151,187,205,1)",
-						pointStrokeColor : "#fff",
-						data : [28,48,40,19,96,27,100,50]
-					}
-				]
-			}
-
-			var myRadar = new Chart(document.getElementById("radar-graph").getContext("2d")).Radar(radarChartData,
-			{
-				scaleShowLabels : false,
-				tooltipYPadding: 0,
-				tooltipXPadding: 0,
-				pointLabelFontFamily : "'Orbitron'",
-				pointLabelFontSize : 10
-			});
 		});
 	</script>
 	<?php $this->end(); ?>

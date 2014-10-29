@@ -64,7 +64,7 @@
 			<!-- RADAR GRAPH FOR MATCHING RESULTS -->
 			<div class="medium-6 columns centering-block">
 				<div class="text-center vertical-align-middle centered-block">
-					<canvas id="radar-graph" height="350" width="400" ></canvas>
+					<?php echo $this->element('matching_graph', array('height' => '350', 'width' => '400')); ?>
 				</div>
 			</div>
 		</div>
@@ -143,9 +143,6 @@
 <?php
 	/* Script */
 	$this->start('script');
-
-	//CHARTJS
-	echo $this->Html->script('/components/chartjs/Chart.js');
 ?>
 	<script type="text/javascript">
 		//Checkbox glows when selected
@@ -157,31 +154,6 @@
 		.on("mouseout", function(){
 			$(this).removeClass('img-glow-small');
 			$(this).siblings('p').removeClass('text-glow');
-		});
-
-		//Radar chart
-		$(document).ready(function() {
-			var radarChartData = {
-				labels : ["Activism","Connecting Ideas","Creativity","Data Analysis","Entrepreneurship","Knowledge Building","Local Insight","Problem Solving"],
-				datasets : [
-					{
-						fillColor : "rgba(151,187,205,0.5)",
-						strokeColor : "rgba(151,187,205,1)",
-						pointColor : "rgba(151,187,205,1)",
-						pointStrokeColor : "#fff",
-						data : [28,48,40,19,96,27,100,50]
-					}
-				]
-			}
-
-			var myRadar = new Chart(document.getElementById("radar-graph").getContext("2d")).Radar(radarChartData,
-			{
-				scaleShowLabels : false,
-				tooltipYPadding: 0,
-				tooltipXPadding: 0,
-				pointLabelFontFamily : "'Orbitron'",
-				pointLabelFontSize : 10
-			});
 		});
 	</script>
 	<?php $this->end(); ?>
