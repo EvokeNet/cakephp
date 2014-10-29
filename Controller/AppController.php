@@ -233,28 +233,14 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter() {
-        //$loggedIn = $this->Auth->loggedIn();
         $this->set('loggedIn', $this->Auth->loggedIn());
-        /*if ($this->loggedIn) {
-            debug('teste'.$loggedIn);
-        } else {
-            debug('hello ahh');
-        }
-
-
-        if ($this->Auth->loggedIn()) {
-            var_dump('deles SIM deu certo');
-        }
-        else {
-            var_dump('deles nao deu certo');
-        }*/
-
-
         $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
 
-        $cuser = $this->Auth->user();
-
         $this->_checkBrowserLanguage();
+
+        //Info from the user that is currently logged in
+        $cuser = $this->Auth->user();
+        $loggedInUser= $this->Auth->user();
 
         $userPoints = $this->getPoints($this->getUserId());
         $userLevel = $this->getLevel($userPoints);
@@ -262,12 +248,7 @@ class AppController extends Controller {
 
         $userNotifications = $this->getNotificationsNumber($this->getUserId());
 
-        $this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userLevelPercentage', 'cuser'));
-        
-        // $this->set('userPoints', $userPoints);
-        // $this->set('userLevel', $userLevel);
-        // $this->set('userLevelPercentage', $userLevelPercentage);
-
+        $this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
     }
 
     /**

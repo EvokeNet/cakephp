@@ -46,31 +46,6 @@ button, div, p, span, a,
 	text-transform: uppercase;
 }
 
-/* Buttons */
-button, .button {
-	text-transform: uppercase;
-	color: #26dee0;
-	background-color: #333;
-	border: 1px solid #26dee0;
-}
-
-.evoke button.thin, .evoke .button.thin {
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-}
-
-.evoke .button-icon:hover {
-	text-transform: none;
-}
-.evoke .button-icon.disabled, .evoke .button-icon.disabled i, .evoke .button-icon.disabled span {
-	color: #ccc;
-	pointer-events: none !important;
-	cursor: default;
-}
-.evoke .button-icon.disabled, .evoke .button-icon.disabled i.background, .evoke .button-icon.disabled span.background {
-	color: #666;
-}
-
 /* Visibility */
 .evoke .hidden {
 	visibility: hidden;
@@ -646,6 +621,33 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 }
 
 /* --------------------------- */
+/* BUTTONS */
+/* --------------------------- */
+button, .button {
+	text-transform: uppercase;
+	color: #26dee0;
+	background-color: #333;
+	border: 1px solid #26dee0;
+}
+
+.evoke button.thin, .evoke .button.thin {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.evoke .button-icon:hover {
+	text-transform: none;
+}
+.evoke .button-icon.disabled, .evoke .button-icon.disabled i, .evoke .button-icon.disabled span {
+	color: #ccc;
+	pointer-events: none !important;
+	cursor: default;
+}
+.evoke .button-icon.disabled, .evoke .button-icon.disabled i.background, .evoke .button-icon.disabled span.background {
+	color: #666;
+}
+
+/* --------------------------- */
 /* ICONS */
 /* --------------------------- */
 .evoke .icon-size-medium {
@@ -674,6 +676,20 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	color: #D36A6A;
 }
 
+.evoke .fa-stack.grow-on-hover:hover {
+	margin-top: -0.1em;
+}
+
+.evoke .fa-stack.grow-on-hover:hover .fa-stack-2x {
+	font-size: 2.2em;
+}
+
+.evoke .fa-stack.grow-on-hover:hover .fa-stack-1x {
+	font-size: 1.4em;
+	padding-top: 0.1em;
+}
+
+
 /* --------------------------- */
 /* TOP BAR */
 /* --------------------------- */
@@ -686,6 +702,13 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	margin-right: 10px;
 }
 
+/* Profile picture */
+.evoke .top-bar-section .profile-picture-topbar {
+	height: 40px;
+	width: 40px;
+}
+
+/* Padding of divs and links */
 .evoke .top-bar-section ul li:not(.has-form) a {
 	display: inline-block;
 	height: 100%;
@@ -699,11 +722,17 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	padding: 0 3px;
 }
 
+/* Foundation overriding */
 .evoke .top-bar-section ul li, .evoke .top-bar-section ul li > a,
 .evoke .top-bar-section ul li > a:hover, .evoke .top-bar-section ul li > a:active {
 	font-family: inherit;
 	color: inherit;
 	font-size: 0.9rem;
+}
+
+.top-bar-section li.active:not(.has-form) a:not(.button), .top-bar-section li.active:not(.has-form) a:not(.button):hover {
+	background-color: inherit;
+	text-transform: none;
 }
 
 /* --------------------------- */

@@ -35,6 +35,25 @@
 			</span>
 		</div>
 	</li>
+	<li class="active">
+		<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>" class="button-icon">
+			<?php
+			$pic = $this->webroot.'webroot/img/user_avatar.jpg';
+			if($loggedInUser['photo_attachment'] == null) {
+				if($loggedInUser['facebook_id'] != null) {
+					$pic = "https://graph.facebook.com/". $loggedInUser['facebook_id'] ."/picture?type=large";
+				}
+			}
+			else {
+				$pic = $this->webroot.'files/attachment/attachment/'.$loggedInUser['photo_dir'].'/'.$loggedInUser['photo_attachment'];
+			}
+			?>
+
+			<div class="centering-block">
+				<img src="<?=$pic?>" class="img-circular profile-picture-topbar border-style-solid border-width-01 border-color-highlight img-glow-on-hover-small" alt="<?= __('Your profile picture') ?>" />
+			</div>
+		</a>
+	</li>
 	<li>
 		<div class="column">
 			<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>">
