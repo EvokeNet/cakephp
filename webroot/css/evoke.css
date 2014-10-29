@@ -686,17 +686,17 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	margin-right: 10px;
 }
 
-.evoke .top-bar-section .column {
-	padding: 0;
-}
-
-.evoke .top-bar-section ul li a {
+.evoke .top-bar-section ul li:not(.has-form) a {
 	display: inline-block;
 	height: 100%;
 }
 
-.evoke .top-bar-section li:not(.has-form) a:not(.button) {
-	padding: 0 15px;
+.evoke .top-bar-section ul li a:not(.button), .evoke .top-bar-section ul li.has-form div {
+	padding: 0 10px;
+}
+
+.evoke .top-bar-section ul li a.button-icon, .evoke .top-bar-section .column {
+	padding: 0 3px;
 }
 
 .evoke .top-bar-section ul li, .evoke .top-bar-section ul li > a,

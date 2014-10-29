@@ -28,25 +28,6 @@
 	
 		<section class="top-bar-section">
 			<ul class="right">
-				<?php 
-				//MENU BEFORE SIGN IN
-				if (isset($loggedIn) && (!$loggedIn)) {
-					echo $this->element('topbar-login', array('ulClass' => 'right'));
-				}
-
-				//MENU AFTER SIGN IN
-				if (!isset($topBarCustomMenu)) {
-					$topBarCustomMenu = 'topbar-loggedIn';
-				}
-				if (!isset($canShowIfNotLoggedIn)) {
-					$canShowIfNotLoggedIn = false;
-				}
-
-				if (($loggedIn) || ($canShowIfNotLoggedIn)) {
-					echo $this->element($topBarCustomMenu, array('ulClass' => 'right'));
-				}
-				?>
-
 				<li class="divider"></li>
 
 				<!-- CHANGE LANGUAGE -->
@@ -58,6 +39,25 @@
 					</ul>
 				</li>
 			</ul>
+
+			<?php 
+			//MENU BEFORE SIGN IN
+			if (isset($loggedIn) && (!$loggedIn)) {
+				echo $this->element('topbar-login', array('ulClass' => 'right'));
+			}
+
+			//MENU AFTER SIGN IN
+			if (!isset($topBarCustomMenu)) {
+				$topBarCustomMenu = 'topbar-loggedIn';
+			}
+			if (!isset($canShowIfNotLoggedIn)) {
+				$canShowIfNotLoggedIn = false;
+			}
+
+			if (($loggedIn) || ($canShowIfNotLoggedIn)) {
+				echo $this->element($topBarCustomMenu, array('ulClass' => 'right'));
+			}
+			?>
 
 		</section>
 	</nav>

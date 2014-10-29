@@ -1,4 +1,5 @@
 <!-- MENU LOGGED IN -->
+<ul class="<?php echo isset($ulClass) ? $ulClass : ''; ?>">
 	<li>
 		<div class="column">
 			<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
@@ -45,5 +46,6 @@
 	<!-- FORGOT PASSWORD (NOT USED FOR NOW) -->
 	<!--<a href = "#" class = "evoke login password"><?php //echo __('Forgot your password?');?></a> -->
 	<!--send to correct address-->
+</ul>
 <?php echo $this->Form->end(); ?>
 <!-- MENU LOGGED IN -->
