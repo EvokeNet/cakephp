@@ -32,6 +32,7 @@ button, div, p, span, a,
 	-webkit-font-smoothing: antialiased;
 }
 
+/* Headings */
 .evoke h1, .evoke h1 a, .evoke h2, .evoke h2 a, .evoke h3, .evoke h3 a,
 .evoke h4, .evoke h4 a, .evoke h5, .evoke h5 a, .evoke h6, .evoke h6 a {
 	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
@@ -45,6 +46,7 @@ button, div, p, span, a,
 	text-transform: uppercase;
 }
 
+/* Buttons */
 button, .button {
 	text-transform: uppercase;
 	color: #26dee0;
@@ -57,6 +59,19 @@ button, .button {
 	padding-bottom: 0.5rem;
 }
 
+.evoke .button-icon:hover {
+	text-transform: none;
+}
+.evoke .button-icon.disabled, .evoke .button-icon.disabled i, .evoke .button-icon.disabled span {
+	color: #ccc;
+	pointer-events: none !important;
+	cursor: default;
+}
+.evoke .button-icon.disabled, .evoke .button-icon.disabled i.background, .evoke .button-icon.disabled span.background {
+	color: #666;
+}
+
+/* Visibility */
 .evoke .hidden {
 	visibility: hidden;
 	display: none;
@@ -81,6 +96,10 @@ button, .button {
 
 .evoke .text-color-gray {
 	color: #ccc;
+}
+
+.evoke .text-color-dark {
+	color: #323234;
 }
 
 /* Font */
@@ -633,11 +652,26 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	font-size: 2.4em;
 }
 
-.evoke .login.facebook-icon {
+.evoke .blog-icon {
+	color: #00FF51;
+}
+.evoke .email-icon {
+	color: #D7D553;
+}
+.evoke .facebook-icon {
 	color: #1d649f;
 }
-.evoke .login.google-icon {
+.evoke .google-icon {
 	color: #9c4040;
+}
+.evoke .instagram-icon {
+	color: #A67D52;
+}
+.evoke .twitter-icon {
+	color: #3cddef;
+}
+.evoke .website-icon {
+	color: #D36A6A;
 }
 
 /* --------------------------- */

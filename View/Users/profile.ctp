@@ -15,28 +15,27 @@
 	<div class="medium-2 columns gradient-on-right" data-equalizer-watch>
 		<!-- PROFILE -->
 		<div class="row padding top-2 bottom-1 left-2 right-2">
-			
-				<?php
-				$pic = $this->webroot.'webroot/img/user_avatar.jpg';
-				if($user['User']['photo_attachment'] == null) {
-					if($user['User']['facebook_id'] != null) {
-						$pic = "https://graph.facebook.com/". $user['User']['facebook_id'] ."/picture?type=large";
-					}
+			<?php
+			$pic = $this->webroot.'webroot/img/user_avatar.jpg';
+			if($user['User']['photo_attachment'] == null) {
+				if($user['User']['facebook_id'] != null) {
+					$pic = "https://graph.facebook.com/". $user['User']['facebook_id'] ."/picture?type=large";
 				}
-				else {
-					$pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'];
-				}
-				?>
+			}
+			else {
+				$pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'];
+			}
+			?>
 
-				<div class="centering-block"><img src="<?=$pic?>" class="img-circular" alt="<?= __('Your profile picture') ?>" /></div>
+			<div class="centering-block"><img src="<?=$pic?>" class="img-circular" alt="<?= __('Your profile picture') ?>" /></div>
 
-				<h4 class="text-color-highlight text-center"><?= $user['User']['name'] ?></h4>
-				<div><p><?= $user['User']['biography'] ?>lorem ipsum</p></div>
+			<h4 class="text-color-highlight text-center"><?= $user['User']['name'] ?></h4>
+			<div><p><?= $user['User']['biography'] ?>lorem ipsum</p></div>
 		</div>
 
 		<!-- SOCIAL NETWORKS -->
-		<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor">
-				Social networks
+		<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor text-center">
+			<?php echo $this->element('social_networks_bar'); ?>
 		</div>
 
 		<!-- LEVEL -->
