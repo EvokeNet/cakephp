@@ -1,4 +1,4 @@
-<!-- <canvas id="radar-graph" height="<?= (isset($height) ? $height : '450') ?>" width="<?= (isset($width) ? $width : '500') ?>" ></canvas>
+<canvas id="radar-graph" height="<?= (isset($height) ? $height : '450') ?>" width="<?= (isset($width) ? $width : '500') ?>" ></canvas>
 
 <?php
 	/* Script */
@@ -35,4 +35,4 @@
 			});
 		});
 	</script>
-	<?php $this->end(); ?> -->
+	<?php $this->end(); ?>
