@@ -60,6 +60,11 @@ button, div, p, span, a,
 	font-size: 120%;
 }
 
+/* Text transform */
+.evoke .uppercase {
+	text-transform: uppercase;
+}
+
 /* Text colors */
 .evoke .text-color-important {
 	color: #26dee0;
@@ -693,6 +698,17 @@ button, .button {
 	padding-top: 0.1em;
 }
 
+/* --------------------------- */
+/* PROGRESS BAR */
+/* --------------------------- */
+.progress.level-bar {
+	height: 0.5rem;
+	min-width: 160px;
+}
+
+.progress .meter {
+	background-color: #26dee0;
+}
 
 /* --------------------------- */
 /* TOP BAR */

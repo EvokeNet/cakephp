@@ -12,7 +12,7 @@
 
 <div class="evoke row background-color-standard full-width" data-equalizer>
 	<!-- LEFT SIDEBAR -->
-	<div class="medium-2 columns gradient-on-right" data-equalizer-watch>
+	<div class="medium-2 columns gradient-on-right profile-sidebar" data-equalizer-watch>
 		<!-- PROFILE -->
 		<div class="row padding top-2 bottom-1 left-2 right-2">
 			<?php
@@ -32,7 +32,7 @@
 			</div>
 
 			<h4 class="text-color-highlight text-center margin top-1"><?= $user['User']['name'] ?></h4>
-			<div><p><?= $user['User']['biography'] ?>lorem ipsum</p></div>
+			<div><p class="text-center"><?= $this->Text->getExcerpt($user['User']['biography'], 30, '...') ?></p></div>
 		</div>
 
 		<!-- SOCIAL NETWORKS -->
@@ -42,12 +42,13 @@
 
 		<!-- LEVEL -->
 		<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor">
-			
+			<?php echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
 		</div>
 
 		<!-- POTENTIAL ALLIES -->
 		<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor">
 			<h4><?= __('Potential allies') ?></h4>
+			<p>...</p>
 		</div>
 	</div>
 
@@ -129,10 +130,12 @@
 		<div class="row border-top-divisor">
 			<div class="large-6 columns padding top-2 border-right-divisor">
 				<h3><?= __('Leaderboard') ?></h3>
+				...
 			</div>
 
 			<div class="large-6 columns padding top-2">
 				<h3><?= __('Badges earned') ?></h3>
+				...
 			</div>
 		</div>
 	</div>
@@ -166,6 +169,6 @@
 	$this->end();
 ?>
 
-<div class="full-width full-height">
+<!-- <div class="full-width full-height">
 	<img src="<?= $this->webroot.'img/mockup-1-evoke-profile-.jpg' ?>"  class="full-width" />
-</div>
+</div> -->

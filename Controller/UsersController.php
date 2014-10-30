@@ -390,7 +390,7 @@ class UsersController extends AppController {
 
 			//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
+			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->Auth->user('id')));
 
 		} else if(isset($this->request->data['User']['username'])){
 

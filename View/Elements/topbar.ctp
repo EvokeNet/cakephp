@@ -1,6 +1,6 @@
 <!-- TOP-BAR -->
 <div id="top-bar-login"
-	 class="evoke login-top-bar row full-width padding top-05 bottom-05 vertical-align-top
+	 class="evoke login-top-bar row full-width padding top-05 bottom-05 vertical-align-middle
 			<?php echo isset($sticky) ? $sticky : 'sticky'; ?> <?php echo isset($fixed) ? $fixed : 'fixed'; ?>" >
 	<nav class="top-bar" data-topbar role="navigation">
 		<ul class="title-area">
@@ -27,18 +27,18 @@
 
 	
 		<section class="top-bar-section">
-			<ul class="right">
+<!-- 			<ul class="right">
 				<li class="divider"></li>
 
 				<!-- CHANGE LANGUAGE -->
-				<li class="has-dropdown">
+				<!-- <li class="has-dropdown">
 					<a href="#"><?= __('Language') ?></a>
 					<ul class="dropdown">
 						<li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'en')) ?>"><?= __('English') ?></a></li>
 						<li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'es')) ?>"><?= __('Spanish') ?></a></li>
 					</ul>
 				</li>
-			</ul>
+			</ul> -->
 
 			<?php 
 			//MENU BEFORE SIGN IN

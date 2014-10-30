@@ -3,7 +3,7 @@
 	<li>
 		<div class="column">
 			<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
-				<a href="#" class="text-glow-on-hover"><?php echo __('How to play'); ?></a>
+				<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('How to play'); ?></a>
 			</span>
 		</div>
 	</li>
@@ -40,19 +40,7 @@
 	<li class="evoke divider"></li>
 
 	<li>
-		<div class="row collapse margin left-1 right-1">
-			<div class="row">
-				<?= __('Level') ?>&nbsp;&nbsp;&nbsp;<span><?= $userLevel ?></span>
-				<div class="right">
-					<span><?= $userPoints ?></span>
-				</div>
-			</div>
-			<div class="row" style="min-width: 160px;">
-				<div class="progress">
-					<span class="meter" style="width: <?= $userLevelPercentage ?>%"></span>
-				</div>
-			</div>
-		</div>
+		<?php echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
 	</li>
 
 	<li class="evoke divider"></li>
