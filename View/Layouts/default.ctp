@@ -80,10 +80,10 @@ $title = __('Evoke Network');
 
 	<?php
 
-		echo $this->Html->script('/webroot/components/jquery/dist/jquery.min.js');
+		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
 		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
-		echo $this->Html->script('/webroot/components/modernizr/modernizr.js');
-		echo $this->Html->script('/webroot/components/foundation/js/foundation.min.js');
+		echo $this->Html->script('/components/modernizr/modernizr.js');
+		echo $this->Html->script('/components/foundation/js/foundation.min.js');
 
 		echo $this->Html->script('evoke');
 		echo $this->fetch('script');
