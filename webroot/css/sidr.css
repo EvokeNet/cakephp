@@ -1,0 +1,27 @@
+
+
+/*
+.sidr.right{
+	left:auto;
+	right:-260px;
+}
+.sidr.left{
+	left:-260px;
+	right:auto;
+}*/
+
+.evoke .sidr {
+	display:none;
+	position:absolute;
+	position:fixed;
+	height:100%;
+	z-index:99;
+	width:500px;
+	top:60px;
+	overflow-x:none;
+	overflow-y:none;
+}
+
+.evoke .sidr-inner {
+	height: 100%;
+}

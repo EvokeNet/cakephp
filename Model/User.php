@@ -55,7 +55,7 @@ class User extends AppModel {
     );
 
     
-    var $actsAs = array('Acl' => array('requester'));
+    //var $actsAs = array('Acl' => array('requester'));
  
 	function parentNode() {
 	    if (!$this->id && empty($this->data)) {
@@ -213,6 +213,19 @@ class User extends AppModel {
 		),
 		'UserBadge' => array(
 			'className' => 'UserBadge',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'UserMatchingAnswer' => array(
+			'className' => 'UserMatchingAnswer',
 			'foreignKey' => 'user_id',
 			'dependent' => false,
 			'conditions' => '',

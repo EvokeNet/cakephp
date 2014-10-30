@@ -30,11 +30,10 @@ $title = __('Evoke Network');
 
 		echo $this->Html->meta('icon');
 
-		//echo $this->Html->script('/components/jquery/jquery.min');
-
-		echo $this->Html->css('/components/foundation/css/foundation');
+		
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
-		echo $this->Html->css('/components/font-awesome/css/font-awesome.min');
+		echo $this->Html->css('/components/font-awesome/css/font-awesome.min'); //Icon font - font-awesome
+		echo $this->Html->css('font-brankic'); //Icon font - brankic 1979
 		echo $this->Html->css('/components/foundation/css/foundation');
 
 		echo $this->Html->css('evoke');
@@ -87,10 +86,9 @@ $title = __('Evoke Network');
 		echo $this->Html->script('/components/foundation/js/foundation.min.js');
 
 		echo $this->Html->script('evoke');
-		//echo $this->Html->script('footer_bind');
-
 		echo $this->fetch('script');
 	?>
+
 
 	<script>
 /*

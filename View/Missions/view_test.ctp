@@ -61,7 +61,7 @@
 										$counter++;
 									endforeach;
 
-									//NO QUESTS: Show alert
+									//ONLY FOR TESTS
 									if (count($mission['Quest']) < 1) { ?>
 										<div data-alert="" class="alert-box radius">
 											There are no quests available in this mission.
@@ -208,7 +208,7 @@
 
 					<!-- MISSOES -->
 					<div class="section missions-content">
-				    	<div class="missions-carousel full-width">
+				    	<div class="row missions-carousel full-width">
 				    		<!-- MISSAO 1 -->
 
 				    		<?php foreach ($novels as $novel) : ?>
@@ -290,12 +290,12 @@
 			  onBeforeChange: function(slider, currentIndex, targetIndex){
 			  	//Hide previous image, so that it's height does not count in parent
 			  	$('.slick-slide img').addClass("hidden");
-			  	//Page number
-			  	$('#page-number').html(targetIndex+1);
 			  },
 			  onAfterChange: function(slider,index){
 			  	//Show this image
 			  	$('.slick-active img').removeClass("hidden");
+			  	//Page number
+			  	$('#page-number').html(index+1);
 			  }
 			});
 

@@ -8,7 +8,6 @@
 }
 
 /* Tabs */
-
 .evoke .login .tabs {
 	line-height: 92px;
 }
@@ -28,4 +27,42 @@
 /* Slide */
 div.evoke.slide.background-cover.active div.img-caption-bottom {
 	width: 50%;
+}
+
+
+/* --------------------------- */
+/* MATCHING RESULTS AND PROFILE */
+/* --------------------------- */
+.evoke .user-panel .profile-picture {
+	margin: -100px auto 20px auto;
+}
+
+.evoke .profile-picture {
+	height: 150px;
+	width: 125px;
+	background-size: cover;
+}
+
+.evoke .profile-picture.small {
+	height: 100px;
+	width: 80px;
+}
+
+.evoke .user-panel .profile-content {
+	margin-top: 100px;
+}
+
+.evoke #radar-graph {
+	margin-top: -50px;
+}
+
+.evoke .border-top-divisor {
+	border-top: 1px solid #292929;
+}
+.evoke .border-right-divisor {
+	border-right: 1px solid #292929;
+}
+
+.evoke .profile-sidebar, .evoke .profile-sidebar .p {
+	font-size: 0.9rem;
 }

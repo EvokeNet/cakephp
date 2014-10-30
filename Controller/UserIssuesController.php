@@ -46,21 +46,34 @@ class UserIssuesController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
+		$id = null;
+		if ($this->request->is('post', 'put')) {
 			// debug($this->request->data);
 			// die();
 			$status = false;
-			$user = $this->request->data['UserIssue']['user_id'];
-			foreach ($this->request->data['UserIssue']['issue_id'] as $a) {
-		        $this->UserIssue->create();
-		        $insertData = array('user_id' => $user, 'issue_id' => $a);
-		        $status = $this->UserIssue->save($insertData);
-		        if(!$status) {$this->Session->setFlash(__('The user issue could not be saved. Please, try again.')); break;}
-		    } 
+			// $user = $this->request->data['UserIssue']['user_id'];
+			$id = $this->request->data['UserIssue']['user_id'];
+			if(isset($this->request->data['UserIssue']) && is_array($this->request->data['UserIssue']['issue_id'])) {
+				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
+			        $insert = array('user_id' => $this->request->data['UserIssue']['user_id'], 'issue_id' => $a);
+
+			        $exists = $this->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $this->request->data['UserIssue']['user_id'], 'UserIssue.issue_id' => $a)));
+			        if(!$exists) $this->UserIssue->save($insert);
+			    }
+			}
+
+			// foreach ($this->request->data['UserIssue']['issue_id'] as $a) {
+		 //        $this->UserIssue->create();
+		 //        $insertData = array('user_id' => $user, 'issue_id' => $a);
+		 //        $status = $this->UserIssue->save($insertData);
+		 //        if(!$status) {$this->Session->setFlash(__('The user issue could not be saved. Please, try again.')); break;}
+		 //    } 
 	        
-	        if($status) $this->Session->setFlash(__('The user issue has been saved.'));
-		    
-		    return $this->redirect(array('action' => 'index'));
+	  //       if($status) 
+
+	        $this->Session->setFlash(__('The user issue has been saved.'));
+		    return $this->redirect(array('controller' => 'users', 'action' => 'matching_results', $id));
+		    //return $this->redirect(array('action' => 'index'));
 		}
 		$users = $this->UserIssue->User->find('list');
 		$issues = $this->UserIssue->Issue->find('list');

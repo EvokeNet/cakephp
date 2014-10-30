@@ -265,7 +265,7 @@ class UsersController extends AppController {
 
 					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-				return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
+				return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
 
 			}
 		} 
@@ -370,7 +370,7 @@ class UsersController extends AppController {
 
 					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-					return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
+					return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
 
 				}
 				
@@ -390,7 +390,7 @@ class UsersController extends AppController {
 
 			//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-			return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
+			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->Auth->user('id')));
 
 		} else if(isset($this->request->data['User']['username'])){
 
@@ -1243,9 +1243,12 @@ class UsersController extends AppController {
 
 		}
 
+		//List of similar users (for now, any 4 users; later, matching results)
+		$similar_users = $this->User->find('all', array('limit' => 6));
+
 		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'lang'));
+			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'lang', 'similar_users'));
 
 	}
 
@@ -1258,6 +1261,44 @@ class UsersController extends AppController {
  * @return void
  */
 	public function matching($id = null) {
+		//List issues (all, and already saved)
+		$issues = $this->User->UserIssue->Issue->find('list');
+		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
+
+		//List questions (all, and already saved)
+		$this->loadModel('MatchingQuestion');
+		$this->loadModel('UserMatchingAnswer');
+		$matching_questions = $this->MatchingQuestion->find('all');
+		$selected_matching_answer = $this->User->UserMatchingAnswer->find('all', array('conditions' => array('UserMatchingAnswer.user_id' => $id)));
+
+		$user_id = $id;
+
+		if ($this->request->is('post', 'put')) {
+			$counter = 0;
+			if (isset($this->request->data['UserMatchingAnswer']['matching_answer'])) {
+				foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $key => $u):
+					$insert['UserMatchingAnswer']['user_id'] = $this->request->data['UserMatchingAnswer']['user_id'];
+					$insert['UserMatchingAnswer']['matching_question_id'] = $this->request->data['UserMatchingAnswer']['matching_question_id'][$counter];
+					$insert['UserMatchingAnswer']['matching_answer'] = $u;
+					$this->User->UserMatchingAnswer->create();
+					$this->User->UserMatchingAnswer->save($insert);
+					$counter++;
+				endforeach;
+			}
+
+			if ($this->request->data['UserIssue']['issue_id']) {
+				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
+			        $insert = array('user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'issue_id' => $a);
+
+			        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'UserIssue.issue_id' => $a)));
+			        if(!$exists) $this->User->UserIssue->save($insert);
+			    }
+			}
+
+			return $this->redirect(array('controller' => 'users', 'action' => 'matching_results', $id));
+		}
+
+		$this->set(compact('matching_questions', 'selected_matching_answer', 'user_id', 'issues', 'selectedIssues'));
 	}
 
 /**
@@ -1267,6 +1308,10 @@ class UsersController extends AppController {
  * @return void
  */
 	public function matching_results($id = null) {
+		//List of similar users (for now, any 4 users; later, matching results)
+		$similar_users = $this->User->find('all', array('limit' => 4));
+
+		$this->set(compact('similar_users'));
 	}
 
 /**
@@ -1448,20 +1493,22 @@ class UsersController extends AppController {
  * we created a relationship from model User to itselft, using friends table as join table,
  * which holds two user's id and the DATETIME created to keep track of a friendship start.
  *
- * @return void
+ * @param int $user_to User id of the friend that will be added
+ * @param bool $redirect Boolean indicating if the function should redirect after adding the friend. Default true.
+ * @return string Text saying if the user has been added or not. Returned when the user is not redirected.
  */
-	public function add_friend($user_to = null) {
-
-		
+	public function add_friend($user_to = null, $redirect = null) {
 		$this->request->data['User']['id'] = $this->getUserId();
 		$this->request->data['Friend']['id'] = $user_to;
 
 		if($result = $this->User->saveAll($this->request->data)) {
-			$this->redirect(array('action' => 'view', $user_to));
-		} else {
+			if (is_null($redirect)) {
+				$this->redirect(array('action' => 'view', $user_to));
+			}
+		}
+		elseif (is_null($redirect)) {
 			$this->redirect(array('action' => 'view', $user_to));
 		}
-
 	}
 
 /**
@@ -1691,7 +1738,7 @@ class UsersController extends AppController {
 			    	$this->Auth->login($user);
 			    	//$this->Session->setFlash(__('The user has been saved.'));
 			    	$this->Session->setFlash(__('Your informations were succefully saved'), 'flash_message');
-					return $this->redirect(array('controller' => 'users', 'action' => 'matching'));
+					return $this->redirect(array('controller' => 'users', 'action' => 'matching', $id));
 
 				} 
 		        
