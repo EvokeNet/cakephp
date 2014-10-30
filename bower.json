@@ -18,9 +18,5 @@
     "sidr": "~1.2.1",
     "chartjs": "~0.2.0",
     "ExplorerCanvas": "*"
-  },
-  "resolutions": {
-    "medium-editor": "~1.9",
-    "jquery": "2.1.1"
   }
 }
