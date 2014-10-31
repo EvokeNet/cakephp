@@ -30,9 +30,13 @@ class TextHelper extends AppHelper {
         // \w[\w'-]* allows for any word character (a-zA-Z0-9_) and also contractions
         // and hyphenated words like 'range-finder' or "it's"
         // the /s flags means that . matches \n, so this can match multiple lines
+        $text_filtered = split(" ", preg_replace("/^\W*((\w[\w'-]*\b\W*)*).*/ms", '\\1', $text));
         $text = preg_replace("/^\W*((\w[\w'-]*\b\W*){1,$number_of_words}).*/ms", '\\1', $text);
 
-        // strip out newline characters from our excerpt
-        return $text.$after_excerpt;
+        // Add text after excerpt if the number of words was exceeded
+        if (count($text_filtered) > $number_of_words) {
+            return $text.$after_excerpt;
+        }
+        return $text;
     }
 }
