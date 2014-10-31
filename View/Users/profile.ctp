@@ -82,46 +82,47 @@
 		<!-- ALLIES -->
 		<div class="row border-top-divisor">
 			<div class="small-12 columns margin top-2">
-				<?php if (count($similar_users) > 0): ?>
+				
 				<div>
 					<h3 class="left margin right-2"><?= __('Allies') ?></h3>
 					<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'index')); ?>"><?php echo __('ALL USERS'); ?></a>
 				</div>
-				<?php else: ?>
-				<div data-alert="" class="alert-box radius">
-					<?= __('You have no allies! Get started looking at people similar to you!') ?>
-				</div>
-				<?php endif; ?>
+				
 
 				<!-- ALLIES GRID -->
 				<?php
+				if (count($followers) > 0):
 					$counter = 0;
-					foreach($similar_users as $similar_user):
+					foreach($followers as $ally):
 						$pic = $this->webroot.'webroot/img/user_avatar.jpg';
-						if($similar_user['User']['photo_attachment'] == null) {
-							if($similar_user['User']['facebook_id'] != null) {
-								$pic = "https://graph.facebook.com/". $similar_user['User']['facebook_id'] ."/picture?type=large";
+						if($ally['User']['photo_attachment'] == null) {
+							if($ally['User']['facebook_id'] != null) {
+								$pic = "https://graph.facebook.com/". $ally['User']['facebook_id'] ."/picture?type=large";
 							}
 						}
 						else {
-							$pic = $this->webroot.'files/attachment/attachment/'.$similar_user['User']['photo_dir'].'/'.$similar_user['User']['photo_attachment'];
+							$pic = $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'];
 						}
-				?>
-				<div class="large-2 medium-4 small-6 columns paddings-0 text-center">
-					<!-- PICTURE -->
-					<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
-						<img class="profile-picture small radius" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
-						<p class="text-center text-glow-on-hover"><?= $similar_user['User']['name'] ?></p>
-					</a>
+					?>
+					<div class="large-2 medium-4 small-6 columns paddings-0 text-center">
+						<!-- PICTURE -->
+						<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
+							<img class="profile-picture small radius" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+							<p class="text-center text-glow-on-hover"><?= $ally['User']['name'] ?></p>
+						</a>
 
-					<!-- MODAL USER BIOGRAPHY -->		
-					<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'similar_user' => $similar_user, 'pic' => $pic, 'add_button' => false)); ?>
-				</div>
+						<!-- MODAL USER BIOGRAPHY -->		
+						<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $ally, 'pic' => $pic, 'add_button' => false)); ?>
+					</div>
 
-				<?php
+					<?php
 						$counter++;
 					endforeach;
-				?>
+				else: ?>
+					<div data-alert="" class="alert-box radius">
+						<?= __('You have no allies! Get started looking at people similar to you!') ?>
+					</div><?php
+				endif; ?>
 			</div>
 		</div>
 

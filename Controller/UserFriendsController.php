@@ -46,13 +46,12 @@ class UserFriendsController extends AppController {
  *
  * @return void
  */
-	public function add($id = null, $friend_id = null) {
+	public function add($id = null, $friend_id = null, $redirect_after = true) {
 		if (!$this->UserFriend->User->exists($id) OR !$this->UserFriend->User->exists($friend_id)) {
 			throw new NotFoundException(__('User not found'));
 		}
 
 		$insertData = array('user_id' => $id, 'friend_id' => $friend_id);
-
 		$exists = $this->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $id, 'UserFriend.friend_id' => $friend_id)));
 
 		if(!$exists){
@@ -63,7 +62,10 @@ class UserFriendsController extends AppController {
 			$this->Session->setFlash(__('This friendship has already been saved.'));
 		}
 
-		return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $friend_id));
+		if ($redirect_after) {
+			return $this->redirect(array('controller' => 'users', 'action' => 'profile', $friend_id));
+		}
+		return true;
 	}
 
 /**

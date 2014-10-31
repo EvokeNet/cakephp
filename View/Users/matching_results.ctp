@@ -72,7 +72,7 @@
 				</a>
 
 				<!-- VIEW AGENT DETAILS MODAL -->
-				<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'similar_user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
+				<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
 			</li>
 			<?php
 					$counter++;
@@ -98,20 +98,6 @@
 			$(this).removeClass('img-glow-small');
 			$(this).find('.profile-picture').removeClass('img-glow-small');
 			$(this).find('button').removeClass('img-glow-small').removeClass('text-glow');
-		});
-
-		//Add ally
-		$('.addally').on('click', function() {
-			if ($(this).attr('href') != "#") {
-			    $(this).load(
-			        $(this).attr('href') 
-			    	, function () {
-			        $(this).html('<?= __('Congratulations! The user has been added.') ?>');
-			        $(this).attr('href','#');
-			    }); 
-			}
-		    // Prevent link going somewhere
-		    return false; 
 		});
 	</script>
 	<?php $this->end(); ?>
