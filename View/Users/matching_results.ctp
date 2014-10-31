@@ -60,9 +60,7 @@
 				<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
 					<div class="profile-content panel radius text-center margin right-05" data-equalizer-watch>
 						<!-- USER PICTURE -->
-						<div class="profile-picture radius"
-				    		data-interchange="['<?= $pic ?>',(default)]">
-						</div>
+						<img class="profile-picture radius" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
 
 						<!-- USER SHORT BIOGRAPHY -->
 						<h4 class="text-color-highlight"><?= $similar_user['User']['name'] ?></h4>

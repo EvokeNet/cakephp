@@ -27,7 +27,7 @@
 			}
 			?>
 
-			<div class="centering-block medium-12 small-6 margins-auto">
+			<div class="centering-block large-8 medium-12 small-6 margins-auto">
 				<img src="<?=$pic?>" class="img-circular" alt="<?= __('Your profile picture') ?>" />
 			</div>
 
@@ -85,7 +85,7 @@
 				
 				<div>
 					<h3 class="left margin right-2"><?= __('Allies') ?></h3>
-					<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'index')); ?>"><?php echo __('ALL USERS'); ?></a>
+					<a class="button small disabled" disabled href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'index')); ?>"><?php echo __('ALL USERS'); ?></a>
 				</div>
 				
 
