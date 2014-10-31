@@ -42,17 +42,19 @@ class UserFriendsController extends AppController {
 	}
 
 /**
- * add method
- *
+ * Add a user as a friend
+ * @param int $new_friend_id ID of the user that is GOING to be friends with the one who asked
+ * @param int $friend_id ID of the user that is ASKING to be friends with another
+ * @param bool $redirect_after Boolean that indicates if after adding the user it should redirect to another page (default true)
  * @return void
  */
-	public function add($id = null, $friend_id = null, $redirect_after = true) {
-		if (!$this->UserFriend->User->exists($id) OR !$this->UserFriend->User->exists($friend_id)) {
+	public function add($new_friend_id = null, $id = null, $redirect_after = true) {
+		if (!$this->UserFriend->User->exists($id) OR !$this->UserFriend->User->exists($new_friend_id)) {
 			throw new NotFoundException(__('User not found'));
 		}
 
-		$insertData = array('user_id' => $id, 'friend_id' => $friend_id);
-		$exists = $this->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $id, 'UserFriend.friend_id' => $friend_id)));
+		$insertData = array('user_id' => $id, 'friend_id' => $new_friend_id);
+		$exists = $this->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $id, 'UserFriend.friend_id' => $new_friend_id)));
 
 		if(!$exists){
 	        if($this->UserFriend->saveAll($insertData)){
@@ -63,7 +65,7 @@ class UserFriendsController extends AppController {
 		}
 
 		if ($redirect_after) {
-			return $this->redirect(array('controller' => 'users', 'action' => 'profile', $friend_id));
+			return $this->redirect(array('controller' => 'users', 'action' => 'profile', $new_friend_id));
 		}
 		return true;
 	}
