@@ -6,9 +6,7 @@ endif; ?>
 
 		<div class="left margin right-2">
 			<!-- PICTURE -->
-			<div class="profile-picture radius border-style-solid border-color-highlight border-width-01"
-	    		data-interchange="['<?= (isset($pic) ? $pic : '') ?>',(default)]">
-			</div>
+			<img class="profile-picture radius border-style-solid border-color-highlight border-width-01" src='<?= $pic ?>' alt="<?= $user['User']['name'] ?>'s profile picture" />
 
 			<!-- SOCIAL NETWORKS -->
 			<div>
@@ -17,19 +15,19 @@ endif; ?>
 
 		<div>
 			<!-- USER NAME -->
-			<h4 class="text-color-highlight"><?= __('Agent ').(isset($similar_user['User']['name']) ? $similar_user['User']['name'] : '') ?></h4>
+			<h4 class="text-color-highlight"><?= __('Agent ').(isset($user['User']['name']) ? $user['User']['name'] : '') ?></h4>
 
 			<!-- LEVEL PROGRESS BAR -->
 
 			<!-- BIOGRAPHY -->
-			<?= (isset($similar_user['User']['biography']) ? $similar_user['User']['biography'] : '') ?>
+			<?= (isset($user['User']['biography']) ? $user['User']['biography'] : '') ?>
 
 
 			<?php
 			if (isset($add_button) && ($add_button == true)):?>
 			<!-- ADD -->
 			<div class="text-center">
-				<a class="button small addally" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'add_friend', $similar_user['User']['id'], 'false')); ?>"><?php echo __('ADD ALLY'); ?></a>
+				<a class="button small addally uppercase" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $loggedInUser['id'], $user['User']['id'], false)); ?>"><?php echo __('ADD ALLY'); ?></a>
 			</div><?php 
 			endif; ?>
 
@@ -41,3 +39,27 @@ endif; ?>
 if (isset($modal) && ($modal == true)): ?>
 	</div><?php
 endif; ?>
+
+
+<?php
+	/* Script */
+	$this->start('script');
+?>
+<script type="text/javascript">
+	//Add ally
+	$('.addally').on('click', function() {
+		if ($(this).attr('href') != "#") {
+		    $(this).load(
+		        $(this).attr('href') 
+		    	, function () {
+		        $(this).html("<?= __('Congratulations! The user has been added.') ?>");
+		        $(this).attr('href','#');
+		    }); 
+		}
+	    // Prevent link going somewhere
+	    return false; 
+	});
+</script>
+<?php
+	$this->end();
+?>
