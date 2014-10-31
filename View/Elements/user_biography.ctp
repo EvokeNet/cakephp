@@ -6,9 +6,7 @@ endif; ?>
 
 		<div class="left margin right-2">
 			<!-- PICTURE -->
-			<div class="profile-picture radius border-style-solid border-color-highlight border-width-01"
-	    		data-interchange="['<?= (isset($pic) ? $pic : '') ?>',(default)]">
-			</div>
+			<img class="profile-picture radius border-style-solid border-color-highlight border-width-01" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
 
 			<!-- SOCIAL NETWORKS -->
 			<div>

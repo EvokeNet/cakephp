@@ -107,11 +107,10 @@
 							$pic = $this->webroot.'files/attachment/attachment/'.$similar_user['User']['photo_dir'].'/'.$similar_user['User']['photo_attachment'];
 						}
 				?>
-				<div class="large-2 medium-4 small-6 columns">
+				<div class="large-2 medium-4 small-6 columns paddings-0 text-center">
 					<!-- PICTURE -->
 					<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
-						<div class="profile-picture small radius margins-auto" data-interchange="['<?= $pic ?>',(default)]">
-						</div>
+						<img class="profile-picture small radius" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
 						<p class="text-center text-glow-on-hover"><?= $similar_user['User']['name'] ?></p>
 					</a>
 
