@@ -1,4 +1,7 @@
 <?php
+
+	echo $this->Html->css('/components/jquery-ui/themes/smoothness/jquery-ui.css');
+
 	/* Top bar */
 	$this->start('topbar');
 	echo $this->element('topbar');

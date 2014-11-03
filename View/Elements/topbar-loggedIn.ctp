@@ -1,6 +1,6 @@
 <!-- MENU LOGGED IN -->
 <ul class="<?php echo isset($ulClass) ? $ulClass : ''; ?>">
-	
+
 	<!-- USER PROFILE PICTURE -->
 	<section class="top-bar-section">
     <!-- Right Nav Section -->
@@ -11,17 +11,20 @@
 
 			<li class="evoke divider"></li>
 
-      <li class="active"><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>"><?= __('Agent ').$loggedInUser['name'] ?></a></li>
+      <li class="active"><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>"><?= __('Agent ').$loggedInUser['firstname'] ?></a></li>
       <li class="has-dropdown">
         <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>" class="button-icon">
 					<?php
+					//debug($loggedInUser);
+
 					$pic = $this->webroot.'webroot/img/user_avatar.jpg';
-					if($loggedInUser['photo_attachment'] == null) {
+					if ((!isset($loggedInUser['photo_attachment']) || ($loggedInUser['photo_attachment'] == null))
+					 	&& (isset($loggedInUser['facebook_id']) && ($loggedInUser['facebook_id'] != null))) {
 						if($loggedInUser['facebook_id'] != null) {
 							$pic = "https://graph.facebook.com/". $loggedInUser['facebook_id'] ."/picture?type=large";
 						}
 					}
-					else {
+					elseif (isset($loggedInUser['photo_attachment'])) {
 						$pic = $this->webroot.'files/attachment/attachment/'.$loggedInUser['photo_dir'].'/'.$loggedInUser['photo_attachment'];
 					}
 					?>

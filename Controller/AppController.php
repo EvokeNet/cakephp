@@ -234,7 +234,7 @@ class AppController extends Controller {
  */
 	public function beforeFilter() {
         $this->set('loggedIn', $this->Auth->loggedIn());
-        $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
+        //$this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
 
         $this->_checkBrowserLanguage();
 
