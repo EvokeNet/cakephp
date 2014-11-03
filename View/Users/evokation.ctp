@@ -6,7 +6,7 @@
 ?>
 
 <div class="standard-width">
-	<img src="<?= $this->webroot.'img/mockup-6-evokation.jpg' ?>" class="full-width" />
+	<img src="<?= $this->webroot.'img/mockup-6-evokation-new.jpg' ?>" class="full-width" />
 </div>
 
 <?php
