@@ -241,6 +241,7 @@ class AppController extends Controller {
         //Info from the user that is currently logged in
         $cuser = $this->Auth->user();
         $loggedInUser = $this->Auth->user();
+        debug($loggedInUser);
 
         $userPoints = $this->getPoints($this->getUserId());
         $userPoints = 50;

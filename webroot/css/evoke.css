@@ -703,7 +703,6 @@ button, .button {
 /* --------------------------- */
 .progress.level-bar {
 	height: 0.5rem;
-	min-width: 160px;
 }
 
 .progress .meter {

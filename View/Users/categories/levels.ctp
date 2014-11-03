@@ -37,6 +37,7 @@
 				</ul>
 				<?php 
 					$pos = 1;
+					debug($points_users);
 					foreach ($points_users as $p => $point):
 						foreach ($point as $usr):
 							if($usr['id'] == $user['User']['id'])

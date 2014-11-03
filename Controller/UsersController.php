@@ -1091,6 +1091,7 @@ class UsersController extends AppController {
 
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
+		//LEVEL AND POINTS
 		$this->loadModel('Level');
 
 		$points = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $id)));
@@ -1106,6 +1107,76 @@ class UsersController extends AppController {
 		else
 			$percentage = 0;
 
+		
+		//LEADERBOARD
+		$this->loadModel('Point');
+		// $leaderboard_users = $this->User->find('all', array(
+		//     'joins' => array(
+		//                     array(
+								// 'fields' => array(
+						  //           'users.*',
+						  //           'sum(points.value) as total_points'
+						  //        ),
+		//                         'table' => 'points',
+		//                         'type' => 'right',  //join of your choice left, right, or inner
+		//                         'foreignKey' => true,
+		//                         'limit' => 3
+		//                     ),
+		//                 ),
+		//     'order' => array('Image.uploaded DESC')
+		// ));
+
+		//$this->getLeaderboard($max_top_leaders, $max_total_leaders, $allow_ties);
+
+		$max_top_leaders = 3; //How many are in the top of the leaderboard
+		$max_total_leaders = 6; //Total of leaders on the leaderboard (including the top ones)
+
+		$allusers = $this->User->find('all');
+		// $leaderboard_users = $this->User->find('all', array(
+		// 	'contain' => 'points',
+		// 	'limit' => 6,
+		// 	'order' => array('sum(points.value) DESC', 'user.name ASC')
+		// ));
+		// debug($leaderboard_users);
+
+		foreach ($allusers as $usr) {
+			//POINTS
+			$points = $this->Point->find('all', array(
+				'conditions' => array(
+					'Point.user_id' => $usr['User']['id']
+				)
+			));
+			$usrpoints = 0;
+			foreach ($points as $point) {
+				$usrpoints += $point['Point']['value'];
+			}
+
+			//LEVEL
+			$usr['User']['level'] = $this->getLevel($usrpoints);
+			$points_users[$usrpoints][] = $usr['User'];
+
+			//POWERPOINTS
+			$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
+				'conditions' => array(
+					'UserPowerPoint.user_id' => $usr['User']['id']
+				)
+			));
+
+			$tmp = array();
+			foreach ($powerpoints_user as $powerpoint_user) {
+				if(isset($tmp[$powerpoint_user['UserPowerPoint']['power_points_id']])) {
+
+					$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] += $powerpoint_user['UserPowerPoint']['quantity'];
+				} else {
+
+					$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] = $powerpoint_user['UserPowerPoint']['quantity'];
+				}
+			}
+		}
+
+		krsort($points_users);
+
+		//FRIENDS
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
 
 		$allies = array();
@@ -1115,7 +1186,6 @@ class UsersController extends AppController {
 		$followers = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.friend_id' => $id))); //this->getUserId()
 
 		$are_friends = array();
-		//$allies = array();
 
 		foreach($friends as $friend){
 			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
@@ -1128,6 +1198,7 @@ class UsersController extends AppController {
 			)));
 		} 
 
+		//EVIDENCES
 		$myevidences = $this->User->Evidence->find('all', array(
 			'order' => array(
 				'Evidence.modified DESC'
@@ -1139,6 +1210,7 @@ class UsersController extends AppController {
 			'limit' => 8 // CHANGE 8
 		));
 
+		//GROUPS AND EVOKATION
 		$this->loadModel('Group');
 		$this->loadModel('GroupsUser');
 		$users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $id)));
@@ -1218,6 +1290,8 @@ class UsersController extends AppController {
 			}
 		}
 		
+
+		//BADGES
 		$this->loadModel('Badge');
 
 		$badges = $this->User->UserBadge->find('all', array(
@@ -1243,6 +1317,7 @@ class UsersController extends AppController {
 
 		}
 
+		//SIMILAR USERS
 		//List of similar users (for now, any 4 users; later, matching results)
 		$similar_users = $this->User->find('all', array('limit' => 6));
 

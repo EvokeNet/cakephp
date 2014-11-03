@@ -48,7 +48,11 @@
 
 	<!-- USER PROFILE PICTURE -->
 	<li>
-		<p><?= __('Agent ').$loggedInUser['name'] ?></p>
+		<div class="column">
+			<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>" class="text-glow-on-hover">
+				<?= __('Agent ').$loggedInUser['name'] ?>
+			</a>
+		</div>
 	</li>
 	<li>
 		<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>" class="button-icon">

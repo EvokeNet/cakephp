@@ -40,12 +40,17 @@ div.evoke.slide.background-cover.active div.img-caption-bottom {
 .evoke .profile-picture {
 	height: 150px;
 	width: 125px;
-	background-size: cover;
 }
 
 .evoke .profile-picture.small {
 	height: 100px;
 	width: 80px;
+}
+
+/* Profile picture */
+.evoke .profile-picture.smallest {
+	height: 50px;
+	width: 40px;
 }
 
 .evoke .user-panel .profile-content {

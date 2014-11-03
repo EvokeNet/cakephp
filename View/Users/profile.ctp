@@ -128,14 +128,14 @@
 
 		<!-- LEADERBOARD -->
 		<div class="row border-top-divisor">
-			<div class="large-6 columns padding top-2 border-right-divisor">
+			<div class="large-6 columns padding top-2 right-2 border-right-divisor">
 				<h3><?= __('Leaderboard') ?></h3>
-				...
+				<?php echo $this->element('leaderboard'); ?>
 			</div>
 
 			<div class="large-6 columns padding top-2">
 				<h3><?= __('Badges earned') ?></h3>
-				...
+				<?php echo $this->element('badges'); ?>
 			</div>
 		</div>
 	</div>
@@ -169,6 +169,6 @@
 	$this->end();
 ?>
 
-<!-- <div class="full-width full-height">
+<div class="full-width full-height">
 	<img src="<?= $this->webroot.'img/mockup-1-evoke-profile-.jpg' ?>"  class="full-width" />
-</div> -->
+</div>
