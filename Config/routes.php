@@ -31,6 +31,11 @@
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
 	Router::connect(
+			'/register',
+			array('controller' => 'users', 'action' => 'register')
+	);
+
+	Router::connect(
     	'/evokation/*',
     	array('controller' => 'groupsUsers', 'action' => 'edit')
 	);

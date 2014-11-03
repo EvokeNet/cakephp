@@ -47,16 +47,24 @@ class User extends AppModel {
             )
         ),
         'password' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'A password is required'
-            )
-        ),
+            'notEmpty' => array(
+							'rule' => array('notEmpty'),
+						)
+				),
+				'email' => array(
+						'email' => array(
+								'rule' => array('email')
+						),
+						'isUnique' => array(
+	              'rule' => 'isUnique',
+	              'message' => 'Este e-mail já está cadastrado'
+	          )
+				),
     );
 
-    
+
     //var $actsAs = array('Acl' => array('requester'));
- 
+
 	function parentNode() {
 	    if (!$this->id && empty($this->data)) {
 	        return null;
@@ -78,7 +86,7 @@ class User extends AppModel {
         if (!empty($data['Attachment'][0]) && $data['Attachment'][0]['attachment']['name'] != '') {
         	foreach ($data['Attachment'] as $i => $image) {
                 if (is_array($data['Attachment'][$i])) {
-                    
+
                     // Force setting the `model` field to this model
                     $image['model'] = 'User';
 
@@ -93,7 +101,7 @@ class User extends AppModel {
         }
         $insert['User'] = $data['User'];
         //$data['Attachment'] = $image;
-        
+
 
         // Try to save the data using Model::saveAll()
         if(!$hasPrev) $this->create();
@@ -136,13 +144,14 @@ class User extends AppModel {
  */
 	public function beforeSave($options = array()) {
 		if (isset($this->data[$this->alias]['password'])) {
-			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+			$passwordHasher = new SimplePasswordHasher();
+			$this->data[$this->alias]['password'] = $passwordHasher->hash(
+				$this->data[$this->alias]['password']
+			);
 		}
 
-	    if(!empty($this->data['User']['tmp_password'])) {
-            $this->data['User']['password'] = AuthComponent::password($this->data['User']['tmp_password']); 
-        }
-     
+		$this->data[$this->alias]['name'] = $this->data[$this->alias]['firstname'].' '.$this->data[$this->alias]['lastname'];
+
 		return true;
 	}
 
@@ -151,7 +160,7 @@ class User extends AppModel {
     }
 
     public function afterSave($created, $options = array()) {
-       
+
        	if($created){
        		$value = 250;
        		//check to see if admin set a different amount of points for this action
@@ -174,7 +183,7 @@ class User extends AppModel {
 	        $this->getEventManager()->dispatch($event);
 
 	        return true;
-	    }	
+	    }
     }
 
 /**
@@ -282,7 +291,7 @@ class User extends AppModel {
 		// 'ForumPostRating' => array('className' => 'Forum.PostRating'),
 		// 'ForumSubscription' => array('className' => 'Forum.Subscription'),
 		// 'ForumTopic' => array('className' => 'Forum.Topic'),
-		
+
 		'GroupRequest' => array(
 			'className' => 'GroupRequest',
 			'foreignKey' => 'user_id',

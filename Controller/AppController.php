@@ -234,17 +234,15 @@ class AppController extends Controller {
  */
 	public function beforeFilter() {
         $this->set('loggedIn', $this->Auth->loggedIn());
-        $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
+        //$this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
 
         $this->_checkBrowserLanguage();
 
         //Info from the user that is currently logged in
         $cuser = $this->Auth->user();
         $loggedInUser = $this->Auth->user();
-        debug($loggedInUser);
 
         $userPoints = $this->getPoints($this->getUserId());
-        $userPoints = 50;
         $userLevel = $this->getLevel($userPoints); //level ID
         $userNextLevel = $this->getNextLevel($userLevel); //next level object
         $userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);

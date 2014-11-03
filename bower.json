@@ -17,6 +17,7 @@
     "sticky-kit": "~1.0.4",
     "sidr": "~1.2.1",
     "chartjs": "~0.2.0",
-    "ExplorerCanvas": "*"
+    "ExplorerCanvas": "*",
+    "jquery-ui": "*"
   }
 }

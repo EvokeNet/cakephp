@@ -24,7 +24,7 @@ class UsersController extends AppController {
  * @var array
  */
 	//public $components = array('MathCaptcha', 'Visit');
-    
+
     //public $components = array('Visit');
 
 	public $uses = array('User', 'Friend');
@@ -46,7 +46,7 @@ class UsersController extends AppController {
 
 //    public function forgot() {
 //		if ($this->request->is('post')) {
-//      		
+//
 //      		if ($this->MathCaptcha->validate($this->request->data['User']['captcha'])) {
 //        		$usr = $this->User->find('first', array(
 //        			'conditions' => array(
@@ -86,25 +86,25 @@ class UsersController extends AppController {
 //      		} else {
 //        		$this->Session->setFlash('The result of the calculation was incorrect. Please, try again.', 'flash_message');
 //      		}
-//    	} 
+//    	}
 //        $this->set('captcha', $this->MathCaptcha->getCaptcha());
 //    }
 
     public function createTempPassword($len) {
-		$pass = '';
-	   	$lchar = 0;
-	   	$char = 0;
-	   	for($i = 0; $i < $len; $i++) {
-	    	while($char == $lchar) {
-	       		$char = rand(48, 109);
-	       		if($char > 57) $char += 7;
-	       		if($char > 90) $char += 6;
-	     	}
-			$pass .= chr($char);
-	     	$lchar = $char;
-	   	}
-	   	return $pass;
-	}
+			$pass = '';
+		   	$lchar = 0;
+		   	$char = 0;
+		   	for($i = 0; $i < $len; $i++) {
+		    	while($char == $lchar) {
+		       		$char = rand(48, 109);
+		       		if($char > 57) $char += 7;
+		       		if($char > 90) $char += 6;
+		     	}
+				$pass .= chr($char);
+		     	$lchar = $char;
+		   	}
+		   	return $pass;
+		}
 
     public function changePassword() {
     	$usr = $this->User->find('first', array(
@@ -188,7 +188,7 @@ class UsersController extends AppController {
 		  $_SESSION['access_token'] = $client->getAccessToken();
 		//   $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
 		//   header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
-			
+
 
 		// debug($client->getAccessToken());
 
@@ -268,7 +268,7 @@ class UsersController extends AppController {
 				return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
 
 			}
-		} 
+		}
 		}else {
 			$authUrl = $client->createAuthUrl();
 
@@ -282,7 +282,7 @@ class UsersController extends AppController {
 			'appId' => Configure::read('fb_app_id'),
 			'secret' => Configure::read('fb_app_secret'),
 			'allowSignedRequest' => false,
-			
+
 		));
 
 		$browserLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -373,7 +373,7 @@ class UsersController extends AppController {
 					return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
 
 				}
-				
+
 			}
 
 		} else if ($this->Auth->login()) {
@@ -440,7 +440,7 @@ class UsersController extends AppController {
     		'conditions' => array(
     			'Evidence.id' => $lastOne
     		)
-    	));	
+    	));
 
     	$lang = $this->getCurrentLanguage();
 
@@ -474,7 +474,7 @@ class UsersController extends AppController {
 
 		$el = 'evidence';
 		$ind = 'Evidence';
-    	
+
 
     	$data = "";
 
@@ -483,7 +483,7 @@ class UsersController extends AppController {
     	foreach ($obj as $key => $value) {
     		$view = new View($this, false);
 			$content = ($view->element($el, array('e' => $value, 'lang' => $lang)));
-			
+
 			$data .= $content .' ';
 
     		$older = $value[$ind]['id'];
@@ -504,7 +504,7 @@ class UsersController extends AppController {
     		'conditions' => array(
     			'Evokation.id' => $lastOne
     		)
-    	));	
+    	));
 
     	if(empty($last))
     			return json_encode(array());
@@ -540,13 +540,13 @@ class UsersController extends AppController {
 						'GroupsUser.user_id' => $id
 					)
 				));
-				
+
 				if(!empty($group_evokation))
 					$mine = true;
 
 				if($mine){
 					array_push($myEvokations, $evokation);
-				}	
+				}
 			}
 
 			$common = $myEvokations;
@@ -571,7 +571,7 @@ class UsersController extends AppController {
 						'OR' => $op
 					)
 				));
-				
+
 				if(!empty($group_evokation) && $group_evokation['GroupsUser']['user_id'] == $id)
 					$his = true;
 
@@ -580,7 +580,7 @@ class UsersController extends AppController {
 
 				if($his){
 					array_push($myEvokations, $evokation);
-				}	
+				}
 
 				if($mine){
 					array_push($viewerEvokation, $evokation);
@@ -588,14 +588,14 @@ class UsersController extends AppController {
 			}
 			$obj = $myEvokations;
 			$common = $viewerEvokation;
-			
+
 		}
 
-		
+
 
 		$el = 'evokation';
 		$ind = 'Evokation';
-    	
+
 
     	$data = "";
 
@@ -612,7 +612,7 @@ class UsersController extends AppController {
 
     		$view = new View($this, false);
 
-			if($showFollowButton) 
+			if($showFollowButton)
 				$content = ($view->element($el, array('e' => $value, 'evokationsFollowing' => $evokationsFollowing, 'my_id' => $this->getUserId())));
 			else
 				$content = ($view->element($el, array('e' => $value, 'mine' => true, 'my_id' => $this->getUserId())));
@@ -636,49 +636,28 @@ class UsersController extends AppController {
  * @return void
  */
 	public function register() {
-		//check to see if logged in
-		if(!is_null($this->Auth->user())) 
-			return $this->redirect(array('action' => 'dashboard', $this->User->id));
-		
+
 		if ($this->request->is('post')) {
-			$this->User->create();
-			$this->request->data['User']['role_id'] = 3;//sets user as a common user
 
-			//DISABLING REDIS TEMPORARILY - START
-			// $redis = new Redis() or die("Cannot load Redis module.");
-			// $redis->connect('127.0.0.1');
-
-			// $redis->hMset('user:'.$this->request->data['User']['username'], array(
-			// 	'username' => $this->request->data['User']['username'],
-			// 	'name' => $this->request->data['User']['name'],
-			// 	'password' => $this->request->data['User']['username']
-			// ));
-
-			// $redis->sadd('users', 'user:'.$this->request->data['User']['username']);
-
-			// if ($this->User->save($this->request->data)) {
-			// 	$user = $this->User->save($this->request->data);
-			// 	// $this->Session->setFlash(__('The user has been saved.'));
-			// 	$user['User']['id'] = $this->User->id;
-			// 	$user['User']['role_id'] = $this->User->role_id;
-			// 	$this->Auth->login($user);
-
-			// 	if(empty($user['User']['biography'])){
-			// 		//echo $this->element('menu', array('user' => $user));
-			// 		$this->Session->setFlash('', 'opening_lightbox_message');
-			// 	}
-
-			// 	$this->Session->setFlash('', 'opening_lightbox_message');
-
-			// 	return $this->redirect(array('action' => 'edit', $this->User->id));
-			// 	//return $this->redirect(array('action' => 'index'));
-			// } else {
-			// 	$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-			// }
-			//DISABLING REDIS TEMPORARILY - END
+		if($this->request->data['User']['password'] == $this->request->data['User']['confirm_password']) {
+				$this->User->create();
+				// $this->request->data['User']['password'] = sha1($this->request->data['User']['password']);
+				if ($this->User->save($this->request->data)) {
+					$this->Session->setFlash(__('O usuário foi salvo com sucesso.'));
+	        $this->request->data['User'] = array_merge(
+	            $this->request->data['User'],
+	            array('id' => $this->User->id)
+	        );
+	        $this->Auth->login($this->request->data['User']);
+					return $this->redirect(array('action' => 'matching', $this->User->id));
+				} else {
+					$this->Session->setFlash(__('O usuário não pôde ser salvo. Por favor, tente novamente.'));
+				}
+			} else {
+  			$this->Session->setFlash(__("Typed passwords don't match"));
+  			//$this->redirect(array('action' => 'changePassword', '?arg='.$this->params['url']['arg']));
+  		}
 		}
-		$roles = $this->User->Role->find('list');		
-		$this->set(compact("roles"));
 	}
 
 /**
@@ -698,7 +677,7 @@ class UsersController extends AppController {
 		}
 
 		if($id != $this->getUserId()){
-			$this->redirect(array('action'=>'profile', $id)); 
+			$this->redirect(array('action'=>'profile', $id));
 		}
 
 		$lang = $this->getCurrentLanguage();
@@ -716,7 +695,7 @@ class UsersController extends AppController {
 		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
 
 		$sumMyPoints = $this->getPoints($this->getUserId());
-		
+
 		$myLevel = $this->getLevel($sumMyPoints);
 
 		$this->loadModel('Level');
@@ -772,13 +751,13 @@ class UsersController extends AppController {
 					'GroupsUser.user_id' => $id
 				)
 			));
-			
+
 			if(!empty($group_evokation))
 				$mine = true;
 
 			if($mine){
 				array_push($myEvokations, $evokation);
-			}	
+			}
 		}
 
 		// $myevidences = $this->User->Evidence->find('all', array(
@@ -811,7 +790,7 @@ class UsersController extends AppController {
 			array_push($my_notifies, array('Notification.user_id' => $users['User']['id']));
 			array_push($post_allies, array('Post.user_id' => $friend['UserFriend']['friend_id']));
 			array_push($topic_allies, array('Topic.user_id' => $friend['UserFriend']['friend_id']));
-		} 
+		}
 
 		//debug($are_friends);
 
@@ -842,12 +821,12 @@ class UsersController extends AppController {
 			$feed = $this->Notification->find('all', array(
 				'conditions' => array(
 					'OR' => $mine_allies
-				), 
+				),
 				'order' => array(
 					'Notification.created DESC'
 				)
 			));
-			
+
 			foreach ($feed as $key => $value) {
 			 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
 		 	 		$value['Notification']['origin'] == 'commentEvidence') {
@@ -856,13 +835,13 @@ class UsersController extends AppController {
 		 	 		}
 		 	 	}
 		 	}
-		} 
+		}
 
 		if(!empty($my_notifies)){
 			$notifies = $this->Notification->find('all', array(
 				'conditions' => array(
 					'OR' => $my_notifies
-				), 
+				),
 				'order' => array(
 					'Notification.created DESC'
 				)
@@ -885,7 +864,7 @@ class UsersController extends AppController {
 					endforeach;
 				}
 		 	}
-		} 
+		}
 
 		$this->loadModel('Mission');
 		$this->Mission->locale = $this->langToLocale(Configure::read('Config.language'));
@@ -920,14 +899,14 @@ class UsersController extends AppController {
 				$basic_training = $mission;
 				unset($missions[$m]);
 			}
-				
+
 		}
 
 		$allusers = $this->User->find('all');
 
 		//admin notifications check:
 		$this->loadModel('AdminNotification');
-		
+
 		if(isset($users['AdminNotificationsUser'][0])) {
 			//holds the last notification directed to this user
 			$last = $users['AdminNotificationsUser'][count($users['AdminNotificationsUser']) - 1];
@@ -935,15 +914,15 @@ class UsersController extends AppController {
 		} else {
 			$last['admin_notification_id'] = 0;
 		}
-		
+
 		//get all newer than that one
 		$adminNotifications = $this->AdminNotification->find('all', array(
 			'conditions' => array(
 				'AdminNotification.id >' => $last['admin_notification_id'],
-				'AdminNotification.user_target' => null				
+				'AdminNotification.user_target' => null
 			)
 		));
-		
+
 		foreach ($adminNotifications as $not) {
 			//he sees it..
 			$insert['AdminNotificationsUser']['user_id'] = $users['User']['id'];
@@ -967,10 +946,10 @@ class UsersController extends AppController {
 		$adminNotificationsToMe = $this->AdminNotification->find('all', array(
 			'conditions' => array(
 				'AdminNotification.id >' => $last['admin_notification_id'],
-				'AdminNotification.user_target' => $this->getUserId()				
+				'AdminNotification.user_target' => $this->getUserId()
 			)
 		));
-		
+
 
 		foreach ($adminNotificationsToMe as $not) {
 			//he sees it..
@@ -990,7 +969,7 @@ class UsersController extends AppController {
 	        $this->getEventManager()->dispatch($event);
 	        // break;
 		}
-		
+
 
 
 		// $this->loadModel('Forum.Post');
@@ -999,7 +978,7 @@ class UsersController extends AppController {
 		$a_posts = array();
 		$a_topics = array();
 
-		
+
 		// if(!empty($post_allies)){
 		// 	$this->Post->recursive = 1;
 		// 	$a_posts = $this->Post->find('all', array(
@@ -1017,13 +996,13 @@ class UsersController extends AppController {
 		// 		)
 		// 	));
 		// }
-		
+
 
 		$this->set(compact('badges', 'feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'adminNotificationsToMe', 'evidence', 'myevidences', 'missions', 'lang',
-			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies', 
+			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies',
 			'show_basic_training', 'evokations', 'evokationsFollowing', 'myEvokations'));
 		//'groups', 'my_photo', 'user_photo',
-		
+
 	}
 
 /**
@@ -1073,7 +1052,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function profile($id = null) {
-		
+
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -1086,7 +1065,7 @@ class UsersController extends AppController {
 			$flags['_es'] = true;
 		}
 		// debug($lang);
-		
+
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
@@ -1196,7 +1175,7 @@ class UsersController extends AppController {
 				'conditions' => array(
 					'OR' => $are_friends
 			)));
-		} 
+		}
 
 		//EVIDENCES
 		$myevidences = $this->User->Evidence->find('all', array(
@@ -1234,7 +1213,7 @@ class UsersController extends AppController {
 					'OR' => $mygroups_id
 				)
 			));
-		} 
+		}
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array(
@@ -1274,7 +1253,7 @@ class UsersController extends AppController {
 					'OR' => $op
 				)
 			));
-			
+
 			if(!empty($group_evokation) && $group_evokation['GroupsUser']['user_id'] == $id)
 				$his = true;
 
@@ -1283,13 +1262,12 @@ class UsersController extends AppController {
 
 			if($his){
 				array_push($myEvokations, $evokation);
-			}	
+			}
 
 			if($mine){
 				array_push($viewerEvokation, $evokation);
 			}
 		}
-		
 
 		//BADGES
 		$this->loadModel('Badge');
@@ -1309,7 +1287,7 @@ class UsersController extends AppController {
 				)
 			));
 			if(!empty($badge_img)) {
-				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
+				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir'];
 				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
 			} else {
 
@@ -1321,7 +1299,7 @@ class UsersController extends AppController {
 		//List of similar users (for now, any 4 users; later, matching results)
 		$similar_users = $this->User->find('all', array('limit' => 6));
 
-		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions', 
+		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
 			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'lang', 'similar_users'));
 
@@ -1337,6 +1315,8 @@ class UsersController extends AppController {
  */
 	public function matching($id = null) {
 		//List issues (all, and already saved)
+		//debug($loggedIn);
+
 		$issues = $this->User->UserIssue->Issue->find('list');
 		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
 
@@ -1362,7 +1342,7 @@ class UsersController extends AppController {
 			}
 
 			if ($this->request->data['UserIssue']['issue_id']) {
-				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
+				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {
 			        $insert = array('user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'issue_id' => $a);
 
 			        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'UserIssue.issue_id' => $a)));
@@ -1416,7 +1396,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function leaderboard($label = null) {
-			
+
 		$user = $this->User->find('first', array(
 			'conditions' => array(
 				'User.id' => $this->getUserId()
@@ -1451,7 +1431,7 @@ class UsersController extends AppController {
 
 			$this->loadModel('Point');
 			//$points = $this->Point->find('all');
-			
+
 			foreach ($allusers as $usr) {
 				$points = $this->Point->find('all', array(
 					'conditions' => array(
@@ -1482,7 +1462,7 @@ class UsersController extends AppController {
 						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] = $powerpoint_user['UserPowerPoint']['quantity'];
 					}
 				}
-				
+
 				foreach ($power_points as $p_index => $pp) {
 					if($flags['_es']) {
 						$power_points[$p_index]['PowerPoint']['name'] = $pp['PowerPoint']['name_es'];
@@ -1491,15 +1471,15 @@ class UsersController extends AppController {
 					$qtdUser = 0;
 					if(isset($tmp[$pp['PowerPoint']['id']]))
 						$qtdUser = $tmp[$pp['PowerPoint']['id']];
-					
+
 					$powerpoints_users[$pp['PowerPoint']['id']][$qtdUser][] = $usr['User'];
 				}
 			}
 
 			foreach ($power_points as $pp) {
-				
+
 				krsort($powerpoints_users[$pp['PowerPoint']['id']]);
-				
+
 			}
 			krsort($points_users);
 
@@ -1533,7 +1513,7 @@ class UsersController extends AppController {
 							$vote_rank[$e['Evokation']['id']] = $var;
 					}
 				endforeach;
-				if(!isset($vote_rank[$e['Evokation']['id']])) 
+				if(!isset($vote_rank[$e['Evokation']['id']]))
 					$vote_rank[$e['Evokation']['id']] = 0;
 			endforeach;
 
@@ -1675,8 +1655,8 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
 		}
-		
-		$roles = $this->User->Role->find('list');		
+
+		$roles = $this->User->Role->find('list');
 		$this->set(compact("roles"));
 
 	}
@@ -1748,7 +1728,7 @@ class UsersController extends AppController {
 		//if so, he can edit whoever he likes
 		//otherwise, you are not allowed to edit agents but
 		// yourself and will be redirected home
-		
+
 		if($this->getUserRole() != 1) {
 			if($id != $this->getUserId()) {
 				$this->Session->setFlash(__("You can't edit other users. Permission denied."), 'flash_message');
@@ -1774,7 +1754,7 @@ class UsersController extends AppController {
 		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
 
 		$sumMyPoints = 0;
-		
+
 		foreach($myPoints as $point){
 			$sumMyPoints += $point['Point']['value'];
 		}
@@ -1785,7 +1765,7 @@ class UsersController extends AppController {
 		//$this->set(compact('user', 'issues'));
 
 		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
-		
+
 		$this->set(compact('user', 'issues', 'selectedIssues', 'sumMyPoints', 'user_photo'));
 
 		if ($this->request->is(array('post', 'put'))) {
@@ -1800,14 +1780,14 @@ class UsersController extends AppController {
 				$this->User->UserIssue->deleteAll(array('UserIssue.user_id' => $userid), false);
 
 				if(isset($this->request->data['UserIssue']) && is_array($this->request->data['UserIssue']['issue_id'])) {
-					foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
+					foreach ($this->request->data['UserIssue']['issue_id'] as $a) {
 				        $insertData = array('user_id' => $id, 'issue_id' => $a);
 
 				        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $id, 'UserIssue.issue_id' => $a)));
 				        if(!$exists) $this->User->UserIssue->saveAssociated($insertData);
 				    }
 				}
-			    
+
 			    if ($this->User->createWithAttachments($this->request->data, true, $id)) {
 
 			    	$this->Auth->login($user);
@@ -1815,8 +1795,8 @@ class UsersController extends AppController {
 			    	$this->Session->setFlash(__('Your informations were succefully saved'), 'flash_message');
 					return $this->redirect(array('controller' => 'users', 'action' => 'matching', $id));
 
-				} 
-		        
+				}
+
 			} else $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 
 		} else {
@@ -1844,7 +1824,7 @@ class UsersController extends AppController {
 		// yourself and will be redirected home
 		if($this->getUserRole() != 1) {
 			if($id != $this->getUserId()) {
-				$this->Session->setFlash(__("You can't delete other users. Permission denied."));	
+				$this->Session->setFlash(__("You can't delete other users. Permission denied."));
 				$this->redirect($this->referer());
 			}
 		}
