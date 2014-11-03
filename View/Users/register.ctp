@@ -14,6 +14,30 @@
 	<img src="<?= $this->webroot.'img/mockup-2-register.jpg' ?>" class="full-width" />
 </div>
 
+<div class="row standard-width">
+  	<div class="medium-6 columns form-evoke-style">
+
+  		<div class="evoke login users form">
+			<?php echo $this->Form->create('User'); ?>
+				<?php
+					echo $this->Form->input('email', array('type' => 'email', 'required' => true, 'label' => __('Email')));
+					echo $this->Form->input('confirm_email', array('type' => 'email', 'required' => true, 'label' => __('Confirm Password')));
+					echo $this->Form->input('password', array('required' => true, 'label' => __('Password')));
+					echo $this->Form->input('confirm_password', array('required' => true, 'label' => __('Confirm Password')));
+				?>
+			<button class="evoke button general" type="submit"><?php echo __('Register') ?></button>
+		</div>
+
+	</div>
+	<div class="medium-6 columns">
+		<?php
+			echo $this->Form->input('name', array('required' => true, 'label' => __('Name')));
+			echo $this->Form->input('username', array('required' => true, 'label' => __('Username')));
+			echo $this->Form->input('birthdate', array('required' => true, 'label' => __('Birthdate')));
+			?>
+		<?php echo $this->Form->end(__('Submit')); ?>
+	</div>
+</div>
 
 <?php
 	/* Footer */

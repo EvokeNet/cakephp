@@ -32,9 +32,9 @@ class PanelsController extends AppController {
 		$this->user['name'] = $this->getUserName();
 
 		//there was some problem in retrieving user's info concerning his/her role : send him home
-		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
-			$this->redirect(array('controller' => 'users', 'action' => 'login'));
-		}
+		// if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
+		// 	$this->redirect(array('controller' => 'users', 'action' => 'login'));
+		// }
 
 		//checking Acl permission
 //		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
