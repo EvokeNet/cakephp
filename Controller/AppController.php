@@ -27,7 +27,7 @@ class AppController extends Controller {
  * Global Components
  *
  * @var array
- */	
+ */
 	public $components = array(
         'Session',
         'Auth' => array(
@@ -248,22 +248,22 @@ class AppController extends Controller {
         $userNextLevel = $this->getNextLevel($userLevel); //next level object
         $userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
 
-        $userNotifications = $this->getNotificationsNumber($this->getUserId());
+        //$userNotifications = $this->getNotificationsNumber($this->getUserId());
 
         $this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
     }
 
     /**
-     * Read the browser language and sets the website language to it if available. 
-     * 
+     * Read the browser language and sets the website language to it if available.
+     *
      */
     protected function _checkBrowserLanguage(){
         if(!$this->Session->check('Config.language')){
-             
-            //checking the 1st favorite language of the user's browser 
+
+            //checking the 1st favorite language of the user's browser
             $languageHeader = $this->request->header('Accept-language');
             $languageHeader = substr($languageHeader, 0, 2);
-             
+
             //available languages
             switch ($languageHeader){
                 case "en":
@@ -287,11 +287,11 @@ class AppController extends Controller {
             if($lang == 'es'){
                 $this->Session->write('Config.language', 'es');
             }
- 
+
             if($lang == 'en'){
                 $this->Session->write('Config.language', 'en');
             }
- 
+
             //in order to redirect the user to the page from which it was called
             $this->redirect($this->referer());
         }
@@ -304,16 +304,16 @@ class AppController extends Controller {
             'conditions' => array(
                 'Notification.user_id' => $user_id,
                 'Notification.status' => 0,
-            ), 
+            ),
             'order' => array(
                 'Notification.created DESC'
             )
         ));
 
         $count = array();
-        
+
         foreach($all as $a => $n){
-            if(($n['Notification']['origin'] == 'like') || ($n['Notification']['origin'] == 'commentEvidence') 
+            if(($n['Notification']['origin'] == 'like') || ($n['Notification']['origin'] == 'commentEvidence')
                 || ($n['Notification']['origin'] == 'commentEvokation') || ($n['Notification']['origin'] == 'voteEvokation')
                 || ($n['Notification']['origin'] == 'gritBadge')):
                 array_push($count, array('Notification.id' => $n['Notification']['id']));
@@ -327,21 +327,21 @@ class AppController extends Controller {
     public function saveNotifications($notes, $user_id){
 
         debug($notes);
-        
+
         $this->loadModel('Notification');
 
         $all = $this->Notification->find('all', array(
             'conditions' => array(
                 'Notification.user_id' => $user_id,
                 'OR' => $notes
-            ), 
+            ),
             'order' => array(
                 'Notification.created DESC'
             )
         ));
 
         $count = array();
-        
+
         foreach($all as $n){
             $this->Notification->id = $n['Notification']['id'];
             $this->Notification->saveField('status', 1);
@@ -355,7 +355,7 @@ class AppController extends Controller {
         $all = $this->Point->find('all', array('conditions' => array('Point.user_id' => $user_id)));
 
         $points = 0;
-        
+
         foreach($all as $a){
             $points += $a['Point']['value'];
         }
@@ -384,7 +384,7 @@ class AppController extends Controller {
                 break;
             }
         endforeach;
-        
+
         return $level;
     }
 
@@ -430,7 +430,7 @@ class AppController extends Controller {
     public function getUserName() {
         $currentuser = $this->Auth->user();
         if(isset($currentuser['name'])) return $currentuser['name'];
-        return $currentuser['User']['name'];   
+        return $currentuser['User']['name'];
     }
 
     public function getUserRole() {

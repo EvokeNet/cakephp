@@ -14,7 +14,7 @@
 	<?php echo $this->element('register_form'); ?>
 </div>
 
-<div class="row standard-width">
+<!-- <div class="row standard-width">
   	<div class="medium-6 columns form-evoke-style">
 
   		<div class="evoke login users form">
@@ -37,7 +37,7 @@
 			?>
 		<?php echo $this->Form->end(__('Submit')); ?>
 	</div>
-</div>
+</div> -->
 
 <?php
 	/* Footer */
@@ -49,20 +49,20 @@
 <!--
 <section class="evoke login background">
 	<div class="row full-width">
-	
+
 		<div class="small-7 medium-7 large-7 columns">
-			
+
 			<img src = '<?= $this->webroot.'img/bar.png' ?>' alt = "" class = "evoke login video-bar">
-			
+
 			<div class="flex-video widescreen vimeo" style = "margin-top:50px">
 			  <iframe src="http://player.vimeo.com/video/93164917" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 			</div>
-			
+
 		</div>
 
 		<div class="small-5 medium-5 large-5 columns">
 			<img src = '<?= $this->webroot.'img/evoke-69.png' ?>' alt = "" class = "evoke login padding-bottom">
-			
+
 			<div id = "login-columns">
 				<h4 class = "evoke bottom-border"><?php echo __('Evoke Registration');?></h4>
 
@@ -88,4 +88,3 @@
 	</div>
 </section>
 -->
-
