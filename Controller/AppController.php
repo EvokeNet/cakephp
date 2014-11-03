@@ -38,7 +38,7 @@ class AppController extends Controller {
     );
 
     public $helpers = array(
-        'Chosen.Chosen'
+        'Chosen.Chosen', 'Text'
     );
 
     public $user = null;
@@ -233,41 +233,24 @@ class AppController extends Controller {
  * @return void
  */
 	public function beforeFilter() {
-        //$loggedIn = $this->Auth->loggedIn();
         $this->set('loggedIn', $this->Auth->loggedIn());
-        /*if ($this->loggedIn) {
-            debug('teste'.$loggedIn);
-        } else {
-            debug('hello ahh');
-        }
-
-
-        if ($this->Auth->loggedIn()) {
-            var_dump('deles SIM deu certo');
-        }
-        else {
-            var_dump('deles nao deu certo');
-        }*/
-
-
         $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
-
-        $cuser = $this->Auth->user();
 
         $this->_checkBrowserLanguage();
 
+        //Info from the user that is currently logged in
+        $cuser = $this->Auth->user();
+        $loggedInUser = $this->Auth->user();
+
         $userPoints = $this->getPoints($this->getUserId());
-        $userLevel = $this->getLevel($userPoints);
+        $userPoints = 50;
+        $userLevel = $this->getLevel($userPoints); //level ID
+        $userNextLevel = $this->getNextLevel($userLevel); //next level object
         $userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
 
         $userNotifications = $this->getNotificationsNumber($this->getUserId());
 
-        $this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userLevelPercentage', 'cuser'));
-        
-        // $this->set('userPoints', $userPoints);
-        // $this->set('userLevel', $userLevel);
-        // $this->set('userLevelPercentage', $userLevelPercentage);
-
+        $this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
     }
 
     /**
@@ -381,6 +364,11 @@ class AppController extends Controller {
 
     }
 
+    /**
+     * Gets the next level number
+     * @param int $userLevel Id of the current level
+     * @return int Next level number
+     */
     public function getLevel($userPoints){
 
         $this->loadModel('Level');
@@ -390,16 +378,27 @@ class AppController extends Controller {
         $level = 0;
 
         foreach($levels as $l):
-            if($l['Level']['points'] <= $userPoints){
+            if ($l['Level']['points'] <= $userPoints) {
                 $level = $l['Level']['level'];
-            } else{
+            } else {
                 break;
             }
-
         endforeach;
-
-        return $level;
         
+        return $level;
+    }
+
+    /**
+     * Gets the next level
+     * @param int $userLevel Id of the current level
+     * @return object Next level
+     */
+    public function getNextLevel($userLevel){
+        $this->loadModel('Level');
+
+        $nextLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
+
+        return $nextLevel['Level'];
     }
 
     public function getUserImage($userid) {
@@ -418,7 +417,6 @@ class AppController extends Controller {
             $percentage = 0;
 
         return $percentage;
-        
     }
 
     public function getUserId() {

@@ -15,10 +15,8 @@
     "fullpage.js": "~2.2.1",
     "slick-carousel": "~1.3.11",
     "sticky-kit": "~1.0.4",
-    "sidr": "~1.2.1"
-  },
-  "resolutions": {
-    "medium-editor": "~1.9",
-    "jquery": "2.1.1"
+    "sidr": "~1.2.1",
+    "chartjs": "~0.2.0",
+    "ExplorerCanvas": "*"
   }
 }

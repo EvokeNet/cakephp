@@ -10,8 +10,8 @@
 	$this->end();
 ?>
 
-<div class="standard-width">
-	<img src="<?= $this->webroot.'img/mockup-2-register.jpg' ?>" class="full-width" />
+<div class="row standard-width">
+	<?php echo $this->element('register_form'); ?>
 </div>
 
 <div class="row standard-width">

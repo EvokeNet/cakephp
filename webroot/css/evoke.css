@@ -32,6 +32,7 @@ button, div, p, span, a,
 	-webkit-font-smoothing: antialiased;
 }
 
+/* Headings */
 .evoke h1, .evoke h1 a, .evoke h2, .evoke h2 a, .evoke h3, .evoke h3 a,
 .evoke h4, .evoke h4 a, .evoke h5, .evoke h5 a, .evoke h6, .evoke h6 a {
 	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
@@ -41,18 +42,11 @@ button, div, p, span, a,
 	color: #cccccc;
 }
 
-button, .button {
+.evoke h3, .evoke h4, .evoke h5, .evoke h6 {
 	text-transform: uppercase;
-	color: #26dee0;
-	background-color: #333;
-	border: 1px solid #26dee0;
 }
 
-.evoke button.thin, .evoke .button.thin {
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-}
-
+/* Visibility */
 .evoke .hidden {
 	visibility: hidden;
 	display: none;
@@ -66,6 +60,11 @@ button, .button {
 	font-size: 120%;
 }
 
+/* Text transform */
+.evoke .uppercase {
+	text-transform: uppercase;
+}
+
 /* Text colors */
 .evoke .text-color-important {
 	color: #26dee0;
@@ -77,6 +76,10 @@ button, .button {
 
 .evoke .text-color-gray {
 	color: #ccc;
+}
+
+.evoke .text-color-dark {
+	color: #323234;
 }
 
 /* Font */
@@ -136,6 +139,10 @@ button, .button {
 	min-height:800px;
 }
 
+.evoke .margins-auto {
+	margin: auto;
+}
+
 .evoke .margins-0{
 	margin:0!important;
 }
@@ -144,7 +151,7 @@ button, .button {
 	margin-top: 0.5em;
 }
 
-.evoke .margin.top {
+.evoke .margin.top-1 {
 	margin-top: 1em;
 }
 
@@ -160,7 +167,7 @@ button, .button {
 	margin-top: 6vw;
 }
 
-.evoke .margin.left {
+.evoke .margin.left-1 {
 	margin-left: 1em;
 }
 
@@ -174,10 +181,6 @@ button, .button {
 
 .evoke .margin.bottom-0 {
 	margin-bottom: 0;
-}
-
-.evoke .margin.bottom {
-	margin-bottom: 1em;
 }
 
 .evoke .margin.bottom-1 {
@@ -220,6 +223,10 @@ button, .button {
 	padding: 1em;
 }
 
+.evoke .padding.all-2 {
+	padding: 2em;
+}
+
 .evoke .padding.top-03 {
 	padding-top: 0.3em;
 }
@@ -260,6 +267,10 @@ button, .button {
 	padding-left: 2em;
 }
 
+.evoke .padding.left-4 {
+	padding-left: 4em;
+}
+
 .evoke .padding.left-5 {
 	padding-left: 5em;
 }
@@ -286,6 +297,10 @@ button, .button {
 
 .evoke .padding.right-3 {
 	padding-right: 3em;
+}
+
+.evoke .padding.right-4 {
+	padding-right: 4em;
 }
 
 .evoke .padding.right-5 {
@@ -379,7 +394,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	color: #cccccc;
 }
 
-.evoke .form-evoke-style input, .evoke .form-evoke-style label {
+.evoke .form-evoke-style label {
 	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
 	text-transform: uppercase;
 }
@@ -397,6 +412,28 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background: -o-linear-gradient(top, #292929 0%, #333 50px); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top, #292929 0%, #333 50px); /* IE 10+ */
 	background: linear-gradient(to bottom, #292929 0%, #333 50px);/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#333', GradientType=0 );/* IE6-9 */
+}
+
+.evoke .gradient-on-left {
+	background: #292929;/* Old Browsers */
+	background: -moz-linear-gradient(left, #292929 0%, #333 20px); /* FF3.6+ */
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, #292929), color-stop(20px, #333));/* Chrome, Safari4+ */
+	background: -webkit-linear-gradient(left, #292929 0%, #333 20px); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, #292929 0%, #333 20px); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, #292929 0%, #333 20px); /* IE 10+ */
+	background: linear-gradient(to right, #292929 0%, #333 20px);/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#333', GradientType=0 );/* IE6-9 */
+}
+
+.evoke .gradient-on-right {
+	background: #292929;/* Old Browsers */
+	background: -moz-linear-gradient(right, #292929 0%, #333 20px); /* FF3.6+ */
+	background: -webkit-gradient(right top, right bottom, color-stop(0%, #292929), color-stop(20px, #333));/* Chrome, Safari4+ */
+	background: -webkit-linear-gradient(right, #292929 0%, #333 20px); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(right, #292929 0%, #333 20px); /* Opera 11.10+ */
+	background: -ms-linear-gradient(right, #292929 0%, #333 20px); /* IE 10+ */
+	background: linear-gradient(to left, #292929 0%, #333 20px);/* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292929', endColorstr='#333', GradientType=0 );/* IE6-9 */
 }
 
@@ -437,6 +474,14 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background-color: #333;
 }
 
+.evoke .background-color-dark {
+	background-color: #252525;
+}
+
+.evoke .background-color-darkest {
+	background-color: #111;
+}
+
 .evoke .background-color-highlight {
 	background-color: #26dee0;
 }
@@ -458,8 +503,19 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	border-color: #26dee0;
 }
 
+.evoke .border-color-dark {
+	border-color: #111;
+}
+
+.evoke .border-width-01 {
+	border-width: 0.1em;
+}
 .evoke .border-width-02 {
 	border-width: 0.2em;
+}
+
+.evoke .radius {
+	border-radius: 5px;
 }
 
 /* --------------------------- */
@@ -574,17 +630,84 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 }
 
 /* --------------------------- */
+/* BUTTONS */
+/* --------------------------- */
+button, .button {
+	text-transform: uppercase;
+	color: #26dee0;
+	background-color: #333;
+	border: 1px solid #26dee0;
+}
+
+.evoke button.thin, .evoke .button.thin {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.evoke .button-icon:hover {
+	text-transform: none;
+}
+.evoke .button-icon.disabled, .evoke .button-icon.disabled i, .evoke .button-icon.disabled span {
+	color: #ccc;
+	pointer-events: none !important;
+	cursor: default;
+}
+.evoke .button-icon.disabled, .evoke .button-icon.disabled i.background, .evoke .button-icon.disabled span.background {
+	color: #666;
+}
+
+/* --------------------------- */
 /* ICONS */
 /* --------------------------- */
 .evoke .icon-size-medium {
 	font-size: 2.4em;
 }
 
-.evoke .login.facebook-icon {
+.evoke .blog-icon {
+	color: #00FF51;
+}
+.evoke .email-icon {
+	color: #D7D553;
+}
+.evoke .facebook-icon {
 	color: #1d649f;
 }
-.evoke .login.google-icon {
+.evoke .google-icon {
 	color: #9c4040;
+}
+.evoke .instagram-icon {
+	color: #A67D52;
+}
+.evoke .twitter-icon {
+	color: #3cddef;
+}
+.evoke .website-icon {
+	color: #D36A6A;
+}
+
+.evoke .fa-stack.grow-on-hover:hover {
+	margin-top: -0.1em;
+}
+
+.evoke .fa-stack.grow-on-hover:hover .fa-stack-2x {
+	font-size: 2.2em;
+}
+
+.evoke .fa-stack.grow-on-hover:hover .fa-stack-1x {
+	font-size: 1.4em;
+	padding-top: 0.1em;
+}
+
+/* --------------------------- */
+/* PROGRESS BAR */
+/* --------------------------- */
+.progress.level-bar {
+	height: 0.5rem;
+	min-width: 160px;
+}
+
+.progress .meter {
+	background-color: #26dee0;
 }
 
 /* --------------------------- */
@@ -595,12 +718,57 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background-color: #333;
 }
 
-.evoke .top-bar-section li:not(.has-form) a:not(.button) {
-	padding: 0 5px;
-}
-
 .evoke .top-bar-section {
 	margin-right: 10px;
+}
+
+/* Profile picture */
+.evoke .top-bar-section .profile-picture-topbar {
+	height: 40px;
+	width: 40px;
+}
+
+/* Padding of divs and links */
+.evoke .top-bar-section ul li:not(.has-form) a {
+	display: inline-block;
+	height: 100%;
+}
+
+.evoke .top-bar-section ul li a:not(.button), .evoke .top-bar-section ul li.has-form div {
+	padding: 0 10px;
+}
+
+.evoke .top-bar-section ul li a.button-icon, .evoke .top-bar-section .column {
+	padding: 0 3px;
+}
+
+/* Foundation overriding */
+.evoke .top-bar-section ul li p {
+	line-height: 45px; padding: 0 10px;
+}
+
+.evoke .top-bar-section ul li, .evoke .top-bar-section ul li a, .evoke .top-bar-section ul li > a,
+.evoke .top-bar-section ul li > a:hover, .evoke .top-bar-section ul li > a:active {
+	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	font-size: 0.8rem;
+}
+
+.top-bar-section li.active:not(.has-form) a:not(.button), .top-bar-section li.active:not(.has-form) a:not(.button):hover {
+	background-color: inherit;
+	text-transform: none;
+}
+
+.top-bar-section li:not(.has-form) a.button:hover, .top-bar-section li:not(.has-form) a.button-icon:hover {
+	background-color: inherit;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):not(.button-icon):hover {
+	background-color: #272727;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):not(.button-icon):hover {
+	border-bottom: 2px solid #26dee0;
+	margin-bottom: -2px;
 }
 
 /* --------------------------- */

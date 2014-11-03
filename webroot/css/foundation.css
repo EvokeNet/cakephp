@@ -14,10 +14,47 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 }
 
 /* --------------------------- */
-/* TABLE-CELL*/
+/* PANEL */
+/* --------------------------- */
+.panel {
+	border: none;
+	background-color: #252525;
+}
+
+.panel.radius {
+	border-radius: 5px;
+}
+
+.panel h1, .panel h2, .panel h3, .panel h4, .panel h5, .panel h6, .panel p, .panel li, .panel dl {
+	color: inherit;
+}
+
+/* --------------------------- */
+/* PROGRESS BAR */
+/* --------------------------- */
+.progress {
+	border: none;
+	padding: 0;
+	background-color: #000;
+}
+
+/* --------------------------- */
+/* TABLE-CELL */
 /* --------------------------- */
 .fp-tableCell {
 	position: relative;
+}
+
+/* --------------------------- */
+/* TOOLTIPS */
+/* --------------------------- */
+.tooltip {
+	background-color: #26dee0;
+	color: #333;
+}
+
+.has-tip {
+	border-bottom: none;
 }
 
 /* --------------------------- */
@@ -195,17 +232,4 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 	border-bottom: 1px solid rgb(70, 75, 77);
 	background-color: #333;
 	color: #ccc;
-}
-
-
-/* --------------------------- */
-/* TOOLTIPS */
-/* --------------------------- */
-.tooltip {
-	background-color: #26dee0;
-	color: #333;
-}
-
-.has-tip {
-	border-bottom: none;
 }

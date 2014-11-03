@@ -26,8 +26,6 @@
 
 			    <div class="evoke slide background-cover full-width" data-interchange="
 		    			['<?= $cover_url ?>',(default)]">
-
-
 					<noscript>
 						<img src="<?= $cover_url ?>" alt="<?= $mission['Mission']['title'] ?>">
 					</noscript>
