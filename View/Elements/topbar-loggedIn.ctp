@@ -35,10 +35,13 @@
 				</div>
 			</a>
 
-			<!-- USER OPTIONS -->
-	        <ul class="dropdown">
-	        	<li>
-	          		<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>" class="text-glow-on-hover text-color-highlight">
+        	<ul class="dropdown">
+        		<li>
+        			<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', $loggedInUser['id'])); ?>" class="text-glow-on-hover text-color-highlight">
+						<?php echo __('Edit profile'); ?>
+					</a>
+				</li>
+					<li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>" class="text-glow-on-hover text-color-highlight">
 						<?php echo __('Sign out'); ?>
 					</a>
 				</li>
@@ -76,6 +79,7 @@
 					</span>
 				</div>
 			</li>
+			<?php if ($loggedInUser['role'] != 'user'){ ?>
 			<li>
 				<div class="column">
 					<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
@@ -83,6 +87,7 @@
 					</span>
 				</div>
 			</li>
+		<?php } ?>
     </ul>
   </section>
 

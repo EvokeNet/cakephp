@@ -25,7 +25,7 @@ class UsersController extends AppController {
  */
 	//public $components = array('MathCaptcha', 'Visit');
 
-    //public $components = array('Visit');
+	public $components = array('UserRole');
 
 	public $uses = array('User', 'Friend');
 
@@ -89,6 +89,14 @@ class UsersController extends AppController {
 //    	}
 //        $this->set('captcha', $this->MathCaptcha->getCaptcha());
 //    }
+
+		// public function isAuthorized($user = null) {
+		// 		if (parent::isAuthorized($user)) {
+		// 				return true;
+		// 		}
+		//
+		// 		return false;
+		// }
 
     public function createTempPassword($len) {
 			$pass = '';

@@ -160,7 +160,7 @@
 			$(this).siblings('p').removeClass('text-glow');
 		});
 	</script>
-	<?php $this->end(); ?>
+<?php $this->end(); ?>
 
 <?php
 	/* Footer */

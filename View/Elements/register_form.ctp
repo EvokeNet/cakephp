@@ -68,7 +68,7 @@
 					<!-- LANGUAGE -->
 					<?php
 						echo $this->Form->input('language', array(
-						    'options' => array('Portuguese','English','Spanish'),
+						    'options' => array('portuguese' => __('Portuguese'), 'english' => __('English'), 'spanish' => __('Spanish')),
 						    'empty' => '(choose one)'
 						));
 					?>
