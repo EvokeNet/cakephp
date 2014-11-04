@@ -73,6 +73,7 @@
 	$this->start('script');
 ?>
 	<script type="text/javascript">
+		//Option elements glows on hover
 		$("div.panelOptions li")
 		.on("mouseover", function(){
 			$(this).find(".table").addClass('img-glow-small');

@@ -1,7 +1,7 @@
 
 <!-- TOP LEADERS HAVE BIG PICTURES -->
-<div class="row">
-    <ul class="user-panel large-block-grid-3 medium-block-grid-1">
+<div class="row top-leaders">
+    <ul class="user-panel large-block-grid-3 medium-block-grid-1" data-equalizer>
       <?php
         $counter = 0;
         foreach($similar_users as $similar_user):
@@ -20,20 +20,22 @@
       <li>
         <!-- PANEL -->
         <a href="#" data-reveal-id="modalProfile<?= $counter ?>">
-          <div class="profile-content panel radius margin right-05 bottom-0">
-            <!-- USER PICTURE -->
-            <img class="profile-picture small radius" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+          <div class="img-glow-on-hover-small">
+            <div class="profile-content panel radius margin right-05 bottom-0" data-equalizer-watch>
+              <!-- USER PICTURE -->
+              <img class="profile-picture small radius img-glow-on-hover-small" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
 
-            <p class="text-center margins-0"><span class="font-highlight"><?= $similar_user['User']['name'] ?></span></p>
+              <p class="text-center margins-0 user-name"><span class="font-highlight"><?= $similar_user['User']['name'] ?></span></p>
 
-            <!-- USER INFO -->
-            <small>Level 5
-            <br />2500 points</small>
+              <!-- USER INFO -->
+              <small>Level 5
+              <br />2500 points</small>
+            </div>
           </div>
         </a>
 
         <!-- VIEW AGENT DETAILS MODAL -->
-        <?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
+        <?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'Leaderboard'.$counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
       </li>
       <?php
           $counter++;
@@ -42,7 +44,8 @@
     </ul>
 </div>
 
-<div class="row">
+<!-- NEXT LEADERS -->
+<div class="row other-leaders">
     <ul class="full-width small-block-grid-1">
       <?php
         $counter = 0;
@@ -61,8 +64,8 @@
       ?>
       <li>
         <!-- PANEL -->
-        <a href="#" data-reveal-id="modalProfile<?= $counter ?>">
-          <div class="profile-content padding top-1 border-top-divisor">
+        <a href="#" data-reveal-id="modalProfileLeaderboard<?= $counter ?>">
+          <div class="profile-content padding top-1 border-top-divisor user-info">
             <!-- POSITION -->
             <div class="left padding right-1">
               <span class="font-highlight"><strong><?= $counter ?>th</strong></span>
@@ -75,7 +78,7 @@
 
             <!-- USER INFO -->
             <div class="padding right-1">
-              <p class="margins-0"><span class="font-highlight"><?= $similar_user['User']['name'] ?></span></p>
+              <p class="user-name margins-0"><span class="font-highlight"><?= $similar_user['User']['name'] ?></span></p>
 
               <small>Level 5</small>
 
@@ -87,7 +90,7 @@
         </a>
 
         <!-- VIEW AGENT DETAILS MODAL -->
-        <?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
+        <?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'Leaderboard'.$counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
       </li>
       <?php
           $counter++;
@@ -97,9 +100,31 @@
 </div>
 
 
+<?php
+  /* Script */
+  $this->start('script');
+?>
+  <script type="text/javascript">
+    //Top-leaders glow when selected
+    $("div.top-leaders li")
+    .on("mouseover", function(){
+      $(this).find('.profile-picture').addClass('img-glow-small');
+      $(this).find('.user-name').addClass('text-glow');
+    })
+    .on("mouseout", function(){
+      $(this).find('.profile-picture').removeClass('img-glow-small');
+      $(this).find('.user-name').removeClass('text-glow');
+    });
 
-<!-- NEXT 3 LEADERS -->
-<div class="row">
-</div>
-<div class="row">
-</div>
+    //Other leaders glow when selected
+    $("div.other-leaders .user-info")
+    .on("mouseover", function(){
+      $(this).find('.profile-picture').addClass('img-glow-small');
+      $(this).find('.user-name').addClass('text-glow');
+    })
+    .on("mouseout", function(){
+      $(this).find('.profile-picture').removeClass('img-glow-small');
+      $(this).find('.user-name').removeClass('text-glow');
+    });
+  </script>
+<?php $this->end(); ?>

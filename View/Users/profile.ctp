@@ -111,7 +111,7 @@
 					<div class="large-2 medium-4 small-6 columns paddings-0 text-center">
 						<!-- PICTURE -->
 						<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
-							<img class="profile-picture small radius" src='<?= $pic ?>' alt="<?= $ally['User']['name'] ?>'s profile picture" />
+							<img class="profile-picture small radius img-glow-on-hover-small" src='<?= $pic ?>' alt="<?= $ally['User']['name'] ?>'s profile picture" />
 							<p class="text-center text-glow-on-hover"><?= $ally['User']['name'] ?></p>
 						</a>
 
