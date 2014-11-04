@@ -1,1 +1,0 @@
-ALTER TABLE  `groups` ADD  `max_local` INT( 16 ) UNSIGNED NULL AFTER  `mission_id` , ADD  `max_global` INT( 16 ) UNSIGNED NULL AFTER  `max_local`;

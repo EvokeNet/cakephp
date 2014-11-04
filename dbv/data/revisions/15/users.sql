@@ -1,1 +1,0 @@
-ALTER TABLE  `users` ADD  `basic_trainning` TINYINT( 2 ) UNSIGNED NOT NULL DEFAULT  '0' AFTER  `blog`;

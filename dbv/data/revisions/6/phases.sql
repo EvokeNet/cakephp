@@ -1,1 +1,0 @@
-ALTER TABLE  `phases` ADD  `show_dossier` TINYINT( 2 ) NOT NULL DEFAULT  '1' AFTER  `type`;

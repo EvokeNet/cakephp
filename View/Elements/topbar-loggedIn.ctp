@@ -82,9 +82,7 @@
 			<?php if ($loggedInUser['role'] != 'user'){ ?>
 			<li>
 				<div class="column">
-					<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
-						<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('Admin'); ?></a>
-					</span>
+					<a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main')); ?>" class="text-glow-on-hover text-color-highlight"><?php echo __('Admin'); ?></a>
 				</div>
 			</li>
 		<?php } ?>

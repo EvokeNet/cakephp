@@ -1,1 +1,0 @@
-ALTER TABLE  `votes` CHANGE  `evidence_id`  `evokation_id` INT( 16 ) UNSIGNED NOT NULL;

@@ -9,7 +9,6 @@
 	$this->end();
 ?>
 
-
 <div class="evoke row background-color-standard full-width" data-equalizer>
 	<!-- LEFT SIDEBAR -->
 	<div class="medium-2 columns gradient-on-right profile-sidebar" data-equalizer-watch>
@@ -28,7 +27,12 @@
 			?>
 
 			<div class="centering-block large-8 medium-12 small-6 margins-auto">
-				<img src="<?=$pic?>" class="img-circular" alt="<?= __('Your profile picture') ?>" />
+				<!-- <img src="<?=$pic?>" class="img-circular" alt="<?= __('Your profile picture') ?>" /> -->
+
+				<div id = "cropProfilePicture">
+					<img src="<?=$pic?>" alt="<?= __('Your profile picture') ?>" />
+				</div>
+
 			</div>
 
 			<h4 class="text-color-highlight text-center margin top-1"><?= $user['User']['name'] ?></h4>
@@ -82,12 +86,12 @@
 		<!-- ALLIES -->
 		<div class="row border-top-divisor">
 			<div class="small-12 columns margin top-2">
-				
+
 				<div>
 					<h3 class="left margin right-2"><?= __('Allies') ?></h3>
 					<a class="button small disabled" disabled href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'index')); ?>"><?php echo __('ALL USERS'); ?></a>
 				</div>
-				
+
 
 				<!-- ALLIES GRID -->
 				<?php
@@ -111,7 +115,7 @@
 							<p class="text-center text-glow-on-hover"><?= $ally['User']['name'] ?></p>
 						</a>
 
-						<!-- MODAL USER BIOGRAPHY -->		
+						<!-- MODAL USER BIOGRAPHY -->
 						<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $ally, 'pic' => $pic, 'add_button' => false)); ?>
 					</div>
 

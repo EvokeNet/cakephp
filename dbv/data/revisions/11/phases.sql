@@ -1,1 +1,0 @@
-ALTER TABLE  `phases` ADD  `points` INT( 16 ) UNSIGNED NOT NULL AFTER  `show_dossier`;

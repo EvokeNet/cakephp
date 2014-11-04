@@ -1,1 +1,0 @@
-ALTER TABLE  `users` ADD  `level` INT( 16 ) UNSIGNED NOT NULL AFTER  `password`;
