@@ -474,6 +474,10 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background-color: #333;
 }
 
+.evoke .background-color-light-dark {
+	background-color: #292929;
+}
+
 .evoke .background-color-dark {
 	background-color: #252525;
 }
