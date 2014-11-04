@@ -1,1 +1,0 @@
-ALTER TABLE  `evokations` CHANGE  `approved`  `approved` TINYINT( 2 ) UNSIGNED NULL DEFAULT NULL;

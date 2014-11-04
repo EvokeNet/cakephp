@@ -1,2 +1,0 @@
-ALTER TABLE  `phases` ADD  `name_es` VARCHAR( 120 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER  `name`,
-ADD  `description_es` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER  `description`;

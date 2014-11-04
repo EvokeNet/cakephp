@@ -1,1 +1,0 @@
-ALTER TABLE  `users` CHANGE  `basic_trainning`  `basic_training` TINYINT( 2 ) UNSIGNED NOT NULL DEFAULT  '0';

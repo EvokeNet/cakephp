@@ -366,6 +366,51 @@ button, div, p, span, a,
 	text-align: end;
 }
 
+.evoke .display-inline{
+	display:inline
+}
+
+#cropProfilePicture {
+		width: 150px;
+		height: 150px;
+		margin: 0 auto;
+		overflow: hidden;
+		border-radius: 50%
+}
+
+.side-menu{
+	border: none;
+	/*border-right: 3px solid rgba(0,0,0,.2);*/
+	list-style-type: none;
+	margin:0;
+}
+
+.side-menu .side-nav{
+	padding: 0;
+}
+
+.side-menu .side-nav li{
+	margin: 0 -4px 0 0;
+	border-bottom: none;
+	border-left: 4px solid transparent;
+	border-radius: 0;
+}
+
+.side-menu .side-nav li a{
+	color: #cccccc;
+}
+
+.side-menu .side-nav li:hover{
+	background-color: transparent;
+	border-color: #26dee0;
+	color: rgba(0,0,0,.85);
+}
+
+.side-menu i{
+	float:right;
+	margin: .2em 0 0 0;
+}
+
 /* Opacity */
 .evoke .opacity-05 {
 	opacity: 0.5;

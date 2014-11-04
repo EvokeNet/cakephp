@@ -1,1 +1,0 @@
-ALTER TABLE  `notifications` ADD  `status` TINYINT( 3 ) UNSIGNED NOT NULL AFTER  `action_user_id`;

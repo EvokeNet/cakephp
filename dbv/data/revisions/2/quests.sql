@@ -1,1 +1,0 @@
-ALTER TABLE  `quests` ADD  `mandatory` TINYINT( 2 ) UNSIGNED NOT NULL DEFAULT  '1' AFTER  `type`;

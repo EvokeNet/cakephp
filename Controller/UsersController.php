@@ -1643,96 +1643,24 @@ class UsersController extends AppController {
 	}
 
 /**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+* admin_edit method
+*
+* @throws NotFoundException
+* @param string $id
+* @return void
+*/
 	public function edit($id = null) {
-		if(is_null($id)){
-			$id = $this->getUserId();
-		}
-
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-
-		//check to see if user is an admin
-		//if so, he can edit whoever he likes
-		//otherwise, you are not allowed to edit agents but
-		// yourself and will be redirected home
-
-		if($this->getUserRole() != 1) {
-			if($id != $this->getUserId()) {
-				$this->Session->setFlash(__("You can't edit other users. Permission denied."), 'flash_message');
-				$this->redirect(array('action' => 'edit', $this->getUserId()));
-			}
-		}
-
-
-		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$user = $this->User->find('first', $options);
-		//$this->set(compact('user'));
-
-		$user_photo = $this->User->Attachment->find('first', array(
-			'order' => array(
-				'Attachment.id DESC'
-			),
-			'conditions' => array(
-				'Attachment.model' => 'User',
-				'Attachment.foreign_key' => $id
-			)
-		));
-
-		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
-
-		$sumMyPoints = 0;
-
-		foreach($myPoints as $point){
-			$sumMyPoints += $point['Point']['value'];
-		}
-
-		//$this->loadModel('UserIssue');
-
-		$issues = $this->User->UserIssue->Issue->find('list');
-		//$this->set(compact('user', 'issues'));
-
-		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
-
-		$this->set(compact('user', 'issues', 'selectedIssues', 'sumMyPoints', 'user_photo'));
-
 		if ($this->request->is(array('post', 'put'))) {
-			// debug($this->request->data);
-			// die();
-			if (!empty($this->request->data)) {
-				$this->request->data['User']['role_id'] = $user['User']['role_id'];
-
-
-				$userid = $this->request->data['User']['id'];
-
-				$this->User->UserIssue->deleteAll(array('UserIssue.user_id' => $userid), false);
-
-				if(isset($this->request->data['UserIssue']) && is_array($this->request->data['UserIssue']['issue_id'])) {
-					foreach ($this->request->data['UserIssue']['issue_id'] as $a) {
-				        $insertData = array('user_id' => $id, 'issue_id' => $a);
-
-				        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $id, 'UserIssue.issue_id' => $a)));
-				        if(!$exists) $this->User->UserIssue->saveAssociated($insertData);
-				    }
-				}
-
-			    if ($this->User->createWithAttachments($this->request->data, true, $id)) {
-
-			    	$this->Auth->login($user);
-			    	//$this->Session->setFlash(__('The user has been saved.'));
-			    	$this->Session->setFlash(__('Your informations were succefully saved'), 'flash_message');
-					return $this->redirect(array('controller' => 'users', 'action' => 'matching', $id));
-
-				}
-
-			} else $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-
+			$this->User->id = $id;
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('The user has been saved.'));
+				return $this->redirect(array('action' => 'profile', $id));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);

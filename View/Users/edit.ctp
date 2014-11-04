@@ -155,11 +155,18 @@
 			<small class="error" id="nameError">Name is required and must be a string.</small>
 			</div> -->
 
-			<label for="UserMiniBiography">Mini bio</label>
-			<textarea name="data[User][mini_biography]" id="counttextarea" cols="45" rows="6" maxlength="140"></textarea>
+			<label for="UserMiniBiography" style = "display: inline;"><?= __('Mini bio') ?></label>&nbsp;
+			<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= ('The mini bio is a text up to 140 characters') ?>"><i class="fa fa-question-circle"></i></span>
+			<?php echo $this->Form->input('mini_biography', array(
+				// 'label' => array('class' => 'display-inline', 'text' => __('Mini bio')),
+				'label' => false,
+				'id' => 'counttextarea',
+				'cols' => '45',
+				'rows' => '6',
+				'maxlength' => '140'
+				));
+			?>
 			<div class = "ending-block"><span name="countchars" id="countchars"></span><?= __(' Characters Remaining') ?></div><br><br>
-
-			<!-- <input type="text" name="users_name" required pattern=".{0,10}$"> -->
 
 		</div>
 	</div>

@@ -38,15 +38,27 @@
 
 <div class="row row-full-width padding top-4" data-equalizer>
   <div class="large-2 columns padding-left-0" data-equalizer-watch>
-	  <div class = "menu-column">
-	  	<div class = "text-align-center padding-05" style = "color:white"><?= _('Choose an organization') ?></div>
-		<?php foreach($organizations as $o): ?>
-	  			<a href = "<?= $this->Html->url(array('controller' => 'panels', 'action' => 'organization', $o['Organization']['id'])) ?>">
-	  				<div class = "padding-05"><i class="fa fa-university fa-lg"></i>&nbsp;&nbsp;&nbsp;<span><?= $o['Organization']['name'] ?></span></div>
-	  			</a>
-		<?php endforeach; ?>
 
-	  </div>
+	<div class = "text-align-center padding-05" style = "color:white"><?= _('Choose an organization') ?></div>
+
+			<div class = "side-menu">
+			  <ul class="side-menu side-nav">
+
+			<?php foreach($organizations as $o): ?>
+				<li id = "menu_pages">
+					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'organization', $o['Organization']['id'])) ?>">
+						<i class="fa fa-home"></i><?= $o['Organization']['name'] ?>
+					</a>
+				</li>
+
+		  			<!-- <a href = "<?= $this->Html->url(array('controller' => 'panels', 'action' => 'organization', $o['Organization']['id'])) ?>">
+		  				<div class = "padding-05"><i class="fa fa-university fa-lg"></i>&nbsp;&nbsp;&nbsp;<span><?= $o['Organization']['name'] ?></span></div>
+		  			</a> -->
+			<?php endforeach; ?>
+
+		</ul>
+			</div>
+
   </div>
   <div class="large-10 columns" data-equalizer-watch>
 	<div class="row padding-top-1" data-equalizer>
@@ -62,14 +74,8 @@
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Missions Created')) ?></div>
 			</div>
 		</div>
-	  	<!-- <div class = "overall-info-icon" style = "display: inline-block;">
-		  	<i class="fa fa-folder-open-o fa-3x"></i>
-		</div>
-		<div>
-		  	<div style = "font-size:2.5em;"><?= sizeof($missions_issues) ?></div>
-			<div style = "word-wrap: break-word;"><?= strtoupper(__('Missions Created')) ?></div>
-		</div> -->
 	  </li>
+
 	  <li><!-- Your content goes here -->
 	  	<div class="row" data-equalizer>
 			<div class="large-4 columns" data-equalizer-watch>
@@ -80,12 +86,8 @@
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Organizations')) ?></div>
 			</div>
 		</div>
-	  	<!-- <div class = "overall-info-icon">
-	  		<i class="fa fa-bank fa-3x"></i>
-	  	</div>
-	  	<div style = "font-size:2.5em;"><?= sizeof($organizations) ?></div>
-		<div style = "word-wrap: break-word;"><?= strtoupper(__('Organizations')) ?></div> -->
 	  </li>
+
 	  <li><!-- Your content goes here -->
 	  	<div class="row" data-equalizer>
 			<div class="large-4 columns" data-equalizer-watch>
@@ -96,12 +98,8 @@
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Badges')) ?></div>
 			</div>
 		</div>
-	  	<!-- <div class = "overall-info-icon">
-	  		<i class="fa fa-shield fa-3x"></i>
-	  	</div>
-	  	<div style = "font-size:2.5em;"><?= sizeof($badges) ?></div>
-		<div style = "word-wrap: break-word;"><?= strtoupper(__('Badges')) ?></div> -->
 	  </li>
+
 	  <li><!-- Your content goes here -->
 	  	<div class="row" data-equalizer>
 			<div class="large-4 columns" data-equalizer-watch>
@@ -112,12 +110,8 @@
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Power Points')) ?></div>
 			</div>
 		</div>
-	  	<!-- <div class = "overall-info-icon">
-	  		<i class="fa fa-star-o fa-3x"></i>
-	  	</div>
-	  	<div style = "font-size:2.5em;"><?= sizeof($powerpoints) ?></div>
-		<div style = "word-wrap: break-word;"><?= strtoupper(__('Power Points')) ?></div> -->
 	  </li>
+
 	  <li><!-- Your content goes here -->
 	  	<div class="row" data-equalizer>
 			<div class="large-4 columns" data-equalizer-watch>
@@ -128,12 +122,8 @@
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Users')) ?></div>
 			</div>
 		</div>
-	  	<!-- <div class = "overall-info-icon">
-	  		<i class="fa fa-user fa-3x"></i>
-	  	</div>
-	  	<div style = "font-size:2.5em;"><?= sizeof($all_users) ?></div>
-		<div style = "word-wrap: break-word;"><?= strtoupper(__('Users')) ?></div> -->
 	  </li>
+
 	  <li><!-- Your content goes here -->
 	  	<div class="row" data-equalizer>
 			<div class="large-4 columns" data-equalizer-watch>
@@ -144,28 +134,20 @@
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Allies per user')) ?></div>
 			</div>
 		</div>
-	  	<!-- <div class = "overall-info-icon">
-	  		<i class="fa fa-sitemap fa-3x"></i>
-	  	</div>
-	  	<div style = "font-size:2.5em;"><?= round($allies_user) ?></div>
-		<div style = "word-wrap: break-word;"><?= strtoupper(__('Allies per user')) ?></div> -->
 	  </li>
+
 	  <li><!-- Your content goes here -->
 	  	<div class="row" data-equalizer>
-			<div class="large-4 columns" data-equalizer-watch>
-				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-users fa-3x"></i></div>
+				<div class="large-4 columns" data-equalizer-watch>
+					<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-users fa-3x"></i></div>
+				</div>
+				<div class="large-8 columns" data-equalizer-watch>
+					<div style = "font-size:2.5em;"><?= sizeof($groups) ?></div>
+					<div style = "word-wrap: break-word;"><?= strtoupper(__('Evokation Teams')) ?></div>
+				</div>
 			</div>
-			<div class="large-8 columns" data-equalizer-watch>
-				<div style = "font-size:2.5em;"><?= sizeof($groups) ?></div>
-				<div style = "word-wrap: break-word;"><?= strtoupper(__('Evokation Teams')) ?></div>
-			</div>
-		</div>
-	  	<!-- div class = "overall-info-icon">
-	  		<i class="fa fa-users fa-3x"></i>
-	  	</div>
-	  	<div style = "font-size:2.5em;"><?= sizeof($groups) ?></div>
-		<div style = "word-wrap: break-word;"><?= strtoupper(__('Evokation Teams')) ?></div> -->
 	  </li>
+
 	</ul>
 	</div>
 	<div class="large-4 columns" data-equalizer-watch>
@@ -200,7 +182,7 @@
 </div>
 
 	<div class="row padding-top-2" data-equalizer>
-	  
+
 	  <div class="large-4 columns" data-equalizer-watch>
 	   	<h5><?= __('Evokations') ?></h5>
 
@@ -248,7 +230,7 @@
 	  	</h1>
 		<div id="piechart"></div>
 	  </div> -->
-	
+
 	<div class="large-8 columns" data-equalizer-watch>
 		<h5><?= __('Monthly Visitors') ?></h5>
 		<div id="chart_div"></div>
@@ -333,7 +315,7 @@
 						  <div class="row">
 						    <div class="large-12 columns">
 						      <label><?= __('Date of Establishment') ?>
-						      	<?= 
+						      	<?=
 						      		$this->Form->input('birthdate', array(
 										'style' => 'width: 32.7%',
 										'label' => '',
@@ -342,7 +324,7 @@
 										'minYear' => date('Y') - 100,
 										'maxYear' => date('Y'),
 										'value' => $m['Organization']['birthdate']
-									)); 
+									));
 								?>
 						      </label>
 						    </div>
@@ -407,7 +389,7 @@
 				  <div class="row">
 				    <div class="large-12 columns">
 				      <label><?= __('Date of Establishment') ?>
-				      	<?= 
+				      	<?=
 				      		$this->Form->input('birthdate', array(
 								'style' => 'width: 32.7%',
 								'label' => '',
@@ -415,7 +397,7 @@
 								'dateFormat' => 'DMY',
 								'minYear' => date('Y') - 100,
 								'maxYear' => date('Y'),
-							)); 
+							));
 						?>
 				      </label>
 				    </div>
@@ -445,7 +427,7 @@
 				<tbody>
 					<?php foreach($users as $m): ?>
 			  		<tr>
-			  		  <td><input type="checkbox" name="chkbox[]"></td> 
+			  		  <td><input type="checkbox" name="chkbox[]"></td>
 				      <td><?= $m['User']['name'] ?></td>
 				      <td><a href="#" data-reveal-id="myModalEditUser<?= $m['User']['id'] ?>"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
 				      <td><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'panel_delete', $m['User']['id'])); ?>"><i class="fa fa-times fa-lg"></i></a></td>
@@ -494,7 +476,7 @@
 									'action' => 'edit',
 									$m['AdminNotification']['id']
 								))); ?>
-								
+
 							<?php
 								echo $this->Form->input('title', array(
 									'label' => __('Title'),
@@ -502,7 +484,7 @@
 									'value' => $m['AdminNotification']['title']
 								));
 								echo $this->Form->input('description', array(
-									'label' => __('Description'), 
+									'label' => __('Description'),
 									'required' => true,
 									'type' => 'textarea',
 									'value' => $m['AdminNotification']['description']
@@ -531,14 +513,14 @@
 						'controller' => 'AdminNotifications',
 						'action' => 'add'
 				))); ?>
-					
+
 				<?php
 					echo $this->Form->input('title', array(
 						'label' => __('Title'),
 						'required' => true
 					));
 					echo $this->Form->input('description', array(
-						'label' => __('Description'), 
+						'label' => __('Description'),
 						'required' => true,
 						'type' => 'textarea'
 					));
@@ -571,7 +553,7 @@
 				<tbody>
 					<?php foreach($issues as $i): ?>
 			  		<tr>
-			  		  <td><input type="checkbox" name="chkbox[]"></td> 
+			  		  <td><input type="checkbox" name="chkbox[]"></td>
 				      <td><?= $i['Issue']['name'] ?></td>
 				      <td><a href="#" data-reveal-id="myModalEditIssue<?= $i['Issue']['id'] ?>"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
 				      <td><a href="<?php echo $this->Html->url(array('controller'=>'issues', 'action' => 'delete', $i['Issue']['id'])); ?>"><i class="fa fa-times fa-lg"></i></a></td>
@@ -585,14 +567,14 @@
 	 				   			'action' => 'edit',
 	 				   			$i['Issue']['id'])
 							)); ?>
-						
+
 						<?php echo __('Edit Issue'); ?>
 						<?php
 							//echo $this->Form->input('parent_id');
 							echo $this->Form->input('name', array('label' => __('Name'), 'value' => $i['Issue']['name']));
 							echo $this->Form->input('slug', array('label' => __('Slug'), 'value' => $i['Issue']['slug']));
 						?>
-						
+
 						<button class="button general" type="submit">
 							<?php echo __('Edit'); ?>
 						</button>
@@ -612,14 +594,14 @@
 	 				   			'controller' => 'issues',
 	 				   			'action' => 'add')
 							)); ?>
-						
+
 						<?php echo __('Add an Issue'); ?>
 						<?php
 							//echo $this->Form->input('parent_id');
 							echo $this->Form->input('name', array('label' => __('Name')));
 							echo $this->Form->input('slug', array('label' => __('Slug')));
 						?>
-						
+
 						<button class="button general" type="submit">
 							<?php echo __('Add'); ?>
 						</button>
@@ -644,7 +626,7 @@
 				<tbody>
 					<?php foreach($power_points as $i): ?>
 			  		<tr>
-			  		  <td><input type="checkbox" name="chkbox[]"></td> 
+			  		  <td><input type="checkbox" name="chkbox[]"></td>
 				      <td><?= $i['PowerPoint']['name'] ?></td>
 				      <td><a href="#" data-reveal-id="myModalEditPP<?= $i['PowerPoint']['id'] ?>"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
 				      <td><a href="<?php echo $this->Html->url(array('controller'=>'PowerPoint', 'action' => 'delete', $i['PowerPoint']['id'])); ?>"><i class="fa fa-times fa-lg"></i></a></td>
@@ -738,15 +720,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php 
+					<?php
 					$evokations = array_merge($all_evokations);
 
 					$status = 'Approved';
 
-					foreach($evokations as $m): 
+					foreach($evokations as $m):
 						if($m['Evokation']['approved'] != null) {
 			            	$status = "Approved";
-			            } else if($m['Evokation']['final_sent'] == 1){            	
+			            } else if($m['Evokation']['final_sent'] == 1){
 			            	$status = "Pending";
 			            } else{
 			            	$status = "In Progress";
@@ -754,7 +736,7 @@
 			        ?>
 
 			  		<tr>
-			  		  <td><input type="checkbox" name="chkbox[]"></td> 
+			  		  <td><input type="checkbox" name="chkbox[]"></td>
 				      <td><?= $m['Evokation']['title'] ?></td>
 				      <td><a href="#" data-reveal-id="myModalEditStatus<?= $m['Evokation']['id'] ?>"><?= $status ?></a></td>
 				      <td><i class="fa fa-times fa-lg"></i></td>
@@ -762,11 +744,11 @@
 
 				    <!-- Add new notification form -->
 					<div id="myModalEditStatus<?= $m['Evokation']['id'] ?>" class="reveal-modal tiny" data-reveal>
-				  		<?php 
+				  		<?php
 							echo $this->Form->create('Evokation', array(
 						 		'url' => array(
 						 			'controller' => 'panels',
-						 			'action' => 'changeEvokationStatus', 
+						 			'action' => 'changeEvokationStatus',
 						 			$m['Evokation']['id']
 						 		)
 							));
@@ -806,25 +788,25 @@
 				// 	echo $this->Form->input('max_global', array(
 				// 		//'label' => __('Define the limit of agents per group: '),
 				// 		'value' => $groups[0]['Group']['max_global']
-				// 	));	
+				// 	));
 				// } else {
 				// 	echo $this->Form->input('max_global', array(
 				// 		'label' => __('Define the limit of agents per group: ')
-				// 	));	
-				// }						
+				// 	));
+				// }
 
 				echo '</div>';
 
 				echo '<legend>' . __('Points Definitions: ') . '</legend>';
-				
+
 				//points general def.
-				
+
 				if(!empty($register_points))
 					echo $this->Form->input('Register.points', array(
 						'label' => __("Agent's register is worth: "),
 						'value' => $register_points['PointsDefinition']['points']
 					));
-				else 
+				else
 					echo $this->Form->input('Register.points', array(
 						'label' => __("Agent's register is worth: ")
 					));
@@ -840,7 +822,7 @@
 						'label' => __("Agent's follow agent is worth: ")
 					));
 
-				
+
 				if(!empty($like_points))
 					echo $this->Form->input('Like.points', array(
 						'label' => __("Agent's like is worth: "),
@@ -887,7 +869,7 @@
 						'label' => __("Agent's evidence comment is worth: "),
 						'value' => $evidenceComment_points['PointsDefinition']['points']
 					));
-				else 
+				else
 					echo $this->Form->input('EvidenceComment.points', array(
 						'label' => __("Agent's evidence comment is worth: ")
 					));
@@ -897,7 +879,7 @@
 						'label' => __("Agent's basic training is worth: "),
 						'value' => $basicTraining_points['PointsDefinition']['points']
 					));
-				else 
+				else
 					echo $this->Form->input('BasicTraining.points', array(
 						'label' => __("Agent's basic training is worth: ")
 					));
@@ -910,7 +892,7 @@
 		</li>
 
 		<li>
-			<?php 
+			<?php
 
 				echo '<legend>' . __('Define Levels ') . '</legend>';
 
@@ -923,23 +905,23 @@
 				));
 				foreach ($levels as $level):
 					echo '<div><label for="levelOld'.$level['Level']['id'].'">Level '.$level['Level']['level'].'</label></div>';
-					
+
 					echo $this->Form->input('level.old.'.$level['Level']['id'], array(
 						'label' => false,
 						'value' => $level['Level']['points'],
 						'required' => true
 					));
-					
+
 					$nextLevel++;
 				endforeach;
 
 				echo '<div><label for="levelNew'.$nextLevel.'">Level '.$nextLevel.'</label></div>';
-					
+
 				echo $this->Form->input('level.new.'.$nextLevel, array(
 					'label' => false,
 					'required' => true
 				));
-				
+
 				$nextLevel++;
 			?>
 			<button class="button general" type="submit">
@@ -953,13 +935,13 @@
 
 </div>
 
-<?php 
+<?php
 	//echo $this->Html->script('/webroot/components/jquery/jquery.min.js');
 ?>
 
 <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
 <script type="text/javascript">
-	
+
 	function checkAll(id, id1){
 	    var tab = document.getElementById(id); // table with id tbl1
 	    var elems = tab.getElementsByTagName('input');

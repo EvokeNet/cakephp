@@ -1,1 +1,0 @@
-ALTER TABLE  `badges` ADD  `power_points_only` TINYINT( 2 ) UNSIGNED NOT NULL DEFAULT  '0' AFTER  `description_es`
