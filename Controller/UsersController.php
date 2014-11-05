@@ -652,13 +652,10 @@ class UsersController extends AppController {
 
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('O usuário foi salvo com sucesso.'));
-					$this->request->data['User'] = array_merge(
-						$this->request->data['User'],
-						array('id' => $this->User->id)
-					);
 
-					$this->Auth->login($this->request->data['User']);
-					
+					$user = $this->User->find('first', array('conditions' => array('User.id' => $this->User->id)));
+					$this->Auth->login($user['User']);
+
 					return $this->redirect(array('action' => 'matching', $this->User->id));
 				}
 				else {

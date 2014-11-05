@@ -37,17 +37,23 @@
 </div>
 
 <div class="row row-full-width padding top-4" data-equalizer>
-  <div class="large-2 columns padding-left-0" data-equalizer-watch>
+  <!-- <div class="large-2 columns padding-left-0 gradient-on-right"  style = "background-color: #26dee0; padding-right:0px" data-equalizer-watch> -->
+	<div class="large-2 columns padding-left-0 gradient-on-right" data-equalizer-watch>
 
-	<div class = "text-align-center padding-05" style = "color:white"><?= _('Choose an organization') ?></div>
+		<div class = "side-menu">
+		  <ul class="side-menu side-nav">
 
-			<div class = "side-menu">
-			  <ul class="side-menu side-nav">
+				<!-- <div style = "background-color: rgb(66, 157, 158); height:40px"></div> -->
 
+				<li class = "active">
+					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'main')) ?>">
+						<?= __('Statistics') ?>
+					</a>
+				</li>
 			<?php foreach($organizations as $o): ?>
-				<li id = "menu_pages">
+				<li>
 					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'organization', $o['Organization']['id'])) ?>">
-						<i class="fa fa-home"></i><?= $o['Organization']['name'] ?>
+						<?= __('Organization ').$o['Organization']['name'] ?>
 					</a>
 				</li>
 
@@ -61,15 +67,15 @@
 
   </div>
   <div class="large-10 columns" data-equalizer-watch>
-	<div class="row padding-top-1" data-equalizer>
-		<div class="large-8 columns" data-equalizer-watch>
+	<div class="row padding-top-1"  >
+		<div class="large-8 columns"  >
 	<ul class="small-block-grid-3">
 	  <li><!-- Your content goes here -->
-	  	<div class="row" data-equalizer>
-			<div class="large-4 columns" data-equalizer-watch>
+	  	<div class="row"  >
+			<div class="large-4 columns"  >
 				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-folder-open-o fa-3x"></i></div>
 			</div>
-			<div class="large-8 columns" data-equalizer-watch>
+			<div class="large-8 columns"  >
 				<div style = "font-size:2.5em;"><?= sizeof($missions_issues) ?></div>
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Missions Created')) ?></div>
 			</div>
@@ -77,11 +83,11 @@
 	  </li>
 
 	  <li><!-- Your content goes here -->
-	  	<div class="row" data-equalizer>
-			<div class="large-4 columns" data-equalizer-watch>
+	  	<div class="row"  >
+			<div class="large-4 columns"  >
 				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-bank fa-3x"></i></div>
 			</div>
-			<div class="large-8 columns" data-equalizer-watch>
+			<div class="large-8 columns"  >
 				<div style = "font-size:2.5em;"><?= sizeof($organizations) ?></div>
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Organizations')) ?></div>
 			</div>
@@ -89,11 +95,11 @@
 	  </li>
 
 	  <li><!-- Your content goes here -->
-	  	<div class="row" data-equalizer>
-			<div class="large-4 columns" data-equalizer-watch>
+	  	<div class="row"  >
+			<div class="large-4 columns"  >
 				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-shield fa-3x"></i></div>
 			</div>
-			<div class="large-8 columns" data-equalizer-watch>
+			<div class="large-8 columns"  >
 				<div style = "font-size:2.5em;"><?= sizeof($badges) ?></div>
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Badges')) ?></div>
 			</div>
@@ -101,11 +107,11 @@
 	  </li>
 
 	  <li><!-- Your content goes here -->
-	  	<div class="row" data-equalizer>
-			<div class="large-4 columns" data-equalizer-watch>
+	  	<div class="row"  >
+			<div class="large-4 columns"  >
 				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-star-o fa-3x"></i></div>
 			</div>
-			<div class="large-8 columns" data-equalizer-watch>
+			<div class="large-8 columns"  >
 				<div style = "font-size:2.5em;"><?= sizeof($powerpoints) ?></div>
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Power Points')) ?></div>
 			</div>
@@ -113,11 +119,11 @@
 	  </li>
 
 	  <li><!-- Your content goes here -->
-	  	<div class="row" data-equalizer>
-			<div class="large-4 columns" data-equalizer-watch>
+	  	<div class="row"  >
+			<div class="large-4 columns"  >
 				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-user fa-3x"></i></div>
 			</div>
-			<div class="large-8 columns" data-equalizer-watch>
+			<div class="large-8 columns"  >
 				<div style = "font-size:2.5em;"><?= sizeof($all_users) ?></div>
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Users')) ?></div>
 			</div>
@@ -125,11 +131,11 @@
 	  </li>
 
 	  <li><!-- Your content goes here -->
-	  	<div class="row" data-equalizer>
-			<div class="large-4 columns" data-equalizer-watch>
+	  	<div class="row"  >
+			<div class="large-4 columns"  >
 				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-sitemap fa-3x"></i></div>
 			</div>
-			<div class="large-8 columns" data-equalizer-watch>
+			<div class="large-8 columns"  >
 				<div style = "font-size:2.5em;"><?= round($allies_user) ?></div>
 				<div style = "word-wrap: break-word;"><?= strtoupper(__('Allies per user')) ?></div>
 			</div>
@@ -137,11 +143,11 @@
 	  </li>
 
 	  <li><!-- Your content goes here -->
-	  	<div class="row" data-equalizer>
-				<div class="large-4 columns" data-equalizer-watch>
+	  	<div class="row"  >
+				<div class="large-4 columns"  >
 					<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-users fa-3x"></i></div>
 				</div>
-				<div class="large-8 columns" data-equalizer-watch>
+				<div class="large-8 columns"  >
 					<div style = "font-size:2.5em;"><?= sizeof($groups) ?></div>
 					<div style = "word-wrap: break-word;"><?= strtoupper(__('Evokation Teams')) ?></div>
 				</div>
@@ -150,7 +156,7 @@
 
 	</ul>
 	</div>
-	<div class="large-4 columns" data-equalizer-watch>
+	<div class="large-4 columns"  >
 		<h5>Level</h5>
   		<div class="row">
 		  <div class="large-6 columns" style = "padding-right:0;">
@@ -181,26 +187,26 @@
 	</div>
 </div>
 
-	<div class="row padding-top-2" data-equalizer>
+	<div class="row padding-top-2"  >
 
-	  <div class="large-4 columns" data-equalizer-watch>
+	  <div class="large-4 columns"  >
 	   	<h5><?= __('Evokations') ?></h5>
 
-	   	<div class="row" data-equalizer>
-			<div class="large-6 columns" data-equalizer-watch style = "margin: 100px auto;">
+	   	<div class="row"  >
+			<div class="large-6 columns"   style = "margin: 100px auto;">
 
-				<div class="row" data-equalizer>
-					<div class="large-4 columns" data-equalizer-watch>
+				<div class="row" >
+					<div class="large-4 columns" -watch>
 						<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-file-text-o fa-3x"></i></div>
 					</div>
-					<div class="large-8 columns" data-equalizer-watch>
+					<div class="large-8 columns"  >
 						<div style = "font-size:2.5em;"><?= sizeof($groups) ?></div>
 						<div style = "word-wrap: break-word;"><?= strtoupper(__('Created')) ?></div>
 					</div>
 				</div>
 			</div>
 
-			<div class="large-6 columns" data-equalizer-watch>
+			<div class="large-6 columns" >
 				<div class="c100 p<?= round($pe*100) ?>">
 			        <span><?= sizeof($pending_evokations) ?></span>
 			        <div class="slice">
@@ -223,7 +229,7 @@
 		</div>
 	  </div>
 
-	  <!-- <div class="large-3 columns" data-equalizer-watch>
+	  <!-- <div class="large-3 columns" >
 	    <h1 style = "font-size: 1.5em; color: #555; font-weight:bold;">
 		<i class="fa fa-list-ul"></i>&nbsp;
   		<?= __('Chosen Issues') ?>
@@ -231,7 +237,7 @@
 		<div id="piechart"></div>
 	  </div> -->
 
-	<div class="large-8 columns" data-equalizer-watch>
+	<div class="large-8 columns" >
 		<h5><?= __('Monthly Visitors') ?></h5>
 		<div id="chart_div"></div>
 	</div>
