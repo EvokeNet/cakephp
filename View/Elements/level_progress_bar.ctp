@@ -1,7 +1,7 @@
 <div class="row collapse <?= (isset($class) && ($class)) ? $class : '' ?>">
 	<div class="row">
 		<!-- LEVEL -->
-		<span class="text-glow uppercase padding right-2"><?= __('Level') ?>&nbsp;&nbsp;<?= $userLevel ?></span>
+		<span class="left text-glow uppercase padding right-2"><?= __('Level') ?>&nbsp;&nbsp;<?= $userLevel ?></span>
 
 		<!-- POINTS -->
 		<?php 

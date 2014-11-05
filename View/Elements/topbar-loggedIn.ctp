@@ -51,40 +51,41 @@
 
     <!-- Left Nav Section -->
     <ul class="left">
-      <li>
-				<div class="column">
-					<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
-						<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('How to play'); ?></a>
-					</span>
-				</div>
-			</li>
-			<li>
-				<div class="column">
-					<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class="text-glow-on-hover text-color-highlight">
-						<?php echo __('Missions'); ?>
-					</a>
-				</div>
-			</li>
-			<li>
-				<div class="column">
-					<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
-						<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('Evokations'); ?></a>
-					</span>
-				</div>
-			</li>
-			<li>
-				<div class="column">
-					<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
-						<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('Forum'); ?></a>
-					</span>
-				</div>
-			</li>
-			<?php if ($loggedInUser['role'] != 'user'){ ?>
-			<li>
-				<div class="column">
-					<a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main')); ?>" class="text-glow-on-hover text-color-highlight"><?php echo __('Admin'); ?></a>
-				</div>
-			</li>
+    	<li>
+			<div class="column">
+				<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
+					<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('How to play'); ?></a>
+				</span>
+			</div>
+		</li>
+		<li>
+			<div class="column">
+				<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class="text-glow-on-hover text-color-highlight">
+					<?php echo __('Missions'); ?>
+				</a>
+			</div>
+		</li>
+		<li>
+			<div class="column">
+				<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
+					<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('Evokations'); ?></a>
+				</span>
+			</div>
+		</li>
+		<li>
+			<div class="column">
+				<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
+					<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('Forum'); ?></a>
+				</span>
+			</div>
+		</li>
+		
+		<?php if ($loggedInUser['role'] != 'user'){ ?>
+		<li>
+			<div class="column">
+				<a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main')); ?>" class="text-glow-on-hover text-color-highlight"><?php echo __('Admin'); ?></a>
+			</div>
+		</li>
 		<?php } ?>
     </ul>
   </section>

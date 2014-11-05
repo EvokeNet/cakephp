@@ -21,7 +21,7 @@
         <!-- PANEL -->
         <a href="#" data-reveal-id="modalProfile<?= $counter ?>">
           <div class="img-glow-on-hover-small">
-            <div class="profile-content panel radius margin right-05 bottom-0" data-equalizer-watch>
+            <div class="profile-content panel radius text-center margin right-05 bottom-0" data-equalizer-watch>
               <!-- USER PICTURE -->
               <img class="profile-picture small radius img-glow-on-hover-small" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
 
@@ -65,26 +65,27 @@
       <li>
         <!-- PANEL -->
         <a href="#" data-reveal-id="modalProfileLeaderboard<?= $counter ?>">
-          <div class="profile-content padding top-1 border-top-divisor user-info">
+          <div class="profile-content padding top-1 border-top-divisor table">
             <!-- POSITION -->
-            <div class="left padding right-1">
+            <div class="table-cell vertical-align-middle padding right-1">
               <span class="font-highlight"><strong><?= $counter ?>th</strong></span>
             </div>
 
-            <!-- USER PICTURE -->
-            <div class="left padding right-1">
-              <img class="profile-picture smallest radius" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
-            </div>
-
             <!-- USER INFO -->
-            <div class="padding right-1">
+            <div class="table-cell vertical-align-middle padding right-1 full-width">
+              <!-- USER PICTURE -->
+              <div class="left padding right-1">
+                <img class="profile-picture smallest radius" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+              </div>
+
               <p class="user-name margins-0"><span class="font-highlight"><?= $similar_user['User']['name'] ?></span></p>
 
               <small>Level 5</small>
+            </div>
 
-              <div class="right">
-                <small>2500 points</small>
-              </div>
+            <!-- POINTS -->
+            <div class="table-cell vertical-align-middle">
+              <small>2500 points</small>
             </div>
           </div>
         </a>
@@ -117,7 +118,7 @@
     });
 
     //Other leaders glow when selected
-    $("div.other-leaders .user-info")
+    $("div.other-leaders .profile-content")
     .on("mouseover", function(){
       $(this).find('.profile-picture').addClass('img-glow-small');
       $(this).find('.user-name').addClass('text-glow');
