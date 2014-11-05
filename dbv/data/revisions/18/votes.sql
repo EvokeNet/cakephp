@@ -1,1 +1,0 @@
-ALTER TABLE  `votes` ADD  `evokation_update_id` INT( 16 ) UNSIGNED NOT NULL AFTER  `user_id`;

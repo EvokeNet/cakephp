@@ -1,1 +1,0 @@
-ALTER TABLE  `quests` ADD  `points` INT( 16 ) UNSIGNED NOT NULL AFTER  `phase_id`;

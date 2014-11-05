@@ -6,9 +6,9 @@
  */
 define('DB_HOST', 'localhost');
 define('DB_PORT', 3306);
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'test');
+define('DB_USERNAME', 'evoke');
+define('DB_PASSWORD', 'CdbcwMvuQHnaJYL8');
+define('DB_NAME', 'evoke');
 
 /**
  * Authentication data for access to DBV itself

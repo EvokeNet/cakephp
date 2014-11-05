@@ -1,1 +1,0 @@
-ALTER TABLE  `badge_power_points` CHANGE  `power_points_id`  `power_points_id` INT( 16 ) UNSIGNED NULL

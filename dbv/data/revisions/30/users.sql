@@ -1,1 +1,0 @@
-ALTER TABLE  `users` ADD  `status` VARCHAR( 120 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER  `photo_attachment`;

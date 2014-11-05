@@ -1,1 +1,0 @@
-ALTER TABLE  `comments` ADD  `evokation_id` INT( 16 ) UNSIGNED NOT NULL AFTER  `evidence_id`;

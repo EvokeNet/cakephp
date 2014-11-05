@@ -1,2 +1,0 @@
-ALTER TABLE  `groups` ADD  `facebook` VARCHAR( 120 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER  `photo_attachment` ,
-ADD  `twitter` VARCHAR( 120 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER  `facebook`;
