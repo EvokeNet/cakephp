@@ -400,10 +400,20 @@ button, div, p, span, a,
 	color: #cccccc;
 }
 
-.side-menu .side-nav li:hover{
-	background-color: transparent;
+.side-nav li.active > a:first-child:not(.button){
+	color: #26dee0;
+}
+
+.side-menu .side-nav li.active{
+	/*background-color: #333;*/
 	border-color: #26dee0;
 	color: rgba(0,0,0,.85);
+}
+
+.side-menu .side-nav li:hover{
+	/*background-color: transparent;*/
+	border-color: #26dee0;
+	/*color: rgba(0,0,0,.85);*/
 }
 
 .side-menu i{
