@@ -7,7 +7,6 @@
     "medium-editor": "master",
     "skrollr": "0.6.26",
     "medium-editor-insert-plugin": "~0.2.4",
-    "jcarousel": "git://github.com/jsor/jcarousel",
     "kibo": "git://github.com/marquete/kibo",
     "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar",
     "etherpad": "git://github.com/ether/etherpad-lite-jquery-plugin.git",
@@ -17,6 +16,7 @@
     "sticky-kit": "~1.0.4",
     "sidr": "~1.2.1",
     "chartjs": "~0.2.0",
-    "ExplorerCanvas": "*"
+    "ExplorerCanvas": "*",
+    "jquery-ui": "*"
   }
 }

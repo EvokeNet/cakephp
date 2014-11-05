@@ -8,12 +8,20 @@ class PanelsController extends AppController {
 * @var array
 */
 //	public $components = array('Access');
-	public $uses = array('User', 'UserIssue', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group', 
-		'DossierLink', 'UserFriend', 'DossierVideo', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire', 
+	public $uses = array('User', 'UserIssue', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group',
+		'DossierLink', 'UserFriend', 'DossierVideo', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire',
 		'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level',
 		'AdminNotification', 'Novel', 'Launcher');
 	public $user = null;
 	public $helpers = array('Chosen.Chosen');
+
+	public $components = array('UserRole');
+
+	public $accessLevels = array(
+		'*' => 'admin',
+		'*' => 'manager',
+		'' => 'user'
+	);
 
 /**
 *
@@ -22,26 +30,47 @@ class PanelsController extends AppController {
 * @return void
 */
 	public function beforeFilter() {
-        parent::beforeFilter();
-        ini_set('memory_limit', '512M'); // emergencial measure
-        
-        $this->user = array();
+    parent::beforeFilter();
+    ini_set('memory_limit', '512M'); // emergencial measure
+
+    $this->user = array();
         //get user data into public var
 		$this->user['role_id'] = $this->getUserRole();
 		$this->user['id'] = $this->getUserId();
 		$this->user['name'] = $this->getUserName();
 
 		//there was some problem in retrieving user's info concerning his/her role : send him home
-		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
-			$this->redirect(array('controller' => 'users', 'action' => 'login'));
-		}
+		// if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
+		// 	$this->redirect(array('controller' => 'users', 'action' => 'login'));
+		// }
 
 		//checking Acl permission
 //		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
-//			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."), 'flash_message');	
+//			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."), 'flash_message');
 //			$this->redirect($this->referer());
 //		}
 	}
+
+	public function isAuthorized($user = null) {
+			if (parent::isAuthorized($user)) {
+			    return true;
+			}
+
+			// Authorised actions
+		// if (in_array($this->action, array('changePassword'))) {
+	 //        $id = $this->request->params['pass'][0];
+
+  //           if($this->{$this->modelClass}->field('user_id', array('user_id' => $id)) == $this->Auth->user('user_id'))
+  //               return true;
+	 //    }
+
+		// Will break out on this call
+		$this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
+		$this->redirect(array('controller' => 'users', 'action' => 'profile', $this->getUserId()));
+
+		return false;
+  }
+
 /*
 * index method
 * Loads basic informations from database to local variables to be shown in the administrator's panel
@@ -87,9 +116,9 @@ class PanelsController extends AppController {
 
 		$roles_list = $this->Role->find('list');
 		$roles = $this->Role->getRoles();
-				
+
 		$all_users = $this->User->getUsers();
-		
+
 		$groups = $this->Group->getGroups();
 
 		$allPickedIssues = $this->UserIssue->find('all');
@@ -117,7 +146,7 @@ class PanelsController extends AppController {
 			$flags = array(
 				'_admin' => true,
 			);
-			
+
 			//always load all info, no matter the owner
 			$organizations = $this->Organization->getOrganizations(array(
 				'order' => array(
@@ -170,7 +199,7 @@ class PanelsController extends AppController {
 	        	}
 
 	        	$userLevel = $this->getLevel($userPoints);
-	        	
+
 	        	$userLevels['all'] += $userLevel;
 	        	if($userLevels['max'] < $userLevel) {
 	        		$userLevels['max'] = $userLevel;
@@ -208,7 +237,7 @@ class PanelsController extends AppController {
 					)
 				)
 			));
-			
+
 			//variable to track the id's of all organizations I own and set it as OR condition when finding things that belong to my orgs
 			$my_orgs_id1 = array();
 			$my_orgs_id2 = array();
@@ -280,12 +309,12 @@ class PanelsController extends AppController {
 	        	}
 
 	        	$userLevel = $this->getLevel($userPoints);
-	        	
+
 	        	$userLevels['all'] += $userLevel;
 	        	if($userLevels['max'] < $userLevel) {
 	        		$userLevels['max'] = $userLevel;
 	        	}
-				
+
 				if(!is_null($usr['User']['country']) && $usr['User']['country'] != '' && $usr['User']['country'] != ' ') {
 					$currentcountry = $usr['User']['country'];
 					if(isset($countries[$currentcountry])) {
@@ -299,17 +328,17 @@ class PanelsController extends AppController {
 
 			}
 		}
-		
+
 		//array that contains all the possible owners of an organization
 		$possible_managers = $this->User->find('list', array(
 			'conditions' => array(
-					'OR' => array( //to be an organization manager you either need.. 
+					'OR' => array( //to be an organization manager you either need..
             			array('role_id' => 1), //an admin account..
             			array('role_id' => 2) //or a manager one
         			)
 			)
-		));		
-		
+		));
+
 
 		$all_points = $this->PointsDefinition->find('all');
 		$register_points = array();
@@ -344,7 +373,7 @@ class PanelsController extends AppController {
 			}
 		}
 
-		$this->set(compact('flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations', 
+		$this->set(compact('flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations',
 			'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 'unknown_countries', 'countries',
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels', 'pending_evokations', 'approved_evokations', 'notifications',
 			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
@@ -374,7 +403,7 @@ class PanelsController extends AppController {
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$organizations = 
+		$organizations =
 			$this->Organization->find('all', array(
 			'order' => array(
 				'Organization.name ASC'
@@ -452,12 +481,12 @@ class PanelsController extends AppController {
 	        	}
 
 	        	$userLevel = $this->getLevel($userPoints);
-	        	
+
 	        	$userLevels['all'] += $userLevel;
 	        	if($userLevels['max'] < $userLevel) {
 	        		$userLevels['max'] = $userLevel;
 	        	}
-				
+
 				if(!is_null($usr['User']['country']) && $usr['User']['country'] != '' && $usr['User']['country'] != ' ') {
 					$currentcountry = $usr['User']['country'];
 					if(isset($countries[$currentcountry])) {
@@ -470,7 +499,7 @@ class PanelsController extends AppController {
 				}
 
 			}
-		
+
 		$allRelations = $this->UserFriend->find('all');
 
 		$all_users = $this->User->getUsers();
@@ -520,7 +549,7 @@ class PanelsController extends AppController {
 	        	}
 
 	        	$userLevel = $this->getLevel($userPoints);
-	        	
+
 	        	$userLevels['all'] += $userLevel;
 	        	if($userLevels['max'] < $userLevel) {
 	        		$userLevels['max'] = $userLevel;
@@ -567,7 +596,7 @@ class PanelsController extends AppController {
 			)
 		));
 
-		$this->set(compact('user', 'users', 'all_evokations', 'flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations', 
+		$this->set(compact('user', 'users', 'all_evokations', 'flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations',
 			'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 'unknown_countries', 'countries',
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels', 'pending_evokations', 'approved_evokations', 'admin_notifications', 'notifications',
 			'register_points', 'allies_points', 'power_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
@@ -589,7 +618,7 @@ class PanelsController extends AppController {
 		$this->loadModel('PowerPoint');
 
 		$this->loadModel('Role');
-		
+
 		$roles_list = $this->Role->find('list');
 		$roles = $this->Role->getRoles();
 
@@ -600,17 +629,17 @@ class PanelsController extends AppController {
 		));
 
 		$powerpoints = $this->PowerPoint->find('all');
-		
+
 		$mypp = $this->Badge->BadgePowerPoint->find('all');
 
-		$missions_issues = 
+		$missions_issues =
 			$this->MissionIssue->Mission->find('all', array(
 			'order' => array(
 				'Mission.title ASC'
 			)
 		));
 
-		$missions = 
+		$missions =
 			$this->MissionIssue->Mission->find('all', array(
 			'order' => array(
 				'Mission.title DESC'
@@ -620,7 +649,7 @@ class PanelsController extends AppController {
 			)
 		));
 
-		$badges = 
+		$badges =
 			$this->Badge->find('all', array(
 			'order' => array(
 				'Badge.name DESC'
@@ -644,16 +673,16 @@ class PanelsController extends AppController {
 		$mission = null;
 
 		if ($this->request->is('post')) {
-			
+
 			//it's a new mission, so let's add it.. creating it with possible attachments (mission img)
 			if ($mission = $this->Mission->createWithAttachments($this->request->data)) {
-			
+
 				$id = $mission['Mission']['id'];
 				//saves the issue related to it..
 				$this->request->data['MissionIssue']['mission_id'] = $id;
 				if($this->MissionIssue->save($this->request->data)) {
 					$this->Session->setFlash(__('mission issue saved'));
-					
+
 					//redirects to the same page, but with the tab phase activated
 					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
 				} else {
@@ -661,12 +690,12 @@ class PanelsController extends AppController {
 				}
 			} else {
 				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
-			}		 
-		} 
+			}
+		}
 
 		if($this->user['role_id'] == 1){
 			$flags = array(
-				'_admin' => true 
+				'_admin' => true
 			);
 
 			//as admin, he can set any organization as responsable for this mission
@@ -677,7 +706,7 @@ class PanelsController extends AppController {
 			));
 		} else {
 			$flags = array(
-				'_admin' => false 
+				'_admin' => false
 			);
 
 			//the possible organizations to be responsable for this mission are his own
@@ -711,12 +740,12 @@ class PanelsController extends AppController {
 
 /*
 * add_mission method
-* adds a new mission via admin panel, setting its issue and phases 
+* adds a new mission via admin panel, setting its issue and phases
 */
 	public function add_mission($id = null, $args = 'mission') {
-		
+
 		$mission_tag = $this->defineCurrentTab('mission', $args);
-		
+
 		$language = $this->getCurrentLanguage();
 
 		//loading infos to be shown at top bar
@@ -733,7 +762,7 @@ class PanelsController extends AppController {
 
 		if($this->user['role_id'] == 1){
 			$flags = array(
-				'_admin' => true 
+				'_admin' => true
 			);
 
 			//as admin, he can set any organization as responsable for this mission
@@ -744,7 +773,7 @@ class PanelsController extends AppController {
 			));
 		} else {
 			$flags = array(
-				'_admin' => false 
+				'_admin' => false
 			);
 
 			//the possible organizations to be responsable for this mission are his own
@@ -774,16 +803,16 @@ class PanelsController extends AppController {
 		$mission = null;
 
 		if ($this->request->is('post')) {
-			
+
 			//it's a new mission, so let's add it.. creating it with possible attachments (mission img)
 			if ($mission = $this->Mission->createWithAttachments($this->request->data)) {
-			
+
 				$id = $mission['Mission']['id'];
 				//saves the issue related to it..
 				$this->request->data['MissionIssue']['mission_id'] = $id;
 				if($this->MissionIssue->save($this->request->data)) {
 					$this->Session->setFlash(__('mission issue saved'));
-					
+
 					//redirects to the same page, but with the tab phase activated
 					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
 				} else {
@@ -791,18 +820,18 @@ class PanelsController extends AppController {
 				}
 			} else {
 				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
-			}		 
-		} 
-		
+			}
+		}
+
 		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'id','mission', 'issues', 'organizations'));
 	}
 
 /*
 * edit_mission method
-* edit an existing mission via admin panel, setting its issue and phases 
+* edit an existing mission via admin panel, setting its issue and phases
 */
 	public function mission_edition($id = null, $args = 'mission') {
-		
+
 		$language = $this->getCurrentLanguage();
 
 		//loading infos to be shown at top bar
@@ -853,7 +882,7 @@ class PanelsController extends AppController {
 			'conditions' => array(
 				'DossierVideo.mission_id' => $id
 			)
-		));	
+		));
 
 		$launcher = $this->Launcher->find('all', array(
 			'conditions' => array(
@@ -871,7 +900,7 @@ class PanelsController extends AppController {
 					'Attachment.model' => 'Launcher',
 					'Attachment.foreign_key' => $l['Launcher']['id']
 				)
-			));	
+			));
 			$launcher[$lkey]['Launcher']['image_dir'] = null;
 			$launcher[$lkey]['Launcher']['image_name'] = null;
 			if(!empty($launcherImg)){
@@ -904,7 +933,7 @@ class PanelsController extends AppController {
 
 		if($this->user['role_id'] == 1){
 			$flags = array(
-				'_admin' => true 
+				'_admin' => true
 			);
 
 			//as admin, he can set any organization as responsable for this mission
@@ -915,7 +944,7 @@ class PanelsController extends AppController {
 			));
 		} else {
 			$flags = array(
-				'_admin' => false 
+				'_admin' => false
 			);
 
 			//the possible organizations to be responsable for this mission are his own
@@ -952,20 +981,20 @@ class PanelsController extends AppController {
 			));
 			//ops, it's not my mission to edit it.. Going away..
 			if(empty($smth)) $this->redirect(array('action' => 'index'));
-			
+
 		}
 
 		$mission = null;
 
 		if ($this->request->is('post')) {
-			
+
 			if($this->Mission->exists($id)) {
 				//first, check if he sended another img for the mission...
-				
+
 				//it already exists, so let's save any alterations and move on..
 				if ($this->Mission->createWithAttachments($this->request->data, true, $id)) {
 					$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
-					
+
 					//saves the issue related to it..
 					$this->request->data['MissionIssue']['mission_id'] = $id;
 					$this->MissionIssue->id = $this->MissionIssue->find('first', array('conditions' => array('mission_id' => $id)));
@@ -1004,17 +1033,17 @@ class PanelsController extends AppController {
 		$newQuest = $this->Quest->save($data);
 		debug($newQuest);*/
 
-		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 
+		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag',
 			'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en', 'dossier_links', 'dossier_videos', 'launchers',
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
 
 /*
 * edit_mission method
-* edit an existing mission via admin panel, setting its issue and phases 
+* edit an existing mission via admin panel, setting its issue and phases
 */
 	public function edit_mission($id = null, $args = 'mission') {
-		
+
 		$mission_tag = $this->defineCurrentTab('mission', $args);
 		$phases_tag = $this->defineCurrentTab('phase', $args);
 		$quests_tag = $this->defineCurrentTab('quest', $args);
@@ -1073,7 +1102,7 @@ class PanelsController extends AppController {
 			'conditions' => array(
 				'DossierVideo.mission_id' => $id
 			)
-		));	
+		));
 
 		$launcher = $this->Launcher->find('all', array(
 			'conditions' => array(
@@ -1091,7 +1120,7 @@ class PanelsController extends AppController {
 					'Attachment.model' => 'Launcher',
 					'Attachment.foreign_key' => $l['Launcher']['id']
 				)
-			));	
+			));
 			$launcher[$lkey]['Launcher']['image_dir'] = null;
 			$launcher[$lkey]['Launcher']['image_name'] = null;
 			if(!empty($launcherImg)){
@@ -1124,7 +1153,7 @@ class PanelsController extends AppController {
 
 		if($this->user['role_id'] == 1){
 			$flags = array(
-				'_admin' => true 
+				'_admin' => true
 			);
 
 			//as admin, he can set any organization as responsable for this mission
@@ -1135,7 +1164,7 @@ class PanelsController extends AppController {
 			));
 		} else {
 			$flags = array(
-				'_admin' => false 
+				'_admin' => false
 			);
 
 			//the possible organizations to be responsable for this mission are his own
@@ -1172,20 +1201,20 @@ class PanelsController extends AppController {
 			));
 			//ops, it's not my mission to edit it.. Going away..
 			if(empty($smth)) $this->redirect(array('action' => 'index'));
-			
+
 		}
 
 		$mission = null;
 
 		if ($this->request->is('post')) {
-			
+
 			if($this->Mission->exists($id)) {
 				//first, check if he sended another img for the mission...
-				
+
 				//it already exists, so let's save any alterations and move on..
 				if ($this->Mission->createWithAttachments($this->request->data, true, $id)) {
 					$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
-					
+
 					//saves the issue related to it..
 					$this->request->data['MissionIssue']['mission_id'] = $id;
 					$this->MissionIssue->id = $this->MissionIssue->find('first', array('conditions' => array('mission_id' => $id)));
@@ -1224,7 +1253,7 @@ class PanelsController extends AppController {
 		$newQuest = $this->Quest->save($data);
 		debug($newQuest);*/
 
-		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag', 
+		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag',
 			'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en', 'dossier_links', 'dossier_videos', 'launchers',
 			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
 	}
@@ -1265,7 +1294,7 @@ class PanelsController extends AppController {
 			//sending back to correct address
 			if($origin == 'add_mission')
 				$this->redirect($this->referer());
-			else 
+			else
 				$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
 
 		} else {
@@ -1282,8 +1311,8 @@ class PanelsController extends AppController {
 			//sending back to correct address
 			if($origin == 'add_mission')
 				$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
-			else 
-				$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));	
+			else
+				$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
 		}
 
 		foreach ($this->request->data['DossierLink'] as $index => $link) {
@@ -1292,15 +1321,15 @@ class PanelsController extends AppController {
 				$this->DossierLink->id = $insert['DossierLink']['id'];
 				$this->DossierLink->delete();
 			} else {
-				$this->DossierLink->save($insert);	
+				$this->DossierLink->save($insert);
 			}
 			$insert = array();
 		}
-		
+
 		//sending back to correct address
 		if($origin == 'add_mission')
 			$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
-		else 
+		else
 			$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
 	}
 
@@ -1313,8 +1342,8 @@ class PanelsController extends AppController {
 			//sending back to correct address
 			if($origin == 'add_mission')
 				$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
-			else 
-				$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));	
+			else
+				$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
 		}
 
 		foreach ($this->request->data['DossierVideo'] as $index => $link) {
@@ -1323,15 +1352,15 @@ class PanelsController extends AppController {
 				$this->DossierVideo->id = $insert['DossierVideo']['id'];
 				$this->DossierVideo->delete();
 			} else {
-				$this->DossierVideo->save($insert);	
+				$this->DossierVideo->save($insert);
 			}
 			$insert = array();
 		}
-		
+
 		//sending back to correct address
 		if($origin == 'add_mission')
 			$this->redirect(array('action' => 'add_mission', $id, 'dossier'));
-		else 
+		else
 			$this->redirect(array('action' => 'edit_mission', $id, 'dossier'));
 	}
 
@@ -1341,14 +1370,14 @@ class PanelsController extends AppController {
 		// die();
 		if(isset($this->request->data['Launcher'])) {
 			foreach ($this->request->data['Launcher'] as $launcher) {
-			
+
 				$att['Attachment'] = $launcher['Attachment'];
 				$att['Launcher']['mission_id'] = $id;
 				$att['Launcher']['phase_id'] = $launcher['phase_id'];
 				if($att['Attachment'][0]['attachment']['error'] != 0)
 					// return $this->redirect(array('action' => 'edit_mission', $id, 'novel'));
 					continue;
-				
+
 				if(!isset($launcher['id'])) {
 					// debug($att);
 					$this->Launcher->createWithAttachments($att);
@@ -1361,12 +1390,12 @@ class PanelsController extends AppController {
 			}
 			// die();
 		}
-		
+
 		$this->redirect(array('action' => 'edit_mission', $id,'novel'));
 	}
 
 	function novel($id, $origin = 'add_mission'){
-		
+
 		 // debug($this->request->data['Novel']);
 		 // die();
 		foreach ($this->request->data['Novel'] as $novelIndex => $novelData) {
@@ -1387,18 +1416,18 @@ class PanelsController extends AppController {
 			$insertNovel['Attachment'] = $novelData['Attachment'];
 			unset($insertNovel['Novel']['id']);
 			// debug($novelData);
-					
+
 			if(isset($novelData['id'])) {
 				$insertNovel['Novel']['id'] = $novelData['id'];
 
 				if(isset($novelData['delete'])) {
 					$this->Novel->id = $novelData['id'];
 					$this->Novel->delete();
-					
+
 				} else {
-					$this->Novel->createWithAttachments($insertNovel, true, $novelData['id']);	
+					$this->Novel->createWithAttachments($insertNovel, true, $novelData['id']);
 				}
-				
+
 			} else {
 				$this->Novel->createWithAttachments($insertNovel);
 			}
@@ -1415,7 +1444,7 @@ class PanelsController extends AppController {
 
 /*
 * add_phase method
-* adds a new phase to the 'current-adding' mission  
+* adds a new phase to the 'current-adding' mission
 */
 	function add_phase($id, $origin = 'add_mission') {
 		if ($this->request->is('post')) {
@@ -1440,9 +1469,9 @@ class PanelsController extends AppController {
 	public function edit_phase($id = null, $mission_id = null) {
 		// if($id == null)
 		// 	$this->redirect($this->referer());
-		
+
 		// $this->Phase->id = $id;
-		
+
 		// if($this->Phase->saveAll($this->request->data))
 		// 	$this->redirect(array('action' => 'edit_mission', $mission_id, 'phase'));
 		// else
@@ -1455,7 +1484,7 @@ class PanelsController extends AppController {
 		$this->Phase->id = $id;
 
 		if ($this->request->is(array('post', 'put'))) {
-			
+
 			if ($this->Phase->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'));
 				return $this->redirect(array('action' => 'edit_mission', $mission_id, 'phase'));
@@ -1471,26 +1500,26 @@ class PanelsController extends AppController {
 
 /*
 * add_quest method
-* adds a new quest to the specific phase of the 'current-adding' mission  
+* adds a new quest to the specific phase of the 'current-adding' mission
 */
 	public function add_quest($id, $origin = 'add_mission'){
 		if ($this->request->is('post')) {
-			
+
 			$data = $this->request->data;
 			unset($data['Quest']['id']);
 
-			
+
 			$powerInsert['Power'] = $data['Power'];
 			unset($data['Power']);
 
 			//creating a quest with its possible attachments
 			if ($this->Quest->createWithAttachments($data)) {
 				$this->Session->setFlash(__('The quest has been saved.'));
-				
+
 				$quest_id = $this->Quest->id;
 
 				$data = $this->request->data;
-				
+
 				$data['Quest']['id'] = $quest_id;
 				$this->Quest->save($data);
 
@@ -1515,14 +1544,14 @@ class PanelsController extends AppController {
 						$this->Session->setFlash(__('The questionnaire has been saved.'));
 
 						$questionnaire_id = $this->Questionnaire->id;
-						
+
 						foreach ($this->request->data['Questions'] as $question) {
 							//create questions saving them into the questionnaire
 							$question['questionnaire_id'] = $questionnaire_id;
 							$this->Question->create();
 							if ($this->Question->save($question)) {
 								$this->Session->setFlash(__('The question has been saved.'));
-								
+
 								$question_id = $this->Question->id;
 
 								//if there are possible answers to this question (i.e. 'single/multiple choice type question'), add them
@@ -1545,12 +1574,12 @@ class PanelsController extends AppController {
 					} else {
 						$this->Session->setFlash(__('The questionnaire could not be saved. Please, try again.'));
 					}
-				} 
+				}
 
 				//if it came from add mission, go back to it, else...
 				if($origin == 'add_mission')
 					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
-				else 
+				else
 					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
 
 			} else {
@@ -1564,23 +1593,23 @@ class PanelsController extends AppController {
 
 /*
 * edit_quest method
-* edits a quest of the specific phase of the 'current-adding' mission  
+* edits a quest of the specific phase of the 'current-adding' mission
 */
 	public function edit_quest($id, $quest_id, $origin = 'add_mission'){
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Quest->id = $quest_id;
-			
+
 
 			$powerInsert['Power'] = $this->request->data['Power'];
 			unset($this->request->data['Power']);
-			
+
 			//create questpowerpoints entries..
 			foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
 				if($powerEntry['quantity'] > 0){
 					$insert['QuestPowerPoint']['quest_id'] = $quest_id;
 					$insert['QuestPowerPoint']['power_points_id'] = $powerId;
 					$insert['QuestPowerPoint']['quantity'] = $powerEntry['quantity'];
-					
+
 					$old = $this->QuestPowerPoint->find('first', array(
 						'conditions' => array(
 							'quest_id' => $quest_id,
@@ -1600,12 +1629,12 @@ class PanelsController extends AppController {
 
 			//saves it supporting the addition of new images
 			if ($this->Quest->createWithAttachments($this->request->data, true, $quest_id)) {
-				
+
 				//check to see if there are img/files that are no loner to be related to the quest...
 				if(isset($this->request->data['Attachment']['Old'])) {
 					$this->destroyAttachments($this->request->data['Attachment']['Old']);
 				}
-				
+
 				//now checking to see if it were a questionnarie type quest (type = 1)
 				if($this->request->data['Quest']['type'] == 1) {
 					//destroy previous questionnaire of this quest and all other subjects
@@ -1618,14 +1647,14 @@ class PanelsController extends AppController {
 						$this->Session->setFlash(__('The questionnaire has been saved.'));
 
 						$questionnaire_id = $this->Questionnaire->id;
-						
+
 						foreach ($this->request->data['Questions'] as $question) {
 							//create questions
 							$question['questionnaire_id'] = $questionnaire_id;
 							$this->Question->create();
 							if ($this->Question->save($question)) {
 								$this->Session->setFlash(__('The question has been saved.'));
-								
+
 								$question_id = $this->Question->id;
 								//if there are possible answers to this question, add them
 								if(isset($question['Answer'])) {
@@ -1647,10 +1676,10 @@ class PanelsController extends AppController {
 					} else {
 						$this->Session->setFlash(__('The questionnaire could not be saved. Please, try again.'));
 					}
-				} 
+				}
 
 				$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
-			
+
 			} else {
 				$this->Session->setFlash(__('The quest could not be saved. Please, try again.'));
 			}
@@ -1699,7 +1728,7 @@ class PanelsController extends AppController {
 
 		if ($this->Questionnaire->delete()) {
 			$this->Session->setFlash(__('The questionnaire has been deleted.'));
-			
+
 			//now, find all the questions related to it...
 			$questions = $this->Question->find('all', array(
 				'conditions' => array(
@@ -1714,7 +1743,7 @@ class PanelsController extends AppController {
 
 				if ($this->Question->delete()) {
 					$this->Session->setFlash(__('The question has been deleted.'));
-					
+
 					//and dont forget its answers!
 					$answers = $this->Answer->find('all', array(
 						'conditions' => array(
@@ -1742,7 +1771,7 @@ class PanelsController extends AppController {
 
 /*
 * delete_quest method
-* deletes a quest of the specific phase of the 'current-adding' mission  
+* deletes a quest of the specific phase of the 'current-adding' mission
 */
 	public function delete_quest($id, $quest_id, $origin = 'add_mission'){
 		if ($this->request->is('post')) {
@@ -1752,7 +1781,7 @@ class PanelsController extends AppController {
 			}
 			if ($this->Quest->delete()) {
 				$this->Session->setFlash(__('The quest has been deleted.'));
-				
+
 				//now checking to see if it were a questionnarie type quest (type = 1)
 				if($this->Quest->type == 1) {
 					//destroy previous questionnaire of this quest and all other subjects
@@ -1762,7 +1791,7 @@ class PanelsController extends AppController {
 				//if it came from add mission, go back to it, else...
 				if($origin == 'add_mission')
 					$this->redirect(array('action' => 'add_mission', $id, 'phase'));
-				else 
+				else
 					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
 			} else {
 				$this->Session->setFlash(__('The quest could not be deleted. Please, try again.'));
@@ -1803,7 +1832,7 @@ class PanelsController extends AppController {
 		));
 
 		$powerpoints = $this->PowerPoint->find('all');
-		
+
 		$this->Quest->id = $id;
 		$mypp = $this->Quest->QuestPowerPoint->find('all');
 
@@ -1812,7 +1841,7 @@ class PanelsController extends AppController {
 
 /*
 * delete_phase method
-* deletes a phase of the 'current-adding' mission  
+* deletes a phase of the 'current-adding' mission
 */
 	public function delete_phase($id, $phase_id, $origin = 'add_mission'){
 		if ($this->request->is('post')) {
@@ -1825,7 +1854,7 @@ class PanelsController extends AppController {
 				//if it came from add mission, go back to it, else...
 				if($origin == 'add_mission')
 					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
-				else 
+				else
 					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
 			} else {
 				$this->Session->setFlash(__('The phase could not be deleted. Please, try again.'));
@@ -1850,7 +1879,7 @@ class PanelsController extends AppController {
 	public function add_org() {
 		if ($this->request->is('post')) {
 			$this->Organization->create();
-			
+
 			if ($this->Organization->save($this->request->data)) {
 
 				//saving owner of the recently added org
@@ -1859,14 +1888,14 @@ class PanelsController extends AppController {
 
 				//if there was more than one owner:
 				if(isset($this->request->data['UserOrganization']['users_id'])) {
-					
+
 					//save one by one at UserOrganization
 					$tmp = $this->request->data['UserOrganization']['users_id'];
 					foreach ($tmp as $userdata) {
 						$this->request->data = array();
 						$this->request->data['UserOrganization']['organization_id'] = $id;
 						$this->request->data['UserOrganization']['user_id'] = $userdata;
-						
+
 						$this->UserOrganization->create();
 						if(!$this->UserOrganization->save($this->request->data)) {
 							$this->Session->setFlash(__('The organization has been saved without owner.'));
@@ -1875,8 +1904,8 @@ class PanelsController extends AppController {
 
 					}
 					$this->Session->setFlash(__('The organization has been saved.'));
-					return $this->redirect(array('action' => 'index', 'organizations'));					
-					
+					return $this->redirect(array('action' => 'index', 'organizations'));
+
 				} else {
 					//there's only one, save him
 					if($this->UserOrganization->save($this->request->data)) {
@@ -1984,7 +2013,7 @@ class PanelsController extends AppController {
 */
 	public function add_badge() {
 		if ($this->request->is('post')) {
-			
+
 			$powerInsert['Power'] = $this->request->data['Power'];
 			unset($this->request->data['Power']);
 
@@ -1993,7 +2022,7 @@ class PanelsController extends AppController {
 
 				$badge_id = $this->Badge->id;
 				//create questpowerpoints entries..
-				
+
 				foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
 					if($powerEntry['quantity'] > 0){
 						$insert['BadgePowerPoint']['badge_id'] = $badge_id;
@@ -2056,9 +2085,9 @@ class PanelsController extends AppController {
 	public function editNotification($id = null) {
 		if($id == null)
 			$this->redirect($this->referer());
-		
+
 		$this->AdminNotification->id = $id;
-		
+
 		if($this->AdminNotification->save($this->request->data))
 			return $this->redirect(array('action' => 'index', 'media'));
 		else
@@ -2073,7 +2102,7 @@ class PanelsController extends AppController {
 	public function deleteNotification($id = null) {
 		if($id == null)
 			$this->redirect($this->referer());
-		
+
 		$this->AdminNotification->id = $id;
 		$this->AdminNotification->delete();
 
@@ -2084,7 +2113,7 @@ class PanelsController extends AppController {
 
 /*
 * changeEvokationStatus method
-* 
+*
 */
 
 	public function changeEvokationStatus($evo_id = null){
@@ -2157,7 +2186,7 @@ class PanelsController extends AppController {
 			//dispatch mission completed or evokation failure
 			if($missionCompleted == 1) {
 				$newData['AdminNotification']['title'] = __('Project Approved');
-				$newData['AdminNotification']['description'] = __('Congratulations, agent! Your project') .' '.$evokation['Evokation']['title'].' ' . 
+				$newData['AdminNotification']['description'] = __('Congratulations, agent! Your project') .' '.$evokation['Evokation']['title'].' ' .
 					__('was approved and you have successfully completed the').' '. $mission['Mission']['title'] .' '.__('mission').'.';
 			}else{
 				$newData['AdminNotification']['title'] = __('Project Not Approved!');
@@ -2179,7 +2208,7 @@ class PanelsController extends AppController {
 	        		'UserPowerPoint.user_id' => $member['GroupsUser']['user_id']
 	        	)
 	        ));
-			
+
 			$hasThisBadge = $this->UserBadge->find('first', array(
 				'conditions' => array(
 					'UserBadge.badge_id' => $socialInnovator['Badge']['id'],
@@ -2252,7 +2281,7 @@ class PanelsController extends AppController {
 			}
 			unset($data['Config']);
 		}
-		
+
 		//points def
 		foreach ($data as $type => $point) {
 			if($point['points'] != '') {

@@ -13,6 +13,12 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 	background-color: #333;
 }
 
+button:hover, button:focus, .button:hover, .button:focus {
+	background-color: #26dee0;
+	color: #333;
+	font-weight: bold;
+}
+
 /* --------------------------- */
 /* PANEL */
 /* --------------------------- */

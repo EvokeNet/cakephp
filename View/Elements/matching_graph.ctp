@@ -25,13 +25,15 @@
 
 			var myRadar = new Chart(document.getElementById("radar-graph").getContext("2d")).Radar(radarChartData,
 			{
-				scaleShowLabels : false,
-				tooltipYPadding: 0,
-				tooltipXPadding: 0,
+				maintainAspectRatio: false,
 				pointLabelFontColor: "#26dee0",
 				pointLabelFontFamily : "'Orbitron'",
 				pointLabelFontSize : 10,
-				scaleLineColor: "#555"
+				responsive: true,
+				scaleLineColor: "#555",
+				scaleShowLabels : false,
+				tooltipYPadding: 0,
+				tooltipXPadding: 0
 			});
 		});
 	</script>

@@ -215,6 +215,10 @@ button, div, p, span, a,
 	padding: 0!important;
 }
 
+.evoke .padding.all-0 {
+	padding: 0!important;
+}
+
 .evoke .padding.all-05 {
 	padding: 0.5em;
 }
@@ -323,7 +327,9 @@ button, div, p, span, a,
 	position: relative;
 }
 
-/* Alignment */
+/* --------------------------- */
+/* ALIGNMENT */
+/* --------------------------- */
 /* Align with table and table-cell */
 .evoke .vertical-align-top {
 	vertical-align: top;
@@ -345,24 +351,77 @@ button, div, p, span, a,
 	display: table-cell;
 }
 
-/* Align with a ghost-block above */
+/* alignment with BLOCKS */
 .evoke .centering-block {
 	text-align: center;
 }
- 
+
 .evoke .centering-block:before {
 	content: '';
-	display: inline-block; 
+	display: inline-block;
 	vertical-align: middle;
 	margin-right: -0.25em; /* Adjusts for spacing */
  }
- 
+
 .evoke .centered-block {
 	display: inline-block;
 	vertical-align: middle;
  }
 
-/* Opacity */
+.evoke .ending-block {
+	text-align: end;
+}
+
+.evoke .display-inline{
+	display:inline
+}
+
+.side-menu{
+	border: none;
+	/*border-right: 3px solid rgba(0,0,0,.2);*/
+	list-style-type: none;
+	margin:0;
+}
+
+.side-menu .side-nav{
+	padding: 0;
+}
+
+.side-menu .side-nav li{
+	margin: 0 -4px 0 0;
+	border-bottom: none;
+	border-left: 4px solid transparent;
+	border-radius: 0;
+}
+
+.side-menu .side-nav li a{
+	color: #cccccc;
+}
+
+.side-nav li.active > a:first-child:not(.button){
+	color: #26dee0;
+}
+
+.side-menu .side-nav li.active{
+	/*background-color: #333;*/
+	border-color: #26dee0;
+	color: rgba(0,0,0,.85);
+}
+
+.side-menu .side-nav li:hover{
+	/*background-color: transparent;*/
+	border-color: #26dee0;
+	/*color: rgba(0,0,0,.85);*/
+}
+
+.side-menu i{
+	float:right;
+	margin: .2em 0 0 0;
+}
+
+/* --------------------------- */
+/* OPACITY */
+/* --------------------------- */
 .evoke .opacity-05 {
 	opacity: 0.5;
 	filter: alpha(opacity=50); /* For IE8 and earlier */
@@ -373,8 +432,14 @@ button, div, p, span, a,
 	filter: alpha(opacity=70); /* For IE8 and earlier */
 }
 
-/* Forms */
-input[type=text]:focus, input[type=email]:focus, input[type=number]:focus, 
+/* --------------------------- */
+/* FORMS */
+/* --------------------------- */
+option {
+	color: #333;
+}
+
+input[type=text]:focus, input[type=email]:focus, input[type=number]:focus,
 input[type=password]:focus, input[type=search]:focus, input[type=url]:focus,  textarea {
   -webkit-transition: all 0.30s ease-in-out;
   -moz-transition: all 0.30s ease-in-out;
@@ -384,7 +449,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus,  te
   border: 1px solid #DDDDDD;
 }
 
-input[type=text]:focus, input[type=email]:focus, input[type=number]:focus, 
+input[type=text]:focus, input[type=email]:focus, input[type=number]:focus,
 input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, textarea:focus {
   box-shadow: 0 0 5px #26dee0;
   border: 1px solid #26dee0;
@@ -474,6 +539,10 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background-color: #333;
 }
 
+.evoke .background-color-light-dark {
+	background-color: #292929;
+}
+
 .evoke .background-color-dark {
 	background-color: #252525;
 }
@@ -486,11 +555,16 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background-color: #26dee0;
 }
 
+
+/* --------------------------- */
+/* CIRCULAR IMAGES */
+/* --------------------------- */
 .evoke .img-circular {
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 }
+
 
 /* --------------------------- */
 /* BORDER */
@@ -552,48 +626,48 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 .evoke .img-glow {
 	-webkit-box-shadow: 0px 0px 16px 8px #26dee0;
 	-moz-box-shadow: 0px 0px 16px 8px #26dee0;
-	box-shadow: 0px 0px 16px 8px #26dee0; 
+	box-shadow: 0px 0px 16px 8px #26dee0;
 	filter:progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='8');
-	filter: glow(color=white, strength=8) 
-		blur(add=false, direction=0, strength=8) 
-		blur(add=false, direction=180, strength=8) 
-		blur(add=false, direction=270, strength=8) 
+	filter: glow(color=white, strength=8)
+		blur(add=false, direction=0, strength=8)
+		blur(add=false, direction=180, strength=8)
+		blur(add=false, direction=270, strength=8)
 		blur(add=false, direction=90, strength=8);
 }
 
 .evoke .img-glow-on-hover:hover {
 	-webkit-box-shadow: 0px 0px 16px 8px #26dee0;
 	-moz-box-shadow: 0px 0px 16px 8px #26dee0;
-	box-shadow: 0px 0px 16px 8px #26dee0; 
+	box-shadow: 0px 0px 16px 8px #26dee0;
 	filter:progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='8');
-	filter: glow(color=white, strength=8) 
-		blur(add=false, direction=0, strength=8) 
-		blur(add=false, direction=180, strength=8) 
-		blur(add=false, direction=270, strength=8) 
+	filter: glow(color=white, strength=8)
+		blur(add=false, direction=0, strength=8)
+		blur(add=false, direction=180, strength=8)
+		blur(add=false, direction=270, strength=8)
 		blur(add=false, direction=90, strength=8);
 }
 
 .evoke .img-glow-small {
 	-webkit-box-shadow: 0px 0px 4px 2px #26dee0;
 	-moz-box-shadow: 0px 0px 4px 2px #26dee0;
-	box-shadow: 0px 0px 4px 2px #26dee0; 
+	box-shadow: 0px 0px 4px 2px #26dee0;
 	filter:progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='4');
-	filter: glow(color=white, strength=4) 
-		blur(add=false, direction=0, strength=4) 
-		blur(add=false, direction=180, strength=4) 
-		blur(add=false, direction=270, strength=4) 
+	filter: glow(color=white, strength=4)
+		blur(add=false, direction=0, strength=4)
+		blur(add=false, direction=180, strength=4)
+		blur(add=false, direction=270, strength=4)
 		blur(add=false, direction=90, strength=4);
 }
 
 .evoke .img-glow-on-hover-small:hover {
 	-webkit-box-shadow: 0px 0px 4px 2px #26dee0;
 	-moz-box-shadow: 0px 0px 4px 2px #26dee0;
-	box-shadow: 0px 0px 4px 2px #26dee0; 
+	box-shadow: 0px 0px 4px 2px #26dee0;
 	filter:progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='4');
-	filter: glow(color=white, strength=4) 
-		blur(add=false, direction=0, strength=4) 
-		blur(add=false, direction=180, strength=4) 
-		blur(add=false, direction=270, strength=4) 
+	filter: glow(color=white, strength=4)
+		blur(add=false, direction=0, strength=4)
+		blur(add=false, direction=180, strength=4)
+		blur(add=false, direction=270, strength=4)
 		blur(add=false, direction=90, strength=4);
 }
 
@@ -602,24 +676,24 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 /* --------------------------- */
 /* BLUR */
 /* --------------------------- */
-.evoke .blur-weak { 
+.evoke .blur-weak {
 	filter: blur(3px);
 	-webkit-filter: blur(3px);
 	-moz-filter: blur(3px);
-	-o-filter: blur(3px); 
+	-o-filter: blur(3px);
 	-ms-filter: blur(3px);
 	filter: url(blur.svg#blur-3);
-	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3'); 
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
 }
 
-.evoke .blur-strong { 
+.evoke .blur-strong {
 	filter: blur(8px);
 	-webkit-filter: blur(8px);
 	-moz-filter: blur(8px);
-	-o-filter: blur(8px); 
+	-o-filter: blur(8px);
 	-ms-filter: blur(8px);
 	filter: url(blur.svg#blur-8);
-	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='8'); 
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='8');
 }
 
 /* --------------------------- */
@@ -703,11 +777,26 @@ button, .button {
 /* --------------------------- */
 .progress.level-bar {
 	height: 0.5rem;
-	min-width: 160px;
 }
 
 .progress .meter {
 	background-color: #26dee0;
+}
+
+
+/* --------------------------- */
+/* USER PICTURE */
+/* --------------------------- */
+
+/* Profile picture */
+.evoke .profile-picture-40px {
+	height: 40px;
+	width: 40px;
+}
+
+.evoke .profile-picture-150px {
+	width: 150px;
+	height: 150px;
 }
 
 /* --------------------------- */
@@ -722,11 +811,6 @@ button, .button {
 	margin-right: 10px;
 }
 
-/* Profile picture */
-.evoke .top-bar-section .profile-picture-topbar {
-	height: 40px;
-	width: 40px;
-}
 
 /* Padding of divs and links */
 .evoke .top-bar-section ul li:not(.has-form) a {
@@ -788,5 +872,3 @@ button, .button {
 	text-align: center;
 	bottom: 0;
 }
-
-

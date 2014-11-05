@@ -31,10 +31,10 @@ class AppController extends Controller {
 	public $components = array(
         'Session',
         'Auth' => array(
-            'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
+            'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+						'authError' => 'Você não tem permissão para ver essa página'
         ),
-        // 'DebugKit.Toolbar',
-//        'Acl'
+				'UserRole'
     );
 
     public $helpers = array(
@@ -43,6 +43,94 @@ class AppController extends Controller {
 
     public $user = null;
     public $lang = null;
+
+		public $accessLevels = array(
+        '*' => 'admin',
+        '*' => 'manager',
+				'*' => 'user'
+    );
+
+/**
+* beforeFilter method
+*
+* @return void
+*/
+	public function beforeFilter() {
+				$this->set('loggedIn', $this->Auth->loggedIn());
+				//$this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
+
+				$this->_checkBrowserLanguage();
+
+				//Info from the user that is currently logged in
+				$cuser = $this->Auth->user();
+				$loggedInUser = $this->Auth->user();
+
+				$userPoints = $this->getPoints($this->getUserId());
+				$userLevel = $this->getLevel($userPoints); //level ID
+				$userNextLevel = $this->getNextLevel($userLevel); //next level object
+				$userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
+
+				if (!empty($this->accessLevels)) {
+						$this->Auth->authorize = 'Controller';
+						$this->Auth->deny();
+				} else {
+						$this->Auth->allow();
+				}
+
+				//$userNotifications = $this->getNotificationsNumber($this->getUserId());
+
+				$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
+		}
+
+		public function isAuthorized($user = null) {
+
+        if (!empty ($this->accessLevels)) {
+
+            $currentAction = $this->params['action'];
+
+            if(!empty ($this->accessLevels[$currentAction])) {
+                $accessLevel = $this->accessLevels[$currentAction];
+            } else if(!empty ($this->accessLevels['*'])) {
+                $accessLevel = $this->accessLevels['*'];
+            }
+
+            // debug($this->UserRole->is($accessLevel));
+            // debug('hey');
+
+            // if($this->UserRole->is($accessLevel)){
+            //     return true;
+            //     debug('ops');
+
+            // } else{
+            //     debug('de');
+            //     $this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
+            //     $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Auth->user('user_id')));
+            //     return false;
+            // }
+
+            if(!empty ($accessLevel)) {
+                return $this->UserRole->is($accessLevel);
+            }
+
+            // Authorised actions
+            if (in_array($this->action, array('changePassword'))) {
+                $id = $this->request->params['pass'][0];
+
+                if($this->{$this->modelClass}->field('user_id', array('user_id' => $id)) == $this->Auth->user('user_id'))
+                    return true;
+            }
+
+            // Will break out on this call
+            $this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
+            $this->redirect(array('controller' => 'users', 'action' => 'changePassword', $user['user_id']));
+            return false;
+
+        }
+
+        $this->setFlash(__('Você não tem permissão para ver essa página.'));
+        return false;
+
+    }
 
 /**
  * langToLocale method
@@ -227,32 +315,6 @@ class AppController extends Controller {
 
     }
 
-/**
- * beforeFilter method
- *
- * @return void
- */
-	public function beforeFilter() {
-        $this->set('loggedIn', $this->Auth->loggedIn());
-        $this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
-
-        $this->_checkBrowserLanguage();
-
-        //Info from the user that is currently logged in
-        $cuser = $this->Auth->user();
-        $loggedInUser = $this->Auth->user();
-
-        $userPoints = $this->getPoints($this->getUserId());
-        $userPoints = 50;
-        $userLevel = $this->getLevel($userPoints); //level ID
-        $userNextLevel = $this->getNextLevel($userLevel); //next level object
-        $userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
-
-        $userNotifications = $this->getNotificationsNumber($this->getUserId());
-
-        $this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
-    }
-
     /**
      * Read the browser language and sets the website language to it if available. 
      * 
@@ -391,14 +453,18 @@ class AppController extends Controller {
     /**
      * Gets the next level
      * @param int $userLevel Id of the current level
-     * @return object Next level
+     * @return object Next level (if there is one - else null)
      */
     public function getNextLevel($userLevel){
         $this->loadModel('Level');
 
         $nextLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
 
-        return $nextLevel['Level'];
+        //There is a next level
+        if (isset($nextLevel['Level']))
+            return $nextLevel['Level'];
+        else
+            return null;
     }
 
     public function getUserImage($userid) {

@@ -10,24 +10,82 @@
 	$this->end();
 ?>
 
-<div class="row standard-width text-center padding all-1">
-	<div class="medium-4 columns">
-		<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $user_id)); ?>">
-			<img src="<?= $this->webroot.'img/mockup-5-option1.jpg' ?>" alt="Option 1 - Create your identity" class="img-glow-on-hover-small margin right-1" />
-		</a>
-	</div>
-	<div class="medium-4 columns">
-		<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>">
-			<img src="<?= $this->webroot.'img/mockup-5-option2.jpg' ?>" alt="Option 2 - Engage in a mission" class="img-glow-on-hover-small margin right-1" />
-		</a>
-	</div>
-	<div class="medium-4 columns">
-		<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'evokation')); ?>">
-			<img src="<?= $this->webroot.'img/mockup-5-option3.jpg' ?>" alt="Option 3 - Create your evokation" class="img-glow-on-hover-small margin right-1" />
-		</a>
-	</div>
+<div class="panelOptions row standard-width text-center margin bottom-2">
+	<ul class="large-block-grid-3 medium-block-grid-1 small-block-grid-1" data-equalizer>
+		<!-- OPTION 1 - PROFILE -->
+		<li>
+			<div class="table full-width background-color-light-dark padding left-2 right-2 top-1 bottom-1" data-equalizer-watch>
+				<div class="table-cell vertical-align-middle padding right-1">
+					<div class="profile-picture-150px img-circular border-width-02 border-style-solid border-color-highlight">
+						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $user_id)); ?>">
+							<img src="<?= $this->webroot.'img/thumb-badges.jpg' ?>" alt="<?= __('Create your superhero identity') ?>" class="img-circular" />
+						</a>
+					</div>
+				</div>
+				<div class="table-cell full-width vertical-align-middle text-center">
+					<h4 class="text-color-highlight uppercase"><?= __('Option 1') ?></h4>
+					<p><?= __('Create your superhero identity and build your network') ?></p>
+					<a class="button thin" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $user_id)); ?>"><?= __('GO') ?></a>
+				</div>
+			</div>
+		</li>
+
+		<!-- OPTION 2 - MISSIONS -->
+		<li>
+			<div class="table full-width background-color-light-dark padding left-2 right-2 top-1 bottom-1" data-equalizer-watch>
+				<div class="table-cell vertical-align-middle padding right-1">
+					<div class="profile-picture-150px img-circular  border-width-02 border-style-solid border-color-highlight">
+						<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>">
+							<img src="<?= $this->webroot.'img/thumb-engage.jpg' ?>" alt="<?= __('Engage in a mission') ?>" class="img-circular" />
+					</div>
+				</div>
+				<div class="table-cell full-width vertical-align-middle text-center">
+					<h4 class="text-color-highlight uppercase"><?= __('Option 2') ?></h4>
+					<p><?= __('Engage in a mission and build skills') ?></p>
+					<a class="button thin" href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>"><?= __('GO') ?></a>
+				</div>
+			</div>
+		</li>
+
+		<!-- OPTION 3 - EVOKATION -->
+		<li>
+			<div class="table full-width background-color-light-dark padding left-2 right-2 top-1 bottom-1" data-equalizer-watch>
+				<div class="table-cell vertical-align-middle padding right-1">
+					<div class="profile-picture-150px img-circular  border-width-02 border-style-solid border-color-highlight">
+						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'evokation')); ?>">
+							<img src="<?= $this->webroot.'img/thumb-quests.jpg' ?>" alt="<?= __('Create your evokation') ?>" class="img-circular" />
+						</a>
+					</div>
+				</div>
+				<div class="table-cell full-width vertical-align-middle text-center">
+					<h4 class="text-color-highlight uppercase"><?= __('Option 3') ?></h4>
+					<p><?= __('Create your evokation') ?></p>
+					<a class="button thin" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'evokation')); ?>"><?= __('GO') ?></a>
+				</div>
+			</div>
+		</li>
+	</ul>
 </div>
 
+<?php
+	/* Script */
+	$this->start('script');
+?>
+	<script type="text/javascript">
+		//Option elements glows on hover
+		$("div.panelOptions li")
+		.on("mouseover", function(){
+			$(this).find(".table").addClass('img-glow-small');
+			$(this).find(".cropGraphicNovelIcon").addClass('img-glow-small');
+			$(this).find(".button").addClass('img-glow-small');
+		})
+		.on("mouseout", function(){
+			$(this).find(".table").removeClass('img-glow-small');
+			$(this).find(".cropGraphicNovelIcon").removeClass('img-glow-small');
+			$(this).find(".button").removeClass('img-glow-small');
+		});
+	</script>
+<?php $this->end(); ?>
 
 <?php
 	/* Footer */
