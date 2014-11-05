@@ -16,9 +16,9 @@
 		<li>
 			<div class="table full-width background-color-light-dark padding left-2 right-2 top-1 bottom-1" data-equalizer-watch>
 				<div class="table-cell vertical-align-middle padding right-1">
-					<div class="cropGraphicNovelIcon border-width-02 border-style-solid border-color-highlight">
+					<div class="profile-picture-150px img-circular border-width-02 border-style-solid border-color-highlight">
 						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $user_id)); ?>">
-							<img src="<?= $this->webroot.'img/thumb-badges.jpg' ?>" alt="<?= __('Create your superhero identity') ?>" />
+							<img src="<?= $this->webroot.'img/thumb-badges.jpg' ?>" alt="<?= __('Create your superhero identity') ?>" class="img-circular" />
 						</a>
 					</div>
 				</div>
@@ -34,10 +34,9 @@
 		<li>
 			<div class="table full-width background-color-light-dark padding left-2 right-2 top-1 bottom-1" data-equalizer-watch>
 				<div class="table-cell vertical-align-middle padding right-1">
-					<div class="cropGraphicNovelIcon border-width-02 border-style-solid border-color-highlight">
+					<div class="profile-picture-150px img-circular  border-width-02 border-style-solid border-color-highlight">
 						<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>">
-							<img src="<?= $this->webroot.'img/thumb-engage.jpg' ?>" alt="<?= __('Engage in a mission') ?>" />
-						</a>
+							<img src="<?= $this->webroot.'img/thumb-engage.jpg' ?>" alt="<?= __('Engage in a mission') ?>" class="img-circular" />
 					</div>
 				</div>
 				<div class="table-cell full-width vertical-align-middle text-center">
@@ -52,9 +51,9 @@
 		<li>
 			<div class="table full-width background-color-light-dark padding left-2 right-2 top-1 bottom-1" data-equalizer-watch>
 				<div class="table-cell vertical-align-middle padding right-1">
-					<div class="cropGraphicNovelIcon border-width-02 border-style-solid border-color-highlight">
+					<div class="profile-picture-150px img-circular  border-width-02 border-style-solid border-color-highlight">
 						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'evokation')); ?>">
-							<img src="<?= $this->webroot.'img/thumb-quests.jpg' ?>" alt="<?= __('Create your evokation') ?>" />
+							<img src="<?= $this->webroot.'img/thumb-quests.jpg' ?>" alt="<?= __('Create your evokation') ?>" class="img-circular" />
 						</a>
 					</div>
 				</div>

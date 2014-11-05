@@ -273,7 +273,7 @@ class UsersController extends AppController {
 
 					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-				return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
+				return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->User->id));
 
 			}
 		}
@@ -378,7 +378,7 @@ class UsersController extends AppController {
 
 					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-					return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
+					return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->User->id));
 
 				}
 
@@ -398,7 +398,7 @@ class UsersController extends AppController {
 
 			//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
-			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->Auth->user('id')));
+			return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->Auth->user('id')));
 
 		} else if(isset($this->request->data['User']['username'])){
 
@@ -644,27 +644,31 @@ class UsersController extends AppController {
  * @return void
  */
 	public function register() {
-
 		if ($this->request->is('post')) {
+			if($this->request->data['User']['password'] == $this->request->data['User']['confirm_password']) {
 
-		if($this->request->data['User']['password'] == $this->request->data['User']['confirm_password']) {
 				$this->User->create();
 				// $this->request->data['User']['password'] = sha1($this->request->data['User']['password']);
+
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('O usuário foi salvo com sucesso.'));
-	        $this->request->data['User'] = array_merge(
-	            $this->request->data['User'],
-	            array('id' => $this->User->id)
-	        );
-	        $this->Auth->login($this->request->data['User']);
+					$this->request->data['User'] = array_merge(
+						$this->request->data['User'],
+						array('id' => $this->User->id)
+					);
+
+					$this->Auth->login($this->request->data['User']);
+					
 					return $this->redirect(array('action' => 'matching', $this->User->id));
-				} else {
+				}
+				else {
 					$this->Session->setFlash(__('O usuário não pôde ser salvo. Por favor, tente novamente.'));
 				}
-			} else {
-  			$this->Session->setFlash(__("Typed passwords don't match"));
-  			//$this->redirect(array('action' => 'changePassword', '?arg='.$this->params['url']['arg']));
-  		}
+			}
+			else {
+				$this->Session->setFlash(__("Typed passwords don't match"));
+				//$this->redirect(array('action' => 'changePassword', '?arg='.$this->params['url']['arg']));
+	  		}
 		}
 	}
 

@@ -327,7 +327,9 @@ button, div, p, span, a,
 	position: relative;
 }
 
-/* Alignment */
+/* --------------------------- */
+/* ALIGNMENT */
+/* --------------------------- */
 /* Align with table and table-cell */
 .evoke .vertical-align-top {
 	vertical-align: top;
@@ -349,7 +351,7 @@ button, div, p, span, a,
 	display: table-cell;
 }
 
-/* Align with a ghost-block above */
+/* alignment with BLOCKS */
 .evoke .centering-block {
 	text-align: center;
 }
@@ -407,7 +409,9 @@ button, div, p, span, a,
 	margin: .2em 0 0 0;
 }
 
-/* Opacity */
+/* --------------------------- */
+/* OPACITY */
+/* --------------------------- */
 .evoke .opacity-05 {
 	opacity: 0.5;
 	filter: alpha(opacity=50); /* For IE8 and earlier */
@@ -418,7 +422,13 @@ button, div, p, span, a,
 	filter: alpha(opacity=70); /* For IE8 and earlier */
 }
 
-/* Forms */
+/* --------------------------- */
+/* FORMS */
+/* --------------------------- */
+option {
+	color: #333;
+}
+
 input[type=text]:focus, input[type=email]:focus, input[type=number]:focus,
 input[type=password]:focus, input[type=search]:focus, input[type=url]:focus,  textarea {
   -webkit-transition: all 0.30s ease-in-out;
@@ -545,21 +555,6 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	-moz-border-radius: 50%;
 }
 
-.cropProfilePicture {
-	width: 150px;
-	height: 150px;
-	margin: 0 auto;
-	overflow: hidden;
-	border-radius: 50%;
-}
-
-.cropGraphicNovelIcon {
-	width: 150px;
-	height: 150px;
-	margin: 0 auto;
-	overflow: hidden;
-	border-radius: 50%;
-}
 
 /* --------------------------- */
 /* BORDER */
@@ -778,6 +773,22 @@ button, .button {
 	background-color: #26dee0;
 }
 
+
+/* --------------------------- */
+/* USER PICTURE */
+/* --------------------------- */
+
+/* Profile picture */
+.evoke .profile-picture-40px {
+	height: 40px;
+	width: 40px;
+}
+
+.evoke .profile-picture-150px {
+	width: 150px;
+	height: 150px;
+}
+
 /* --------------------------- */
 /* TOP BAR */
 /* --------------------------- */
@@ -790,11 +801,6 @@ button, .button {
 	margin-right: 10px;
 }
 
-/* Profile picture */
-.evoke .top-bar-section .profile-picture-topbar {
-	height: 40px;
-	width: 40px;
-}
 
 /* Padding of divs and links */
 .evoke .top-bar-section ul li:not(.has-form) a {

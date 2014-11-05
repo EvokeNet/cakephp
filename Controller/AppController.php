@@ -453,14 +453,18 @@ class AppController extends Controller {
     /**
      * Gets the next level
      * @param int $userLevel Id of the current level
-     * @return object Next level
+     * @return object Next level (if there is one - else null)
      */
     public function getNextLevel($userLevel){
         $this->loadModel('Level');
 
         $nextLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
 
-        return $nextLevel['Level'];
+        //There is a next level
+        if (isset($nextLevel['Level']))
+            return $nextLevel['Level'];
+        else
+            return null;
     }
 
     public function getUserImage($userid) {

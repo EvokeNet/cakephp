@@ -9,7 +9,8 @@
 	echo $this->element('image_header',array('imgHeaderTitle' => 'Generating your agent profile', 'imgSrc' => ($this->webroot.'img/header-registering.jpg')));
 	$this->end();
 ?>
-
+<?php
+debug($loggedInUser); ?>
 	<div class="row standard-width">
 	  <div class="medium-6 columns form-evoke-style">
 	  	<h3 class="margin bottom-1"><?= __('About you') ?></h3>

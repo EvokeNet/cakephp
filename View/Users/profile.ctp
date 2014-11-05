@@ -27,10 +27,9 @@
 			?>
 
 			<div class="centering-block large-12 medium-6 small-6 margins-auto">
-				<!-- <img src="<?=$pic?>" class="img-circular" alt="<?= __('Your profile picture') ?>" /> -->
 
-				<div class="cropProfilePicture large">
-					<img src="<?=$pic?>" alt="<?= __('Your profile picture') ?>" />
+				<div>
+					<img src="<?=$pic?>" class="profile-picture-150px img-circular" alt="<?= __('Your profile picture') ?>" />
 				</div>
 
 			</div>
@@ -52,7 +51,48 @@
 		<!-- POTENTIAL ALLIES -->
 		<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor">
 			<h4><?= __('Potential allies') ?></h4>
-			<p>...</p>
+		    <ul class="full-width small-block-grid-1">
+		      <?php
+		        $counter = 0;
+		        foreach($similar_users as $similar_user):
+		          $pic = $this->webroot.'webroot/img/user_avatar.jpg';
+		          if($similar_user['User']['photo_attachment'] == null) {
+		            if($similar_user['User']['facebook_id'] != null) {
+		              $pic = "https://graph.facebook.com/". $similar_user['User']['facebook_id'] ."/picture?type=large";
+		            }
+		          }
+		          else {
+		            $pic = $this->webroot.'files/attachment/attachment/'.$similar_user['User']['photo_dir'].'/'.$similar_user['User']['photo_attachment'];
+		          }
+		      ?>
+		      <li>
+		        <!-- PANEL -->
+		        <a href="#" data-reveal-id="modalProfilePotentialAllies<?= $counter ?>">
+		          <div class="profile-content padding top-1">
+		          	<!-- USER PICTURE -->
+		          	<div class="left padding right-1 full-height">
+		          		<img class="profile-picture-40px img-circular smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+		          	</div>
+
+		            <!-- USER INFO -->
+		            <div class="table-cell vertical-align-middle">
+		              <p class="user-name margins-0">
+		                <span class="font-highlight "><?= $similar_user['User']['name'] ?></span>
+		              </p>
+
+		              <small>Level 5</small>
+		            </div>
+		          </div>
+		        </a>
+
+		        <!-- VIEW AGENT DETAILS MODAL -->
+		        <?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'PotentialAllies'.$counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
+		      </li>
+		      <?php
+		          $counter++;
+		        endforeach;
+		      ?>
+		    </ul>
 		</div>
 	</div>
 
@@ -138,6 +178,7 @@
 			</div>
 
 			<div class="large-6 columns padding top-2">
+				<h3><?= __('Badges earned') ?>&nbsp;&nbsp;(<?= count($badges) ?>)</h3>
 				<?php echo $this->element('badges'); ?>
 			</div>
 		</div>

@@ -23,14 +23,14 @@
           <div class="profile-content padding top-1 border-top-divisor table-row">
             <!-- POSITION -->
             <div class="table-cell vertical-align-middle padding right-1">
-              <strong><span class="font-highlight <?= ($counter < 3) ? 'text-color-highlight' : '' ?>">#<?= $counter ?></span></strong>
+              <strong><span class="font-highlight <?= ($counter < 3) ? 'text-color-highlight' : '' ?>">#<?= $counter+1 ?></span></strong>
             </div>
 
             <!-- USER INFO -->
             <div class="table-cell vertical-align-middle padding right-1 full-width">
               <!-- USER PICTURE -->
               <div class="left padding right-1">
-                <img class="profile-picture img-circular smallest radius margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+                <img class="profile-picture-40px img-circular smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
               </div>
 
               <p class="user-name margins-0">
