@@ -33,29 +33,6 @@ div.evoke.slide.background-cover.active div.img-caption-bottom {
 /* --------------------------- */
 /* MATCHING RESULTS AND PROFILE */
 /* --------------------------- */
-.evoke .user-panel .profile-picture {
-	margin: -100px auto 20px auto;
-}
-
-.evoke .profile-picture {
-	height: 150px;
-	width: 125px;
-}
-
-.evoke .profile-picture.small {
-	height: 100px;
-	width: 80px;
-}
-
-/* Profile picture */
-.evoke .profile-picture.smallest {
-	height: 50px;
-	width: 40px;
-}
-
-.evoke .user-panel .profile-content {
-	margin-top: 100px;
-}
 
 .evoke #radar-graph {
 	margin-top: -50px;
@@ -70,4 +47,37 @@ div.evoke.slide.background-cover.active div.img-caption-bottom {
 
 .evoke .profile-sidebar, .evoke .profile-sidebar .p {
 	font-size: 0.9rem;
+}
+
+
+/* Profile picture */
+.evoke .profile-picture {
+	height: 150px;
+	width: 125px;
+}
+
+.evoke .profile-picture.small {
+	height: 100px;
+	width: 80px;
+}
+
+.evoke .profile-picture.smallest {
+	height: 50px;
+	width: 40px;
+}
+
+/* User panel */
+.evoke .user-panel .profile-picture {
+	margin: -100px auto 20px auto;
+}
+.evoke .user-panel .profile-content {
+	margin-top: 100px;
+}
+
+/* User panel leaderboard */
+.evoke .user-panel-leaderboard .profile-picture {
+	margin: -125px auto 0px auto;
+}
+.evoke .user-panel-leaderboard .profile-content {
+	margin-top: 100px;
 }

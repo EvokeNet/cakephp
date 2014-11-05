@@ -1,11 +1,7 @@
-<div class="row">
-  <div class="large-6 columns">
-  	<h4 class="margin bottom-1"><?= strtoupper(__('Badges')) ?>&nbsp;&nbsp;(<?= count($badges) ?>)</h4>
-  </div>
-  <div class="large-6 columns text-right">
+  	<h3><?= __('Badges earned') ?>&nbsp;&nbsp;(<?= count($badges) ?>)</h3>
+  <!-- <div class="large-6 columns text-right">
   	<a href = "<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index')); ?>" class = "button thin"><?php echo __('See All');?></a>
-  </div>
-</div>
+  </div> -->
 
 <ul class="small-block-grid-2 medium-block-grid-3">
 

@@ -215,6 +215,10 @@ button, div, p, span, a,
 	padding: 0!important;
 }
 
+.evoke .padding.all-0 {
+	padding: 0!important;
+}
+
 .evoke .padding.all-05 {
 	padding: 0.5em;
 }
@@ -541,7 +545,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	-moz-border-radius: 50%;
 }
 
-#cropProfilePicture {
+.cropProfilePicture {
 	width: 150px;
 	height: 150px;
 	margin: 0 auto;

@@ -26,10 +26,10 @@
 			}
 			?>
 
-			<div class="centering-block large-8 medium-12 small-6 margins-auto">
+			<div class="centering-block large-12 medium-6 small-6 margins-auto">
 				<!-- <img src="<?=$pic?>" class="img-circular" alt="<?= __('Your profile picture') ?>" /> -->
 
-				<div id = "cropProfilePicture">
+				<div class="cropProfilePicture large">
 					<img src="<?=$pic?>" alt="<?= __('Your profile picture') ?>" />
 				</div>
 
@@ -87,9 +87,9 @@
 		<div class="row border-top-divisor">
 			<div class="small-12 columns margin top-2">
 
-				<div>
+				<div class="row margins-0">
 					<h3 class="left margin right-2"><?= __('Allies') ?></h3>
-					<a class="button small disabled" disabled href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'index')); ?>"><?php echo __('ALL USERS'); ?></a>
+					<!-- <a class="button small disabled" disabled href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'index')); ?>"><?php echo __('ALL USERS'); ?></a> -->
 				</div>
 
 
@@ -138,7 +138,6 @@
 			</div>
 
 			<div class="large-6 columns padding top-2">
-				<h3><?= __('Badges earned') ?></h3>
 				<?php echo $this->element('badges'); ?>
 			</div>
 		</div>
