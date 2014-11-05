@@ -77,7 +77,7 @@
 		            <!-- USER INFO -->
 		            <div class="table-cell vertical-align-middle">
 		              <p class="user-name margins-0">
-		                <span class="font-highlight "><?= $similar_user['User']['name'] ?></span>
+		                <?= $similar_user['User']['name'] ?>
 		              </p>
 
 		              <small>Level 5</small>
