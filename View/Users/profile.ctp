@@ -81,7 +81,7 @@
 		          	</div>
 
 		            <!-- USER INFO -->
-		            <div class="vertical-align-middle">
+		            <div class="vertical-align-middle" style="margin-left: 57px;">
 		              <p class="user-name margins-0">
 		                <?= $similar_user['User']['name'] ?>
 		              </p>
