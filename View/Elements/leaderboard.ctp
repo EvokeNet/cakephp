@@ -29,8 +29,8 @@
             <!-- USER INFO -->
             <div class="table-cell vertical-align-middle padding right-1 full-width">
               <!-- USER PICTURE -->
-              <div class="left padding right-1">
-                <img class="profile-picture-40px img-circular smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+              <div class="left padding right-1 profile-picture-40px img-circular">
+                <img class=" smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
               </div>
 
               <p class="user-name margins-0">

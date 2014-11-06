@@ -210,7 +210,8 @@ button:hover, button:focus, .button:hover, .button:focus {
 }
 
 .tabs-style-small-image .tabs-content {
-	background-color: rgb(70, 75, 77);
+	margin-left: 100px;
+	padding-right: 100px;
 }
 
 .tabs-style-small-image dd > a:hover, 

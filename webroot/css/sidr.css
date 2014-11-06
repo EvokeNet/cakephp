@@ -13,11 +13,9 @@
 .evoke .sidr {
 	display:none;
 	position:absolute;
-	position:fixed;
-	height:100%;
 	z-index:99;
 	width:500px;
-	top:60px;
+	top:0;
 	overflow-x:none;
 	overflow-y:none;
 }
