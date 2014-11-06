@@ -3,8 +3,8 @@
 	position:absolute;
 	top:0;
 	min-height: 100%;
-	z-index:99;
-	width:500px;
+	z-index:30;
+	width:32em;
 	overflow-x:none;
 	overflow-y:none;
 }
