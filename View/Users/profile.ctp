@@ -35,7 +35,13 @@
 			</div>
 
 			<h4 class="text-color-highlight text-center margin top-1"><?= $user['User']['name'] ?></h4>
-			<div><p class="text-center"><?= $this->Text->getExcerpt($user['User']['biography'], 30, '...') ?></p></div>
+			<div>
+				<p class="text-center">
+					<?= (isset($user['User']['mini_biography']) && (($user['User']['mini_biography']) != ""))
+						? $user['User']['mini_biography']
+						: $this->Text->getExcerpt($user['User']['biography'], 30, '...') ?>
+				</p>
+			</div>
 		</div>
 
 		<!-- SOCIAL NETWORKS -->
@@ -75,9 +81,9 @@
 		          	</div>
 
 		            <!-- USER INFO -->
-		            <div class="table-cell vertical-align-middle">
+		            <div class="vertical-align-middle">
 		              <p class="user-name margins-0">
-		                <span class="font-highlight "><?= $similar_user['User']['name'] ?></span>
+		                <?= $similar_user['User']['name'] ?>
 		              </p>
 
 		              <small>Level 5</small>

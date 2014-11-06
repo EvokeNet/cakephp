@@ -21,7 +21,8 @@
 	</div>
 	<?php $this->end(); ?>
 	<!-- TOPBAR MENU -->
-	
+
+	<!-- ACTUAL CONTENT -->
 	<div id="missions-body" class="missions">
 		<div class="off-canvas-wrap" data-offcanvas>
 			<div class="inner-wrap">
@@ -44,9 +45,9 @@
 				</nav>
 
 				<aside class="right-off-canvas-menu tabQuests" id="tabQuests">
-					<div class="large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0">
+					<div class="table large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0">
 						<!-- TABS COM QUESTS -->
-						<dl class="tabs vertical full-height margin right-1 background-color-standard" data-tab>
+						<dl class="tabs vertical table-cell full-width full-height margin right-1 background-color-standard opacity-07" data-tab>
 							<?php 
 								$counter = 1;
 								$active = 'class = "active"';
@@ -72,8 +73,7 @@
 							?>
 						</dl>
 
-						<div class="tabs-content full-height">
-
+						<div class="tabs-content table-cell vertical-align-top full-width full-height background-color-standard gradient-on-left">
 							<?php 
 								$counter = 1;
 								$active = 'active'; ?>
