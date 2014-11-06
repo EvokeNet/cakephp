@@ -19,6 +19,7 @@
 /* GENERAL STYLES */
 html, body {
 	background-color: #333;
+	height: inherit;
 }
 
 *, html, body,
@@ -26,10 +27,10 @@ button, div, p, span, a,
 .evoke .button {
 	font-family: 'Raleway', 'Arial', sans-serif;
 	font-size: 100%;
-	/*line-height: 1.618;*/
 	color: #cccccc;
 	-webkit-text-stroke: 0.1px;
 	-webkit-font-smoothing: antialiased;
+	word-break: break-word;
 }
 
 /* Headings */
@@ -44,6 +45,11 @@ button, div, p, span, a,
 
 .evoke h3, .evoke h4, .evoke h5, .evoke h6 {
 	text-transform: uppercase;
+}
+
+/* Work break */
+.no-word-break {
+	word-break: normal;
 }
 
 /* Visibility */

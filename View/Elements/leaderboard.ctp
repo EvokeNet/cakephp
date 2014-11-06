@@ -23,25 +23,25 @@
           <div class="profile-content padding top-1 border-top-divisor table-row">
             <!-- POSITION -->
             <div class="table-cell vertical-align-middle padding right-1">
-              <strong><span class="font-highlight <?= ($counter < 3) ? 'text-color-highlight' : '' ?>">#<?= $counter+1 ?></span></strong>
+              <strong><span class="no-word-break <?= ($counter < 3) ? 'text-color-highlight' : '' ?>">#<?= $counter+1 ?></span></strong>
             </div>
 
             <!-- USER INFO -->
             <div class="table-cell vertical-align-middle padding right-1 full-width">
               <!-- USER PICTURE -->
-              <div class="left padding right-1 profile-picture-40px img-circular">
-                <img class=" smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+              <div class="left full-height padding right-1">
+                <img class="img-circular profile-picture-40px smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
               </div>
 
               <p class="user-name margins-0">
-                <span class="font-highlight "><?= $similar_user['User']['name'] ?></span>
+                <?= $similar_user['User']['name'] ?>
               </p>
 
               <small>Level 5</small>
             </div>
 
             <!-- POINTS -->
-            <div class="table-cell vertical-align-middle text-center">
+            <div class="table-cell vertical-align-middle text-center no-word-break">
               2500
             </div>
           </div>

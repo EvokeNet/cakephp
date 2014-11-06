@@ -113,8 +113,8 @@ button:hover, button:focus, .button:hover, .button:focus {
 
 /* --------------------------- */
 /* COMPLEMENTING TABS */
+/* Triangle and line  */
 /* --------------------------- */
-/**** Triangle and line  ****/
 .tabs-style-linetriangle .tab-image {
 	max-width: 200px;
 	/* Fallback for older browsers */
@@ -195,10 +195,13 @@ button:hover, button:focus, .button:hover, .button:focus {
 	}
 }*/
 
-
-/**** Small-image  ****/
+/* --------------------------- */
+/* COMPLEMENTING TABS */
+/* Small-image  */
+/* --------------------------- */
 .tabs-style-small-image dd {
 	background-color: #333;
+	min-width: 6em;
 }
 
 .tabs-style-small-image dd a {
@@ -210,8 +213,7 @@ button:hover, button:focus, .button:hover, .button:focus {
 }
 
 .tabs-style-small-image .tabs-content {
-	margin-left: 100px;
-	padding-right: 100px;
+	padding: 1em 1em 1em 2em;
 }
 
 .tabs-style-small-image dd > a:hover, 
