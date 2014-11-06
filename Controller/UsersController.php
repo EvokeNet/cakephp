@@ -1181,7 +1181,7 @@ class UsersController extends AppController {
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array(
-			'contain' => 'Group',
+			'recursive' => 0,
 			'order' => array(
 				'Evokation.created DESC'
 			),
@@ -1193,7 +1193,7 @@ class UsersController extends AppController {
 
 
 		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
-			//'recursive' => 0,
+			'recursive' => 0,
 			'conditions' => array(
 				'EvokationFollower.user_id' => $this->getUserId()
 			)
