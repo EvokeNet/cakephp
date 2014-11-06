@@ -1,3 +1,8 @@
+<?php
+	if($loggedInUser['User'])
+		$loggedInUser = $loggedInUser['User'];
+?>
+
 <!-- MENU LOGGED IN -->
 <ul class="<?php echo isset($ulClass) ? $ulClass : ''; ?>">
 
@@ -72,7 +77,7 @@
 			<li>
 				<div class="column">
 					<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
-						<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('Forum'); ?></a>
+						<a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index')); ?>"  class="text-glow-on-hover text-color-highlight"><?php echo __('Forum'); ?></a>
 					</span>
 				</div>
 			</li>

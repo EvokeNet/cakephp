@@ -34,6 +34,7 @@ class AppController extends Controller {
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
 						'authError' => 'Você não tem permissão para ver essa página'
         ),
+				'SocialLogin',
 				'UserRole'
     );
 
@@ -61,6 +62,9 @@ class AppController extends Controller {
 
 				$this->_checkBrowserLanguage();
 
+				$browserLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+				$this->set(compact('browserLanguage'));
+				
 				//Info from the user that is currently logged in
 				$cuser = $this->Auth->user();
 				$loggedInUser = $this->Auth->user();
@@ -80,7 +84,9 @@ class AppController extends Controller {
 
 				//$userNotifications = $this->getNotificationsNumber($this->getUserId());
 
-				$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
+				$googleLoginURL = $this->SocialLogin->create_google_url();
+
+				$this->set(compact('googleLoginURL', 'userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
 		}
 
 		public function isAuthorized($user = null) {

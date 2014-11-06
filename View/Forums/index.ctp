@@ -1,22 +1,21 @@
 <?php
+/* Top bar */
+	$this->start('topbar');
+	echo $this->element('topbar');
+	$this->end();
 
-	$this->extend('/Common/topbar');
-	$this->start('menu');
+	/* Image header */
+	$this->start('image_header');
+	echo $this->element('image_header',array('imgHeaderTitle' => 'Forums', 'imgSrc' => ($this->webroot.'img/header-registering.jpg')));
+	$this->end();
 
-	echo $this->element('header', array('user' => $user));
-
-	$this->end(); 
 ?>
 
 <section class="evoke default-background">
 
-	<div class="evoke default row full-width-alternate profile">
+	<div class="row standard-width">
 
-	  <div class="small-2 medium-2 large-2 columns padding-left">
-	  	<?php echo $this->element('menu', array('user' => $user));?>
-	  </div>
-
-	  <div class="small-10 medium-10 large-10 columns maincolumn">
+	  <div class="small-12 medium-12 large-12 columns maincolumn">
 	  	<?php echo $this->Session->flash(); ?>
 
 	  	<div class = "default">
@@ -24,7 +23,7 @@
         </div>
 
         <div class="text-align-end">
-            <?php 
+            <?php
                 if ($user['User']['role_id'] == 1): ?>
 
                 <a href = "<?= $this->Html->url(array('controller' => 'forums', 'action' => 'add')) ?>" class = 'button general green'><?= __('Add Forum') ?></a>
@@ -43,7 +42,7 @@
             </ul>
 
             <?php
-            
+
             if (isset($forums)):
                 foreach ($forums as $forum): ?>
 
@@ -55,12 +54,12 @@
             </ul>
 
             <?php endforeach; endif; ?>
-        	
+
 
         </div>
 
 	  </div>
-	
+
 	</div>
 
 </section>

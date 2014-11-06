@@ -1,5 +1,6 @@
 <?php //Facebook login URL comes from session
 	$fbLoginUrl = $this->Session->read('fbLoginUrl');
+	//$gLoginUrl = $this->Session->read('googleLoginURL');
 ?>
 
 <!-- Form with Foundation validation -->
@@ -11,12 +12,12 @@
 	<li class="has-form">
 		<div class="row collapse">
 			<div class="large-4 columns">
-				<?php 
+				<?php
 					echo $this->Form->input('username', array('label' => false, 'type' => 'text', 'placeholder' =>  __('username'), 'class' => 'radius', 'required' => true));
 				?>
 			</div>
 			<div class="large-4 columns">
-				<?php 
+				<?php
 					echo $this->Form->input('password', array('label' => false, 'type' => 'password', 'placeholder' =>  __('password'), 'class' => 'radius', 'required'));
 				?>
 			</div>
@@ -37,7 +38,7 @@
 				</span>
 			</a>
 
-			<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'google_login')); ?>" class="button-icon">
+			<a href="<?= $googleLoginURL ?>" class="button-icon">
 				<span class="fa-stack fa-lg">
 					<i class="fa fa-square fa-stack-2x evoke login google-icon"></i>
 					<i class="fa fa-google-plus fa-stack-1x fa-inverse "></i>

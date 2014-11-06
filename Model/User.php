@@ -44,7 +44,11 @@ class User extends AppModel {
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'A username is required'
-            )
+            ),
+						'isUnique' => array(
+								'rule' => 'isUnique',
+								'message' => 'Este username já está cadastrado'
+						)
         ),
         'password' => array(
             'notEmpty' => array(
@@ -150,7 +154,7 @@ class User extends AppModel {
 			);
 		}
 
-		$this->data[$this->alias]['name'] = $this->data[$this->alias]['firstname'].' '.$this->data[$this->alias]['lastname'];
+		//$this->data[$this->alias]['name'] = $this->data[$this->alias]['firstname'].' '.$this->data[$this->alias]['lastname'];
 
 		return true;
 	}

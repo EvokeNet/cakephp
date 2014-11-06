@@ -25,7 +25,7 @@ class UsersController extends AppController {
  */
 	//public $components = array('MathCaptcha', 'Visit');
 
-	public $components = array('UserRole');
+	public $components = array('SocialLogin', 'UserRole');
 
 	public $uses = array('User', 'Friend');
 
@@ -98,22 +98,6 @@ class UsersController extends AppController {
 		// 		return false;
 		// }
 
-    public function createTempPassword($len) {
-			$pass = '';
-		   	$lchar = 0;
-		   	$char = 0;
-		   	for($i = 0; $i < $len; $i++) {
-		    	while($char == $lchar) {
-		       		$char = rand(48, 109);
-		       		if($char > 57) $char += 7;
-		       		if($char > 90) $char += 6;
-		     	}
-				$pass .= chr($char);
-		     	$lchar = $char;
-		   	}
-		   	return $pass;
-		}
-
     public function changePassword() {
     	$usr = $this->User->find('first', array(
     		'conditions' => array(
@@ -162,130 +146,15 @@ class UsersController extends AppController {
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all');
 
-		$client = new Google_Client();
-		$client->setApplicationName('Evoke');
-		$client->setClientId(Configure::read('google_client_id'));
-		$client->setClientSecret(Configure::read('google_client_secret'));
-		$client->setRedirectUri(Configure::read('google_redirect_uri'));
-		$client->setDeveloperKey(Configure::read('google_developer_key'));
-
-		// $client->setScopes("https://www.googleapis.com/auth/plus.login");
-		// $client->setAccessType('offline');
-		// $client->setApprovalPrompt('auto');
-
-		$google_oauthV2 = new Google_Service_Oauth2($client);
-
-		$client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
-    	$client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
-
-		// $authUrl = $client->createAuthUrl();
-		// $this->set('authUrl', $authUrl);
-
-		// $_SESSION['access_token'] = null;
-		// debug($_SESSION['accessToken']);
-		// if(isset($_REQUEST['code'])){
-		//     $_SESSION['accessToken'] = get_oauth2_token($_REQUEST['code']);
-		// }
-
-		//debug($client);
-
-		//debug($this->request['url']['code']);
-
+		$googleLoginURL = $this->SocialLogin->create_google_url();
+// debug($googleLoginURL[1]);
 		if (isset($this->params['url']['code'])) {
-		  $client->authenticate($this->params['url']['code']);
-		  $_SESSION['access_token'] = $client->getAccessToken();
-		//   $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-		//   header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+			// debug($this->params['url']);
+			// die();
+			$this->SocialLogin->google_login($this->params['url']['code']);
 
-
-		// debug($client->getAccessToken());
-
-		if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-
-		 	// $client->setAccessToken($_SESSION['access_token']);
-
-			// $attributes = $client->verifyIdToken($token->id_token, '502819941527.apps.googleusercontent.com')->getAttributes();
-   //      	$gplus_id = $attributes["payload"]["sub"];
-
-		 	$user_profile = $google_oauthV2->userinfo->get();
-		 	$_SESSION['user']['name'] = $user_profile['name'];
-		 	$_SESSION['user']['google_id'] = $user_profile['id'];
-            $_SESSION['user']['email'] = $user_profile['email'];
-
-		  	$user_google = $this->User->find('first', array('conditions' => array('User.id' => $_SESSION['user']['email'])));
-
-			if(empty($user_google)) {
-
-				// User does not exist in DB, so we are going to create
-				$this->User->create();
-				$user_google['User']['google_id'] = $user_profile['id'];
-				$user_google['User']['google_token'] = $client->getAccessToken();
-				$user_google['User']['name'] = $user_profile['name'];
-				$user_google['User']['email'] = $user_profile['email'];
-				$user_google['User']['role_id'] = 3;
-
-				if($this->User->save($user_google)) {
-					$user_google['User']['id'] = $this->User->id;
-					$this->Auth->login($user_google);
-					// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
-					//return $this->redirect(array('action' => 'dashboard'));
-					// $this->Session->setFlash('', 'opening_lightbox_message');
-					// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
-			  //           'user_id' => $this->User->id,
-			  //           'user_ip' => $_SERVER['SERVER_ADDR'],
-			  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
-			  //       ));
-
-			  //       $this->getEventManager()->dispatch($event);
-					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
-
-					return $this->redirect(array('action' => 'edit', $this->User->id));
-				} else {
-					$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
-					return $this->redirect(array('action' => 'login'));
-				}
-
-			} else {
-
-				// User exists, so we just force login
-				// TODO: check if any data changed since last Facebook login, then update in our table
-
-				// We need to update the Facebook token, once web tokens are short-term only
-				$this->User->id = $user_google['User']['id'];
-				$this->User->set('google_token', $client->getAccessToken());
-				$this->User->save();
-
-				$user_google['User']['id'] = $this->User->id;
-				$this->Auth->login($user_google);
-				// $this->Session->write('Auth.User.id', $user['User']['id']);
-
-				// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
-		  //           'user_id' => $this->User->id,
-		  //           'user_ip' => $_SERVER['SERVER_ADDR'],
-		  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
-		  //       ));
-
-		  //       $this->getEventManager()->dispatch($event);
-
-				$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
-
-				return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
-
-			}
-		}
-		}else {
-			$authUrl = $client->createAuthUrl();
-
-			if(isset($authUrl)) { //user is not logged in, show login button
-				$this->set('authUrl', $authUrl);
-			}
 		}
 
-		//debug($this->Auth);
 		$facebook = new Facebook(array(
 			'appId' => Configure::read('fb_app_id'),
 			'secret' => Configure::read('fb_app_secret'),
@@ -296,107 +165,98 @@ class UsersController extends AppController {
 		$browserLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 		$this->set(compact('browserLanguage'));
 
-		if(isset($this->params['url']['code'])) {
-
-			$token = $facebook->getAccessToken();
-
-			if (!empty($token)) {
-
-				$userFbData = $facebook->getUser();
-				$user_profile = '';
-
-				try {
-					$user_profile = $facebook->api('/me');
-					$this->Session->write('User', $user_profile);
-				} catch (FacebookApiException $e) {
-					error_log($e);
-					$userFbData = null;
-				}
-
-				$user = $this->User->find('first', array('conditions' => array('facebook_id' => $user_profile['id'])));
-
-				if(empty($user)) {
-
-					// User does not exist in DB, so we are going to create
-
-					$this->User->create();
-					$user['User']['facebook_id'] = $user_profile['id'];
-					$user['User']['facebook_token'] = $token;
-					$user['User']['name'] = $user_profile['name'];
-					$user['User']['sex'] = $user_profile['gender'];
-					$user['User']['login'] = $user_profile['username'];
-					$user['User']['facebook'] = $user_profile['link'];
-					$user['User']['role_id'] = 3;
-
-					if($this->User->save($user)) {
-						$user['User']['id'] = $this->User->id;
-						$this->Auth->login($user);
-						// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
-						//return $this->redirect(array('action' => 'dashboard'));
-						$this->Session->setFlash('', 'opening_lightbox_message');
-
-						// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
-				  //           'user_id' => $this->User->id,
-				  //           'user_ip' => $_SERVER['SERVER_ADDR'],
-				  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
-				  //       ));
-
-				  //       $this->getEventManager()->dispatch($event);
-
-						$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
-
-						return $this->redirect(array('action' => 'edit', $this->User->id));
-					} else {
-						$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
-						return $this->redirect(array('action' => 'login'));
-					}
-
-				} else {
-
-					// User exists, so we just force login
-					// TODO: check if any data changed since last Facebook login, then update in our table
-
-					// We need to update the Facebook token, once web tokens are short-term only
-					$this->User->id = $user['User']['id'];
-					$this->User->set('facebook_token', $token);
-					$this->User->save();
-
-					$user['User']['id'] = $this->User->id;
-					$this->Auth->login($user);
-					// $this->Session->write('Auth.User.id', $user['User']['id']);
-					// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
-			  //           'user_id' => $this->User->id,
-			  //           'user_ip' => $_SERVER['SERVER_ADDR'],
-			  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
-			  //       ));
-
-			  //       $this->getEventManager()->dispatch($event);
-
-					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
-
-					return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
-
-				}
-
-			}
-
-		} else if ($this->Auth->login()) {
-
-			// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
-	  //           'user_id' => $this->User->id,
-	  //           'user_ip' => $_SERVER['SERVER_ADDR'],
-	  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
-	  //       ));
-
-	  //       $this->getEventManager()->dispatch($event);
+		// if(isset($this->params['url']['code'])) {
+		//
+		// 	$token = $facebook->getAccessToken();
+		//
+		// 	if (!empty($token)) {
+		//
+		// 		$userFbData = $facebook->getUser();
+		// 		$user_profile = '';
+		//
+		// 		try {
+		// 			$user_profile = $facebook->api('/me');
+		// 			$this->Session->write('User', $user_profile);
+		// 		} catch (FacebookApiException $e) {
+		// 			error_log($e);
+		// 			$userFbData = null;
+		// 		}
+		//
+		// 		$user = $this->User->find('first', array('conditions' => array('facebook_id' => $user_profile['id'])));
+		//
+		// 		if(empty($user)) {
+		//
+		// 			// User does not exist in DB, so we are going to create
+		//
+		// 			$this->User->create();
+		// 			$user['User']['facebook_id'] = $user_profile['id'];
+		// 			$user['User']['facebook_token'] = $token;
+		// 			$user['User']['name'] = $user_profile['name'];
+		// 			$user['User']['sex'] = $user_profile['gender'];
+		// 			$user['User']['login'] = $user_profile['username'];
+		// 			$user['User']['facebook'] = $user_profile['link'];
+		// 			$user['User']['role_id'] = 3;
+		//
+		// 			if($this->User->save($user)) {
+		// 				$user['User']['id'] = $this->User->id;
+		// 				$this->Auth->login($user);
+		// 				// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
+		// 				//return $this->redirect(array('action' => 'dashboard'));
+		// 				$this->Session->setFlash('', 'opening_lightbox_message');
+		//
+		// 				// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+		// 		  //           'user_id' => $this->User->id,
+		// 		  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+		// 		  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+		// 		  //       ));
+		//
+		// 		  //       $this->getEventManager()->dispatch($event);
+		//
+		// 				$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+		//
+		// 			//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+		//
+		// 				return $this->redirect(array('action' => 'edit', $this->User->id));
+		// 			} else {
+		// 				$this->Session->setFlash(__('There was some interference in your connection.'), 'error');
+		// 				return $this->redirect(array('action' => 'login'));
+		// 			}
+		//
+		// 		} else {
+		//
+		// 			// User exists, so we just force login
+		// 			// TODO: check if any data changed since last Facebook login, then update in our table
+		//
+		// 			// We need to update the Facebook token, once web tokens are short-term only
+		// 			$this->User->id = $user['User']['id'];
+		// 			$this->User->set('facebook_token', $token);
+		// 			$this->User->save();
+		//
+		// 			$user['User']['id'] = $this->User->id;
+		// 			$this->Auth->login($user);
+		// 			// $this->Session->write('Auth.User.id', $user['User']['id']);
+		// 			// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
+		// 	  //           'user_id' => $this->User->id,
+		// 	  //           'user_ip' => $_SERVER['SERVER_ADDR'],
+		// 	  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
+		// 	  //       ));
+		//
+		// 	  //       $this->getEventManager()->dispatch($event);
+		//
+		// 			$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
+		//
+		// 			//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
+		//
+		// 			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->User->id));
+		//
+		// 		}
+		//
+		// 	}
+		//
+		// }
+		if ($this->Auth->login()) {
 
 			$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-			//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->Auth->user('id')));
 
@@ -439,204 +299,6 @@ class UsersController extends AppController {
 		//$this->set('users', $this->Paginator->paginate());
 	}
 
-
-	public function moreEvidences($lastOne, $limit = 1, $user_id = -1){
-		$this->autoRender = false; // We don't render a view in this example
-    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
-
-   		$last = $this->User->Evidence->find('first', array(
-    		'conditions' => array(
-    			'Evidence.id' => $lastOne
-    		)
-    	));
-
-    	$lang = $this->getCurrentLanguage();
-
-    	if(empty($last))
-    			return json_encode(array());
-
-	   	if($user_id==-1) {
-		   	$obj = $this->User->Evidence->find('all', array(
-				'order' => array(
-					'Evidence.created DESC'
-				),
-				'conditions' => array(
-					'Evidence.title != ' => '',
-					'Evidence.modified <' => $last['Evidence']['modified']
-				),
-				'limit' => $limit
-			));
-		} else {
-			$obj = $this->User->Evidence->find('all', array(
-				'order' => array(
-					'Evidence.created DESC'
-				),
-				'conditions' => array(
-					'Evidence.title != ' => '',
-					'Evidence.modified <' => $last['Evidence']['modified'],
-					'Evidence.user_id' => $user_id
-				),
-				'limit' => $limit
-			));
-		}
-
-		$el = 'evidence';
-		$ind = 'Evidence';
-
-
-    	$data = "";
-
-	    $str = "lastBegin-1lastEnd";
-	    $older = "";
-    	foreach ($obj as $key => $value) {
-    		$view = new View($this, false);
-			$content = ($view->element($el, array('e' => $value, 'lang' => $lang)));
-
-			$data .= $content .' ';
-
-    		$older = $value[$ind]['id'];
-    	}
-    	if($older != "") {
-    		$str = "lastBegin".$older."lastEnd";
-    	}
-    	return $str.$data;
-	}
-
-
-	public function moreEvokations($lastOne, $limit = 1, $user_id = -1){
-		$this->autoRender = false; // We don't render a view in this example
-    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
-
-    	$this->loadModel('Evokation');
-   		$last = $this->Evokation->find('first', array(
-    		'conditions' => array(
-    			'Evokation.id' => $lastOne
-    		)
-    	));
-
-    	if(empty($last))
-    			return json_encode(array());
-
-    	$obj = $this->Evokation->find('all', array(
-			'order' => array(
-				'Evokation.modified DESC'
-			),
-			'conditions' => array(
-				'Evokation.sent ' => 1,
-				'Evokation.modified <' => $last['Evokation']['modified']
-			),
-			'limit' => $limit
-		));
-
-		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
-			'conditions' => array(
-				'EvokationFollower.user_id' => $this->getUserId()
-			)
-		));
-
-		if($user_id == -1) {
-			$myEvokations = array();
-			foreach ($obj as $evokation) {
-				$mine = false;
-				if($evokation['Group']['user_id'] == $id)
-					$mine = true;
-
-				$this->loadModel('Group');
-				$group_evokation = $this->Group->GroupsUser->find('first', array(
-					'conditions' => array(
-						'GroupsUser.group_id' => $evokation['Group']['id'],
-						'GroupsUser.user_id' => $id
-					)
-				));
-
-				if(!empty($group_evokation))
-					$mine = true;
-
-				if($mine){
-					array_push($myEvokations, $evokation);
-				}
-			}
-
-			$common = $myEvokations;
-		} else {
-			$viewerEvokation = array();
-			$myEvokations = array();
-			foreach ($evokations as $evokation) {
-				$his = false;
-				$mine = false;
-				if($evokation['Group']['user_id'] == $id)
-					$his = true;
-
-				if($evokation['Group']['user_id'] == $this->getUserId())
-					$mine = true;
-
-				$op = array('GroupsUser.user_id' => $id, 'GroupsUser.user_id' => $this->getUserId());
-
-				$this->loadModel('Group');
-				$group_evokation = $this->Group->GroupsUser->find('first', array(
-					'conditions' => array(
-						'GroupsUser.group_id' => $evokation['Group']['id'],
-						'OR' => $op
-					)
-				));
-
-				if(!empty($group_evokation) && $group_evokation['GroupsUser']['user_id'] == $id)
-					$his = true;
-
-				if(!empty($group_evokation) && $group_evokation['GroupsUser']['user_id'] == $this->getUserId())
-					$mine = true;
-
-				if($his){
-					array_push($myEvokations, $evokation);
-				}
-
-				if($mine){
-					array_push($viewerEvokation, $evokation);
-				}
-			}
-			$obj = $myEvokations;
-			$common = $viewerEvokation;
-
-		}
-
-
-
-		$el = 'evokation';
-		$ind = 'Evokation';
-
-
-    	$data = "";
-
-	    $str = "lastBegin-1lastEnd";
-	    $older = "";
-    	foreach ($obj as $key => $value) {
-    		$showFollowButton = true;
-			foreach($common as $my) :
-				if(array_search($my['Evokation']['id'], $value['Evokation'])) {
-					$showFollowButton = false;
-					break;
-				}
-			endforeach;
-
-    		$view = new View($this, false);
-
-			if($showFollowButton)
-				$content = ($view->element($el, array('e' => $value, 'evokationsFollowing' => $evokationsFollowing, 'my_id' => $this->getUserId())));
-			else
-				$content = ($view->element($el, array('e' => $value, 'mine' => true, 'my_id' => $this->getUserId())));
-
-			$data .= $content .' ';
-
-    		$older = $value[$ind]['id'];
-    	}
-    	if($older != "") {
-    		$str = "lastBegin".$older."lastEnd";
-    	}
-    	return $str.$data;
-	}
-
-
-
 /**
  *
  * register method
@@ -653,7 +315,7 @@ class UsersController extends AppController {
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('O usuário foi salvo com sucesso.'));
 					$user = $this->User->find('first', array('conditions' => array('User.id' => $this->User->id)));
-	        $this->Auth->login($user);
+	        $this->Auth->login($user['User']);
 					return $this->redirect(array('action' => 'matching', $this->User->id));
 				} else {
 					$this->Session->setFlash(__('O usuário não pôde ser salvo. Por favor, tente novamente.'));
@@ -666,352 +328,7 @@ class UsersController extends AppController {
 	}
 
 /**
- *
- * dashboard method
- *
- * @return void
- */
-	public function dashboard($id = null) {
-		$me = $this->getUserId();
-		if(is_null($id)){
-			//send him to his on dashboard
-			$id = $me;
-		}
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-
-		if($id != $this->getUserId()){
-			$this->redirect(array('action'=>'profile', $id));
-		}
-
-		$lang = $this->getCurrentLanguage();
-		$flags['_en'] = true;
-		$flags['_es'] = false;
-		if($lang=='es') {
-			$flags['_en'] = false;
-			$flags['_es'] = true;
-		}
-
-		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
-
-		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
-
-		$sumMyPoints = $this->getPoints($this->getUserId());
-
-		$myLevel = $this->getLevel($sumMyPoints);
-
-		$this->loadModel('Level');
-
-		$thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $myLevel+1)));
-
-		if(!empty($thisLevel))
-			$percentage = round(($sumMyPoints / $thisLevel['Level']['points']) * 100);
-		else
-			$percentage = 0;
-
-		$evidence = $this->User->Evidence->find('all', array(
-			'order' => array(
-				'Evidence.modified DESC'
-			),
-			'conditions' => array(
-				'Evidence.title != ' => ''
-			),
-			'limit' => 8 // CHANGE 8
-		));
-
-		$this->loadModel('Badge');
-
-		$badges = $this->Badge->find('all', array('conditions' => array('Badge.mission_id' > 0)));
-
-		$this->loadModel('Evokation');
-		$evokations = $this->Evokation->find('all', array(
-			'order' => array(
-				'Evokation.modified DESC'
-			),
-			'conditions' => array(
-				'Evokation.sent' => 1
-			),
-			'limit' => 8 // CHANGE 8
-		));
-
-		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
-			'conditions' => array(
-				'EvokationFollower.user_id' => $this->getUserId()
-			)
-		));
-
-		$myEvokations = array();
-		foreach ($evokations as $evokation) {
-			$mine = false;
-			if($evokation['Group']['user_id'] == $id)
-				$mine = true;
-
-			$this->loadModel('Group');
-			$group_evokation = $this->Group->GroupsUser->find('first', array(
-				'conditions' => array(
-					'GroupsUser.group_id' => $evokation['Group']['id'],
-					'GroupsUser.user_id' => $id
-				)
-			));
-
-			if(!empty($group_evokation))
-				$mine = true;
-
-			if($mine){
-				array_push($myEvokations, $evokation);
-			}
-		}
-
-		// $myevidences = $this->User->Evidence->find('all', array(
-		// 	'order' => array(
-		// 		'Evidence.modified DESC'
-		// 	),
-		// 	'conditions' => array(
-		// 		'Evidence.user_id' => $id,
-		// 		'Evidence.title != ' => ''
-		// 	),
-		// 	'limit' => 8
-		// ));
-
-		// $allies = array();
-
-		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
-
-		$are_friends = array();
-		$mine_allies = array();
-		$post_allies = array();
-		$topic_allies = array();
-		$my_notifies = array();
-		//$allies = array();
-
-		//debug($friends);
-
-		foreach($friends as $friend){
-			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
-			array_push($mine_allies, array('Notification.user_id' => $friend['UserFriend']['friend_id']));
-			array_push($my_notifies, array('Notification.user_id' => $users['User']['id']));
-			array_push($post_allies, array('Post.user_id' => $friend['UserFriend']['friend_id']));
-			array_push($topic_allies, array('Topic.user_id' => $friend['UserFriend']['friend_id']));
-		}
-
-		//debug($are_friends);
-
-		$this->loadModel('Notification');
-
-		$notifies = array();
-		$feed = array();
-
-		// if(!empty($are_friends)){
-		// 	$allies = $this->User->find('all', array(
-		// 		'conditions' => array(
-		// 			'OR' => $are_friends
-		// 	)));
-
-		// 	// foreach ($notifies as $key => $value) {
-		// 	// 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
-		// 	// 	 $value['Notification']['origin'] == 'commentEvidence') {
-		// 	// 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
-		// 	// 			unset($notifies[$key]);
-		// 	// 		}
-		// 	// 	}
-		// 	// }
-		// } else{
-		// 	$allies = array();
-		// }
-
-		if(!empty($mine_allies)){
-			$feed = $this->Notification->find('all', array(
-				'conditions' => array(
-					'OR' => $mine_allies
-				),
-				'order' => array(
-					'Notification.created DESC'
-				)
-			));
-
-			foreach ($feed as $key => $value) {
-			 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
-		 	 		$value['Notification']['origin'] == 'commentEvidence') {
-		 	 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
-		 	 			unset($feed[$key]);
-		 	 		}
-		 	 	}
-		 	}
-		}
-
-		if(!empty($my_notifies)){
-			$notifies = $this->Notification->find('all', array(
-				'conditions' => array(
-					'OR' => $my_notifies
-				),
-				'order' => array(
-					'Notification.created DESC'
-				)
-			));
-
-			foreach ($notifies as $key => $value) {
-			 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
-		 	 		$value['Notification']['origin'] == 'commentEvidence') {
-		 	 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
-		 	 			unset($notifies[$key]);
-		 	 		}
-		 	 	}
-
-		 	 	if($value['Notification']['origin'] == 'gritBadge'){
-					foreach($badges as $badge):
-						if($badge['Badge']['id'] == $value['Notification']['origin_id']){
-							$notifies[$key]['badge_name'] = $badge['Badge']['name'];
-							break;
-						}
-					endforeach;
-				}
-		 	}
-		}
-
-		$this->loadModel('Mission');
-		$this->Mission->locale = $this->langToLocale(Configure::read('Config.language'));
-		$missions = $this->Mission->find('all', array(
-			'order' => array('Mission.created')
-		));
-
-		// debug(count($missions));
-		// debug(Configure::read('Config.language'));
-		// debug($this->langToLocale(Configure::read('Config.language')));
-
-		$show_basic_training = false;
-		$mission_ids = array();
-		foreach ($missions as $m => $mission) {
-			// $mission_ids[] = array('Attachment.foreign_key' => $mission['Mission']['id'], 'Attachment.model' => 'Mission');
-			if($flags['_es']) {
-				$missions[$m]['Mission']['title'] = $mission['Mission']['title_es'];
-				// $missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
-			}
-
-			if($mission['Mission']['basic_training'] == 1) {
-				if($users['User']['basic_training'] == 0) {
-					$insert['User']['id'] = $this->getUserId();
-					$insert['User']['role_id'] = $this->getUserRole();
-					$insert['User']['basic_training'] = 1;
-
-					$this->User->id = $insert['User']['id'];
-					$this->User->save($insert);
-
-					$show_basic_training = true;
-				}
-				$basic_training = $mission;
-				unset($missions[$m]);
-			}
-
-		}
-
-		$allusers = $this->User->find('all');
-
-		//admin notifications check:
-		$this->loadModel('AdminNotification');
-
-		if(isset($users['AdminNotificationsUser'][0])) {
-			//holds the last notification directed to this user
-			$last = $users['AdminNotificationsUser'][count($users['AdminNotificationsUser']) - 1];
-			//$last['id'] = 0;
-		} else {
-			$last['admin_notification_id'] = 0;
-		}
-
-		//get all newer than that one
-		$adminNotifications = $this->AdminNotification->find('all', array(
-			'conditions' => array(
-				'AdminNotification.id >' => $last['admin_notification_id'],
-				'AdminNotification.user_target' => null
-			)
-		));
-
-		foreach ($adminNotifications as $not) {
-			//he sees it..
-			$insert['AdminNotificationsUser']['user_id'] = $users['User']['id'];
-			$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
-
-			$this->User->AdminNotificationsUser->create();
-			$this->User->AdminNotificationsUser->save($insert);
-
-
-			$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
-	            'entity_id' => $not['AdminNotification']['id'],
-	            'user_id' => $this->getUserId(),
-	            'entity' => 'showNotification'
-	        ));
-
-	        $this->getEventManager()->dispatch($event);
-	        // break;
-		}
-
-		//get all newer than that one
-		$adminNotificationsToMe = $this->AdminNotification->find('all', array(
-			'conditions' => array(
-				'AdminNotification.id >' => $last['admin_notification_id'],
-				'AdminNotification.user_target' => $this->getUserId()
-			)
-		));
-
-
-		foreach ($adminNotificationsToMe as $not) {
-			//he sees it..
-			$insert['AdminNotificationsUser']['user_id'] = $users['User']['id'];
-			$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
-
-			$this->User->AdminNotificationsUser->create();
-			$this->User->AdminNotificationsUser->save($insert);
-
-			$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
-	            'entity_id' => $not['AdminNotification']['id'],
-	            'user_id' => $this->getUserId(),
-	            'entity' => 'showNotification'
-	        ));
-
-			// debug($not);
-	        $this->getEventManager()->dispatch($event);
-	        // break;
-		}
-
-
-
-		// $this->loadModel('Forum.Post');
-		// $this->loadModel('Forum.Topic');
-
-		$a_posts = array();
-		$a_topics = array();
-
-
-		// if(!empty($post_allies)){
-		// 	$this->Post->recursive = 1;
-		// 	$a_posts = $this->Post->find('all', array(
-		// 		'conditions' => array(
-		// 			'OR' => $post_allies
-		// 		)
-		// 	));
-		// }
-
-		// if(!empty($topic_allies)){
-		// 	$this->Topic->recursive = 1;
-		// 	$a_topics = $this->Topic->find('all', array(
-		// 		'conditions' => array(
-		// 			'OR' => $topic_allies
-		// 		)
-		// 	));
-		// }
-
-
-		$this->set(compact('badges', 'feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'adminNotificationsToMe', 'evidence', 'myevidences', 'missions', 'lang',
-			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies',
-			'show_basic_training', 'evokations', 'evokationsFollowing', 'myEvokations'));
-		//'groups', 'my_photo', 'user_photo',
-
-	}
-
-/**
- * logout method
+ * allies method
  *
  * @return void
  */
@@ -1236,8 +553,6 @@ class UsersController extends AppController {
 
 	}
 
-
-
 /**
  *
  * matching questions
@@ -1247,6 +562,8 @@ class UsersController extends AppController {
 	public function matching($id = null) {
 		//List issues (all, and already saved)
 		//debug($loggedIn);
+
+		//debug($loggedInUser);
 
 		$issues = $this->User->UserIssue->Issue->find('list');
 		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
