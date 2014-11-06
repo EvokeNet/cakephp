@@ -204,8 +204,9 @@ button:hover, button:focus, .button:hover, .button:focus {
 	min-width: 6em;
 }
 
-.tabs-style-small-image dd a {
-	padding: 0.5rem 1rem;
+.tabs-style-small-image dd a, .tabs-style-small-image .tab-title a {
+	padding: 0.5rem 0.7rem;
+	font-size: 0.9rem;
 }
 
 .tabs-style-small-image .right dd {
