@@ -1192,6 +1192,7 @@ class UsersController extends AppController {
 
 
 		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
+			'recursive' => 0,
 			'conditions' => array(
 				'EvokationFollower.user_id' => $this->getUserId()
 			)
