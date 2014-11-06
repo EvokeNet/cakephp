@@ -648,10 +648,9 @@ class MissionsController extends AppController {
 		//Facebook login URL comes from session
 		$fbLoginUrl = $this->Session->read('fbLoginUrl');
 
-		$this->loadModel('User');
-		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		$user = $this->Auth->user();
 
-		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
+		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id), 'contain' => 'Quest'));
 
 		$novels = $this->Mission->Novel->find('all', array(
 			'order' => array(

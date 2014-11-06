@@ -1097,72 +1097,27 @@ class UsersController extends AppController {
 
 		
 		//LEADERBOARD
-		$this->loadModel('Point');
-		// $leaderboard_users = $this->User->find('all', array(
-		//     'joins' => array(
-		//                     array(
-								// 'fields' => array(
-						  //           'users.*',
-						  //           'sum(points.value) as total_points'
-						  //        ),
-		//                         'table' => 'points',
-		//                         'type' => 'right',  //join of your choice left, right, or inner
-		//                         'foreignKey' => true,
-		//                         'limit' => 3
-		//                     ),
-		//                 ),
-		//     'order' => array('Image.uploaded DESC')
-		// ));
+		$max_leaderboard_users = 6; //Total of leaders on the leaderboard (including the top ones)
 
-		//$this->getLeaderboard($max_top_leaders, $max_total_leaders, $allow_ties);
-
-		$max_top_leaders = 3; //How many are in the top of the leaderboard
-		$max_total_leaders = 6; //Total of leaders on the leaderboard (including the top ones)
-
-		$allusers = $this->User->find('all');
-		// $leaderboard_users = $this->User->find('all', array(
-		// 	'contain' => 'points',
-		// 	'limit' => 6,
-		// 	'order' => array('sum(points.value) DESC', 'user.name ASC')
-		// ));
-		// debug($leaderboard_users);
-
-		foreach ($allusers as $usr) {
-			//POINTS
-			$points = $this->Point->find('all', array(
-				'conditions' => array(
-					'Point.user_id' => $usr['User']['id']
-				)
-			));
-			$usrpoints = 0;
-			foreach ($points as $point) {
-				$usrpoints += $point['Point']['value'];
-			}
-
-			//LEVEL
-			$usr['User']['level'] = $this->getLevel($usrpoints);
-			$points_users[$usrpoints][] = $usr['User'];
-
-			//POWERPOINTS
-			$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
-				'conditions' => array(
-					'UserPowerPoint.user_id' => $usr['User']['id']
-				)
-			));
-
-			$tmp = array();
-			foreach ($powerpoints_user as $powerpoint_user) {
-				if(isset($tmp[$powerpoint_user['UserPowerPoint']['power_points_id']])) {
-
-					$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] += $powerpoint_user['UserPowerPoint']['quantity'];
-				} else {
-
-					$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] = $powerpoint_user['UserPowerPoint']['quantity'];
-				}
-			}
-		}
-
-		krsort($points_users);
+		$leaderboard_users = $this->User->find('all', array(
+		    'joins' => array(
+                array(
+                	'table' => 'points',
+                	'alias' => 'Points',
+                	'type' => 'left',  //join of your choice left, right, or inner
+                    'conditions' => array(
+						'Points.user_id = User.id'
+					)
+                ),
+            ),
+		    'fields' => array(
+				'User.*',
+				'sum(Points.value) as total_points'
+			),
+		    'group' => 'Points.user_id',
+		    'order' => array('total_points DESC'),
+		    'limit' => 60
+		));
 
 		//FRIENDS
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
@@ -1171,7 +1126,7 @@ class UsersController extends AppController {
 
 		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
-		$followers = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.friend_id' => $id))); //this->getUserId()
+		$followers = $this->User->UserFriend->find('all', array('recursive' => 0, 'conditions' => array('UserFriend.friend_id' => $id))); //this->getUserId()
 
 		$are_friends = array();
 
@@ -1282,6 +1237,7 @@ class UsersController extends AppController {
 		$this->loadModel('Badge');
 
 		$badges = $this->User->UserBadge->find('all', array(
+			'recursive' => 0,
 			'conditions' => array(
 				'UserBadge.user_id' => $id
 			)
@@ -1310,7 +1266,7 @@ class UsersController extends AppController {
 
 		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'lang', 'similar_users'));
+			'power_points', 'points_users', 'leaderboard_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'lang', 'similar_users'));
 
 	}
 

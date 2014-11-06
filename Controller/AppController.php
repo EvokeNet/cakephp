@@ -64,7 +64,7 @@ class AppController extends Controller {
 				//Info from the user that is currently logged in
 				$cuser = $this->Auth->user();
 				$loggedInUser = $this->Auth->user();
-
+                
 				$userPoints = $this->getPoints($this->getUserId());
 				$userLevel = $this->getLevel($userPoints); //level ID
 				$userNextLevel = $this->getNextLevel($userLevel); //next level object
