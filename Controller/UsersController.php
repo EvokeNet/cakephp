@@ -147,7 +147,7 @@ class UsersController extends AppController {
 		$missions = $this->Mission->find('all');
 
 		$googleLoginURL = $this->SocialLogin->create_google_url();
-// debug($googleLoginURL[1]);
+
 		if (isset($this->params['url']['code'])) {
 			// debug($this->params['url']);
 			// die();

@@ -3,10 +3,11 @@
 
 		<div class="medium-6 columns">
 			<?php
-				echo $this->Form->input('email', array('type' => 'email', 'required' => true, 'label' => __('Email')));
-				// echo $this->Form->input('email', array('type' => 'email', 'required' => true, 'label' => __('Confirm email')));
-				echo $this->Form->input('password', array('required' => true, 'label' => __('Password')));
-				echo $this->Form->input('confirm_password', array('required' => true, 'label' => __('Confirm Password')));
+				echo $this->Form->input('email', array('type' => 'email', 'required' => true, 'label' => __('Email'), 'errorMessage' => 'Teste', 'error' => array(
+			        'attributes' => array('wrap' => 'div', 'class' => 'alert-box alert radius')
+			    )));
+				echo $this->Form->input('password', array('type' => 'password', 'required' => true, 'label' => __('Password')));
+				echo $this->Form->input('confirm_password', array('type' => 'password', 'required' => true, 'label' => __('Confirm Password')));
 			?>
 		</div>
 
@@ -38,6 +39,7 @@
 					<!-- DATE OF BIRTH -->
 					<?php
 						echo $this->Form->input('birthdate', array(
+							'required' => true,
 						    'label' => 'Date of birth',
 						    'dateFormat' => 'DMY',
 						    'minYear' => date('Y') - 130,
@@ -68,14 +70,14 @@
 					<!-- LANGUAGE -->
 					<?php
 						echo $this->Form->input('language', array(
+							'required' => true,
 						    'options' => array('portuguese' => __('Portuguese'), 'english' => __('English'), 'spanish' => __('Spanish')),
 						    'empty' => '(choose one)'
 						));
 					?>
 
 					<!-- SIGN UP BUTTON -->
-
-						<button class="button small full-width margin top-05 bottom-0" type="submit"><?php echo __('Sign up') ?></button>
+					<button class="button small full-width margin top-05 bottom-0" type="submit"><?php echo __('Sign up') ?></button>
 
 					<p class="text-right"><small class="text-color-highlight"><?php echo __('Already an agent? Sign in on the top bar!') ?></small></p>
 				</div>

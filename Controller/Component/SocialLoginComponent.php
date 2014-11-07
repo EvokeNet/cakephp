@@ -22,8 +22,6 @@ class SocialLoginComponent extends Component {
 
       $loginURL = $client->createAuthUrl();
 
-      $array = array($client, $loginURL);
-
       return $loginURL;
 
     }

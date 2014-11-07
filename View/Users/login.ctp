@@ -7,6 +7,12 @@
 	$this->start('topbar');
 	echo $this->element('topbar');
 	$this->end();
+
+	//VIDEO
+	if($browserLanguage == 'es')
+		$video_url = 'http://player.vimeo.com/video/93164917';
+	else
+		$video_url = 'http://player.vimeo.com/video/94984840';
 ?>
 
 	<div class="evoke login fullpage">
@@ -47,9 +53,15 @@
 	    <div class="section evoke login gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
 		    	<h1 class="text-color-important text-center margin bottom-1"><?php echo ('What is Evoke?'); ?></h1>
-				<!-- <p class="font-size-important"><?php echo ('Welcome to the Evoke network!'); ?></p> -->
 				<p class="font-size-important"><?php echo ('Welcome to the Evoke network! If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?>
 					<?php echo ('As an Evoke agent, you will choose your mission, develop your powers, and together will agents around the world create your <strong>own world changing idea</strong>.'); ?></p>
+			</div>
+	    </div>
+	    <div class="section evoke login gradient-on-top padding top-2">
+	    	<div class="row small-width text-center">
+				<div class="flex-video widescreen vimeo">
+				  <iframe src="<?= $video_url ?>" width="320" height="180" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+				</div>
 			</div>
 	    </div>
 	    <div class="section evoke login gradient-on-top padding top-2">
@@ -132,10 +144,10 @@
 						<p class="font-size-important"><?php echo ('Evidence is what you do.  For each quest, you will be asked to post your evidence to the Evoke Network in the form of a blog, video, or photo.  Your evidence will be reviewed by the entire network and you will receive comments and power points.'); ?></p>
 					</section>
 					<section role="tabpanel" aria-hidden="true" class="content" id="panelBadges">
-						<p class="font-size-important"><?php echo ('Powers are what you give and earn through your participation in the network and your response to quests.  An Evoke agent aims to be a creative visionary, a deep collaborator, a systems thinker, and a social activist.  Powers you earn will build your skills in these areas.'); ?></p>
+						<p class="font-size-important"><?php echo ('As you gain strength and earn powers, you will earn badges – the official recognition of the Evoke network that you have developed the skills and the fortitude to become an agent capable of changing the world.'); ?></p>
 					</section>
 					<section role="tabpanel" aria-hidden="true" class="content" id="panelPower">
-						<p class="font-size-important"><?php echo ('As you gain strength and earn powers, you will earn badges – the official recognition of the Evoke network that you have developed the skills and the fortitude to become an agent capable of changing the world.'); ?></p>
+						<p class="font-size-important"><?php echo ('Powers are what you give and earn through your participation in the network and your response to quests.  An Evoke agent aims to be a creative visionary, a deep collaborator, a systems thinker, and a social activist.  Powers you earn will build your skills in these areas.'); ?></p>
 					</section>
 				</div>
 			</div>
@@ -149,7 +161,10 @@
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
 	    		<h2 class="text-color-important text-center margin bottom-1"><?php echo ('How to become an agent?'); ?></h2>
-		    	 <p class="font-size-important"><?php echo ('If you have found this message, it is your destiny to follow us.  To start your journey toward becoming an Evoke Agent, you simply need to engage by providing your information here.'); ?></p>
+		    	 <p class="font-size-important"><?php echo ('If you have found this message, it is your destiny to follow us. To start your journey toward becoming an Evoke Agent, you simply need to sign up.'); ?></p>
+		    	 <a class="button" href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'register')) ?>">
+		    	 	<?= __('Sign up') ?>
+		    	 </a>
 		    </div>
 
 		    <!-- FOOTER -->
@@ -189,6 +204,7 @@
 					navigation: true,
 					navigationTooltips: ["<?php echo ('Examples of missions'); ?>",
 						"<?php echo ('What is Evoke?'); ?>",
+						"<?php echo ('Trailer'); ?>",
 						"<?php echo ('Why was Evoke created?'); ?>",
 						"<?php echo ('Gameplay'); ?>",
 						"<?php echo ('Who is behind Evoke?'); ?>",

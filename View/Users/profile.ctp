@@ -26,17 +26,22 @@
 			}
 			?>
 
-			<div class="centering-block large-8 medium-12 small-6 margins-auto">
-				<!-- <img src="<?=$pic?>" class="img-circular" alt="<?= __('Your profile picture') ?>" /> -->
+			<div class="centering-block large-12 medium-6 small-6 margins-auto">
 
-				<div id = "cropProfilePicture">
-					<img src="<?=$pic?>" alt="<?= __('Your profile picture') ?>" />
+				<div>
+					<img src="<?=$pic?>" class="profile-picture-150px img-circular" alt="<?= __('Your profile picture') ?>" />
 				</div>
 
 			</div>
 
 			<h4 class="text-color-highlight text-center margin top-1"><?= $user['User']['name'] ?></h4>
-			<div><p class="text-center"><?= $this->Text->getExcerpt($user['User']['biography'], 30, '...') ?></p></div>
+			<div>
+				<p class="text-center">
+					<?= (isset($user['User']['mini_biography']) && (($user['User']['mini_biography']) != ""))
+						? $user['User']['mini_biography']
+						: $this->Text->getExcerpt($user['User']['biography'], 30, '...') ?>
+				</p>
+			</div>
 		</div>
 
 		<!-- SOCIAL NETWORKS -->
@@ -52,7 +57,48 @@
 		<!-- POTENTIAL ALLIES -->
 		<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor">
 			<h4><?= __('Potential allies') ?></h4>
-			<p>...</p>
+		    <ul class="full-width small-block-grid-1">
+		      <?php
+		        $counter = 0;
+		        foreach($similar_users as $similar_user):
+		          $pic = $this->webroot.'webroot/img/user_avatar.jpg';
+		          if($similar_user['User']['photo_attachment'] == null) {
+		            if($similar_user['User']['facebook_id'] != null) {
+		              $pic = "https://graph.facebook.com/". $similar_user['User']['facebook_id'] ."/picture?type=large";
+		            }
+		          }
+		          else {
+		            $pic = $this->webroot.'files/attachment/attachment/'.$similar_user['User']['photo_dir'].'/'.$similar_user['User']['photo_attachment'];
+		          }
+		      ?>
+		      <li>
+		        <!-- PANEL -->
+		        <a href="#" data-reveal-id="modalProfilePotentialAllies<?= $counter ?>">
+		          <div class="profile-content padding top-1">
+		          	<!-- USER PICTURE -->
+		          	<div class="left padding right-1 full-height">
+		          		<img class="profile-picture-40px img-circular smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+		          	</div>
+
+		            <!-- USER INFO -->
+		            <div class="vertical-align-middle">
+		              <p class="user-name margins-0">
+		                <?= $similar_user['User']['name'] ?>
+		              </p>
+
+		              <small>Level 5</small>
+		            </div>
+		          </div>
+		        </a>
+
+		        <!-- VIEW AGENT DETAILS MODAL -->
+		        <?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'PotentialAllies'.$counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
+		      </li>
+		      <?php
+		          $counter++;
+		        endforeach;
+		      ?>
+		    </ul>
 		</div>
 	</div>
 
@@ -87,9 +133,9 @@
 		<div class="row border-top-divisor">
 			<div class="small-12 columns margin top-2">
 
-				<div>
+				<div class="row margins-0">
 					<h3 class="left margin right-2"><?= __('Allies') ?></h3>
-					<a class="button small disabled" disabled href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'index')); ?>"><?php echo __('ALL USERS'); ?></a>
+					<!-- <a class="button small disabled" disabled href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'index')); ?>"><?php echo __('ALL USERS'); ?></a> -->
 				</div>
 
 
@@ -111,7 +157,7 @@
 					<div class="large-2 medium-4 small-6 columns paddings-0 text-center">
 						<!-- PICTURE -->
 						<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
-							<img class="profile-picture small radius" src='<?= $pic ?>' alt="<?= $ally['User']['name'] ?>'s profile picture" />
+							<img class="profile-picture small radius img-glow-on-hover-small" src='<?= $pic ?>' alt="<?= $ally['User']['name'] ?>'s profile picture" />
 							<p class="text-center text-glow-on-hover"><?= $ally['User']['name'] ?></p>
 						</a>
 
@@ -132,14 +178,14 @@
 
 		<!-- LEADERBOARD -->
 		<div class="row border-top-divisor">
-			<div class="large-6 columns padding top-2 border-right-divisor">
+			<div class="large-6 columns padding top-2 right-2 border-right-divisor">
 				<h3><?= __('Leaderboard') ?></h3>
-				...
+				<?php echo $this->element('leaderboard'); ?>
 			</div>
 
 			<div class="large-6 columns padding top-2">
-				<h3><?= __('Badges earned') ?></h3>
-				...
+				<h3><?= __('Badges earned') ?>&nbsp;&nbsp;(<?= count($badges) ?>)</h3>
+				<?php echo $this->element('badges'); ?>
 			</div>
 		</div>
 	</div>
@@ -164,7 +210,7 @@
 			$(this).siblings('p').removeClass('text-glow');
 		});
 	</script>
-	<?php $this->end(); ?>
+<?php $this->end(); ?>
 
 <?php
 	/* Footer */
@@ -172,7 +218,3 @@
 	echo $this->element('footer');
 	$this->end();
 ?>
-
-<!-- <div class="full-width full-height">
-	<img src="<?= $this->webroot.'img/mockup-1-evoke-profile-.jpg' ?>"  class="full-width" />
-</div> -->

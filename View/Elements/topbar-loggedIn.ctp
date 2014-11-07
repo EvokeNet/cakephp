@@ -1,5 +1,5 @@
 <?php
-	if(isset($loggedInUser['User']))
+	if($loggedInUser['User'])
 		$loggedInUser = $loggedInUser['User'];
 ?>
 

@@ -57,13 +57,14 @@ class User extends AppModel {
 				),
 				'email' => array(
 						'email' => array(
-								'rule' => array('email')
+								'rule' => array('email'),
+								'message' => 'Make sure you typed your email correctly'
 						),
 						'isUnique' => array(
 	              'rule' => 'isUnique',
-	              'message' => 'Este e-mail já está cadastrado'
+	              'message' => 'This email has already been registered'
 	          )
-				),
+			),
     );
 
 

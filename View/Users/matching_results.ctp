@@ -76,7 +76,7 @@
 					$counter++;
 				endforeach;
 			?>
-		</div>
+		</ul>
 	</div>
 </div>
 

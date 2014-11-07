@@ -19,6 +19,7 @@
 /* GENERAL STYLES */
 html, body {
 	background-color: #333;
+	height: inherit;
 }
 
 *, html, body,
@@ -26,10 +27,10 @@ button, div, p, span, a,
 .evoke .button {
 	font-family: 'Raleway', 'Arial', sans-serif;
 	font-size: 100%;
-	/*line-height: 1.618;*/
 	color: #cccccc;
 	-webkit-text-stroke: 0.1px;
 	-webkit-font-smoothing: antialiased;
+	word-break: break-word;
 }
 
 /* Headings */
@@ -44,6 +45,11 @@ button, div, p, span, a,
 
 .evoke h3, .evoke h4, .evoke h5, .evoke h6 {
 	text-transform: uppercase;
+}
+
+/* Work break */
+.no-word-break {
+	word-break: normal;
 }
 
 /* Visibility */
@@ -215,6 +221,10 @@ button, div, p, span, a,
 	padding: 0!important;
 }
 
+.evoke .padding.all-0 {
+	padding: 0!important;
+}
+
 .evoke .padding.all-05 {
 	padding: 0.5em;
 }
@@ -323,7 +333,9 @@ button, div, p, span, a,
 	position: relative;
 }
 
-/* Alignment */
+/* --------------------------- */
+/* ALIGNMENT */
+/* --------------------------- */
 /* Align with table and table-cell */
 .evoke .vertical-align-top {
 	vertical-align: top;
@@ -345,7 +357,7 @@ button, div, p, span, a,
 	display: table-cell;
 }
 
-/* Align with a ghost-block above */
+/* alignment with BLOCKS */
 .evoke .centering-block {
 	text-align: center;
 }
@@ -368,14 +380,6 @@ button, div, p, span, a,
 
 .evoke .display-inline{
 	display:inline
-}
-
-#cropProfilePicture {
-		width: 150px;
-		height: 150px;
-		margin: 0 auto;
-		overflow: hidden;
-		border-radius: 50%
 }
 
 .side-menu{
@@ -421,7 +425,9 @@ button, div, p, span, a,
 	margin: .2em 0 0 0;
 }
 
-/* Opacity */
+/* --------------------------- */
+/* OPACITY */
+/* --------------------------- */
 .evoke .opacity-05 {
 	opacity: 0.5;
 	filter: alpha(opacity=50); /* For IE8 and earlier */
@@ -432,7 +438,13 @@ button, div, p, span, a,
 	filter: alpha(opacity=70); /* For IE8 and earlier */
 }
 
-/* Forms */
+/* --------------------------- */
+/* FORMS */
+/* --------------------------- */
+option {
+	color: #333;
+}
+
 input[type=text]:focus, input[type=email]:focus, input[type=number]:focus,
 input[type=password]:focus, input[type=search]:focus, input[type=url]:focus,  textarea {
   -webkit-transition: all 0.30s ease-in-out;
@@ -533,6 +545,10 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background-color: #333;
 }
 
+.evoke .background-color-light-dark {
+	background-color: #292929;
+}
+
 .evoke .background-color-dark {
 	background-color: #252525;
 }
@@ -545,11 +561,16 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background-color: #26dee0;
 }
 
+
+/* --------------------------- */
+/* CIRCULAR IMAGES */
+/* --------------------------- */
 .evoke .img-circular {
 	border-radius: 50%;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 }
+
 
 /* --------------------------- */
 /* BORDER */
@@ -762,11 +783,26 @@ button, .button {
 /* --------------------------- */
 .progress.level-bar {
 	height: 0.5rem;
-	min-width: 160px;
 }
 
 .progress .meter {
 	background-color: #26dee0;
+}
+
+
+/* --------------------------- */
+/* USER PICTURE */
+/* --------------------------- */
+
+/* Profile picture */
+.evoke .profile-picture-40px {
+	height: 40px;
+	width: 40px;
+}
+
+.evoke .profile-picture-150px {
+	width: 150px;
+	height: 150px;
 }
 
 /* --------------------------- */
@@ -781,11 +817,6 @@ button, .button {
 	margin-right: 10px;
 }
 
-/* Profile picture */
-.evoke .top-bar-section .profile-picture-topbar {
-	height: 40px;
-	width: 40px;
-}
 
 /* Padding of divs and links */
 .evoke .top-bar-section ul li:not(.has-form) a {
