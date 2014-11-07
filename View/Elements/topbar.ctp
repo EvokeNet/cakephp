@@ -43,6 +43,7 @@
 			<?php 
 			//MENU BEFORE SIGN IN
 			if (isset($loggedIn) && (!$loggedIn)) {
+				echo $this->Session->flash();
 				echo $this->element('topbar-login', array('ulClass' => 'right'));
 			}
 
