@@ -10,6 +10,11 @@
 	z-index: 5;
 }
 
+.evoke .mission-description {
+	font-size: larger;
+	color: #fff;
+}
+
 .evoke .phases-bar * {
 	font-size: 0.7rem;
 }
@@ -58,7 +63,6 @@
 .evoke .missions .right-small {
 	transition: transform 500ms ease 0s;
 }
-
 
 /* NAVIGATION BAR */
 .evoke #navigationBar {

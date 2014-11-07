@@ -81,12 +81,12 @@
 		          	</div>
 
 		            <!-- USER INFO -->
-		            <div class="vertical-align-middle">
+		            <div class="vertical-align-middle" style="margin-left: 57px;">
 		              <p class="user-name margins-0">
 		                <?= $similar_user['User']['name'] ?>
 		              </p>
 
-		              <small>Level 5</small>
+		              <small>Level <?= $similar_user['User']['level'] ?></small>
 		            </div>
 		          </div>
 		        </a>
@@ -143,6 +143,7 @@
 				<?php
 				if (count($followers) > 0):
 					$counter = 0;
+					
 					foreach($followers as $ally):
 						$pic = $this->webroot.'webroot/img/user_avatar.jpg';
 						if($ally['User']['photo_attachment'] == null) {

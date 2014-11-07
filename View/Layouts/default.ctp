@@ -79,14 +79,16 @@ $title = __('Evoke Network');
 	<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
 
 	<?php
-
+		//JQUERY
 		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
 		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
+		//MODERNIZR
 		echo $this->Html->script('/components/modernizr/modernizr.js');
+		//FOUNDATION
 		echo $this->Html->script('/components/foundation/js/foundation.min.js');
 
 		echo $this->Html->script('evoke');
-		echo $this->fetch('script');
+		echo $this->fetch('script'); //SCRIPTS IN EACH PAGE
 	?>
 
 
