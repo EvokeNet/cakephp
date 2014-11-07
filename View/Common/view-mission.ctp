@@ -14,15 +14,14 @@
 	);
 ?>
 
-	<!-- TOPBAR MENU -->
-	<?php $this->start('topbar'); ?>
-	<div id="missions-menu" class="sticky fixed">
-		<?php echo $this->element('topbar', array('sticky' => '', 'fixed' => '')); ?>
-	</div>
-	<?php $this->end(); ?>
-	<!-- TOPBAR MENU -->
+<!-- TOPBAR MENU -->
+<?php $this->start('topbar'); ?>
+<div id="missions-menu" class="sticky fixed">
+	<?php echo $this->element('topbar', array('sticky' => '', 'fixed' => '')); ?>
+</div>
+<?php $this->end(); ?>
+<!-- TOPBAR MENU -->
 
-	<!-- ACTUAL CONTENT -->
 	<div id="missions-body" class="missions">
 		<div class="off-canvas-wrap" data-offcanvas>
 			<div class="inner-wrap">
@@ -131,7 +130,7 @@
 												<span data-tooltip aria-haspopup="true" class="has-tip tip-top" title="In preview, it is not possible to add attachments.">
 												<?php
 												// echo "<label>".__('Attachments'). "</label>";
-												echo '<button class="button small general" style = "display:inline" disabled>'.__('+ File').'</button>';
+												echo '<button class="button small" style="display:inline" disabled>'.__('+ File').'</button>';
 												?>
 												</span>
 												<?php
@@ -153,9 +152,9 @@
 									            // echo '</div>';
 											?>
 											
-											<div class = "evoke titles-right" style = "display: inline;">
+											<div class="evoke titles-right" style = "display: inline;">
 												<span data-tooltip aria-haspopup="true" class="has-tip tip-top" title="In preview, it is not possible to save your evidence.">
-													<button type="submit" id = "evidenceButton" class= "evoke button general small" disabled><?= strtoupper(__('Save Evidence')) ?></button>
+													<button type="submit" class="evidenceButton button small" disabled><?= strtoupper(__('Save Evidence')) ?></button>
 												</span>	
 											</div>
 									    </div>
@@ -173,13 +172,13 @@
 
 				<aside class="right-off-canvas-menu tabDossier" id="tabDossier">
 					<div class="large-12 large-centered columns full-height background-color-standard margin right-1">
-						This section is not available in preview.
+						<?php echo $this->fetch('tabDossierContent'); ?>
 					</div>
 				</aside>
 
 				<aside class="right-off-canvas-menu tabEvidences" id="tabEvidences">
 					<div class="large-12 large-centered columns full-height background-color-standard margin right-1">
-						This section is not available in preview.
+						<?php echo $this->fetch('tabEvidencesContent'); ?>
 					</div>
 				</aside>
 
@@ -204,6 +203,9 @@
 								<li><a href="#" class="button small thin disabled font-weight-bold"><i class="fa fa-flash fa-lg"></i> <?= __('Evoke') ?></a></li>
 							</ul>
 						</div>
+
+						<!-- MISSION DESCRIPTION -->
+						<p class="text-shadow-dark mission-description"><?php echo h($mission['Mission']['description']); ?></p>
 					</div>
 
 					<!-- MISSOES -->
@@ -217,9 +219,7 @@
 								</div>
 							<?php endforeach; 
 
-
-
-							//ONLY FOR TESTS
+							//NO GRAPHIC NOVEL (just in case)
 							if (count($novels) < 1) {?>
 							<div data-alert="" class="alert-box radius">
 								Alert: There is no graphic novel available in this mission.
@@ -249,10 +249,8 @@
 
 
 
+<?php $this->start('script'); ?>
 <?php 
-	echo $this->Html->script('/components/jquery/dist/jquery.min.js');
-	echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
-
 	//SLICK CAROUSEL
 	echo $this->Html->script('/components/slick-carousel/slick/slick.min.js');
 	echo $this->Html->script('//code.jquery.com/jquery-migrate-1.2.1.min.js');
@@ -261,7 +259,6 @@
 	echo $this->Html->script('/components/sticky-kit/jquery.sticky-kit.min.js');
 
 	//FOUNDATION
-	echo $this->Html->script('/components/foundation/js/foundation/foundation.js');
 	echo $this->Html->script('/components/foundation/js/foundation/foundation.tab.js');
 	
 	//MEDIUM EDITOR
@@ -312,14 +309,14 @@
 			//Off canvas
 			function open_sidr(sidr_button,sidr_source) {
 				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
-				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-05'); //Blur everything else
+				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-04'); //Blur everything else
 	    		$('div.missions-submenu').removeClass("hidden"); //Show submenu
 	    		$('.right-small').css("right",$(sidr_source).width()); //Off-canvas buttons go to the left
 			}
 
 			function close_sidr(sidr_button,sidr_source) {
 				$(sidr_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
-				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-05'); //Blur everything else
+				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-04'); //Blur everything else
 				$('div.missions-submenu').addClass("hidden"); //Hide submenu
 				$('.right-small').css("right","0"); //Off-canvas buttons go back to the right
 			}
@@ -389,30 +386,6 @@
 			*/
 		});
 
-		//$(document).foundation();
-
-		//Sticky navigation bar, respecting parent element
-		//$(window).ready(function() {
-			//$(".sticky").stick_in_parent();
-			/*var offset_top = $(window).height() * 0.9;
-			$("#navigationBar").css("top",offset_top+"px");
-			$("#navigationBar").stick_in_parent({ parent: 'section', offset_top: offset_top })
-	        .on("sticky_kit:stick", function(e) {
-	        	//alert("STICKY");
-	            $(e.target)
-	            .css("top",0+"px")
-	            //.css("margin-top","0")
-	            //.velocity("transition.slideDownIn", { duration: 200 })
-	            .on("sticky_kit:unstick", function(e) {
-	            	//alert("UNSTICK");
-	            	$(e.target)
-	            	.css("top",offset_top+"px");
-	            });
-	        });
-
-	        $(".sticky_column").stick_in_parent();*/
-		//});
-
 		//MEDIUM EDITOR FOR EVIDENCES
 		var editor = new MediumEditor('.editableContent', {
 		    buttons: [
@@ -456,7 +429,7 @@
 		    targetBlank: true,
 	  	});
 
-		jQuery('#evidenceButton').click(function() {
+		jQuery('.evidenceButton').click(function() {
 
 			var MyDiv = document.getElementById('evidenceTitle');
 			var MyDiv1 = document.getElementById('evidenceContent');
@@ -466,3 +439,4 @@
 
 	    });
 	</script>
+<?php $this->end(); ?>

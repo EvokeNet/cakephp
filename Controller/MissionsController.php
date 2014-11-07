@@ -612,42 +612,10 @@ class MissionsController extends AppController {
 	}
 
 /**
- * View the missions that are open to everybody as examples before they register
+ * View complete missions (after logged in)
  * @param string $id - Optional ID to see a specific mission
  */
-	public function view_test($id = null) {
-		//Facebook login URL comes from session
-		$fbLoginUrl = $this->Session->read('fbLoginUrl');
-
-		$this->loadModel('User');
-		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id)));
-
-		$novels = $this->Mission->Novel->find('all', array(
-			'order' => array(
-				'Novel.page Asc'
-			),
-			'conditions' => array(
-				'Novel.mission_id' => $id,
-				'Novel.language' => 'en'
-			)
-		));
-
-		$this->set(compact('fbLoginUrl', 'mission', 'novels', 'user'));
-
-		//Render simple layout
-		// $this->render('/Common/view-mission'); 
-	}
-
-/**
- * View the missions that are open to everybody as examples before they register
- * @param string $id - Optional ID to see a specific mission
- */
-	public function view_sample($id = null) {
-		//Facebook login URL comes from session
-		$fbLoginUrl = $this->Session->read('fbLoginUrl');
-
+	public function view_mission($id = null) {
 		$user = $this->Auth->user();
 
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id), 'contain' => 'Quest'));
@@ -662,11 +630,32 @@ class MissionsController extends AppController {
 			)
 		));
 
-		$this->set(compact('fbLoginUrl', 'mission', 'novels', 'user'));
-
-		//Render simple layout
-		$this->render('/Common/view-mission'); 
+		$this->set(compact('mission', 'novels', 'user'));
 	}
+
+
+/**
+ * View the missions that are open to everybody as examples before they register (can't see some content, can't submit evidences etc.)
+ * @param string $id - Optional ID to see a specific mission
+ */
+	public function view_sample($id = null) {
+		$user = $this->Auth->user();
+
+		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id), 'contain' => 'Quest'));
+
+		$novels = $this->Mission->Novel->find('all', array(
+			'order' => array(
+				'Novel.page Asc'
+			),
+			'conditions' => array(
+				'Novel.mission_id' => $id,
+				'Novel.language' => 'en'
+			)
+		));
+
+		$this->set(compact('mission', 'novels', 'user'));
+	}
+
 
 /**
  * basic training method
