@@ -165,6 +165,69 @@ class UsersController extends AppController {
 		$browserLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 		$this->set(compact('browserLanguage'));
 
+		if ($this->request->query('code')) {
+
+			try {
+				$session = $this->Facebook->getSessionFromRedirect();
+			} catch(FacebookRequestException $ex) {
+				$this->Session->setFlash($ex->message());
+			} catch(\Exception $ex) {
+				$this->Session->setFlash($ex->message());
+			}
+
+			if ($session) {
+				$response = (new FacebookRequest(
+					$session, 'GET', '/me'
+				))->execute()->getGraphObject(GraphUser::className());
+
+				if ($response) {
+					$local_user = $this->User->find('first', array(
+						'conditions' => array(
+							'facebook_id' => $response->getProperty('id')
+						)
+					));
+
+					if ($local_user) {
+						$this->Auth->login($local_user['User']);
+
+						$this->User->id = $this->Auth->user('id');
+						$this->User->saveField('last_login', date('Y-m-d H:i:s'));
+
+						$this->redirect(array(
+							'controller' => 'dashboards',
+							'action' => 'index'
+						));
+
+					} else {
+
+						$this->User->create();
+                        $data['User'] = array(
+							'facebook_id' => $response->getProperty('id'),
+							'name' => $response->getProperty('name'),
+							'email' => $response->getProperty('email'),
+							'biography' => $response->getProperty('bio'),
+							'photo' => 'http://graph.facebook.com/'.$response->getProperty('id').'/picture',
+							'password' => AuthComponent::password(uniqid(md5(mt_rand()))),
+							'role' => USER,
+							'active' => true
+						);
+
+						$user = $this->User->save($data);
+
+						if ($this->Auth->login($user['User'])) {
+                            $this->User->id = $this->Auth->user('id');
+						    $this->User->saveField('last_login', date('Y-m-d H:i:s'));
+                        }
+
+						$this->redirect(array(
+							'controller' => 'dashboards',
+							'action' => 'index'
+						));
+					}
+				}
+			}
+		}
+
 		// if(isset($this->params['url']['code'])) {
 		//
 		// 	$token = $facebook->getAccessToken();
