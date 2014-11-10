@@ -29,7 +29,7 @@
 			<div class="centering-block large-12 medium-6 small-6 margins-auto">
 
 				<div>
-					<img src="<?=$pic?>" class="profile-picture-150px img-circular" alt="<?= __('Your profile picture') ?>" />
+					<img src="<?=$pic?>" class="square-150px img-circular" alt="<?= __('Your profile picture') ?>" />
 				</div>
 
 			</div>
@@ -74,14 +74,14 @@
 		      <li>
 		        <!-- PANEL -->
 		        <a href="#" data-reveal-id="modalProfilePotentialAllies<?= $counter ?>">
-		          <div class="profile-content padding top-1">
+		          <div class="table full-width profile-content padding top-1">
 		          	<!-- USER PICTURE -->
-		          	<div class="left padding right-1 full-height">
-		          		<img class="profile-picture-40px img-circular smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+		          	<div class="table-cell vertical-align-middle square-40px">
+		          		<img class="img-circular smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
 		          	</div>
 
 		            <!-- USER INFO -->
-		            <div class="vertical-align-middle" style="margin-left: 57px;">
+		            <div class="table-cell vertical-align-middle padding left-1">
 		              <p class="user-name margins-0">
 		                <?= $similar_user['User']['name'] ?>
 		              </p>

@@ -618,26 +618,36 @@ class MissionsController extends AppController {
  * @param string $find_params - Optional params for the query that finds evidences (format: "'param' => 'value', 'param' => 'value'")
  */
 	public function renderEvidenceList($mission_id = null, $limit = null, $find_params = null) {
-		$user = $this->Auth->user();
+		//$user = $this->Auth->user();
 
-		//Limit to the query
-		$evidence_query_params = array('limit' => $limit);
+		$evidence_query_params = array();
 
+		//FUNCTION PARAMS
 		//Evidences of a specific mission
 		if (!is_null($mission_id)) {
 			$evidence_query_params['conditions'] = array('mission_id' => $mission_id);
 		}
+
+		//Limit to the query
+		$evidence_query_params['limit'] = $limit;
 
 		//Additional params
 		if (!is_null($find_params)) {
 			array_push($evidence_query_params, $find_params);
 		}
 
+		//CONTAINABLE MODELS
+		$evidence_query_params['contain'] = 'User';
+
 		//Run query
+		$this->loadModel('Evidence');
 		$evidences = $this->Evidence->find('all', $evidence_query_params);
 
 		$this->set(compact('evidences'));
-		return $this->render('/Elements/evidence_list');
+
+		//Render
+		$this->layout = false;
+		$this->render('/Elements/evidence_list');
 	}
 
 /**

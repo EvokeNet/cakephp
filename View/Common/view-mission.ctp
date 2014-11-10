@@ -171,13 +171,13 @@
 				</aside>
 
 				<aside class="right-off-canvas-menu tabDossier" id="tabDossier">
-					<div class="large-12 large-centered columns full-height background-color-standard margin right-1">
+					<div class="large-12 large-centered columns full-height paddings-0 margin right-1">
 						<?php echo $this->fetch('tabDossierContent'); ?>
 					</div>
 				</aside>
 
 				<aside class="right-off-canvas-menu tabEvidences" id="tabEvidences">
-					<div class="large-12 large-centered columns full-height background-color-standard margin right-1">
+					<div class="large-12 large-centered columns full-height paddings-0 background-color-standard-opacity-07 margin right-1">
 						<?php echo $this->fetch('tabEvidencesContent'); ?>
 					</div>
 				</aside>

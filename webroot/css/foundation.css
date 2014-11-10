@@ -19,6 +19,10 @@ button:hover, button:focus, .button:hover, .button:focus {
 	font-weight: bold;
 }
 
+.button-group > li:first-child button, .button-group > li:first-child .button, .button-group.radius > *:first-child button, .button-group.radius > *:first-child .button {
+	border-left: 1px solid #26dee0;
+}
+
 /* --------------------------- */
 /* PANEL */
 /* --------------------------- */

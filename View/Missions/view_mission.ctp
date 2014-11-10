@@ -2,32 +2,34 @@
 	//VIEW-MISSION COMMON TEMPLATE
 	$this->extend('/Common/view-mission');
 
-	//ELEMENTS
+	//TEMPLATE ELEMENT: TAB DOSSIER
 	$this->assign('tabDossierContent', __('This section is not available in preview.'));
 
-	//Evidences
-	$this->start('tabEvidencesContent');
-	echo "<div id='tabEvidencesContent'></div>";
-	//echo $this->element('evidence_list', array('evidences' => $evidences));
-	$this->end();
-?>
+	//TEMPLATE ELEMENT: TAB EVIDENCES
+	$this->start('tabEvidencesContent'); ?>
+	<div class="tabs-content tabEvidencesContent full-width full-height padding top-1"></div><?php
+	$this->end(); ?>
 
-<?php $this->start('script'); ?>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#menu-icon-tabEvidences").click(function(){	
-			$('#tabEvidencesContent').load('/missions/renderEvidenceList', function(){
-				alert('lalala');
-			});//, assetData);
-			// $.ajax({
-			// 	url:'/missions/renderEvidenceList',
-			// 	type:"POST",
-			// 	data:assetData,
-			// 	success: function(data) {
-			// 		$('#assetManagerContent').html(data);
-			// 	}
-			// });
+
+<?php
+	/* SCRIPT */
+	$this->start('script');
+?>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//CLICKING ON THE EVIDENCE OFFCANVAS WILL LOAD CONTENT VIA AJAX ONCE (and keep the same content if the button is clicked later on)
+			$("#menu-icon-tabEvidences").one( "click", function() {
+				$.ajax({
+					url:"<?= $this->webroot ?>missions/renderEvidenceList/<?= $this->params['pass'][0] ?>/",
+					type:"POST",
+					beforeSend: function() {
+						$('.tabEvidencesContent').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+					},
+					success: function(data) {
+						$('.tabEvidencesContent').html(data);
+					}
+				});
+			});
 		});
-	});
-</script>
+	</script>
 <?php $this->end(); ?>
