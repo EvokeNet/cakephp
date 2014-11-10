@@ -148,6 +148,9 @@ class UsersController extends AppController {
 
 		$googleLoginURL = $this->SocialLogin->create_google_url();
 
+		debug($this->params);
+		die();
+		
 		if (isset($this->params['url']['code'])) {
 			$this->SocialLogin->google_login($this->params['url']['code']);
 		}
