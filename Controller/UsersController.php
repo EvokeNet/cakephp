@@ -226,7 +226,8 @@ class UsersController extends AppController {
 		// }
 
 		if ($this->request->query('code')) {
-		
+			debug($this->request->query('code'));
+			die();
 			$token = $facebook->getAccessToken();
 		
 			if (!empty($token)) {
