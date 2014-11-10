@@ -613,6 +613,11 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	border-radius: 5px;
 }
 
+.evoke .border-bottom-highlight {
+	border-bottom: 2px solid #26dee0;
+	margin-bottom: -2px;
+}
+
 /* --------------------------- */
 /* GLOW */
 /* --------------------------- */

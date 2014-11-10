@@ -799,7 +799,7 @@ class EvokeSchema extends CakeSchema {
 
 	public $users = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => false, 'key' => 'primary'),
-		// 'role_id' => array('type' => 'integer', 'null' => false, 'default' => '3', 'length' => 16, 'unsigned' => true),
+		'role_id' => array('type' => 'integer', 'null' => false, 'default' => '3', 'length' => 16, 'unsigned' => true),
 		'role' => array('type' => 'string', 'null' => false, 'default' => 'user', 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'organization_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
 		'facebook_id' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),

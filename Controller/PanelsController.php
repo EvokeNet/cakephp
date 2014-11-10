@@ -460,11 +460,7 @@ class PanelsController extends AppController {
 			)
 		));
 
-		$users_of_my_missions = $this->User->UserMission->find('all', array(
-				'order' => array(
-					'User.name ASC'
-				)
-			));
+		$users_of_my_missions = $this->User->UserMission->find('all');
 
 			$userLevels['max'] = 0;
 			$userLevels['all'] = 0;

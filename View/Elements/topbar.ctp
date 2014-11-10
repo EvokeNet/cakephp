@@ -82,8 +82,7 @@
 -->
 
 <!-- Flash messages -->
-<?php
-if($this->Session->check('Message.flash')): ?>
+<?php if($this->Session->check('Message.flash')): ?>
 	<div data-alert="" class="alert-box radius">
 		<?php echo $this->Session->flash(); ?>
 	</div>
