@@ -269,8 +269,6 @@
 	echo $this->Html->script('/components/sidr/jquery.sidr.min.js');
 ?>
 
-
-	<!-- FullPage Login -->
 	<script type="text/javascript">
 
 		$(document).ready(function() {

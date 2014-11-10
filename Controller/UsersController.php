@@ -407,13 +407,38 @@ class UsersController extends AppController {
 		else
 			$percentage = 0;
 
+		//LEADERBOARD
+		$max_leaderboard_users = 6; //Total of leaders on the leaderboard (including the top ones)
+
+		$leaderboard_users = $this->User->find('all', array(
+		    'joins' => array(
+                array(
+                	'table' => 'points',
+                	'alias' => 'Points',
+                	'type' => 'left',  //join of your choice left, right, or inner
+                    'conditions' => array(
+						'Points.user_id = User.id'
+					)
+                ),
+            ),
+		    'fields' => array(
+				'User.*',
+				'sum(Points.value) as total_points'
+			),
+		    'group' => 'Points.user_id',
+		    'order' => array('total_points DESC'),
+		    'limit' => 60
+		));
+
+		//FRIENDS
+
 		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
 
 		$allies = array();
 
 		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
-		$followers = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.friend_id' => $id))); //this->getUserId()
+		$followers = $this->User->UserFriend->find('all', array('recursive' => 0, 'conditions' => array('UserFriend.friend_id' => $id))); //this->getUserId()
 
 		$are_friends = array();
 		//$allies = array();
@@ -467,6 +492,7 @@ class UsersController extends AppController {
 
 		$this->loadModel('Evokation');
 		$evokations = $this->Evokation->find('all', array(
+			'recursive' => 0,
 			'order' => array(
 				'Evokation.created DESC'
 			),
@@ -478,6 +504,7 @@ class UsersController extends AppController {
 
 
 		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
+			'recursive' => 0,
 			'conditions' => array(
 				'EvokationFollower.user_id' => $this->getUserId()
 			)
@@ -522,6 +549,7 @@ class UsersController extends AppController {
 		$this->loadModel('Badge');
 
 		$badges = $this->User->UserBadge->find('all', array(
+			'recursive' => 0,
 			'conditions' => array(
 				'UserBadge.user_id' => $id
 			)
@@ -549,7 +577,7 @@ class UsersController extends AppController {
 
 		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
-			'power_points', 'points_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'lang', 'similar_users'));
+			'power_points', 'points_users', 'leaderboard_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'lang', 'similar_users'));
 
 	}
 
