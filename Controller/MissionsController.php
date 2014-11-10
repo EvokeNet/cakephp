@@ -612,8 +612,48 @@ class MissionsController extends AppController {
 	}
 
 /**
+ * Renders tab with dossier content
+ * @param int $mission_id - Optional ID to see dossier from a specific mission
+ * @param int $limit - Optional limit to the number of evidences listed
+ * @param string $find_params - Optional params for the query that finds evidences (format: "'param' => 'value', 'param' => 'value'")
+ */
+	public function renderDossierTab($mission_id = null, $limit = null, $find_params = null) {
+		//$user = $this->Auth->user();
+
+		// $evidence_query_params = array();
+
+		// //FUNCTION PARAMS
+		// //Evidences of a specific mission
+		// if (!is_null($mission_id)) {
+		// 	$evidence_query_params['conditions'] = array('mission_id' => $mission_id);
+		// }
+
+		// //Limit to the query
+		// $evidence_query_params['limit'] = $limit;
+
+		// //Additional params
+		// if (!is_null($find_params)) {
+		// 	array_push($evidence_query_params, $find_params);
+		// }
+
+		// //CONTAINABLE MODELS
+		// $evidence_query_params['contain'] = 'User';
+
+		// //Run query
+		// $this->loadModel('Evidence');
+		// $evidences = $this->Evidence->find('all', $evidence_query_params);
+
+		// $this->set(compact('evidences'));
+
+		//Render
+		$this->layout = false;
+		$this->render('/Elements/dossier_tabs');
+	}
+
+
+/**
  * Renders a list of evidences
- * @param int $mission_id - Optional ID to see a specific mission (otherwise, returns all missions)
+ * @param int $mission_id - Optional ID to see evidences from a specific mission
  * @param int $limit - Optional limit to the number of evidences listed
  * @param string $find_params - Optional params for the query that finds evidences (format: "'param' => 'value', 'param' => 'value'")
  */
