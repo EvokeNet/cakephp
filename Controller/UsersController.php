@@ -162,6 +162,7 @@ class UsersController extends AppController {
           'appId' => Configure::read('fb_app_id'),
           'secret' => Configure::read('fb_app_secret'),
           'allowSignedRequest' => false,
+          'state' => 'feice'
 
         ));
 
