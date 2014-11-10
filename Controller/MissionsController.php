@@ -612,8 +612,37 @@ class MissionsController extends AppController {
 	}
 
 /**
+ * Renders a list of evidences
+ * @param int $mission_id - Optional ID to see a specific mission (otherwise, returns all missions)
+ * @param int $limit - Optional limit to the number of evidences listed
+ * @param string $find_params - Optional params for the query that finds evidences (format: "'param' => 'value', 'param' => 'value'")
+ */
+	public function renderEvidenceList($mission_id = null, $limit = null, $find_params = null) {
+		$user = $this->Auth->user();
+
+		//Limit to the query
+		$evidence_query_params = array('limit' => $limit);
+
+		//Evidences of a specific mission
+		if (!is_null($mission_id)) {
+			$evidence_query_params['conditions'] = array('mission_id' => $mission_id);
+		}
+
+		//Additional params
+		if (!is_null($find_params)) {
+			array_push($evidence_query_params, $find_params);
+		}
+
+		//Run query
+		$evidences = $this->Evidence->find('all', $evidence_query_params);
+
+		$this->set(compact('evidences'));
+		return $this->render('/Elements/evidence_list');
+	}
+
+/**
  * View complete missions (after logged in)
- * @param string $id - Optional ID to see a specific mission
+ * @param int $id - Optional ID to see a specific mission
  */
 	public function view_mission($id = null) {
 		$user = $this->Auth->user();
@@ -636,7 +665,7 @@ class MissionsController extends AppController {
 
 /**
  * View the missions that are open to everybody as examples before they register (can't see some content, can't submit evidences etc.)
- * @param string $id - Optional ID to see a specific mission
+ * @param int $id - Optional ID to see a specific mission
  */
 	public function view_sample($id = null) {
 		$user = $this->Auth->user();
