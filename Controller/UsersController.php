@@ -163,6 +163,10 @@ class UsersController extends AppController {
 
         ));
 
+        $fbLoginUrl = $facebook->getLoginUrl();
+			$this->set(compact('fbLoginUrl'));
+			$this->Session->write('fbLoginUrl', $fbLoginUrl); 
+
 		$browserLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 		$this->set(compact('browserLanguage'));
 
@@ -183,9 +187,9 @@ class UsersController extends AppController {
 			}
 
 		} else {
-			$fbLoginUrl = $facebook->getLoginUrl();
-			$this->set(compact('fbLoginUrl'));
-			$this->Session->write('fbLoginUrl', $fbLoginUrl); //Stores facebook URL in session to be accessed by other views/controllers
+			// $fbLoginUrl = $facebook->getLoginUrl();
+			// $this->set(compact('fbLoginUrl'));
+			// $this->Session->write('fbLoginUrl', $fbLoginUrl); //Stores facebook URL in session to be accessed by other views/controllers
 		}
 
 		$this->set(compact('missions'));
