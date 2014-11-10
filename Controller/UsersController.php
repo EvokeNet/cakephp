@@ -156,6 +156,13 @@ class UsersController extends AppController {
 			$this->SocialLogin->facebook_login();
 		}
 
+		$facebook = new Facebook(array(
+          'appId' => Configure::read('fb_app_id'),
+          'secret' => Configure::read('fb_app_secret'),
+          'allowSignedRequest' => false,
+
+        ));
+
 		$browserLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 		$this->set(compact('browserLanguage'));
 
