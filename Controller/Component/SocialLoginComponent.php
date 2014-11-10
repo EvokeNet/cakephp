@@ -116,6 +116,7 @@ class SocialLoginComponent extends Component {
           'appId' => Configure::read('fb_app_id'),
           'secret' => Configure::read('fb_app_secret'),
           'allowSignedRequest' => false,
+          'state' => 'feice'
 
         ));
       $token = $facebook->getAccessToken();
