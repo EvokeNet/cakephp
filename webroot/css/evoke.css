@@ -74,6 +74,10 @@ button, div, p, span, a,
 	font-size: 120%;
 }
 
+.evoke .text-small {
+	font-size: 75%;
+}
+
 /* Work break */
 .no-word-break {
 	word-break: normal;
@@ -419,15 +423,12 @@ button, div, p, span, a,
 }
 
 .side-menu .side-nav li.active{
-	/*background-color: #333;*/
 	border-color: #26dee0;
 	color: rgba(0,0,0,.85);
 }
 
 .side-menu .side-nav li:hover{
-	/*background-color: transparent;*/
 	border-color: #26dee0;
-	/*color: rgba(0,0,0,.85);*/
 }
 
 .side-menu i{
@@ -548,6 +549,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background-size: cover;
 }
 
+/* Opacity */
 .evoke .background-color-dark-opacity-05 {
 	background: rgba(0,0,0,.5);
 }
@@ -556,6 +558,11 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background: rgba(0,0,0,.8);
 }
 
+.evoke .background-color-standard-opacity-07 {
+	background: rgba(51,51,51,.8);
+}
+
+/* Solid */
 .evoke .background-color-standard {
 	background-color: #333;
 }
@@ -574,6 +581,11 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 
 .evoke .background-color-highlight {
 	background-color: #26dee0;
+}
+
+/* Hover */
+.evoke .background-color-light-dark-on-hover:hover {
+	background-color: #292929;
 }
 
 
@@ -609,13 +621,18 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	border-width: 0.2em;
 }
 
-.evoke .radius {
-	border-radius: 5px;
+.evoke .border-top-divisor {
+	border-top: 0.1em solid #292929;
+}
+.evoke .border-right-divisor {
+	border-right: 0.1em solid #292929;
+}
+.evoke .border-bottom-divisor {
+	border-bottom: 0.1em solid #292929;
 }
 
-.evoke .border-bottom-highlight {
-	border-bottom: 2px solid #26dee0;
-	margin-bottom: -2px;
+.evoke .radius {
+	border-radius: 5px;
 }
 
 /* --------------------------- */
@@ -820,12 +837,17 @@ button, .button {
 /* --------------------------- */
 
 /* Profile picture */
-.evoke .profile-picture-40px {
+.evoke .square-40px {
 	height: 40px;
 	width: 40px;
 }
 
-.evoke .profile-picture-150px {
+.evoke .square-60px {
+	height: 60px;
+	width: 60px;
+}
+
+.evoke .square-150px {
 	width: 150px;
 	height: 150px;
 }

@@ -19,6 +19,10 @@ button:hover, button:focus, .button:hover, .button:focus {
 	font-weight: bold;
 }
 
+.button-group > li:first-child button, .button-group > li:first-child .button, .button-group.radius > *:first-child button, .button-group.radius > *:first-child .button {
+	border-left: 1px solid #26dee0;
+}
+
 /* --------------------------- */
 /* PANEL */
 /* --------------------------- */
@@ -204,13 +208,19 @@ button:hover, button:focus, .button:hover, .button:focus {
 	min-width: 6em;
 }
 
+.tabs-style-small-image .right dd {
+	border: 1px solid rgb(70, 75, 77);
+}
+
 .tabs-style-small-image dd a, .tabs-style-small-image .tab-title a {
 	padding: 0.5rem 0.7rem;
 	font-size: 0.9rem;
 }
 
-.tabs-style-small-image .right dd {
-	border: 1px solid rgb(70, 75, 77);
+.tabs-style-small-image dd > a, .tabs-style-small-image .tab-title > a {
+	border-bottom: 1px solid rgb(70, 75, 77);
+	background-color: #333;
+	color: #ccc;
 }
 
 .tabs-style-small-image .tabs-content {
@@ -238,8 +248,50 @@ button:hover, button:focus, .button:hover, .button:focus {
 	transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-.tabs-style-small-image dd > a, .tabs-style-small-image .tab-title > a {
+/* --------------------------- */
+/* COMPLEMENTING TABS */
+/* Small-image  */
+/* --------------------------- */
+.tabs-style-small-image dd {
+	background-color: transparent;
+}
+
+.tabs-style-image-and-text dd a, .tabs-style-image-and-text .tab-title a {
+	padding: 0.5rem 0.7rem;
+	font-size: 0.9rem;
+}
+
+.tabs-style-image-and-text dd > a, .tabs-style-small-image .tab-title > a {
 	border-bottom: 1px solid rgb(70, 75, 77);
-	background-color: #333;
+	background-color: transparent;
 	color: #ccc;
+}
+
+.tabs-style-image-and-text .right dd {
+	border: 1px solid rgb(70, 75, 77);
+}
+
+.tabs-style-image-and-text .tabs-content {
+	padding: 1em 1em 1em 2em;
+}
+
+.tabs-style-image-and-text dd > a:hover, 
+.tabs-style-image-and-text .tab-title > a:hover {
+	background-color: transparent;
+}
+
+.tabs-style-image-and-text dd.active a, 
+.tabs-style-image-and-text .tab-title.active a {
+	background-color: #333;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: rgba(255,255,255,1);
+	-o-text-overflow: clip;
+	text-overflow: clip;
+	text-shadow: 0 0 5px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 0px rgba(255,255,255,1), 0 0 1px #26dee0, 0 0 5px #26dee0, 0 0 15px #26dee0, 0 0 10px #26dee0;
+	-webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	-moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	-o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }

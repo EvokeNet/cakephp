@@ -71,7 +71,7 @@
 			<!-- USERNAME -->
 			<div class="small-12">
 				<?php
-				echo $this->Form->input('email', array('required' => true, 'label' => __('Email')));
+				echo $this->Form->input('username', array('required' => true, 'label' => __('Username')));
 				?>
 			</div>
 

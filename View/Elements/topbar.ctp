@@ -43,7 +43,6 @@
 			<?php 
 			//MENU BEFORE SIGN IN
 			if (isset($loggedIn) && (!$loggedIn)) {
-				echo $this->Session->flash();
 				echo $this->element('topbar-login', array('ulClass' => 'right'));
 			}
 
@@ -82,7 +81,8 @@
 -->
 
 <!-- Flash messages -->
-<?php if($this->Session->check('Message.flash')): ?>
+<?php
+if($this->Session->check('Message.flash')): ?>
 	<div data-alert="" class="alert-box radius">
 		<?php echo $this->Session->flash(); ?>
 	</div>

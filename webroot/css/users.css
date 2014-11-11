@@ -38,13 +38,6 @@ div.evoke.slide.background-cover.active div.img-caption-bottom {
 	margin-top: -50px;
 }
 
-.evoke .border-top-divisor {
-	border-top: 1px solid #292929;
-}
-.evoke .border-right-divisor {
-	border-right: 1px solid #292929;
-}
-
 .evoke .profile-sidebar, .evoke .profile-sidebar .p {
 	font-size: 0.9rem;
 }
