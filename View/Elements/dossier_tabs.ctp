@@ -29,7 +29,7 @@
 <!-- TABS DOSSIER CONTENT -->
 <div class="tabs-content full-width full-height background-color-standard-opacity-07 tabDossierContent">
 	<!-- TEXTS -->
-	<div class="content active" id="dossierTabTexts">
+	<div class="content active background-color-standard-opacity-07" id="dossierTabTexts">
 		<ul class="no-marker">
 		  	<?php 
 				foreach ($dossier_files as $file):
@@ -54,7 +54,7 @@
 	</div>
 
 	<!-- LINKS -->
-	<div class="content" id="dossierTabLinks">
+	<div class="content background-color-standard-opacity-07" id="dossierTabLinks">
 		<ul class="no-marker">
 			<?php foreach($links as $link): ?>
 				<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
@@ -66,7 +66,7 @@
 	</div>
 
 	<!-- PICTURES -->
-	<div class="content" id="dossierTabPictures">
+	<div class="content background-color-standard-opacity-07" id="dossierTabPictures">
 		<ul class="no-marker">
 			<?php 
 				foreach ($dossier_files as $file):
@@ -90,7 +90,7 @@
 	</div>
 
 	<!-- VIDEOS -->
-	<div class="content" id="dossierTabVideos">
+	<div class="content background-color-standard-opacity-07" id="dossierTabVideos">
 		<ul class="no-marker">
 			<?php 
 				foreach ($dossier_files as $file):
