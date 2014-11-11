@@ -442,22 +442,12 @@ button, div, p, span, a,
 	margin: .2em 0 0 0;
 }*/
 
-/* --------------------------- */
-/* OPACITY */
-/* --------------------------- */
-.evoke .opacity-04 {
-	opacity: 0.4;
-	filter: alpha(opacity=40); /* For IE8 and earlier */
-}
 
-.evoke .opacity-05 {
-	opacity: 0.5;
-	filter: alpha(opacity=50); /* For IE8 and earlier */
-}
-
-.evoke .opacity-07 {
-	opacity: 0.7;
-	filter: alpha(opacity=70); /* For IE8 and earlier */
+/* --------------------------- */
+/* LISTS */
+/* --------------------------- */
+.evoke ul.no-marker {
+	list-style: none;
 }
 
 /* --------------------------- */
@@ -491,8 +481,6 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
 	text-transform: uppercase;
 }
-
-
 
 /* --------------------------- */
 /* GRADIENT */
@@ -540,6 +528,23 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	left: 0em;
 }
 
+/* --------------------------- */
+/* OPACITY */
+/* --------------------------- */
+.evoke .opacity-04 {
+	opacity: 0.4;
+	filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+
+.evoke .opacity-05 {
+	opacity: 0.5;
+	filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.evoke .opacity-07 {
+	opacity: 0.7;
+	filter: alpha(opacity=70); /* For IE8 and earlier */
+}
 
 /* --------------------------- */
 /* BACKGROUND */

@@ -614,38 +614,50 @@ class MissionsController extends AppController {
 /**
  * Renders tab with dossier content
  * @param int $mission_id - Optional ID to see dossier from a specific mission
- * @param int $limit - Optional limit to the number of evidences listed
- * @param string $find_params - Optional params for the query that finds evidences (format: "'param' => 'value', 'param' => 'value'")
+ * @param int $limit - Optional limit to the number of items
  */
-	public function renderDossierTab($mission_id = null, $limit = null, $find_params = null) {
-		//$user = $this->Auth->user();
+	public function renderDossierTab($mission_id = null, $limit = null) {
+		$dossier_query_params = array();
 
-		// $evidence_query_params = array();
+		//FUNCTION PARAMS
+		//Dossier from a specific mission
+		if (!is_null($mission_id)) {
+			$dossier_query_params['conditions'] = array('mission_id' => $mission_id);
+		}
 
-		// //FUNCTION PARAMS
-		// //Evidences of a specific mission
-		// if (!is_null($mission_id)) {
-		// 	$evidence_query_params['conditions'] = array('mission_id' => $mission_id);
-		// }
+		//Limit to the query
+		$dossier_query_params['limit'] = $limit;
 
-		// //Limit to the query
-		// $evidence_query_params['limit'] = $limit;
+		//CONTAINABLE MODELS
+		$dossier_query_params['contain'] = 'User';
 
-		// //Additional params
-		// if (!is_null($find_params)) {
-		// 	array_push($evidence_query_params, $find_params);
-		// }
+		//RUN DOSSIER QUERY
+		$this->loadModel('Dossier');
+		$dossier = $this->Dossier->find('first', $dossier_query_params);
+		
+		//Dossier files (may be pictures, videos etc.: will be determined by field Type)
+		$this->loadModel('Attachment');
+		if(!empty($dossier)) {
+			$dossier_files = $this->Attachment->find('all', array(
+				'conditions' => array(
+					'Attachment.foreign_key' => $dossier['Dossier']['id'],
+					'Attachment.model' => 'Dossier'
+				)
+			));
+		} else {
+			$dossier_files = array();
+		}
 
-		// //CONTAINABLE MODELS
-		// $evidence_query_params['contain'] = 'User';
+		//Dossier video links
+		$this->loadModel('DossierVideo');
+		$video_links = $this->Mission->DossierVideo->find('all', $dossier_query_params);
 
-		// //Run query
-		// $this->loadModel('Evidence');
-		// $evidences = $this->Evidence->find('all', $evidence_query_params);
-
-		// $this->set(compact('evidences'));
+		//Dossier links
+		$this->loadModel('DossierLink');
+		$links = $this->Mission->DossierLink->find('all', $dossier_query_params);
 
 		//Render
+		$this->set(compact('dossier','dossier_files', 'video_links', 'links'));
 		$this->layout = false;
 		$this->render('/Elements/dossier_tabs');
 	}
@@ -658,8 +670,6 @@ class MissionsController extends AppController {
  * @param string $find_params - Optional params for the query that finds evidences (format: "'param' => 'value', 'param' => 'value'")
  */
 	public function renderEvidenceList($mission_id = null, $limit = null, $find_params = null) {
-		//$user = $this->Auth->user();
-
 		$evidence_query_params = array();
 
 		//FUNCTION PARAMS
@@ -679,13 +689,12 @@ class MissionsController extends AppController {
 		//CONTAINABLE MODELS
 		$evidence_query_params['contain'] = 'User';
 
-		//Run query
+		//RUN EVIDENCE QUERY
 		$this->loadModel('Evidence');
 		$evidences = $this->Evidence->find('all', $evidence_query_params);
 
-		$this->set(compact('evidences'));
-
 		//Render
+		$this->set(compact('evidences'));
 		$this->layout = false;
 		$this->render('/Elements/evidence_list');
 	}

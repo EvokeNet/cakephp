@@ -184,7 +184,7 @@
 
 				<aside class="right-off-canvas-menu tabMenu" id="tabMenu">
 					<div class="large-12 large-centered full-height background-color-standard tabMenuContent">
-						<ul class="full-height full-width">
+						<ul class="full-height full-width no-marker">
 							<!-- OTHER MISSIONS -->
 							<li class="table full-width text-center">
 								<div class="table-cell full-height vertical-align-middle background-cover" data-interchange="['<?= $this->webroot.'img/missionTabMenu_missions.jpg' ?>',(default)]">
