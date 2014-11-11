@@ -114,16 +114,19 @@
 			?>
 			<?php foreach ($video_links as $link): ?>
 					<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
-						<a href="#" data-reveal-id="video-<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a>
+						<!-- <a href="#" data-reveal-id="video-<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a> -->
+						<div id="frame-<?= $link['DossierVideo']['id']?>" class="flex-video-new">
+						        <iframe id="iframe-<?= $link['DossierVideo']['id']?>" width="420" height="315" src="//<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
+						</div>
 					</li>
-
+<!-- 
 					<div id="video-<?= $link['DossierVideo']['id']?>" class="reveal-modal large" data-reveal>
 					  	<div id="frame-<?= $link['DossierVideo']['id']?>" class="flex-video-new">
 						        <iframe id="iframe-<?= $link['DossierVideo']['id']?>" width="420" height="315" src="//<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
 						</div>
 						<a class="close-reveal-modal">&#215;</a> 
 					</div>
-
+ -->
 			<?php endforeach; ?>
 		</ul>
 	</div>
