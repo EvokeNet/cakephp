@@ -183,21 +183,41 @@
 				</aside>
 
 				<aside class="right-off-canvas-menu tabMenu" id="tabMenu">
-					<div class="large-12 large-centered full-height tabMenuContent">
+					<div class="large-12 large-centered full-height background-color-standard tabMenuContent">
 						<ul class="full-height full-width">
+							<!-- OTHER MISSIONS -->
 							<li class="table full-width text-center">
-								<div class="table-cell full-height vertical-align-middle">
-									<span class="icon-brankic icon-folder fa-4x text-color-highlight"></span>
+								<div class="table-cell full-height vertical-align-middle background-cover" data-interchange="['<?= $this->webroot.'img/missionTabMenu_missions.jpg' ?>',(default)]">
+									<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class="text-glow-on-hover">
+										<div class="inline-block padding all-2 margin bottom-1 background-color-standard img-circular border-color-highlight border-style-solid img-glow-on-hover-small">
+											<span class="icon-brankic icon-folder fa-4x text-color-highlight"></span>
+										</div>
+										<h4 class="text-color-highlight"><?= __('See other missions') ?></h4>
+									</a>
 								</div>
 							</li>
+
+							<!-- FORUM -->
 							<li class="table full-width text-center">
-								<div class="table-cell full-height vertical-align-middle">
-									<span class="icon-brankic icon-chat fa-4x text-color-highlight"></span>
+								<div class="table-cell full-height vertical-align-middle background-cover" data-interchange="['<?= $this->webroot.'img/missionTabMenu_forum.jpg' ?>',(default)]">
+									<a href="#" class="text-glow-on-hover">
+										<div class="inline-block padding all-2 margin bottom-1 background-color-standard img-circular border-color-highlight border-style-solid img-glow-on-hover-small">
+											<span class="icon-brankic icon-chat fa-4x text-color-highlight"></span>
+										</div>
+										<h4 class="text-color-highlight"><?= __('Forum') ?></h4>
+									</a>
 								</div>
 							</li>
+
+							<!-- EVOKATION -->
 							<li class="table full-width text-center">
-								<div class="table-cell full-height vertical-align-middle">
-									<span class="icon-brankic icon-rocket fa-4x text-color-highlight"></span>
+								<div class="table-cell full-height vertical-align-middle background-cover" data-interchange="['<?= $this->webroot.'img/missionTabMenu_evokation.jpg' ?>',(default)]">
+									<a href="#" class="text-glow-on-hover">
+										<div class="inline-block padding all-2 margin bottom-1 background-color-standard img-circular border-color-highlight border-style-solid img-glow-on-hover-small">
+											<span class="icon-brankic icon-rocket fa-4x text-color-highlight"></span>
+										</div>
+										<h4 class="text-color-highlight"><?= __('Create your evokation') ?></h4>
+									</a>
 								</div>
 							</li>
 						</ul>

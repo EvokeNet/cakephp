@@ -31,7 +31,7 @@
 				}
 				?>
 				<div class="centering-block">
-					<img src="<?=$pic?>" class="img-circular square-40px border-style-solid border-width-01 border-color-highlight img-glow-on-hover-small" alt="<?= __('Your profile picture') ?>" />
+					<img src="<?=$pic?>" class="img-circular square-40px img-glow-on-hover-small" alt="<?= __('Your profile picture') ?>" />
 				</div>
 			</a>
 
