@@ -4,7 +4,8 @@
 
 	//TEMPLATE ELEMENT: TAB DOSSIER
 	$this->start('tabDossierContent'); ?>
-	<div class="tabs-content tabDossierContent full-width full-height padding top-1"></div><?php
+
+	<div class="tabs-content tabDossierContent full-width full-height"></div><?php
 	$this->end();
 
 	//TEMPLATE ELEMENT: TAB EVIDENCES
@@ -29,6 +30,7 @@
 					},
 					success: function(data) {
 						$('.tabEvidencesContent').html(data);
+						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 					}
 				});
 			});
@@ -43,6 +45,7 @@
 					},
 					success: function(data) {
 						$('.tabDossierContent').html(data);
+						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 					}
 				});
 			});

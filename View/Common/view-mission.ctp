@@ -25,7 +25,7 @@
 	<div id="missions-body" class="missions">
 		<div class="off-canvas-wrap" data-offcanvas>
 			<div class="inner-wrap">
-				<nav class="tab-bar full-height">
+				<nav class="tab-bar full-height" id="tab-bar-off-canvas">
 					<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
 					<section class="right-small text-center opacity-07">
 					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabQuests" data-tab-content="tabQuests">
@@ -46,7 +46,7 @@
 				<aside class="right-off-canvas-menu tabQuests" id="tabQuests">
 					<div class="table large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0">
 						<!-- TABS COM QUESTS -->
-						<dl class="tabs vertical table-cell full-width full-height margin right-1 background-color-standard opacity-07" data-tab>
+						<dl class="tabs vertical table-cell full-width full-height margin right-1 background-color-standard opacity-07" id="questsTabs" data-tab>
 							<?php 
 								$counter = 1;
 								$active = 'class = "active"';
@@ -183,8 +183,24 @@
 				</aside>
 
 				<aside class="right-off-canvas-menu tabMenu" id="tabMenu">
-					<div class="large-12 large-centered columns full-height background-color-standard margin right-1">
-						This section is not available in preview.
+					<div class="large-12 large-centered full-height tabMenuContent">
+						<ul class="full-height full-width">
+							<li class="table full-width text-center">
+								<div class="table-cell full-height vertical-align-middle">
+									<span class="icon-brankic icon-folder fa-4x text-color-highlight"></span>
+								</div>
+							</li>
+							<li class="table full-width text-center">
+								<div class="table-cell full-height vertical-align-middle">
+									<span class="icon-brankic icon-chat fa-4x text-color-highlight"></span>
+								</div>
+							</li>
+							<li class="table full-width text-center">
+								<div class="table-cell full-height vertical-align-middle">
+									<span class="icon-brankic icon-rocket fa-4x text-color-highlight"></span>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</aside>
 
@@ -306,6 +322,7 @@
 
 			//Off canvas
 			function open_sidr(sidr_button,sidr_source) {
+				$(sidr_source).addClass("sidr-open");
 				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
 				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-04'); //Blur everything else
 	    		$('div.missions-submenu').removeClass("hidden"); //Show submenu
@@ -355,9 +372,6 @@
 				onClose: function() { close_sidr('#menu-icon-tabMenu','#sidr-tabMenu'); }
 			});
 
-			//REFLOW FOUNDATION - After setting up slick, foundation needs to be updated
-			$(document).foundation('reflow');
-
 			//SUBMIT EVIDENCE BUTTON
 			$(".submit-evidence.button").click(function(){				
 				var evidence = $(".evidence-quest-" + $(this).data("quest-id"));
@@ -367,6 +381,64 @@
 					$(".evidence-quest-" + $(this).data("quest-id")).addClass("hidden");
 				}
 			});
+
+
+			//MEDIUM EDITOR FOR EVIDENCES
+			var editor = new MediumEditor('.editableContent', {
+			    buttons: [
+			    	'bold',
+			        'italic',
+			        'underline',
+			        'header1',
+			        'header2',
+			        'orderedlist',
+			        'unorderedlist',
+			        'anchor',
+			        'quote',
+			        'superscript',
+			        'subscript',
+			        'strikethrough',
+			    ],
+			    checkLinkFormat: true,
+			    cleanPastedHTML: true,
+			    placeholder: "<?= __('Write here your Evidence') ?>",
+			    targetBlank: true,
+		  	});
+
+			var editor1 = new MediumEditor('.editableTitle', {
+			    buttons: [
+			    	'bold',
+			        'italic',
+			        'underline',
+			        'header1',
+			        'header2',
+			        'orderedlist',
+			        'unorderedlist',
+			        'anchor',
+			        'quote',
+			        'superscript',
+			        'subscript',
+			        'strikethrough',
+			    ],
+			    checkLinkFormat: true,
+			    cleanPastedHTML: true,
+			    placeholder: "<?= __('Write here the title for your Evidence') ?>",
+			    targetBlank: true,
+		  	});
+
+			jQuery('.evidenceButton').click(function() {
+
+				var MyDiv = document.getElementById('evidenceTitle');
+				var MyDiv1 = document.getElementById('evidenceContent');
+
+		        $('#EvidenceTitle').val(MyDiv.innerHTML);
+		        $('#EvidenceContent').val(MyDiv1.innerHTML);
+
+		    });
+
+
+		    //REFLOW FOUNDATION - After setting up slick (or generating any other elements), foundation needs to be updated
+			$(document).foundation('reflow');
 
 			
 			/*
@@ -383,58 +455,5 @@
 			lazyInterchange($('#my_element'));
 			*/
 		});
-
-		//MEDIUM EDITOR FOR EVIDENCES
-		var editor = new MediumEditor('.editableContent', {
-		    buttons: [
-		    	'bold',
-		        'italic',
-		        'underline',
-		        'header1',
-		        'header2',
-		        'orderedlist',
-		        'unorderedlist',
-		        'anchor',
-		        'quote',
-		        'superscript',
-		        'subscript',
-		        'strikethrough',
-		    ],
-		    checkLinkFormat: true,
-		    cleanPastedHTML: true,
-		    placeholder: "<?= __('Write here your Evidence') ?>",
-		    targetBlank: true,
-	  	});
-
-		var editor1 = new MediumEditor('.editableTitle', {
-		    buttons: [
-		    	'bold',
-		        'italic',
-		        'underline',
-		        'header1',
-		        'header2',
-		        'orderedlist',
-		        'unorderedlist',
-		        'anchor',
-		        'quote',
-		        'superscript',
-		        'subscript',
-		        'strikethrough',
-		    ],
-		    checkLinkFormat: true,
-		    cleanPastedHTML: true,
-		    placeholder: "<?= __('Write here the title for your Evidence') ?>",
-		    targetBlank: true,
-	  	});
-
-		jQuery('.evidenceButton').click(function() {
-
-			var MyDiv = document.getElementById('evidenceTitle');
-			var MyDiv1 = document.getElementById('evidenceContent');
-
-	        $('#EvidenceTitle').val(MyDiv.innerHTML);
-	        $('#EvidenceContent').val(MyDiv1.innerHTML);
-
-	    });
 	</script>
 <?php $this->end(); ?>

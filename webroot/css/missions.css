@@ -55,6 +55,16 @@
 	color: #000;
 }
 
+/* NAVIGATION BAR */
+.evoke #navigationBar {
+	top: 90%;
+}
+
+
+/* --------------------------- */
+/* OF CANVAS */
+/* --------------------------- */
+
 /* Off canvas */
 .evoke .missions .right-off-canvas-menu {
 	/*width: 30rem;*/
@@ -64,12 +74,14 @@
 	transition: transform 500ms ease 0s;
 }
 
-/* NAVIGATION BAR */
-.evoke #navigationBar {
-	top: 90%;
+/* Tab Menu */
+.evoke .tabMenuContent ul {
+	list-style: none;
 }
 
-
+.evoke .tabMenuContent li {
+	height: 33%;
+}
 
 /* --------------------------- */
 /* JOYRIDE */
