@@ -75,6 +75,10 @@
 }
 
 /* Tab Menu */
+.evoke .tabMenuContent .content {
+	margin: 0;
+}
+
 .evoke .tabMenuContent ul {
 	margin-left: 0;
 }

@@ -30,7 +30,20 @@
                     
                     <div class="mask">
                         <p><?= substr($mission['Mission']['description'], 0, 140) ?></p>
-                        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view_sample', $mission['Mission']['id'])); ?>" class="button general info"><?= __('Go to mission') ?></a>
+
+                        <?php
+                        	//DEFINE MISSION URL DEPENDING ON WHETHER THE USER IS LOGGED IN OR NOT
+                        	if (isset($loggedIn) && ($loggedIn)) {
+                        		$mission_url = $this->Html->url(array('controller' => 'missions', 'action' => 'view_mission', $mission['Mission']['id']));
+                        	}
+                        	else {
+                        		$mission_url = $this->Html->url(array('controller' => 'missions', 'action' => 'view_sample', $mission['Mission']['id']));
+                        	}
+                        ?>
+
+                        <a href="<?= $mission_url ?>" class="button">
+                        	<?= __('Go to mission') ?>
+                        </a>
                     </div>
                 </div> 
 

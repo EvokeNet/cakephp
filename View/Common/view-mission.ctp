@@ -227,21 +227,22 @@
 				<section class="main-section">
 					<!-- SUBMENU -->
 					<div class="missions-submenu fixed hidden padding top-1 left-3">
+						<div class="content">
+							<h1 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h1>
 
-						<h1 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h1>
+							<!-- PROGRESS BAR -->
+							<div class="button-bar phases-bar padding top-05 bottom-05">
+								<ul class="button-group radius">
+									<li><a href="#" class="button small thin past font-weight-bold"><i class="fa fa-flag fa-lg"></i> <?= __('Explore') ?></a></li>
+									<li><a href="#" class="button small thin present font-weight-bold"><i class="fa fa-fighter-jet fa-lg"></i> <?= __('Imagine') ?></a></li>
+									<li><a href="#" class="button small thin disabled font-weight-bold"><i class="fa fa-eye fa-lg"></i> <?= __('Act') ?></a></li>
+									<li><a href="#" class="button small thin disabled font-weight-bold"><i class="fa fa-flash fa-lg"></i> <?= __('Evoke') ?></a></li>
+								</ul>
+							</div>
 
-						<!-- PROGRESS BAR -->
-						<div class="button-bar phases-bar padding top-05 bottom-05">
-							<ul class="button-group radius">
-								<li><a href="#" class="button small thin past font-weight-bold"><i class="fa fa-flag fa-lg"></i> <?= __('Explore') ?></a></li>
-								<li><a href="#" class="button small thin present font-weight-bold"><i class="fa fa-fighter-jet fa-lg"></i> <?= __('Imagine') ?></a></li>
-								<li><a href="#" class="button small thin disabled font-weight-bold"><i class="fa fa-eye fa-lg"></i> <?= __('Act') ?></a></li>
-								<li><a href="#" class="button small thin disabled font-weight-bold"><i class="fa fa-flash fa-lg"></i> <?= __('Evoke') ?></a></li>
-							</ul>
+							<!-- MISSION DESCRIPTION -->
+							<p class="text-shadow-dark mission-description"><?php echo h($mission['Mission']['description']); ?></p>
 						</div>
-
-						<!-- MISSION DESCRIPTION -->
-						<p class="text-shadow-dark mission-description"><?php echo h($mission['Mission']['description']); ?></p>
 					</div>
 
 					<!-- MISSOES -->
@@ -345,8 +346,13 @@
 				$(sidr_source).addClass("sidr-open");
 				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
 				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-04'); //Blur everything else
-	    		$('div.missions-submenu').removeClass("hidden"); //Show submenu
-	    		$('.right-small').css("right",$(sidr_source).width()); //Off-canvas buttons go to the left
+
+				//Show submenu
+				$('div.missions-submenu .content').css("margin-right",$(sidr_source).width()+70);
+	    		$('div.missions-submenu').removeClass("hidden");
+
+	    		//Off-canvas buttons go to the left
+	    		$('.right-small').css("right",$(sidr_source).width());
 			}
 
 			function close_sidr(sidr_button,sidr_source) {

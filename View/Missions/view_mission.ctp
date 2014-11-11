@@ -4,7 +4,6 @@
 
 	//TEMPLATE ELEMENT: TAB DOSSIER
 	$this->start('tabDossierContent'); ?>
-
 	<div class="tabs-content tabDossierContent full-width full-height"></div><?php
 	$this->end();
 

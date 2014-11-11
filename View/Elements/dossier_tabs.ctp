@@ -37,7 +37,9 @@
 					if($type[0] == 'application'): 
 						$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
 
-						<li><a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a></li>
+						<li class="padding all-05 background-color-light-dark-on-hover">
+							<a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a>
+						</li>
 
 						<div id="<?= $file['Attachment']['id']?>" class="reveal-modal large" data-reveal>
 						  	<object data="<?= $path ?>" type="application/pdf" width="100%" height="100%" style = "height:900px">
@@ -55,7 +57,7 @@
 	<div class="content" id="dossierTabLinks">
 		<ul class="no-marker">
 			<?php foreach($links as $link): ?>
-				<li>
+				<li class="padding all-05 background-color-light-dark-on-hover">
 					<a href = "//<?= $link['DossierLink']['link'] ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
 					<?= $link['DossierLink']['description'] ?>
 				</li>
@@ -72,7 +74,9 @@
 					if($type[0] == 'image'): 
 						$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
 
-						<li><a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><img src = "<?= $path?>"/></a></li>
+						<li class="padding all-05 background-color-light-dark-on-hover">
+							<a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><img src = "<?= $path?>"/></a>
+						</li>
 
 						<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
 						<div id="<?= $file['Attachment']['id']?>" class="reveal-modal small" data-reveal>
@@ -95,7 +99,9 @@
 					if ($type[0] == 'video'): 
 						$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
 
-						<li><a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a></li>
+						<li class="padding all-05 background-color-light-dark-on-hover">
+							<a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a>
+						</li>
 
 						<div id="<?= $file['Attachment']['id']?>" class="reveal-modal large" data-reveal>
 						  	<div class="flex-video">
@@ -107,7 +113,9 @@
 				endforeach;
 			?>
 			<?php foreach ($video_links as $link): ?>
-					<li><a href="#" data-reveal-id="video-<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a></li>
+					<li class="padding all-05 background-color-light-dark-on-hover">
+						<a href="#" data-reveal-id="video-<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a>
+					</li>
 
 					<div id="video-<?= $link['DossierVideo']['id']?>" class="reveal-modal large" data-reveal>
 					  	<div id="frame-<?= $link['DossierVideo']['id']?>" class="flex-video-new">
