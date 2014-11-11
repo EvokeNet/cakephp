@@ -27,7 +27,7 @@
 </dl>
 
 <!-- TABS DOSSIER CONTENT -->
-<div class="tabs-content full-width full-height background-color-standard-opacity-07">
+<div class="tabs-content full-width full-height background-color-standard-opacity-07 tabDossierContent">
 	<!-- TEXTS -->
 	<div class="content active" id="dossierTabTexts">
 		<ul class="no-marker">
@@ -37,7 +37,7 @@
 					if($type[0] == 'application'): 
 						$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
 
-						<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover">
+						<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
 							<a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a>
 						</li>
 
@@ -57,7 +57,7 @@
 	<div class="content" id="dossierTabLinks">
 		<ul class="no-marker">
 			<?php foreach($links as $link): ?>
-				<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover">
+				<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
 					<a href = "//<?= $link['DossierLink']['link'] ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
 					<?= $link['DossierLink']['description'] ?>
 				</li>
@@ -74,7 +74,7 @@
 					if($type[0] == 'image'): 
 						$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
 
-						<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover">
+						<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
 							<a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><img src = "<?= $path?>"/></a>
 						</li>
 
@@ -99,7 +99,7 @@
 					if ($type[0] == 'video'): 
 						$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
 
-						<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover">
+						<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
 							<a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a>
 						</li>
 
@@ -113,7 +113,7 @@
 				endforeach;
 			?>
 			<?php foreach ($video_links as $link): ?>
-					<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover">
+					<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
 						<a href="#" data-reveal-id="video-<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a>
 					</li>
 

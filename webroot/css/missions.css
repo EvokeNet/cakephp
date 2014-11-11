@@ -75,16 +75,21 @@
 }
 
 /* Tab Menu */
-.evoke .tabMenuContent .content {
-	padding: 0;
-}
-
 .evoke .tabMenuContent ul {
 	margin-left: 0;
 }
 
 .evoke .tabMenuContent li {
 	height: 33%;
+}
+
+/* Tab Dossier */
+.evoke .tabDossierContent .content {
+	padding: 0;
+}
+
+.evoke .tabDossierContent ul {
+	margin-left: 0.2em;
 }
 
 /* --------------------------- */

@@ -632,6 +632,17 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	border-width: 0.2em;
 }
 
+/* Highlight */
+.evoke .border-left-highlight {
+	border-left: solid 0.2em #26dee0;
+}
+
+.evoke .border-left-highlight-on-hover:hover {
+	border-left: solid 0.2em #26dee0;
+	margin-left: -0.2em;
+}
+
+/* Divisors */
 .evoke .border-top-divisor {
 	border-top: 0.1em solid #292929;
 }
