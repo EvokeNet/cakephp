@@ -664,26 +664,102 @@ class MissionsController extends AppController {
 
 
 /**
- * Renders a list of evidences
+ * Renders a list of evidences in the element evidence_list
  * @param int $mission_id - Optional ID to see evidences from a specific mission
+ * @param int/array $user_id - Optional ID (int), or array of IDs, to see evidences from a specific user or set of users
  * @param int $limit - Optional limit to the number of evidences listed
- * @param string $find_params - Optional params for the query that finds evidences (format: "'param' => 'value', 'param' => 'value'")
+ * @param string $order_by - Optional order for the query
  */
-	public function renderEvidenceList($mission_id = null, $limit = null, $find_params = null) {
+	public function renderEvidenceList() {
+		$evidences = $this->getEvidences(
+			$this->request->query('mission_id'),
+			$this->request->query('user_id'),
+			$this->request->query('limit'),
+			$this->request->query('offset'),
+			$this->request->query('order_by'));
+
+		//Render
+		$this->set(compact('evidences'));
+		$this->layout = false;
+		$this->render('/Elements/evidence_list');
+	}
+
+/**
+ * Returns the HTML of a list of evidences to be rendered
+ * @param int $mission_id - Optional ID to see evidences from a specific mission
+ * @param int/array $user_id - Optional ID (int), or array of IDs, to see evidences from a specific user or set of users
+ * @param int $limit - Optional limit to the number of evidences listed (default: null)
+ * @param int $offset - Optional limit to the number of evidences listed (default: 0)
+ * @param string $order_by - Optional order for the query (default: date of creation DESC)
+ */
+	public function moreEvidences(){
+		$this->autoRender = false; // We don't render a view in this example
+
+	   	//QUERY
+	   	$newEvidences = $this->getEvidences(
+			$this->request->query('mission_id'),
+			$this->request->query('user_id'),
+			$this->request->query('limit'),
+			$this->request->query('offset'),
+			$this->request->query('order_by'));
+
+	   	//GENERATE HTML TO BE RETURNED
+		$elementToRender = 'evidence';
+		$ind = 'Evidence';
+		
+    	$newEvidencesHTML = "";
+
+    	foreach ($newEvidences as $key => $value) {
+    		$view = new View($this, false);
+			$content = ($view->element($elementToRender, array('e' => $value)));
+
+			$newEvidencesHTML .= $content .' ';
+    	}
+
+    	return $newEvidencesHTML;
+	}
+
+/**
+ * Returns a list of evidences
+ * @param int $mission_id - Optional ID to see evidences from a specific mission
+ * @param int/array $user_id - Optional ID (int), or array of IDs, to see evidences from a specific user or set of users
+ * @param int $limit - Optional limit to the number of evidences listed (default: null)
+ * @param int $offset - Optional limit to the number of evidences listed (default: 0)
+ * @param string $order_by - Optional order for the query (default: date of creation DESC)
+ */
+	public function getEvidences($mission_id = null, $user_id = null, $limit = null, $offset = 0, $order_by = null) {
+		$this->autoRender = false; // We don't render a view
+
 		$evidence_query_params = array();
+		$evidence_query_params['conditions'] = array();
 
 		//FUNCTION PARAMS
 		//Evidences of a specific mission
 		if (!is_null($mission_id)) {
-			$evidence_query_params['conditions'] = array('mission_id' => $mission_id);
+			$evidence_query_params['conditions']['mission_id'] = $mission_id;
+		}
+
+		//Evidences of a specific user or set of users
+		if (!is_null($user_id)) {
+			$evidence_query_params['conditions']['user_id'] = $user_id;
 		}
 
 		//Limit to the query
-		$evidence_query_params['limit'] = $limit;
+		if (!is_null($limit)) {
+			$evidence_query_params['limit'] = $limit;
+		}
+		
+		//Offset (distance from beggining)
+		if (!is_null($offset)) {
+			$evidence_query_params['offset'] = $offset;
+		}
 
-		//Additional params
-		if (!is_null($find_params)) {
-			array_push($evidence_query_params, $find_params);
+		//Order
+		if (!is_null($order_by)) {
+			$evidence_query_params['order_by'] = $order_by;
+		}
+		else {
+			$evidence_query_params['order_by'] = "Evidence.created DESC"; //DEFAULT ORDER: date of creation
 		}
 
 		//CONTAINABLE MODELS
@@ -693,27 +769,25 @@ class MissionsController extends AppController {
 		$this->loadModel('Evidence');
 		$evidences = $this->Evidence->find('all', $evidence_query_params);
 
-		//Render
-		$this->set(compact('evidences'));
-		$this->layout = false;
-		$this->render('/Elements/evidence_list');
+		return $evidences;
 	}
+
 
 /**
  * View complete missions (after logged in)
- * @param int $id - Optional ID to see a specific mission
+ * @param int $mission_id - ID to see a specific mission
  */
-	public function view_mission($id = null) {
+	public function view_mission($mission_id) {
 		$user = $this->Auth->user();
 
-		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id), 'contain' => 'Quest'));
+		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id), 'contain' => 'Quest'));
 
 		$novels = $this->Mission->Novel->find('all', array(
 			'order' => array(
 				'Novel.page Asc'
 			),
 			'conditions' => array(
-				'Novel.mission_id' => $id,
+				'Novel.mission_id' => $mission_id,
 				'Novel.language' => 'en'
 			)
 		));

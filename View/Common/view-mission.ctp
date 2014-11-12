@@ -309,7 +309,9 @@
 	<script type="text/javascript">
 
 		$(document).ready(function() {
+			//--------------------------------------------//
 			//Creates carousel
+			//--------------------------------------------//
 			$('.missions-carousel').slick({
 			  slidesToShow: 1,
 			  variableHeight: true,
@@ -341,14 +343,16 @@
 			$('#missions-body').css("margin-top",$('#missions-menu').height());
 			$('.missions-submenu').css("top",$('#missions-menu').height());
 
+			//--------------------------------------------//
 			//Off canvas
+			//--------------------------------------------//
 			function open_sidr(sidr_button,sidr_source) {
 				$(sidr_source).addClass("sidr-open");
 				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
 				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-04'); //Blur everything else
 
 				//Show submenu
-				$('div.missions-submenu .content').css("margin-right",$(sidr_source).width()+70);
+				$('div.missions-submenu .content').css("margin-right",$(sidr_source).width()+100);
 	    		$('div.missions-submenu').removeClass("hidden");
 
 	    		//Off-canvas buttons go to the left
@@ -398,7 +402,9 @@
 				onClose: function() { close_sidr('#menu-icon-tabMenu','#sidr-tabMenu'); }
 			});
 
+			//--------------------------------------------//
 			//SUBMIT EVIDENCE BUTTON
+			//--------------------------------------------//
 			$(".submit-evidence.button").click(function(){				
 				var evidence = $(".evidence-quest-" + $(this).data("quest-id"));
 				if ($(".evidence-quest-" + $(this).data("quest-id")).hasClass("hidden")) {
@@ -409,7 +415,9 @@
 			});
 
 
+			//--------------------------------------------//
 			//MEDIUM EDITOR FOR EVIDENCES
+			//--------------------------------------------//
 			var editor = new MediumEditor('.editableContent', {
 			    buttons: [
 			    	'bold',
@@ -461,9 +469,10 @@
 		        $('#EvidenceContent').val(MyDiv1.innerHTML);
 
 		    });
-
-
+		    
+			//--------------------------------------------//
 		    //REFLOW FOUNDATION - After setting up slick (or generating any other elements), foundation needs to be updated
+		    //--------------------------------------------//
 			$(document).foundation('reflow');
 
 			
