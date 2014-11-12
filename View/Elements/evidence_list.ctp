@@ -13,7 +13,7 @@
 		?><meta name="lastEvidence" content="<?php echo $lastEvidence; ?>"><?php
 	endif; ?>
 </div>
-<div id="moreEvidencesLoading" class="text-center hidden"><i class="fa fa-spinner fa-spin fa-3x"></i></div>
+<div class="moreEvidencesLoading text-center hidden"><i class="fa fa-spinner fa-spin fa-3x"></i></div>
 
 <!-- SCRIPT -->
 <?php
@@ -89,14 +89,15 @@
 
 		    beforeSend: function(xhr) {
 		        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-		        $("#moreEvidencesLoading").removeClass("hidden");
+		        $(".moreEvidencesLoading").removeClass("hidden");
 		    },
 		    completed: function() {
-		    	$("#moreEvidencesLoading").addClass("hidden");
+		    	$(".moreEvidencesLoading").addClass("hidden");
 		    },
 		    success: function(response) {
 		    	if (response.length == 0) {
 		    		has_ended = true;
+		    		$(".moreEvidencesLoading").addClass("hidden");
 		    	}
 		    	else {
 			        $('.evidences-list').append(response);
