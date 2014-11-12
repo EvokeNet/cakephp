@@ -21,7 +21,7 @@
 	$load_dossier_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderDossierTab', 
 		'?' => array(
 			'mission_id' => $mission['Mission']['id'], 
-			'limit' => 5)
+			'limit' => 10)
 	));
 	$load_dossier_url = str_replace('amp;', '', $load_dossier_url); //Workaround for Cakephp 2.x
 
@@ -29,7 +29,7 @@
 	$load_evidences_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderEvidenceList', 
 		'?' => array(
 			'mission_id' => $mission['Mission']['id'], 
-			'limit' => 5)
+			'limit' => 10)
 	));
 	$load_evidences_url = str_replace('amp;', '', $load_evidences_url); //Workaround for Cakephp 2.x
 ?>
