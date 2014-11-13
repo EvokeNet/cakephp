@@ -13,7 +13,7 @@
 		?><meta name="lastEvidence" content="<?php echo $lastEvidence; ?>"><?php
 	endif; ?>
 </div>
-<div class="moreEvidencesLoading text-center hidden"><i class="fa fa-spinner fa-spin fa-3x"></i></div>
+<div class="moreEvidencesLoading text-center hidden padding all-1"><i class="fa fa-spinner fa-spin fa-3x"></i></div>
 
 <!-- SCRIPT -->
 <?php
@@ -34,12 +34,14 @@
 
 	//checking scrolling info to call ajax function
 	$(window).scroll(throttle(function() {
-		if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+		var space_for_loading_image = 100;
+
+		if ($(window).scrollTop() >= $(document).height() - $(window).height() - space_for_loading_image) {
 			if (has_ended == false) {
 				fillExtraContent();
 			}
 		}
-	}, 1000));
+	}, 600));
 
 	function throttle(fn, threshhold, scope) {
 	  	threshhold || (threshhold = 250);

@@ -310,6 +310,13 @@
 
 		$(document).ready(function() {
 			//--------------------------------------------//
+			//Top-bar margins
+			//--------------------------------------------//
+			//Adds margin so that the menu won't be on top of the container
+			$('#missions-body').css("padding-top",$('#missions-menu').height());
+			$('.missions-submenu').css("top",$('#missions-menu').height());
+
+			//--------------------------------------------//
 			//Creates carousel
 			//--------------------------------------------//
 			$('.missions-carousel').slick({
@@ -339,17 +346,13 @@
 			$('#slickPrevArrow').append($('.slick-prev'));
 			$('#slickNextArrow').append($('.slick-next'));
 
-			//Adds margin so that the menu won't be on top of the container
-			$('#missions-body').css("margin-top",$('#missions-menu').height());
-			$('.missions-submenu').css("top",$('#missions-menu').height());
-
 			//--------------------------------------------//
 			//Off canvas
 			//--------------------------------------------//
 			function open_sidr(sidr_button,sidr_source) {
 				$(sidr_source).addClass("sidr-open");
 				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
-				$('.off-canvas-wrap .missions-content').addClass('blur-strong').addClass('opacity-04'); //Blur everything else
+				$('.off-canvas-wrap .missions-content').addClass('blur-strong opacity-04'); //Blur everything else
 
 				//Show submenu
 				$('div.missions-submenu .content').css("margin-right",$(sidr_source).width()+100);
@@ -401,6 +404,12 @@
 				onOpen: function() { open_sidr('#menu-icon-tabMenu','#sidr-tabMenu'); },
 				onClose: function() { close_sidr('#menu-icon-tabMenu','#sidr-tabMenu'); }
 			});
+
+			//--------------------------------------------//
+			//Top-bar margins
+			//--------------------------------------------//
+			//Adds margin so that the menu won't be on top of the container
+			$('.sidr').css("top",$('#missions-menu').height());
 
 			//--------------------------------------------//
 			//SUBMIT EVIDENCE BUTTON
