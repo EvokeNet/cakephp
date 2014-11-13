@@ -58,8 +58,11 @@
 		<ul class="no-marker">
 			<?php foreach($links as $link): ?>
 				<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
-					<a href = "//<?= $link['DossierLink']['link'] ?>" target="_blank"><?= $link['DossierLink']['title'] ?></a>&nbsp;-&nbsp;
-					<?= $link['DossierLink']['description'] ?>
+					<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= $link['DossierLink']['description'] ?>">
+						<a href="//<?= $link['DossierLink']['link'] ?>" class="text-glow-on-hover text-color-highlight">
+							<?= $link['DossierLink']['title'] ?>
+						</a>
+					</span>
 				</li>
 			<?php endforeach; ?>
 		</ul>
@@ -125,7 +128,7 @@
 						        <iframe id="iframe-<?= $link['DossierVideo']['id']?>" width="420" height="315" src="//<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
 						</div>
 						<a href="#" data-reveal-id="dossierVideoLink<?= $link['DossierVideo']['id']?>" data-reveal>
-							<p class="text-center margin top-05 bottom-0 left-05 right-05"><?= $file['DossierVideo']['title']?></p>
+							<p class="text-center margin top-05 bottom-0 left-05 right-05"><?= $link['DossierVideo']['title']?></p>
 						</a>
 					</li>
 
@@ -135,7 +138,6 @@
 						</div>
 						<a class="close-reveal-modal">&#215;</a> 
 					</div>
- 
 			<?php endforeach; ?>
 		</ul>
 	</div>
