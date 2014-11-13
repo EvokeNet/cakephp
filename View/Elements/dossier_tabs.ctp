@@ -107,18 +107,8 @@
 
 						<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
 							<?= $file['Attachment']['attachment']?>
-
-							<a href="<?= $path ?>" data-reveal-id="dossierVideo<?= $file['Attachment']['id']?>" data-reveal>
-								<p class="text-center margin top-05 bottom-0 left-05 right-05"><?= $file['Attachment']['name']?></p>
-							</a>
-						</li>
-
-						<div id="dossierVideo<?= $file['Attachment']['id']?>" class="reveal-modal large" data-reveal>
-						  	<div class="flex-video">
-							        <iframe width="420" height="315" src="<?= $path ?>" frameborder="0" allowfullscreen></iframe>
-							</div>
-						  <a class="close-reveal-modal">&#215;</a> 
-						</div><?php
+							<p class="text-center margin top-05 bottom-0 left-05 right-05"><?= $file['Attachment']['name']?></p>
+						</li><?php
 					endif;
 				endforeach;
 			?>
@@ -127,17 +117,9 @@
 						<div id="frame-<?= $link['DossierVideo']['id']?>" class="flex-video-new">
 						        <iframe id="iframe-<?= $link['DossierVideo']['id']?>" width="420" height="315" src="//<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
 						</div>
-						<a href="#" data-reveal-id="dossierVideoLink<?= $link['DossierVideo']['id']?>" data-reveal>
-							<p class="text-center margin top-05 bottom-0 left-05 right-05"><?= $link['DossierVideo']['title']?></p>
-						</a>
+						
+						<p class="text-center margin top-05 bottom-0 left-05 right-05"><?= $link['DossierVideo']['title']?></p>
 					</li>
-
-					<div id="dossierVideoLink<?= $link['DossierVideo']['id']?>" class="reveal-modal large" data-reveal>
-					  	<div id="frame-<?= $link['DossierVideo']['id']?>" class="flex-video-new">
-						        <iframe id="iframe-<?= $link['DossierVideo']['id']?>" width="420" height="315" src="//<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
-						</div>
-						<a class="close-reveal-modal">&#215;</a> 
-					</div>
 			<?php endforeach; ?>
 		</ul>
 	</div>
