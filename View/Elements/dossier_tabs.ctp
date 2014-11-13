@@ -72,16 +72,19 @@
 				foreach ($dossier_files as $file):
 					$type = explode('/', $file['Attachment']['type']);
 					if($type[0] == 'image'): 
-						$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
+						$thumb_img_path = $this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/vga_'.$file['Attachment']['attachment'];
+						$full_img_path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment']; ?>
 
 						<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
-							<a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><img src = "<?= $path?>"/></a>
+							<a href="<?= $full_img_path ?>" data-reveal-id="dossierPicture<?= $file['Attachment']['id']?>">
+								<img src="<?= $thumb_img_path?>" alt="<?= $file['Attachment']['name']?>" />
+							</a>
+							<p class="text-center margin top-05 bottom-0 left-05 right-05"><?= $file['Attachment']['name']?></p>
 						</li>
 
-						<!-- <a href="#" data-reveal-id="myModal" data-reveal>Click Me For A Modal</a> -->
-						<div id="<?= $file['Attachment']['id']?>" class="reveal-modal small" data-reveal>
-						  <img src = "<?= $path?>"/>
-						  <a class="close-reveal-modal">&#215;</a> 
+						<div id="dossierPicture<?= $file['Attachment']['id']?>" class="reveal-modal small" data-reveal>
+							<img src="<?= $full_img_path?>" alt="<?= $file['Attachment']['name']?>" />
+							<a class="close-reveal-modal">&#215;</a>
 						</div><?php 
 					endif;
 				endforeach;
@@ -100,10 +103,14 @@
 						$path = ' '.$this->webroot.'files/attachment/attachment/'.$file['Attachment']['dir'].'/'.$file['Attachment']['attachment'] . ''; ?>
 
 						<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
-							<a href="<?= $path ?>" data-reveal-id="<?= $file['Attachment']['id']?>" data-reveal><?= $file['Attachment']['attachment']?></a>
+							<?= $file['Attachment']['attachment']?>
+
+							<a href="<?= $path ?>" data-reveal-id="dossierVideo<?= $file['Attachment']['id']?>" data-reveal>
+								<p class="text-center margin top-05 bottom-0 left-05 right-05"><?= $file['Attachment']['name']?></p>
+							</a>
 						</li>
 
-						<div id="<?= $file['Attachment']['id']?>" class="reveal-modal large" data-reveal>
+						<div id="dossierVideo<?= $file['Attachment']['id']?>" class="reveal-modal large" data-reveal>
 						  	<div class="flex-video">
 							        <iframe width="420" height="315" src="<?= $path ?>" frameborder="0" allowfullscreen></iframe>
 							</div>
@@ -114,19 +121,21 @@
 			?>
 			<?php foreach ($video_links as $link): ?>
 					<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
-						<!-- <a href="#" data-reveal-id="video-<?= $link['DossierVideo']['id']?>" data-reveal><?= $link['DossierVideo']['title']?></a> -->
 						<div id="frame-<?= $link['DossierVideo']['id']?>" class="flex-video-new">
 						        <iframe id="iframe-<?= $link['DossierVideo']['id']?>" width="420" height="315" src="//<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
 						</div>
+						<a href="#" data-reveal-id="dossierVideoLink<?= $link['DossierVideo']['id']?>" data-reveal>
+							<p class="text-center margin top-05 bottom-0 left-05 right-05"><?= $file['DossierVideo']['title']?></p>
+						</a>
 					</li>
-<!-- 
-					<div id="video-<?= $link['DossierVideo']['id']?>" class="reveal-modal large" data-reveal>
+
+					<div id="dossierVideoLink<?= $link['DossierVideo']['id']?>" class="reveal-modal large" data-reveal>
 					  	<div id="frame-<?= $link['DossierVideo']['id']?>" class="flex-video-new">
 						        <iframe id="iframe-<?= $link['DossierVideo']['id']?>" width="420" height="315" src="//<?= $link['DossierVideo']['video_link'] ?>" frameborder="0" allowfullscreen></iframe>
 						</div>
 						<a class="close-reveal-modal">&#215;</a> 
 					</div>
- -->
+ 
 			<?php endforeach; ?>
 		</ul>
 	</div>
