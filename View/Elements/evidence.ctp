@@ -16,7 +16,7 @@
 	<!-- USER PICTURE -->
 	<div class="table-cell vertical-align-middle square-60px">
 		<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $e['User']['id'])); ?>">
-			<img class="img-circular smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $e['User']['name'] ?>'s profile picture" />
+			<img class="img-circular square-60px margin bottom-0" src='<?= $pic ?>' alt="<?= $e['User']['name'] ?>'s profile picture" />
 		</a>
 	</div>
 
