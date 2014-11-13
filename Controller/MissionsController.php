@@ -681,7 +681,7 @@ class MissionsController extends AppController {
 		//Render
 		$this->set(compact('evidences'));
 		$this->layout = false;
-		$this->render('/Elements/evidence_list');
+		$this->render('/Elements/Evidences/evidence_list');
 	}
 
 /**
@@ -704,7 +704,7 @@ class MissionsController extends AppController {
 			$this->request->query('order_by'));
 
 	   	//GENERATE HTML TO BE RETURNED
-		$elementToRender = 'evidence';
+		$elementToRender = 'Evidences/evidence_list_item';
 		$ind = 'Evidence';
 		
     	$newEvidencesHTML = "";

@@ -1,12 +1,31 @@
 <?php
+	//CSS overriding fullpage.js plugin
+	$cssBaseUrl = Configure::read('App.cssBaseUrl');
+	
+	echo $this->Html->css(
+		array(
+			'/components/slick-carousel/slick/slick.css',
+			'slick.css',
+			'/components/medium-editor/dist/css/medium-editor.css',
+			'/components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.css',
+			'medium.css',
+			'sidr.css'
+		)
+	);
+?>
 
-	$this->extend('/Common/topbar');
-	$this->start('menu');
-	$comments_count = sprintf(' (%s) ', count($comment));
+<!-- TOPBAR MENU -->
+<?php
+	$this->start('topbar');
+	echo $this->element('topbar', array('sticky' => '', 'fixed' => ''));
+	$this->end();
+?>
+<!-- TOPBAR MENU -->
 
-	echo $this->element('header', array('user' => $user));
-	$this->end(); 
 
+<?php echo $this->element('Evidences/evidence'); ?>
+
+<?php
 	$pic = null;
 
 	if($user['User']['photo_attachment'] == null) :
@@ -20,34 +39,8 @@
 	endif;
 ?>
 
-<?php //$this->start('social-metatags'); ?>
 
-	<!-- <meta property="og:locale" content="en_US">
-		 
-	<meta property="og:url" content="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $evidence['Evidence']['id'])); ?>">
-	 
-	<meta property="og:title" content="<?= $evidence['Evidence']['title'] ?>">
-	<meta property="og:site_name" content="<?= __('Evoke') ?>">
-	 
-	<meta property="og:description" content="<?= $evidence['Evidence']['content'] ?>"> -->
-
-	<!-- <meta property="og:title" content="pagina" /> -->
-	<!-- [...] -->
-
-<?php //$this->end(); ?>
-
-<section class="evoke default-background">
-
-	<div class="evoke default row full-width-alternate">
-
-	  <div class="small-2 medium-2 large-2 columns padding-left">
-	  	<?php echo $this->element('menu', array('user' => $user));?>
-	  </div>
-
-	  <div class="small-10 medium-10 large-10 columns maincolumn">
-
-	  	<?php echo $this->Session->flash(); ?>
-	  	
+	<div class="row full-width">
 	  	<nav class="evoke breadcrumbs">
 			<?php //echo $this->Html->link(__('Missions'), array('controller' => 'missions', 'action' => 'index'));?>
 			<a class="unavailable" href="#"><?php echo __('Mission: ').$evidence['Mission']['title']; ?></a>
@@ -56,7 +49,7 @@
 			<a class="current" href="#"><?php echo $evidence['Evidence']['title'];?></a>
 		</nav>
 
-	  	<div class="evoke default row full-width-alternate">
+	  	<div class="row full-width">
 
 		  <div class="small-9 medium-9 large-9 columns">
 		 	<div class = "evoke evidence-body view">
@@ -89,7 +82,6 @@
 				  	  	<ul class="clearing-thumbs" data-clearing>		
 
 					  		<?php foreach ($images as $attachment) :?>
-					  			<!-- <span><?= $attachment['Attachment']['attachment']?></span> -->
 								<li>
 				 					<a href="<?= $this->webroot.'files/attachment/attachment/'.$attachment['Attachment']['dir'].'/'.$attachment['Attachment']['attachment'].''; ?>">
 				 						<img src="<?= $this->webroot.'files/attachment/attachment/'.$attachment['Attachment']['dir'].'/thumb_'.$attachment['Attachment']['attachment'] ?>" width="100%">
@@ -150,22 +142,17 @@
 	  			<div class = "newcomments" id = "ncom"></div>
 	  			</div>
 			</div>
-		  </div>
 	  <div class="small-3 medium-3 large-3 columns padding-right">
 
-	  	<div class="evoke evidence-tag text-align-center margin bottom-2">
-		  		
+	  	<div class="evoke text-center margin bottom-2">
 		  	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $evidence['User']['id']))?>">
-		  		<?php if($evidence['User']['photo_attachment'] == null) : ?>
-					<?php if($evidence['User']['facebook_id'] == null) : ?>
-						<!-- <img src="<?= $this->webroot.'img/user_avatar.jpg' ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/> -->
-						<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
+		  		<?php if($evidence['User']['photo_attachment'] == null) :
+		  				if($evidence['User']['facebook_id'] == null) : 
+		  					$pic = $this->webroot.'img/user_avatar.jpg';?>
 					<?php else : ?>	
-						<!-- <img src="https://graph.facebook.com/<?php echo $evidence['User']['facebook_id']; ?>/picture?type=large" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/> -->
 						<?php $pic = "https://graph.facebook.com/". $evidence['User']['facebook_id']. "/picture?type=large";?>
 					<?php endif; ?>
 				<?php else : ?>
-					<!-- <img src="<?= $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'] ?>" style = "max-width: 10vw; margin: 20px 0px; max-height: 200px;"/> -->
 					<?php $pic = $this->webroot.'files/attachment/attachment/'.$evidence['User']['photo_dir'].'/'.$evidence['User']['photo_attachment'];?>
 				<?php endif; ?>
 		  		
@@ -232,38 +219,31 @@
 
 	  </div>
 
-	  <!-- <div class="medium-1 end columns"></div> -->
 
   	</div>
 
 </section>
 
-<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
 
-<?php
-	echo $this->Html->script('/components/jquery/jquery.min', array('inline' => false));
-	echo $this->Html->script('menu_height', array('inline' => false));
-	//echo $this->Html->script('facebook_share', array('inline' => false));
-	//echo $this->Html->script('google_share', array('inline' => false));
-	//echo $this->Html->script('target_blank', array('inline' => false));
-?>
 
-<script>
 
-  //socket io client
-  var socket = io.connect('http://localhost:8000');
 
-  //on connetion, updates connection state and sends subscribe request
-  socket.on('connect', function(data){
-    setStatus('connected');
-    socket.emit('subscribe', {channel:'notif'});
-    socket.emit('subscribe', {channel:'notifs'});
-  });
+<?php $this->start('script'); ?>
+<script type="text/javascript">
+  // //socket io client
+  // var socket = io.connect('http://localhost:8000');
 
-  //when reconnection is attempted, updates status 
-  socket.on('reconnecting', function(data){
-    setStatus('reconnecting');
-  });
+  // //on connetion, updates connection state and sends subscribe request
+  // socket.on('connect', function(data){
+  //   setStatus('connected');
+  //   socket.emit('subscribe', {channel:'notif'});
+  //   socket.emit('subscribe', {channel:'notifs'});
+  // });
+
+  // //when reconnection is attempted, updates status 
+  // socket.on('reconnecting', function(data){
+  //   setStatus('reconnecting');
+  // });
 
 
   function dynamicEvent() {
@@ -402,3 +382,4 @@
   	// }
 
 </script>
+<?php $this->end(); ?>

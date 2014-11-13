@@ -6,7 +6,7 @@
 		foreach($evidences as $e):
 			$lastEvidence = $e['Evidence']['id'];
 			
-			echo $this->element('evidence', array('e' => $e));
+			echo $this->element('Evidences/evidence_list_item', array('e' => $e));
 		endforeach;
 		
 		//REFERENCE OF LAST EVIDENCE RENDERED
