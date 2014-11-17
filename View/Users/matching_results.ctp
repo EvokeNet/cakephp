@@ -45,15 +45,7 @@
 			<?php
 				$counter = 0;
 				foreach($similar_users as $similar_user):
-					$pic = $this->webroot.'webroot/img/user_avatar.jpg';
-					if($similar_user['User']['photo_attachment'] == null) {
-						if($similar_user['User']['facebook_id'] != null) {
-							$pic = "https://graph.facebook.com/". $similar_user['User']['facebook_id'] ."/picture?type=large";
-						}
-					}
-					else {
-						$pic = $this->webroot.'files/attachment/attachment/'.$similar_user['User']['photo_dir'].'/'.$similar_user['User']['photo_attachment'];
-					}
+					$pic = $this->UserPicture->getPictureAbsolutePath($similar_user['User']);
 			?>
 			<li>
 				<!-- PANEL -->

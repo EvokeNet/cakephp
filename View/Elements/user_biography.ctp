@@ -5,6 +5,7 @@ if (isset($modal) && ($modal == true)): ?>
 endif; ?>
 
 		<div class="left margin right-2">
+			<?php $pic = $this->UserPicture->getPictureAbsolutePath($user['User']); ?>
 			<!-- PICTURE -->
 			<img class="profile-picture radius border-style-solid border-color-highlight border-width-01" src='<?= $pic ?>' alt="<?= $user['User']['name'] ?>'s profile picture" />
 

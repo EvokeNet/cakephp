@@ -25,17 +25,7 @@
 		<!-- USER PROFILE PICTURE WITH DROPDOWN MENU -->
 		<li class="has-dropdown">
 			<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>" class="button-icon">
-				<?php
-				$pic = $this->webroot.'webroot/img/user_avatar.jpg';
-				if($loggedInUser['photo_attachment'] == null) {
-					if($loggedInUser['facebook_id'] != null) {
-						$pic = "https://graph.facebook.com/". $loggedInUser['facebook_id'] ."/picture?type=large";
-					}
-				}
-				else {
-					$pic = $this->webroot.'files/attachment/attachment/'.$loggedInUser['photo_dir'].'/'.$loggedInUser['photo_attachment'];
-				}
-				?>
+				<?php $pic = $this->UserPicture->getPictureAbsolutePath($loggedInUser); ?>
 				<div class="centering-block">
 					<img src="<?=$pic?>" class="img-circular square-40px img-glow-on-hover-small" alt="<?= __('Your profile picture') ?>" />
 				</div>

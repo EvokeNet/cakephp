@@ -23,20 +23,10 @@
 <!-- TOPBAR MENU -->
 
 
-<?php echo $this->element('Evidences/evidence'); ?>
+<?php echo $this->element('Evidences/evidence_view'); ?>
 
 <?php
-	$pic = null;
-
-	if($user['User']['photo_attachment'] == null) :
-		if($user['User']['facebook_id'] == null) :
-			$pic = $this->webroot.'img/user_avatar.jpg';
-		else :
-			$pic = "https://graph.facebook.com/". $user['User']['facebook_id']."/picture?large";
-		endif;
-	else :
-		$pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'];
-	endif;
+	$pic = $this->UserPicture->getPictureAbsolutePath($user['User']);
 ?>
 
 

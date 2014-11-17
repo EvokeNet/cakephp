@@ -14,17 +14,7 @@
 	<div class="medium-2 columns gradient-on-right profile-sidebar" data-equalizer-watch>
 		<!-- PROFILE -->
 		<div class="row padding top-2 bottom-1 left-2 right-2">
-			<?php
-			$pic = $this->webroot.'webroot/img/user_avatar.jpg';
-			if($user['User']['photo_attachment'] == null) {
-				if($user['User']['facebook_id'] != null) {
-					$pic = "https://graph.facebook.com/". $user['User']['facebook_id'] ."/picture?type=large";
-				}
-			}
-			else {
-				$pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'];
-			}
-			?>
+			<?php $pic = $this->UserPicture->getPictureAbsolutePath($user['User']); ?>
 
 			<div class="centering-block large-12 medium-6 small-6 margins-auto">
 
@@ -61,16 +51,7 @@
 		      <?php
 		        $counter = 0;
 		        foreach($similar_users as $similar_user):
-		          $pic = $this->webroot.'webroot/img/user_avatar.jpg';
-		          if($similar_user['User']['photo_attachment'] == null) {
-		            if($similar_user['User']['facebook_id'] != null) {
-		              $pic = "https://graph.facebook.com/". $similar_user['User']['facebook_id'] ."/picture?type=large";
-		            }
-		          }
-		          else {
-		            $pic = $this->webroot.'files/attachment/attachment/'.$similar_user['User']['photo_dir'].'/'.$similar_user['User']['photo_attachment'];
-		          }
-		      ?>
+		        	$pic = $this->UserPicture->getPictureAbsolutePath($similar_user['User']); ?>
 		      <li>
 		        <!-- PANEL -->
 		        <a href="#" data-reveal-id="modalProfilePotentialAllies<?= $counter ?>">
@@ -145,16 +126,7 @@
 					$counter = 0;
 					
 					foreach($followers as $ally):
-						$pic = $this->webroot.'webroot/img/user_avatar.jpg';
-						if($ally['User']['photo_attachment'] == null) {
-							if($ally['User']['facebook_id'] != null) {
-								$pic = "https://graph.facebook.com/". $ally['User']['facebook_id'] ."/picture?type=large";
-							}
-						}
-						else {
-							$pic = $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'];
-						}
-					?>
+						$pic = $this->UserPicture->getPictureAbsolutePath($ally['User']); ?>
 					<div class="large-2 medium-4 small-6 columns paddings-0 text-center">
 						<!-- PICTURE -->
 						<a href="#" data-reveal-id="modalProfile<?= $counter ?>">

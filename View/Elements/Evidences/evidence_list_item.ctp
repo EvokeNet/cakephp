@@ -1,15 +1,8 @@
 <?php
 	//USER PICTURE
-	$pic = $this->webroot.'webroot/img/user_avatar.jpg';
-	if($e['User']['photo_attachment'] == null) {
-		if($e['User']['facebook_id'] != null) {
-			$pic = "https://graph.facebook.com/". $e['User']['facebook_id'] ."/picture?type=large";
-		}
-	}
-	else {
-		$pic = $this->webroot.'files/attachment/attachment/'.$e['User']['photo_dir'].'/'.$e['User']['photo_attachment'];
-	}
+	$pic = $this->UserPicture->getPictureAbsolutePath($e['User']);
 ?>
+
 
 <!-- EVIDENCE -->
 <div class="table full-width profile-content padding top-1 bottom-1 left-2 right-2 border-bottom-divisor background-color-standard-opacity-07 background-color-light-dark-on-hover">
