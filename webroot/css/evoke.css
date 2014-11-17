@@ -859,6 +859,12 @@ button, .button {
 /* --------------------------- */
 
 /* Profile picture */
+/*.evoke .background-cover-center {
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}*/
 .evoke .square-40px {
 	height: 40px;
 	width: 40px;

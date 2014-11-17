@@ -8,13 +8,16 @@
 	$count = 0;
 	foreach($badges as $badge): 
 		$count++;
-		if($count > 12)
+		if($count > 12) {
 			break;
-		if(isset($badge['Badge']['img_dir'])) : ?>
-			<li><img src='<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>' width = "95%"></li>
-		<?php else: ?>
-			<li><img src='<?= $this->webroot.'img/badge4.png' ?>' class="full-width"></li>
-		<?php endif ?>
+		} ?>
+			<li class="padding right-1">
+				<?php if(isset($badge['Badge']['img_dir'])) : ?>
+					<img src='<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>' alt="<?= $badge['Badge']['Name'] ?>">
+				<?php else: ?>
+					<img src='<?= $this->webroot.'img/badge4.png' ?>' class="full-width" alt="Badge" />
+				<?php endif ?>
+			</li>
 <?php endforeach;?>
 
 </ul>

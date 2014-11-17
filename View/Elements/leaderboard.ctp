@@ -22,7 +22,9 @@
             <div class="table-cell vertical-align-middle padding right-1 full-width">
               <!-- USER PICTURE -->
               <div class="left full-height padding right-1">
-                <img class="img-circular square-40px smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+                <div class="square-40px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
+                  <img class="hidden" src="<?= $pic ?>" alt="<?= $similar_user['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
+                </div>
               </div>
 
               <p class="user-name margins-0">
