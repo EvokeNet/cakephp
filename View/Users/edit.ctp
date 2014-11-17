@@ -13,42 +13,6 @@
 	$this->end();
 ?>
 
-<!-- <div class="row">
-	<div class="small-7 small-centered columns">
-		<div class = "evoke text-align">
-			<?php if(empty($user_photo)) :?>
-				<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"/>
-			<?php else : ?>
-				<img src="<?= $this->webroot.'files/attachment/attachment/'.$user_photo['Attachment']['dir'].'/thumb_'.$user_photo['Attachment']['attachment'] ?>"/>
-			<?php endif; ?>
-		</div>
-		<div id="uploader" class = "evoke text-align">
-			<i id="imageUpload" class="fa fa-upload"></i>
-		</div>
-	</div>
-</div> -->
-
-<!-- <dl class="tabs vertical" data-tab>
-  <dd class="active"><a href="#panel1">Tab 1</a></dd>
-  <dd><a href="#panel2">Tab 2</a></dd>
-  <dd><a href="#panel3">Tab 3</a></dd>
-  <dd><a href="#panel4">Tab 4</a></dd>
-</dl>
-<div class="tabs-content vertical">
-  <div class="content active" id="panel1">
-    <p>This is the first panel of the basic tab example. This is the first panel of the basic tab example.</p>
-  </div>
-  <div class="content" id="panel2">
-    <p>This is the second panel of the basic tab example. This is the second panel of the basic tab example.</p>
-  </div>
-  <div class="content" id="panel3">
-    <p>This is the third panel of the basic tab example. This is the third panel of the basic tab example.</p>
-  </div>
-  <div class="content" id="panel4">
-    <p>This is the fourth panel of the basic tab example. This is the fourth panel of the basic tab example.</p>
-  </div>
-</div> -->
-
 <div class="evoke row standard-width">
 	<div class="form-evoke-style">
 		<?php echo $this->Form->create('User', array('url' => array('controller' => 'users', 'action' => 'edit'), 'data-abide')); ?>
@@ -148,12 +112,6 @@
 				echo $this->Form->input('blog', array('label' => __('Blog')));
 			?>
 
-			<!-- <div class="name-field">
-			<label>Your name <small>required</small>
-			<input type="text" required pattern=".{0,10}$" maxlength='10'>
-			</label>
-			<small class="error" id="nameError">Name is required and must be a string.</small>
-			</div> -->
 
 			<label for="UserMiniBiography" style = "display: inline;"><?= __('Mini bio') ?></label>&nbsp;
 			<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= ('The mini bio is a text up to 140 characters') ?>"><i class="fa fa-question-circle"></i></span>

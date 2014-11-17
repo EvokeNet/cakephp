@@ -225,6 +225,14 @@
 				</aside>
 
 				<section class="main-section">
+					<!-- CONTENT OVERLAY -->
+					<div class="missions-content-overlay background-color-standard absolute full-height hidden" style="
+						/* width: 100%; */
+						margin-right: 612px;
+						z-index: 6;
+					">
+					</div>
+
 					<!-- SUBMENU -->
 					<div class="missions-submenu fixed hidden padding top-1 left-3">
 						<div class="content">

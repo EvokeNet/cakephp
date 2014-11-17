@@ -34,7 +34,7 @@
 
 		<!-- SOCIAL NETWORKS -->
 		<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor text-center">
-			<?php echo $this->element('social_networks_bar'); ?>
+			<?php echo $this->element('social_networks_bar', array('social_networks_user' => $user['User'])) ?>
 		</div>
 
 		<!-- LEVEL -->

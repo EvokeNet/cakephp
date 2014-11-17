@@ -24,7 +24,7 @@
 			</h5>
 
 			<!-- USER NAME -->
-			<p class="user-name margins-0 text-small">
+			<p class="user-name margins-0 font-size-small">
 				<?= __('By ').$e['User']['name'] ?>
 			</p>
 		</a>

@@ -60,7 +60,14 @@ class EvidencesController extends AppController {
 			$sumMyPoints += $point['Point']['value'];
 		}
 
-		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
+		$evidence = $this->Evidence->find('first', array(
+			'contain' => array(
+				'Mission' => array('fields' => 'id', 'title'),
+				'Phase' => array('fields' => 'name', 'position'),
+				'Quest' => array('fields' => 'id', 'title', 'title_es', 'description', 'description_es'),
+				'User'),
+			'conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)
+		));
 
 		$this->loadModel("Attachment");
 		$attachments = $this->Attachment->find('all', array(
@@ -79,12 +86,20 @@ class EvidencesController extends AppController {
 			$flags['_es'] = true;
 
 			$evidence['Mission']['title'] = $evidence['Mission']['title_es'];
+			$evidence['Quest']['title'] = $evidence['Quest']['title_es'];
+			$evidence['Quest']['description'] = $evidence['Quest']['description_es'];
 		}
 
-		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
+		$this->loadModel("Comment");
+		$comments = $this->Comment->find('all', array(
+			'contain' => 'User',
+			'conditions' => array('Comment.evidence_id' => $id)
+		));
+
 		$like = $this->Evidence->Like->find('first', array('conditions' => array('Like.evidence_id' => $id, 'Like.user_id' => $this->getUserId())));
 		$likes = $this->Evidence->Like->find('all', array('conditions' => array('Like.evidence_id' => $id)));
-		$this->set(compact('user', 'evidence', 'comment', 'like', 'likes', 'sumMyPoints', 'attachments'));
+
+		$this->set(compact('user', 'evidence', 'comments', 'like', 'likes', 'sumMyPoints', 'attachments'));
 	}
 
 /**
