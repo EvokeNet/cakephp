@@ -106,24 +106,20 @@ if (isset($evidence)): ?>
 						<h6 class="text-color-highlight"><?= __('SHARE') ?></h6>
 					</li>
 					<li>
-						<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Sharing is not available in preview') ?>">
-							<a class="button-icon" href="javascript:fbShare('<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>')" alt="<?= __('Share on facebook') ?>">
-								<span class="fa-stack fa-small">
-									<i class="fa fa-square fa-stack-1x fa-12x facebook-icon"></i>
-									<i class="fa fa-facebook fa-stack-1x fa-07x fa-inverse "></i>
-								</span>
-							</a>
-						</span>
+						<a class="button-icon" href="javascript:fbShare('<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>')" alt="<?= __('Share on facebook') ?>">
+							<span class="fa-stack fa-small">
+								<i class="fa fa-square fa-stack-1x fa-12x facebook-icon"></i>
+								<i class="fa fa-facebook fa-stack-1x fa-07x fa-inverse "></i>
+							</span>
+						</a>
 					</li>
 					<li>
-						<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Sharing is not available in preview') ?>">
-							<a class="button-icon" href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false" alt="<?= __('Share on google plus') ?>">
-								<span class="fa-stack fa-small">
-									<i class="fa fa-square fa-stack-1x fa-12x google-icon"></i>
-									<i class="fa fa-google-plus fa-stack-1x fa-07x fa-inverse "></i>
-								</span>
-							</a>
-						</span>
+						<a class="button-icon" href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false" alt="<?= __('Share on google plus') ?>">
+							<span class="fa-stack fa-small">
+								<i class="fa fa-square fa-stack-1x fa-12x google-icon"></i>
+								<i class="fa fa-google-plus fa-stack-1x fa-07x fa-inverse "></i>
+							</span>
+						</a>
 					</li>
 				</ul>
 			</div>
