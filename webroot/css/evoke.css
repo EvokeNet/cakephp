@@ -569,9 +569,14 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background: rgba(0,0,0,.5);
 }
 
+.evoke .background-color-dark-opacity-06 {
+	background: rgba(0,0,0,.6);
+}
+
 .evoke .background-color-dark-opacity-08 {
 	background: rgba(0,0,0,.8);
 }
+
 
 .evoke .background-color-standard-opacity-07 {
 	background: rgba(51,51,51,.8);

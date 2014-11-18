@@ -792,7 +792,14 @@ class MissionsController extends AppController {
 			)
 		));
 
-		$this->set(compact('mission', 'novels', 'user'));
+		//FACEBOOK SHARE
+		$facebook = new Facebook(array(
+			'appId' => Configure::read('fb_app_id'),
+			'secret' => Configure::read('fb_app_secret'),
+			'allowSignedRequest' => false
+		));
+
+		$this->set(compact('mission', 'novels', 'user', 'facebook'));
 	}
 
 

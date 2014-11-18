@@ -226,11 +226,8 @@
 
 				<section class="main-section">
 					<!-- CONTENT OVERLAY -->
-					<div class="missions-content-overlay background-color-standard absolute full-height hidden" style="
-						/* width: 100%; */
-						margin-right: 612px;
-						z-index: 6;
-					">
+					<div id="missions-content-overlay" class="background-color-dark-opacity-06 absolute full-height full-width hidden" style="z-index: 6;">
+						<a class="close-reveal-modal right">&#215;</a>
 					</div>
 
 					<!-- SUBMENU -->
@@ -365,6 +362,9 @@
 				//Show submenu
 				$('div.missions-submenu .content').css("margin-right",$(sidr_source).width()+100);
 	    		$('div.missions-submenu').removeClass("hidden");
+
+	    		//Position missions-content-overlay
+	    		$('#missions-content-overlay').css("padding-right",$(sidr_source).width()+100);
 
 	    		//Off-canvas buttons go to the left
 	    		$('.right-small').css("right",$(sidr_source).width());

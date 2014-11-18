@@ -45,19 +45,9 @@ class EvidencesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
+	public function view($id = null, $ajax = false) {
 		if (!$this->Evidence->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence'));
-		}
-
-		//$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-		$myPoints = $this->Evidence->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
-
-		$sumMyPoints = 0;
-		
-		foreach($myPoints as $point){
-			$sumMyPoints += $point['Point']['value'];
 		}
 
 		$evidence = $this->Evidence->find('first', array(
@@ -109,8 +99,16 @@ class EvidencesController extends AppController {
 			'allowSignedRequest' => false
 		));
 
-		$this->set(compact('user', 'evidence', 'comments', 'like', 'likes', 'sumMyPoints', 'attachments', 'facebook'));
+		$this->set(compact('ajax', 'evidence', 'comments', 'like', 'likes', 'attachments', 'facebook'));
+
+		//AJAX LOAD EVIDENCE VIEW ONLY
+		if ($ajax) {
+			//$this->autoRender = false;
+			$this->layout = 'ajax';
+			$this->render('/Elements/Evidences/evidence_view');
+		}
 	}
+
 
 /**
  * add method

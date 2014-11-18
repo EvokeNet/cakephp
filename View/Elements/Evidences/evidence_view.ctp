@@ -22,47 +22,59 @@ if (isset($evidence)): ?>
 
 	<!-- EVIDENCE CONTENT -->
 	<div class="row full-width">
-		<!-- DETAILS ON THE LEFT -->
-		<div class="hide-for-small-only medium-4 large-3 columns padding right-2">
-			<div class="text-center padding left-2 right-1">
-				<!-- USER INFO - EVIDENCE CREATOR -->
-				<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $evidence['User']['id']))?>">
-					<?php $pic = $this->UserPicture->getPictureAbsolutePath($evidence['User']); ?>
-					<div class="margins-auto square-150px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-						<img class="hidden" src="<?= $pic ?>" alt="<?= $evidence['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
+		<?php
+		if (!$ajax): ?>
+			<!-- DETAILS ON THE LEFT -->
+			<div class="hide-for-small-only medium-4 large-3 columns padding right-2">
+				<div class="text-center padding left-2 right-1">
+					<!-- USER INFO - EVIDENCE CREATOR -->
+					<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $evidence['User']['id']))?>">
+						<?php $pic = $this->UserPicture->getPictureAbsolutePath($evidence['User']); ?>
+						<div class="margins-auto square-150px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
+							<img class="hidden" src="<?= $pic ?>" alt="<?= $evidence['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
+						</div>
+						<h4 class="text-color-highlight"><?= __('By ').$evidence['User']['name']?></h4>
+					</a>
+
+
+					<?php 
+					//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE
+					if(isset($loggedInUser) && $evidence['Evidence']['user_id'] == $loggedInUser['id']) : ?>
+						<div class="row padding top-1 bottom-1 text-center font-size-small">
+							<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class="button thin"><?php echo __('Edit Evidence');?></a>
+							<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class="button thin"><?php echo __('Delete Evidence');?></a>
+						</div><?php
+					else: ?>
+						<!-- SOCIAL NETWORKS -->
+						<div class="row padding top-1 bottom-1 text-center">
+							<?php echo $this->element('social_networks_bar', array('social_networks_user' => $evidence['User'])) ?>
+						</div><?php
+					endif; ?>
+
+					<!-- QUEST DESCRIPTION -->
+					<div class="row padding top-1 bottom-1 border-top-divisor text-center">
+						<h4><?= __('Quest ').$evidence['Quest']['title']?></h4>
+						<p><?= $evidence['Quest']['description'] ?></p>
 					</div>
-					<h4 class="text-color-highlight"><?= __('By ').$evidence['User']['name']?></h4>
-				</a>
-
-
-				<?php 
-				//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE
-				if(isset($loggedInUser) && $evidence['Evidence']['user_id'] == $loggedInUser['id']) : ?>
-					<div class="row padding top-1 bottom-1 text-center font-size-small">
-						<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class="button thin"><?php echo __('Edit Evidence');?></a>
-						<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class="button thin"><?php echo __('Delete Evidence');?></a>
-					</div><?php
-				else: ?>
-					<!-- SOCIAL NETWORKS -->
-					<div class="row padding top-1 bottom-1 text-center">
-						<?php echo $this->element('social_networks_bar', array('social_networks_user' => $evidence['User'])) ?>
-					</div><?php
-				endif; ?>
-
-				<!-- QUEST DESCRIPTION -->
-				<div class="row padding top-1 bottom-1 border-top-divisor text-center">
-					<h4><?= __('Quest ').$evidence['Quest']['title']?></h4>
-					<p><?= $evidence['Quest']['description'] ?></p>
 				</div>
-			</div>
-		</div>
+			</div><?php
+		endif; ?>
 
 		<!-- EVIDENCE CONTENT -->
-		<div class="small-12 medium-8 large-9 columns">
+		<div class="small-12 <?= (!$ajax) ? 'medium-8 large-9' : 'margin left-1' ?> columns">
 		 	<div class="padding all-1">
 				<h1 class="text-glow"><?php echo urldecode($evidence['Evidence']['title']); ?></h1>
 				<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
 			</div>
+
+			<!-- USER INFO -->
+			<?php
+			if ($ajax): ?>
+				<div class="padding left-1 right-1">
+					<p><?= __('By ').$evidence['User']['name']?></p>
+				</div><?php
+			endif; ?>
+
 
 			<!-- RATING/SHARE BAR -->
 			<div class="padding top-05 bottom-05 border-top-divisor">

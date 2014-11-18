@@ -17,7 +17,7 @@
 
 	<!-- EVIDENCE INFO -->
 	<div class="table-cell vertical-align-middle padding left-1">
-		<a href="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id'])); ?>">
+		<a class="evidence-list-item-link" href="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $e['Evidence']['id'])); ?>">
 			<!-- EVIDENCE TITLE -->
 			<h5 class="text-color-highlight">
 				<?= $e['Evidence']['title'] ?>
