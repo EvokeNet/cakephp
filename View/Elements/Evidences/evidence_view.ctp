@@ -23,8 +23,8 @@ if (isset($evidence)): ?>
 	<!-- EVIDENCE CONTENT -->
 	<div class="row full-width">
 		<!-- DETAILS ON THE LEFT -->
-		<div class="small-3 medium-3 large-3 columns padding right-2">
-			<div class="text-center">
+		<div class="hide-for-small-only medium-4 large-3 columns padding right-2">
+			<div class="text-center padding left-2 right-1">
 				<!-- USER INFO - EVIDENCE CREATOR -->
 				<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $evidence['User']['id']))?>">
 					<?php $pic = $this->UserPicture->getPictureAbsolutePath($evidence['User']); ?>
@@ -58,14 +58,14 @@ if (isset($evidence)): ?>
 		</div>
 
 		<!-- EVIDENCE CONTENT -->
-		<div class="small-9 medium-9 large-9 columns">
-		 	<div>
+		<div class="small-12 medium-8 large-9 columns">
+		 	<div class="padding all-1">
 				<h1 class="text-glow"><?php echo urldecode($evidence['Evidence']['title']); ?></h1>
 				<h6><?php echo h($evidence['Evidence']['created']); ?></h6>
 			</div>
 
 			<!-- RATING/SHARE BAR -->
-			<div class="row padding top-1 bottom-1 border-top-divisor">
+			<div class="padding top-05 bottom-05 border-top-divisor">
 				<ul class="inline-list margins-0">
 					<!-- RATING -->
 					<li>
@@ -73,23 +73,28 @@ if (isset($evidence)): ?>
 					</li>
 					<li>
 						<?php
-						$like_disabled = '';
-						if (count($like) > 0) {
-							$like_disabled = 'disabled';
-						}
-						?>
-						<a class="button-icon <?= $like_disabled ?>" <?= $like_disabled ?> 
-							href="<?= $this->Html->url(array('controller' => 'likes', 'action' => 'add', $evidence['Evidence']['id']))?>">
-
-							<i class="fa fa-thumbs-o-up fa-1x text-color-yellow"></i>
-						</a>
+						//ALREADY VOTED
+						if (count($like) > 0) : ?>
+							<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('You have already voted on this evidence') ?>">
+								<a class="button-icon disabled" disabled
+									href="<?= $this->Html->url(array('controller' => 'likes', 'action' => 'add', $evidence['Evidence']['id']))?>">
+									<i class="fa fa-thumbs-up text-color-highlight-important fa-1x"></i>
+								</a>
+							</span><?php
+						else: ?>
+							<a class="button-icon"
+								href="<?= $this->Html->url(array('controller' => 'likes', 'action' => 'add', $evidence['Evidence']['id']))?>">
+								<i class="fa fa-thumbs-o-up text-color-yellow fa-1x"></i>
+							</a><?php
+						endif; ?>
+						
 					</li>
 					<li class="margins-0">
 						<span class="text-color-yellow">&nbsp; <?= count($likes) ?></span>
 					</li>
 
 					<!-- COMMENTS -->
-					<li>
+					<li class="padding left-2">
 						<h6 class="text-color-highlight"><?= __('COMMENTS') ?></h6>						
 					</li>
 					<li class="margins-0">
@@ -97,36 +102,40 @@ if (isset($evidence)): ?>
 					</li>
 
 					<!-- SHARE -->
-					<li>
+					<li class="padding left-2">
 						<h6 class="text-color-highlight"><?= __('SHARE') ?></h6>
 					</li>
 					<li>
-						<a class="button-icon" href="javascript:fbShare('<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>', 'Fb Share', '<?= $evidence['Evidence']['title'] ?>', 'http://goo.gl/dS52U', 520, 350)" alt="<?= __('Share on facebook') ?>">
-							<span class="fa-stack fa-lg">
-								<i class="fa fa-square fa-stack-2x evoke login facebook-icon"></i>
-								<i class="fa fa-facebook fa-stack-1x fa-inverse "></i>
-							</span>
-						</a>
+						<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Sharing is not available in preview') ?>">
+							<a class="button-icon" href="javascript:fbShare('<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>')" alt="<?= __('Share on facebook') ?>">
+								<span class="fa-stack fa-small">
+									<i class="fa fa-square fa-stack-1x fa-12x facebook-icon"></i>
+									<i class="fa fa-facebook fa-stack-1x fa-07x fa-inverse "></i>
+								</span>
+							</a>
+						</span>
 					</li>
 					<li>
-						<a class="button-icon" href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false" alt="<?= __('Share on google plus') ?>">
-							<span class="fa-stack fa-lg">
-								<i class="fa fa-square fa-stack-2x evoke login google-icon"></i>
-								<i class="fa fa-google-plus fa-stack-1x fa-inverse "></i>
-							</span>
-						</a>
+						<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Sharing is not available in preview') ?>">
+							<a class="button-icon" href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false" alt="<?= __('Share on google plus') ?>">
+								<span class="fa-stack fa-small">
+									<i class="fa fa-square fa-stack-1x fa-12x google-icon"></i>
+									<i class="fa fa-google-plus fa-stack-1x fa-07x fa-inverse "></i>
+								</span>
+							</a>
+						</span>
 					</li>
 				</ul>
 			</div>
 
 			<!-- CONTENT -->
-			<div class="row padding top-1 bottom-1 border-top-divisor">
+			<div class="padding all-1 border-top-divisor">
 				<?php echo urldecode($evidence['Evidence']['content']); ?>
 			</div>
 
 			<!-- ATTACHMENTS -->
 			<?php if(!empty($attachments)): ?>
-			<div class="row padding top-1 bottom-1 border-top-divisor text-center">
+			<div class="padding all-1 border-top-divisor text-center">
 		  		<h4 class="text-color-highlight"><?= __("Evidence's attachments:")?></h4>
 		  		<?php 
 		  			$images = array();
@@ -196,7 +205,7 @@ if (isset($evidence)): ?>
 			<?php endif; ?>
 
 			<!-- POST A COMMENT -->
-			<div class="row padding top-1 bottom-1 border-top-divisor">
+			<div class="padding all-1 border-top-divisor clearfix">
 				<h4 class="text-color-highlight"><?= strtoupper(__('Share a Thought')) ?></h4>
 
 				<div class="padding left-2 right-2">
@@ -218,7 +227,7 @@ if (isset($evidence)): ?>
 			</div>
 
 			<!-- COMMENTS -->
-			<div class="row padding top-1 bottom-1 border-top-divisor">
+			<div class="padding all-1 border-top-divisor">
 				<?php 
 					foreach ($comments as $c):
 						echo $this->element('comment_box', array('comment' => $c));
@@ -233,7 +242,34 @@ if (isset($evidence)): ?>
 
 
 
-<?php $this->start('script'); ?>
+<?php
+	$this->start('script');
+
+	//FACEBOOK SHARE
+	echo $this->Html->script('/js/facebook_share.js');
+?>
+<script type="text/javascript">
+  	//FACEBOOK SHARE
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId: '<?php echo $facebook->getAppID() ?>',
+          cookie: true,
+          xfbml: true,
+          oauth: true
+        });
+    };
+
+    function fbShare(shared_link_URL) {
+    	FB.ui({
+		  method: 'share',
+		  href: shared_link_URL
+		}, function(response){});
+    }
+</script>
+<?php $this->end(); ?>
+
+
+<?php $this->start('script_old'); ?>
 <script type="text/javascript">
   // //socket io client
   // var socket = io.connect('http://localhost:8000');
@@ -249,10 +285,9 @@ if (isset($evidence)): ?>
   // socket.on('reconnecting', function(data){
   //   setStatus('reconnecting');
   // });
-
+/*
 
   function dynamicEvent() {
-    
     // this.id = 'unlike';
     if(this.id == 'likeIt'){
     	console.log("WHYYYw");
@@ -289,9 +324,9 @@ if (isset($evidence)): ?>
         return false;
     }
   }
-
-  	var links = document.getElementById("links").getElementsByTagName('button');
-  	links.onclick = dynamicEvent;
+*/
+  	// var links = document.getElementById("links").getElementsByTagName('button');
+  	// links.onclick = dynamicEvent;
 
   //   socket.on('block_like', function (data) {
 
@@ -320,6 +355,7 @@ if (isset($evidence)): ?>
    //  	addLikesCount(data);
   	// });
 
+/*
   	function addLikesCount(data) {
   		var plural = 'likes';
   		
@@ -329,37 +365,39 @@ if (isset($evidence)): ?>
     	var str = '<span class = "likesCount">'+data+' '+plural+'</span>';
 		$('.likesCount').replaceWith(str);
   	}
+// */
+//     //sending message mechanism
+//     $('#commenties').click(function(){
+//         //if there's nothing to say..
+//         if($("#mm").val() == ""){
+//             return false;
+//         }
 
-    //sending message mechanism
-    $('#commenties').click(function(){
-        //if there's nothing to say..
-        if($("#mm").val() == ""){
-            return false;
-        }
+//         //creating json with the contents of the message
+//         var data = {
+//             user_id: "<?= $loggedInUser['id'] ?>",
+//             user_name: "<?= $loggedInUser['name'] ?>",
+//             user_pic_url: "<?= $pic ?>",
+//             evidence_id: "<?= $evidence['Evidence']['id'] ?>",
+//             msg: $('#mm').val()
+//         }
 
-        //creating json with the contents of the message
-        var data = {
-            user_id: "<?= $loggedInUser['id'] ?>",
-            user_name: "<?= $loggedInUser['name'] ?>",
-            user_pic_url: "<?= $pic ?>",
-            evidence_id: "<?= $evidence['Evidence']['id'] ?>",
-            msg: $('#mm').val()
-        }
+//         //socket.emit('post_comment', data); //save comment in database
 
-        //socket.emit('post_comment', data); //save comment in database
+//         document.getElementById('mm').value = '';
 
-        document.getElementById('mm').value = '';
+//         return false;
+//     });
 
-        return false;
-    });
+//     //Get comments when page is loading/reloading
+//     $(document).ready(function() {
+    	
 
-    //Get comments when page is loading/reloading
-    $(document).ready(function() {
-	  	var data = {evidence_id:"<?= $evidence['Evidence']['id'] ?>"};
-	  	var data2 = {user_id:"<?= $user['User']['id'] ?>", evidence_id:"<?= $evidence['Evidence']['id'] ?>"};
-	  	// socket.emit('get_comments', data); //Places the counter when the page is reloaded
-	  	// socket.emit('get_likes', data2); //Places the counter when the page is reloaded
-	});
+// 	  	var data = {evidence_id:"<?= $evidence['Evidence']['id'] ?>"};
+// 	  	var data2 = {user_id:"<?= $user['User']['id'] ?>", evidence_id:"<?= $evidence['Evidence']['id'] ?>"};
+// 	  	// socket.emit('get_comments', data); //Places the counter when the page is reloaded
+// 	  	// socket.emit('get_likes', data2); //Places the counter when the page is reloaded
+// 	});
   	
     //returns comments
   	// socket.on('retrieve_comments', function (data) {
@@ -372,20 +410,19 @@ if (isset($evidence)): ?>
    //  	addCommentCount(data.replies);
   	// });
 
-    //adds notfications to div
-  	function addComment(data) {
-    	$('#ncom').append(data.tag);
+   //  //adds notfications to div
+  	// function addComment(data) {
+   //  	$('#ncom').append(data.tag);
 
-    	var str = '<span class = "commentCount">'+data.replies+'</span>';
-    	$('.commentCount').replaceWith(str);
-  	}
+   //  	var str = '<span class = "commentCount">'+data.replies+'</span>';
+   //  	$('.commentCount').replaceWith(str);
+  	// }
 
   	//adds notfications to div
   	// function addCommentCount(data) {
   	// 	var str = '<span class = "commentCount">'+data+'</span>';
    //  	$('.commentCount').replaceWith(str);
   	// }
-
 </script>
 <?php $this->end(); ?>
 

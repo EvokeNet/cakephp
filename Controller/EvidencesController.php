@@ -50,7 +50,7 @@ class EvidencesController extends AppController {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
 
-		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		//$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
 		$myPoints = $this->Evidence->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
 
@@ -78,6 +78,7 @@ class EvidencesController extends AppController {
 			)
 		));
 
+		//LANGUAGES
 		$lang = $this->getCurrentLanguage();
 		$flags['_en'] = true;
 		$flags['_es'] = false;
@@ -90,16 +91,25 @@ class EvidencesController extends AppController {
 			$evidence['Quest']['description'] = $evidence['Quest']['description_es'];
 		}
 
+		//COMMENT
 		$this->loadModel("Comment");
 		$comments = $this->Comment->find('all', array(
 			'contain' => 'User',
 			'conditions' => array('Comment.evidence_id' => $id)
 		));
 
-		$like = $this->Evidence->Like->find('first', array('conditions' => array('Like.evidence_id' => $id, 'Like.user_id' => $this->getUserId())));
-		$likes = $this->Evidence->Like->find('all', array('conditions' => array('Like.evidence_id' => $id)));
+		//LIKES
+		$like = $this->Evidence->Like->find('first', array('conditions' => array('Like.evidence_id' => $id, 'Like.user_id' => $this->getUserId()))); //LIKE OF THIS USER
+		$likes = $this->Evidence->Like->find('all', array('conditions' => array('Like.evidence_id' => $id))); //ALL LIKES
 
-		$this->set(compact('user', 'evidence', 'comments', 'like', 'likes', 'sumMyPoints', 'attachments'));
+		//FACEBOOK SHARE
+		$facebook = new Facebook(array(
+			'appId' => Configure::read('fb_app_id'),
+			'secret' => Configure::read('fb_app_secret'),
+			'allowSignedRequest' => false
+		));
+
+		$this->set(compact('user', 'evidence', 'comments', 'like', 'likes', 'sumMyPoints', 'attachments', 'facebook'));
 	}
 
 /**

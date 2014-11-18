@@ -1,6 +1,22 @@
 /* OVERRIDE STYLES - FOUNDATION */
 
 /* --------------------------- */
+/* BREADCRUMBS */
+/* --------------------------- */
+.breadcrumbs {
+	background-color: transparent;
+	border: none;
+}
+
+.breadcrumbs > * {
+	color: #26dee0;
+}
+
+.breadcrumbs > *.current {
+	color: #ccc;
+}
+
+/* --------------------------- */
 /* BUTTONS */
 /* --------------------------- */
 button.disabled, button[disabled], .button.disabled, .button[disabled] {

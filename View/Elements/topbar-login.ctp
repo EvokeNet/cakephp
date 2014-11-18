@@ -10,41 +10,49 @@
 	<!-- USERNAME, PASSWORD, AND SUBMIT BUTTON -->
 	<li class="has-form">
 		<div class="row collapse">
-			<div class="large-4 columns">
+			<div class="small-6 medium-3 large-3 columns">
 				<?php 
 					echo $this->Form->input('username', array('label' => false, 'type' => 'text', 'placeholder' =>  __('username'), 'class' => 'radius', 'required' => true));
 				?>
 			</div>
-			<div class="large-4 columns">
+			<div class="small-6 medium-3 large-3 columns">
 				<?php 
 					echo $this->Form->input('password', array('label' => false, 'type' => 'password', 'placeholder' =>  __('password'), 'class' => 'radius', 'required'));
 				?>
 			</div>
-			<div class="large-4 columns">
-				<button type="submit" class="full-width"><?php echo __('Sign in'); ?></button>
+			<div class="small-12 medium-3 large-3 columns">
+				<div class="small-only-text-center">
+					<span class="show-for-small-only  margin top-1"></span>
+
+					<button type="submit" class="small full-width">
+						<?php echo __('Sign in'); ?>
+					</button>
+				</div>
 			</div>
-	</li>
 
-	<!-- OTHER SIGN IN METHODS -->
-	<li>
-		<div class="right">
-			<?php echo __('OR'); ?>
+			<!-- OTHER SIGN IN METHODS -->
+			<div class="small-12 medium-3 large-3 columns">
+				<div class="text-center">
+					<?php echo __('OR'); ?>
 
-			<a href="<?php echo $fbLoginUrl; ?>" class="button-icon">
-				<span class="fa-stack fa-lg">
-					<i class="fa fa-square fa-stack-2x evoke login facebook-icon"></i>
-					<i class="fa fa-facebook fa-stack-1x fa-inverse "></i>
-				</span>
-			</a>
+					<a href="<?php echo $fbLoginUrl; ?>" class="button-icon">
+						<span class="fa-stack fa-lg">
+							<i class="fa fa-square fa-stack-2x evoke login facebook-icon"></i>
+							<i class="fa fa-facebook fa-stack-1x fa-inverse "></i>
+						</span>
+					</a>
 
-			<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'google_login')); ?>" class="button-icon">
-				<span class="fa-stack fa-lg">
-					<i class="fa fa-square fa-stack-2x evoke login google-icon"></i>
-					<i class="fa fa-google-plus fa-stack-1x fa-inverse "></i>
-				</span>
-			</a>
+					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'google_login')); ?>" class="button-icon">
+						<span class="fa-stack fa-lg">
+							<i class="fa fa-square fa-stack-2x evoke login google-icon"></i>
+							<i class="fa fa-google-plus fa-stack-1x fa-inverse "></i>
+						</span>
+					</a>
+				</div>
+			</div>
 		</div>
 	</li>
+
 	<!-- FORGOT PASSWORD (NOT USED FOR NOW) -->
 	<!--<a href = "#" class = "evoke login password"><?php //echo __('Forgot your password?');?></a> -->
 	<!--send to correct address-->

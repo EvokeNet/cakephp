@@ -46,12 +46,12 @@ button, div, p, span, a,
 /* --------------------------- */
 /* TEXT COLORS */
 /* --------------------------- */
-.evoke .text-color-important {
+.evoke .text-color-highlight {
 	color: #26dee0;
 }
 
-.evoke .text-color-highlight {
-	color: #26dee0;
+.evoke .text-color-highlight-important {
+	color: #26dee0 !important;
 }
 
 .evoke .text-color-gray {
@@ -831,19 +831,6 @@ button, .button {
 }
 .evoke .website-icon {
 	color: #D36A6A;
-}
-
-.evoke .fa-stack.grow-on-hover:hover {
-	margin-top: -0.1em;
-}
-
-.evoke .fa-stack.grow-on-hover:hover .fa-stack-2x {
-	font-size: 2.2em;
-}
-
-.evoke .fa-stack.grow-on-hover:hover .fa-stack-1x {
-	font-size: 1.4em;
-	padding-top: 0.1em;
 }
 
 /* --------------------------- */
