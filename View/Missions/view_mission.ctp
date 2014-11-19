@@ -32,6 +32,8 @@
 			'limit' => 10)
 	));
 	$load_evidences_url = str_replace('amp;', '', $load_evidences_url); //Workaround for Cakephp 2.x
+
+	//
 ?>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -59,7 +61,28 @@
 						$('.tabEvidencesContent').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
 					},
 					success: function(data) {
+						//Fill tab evidence
 						$('.tabEvidencesContent').html(data);
+
+						//Bind event click on each evidence
+						$( ".tabEvidencesContent" ).on( "click", "a.evidence-list-item-link", function( event ) {
+							$.ajax({
+								url: $(this).attr("href")+"/true",
+								type:"POST",
+								beforeSend: function() {
+									$('#missions-content-overlay').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+									$('#missions-content-overlay').removeClass("hidden");
+									$('div.missions-submenu').addClass("hidden");
+								},
+								success: function(data) {
+									$("#missions-content-overlay").html(data);
+									$("#missions-content-overlay").append('<a class="close-reveal-modal">&#215;</a>');
+									$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+								}
+							});
+							event.preventDefault();
+						});
+
 						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 					}
 				});

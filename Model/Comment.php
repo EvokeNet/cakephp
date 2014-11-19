@@ -123,6 +123,10 @@ class Comment extends AppModel {
 		// return true;	
   //   }
 
+    public $actsAs = array(
+        'Containable'
+    );
+
 /**
  * belongsTo associations
  *

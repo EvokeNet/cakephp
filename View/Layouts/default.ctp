@@ -32,15 +32,20 @@ $title = __('Evoke Network');
 
 		
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
+
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min'); //Icon font - font-awesome
+		echo $this->Html->css('font-awesome'); //Overriding some of the font-awesome css
+		
 		echo $this->Html->css('font-brankic'); //Icon font - brankic 1979
+		
 		echo $this->Html->css('/components/foundation/css/foundation');
+		echo $this->Html->css('foundation'); //Overriding some of the foundation css
 
 		echo $this->Html->css('evoke');
-		echo $this->Html->css('foundation'); //Overriding some of the foundation css
+		
 		
 		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
-			echo $this->Html->css($cssInclude);
+			echo $this->Html->css($cssInclude); //CSS for each view set
 		}
 
 		echo $this->fetch('meta');
@@ -60,7 +65,7 @@ $title = __('Evoke Network');
 	}
 	?>
 
-	<section role="main body">
+	<section role="main body" class="full-height">
 		<?php 
 		if ($this->fetch('image_header')) {
 			echo $this->fetch('image_header'); 

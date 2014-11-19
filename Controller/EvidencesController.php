@@ -45,22 +45,19 @@ class EvidencesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
+	public function view($id = null, $ajax = false) {
 		if (!$this->Evidence->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
 
-		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-		$myPoints = $this->Evidence->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
-
-		$sumMyPoints = 0;
-		
-		foreach($myPoints as $point){
-			$sumMyPoints += $point['Point']['value'];
-		}
-
-		$evidence = $this->Evidence->find('first', array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)));
+		$evidence = $this->Evidence->find('first', array(
+			'contain' => array(
+				'Mission' => array('fields' => 'id', 'title'),
+				'Phase' => array('fields' => 'name', 'position'),
+				'Quest' => array('fields' => 'id', 'title', 'title_es', 'description', 'description_es'),
+				'User'),
+			'conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id)
+		));
 
 		$this->loadModel("Attachment");
 		$attachments = $this->Attachment->find('all', array(
@@ -71,6 +68,7 @@ class EvidencesController extends AppController {
 			)
 		));
 
+		//LANGUAGES
 		$lang = $this->getCurrentLanguage();
 		$flags['_en'] = true;
 		$flags['_es'] = false;
@@ -79,13 +77,38 @@ class EvidencesController extends AppController {
 			$flags['_es'] = true;
 
 			$evidence['Mission']['title'] = $evidence['Mission']['title_es'];
+			$evidence['Quest']['title'] = $evidence['Quest']['title_es'];
+			$evidence['Quest']['description'] = $evidence['Quest']['description_es'];
 		}
 
-		$comment = $this->Evidence->Comment->find('all', array('conditions' => array('Comment.evidence_id' => $id)));
-		$like = $this->Evidence->Like->find('first', array('conditions' => array('Like.evidence_id' => $id, 'Like.user_id' => $this->getUserId())));
-		$likes = $this->Evidence->Like->find('all', array('conditions' => array('Like.evidence_id' => $id)));
-		$this->set(compact('user', 'evidence', 'comment', 'like', 'likes', 'sumMyPoints', 'attachments'));
+		//COMMENT
+		$this->loadModel("Comment");
+		$comments = $this->Comment->find('all', array(
+			'contain' => 'User',
+			'conditions' => array('Comment.evidence_id' => $id)
+		));
+
+		//LIKES
+		$like = $this->Evidence->Like->find('first', array('conditions' => array('Like.evidence_id' => $id, 'Like.user_id' => $this->getUserId()))); //LIKE OF THIS USER
+		$likes = $this->Evidence->Like->find('all', array('conditions' => array('Like.evidence_id' => $id))); //ALL LIKES
+
+		//FACEBOOK SHARE
+		$facebook = new Facebook(array(
+			'appId' => Configure::read('fb_app_id'),
+			'secret' => Configure::read('fb_app_secret'),
+			'allowSignedRequest' => false
+		));
+
+		$this->set(compact('ajax', 'evidence', 'comments', 'like', 'likes', 'attachments', 'facebook'));
+
+		//AJAX LOAD EVIDENCE VIEW ONLY
+		if ($ajax) {
+			//$this->autoRender = false;
+			$this->layout = 'ajax';
+			$this->render('/Elements/Evidences/evidence_view');
+		}
 	}
+
 
 /**
  * add method

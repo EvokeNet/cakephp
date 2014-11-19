@@ -7,15 +7,7 @@
         foreach($leaderboard_users as $similar_user):
           if ($counter > 4) break; //FORCE 3 FOR UI TESTING
 
-          $pic = $this->webroot.'webroot/img/user_avatar.jpg';
-          if($similar_user['User']['photo_attachment'] == null) {
-            if($similar_user['User']['facebook_id'] != null) {
-              $pic = "https://graph.facebook.com/". $similar_user['User']['facebook_id'] ."/picture?type=large";
-            }
-          }
-          else {
-            $pic = $this->webroot.'files/attachment/attachment/'.$similar_user['User']['photo_dir'].'/'.$similar_user['User']['photo_attachment'];
-          }
+          $pic = $this->UserPicture->getPictureAbsolutePath($similar_user['User']);
       ?>
       <li>
         <!-- PANEL -->
@@ -30,7 +22,9 @@
             <div class="table-cell vertical-align-middle padding right-1 full-width">
               <!-- USER PICTURE -->
               <div class="left full-height padding right-1">
-                <img class="img-circular square-40px smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+                <div class="square-40px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
+                  <img class="hidden" src="<?= $pic ?>" alt="<?= $similar_user['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
+                </div>
               </div>
 
               <p class="user-name margins-0">

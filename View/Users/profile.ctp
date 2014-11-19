@@ -14,24 +14,12 @@
 	<div class="medium-2 columns gradient-on-right profile-sidebar" data-equalizer-watch>
 		<!-- PROFILE -->
 		<div class="row padding top-2 bottom-1 left-2 right-2">
-			<?php
-			$pic = $this->webroot.'webroot/img/user_avatar.jpg';
-			if($user['User']['photo_attachment'] == null) {
-				if($user['User']['facebook_id'] != null) {
-					$pic = "https://graph.facebook.com/". $user['User']['facebook_id'] ."/picture?type=large";
-				}
-			}
-			else {
-				$pic = $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'];
-			}
-			?>
+			<?php $pic = $this->UserPicture->getPictureAbsolutePath($user['User']); ?>
 
-			<div class="centering-block large-12 medium-6 small-6 margins-auto">
-
-				<div>
-					<img src="<?=$pic?>" class="square-150px img-circular" alt="<?= __('Your profile picture') ?>" />
+			<div class="centering-block large-12 medium-6 small-6 margins-auto text-center">
+				<div class="centered-block square-150px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
+					<img class="hidden" src="<?= $pic ?>" alt="<?= __('Your profile picture') ?>" /> <!-- For accessibility -->
 				</div>
-
 			</div>
 
 			<h4 class="text-color-highlight text-center margin top-1"><?= $user['User']['name'] ?></h4>
@@ -46,7 +34,7 @@
 
 		<!-- SOCIAL NETWORKS -->
 		<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor text-center">
-			<?php echo $this->element('social_networks_bar'); ?>
+			<?php echo $this->element('social_networks_bar', array('social_networks_user' => $user['User'])) ?>
 		</div>
 
 		<!-- LEVEL -->
@@ -61,23 +49,20 @@
 		      <?php
 		        $counter = 0;
 		        foreach($similar_users as $similar_user):
-		          $pic = $this->webroot.'webroot/img/user_avatar.jpg';
-		          if($similar_user['User']['photo_attachment'] == null) {
-		            if($similar_user['User']['facebook_id'] != null) {
-		              $pic = "https://graph.facebook.com/". $similar_user['User']['facebook_id'] ."/picture?type=large";
-		            }
-		          }
-		          else {
-		            $pic = $this->webroot.'files/attachment/attachment/'.$similar_user['User']['photo_dir'].'/'.$similar_user['User']['photo_attachment'];
-		          }
-		      ?>
+		        	$pic = $this->UserPicture->getPictureAbsolutePath($similar_user['User']); ?>
 		      <li>
 		        <!-- PANEL -->
 		        <a href="#" data-reveal-id="modalProfilePotentialAllies<?= $counter ?>">
 		          <div class="table full-width profile-content padding top-1">
+		          	
+
+
+
 		          	<!-- USER PICTURE -->
 		          	<div class="table-cell vertical-align-middle square-40px">
-		          		<img class="img-circular smallest margin bottom-0" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+		          		<div class="square-40px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
+			          		<img class="hidden" src="<?= $pic ?>" alt="<?= $similar_user['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
+						</div>
 		          	</div>
 
 		            <!-- USER INFO -->
@@ -140,40 +125,32 @@
 
 
 				<!-- ALLIES GRID -->
-				<?php
-				if (count($followers) > 0):
-					$counter = 0;
-					
-					foreach($followers as $ally):
-						$pic = $this->webroot.'webroot/img/user_avatar.jpg';
-						if($ally['User']['photo_attachment'] == null) {
-							if($ally['User']['facebook_id'] != null) {
-								$pic = "https://graph.facebook.com/". $ally['User']['facebook_id'] ."/picture?type=large";
-							}
-						}
-						else {
-							$pic = $this->webroot.'files/attachment/attachment/'.$ally['User']['photo_dir'].'/'.$ally['User']['photo_attachment'];
-						}
-					?>
-					<div class="large-2 medium-4 small-6 columns paddings-0 text-center">
-						<!-- PICTURE -->
-						<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
-							<img class="profile-picture small radius img-glow-on-hover-small" src='<?= $pic ?>' alt="<?= $ally['User']['name'] ?>'s profile picture" />
-							<p class="text-center text-glow-on-hover"><?= $ally['User']['name'] ?></p>
-						</a>
-
-						<!-- MODAL USER BIOGRAPHY -->
-						<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $ally, 'pic' => $pic, 'add_button' => false)); ?>
-					</div>
-
+				<ul class="large-block-grid-6 medium-block-grid-3 small-block-grid-2 no-marker">
 					<?php
-						$counter++;
-					endforeach;
-				else: ?>
-					<div data-alert="" class="alert-box radius">
-						<?= __('You have no allies! Get started looking at people similar to you!') ?>
-					</div><?php
-				endif; ?>
+					if (count($followers) > 0):
+						$counter = 0;
+						
+						foreach($followers as $ally):
+							$pic = $this->UserPicture->getPictureAbsolutePath($ally['User']); ?>
+							<li class="text-center">
+								<!-- PICTURE -->
+								<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
+									<img class="profile-picture small radius img-glow-on-hover-small" src='<?= $pic ?>' alt="<?= $ally['User']['name'] ?>'s profile picture" />
+									<p class="text-center text-glow-on-hover"><?= $ally['User']['name'] ?></p>
+								</a>
+
+								<!-- MODAL USER BIOGRAPHY -->
+								<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $ally, 'pic' => $pic, 'add_button' => false)); ?>
+							</li>
+						<?php
+							$counter++;
+						endforeach;
+					else: ?>
+						<div data-alert="" class="alert-box radius">
+							<?= __('You have no allies! Get started looking at people similar to you!') ?>
+						</div><?php
+					endif; ?>
+				</ul>
 			</div>
 		</div>
 

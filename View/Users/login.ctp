@@ -39,7 +39,7 @@
 					<div class="table full-width full-height"><div class="table-cell vertical-align-bottom">
 						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
 							<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view_sample', $mission['Mission']['id']))?>">
-								<h2 class="text-color-important"><?= $mission['Mission']['title'] ?></h2>
+								<h2 class="text-color-highlight"><?= $mission['Mission']['title'] ?></h2>
 								<p><?= $mission['Mission']['description'] ?></p>
 							</a>
 						</div></div>
@@ -52,7 +52,7 @@
 	    
 	    <div class="section evoke login gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
-		    	<h1 class="text-color-important text-center margin bottom-1"><?php echo ('What is Evoke?'); ?></h1>
+		    	<h1 class="text-color-highlight text-center margin bottom-1"><?php echo ('What is Evoke?'); ?></h1>
 				<p class="font-size-important"><?php echo ('Welcome to the Evoke network! If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?>
 					<?php echo ('As an Evoke agent, you will choose your mission, develop your powers, and together will agents around the world create your <strong>own world changing idea</strong>.'); ?></p>
 			</div>
@@ -66,13 +66,13 @@
 	    </div>
 	    <div class="section evoke login gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
-		    	<h2 class="text-color-important text-center margin bottom-1"><?php echo ('Why was Evoke created?'); ?></h2>
+		    	<h2 class="text-color-highlight text-center margin bottom-1"><?php echo ('Why was Evoke created?'); ?></h2>
 		    	<p class="font-size-important"><?php echo ('The Evoke network was created to identify voices that are not heard and to give them the tools and support to change their community, their world.  The network believes that every individual can make a difference and when connected to others, change the world.'); ?></p>
 			</div>
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row standard-width full-height centering-block table padding top-2 text-center">
-		    	<h2 class="text-color-important text-center margin bottom-1"><?php echo ('Gameplay'); ?></h2>
+		    	<h2 class="text-color-highlight text-center margin bottom-1"><?php echo ('Gameplay'); ?></h2>
 
 				<div class="evoke small-block-grid-5 tabs-style-linetriangle centered-block">
 					<ul id="tabs-gameplay" class="tabs" data-tab role="tablist">
@@ -84,7 +84,7 @@
 									<img class="evoke img-circular vertical-align-middle active img-glow"
 										src="<?= $this->webroot.'img/thumb-missions.jpg' ?>" alt="<?php echo ('Missions'); ?>" />
 								</div>
-								<h5 class="text-color-important text-glow"><?php echo ('Missions'); ?></h5>
+								<h5 class="text-color-highlight text-glow"><?php echo ('Missions'); ?></h5>
 							</a>
 						</li>
 						<li class="tab-title" role="presentational">
@@ -95,7 +95,7 @@
 									<img class="evoke img-circular vertical-align-middle active img-glow hidden"
 										src="<?= $this->webroot.'img/thumb-quests.jpg' ?>" alt="<?php echo ('Quests'); ?>" />
 								</div>
-								<h5 class="text-color-important"><?php echo ('Quests'); ?></h5>
+								<h5 class="text-color-highlight"><?php echo ('Quests'); ?></h5>
 							</a>
 						</li>
 						<li class="tab-title" role="presentational">
@@ -106,7 +106,7 @@
 									<img class="evoke img-circular vertical-align-middle active img-glow hidden"
 										src="<?= $this->webroot.'img/thumb-evidences.jpg' ?>" alt="<?php echo ('Evidences'); ?>" />
 								</div>
-								<h5 class="text-color-important"><?php echo ('Evidences'); ?></h5>
+								<h5 class="text-color-highlight"><?php echo ('Evidences'); ?></h5>
 							</a>
 						</li>
 						<li class="tab-title" role="presentational">
@@ -117,7 +117,7 @@
 									<img class="evoke img-circular vertical-align-middle active img-glow hidden"
 										src="<?= $this->webroot.'img/thumb-badges.jpg' ?>" alt="<?php echo ('Badges'); ?>" />
 								</div>
-								<h5 class="text-color-important"><?php echo ('Badges'); ?></h5>
+								<h5 class="text-color-highlight"><?php echo ('Badges'); ?></h5>
 							</a>
 						</li>
 						<li class="tab-title" role="presentational">
@@ -128,7 +128,7 @@
 									<img class="evoke img-circular vertical-align-middle active img-glow hidden"
 										src="<?= $this->webroot.'img/thumb-powers.jpg' ?>" alt="<?php echo ('Powers'); ?>" />
 								</div>
-								<h5 class="text-color-important"><?php echo ('Powers'); ?></h5>
+								<h5 class="text-color-highlight"><?php echo ('Powers'); ?></h5>
 							</a>
 						</li>
 					</ul>
@@ -154,13 +154,13 @@
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
-	    		<h2 class="text-color-important text-center margin bottom-1"><?php echo ('Who is behind Evoke?'); ?></h2>
+	    		<h2 class="text-color-highlight text-center margin bottom-1"><?php echo ('Who is behind Evoke?'); ?></h2>
 		    	<p class="font-size-important"><?php echo ('Evoke is an innovation project of the World Bank in collaboration with partners around the world.'); ?></p>
 		    </div>
 	    </div>
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
-	    		<h2 class="text-color-important text-center margin bottom-1"><?php echo ('How to become an agent?'); ?></h2>
+	    		<h2 class="text-color-highlight text-center margin bottom-1"><?php echo ('How to become an agent?'); ?></h2>
 		    	 <p class="font-size-important"><?php echo ('If you have found this message, it is your destiny to follow us. To start your journey toward becoming an Evoke Agent, you simply need to sign up.'); ?></p>
 		    	 <a class="button" href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'register')) ?>">
 		    	 	<?= __('Sign up') ?>

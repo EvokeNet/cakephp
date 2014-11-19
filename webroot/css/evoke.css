@@ -1,7 +1,7 @@
 /* GENERAL STYLES */
 html, body {
 	background-color: #333;
-	height: inherit;
+	overflow: auto;
 }
 
 *, html, body,
@@ -46,16 +46,20 @@ button, div, p, span, a,
 /* --------------------------- */
 /* TEXT COLORS */
 /* --------------------------- */
-.evoke .text-color-important {
-	color: #26dee0;
-}
-
 .evoke .text-color-highlight {
 	color: #26dee0;
 }
 
+.evoke .text-color-highlight-important {
+	color: #26dee0 !important;
+}
+
 .evoke .text-color-gray {
 	color: #ccc;
+}
+
+.evoke .text-color-yellow {
+	color: #f7c71b;
 }
 
 .evoke .text-color-dark {
@@ -74,7 +78,7 @@ button, div, p, span, a,
 	font-size: 120%;
 }
 
-.evoke .text-small {
+.evoke .font-size-small {
 	font-size: 75%;
 }
 
@@ -149,7 +153,15 @@ button, div, p, span, a,
 	max-height: 100%;
 }
 
-.evoke .min-height{
+.evoke .min-full-height {
+	min-height: 100%;
+}
+
+.evoke .height-inherit {
+	height: inherit;
+}
+
+.evoke .min-height {
 	height:500px;
 }
 
@@ -565,9 +577,14 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 	background: rgba(0,0,0,.5);
 }
 
+.evoke .background-color-dark-opacity-06 {
+	background: rgba(0,0,0,.6);
+}
+
 .evoke .background-color-dark-opacity-08 {
 	background: rgba(0,0,0,.8);
 }
+
 
 .evoke .background-color-standard-opacity-07 {
 	background: rgba(51,51,51,.8);
@@ -829,19 +846,6 @@ button, .button {
 	color: #D36A6A;
 }
 
-.evoke .fa-stack.grow-on-hover:hover {
-	margin-top: -0.1em;
-}
-
-.evoke .fa-stack.grow-on-hover:hover .fa-stack-2x {
-	font-size: 2.2em;
-}
-
-.evoke .fa-stack.grow-on-hover:hover .fa-stack-1x {
-	font-size: 1.4em;
-	padding-top: 0.1em;
-}
-
 /* --------------------------- */
 /* PROGRESS BAR */
 /* --------------------------- */
@@ -859,6 +863,12 @@ button, .button {
 /* --------------------------- */
 
 /* Profile picture */
+/*.evoke .background-cover-center {
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}*/
 .evoke .square-40px {
 	height: 40px;
 	width: 40px;

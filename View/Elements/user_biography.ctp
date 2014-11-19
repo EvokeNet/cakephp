@@ -5,6 +5,7 @@ if (isset($modal) && ($modal == true)): ?>
 endif; ?>
 
 		<div class="left margin right-2">
+			<?php $pic = $this->UserPicture->getPictureAbsolutePath($user['User']); ?>
 			<!-- PICTURE -->
 			<img class="profile-picture radius border-style-solid border-color-highlight border-width-01" src='<?= $pic ?>' alt="<?= $user['User']['name'] ?>'s profile picture" />
 
@@ -17,7 +18,15 @@ endif; ?>
 			<!-- USER NAME -->
 			<h4 class="text-color-highlight"><?= __('Agent ').(isset($user['User']['name']) ? $user['User']['name'] : '') ?></h4>
 
-			<!-- LEVEL PROGRESS BAR -->
+			<!-- SOCIAL NETWORKS -->
+			<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor text-center">
+				<?php echo $this->element('social_networks_bar', $user['User']); ?>
+			</div>
+
+			<!-- LEVEL -->
+			<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor">
+				<?php echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
+			</div>
 
 			<!-- BIOGRAPHY -->
 			<?= (isset($user['User']['biography']) ? $user['User']['biography'] : '') ?>

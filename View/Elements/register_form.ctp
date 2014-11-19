@@ -3,7 +3,7 @@
 
 		<div class="medium-6 columns">
 			<?php
-				echo $this->Form->input('email', array('type' => 'email', 'required' => true, 'label' => __('Email'), 'errorMessage' => 'Teste', 'error' => array(
+				echo $this->Form->input('email', array('type' => 'email', 'required' => true, 'label' => __('Email'), 'errorMessage' => __('Please verify your email address'), 'error' => array(
 			        'attributes' => array('wrap' => 'div', 'class' => 'alert-box alert radius')
 			    )));
 				echo $this->Form->input('password', array('type' => 'password', 'required' => true, 'label' => __('Password')));

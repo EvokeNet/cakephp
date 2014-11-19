@@ -1,60 +1,62 @@
-<?php
 
-$name = explode(' ', $c['User']['name']);
-//echo $name[0];
-
-?>
-
-<div class="evoke row margin bottom-2">
-  <div class="small-2 medium-2 large-2 columns evoke text-align">
-  	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $c['User']['id'])) ?>">
-	  	<?php if($c['User']['photo_attachment'] == null) : ?>
-			<?php if($c['User']['facebook_id'] == null) : ?>
-				<?php $pic = $this->webroot.'img/user_avatar.jpg';?>
-			<?php else : ?>	
-				<?php $pic = "https://graph.facebook.com/". $c['User']['facebook_id']."/picture?large";?>
-			<?php endif; ?>
-		<?php else : ?>
-			<?php $pic = $this->webroot.'files/attachment/attachment/'.$c['User']['photo_dir'].'/'.$c['User']['photo_attachment'];?>
-		<?php endif; ?>
-		<div style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;">
-		</div>
-	</a>
-
-  	<!-- <img src="https://graph.facebook.com/<?php echo $c['User']['facebook_id']; ?>/picture?type=large" width="80px"/> -->
-  	<a href = "<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $c['User']['id'])) ?>"><h4 style = "font-size: 0.9vw;"><?php echo (__('Agent ').$name[0]); ?></h4></a>
-	<h6 style = "font-size: 0.7vw;"><?php echo date('F j, Y', strtotime($c['Comment']['created'])); ?></h6>
-  </div>
-  <div class="small-10 medium-10 large-10 columns">
-  	<div class = "evoke bubble">
-  		<div class="row">
-		  <div class="small-10 medium-10 large-10 columns">
-		  	<p><?php echo $c['Comment']['content']; ?></p>
-		  </div>
-		  <div class="small-2 medium-2 large-2 columns">
-		  	<?php if(isset($user['User']) && $c['Comment']['user_id'] == $user['User']['id']): ?>
-
-			  	<div class = "evoke comment-box-delete"><a href = "<?php echo $this->Html->url(array('controller'=> 'comments', 'action' => 'delete', $c['Comment']['id'])); ?>"><i class="fa fa-times-circle fa-lg"></i></a>
-			  	</div>
-
-			  	<a href = "#" class = "evoke comment-box-delete" data-reveal-id="<?= $c['Comment']['id'] ?>" data-reveal><i class="fa fa-pencil fa-lg"></i>&nbsp;&nbsp;
-			  	</a>
-
-			  	<!-- Lightbox for commenting form -->
-				<div id="<?= $c['Comment']['id'] ?>" class="reveal-modal tiny evoke lightbox-bg" data-reveal>
-				  	<?php if(isset($user['User'])) :?>
-				  		<?php echo $this->element('edit_comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => $user['User']['id'], 'comment_id' => $c['Comment']['id'], 'content' => $c['Comment']['content'])); ?>
-				  	<?php else :?>
-				  		<?php echo $this->element('edit_comment', array('evidence_id' => $evidence['Evidence']['id'], 'user_id' => null, 'comment_id' => $c['Comment']['id'], 'content' => $c['Comment']['content'])); ?>
-				  	<?php endif;?>
-				  <a class="close-reveal-modal">&#215;</a>
-				</div>
-
-		  <?php endif; ?>
-		  </div>
-		</div>
+<div class="table full-width padding top-1 bottom-1 left-2 right-2 border-bottom-divisor background-color-standard background-color-light-dark-on-hover">
+	<!-- USER PICTURE -->
+	<div class="table-cell vertical-align-middle square-60px">
+		<?php $pic = $this->UserPicture->getPictureAbsolutePath($comment['User']); ?>
+		<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $comment['User']['id'])); ?>">
+			<div class="square-60px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
+				<img class="hidden" src="<?= $pic ?>" alt="<?= $comment['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
+			</div>
+		</a>
 	</div>
-  </div>
-</div>
 
-<!-- <div style = "margin-bottom:50px"></div> -->
+	<!-- COMMENT INFO -->
+	<div class="table-cell vertical-align-middle padding left-1">
+		<a href="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $comment['User']['id'])); ?>">
+			
+
+			<!-- COMMENT -->
+			<div class="small-10 medium-10 large-10 columns">
+				<!-- AGENT NAME AND COMMENT DATE -->
+				<h5>
+					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $comment['User']['id'])); ?>">
+						<span class="text-color-highlight"><?= __('Agent ') ?><?= $comment['User']['name'] ?></span>
+						<?php echo date('F j, Y', strtotime($comment['Comment']['created'])); ?>
+					</a>
+				</h5>
+
+				<!-- CONTENT -->
+				<p><?php echo $comment['Comment']['content']; ?></p>
+			</div>
+
+			<!-- EDIT -->
+			<?php if(isset($loggedInUser) && $comment['Comment']['user_id'] == $loggedInUser['id']): ?>
+				<div class="small-2 medium-2 large-2 columns">
+					<div class="comment-box-delete margin bottom-1">
+						<a href = "<?php echo $this->Html->url(array('controller'=> 'comments', 'action' => 'delete', $comment['Comment']['id'])); ?>">
+							<i class="fa fa-times-circle fa-lg"></i>
+						</a>
+					</div>
+
+					<a href="#" class="comment-box-delete" data-reveal-id="modalEvidenceComment<?= $comment['Comment']['id'] ?>" data-reveal>
+						<i class="fa fa-pencil fa-lg"></i>&nbsp;&nbsp;
+					</a>
+
+					<!-- Lightbox for commenting form -->
+					<div id="modalEvidenceComment<?= $comment['Comment']['id'] ?>" class="reveal-modal background-color-darkest tiny" data-reveal>
+						<h1><?= __('Edit comment') ?></h1>
+						<?php 
+							echo $this->element('comment_form', array(
+								'evidence_id' => $evidence['Evidence']['id'],
+								'user_id' => $loggedInUser['id'],
+								'comment_id' => $comment['Comment']['id'],
+								'content' => $comment['Comment']['content']
+							));
+						?>
+						<a class="close-reveal-modal">&#215;</a>
+					</div>
+				</div>
+			<?php endif; ?>
+		</a>
+	</div>
+</div>
