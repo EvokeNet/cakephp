@@ -258,11 +258,17 @@ if (isset($evidence)):
 
 
 <?php
-	$this->start('script');
+	//$this->start('script');
 
 	//FACEBOOK SHARE
 	echo $this->Html->script('/js/facebook_share.js');
-?>
+
+	//FROALA EDITOR
+	echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor.min.js'); ?>
+	<!--[if lt IE 9]>
+		<!-- Include IE8 JS. -->
+		<?php echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor_ie8.min.js'); ?>
+	<![endif]-->
 
 <script type="text/javascript">
 	//--------------------------------------------//
@@ -287,14 +293,24 @@ if (isset($evidence)):
     //--------------------------------------------//
 	//REFLOW FOUNDATION after page has loaded
 	//--------------------------------------------//
-	jQuery(window).load(function () {
+	$(window).load(function () {
 		$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+
+		//--------------------------------------------//
+		//FROALA EDITOR
+		//--------------------------------------------//
+		alert('teste');
+		alert($('#newCommentForm').html());
+		$('#newCommentForm').editable({
+			inlineMode: false,
+			tabSpaces: true,
+			theme: 'dark'
+		});
 	});
 </script>
 
 <?php
-	//echo $this->fetch('script2');
-	$this->end(); 
+	//$this->end(); 
 ?>
 
 
