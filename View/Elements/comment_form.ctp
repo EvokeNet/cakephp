@@ -1,4 +1,5 @@
-<?php if(($user_id)) : ?>
+<?php 
+if(($user_id)): ?>
 
 	<?php
 	//EDIT
@@ -24,7 +25,7 @@
 				if (!isset($content_class)) {
 					$content_class = 'radius';
 				}
-				echo $this->Form->input('content', array('label' => 'Comment:', 'type' => 'textarea', 'class' => $content_class, 'value' => $content));
+				echo $this->Form->input('content', array('label' => 'Comment:', 'type' => 'textarea', 'class' => $content_class, 'value' => $content, 'id' => 'newCommentForm'));
 			}
 		?>
 
@@ -46,7 +47,34 @@
     echo $this->Form->end();
     ?>
 
-<?php else :?>
+		<?php echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor.min.js', array('inline' => false)); ?>
+		<!--[if lt IE 9]>
+			<!-- Include IE8 JS. -->
+			<?php echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor_ie8.min.js', array('inline' => false)); ?>
+		<![endif]-->
+
+
+	<!-- SCRIPT -->
+	<?php
+		$this->Html->scriptStart(array('inline' => false));
+	?>
+
+		//--------------------------------------------//
+		//FROALA EDITOR
+		//--------------------------------------------//
+		$(function() {
+			$('#newCommentForm').editable({
+				inlineMode: false,
+				tabSpaces: true,
+				theme: 'dark'
+			});
+		});
+		
+	<?php $this->Html->scriptEnd(); ?>
+
+
+
+<?php else:?>
 	<div data-alert="" class="alert-box radius">
 		<?php echo __('Agent, sign in to share a thought'); ?>
 	</div>

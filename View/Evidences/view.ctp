@@ -6,4 +6,4 @@
 ?>
 <!-- TOPBAR MENU -->
 
-<?php echo $this->element('Evidences/evidence_view', array('show_breadcrumbs'=>true)); ?>
+<?php echo $this->element('Evidences/view-evidence', array('show_breadcrumbs'=>true)); ?>

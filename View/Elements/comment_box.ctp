@@ -37,12 +37,12 @@
 						</a>
 					</div>
 
-					<a href="#" class="comment-box-delete" data-reveal-id="modalEvidenceComment<?= $comment['Comment']['id'] ?>" data-reveal>
+					<a href="#" class="comment-box-edit" data-reveal-id="modalEvidenceComment<?= $comment['Comment']['id'] ?>" data-reveal>
 						<i class="fa fa-pencil fa-lg"></i>&nbsp;&nbsp;
 					</a>
 
 					<!-- Lightbox for commenting form -->
-					<div id="modalEvidenceComment<?= $comment['Comment']['id'] ?>" class="reveal-modal background-color-darkest tiny" data-reveal>
+					<div id="modalEvidenceComment<?= $comment['Comment']['id'] ?>" class="reveal-modal background-color-darkest" data-reveal>
 						<h1><?= __('Edit comment') ?></h1>
 						<?php 
 							echo $this->element('comment_form', array(
@@ -59,3 +59,28 @@
 		</a>
 	</div>
 </div>
+
+
+<!-- SCRIPT -->
+<?php
+	$this->start('script');
+	//FROALA EDITOR
+	echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor.min.js'); ?>
+	<!--[if lt IE 9]>
+		<!-- Include IE8 JS. -->
+		<?php echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor_ie8.min.js'); ?>
+	<![endif]-->
+
+<script type="text/javascript">
+	//--------------------------------------------//
+	//FROALA EDITOR
+	//--------------------------------------------//
+	$(function() {
+		$('#newCommentForm').editable({
+			inlineMode: false,
+			tabSpaces: true,
+			theme: 'dark'
+		});
+	});
+</script>
+<?php $this->end(); ?>

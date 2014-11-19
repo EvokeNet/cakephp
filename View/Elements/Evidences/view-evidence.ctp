@@ -1,5 +1,10 @@
 <?php
-if (isset($evidence)): ?>
+if (isset($evidence)):
+
+	//FROALA TEXT EDITOR - RENDERING AND FILLING OUT FORM
+	echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_editor.min.css');
+	echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_style.min.css'); 
+?>
 
 <div class="row full-width">
 	<?php
@@ -218,6 +223,7 @@ if (isset($evidence)): ?>
 
 				<div class="padding left-2 right-2">
 					<?php 
+					// echo $this->fetch('script2');
 						echo $this->element('comment_form', array(
 							'evidence_id' => $evidence['Evidence']['id'],
 							'user_id' => $loggedInUser['id'],
@@ -225,6 +231,7 @@ if (isset($evidence)): ?>
 							'button_class' => 'button thin margin top-05 text-center text-glow-on-hover right',
 							'button_icon' => false
 						));
+
 					?>
 					<?php
 						//Form with redis
@@ -256,8 +263,11 @@ if (isset($evidence)): ?>
 	//FACEBOOK SHARE
 	echo $this->Html->script('/js/facebook_share.js');
 ?>
+
 <script type="text/javascript">
-  	//FACEBOOK SHARE
+	//--------------------------------------------//
+	//FACEBOOK SHARE
+	//--------------------------------------------//
     window.fbAsyncInit = function() {
         FB.init({
           appId: '<?php echo $facebook->getAppID() ?>',
@@ -273,8 +283,19 @@ if (isset($evidence)): ?>
 		  href: shared_link_URL
 		}, function(response){});
     }
+
+    //--------------------------------------------//
+	//REFLOW FOUNDATION after page has loaded
+	//--------------------------------------------//
+	jQuery(window).load(function () {
+		$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+	});
 </script>
-<?php $this->end(); ?>
+
+<?php
+	//echo $this->fetch('script2');
+	$this->end(); 
+?>
 
 
 <?php $this->start('script_old'); ?>

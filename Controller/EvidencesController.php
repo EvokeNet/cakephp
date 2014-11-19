@@ -105,7 +105,7 @@ class EvidencesController extends AppController {
 		if ($ajax) {
 			//$this->autoRender = false;
 			$this->layout = 'ajax';
-			$this->render('/Elements/Evidences/evidence_view');
+			$this->render('/Elements/Evidences/view-evidence');
 		}
 	}
 
