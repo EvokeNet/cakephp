@@ -3,6 +3,7 @@
   "dependencies": {
     "foundation": "5.3.0",
     "font-awesome": "v4.1",
+    "FroalaWysiwygEditor": "1.2.3",
     "mrmrs-colors": "master",
     "medium-editor": "master",
     "skrollr": "0.6.26",
