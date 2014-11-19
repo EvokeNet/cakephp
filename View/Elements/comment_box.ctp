@@ -1,5 +1,4 @@
-
-<div class="table full-width profile-content padding top-1 bottom-1 left-2 right-2 border-bottom-divisor background-color-standard-opacity-07 background-color-light-dark-on-hover">
+<div class="table full-width padding top-1 bottom-1 left-2 right-2 border-bottom-divisor background-color-standard background-color-light-dark-on-hover">
 	<!-- USER PICTURE -->
 	<div class="table-cell vertical-align-middle square-60px">
 		<?php $pic = $this->UserPicture->getPictureAbsolutePath($comment['User']); ?>

@@ -22,8 +22,13 @@
 <?php $this->end(); ?>
 <!-- TOPBAR MENU -->
 
-	<div id="missions-body" class="missions">
-		<div class="off-canvas-wrap" data-offcanvas>
+	<div id="missions-body" class="missions height-inherit">
+		<!-- CONTENT OVERLAY -->
+		<div id="missions-content-overlay" class="background-color-dark-opacity-06 absolute min-full-height full-width hidden" style="z-index: 6;">
+			<a class="close-reveal-modal right">&#215;</a>
+		</div>
+
+		<div class="off-canvas-wrap height-inherit" data-offcanvas>
 			<div class="inner-wrap">
 				<nav class="tab-bar full-height" id="tab-bar-off-canvas">
 					<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
@@ -257,7 +262,9 @@
 
 				    		<?php foreach ($novels as $novel) : ?>
 								<div>
-									<img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" class="full-width" />
+									<img src="<?= $this->webroot.'img/chip105.png' ?>" class="full-width" />
+									
+									<!-- <img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" class="full-width" /> -->
 								</div>
 							<?php endforeach; 
 
@@ -318,7 +325,7 @@
 			//Top-bar margins
 			//--------------------------------------------//
 			//Adds margin so that the menu won't be on top of the container
-			$('#missions-body').css("padding-top",$('#missions-menu').height());
+			$('#missions-body').css("margin-top",$('#missions-menu').height());
 			$('.missions-submenu').css("top",$('#missions-menu').height());
 
 			//--------------------------------------------//
@@ -374,6 +381,7 @@
 				$(sidr_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
 				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-04'); //Blur everything else
 				$('div.missions-submenu').addClass("hidden"); //Hide submenu
+				$('#missions-content-overlay').addClass("hidden"); //Hide content overlay
 				$('.right-small').css("right","0"); //Off-canvas buttons go back to the right
 			}
 

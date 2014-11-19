@@ -65,7 +65,7 @@ $title = __('Evoke Network');
 	}
 	?>
 
-	<section role="main body">
+	<section role="main body" class="full-height">
 		<?php 
 		if ($this->fetch('image_header')) {
 			echo $this->fetch('image_header'); 
