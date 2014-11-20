@@ -84,16 +84,28 @@ $title = __('Evoke Network');
 	<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
 
 	<?php
-		//JQUERY
-		echo $this->Html->script('/components/jquery/dist/jquery.min.js');
-		echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
-		//MODERNIZR
-		echo $this->Html->script('/components/modernizr/modernizr.js');
-		//FOUNDATION
-		echo $this->Html->script('/components/foundation/js/foundation.min.js');
+		// //JQUERY
+		// echo $this->Html->script('/components/jquery/dist/jquery.min.js');
+		// echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
 
-		echo $this->Html->script('evoke');
-		echo $this->fetch('script'); //SCRIPTS IN EACH PAGE
+		// //MODERNIZR
+		// echo $this->Html->script('/components/modernizr/modernizr.js');
+
+		// //FOUNDATION
+		// echo $this->Html->script('/components/foundation/js/foundation.min.js');
+
+		// echo $this->Html->script('evoke');
+
+		//REQUIREJS ?>
+		<script type="text/javascript">
+            var webroot = "<?php echo $this->webroot; ?>";
+        </script> <?php
+        echo $this->Html->script("/components/requirejs/require", [
+            'data-main' => $this->webroot.'js/requirejs/bootstrap'
+        ]);
+
+        //SCRIPTS IN EACH VIEW
+		//echo $this->fetch('script');
 	?>
 
 
