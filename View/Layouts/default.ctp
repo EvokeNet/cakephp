@@ -41,6 +41,9 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/components/foundation/css/foundation');
 		echo $this->Html->css('foundation'); //Overriding some of the foundation css
 
+		echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_style.min.css'); //Froala - rendering text
+		echo $this->Html->css('/css/froala.css'); //Overriding some of the froala css
+
 		echo $this->Html->css('evoke');
 		
 		
@@ -58,28 +61,29 @@ $title = __('Evoke Network');
 	<script src="http://localhost:3000/socket.io/socket.io.js"></script>-->
 </head>
 <body class="evoke">
-
-	<?php 
-	if ($this->fetch('topbar')) {
-		echo $this->fetch('topbar'); 
-	}
-	?>
-
 	<section role="main body" class="full-height">
 		<?php 
+		//TOPBAR
+		if ($this->fetch('topbar')) {
+			echo $this->fetch('topbar'); 
+		}
+
+		//IMAGE HEADER
 		if ($this->fetch('image_header')) {
 			echo $this->fetch('image_header'); 
 		}
-		?>
 
-		<?php echo $this->fetch('content'); ?>
+		//CONTENT
+		echo $this->fetch('content');
+
+		//FOOTER
+		if ($this->fetch('footer')) {
+			echo $this->fetch('footer'); 
+		}
+		?>
 	</section>
 
-	<?php 
-	if ($this->fetch('footer')) {
-		echo $this->fetch('footer'); 
-	}
-	?>
+	
 
 	<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
 
@@ -99,7 +103,8 @@ $title = __('Evoke Network');
 		//REQUIREJS ?>
 		<script type="text/javascript">
             var webroot = "<?php echo $this->webroot; ?>";
-        </script> <?php
+        </script>
+        <?php
         echo $this->Html->script("/components/requirejs/require", [
             'data-main' => $this->webroot.'js/requirejs/bootstrap'
         ]);
@@ -107,7 +112,6 @@ $title = __('Evoke Network');
         //SCRIPTS IN EACH VIEW
 		echo $this->fetch('script');
 	?>
-
 
 	<script>
 /*

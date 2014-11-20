@@ -1,10 +1,5 @@
 <?php
 if (isset($evidence)):
-
-	//FROALA TEXT EDITOR - RENDERING AND FILLING OUT FORM
-	echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_editor.min.css');
-	echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_style.min.css'); 
-	echo $this->Html->css('/css/froala.css'); 
 ?>
 
 <div class="row full-width">

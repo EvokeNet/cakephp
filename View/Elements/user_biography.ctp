@@ -51,8 +51,6 @@ endif; ?>
 
 
 <?php
-	/* Script */
-	$this->start('script');
-	echo $this->Html->script('requirejs/app/Elements/user_biography.js');
-	$this->end();
+	//SCRIPT
+	$this->Html->script('requirejs/app/Elements/user_biography.js', array('inline' => false));
 ?>

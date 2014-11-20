@@ -6,5 +6,7 @@ define(['jquery', 'modernizr', 'foundation'], function($, Modernizr, Foundation)
 				equalize_on_stack: true
 			}
 		});
+		// $(document).foundation('reflow');
+		$(document).foundation('equalizer', 'reflow');
 	});
 });

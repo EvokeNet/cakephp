@@ -1,4 +1,4 @@
-	<footer class="evoke footer full-width <?php echo isset($footerClass) ? $footerClass : ''; ?>" id="footer">
+	<footer class="footer full-width <?php echo isset($footerClass) ? $footerClass : ''; ?>" id="footer">
 		<div class="row standard-width padding top-05 bottom-05">
 			<div class="small-12 medium-12 large-12 columns">
 			  		&copy;
