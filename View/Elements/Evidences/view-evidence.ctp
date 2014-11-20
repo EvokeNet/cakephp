@@ -4,6 +4,7 @@ if (isset($evidence)):
 	//FROALA TEXT EDITOR - RENDERING AND FILLING OUT FORM
 	echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_editor.min.css');
 	echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_style.min.css'); 
+	echo $this->Html->css('/css/froala.css'); 
 ?>
 
 <div class="row full-width">
@@ -257,61 +258,6 @@ if (isset($evidence)):
 
 
 
-<?php
-	//$this->start('script');
-
-	//FACEBOOK SHARE
-	echo $this->Html->script('/js/facebook_share.js');
-
-	//FROALA EDITOR
-	echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor.min.js'); ?>
-	<!--[if lt IE 9]>
-		<!-- Include IE8 JS. -->
-		<?php echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor_ie8.min.js'); ?>
-	<![endif]-->
-
-<script type="text/javascript">
-	//--------------------------------------------//
-	//FACEBOOK SHARE
-	//--------------------------------------------//
-    window.fbAsyncInit = function() {
-        FB.init({
-          appId: '<?php echo $facebook->getAppID() ?>',
-          cookie: true,
-          xfbml: true,
-          oauth: true
-        });
-    };
-
-    function fbShare(shared_link_URL) {
-    	FB.ui({
-		  method: 'share',
-		  href: shared_link_URL
-		}, function(response){});
-    }
-
-    //--------------------------------------------//
-	//REFLOW FOUNDATION after page has loaded
-	//--------------------------------------------//
-	$(window).load(function () {
-		$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-
-		//--------------------------------------------//
-		//FROALA EDITOR
-		//--------------------------------------------//
-		alert('teste');
-		alert($('#newCommentForm').html());
-		$('#newCommentForm').editable({
-			inlineMode: false,
-			tabSpaces: true,
-			theme: 'dark'
-		});
-	});
-</script>
-
-<?php
-	//$this->end(); 
-?>
 
 
 <?php $this->start('script_old'); ?>

@@ -17,6 +17,8 @@
 	/* SCRIPT */
 	$this->start('script');
 
+	echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor.min.js'); 
+
 	//LOADING DOSSIER
 	$load_dossier_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderDossierTab', 
 		'?' => array(
@@ -64,7 +66,7 @@
 						//Fill tab evidence
 						$('.tabEvidencesContent').html(data);
 
-						//Bind event click on each evidence
+						//CLICKING ON EACH EVIDENCE OPENS IT ON THE MISSION-OVERLAY ON THE LEFT
 						$( ".tabEvidencesContent" ).on( "click", "a.evidence-list-item-link", function( event ) {
 							$.ajax({
 								url: $(this).attr("href")+"/true",
@@ -75,9 +77,17 @@
 									$('div.missions-submenu').addClass("hidden");
 								},
 								success: function(data) {
+									//Content
 									$("#missions-content-overlay").html(data);
 									$("#missions-content-overlay").append('<a class="close-reveal-modal">&#215;</a>');
+
+									//Reflow
 									$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+									
+									//Execute javascript
+									$("#missions-content-overlay").find("script").each(function(i) {
+										eval($(this).text());
+									});
 								}
 							});
 							event.preventDefault();

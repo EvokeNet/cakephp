@@ -15,32 +15,23 @@ requirejs.config({
         stickykit: 'sticky-kit/jquery.sticky-kit.min'
     },
     shim: {
-        // handlebars: { exports: 'Handlebars' },
-        // foundation: {
-        //     deps: ['jquery', 'modernizr'],
-        //     exports: 'Foundation'
-        // },
-        // velocity: { deps: ['jquery'] },
-        // velocityui: {
-        //     deps: ['velocity'],
-        //     exports: 'Velocity'
-        // },
-        // ckeditor: {
-        //     deps: ['jquery'],
-        //     exports: 'CKEDITOR'
-        // },
+        foundation: {
+            deps: ['jquery', 'modernizr'],
+            exports: 'Foundation'
+        },
+        froala: { deps: ['jquery'] },
+        foundation: { deps: ['jquery', 'jqueryslimscroll'] },
+        jqueryui: { deps: ['jquery'] },
+        jqueryslimscroll: { deps: ['jquery'] },
+        modernizr: { exports: 'Modernizr' },
+        sidr: { deps: ['jquery'] },
+        slickcarousel: { deps: ['jquery'] },
+        stickykit: { deps: ['jquery'] }
+        
         // socketio: {
         //   exports: 'io'
         // },
-        // stickykit: { deps: ['jquery'] },
-        // modernizr: { exports: 'Modernizr' },
-        // magnific_popup: { exports: 'magnificPopup' },
-        // jquery_backgrounds: { deps: ['jquery'] },
-        // fitvids: { deps: ['jquery'] },
-        // prettyembed: { deps: ['jquery', 'fitvids'] },
-        // jquerycookie: { deps: ['jquery'] },
-        // facebook: { exports: 'FB' },
-        // sweetalert: { exports: 'swal' }
+        //facebook: { exports: 'FB' }
     }
 });
 

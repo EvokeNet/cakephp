@@ -1,0 +1,16 @@
+.froala-editor {
+	background: transparent;
+}
+
+.froala-editor.f-basic {
+	border-radius: 5px 5px 0px 0px;
+}
+
+.froala-element.f-basic {
+	background-color: #ccc;
+	border-radius: 0px 0px 5px 5px;
+}
+
+.froala-element.f-basic * {
+	color: #000;
+}
