@@ -176,7 +176,7 @@
 	</div>
 
 <?php
-	//SCRIPT
+	//SCRIPT VARIABLES
 	$this->Html->scriptStart(array('inline' => false)); ?>
 		var fullpage_tooltips = [
 			"<?php echo ('Examples of missions'); ?>",
@@ -190,5 +190,6 @@
 	<?php
 	$this->Html->scriptEnd();
 
+	//SCRIPT
 	$this->Html->script('requirejs/app/Users/login.js', array('inline' => false));
 ?>
