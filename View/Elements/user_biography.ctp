@@ -53,22 +53,6 @@ endif; ?>
 <?php
 	/* Script */
 	$this->start('script');
-?>
-<script type="text/javascript">
-	//Add ally
-	$('.addally').on('click', function() {
-		if ($(this).attr('href') != "#") {
-		    $(this).load(
-		        $(this).attr('href') 
-		    	, function () {
-		        $(this).html("<?= __('Congratulations! The user has been added.') ?>");
-		        $(this).attr('href','#');
-		    }); 
-		}
-	    // Prevent link going somewhere
-	    return false; 
-	});
-</script>
-<?php
+	echo $this->Html->script('requirejs/app/Elements/user_biography.js');
 	$this->end();
 ?>

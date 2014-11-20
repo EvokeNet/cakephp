@@ -175,19 +175,20 @@
 <?php
 	/* Script */
 	$this->start('script');
+	echo $this->Html->script('requirejs/app/Users/profile.js');
 ?>
-	<script type="text/javascript">
+	<!--<script type="text/javascript"> 
 		//Checkbox glows when selected
-		$("div.profile-picture")
-		.on("mouseover", function(){
-			$(this).addClass('img-glow-small');
-			$(this).siblings('p').addClass('text-glow');
-		})
-		.on("mouseout", function(){
-			$(this).removeClass('img-glow-small');
-			$(this).siblings('p').removeClass('text-glow');
-		});
-	</script>
+	// 	$("div.profile-picture")
+	// 	.on("mouseover", function(){
+	// 		$(this).addClass('img-glow-small');
+	// 		$(this).siblings('p').addClass('text-glow');
+	// 	})
+	// 	.on("mouseout", function(){
+	// 		$(this).removeClass('img-glow-small');
+	// 		$(this).siblings('p').removeClass('text-glow');
+	// 	});
+	// </script>-->
 <?php $this->end(); ?>
 
 <?php

@@ -105,7 +105,7 @@ $title = __('Evoke Network');
         ]);
 
         //SCRIPTS IN EACH VIEW
-		//echo $this->fetch('script');
+		echo $this->fetch('script');
 	?>
 
 

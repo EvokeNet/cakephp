@@ -36,5 +36,4 @@ requirejs.config({
 });
 
 require(['../js/requirejs/app/evoke'], function () {
-    //require(['../js/app/fb']);
 });
