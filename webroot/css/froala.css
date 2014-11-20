@@ -1,16 +1,29 @@
-.froala-editor {
-	background: transparent;
-}
+/* --------------------------- */
+/* F-BASIC */
+/* --------------------------- */
 
+/* Header with options */
 .froala-editor.f-basic {
+	background-color: #333;
 	border-radius: 5px 5px 0px 0px;
 }
 
+/* Content */
 .froala-element.f-basic {
-	background-color: #ccc;
+	background-color: #EAEAEA;
 	border-radius: 0px 0px 5px 5px;
+	color: #000;
 }
 
 .froala-element.f-basic * {
+	color: #000;
+}
+
+/* Content HTML */
+.f-html .froala-element.f-basic {
+	color: #000;
+}
+
+.f-html .froala-element.f-basic * {
 	color: #000;
 }

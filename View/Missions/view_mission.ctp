@@ -85,8 +85,17 @@
 									$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 									
 									//Execute javascript
-									$("#missions-content-overlay").find("script").each(function(i) {
-										eval($(this).text());
+									// $("#missions-content-overlay").find("script").each(function(i) {
+									// 	eval($(this).text());
+									// });
+
+									//--------------------------------------------//
+									//FROALA EDITOR
+									//--------------------------------------------//
+									$('#newCommentForm').editable({
+										inlineMode: false,
+										tabSpaces: true,
+										theme: 'dark'
 									});
 								}
 							});

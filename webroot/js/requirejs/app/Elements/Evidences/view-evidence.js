@@ -25,8 +25,6 @@ function fbShare(shared_link_URL) {
 //--------------------------------------------//
 //FROALA EDITOR
 //--------------------------------------------//
-alert('teste');
-alert($('#newCommentForm').html());
 $('#newCommentForm').editable({
 	inlineMode: false,
 	tabSpaces: true,

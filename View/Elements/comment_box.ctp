@@ -59,28 +59,3 @@
 		</a>
 	</div>
 </div>
-
-
-<!-- SCRIPT -->
-<?php
-	$this->start('script');
-	//FROALA EDITOR
-	echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor.min.js'); ?>
-	<!--[if lt IE 9]>
-		<!-- Include IE8 JS. -->
-		<?php echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor_ie8.min.js'); ?>
-	<![endif]-->
-
-<script type="text/javascript">
-	//--------------------------------------------//
-	//FROALA EDITOR
-	//--------------------------------------------//
-	$(function() {
-		$('#newCommentForm').editable({
-			inlineMode: false,
-			tabSpaces: true,
-			theme: 'dark'
-		});
-	});
-</script>
-<?php $this->end(); ?>
