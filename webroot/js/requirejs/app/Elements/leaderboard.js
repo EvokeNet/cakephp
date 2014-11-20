@@ -1,6 +1,9 @@
-require(['../requirejs/bootstrap'], function (bootstrap) {
+require(['../requirejs/bootstrap'], function () {
 	require(['jquery'], function ($) {
 		$(document).ready(function(){
+			//--------------------------------------------//
+			//GLOW
+			//--------------------------------------------//
 			//Top-leaders glow when selected
 			$("div.top-leaders li")
 			.on("mouseover", function(){

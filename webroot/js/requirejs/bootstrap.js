@@ -20,7 +20,7 @@ requirejs.config({
             exports: 'Foundation'
         },
         froala: { deps: ['jquery'] },
-        fullpage: { deps: ['jquery', 'jqueryslimscroll'] },
+        fullpage: { deps: ['jquery', 'jqueryui', 'jqueryslimscroll'] },
         jqueryui: { deps: ['jquery'] },
         jqueryslimscroll: { deps: ['jquery'] },
         modernizr: { exports: 'Modernizr' },

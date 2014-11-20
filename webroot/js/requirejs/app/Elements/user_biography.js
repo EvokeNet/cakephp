@@ -1,7 +1,9 @@
-require(['../requirejs/bootstrap'], function (bootstrap) {
+require(['../requirejs/bootstrap'], function () {
 	require(['jquery'], function ($) {
 		$(document).ready(function(){
+			//--------------------------------------------//
 			//ADD ALLY VIA AJAX
+			//--------------------------------------------//
 			$('.addally').on('click', function() {
 				//Action is on a.href
 				if ($(this).attr('href') != "#") {

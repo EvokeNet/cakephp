@@ -1,6 +1,9 @@
-require(['../requirejs/bootstrap'], function (bootstrap) {
+require(['../requirejs/bootstrap'], function () {
 	require(['jquery','chartjs'], function ($) {
+		
+		//--------------------------------------------//
 		//Radar chart
+		//--------------------------------------------//
 		$(document).ready(function() {
 			var radarChartData = {
 				labels : ["Activism","Connecting Ideas","Creativity","Data Analysis","Entrepreneurship","Knowledge Building","Local Insight","Problem Solving"],

@@ -1,7 +1,9 @@
-require(['../requirejs/bootstrap'], function (bootstrap) {
+require(['../requirejs/bootstrap'], function () {
 	require(['jquery'], function ($) {
 		$(document).ready(function(){
+			//--------------------------------------------//
 			//Profile picture glows on mouseover
+			//--------------------------------------------//
 			$(".profile-picture")
 			.on("mouseover", function(){
 				$(this).addClass('img-glow-small');
