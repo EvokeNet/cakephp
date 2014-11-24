@@ -47,6 +47,11 @@ require(['../requirejs/bootstrap'], function () {
 								success: function(data) {
 									//Content
 									$("#missions-content-overlay .content-body").html(data);
+
+									//Go to the top
+									$("html, body").animate({
+										scrollTop: 0
+									}, 300);
 									
 									//Reflow
 									$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
