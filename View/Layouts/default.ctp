@@ -108,9 +108,7 @@ $title = __('Evoke Network');
             var webroot = "<?php echo $this->webroot; ?>";
         </script>
         <?php
-        echo $this->Html->script("/components/requirejs/require", [
-            'data-main' => $this->webroot.'js/requirejs/bootstrap'
-        ]);
+        echo $this->Html->script("/components/requirejs/require", array('data-main' => $this->webroot.'js/requirejs/bootstrap'));
 
         //SCRIPTS IN EACH VIEW
 		echo $this->fetch('script');
