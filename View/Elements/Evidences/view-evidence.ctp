@@ -65,17 +65,15 @@ if (isset($evidence)):
 		<div class="small-12 <?= (!$ajax) ? 'medium-8 large-9' : 'margin left-1' ?> columns">
 		 	<div class="padding all-1">
 				<h1 class="text-glow"><?php echo urldecode($evidence['Evidence']['title']); ?></h1>
-				<h6>
+				<p>
 					<?php echo h($evidence['Evidence']['created']); ?>
 					<?php
 						//ADDITIONAL USER INFO IF AJAX
 						if ($ajax): ?>
-							<div class="padding left-1 right-1">
-								<p> | <?= __('By ').$evidence['User']['name']?></p>
-							</div><?php
+							| <?= __('By ').$evidence['User']['name']?><?php
 						endif; 
 					?>
-				</h6>
+				</p>
 			</div>
 
 			<!-- RATING/SHARE BAR -->
