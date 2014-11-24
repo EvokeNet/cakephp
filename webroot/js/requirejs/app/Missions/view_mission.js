@@ -40,14 +40,13 @@ require(['../requirejs/bootstrap'], function () {
 								url: $(this).attr("href")+"/true",
 								type:"POST",
 								beforeSend: function() {
-									$('#missions-content-overlay').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+									$('#missions-content-overlay .content-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
 									$('#missions-content-overlay').removeClass("hidden");
 									$('div.missions-submenu').addClass("hidden");
 								},
 								success: function(data) {
 									//Content
-									$("#missions-content-overlay").html(data);
-									$("#missions-content-overlay").append('<a class="close-reveal-modal">&#215;</a>');
+									$("#missions-content-overlay .content-body").html(data);
 									
 									//Reflow
 									$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax

@@ -25,7 +25,21 @@
 	<div id="missions-body" class="missions height-inherit">
 		<!-- CONTENT OVERLAY -->
 		<div id="missions-content-overlay" class="background-color-dark-opacity-06 absolute min-full-height full-width hidden" style="z-index: 6;">
-			<a class="close-reveal-modal right">&#215;</a>
+			<div class="relative">
+				<!-- CLOSE BUTTON -->
+				<div class="right absolute" style="z-index: 6;">
+					<a class="close-missions-content-overlay">
+						<span class="fa-stack fa-lg">
+							<i class="fa fa-circle fa-stack-2x text-color-dark"></i>
+							<i class="fa fa-times fa-stack-1x fa-inverse text-color-highlight"></i>
+						</span>
+					</a>
+				</div>
+
+				<!-- CONTENT LOADED -->
+				<div class="content-body">
+				</div>
+			</div>
 		</div>
 
 		<div class="off-canvas-wrap height-inherit" data-offcanvas>
@@ -134,27 +148,10 @@
 
 												<span data-tooltip aria-haspopup="true" class="has-tip tip-top" title="In preview, it is not possible to add attachments.">
 												<?php
-												// echo "<label>".__('Attachments'). "</label>";
 												echo '<button class="button small" style="display:inline" disabled>'.__('+ File').'</button>';
 												?>
 												</span>
 												<?php
-									            // echo '<div id="fileInputHolder">';
-									            // echo "<ul>";
-									            // $k = 0;
-									            // foreach ($attachments as $media) {
-									            //     echo "<li>";
-									            //     echo '<div class="input file" id="prev-'. $k .'"><label id="label-'. $k .'" for="Attachment'. $k .'Attachment">'. $media['Attachment']['attachment'] .'</label>';
-									                
-									            //     echo '<input type="hidden" name="data[Attachment][Old]['. $k .'][id]" id="Attachmentprev-'. $k .'Id" value="NO-'. $media['Attachment']['id'] .'">';
-									            //     echo '<img id="img-'. $k .'"src="' . $this->webroot.'files/attachment/attachment/'.$media['Attachment']['dir'].'/thumb_'.$media['Attachment']['attachment'] . '"/>';
-
-									            //     echo '<button class="button tiny alert" id="-'. $k .'">delete</button></div>';
-
-									            //     $k++;
-									            // }
-									            // echo "</ul>";
-									            // echo '</div>';
 											?>
 											
 											<div class="evoke titles-right" style = "display: inline;">
@@ -230,10 +227,6 @@
 				</aside>
 
 				<section class="main-section">
-					<!-- CONTENT OVERLAY -->
-					<div id="missions-content-overlay" class="background-color-dark-opacity-06 absolute full-height full-width hidden" style="z-index: 6;">
-						<a class="close-reveal-modal right">&#215;</a>
-					</div>
 
 					<!-- SUBMENU -->
 					<div class="missions-submenu fixed hidden padding top-1 left-3">

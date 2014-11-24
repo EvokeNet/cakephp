@@ -359,6 +359,9 @@ button, div, p, span, a,
 .evoke .absolute {
 	position: absolute;
 }
+.evoke .absolute.right {
+	right: 0;
+}
 .evoke .relative {
 	position: relative;
 }

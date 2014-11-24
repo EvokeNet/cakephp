@@ -70,6 +70,7 @@ require(['../requirejs/bootstrap'], function () {
 				name: 'sidr-tabQuests',
 				side: 'right',
 				source: '#tabQuests',
+
 				displace: false, renaming: false,
 				onOpen: function() { open_sidr('#menu-icon-tabQuests','#sidr-tabQuests'); },
 				onClose: function() { close_sidr('#menu-icon-tabQuests','#sidr-tabQuests'); }
@@ -108,6 +109,13 @@ require(['../requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//Adds margin so that the menu won't be on top of the container
 			//$('.sidr').css("top",$('#missions-menu').height()); //NECESSARY IF BODY HAS OVERFLOW:AUTO
+
+			//--------------------------------------------//
+			//Close overlay button
+			//--------------------------------------------//
+			$(".close-missions-content-overlay").click(function(){
+				$('#missions-content-overlay').addClass("hidden"); //Hide content overlay
+			});
 
 			//--------------------------------------------//
 			//SUBMIT EVIDENCE BUTTON
