@@ -603,6 +603,7 @@ class MissionsController extends AppController {
 			$this->Session->setFlash(__('You need to finish at least one quest to go to next phase'), 'flash_message');
 			return $this->redirect(array('controller' => 'missions', 'action' => 'view', $mission['Mission']['id'], $prevMP['Phase']['position']));
 		}
+
 		if($mission['Mission']['basic_training'] == 1)
 			$this->render('basic_training');
 		else if($missionPhase['Phase']['type'] == 0)
@@ -658,7 +659,7 @@ class MissionsController extends AppController {
 
 		//Render
 		$this->set(compact('dossier','dossier_files', 'video_links', 'links'));
-		$this->layout = false;
+		$this->layout = 'ajax';
 		$this->render('/Elements/dossier_tabs');
 	}
 
@@ -680,7 +681,7 @@ class MissionsController extends AppController {
 
 		//Render
 		$this->set(compact('evidences'));
-		$this->layout = false;
+		$this->layout = 'ajax';
 		$this->render('/Elements/Evidences/evidence_list');
 	}
 
@@ -693,8 +694,8 @@ class MissionsController extends AppController {
  * @param string $order_by - Optional order for the query (default: date of creation DESC)
  */
 	public function moreEvidences(){
-		$this->autoRender = false; // We don't render a view in this example
-
+		$this->autoRender = false; // We don't render a view
+		
 	   	//QUERY
 	   	$newEvidences = $this->getEvidences(
 			$this->request->query('mission_id'),

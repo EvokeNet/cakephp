@@ -254,3 +254,8 @@ if (isset($evidence)):
 <?php
 endif;
 ?>
+
+<?php
+	//SCRIPT
+	$this->Html->script('requirejs/app/Elements/Evidences/view-evidence.js', array('inline' => false));
+?>

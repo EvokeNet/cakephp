@@ -9,7 +9,7 @@
 
 	//TEMPLATE ELEMENT: TAB EVIDENCES
 	$this->start('tabEvidencesContent'); ?>
-	<div class="tabs-content tabEvidencesContent full-width full-height"></div><?php
+	<div class="tabs-content tabEvidencesContent table full-width full-height"></div><?php
 	$this->end(); ?>
 
 

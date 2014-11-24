@@ -62,6 +62,7 @@ require(['../requirejs/bootstrap'], function () {
 				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-04'); //Blur everything else
 				$('div.missions-submenu').addClass("hidden"); //Hide submenu
 				$('#missions-content-overlay').addClass("hidden"); //Hide content overlay
+				$("#missions-content-overlay").css("min-height","100%"); //Reset min-height that might have changed when loading content by scrolling down
 				$('.right-small').css("right","0"); //Off-canvas buttons go back to the right
 			}
 
@@ -101,11 +102,12 @@ require(['../requirejs/bootstrap'], function () {
 				onClose: function() { close_sidr('#menu-icon-tabMenu','#sidr-tabMenu'); }
 			});
 
+
 			//--------------------------------------------//
 			//Top-bar margins
 			//--------------------------------------------//
 			//Adds margin so that the menu won't be on top of the container
-			//$('.sidr').css("top",$('#missions-menu').height());
+			//$('.sidr').css("top",$('#missions-menu').height()); //NECESSARY IF BODY HAS OVERFLOW:AUTO
 
 			//--------------------------------------------//
 			//SUBMIT EVIDENCE BUTTON

@@ -4,51 +4,48 @@ require(['../requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//LOAD MORE EVIDENCES WHEN SCROLLING
 			//--------------------------------------------//
-			var last = parseInt($('meta[name=lastEvidence]').attr('content')); //OFFSET (where to start again)
-			var has_ended = false; //nothing else to load
-			var load_limit = missions_evidence_list_load_limit; //how many results to bring every call
-			var target = 'moreEvidencesTarget'; //basis for the scroll
+			var evidence_list_last = parseInt($('meta[name=lastEvidence]').attr('content')); //OFFSET (where to start again)
+			var evidence_list_has_ended = false; //nothing else to load
+			var evidence_list_load_limit = parseInt(missions_evidence_list_load_limit); //how many results to bring every call
 
 			//checking scrolling info to call ajax function
 			$(window).scroll(throttle(function() {
 				var space_for_loading_image = 100;
 
 				if ($(window).scrollTop() >= $(document).height() - $(window).height() - space_for_loading_image) {
-					alert('teste');
-					if (has_ended == false) {
-						fillExtraContent();
+					if (evidence_list_has_ended == false) {
+						fillExtraContentEvidenceList();
 					}
 				}
 			}, 600));
 
 			function throttle(fn, threshhold, scope) {
 			  	threshhold || (threshhold = 250);
-			  	var last,
+			  	var evidence_list_last,
 			    	deferTimer;
 			  	return function () {
 			    	var context = scope || this;
 
 			    	var now = +new Date,
 			    	    args = arguments;
-			    	if (last && now < last + threshhold) {
+			    	if (evidence_list_last && now < evidence_list_last + threshhold) {
 			    	  // hold on to it
 			    		clearTimeout(deferTimer);
 			    		deferTimer = setTimeout(function () {
-			    	    	last = now;
+			    	    	evidence_list_last = now;
 			        		fn.apply(context, args);
 			      		}, threshhold);
 			    	} else {
-			    		last = now;
+			    		evidence_list_last = now;
 			      		fn.apply(context, args);
 			    	}
 			  	};
 			}
 
-
-			function fillExtraContent(){
+			function fillExtraContentEvidenceList(){
 				$.ajax({
 				    type: 'post',
-				    url: missions_evidence_list_load_evidences_url+last,
+				    url: missions_evidence_list_load_evidences_url+"&offset="+evidence_list_last+"&limit="+evidence_list_load_limit,
 
 				    beforeSend: function(xhr) {
 				        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -59,13 +56,18 @@ require(['../requirejs/bootstrap'], function () {
 				    },
 				    success: function(response) {
 				    	if (response.length == 0) {
-				    		has_ended = true;
+				    		evidence_list_has_ended = true;
 				    		$(".moreEvidencesLoading").addClass("hidden");
 				    	}
 				    	else {
+				    		//APPEND CONTENT
 					        $('.evidences-list').append(response);
+
+					        //UPDATE HEIGHT OF PARENT DIV
+					        $("#missions-content-overlay").css("min-height",$('.evidences-list').height());
+
 					        $(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-					        last += load_limit;
+					        evidence_list_last += evidence_list_load_limit;
 					    }
 				    },
 				    error: function(e) {

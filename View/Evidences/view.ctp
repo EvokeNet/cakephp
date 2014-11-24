@@ -14,7 +14,4 @@
 	$this->start('footer');
 	echo $this->element('footer');
 	$this->end();
-
-	//SCRIPT
-	$this->Html->script('requirejs/app/Elements/Evidences/view-evidence.js', array('inline' => false));
 ?>
