@@ -255,9 +255,9 @@
 
 				    		<?php foreach ($novels as $novel) : ?>
 								<div>
-									<img src="<?= $this->webroot.'img/chip105.png' ?>" class="full-width" />
+									<!-- <img src="<?= $this->webroot.'img/chip105.png' ?>" class="full-width" /> -->
 									
-									<!-- <img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" class="full-width" /> -->
+									<img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" class="full-width" />
 								</div>
 							<?php endforeach; 
 
