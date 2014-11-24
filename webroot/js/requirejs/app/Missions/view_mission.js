@@ -49,22 +49,11 @@ require(['../requirejs/bootstrap'], function () {
 									$("#missions-content-overlay").html(data);
 									$("#missions-content-overlay").append('<a class="close-reveal-modal">&#215;</a>');
 
+									//Execute javascript
+									$.getScript(webroot+'/js/requirejs/app/Elements/Evidences/view-evidence.js');
+									
 									//Reflow
 									$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-									
-									//Execute javascript
-									// $("#missions-content-overlay").find("script").each(function(i) {
-									// 	eval($(this).text());
-									// });
-
-									//--------------------------------------------//
-									//FROALA EDITOR
-									//--------------------------------------------//
-									$('#newCommentForm').editable({
-										inlineMode: false,
-										tabSpaces: true,
-										theme: 'dark'
-									});
 								}
 							});
 							event.preventDefault();

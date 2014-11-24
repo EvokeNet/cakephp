@@ -105,7 +105,7 @@ require(['../requirejs/bootstrap'], function () {
 			//Top-bar margins
 			//--------------------------------------------//
 			//Adds margin so that the menu won't be on top of the container
-			$('.sidr').css("top",$('#missions-menu').height());
+			//$('.sidr').css("top",$('#missions-menu').height());
 
 			//--------------------------------------------//
 			//SUBMIT EVIDENCE BUTTON

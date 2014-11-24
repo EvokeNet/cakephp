@@ -68,28 +68,11 @@
 </div>
 
 <?php
-	/* Script */
-	$this->start('script');
-?>
-	<script type="text/javascript">
-		//Option elements glows on hover
-		$("div.panelOptions li")
-		.on("mouseover", function(){
-			$(this).find(".table").addClass('img-glow-small');
-			$(this).find(".cropGraphicNovelIcon").addClass('img-glow-small');
-			$(this).find(".button").addClass('img-glow-small');
-		})
-		.on("mouseout", function(){
-			$(this).find(".table").removeClass('img-glow-small');
-			$(this).find(".cropGraphicNovelIcon").removeClass('img-glow-small');
-			$(this).find(".button").removeClass('img-glow-small');
-		});
-	</script>
-<?php $this->end(); ?>
-
-<?php
 	/* Footer */
 	$this->start('footer');
 	echo $this->element('footer');
 	$this->end();
+
+	//SCRIPT
+	$this->Html->script('requirejs/app/Users/enter_site.js', array('inline' => false));
 ?>

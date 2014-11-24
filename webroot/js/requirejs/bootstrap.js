@@ -3,6 +3,7 @@ requirejs.config({
     paths: {
         // ALPHABETICAL ORDER PLEASE
         chartjs : 'chartjs/Chart.min',
+        facebook: '//connect.facebook.net/en_US/all',
         foundation: 'foundation/js/foundation.min',
         froala: 'FroalaWysiwygEditor/js/froala_editor.min',
         fullpage: 'fullpage.js/jquery.fullPage.min',
@@ -15,6 +16,7 @@ requirejs.config({
         stickykit: 'sticky-kit/jquery.sticky-kit.min'
     },
     shim: {
+        facebook: { exports: 'FB' },
         foundation: {
             deps: ['jquery', 'modernizr'],
             exports: 'Foundation'

@@ -79,19 +79,6 @@
 	echo $this->element('footer');
 	$this->end();
 
-	/* Script */
-	$this->start('script'); ?>
-	<script type="text/javascript">
-		//Checkbox glows when selected
-		$("input[type=checkbox]").on( "click", function(){
-			if ($(this).hasClass('img-glow-small')) {
-				$(this).removeClass('img-glow-small');
-				$("label[for='"+$(this).attr("id")+"']").removeClass('text-glow');
-			}
-			else {
-				$(this).addClass('img-glow-small');
-				$("label[for='"+$(this).attr("id")+"']").addClass('text-glow');
-			}
-		});
-	</script> <?php
-	$this->end(); ?>
+	//SCRIPT
+	$this->Html->script('requirejs/app/Users/matching.js', array('inline' => false));
+?>

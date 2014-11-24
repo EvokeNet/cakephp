@@ -73,28 +73,11 @@
 </div>
 
 <?php
-	/* Script */
-	$this->start('script');
-?>
-	<script type="text/javascript">
-		//Checkbox glows when selected
-		$("div.profile-content")
-		.on("mouseover", function(){
-			$(this).addClass('img-glow-small');
-			$(this).find('.profile-picture').addClass('img-glow-small');
-			$(this).find('button').addClass('img-glow-small').addClass('text-glow');
-		})
-		.on("mouseout", function(){
-			$(this).removeClass('img-glow-small');
-			$(this).find('.profile-picture').removeClass('img-glow-small');
-			$(this).find('button').removeClass('img-glow-small').removeClass('text-glow');
-		});
-	</script>
-	<?php $this->end(); ?>
-
-<?php
 	/* Footer */
 	$this->start('footer');
 	echo $this->element('footer');
 	$this->end();
+
+	//SCRIPT
+	$this->Html->script('requirejs/app/Users/matching_results.js', array('inline' => false));
 ?>

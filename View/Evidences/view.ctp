@@ -8,22 +8,13 @@
 
 <?php echo $this->element('Evidences/view-evidence', array('show_breadcrumbs'=>true)); ?>
 
-<!-- SCRIPT -->
-<?php
-	$this->start('script');
-	//FROALA EDITOR
-	echo $this->Html->script('/components/FroalaWysiwygEditor/js/froala_editor.min.js'); ?>
 
-<script type="text/javascript">
-	//--------------------------------------------//
-	//FROALA EDITOR
-	//--------------------------------------------//
-	$(function() {
-		$('#newCommentForm').editable({
-			inlineMode: false,
-			tabSpaces: true,
-			theme: 'dark'
-		});
-	});
-</script>
-<?php $this->end(); ?>
+<?php
+	//FOOTER
+	$this->start('footer');
+	echo $this->element('footer');
+	$this->end();
+
+	//SCRIPT
+	$this->Html->script('requirejs/app/Elements/Evidences/view-evidence.js', array('inline' => false));
+?>
