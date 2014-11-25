@@ -1246,6 +1246,7 @@ class UsersController extends AppController {
 		));
 
 		foreach ($badges as $b => $badge) {
+
 			$this->loadModel('Attachment');
 			$badge_img = $this->Attachment->find('first', array(
 				'conditions' => array(
