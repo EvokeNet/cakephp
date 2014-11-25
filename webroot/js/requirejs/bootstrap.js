@@ -13,7 +13,8 @@ requirejs.config({
         modernizr: 'modernizr/modernizr',
         sidr: 'sidr/jquery.sidr.min',
         slickcarousel: 'slick-carousel/slick/slick.min',
-        stickykit: 'sticky-kit/jquery.sticky-kit.min'
+        stickykit: 'sticky-kit/jquery.sticky-kit.min',
+        sweetalert: 'sweetalert/lib/sweet-alert.min'
     },
     shim: {
         facebook: { exports: 'FB' },
@@ -28,7 +29,8 @@ requirejs.config({
         modernizr: { exports: 'Modernizr' },
         sidr: { deps: ['jquery'] },
         slickcarousel: { deps: ['jquery'] },
-        stickykit: { deps: ['jquery'] }
+        stickykit: { deps: ['jquery'] },
+        sweetalert: { exports: 'swal' }
         
         // socketio: {
         //   exports: 'io'

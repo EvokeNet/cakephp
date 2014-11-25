@@ -19,6 +19,7 @@
     "sidr": "~1.2.1",
     "chartjs": "~0.2.0",
     "ExplorerCanvas": "*",
-    "jquery-ui": "*"
+    "jquery-ui": "*",
+    "sweetalert": "*"
   }
 }
