@@ -119,11 +119,9 @@
 									    <p class="text-center margin top-2">
 								    		<?php
 								    		if (isset($loggedInUser)): ?>
-								    			<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
-								    				<a class="button small submit-evidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], 1, $counter, 'false')); ?>">
-								    					<?= __('Submit your evidence') ?>
-								    				</a>
-								    			</span><?php
+							    				<a class="button small submit-evidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], 1, $counter, 'false')); ?>">
+							    					<?= __('Submit your evidence') ?>
+							    				</a><?php
 								    		else: ?>
 								    			<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
 								    				<a class="button small submit-evidence disabled" disabled><?= __('Submit your evidence') ?></a>
