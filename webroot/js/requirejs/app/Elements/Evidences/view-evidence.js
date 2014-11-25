@@ -26,7 +26,7 @@ require(['../requirejs/bootstrap'], function () {
 				function(){
 					//actually perform the action
 					$.ajax({
-					  url: $('#buttonDeleteEvidence').attr('href'),
+					  url: $('#buttonDeleteEvidence').attr('href')+'/true',
 					  success: function() {
 					    //Confirm deleted
 						swal("Deleted!", "Your evidence has been deleted.", "success");

@@ -579,7 +579,7 @@ class EvidencesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete($id = null, $ajax = false) {
 		$this->Evidence->id = $id;
 		if (!$this->Evidence->exists()) {
 			throw new NotFoundException(__('Invalid evidence'));
@@ -587,6 +587,9 @@ class EvidencesController extends AppController {
 
 		if ($this->Evidence->delete()) {
 			$this->Session->setFlash(__('The evidence has been deleted.'));
+			if (!$ajax) {
+				return $this->redirect(array('controller' => 'users', 'action' => 'profile'));
+			}
 		} else {
 			$this->Session->setFlash(__('The evidence could not be deleted. Please, try again.'));
 		}

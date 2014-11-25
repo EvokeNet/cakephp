@@ -765,7 +765,7 @@ class MissionsController extends AppController {
 
 		//CONTAINABLE MODELS
 		$evidence_query_params['contain'] = 'User';
-		debug($evidence_query_params);
+
 		//RUN EVIDENCE QUERY
 		$this->loadModel('Evidence');
 		$evidences = $this->Evidence->find('all', $evidence_query_params);
