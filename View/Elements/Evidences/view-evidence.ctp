@@ -40,7 +40,7 @@ if (isset($evidence)):
 
 					<?php 
 					//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE
-					if(isset($loggedInUser) && $evidence['Evidence']['user_id'] == $loggedInUser['id']) : ?>
+					if(isset($loggedInUser) && ($evidence['Evidence']['user_id'] == $loggedInUser['id'])): ?>
 						<div class="row padding top-1 bottom-1 text-center font-size-small">
 							<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class="button thin"><?php echo __('Edit Evidence');?></a>
 							<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class="button thin"><?php echo __('Delete Evidence');?></a>
@@ -64,7 +64,12 @@ if (isset($evidence)):
 		<!-- EVIDENCE CONTENT -->
 		<div class="small-12 <?= (!$ajax) ? 'medium-8 large-9' : 'margin left-1' ?> columns">
 		 	<div class="padding all-1">
-				<h1 class="text-glow"><?php echo urldecode($evidence['Evidence']['title']); ?></h1>
+		 		<!-- TITLE -->
+				<h1 class="text-glow">
+					<?php echo urldecode($evidence['Evidence']['title']); ?>
+				</h1>
+
+				<!-- USER INFO -->
 				<p>
 					<?= __("Created in ") ?>
 					<?= h($evidence['Evidence']['created']) ?>
@@ -74,6 +79,23 @@ if (isset($evidence)):
 							<?= __(' by ').$evidence['User']['name']?><?php
 						endif; 
 					?>
+
+					<!-- EDIT/DELETE -->
+					<?php
+					if($ajax): 
+						//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE
+						if(isset($loggedInUser) && ($evidence['Evidence']['user_id'] == $loggedInUser['id'])): ?>
+							<!-- EDIT -->
+							<a id="buttonEditEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" alt="<?= __('Edit Evidence') ?>" class="padding left-1">
+								<i class="fa fa-pencil fa-lg"></i>
+							</a>
+
+							<!-- DELETE -->
+							<a id="buttonDeleteEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" alt="<?= __('Delete Evidence') ?>">
+								<i class="fa fa-times-circle fa-lg"></i>
+							</a><?php
+						endif;
+					endif; ?>
 				</p>
 			</div>
 

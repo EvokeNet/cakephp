@@ -13,7 +13,7 @@ if(($user_id)): ?>
 	?>
 		<?php
 			if (isset($comment_id)) {
-				echo $this->Form->input('id', array('value' => $comment_id));
+				echo $this->Form->hidden('id', array('value' => $comment_id));
 			}
 			if (isset($evidence_id)) {
 				echo $this->Form->hidden('evidence_id', array('value' => $evidence_id));
