@@ -234,7 +234,7 @@ class EvidencesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $ajax = false) {
 		if (!$this->Evidence->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
@@ -287,7 +287,7 @@ class EvidencesController extends AppController {
 
 		if($me['Evidence']['user_id'] != $this->getUserId()) {
 			//debug($me);
-			$this->Session->setFlash(__('You have no permission to edit an evidence that does not belong to you.'), 'flash_message');
+			$this->Session->setFlash(__('You have no permission to edit an evidence that does not belong to you.'));
 			$this->redirect($this->referer());
 		}
 
@@ -363,7 +363,7 @@ class EvidencesController extends AppController {
 				// 	$this->redirect($this->referer());
 				// }
 
-		        $this->Session->setFlash(__('The evidence has been saved'), 'flash_message');
+		        $this->Session->setFlash(__('The evidence has been saved'));
 
 				/* Ends event */
 
@@ -408,7 +408,12 @@ class EvidencesController extends AppController {
 
 		$lang = $this->getCurrentLanguage();
 
-		$this->set(compact('dossier_files', 'lang', 'allPowerPoints', 'dossier', 'links', 'video_links', 'user', 'users', 'quests', 'q', 'missions', 'phases', 'attachments', 'sumMyPoints', 'me'));
+		$this->set(compact('dossier_files', 'lang', 'allPowerPoints', 'dossier', 'links', 'video_links', 'user', 'users', 'quests', 'q', 'missions', 'phases', 'attachments', 'sumMyPoints', 'me', 'ajax'));
+
+		//AJAX LOAD EVIDENCE
+		if ($ajax) {
+			$this->layout = 'ajax';
+		}
 	}
 
 	public function destroyAttachments($data){

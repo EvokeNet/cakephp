@@ -42,8 +42,13 @@ if (isset($evidence)):
 					//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE
 					if(isset($loggedInUser) && ($evidence['Evidence']['user_id'] == $loggedInUser['id'])): ?>
 						<div class="row padding top-1 bottom-1 text-center font-size-small">
-							<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" class="button thin"><?php echo __('Edit Evidence');?></a>
-							<a href = "<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" class="button thin"><?php echo __('Delete Evidence');?></a>
+							<a id="buttonEditEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" alt="<?= __('Edit Evidence') ?>" class="button thin">
+								<?php echo __('Edit Evidence');?>
+							</a>
+
+							<a id="buttonDeleteEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" alt="<?= __('Delete Evidence') ?>" class="button thin">
+								<?php echo __('Delete Evidence');?>
+							</a>
 						</div><?php
 					else: ?>
 						<!-- SOCIAL NETWORKS -->
@@ -91,7 +96,7 @@ if (isset($evidence)):
 							</a>
 
 							<!-- DELETE -->
-							<a id="buttonDeleteEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" alt="<?= __('Delete Evidence') ?>">
+							<a id="buttonDeleteEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" alt="<?= __('Delete Evidence') ?>" class="padding left-1">
 								<i class="fa fa-times-circle fa-lg"></i>
 							</a><?php
 						endif;
@@ -179,7 +184,7 @@ if (isset($evidence)):
 			</div>
 
 			<!-- CONTENT -->
-			<div class="padding all-1 border-top-divisor">
+			<div class="padding all-1 border-top-divisor" id="evidenceContentWrapper">
 				<?php echo urldecode($evidence['Evidence']['content']); ?>
 			</div>
 

@@ -6,11 +6,9 @@
 ?>
 <!-- TOPBAR MENU -->
 
-<div class="row standard-width">
+<div class="<?= (!$ajax) ? 'row standard-width' : '' ?>">
 	<?php
-		echo $this->element('Evidences/evidence_form', array(
-			'evidence' => $me['Evidence']
-		));
+		echo $this->element('Evidences/evidence_form', array('evidence' => $me['Evidence']));
 	?>
 </div>
 
