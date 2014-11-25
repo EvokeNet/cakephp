@@ -115,6 +115,8 @@ require(['../requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$(".close-missions-content-overlay").click(function(){
 				$('#missions-content-overlay').addClass("hidden"); //Hide content overlay
+				$('div.missions-submenu').removeClass("hidden"); //show mission submenu
+
 			});
 
 			//--------------------------------------------//

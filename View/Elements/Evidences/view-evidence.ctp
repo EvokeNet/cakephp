@@ -66,11 +66,12 @@ if (isset($evidence)):
 		 	<div class="padding all-1">
 				<h1 class="text-glow"><?php echo urldecode($evidence['Evidence']['title']); ?></h1>
 				<p>
-					<?php echo h($evidence['Evidence']['created']); ?>
+					<?= __("Created in ") ?>
+					<?= h($evidence['Evidence']['created']) ?>
 					<?php
 						//ADDITIONAL USER INFO IF AJAX
 						if ($ajax): ?>
-							| <?= __('By ').$evidence['User']['name']?><?php
+							<?= __('by ').$evidence['User']['name']?><?php
 						endif; 
 					?>
 				</p>
