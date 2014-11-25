@@ -757,10 +757,10 @@ class MissionsController extends AppController {
 
 		//Order
 		if (!is_null($order_by)) {
-			$evidence_query_params['order_by'] = $order_by;
+			$evidence_query_params['order'] = $order_by;
 		}
 		else {
-			$evidence_query_params['order_by'] = "id DESC"; //DEFAULT ORDER
+			$evidence_query_params['order'] = "Evidence.id DESC"; //DEFAULT ORDER: date of creation
 		}
 
 		//CONTAINABLE MODELS
