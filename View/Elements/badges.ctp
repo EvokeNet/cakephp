@@ -13,7 +13,7 @@
 		} ?>
 			<li class="padding right-1">
 				<?php if(isset($badge['Badge']['img_dir'])) : ?>
-					<img src='<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>' alt="<?= $badge['Badge']['Name'] ?>">
+					<img src='<?= $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'] ?>' alt="<?= $badge['Badge']['name'] ?>">
 				<?php else: ?>
 					<img src='<?= $this->webroot.'img/badge4.png' ?>' class="full-width" alt="Badge" />
 				<?php endif ?>
