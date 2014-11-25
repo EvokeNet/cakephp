@@ -123,7 +123,6 @@ require(['../requirejs/bootstrap'], function () {
 			//SUBMIT EVIDENCE OPENS FORM ON THE MISSION-OVERLAY ON THE LEFT
 			//--------------------------------------------//
 			$(".submit-evidence.button").click(function(event){
-				alert($(this).attr("href")+"/true");
 				$.ajax({
 					url: $(this).attr("href")+"/true",
 					type:"POST",

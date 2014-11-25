@@ -117,7 +117,7 @@ class EvidencesController extends AppController {
  */
 	public function add($mission_id, $phase_id, $quest_id = null, $evokation = false, $ajax = false) {
 		if(!$quest_id) {
-			$this->$redirect($this->referer());
+			return;
 		}
 		//checking if quest exists..
 		$this->loadModel('Quest');
@@ -128,7 +128,7 @@ class EvidencesController extends AppController {
 		));
 
 		if(empty($quest)) {
-			$this->$redirect($this->referer());
+			return;
 		}
 
 		$user = $this->loggedInUser;
