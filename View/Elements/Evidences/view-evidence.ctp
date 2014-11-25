@@ -60,7 +60,13 @@ if (isset($evidence)):
 					<!-- QUEST DESCRIPTION -->
 					<div class="row padding top-1 bottom-1 border-top-divisor text-center">
 						<h4><?= __('Quest ').$evidence['Quest']['title']?></h4>
-						<p><?= $evidence['Quest']['description'] ?></p>
+						<p>
+							<?php
+							if (isset($evidence['Quest']['description'])) {
+								echo $this->Text->getExcerpt($evidence['Quest']['description'], 30, '...');
+							}
+							?>
+						</p>
 					</div>
 				</div>
 			</div><?php
