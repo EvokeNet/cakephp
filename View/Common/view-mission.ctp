@@ -119,7 +119,7 @@
 									    <p class="text-center margin top-2">
 								    		<?php
 								    		if (isset($loggedInUser)): ?>
-							    				<a class="button small submit-evidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], 1, $m['id'], 'false')); ?>">
+							    				<a class="button small submit-evidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $m['phase_id'], $m['id'], 'false')); ?>">
 							    					<?= __('Submit your evidence') ?>
 							    				</a><?php
 								    		else: ?>
