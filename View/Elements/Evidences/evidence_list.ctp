@@ -1,16 +1,9 @@
 <div id="moreEvidencesTarget" class="evidences-list">
 	<?php 
 	if (isset($evidences)):
-		$lastEvidence = null; //keep track of which one is the last
-
 		foreach($evidences as $e):
-			$lastEvidence = $e['Evidence']['id'];
-			
 			echo $this->element('Evidences/evidence_list_item', array('e' => $e));
 		endforeach;
-		
-		//REFERENCE OF LAST EVIDENCE RENDERED
-		?><meta name="lastEvidence" content="<?php echo $lastEvidence; ?>"><?php
 	endif; ?>
 </div>
 <div class="moreEvidencesLoading text-center hidden padding all-1"><i class="fa fa-spinner fa-spin fa-3x"></i></div>

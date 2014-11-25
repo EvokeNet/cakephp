@@ -4,9 +4,9 @@ require(['../requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//LOAD MORE EVIDENCES WHEN SCROLLING
 			//--------------------------------------------//
-			var evidence_list_last = parseInt($('meta[name=lastEvidence]').attr('content')); //OFFSET (where to start again)
 			var evidence_list_has_ended = false; //nothing else to load
 			var evidence_list_load_limit = parseInt(missions_evidence_list_load_limit); //how many results to bring every call
+			var evidence_list_last = evidence_list_load_limit;//parseInt($('meta[name=lastEvidence]').attr('content')); //OFFSET (where to start again)
 
 			//checking scrolling info to call ajax function
 			$(window).scroll(throttle(function() {
