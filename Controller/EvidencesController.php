@@ -115,7 +115,7 @@ class EvidencesController extends AppController {
  *
  * @return void
  */
-	public function add($mission_id, $phase_id, $quest_id = null, $evokation = false) {
+	public function add($mission_id, $phase_id, $quest_id = null, $evokation = false, $ajax = false) {
 		if(!$quest_id) {
 			$this->$redirect($this->referer());
 		}
@@ -131,9 +131,7 @@ class EvidencesController extends AppController {
 			$this->$redirect($this->referer());
 		}
 
-		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-		//$insertData = array('user_id' => $this->getUserId(), 'mission_id' => $mission_id, 'phase_id' => $phase_id, 'quest_id' => $quest_id); 
+		$user = $this->loggedInUser;
 		
 		$this->loadModel('Dossier');
 		$this->loadModel('Attachment');
@@ -178,7 +176,8 @@ class EvidencesController extends AppController {
 		if($evokation) $insertData['evokation'] = '1';
 		else $insertData['evokation'] = '0';
 
-		if ($this->request->is('post')) {
+		//IF IT IS NOT AJAX AND IT'S COMING BACK FROM A POST - IT HAS ADDED
+		if (!$ajax && $this->request->is('post')) {
 			$this->Evidence->create();
 
 			// $json = $this->request->data['Evidence']['content'];
@@ -224,7 +223,12 @@ class EvidencesController extends AppController {
 			}
 		}
 
-		$this->set(compact('dossier_files', 'user', 'lang', 'langs', 'links', 'video_links', 'q', 'mission_id', 'phase_id', 'quest_id'));
+		$this->set(compact('dossier_files', 'user', 'lang', 'langs', 'links', 'video_links', 'q', 'mission_id', 'phase_id', 'quest_id', 'ajax'));
+
+		//AJAX LOAD EVIDENCE FORM
+		if ($ajax) {
+			$this->layout = 'ajax';
+		}
 	}
 
 /**

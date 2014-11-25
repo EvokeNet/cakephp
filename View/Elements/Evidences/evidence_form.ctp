@@ -7,7 +7,7 @@
 	}
 	//CREATE
 	else {
-		echo $this->Form->create('Evidence', array('url' => array('controller' => 'evidences', 'action' => 'add')));
+		echo $this->Form->create('Evidence', array('url' => array('controller' => 'evidences', 'action' => 'add', $mission_id, $phase_id, $quest_id)));
 
 		$evidence['title'] = "";
 		$evidence['content'] = "";
@@ -17,12 +17,29 @@
 
 	<div class="full-width">
 		<?php
+			//MISSION
+			if (isset($mission_id)) {
+				echo $this->Form->hidden('mission_id', array('value' => $mission_id));
+			}
+			//PHASE
+			if (isset($phase_id)) {
+				echo $this->Form->hidden('phase_id', array('value' => $phase_id));
+			}
+			//QUEST
+			if (isset($quest_id)) {
+				echo $this->Form->hidden('quest_id', array('value' => $quest_id));
+			}
+			//USER
+			if (isset($loggedInUser)) {
+				echo $this->Form->hidden('user_id', array('value' => $loggedInUser['id']));
+			}
+
+			//TITLE
 			echo $this->Form->input('title', array('required' => true, 'label' => __('Title'), 'value' => $evidence['title'], 'class' => 'radius', 'errorMessage' => __('Please enter a title'), 'error' => array(
 				'attributes' => array('wrap' => 'div', 'class' => 'alert-box alert radius')
 			)));
-		?>
 
-		<?php
+			//CONTENT
 			if (!isset($content_class)) {
 				$content_class = 'radius';
 			}
@@ -40,7 +57,7 @@
 					<i class="fa fa-floppy-o fa-2x"></i><br />
 				<?php endif;?>
 				
-				<?= __('Post') ?>
+				<?= __('Create evidence') ?>
 			</button>
 
 		<?php 

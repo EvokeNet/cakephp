@@ -117,49 +117,19 @@
 									    </p>
 									   
 									    <p class="text-center margin top-2">
-									    	<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
-									    		<a class="button small submit-evidence" data-quest-id="<?= $counter ?>">Submit your evidence</a>
-									    	</span>
+								    		<?php
+								    		if (isset($loggedInUser)): ?>
+								    			<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
+								    				<a class="button small submit-evidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], 1, $counter, 'false')); ?>">
+								    					<?= __('Submit your evidence') ?>
+								    				</a>
+								    			</span><?php
+								    		else: ?>
+								    			<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
+								    				<a class="button small submit-evidence disabled" disabled><?= __('Submit your evidence') ?></a>
+								    			</span><?php
+								    		endif; ?>
 									    </p>
-
-									    <!-- SUBMIT EVIDENCE -->
-									    <div class="evidence-quest-<?= $counter ?> hidden text-center margin top-2" style="width: 70%;float: right;">
-									    	
-									    	<?php echo $this->Form->create('Evidence', array('enctype' => 'multipart/form-data')); ?>
-											<?php //echo __('Edit Evidence'); ?>
-
-											<?php
-												// echo $this->Form->input('id');
-												echo $this->Form->hidden('title');
-												echo $this->Form->hidden('content');
-
-												// echo $this->Form->hidden('user_id', array('value' => $user['User']['id']));
-
-												echo $this->Form->hidden('quest_id', array('value' => $m['id']));
-												echo $this->Form->hidden('mission_id', array('value' => $mission['Mission']['id']));
-												echo $this->Form->hidden('phase_id', array('value' => $m['phase_id']));
-
-												?>
-												
-												<?php
-												echo '<div class = "editableTitle" id = "evidenceTitle"></div>';
-												echo '<div class = "editableContent margin bottom-3" id = "evidenceContent"></div>';
-												?>
-
-												<span data-tooltip aria-haspopup="true" class="has-tip tip-top" title="In preview, it is not possible to add attachments.">
-												<?php
-												echo '<button class="button small" style="display:inline" disabled>'.__('+ File').'</button>';
-												?>
-												</span>
-												<?php
-											?>
-											
-											<div class="evoke titles-right" style = "display: inline;">
-												<span data-tooltip aria-haspopup="true" class="has-tip tip-top" title="In preview, it is not possible to save your evidence.">
-													<button type="submit" class="evidenceButton button small" disabled><?= strtoupper(__('Save Evidence')) ?></button>
-												</span>	
-											</div>
-									    </div>
 							    	</div>
 								</div>
 

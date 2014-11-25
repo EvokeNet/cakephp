@@ -120,15 +120,31 @@ require(['../requirejs/bootstrap'], function () {
 			});
 
 			//--------------------------------------------//
-			//SUBMIT EVIDENCE BUTTON
+			//SUBMIT EVIDENCE OPENS FORM ON THE MISSION-OVERLAY ON THE LEFT
 			//--------------------------------------------//
-			$(".submit-evidence.button").click(function(){				
-				var evidence = $(".evidence-quest-" + $(this).data("quest-id"));
-				if ($(".evidence-quest-" + $(this).data("quest-id")).hasClass("hidden")) {
-        			$(".evidence-quest-" + $(this).data("quest-id")).removeClass("hidden");
-				} else {
-					$(".evidence-quest-" + $(this).data("quest-id")).addClass("hidden");
-				}
+			$(".submit-evidence.button").click(function(event){
+				$.ajax({
+					url: $(this).attr("href")+"/true",
+					type:"POST",
+					beforeSend: function() {
+						$('#missions-content-overlay .content-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+						$('#missions-content-overlay').removeClass("hidden");
+						$('div.missions-submenu').addClass("hidden");
+					},
+					success: function(data) {
+						//Go to the top
+						$("html, body").animate({
+							scrollTop: 0
+						}, 300);
+
+						//Content
+						$("#missions-content-overlay .content-body").html(data);
+
+						//Reflow
+						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+					}
+				});
+				event.preventDefault();
 			});
 		    
 			//--------------------------------------------//
