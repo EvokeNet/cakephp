@@ -760,7 +760,7 @@ class MissionsController extends AppController {
 			$evidence_query_params['order_by'] = $order_by;
 		}
 		else {
-			$evidence_query_params['order_by'] = "Evidence.id DESC"; //DEFAULT ORDER
+			$evidence_query_params['order_by'] = "id DESC"; //DEFAULT ORDER
 		}
 
 		//CONTAINABLE MODELS
