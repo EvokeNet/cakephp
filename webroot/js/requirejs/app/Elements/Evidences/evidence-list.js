@@ -21,22 +21,22 @@ require(['../requirejs/bootstrap'], function () {
 
 			function throttle(fn, threshhold, scope) {
 			  	threshhold || (threshhold = 250);
-			  	var evidence_list_last,
+			  	var last,
 			    	deferTimer;
 			  	return function () {
 			    	var context = scope || this;
 
 			    	var now = +new Date,
 			    	    args = arguments;
-			    	if (evidence_list_last && now < evidence_list_last + threshhold) {
+			    	if (last && now < last + threshhold) {
 			    	  // hold on to it
 			    		clearTimeout(deferTimer);
 			    		deferTimer = setTimeout(function () {
-			    	    	evidence_list_last = now;
+			    	    	last = now;
 			        		fn.apply(context, args);
 			      		}, threshhold);
 			    	} else {
-			    		evidence_list_last = now;
+			    		last = now;
 			      		fn.apply(context, args);
 			    	}
 			  	};
