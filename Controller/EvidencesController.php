@@ -244,34 +244,34 @@ class EvidencesController extends AppController {
 		}
 		$me = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $id)));
 
-		$myPoints = $this->Evidence->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+		// $myPoints = $this->Evidence->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
 
-		$sumMyPoints = 0;
+		// $sumMyPoints = 0;
 		
-		foreach($myPoints as $point){
-			$sumMyPoints += $point['Point']['value'];
-		}
+		// foreach($myPoints as $point){
+		// 	$sumMyPoints += $point['Point']['value'];
+		// }
 
-		$this->loadModel('Dossier');
-		$this->loadModel('Attachment');
+		// $this->loadModel('Dossier');
+		// $this->loadModel('Attachment');
 
-		$dossier = $this->Dossier->find('first', array(
-			'conditions' => array(
-				'mission_id' => $me['Evidence']['mission_id']
-			)
-		));
+		// $dossier = $this->Dossier->find('first', array(
+		// 	'conditions' => array(
+		// 		'mission_id' => $me['Evidence']['mission_id']
+		// 	)
+		// ));
 
-		if(!empty($dossier)) {
-			//dossier files
-			$dossier_files = $this->Attachment->find('all', array(
-				'conditions' => array(
-					'Attachment.foreign_key' => $dossier['Dossier']['id'],
-					'Attachment.model' => 'Dossier'
-				)
-			));
-		} else {
-			$dossier_files = array();
-		}
+		// if(!empty($dossier)) {
+		// 	//dossier files
+		// 	$dossier_files = $this->Attachment->find('all', array(
+		// 		'conditions' => array(
+		// 			'Attachment.foreign_key' => $dossier['Dossier']['id'],
+		// 			'Attachment.model' => 'Dossier'
+		// 		)
+		// 	));
+		// } else {
+		// 	$dossier_files = array();
+		// }
 
 		$lang = $this->getCurrentLanguage();
 		$flags['_en'] = true;
@@ -286,8 +286,8 @@ class EvidencesController extends AppController {
 		else
 			$langs = 'en';
 
-		$links = $this->Evidence->Mission->DossierLink->find('all', array('conditions' => array('DossierLink.mission_id' => $me['Evidence']['mission_id'], 'DossierLink.language' => $langs)));
-		$video_links = $this->Evidence->Mission->DossierVideo->find('all', array('conditions' => array('DossierVideo.mission_id' => $me['Evidence']['mission_id'], 'DossierVideo.language' => $langs)));
+		// $links = $this->Evidence->Mission->DossierLink->find('all', array('conditions' => array('DossierLink.mission_id' => $me['Evidence']['mission_id'], 'DossierLink.language' => $langs)));
+		// $video_links = $this->Evidence->Mission->DossierVideo->find('all', array('conditions' => array('DossierVideo.mission_id' => $me['Evidence']['mission_id'], 'DossierVideo.language' => $langs)));
 
 		if($me['Evidence']['user_id'] != $this->getUserId()) {
 			//debug($me);
@@ -328,38 +328,38 @@ class EvidencesController extends AppController {
 
 		        $this->getEventManager()->dispatch($event);
 
-		        //attribute pp to this user if hasnt won from this very evidence:
-				$this->loadModel('UserPowerPoint');
-				$hasWonPowerPointsFromThis = $this->UserPowerPoint->find('first', array(
-					'conditions' => array(
-						'UserPowerPoint.user_id' => $this->getUserId(),
-						'UserPowerPoint.model' => 'Evidence',
-						'UserPowerPoint.foreign_key' => $me['Evidence']['id']
-					)
-				));
+		  //       //attribute pp to this user if hasnt won from this very evidence:
+				// $this->loadModel('UserPowerPoint');
+				// $hasWonPowerPointsFromThis = $this->UserPowerPoint->find('first', array(
+				// 	'conditions' => array(
+				// 		'UserPowerPoint.user_id' => $this->getUserId(),
+				// 		'UserPowerPoint.model' => 'Evidence',
+				// 		'UserPowerPoint.foreign_key' => $me['Evidence']['id']
+				// 	)
+				// ));
 
-				if(empty($hasWonPowerPointsFromThis)) {
+				// if(empty($hasWonPowerPointsFromThis)) {
 
-					$this->loadModel('QuestPowerPoint');
-					$pps = $this->QuestPowerPoint->find('all', array(
-						'conditions' => array(
-							'quest_id' => $me['Evidence']['quest_id']
-						)
-					));
+				// 	$this->loadModel('QuestPowerPoint');
+				// 	$pps = $this->QuestPowerPoint->find('all', array(
+				// 		'conditions' => array(
+				// 			'quest_id' => $me['Evidence']['quest_id']
+				// 		)
+				// 	));
 
-					foreach($pps as $pp) {
-						$data['UserPowerPoint']['user_id'] = $me['Evidence']['user_id'];
-						$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
-						$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
-						$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity'] * 30);
-						$data['UserPowerPoint']['model'] = 'Evidence';
-						$data['UserPowerPoint']['foreign_key'] = $me['Evidence']['id'];
+				// 	foreach($pps as $pp) {
+				// 		$data['UserPowerPoint']['user_id'] = $me['Evidence']['user_id'];
+				// 		$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
+				// 		$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
+				// 		$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity'] * 30);
+				// 		$data['UserPowerPoint']['model'] = 'Evidence';
+				// 		$data['UserPowerPoint']['foreign_key'] = $me['Evidence']['id'];
 
-						$this->loadModel('UserPowerPoint');
-						$this->UserPowerPoint->create();
-						$this->UserPowerPoint->save($data);
-					}
-				}
+				// 		$this->loadModel('UserPowerPoint');
+				// 		$this->UserPowerPoint->create();
+				// 		$this->UserPowerPoint->save($data);
+				// 	}
+				// }
 
 				// if(empty($this->request->data['Evidence']['content'])) {
 				// 	//debug($me);
@@ -381,17 +381,17 @@ class EvidencesController extends AppController {
 			$this->request->data = $this->Evidence->find('first', $options);
 		}
 
-		//getting power points from evoke to display the ones related to quests in quests' lightboxes
-		$this->loadModel('PowerPoint');
-		$tmp = $this->PowerPoint->find('all');
-		$allPowerPoints = array(); //will contain all evoke's powerpoints with the first index as their id's (i.e. the power point with id 33 will be at $allPowerPoints[33])
-		foreach ($tmp as $tmpKey => $tmpPP) {
-			if($flags['_es']) {
-				$tmp[$tmpKey]['PowerPoint']['name']	= $tmp[$tmpKey]['PowerPoint']['name_es'];
-				$tmp[$tmpKey]['PowerPoint']['description']	= $tmp[$tmpKey]['PowerPoint']['description_es'];
-			}
-			$allPowerPoints[$tmpPP['PowerPoint']['id']] = $tmp[$tmpKey];
-		}
+		// //getting power points from evoke to display the ones related to quests in quests' lightboxes
+		// $this->loadModel('PowerPoint');
+		// $tmp = $this->PowerPoint->find('all');
+		// $allPowerPoints = array(); //will contain all evoke's powerpoints with the first index as their id's (i.e. the power point with id 33 will be at $allPowerPoints[33])
+		// foreach ($tmp as $tmpKey => $tmpPP) {
+		// 	if($flags['_es']) {
+		// 		$tmp[$tmpKey]['PowerPoint']['name']	= $tmp[$tmpKey]['PowerPoint']['name_es'];
+		// 		$tmp[$tmpKey]['PowerPoint']['description']	= $tmp[$tmpKey]['PowerPoint']['description_es'];
+		// 	}
+		// 	$allPowerPoints[$tmpPP['PowerPoint']['id']] = $tmp[$tmpKey];
+		// }
 
 		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 

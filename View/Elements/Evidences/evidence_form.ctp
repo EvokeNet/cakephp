@@ -57,7 +57,7 @@
 					<i class="fa fa-floppy-o fa-2x"></i><br />
 				<?php endif;?>
 				
-				<?= __('Create evidence') ?>
+				<?= __('Submit') ?>
 			</button>
 
 		<?php 
