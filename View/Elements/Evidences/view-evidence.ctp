@@ -71,7 +71,7 @@ if (isset($evidence)):
 					<?php
 						//ADDITIONAL USER INFO IF AJAX
 						if ($ajax): ?>
-							<?= __('by ').$evidence['User']['name']?><?php
+							<?= __(' by ').$evidence['User']['name']?><?php
 						endif; 
 					?>
 				</p>
@@ -107,7 +107,7 @@ if (isset($evidence)):
 					</li>
 
 					<!-- COMMENTS -->
-					<li class="padding left-2">
+					<li class="padding left-1">
 						<h6 class="text-color-highlight"><?= __('COMMENTS') ?></h6>						
 					</li>
 					<li class="margins-0">
@@ -115,7 +115,7 @@ if (isset($evidence)):
 					</li>
 
 					<!-- SHARE -->
-					<li class="padding left-2">
+					<li class="padding left-1">
 						<h6 class="text-color-highlight"><?= __('SHARE') ?></h6>
 					</li>
 					<li>
@@ -134,6 +134,25 @@ if (isset($evidence)):
 							</span>
 						</a>
 					</li>
+
+					<!-- VIEW FULL PAGE -->
+					<?php
+					if ($ajax): ?>
+					<li class="padding left-1">
+						<h6 class="text-color-highlight"><?= __('VIEW') ?></h6>
+					</li>
+					<li>
+						<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Open evidence page') ?>">
+							<a target="_blank" href="<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $evidence['Evidence']['id']))?>">
+								<span class="fa-stack fa-small">
+									<i class="fa fa-square fa-stack-1x fa-12x"></i>
+									<i class="fa fa-expand fa-stack-1x fa-07x fa-inverse text-color-dark"></i>
+								</span>
+							</a>
+						</span>
+					</li><?php
+					endif;
+					?>
 				</ul>
 			</div>
 
