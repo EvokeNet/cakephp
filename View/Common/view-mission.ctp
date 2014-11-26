@@ -124,7 +124,7 @@
 							    				</a><?php
 								    		else: ?>
 								    			<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
-								    				<a class="button small submit-evidence disabled" disabled><?= __('Submit your evidence') ?></a>
+								    				<a href="#" class="button small disabled" disabled><?= __('Submit your evidence') ?></a>
 								    			</span><?php
 								    		endif; ?>
 									    </p>
