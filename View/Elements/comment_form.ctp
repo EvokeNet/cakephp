@@ -4,11 +4,11 @@ if(($user_id)): ?>
 	<?php
 	//EDIT
 	if (isset($comment_id)) {
-		echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'edit', $comment_id)));
+		echo $this->Form->create('Comment', array('class' => 'formPostComment', 'url' => array('controller' => 'comments', 'action' => 'edit', $comment_id)));
 	}
 	//CREATE
 	else {
-		echo $this->Form->create('Comment', array('url' => array('controller' => 'comments', 'action' => 'add')));
+		echo $this->Form->create('Comment', array('class' => 'formPostComment', 'url' => array('controller' => 'comments', 'action' => 'add')));
 	}
 	?>
 		<?php

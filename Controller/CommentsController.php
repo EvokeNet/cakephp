@@ -48,25 +48,35 @@ class CommentsController extends AppController {
  * @return void
  */
 	public function add() {
+		debug($this->request->header);
+		debug($this->request->data);
+
 		if ($this->request->is('post')) {
 			$this->Comment->create();
-			if ($this->Comment->save($this->request->data)) {
-				//$this->Session->setFlash(__('The comment has been saved.'));
 
+			if ($this->Comment->save($this->request->data)) {
 				// echo $this->Html->script('notifications/send.js');
 
-				$this->Session->setFlash(__('Your comment was saved'));
-
-				if($this->request->data['Comment']['evidence_id'])
-					return $this->redirect(array('controller' => 'evidences', 'action' => 'view', $this->request->data['Comment']['evidence_id']));
-				else if($this->request->data['Comment']['evokation_id'])
+				//REDIRECT TO VIEW THE EVIDENCE
+				if($this->request->data['Comment']['evidence_id']) {
+					return $this->redirect(array(
+						'header' => $this->request->header, //Use the same header - useful if the requester is ajax
+						'controller' => 'evidences',
+						'action' => 'view', 
+						$this->request->data['Comment']['evidence_id']
+					));
+				}
+				//REDIRECT TO VIEW THE EVOKATION
+				else if($this->request->data['Comment']['evokation_id']) {
 					//return $this->redirect(array('controller' => 'evokations', 'action' => 'view', $this->request->data['Comment']['evokation_id']));
 					$this->redirect($this->referer());
+				}
 
 			} else {
 				$this->Session->setFlash(__('The comment could not be saved. Please, try again.'));
 			}
 		}
+
 		$evidences = $this->Comment->Evidence->find('list');
 		$evokations = $this->Comment->Evokation->find('list');
 		$users = $this->Comment->User->find('list');

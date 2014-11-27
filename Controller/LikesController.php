@@ -103,8 +103,12 @@ class LikesController extends AppController {
 			}
 
 			$this->Session->setFlash(__('Your like was computed'));
-			
-			return $this->redirect($this->referer());
+
+			// //REDIRECT TO REFERER
+			// return $this->redirect(array(
+			// 	'header' => $this->request->header, //Use the same header - useful if the requester is ajax
+			// 	$this->referer()
+			// ));
 		} else {
 			$this->Session->setFlash(__('The like could not be saved. Please, try again.'));
 		}

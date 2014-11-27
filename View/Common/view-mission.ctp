@@ -37,7 +37,7 @@
 				</div>
 
 				<!-- CONTENT LOADED -->
-				<div class="content-body">
+				<div id="missions-content-overlay-body" class="content-body">
 				</div>
 			</div>
 		</div>

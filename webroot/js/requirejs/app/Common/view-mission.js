@@ -114,13 +114,20 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//Close overlay button
 			//--------------------------------------------//
 			$(".close-missions-content-overlay").click(function(){
-				$('#missions-content-overlay').addClass("hidden"); //Hide content overlay
-				$('div.missions-submenu').removeClass("hidden"); //show mission submenu
+				//Hide content overlay
+				$('#missions-content-overlay').addClass("hidden");
 
+				//show mission submenu
+				$('div.missions-submenu').removeClass("hidden");
+
+				//Clear content-body and its events
+				$('#missions-content-overlay-body').off(); //clear events in previous elements
+				$('#missions-content-overlay-body *').off(); 
+				$('#missions-content-overlay-body').html('');
 			});
 
 			//--------------------------------------------//
-			//SUBMIT EVIDENCE OPENS FORM ON THE MISSION-OVERLAY ON THE LEFT
+			//EVIDENCE: ADD EVIDENCE FORM OPENS ON THE MISSION-OVERLAY ON THE LEFT
 			//--------------------------------------------//
 			$(".submit-evidence.button").click(function(event){
 				$.ajax({
@@ -137,26 +144,36 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 							scrollTop: 0
 						}, 300);
 
-						//Content
-						$("#missions-content-overlay .content-body").html(data);
+						//Display content
+						$('#missions-content-overlay-body').off(); //clear events in previous elements
+						$('#missions-content-overlay-body *').off(); //clear events in previous elements
+						$("#missions-content-overlay-body").html(data);
 
-						//--------------------------------------------//
-						//AFTER SUBMIT, LOAD EVIDENCE VIEW VIA AJAX
-						//--------------------------------------------//
-						$("#missions-content-overlay").on("submit", "form.formSubmitEvidence", function( event ) {
-							$.ajax({ // create an AJAX call...
-								data: $(this).serialize(), // get the form data
-								type: $(this).attr('method'), // GET or POST
-								url: $(this).attr('action'), // the file to call
-								success: function(response) { // on success..
-									$('#missions-content-overlay').html(response); // update the DIV
-								}
-							});
-							//return false; // cancel original event to prevent form submitting
-							//alert($(this).attr('action'));
-							//.load($(this).attr('action'));
-							event.preventDefault();
-						});
+						//Reflow
+						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+					}
+				});
+				event.preventDefault();
+			});
+
+			//--------------------------------------------//
+			//EVIDENCE: SUBMITTING A FORM TO ADD/EDIT AN EVIDENCE LOADS EVIDENCE VIEW VIA AJAX
+			//--------------------------------------------//
+			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
+				$.ajax({
+					data: $(this).serialize(), // get the form data
+					type: $(this).attr('method'), // GET or POST
+					url: $(this).attr('action'), // the file to call
+					success: function(response) {
+						//Go to the top of the page
+						$("html, body").animate({
+							scrollTop: 0
+						}, 300);
+
+						//Display content
+						$('#missions-content-overlay-body').off(); //clear events in previous elements
+						$('#missions-content-overlay-body *').off(); //clear events in previous elements
+						$('#missions-content-overlay-body').html(response);
 
 						//Reflow
 						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax

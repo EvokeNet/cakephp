@@ -45,7 +45,7 @@ class EvidencesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null, $ajax = false) {
+	public function view($id = null) {
 		if (!$this->Evidence->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
@@ -53,7 +53,6 @@ class EvidencesController extends AppController {
 		//AJAX LOAD
 		if ($this->request->is('ajax')) {
 			$this->layout = 'ajax';
-			//$this->render('/Elements/Evidences/view-evidence');
 		}
 
 		$evidence = $this->Evidence->find('first', array(
@@ -113,18 +112,16 @@ class EvidencesController extends AppController {
  * @return redirect to view the evidence created
  */
 public function addEvidence() {
-	//debug($this->request->data);
-	//return;
-
 	if ($this->request->is('post')) {
 		$this->Evidence->create();
 
+		//CREATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT
 		if ($this->Evidence->save($this->request->data)) {
 			return $this->redirect(array(
 				'header' => $this->request->header, //Use the same header - useful if the requester is ajax
 				'action' => 'view', 
-				$this->Evidence->id, true)
-			);
+				$this->Evidence->id
+			));
 		} else {
 			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 		}
@@ -154,6 +151,8 @@ public function addEvidence() {
 		if (!$this->Evidence->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
+
+
 		$me = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $id)));
 
 		$myPoints = $this->Evidence->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
@@ -285,8 +284,12 @@ public function addEvidence() {
 
 				/* Ends event */
 
-				//$this->Session->setFlash(__('The evidence has been saved'), 'flash_message');
-				return $this->redirect(array('controller' => 'evidences', 'action' => 'view', $me['Evidence']['id']));
+				//REDIRECT TO VIEW THE EVIDENCE
+				return $this->redirect(array(
+					'header' => $this->request->header, //Use the same header - useful if the requester is ajax
+					'action' => 'view', 
+					$me['Evidence']['id']
+				));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}

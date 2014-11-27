@@ -1,6 +1,10 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'froala', 'sweetalert', '../js/requirejs/modules/facebook_share'], function ($) {
-		$(document).ready(function(){			
+		$(document).ready(function(){
+			$('#missions-content-overlay-body').off(); //clear events in previous elements
+			$('#missions-content-overlay-body *').off(); //clear events in previous elements
+
+
 			//--------------------------------------------//
 			//FROALA EDITOR
 			//--------------------------------------------//
@@ -11,7 +15,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			});
 
 			//--------------------------------------------//
-			//CONFIRMATION ALERT BOX
+			//DELETE CONFIRMATION ALERT BOX
 			//--------------------------------------------//
 			$('#buttonDeleteEvidence').click(function(event){
 				swal({
@@ -55,10 +59,46 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			});
 
 			//--------------------------------------------//
-			//AFTER SUBMIT, LOAD EVIDENCE VIEW VIA AJAX
+			//LIKE VIA AJAX
 			//--------------------------------------------//
-			$("#evidenceContentWrapper").on("click", ".buttonSubmitEvidence", function( event ) {
-				$('#evidenceContentWrapper').load($(this).attr('href')+'/true');
+			$("#missions-content-overlay-body").on("click", "#buttonLikeEvidence", function( event ) {
+				$.ajax({
+					type: 'POST',
+					url: $(this).attr('href'),
+					success: function(response) {
+						//Refresh page using the link on the view button
+						$('#missions-content-overlay-body').off(); //clear events in previous elements
+						$('#missions-content-overlay-body *').off(); //clear events in previous elements
+						$('#missions-content-overlay-body').load($("#evidenceViewFull").attr('href'));
+					}
+				});
+
+				event.preventDefault();
+			});
+
+			//--------------------------------------------//
+			//SUBMIT COMMENT VIA AJAX
+			//--------------------------------------------//
+			$("#missions-content-overlay-body").on("submit", "form.formPostComment", function( event ) {
+				$.ajax({
+					data: $(this).serialize(), // get the form data
+					type: $(this).attr('method'), // GET or POST
+					url: $(this).attr('action'), // the file to call
+					success: function(response) {
+						//Display content
+						$('#missions-content-overlay-body').off(); //clear events in previous elements
+						$('#missions-content-overlay-body *').off(); //clear events in previous elements
+						$('#missions-content-overlay-body').html(response);
+
+						//Go to the last comment
+						$("html, body").animate({
+							scrollTop: $("#evidenceCommentsWrapper div:last").offset().top
+						}, 600);
+
+						//Reflow
+						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+					}
+				});
 				event.preventDefault();
 			});
 		});

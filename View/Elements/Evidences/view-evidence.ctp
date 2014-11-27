@@ -1,5 +1,7 @@
 <?php
-if (isset($evidence)): ?>
+if (isset($evidence)):
+	$ajax = $this->request->is('ajax');
+?>
 
 <div class="row full-width">
 	<?php
@@ -133,23 +135,25 @@ if (isset($evidence)): ?>
 					<li>
 						<?php
 						//ALREADY VOTED
-						if (count($like) > 0) : ?>
+						if (count($like) > 0) :
+							$text_color_like = 'text-color-highlight-important'; ?>
 							<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('You have already voted on this evidence') ?>">
-								<a class="button-icon disabled" disabled
-									href="<?= $this->Html->url(array('controller' => 'likes', 'action' => 'add', $evidence['Evidence']['id']))?>">
-									<i class="fa fa-thumbs-up text-color-highlight-important fa-1x"></i>
+								<a id="buttonLikeEvidence" class="button-icon disabled" disabled
+								   href="#"> 
+									<i class="fa fa-thumbs-up <?= $text_color_like ?> fa-1x"></i>
 								</a>
 							</span><?php
-						else: ?>
-							<a class="button-icon"
+						else:
+							$text_color_like = 'text-color-yellow'; ?>
+							<a id="buttonLikeEvidence" class="button-icon"
 								href="<?= $this->Html->url(array('controller' => 'likes', 'action' => 'add', $evidence['Evidence']['id']))?>">
-								<i class="fa fa-thumbs-o-up text-color-yellow fa-1x"></i>
+								<i class="fa fa-thumbs-o-up <?= $text_color_like ?> fa-1x"></i>
 							</a><?php
 						endif; ?>
 						
 					</li>
 					<li class="margins-0">
-						<span class="text-color-yellow">&nbsp; <?= count($likes) ?></span>
+						<span class="<?= $text_color_like ?>">&nbsp; <?= count($likes) ?></span>
 					</li>
 
 					<!-- COMMENTS -->
@@ -189,7 +193,7 @@ if (isset($evidence)): ?>
 					</li>
 					<li>
 						<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Open evidence page') ?>">
-							<a target="_blank" href="<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $evidence['Evidence']['id']))?>">
+							<a target="_blank" id="evidenceViewFull" href="<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $evidence['Evidence']['id']))?>">
 								<span class="fa-stack fa-small">
 									<i class="fa fa-square fa-stack-1x fa-12x"></i>
 									<i class="fa fa-expand fa-stack-1x fa-07x fa-inverse text-color-dark"></i>
@@ -203,7 +207,7 @@ if (isset($evidence)): ?>
 			</div>
 
 			<!-- CONTENT -->
-			<div class="padding all-1 border-top-divisor clearfix" id="evidenceContentWrapper">
+			<div id="evidenceContentWrapper" class="padding all-1 border-top-divisor clearfix">
 				<?php echo urldecode($evidence['Evidence']['content']); ?>
 			</div>
 
@@ -303,7 +307,7 @@ if (isset($evidence)): ?>
 			</div>
 
 			<!-- COMMENTS -->
-			<div class="padding all-1 border-top-divisor">
+			<div id="evidenceCommentsWrapper" class="padding all-1 border-top-divisor">
 				<?php 
 					foreach ($comments as $c):
 						echo $this->element('comment_box', array('comment' => $c));
