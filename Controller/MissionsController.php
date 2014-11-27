@@ -824,7 +824,8 @@ class MissionsController extends AppController {
 		$mission = $this->Mission->find('first', array(
 			'conditions' => array('Mission.id' => $mission_id),
 			'contain' => array(
-				"Phase.id = $phase_id" => 'Quest'
+				'Phase'=>'Quest'
+				//"Phase.id = $phase_id" => 'Quest'
 			)
 		));
 
