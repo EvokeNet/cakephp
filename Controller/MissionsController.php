@@ -803,6 +803,7 @@ class MissionsController extends AppController {
 		//Did not request a specific phase ID
 		if (is_null($phase_id)) {
 			////////////// LIMPAR O BANCO DE DADOS ANTES DE FAZER ISSO, PORQUE AS FASES ESTAO ERRADAS LA ////////////////
+			////////////// TAMBEM NAO ESTA PEGANDO A PRIMEIRA FASE DE CADA MISSAO... TA PEGANDO A PRIMEIRA DE TODAS (pensei que fossem fases no geral, nao fases diferentes pra cada missao) ///////////
 			// //Requested a specific position
 			// if (!is_null($phase_position)) {
 			// 	$phase = $this->Phase->find('first', array('conditions' => array('Phase.position' => $phase_position)));
@@ -828,8 +829,6 @@ class MissionsController extends AppController {
 				//"Phase.id = $phase_id" => 'Quest'
 			)
 		));
-
-		debug($mission);
 
 		$phase = $mission['Phase'][0]; //ONLY ONE PHASE WILL BE RENDERED
 
@@ -864,6 +863,7 @@ class MissionsController extends AppController {
 
 		//FIND FIRST PHASE
 		////////////// LIMPAR O BANCO DE DADOS ANTES DE FAZER ISSO, PORQUE AS FASES ESTAO ERRADAS LA ////////////////
+		////////////// TAMBEM NAO ESTA PEGANDO A PRIMEIRA FASE DE CADA MISSAO... TA PEGANDO A PRIMEIRA DE TODAS (pensei que fossem fases no geral, nao fases diferentes pra cada missao) ///////////
 		// $this->loadModel('Phase');
 		// $first_phase = $this->Phase->find('first', array('order' => array('Phase.position' => 'asc')));
 		// if (is_null($first_phase)) {
@@ -877,7 +877,8 @@ class MissionsController extends AppController {
 		$mission = $this->Mission->find('first', array(
 			'conditions' => array('Mission.id' => $id),
 			'contain' => array(
-				"Phase.id = $first_phase_id" => 'Quest'
+				'Phase' => 'Quest'
+				//"Phase.id = $first_phase_id" => 'Quest'
 			)
 		));
 
