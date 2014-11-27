@@ -7,7 +7,7 @@
 	}
 	//CREATE
 	else {
-		echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'addEvidence')));
+		echo $this->Form->create('Evidence', array('class' => 'formEditEvidence', 'url' => array('controller' => 'evidences', 'action' => 'addEvidence')));
 
 		$evidence['title'] = "";
 		$evidence['content'] = "";
