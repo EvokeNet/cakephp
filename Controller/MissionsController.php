@@ -802,20 +802,23 @@ class MissionsController extends AppController {
 
 		//Did not request a specific phase ID
 		if (is_null($phase_id)) {
-			//Requested a specific position
-			if (!is_null($phase_position)) {
-				$phase = $this->Phase->find('first', array('conditions' => array('Phase.position' => $phase_position)));
-			}
-			//Default: first position available
-			else {
-				$phase = $this->Phase->find('first', array('order' => array('Phase.position' => 'asc')));
-			}
+			////////////// LIMPAR O BANCO DE DADOS ANTES DE FAZER ISSO, PORQUE AS FASES ESTAO ERRADAS LA ////////////////
+			// //Requested a specific position
+			// if (!is_null($phase_position)) {
+			// 	$phase = $this->Phase->find('first', array('conditions' => array('Phase.position' => $phase_position)));
+			// }
+			// //Default: first position available
+			// else {
+			// 	$phase = $this->Phase->find('first', array('order' => array('Phase.position' => 'asc')));
+			// }
 
-			if (is_null($phase)) {
-				throw new NotFoundException(__('Mission phase not found'));
-			}
+			// if (is_null($phase)) {
+			// 	throw new NotFoundException(__('Mission phase not found'));
+			// }
 
-			$phase_id = $phase['Phase']['id'];
+			// $phase_id = $phase['Phase']['id'];
+
+			$phase_id = 29; /////////////GAMBIARRA////////////
 		}
 
 		//MISSION -> PHASE -> QUESTS
@@ -858,12 +861,15 @@ class MissionsController extends AppController {
 		$user = $this->Auth->user();
 
 		//FIND FIRST PHASE
-		$this->loadModel('Phase');
-		$first_phase = $this->Phase->find('first', array('order' => array('Phase.position' => 'asc')));
-		if (is_null($first_phase)) {
-			throw new NotFoundException(__('There are no phases'));
-		}
-		$first_phase_id = $first_phase['Phase']['id'];
+		////////////// LIMPAR O BANCO DE DADOS ANTES DE FAZER ISSO, PORQUE AS FASES ESTAO ERRADAS LA ////////////////
+		// $this->loadModel('Phase');
+		// $first_phase = $this->Phase->find('first', array('order' => array('Phase.position' => 'asc')));
+		// if (is_null($first_phase)) {
+		// 	throw new NotFoundException(__('There are no phases'));
+		// }
+		// $first_phase_id = $first_phase['Phase']['id'];
+
+		$first_phase_id = 29; /////////////GAMBIARRA////////////
 
 		//MISSION -> PHASE -> QUESTS
 		$mission = $this->Mission->find('first', array(
