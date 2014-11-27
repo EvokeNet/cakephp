@@ -159,7 +159,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//EVIDENCE: SUBMITTING A FORM TO ADD/EDIT AN EVIDENCE LOADS EVIDENCE VIEW VIA AJAX
 			//--------------------------------------------//
-			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
+			$("#missions-content-overlay").on("submit", "form.formSubmitEvidence", function( event ) {
 				$.ajax({
 					data: $(this).serialize(), // get the form data
 					type: $(this).attr('method'), // GET or POST
