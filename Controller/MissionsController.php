@@ -817,9 +817,8 @@ class MissionsController extends AppController {
 			// }
 
 			// $phase_id = $phase['Phase']['id'];
-
-			$phase_id = 29; /////////////GAMBIARRA////////////
 		}
+		$phase_id = 29; /////////////GAMBIARRA////////////
 
 		//MISSION -> PHASE -> QUESTS
 		$mission = $this->Mission->find('first', array(
