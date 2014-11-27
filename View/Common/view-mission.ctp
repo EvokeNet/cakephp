@@ -70,20 +70,20 @@
 								$counter = 1;
 								$active = 'class = "active"';
 
-								if (isset($mission['Quest'])) {
-									foreach($mission['Quest'] as $m): 
+								if (isset($phase['Quest'])) {
+									foreach($phase['Quest'] as $q): 
 										if($counter != 1)
 											$active = null;
 										?>
-										<dd <?= $active ?>><a href="#quest<?= $counter ?>" class="text-glow-on-hover"><?= $m['title'] ?></a></dd>
+										<dd <?= $active ?>><a href="#quest<?= $counter ?>" class="text-glow-on-hover"><?= $q['title'] ?></a></dd>
 										<?php
 										$counter++;
 									endforeach;
 
 									//NO QUESTS: Show alert
-									if (count($mission['Quest']) < 1) { ?>
+									if (count($phase['Quest']) < 1) { ?>
 										<div data-alert="" class="alert-box radius">
-											There are no quests available in this mission.
+											<?= __('There are no quests available in this mission.') ?>
 											<a href="" class="close">×</a>
 										</div>
 									<?php }
@@ -97,16 +97,16 @@
 								$active = 'active'; ?>
 
 							<?php 
-								if (isset($mission['Quest'])) {
-									foreach($mission['Quest'] as $m): 
+								if (isset($phase['Quest'])) {
+									foreach($phase['Quest'] as $q): 
 										if($counter != 1)
 											$active = null;
 										?>
 								
 								<div class="content <?= $active ?>" id="quest<?= $counter ?>">
 									<div class = "margin right-1">
-										<h3 class="text-color-highlight text-center"><?= $m['title'] ?></h3>
-										<?= $m['description'] ?>
+										<h3 class="text-color-highlight text-center"><?= $q['title'] ?></h3>
+										<?= $q['description'] ?>
 
 										<h5 class="text-color-highlight text-center">REWARDS</h5>
 							    		<p class="text-center">Submitting an evidence for this quest is worth 3 badges:</p>
@@ -119,7 +119,7 @@
 									    <p class="text-center margin top-2">
 								    		<?php
 								    		if (isset($loggedInUser)): ?>
-							    				<a class="button small submit-evidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $m['phase_id'], $m['id'], 'false')); ?>">
+							    				<a class="button small submit-evidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')); ?>">
 							    					<?= __('Submit your evidence') ?>
 							    				</a><?php
 								    		else: ?>
@@ -204,10 +204,26 @@
 							<!-- PROGRESS BAR -->
 							<div class="button-bar phases-bar padding top-05 bottom-05">
 								<ul class="button-group radius">
-									<li><a href="#" class="button small thin past font-weight-bold"><i class="fa fa-flag fa-lg"></i> <?= __('Explore') ?></a></li>
-									<li><a href="#" class="button small thin present font-weight-bold"><i class="fa fa-fighter-jet fa-lg"></i> <?= __('Imagine') ?></a></li>
-									<li><a href="#" class="button small thin disabled font-weight-bold"><i class="fa fa-eye fa-lg"></i> <?= __('Act') ?></a></li>
-									<li><a href="#" class="button small thin disabled font-weight-bold"><i class="fa fa-flash fa-lg"></i> <?= __('Evoke') ?></a></li>
+									<li>
+										<a href="#" class="button small thin past font-weight-bold">
+											<i class="fa fa-flag fa-lg"></i> <?= __('Explore') ?>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="button small thin present font-weight-bold">
+											<i class="fa fa-fighter-jet fa-lg"></i> <?= __('Imagine') ?>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="button small thin disabled font-weight-bold">
+											<i class="fa fa-eye fa-lg"></i> <?= __('Act') ?>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="button small thin disabled font-weight-bold">
+											<i class="fa fa-flash fa-lg"></i> <?= __('Evoke') ?>
+										</a>
+									</li>
 								</ul>
 							</div>
 

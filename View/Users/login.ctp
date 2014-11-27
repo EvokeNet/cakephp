@@ -30,8 +30,7 @@
                 	$cover_url = $this->webroot.'img/episodes-example/E01G01P02.jpg';
                 } ?>
 
-			    <div class="evoke slide background-cover full-width" data-interchange="
-		    			['<?= $cover_url ?>',(default)]">
+			    <div class="evoke slide background-cover full-width" data-interchange="['<?= $cover_url ?>',(default)]">
 					<noscript>
 						<img src="<?= $cover_url ?>" alt="<?= $mission['Mission']['title'] ?>">
 					</noscript>
@@ -40,7 +39,13 @@
 						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
 							<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view_sample', $mission['Mission']['id']))?>">
 								<h2 class="text-color-highlight"><?= $mission['Mission']['title'] ?></h2>
-								<p><?= $mission['Mission']['description'] ?></p>
+								<p>
+								<?php
+									if (isset($mission['Mission']['description'])) {
+										echo $this->Text->getExcerpt($mission['Mission']['description'], 45, '...');
+									}
+									?>
+								</p>
 							</a>
 						</div></div>
 					</div>
@@ -54,7 +59,8 @@
 	    	<div class="row small-width text-center">
 		    	<h1 class="text-color-highlight text-center margin bottom-1"><?php echo ('What is Evoke?'); ?></h1>
 				<p class="font-size-important"><?php echo ('Welcome to the Evoke network! If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?>
-					<?php echo ('As an Evoke agent, you will choose your mission, develop your powers, and together will agents around the world create your <strong>own world changing idea</strong>.'); ?></p>
+					<?php echo ('As an Evoke agent, you will choose your mission, develop your powers, and together will agents around the world create your <strong>own world changing idea</strong>.'); ?>
+				</p>
 			</div>
 	    </div>
 	    <div class="section evoke login gradient-on-top padding top-2">

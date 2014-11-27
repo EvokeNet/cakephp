@@ -132,40 +132,44 @@ class MissionsController extends AppController {
 		}
 
 
+		//MISSION
 		$mission = $this->Mission->find('first', array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id)));
 
+		//USER
 		$this->loadModel('User');
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
+		//CHECK IF USER HAS COMPLETED BASIC TRAINING
 		if(($user['User']['basic_training'] == 0) && ($user['User']['role_id'] != 1) && ($mission['Mission']['basic_training'] == 0)) {
 			$this->Session->setFlash(__("You haven't completed the Basic Training"), 'flash_message');
 			return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));
 		}
 
+		//PHASES IN THIS MISSION
+		//All phases
 		$missionPhases = $this->Mission->Phase->find('all', array('conditions' => array('Phase.mission_id' => $id), 'order' => 'Phase.position'));
 
+		//If a speficif phase ID was requested
 		if(!is_null($phaseId)){
 			$missionPhase = $this->Mission->Phase->find('first', array('conditions' => array('Phase.mission_id' => $id, 'Phase.id' => $phaseId)));	
 			if(!empty($missionPhase))
 				$phase_number = $missionPhase['Phase']['position'];
 		}
 		
+		//If a speficif phase number was requested
 		if(is_null($phase_number))
-			$this->redirect(array('controller' => 'missions', 'action' => 'view', $id, 1));
+			$this->redirect(array('controller' => 'missions', 'action' => 'view', $id, 1)); //?????????? parece que seria só setar $phase_number = 1 aqui!!!!!!!!!
 
 		if($phase_number > count($missionPhases)) {
 			$this->Session->setFlash(__("There are no phases for this mission"), 'flash_message');
 			$this->redirect($this->referer());
 		}
 
+		//Specific phase request
 		$missionPhase = $this->Mission->Phase->find('first', array('conditions' => array('Phase.mission_id' => $id, 'Phase.position' => $phase_number)));
-		// if(!empty($missionPhase)){
-			$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
-			$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);	
-		// } 
-
-		//$evidences = $this->Mission->getEvidences($id);
+		$nextMP = $this->Mission->Phase->getNextPhase($missionPhase, $id);
+		$prevMP = $this->Mission->Phase->getPrevPhase($missionPhase, $id);	
 
 		if($flags['_es']) {
 			$mission['Mission']['title'] = $mission['Mission']['title_es'];
@@ -204,13 +208,16 @@ class MissionsController extends AppController {
 			)
 		));
 
+		//EVIDENCES
+		//Liked
 		$liked_evidences = array();
-
 		foreach ($evidences as $e) {
 			$liked_evidences[count($e['Like'])][] = $e;
 		}
 		krsort($liked_evidences);
 
+		//EVOKATIONS
+		//All
 		$this->loadModel('Evokation');
 		$allevokations = $this->Evokation->find('all', array(
 			'order' => array(
@@ -221,6 +228,7 @@ class MissionsController extends AppController {
 			)
 		));
 
+		//Success
 		$success_evokations = array();
 		$evokations = array();
 		//only get evokations from this mission
@@ -232,12 +240,16 @@ class MissionsController extends AppController {
 			}
 		}
 
+		//ISSUES
 		$missionIssues = $this->Mission->getMissionIssues($id);
+
+		//QUESTS
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 		
 		//will be used in retrieving all users groups id to get his evokations!
 		$myEvokations_groupsids = array();
 
+		//GROUPS
 		$hasGroup = false;
 		//check to see if user has entered a group of this mission..
 		foreach ($mission['Group'] as $group) {
@@ -262,7 +274,7 @@ class MissionsController extends AppController {
 			}
 		}
 
-		//getting all user's evokations from this mission!
+		//GROUP EVOKATIONS getting all user's evokations from this mission!
 		$myEvokations = array();
 		if(!empty($myEvokations_groupsids)) {
 			$this->loadModel('Evokation');
@@ -273,7 +285,7 @@ class MissionsController extends AppController {
 			));
 		}
 
-		//getting power points from evoke to display the ones related to quests in quests' lightboxes
+		//POINTS - getting power points from evoke to display the ones related to quests in quests' lightboxes
 		$this->loadModel('PowerPoint');
 		$tmp = $this->PowerPoint->find('all');
 		$allPowerPoints = array(); //will contain all evoke's powerpoints with the first index as their id's (i.e. the power point with id 33 will be at $allPowerPoints[33])
@@ -286,7 +298,7 @@ class MissionsController extends AppController {
 		}
 
 
-		//getting badges from evoke to display the ones related to quests in quests' lightboxes
+		//BADGES - getting badges from evoke to display the ones related to quests in quests' lightboxes
 		$this->loadModel('Badge');
 		$tmp = $this->Badge->find('all');
 		$allBadges = array(); //will contain all evoke's badges with the first index as their id's (i.e. the badge with id 33 will be at $allBadges[33])
@@ -298,7 +310,7 @@ class MissionsController extends AppController {
 			$allBadges[$tmpB['Badge']['id']] = $tmp[$tmpKey];
 		}
 
-		//retrieving all ids from quests of this mission..
+		//QUESTS IDS retrieving all ids from quests of this mission..
 		$my_quests_id = array();
 		$my_quests_id2 = array();
 		$k = 0;
@@ -313,7 +325,7 @@ class MissionsController extends AppController {
 			$k++;
 		}
 
-		//needed to be able to display and edit a quest's questionnaire
+		//QUESTIONNAIRES - needed to be able to display and edit a quest's questionnaire
 		$this->loadModel('Questionnaire');
 		$questionnaires = $this->Questionnaire->find('all', array(
 			'conditions' => array(
@@ -321,6 +333,7 @@ class MissionsController extends AppController {
 			)
 		));
 
+		//ANSWERS
 		$this->loadModel('Answer');
 		$answers = $this->Answer->find('all');
 		$this->loadModel('UserAnswer');
@@ -330,6 +343,7 @@ class MissionsController extends AppController {
 			)
 		));
 
+		//DOSSIER
 		$this->loadModel('Dossier');
 		$dossier = $this->Dossier->find('first', array(
 			'conditions' => array(
@@ -337,7 +351,7 @@ class MissionsController extends AppController {
 			)
 		));
 
-		//needed to be able to display quests' media..
+		//ATTACHMENTS - needed to be able to display quests' media..
 		$this->loadModel('Attachment');
 		$attachments = $this->Attachment->find('all', array(
 			'conditions' => array(
@@ -778,11 +792,43 @@ class MissionsController extends AppController {
  * View complete missions (after logged in)
  * @param int $mission_id - ID to see a specific mission
  */
-	public function view_mission($mission_id) {
+	public function view_mission($mission_id, $phase_position = null, $phase_id = null) {
 		$user = $this->Auth->user();
 
-		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id), 'contain' => 'Quest'));
+		//--------------------------------------------//
+		//PHASE
+		//--------------------------------------------//
+		$this->loadModel('Phase');
 
+		//Did not request a specific phase ID
+		if (is_null($phase_id)) {
+			//Requested a specific position
+			if (!is_null($phase_position)) {
+				$phase = $this->Phase->find('first', array('conditions' => array('Phase.position' => $phase_position)));
+			}
+			//Default: first position available
+			else {
+				$phase = $this->Phase->find('first', array('order' => array('Phase.position' => 'asc')));
+			}
+
+			if (is_null($phase)) {
+				throw new NotFoundException(__('Mission phase not found'));
+			}
+
+			$phase_id = $phase['Phase']['id'];
+		}
+
+		//MISSION -> PHASE -> QUESTS
+		$mission = $this->Mission->find('first', array(
+			'conditions' => array('Mission.id' => $mission_id),
+			'contain' => array(
+				"Phase.id = $phase_id" => 'Quest'
+			)
+		));
+
+		$phase = $mission['Phase'][0]; //ONLY ONE PHASE WILL BE RENDERED
+
+		//GRAPHIC NOVEL
 		$novels = $this->Mission->Novel->find('all', array(
 			'order' => array(
 				'Novel.page Asc'
@@ -800,7 +846,7 @@ class MissionsController extends AppController {
 			'allowSignedRequest' => false
 		));
 
-		$this->set(compact('mission', 'novels', 'user', 'facebook'));
+		$this->set(compact('mission', 'phase', 'novels', 'user', 'facebook'));
 	}
 
 
@@ -811,8 +857,25 @@ class MissionsController extends AppController {
 	public function view_sample($id = null) {
 		$user = $this->Auth->user();
 
-		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $id), 'contain' => 'Quest'));
+		//FIND FIRST PHASE
+		$this->loadModel('Phase');
+		$first_phase = $this->Phase->find('first', array('order' => array('Phase.position' => 'asc')));
+		if (is_null($first_phase)) {
+			throw new NotFoundException(__('There are no phases'));
+		}
+		$first_phase_id = $first_phase['Phase']['id'];
 
+		//MISSION -> PHASE -> QUESTS
+		$mission = $this->Mission->find('first', array(
+			'conditions' => array('Mission.id' => $id),
+			'contain' => array(
+				"Phase.id = $first_phase_id" => 'Quest'
+			)
+		));
+
+		$phase = $mission['Phase'][0]; //ONLY ONE PHASE WILL BE RENDERED
+
+		//GRAPHIC NOVELS
 		$novels = $this->Mission->Novel->find('all', array(
 			'order' => array(
 				'Novel.page Asc'
@@ -823,7 +886,7 @@ class MissionsController extends AppController {
 			)
 		));
 
-		$this->set(compact('mission', 'novels', 'user'));
+		$this->set(compact('mission', 'phase', 'novels', 'user'));
 	}
 
 

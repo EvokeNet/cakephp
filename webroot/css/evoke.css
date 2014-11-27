@@ -42,11 +42,6 @@ button, div, p, span, a,
 	overflow: hidden;
 }
 
-/* Text transform */
-.evoke .uppercase {
-	text-transform: uppercase;
-}
-
 /* --------------------------- */
 /* TEXT COLORS */
 /* --------------------------- */
@@ -86,11 +81,6 @@ button, div, p, span, a,
 	font-size: 75%;
 }
 
-/* Work break */
-.no-word-break {
-	word-break: normal;
-}
-
 /* FONT FAMILY */
 .evoke .font-highlight {
 	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
@@ -107,6 +97,26 @@ button, div, p, span, a,
 
 .evoke .icon-brankic {
 	font-family: 'Brankic';
+}
+
+/* --------------------------- */
+/* OTHER TEXT-RELATED STYLES */
+/* --------------------------- */
+/* Text transform */
+.evoke .uppercase {
+	text-transform: uppercase;
+}
+
+/* Work break */
+.evoke .no-word-break {
+	word-break: normal;
+}
+
+/* One-line text */
+.evoke .one-line-text {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 /* --------------------------- */

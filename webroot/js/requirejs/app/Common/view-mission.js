@@ -1,4 +1,4 @@
-require(['../requirejs/bootstrap'], function () {
+require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'foundation', 'slickcarousel', 'stickykit', 'sidr'], function ($) {
 		$(document).ready(function(){
 			//--------------------------------------------//
@@ -132,13 +132,31 @@ require(['../requirejs/bootstrap'], function () {
 						$('div.missions-submenu').addClass("hidden");
 					},
 					success: function(data) {
-						//Go to the top
+						//Go to the top of the page
 						$("html, body").animate({
 							scrollTop: 0
 						}, 300);
 
 						//Content
 						$("#missions-content-overlay .content-body").html(data);
+
+						//--------------------------------------------//
+						//AFTER SUBMIT, LOAD EVIDENCE VIEW VIA AJAX
+						//--------------------------------------------//
+						$("#missions-content-overlay").on("submit", "form.formSubmitEvidence", function( event ) {
+							$.ajax({ // create an AJAX call...
+								data: $(this).serialize(), // get the form data
+								type: $(this).attr('method'), // GET or POST
+								url: $(this).attr('action'), // the file to call
+								success: function(response) { // on success..
+									$('#missions-content-overlay').html(response); // update the DIV
+								}
+							});
+							//return false; // cancel original event to prevent form submitting
+							//alert($(this).attr('action'));
+							//.load($(this).attr('action'));
+							event.preventDefault();
+						});
 
 						//Reflow
 						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax

@@ -50,6 +50,12 @@ class EvidencesController extends AppController {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
 
+		//AJAX LOAD
+		if ($this->request->is('ajax')) {
+			$this->layout = 'ajax';
+			//$this->render('/Elements/Evidences/view-evidence');
+		}
+
 		$evidence = $this->Evidence->find('first', array(
 			'contain' => array(
 				'Mission' => array('fields' => 'id', 'title'),
@@ -100,135 +106,41 @@ class EvidencesController extends AppController {
 		));
 
 		$this->set(compact('ajax', 'evidence', 'comments', 'like', 'likes', 'attachments', 'facebook'));
-
-		//AJAX LOAD EVIDENCE VIEW ONLY
-		if ($ajax) {
-			//$this->autoRender = false;
-			$this->layout = 'ajax';
-			$this->render('/Elements/Evidences/view-evidence');
-		}
 	}
 
+/**
+ * Receive evidence data via post and creates it in the database
+ * @return redirect to view the evidence created
+ */
+public function addEvidence() {
+	//debug($this->request->data);
+	//return;
+
+	if ($this->request->is('post')) {
+		$this->Evidence->create();
+
+		if ($this->Evidence->save($this->request->data)) {
+			return $this->redirect(array(
+				'header' => $this->request->header, //Use the same header - useful if the requester is ajax
+				'action' => 'view', 
+				$this->Evidence->id, true)
+			);
+		} else {
+			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
+		}
+	}
+}
 
 /**
- * add method
- *
+ * Renders add view (form to add an evidence)
  * @return void
  */
-	public function add($mission_id, $phase_id, $quest_id = null, $evokation = false, $ajax = false) {
-		if(!$quest_id) {
-			return;
-		}
-		//checking if quest exists..
-		$this->loadModel('Quest');
-		$quest = $this->Quest->find('first', array(
-			'conditions' => array(
-				'Quest.id' => $quest_id
-			)
-		));
-
-		if(empty($quest)) {
-			return;
-		}
-
-		$user = $this->loggedInUser;
-		
-		$this->loadModel('Dossier');
-		$this->loadModel('Attachment');
-		$this->loadModel('Quest');
-
-		$q = $this->Evidence->Quest->find('first', array('conditions' => array('Quest.id' => $quest_id)));
-
-		$dossier = $this->Dossier->find('first', array(
-			'conditions' => array(
-				'mission_id' => $mission_id
-			)
-		));
-
-		if(!empty($dossier)) {
-			//dossier files
-			$dossier_files = $this->Attachment->find('all', array(
-				'conditions' => array(
-					'Attachment.foreign_key' => $dossier['Dossier']['id'],
-					'Attachment.model' => 'Dossier'
-				)
-			));
-		} else {
-			$dossier_files = array();
-		}
-
-		$lang = $this->getCurrentLanguage();
-		$flags['_en'] = true;
-		$flags['_es'] = false;
-		if($lang=='es') {
-			$flags['_en'] = false;
-			$flags['_es'] = true;
-		}
-
-		if($flags['_es'])
-			$langs = 'es';
-		else
-			$langs = 'en';
-
-		$links = $this->Evidence->Mission->DossierLink->find('all', array('conditions' => array('DossierLink.mission_id' => $mission_id, 'DossierLink.language' => $langs)));
-		$video_links = $this->Evidence->Mission->DossierVideo->find('all', array('conditions' => array('DossierVideo.mission_id' => $mission_id, 'DossierVideo.language' => $langs)));
-
-		if($evokation) $insertData['evokation'] = '1';
-		else $insertData['evokation'] = '0';
-
-		//IF IT IS NOT AJAX AND IT'S COMING BACK FROM A POST - IT HAS ADDED
-		if (!$ajax && $this->request->is('post')) {
-			$this->Evidence->create();
-
-			// $json = $this->request->data['Evidence']['content'];
-			// $json = json_decode($json);
-
-			// //$data = $this->request->input('json_decode', true);
-			// //unset($this->request->data['Evidence']['content']);
-
-			// $this->request->data['Evidence']['content'] = $json;
-			// debug($this->request->data);
-
-			// die();
-			if ($this->Evidence->save($this->request->data)) {
-				
-				//$this->Session->setFlash(__('The evidence has been saved.')); 
-				 
-				//$this->Session->setFlash(__('The evidence has been saved.'), 'flash_message');
-
-				// if ($this->UserMission->save($data)) {
-				// 	//$this->Session->setFlash(__('The user mission has been saved.'));
-				// } else {
-				// 	//$this->Session->setFlash(__('The user mission could not be saved. Please, try again.'));
-				// }
-
-				//user has completed a quest, so if he doesnt exist in 'usersmissions', add him now!
-
-				// $this->loadModel('UserMission');
-				// $is_in = $this->UserMission->find('first', array('conditions' => array('UserMission.user_id' => $this->getUserId(), 'UserMission.mission_id' => $mission_id)));
-				// if(empty($is_in)) {
-				// 	$this->UserMission->create();
-				// 	$data['UserMission']['user_id'] = $this->getUserId();
-				// 	$data['UserMission']['mission_id'] = $mission_id;
-
-				// 	if ($this->UserMission->save($data)) {
-				// 		//$this->Session->setFlash(__('The user mission has been saved.'));
-				// 	} else {
-				// 		//$this->Session->setFlash(__('The user mission could not be saved. Please, try again.'));
-				// 	}
-				// }
-				return $this->redirect(array('action' => 'view', $this->Evidence->id));
-			} else {
-				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
-			}
-		}
-
-		$this->set(compact('dossier_files', 'user', 'lang', 'langs', 'links', 'video_links', 'q', 'mission_id', 'phase_id', 'quest_id', 'ajax'));
-
+	public function add($mission_id, $phase_id, $quest_id = null, $evokation = false) {
 		//AJAX LOAD EVIDENCE FORM
-		if ($ajax) {
+		if ($this->request->is('ajax')) {
 			$this->layout = 'ajax';
 		}
+		$this->set(compact('mission_id', 'phase_id', 'quest_id', 'evokation'));
 	}
 
 /**

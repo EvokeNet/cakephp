@@ -1,11 +1,11 @@
-require(['../requirejs/bootstrap'], function () {
+require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'foundation', 'froala'], function ($) {
 		$(document).ready(function(){
 			//--------------------------------------------//
 			//OPEN DOSSIER OFFCANVAS
 			//--------------------------------------------//
 			//CLICKING ON THE DOSSIER OFFCANVAS WILL LOAD CONTENT VIA AJAX ONCE (and keep the same content if the button is clicked later on)
-			$("#menu-icon-tabDossier").one( "click", function() {
+			$("#menu-icon-tabDossier").one("click", function() {
 				$.ajax({
 					url: missions_load_dossier_url,
 					type:"POST",
@@ -22,8 +22,8 @@ require(['../requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//OPEN EVIDENCE OFFCANVAS
 			//--------------------------------------------//
-			//CLICKING ON THE EVIDENCE OFFCANVAS WILL LOAD CONTENT VIA AJAX ONCE (and keep the same content if the button is clicked later on)
-			$("#menu-icon-tabEvidences").one( "click", function() {
+			//CLICKING ON THE EVIDENCE OFFCANVAS WILL LOAD CONTENT VIA AJAX (every time, in case a user created a new evidence)
+			$("#menu-icon-tabEvidences").on("click", function() {
 				$.ajax({
 					url: missions_load_evidences_url,
 					type:"POST",
@@ -40,8 +40,10 @@ require(['../requirejs/bootstrap'], function () {
 								url: $(this).attr("href")+"/true",
 								type:"POST",
 								beforeSend: function() {
+									//SHOW OVERLAY WITH LOADING IMAGE
 									$('#missions-content-overlay .content-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
 									$('#missions-content-overlay').removeClass("hidden");
+									//HIDE SUBMENU BEHIND
 									$('div.missions-submenu').addClass("hidden");
 								},
 								success: function(data) {

@@ -1,4 +1,4 @@
-require(['../requirejs/bootstrap'], function () {
+require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'froala', 'sweetalert', '../js/requirejs/modules/facebook_share'], function ($) {
 		$(document).ready(function(){			
 			//--------------------------------------------//
@@ -28,11 +28,14 @@ require(['../requirejs/bootstrap'], function () {
 					$.ajax({
 					  url: $('#buttonDeleteEvidence').attr('href')+'/true',
 					  success: function() {
-					    //Confirm deleted
-						swal("Deleted!", "Your evidence has been deleted.", "success");
-						
-						//RELOAD WINDOW
-						window.location.reload(true);
+						swal({
+							title: "Deleted!",
+							text: "Your evidence has been deleted.",
+							type: "success"
+						}, function(){
+							//RELOAD WINDOW
+							window.location.reload(true);
+						});
 					  },
 					  error: function() {
 					  	//Error message
@@ -47,9 +50,15 @@ require(['../requirejs/bootstrap'], function () {
 			//LOAD EDIT ELEMENT VIA AJAX
 			//--------------------------------------------//
 			$('#buttonEditEvidence').click(function(event){
-				$('#evidenceContentWrapper').load($(this).attr('href')+'/true', function(){
+				$('#evidenceContentWrapper').load($(this).attr('href')+'/true');
+				event.preventDefault();
+			});
 
-				});
+			//--------------------------------------------//
+			//AFTER SUBMIT, LOAD EVIDENCE VIEW VIA AJAX
+			//--------------------------------------------//
+			$("#evidenceContentWrapper").on("click", ".buttonSubmitEvidence", function( event ) {
+				$('#evidenceContentWrapper').load($(this).attr('href')+'/true');
 				event.preventDefault();
 			});
 		});

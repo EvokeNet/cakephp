@@ -1,11 +1,10 @@
 <?php
-if (isset($evidence)):
-?>
+if (isset($evidence)): ?>
 
 <div class="row full-width">
 	<?php
 	//BREADCRUMBS MENU
-	if (isset($show_breadcrumbs) && ($show_breadcrumbs == true)): ?>
+	if (!$ajax && isset($show_breadcrumbs) && ($show_breadcrumbs == true)): ?>
 	  	<nav class="breadcrumbs margin top-1 bottom-1">
 	  		<!-- MISSION -->
 			<?php echo $this->Html->link(
@@ -22,8 +21,9 @@ if (isset($evidence)):
 	endif; ?>
 
 	<!-- EVIDENCE CONTENT -->
-	<div class="row full-width">
-		<?php
+	<div class="row full-width"><?php
+
+		//LEFT SIDEBAR FOR FULL-PAGE
 		if (!$ajax): ?>
 			<!-- DETAILS ON THE LEFT -->
 			<div class="hide-for-small-only medium-4 large-3 columns padding right-2">
@@ -72,41 +72,54 @@ if (isset($evidence)):
 			</div><?php
 		endif; ?>
 
+
+
 		<!-- EVIDENCE CONTENT -->
 		<div class="small-12 <?= (!$ajax) ? 'medium-8 large-9' : 'margin left-1' ?> columns">
 		 	<div class="padding all-1">
-		 		<!-- TITLE -->
-				<h1 class="text-glow">
-					<?php echo urldecode($evidence['Evidence']['title']); ?>
-				</h1>
-
-				<!-- USER INFO -->
-				<p>
-					<?= __("Created in ") ?>
-					<?= h($evidence['Evidence']['created']) ?>
-					<?php
-						//ADDITIONAL USER INFO IF AJAX
-						if ($ajax): ?>
-							<?= __(' by ').$evidence['User']['name']?><?php
-						endif; 
-					?>
+		 		<div class="table">
+		 			<!-- TITLE -->
+		 			<div class="table-cell">
+						<h1 class="text-glow">
+							<?php echo urldecode($evidence['Evidence']['title']); ?>
+						</h1>
+					</div>
 
 					<!-- EDIT/DELETE -->
-					<?php
-					if($ajax): 
-						//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE
-						if(isset($loggedInUser) && ($evidence['Evidence']['user_id'] == $loggedInUser['id'])): ?>
-							<!-- EDIT -->
-							<a id="buttonEditEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" alt="<?= __('Edit Evidence') ?>" class="padding left-1">
-								<i class="fa fa-pencil fa-lg"></i>
-							</a>
+					<div class="table-cell vertical-align-center" style="min-width: 4em">
+						<?php
+						if($ajax): 
+							//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE
+							if(isset($loggedInUser) && ($evidence['Evidence']['user_id'] == $loggedInUser['id'])): ?>
+								<!-- EDIT -->
+								<a id="buttonEditEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" alt="<?= __('Edit Evidence') ?>" class="padding left-1">
+									<i class="fa fa-pencil fa-lg"></i>
+								</a>
 
-							<!-- DELETE -->
-							<a id="buttonDeleteEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" alt="<?= __('Delete Evidence') ?>" class="padding left-1">
-								<i class="fa fa-times-circle fa-lg"></i>
-							</a><?php
-						endif;
-					endif; ?>
+								<!-- DELETE -->
+								<a id="buttonDeleteEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" alt="<?= __('Delete Evidence') ?>" class="padding left-1">
+									<i class="fa fa-times-circle fa-lg"></i>
+								</a><?php
+							endif;
+						endif; ?>
+					</div>
+				</div>
+
+				<!-- EVIDENCE CREATION INFO -->
+				<p>
+					<?php
+						$creation_date = date_format(date_create($evidence['Evidence']['created']),"m/d/Y");
+
+						//ADDITIONAL USER INFO AND QUEST INFO FOR AJAX
+						if ($ajax) {
+							echo $evidence['User']['name'];
+							echo __(' in ').$creation_date;
+							echo __(' in response to ').$evidence['Quest']['title'];
+						}
+						else {
+							echo __('Created in ').$creation_date;
+						}
+					?>
 				</p>
 			</div>
 
@@ -190,7 +203,7 @@ if (isset($evidence)):
 			</div>
 
 			<!-- CONTENT -->
-			<div class="padding all-1 border-top-divisor" id="evidenceContentWrapper">
+			<div class="padding all-1 border-top-divisor clearfix" id="evidenceContentWrapper">
 				<?php echo urldecode($evidence['Evidence']['content']); ?>
 			</div>
 
