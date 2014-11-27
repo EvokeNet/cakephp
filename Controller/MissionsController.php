@@ -829,6 +829,8 @@ class MissionsController extends AppController {
 			)
 		));
 
+		debug($mission);
+
 		$phase = $mission['Phase'][0]; //ONLY ONE PHASE WILL BE RENDERED
 
 		//GRAPHIC NOVEL
