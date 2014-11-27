@@ -155,32 +155,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				});
 				event.preventDefault();
 			});
-
-			//--------------------------------------------//
-			//EVIDENCE: SUBMITTING A FORM TO ADD AN EVIDENCE LOADS EVIDENCE VIEW VIA AJAX
-			//--------------------------------------------//
-			$("#missions-content-overlay").on("submit", "form.formSubmitEvidence", function( event ) {
-				$.ajax({
-					data: $(this).serialize(), // get the form data
-					type: $(this).attr('method'), // GET or POST
-					url: $(this).attr('action'), // the file to call
-					success: function(response) {
-						//Go to the top of the page
-						$("html, body").animate({
-							scrollTop: 0
-						}, 300);
-
-						//Display content
-						$('#missions-content-overlay-body').off(); //clear events in previous elements
-						$('#missions-content-overlay-body *').off(); //clear events in previous elements
-						$('#missions-content-overlay-body').html(response);
-
-						//Reflow
-						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-					}
-				});
-				event.preventDefault();
-			});
 		    
 			//--------------------------------------------//
 		    //REFLOW FOUNDATION - After setting up slick (or generating any other elements), foundation needs to be updated
