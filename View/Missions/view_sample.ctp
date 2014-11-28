@@ -24,7 +24,7 @@
                 			$mission_status_message = "<br />".__("<strong><span class='text-color-dark'>Current phase.</span></strong>");
                 		}
                 		else {
-                        	$mission_status_message = "<br />".__("<strong><span class='text-color-dark'>Only the first phase is available for preview.</span></strong>");
+                        	$mission_status_message = "<br />".__("<strong><span class='text-color-dark'>This phase is not available for preview.</span></strong>");
                         	$mission_phase_status = 'disabled';
                         	$mission_phase_url = "#";
                 		}
