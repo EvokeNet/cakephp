@@ -83,6 +83,10 @@ button:hover, button:focus, .button:hover, .button:focus {
 	border-bottom: none;
 }
 
+.tooltip > .nub {
+	border-color: transparent transparent #26dee0 transparent;
+}
+
 /* --------------------------- */
 /* TOP-BAR */
 /* --------------------------- */

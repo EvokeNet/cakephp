@@ -795,25 +795,30 @@ class MissionsController extends AppController {
 	public function view_mission($mission_id, $phase_position = null, $phase_id = null) {
 		$user = $this->Auth->user();
 
+		//---------------------------------
 		//MISSION -> ALL PHASES
 		$mission = $this->Mission->find('first', array(
 			'conditions' => array('Mission.id' => $mission_id),
-			'contain' => 'Phase'
+			'contain' => array(
+				'Phase' => array('Quest' => 'Questionnaire'),
+				'Group'
+			)
 		));
 
+		//---------------------------------
 		//PHASE THAT WILL BE RENDERED
 		//Did not request a specific phase ID
 		if (!is_null($phase_id)) {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id, 'Phase.id' => $phase_id),
-				'contain' => 'Quest'
+				'contain' => array('Quest' => 'Questionnaire')
 			));
 		}
 		//Requested a specific position
 		else if (!is_null($phase_position)) {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id, 'Phase.position' => $phase_position),
-				'contain' => 'Quest'
+				'contain' => array('Quest' => 'Questionnaire')
 			));
 		}
 		//Default: phase in the first position
@@ -821,9 +826,107 @@ class MissionsController extends AppController {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id),
 				'order' => array('Phase.position' => 'asc'),
-				'contain' => 'Quest'
+				'contain' => array('Quest' => 'Questionnaire')
 			));
 		}
+
+		//---------------------------------
+		//MARK COMPLETED PHASES //this code can be improved a lot
+		//GROUPS
+		$myEvokations_groupsids = array();
+		$hasGroup = false;
+		//check to see if user has entered a group of this mission
+		foreach ($mission['Group'] as $group) {
+			if($group['user_id'] == $this->user['id']) {
+				$hasGroup = true;
+				array_push($myEvokations_groupsids, array('Evokation.group_id' => $group['id']));
+			}
+
+			$this->loadModel('GroupsUser');
+			$groupsuser = $this->GroupsUser->find('all', array(
+				'conditions' => array(
+					'GroupsUser.group_id' => $group['id']
+				)
+			));
+			foreach ($groupsuser as $member) {
+				if($member['GroupsUser']['user_id'] == $this->user['id']) {
+					$hasGroup = true;
+					array_push($myEvokations_groupsids, array('Evokation.group_id' => $member['GroupsUser']['group_id']));
+				}
+			}
+		}
+
+		//ANSWERS
+		$this->loadModel('UserAnswer');
+		$previous_answers = $this->UserAnswer->find('all', array(
+			'conditions' => array(
+				'user_id' => $this->user['id']
+			)
+		));
+
+		//COMPLETED MANDATORY QUESTS
+		$this->loadModel('Evidence');
+
+		$i = 0;
+		foreach ($mission['Phase'] as $p) {
+			//MANDATORY IN THIS PHASE
+			$all_mandatory_quests = array();
+			$completed_quests = 0;
+
+			foreach ($p['Quest'] as $q) {
+				$done = false;
+
+				if ($q['mandatory'] == 1) {
+					array_push($all_mandatory_quests,$q);
+				}
+			
+				//EVIDENCES
+				$my_evidences_quest = $this->Evidence->find('all', array(
+					'order' => array('Evidence.title ASC'),
+					'conditions' => array(
+						'user_id' => $this->user['id'],
+						'quest_id' => $q['id']
+					)
+				));
+				//if it was an 'evidence' type quest
+				if(!empty($my_evidences_quest)) {
+					$done = true; 
+				}
+				
+
+				//if it was a questionnaire type quest
+				//theres only one
+				if(!empty($q['Questionnaire'])) {
+					foreach ($previous_answers as $previous_answer) {
+						if($q['Quest']['id'] == $q['Questionnaire']['quest_id'] && $q['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {
+							$done = true; 
+							break;
+						}
+					}
+				}
+				
+
+				//if its a group type quest, check to see if user owns or belongs to a group of this mission
+				if($q['type'] == 3) {
+					if($hasGroup) {
+						$done = true;
+					}
+				}
+
+				//COMPLETED
+				if($done) {
+					$completed_quests++;
+				}
+			}
+
+			//PHASE COMPLETED IF ALL MANDATORY QUESTS ARE COMPLETED
+			$mission['Phase'][$i]['completed'] = false;
+			if ($completed_quests >= count($all_mandatory_quests)) {
+				$mission['Phase'][$i]['completed'] = true;
+			}
+
+			$i++;
+		}		
 
 		//GRAPHIC NOVEL
 		$novels = $this->Mission->Novel->find('all', array(

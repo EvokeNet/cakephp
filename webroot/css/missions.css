@@ -41,17 +41,18 @@
 	margin: 0;
 }
 
-.evoke .phases-bar .past {
+.evoke .phases-bar .available {
 	background-color: #275761;
 }
-.evoke .phases-bar .past, .evoke .phases-bar .past i {
+.evoke .phases-bar .available, .evoke .phases-bar .available i {
 	color: #ccc;
 }
 
-.evoke .phases-bar .present {
+.evoke .phases-bar .current {
 	background-color: #26dee0;
+	cursor: default;
 }
-.evoke .phases-bar .present, .evoke .phases-bar .present i {
+.evoke .phases-bar .current, .evoke .phases-bar .current i {
 	color: #000;
 }
 
