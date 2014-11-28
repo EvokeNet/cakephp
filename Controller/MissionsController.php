@@ -795,42 +795,35 @@ class MissionsController extends AppController {
 	public function view_mission($mission_id, $phase_position = null, $phase_id = null) {
 		$user = $this->Auth->user();
 
-		//--------------------------------------------//
-		//PHASE
-		//--------------------------------------------//
-		$this->loadModel('Phase');
-
-		//Did not request a specific phase ID
-		if (is_null($phase_id)) {
-			////////////// LIMPAR O BANCO DE DADOS ANTES DE FAZER ISSO, PORQUE AS FASES ESTAO ERRADAS LA ////////////////
-			////////////// TAMBEM NAO ESTA PEGANDO A PRIMEIRA FASE DE CADA MISSAO... TA PEGANDO A PRIMEIRA DE TODAS (pensei que fossem fases no geral, nao fases diferentes pra cada missao) ///////////
-			// //Requested a specific position
-			// if (!is_null($phase_position)) {
-			// 	$phase = $this->Phase->find('first', array('conditions' => array('Phase.position' => $phase_position)));
-			// }
-			// //Default: first position available
-			// else {
-			// 	$phase = $this->Phase->find('first', array('order' => array('Phase.position' => 'asc')));
-			// }
-
-			// if (is_null($phase)) {
-			// 	throw new NotFoundException(__('Mission phase not found'));
-			// }
-
-			// $phase_id = $phase['Phase']['id'];
-		}
-		$phase_id = 29; /////////////GAMBIARRA////////////
-
-		//MISSION -> PHASE -> QUESTS
+		//MISSION -> ALL PHASES
 		$mission = $this->Mission->find('first', array(
 			'conditions' => array('Mission.id' => $mission_id),
-			'contain' => array(
-				'Phase'=>'Quest'
-				//"Phase.id = $phase_id" => 'Quest'
-			)
+			'contain' => 'Phase'
 		));
 
-		$phase = $mission['Phase'][0]; //ONLY ONE PHASE WILL BE RENDERED
+		//PHASE THAT WILL BE RENDERED
+		//Did not request a specific phase ID
+		if (!is_null($phase_id)) {
+			$phase = $this->Mission->Phase->find('first', array(
+				'conditions' => array('Phase.mission_id' => $mission_id, 'Phase.id' => $phase_id),
+				'contain' => 'Quest'
+			));
+		}
+		//Requested a specific position
+		else if (!is_null($phase_position)) {
+			$phase = $this->Mission->Phase->find('first', array(
+				'conditions' => array('Phase.mission_id' => $mission_id, 'Phase.position' => $phase_position),
+				'contain' => 'Quest'
+			));
+		}
+		//Default: phase in the first position
+		else {
+			$phase = $this->Mission->Phase->find('first', array(
+				'conditions' => array('Phase.mission_id' => $mission_id),
+				'order' => array('Phase.position' => 'asc'),
+				'contain' => 'Quest'
+			));
+		}
 
 		//GRAPHIC NOVEL
 		$novels = $this->Mission->Novel->find('all', array(
@@ -861,28 +854,20 @@ class MissionsController extends AppController {
 	public function view_sample($id = null) {
 		$user = $this->Auth->user();
 
-		//FIND FIRST PHASE
-		////////////// LIMPAR O BANCO DE DADOS ANTES DE FAZER ISSO, PORQUE AS FASES ESTAO ERRADAS LA ////////////////
-		////////////// TAMBEM NAO ESTA PEGANDO A PRIMEIRA FASE DE CADA MISSAO... TA PEGANDO A PRIMEIRA DE TODAS (pensei que fossem fases no geral, nao fases diferentes pra cada missao) ///////////
-		// $this->loadModel('Phase');
-		// $first_phase = $this->Phase->find('first', array('order' => array('Phase.position' => 'asc')));
-		// if (is_null($first_phase)) {
-		// 	throw new NotFoundException(__('There are no phases'));
-		// }
-		// $first_phase_id = $first_phase['Phase']['id'];
-
-		$first_phase_id = 29; /////////////GAMBIARRA////////////
-
-		//MISSION -> PHASE -> QUESTS
+		//MISSION -> PHASES
 		$mission = $this->Mission->find('first', array(
 			'conditions' => array('Mission.id' => $id),
 			'contain' => array(
-				'Phase' => 'Quest'
-				//"Phase.id = $first_phase_id" => 'Quest'
+				'Phase' => array('order' => array('Phase.position' => 'asc'))
 			)
 		));
 
-		$phase = $mission['Phase'][0]; //ONLY ONE PHASE WILL BE RENDERED
+		//FIRST PHASE
+		$phase = $this->Mission->Phase->find('first', array(
+			'conditions' => array('Phase.mission_id' => $id),
+			'order' => array('Phase.position' => 'asc'),
+			'contain' => 'Quest'
+		));
 
 		//GRAPHIC NOVELS
 		$novels = $this->Mission->Novel->find('all', array(
