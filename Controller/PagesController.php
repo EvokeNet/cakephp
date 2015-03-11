@@ -71,6 +71,10 @@ class PagesController extends AppController {
 		}
 	}
 
+
+	public function reportissue(){
+	}
+
 	public function terms(){
 		$userid = $this->getUserId();
 		//debug($this->Auth);

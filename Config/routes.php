@@ -46,6 +46,11 @@
 	);
 
 	Router::connect(
+    	'/reportissue',
+    	array('controller' => 'pages', 'action' => 'reportissue')
+	);
+
+	Router::connect(
     	'/DMCAnotifications',
     	array('controller' => 'pages', 'action' => 'dmcanotifications')
 	);
