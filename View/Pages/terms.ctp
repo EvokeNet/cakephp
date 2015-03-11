@@ -5,7 +5,7 @@
 ?>
 
 <section class="evoke fullpage">
-	<div class="evoke row">
+	<div class="evoke row margin bottom-3">
 		<div class="evoke small-12 medium-12 large-12 columns">
 			<h1 class="text-center text-color-highlight margin top-1 bottom-05">Terms of Service</h1>
 			<p class="uppercase">The following Terms of Service apply to your use of this Network.  You are solely responsible for your conduct and your content on the Network and compliance with these terms.  By registering with us or using or browsing this Network, you acknowledge that you have read, understood, and agree to be bound by these terms. This Network is not directed to anyone younger than 13 and is offered only to users 13 years of age or older. Any person who provides their personal information through this Network represents that they are 13 years of age or older.</p>
