@@ -41,9 +41,7 @@
 								<h2 class="text-color-highlight"><?= $mission['Mission']['title'] ?></h2>
 								<p>
 								<?php
-									if (isset($mission['Mission']['description'])) {
-										echo $this->Text->getExcerpt($mission['Mission']['description'], 45, '...');
-									}
+									echo $mission['Mission']['description'];
 									?>
 								</p>
 							</a>
@@ -59,7 +57,7 @@
 	    	<div class="row small-width text-center">
 		    	<h1 class="text-color-highlight text-center margin bottom-1"><?php echo ('What is Evoke?'); ?></h1>
 				<p class="font-size-important"><?php echo ('Welcome to the Evoke network! If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?>
-					<?php echo ('As an Evoke agent, you will choose your mission, develop your powers, and together will agents around the world create your <strong>own world changing idea</strong>.'); ?>
+					<?php echo ('As an Evoke agent, you will choose your mission, develop your powers, and together with agents around the world create your <strong>own world changing idea</strong>.'); ?>
 				</p>
 			</div>
 	    </div>
@@ -112,7 +110,7 @@
 									<img class="evoke img-circular vertical-align-middle active img-glow hidden"
 										src="<?= $this->webroot.'img/thumb-evidences.jpg' ?>" alt="<?php echo ('Evidences'); ?>" />
 								</div>
-								<h5 class="text-color-highlight"><?php echo ('Evidences'); ?></h5>
+								<h5 class="text-color-highlight"><?php echo ('Evidence'); ?></h5>
 							</a>
 						</li>
 						<li class="tab-title" role="presentational">
