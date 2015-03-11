@@ -63,16 +63,50 @@
 
 
 /* --------------------------- */
-/* OF CANVAS */
+/* OFF CANVAS */
 /* --------------------------- */
+
+.tooltip-sidr {
+	font-size: 0.3em;
+}
 
 /* Off canvas */
 .evoke .missions .right-off-canvas-menu {
 	/*width: 30rem;*/
 	width:45rem;
 }
+
 .evoke .missions .right-small {
 	transition: transform 500ms ease 0s;
+}
+
+
+/* Space when sidr is open */
+.evoke .missions .right-small.open {
+	right:30em;
+}
+@media only screen and (min-width:76em) {
+	.evoke .missions .right-small.open {
+		right:38em;
+	}
+}
+
+#missions-content-overlay {
+	padding-right:34em;
+}
+@media only screen and (min-width:76em) {
+	#missions-content-overlay {
+		padding-right:42em;
+	}
+}
+
+div.missions-submenu .content {
+	margin-right:34em;
+}
+@media only screen and (min-width:76em) {
+	div.missions-submenu .content {
+		margin-right:42em;
+	}
 }
 
 /* Tab Menu */

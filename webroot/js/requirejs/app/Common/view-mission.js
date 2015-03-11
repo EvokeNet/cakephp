@@ -47,14 +47,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$('.off-canvas-wrap .missions-content').addClass('blur-strong opacity-04'); //Blur everything else
 
 				//Show submenu
-				$('div.missions-submenu .content').css("margin-right",$(sidr_source).width()+100);
 	    		$('div.missions-submenu').removeClass("hidden");
 
-	    		//Position missions-content-overlay
-	    		$('#missions-content-overlay').css("padding-right",$(sidr_source).width()+100);
-
 	    		//Off-canvas buttons go to the left
-	    		$('.right-small').css("right",$(sidr_source).width());
+	    		$('.right-small').addClass("open");
+
+	    		//Remove tooltips over the sidr icons
+	    		//$('.tooltip-sidr').remove();
 			}
 
 			function close_sidr(sidr_button,sidr_source) {
@@ -63,7 +62,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$('div.missions-submenu').addClass("hidden"); //Hide submenu
 				$('#missions-content-overlay').addClass("hidden"); //Hide content overlay
 				$("#missions-content-overlay").css("min-height","100%"); //Reset min-height that might have changed when loading content by scrolling down
-				$('.right-small').css("right","0"); //Off-canvas buttons go back to the right
+				$('.right-small').removeClass("open"); //Off-canvas buttons go back to the right
 			}
 
 			$('#menu-icon-tabQuests').sidr({
