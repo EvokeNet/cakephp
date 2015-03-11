@@ -47,18 +47,29 @@
 				<nav class="tab-bar full-height" id="tab-bar-off-canvas">
 					<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
 					<section class="right-small text-center opacity-07">
-					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabQuests" data-tab-content="tabQuests">
-					    	<span class="icon-brankic icon-compass fa-2x vertical-align-middle text-color-gray"></span>
-					    </a>
-					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabDossier" data-tab-content="tabDossier">
-					    	<span class="icon-brankic icon-cabinet2 fa-2x vertical-align-middle text-color-gray"></span>
-					    </a>
-					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
-					    	<span class="icon-brankic icon-wallet fa-2x vertical-align-middle text-color-gray"></span>
-					    </a>
-					    <a class="menu-icon custom background-color-standard" id="menu-icon-tabMenu" data-tab-content="tabMenu">
-					    	<span class="icon-brankic icon-grid icon-size-medium vertical-align-middle text-color-gray"></span>
-					    </a>
+						<span data-tooltip aria-haspopup="true" class="has-tip tip-left" title="<?= __('Quests') ?>">
+		    				<a class="menu-icon custom background-color-standard" id="menu-icon-tabQuests" data-tab-content="tabQuests">
+						    	<span class="icon-brankic icon-compass fa-2x vertical-align-middle text-color-gray"></span>
+						    </a>
+		    			</span>
+					    
+					    <span data-tooltip aria-haspopup="true" class="has-tip tip-left" title="<?= __('Dossier') ?>">
+						    <a class="menu-icon custom background-color-standard" id="menu-icon-tabDossier" data-tab-content="tabDossier">
+						    	<span class="icon-brankic icon-cabinet2 fa-2x vertical-align-middle text-color-gray"></span>
+						    </a>
+					    </span>
+
+					    <span data-tooltip aria-haspopup="true" class="has-tip tip-left" title="<?= __('Evidences') ?>">
+						    <a class="menu-icon custom background-color-standard" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
+						    	<span class="icon-brankic icon-wallet fa-2x vertical-align-middle text-color-gray"></span>
+						    </a>
+						</span>
+
+					    <span data-tooltip aria-haspopup="true" class="has-tip tip-left" title="<?= __('Menu') ?>">
+						    <a class="menu-icon custom background-color-standard" id="menu-icon-tabMenu" data-tab-content="tabMenu">
+						    	<span class="icon-brankic icon-grid icon-size-medium vertical-align-middle text-color-gray"></span>
+						    </a>
+					    </span>
 				  </section>
 				</nav>
 
@@ -108,8 +119,8 @@
 										<h3 class="text-color-highlight text-center"><?= $q['title'] ?></h3>
 										<?= $q['description'] ?>
 
-										<h5 class="text-color-highlight text-center">REWARDS</h5>
-							    		<p class="text-center">Submitting an evidence for this quest is worth 3 badges:</p>
+										<h5 class="text-color-highlight text-center"><?= __('REWARDS') ?></h5>
+							    		<p class="text-center"><?= __('Submitting an evidence for this quest is worth 3 badges:') ?></p>
 							    		<p class="text-center">
 									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
 									    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
