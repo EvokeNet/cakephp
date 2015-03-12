@@ -13,22 +13,26 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$('.missions-carousel').slick({
 			  slidesToShow: 1,
-			  variableHeight: true,
+			  adaptiveHeight: true,
 			  responsive: true,
 			  lazyLoad: 'progressive',
 			  arrows: true,
 			  onInit: function(slider) {
-			  	$('.slick-slide img:not(.slick-active)').addClass("hidden");
 			  },
 			  onBeforeChange: function(slider, currentIndex, targetIndex){
-			  	//Hide previous image, so that it's height does not count in parent
-			  	$('.slick-slide img').addClass("hidden");
 			  	//Page number
 			  	$('#page-number').html(targetIndex+1);
 			  },
 			  onAfterChange: function(slider,index){
-			  	//Show this image
-			  	$('.slick-active img').removeClass("hidden");
+			  	//Coordinate heights of carousel wrap and content overlay
+			  	var slideHeight = jQuery(slider.$slides[index]).height();
+			  	$(".off-canvas-wrap").css("min-height",slideHeight).css("height",slideHeight);
+			  	$("#missions-content-overlay").css("min-height",slideHeight).css("height",slideHeight);
+
+			  	//Go to the top of the page
+				$("html, body").animate({
+					scrollTop: 0
+				}, 300);
 			  }
 			});
 
@@ -52,8 +56,17 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 	    		//Off-canvas buttons go to the left
 	    		$('.right-small').addClass("open");
 
-	    		//Remove tooltips over the sidr icons
-	    		//$('.tooltip-sidr').remove();
+	    		//Adjust height so that it's at least as high as the content overlay / carousel wrap, and vice-versa
+	    		var sidrHeight = $(sidr_source).height();
+	    		var missionsContentOverlayHeight = $("#missions-content-overlay").height();
+
+	    		if (sidrHeight < missionsContentOverlayHeight) {
+	    			$(sidr_source).css("min-height",missionsContentOverlayHeight);
+	    		}
+	    		else {
+	    			$("#missions-content-overlay").css("min-height",sidrHeight);
+	    			$(".off-canvas-wrap").css("min-height",sidrHeight);
+	    		}
 			}
 
 			function close_sidr(sidr_button,sidr_source) {
@@ -61,8 +74,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-04'); //Blur everything else
 				$('div.missions-submenu').addClass("hidden"); //Hide submenu
 				$('#missions-content-overlay').addClass("hidden"); //Hide content overlay
-				$("#missions-content-overlay").css("min-height","100%"); //Reset min-height that might have changed when loading content by scrolling down
 				$('.right-small').removeClass("open"); //Off-canvas buttons go back to the right
+
+				//Reset min-height that might have changed when sidr was opened
+	    		var sliderHeight = $(".slick-list").height(); //Height of the carousel image that will 
+	    		$(".off-canvas-wrap").css("min-height",sliderHeight);
+	    		$(sidr_source).css("min-height",sliderHeight);
+	    		$('#missions-content-overlay').css("min-height",sliderHeight);
 			}
 
 			$('#menu-icon-tabQuests').sidr({
@@ -158,6 +176,12 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 		    //REFLOW FOUNDATION - After setting up slick (or generating any other elements), foundation needs to be updated
 		    //--------------------------------------------//
+			$(document).foundation('reflow');
+
+			//--------------------------------------------//
+			//SIDR: add equalizer watch after the divs are added to the page
+			//--------------------------------------------//
+			$(".sidr").attr("data-equalizer-watch","data-equalizer-watch");
 			$(document).foundation('reflow');
 
 			

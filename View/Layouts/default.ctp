@@ -64,7 +64,7 @@ $title = __('Evoke Network');
 	<script src="http://localhost:3000/socket.io/socket.io.js"></script>-->
 </head>
 <!-- <body class="evoke height-inherit min-full-height"> -->
-<body class="evoke">
+<body class="evoke" data-equalizer>
 	<section role="main body" class="full-height">
 	<!-- <section id="main-body" role="main body" class="full-height"> -->
 		<?php 

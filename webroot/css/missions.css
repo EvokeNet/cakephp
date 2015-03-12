@@ -66,7 +66,13 @@
 /* OFF CANVAS */
 /* --------------------------- */
 
-/* Off canvas */
+/* Actual content (on the left) has scroll */
+.off-canvas-wrap {
+	
+}
+
+
+/* Right off canvas */
 .evoke .missions .right-off-canvas-menu {
 	/*width: 30rem;*/
 	width:45rem;
@@ -78,7 +84,7 @@
 }
 
 
-/* Space when sidr is open */
+/* Right offcanvas menu needs margin when sidr is open */
 .evoke .missions .right-small.open {
 	right:30em;
 }

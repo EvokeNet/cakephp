@@ -22,9 +22,9 @@
 <?php $this->end(); ?>
 <!-- TOPBAR MENU -->
 
-	<div id="missions-body" class="missions height-inherit">
+	<div id="missions-body" class="missions height-inherit clearfix">
 		<!-- CONTENT OVERLAY -->
-		<div id="missions-content-overlay" class="background-color-dark-opacity-06 absolute min-full-height full-width hidden" style="z-index: 6;">
+		<div id="missions-content-overlay" data-equalizer-watch class="background-color-dark-opacity-06 absolute min-full-height full-width hidden" style="z-index: 6;">
 			<div class="relative">
 				<!-- CLOSE BUTTON -->
 				<div class="right absolute" style="z-index: 6;">
@@ -37,12 +37,12 @@
 				</div>
 
 				<!-- CONTENT LOADED -->
-				<div id="missions-content-overlay-body" class="content-body">
+				<div id="missions-content-overlay-body" class="content-body" data-equalizer-watch>
 				</div>
 			</div>
 		</div>
 
-		<div class="off-canvas-wrap height-inherit" data-offcanvas>
+		<div class="off-canvas-wrap" data-offcanvas data-equalizer-watch>
 			<div class="inner-wrap">
 				<nav class="tab-bar full-height" id="tab-bar-off-canvas">
 					<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
