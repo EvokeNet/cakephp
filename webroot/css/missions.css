@@ -74,6 +74,7 @@
 
 .evoke .missions .right-small {
 	transition: transform 500ms ease 0s;
+	border-left: none;
 }
 
 
