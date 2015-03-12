@@ -13,7 +13,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$('.missions-carousel').slick({
 			  slidesToShow: 1,
-			  adaptiveHeight: true,
+			  //adaptiveHeight: true,
 			  responsive: true,
 			  lazyLoad: 'ondemand',
 			  arrows: true,
@@ -26,6 +26,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			  onAfterChange: function(slider,index){
 			  	//Coordinate heights of carousel wrap and content overlay
 			  	var slideHeight = jQuery(slider.$slides[index]).height();
+			  	jQuery(slider.$slider).height(slideHeight);
 			  	$(".off-canvas-wrap").css("min-height",slideHeight).css("height",slideHeight);
 			  	$("#missions-content-overlay").css("min-height",slideHeight).css("height",slideHeight);
 
