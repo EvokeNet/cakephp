@@ -13,10 +13,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$('.missions-carousel').slick({
 			  slidesToShow: 1,
-			  slidesToScroll: 1,
 			  adaptiveHeight: false,
 			  responsive: true,
-			  lazyLoad: 'progressive',
+			  lazyLoad: 'ondemand',
 			  arrows: true,
 			  onInit: function(slider) {
 			  },
