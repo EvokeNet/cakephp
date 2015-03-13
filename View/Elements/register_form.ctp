@@ -9,8 +9,30 @@
 				echo $this->Form->input('password', array('type' => 'password', 'required' => true, 'label' => __('Password')));
 				echo $this->Form->input('confirm_password', array('type' => 'password', 'required' => true, 'label' => __('Confirm Password')));
 
-				//echo $this->Form->input('Attachment', array('type' => 'file'));
-				echo '<div class="input file"><label for="AttachmentImgAttachment">Image</label><input type="file" name="data[Attachment][][attachment]" id="AttachmentImgAttachment"></div>';
+				//echo $this->Form->input('Attachment', array('type' => 'file', 'name' => 'data[Attachment][][attachment]', 'id' => 'AttachmentImgAttachment', 'label' => __('Profile picture'), 'class' => 'button'));
+
+				?>
+				<div class="pass"> 
+		           <button type="button" class="button" id="upload-img">
+		               <i class="fa fa-user"></i>
+		               <?php echo __('Profile picture'); ?>
+		           </button>
+
+		           <span id="file-name"></span>
+		           <?php
+		               echo $this->Form->input('file', array(
+		                   'accept' => 'image/jpeg,image/png',
+		                   'type'   => 'file',
+		                   'label'  => false,
+		                   'class'  => 'hidden upload',
+		                   'div'    => false,
+		                   'name' => 'data[Attachment][][attachment]',
+		                   'id' => 'AttachmentImgAttachment'
+		               ));
+		           ?>
+		       </div>
+		       <?php
+				//echo '<div class="input file"><label for="AttachmentImgAttachment">Image</label><input type="file" name="data[Attachment][][attachment]" id="AttachmentImgAttachment"></div>';
 			?>
 		</div>
 
@@ -102,3 +124,8 @@
 		// });
 	</script>
 	<?php $this->end(); ?>
+
+<?php
+	//SCRIPT
+	$this->Html->script('requirejs/app/file-upload.js', array('inline' => false));
+?>
