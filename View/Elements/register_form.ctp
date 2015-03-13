@@ -1,5 +1,5 @@
 	<div class="form-evoke-style">
-		<?php echo $this->Form->create('User', array('url' => array('controller' => 'users', 'action' => 'register'))); ?>
+		<?php echo $this->Form->create('User', array('type' => 'file', 'url' => array('controller' => 'users', 'action' => 'register'))); ?>
 
 		<div class="medium-6 columns">
 			<?php
@@ -8,6 +8,9 @@
 			    )));
 				echo $this->Form->input('password', array('type' => 'password', 'required' => true, 'label' => __('Password')));
 				echo $this->Form->input('confirm_password', array('type' => 'password', 'required' => true, 'label' => __('Confirm Password')));
+
+				//echo $this->Form->input('Attachment', array('type' => 'file'));
+				echo '<div class="input file"><label for="AttachmentImgAttachment">Image</label><input type="file" name="data[Attachment][][attachment]" id="AttachmentImgAttachment"></div>';
 			?>
 		</div>
 

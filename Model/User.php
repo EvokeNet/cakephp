@@ -95,14 +95,11 @@ class User extends AppModel {
                     if (isset($image['foreign_key'])) {
                         unset($image['foreign_key']);
                     }
-                    $image['foreign_key'] = $data['User']['id'];
-
                 }
             }
         }
-        $insert['User'] = $data['User'];
-        //$data['Attachment'] = $image;
 
+        $insert['User'] = $data['User'];
 
         // Try to save the data using Model::saveAll()
         if(!$hasPrev) $this->create();
@@ -111,29 +108,28 @@ class User extends AppModel {
         	$insert['User']['id'] = $id;
         }
 
-        if(isset($image)) {
-        	$photo['Attachment'] = $image;
-	        if (!$this->Attachment->save($photo)) {
-	        	return false;
-	        }
-	        $recent = $this->Attachment->find('first', array(
-	        	'order' => array(
-	        		'Attachment.id DESC'
-	        	),
-	        	'conditions' => array(
-	        		'Attachment.model' => 'User',
-	        		'Attachment.foreign_key' => $data['User']['id']
-	        	)
-	        ));
-	        $insert['User']['photo_dir'] = $recent['Attachment']['dir'];
-	        $insert['User']['photo_attachment'] = $recent['Attachment']['attachment'];
-    	}
-        //debug($data);
         if ($this->save($insert)) {
-         	return true;
+	        if(isset($image)) {
+	        	//Now that the user has been saved, it has an id that will be used as a foreign key to the image
+	        	$image['foreign_key'] = $this->id;
+	        	$photo['Attachment'] = $image;
+
+		        if (!$this->Attachment->save($photo)) {
+		        	return false;
+		        }
+
+		        //Now that the attachment has been saved, it has a directory and a file name for the attachment, that will be stored also in the user table
+		        $recent = $this->Attachment->find('first', array(
+		        	'conditions' => array(
+		        		'Attachment.id' => $this->Attachment->id
+		        	)
+		        ));
+		        $this->saveField('photo_dir', $recent['Attachment']['dir']);
+		        $this->saveField('photo_attachment', $recent['Attachment']['attachment']);
+	    	}
+	    	return true;
         }
 
-        //return false;
         // Throw an exception for the controller
         throw new Exception(__("This post could not be saved. Please try again"));
     }
@@ -151,7 +147,9 @@ class User extends AppModel {
 			);
 		}
 
-		$this->data[$this->alias]['name'] = $this->data[$this->alias]['firstname'].' '.$this->data[$this->alias]['lastname'];
+		if (isset($this->data[$this->alias]['firstname'])) {
+			$this->data[$this->alias]['name'] = $this->data[$this->alias]['firstname'].' '.$this->data[$this->alias]['lastname'];
+		}
 
 		return true;
 	}

@@ -647,7 +647,8 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			if($this->request->data['User']['password'] == $this->request->data['User']['confirm_password']) {
 
-				$this->User->create();
+				//$this->User->create();
+				$this->User->createWithAttachments($this->request->data);
 				// $this->request->data['User']['password'] = sha1($this->request->data['User']['password']);
 
 				if ($this->User->save($this->request->data)) {
