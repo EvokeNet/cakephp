@@ -15,7 +15,7 @@
 
 <div class="evoke row standard-width">
 	<div class="form-evoke-style">
-		<?php echo $this->Form->create('User', array('url' => array('controller' => 'users', 'action' => 'edit'), 'data-abide')); ?>
+		<?php echo $this->Form->create('User', array('type' => 'file', 'url' => array('controller' => 'users', 'action' => 'edit'), 'data-abide')); ?>
 
 		<div class="medium-6 columns">
 			<!-- NAME -->
@@ -32,12 +32,40 @@
 				</div>
 			</div>
 
-			<!-- USERNAME -->
-			<div class="small-12">
-				<?php
-				echo $this->Form->input('username', array('required' => true, 'label' => __('Username')));
-				?>
+			
+			<div class="row">
+				<!-- USERNAME -->
+				<div class="large-6 columns">
+					<?php
+						echo $this->Form->input('username', array('required' => true, 'label' => __('Username')));
+					?>
+				</div>
+				<div class="large-6 columns">
+					<!-- PROFILE PICTURE UPLOAD -->
+					<div class="pass"> 
+						<?php
+							echo $this->Form->input('file', array(
+								'accept' => 'image/jpeg,image/png',
+								'type'   => 'file',
+								'label'  => __('Profile picture'),
+								'class'  => 'hidden upload',
+								'div'    => false,
+								'name' => 'data[Attachment][][attachment]',
+								'id' => 'AttachmentImgAttachment'
+							));
+						?>
+
+						<button type="button" class="button thin" id="upload-img">
+							<i class="fa fa-user"></i>
+							<?php echo __('Upload'); ?>
+						</button>
+
+						<span id="file-name"> <?= (isset($user['photo_attachment']) ? $user['photo_attachment'] : '') ?></span>
+					</div>
+				</div>
 			</div>
+
+
 
 			<!-- ADDITIONAL INFO -->
 			<div class="row">
@@ -116,7 +144,6 @@
 			<label for="UserMiniBiography" style = "display: inline;"><?= __('Mini bio') ?></label>&nbsp;
 			<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= ('The mini bio is a text up to 140 characters') ?>"><i class="fa fa-question-circle"></i></span>
 			<?php echo $this->Form->input('mini_biography', array(
-				// 'label' => array('class' => 'display-inline', 'text' => __('Mini bio')),
 				'label' => false,
 				'id' => 'counttextarea',
 				'cols' => '45',
@@ -144,4 +171,5 @@
 
 	//SCRIPT
 	$this->Html->script('requirejs/app/Users/edit.js', array('inline' => false));
+	$this->Html->script('requirejs/app/file-upload.js', array('inline' => false));
 ?>

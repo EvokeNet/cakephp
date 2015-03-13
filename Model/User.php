@@ -84,6 +84,7 @@ class User extends AppModel {
 	public function createWithAttachments($data, $hasPrev = false, $id = null) {
         // Sanitize your images before adding them
         $images = array();
+
         if (!empty($data['Attachment'][0]) && $data['Attachment'][0]['attachment']['name'] != '') {
         	foreach ($data['Attachment'] as $i => $image) {
                 if (is_array($data['Attachment'][$i])) {
@@ -110,7 +111,7 @@ class User extends AppModel {
 
         if ($this->save($insert)) {
 	        if(isset($image)) {
-	        	//Now that the user has been saved, it has an id that will be used as a foreign key to the image
+	        	//Now that the user has been saved, it has an id for sure. This id will be used as a foreign key to the image
 	        	$image['foreign_key'] = $this->id;
 	        	$photo['Attachment'] = $image;
 
@@ -127,6 +128,7 @@ class User extends AppModel {
 		        $this->saveField('photo_dir', $recent['Attachment']['dir']);
 		        $this->saveField('photo_attachment', $recent['Attachment']['attachment']);
 	    	}
+	    	
 	    	return true;
         }
 

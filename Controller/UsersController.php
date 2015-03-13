@@ -647,9 +647,7 @@ class UsersController extends AppController {
 		if ($this->request->is('post')) {
 			if($this->request->data['User']['password'] == $this->request->data['User']['confirm_password']) {
 
-				//$this->User->create();
 				$this->User->createWithAttachments($this->request->data);
-				// $this->request->data['User']['password'] = sha1($this->request->data['User']['password']);
 
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('O usuário foi salvo com sucesso.'));
@@ -1690,7 +1688,13 @@ class UsersController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			$this->User->id = $id;
+			$this->User->createWithAttachments($this->request->data,true,$id);
+
 			if ($this->User->save($this->request->data)) {
+				//Refresh auth data
+				$user_data = $this->User->findById($this->Auth->User('id'));
+				$this->Auth->login($user_data['User']);
+
 				$this->Session->setFlash(__('The user has been saved.'));
 				return $this->redirect(array('action' => 'profile', $id));
 			} else {
@@ -1698,7 +1702,9 @@ class UsersController extends AppController {
 			}
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);
+			$user = $this->User->find('first', $options);
+			$this->set('user', $user['User']);
+			$this->request->data = $user;
 		}
 	}
 
