@@ -16,7 +16,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			  adaptiveHeight: false,
 			  responsive: true,
 			  slidesToShow: 1,
-			  lazyLoad: 'ondemand',
+			  lazyLoad: 'progressive',
 			  arrows: true,
 			  onInit: function(slider) {
 			  },
