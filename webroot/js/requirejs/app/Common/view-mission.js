@@ -32,8 +32,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			  	$(".off-canvas-wrap").css("min-height",sliderHeight).css("height",sliderHeight);
 //			  	$("#missions-content-overlay").css("min-height",sliderHeight);
 
-//			  	alert('after slidr change: '+sliderHeight);
-
 			  	//Go to the top of the page
 				$("html, body").animate({
 					scrollTop: 0
@@ -68,13 +66,11 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 	    		//Adjust height so that it's at least as high as the content overlay / carousel wrap, and vice-versa
 	    		var sidrHeight = $(sidr_source).height();
 	    		var missionsContentOverlayHeight = $("#missions-content-overlay").height();
-	    		alert(sidrHeight+ '  missionsContentOverlayHeight: '+missionsContentOverlayHeight);
 
 	    		if (sidrHeight < missionsContentOverlayHeight) {
 	    			$(sidr_source).css("min-height",missionsContentOverlayHeight);
 	    		}
 	    		else {
-	    			alert('mudei overlay pra igual sidr: '+sidrHeight);
 	    			$("#missions-content-overlay").css("min-height",sidrHeight);
 	    			//$(".off-canvas-wrap").css("min-height",sidrHeight);
 	    		}
@@ -92,7 +88,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				//Reset min-height that might have changed when sidr was opened
 	    		var sliderHeight = $(".slick-active img").height(); //Height of the carousel image that will be displayed
 	    		var offcanvasHeight = $(".off-canvas-wrap").height();
-	    		alert(sliderHeight+ '  offcanvasHeight: '+offcanvasHeight);
 	    		// $(".off-canvas-wrap").css("min-height",sliderHeight).css("height",sliderHeight);
 	    		// $(sidr_source).css("min-height",sliderHeight).css("height",sliderHeight);
 	    		// $('#missions-content-overlay').css("min-height",sliderHeight).css("height",sliderHeight);
