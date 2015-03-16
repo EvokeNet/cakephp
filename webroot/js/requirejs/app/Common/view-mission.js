@@ -1,6 +1,7 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'foundation', 'slickcarousel', 'stickykit', 'sidr'], function ($) {
 		$(document).ready(function(){
+			alert('Evoke2014');
 			//--------------------------------------------//
 			//Top-bar margins
 			//--------------------------------------------//
@@ -16,8 +17,11 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			  adaptiveHeight: false,
 			  responsive: true,
 			  slidesToShow: 1,
-			  lazyLoad: 'progressive',
+			  lazyLoad: 'ondemand',
 			  arrows: true,
+			  onInit: function(slider) {
+			  	alert('Evoke2015');
+			  },
 			  onBeforeChange: function(slider, currentIndex, targetIndex){
 			  	//Page number
 			  	$('#page-number').html(targetIndex+1);
