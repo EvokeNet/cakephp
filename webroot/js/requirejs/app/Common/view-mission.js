@@ -23,20 +23,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			  onBeforeChange: function(slider, currentIndex, targetIndex){
 			  	//Page number
 			  	$('#page-number').html(targetIndex+1);
-
-			  	//Show loading image
-			  	//$('.missions-carousel').addClass("opacity-03");
-			  	//$("#loading").show();
 			  },
 			  onAfterChange: function(slider,index){
-			  	var img = jQuery(slider.$slides[index]).children('img');
-
-			  	//Hide loading image
-				//$("#loading").hide();
-				//$('.missions-carousel').removeClass("opacity-03");
-
 				//Coordinate heights of carousel wrap and content overlay
-			  	//var slideHeight = jQuery(slider.$slides[index]).height();
+				var img = jQuery(slider.$slides[index]).children('img');
 			  	var slideHeight = $(img).height();
 			  	jQuery(slider.$slider).height(slideHeight);
 			  	$(".off-canvas-wrap").css("min-height",slideHeight).css("height",slideHeight);
