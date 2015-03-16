@@ -222,7 +222,7 @@
 				    	<div class="missions-carousel full-width opacity-03">
 				    		<!-- MISSAO 1 -->
 				    		<?php foreach ($novels as $novel) : 
-				    		debug($this->here);
+				    		//debug($this->here);
 
 				    		$actual_link = 'http://'.$_SERVER['HTTP_HOST'];
 
@@ -240,8 +240,8 @@
 
 							<?php
 							$size = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P01.jpg');
-							debug($size);
-							die();
+							//debug($size);
+							//die();
 								list($width_1, $height_1) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P01.jpg');
 								list($width_2, $height_2) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P02.jpg');
 								list($width_3, $height_3) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G03P01.jpg');
