@@ -27,10 +27,12 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			  onAfterChange: function(slider,index){
 				//Coordinate heights of carousel wrap and content overlay
 				var img = jQuery(slider.$slides[index]).children('img');
-			  	var slideHeight = $(img).height();
-			  	jQuery(slider.$slider).height(slideHeight);
-			  	$(".off-canvas-wrap").css("min-height",slideHeight).css("height",slideHeight);
-			  	$("#missions-content-overlay").css("min-height",slideHeight).css("height",slideHeight);
+			  	var sliderHeight = $(img).height();
+			  	jQuery(slider.$slider).height(sliderHeight);
+			  	$(".off-canvas-wrap").css("min-height",sliderHeight).css("height",sliderHeight);
+//			  	$("#missions-content-overlay").css("min-height",sliderHeight);
+
+//			  	alert('after slidr change: '+sliderHeight);
 
 			  	//Go to the top of the page
 				$("html, body").animate({
@@ -59,20 +61,28 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 	    		//Off-canvas buttons go to the left
 	    		$('.right-small').addClass("open");
 
+	    		//Content overlay covers offcanvas
+	    		var sliderHeight = $(".slick-active img").height();
+	    		$("#missions-content-overlay").css("min-height",sliderHeight);
+
 	    		//Adjust height so that it's at least as high as the content overlay / carousel wrap, and vice-versa
 	    		var sidrHeight = $(sidr_source).height();
 	    		var missionsContentOverlayHeight = $("#missions-content-overlay").height();
+	    		alert(sidrHeight+ '  missionsContentOverlayHeight: '+missionsContentOverlayHeight);
 
 	    		if (sidrHeight < missionsContentOverlayHeight) {
 	    			$(sidr_source).css("min-height",missionsContentOverlayHeight);
 	    		}
 	    		else {
+	    			alert('mudei overlay pra igual sidr: '+sidrHeight);
 	    			$("#missions-content-overlay").css("min-height",sidrHeight);
 	    			//$(".off-canvas-wrap").css("min-height",sidrHeight);
 	    		}
 			}
 
 			function close_sidr(sidr_button,sidr_source) {
+				$(sidr_source).removeClass("sidr-open");
+
 				$(sidr_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
 				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-04'); //Blur everything else
 				$('div.missions-submenu').addClass("hidden"); //Hide submenu
@@ -80,12 +90,14 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$('.right-small').removeClass("open"); //Off-canvas buttons go back to the right
 
 				//Reset min-height that might have changed when sidr was opened
-	    		var sliderHeight = $(".slick-active img").height()+'px'; //Height of the carousel image that will be displayed
+	    		var sliderHeight = $(".slick-active img").height(); //Height of the carousel image that will be displayed
+	    		var offcanvasHeight = $(".off-canvas-wrap").height();
+	    		alert(sliderHeight+ '  offcanvasHeight: '+offcanvasHeight);
 	    		// $(".off-canvas-wrap").css("min-height",sliderHeight).css("height",sliderHeight);
 	    		// $(sidr_source).css("min-height",sliderHeight).css("height",sliderHeight);
 	    		// $('#missions-content-overlay').css("min-height",sliderHeight).css("height",sliderHeight);
-	    		$(sidr_source).css("min-height","");
-	    		$("#missions-content-overlay").css("min-height","");
+	    		$(sidr_source).css("min-height","").css("height","");
+	    		$("#missions-content-overlay").css("min-height",sliderHeight);
 			}
 
 			$('#menu-icon-tabQuests').sidr({

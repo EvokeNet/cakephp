@@ -22,49 +22,51 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//OPEN EVIDENCE OFFCANVAS
 			//--------------------------------------------//
-			//CLICKING ON THE EVIDENCE OFFCANVAS WILL LOAD CONTENT VIA AJAX (every time, in case a user created a new evidence)
+			//CLICKING ON THE EVIDENCE OFFCANVAS WILL LOAD CONTENT VIA AJAX (every time, in case a user created a new evidence) -- IF it's not closing
 			$("#menu-icon-tabEvidences").on("click", function() {
-				$.ajax({
-					url: missions_load_evidences_url,
-					type:"POST",
-					beforeSend: function() {
-						$('.tabEvidencesContent').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
-					},
-					success: function(data) {
-						//Fill tab evidence
-						$('.tabEvidencesContent').html(data);
+				if (!$("#sidr-tabEvidences").hasClass("sidr-open")) { //otherwise this click is to close it
+					$.ajax({
+						url: missions_load_evidences_url,
+						type:"POST",
+						beforeSend: function() {
+							$('.tabEvidencesContent').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+						},
+						success: function(data) {
+							//Fill tab evidence
+							$('.tabEvidencesContent').html(data);
 
-						//CLICKING ON EACH EVIDENCE OPENS IT ON THE MISSION-OVERLAY ON THE LEFT
-						$( ".tabEvidencesContent" ).on( "click", "a.evidence-list-item-link", function( event ) {
-							$.ajax({
-								url: $(this).attr("href")+"/true",
-								type:"POST",
-								beforeSend: function() {
-									//SHOW OVERLAY WITH LOADING IMAGE
-									$('#missions-content-overlay .content-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
-									$('#missions-content-overlay').removeClass("hidden");
-									//HIDE SUBMENU BEHIND
-									$('div.missions-submenu').addClass("hidden");
-								},
-								success: function(data) {
-									//Go to the top
-									$("html, body").animate({
-										scrollTop: 0
-									}, 300);
+							//CLICKING ON EACH EVIDENCE OPENS IT ON THE MISSION-OVERLAY ON THE LEFT
+							$(".tabEvidencesContent").on( "click", "a.evidence-list-item-link", function( event ) {
+								$.ajax({
+									url: $(this).attr("href")+"/true",
+									type:"POST",
+									beforeSend: function() {
+										//SHOW OVERLAY WITH LOADING IMAGE
+										$('.content-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+										$('#missions-content-overlay').removeClass("hidden");
+										//HIDE SUBMENU BEHIND
+										$('div.missions-submenu').addClass("hidden");
+									},
+									success: function(data) {
+										//Go to the top
+										$("html, body").animate({
+											scrollTop: 0
+										}, 300);
 
-									//Content
-									$("#missions-content-overlay .content-body").html(data);
+										//#missions-content-overlay Content
+										$(".content-body").html(data);
 
-									//Reflow
-									$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-								}
+										//Reflow
+										$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+									}
+								});
+								event.preventDefault();
 							});
-							event.preventDefault();
-						});
 
-						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-					}
-				});
+							$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+						}
+					});
+				}
 			});
 
 		});
