@@ -215,13 +215,14 @@
 
 					<!-- MISSOES -->
 					<div class="section missions-content">
-				    	<div class="missions-carousel full-width">
-				    		<!-- MISSAO 1 -->
+			    		<div id="loading" class="text-center">
+			    			<i class="fa fa-spinner fa-spin fa-3x"></i>
+			    		</div>
 
+				    	<div class="missions-carousel full-width opacity-03">
+				    		<!-- MISSAO 1 -->
 				    		<?php foreach ($novels as $novel) : ?>
 								<div>
-									<!-- <img src="<?= $this->webroot.'img/chip105.png' ?>" class="full-width" /> -->
-									
 									<img data-lazy="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" class="full-width" />
 								</div>
 							<?php endforeach; 

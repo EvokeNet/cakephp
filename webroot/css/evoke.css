@@ -564,6 +564,12 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 /* --------------------------- */
 /* OPACITY */
 /* --------------------------- */
+
+.evoke .opacity-03 {
+	opacity: 0.3;
+	filter: alpha(opacity=30); /* For IE8 and earlier */
+}
+
 .evoke .opacity-04 {
 	opacity: 0.4;
 	filter: alpha(opacity=40); /* For IE8 and earlier */
