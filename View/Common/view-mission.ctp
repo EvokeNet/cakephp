@@ -222,7 +222,9 @@
 				    	<div class="missions-carousel full-width opacity-03">
 				    		<!-- MISSAO 1 -->
 				    		<?php foreach ($novels as $novel) : 
-				    		$size = getimagesize($this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
+				    		debug($this->webroot);
+
+				    		$size = getimagesize('http://'.$this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
 							debug($size);
 							die();
 							?>
