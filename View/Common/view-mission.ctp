@@ -227,8 +227,8 @@
 				    		$actual_link = 'http://'.$_SERVER['HTTP_HOST'];
 
 				    		$size = getimagesize($actual_link.'/files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
-							debug($size);
-							die();
+							//debug($size);
+							//die();
 							?>
 				    		<!--
 								<div>
