@@ -221,12 +221,38 @@
 
 				    	<div class="missions-carousel full-width opacity-03">
 				    		<!-- MISSAO 1 -->
-				    		<?php foreach ($novels as $novel) : ?>
+				    		<?php foreach ($novels as $novel) : 
+				    		$size = getimagesize($this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
+							debug($size);
+							die();
+							?>
+				    		<!--
 								<div>
 									<img data-lazy="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" class="full-width" />
 								</div>
-							<?php endforeach; 
+							-->
+							<?php endforeach; ?>
+							
 
+							<?php
+							$size = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P01.jpg');
+							debug($size);
+							die();
+								list($width_1, $height_1) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P01.jpg');
+								list($width_2, $height_2) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P02.jpg');
+								list($width_3, $height_3) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G03P01.jpg');
+							?>
+							<div>
+								<img data-lazy="http://evokenet.org/<?= 'files/attachment/attachment/63/E02G02P01.jpg' ?>" class="full-width" height="<?= $height_1 ?>px" />
+							</div>
+							<div>
+								<img data-lazy="http://evokenet.org/<?= 'files/attachment/attachment/63/E02G02P02.jpg' ?>" class="full-width" height="<?= $height_2 ?>px" />
+							</div>
+							<div>
+								<img data-lazy="http://evokenet.org/<?= 'files/attachment/attachment/63/E02G03P01.jpg' ?>" class="full-width" height="<?= $height_3 ?>px" />
+							</div>
+
+							<?php
 							//NO GRAPHIC NOVEL (just in case)
 							if (count($novels) < 1) {?>
 							<div data-alert="" class="alert-box radius">

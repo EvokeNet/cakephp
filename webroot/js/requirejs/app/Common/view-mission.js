@@ -29,11 +29,38 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			  	$("#loading").show();
 			  },
 			  onAfterChange: function(slider,index){
-			  	//Hide loading image
+			  	var img = jQuery(slider.$slides[index]).children('img');
+			  	//alert($(img).height());//width
+
+			  	if ($(img).hasClass("loaded")) {
+					slick_img_loaded(slider,index);
+					//alert('loaded');
+				}
+				else {
+					$(img).load(slick_img_loaded(slider,index));
+				}
+			  }
+			});
+
+			$(".missions-carousel img").load(function(){
+				$(this).addClass("loaded");
+			});
+
+			// $(".missions-carousel img").addEventListener("load", function() {
+			// 	alert('lalala');
+			// });
+
+			$(".missions-carousel img").onload = function() {
+				//alert('lalala');
+			};
+
+			var slick_img_loaded = function(slider,index){
+				//Hide loading image
 				$("#loading").hide();
 				$('.missions-carousel').removeClass("opacity-03");
+				//alert('just did');
 
-			  	//Coordinate heights of carousel wrap and content overlay
+				//Coordinate heights of carousel wrap and content overlay
 			  	var slideHeight = jQuery(slider.$slides[index]).height();
 			  	jQuery(slider.$slider).height(slideHeight);
 			  	$(".off-canvas-wrap").css("min-height",slideHeight).css("height",slideHeight);
@@ -43,8 +70,11 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$("html, body").animate({
 					scrollTop: 0
 				}, 300);
-			  }
-			});
+			};
+
+			function teste() {
+				alert("oie");
+			}
 
 			$('.missions-carousel').slickGoTo(0);
 
