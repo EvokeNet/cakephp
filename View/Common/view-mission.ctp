@@ -256,5 +256,5 @@
 
 <?php
 	//SCRIPT
-	$this->Html->script('requirejs/app/Common/view-mission.js', array('inline' => false));
+	$this->Html->script('requirejs/app/Common/view-mission.js', array('inline' => true));
 ?>
