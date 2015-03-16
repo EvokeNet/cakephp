@@ -68,7 +68,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 	    		}
 	    		else {
 	    			$("#missions-content-overlay").css("min-height",sidrHeight);
-	    			$(".off-canvas-wrap").css("min-height",sidrHeight);
+	    			//$(".off-canvas-wrap").css("min-height",sidrHeight);
 	    		}
 			}
 
@@ -79,16 +79,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$('#missions-content-overlay').addClass("hidden"); //Hide content overlay
 				$('.right-small').removeClass("open"); //Off-canvas buttons go back to the right
 
-				//Go to the top of the page
-				$("html, body").animate({
-					scrollTop: 0
-				}, 300);
-
 				//Reset min-height that might have changed when sidr was opened
-	    		var sliderHeight = $(".slick-active img").height(); //Height of the carousel image that will be displayed
-	    		$(".off-canvas-wrap").css("min-height",sliderHeight).css("height",sliderHeight);
-	    		$(sidr_source).css("min-height",sliderHeight).css("height",sliderHeight);
-	    		$('#missions-content-overlay').css("min-height",sliderHeight).css("height",sliderHeight);
+	    		var sliderHeight = $(".slick-active img").height()+'px'; //Height of the carousel image that will be displayed
+	    		// $(".off-canvas-wrap").css("min-height",sliderHeight).css("height",sliderHeight);
+	    		// $(sidr_source).css("min-height",sliderHeight).css("height",sliderHeight);
+	    		// $('#missions-content-overlay').css("min-height",sliderHeight).css("height",sliderHeight);
+	    		$(sidr_source).css("min-height","");
+	    		$("#missions-content-overlay").css("min-height","");
 			}
 
 			$('#menu-icon-tabQuests').sidr({

@@ -23,8 +23,8 @@
 <!-- TOPBAR MENU -->
 
 	<div id="missions-body" class="missions height-inherit clearfix">
-		<!-- CONTENT OVERLAY -->
-		<div id="missions-content-overlay" data-equalizer-watch class="background-color-dark-opacity-06 absolute min-full-height full-width hidden" style="z-index: 6;">
+		<!-- CONTENT OVERLAY data-equalizer-watch?-->
+		<div id="missions-content-overlay" class="background-color-dark-opacity-06 absolute min-full-height full-width hidden" style="z-index: 6;">
 			<div class="relative">
 				<!-- CLOSE BUTTON -->
 				<div class="right absolute" style="z-index: 6;">
@@ -36,8 +36,8 @@
 					</a>
 				</div>
 
-				<!-- CONTENT LOADED -->
-				<div id="missions-content-overlay-body" class="content-body" data-equalizer-watch>
+				<!-- CONTENT LOADED data-equalizer-watch? -->
+				<div id="missions-content-overlay-body" class="content-body" >
 				</div>
 			</div>
 		</div>
