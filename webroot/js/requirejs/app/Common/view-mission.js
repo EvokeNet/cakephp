@@ -81,9 +81,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 				//Reset min-height that might have changed when sidr was opened
 	    		var sliderHeight = $(".slick-active").height(); //Height of the carousel image that will be displayed
-	    		$(".off-canvas-wrap").css("min-height",sliderHeight);
-	    		$(sidr_source).css("min-height",sliderHeight);
-	    		$('#missions-content-overlay').css("min-height",sliderHeight);
+	    		$(".off-canvas-wrap").css("min-height",sliderHeight).css("height",sliderHeight);
+	    		$(sidr_source).css("min-height",sliderHeight).css("height",sliderHeight);
+	    		$('#missions-content-overlay').css("min-height",sliderHeight).css("height",sliderHeight);
 			}
 
 			$('#menu-icon-tabQuests').sidr({
