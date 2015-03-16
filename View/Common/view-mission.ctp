@@ -219,44 +219,25 @@
 			    			<i class="fa fa-spinner fa-spin fa-3x"></i>
 			    		</div>
 
-				    	<div class="missions-carousel full-width opacity-03">
+				    	<div class="missions-carousel full-width">
 				    		<!-- MISSAO 1 -->
-				    		<?php foreach ($novels as $novel) : 
-					    		//$server_link = 'http://'.$_SERVER['HTTP_HOST'];
-				    			$server_link = '.';
-					    		list($width_img, $height_img) = getimagesize($server_link.'/files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
+				    		<?php foreach ($novels as $novel) :
+				    			//Reserve height space for image before HTML loads it
+				    			//IMPORTANT: This is only fast when the image is in the same server!!!
+					    		list($width_img, $height_img) = getimagesize('./files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
 							?>
 								<div>
 									<img data-lazy="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" height="<?= $height_img ?>px" class="full-width" />
 								</div>
 							<?php endforeach; ?>
 							
-
-							<?php
-							// $size = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P01.jpg');
-							// //debug($size);
-							// //die();
-							// 	list($width_1, $height_1) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P01.jpg');
-							// 	list($width_2, $height_2) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P02.jpg');
-							// 	list($width_3, $height_3) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G03P01.jpg');
-							?>
-							<!-- <div>
-								<img data-lazy="http://evokenet.org/<?= 'files/attachment/attachment/63/E02G02P01.jpg' ?>" class="full-width" height="<?= $height_1 ?>px" />
-							</div>
-							<div>
-								<img data-lazy="http://evokenet.org/<?= 'files/attachment/attachment/63/E02G02P02.jpg' ?>" class="full-width" height="<?= $height_2 ?>px" />
-							</div>
-							<div>
-								<img data-lazy="http://evokenet.org/<?= 'files/attachment/attachment/63/E02G03P01.jpg' ?>" class="full-width" height="<?= $height_3 ?>px" />
-							</div> -->
-
 							<?php
 							//NO GRAPHIC NOVEL (just in case)
 							if (count($novels) < 1) {?>
-							<div data-alert="" class="alert-box radius">
-								Alert: There is no graphic novel available in this mission.
-								<a href="" class="close">×</a>
-							</div>
+								<div data-alert="" class="alert-box radius">
+									Alert: There is no graphic novel available in this mission.
+									<a href="" class="close">×</a>
+								</div>
 							<?php } ?>
 				    	</div>
 
