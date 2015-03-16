@@ -222,31 +222,25 @@
 				    	<div class="missions-carousel full-width opacity-03">
 				    		<!-- MISSAO 1 -->
 				    		<?php foreach ($novels as $novel) : 
-				    		//debug($this->here);
-
-				    		$actual_link = 'http://'.$_SERVER['HTTP_HOST'];
-
-				    		$size = getimagesize($actual_link.'/files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
-							//debug($size);
-							//die();
+					    		//$server_link = 'http://'.$_SERVER['HTTP_HOST'];
+				    			$server_link = '.';
+					    		list($width_img, $height_img) = getimagesize($server_link.'/files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
 							?>
-				    		<!--
 								<div>
-									<img data-lazy="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" class="full-width" />
+									<img data-lazy="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" height="<?= $height_img ?>px" class="full-width" />
 								</div>
-							-->
 							<?php endforeach; ?>
 							
 
 							<?php
-							$size = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P01.jpg');
-							//debug($size);
-							//die();
-								list($width_1, $height_1) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P01.jpg');
-								list($width_2, $height_2) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P02.jpg');
-								list($width_3, $height_3) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G03P01.jpg');
+							// $size = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P01.jpg');
+							// //debug($size);
+							// //die();
+							// 	list($width_1, $height_1) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P01.jpg');
+							// 	list($width_2, $height_2) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G02P02.jpg');
+							// 	list($width_3, $height_3) = getimagesize('http://evokenet.org/files/attachment/attachment/63/E02G03P01.jpg');
 							?>
-							<div>
+							<!-- <div>
 								<img data-lazy="http://evokenet.org/<?= 'files/attachment/attachment/63/E02G02P01.jpg' ?>" class="full-width" height="<?= $height_1 ?>px" />
 							</div>
 							<div>
@@ -254,7 +248,7 @@
 							</div>
 							<div>
 								<img data-lazy="http://evokenet.org/<?= 'files/attachment/attachment/63/E02G03P01.jpg' ?>" class="full-width" height="<?= $height_3 ?>px" />
-							</div>
+							</div> -->
 
 							<?php
 							//NO GRAPHIC NOVEL (just in case)
