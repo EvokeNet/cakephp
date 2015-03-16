@@ -15,10 +15,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			  slidesToShow: 1,
 			  adaptiveHeight: false,
 			  responsive: true,
+			  slidesToShow: 1,
 			  lazyLoad: 'ondemand',
 			  arrows: true,
-			  onInit: function(slider) {
-			  },
 			  onBeforeChange: function(slider, currentIndex, targetIndex){
 			  	//Page number
 			  	$('#page-number').html(targetIndex+1);
