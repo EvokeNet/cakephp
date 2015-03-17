@@ -38,7 +38,7 @@
                 	<?php endif ?>
                     
 	                    <div class="mask">
-	                        <p><?= $this->Text->getExcerpt($mission['Mission']['description'], 110, "...") ?></p>
+	                        <p><?= $this->Text->getExcerpt($mission['Mission']['description'], 200, "...") ?></p>
 	                    </div>
                     </a>
                 </div> 
