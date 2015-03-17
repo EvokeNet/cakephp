@@ -1,3 +1,30 @@
+<!-- EVIDENCE TYPE -->
+<div class="">
+	<div class="text-center">
+		<!-- <img class="evoke img-circular vertical-align-middle not-active hidden border-width-02 border-style-solid border-color-highlight padding all-1"
+			src="<?= $this->webroot.'img/icon-missions.png' ?>" alt="<?php echo ('Missions'); ?>" />
+		<img class="evoke img-circular vertical-align-middle active img-glow"
+			src="<?= $this->webroot.'img/thumb-missions.jpg' ?>" alt="<?php echo ('Missions'); ?>" /> -->
+		<span class="fa-stack fa-4x grow-on-hover">
+			<i class="fa fa-circle fa-stack-2x text-color-highlight"></i>
+			<i class="fa fa-pencil fa-stack-1x fa-inverse text-glow"></i>
+		</span>
+		<span class="fa-stack fa-4x grow-on-hover">
+			<i class="fa fa-circle fa-stack-2x text-color-highlight"></i>
+			<i class="fa fa-image fa-stack-1x fa-inverse text-glow"></i>
+		</span>
+		<span class="fa-stack fa-4x grow-on-hover">
+			<i class="fa fa-circle fa-stack-2x text-color-highlight"></i>
+			<i class="fa fa-video-camera fa-stack-1x fa-inverse text-glow"></i>
+		</span>
+		<span class="fa-stack fa-4x grow-on-hover">
+			<i class="fa fa-circle fa-stack-2x text-color-highlight"></i>
+			<i class="fa fa-link fa-stack-1x fa-inverse text-glow"></i>
+		</span>
+	</div>
+</div>
+
+
 <!-- EVIDENCE FORM -->
 <div class="form-evoke-style">
 	<?php
