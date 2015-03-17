@@ -71,7 +71,7 @@
 			if(!is_null($mission_img) && !empty($mission_img)) :
 				echo '<img src="' . $this->webroot.'files/attachment/attachment/'.$mission_img[0]['Attachment']['dir'].'/thumb_'.$mission_img[0]['Attachment']['attachment'] . '"/>';
 			else :
-				echo '<h4>Nenhuma img definida, mostrar uma padrao</h4>';
+				echo '';//Nenhuma img definida, mostrar uma padrao
 			endif;
 
 		?>
