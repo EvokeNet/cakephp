@@ -83,8 +83,6 @@ class User extends AppModel {
 
 	public function createWithAttachments($data, $hasPrev = false, $id = null) {
         // Sanitize your images before adding them
-        $images = array();
-
         if (!empty($data['Attachment'][0]) && $data['Attachment'][0]['attachment']['name'] != '') {
         	foreach ($data['Attachment'] as $i => $image) {
                 if (is_array($data['Attachment'][$i])) {
@@ -120,11 +118,23 @@ class User extends AppModel {
 		        }
 
 		        //Now that the attachment has been saved, it has a directory and a file name for the attachment, that will be stored also in the user table
-		        $recent = $this->Attachment->find('first', array(
-		        	'conditions' => array(
-		        		'Attachment.id' => $this->Attachment->id
-		        	)
-		        ));
+		        // $recent = $this->Attachment->find('first', array(
+		        // 	'conditions' => array(
+		        // 		'Attachment.id' => $this->Attachment->id
+		        // 	)
+		        // ));
+		        $recent = $this->Attachment->findById($this->Attachment->id);
+
+		        //The previous attachment has to be deleted
+	        	$added_user = $this->findById($this->id);
+	        	$this->Attachment->deleteAll(array(
+	        		'Attachment.model' => 'User',
+	        		'Attachment.foreign_key' => $added_user['User']['id'],
+	        		'Attachment.dir' => $added_user['User']['photo_dir'],
+	        		'Attachment.attachment' => $added_user['User']['photo_attachment']
+        		),false, true);
+
+	        	//The new attachment has to be saved in the user's profile
 		        $this->saveField('photo_dir', $recent['Attachment']['dir']);
 		        $this->saveField('photo_attachment', $recent['Attachment']['attachment']);
 	    	}
@@ -161,8 +171,7 @@ class User extends AppModel {
     }
 
     public function afterSave($created, $options = array()) {
-
-       	if($created){
+       	if($created){ //created a user, not edited info
        		$value = 250;
        		//check to see if admin set a different amount of points for this action
 	        App::import('model','PointsDefinition');
