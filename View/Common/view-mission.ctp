@@ -27,7 +27,7 @@
 		<div id="missions-content-overlay" class="background-color-dark-opacity-06 absolute min-full-height full-width hidden" style="z-index: 6;">
 			<div class="relative">
 				<!-- CLOSE BUTTON -->
-				<div class="right absolute" style="z-index: 6;">
+				<div id="close-content-overlay-button" class="right absolute">
 					<a class="close-missions-content-overlay">
 						<span class="fa-stack fa-lg">
 							<i class="fa fa-circle fa-stack-2x text-color-dark"></i>
@@ -45,32 +45,49 @@
 		<div class="off-canvas-wrap" data-offcanvas data-equalizer-watch>
 			<div class="inner-wrap">
 				<nav class="tab-bar full-height" id="tab-bar-off-canvas">
+
 					<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
-					<section class="right-small text-center opacity-07">
-						<span data-tooltip aria-haspopup="true" class="has-tip tip-left tooltip-sidr" title="<?= __('Quests') ?>">
-		    				<a class="menu-icon custom background-color-standard" id="menu-icon-tabQuests" data-tab-content="tabQuests">
-						    	<span class="icon-brankic icon-compass fa-2x vertical-align-middle text-color-gray"></span>
-						    </a>
-		    			</span>
-					    
-					    <span data-tooltip aria-haspopup="true" class="has-tip tip-left tooltip-sidr" title="<?= __('Dossier') ?>">
-						    <a class="menu-icon custom background-color-standard" id="menu-icon-tabDossier" data-tab-content="tabDossier">
-						    	<span class="icon-brankic icon-cabinet2 fa-2x vertical-align-middle text-color-gray"></span>
-						    </a>
-					    </span>
+					<section class="right-small">
+						<div class="right-small-content text-center background-color-standard opacity-07 gradient-on-right padding bottom-1">
+							<a class="menu-icon custom" id="menu-icon-tabQuests" data-tab-content="tabQuests">
+								<div class="row">
+									<span class="icon-brankic icon-compass fa-2x vertical-align-middle text-color-gray"></span>
+								</div>
+								<div class="row menu-icon-label">
+									<span><?= __('Quests') ?></span>
+								</div>
+							</a>
 
-					    <span data-tooltip aria-haspopup="true" class="has-tip tip-left tooltip-sidr" title="<?= __('Evidences') ?>">
-						    <a class="menu-icon custom background-color-standard" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
-						    	<span class="icon-brankic icon-wallet fa-2x vertical-align-middle text-color-gray"></span>
-						    </a>
-						</span>
-
-					    <span data-tooltip aria-haspopup="true" class="has-tip tip-left tooltip-sidr" title="<?= __('Menu') ?>">
-						    <a class="menu-icon custom background-color-standard" id="menu-icon-tabMenu" data-tab-content="tabMenu">
-						    	<span class="icon-brankic icon-grid icon-size-medium vertical-align-middle text-color-gray"></span>
-						    </a>
-					    </span>
-				  </section>
+							
+							<a class="menu-icon custom" id="menu-icon-tabDossier" data-tab-content="tabDossier">
+								<div class="row">
+									<span class="icon-brankic icon-cabinet2 fa-2x vertical-align-middle text-color-gray"></span>
+								</div>
+								<div class="row menu-icon-label">
+									<span><?= __('Dossier') ?></span>
+								</div>
+							</a>
+							
+							<a class="menu-icon custom" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
+								<div class="row">
+									<span class="icon-brankic icon-wallet fa-2x vertical-align-middle text-color-gray"></span>
+								</div>
+								<div class="row menu-icon-label">
+									<span><?= __('Evidences') ?></span>
+								</div>
+							</a>
+							
+							<a class="menu-icon custom background-color-standard" id="menu-icon-tabMenu" data-tab-content="tabMenu">
+								<div class="row">
+									<span class="icon-brankic icon-grid icon-size-medium vertical-align-middle text-color-gray"></span>
+								</div>
+								<div class="row menu-icon-label">
+									<span><?= __('Menu') ?></span>
+								</div>
+							</a>
+						</div>
+						
+					</section>
 				</nav>
 
 				<aside class="right-off-canvas-menu tabQuests" id="tabQuests">

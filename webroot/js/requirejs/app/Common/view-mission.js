@@ -52,6 +52,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$(sidr_source).addClass("sidr-open");
 				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
 				$('.off-canvas-wrap .missions-content').addClass('blur-strong opacity-04'); //Blur everything else
+				$('.right-small-content').addClass('opacity-08').removeClass('opacity-07'); //Increase opacity in the buttons
 
 				//Show submenu
 	    		$('div.missions-submenu').removeClass("hidden");
@@ -81,6 +82,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 				$(sidr_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
 				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-04'); //Blur everything else
+				$('.right-small-content').addClass('opacity-07').removeClass('opacity-08'); //Decrease opacity in the buttons
 				$('div.missions-submenu').addClass("hidden"); //Hide submenu
 				$('#missions-content-overlay').addClass("hidden"); //Hide content overlay
 				$('.right-small').removeClass("open"); //Off-canvas buttons go back to the right

@@ -78,7 +78,6 @@
 	
 }
 
-
 /* Right off canvas */
 .evoke .missions .right-off-canvas-menu {
 	/*width: 30rem;*/
@@ -88,6 +87,12 @@
 .evoke .missions .right-small {
 	transition: transform 500ms ease 0s;
 	border-left: none;
+}
+
+/* Menu icon */
+.evoke .missions .menu-icon-label {
+	font-size: 0.8em;
+	line-height: 1.5em;
 }
 
 
@@ -117,6 +122,11 @@ div.missions-submenu .content {
 	div.missions-submenu .content {
 		margin-right:42em;
 	}
+}
+
+/* Content overlay button */
+#close-content-overlay-button {
+	z-index: 6;
 }
 
 /* Tab Menu */
