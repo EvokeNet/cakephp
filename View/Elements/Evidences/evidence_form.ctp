@@ -1,22 +1,35 @@
-<!-- EVIDENCE TYPE -->
-<div class="">
-	<div class="text-center">
-		<span class="fa-stack fa-4x grow-on-hover">
-			<i class="fa fa-circle fa-stack-2x text-color-highlight"></i>
-			<i class="fa fa-pencil fa-stack-1x fa-inverse text-glow"></i>
-		</span>
-		<span class="fa-stack fa-4x grow-on-hover">
-			<i class="fa fa-circle fa-stack-2x text-color-highlight"></i>
-			<i class="fa fa-image fa-stack-1x fa-inverse text-glow"></i>
-		</span>
-		<span class="fa-stack fa-4x grow-on-hover">
-			<i class="fa fa-circle fa-stack-2x text-color-highlight"></i>
-			<i class="fa fa-video-camera fa-stack-1x fa-inverse text-glow"></i>
-		</span>
-		<span class="fa-stack fa-4x grow-on-hover">
-			<i class="fa fa-circle fa-stack-2x text-color-highlight"></i>
-			<i class="fa fa-link fa-stack-1x fa-inverse text-glow"></i>
-		</span>
+<div id="new-evidence-content">
+	<!-- EXPLANATION -->
+	<div class="row text-center margin top-3 bottom-2">
+		<?= __('Your can choose the focus of your evidence:') ?>
+	</div>
+
+	<!-- BUTTONS TO CHOOSE EVIDENCE TYPE -->
+	<div class="row text-center">
+		<div class="centered-block text-glow-on-hover margin right-2">
+			<a class="evidence-type" data-evidence-type="image">
+				<i class="fa fa-image fa-3x img-circular text-color-highlight border-width-01 border-style-solid border-color-highlight padding all-05"></i>
+				<h4 class="text-color-highlight"><?= __('Image') ?></h4>
+			</a>
+		</div>
+		<div class="centered-block text-glow-on-hover margin left-1 right-2">
+			<a class="evidence-type" data-evidence-type="video">
+				<i class="fa fa-video-camera fa-3x img-circular text-color-highlight border-width-01 border-style-solid border-color-highlight padding all-05"></i>
+				<h4 class="text-color-highlight"><?= __('Video') ?></h4>
+			</a>
+		</div>
+		<div class="centered-block text-glow-on-hover margin left-1 right-2">
+			<a class="evidence-type" data-evidence-type="link">
+				<i class="fa fa-link fa-3x img-circular text-color-highlight border-width-01 border-style-solid border-color-highlight padding all-05"></i>
+				<h4 class="text-color-highlight"><?= __('Link') ?></h4>
+			</a>
+		</div>
+		<div class="centered-block text-glow-on-hover margin left-1">
+			<a class="evidence-type" data-evidence-type="text">
+				<i class="fa fa-font fa-3x img-circular text-color-highlight border-width-01 border-style-solid border-color-highlight padding all-05"></i>
+				<h4 class="text-color-highlight"><?= __('Text') ?></h4>
+			</a>
+		</div>
 	</div>
 </div>
 
@@ -36,7 +49,6 @@
 		$evidence['content'] = "";
 	}
 	?>
-	
 
 	<div class="full-width">
 		<?php
@@ -57,19 +69,28 @@
 				echo $this->Form->hidden('user_id', array('value' => $loggedInUser['id']));
 			}
 
+			//Text-area formatting
+			if (!isset($content_class)) {
+				$content_class = 'radius';
+			}
+		?>
+
+		<!-- MAIN CONTENT -->
+		<div id="evidence-main-content">
+		</div>
+
+
+		<!-- REGULAR CONTENT -->
+		<?php
 			//TITLE
 			echo $this->Form->input('title', array('required' => true, 'label' => __('Title'), 'value' => $evidence['title'], 'class' => 'radius', 'errorMessage' => __('Please enter a title'), 'error' => array(
 				'attributes' => array('wrap' => 'div', 'class' => 'alert-box alert radius')
 			)));
 
 			//CONTENT
-			if (!isset($content_class)) {
-				$content_class = 'radius';
-			}
 			echo $this->Form->input('content', array('label' => __('Edit your evidence:'), 'type' => 'textarea', 'class' => $content_class, 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
-		?>
 
-		<?php
+			//SUBMIT BUTTON
 			if (!isset($button_class)) {
 				$button_class = 'button thin right margin top-05 text-center text-glow-on-hover';
 			}
@@ -90,6 +111,12 @@
 </div>
 
 <?php
+	//HANDLEBARS TEMPLATES
+	echo $this->element('Templates/Evidences/upload-image');
+	echo $this->element('Templates/Evidences/upload-video');
+	echo $this->element('Templates/Evidences/upload-link');
+
 	//SCRIPT
 	$this->Html->script('requirejs/app/Elements/Evidences/evidence_form.js', array('inline' => false));
+	$this->Html->script('requirejs/app/file-upload.js', array('inline' => false));
 ?>

@@ -48,19 +48,19 @@
 								'accept' => 'image/jpeg,image/png',
 								'type'   => 'file',
 								'label'  => __('Profile picture'),
-								'class'  => 'hidden upload',
+								'class'  => 'hidden upload-file-input',
 								'div'    => false,
 								'name' => 'data[Attachment][][attachment]',
-								'id' => 'AttachmentImgAttachment'
+								'id' => 'upload-profile-img-fileinput'
 							));
 						?>
 
-						<button type="button" class="button thin" id="upload-img">
+						<a type="button" class="button thin upload-file-button" id="upload-profile-img-button" data-file-input-id="upload-profile-img-fileinput">
 							<i class="fa fa-user"></i>
 							<?php echo __('Upload'); ?>
-						</button>
+						</a>
 
-						<span id="file-name"> <?= (isset($user['photo_attachment']) ? $user['photo_attachment'] : '') ?></span>
+						<span id="upload-profile-img-fileinput-filename"> <?= (isset($user['photo_attachment']) ? $user['photo_attachment'] : '') ?></span>
 					</div>
 				</div>
 			</div>

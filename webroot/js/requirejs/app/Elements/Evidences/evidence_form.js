@@ -1,18 +1,41 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'froala'], function ($) {
+	require(['jquery', 'handlebars', 'froala'], function ($, Handlebars) {
 		$(document).ready(function(){			
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
 
 			//--------------------------------------------//
-			//FROALA EDITOR
+			//HANDLEBARS FOR DIFFERENT TYPES OF EVIDENCES
 			//--------------------------------------------//
-			$('#evidenceContentForm').editable({
-				inlineMode: false,
-				minHeight: 200,
-				tabSpaces: true,
-				theme: 'dark'
+			$(".evidence-type").click(function(){
+				var evidence_type = $(this).data("evidence-type");
+
+				if ((evidence_type == "image") || (evidence_type == "video") || (evidence_type == "link")) {
+					//Compile handlebars
+					var source   = $("#evidence-type-"+evidence_type+"-template").html();
+					var template = Handlebars.compile(source);
+
+					//Execute handlebars
+					var context = {};
+					var html = template(context);
+
+					//Display content
+					$('#evidence-main-content').html(html);
+				}
+
+				//FROALA EDITOR
+				$('#evidenceContentForm').editable({
+					inlineMode: false,
+					minHeight: 200,
+					tabSpaces: true,
+					theme: 'dark'
+				});
+
+				//Reflow
+				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 			});
+
+			
 
 			//--------------------------------------------//
 			//EVIDENCE: SUBMITTING A FORM TO EDIT AN EVIDENCE LOADS EVIDENCE VIEW VIA AJAX

@@ -20,6 +20,7 @@
     "chartjs": "~0.2.0",
     "ExplorerCanvas": "*",
     "jquery-ui": "*",
-    "sweetalert": "*"
+    "sweetalert": "*",
+    "handlebars": "*"
   }
 }
