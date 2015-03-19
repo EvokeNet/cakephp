@@ -1,4 +1,4 @@
-<div id="new-evidence-content">
+<div id="new-evidence-type">
 	<!-- EXPLANATION -->
 	<div class="row text-center margin top-3 bottom-2">
 		<?= __('Your can choose the focus of your evidence:') ?>
@@ -35,7 +35,7 @@
 
 
 <!-- EVIDENCE FORM -->
-<div class="form-evoke-style">
+<div id="new-evidence-form" class="form-evoke-style hidden">
 	<?php
 	//EDIT
 	if (isset($evidence)) {
@@ -76,7 +76,7 @@
 		?>
 
 		<!-- MAIN CONTENT -->
-		<div id="evidence-main-content">
+		<div id="evidence-main-content" class="margin top-2 bottom-2">
 		</div>
 
 
@@ -112,9 +112,9 @@
 
 <?php
 	//HANDLEBARS TEMPLATES
-	echo $this->element('Templates/Evidences/upload-image');
-	echo $this->element('Templates/Evidences/upload-video');
-	echo $this->element('Templates/Evidences/upload-link');
+	echo $this->element('Templates/FileUpload/upload-image');
+	echo $this->element('Templates/FileUpload/upload-video');
+	echo $this->element('Templates/Evidences/evidence-type-link');
 
 	//SCRIPT
 	$this->Html->script('requirejs/app/Elements/Evidences/evidence_form.js', array('inline' => false));

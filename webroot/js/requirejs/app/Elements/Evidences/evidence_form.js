@@ -1,6 +1,6 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'handlebars', 'froala'], function ($, Handlebars) {
-		$(document).ready(function(){			
+		$(document).ready(function(){
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
 
@@ -16,12 +16,19 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					var template = Handlebars.compile(source);
 
 					//Execute handlebars
-					var context = {};
+					var context = {
+						id: 'evidence-1',
+						input_file_name: 'data[Attachment][][attachment]'
+					};
 					var html = template(context);
 
 					//Display content
 					$('#evidence-main-content').html(html);
 				}
+
+				//Remove buttons to choose evidence type, and show the form
+				$('#new-evidence-type').remove();
+				$('#new-evidence-form').removeClass('hidden');
 
 				//FROALA EDITOR
 				$('#evidenceContentForm').editable({
