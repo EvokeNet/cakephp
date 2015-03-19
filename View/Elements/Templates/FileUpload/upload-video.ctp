@@ -1,15 +1,11 @@
 <script id="evidence-type-video-template" type="text/x-handlebars-template">
-
-
 	<?php echo $this->Form->input('main-content', array('label' => __('Video'), 'type' => 'textarea', 'class' => $content_class, 'id' => 'evidenceVideo')); ?>
-
-	
 
 	<!-- VIDEO UPLOAD -->
 	<div class="pass full-width text-center">
 		<?php
 			echo $this->Form->input('file', array(
-				'accept' => 'image/jpeg,image/png',
+				'accept' => 'video/mp4, video/mov',
 				'type'   => 'file',
 				'label'  => false,
 				'class'  => 'hidden upload-file-input',
@@ -22,7 +18,7 @@
 		<a class="upload-file-button" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
 			<div id="fileinput-{{id}}-uploadbutton" class="button thin full-width">
 				<p class="margin top-2"><i class="fa fa-image fa-4x"></i></p>
-				<p><?php echo __("Upload your evidence's image"); ?></p>
+				<p><?php echo __("Upload your evidence's video"); ?></p>
 			</div>
 
 			<img id="" />
