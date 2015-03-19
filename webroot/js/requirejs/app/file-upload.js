@@ -67,7 +67,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 								var reader = new FileReader();
 
 								reader.onload = function (e) {
-									$(filecontent_element).attr('src', e.target.result);
+									$(filecontent_element).attr('src', e.target.result).data('filecontent', e.target.result);
 
 									if ($(uploadbutton_element).length) {
 										$(uploadbutton_element).remove();
