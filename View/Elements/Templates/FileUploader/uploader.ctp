@@ -1,4 +1,3 @@
-<script id="evidence-type-image-template" type="text/x-handlebars-template">
 <!-- IMAGE UPLOAD -->
     <?php
         //CSS
@@ -107,4 +106,3 @@
             <?php endif; ?>
         </fieldset>
     </form>
-</script>

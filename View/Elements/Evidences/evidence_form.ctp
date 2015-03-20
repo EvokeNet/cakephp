@@ -79,6 +79,8 @@
 		<div id="evidence-main-content" class="margin top-2 bottom-2">
 		</div>
 
+		<?php //echo $this->element('Templates/FileUploader/uploader'); ?>
+
 
 		<!-- REGULAR CONTENT -->
 		<?php

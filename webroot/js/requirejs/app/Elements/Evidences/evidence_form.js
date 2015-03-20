@@ -1,8 +1,9 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'handlebars', 'froala'], function ($, Handlebars) {
+	require(['jquery', 'handlebars', 'froala', '../FileUploader/js/FileUploader'], function ($, Handlebars) {
 		$(document).ready(function(){
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
+			window.initUploader(); //FILEUPLOADER
 
 			//--------------------------------------------//
 			//HANDLEBARS FOR DIFFERENT TYPES OF EVIDENCES
@@ -39,6 +40,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				});
 
 				//Reflow
+				window.initUploader(); //FILEUPLOADER
 				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 			});
 
