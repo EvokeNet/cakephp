@@ -1,5 +1,6 @@
 Vendor/
 composer.phar
+Config/amazon.php
 Config/database.php
 webroot/components
 webroot/uploads/*
