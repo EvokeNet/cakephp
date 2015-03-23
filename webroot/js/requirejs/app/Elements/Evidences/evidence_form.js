@@ -2,32 +2,34 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'handlebars', 'froala', '../FileUploader/js/FileUploader'], function ($, Handlebars) {
 		$(document).ready(function(){
 
-			window.addEventListener('uploadCompleted', getUploadedFile);
+			// window.addEventListener('uploadCompleted', getUploadedFile);
 
-			function getUploadedFile(event) {
-				var fileUrl = event.detail.url,
-					identifier = event.detail.identifier;
+			// function getUploadedFile(event) {
+			// 	var fileUrl = event.detail.url,
+			// 		identifier = event.detail.identifier;
 			 
-				console.log('Arquivo do curso ' + identifier);
-				console.log('URL do arquivo: ' + fileUrl);
-				alert('olar');
-			} 
+			// 	console.log('Arquivo do curso ' + identifier);
+			// 	console.log('URL do arquivo: ' + fileUrl);
+			// 	alert('olar');
+			// } 
 
 
-			alert('teste');
+			// alert('teste');
 
-			$(window).on('uploadCompleted', function(event) {
+
+
+
+			$('#missions-content-overlay-body').off(); //clear events in previous elements
+			$('#missions-content-overlay-body *').off(); //clear events in previous elements
+			window.initUploader(); //FILEUPLOADER
+
+			$('#missions-content-overlay-body').on('uploadCompleted', function(event) {
 				var detail = event.originalEvent.detail;
 		 
 				console.log('Arquivo do curso ' + detail.identifier);
 				console.log('URL do arquivo: ' + detail.url);
 				alert('olarinha');
 			});
-
-
-			$('#missions-content-overlay-body').off(); //clear events in previous elements
-			$('#missions-content-overlay-body *').off(); //clear events in previous elements
-			window.initUploader(); //FILEUPLOADER
 
 			//--------------------------------------------//
 			//HANDLEBARS FOR DIFFERENT TYPES OF EVIDENCES
