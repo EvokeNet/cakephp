@@ -108,6 +108,9 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
+//Amazon AccessKey for file upload
+Configure::load('amazon');
+
 require APP . '/Vendor/autoload.php';
 
 spl_autoload_unregister(array('App', 'load'));
