@@ -1,6 +1,16 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'handlebars', 'froala', '../FileUploader/js/FileUploader'], function ($, Handlebars) {
 		$(document).ready(function(){
+
+			alert('teste');
+
+			$(document).on('uploadCompleted', function(event) {
+				var detail = event.originalEvent.detail;
+
+				console.log('Arquivo do curso ' + detail.identifier);
+				console.log('URL do arquivo: ' + detail.url);
+			});
+			
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
 			window.initUploader(); //FILEUPLOADER
