@@ -4,7 +4,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 			alert('teste');
 
-			$(document).on('uploadCompleted', function(event) {
+			$('#missions-content-overlay-body').on('uploadCompleted', function(event) {
 				var detail = event.originalEvent.detail;
 
 				console.log('Arquivo do curso ' + detail.identifier);
