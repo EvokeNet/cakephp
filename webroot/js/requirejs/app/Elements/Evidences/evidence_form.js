@@ -1,24 +1,6 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'handlebars', 'froala', '../FileUploader/js/FileUploader'], function ($, Handlebars) {
 		$(document).ready(function(){
-
-			// window.addEventListener('uploadCompleted', getUploadedFile);
-
-			// function getUploadedFile(event) {
-			// 	var fileUrl = event.detail.url,
-			// 		identifier = event.detail.identifier;
-			 
-			// 	console.log('Arquivo do curso ' + identifier);
-			// 	console.log('URL do arquivo: ' + fileUrl);
-			// 	alert('olar');
-			// } 
-
-
-			// alert('teste');
-
-
-
-
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
 
@@ -34,7 +16,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			 
 					console.log('Arquivo do curso ' + detail.identifier);
 					console.log('URL do arquivo: ' + detail.url);
-					alert('olarinha');
 				});
 
 			//--------------------------------------------//
@@ -57,16 +38,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 					//Display content
 					$('#evidence-main-content').html(html);
-
-					// $('#missions-content-overlay-body').on('uploadCompleted', function(event) {
-					// 	var detail = event.originalEvent.detail;
-
-					// 	alert('Arquivo do curso ' + detail.identifier);
-					// 	alert('Arquivo do curso ' + detail.url);
-
-					// 	console.log('Arquivo do curso ' + detail.identifier);
-					// 	console.log('URL do arquivo: ' + detail.url);
-					// });
 				}
 
 				//Remove buttons to choose evidence type, and show the form
@@ -82,7 +53,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				});
 
 				//Reflow
-				window.initUploader(); //FILEUPLOADER
+				//window.initUploader(); //FILEUPLOADER
 				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 			});
 
