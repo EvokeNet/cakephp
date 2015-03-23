@@ -10,7 +10,7 @@
 
 <div class="row standard-width padding all-1">
 	<!-- TITLE -->
-	<h1 class="text-glow">
+	<h1 class="text-glow text-center">
 		<?= __('Create your evidence') ?>
 	</h1>
 

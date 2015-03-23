@@ -29,8 +29,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				var img = jQuery(slider.$slides[index]).children('img');
 			  	var sliderHeight = $(img).height();
 			  	jQuery(slider.$slider).height(sliderHeight);
-			  	$(".off-canvas-wrap").css("min-height",sliderHeight).css("height",sliderHeight);
-//			  	$("#missions-content-overlay").css("min-height",sliderHeight);
+			  	//$(".off-canvas-wrap").css("min-height",sliderHeight).css("height",sliderHeight);
 
 			  	//Go to the top of the page
 				$("html, body").animate({
@@ -50,96 +49,48 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			function open_sidr(sidr_button,sidr_source) {
 				$(sidr_source).addClass("sidr-open");
+				$(sidr_source).removeClass("hidden");
+
 				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
 				$('.off-canvas-wrap .missions-content').addClass('blur-strong opacity-04'); //Blur everything else
 				$('.right-small-content').addClass('opacity-08').removeClass('opacity-07'); //Increase opacity in the buttons
-
-				//Show submenu
-	    		$('div.missions-submenu').removeClass("hidden");
-
-	    		//Off-canvas buttons go to the left
-	    		$('.right-small').addClass("open");
-
-	    		//Content overlay covers offcanvas
-	    		var sliderHeight = $(".slick-active img").height();
-	    		$("#missions-content-overlay").css("min-height",sliderHeight);
-
-	    		//Adjust height so that it's at least as high as the content overlay / carousel wrap, and vice-versa
-	    		var sidrHeight = $(sidr_source).height();
-	    		var missionsContentOverlayHeight = $("#missions-content-overlay").height();
-
-	    		if (sidrHeight < missionsContentOverlayHeight) {
-	    			$(sidr_source).css("min-height",missionsContentOverlayHeight);
-	    		}
-	    		else {
-	    			$("#missions-content-overlay").css("min-height",sidrHeight);
-	    			//$(".off-canvas-wrap").css("min-height",sidrHeight);
-	    		}
 			}
 
 			function close_sidr(sidr_button,sidr_source) {
 				$(sidr_source).removeClass("sidr-open");
+				$(sidr_source).addClass("hidden");
 
 				$(sidr_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
 				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-04'); //Blur everything else
 				$('.right-small-content').addClass('opacity-07').removeClass('opacity-08'); //Decrease opacity in the buttons
-				$('div.missions-submenu').addClass("hidden"); //Hide submenu
-				$('#missions-content-overlay').addClass("hidden"); //Hide content overlay
-				$('.right-small').removeClass("open"); //Off-canvas buttons go back to the right
-
-				//Reset min-height that might have changed when sidr was opened
-	    		var sliderHeight = $(".slick-active img").height(); //Height of the carousel image that will be displayed
-	    		var offcanvasHeight = $(".off-canvas-wrap").height();
-	    		// $(".off-canvas-wrap").css("min-height",sliderHeight).css("height",sliderHeight);
-	    		// $(sidr_source).css("min-height",sliderHeight).css("height",sliderHeight);
-	    		// $('#missions-content-overlay').css("min-height",sliderHeight).css("height",sliderHeight);
-	    		$(sidr_source).css("min-height","").css("height","");
-	    		$("#missions-content-overlay").css("min-height",sliderHeight);
 			}
 
-			$('#menu-icon-tabQuests').sidr({
-				name: 'sidr-tabQuests',
-				side: 'right',
-				source: '#tabQuests',
+			$('.menu-icon').click(function(){
+				var idTabContent = $(this).data('tab-content');
+				var idMenuIcon = $(this).attr("id");
 
-				displace: false, renaming: false,
-				onOpen: function() { open_sidr('#menu-icon-tabQuests','#sidr-tabQuests'); },
-				onClose: function() { close_sidr('#menu-icon-tabQuests','#sidr-tabQuests'); }
+				//Close tab
+				if ($('#'+idTabContent).hasClass("sidr-open")) {
+					close_sidr('#'+idMenuIcon,'#'+idTabContent);
+				}
+				//Open tab
+				else {
+					//Close currently open tab
+					var open_tab = $('.sidr-open');
+					if ($(open_tab).length) {
+						var open_tab_id = $(open_tab).attr('id');
+						close_sidr('#menu-icon-'+open_tab_id,'#'+open_tab_id);
+					}
+
+					//Open desired
+					open_sidr('#'+idMenuIcon,'#'+idTabContent);
+				}
 			});
-
-			$('#menu-icon-tabDossier').sidr({
-				name: 'sidr-tabDossier',
-				side: 'right',
-				source: '#tabDossier',
-				displace: false, renaming: false,
-				onOpen: function() { open_sidr('#menu-icon-tabDossier','#sidr-tabDossier'); },
-				onClose: function() { close_sidr('#menu-icon-tabDossier','#sidr-tabDossier'); }
-			});
-
-			$('#menu-icon-tabEvidences').sidr({
-				name: 'sidr-tabEvidences',
-				side: 'right',
-				source: '#tabEvidences',
-				displace: false, renaming: false,
-				onOpen: function() { open_sidr('#menu-icon-tabEvidences','#sidr-tabEvidences'); },
-				onClose: function() { close_sidr('#menu-icon-tabEvidences','#sidr-tabEvidences'); }
-			});
-
-			$('#menu-icon-tabMenu').sidr({
-				name: 'sidr-tabMenu',
-				side: 'right',
-				source: '#tabMenu',
-				displace: false, renaming: false,
-				onOpen: function() { open_sidr('#menu-icon-tabMenu','#sidr-tabMenu'); },
-				onClose: function() { close_sidr('#menu-icon-tabMenu','#sidr-tabMenu'); }
-			});
-
 
 			//--------------------------------------------//
 			//Top-bar margins
 			//--------------------------------------------//
 			//Adds margin so that the menu won't be on top of the container
-			//$('.sidr').css("top",$('#missions-menu').height()); //NECESSARY IF BODY HAS OVERFLOW:AUTO
 			var left_small_margin_top = - $('.left-small').height() / 2;
 			$('.left-small').css("margin-top",left_small_margin_top); //NECESSARY IF BODY HAS OVERFLOW:AUTO
 
@@ -151,7 +102,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$('#missions-content-overlay').addClass("hidden");
 
 				//show mission submenu
-				$('div.missions-submenu').removeClass("hidden");
+				$('off-canvas-wrap').removeClass("hidden");
 
 				//Clear content-body and its events
 				$('#missions-content-overlay-body').off(); //clear events in previous elements
@@ -169,7 +120,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					beforeSend: function() {
 						$('#missions-content-overlay .content-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
 						$('#missions-content-overlay').removeClass("hidden");
-						$('div.missions-submenu').addClass("hidden");
+						$('off-canvas-wrap').addClass("hidden");
 					},
 					success: function(data) {
 						//Go to the top of the page
@@ -192,12 +143,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 		    //REFLOW FOUNDATION - After setting up slick (or generating any other elements), foundation needs to be updated
 		    //--------------------------------------------//
-			$(document).foundation('reflow');
-
-			//--------------------------------------------//
-			//SIDR: add equalizer watch after the divs are added to the page
-			//--------------------------------------------//
-			$(".sidr").attr("data-equalizer-watch","data-equalizer-watch");
 			$(document).foundation('reflow');
 
 			
