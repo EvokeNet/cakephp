@@ -7,10 +7,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$('#missions-content-overlay-body').on('uploadCompleted', function(event) {
 				var detail = event.originalEvent.detail;
 
+				alert('Arquivo do curso ' + detail.identifier);
+				alert('Arquivo do curso ' + detail.url);
+
 				console.log('Arquivo do curso ' + detail.identifier);
 				console.log('URL do arquivo: ' + detail.url);
 			});
-			
+
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
 			window.initUploader(); //FILEUPLOADER
