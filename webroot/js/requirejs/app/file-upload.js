@@ -1,6 +1,15 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery'], function ($) {
 		$(document).ready(function(){
+
+			$(document).on('uploadCompleted', function(event) {
+				var detail = event.originalEvent.detail;
+
+				console.log('Arquivo do curso ' + detail.identifier);
+				console.log('URL do arquivo: ' + detail.url);
+			});
+
+
 			//--------------------------------------------//
 			//INSTRUCTIONS
 			//--------------------------------------------//

@@ -63,10 +63,8 @@ $title = __('Evoke Network');
 	<!--<script src="http://localhost:8000/socket.io/socket.io.js"></script>
 	<script src="http://localhost:3000/socket.io/socket.io.js"></script>-->
 </head>
-<!-- <body class="evoke height-inherit min-full-height"> -->
 <body class="evoke" data-equalizer>
 	<section role="main body" class="full-height">
-	<!-- <section id="main-body" role="main body" class="full-height"> -->
 		<?php 
 		//TOPBAR
 		if ($this->fetch('topbar')) {
@@ -89,30 +87,13 @@ $title = __('Evoke Network');
 	</section>
 
 	
+	<script type="text/javascript">
+        var webroot = "<?php echo $this->webroot; ?>";
+    </script>
+    <?php
+	    echo $this->Html->script("/components/requirejs/require", array('data-main' => $this->webroot.'js/requirejs/bootstrap'));
 
-	<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
-
-	<?php
-		// //JQUERY
-		// echo $this->Html->script('/components/jquery/dist/jquery.min.js');
-		// echo $this->Html->script("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js");
-
-		// //MODERNIZR
-		// echo $this->Html->script('/components/modernizr/modernizr.js');
-
-		// //FOUNDATION
-		// echo $this->Html->script('/components/foundation/js/foundation.min.js');
-
-		// echo $this->Html->script('evoke');
-
-		//REQUIREJS ?>
-		<script type="text/javascript">
-            var webroot = "<?php echo $this->webroot; ?>";
-        </script>
-        <?php
-        echo $this->Html->script("/components/requirejs/require", array('data-main' => $this->webroot.'js/requirejs/bootstrap'));
-
-        //SCRIPTS IN EACH VIEW
+	    //SCRIPTS IN EACH VIEW
 		echo $this->fetch('script');
 	?>
 

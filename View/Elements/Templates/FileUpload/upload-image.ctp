@@ -31,7 +31,7 @@
             $baseURL .= '://'.$_SERVER['HTTP_HOST'];
 
             // File's path
-            $key = 'uploads/';
+            $key = 'evoke/uploads/';
 
             if (isset($keyPath)) {
                 $key .= $keyPath;
@@ -46,7 +46,7 @@
             }
 
             if (isset($safePath)) {
-                $policyPath = "uploads/{$safePath}";
+                $policyPath = "evoke/uploads/{$safePath}";
             }
 
             $policy = '{"expiration": "'.$expiration.'", "conditions": ['

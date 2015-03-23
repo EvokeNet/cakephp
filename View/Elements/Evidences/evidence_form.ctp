@@ -52,21 +52,26 @@
 
 	<div class="full-width">
 		<?php
+			$upload_path = "";
 			//MISSION
 			if (isset($mission_id)) {
 				echo $this->Form->hidden('mission_id', array('value' => $mission_id));
+				$upload_path .= "/".$mission_id;
 			}
 			//PHASE
 			if (isset($phase_id)) {
 				echo $this->Form->hidden('phase_id', array('value' => $phase_id));
+				$upload_path .= "/".$phase_id;
 			}
 			//QUEST
 			if (isset($quest_id)) {
 				echo $this->Form->hidden('quest_id', array('value' => $quest_id));
+				$upload_path .= "/".$quest_id;
 			}
 			//USER
 			if (isset($loggedInUser)) {
 				echo $this->Form->hidden('user_id', array('value' => $loggedInUser['id']));
+				$upload_path .= "/".$loggedInUser['id'];
 			}
 
 			//Text-area formatting
@@ -114,7 +119,14 @@
 
 <?php
 	//HANDLEBARS TEMPLATES
-	echo $this->element('Templates/FileUpload/upload-image');
+	echo $this->element('Templates/FileUpload/upload-image', array(
+		'alert'      => __('Formatos: .mp4, .mov e .flv'),
+		'bucket'     => 'silabe',
+		'identifier' => '1', //only used to get the element. In this case, it's just once element
+        'keyPath'    => 'Evidence/'+$upload_path,
+		'legend'     => __('Upload image'),
+        'safePath'   => 'Evidence/'
+	));
 	echo $this->element('Templates/FileUpload/upload-video');
 	echo $this->element('Templates/Evidences/evidence-type-link');
 
