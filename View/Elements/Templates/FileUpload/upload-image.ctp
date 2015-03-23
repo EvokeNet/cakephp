@@ -95,7 +95,7 @@
                     <img id="fileinput-{{id}}-filecontent" />
                 </button>
 
-                <input type="file" id='fileinput-{{id}}' name='file' class='hide upload-file-input'
+                <input type="file" id='fileinput-{{id}}' name='file' class='hide upload-file-input text-center'
                         accept='image/jpeg,image/png' multiple /> 
 
                 <input type="submit" class="button hide btn-uploader-submit" value="<?php echo __('Enviar arquivo'); ?>" />

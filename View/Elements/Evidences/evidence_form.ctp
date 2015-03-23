@@ -84,8 +84,6 @@
 		<div id="evidence-main-content" class="margin top-2 bottom-2">
 		</div>
 
-		<?php //echo $this->element('Templates/FileUploader/uploader'); ?>
-
 
 		<!-- REGULAR CONTENT -->
 		<?php
@@ -122,12 +120,20 @@
 	echo $this->element('Templates/FileUpload/upload-image', array(
 		'alert'      => __('Formatos: .mp4, .mov e .flv'),
 		'bucket'     => 'silabe',
-		'identifier' => '1', //only used to get the element. In this case, it's just once element
+		'identifier' => '1', //only used to get the element. In this case, there's just one upload element in the page
         'keyPath'    => 'Evidence'.$upload_path,
 		'legend'     => __('Upload image'),
         'safePath'   => 'Evidence/'
 	));
-	echo $this->element('Templates/FileUpload/upload-video');
+	echo $this->element('Templates/FileUpload/upload-video', array(
+		'alert'      => __('Formatos: .mp4, .mov e .flv'),
+		'bucket'     => 'silabe',
+		'identifier' => '1', //only used to get the element. In this case, there's just one upload element in the page
+        'keyPath'    => 'Evidence'.$upload_path,
+		'legend'     => __('Upload video'),
+        'safePath'   => 'Evidence/'
+	));
+
 	echo $this->element('Templates/Evidences/evidence-type-link');
 
 	//SCRIPT
