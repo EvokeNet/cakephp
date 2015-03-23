@@ -123,7 +123,7 @@
 		'alert'      => __('Formatos: .mp4, .mov e .flv'),
 		'bucket'     => 'silabe',
 		'identifier' => '1', //only used to get the element. In this case, it's just once element
-        'keyPath'    => 'Evidence/'+$upload_path,
+        'keyPath'    => 'Evidence/'.$upload_path,
 		'legend'     => __('Upload image'),
         'safePath'   => 'Evidence/'
 	));
