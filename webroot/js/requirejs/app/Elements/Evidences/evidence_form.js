@@ -16,15 +16,14 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 			alert('teste');
 
-			$('document').on('uploadCompleted', function(event) {
+			$(window).on('uploadCompleted', function(event) {
 				var detail = event.originalEvent.detail;
-
-				alert('Arquivo do curso ' + detail.identifier);
-				alert('Arquivo do curso ' + detail.url);
-
+		 
 				console.log('Arquivo do curso ' + detail.identifier);
 				console.log('URL do arquivo: ' + detail.url);
+				alert('olarinha');
 			});
+
 
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
@@ -51,15 +50,15 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					//Display content
 					$('#evidence-main-content').html(html);
 
-					$('#missions-content-overlay-body').on('uploadCompleted', function(event) {
-						var detail = event.originalEvent.detail;
+					// $('#missions-content-overlay-body').on('uploadCompleted', function(event) {
+					// 	var detail = event.originalEvent.detail;
 
-						alert('Arquivo do curso ' + detail.identifier);
-						alert('Arquivo do curso ' + detail.url);
+					// 	alert('Arquivo do curso ' + detail.identifier);
+					// 	alert('Arquivo do curso ' + detail.url);
 
-						console.log('Arquivo do curso ' + detail.identifier);
-						console.log('URL do arquivo: ' + detail.url);
-					});
+					// 	console.log('Arquivo do curso ' + detail.identifier);
+					// 	console.log('URL do arquivo: ' + detail.url);
+					// });
 				}
 
 				//Remove buttons to choose evidence type, and show the form
