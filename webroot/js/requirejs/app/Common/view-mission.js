@@ -50,6 +50,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			function open_sidr(sidr_button,sidr_source) {
 				$(sidr_source).addClass("sidr-open");
 				$(sidr_source).removeClass("hidden");
+				$('.missions-submenu').removeClass("hidden");
 
 				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
 				$('.off-canvas-wrap .missions-content').addClass('blur-strong opacity-04'); //Blur everything else
@@ -59,6 +60,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			function close_sidr(sidr_button,sidr_source) {
 				$(sidr_source).removeClass("sidr-open");
 				$(sidr_source).addClass("hidden");
+				$('.missions-submenu').addClass("hidden");
 
 				$(sidr_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
 				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-04'); //Blur everything else
@@ -100,8 +102,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$(".close-missions-content-overlay").click(function(){
 				//Hide content overlay
 				$('#missions-content-overlay').addClass("hidden");
-
-				//show mission submenu
 				$('off-canvas-wrap').removeClass("hidden");
 
 				//Clear content-body and its events
