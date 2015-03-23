@@ -4,10 +4,16 @@
 /* --------------------------- */
 /* MISSIONS */
 /* --------------------------- */
+/* Main section */
+.evoke .main-section {
+	margin-left: 4.725rem; /* space for left offcanvas */
+}
+
 /* Submenu */
 .evoke .missions-submenu {
 	background-color: transparent;
 	z-index: 5;
+	/*margin-left: 4.725rem;*/ /* space for left offcanvas */
 }
 
 .evoke .mission-description {
@@ -78,15 +84,17 @@
 	
 }
 
-/* Right off canvas */
-.evoke .missions .right-off-canvas-menu {
-	/*width: 30rem;*/
+/* Left off canvas */
+.evoke .missions .left-off-canvas-menu {
 	width:45rem;
 }
 
-.evoke .missions .right-small {
+.evoke .missions .left-small {
 	transition: transform 500ms ease 0s;
 	border-left: none;
+	position: fixed;
+	top: 50%;
+	height: initial;
 }
 
 /* Menu icon */
@@ -107,22 +115,22 @@
 }
 
 #missions-content-overlay {
-	padding-right:34em;
+	padding:34em;
 }
 @media only screen and (min-width:76em) {
 	#missions-content-overlay {
-		padding-right:42em;
+		padding:42em;
 	}
 }
 
-div.missions-submenu .content {
+/*div.missions-submenu .content {
 	margin-right:34em;
 }
 @media only screen and (min-width:76em) {
 	div.missions-submenu .content {
 		margin-right:42em;
 	}
-}
+}*/
 
 /* Content overlay button */
 #close-content-overlay-button {

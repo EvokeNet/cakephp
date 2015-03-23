@@ -47,8 +47,8 @@
 				<nav class="tab-bar full-height" id="tab-bar-off-canvas">
 
 					<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
-					<section class="right-small">
-						<div class="right-small-content text-center background-color-standard opacity-07 gradient-on-right padding bottom-1">
+					<section class="left-small">
+						<div class="left-small-content text-center background-color-standard opacity-07 gradient-on-right padding bottom-1">
 							<a class="menu-icon custom" id="menu-icon-tabQuests" data-tab-content="tabQuests">
 								<div class="row">
 									<span class="icon-brankic icon-compass fa-2x vertical-align-middle text-color-gray"></span>
@@ -90,7 +90,7 @@
 					</section>
 				</nav>
 
-				<aside class="right-off-canvas-menu tabQuests" id="tabQuests">
+				<aside class="left-off-canvas-menu tabQuests" id="tabQuests">
 					<div class="table large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0">
 						<!-- TABS COM QUESTS -->
 						<dl class="tabs vertical table-cell full-width full-height margin right-1 background-color-standard opacity-07" id="questsTabs" data-tab>
@@ -168,19 +168,19 @@
 					</div>
 				</aside>
 
-				<aside class="right-off-canvas-menu tabDossier" id="tabDossier">
+				<aside class="left-off-canvas-menu tabDossier" id="tabDossier">
 					<div class="large-12 large-centered columns full-height paddings-0 margin right-1">
 						<?php echo $this->fetch('tabDossierContent'); ?>
 					</div>
 				</aside>
 
-				<aside class="right-off-canvas-menu tabEvidences" id="tabEvidences">
+				<aside class="left-off-canvas-menu tabEvidences" id="tabEvidences">
 					<div class="large-12 large-centered columns full-height paddings-0 background-color-standard-opacity-07 margin right-1">
 						<?php echo $this->fetch('tabEvidencesContent'); ?>
 					</div>
 				</aside>
 
-				<aside class="right-off-canvas-menu tabMenu" id="tabMenu">
+				<aside class="left-off-canvas-menu tabMenu" id="tabMenu">
 					<div class="large-12 large-centered full-height background-color-standard tabMenuContent">
 						<ul class="full-height full-width no-marker">
 							<!-- OTHER MISSIONS -->
@@ -225,9 +225,8 @@
 				<section class="main-section">
 
 					<!-- SUBMENU -->
-					<div class="missions-submenu fixed hidden padding top-1 left-3">
+					<div class="missions-submenu hidden padding top-1 left-3">
 						<?php echo $this->fetch('missionsSubmenuContent'); ?>
-						
 					</div>
 
 					<!-- MISSOES -->

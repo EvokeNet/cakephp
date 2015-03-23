@@ -140,6 +140,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//Adds margin so that the menu won't be on top of the container
 			//$('.sidr').css("top",$('#missions-menu').height()); //NECESSARY IF BODY HAS OVERFLOW:AUTO
+			var left_small_margin_top = - $('.left-small').height() / 2;
+			$('.left-small').css("margin-top",left_small_margin_top); //NECESSARY IF BODY HAS OVERFLOW:AUTO
 
 			//--------------------------------------------//
 			//Close overlay button

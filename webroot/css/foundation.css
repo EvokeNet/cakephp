@@ -156,7 +156,17 @@ button:hover, button:focus, .button:hover, .button:focus {
    	backface-visibility: visible;
 }
 
+.left-off-canvas-menu * {
+	-webkit-backface-visibility: visible; /* Chrome, Safari, Opera */
+   	backface-visibility: visible;
+}
+
 .right-small {
+	z-index: 11;
+	width: 4.725rem;
+}
+
+.left-small {
 	z-index: 11;
 	width: 4.725rem;
 }
