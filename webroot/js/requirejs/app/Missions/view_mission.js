@@ -46,6 +46,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 										$('#missions-content-overlay').fadeIn("fast");
 										//HIDE SECTION BEHIND
 										$('.main-section').addClass("hidden");
+										$('.tab-bar').addClass("hidden");
+										$('.close-sidebar-button').addClass("hidden");
 									},
 									success: function(data) {
 										//Go to the top

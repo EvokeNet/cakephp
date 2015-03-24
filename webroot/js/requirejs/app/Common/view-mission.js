@@ -48,6 +48,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$('.tabContent').hide().removeClass("hidden");
 			$('#missions-content-overlay').hide().removeClass("hidden");
 
+
 			//--------------------------------------------//
 			//Off canvas
 			//--------------------------------------------//
@@ -127,6 +128,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				//Hide content overlay and show tab-bar and main section
 				$('.main-section').removeClass("hidden");
 				$('.tab-bar').removeClass("hidden");
+				$('.close-sidebar-button').removeClass("hidden");
 				$('#missions-content-overlay').fadeOut('fast');
 
 				//Clear content-body and its events
@@ -159,6 +161,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						$('#missions-content-overlay').fadeIn('slow');
 						$('.main-section').addClass("hidden");
 						$('.tab-bar').addClass("hidden");
+						$('.close-sidebar-button').addClass("hidden");
 					},
 					success: function(data) {
 						//Go to the top of the page
