@@ -78,12 +78,9 @@
 /* --------------------------- */
 /* OFF CANVAS */
 /* --------------------------- */
-
-/* Actual content (on the left) has scroll */
-.off-canvas-wrap {
-	
+#missionSidebar {
+	z-index: 13;
 }
-
 #missionMenuContent {
 	z-index: 2;
 }

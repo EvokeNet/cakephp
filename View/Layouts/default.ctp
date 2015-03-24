@@ -63,7 +63,7 @@ $title = __('Evoke Network');
 	<!--<script src="http://localhost:8000/socket.io/socket.io.js"></script>
 	<script src="http://localhost:3000/socket.io/socket.io.js"></script>-->
 </head>
-<body class="evoke" data-equalizer>
+<body class="evoke">
 	<section role="main body" class="full-height">
 		<?php 
 		//TOPBAR

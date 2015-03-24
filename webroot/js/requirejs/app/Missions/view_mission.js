@@ -43,9 +43,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 									beforeSend: function() {
 										//SHOW OVERLAY WITH LOADING IMAGE
 										$('.content-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
-										$('#missions-content-overlay').removeClass("hidden");
-										//HIDE SUBMENU BEHIND
-										$('div.missions-submenu').addClass("hidden");
+										$('#missions-content-overlay').fadeIn("fast");
+										//HIDE SECTION BEHIND
+										$('.main-section').addClass("hidden");
 									},
 									success: function(data) {
 										//Go to the top

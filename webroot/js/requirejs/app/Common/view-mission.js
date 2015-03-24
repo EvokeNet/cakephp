@@ -1,12 +1,11 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'foundation', 'slickcarousel', 'stickykit', 'sidr'], function ($) {
+	require(['jquery', 'foundation', 'slickcarousel', 'stickykit', 'sidr', 'jqueryui'], function ($) {
 		$(document).ready(function(){
 			//--------------------------------------------//
 			//Top-bar margins
 			//--------------------------------------------//
 			//Adds margin so that the menu won't be on top of the container
 			$('#missions-body').css("margin-top",$('#missions-menu').height());
-			$('.missions-submenu').css("top",$('#missions-menu').height());
 
 			//--------------------------------------------//
 			//Creates carousel
@@ -29,7 +28,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				var img = jQuery(slider.$slides[index]).children('img');
 			  	var sliderHeight = $(img).height();
 			  	jQuery(slider.$slider).height(sliderHeight);
-			  	//$(".off-canvas-wrap").css("min-height",sliderHeight).css("height",sliderHeight);
 
 			  	//Go to the top of the page
 				$("html, body").animate({
@@ -44,27 +42,42 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$('#slickPrevArrow').append($('.slick-prev'));
 			$('#slickNextArrow').append($('.slick-next'));
 
+			//Hide sidebar content
+			$('#missionSidebar').hide().removeClass("hidden");
+			$('.tabContent').hide().removeClass("hidden");
+			$('#missions-content-overlay').hide().removeClass("hidden");
+
 			//--------------------------------------------//
 			//Off canvas
 			//--------------------------------------------//
 			function open_sidr(sidr_button,sidr_source) {
 				$(sidr_source).addClass("sidr-open");
-				$(sidr_source).removeClass("hidden");
-				$('.missions-submenu').removeClass("hidden");
 
+				//Opacity behind
 				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
-				$('.off-canvas-wrap .missions-content').addClass('blur-strong opacity-04'); //Blur everything else
+				$('.main-section .missions-content').addClass('blur-strong opacity-04'); //Blur everything else
 				$('.right-small-content').addClass('opacity-08').removeClass('opacity-07'); //Increase opacity in the buttons
+				
+				//Show content in front
+				$('.mission-sidebar').css("height",""); //restart data-equalizer of the sidebar columns
+				$('#missionSidebar').show("slide", { direction: "left" }, 500, function(){
+					$(sidr_source).fadeIn('fast');
+					$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
+				});
 			}
 
 			function close_sidr(sidr_button,sidr_source) {
 				$(sidr_source).removeClass("sidr-open");
-				$(sidr_source).addClass("hidden");
-				$('.missions-submenu').addClass("hidden");
 
+				//Opacity behind
 				$(sidr_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
-				$('.off-canvas-wrap .missions-content').removeClass('blur-strong').removeClass('opacity-04'); //Blur everything else
+				$('.main-section .missions-content').removeClass('blur-strong').removeClass('opacity-04'); //Blur everything else
 				$('.right-small-content').addClass('opacity-07').removeClass('opacity-08'); //Decrease opacity in the buttons
+
+				//Show content in front
+				$('#missionSidebar').hide("slide", { direction: "left" }, 500, function(){
+					$(sidr_source).fadeOut('fast');
+				});
 			}
 
 			$('.menu-icon').click(function(){
@@ -101,8 +114,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$(".close-missions-content-overlay").click(function(){
 				//Hide content overlay
-				$('#missions-content-overlay').addClass("hidden");
-				$('off-canvas-wrap').removeClass("hidden");
+				$('#missions-content-overlay').fadeOut('fast');
+				$('.main-section').removeClass("hidden");
 
 				//Clear content-body and its events
 				$('#missions-content-overlay-body').off(); //clear events in previous elements
@@ -119,8 +132,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					type:"POST",
 					beforeSend: function() {
 						$('#missions-content-overlay .content-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
-						$('#missions-content-overlay').removeClass("hidden");
-						$('off-canvas-wrap').addClass("hidden");
+						$('#missions-content-overlay').fadeIn('slow');
+						$('.main-section').addClass("hidden");
 					},
 					success: function(data) {
 						//Go to the top of the page
