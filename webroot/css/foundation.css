@@ -262,7 +262,7 @@ button:hover, button:focus, .button:hover, .button:focus {
 /* --------------------------- */
 .tabs-style-small-image dd {
 	background-color: #333;
-	min-width: 6em;
+	min-width: 8em;
 }
 
 .tabs-style-small-image .right dd {

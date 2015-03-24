@@ -105,9 +105,9 @@
 				<div class="mission-sidebar small-6 medium-6 large-8 columns padding all-0" data-equalizer-watch>
 					<!-- CONTENT: QUEST TAB -->
 					<aside class="tabContent hidden full-height" id="tabQuests">
-						<div class="table large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0">
+						<div class="table large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0 background-color-standard">
 							
-							<dl class="tabs vertical table-cell full-width  margin right-1 background-color-standard" id="questsTabs" data-tab>
+							<dl class="tabs vertical table-cell full-width  margin right-1" id="questsTabs" data-tab>
 								<?php 
 									$counter = 1;
 									$active = 'class = "active"';
@@ -133,7 +133,7 @@
 								?>
 							</dl>
 
-							<div class="tabs-content table-cell vertical-align-top full-width  background-color-standard gradient-on-left">
+							<div class="tabs-content table-cell vertical-align-top full-width gradient-on-left">
 								<?php 
 									$counter = 1;
 									$active = 'active'; ?>
