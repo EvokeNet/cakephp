@@ -27,6 +27,10 @@
 	<div id="missions-body" class="missions  clearfix">
 		<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
 		<nav class="tab-bar" id="tab-bar-off-canvas">
+			<div class="close-sidebar-button fixed hidden">
+				<a class="close-sidebar"><i class="fa fa-angle-double-left fa-2x"></i></a>
+			</div>
+
 			<section class="left-small">
 				<div class="left-small-content text-center background-color-standard opacity-07 padding bottom-1">
 					<a class="menu-icon custom" id="menu-icon-tabQuests" data-tab-content="tabQuests">
@@ -69,7 +73,7 @@
 		</nav>
 
 		<!-- CONTENT OVERLAY -->
-		<div id="missions-content-overlay" class="background-color-dark absolute full-height full-width hidden padding all-2 top-5">
+		<div id="missions-content-overlay" class="background-color-dark absolute min-full-height full-width hidden padding all-2 top-5">
 			<div class="relative">
 				<!-- CLOSE BUTTON -->
 				<div id="close-content-overlay-button" class="right absolute">

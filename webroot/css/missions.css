@@ -85,6 +85,11 @@
 	z-index: 2;
 }
 
+/* Missions graphic novel content */
+.missions-content {
+	margin-right: 1.725rem;
+}
+
 /* Left off canvas */
 .evoke .missions .left-off-canvas-menu {
 	width:45rem;
@@ -122,6 +127,11 @@
 /* Content overlay button */
 #close-content-overlay-button {
 	z-index: 6;
+}
+
+/* Close sidebar button */
+.close-sidebar-button {
+	left: 1.5em;
 }
 
 /* Tab Menu */

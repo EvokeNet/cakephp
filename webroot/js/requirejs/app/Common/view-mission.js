@@ -6,6 +6,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//Adds margin so that the menu won't be on top of the container
 			$('#missions-body').css("margin-top",$('#missions-menu').height());
+			$('.close-sidebar-button').css("top",$('#missions-menu').height()+40);
 
 			//--------------------------------------------//
 			//Creates carousel
@@ -64,6 +65,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					$(sidr_source).fadeIn('fast');
 					$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
 				});
+
+				//Possible to close sidr
+				$('.close-sidebar-button').removeClass("hidden");
 			}
 
 			function close_sidr(sidr_button,sidr_source) {
@@ -78,6 +82,18 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$('#missionSidebar').hide("slide", { direction: "left" }, 500, function(){
 					$(sidr_source).fadeOut('fast');
 				});
+
+				//Not possible to close sidr
+				$('.close-sidebar-button').addClass("hidden");
+			}
+
+			function close_current_tab() {
+				//Close currently open tab
+				var open_tab = $('.sidr-open');
+				if ($(open_tab).length) {
+					var open_tab_id = $(open_tab).attr('id');
+					close_sidr('#menu-icon-'+open_tab_id,'#'+open_tab_id);
+				}
 			}
 
 			$('.menu-icon').click(function(){
@@ -90,12 +106,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				}
 				//Open tab
 				else {
-					//Close currently open tab
-					var open_tab = $('.sidr-open');
-					if ($(open_tab).length) {
-						var open_tab_id = $(open_tab).attr('id');
-						close_sidr('#menu-icon-'+open_tab_id,'#'+open_tab_id);
-					}
+					close_current_tab();
 
 					//Open desired
 					open_sidr('#'+idMenuIcon,'#'+idTabContent);
@@ -113,15 +124,28 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//Close overlay button
 			//--------------------------------------------//
 			$(".close-missions-content-overlay").click(function(){
-				//Hide content overlay
-				$('#missions-content-overlay').fadeOut('fast');
+				//Hide content overlay and show tab-bar and main section
 				$('.main-section').removeClass("hidden");
+				$('.tab-bar').removeClass("hidden");
+				$('#missions-content-overlay').fadeOut('fast');
 
 				//Clear content-body and its events
 				$('#missions-content-overlay-body').off(); //clear events in previous elements
 				$('#missions-content-overlay-body *').off(); 
 				$('#missions-content-overlay-body').html('');
 			});
+
+			//--------------------------------------------//
+			//Close sidebar (mission content)
+			//--------------------------------------------//
+			$(".close-sidebar-button").click(function(){
+				//Show content in front
+				close_current_tab();
+
+				//Not possible to close sidr
+				$(this).addClass("hidden");
+			});
+			
 
 			//--------------------------------------------//
 			//EVIDENCE: ADD EVIDENCE FORM OPENS ON THE MISSION-OVERLAY ON THE LEFT
@@ -134,6 +158,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						$('#missions-content-overlay .content-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
 						$('#missions-content-overlay').fadeIn('slow');
 						$('.main-section').addClass("hidden");
+						$('.tab-bar').addClass("hidden");
 					},
 					success: function(data) {
 						//Go to the top of the page
