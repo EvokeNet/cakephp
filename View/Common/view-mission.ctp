@@ -21,11 +21,18 @@
 	<div id="missions-body" class="missions full-height clearfix">
 		<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
 		<nav class="tab-bar" id="tab-bar-off-canvas">
-			<div class="close-sidebar-button fixed hidden">
-				<a class="close-sidebar"><i class="fa fa-angle-double-left fa-2x"></i></a>
+			<div class="close-sidebar-button fixed left-small text-center hidden">
+				<a class="close-sidebar">
+					<div class="row">
+						<i class="fa fa-angle-double-left fa-2x"></i>
+					</div>
+					<div class="row menu-icon-label">
+						<span><?= __('Back') ?></span>
+					</div>
+				</a>
 			</div>
 
-			<section class="left-small">
+			<section class="left-small" id="menu-left-small">
 				<div class="left-small-content text-center background-color-standard opacity-07 padding bottom-1">
 					<a class="menu-icon custom" id="menu-icon-tabQuests" data-tab-content="tabQuests">
 						<div class="row">

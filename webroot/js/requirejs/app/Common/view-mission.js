@@ -119,8 +119,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//Top-bar margins
 			//--------------------------------------------//
 			//Adds margin so that the menu won't be on top of the container
-			var left_small_margin_top = - $('.left-small').height() / 2;
-			$('.left-small').css("margin-top",left_small_margin_top); //NECESSARY IF BODY HAS OVERFLOW:AUTO
+			var left_small_margin_top = - $('#menu-left-small').height() / 2;
+			$('#menu-left-small').css("margin-top",left_small_margin_top); //NECESSARY IF BODY HAS OVERFLOW:AUTO
 
 			//--------------------------------------------//
 			//Close overlay button

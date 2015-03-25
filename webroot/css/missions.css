@@ -129,11 +129,6 @@
 	z-index: 6;
 }
 
-/* Close sidebar button */
-.close-sidebar-button {
-	left: 1.5em;
-}
-
 /* Tab Menu */
 .evoke .tabMenuContent ul {
 	margin-left: 0;
