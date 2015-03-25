@@ -978,11 +978,6 @@ class UsersController extends AppController {
 	        // break;
 		}
 
-
-
-		// $this->loadModel('Forum.Post');
-		// $this->loadModel('Forum.Topic');
-
 		$a_posts = array();
 		$a_topics = array();
 
