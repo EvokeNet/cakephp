@@ -27,8 +27,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				//Carousel height is adaptative according to the currently displayed image (not the tallest image on the set)
 				var img = jQuery(slider.$slides[index]).children('img');
 			  	var sliderHeight = $(img).height();
-			  	jQuery(slider.$slider).height(sliderHeight);
-			  	$('.slick-track').height(sliderHeight);
+			  	if (sliderHeight > 0) {
+			  		jQuery(slider.$slider).height(sliderHeight);
+			  		$('.slick-track').height(sliderHeight);
+			  	}
 
 			  	//Go to the top of the page
 				$("html, body").animate({
