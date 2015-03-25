@@ -58,7 +58,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 				//Add opacity behind
 				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
-				$('.main-section .missions-content').addClass('blur-strong opacity-04'); //Blur everything else
+				$('.main-section .missions-graphic-novel').addClass('blur-strong opacity-04'); //Blur everything else
 				
 				//Show content in front
 				$('.mission-sidebar').css("height",""); //restart data-equalizer of the sidebar columns
@@ -81,7 +81,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 					if (!changingTabs) {
 						//Remove opacity behind
-						$('.main-section .missions-content').removeClass('blur-strong opacity-04'); //Remove blur in everything else
+						$('.main-section .missions-graphic-novel').removeClass('blur-strong opacity-04'); //Remove blur in everything else
 					}
 				});
 

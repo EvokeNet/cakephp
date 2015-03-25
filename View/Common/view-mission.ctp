@@ -17,9 +17,8 @@
 <!-- TOPBAR MENU -->
 
 
-	
 	<div id="missions-body" class="missions full-height clearfix">
-		<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
+		<!-- MENU ICONS (BUTTONS TO OPEN MISSION-TAB-CONTENT) -->
 		<nav class="tab-bar" id="tab-bar-off-canvas">
 			<div class="close-sidebar-button fixed left-small text-center hidden">
 				<a class="close-sidebar">
@@ -73,7 +72,7 @@
 			</section>
 		</nav>
 
-		<!-- CONTENT OVERLAY -->
+		<!-- CONTENT OVERLAY - Section that dinamically loads content that will be manipulated by the user, and therefore needs focus -->
 		<div id="missions-content-overlay" class="background-color-dark absolute min-full-height full-width hidden padding all-2 top-5">
 			<div class="relative">
 				<!-- CLOSE BUTTON -->
@@ -93,8 +92,7 @@
 		</div>
 
 		
-				
-
+		
 		<!-- MAIN SECTION -->
 		<section class="main-section relative min-full-height">
 		    <div id="missionSidebar" class="row full-width clearfix absolute full-height hidden" data-equalizer>
@@ -247,7 +245,7 @@
 		    </div>
 
 			<!-- GRAPHIC NOVEL -->
-			<div class="section missions-content">
+			<div class="section missions-graphic-novel">
 	    		<div id="loading" class="text-center">
 	    			<i class="fa fa-spinner fa-spin fa-3x"></i>
 	    		</div>
