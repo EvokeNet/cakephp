@@ -139,7 +139,14 @@ public function addEvidence() {
 		if ($this->request->is('ajax')) {
 			$this->layout = 'ajax';
 		}
-		$this->set(compact('mission_id', 'phase_id', 'quest_id', 'evokation'));
+
+		//LOAD QUEST
+		$this->loadModel("Quest");
+		if ($quest_id != null) {
+			$quest = $this->Quest->findById($quest_id);
+		}
+
+		$this->set(compact('mission_id', 'phase_id', 'quest_id', 'evokation', 'quest'));
 	}
 
 /**

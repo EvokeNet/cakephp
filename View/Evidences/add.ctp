@@ -14,6 +14,17 @@
 		<?= __('Create your evidence') ?>
 	</h1>
 
+
+	<?php
+	if (isset($quest)): ?>
+		<!-- QUEST DESCRIPTION -->
+		<div class="background-color-standard padding all-2 margin top-2">
+			<h4><?= __('Quest: ').$quest['Quest']['title'] ?></h4>
+			<?= $quest['Quest']['description'] ?>
+		</div><?php
+	endif;
+	?>
+
 	<!-- FORM -->
 	<?php
 		echo $this->element('Evidences/evidence_form');

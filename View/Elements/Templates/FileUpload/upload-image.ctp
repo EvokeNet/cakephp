@@ -76,35 +76,24 @@
         <input type="hidden" name="redirect" value="<?php echo (isset($redirect) ? $redirect : ''); ?>" />
         <input type="hidden" name="Content-Type" value="application/octet-stream" />
 
-        
-        <fieldset>
-            <?php if (isset($legend)): ?>
-                <legend><?php echo $legend; ?></legend>
-            <?php else: ?>
-                <legend><?php echo __('Enviar arquivos'); ?></legend>
-            <?php endif; ?>
+        <div class="full-width text-center silabe-uploader" name="uploader">
+            <div class="files" name="uploader-files"></div>
+            <button type="button" class="upload-file-button button tiny silabe-uploader-btn" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
+                <div id="fileinput-{{id}}-uploadbutton">
+                    <p class="margin top-2"><i class="fa fa-image fa-4x"></i></p>
+                    <p><?php echo __("Upload your evidence's image"); ?></p>
+                </div>
 
-            <div class="full-width text-center silabe-uploader" name="uploader">
-                <div class="files" name="uploader-files"></div>
-                <button type="button" class="upload-file-button button tiny silabe-uploader-btn" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
-                    <div id="fileinput-{{id}}-uploadbutton">
-                        <p class="margin top-2"><i class="fa fa-image fa-4x"></i></p>
-                        <p><?php echo __("Upload your evidence's image"); ?></p>
-                    </div>
+                <img id="fileinput-{{id}}-filecontent" />
+            </button>
 
-                    <img id="fileinput-{{id}}-filecontent" />
-                </button>
+            <input type="file" id='fileinput-{{id}}' name='file' class='hide upload-file-input text-center' accept='image/jpeg,image/png' /> 
 
-                <input type="file" id='fileinput-{{id}}' name='file' class='hide upload-file-input text-center'
-                        accept='image/jpeg,image/png' multiple /> 
+            <input type="submit" class="button hide btn-uploader-submit" value="<?php echo __('Send image'); ?>" />
+        </div>
 
-                <input type="submit" class="button hide btn-uploader-submit" value="<?php echo __('Enviar arquivo'); ?>" />
-
-            </div>
-
-            <?php if (isset($alert)): ?>
-                <p><small><?php echo $alert; ?></small></p>
-            <?php endif; ?>
-        </fieldset>
+        <?php if (isset($alert)): ?>
+            <p class="text-center"><small><?php echo $alert; ?></small></p>
+        <?php endif; ?>
     </form>
 </script>
