@@ -47,7 +47,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 										//HIDE SECTION BEHIND
 										$('.main-section').addClass("hidden");
 										$('.tab-bar').addClass("hidden");
-										$('.close-sidebar-button').addClass("hidden");
+										$('.close-sidebar-button').fadeOut('fast');
 									},
 									success: function(data) {
 										//Go to the top

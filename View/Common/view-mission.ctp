@@ -1,15 +1,9 @@
 <?php
-	//CSS overriding fullpage.js plugin
-	$cssBaseUrl = Configure::read('App.cssBaseUrl');
-	
+	//Plugin CSS
 	echo $this->Html->css(
 		array(
 			'/components/slick-carousel/slick/slick.css',
-			'slick.css',
-			'/components/medium-editor/dist/css/medium-editor.css',
-			'/components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.css',
-			'medium.css',
-			'sidr.css'
+			'slick.css'
 		)
 	);
 ?>
@@ -24,7 +18,7 @@
 
 
 	
-	<div id="missions-body" class="missions  clearfix">
+	<div id="missions-body" class="missions full-height clearfix">
 		<!-- MENU ICONS (BUTTONS TO OPEN OFFCANVAS) -->
 		<nav class="tab-bar" id="tab-bar-off-canvas">
 			<div class="close-sidebar-button fixed hidden">
@@ -95,10 +89,10 @@
 				
 
 		<!-- MAIN SECTION -->
-		<section class="main-section relative">
-		    <div id="missionSidebar" class="row full-width clearfix absolute hidden" data-equalizer>
+		<section class="main-section relative min-full-height">
+		    <div id="missionSidebar" class="row full-width clearfix absolute full-height hidden" data-equalizer>
 		    	<!-- MISSION SUBMENU (description, phases) -->
-				<div class="mission-sidebar small-6 medium-6 large-4 columns" data-equalizer-watch>
+				<div class="mission-sidebar small-6 medium-6 large-4 columns min-full-height" data-equalizer-watch>
 					<div class="missions-submenu padding top-1 left-3">
 						<?php echo $this->fetch('missionsSubmenuContent'); ?>
 					</div>
@@ -106,7 +100,7 @@
 
 
 				<!-- CONTENT -->
-				<div class="mission-sidebar small-6 medium-6 large-8 columns padding all-0" data-equalizer-watch>
+				<div class="mission-sidebar small-6 medium-6 large-8 columns min-full-height padding all-0" data-equalizer-watch>
 					<!-- CONTENT: QUEST TAB -->
 					<aside class="tabContent hidden full-height" id="tabQuests">
 						<div class="table large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0 background-color-standard">

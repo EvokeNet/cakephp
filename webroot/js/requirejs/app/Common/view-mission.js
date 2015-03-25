@@ -1,11 +1,11 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'foundation', 'slickcarousel', 'stickykit', 'sidr', 'jqueryui'], function ($) {
+	require(['jquery', 'foundation', 'slickcarousel', 'stickykit', 'jqueryui'], function ($) {
 		$(document).ready(function(){
 			//--------------------------------------------//
 			//Top-bar margins
 			//--------------------------------------------//
 			//Adds margin so that the menu won't be on top of the container
-			$('#missions-body').css("margin-top",$('#missions-menu').height());
+			$('.main-section').css("padding-top",$('#missions-menu').height());
 			$('.close-sidebar-button').css("top",$('#missions-menu').height()+40);
 
 			//--------------------------------------------//
@@ -13,7 +13,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$('.missions-carousel').slick({
 			  slidesToShow: 1,
-			  adaptiveHeight: false,
 			  responsive: true,
 			  slidesToShow: 1,
 			  lazyLoad: 'progressive',
@@ -25,10 +24,11 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			  	$('#page-number').html(targetIndex+1);
 			  },
 			  onAfterChange: function(slider,index){
-				//Coordinate heights of carousel wrap and content overlay
+				//Carousel height is adaptative according to the currently displayed image (not the tallest image on the set)
 				var img = jQuery(slider.$slides[index]).children('img');
 			  	var sliderHeight = $(img).height();
 			  	jQuery(slider.$slider).height(sliderHeight);
+			  	$('.slick-track').height(sliderHeight);
 
 			  	//Go to the top of the page
 				$("html, body").animate({
@@ -43,75 +43,76 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$('#slickPrevArrow').append($('.slick-prev'));
 			$('#slickNextArrow').append($('.slick-next'));
 
-			//Hide sidebar content
+			//Hide sidebar content with jquery (so that it can be shown afterwards)
 			$('#missionSidebar').hide().removeClass("hidden");
 			$('.tabContent').hide().removeClass("hidden");
 			$('#missions-content-overlay').hide().removeClass("hidden");
+			$('.close-sidebar-button').hide().removeClass("hidden");
 
 
 			//--------------------------------------------//
-			//Off canvas
+			//Open mission content above graphic novel
 			//--------------------------------------------//
 			function open_sidr(sidr_button,sidr_source) {
 				$(sidr_source).addClass("sidr-open");
 
-				//Opacity behind
+				//Add opacity behind
 				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
 				$('.main-section .missions-content').addClass('blur-strong opacity-04'); //Blur everything else
-				$('.right-small-content').addClass('opacity-08').removeClass('opacity-07'); //Increase opacity in the buttons
 				
 				//Show content in front
 				$('.mission-sidebar').css("height",""); //restart data-equalizer of the sidebar columns
-				$('#missionSidebar').show("slide", { direction: "left" }, 500, function(){
+				$('#missionSidebar').show("slide", { direction: "left" }, 400, function(){
 					$(sidr_source).fadeIn('fast');
 					$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
 				});
 
 				//Possible to close sidr
-				$('.close-sidebar-button').removeClass("hidden");
+				$('.close-sidebar-button').fadeIn('fast');
 			}
 
-			function close_sidr(sidr_button,sidr_source) {
+			function close_sidr(sidr_button,sidr_source,changingTabs) {
 				$(sidr_source).removeClass("sidr-open");
 
-				//Opacity behind
-				$(sidr_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
-				$('.main-section .missions-content').removeClass('blur-strong').removeClass('opacity-04'); //Blur everything else
-				$('.right-small-content').addClass('opacity-07').removeClass('opacity-08'); //Decrease opacity in the buttons
-
 				//Show content in front
-				$('#missionSidebar').hide("slide", { direction: "left" }, 500, function(){
-					$(sidr_source).fadeOut('fast');
+				$(sidr_source).fadeOut('fast');
+				$('#missionSidebar').hide("slide", { direction: "left" }, 0, function() {
+					$(sidr_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
+
+					if (!changingTabs) {
+						//Remove opacity behind
+						$('.main-section .missions-content').removeClass('blur-strong opacity-04'); //Remove blur in everything else
+					}
 				});
 
 				//Not possible to close sidr
-				$('.close-sidebar-button').addClass("hidden");
+				$('.close-sidebar-button').fadeOut('fast');
 			}
 
-			function close_current_tab() {
-				//Close currently open tab
+			/* Open or close a sidr */
+			function toggle_sidr(idMenuIcon,idTabContent) {
+				var changingTabs = false;
+
+				//Closing a currently open tab
+				if ((idTabContent != undefined) && !$('#'+idTabContent).hasClass("sidr-open")) {
+					changingTabs = true;
+				}
+
+				//Close currently open tab (if any)
 				var open_tab = $('.sidr-open');
 				if ($(open_tab).length) {
 					var open_tab_id = $(open_tab).attr('id');
-					close_sidr('#menu-icon-'+open_tab_id,'#'+open_tab_id);
+					close_sidr('#menu-icon-'+open_tab_id,'#'+open_tab_id,changingTabs);
+				}
+
+				//Opening another tab
+				if (changingTabs) {
+					open_sidr('#'+idMenuIcon,'#'+idTabContent);	
 				}
 			}
 
 			$('.menu-icon').click(function(){
-				var idTabContent = $(this).data('tab-content');
-				var idMenuIcon = $(this).attr("id");
-
-				//Close tab
-				if ($('#'+idTabContent).hasClass("sidr-open")) {
-					close_sidr('#'+idMenuIcon,'#'+idTabContent);
-				}
-				//Open tab
-				else {
-					close_current_tab();
-
-					//Open desired
-					open_sidr('#'+idMenuIcon,'#'+idTabContent);
-				}
+				toggle_sidr($(this).attr("id"), $(this).data('tab-content'));
 			});
 
 			//--------------------------------------------//
@@ -128,7 +129,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				//Hide content overlay and show tab-bar and main section
 				$('.main-section').removeClass("hidden");
 				$('.tab-bar').removeClass("hidden");
-				$('.close-sidebar-button').removeClass("hidden");
+				$('.close-sidebar-button').fadeIn("hidden");
 				$('#missions-content-overlay').fadeOut('fast');
 
 				//Clear content-body and its events
@@ -142,10 +143,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$(".close-sidebar-button").click(function(){
 				//Show content in front
-				close_current_tab();
+				toggle_sidr();
 
 				//Not possible to close sidr
-				$(this).addClass("hidden");
+				$(this).fadeOut("fast");
 			});
 			
 
@@ -161,7 +162,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						$('#missions-content-overlay').fadeIn('slow');
 						$('.main-section').addClass("hidden");
 						$('.tab-bar').addClass("hidden");
-						$('.close-sidebar-button').addClass("hidden");
+						$('.close-sidebar-button').fadeOut("fast");
 					},
 					success: function(data) {
 						//Go to the top of the page
