@@ -18,7 +18,7 @@
 	<?php
 	if (isset($quest)): ?>
 		<!-- QUEST DESCRIPTION -->
-		<div class="background-color-standard padding all-2 margin top-2">
+		<div class="row small-width background-color-standard padding all-2 margin top-2 margins-auto">
 			<h4><?= __('Quest: ').$quest['Quest']['title'] ?></h4>
 			<?= $quest['Quest']['description'] ?>
 		</div><?php
