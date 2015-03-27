@@ -148,3 +148,14 @@ CakeEventManager::instance()->attach(new BadgeListener());
 
 // $evidence = ClassRegistry::init('Evidence');
 // $evidence->getEventManager()->attach(new PointListener());
+
+/**
+ * Configures Optimum Plugin
+ * model_name: model that will be used to 
+ */
+Configure::write('Optimum.settings', array(
+	'forum_category_model' => 'Mission',
+	'forum_category_foreign_key' => 'mission_id',
+	'permission_model' => 'CourseUser',
+	'permission_fks' => array('category' => 'course_id', 'user' => 'user_id')
+));
