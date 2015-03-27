@@ -246,8 +246,9 @@
 
 			<!-- GRAPHIC NOVEL -->
 			<div class="section missions-graphic-novel">
-	    		<div id="loading" class="text-center">
-	    			<i class="fa fa-spinner fa-spin fa-3x"></i>
+    			<div id="loading">
+	    			<div class="loading-circle-outside"></div>
+	    			<div class="loading-circle-inside"></div>
 	    		</div>
 
 		    	<div class="missions-carousel full-width">

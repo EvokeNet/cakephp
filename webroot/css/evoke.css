@@ -440,45 +440,6 @@ button, div, p, span, a,
 	text-align: end;
 }
 
-/*.side-menu{
-	border: none;
-	list-style-type: none;
-	margin:0;
-}
-
-.side-menu .side-nav{
-	padding: 0;
-}
-
-.side-menu .side-nav li{
-	margin: 0 -4px 0 0;
-	border-bottom: none;
-	border-left: 4px solid transparent;
-	border-radius: 0;
-}
-
-.side-menu .side-nav li a{
-	color: #cccccc;
-}
-
-.side-nav li.active > a:first-child:not(.button){
-	color: #26dee0;
-}
-
-.side-menu .side-nav li.active{
-	border-color: #26dee0;
-	color: rgba(0,0,0,.85);
-}
-
-.side-menu .side-nav li:hover{
-	border-color: #26dee0;
-}
-
-.side-menu i{
-	float:right;
-	margin: .2em 0 0 0;
-}
-*/
 
 /* --------------------------- */
 /* LISTS */
@@ -894,12 +855,6 @@ button, .button {
 /* --------------------------- */
 
 /* Profile picture */
-/*.evoke .background-cover-center {
-	background-size: cover;
-	background-position: center center;
-	background-repeat: no-repeat;
-	overflow: hidden;
-}*/
 .evoke .square-40px {
 	height: 40px;
 	width: 40px;
@@ -987,4 +942,130 @@ button, .button {
 	background: #292929;
 	text-align: center;
 	bottom: 0;
+}
+
+
+
+
+
+/* --------------------------- */
+/* ANIMATIONS - LOADING */
+/* --------------------------- */
+/* Uses CSS Animations if supported (checked by modernizr .cssanimations) */
+.cssanimations .loading-circle-outside {
+    background-color: rgba(0,0,0,0);
+    border: 5px solid rgba(0,183,229,0.9);
+    opacity: .9;
+    border-right: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 50px;
+    box-shadow: 0 0 35px #2187e7;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    -moz-animation: spinPulse 1s infinite ease-in-out;
+    -webkit-animation: spinPulse 1s infinite linear;
+    animation: spinPulse 1s infinite linear;
+}
+
+.cssanimations .loading-circle-inside {
+    background-color: rgba(0,0,0,0);
+    border: 5px solid rgba(0,183,229,0.9);
+    opacity: .9;
+    border-left: 5px solid rgba(0,0,0,0);
+    border-right: 5px solid rgba(0,0,0,0);
+    border-radius: 50px;
+    box-shadow: 0 0 15px #2187e7;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    position: relative;
+    top: -40px;
+    -moz-animation: spinoffPulse 1s infinite linear;
+    -webkit-animation: spinoffPulse 1s infinite linear;
+    animation: spinoffPulse 1s infinite linear;
+}
+
+@-moz-keyframes spinPulse {
+    0% {
+        -moz-transform: rotate(160deg);
+        opacity: 0;
+        box-shadow: 0 0 1px #2187e7;
+    }
+
+    50% {
+        -moz-transform: rotate(145deg);
+        opacity: 1;
+    }
+
+    100% {
+        -moz-transform: rotate(-320deg);
+        opacity: 0;
+    };
+}
+
+@-moz-keyframes spinoffPulse {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+    };
+}
+
+@-webkit-keyframes spinPulse {
+    0% {
+        -webkit-transform: rotate(160deg);
+        opacity: 0;
+        box-shadow: 0 0 1px #2187e7;
+    }
+
+    50% {
+        -webkit-transform: rotate(145deg);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: rotate(-320deg);
+        opacity: 0;
+    };
+}
+
+@-webkit-keyframes spinoffPulse {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    };
+}
+
+@keyframes spinPulse {
+    0% {
+        transform: rotate(160deg);
+        opacity: 0;
+        box-shadow: 0 0 1px #2187e7;
+    }
+
+    50% {
+        transform: rotate(145deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(-320deg);
+        opacity: 0;
+    };
+}
+
+@keyframes spinoffPulse {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    };
 }
