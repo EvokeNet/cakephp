@@ -22,7 +22,12 @@
 }
 
 .evoke .phases-bar * {
-	font-size: 0.7rem;
+	font-size: 0.65rem;
+}
+
+.evoke .phases-bar button.small, .evoke .phases-bar .button.small {
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 
 .evoke .phases-bar a, .evoke .phases-bar .radius a {

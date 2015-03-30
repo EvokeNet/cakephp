@@ -27,5 +27,5 @@
 	$this->Html->scriptEnd();
 
 	//SCRIPT
-	$this->Html->script('requirejs/app/Elements/Evidences/evidence-list.js', array('inline' => false));
+	$this->Html->script('requirejs/app/Elements/Evidences/evidence_list.js', array('inline' => false));
 ?>

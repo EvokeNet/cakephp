@@ -12,7 +12,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$(window)
 				.off('uploadCompleted') 
 				.on('uploadCompleted', function(event) {
+
 					var detail = event.originalEvent.detail;
+					//alert(detail);
 			 
 					console.log('Arquivo do curso ' + detail.identifier);
 					console.log('URL do arquivo: ' + detail.url);

@@ -39,9 +39,12 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					//Remove focus
 					//e.preventDefault();
 					$(this).blur();
+
+					//Go to the top of the button
+					$("html,body").animate({
+						scrollTop: $(this).offset().top
+					}, 300);
 				});
-
-
 
 			//--------------------------------------------//
 			//FILE INPUT CHANGED -> FILE NAME DISPLAYED IN ANOTHER ELEMENT

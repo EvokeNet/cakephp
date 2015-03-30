@@ -1,3 +1,8 @@
+<?php
+    //CSS
+    echo $this->Html->css('file_upload');
+?>
+
 <div id="new-evidence-type">
 	<!-- EXPLANATION -->
 	<div class="row text-center margin top-3 bottom-2">
@@ -82,7 +87,10 @@
 
 		<!-- MAIN CONTENT -->
 		<div id="evidence-main-content" class="margin top-2 bottom-2">
+
 		</div>
+
+		<?php echo $this->Form->hidden('main-content', array('value' => 'teste', 'id' => 'evidence-main-content')); ?>
 
 
 		<!-- REGULAR CONTENT -->

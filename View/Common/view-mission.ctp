@@ -165,7 +165,7 @@
 									    		<?php
 									    		if (isset($loggedInUser)): ?>
 								    				<a class="button small submit-evidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')); ?>">
-								    					<?= __('Submit your evidence') ?>
+								    					<?= __('Create your evidence') ?>
 								    				</a><?php
 									    		else: ?>
 									    			<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
