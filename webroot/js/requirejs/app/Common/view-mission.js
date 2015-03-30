@@ -160,7 +160,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					url: $(this).attr("href")+"/true",
 					type:"POST",
 					beforeSend: function() {
-						$('#missions-content-overlay .content-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+						$('#missions-content-overlay .content-body').html('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
 						$('#missions-content-overlay').fadeIn('slow');
 						$('.main-section').addClass("hidden");
 						$('.tab-bar').addClass("hidden");
