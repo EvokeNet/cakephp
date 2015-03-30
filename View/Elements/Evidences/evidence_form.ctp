@@ -78,11 +78,6 @@
 				echo $this->Form->hidden('user_id', array('value' => $loggedInUser['id']));
 				$upload_path .= "/".$loggedInUser['id'];
 			}
-
-			//Text-area formatting
-			if (!isset($content_class)) {
-				$content_class = 'radius';
-			}
 		?>
 
 		<!-- MAIN CONTENT -->
@@ -101,7 +96,7 @@
 			)));
 
 			//CONTENT
-			echo $this->Form->input('content', array('label' => __('Edit your evidence:'), 'type' => 'textarea', 'class' => $content_class, 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
+			echo $this->Form->input('content', array('label' => __('Edit your evidence:'), 'type' => 'textarea', 'class' => 'radius', 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
 
 			//SUBMIT BUTTON
 			if (!isset($button_class)) {

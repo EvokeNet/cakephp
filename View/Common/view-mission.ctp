@@ -73,10 +73,10 @@
 		</nav>
 
 		<!-- CONTENT OVERLAY - Section that dinamically loads content that will be manipulated by the user, and therefore needs focus -->
-		<div id="missions-content-overlay" class="background-color-dark absolute min-full-height full-width hidden padding all-2 top-5">
+		<div id="missions-content-overlay" class="background-color-dark absolute min-full-height full-width hidden">
 			<div class="relative">
 				<!-- CLOSE BUTTON -->
-				<div id="close-content-overlay-button" class="right absolute">
+				<div id="close-content-overlay-button" class="right absolute margin top-5 right-2">
 					<a class="close-missions-content-overlay">
 						<span class="fa-stack fa-lg">
 							<i class="fa fa-circle fa-stack-2x text-color-dark"></i>

@@ -152,6 +152,19 @@
 	margin-left: 0.2em;
 }
 
+
+/* --------------------------- */
+/* EVIDENCE */
+/* --------------------------- */
+.evidence .position-fixed {
+	position: fixed;
+}
+
+.evidence .full-height-vh {
+	height: 100vh;
+}
+
+
 /* --------------------------- */
 /* JOYRIDE */
 /* --------------------------- */

@@ -8,27 +8,42 @@
 
 
 
-<div class="row standard-width padding all-1">
-	<!-- TITLE -->
-	<h1 class="text-glow text-center">
-		<?= __('Create your evidence') ?>
-	</h1>
+<div class="evidence row full-width padding top-4 full-height">
 
 
-	<?php
-	if (isset($quest)): ?>
-		<!-- QUEST DESCRIPTION -->
-		<div class="row small-width background-color-standard padding all-2 margin top-2 margins-auto">
-			<h4><?= __('Quest: ').$quest['Quest']['title'] ?></h4>
-			<?= $quest['Quest']['description'] ?>
-		</div><?php
-	endif;
-	?>
+	<div class="column small-12 medium-4 position-fixed padding top-0 left-0 right-5 full-height">
+		<?php
+		if (isset($quest)): ?>
+			<!-- QUEST DESCRIPTION -->
+			<div class="evidence row background-color-standard padding all-2 margins-auto full-height-vh">
+				<h4 class="text-color-darker-gray"><?= __('Quest: ').$quest['Quest']['title'] ?></h4>
+				<?= $quest['Quest']['description'] ?>
 
-	<!-- FORM -->
-	<?php
-		echo $this->element('Evidences/evidence_form');
-	?>
+				<!-- BADGES -->
+				<h5 class="text-color-darker-gray text-center"><?= __('REWARDS') ?></h5>
+				<p class="text-center"><?= __('Submitting an evidence for this quest is worth 3 badges:') ?></p>
+				<p class="text-center">
+					<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
+					<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
+					<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
+				</p>
+			</div><?php
+		endif;
+		?>
+	</div>
+
+
+	<div class="column small-12 medium-8 padding top-2">
+		<!-- TITLE -->
+		<h1 class="text-glow text-center">
+			<?= __('Create your evidence') ?>
+		</h1>
+
+		<!-- FORM -->
+		<?php
+			echo $this->element('Evidences/evidence_form');
+		?>
+	</div>
 </div>
 
 

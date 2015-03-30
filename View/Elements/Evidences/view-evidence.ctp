@@ -3,7 +3,7 @@ if (isset($evidence)):
 	$ajax = $this->request->is('ajax');
 ?>
 
-<div class="row full-width">
+<div class="row full-width padding all-2 top-4">
 	<?php
 	//BREADCRUMBS MENU
 	if (!$ajax && isset($show_breadcrumbs) && ($show_breadcrumbs == true)): ?>
