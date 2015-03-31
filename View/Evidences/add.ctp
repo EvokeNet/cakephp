@@ -11,11 +11,11 @@
 <div class="evidence row full-width padding top-4 full-height">
 
 
-	<div class="column small-12 medium-4 position-fixed padding top-0 left-0 right-5 full-height">
+	<div class="quest-sidebar column small-12 medium-6 large-4 padding top-0 right-3 position-fixed full-height">
 		<?php
 		if (isset($quest)): ?>
 			<!-- QUEST DESCRIPTION -->
-			<div class="evidence row background-color-standard padding all-2 margins-auto full-height-vh">
+			<div class="row background-color-standard padding all-2 margins-auto full-height-vh">
 				<h4 class="text-color-darker-gray"><?= __('Quest: ').$quest['Quest']['title'] ?></h4>
 				<?= $quest['Quest']['description'] ?>
 
@@ -33,7 +33,7 @@
 	</div>
 
 
-	<div class="column small-12 medium-8 padding top-2">
+	<div class="column small-12 medium-6 large-8 padding top-2">
 		<!-- TITLE -->
 		<h1 class="text-glow text-center">
 			<?= __('Create your evidence') ?>

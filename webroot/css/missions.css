@@ -154,7 +154,7 @@
 
 
 /* --------------------------- */
-/* EVIDENCE */
+/* CREATE AN EVIDENCE */
 /* --------------------------- */
 .evidence .position-fixed {
 	position: fixed;
@@ -164,6 +164,9 @@
 	height: 100vh;
 }
 
+.quest-sidebar {
+	font-size: 80%;
+}
 
 /* --------------------------- */
 /* JOYRIDE */
