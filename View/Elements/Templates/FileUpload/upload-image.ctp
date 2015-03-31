@@ -78,8 +78,8 @@
 
         <div class="full-width text-center silabe-uploader" name="uploader">
             <div class="files hidden" name="uploader-files"></div>
-            <button type="button" class="upload-file-button button tiny silabe-uploader-btn" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
-                <div class="upload-button-text">
+            <button type="button" class="upload-file-button tiny paddings-0 silabe-uploader-btn" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
+                <div class="upload-button-text padding all-2">
                     <p class="margin top-2"><i class="fa fa-image fa-4x"></i></p>
                     <p><?php echo __("Upload your evidence's image"); ?></p>
                 </div>
