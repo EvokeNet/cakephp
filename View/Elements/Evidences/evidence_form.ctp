@@ -85,9 +85,9 @@
 
 		</div>
 
-		<?php echo $this->Form->hidden('main-content', array('value' => '', 'id' => 'evidence-main-content')); ?>
+		<?php echo $this->Form->hidden('main-content', array('value' => '', 'id' => 'evidence-form-main-content')); ?>
 
-		<?php echo $this->Form->hidden('type', array('value' => '', 'id' => 'evidence-type')); ?>
+		<?php echo $this->Form->hidden('type', array('value' => '', 'id' => 'evidence-form-type')); ?>
 		
 
 		<!-- REGULAR CONTENT -->

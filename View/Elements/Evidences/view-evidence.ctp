@@ -94,6 +94,17 @@ if (isset($evidence)):
 						</h1>
 					</div>
 
+					<!-- MAIN CONTENT -->
+					<?php
+						if (isset($evidence['Evidence']['main-content'])):
+							if (isset($evidence['Evidence']['type']) && ($evidence['Evidence']['type'] == 'image/png')):
+							?>
+								<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" />
+							<?php
+							endif;
+						endif;
+					?>
+
 					<!-- EDIT/DELETE -->
 					<div class="table-cell vertical-align-center" style="min-width: 4em">
 						<?php

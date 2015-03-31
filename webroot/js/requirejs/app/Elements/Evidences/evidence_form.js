@@ -19,8 +19,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					console.log('URL do arquivo: ' + detail.url);
 
 					$('#file-content').attr('src', detail.url).attr('alt', detail.identifier);
-					$('#evidence-main-content').attr('value', detail.url);
-					$('#evidence-type').attr('value', detail.mimetype);
+					$('#evidence-form-main-content').attr('value', detail.url);
+					$('#evidence-form-type').attr('value', detail.mimetype);
 
 					if ($('.upload-button-text').length) {
 						$('.upload-button-text').remove();
