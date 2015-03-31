@@ -77,36 +77,17 @@ if (isset($evidence)):
 
 
 		<!-- EVIDENCE CONTENT -->
-		<div class="small-12 <?= (!$ajax) ? 'medium-8 large-9' : 'small-12 medium-10 large-5 small-centered' ?> columns">
+		<div class="small-12 <?= (!$ajax) ? 'medium-8 large-9' : 'small-12 medium-10 large-7 small-centered' ?> columns">
 		 	<div class="padding all-1">
-		 		<div class="table">
-		 			<!-- TITLE -->
-		 			<div class="table-cell">
-						<h1 class="text-glow">
-							<?php echo urldecode($evidence['Evidence']['title']); ?>
-						</h1>
-					</div>
-
+		 		<div class="text-center">
 					<!-- TITLE -->
-		 			<div class="table-cell">
-						<h1 class="text-glow">
-							<?php echo urldecode($evidence['Evidence']['title']); ?>
-						</h1>
-					</div>
+					<h1 class="text-glow">
+						<?php echo urldecode($evidence['Evidence']['title']); ?>
+					</h1>
 
-					<!-- MAIN CONTENT -->
-					<?php
-						if (isset($evidence['Evidence']['main-content'])):
-							if (isset($evidence['Evidence']['type']) && ($evidence['Evidence']['type'] == 'image/png')):
-							?>
-								<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" />
-							<?php
-							endif;
-						endif;
-					?>
 
 					<!-- EDIT/DELETE -->
-					<div class="table-cell vertical-align-center" style="min-width: 4em">
+					<div class="right vertical-align-center" style="min-width: 4em">
 						<?php
 						if($ajax): 
 							//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE
@@ -124,6 +105,17 @@ if (isset($evidence)):
 						endif; ?>
 					</div>
 				</div>
+
+				<!-- MAIN CONTENT -->
+				<?php
+					if (isset($evidence['Evidence']['main-content'])):
+						if (isset($evidence['Evidence']['type']) && ($evidence['Evidence']['type'] == 'image/png')):
+						?>
+							<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" />
+						<?php
+						endif;
+					endif;
+				?>
 
 				<!-- EVIDENCE CREATION INFO -->
 				<p>
