@@ -14,7 +14,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				.on('uploadCompleted', function(event) {
 
 					var detail = event.originalEvent.detail;
-					//alert(detail);
+					alert(detail);
 			 
 					console.log('Arquivo do curso ' + detail.identifier);
 					console.log('URL do arquivo: ' + detail.url);
@@ -55,7 +55,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				});
 
 				//Reflow
-				//window.initUploader(); //FILEUPLOADER
+				window.initUploader(); //FILEUPLOADER
 				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 			});
 

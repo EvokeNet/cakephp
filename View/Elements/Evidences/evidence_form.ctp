@@ -121,10 +121,11 @@
 <?php
 	//HANDLEBARS TEMPLATES
 	echo $this->element('Templates/FileUpload/upload-image', array(
-		'alert'      => __('Formatos: .mp4, .mov e .flv'),
+	//echo $this->element('Templates/FileUploader/uploader', array(
+		'alert'      => __('Formatos: .jpg, .png, e .gif'),
 		'bucket'     => 'silabe',
 		'identifier' => '1', //only used to get the element. In this case, there's just one upload element in the page
-        'keyPath'    => 'Evidence'.$upload_path,
+        'keyPath'    => 'Evidence'.$upload_path.'/',
 		'legend'     => __('Upload image'),
         'safePath'   => 'Evidence/'
 	));

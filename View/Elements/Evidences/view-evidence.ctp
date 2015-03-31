@@ -3,7 +3,7 @@ if (isset($evidence)):
 	$ajax = $this->request->is('ajax');
 ?>
 
-<div class="row full-width padding all-2 top-4">
+<div class="row full-width margin top-5">
 	<?php
 	//BREADCRUMBS MENU
 	if (!$ajax && isset($show_breadcrumbs) && ($show_breadcrumbs == true)): ?>
@@ -23,7 +23,7 @@ if (isset($evidence)):
 	endif; ?>
 
 	<!-- EVIDENCE CONTENT -->
-	<div class="row full-width"><?php
+	<div class="row"><?php
 
 		//LEFT SIDEBAR FOR FULL-PAGE
 		if (!$ajax): ?>
@@ -77,10 +77,17 @@ if (isset($evidence)):
 
 
 		<!-- EVIDENCE CONTENT -->
-		<div class="small-12 <?= (!$ajax) ? 'medium-8 large-9' : 'margin left-1' ?> columns">
+		<div class="small-12 <?= (!$ajax) ? 'medium-8 large-9' : 'small-12 medium-10 large-5 small-centered' ?> columns">
 		 	<div class="padding all-1">
 		 		<div class="table">
 		 			<!-- TITLE -->
+		 			<div class="table-cell">
+						<h1 class="text-glow">
+							<?php echo urldecode($evidence['Evidence']['title']); ?>
+						</h1>
+					</div>
+
+					<!-- TITLE -->
 		 			<div class="table-cell">
 						<h1 class="text-glow">
 							<?php echo urldecode($evidence['Evidence']['title']); ?>

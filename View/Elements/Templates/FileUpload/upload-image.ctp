@@ -77,8 +77,8 @@
         <input type="hidden" name="Content-Type" value="application/octet-stream" />
 
         <div class="full-width text-center silabe-uploader" name="uploader">
-            <!--<div class="files" name="uploader-files"></div>-->
-            <button type="button" class="upload-file-button button tiny" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
+            <div class="files hidden" name="uploader-files"></div>
+            <button type="button" class="upload-file-button button tiny silabe-uploader-btn" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
                 <div id="fileinput-{{id}}-uploadbutton">
                     <p class="margin top-2"><i class="fa fa-image fa-4x"></i></p>
                     <p><?php echo __("Upload your evidence's image"); ?></p>
