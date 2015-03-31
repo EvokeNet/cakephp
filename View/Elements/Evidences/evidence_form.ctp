@@ -85,8 +85,10 @@
 
 		</div>
 
-		<?php echo $this->Form->hidden('main-content', array('value' => 'teste', 'id' => 'evidence-main-content')); ?>
+		<?php echo $this->Form->hidden('main-content', array('value' => '', 'id' => 'evidence-main-content')); ?>
 
+		<?php echo $this->Form->hidden('type', array('value' => '', 'id' => 'evidence-type')); ?>
+		
 
 		<!-- REGULAR CONTENT -->
 		<?php

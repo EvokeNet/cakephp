@@ -14,10 +14,17 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				.on('uploadCompleted', function(event) {
 
 					var detail = event.originalEvent.detail;
-					alert(detail);
 			 
 					console.log('Arquivo do curso ' + detail.identifier);
 					console.log('URL do arquivo: ' + detail.url);
+
+					$('#file-content').attr('src', e.target.result);
+					$('#evidence-main-content').attr('value', detail.url);
+					$('#evidence-type').attr('value', detail.mimetype);
+
+					if ($('.upload-button-text').length) {
+						$('.upload-button-text').remove();
+					}
 				});
 
 			//--------------------------------------------//

@@ -49,11 +49,11 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//FILE INPUT CHANGED -> FILE NAME DISPLAYED IN ANOTHER ELEMENT
 			//--------------------------------------------//
-			$('body')
-				.off('click', '.upload-file-input') //clear events in previous elements
-				.on('change', '.upload-file-input', function (event) {
-					console.log('evento!!!');
-				});
+			// $('body')
+			// 	.off('click', '.upload-file-input') //clear events in previous elements
+			// 	.on('change', '.upload-file-input', function (event) {
+			// 		console.log('evento!!!');
+			// 	});
 			// $('body')
 			// 	.off('click', '.upload-file-input') //clear events in previous elements
 			// 	.on('change', '.upload-file-input', function (event) {
