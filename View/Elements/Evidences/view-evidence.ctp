@@ -87,7 +87,7 @@ if (isset($evidence)):
 
 
 					<!-- EDIT/DELETE -->
-					<div class="right vertical-align-center" style="min-width: 4em">
+					<div>
 						<?php
 						if($ajax): 
 							//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE

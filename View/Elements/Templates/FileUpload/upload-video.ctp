@@ -85,7 +85,7 @@
                 </div>
 
                 <div id="fileinput-{{id}}-frame" class="flex-video-new">
-					<iframe id="file-content" width="420" height="315" frameborder="0" allowfullscreen></iframe>
+					<iframe id="file-content" width="420" height="315" frameborder="0" allowfullscreen autoplay=false></iframe>
 				</div>
             </button>
 
