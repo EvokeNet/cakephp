@@ -114,7 +114,7 @@ if (isset($evidence)):
 						?>
 							<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
 						//VIDEO
-						else if (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "video")):
+						elseif (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "video")):
 						?>
 							<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
 						endif;
