@@ -3,9 +3,14 @@
     <?php
         //CSS
         echo $this->Html->css('FileUploader.file-uploader');
+
+        $multiple = false;
+        if (isset($allowMultiple)) {
+            $multiple = $allowMultiple;
+        }
     ?>
 
-    <form action="https://silabe.s3.amazonaws.com/" method="POST" enctype="multipart/form-data" data-identifier="<?php echo (isset($identifier) ? $identifier : ''); ?>">
+    <form action="https://silabe.s3.amazonaws.com/" method="POST" multiple="<?= $multiple ?>" enctype="multipart/form-data" data-identifier="<?php echo (isset($identifier) ? $identifier : ''); ?>">
         <?php
             // Upload deadline
             $datetime = null;
@@ -87,7 +92,7 @@
                 <img id="file-content" />
             </button>
 
-            <input type="file" id='fileinput-{{id}}' name='file' class='hide upload-file-input text-center' accept='image/jpeg,image/png' /> 
+            <input type="file" id='fileinput-{{id}}' name='file' class='hide upload-file-input text-center' accept='image/jpeg,image/png' multiple="<?= $multiple ?>" /> 
 
             <input type="submit" class="button hide btn-uploader-submit" value="<?php echo __('Send image'); ?>" />
         </div>
