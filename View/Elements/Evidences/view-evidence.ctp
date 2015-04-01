@@ -106,37 +106,39 @@ if (isset($evidence)):
 					</div>
 				</div>
 
-				<!-- MAIN CONTENT -->
-				<?php
-					if (isset($evidence['Evidence']['main-content'])):
-						//IMAGE
-						if (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "image")):
-						?>
-							<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
-						//VIDEO
-						elseif (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "video")):
-						?>
-							<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
-						endif;
-					endif;
-				?>
-
-				<!-- EVIDENCE CREATION INFO -->
-				<p>
+				<div class="margin top-2">
+					<!-- MAIN CONTENT -->
 					<?php
-						$creation_date = date_format(date_create($evidence['Evidence']['created']),"m/d/Y");
-
-						//ADDITIONAL USER INFO AND QUEST INFO FOR AJAX
-						if ($ajax) {
-							echo $evidence['User']['name'];
-							echo __(' in ').$creation_date;
-							echo __(' in response to ').$evidence['Quest']['title'];
-						}
-						else {
-							echo __('Created in ').$creation_date;
-						}
+						if (isset($evidence['Evidence']['main-content'])):
+							//IMAGE
+							if (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "image")):
+							?>
+								<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
+							//VIDEO
+							elseif (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "video")):
+							?>
+								<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
+							endif;
+						endif;
 					?>
-				</p>
+
+					<!-- EVIDENCE CREATION INFO -->
+					<p>
+						<?php
+							$creation_date = date_format(date_create($evidence['Evidence']['created']),"m/d/Y");
+
+							//ADDITIONAL USER INFO AND QUEST INFO FOR AJAX
+							if ($ajax) {
+								echo $evidence['User']['name'];
+								echo __(' in ').$creation_date;
+								echo __(' in response to ').$evidence['Quest']['title'];
+							}
+							else {
+								echo __('Created in ').$creation_date;
+							}
+						?>
+					</p>
+				</div>
 			</div>
 
 			<!-- RATING/SHARE BAR -->
