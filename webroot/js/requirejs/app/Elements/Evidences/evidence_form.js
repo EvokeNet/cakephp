@@ -12,15 +12,20 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$(window)
 				.off('uploadCompleted') 
 				.on('uploadCompleted', function(event) {
+					//Hide progress bar
+					$('div.files').addClass('hidden');
 
 					var detail = event.originalEvent.detail;
 			 
-					console.log('Arquivo do curso ' + detail.identifier);
-					console.log('URL do arquivo: ' + detail.url);
+					console.log('type ' + detail.mimetype);
+					console.log('URL: ' + detail.url);
 
-					$('#file-content').attr('src', detail.url).attr('alt', detail.identifier);
+					//Insert data into form to save it in the DB
 					$('#evidence-form-main-content').attr('value', detail.url);
 					$('#evidence-form-type').attr('value', detail.mimetype);
+
+					//Display uplodaded content
+					$('#file-content').attr('src', detail.url).attr('alt', detail.identifier);
 
 					if ($('.upload-button-text').length) {
 						$('.upload-button-text').remove();

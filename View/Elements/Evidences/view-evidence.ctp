@@ -109,10 +109,14 @@ if (isset($evidence)):
 				<!-- MAIN CONTENT -->
 				<?php
 					if (isset($evidence['Evidence']['main-content'])):
-						if (isset($evidence['Evidence']['type']) && ($evidence['Evidence']['type'] == 'image/png')):
+						//IMAGE
+						if (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "image")):
 						?>
-							<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" />
-						<?php
+							<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
+						//VIDEO
+						else if (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "video")):
+						?>
+							<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
 						endif;
 					endif;
 				?>
