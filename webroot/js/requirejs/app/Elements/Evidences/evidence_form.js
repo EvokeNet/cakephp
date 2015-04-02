@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'handlebars', 'froala', '../FileUploader/js/FileUploader'], function ($, Handlebars) {
+	require(['jquery', 'handlebars', '../FileUploader/js/FileUploader', 'froala'], function ($, Handlebars, FileUploader) {
 		$(document).ready(function(){
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
@@ -7,8 +7,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//SETUP FILE UPLOADER PLUGIN
 			//--------------------------------------------//
-			window.initUploader();
-
 			$(window)
 				.off('uploadCompleted') 
 				.on('uploadCompleted', function(event) {
@@ -67,7 +65,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				});
 
 				//Reflow
-				window.initUploader(); //FILEUPLOADER
+				FileUploader.initUploader(); //FILEUPLOADER
 				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 			});
 
