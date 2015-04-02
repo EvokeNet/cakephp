@@ -840,8 +840,6 @@ class MissionsController extends AppController {
 		$hasGroup = false;
 		//check to see if user has entered a group of this mission
 		foreach ($mission['Group'] as $group) {
-			echo "entrou";
-			debug($group);
 			if($group['user_id'] == $this->user['id']) {
 				$hasGroup = true;
 				array_push($myEvokations_groupsids, array('Evokation.group_id' => $group['id']));
