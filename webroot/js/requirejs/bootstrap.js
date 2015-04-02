@@ -2,7 +2,6 @@ requirejs.config({
     baseUrl: webroot + 'components',
     paths: {
         // ALPHABETICAL ORDER PLEASE
-        awssdkjs : 'aws-sdk-js',
         chartjs : 'chartjs/Chart.min',
         facebook: '//connect.facebook.net/en_US/all',
         foundation: 'foundation/js/foundation.min',
@@ -19,7 +18,6 @@ requirejs.config({
         sweetalert: 'sweetalert/lib/sweet-alert.min'
     },
     shim: {
-        awssdkjs: { exports: 'AWS' },
         facebook: { exports: 'FB' },
         foundation: {
             deps: ['jquery', 'modernizr'],
