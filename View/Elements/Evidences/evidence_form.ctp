@@ -1,11 +1,16 @@
 <?php
     //CSS
-    echo $this->Html->css('file_upload');
+    echo $this->Html->css(
+		array(
+			'/components/sweetalert/lib/sweet-alert.css',
+			'file_upload'
+		)
+	);
 ?>
 
 <div id="new-evidence-type">
 	<!-- EXPLANATION -->
-	<div class="row text-center margin top-3 bottom-2">
+	<div id="evidence-type-title" class="row text-center margin top-3 bottom-2">
 		<?= __('Your can choose the focus of your evidence:') ?>
 	</div>
 

@@ -168,6 +168,22 @@
 	font-size: 80%;
 }
 
+#new-evidence-type .active h4, #new-evidence-type .active i {
+	color: #26dee0;
+}
+
+#new-evidence-type .active i {
+	border-color: #26dee0;
+}
+
+#new-evidence-type .inactive h4, #new-evidence-type .inactive i {
+	color: #cccccc;
+}
+
+#new-evidence-type .inactive i {
+	border-color: #cccccc;
+}
+
 /* --------------------------- */
 /* JOYRIDE */
 /* --------------------------- */
