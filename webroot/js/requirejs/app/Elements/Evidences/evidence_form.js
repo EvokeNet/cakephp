@@ -8,6 +8,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//SETUP FILE UPLOADER PLUGIN
 			//--------------------------------------------//
 			$(window)
+				.off('uploaderFileAdded') 
+				.on('uploaderFileAdded', function(event) {
+					//Show progress bar
+					$('div.files').removeClass('hidden');
+				});
+
+			$(window)
 				.off('uploadCompleted') 
 				.on('uploadCompleted', function(event) {
 					//Hide progress bar
@@ -30,8 +37,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					}
 
 					//Video shows
-					// $('.upload-button-text').length)
-					// flex-video-new
+					$('.flex-video-new').removeClass('hidden');
 				});
 
 			//--------------------------------------------//
