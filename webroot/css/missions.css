@@ -177,11 +177,11 @@
 }
 
 #new-evidence-type .inactive h4, #new-evidence-type .inactive i {
-	color: #cccccc;
+	color: #707070;
 }
 
 #new-evidence-type .inactive i {
-	border-color: #cccccc;
+	border-color: #707070;
 }
 
 /* --------------------------- */
