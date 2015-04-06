@@ -82,7 +82,7 @@
         <input type="hidden" name="Content-Type" value="application/octet-stream" />
 
         <div class="full-width text-center silabe-uploader" name="uploader">
-            <div class="files hidden" name="uploader-files"></div>
+            <div class="files" name="uploader-files"></div>
             <button type="button" class="upload-file-button tiny paddings-0 silabe-uploader-btn" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
                 <div class="upload-button-text padding all-2">
                     <p class="margin top-2"><i class="fa fa-image fa-4x"></i></p>
