@@ -69,7 +69,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						text: "If you change your evidence type now, you will lose the special content of your evidence's focus",
 						type: "warning",
 						showCancelButton: true,
-						confirmButtonColor: "#DD6B55",
+						confirmButtonColor: "#26dee0",
 						confirmButtonText: "Yes, change my evidence type!",
 						closeOnConfirm: true
 					},
