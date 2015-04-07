@@ -3,6 +3,8 @@ requirejs.config({
     paths: {
         // ALPHABETICAL ORDER PLEASE
         chartjs : 'chartjs/Chart.min',
+        ember: 'ember/ember.min',
+        embertemplatecompiler: 'ember/ember-template-compiler',
         facebook: '//connect.facebook.net/en_US/all',
         foundation: 'foundation/js/foundation.min',
         froala: 'FroalaWysiwygEditor/js/froala_editor.min',
