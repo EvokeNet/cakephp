@@ -22,12 +22,7 @@
 }
 
 .evoke .phases-bar * {
-	font-size: 0.65rem;
-}
-
-.evoke .phases-bar button.small, .evoke .phases-bar .button.small {
-	padding-left: 1rem;
-	padding-right: 1rem;
+	font-size: 0.7rem;
 }
 
 .evoke .phases-bar a, .evoke .phases-bar .radius a {
@@ -150,38 +145,6 @@
 
 .evoke .tabDossierContent ul {
 	margin-left: 0.2em;
-}
-
-
-/* --------------------------- */
-/* CREATE AN EVIDENCE */
-/* --------------------------- */
-.evidence .position-fixed {
-	position: fixed;
-}
-
-.evidence .full-height-vh {
-	height: 100vh;
-}
-
-.quest-sidebar {
-	font-size: 80%;
-}
-
-#new-evidence-type .active h4, #new-evidence-type .active i {
-	color: #26dee0;
-}
-
-#new-evidence-type .active i {
-	border-color: #26dee0;
-}
-
-#new-evidence-type .inactive h4, #new-evidence-type .inactive i {
-	color: #707070;
-}
-
-#new-evidence-type .inactive i {
-	border-color: #707070;
 }
 
 /* --------------------------- */

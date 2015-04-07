@@ -62,9 +62,7 @@
 		</li>
 		<li>
 			<div class="column">
-				<span data-tooltip aria-haspopup="true" class="has-tip" title="Not available on preview">
-					<a href="#" class="text-glow-on-hover text-color-highlight"><?php echo __('Forum'); ?></a>
-				</span>
+				<a href="<?= $this->Html->url(array('plugin' => 'optimum', 'controller' => 'forumDiscussions', 'action' => 'view')) ?>" class="text-glow-on-hover text-color-highlight"><?php echo __('Forum'); ?></a>
 			</div>
 		</li>
 		

@@ -800,10 +800,7 @@ class MissionsController extends AppController {
 		$mission = $this->Mission->find('first', array(
 			'conditions' => array('Mission.id' => $mission_id),
 			'contain' => array(
-				'Phase' => array('Quest' => array(
-					'Questionnaire'/*,
-					'Badge' => array('Attachment')*/
-				)),
+				'Phase' => array('Quest' => 'Questionnaire'),
 				'Group'
 			)
 		));

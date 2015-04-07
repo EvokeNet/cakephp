@@ -278,59 +278,6 @@ class EvokeSchema extends CakeSchema {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 
-	public $forum_posts = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-		'forum_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-		'forum_topic_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-		'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-		'content' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
-		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1)
-		),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-	);
-
-	public $forum_topics = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-		'forum_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-		'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-		'title' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'slug' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'content' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'status' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 5, 'unsigned' => false),
-		'view_count' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-		'forumPost_count' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-		'firstPost_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-		'lastPost_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-		'lastUser_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-		'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
-		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1)
-		),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-	);
-
-	public $forums = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-		'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-		'title' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'slug' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'description' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'topic_count' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => false),
-		'post_count' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => false),
-		'lastTopic_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => false),
-		'lastPost_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => false),
-		'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
-		'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1)
-		),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-	);
-
 	public $group_requests = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
 		'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),

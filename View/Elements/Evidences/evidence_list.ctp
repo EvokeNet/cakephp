@@ -6,10 +6,7 @@
 		endforeach;
 	endif; ?>
 </div>
-<div class="moreEvidencesLoading text-center hidden padding all-1">
-	<div class="loading-circle-outside"></div>
-	<div class="loading-circle-inside"></div>
-</div>
+<div class="moreEvidencesLoading text-center hidden padding all-1"><i class="fa fa-spinner fa-spin fa-3x"></i></div>
 
 <!-- SCRIPT -->
 <?php
@@ -27,5 +24,5 @@
 	$this->Html->scriptEnd();
 
 	//SCRIPT
-	$this->Html->script('requirejs/app/Elements/Evidences/evidence_list.js', array('inline' => false));
+	$this->Html->script('requirejs/app/Elements/Evidences/evidence-list.js', array('inline' => false));
 ?>

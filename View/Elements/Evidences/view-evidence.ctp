@@ -3,7 +3,7 @@ if (isset($evidence)):
 	$ajax = $this->request->is('ajax');
 ?>
 
-<div class="row full-width margin top-5">
+<div class="row full-width">
 	<?php
 	//BREADCRUMBS MENU
 	if (!$ajax && isset($show_breadcrumbs) && ($show_breadcrumbs == true)): ?>
@@ -23,7 +23,7 @@ if (isset($evidence)):
 	endif; ?>
 
 	<!-- EVIDENCE CONTENT -->
-	<div class="row"><?php
+	<div class="row full-width"><?php
 
 		//LEFT SIDEBAR FOR FULL-PAGE
 		if (!$ajax): ?>
@@ -77,17 +77,18 @@ if (isset($evidence)):
 
 
 		<!-- EVIDENCE CONTENT -->
-		<div class="small-12 <?= (!$ajax) ? 'medium-8 large-9' : 'small-12 medium-10 large-7 small-centered' ?> columns">
+		<div class="small-12 <?= (!$ajax) ? 'medium-8 large-9' : 'margin left-1' ?> columns">
 		 	<div class="padding all-1">
-		 		<div class="text-center">
-					<!-- TITLE -->
-					<h1 class="text-glow">
-						<?php echo urldecode($evidence['Evidence']['title']); ?>
-					</h1>
-
+		 		<div class="table">
+		 			<!-- TITLE -->
+		 			<div class="table-cell">
+						<h1 class="text-glow">
+							<?php echo urldecode($evidence['Evidence']['title']); ?>
+						</h1>
+					</div>
 
 					<!-- EDIT/DELETE -->
-					<div>
+					<div class="table-cell vertical-align-center" style="min-width: 4em">
 						<?php
 						if($ajax): 
 							//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE
@@ -106,39 +107,22 @@ if (isset($evidence)):
 					</div>
 				</div>
 
-				<div class="margin top-2">
-					<!-- MAIN CONTENT -->
+				<!-- EVIDENCE CREATION INFO -->
+				<p>
 					<?php
-						if (isset($evidence['Evidence']['main-content'])):
-							//IMAGE
-							if (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "image")):
-							?>
-								<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
-							//VIDEO
-							elseif (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "video")):
-							?>
-								<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
-							endif;
-						endif;
+						$creation_date = date_format(date_create($evidence['Evidence']['created']),"m/d/Y");
+
+						//ADDITIONAL USER INFO AND QUEST INFO FOR AJAX
+						if ($ajax) {
+							echo $evidence['User']['name'];
+							echo __(' in ').$creation_date;
+							echo __(' in response to ').$evidence['Quest']['title'];
+						}
+						else {
+							echo __('Created in ').$creation_date;
+						}
 					?>
-
-					<!-- EVIDENCE CREATION INFO -->
-					<p>
-						<?php
-							$creation_date = date_format(date_create($evidence['Evidence']['created']),"m/d/Y");
-
-							//ADDITIONAL USER INFO AND QUEST INFO FOR AJAX
-							if ($ajax) {
-								echo $evidence['User']['name'];
-								echo __(' in ').$creation_date;
-								echo __(' in response to ').$evidence['Quest']['title'];
-							}
-							else {
-								echo __('Created in ').$creation_date;
-							}
-						?>
-					</p>
-				</div>
+				</p>
 			</div>
 
 			<!-- RATING/SHARE BAR -->

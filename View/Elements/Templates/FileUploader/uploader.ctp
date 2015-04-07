@@ -4,7 +4,7 @@
         echo $this->Html->css('FileUploader.file-uploader');
     ?>
 
-    <form class="file-uploader" action="https://silabe.s3.amazonaws.com/" method="POST" enctype="multipart/form-data" data-identifier="<?php echo (isset($identifier) ? $identifier : ''); ?>">
+    <form action="https://silabe.s3.amazonaws.com/" method="POST" enctype="multipart/form-data" data-identifier="<?php echo (isset($identifier) ? $identifier : ''); ?>">
         <?php
             // Upload deadline
             $datetime = null;

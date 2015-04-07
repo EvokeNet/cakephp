@@ -116,28 +116,11 @@ require APP . '/Vendor/autoload.php';
 spl_autoload_unregister(array('App', 'load'));
 spl_autoload_register(array('App', 'load'), true, true);
 
-// Optional constants before plugin loading
-// define('USER_MODEL', 'User'); // Name of the user model (supports plugin syntax)
-// define('FORUM_PREFIX', 'forum_'); // Table prefix, must not be empty
-// define('FORUM_DATABASE', 'default'); // Database config to create tables in
-
 CakePlugin::loadAll();
 
 // The Utility and Admin plugin must be loaded before the Forum
 // CakePlugin::load('Utility', array('bootstrap' => true, 'routes' => true));
 // CakePlugin::load('Admin', array('bootstrap' => true, 'routes' => true));
-//CakePlugin::load('Forum', array('bootstrap' => true, 'routes' => true));
-
-// Configure the plugin after it has been loaded
-// Configure::write('Forum.settings.whosOnlineInterval', '-5 minutes');
-
-// Configure::write('Forum.settings', array(
-// 	'name' => __('Evoke Network'),
-// 	'email' => 'email@website.com',
-// 	'url' => 'http://website.com',
-// 	'topicsPerPage' => 25,
-// 	'postsPerPage' => 20
-// ) + Configure::read('Forum.settings'));
 
 // Configure::write('User.fieldMap', array(
 // 	// 'avatar'   => 'picture'
@@ -165,3 +148,14 @@ CakeEventManager::instance()->attach(new BadgeListener());
 
 // $evidence = ClassRegistry::init('Evidence');
 // $evidence->getEventManager()->attach(new PointListener());
+
+/**
+ * Configures Optimum Plugin
+ * model_name: model that will be used to 
+ */
+Configure::write('Optimum.settings', array(
+	'forum_category_model' => 'Mission',
+	'forum_category_foreign_key' => 'mission_id',
+	'permission_model' => 'CourseUser',
+	'permission_fks' => array('category' => 'course_id', 'user' => 'user_id')
+));

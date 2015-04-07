@@ -73,10 +73,10 @@
 		</nav>
 
 		<!-- CONTENT OVERLAY - Section that dinamically loads content that will be manipulated by the user, and therefore needs focus -->
-		<div id="missions-content-overlay" class="background-color-dark absolute min-full-height full-width hidden">
+		<div id="missions-content-overlay" class="background-color-dark absolute min-full-height full-width hidden padding all-2 top-5">
 			<div class="relative">
 				<!-- CLOSE BUTTON -->
-				<div id="close-content-overlay-button" class="right absolute margin top-5 right-2">
+				<div id="close-content-overlay-button" class="right absolute">
 					<a class="close-missions-content-overlay">
 						<span class="fa-stack fa-lg">
 							<i class="fa fa-circle fa-stack-2x text-color-dark"></i>
@@ -165,7 +165,7 @@
 									    		<?php
 									    		if (isset($loggedInUser)): ?>
 								    				<a class="button small submit-evidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')); ?>">
-								    					<?= __('Create your evidence') ?>
+								    					<?= __('Submit your evidence') ?>
 								    				</a><?php
 									    		else: ?>
 									    			<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
@@ -246,9 +246,8 @@
 
 			<!-- GRAPHIC NOVEL -->
 			<div class="section missions-graphic-novel">
-    			<div id="loading">
-	    			<div class="loading-circle-outside"></div>
-	    			<div class="loading-circle-inside"></div>
+	    		<div id="loading" class="text-center">
+	    			<i class="fa fa-spinner fa-spin fa-3x"></i>
 	    		</div>
 
 		    	<div class="missions-carousel full-width">

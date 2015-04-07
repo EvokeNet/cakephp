@@ -10,7 +10,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					url: missions_load_dossier_url,
 					type:"POST",
 					beforeSend: function() {
-						$('.tabDossierContent').html('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
+						$('.tabDossierContent').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
 					},
 					success: function(data) {
 						$('.tabDossierContent').html(data);
@@ -29,7 +29,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						url: missions_load_evidences_url,
 						type:"POST",
 						beforeSend: function() {
-							$('.tabEvidencesContent').html('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
+							$('.tabEvidencesContent').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
 						},
 						success: function(data) {
 							//Fill tab evidence
@@ -42,7 +42,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 									type:"POST",
 									beforeSend: function() {
 										//SHOW OVERLAY WITH LOADING IMAGE
-										$('.content-body').html('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
+										$('.content-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
 										$('#missions-content-overlay').fadeIn("fast");
 										//HIDE SECTION BEHIND
 										$('.main-section').addClass("hidden");

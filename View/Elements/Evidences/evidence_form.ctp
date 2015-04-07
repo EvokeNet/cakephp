@@ -1,16 +1,6 @@
-<?php
-    //CSS
-    echo $this->Html->css(
-		array(
-			'/components/sweetalert/lib/sweet-alert.css',
-			'file_upload'
-		)
-	);
-?>
-
 <div id="new-evidence-type">
 	<!-- EXPLANATION -->
-	<div id="evidence-type-title" class="row text-center margin top-3 bottom-2">
+	<div class="row text-center margin top-3 bottom-2">
 		<?= __('Your can choose the focus of your evidence:') ?>
 	</div>
 
@@ -83,17 +73,17 @@
 				echo $this->Form->hidden('user_id', array('value' => $loggedInUser['id']));
 				$upload_path .= "/".$loggedInUser['id'];
 			}
+
+			//Text-area formatting
+			if (!isset($content_class)) {
+				$content_class = 'radius';
+			}
 		?>
 
 		<!-- MAIN CONTENT -->
 		<div id="evidence-main-content" class="margin top-2 bottom-2">
-
 		</div>
 
-		<?php echo $this->Form->hidden('main-content', array('value' => '', 'id' => 'evidence-form-main-content')); ?>
-
-		<?php echo $this->Form->hidden('type', array('value' => '', 'id' => 'evidence-form-type')); ?>
-		
 
 		<!-- REGULAR CONTENT -->
 		<?php
@@ -103,7 +93,7 @@
 			)));
 
 			//CONTENT
-			echo $this->Form->input('content', array('label' => __('Edit your evidence:'), 'type' => 'textarea', 'class' => 'radius', 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
+			echo $this->Form->input('content', array('label' => __('Edit your evidence:'), 'type' => 'textarea', 'class' => $content_class, 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
 
 			//SUBMIT BUTTON
 			if (!isset($button_class)) {
@@ -128,11 +118,10 @@
 <?php
 	//HANDLEBARS TEMPLATES
 	echo $this->element('Templates/FileUpload/upload-image', array(
-	//echo $this->element('Templates/FileUploader/uploader', array(
-		'alert'      => __('Formatos: .jpg, .png, e .gif'),
+		'alert'      => __('Formatos: .mp4, .mov e .flv'),
 		'bucket'     => 'silabe',
 		'identifier' => '1', //only used to get the element. In this case, there's just one upload element in the page
-        'keyPath'    => 'Evidence'.$upload_path.'/',
+        'keyPath'    => 'Evidence'.$upload_path,
 		'legend'     => __('Upload image'),
         'safePath'   => 'Evidence/'
 	));

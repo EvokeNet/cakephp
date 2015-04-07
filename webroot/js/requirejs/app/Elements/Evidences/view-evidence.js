@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'sweetalert', 'froala', '../js/requirejs/modules/facebook_share'], function ($, swal) {
+	require(['jquery', 'froala', 'sweetalert', '../js/requirejs/modules/facebook_share'], function ($) {
 		$(document).ready(function(){
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
