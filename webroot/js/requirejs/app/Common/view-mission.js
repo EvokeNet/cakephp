@@ -50,6 +50,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$('.tabContent').hide().removeClass("hidden");
 			$('#missions-content-overlay').hide().removeClass("hidden");
 			$('.close-sidebar-button').hide().removeClass("hidden");
+			$('#forumOverlay').hide().removeClass("hidden");
 
 
 			//--------------------------------------------//
@@ -64,10 +65,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				
 				//Show content in front
 				$('.mission-sidebar').css("height",""); //restart data-equalizer of the sidebar columns
-				$('#missionSidebar').show("slide", { direction: "left" }, 400, function(){
-					$(sidr_source).fadeIn('fast');
-					$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
-				});
+				// $('#missionSidebar').show("slide", { direction: "left" }, 400, function(){
+				// 	$(sidr_source).fadeIn('fast');
+				// 	$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
+				// });
 
 				//Possible to close sidr
 				$('.close-sidebar-button').fadeIn('fast');
@@ -181,6 +182,58 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 					}
 				});
+				event.preventDefault();
+			});
+
+			//--------------------------------------------//
+			//EVIDENCE: ADD EVIDENCE FORM OPENS ON THE MISSION-OVERLAY ON THE LEFT
+			//--------------------------------------------//
+			$("#menu-icon-tabForum").click(function(event){
+				console.log($(this).attr("href"));
+				var forum_url = "/#/"+$(this).data("forum-id");
+				var forum_id = $(this).data("forum-id");
+
+
+					$.ajax({
+						url: $(this).attr("href"),
+						type:"POST",
+						data: {forum_id: forum_id},
+						beforeSend: function() {
+							$('#forumOverlay').fadeIn('slow');
+							$('#forumOverlay').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+							// $('.main-section').addClass("hidden");
+							// $('.tab-bar').addClass("hidden");
+							// $('.close-sidebar-button').fadeOut("fast");
+							$(window).forum_id = forum_id;
+							//window.location.hash = forum_url;
+						},
+						success: function(data) {
+							//Display content
+							$('#forumOverlay').off(); //clear events in previous elements
+							$('#forumOverlay *').off(); //clear events in previous elements
+							$('#forumOverlay').html(data);
+
+							//Reflow
+							$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+
+							// $('#init-ember').click(function(){
+							require(['../Optimum/js/app'], function (OptimumForum) {
+								OptimumForum.teste();
+							
+								console.log("APP:");
+								console.log(OptimumForum.App);
+
+								// OptimumForum.App.PluginIntegration.transitionTo('discussions',forum_id);
+								OptimumForum.App.Router.router.transitionTo('discussions',1);
+
+								// OptimumForum.App.IndexRoute.send('redirectTo',forum_id);
+								// OptimumForum.App.IndexRoute.send('redirectTo',forum_id);
+
+							});
+							// });
+						}
+					});
+				
 				event.preventDefault();
 			});
 		    

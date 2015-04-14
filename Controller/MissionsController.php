@@ -793,6 +793,10 @@ class MissionsController extends AppController {
  * @param int $mission_id - ID to see a specific mission
  */
 	public function view_mission($mission_id, $phase_position = null, $phase_id = null) {
+		if (!$this->Mission->exists($mission_id)) {
+			throw new NotFoundException(__('Invalid mission'));
+		}
+
 		$user = $this->Auth->user();
 
 		//---------------------------------
@@ -829,6 +833,20 @@ class MissionsController extends AppController {
 				'contain' => array('Quest' => 'Questionnaire')
 			));
 		}
+
+		//---------------------------------
+		//FORUM
+		$this->loadModel('Optimum.Forum');
+		$forum = $this->Forum->find('first', array(
+			'contain' => array(
+				'ForumFilter' => array(
+					'conditions' => array(
+						'ForumFilter.model' => 'Phase',
+						'ForumFilter.filter_value' => $phase['Phase']['id']
+					)
+				)
+			)
+		));
 
 		//---------------------------------
 		//MARK COMPLETED PHASES //this code can be improved a lot
@@ -946,7 +964,7 @@ class MissionsController extends AppController {
 			'allowSignedRequest' => false
 		));
 
-		$this->set(compact('mission', 'phase', 'novels', 'user', 'facebook'));
+		$this->set(compact('mission', 'phase', 'forum', 'novels', 'user', 'facebook'));
 	}
 
 

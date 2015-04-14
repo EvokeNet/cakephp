@@ -33,6 +33,7 @@
 
 			<section class="left-small" id="menu-left-small">
 				<div class="left-small-content text-center background-color-standard opacity-07 padding bottom-1">
+					<!-- QUESTS -->
 					<a class="menu-icon custom" id="menu-icon-tabQuests" data-tab-content="tabQuests">
 						<div class="row">
 							<span class="icon-brankic icon-compass fa-2x vertical-align-middle text-color-gray"></span>
@@ -42,6 +43,7 @@
 						</div>
 					</a>
 
+					<!-- DOSSIER -->
 					<a class="menu-icon custom" id="menu-icon-tabDossier" data-tab-content="tabDossier">
 						<div class="row">
 							<span class="icon-brankic icon-cabinet2 fa-2x vertical-align-middle text-color-gray"></span>
@@ -51,6 +53,7 @@
 						</div>
 					</a>
 					
+					<!-- EVIDENCES -->
 					<a class="menu-icon custom" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
 						<div class="row">
 							<span class="icon-brankic icon-wallet fa-2x vertical-align-middle text-color-gray"></span>
@@ -60,6 +63,24 @@
 						</div>
 					</a>
 					
+
+					<!-- FORUM -->
+					<?php
+					if (isset($forum)): ?>
+					
+					<a class="menu-icon custom" id="menu-icon-tabForum" href="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum['Forum']['id']))); ?>" data-tab-content="tabForum" data-forum-id="<?= $forum['Forum']['id'] ?>">
+						<div class="row">
+							<span class="icon-brankic icon-comments icon-size-medium vertical-align-middle text-color-gray"></span>
+						</div>
+						<div class="row menu-icon-label">
+							<span><?= __('Discussion') ?></span>
+						</div>
+					</a>
+					<?php
+					endif;
+					?>
+
+					<!-- MENU -->
 					<a class="menu-icon custom" id="menu-icon-tabMenu" data-tab-content="tabMenu">
 						<div class="row">
 							<span class="icon-brankic icon-grid icon-size-medium vertical-align-middle text-color-gray"></span>
@@ -91,7 +112,9 @@
 			</div>
 		</div>
 
-		
+		<!-- FORUM OVERLAY - Section that dinamically loads the forum -->
+		<!-- <div id="forum-overlay relative min-full-height">
+		</div> -->
 		
 		<!-- MAIN SECTION -->
 		<section class="main-section relative min-full-height">
@@ -215,18 +238,6 @@
 									</div>
 								</li>
 
-								<!-- FORUM -->
-								<li class="table full-width text-center">
-									<div class="table-cell  vertical-align-middle background-cover" data-interchange="['<?= $this->webroot.'img/missionTabMenu_forum.jpg' ?>',(default)]">
-										<a href="#" class="text-glow-on-hover">
-											<div class="inline-block padding all-2 margin bottom-1 background-color-standard img-circular border-color-highlight border-style-solid img-glow-on-hover-small">
-												<span class="icon-brankic icon-chat fa-4x text-color-highlight"></span>
-											</div>
-											<h4 class="text-color-highlight"><?= __('Forum') ?></h4>
-										</a>
-									</div>
-								</li>
-
 								<!-- EVOKATION -->
 								<li class="table full-width text-center">
 									<div class="table-cell  vertical-align-middle background-cover" data-interchange="['<?= $this->webroot.'img/missionTabMenu_evokation.jpg' ?>',(default)]">
@@ -242,6 +253,9 @@
 						</div>
 					</aside>
 				</div>
+		    </div>
+
+		    <div id="forumOverlay" class="row full-width clearfix absolute full-height hidden" style="z-index:100">
 		    </div>
 
 			<!-- GRAPHIC NOVEL -->

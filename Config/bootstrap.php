@@ -116,7 +116,10 @@ require APP . '/Vendor/autoload.php';
 spl_autoload_unregister(array('App', 'load'));
 spl_autoload_register(array('App', 'load'), true, true);
 
-CakePlugin::loadAll(array('bootstrap' => true));
+CakePlugin::loadAll(array(
+	'bootstrap' => true,
+	'Optimum' => array('routes' => true)
+));
 
 // The Utility and Admin plugin must be loaded before the Forum
 // CakePlugin::load('Utility', array('bootstrap' => true, 'routes' => true));
@@ -151,18 +154,18 @@ CakeEventManager::instance()->attach(new BadgeListener());
 
 /**
  * Configures Optimum Plugin
- * model_name: model that will be used to 
+ * forum_filters: each forum can be associated to project-specific models
  */
 Configure::write('Optimum.settings', array(
-	'1' => array (
-		'forum_category_model' => 'Course',
-		'forum_category_foreign_key' => 'course_id',
-		'permission_model' => 'CourseUser',
-		'permission_fks' => array('category' => 'course_id', 'user' => 'user_id'),
-		'element'=> 'Elements/view.ctp'
-	),
-	'2' => array (
-		'forum_category_model' => 'Lesson',
-		'forum_category_foreign_key' => 'lesson'
+	'forum_filters' => array (
+		'Mission' => array (
+			'model' => 'Mission',
+			'foreign_key' => 'mission_id'
+		),
+		'Phase' => array (
+			'model' => 'Phase',
+			'foreign_key' => 'phase_id'
+		)
 	)
+	//,'discussion_tags' => array('Quests','Topic') //Possibilidade futura
 ));
