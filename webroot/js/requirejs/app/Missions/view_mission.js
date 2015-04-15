@@ -24,7 +24,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//CLICKING ON THE EVIDENCE OFFCANVAS WILL LOAD CONTENT VIA AJAX (every time, in case a user created a new evidence) -- IF it's not closing
 			$("#menu-icon-tabEvidences").on("click", function() {
-				if (!$("#sidr-tabEvidences").hasClass("sidr-open")) { //otherwise this click is to close it
+				if (!$("#tabEvidences").hasClass("panel-open")) { //otherwise this click is to close it
 					$.ajax({
 						url: missions_load_evidences_url,
 						type:"POST",

@@ -34,7 +34,7 @@
 			<section class="left-small" id="menu-left-small">
 				<div class="left-small-content text-center background-color-standard opacity-07 padding bottom-1">
 					<!-- QUESTS -->
-					<a class="menu-icon custom" id="menu-icon-tabQuests" data-tab-content="tabQuests">
+					<a class="menu-icon default" id="menu-icon-tabQuests" data-tab-content="tabQuests">
 						<div class="row">
 							<span class="icon-brankic icon-compass fa-2x vertical-align-middle text-color-gray"></span>
 						</div>
@@ -44,7 +44,7 @@
 					</a>
 
 					<!-- DOSSIER -->
-					<a class="menu-icon custom" id="menu-icon-tabDossier" data-tab-content="tabDossier">
+					<a class="menu-icon default" id="menu-icon-tabDossier" data-tab-content="tabDossier">
 						<div class="row">
 							<span class="icon-brankic icon-cabinet2 fa-2x vertical-align-middle text-color-gray"></span>
 						</div>
@@ -54,7 +54,7 @@
 					</a>
 					
 					<!-- EVIDENCES -->
-					<a class="menu-icon custom" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
+					<a class="menu-icon default" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
 						<div class="row">
 							<span class="icon-brankic icon-wallet fa-2x vertical-align-middle text-color-gray"></span>
 						</div>
@@ -68,7 +68,7 @@
 					<?php
 					if (isset($forum)): ?>
 					
-					<a class="menu-icon custom" id="menu-icon-tabForum" href="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum['Forum']['id']))); ?>" data-tab-content="tabForum" data-forum-id="<?= $forum['Forum']['id'] ?>">
+					<a class="menu-icon forum" id="menu-icon-tabForum" href="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum['Forum']['id']))); ?>" data-tab-content="tabForum" data-forum-id="<?= $forum['Forum']['id'] ?>">
 						<div class="row">
 							<span class="icon-brankic icon-comments icon-size-medium vertical-align-middle text-color-gray"></span>
 						</div>
@@ -81,7 +81,7 @@
 					?>
 
 					<!-- MENU -->
-					<a class="menu-icon custom" id="menu-icon-tabMenu" data-tab-content="tabMenu">
+					<a class="menu-icon default" id="menu-icon-tabMenu" data-tab-content="tabMenu">
 						<div class="row">
 							<span class="icon-brankic icon-grid icon-size-medium vertical-align-middle text-color-gray"></span>
 						</div>
@@ -111,10 +111,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- FORUM OVERLAY - Section that dinamically loads the forum -->
-		<!-- <div id="forum-overlay relative min-full-height">
-		</div> -->
 		
 		<!-- MAIN SECTION -->
 		<section class="main-section relative min-full-height">
@@ -255,7 +251,9 @@
 				</div>
 		    </div>
 
-		    <div id="forumOverlay" class="row full-width clearfix absolute full-height hidden" style="z-index:100">
+		    <div id="tabForum" class="row full-width clearfix absolute min-full-height full-height background-color-dark hidden" style="z-index:3">
+		    	<div id="tabForumContent">
+		    	</div>
 		    </div>
 
 			<!-- GRAPHIC NOVEL -->

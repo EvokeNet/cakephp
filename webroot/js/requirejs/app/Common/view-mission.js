@@ -50,72 +50,88 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$('.tabContent').hide().removeClass("hidden");
 			$('#missions-content-overlay').hide().removeClass("hidden");
 			$('.close-sidebar-button').hide().removeClass("hidden");
-			$('#forumOverlay').hide().removeClass("hidden");
+			$('#tabForum').hide().removeClass("hidden");
 
 
 			//--------------------------------------------//
 			//Open mission content above graphic novel
 			//--------------------------------------------//
-			function open_sidr(sidr_button,sidr_source) {
-				$(sidr_source).addClass("sidr-open");
+			function open_panel(panel_button,panel_source) {
+				$(panel_source).addClass("panel-open");
 
 				//Add opacity behind
-				$(sidr_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
+				$(panel_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
 				$('.main-section .missions-graphic-novel').addClass('blur-strong opacity-04'); //Blur everything else
 				
 				//Show content in front
-				$('.mission-sidebar').css("height",""); //restart data-equalizer of the sidebar columns
-				// $('#missionSidebar').show("slide", { direction: "left" }, 400, function(){
-				// 	$(sidr_source).fadeIn('fast');
-				// 	$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
-				// });
+				if (panel_source != '#tabForum') {
+					$('.mission-sidebar').css("height",""); //restart data-equalizer of the sidebar columns
+					$('#missionSidebar').show("slide", { direction: "left" }, 400, function(){
+						$(panel_source).fadeIn('fast');
+						$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
+					});
+				}
+				else {
+					$(panel_source).fadeIn('fast');
+					$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
+				}
 
-				//Possible to close sidr
+				//Possible to close panel
 				$('.close-sidebar-button').fadeIn('fast');
 			}
 
-			function close_sidr(sidr_button,sidr_source,changingTabs) {
-				$(sidr_source).removeClass("sidr-open");
+			function close_panel(panel_button,panel_source,changingTabs) {
+				$(panel_source).removeClass("panel-open");
 
 				//Show content in front
-				$(sidr_source).fadeOut('fast');
-				$('#missionSidebar').hide("slide", { direction: "left" }, 0, function() {
-					$(sidr_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
+				$(panel_source).fadeOut('fast');
+				if (panel_source != '#tabForum') {
+					$('#missionSidebar').hide("slide", { direction: "left" }, 0, function() {
+						$(panel_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
+
+						if (!changingTabs) {
+							//Remove opacity behind
+							$('.main-section .missions-graphic-novel').removeClass('blur-strong opacity-04'); //Remove blur in everything else
+						}
+					});
+				}
+				else {
+					$(panel_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
 
 					if (!changingTabs) {
 						//Remove opacity behind
 						$('.main-section .missions-graphic-novel').removeClass('blur-strong opacity-04'); //Remove blur in everything else
 					}
-				});
+				}
 
-				//Not possible to close sidr
+				//Not possible to close panel
 				$('.close-sidebar-button').fadeOut('fast');
 			}
 
-			/* Open or close a sidr */
-			function toggle_sidr(idMenuIcon,idTabContent) {
+			/* Open or close a panel */
+			function toggle_panel(idMenuIcon,idTabContent) {
 				var changingTabs = false;
 
 				//Closing a currently open tab
-				if ((idTabContent != undefined) && !$('#'+idTabContent).hasClass("sidr-open")) {
+				if ((idTabContent != undefined) && !$('#'+idTabContent).hasClass("panel-open")) {
 					changingTabs = true;
 				}
 
 				//Close currently open tab (if any)
-				var open_tab = $('.sidr-open');
+				var open_tab = $('.panel-open');
 				if ($(open_tab).length) {
 					var open_tab_id = $(open_tab).attr('id');
-					close_sidr('#menu-icon-'+open_tab_id,'#'+open_tab_id,changingTabs);
+					close_panel('#menu-icon-'+open_tab_id,'#'+open_tab_id,changingTabs);
 				}
 
 				//Opening another tab
 				if (changingTabs) {
-					open_sidr('#'+idMenuIcon,'#'+idTabContent);	
+					open_panel('#'+idMenuIcon,'#'+idTabContent);	
 				}
 			}
 
-			$('.menu-icon').click(function(){
-				toggle_sidr($(this).attr("id"), $(this).data('tab-content'));
+			$('.menu-icon.default').click(function(){
+				toggle_panel($(this).attr("id"), $(this).data('tab-content'));
 			});
 
 			//--------------------------------------------//
@@ -135,7 +151,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$('.close-sidebar-button').fadeIn("hidden");
 				$('#missions-content-overlay').fadeOut('fast');
 
-				//Clear content-body and its events
+				//Clear content-body and its event
 				$('#missions-content-overlay-body').off(); //clear events in previous elements
 				$('#missions-content-overlay-body *').off(); 
 				$('#missions-content-overlay-body').html('');
@@ -146,9 +162,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$(".close-sidebar-button").click(function(){
 				//Show content in front
-				toggle_sidr();
+				toggle_panel();
 
-				//Not possible to close sidr
+				//Not possible to close panel
 				$(this).fadeOut("fast");
 			});
 			
@@ -188,54 +204,53 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//EVIDENCE: ADD EVIDENCE FORM OPENS ON THE MISSION-OVERLAY ON THE LEFT
 			//--------------------------------------------//
-			$("#menu-icon-tabForum").click(function(event){
-				console.log($(this).attr("href"));
-				var forum_url = "/#/"+$(this).data("forum-id");
+			var refreshForum = function(event, panel_button, panel_source){
+				if (!$("#tabForum").hasClass("panel-open")) {
+					require(['../Optimum/js/app'], function (OptimumForum) {
+						OptimumForum.App.DiscussionsRoute.reopen();
+					});
+				}
+
+				toggle_panel(panel_button, panel_source);
+				event.preventDefault();
+			};
+
+			$("#menu-icon-tabForum").one("click", function() {
 				var forum_id = $(this).data("forum-id");
 
+				$.ajax({
+					url: $(this).attr("href"),
+					type:"POST",
+					data: {forum_id: forum_id},
+					beforeSend: function() {
+						$('#tabForumContent').empty().append('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+						$('#tabForumContent').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+					},
+					success: function(data) {
+						//Display content
+						$('#tabForum').off(); //clear events in previous elements
+						$('#tabForum *').off(); //clear events in previous elements
+						$('#tabForumContent').html(data);
 
-					$.ajax({
-						url: $(this).attr("href"),
-						type:"POST",
-						data: {forum_id: forum_id},
-						beforeSend: function() {
-							$('#forumOverlay').fadeIn('slow');
-							$('#forumOverlay').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
-							// $('.main-section').addClass("hidden");
-							// $('.tab-bar').addClass("hidden");
-							// $('.close-sidebar-button').fadeOut("fast");
-							$(window).forum_id = forum_id;
-							//window.location.hash = forum_url;
-						},
-						success: function(data) {
-							//Display content
-							$('#forumOverlay').off(); //clear events in previous elements
-							$('#forumOverlay *').off(); //clear events in previous elements
-							$('#forumOverlay').html(data);
+						//Reflow
+						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 
-							//Reflow
-							$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-
-							// $('#init-ember').click(function(){
-							require(['../Optimum/js/app'], function (OptimumForum) {
-								OptimumForum.teste();
+						require(['../Optimum/js/app'], function (OptimumForum) {
+							OptimumForum.App.PluginIntegration.transitionTo('discussions',forum_id);
+							console.log(OptimumForum.App);
 							
-								console.log("APP:");
-								console.log(OptimumForum.App);
+						});
+					}
+				});
 
-								// OptimumForum.App.PluginIntegration.transitionTo('discussions',forum_id);
-								OptimumForum.App.Router.router.transitionTo('discussions',1);
+				refreshForum(event, $(this).attr("id"), $(this).data('tab-content'));
 
-								// OptimumForum.App.IndexRoute.send('redirectTo',forum_id);
-								// OptimumForum.App.IndexRoute.send('redirectTo',forum_id);
-
-							});
-							// });
-						}
-					});
-				
-				event.preventDefault();
+				//Bind event so that it happens in every click
+				$("#menu-icon-tabForum").click(function(event){
+					refreshForum(event, $(this).attr("id"), $(this).data('tab-content'));
+				});
 			});
+
 		    
 			//--------------------------------------------//
 		    //REFLOW FOUNDATION - After setting up slick (or generating any other elements), foundation needs to be updated
