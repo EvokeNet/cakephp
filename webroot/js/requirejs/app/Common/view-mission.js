@@ -1,6 +1,7 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'foundation', 'slickcarousel', 'stickykit', 'jqueryui'], function ($) {
 		$(document).ready(function(){
+			
 			//--------------------------------------------//
 			//Top-bar margins
 			//--------------------------------------------//

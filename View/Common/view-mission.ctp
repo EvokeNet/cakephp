@@ -251,8 +251,12 @@
 				</div>
 		    </div>
 
-		    <div id="tabForum" class="row full-width clearfix absolute min-full-height full-height background-color-dark hidden" style="z-index:3">
+		    <div id="tabForum" class="row full-width clearfix absolute min-full-height hidden" style="z-index:3">
 		    	<div id="tabForumContent">
+		    		<div style="width: 40px; height: 40px; background-color:red;">
+		    			<div class="loading-circle-outside"></div>
+		    			<div class="loading-circle-inside"></div>
+			    	</div>
 		    	</div>
 		    </div>
 

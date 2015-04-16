@@ -7,6 +7,7 @@ requirejs.config({
         embertemplatecompiler: 'ember/ember-template-compiler',
         facebook: '//connect.facebook.net/en_US/all',
         foundation: 'foundation/js/foundation.min',
+        foundationtopbar: 'foundation/js/foundation/foundation.topbar',
         froala: 'FroalaWysiwygEditor/js/froala_editor.min',
         fullpage: 'fullpage.js/jquery.fullPage.min',
         handlebars: 'handlebars/handlebars.min',
