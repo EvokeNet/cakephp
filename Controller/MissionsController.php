@@ -847,8 +847,6 @@ class MissionsController extends AppController {
 				)
 			)
 		));
-		debug($forum);
-		die();
 
 		//---------------------------------
 		//MARK COMPLETED PHASES //this code can be improved a lot
