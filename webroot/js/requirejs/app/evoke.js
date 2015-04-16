@@ -1,6 +1,5 @@
 define(['jquery', 'modernizr', 'foundation'], function($, Modernizr, Foundation) {
 	$(document).ready(function(){
-		require(['foundationtopbar']);
 		$(document).foundation({
 			equalizer : {
 				// Specify if Equalizer should make elements equal height once they become stacked.
