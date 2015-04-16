@@ -13,6 +13,7 @@ requirejs.config({
         jquery : 'jquery/dist/jquery.min',
         jqueryui : 'jquery-ui/jquery-ui.min',
         jqueryslimscroll : 'jquery.slimscroll/jquery.slimscroll.min',
+        list: 'list.js/dist/list.min',
         modernizr: 'modernizr/modernizr',
         sidr: 'sidr/jquery.sidr.min',
         slickcarousel: 'slick-carousel/slick/slick.min',
@@ -30,6 +31,7 @@ requirejs.config({
         handlebars: { exports: 'Handlebars' },
         jqueryui: { deps: ['jquery'] },
         jqueryslimscroll: { deps: ['jquery'] },
+        list: { exports: 'List' },
         modernizr: { exports: 'Modernizr' },
         sidr: { deps: ['jquery'] },
         slickcarousel: { deps: ['jquery'] },
@@ -38,8 +40,7 @@ requirejs.config({
         
         // socketio: {
         //   exports: 'io'
-        // },
-        //facebook: { exports: 'FB' }
+        // }
     }
 });
 

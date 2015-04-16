@@ -218,6 +218,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$("#menu-icon-tabForum").one("click", function() {
 				var forum_id = $(this).data("forum-id");
 
+				console.log('forum_id: '+forum_id);
+				console.log('href: '+$(this).attr("href"));
+
 				$.ajax({
 					url: $(this).attr("href"),
 					type:"POST",
