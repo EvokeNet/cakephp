@@ -66,7 +66,7 @@
 
 					<!-- FORUM -->
 					<?php
-					if (isset($forum)): ?>
+					if (isset($forum) && isset($forum['Forum'])): ?>
 					
 					<a class="menu-icon forum" id="menu-icon-tabForum" href="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum['Forum']['id']))); ?>" data-tab-content="tabForum" data-forum-id="<?= $forum['Forum']['id'] ?>">
 						<div class="row">
