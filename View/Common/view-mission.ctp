@@ -68,7 +68,7 @@
 					<?php
 					if (isset($forum) && isset($forum['Forum'])): ?>
 					
-					<a class="menu-icon forum" id="menu-icon-tabForum" href="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum['Forum']['id']))); ?>" data-tab-content="tabForum" data-forum-id="<?= $forum['Forum']['id'] ?>">
+					<a class="menu-icon forum" id="menu-icon-tabForum" data-forum-url="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum['Forum']['id']))); ?>" data-tab-content="tabForum" data-forum-id="<?= $forum['Forum']['id'] ?>">
 						<div class="row">
 							<span class="icon-brankic icon-comments icon-size-medium vertical-align-middle text-color-gray"></span>
 						</div>
