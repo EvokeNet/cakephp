@@ -83,7 +83,7 @@
 
         <div class="full-width text-center silabe-uploader" name="uploader">
             <div class="files" name="uploader-files"></div>
-            <button type="button" class="upload-file-button tiny paddings-0 silabe-uploader-btn" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
+            <button type="button" class="tiny paddings-0 silabe-uploader-btn" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
                 <div class="upload-button-text padding all-2">
                     <p class="margin top-2"><i class="fa fa-image fa-4x"></i></p>
                     <p><?php echo __("Upload your evidence's image"); ?></p>
@@ -92,7 +92,7 @@
                 <img id="file-content" />
             </button>
 
-            <input type="file" id='fileinput-{{id}}' name='file' class='hide upload-file-input text-center' accept='image/jpeg,image/png' multiple="<?= $multiple ?>" /> 
+            <input type="file" id='fileinput-{{id}}' name='file' class='hide text-center' accept='image/jpeg,image/png' multiple="<?= $multiple ?>" /> 
 
             <input type="submit" class="button hide btn-uploader-submit" value="<?php echo __('Send image'); ?>" />
         </div>

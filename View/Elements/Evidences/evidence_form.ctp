@@ -139,5 +139,4 @@
 
 	//SCRIPT
 	$this->Html->script('requirejs/app/Elements/Evidences/evidence_form.js', array('inline' => false));
-	$this->Html->script('requirejs/app/file-upload.js', array('inline' => false));
 ?>
