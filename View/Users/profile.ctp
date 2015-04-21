@@ -101,7 +101,7 @@
 			<!-- RADAR GRAPH FOR MATCHING RESULTS -->
 			<div class="large-6 medium-12 columns centering-block">
 				<div class="text-center vertical-align-middle centered-block">
-					<?php echo $this->element('matching_graph', array('height' => '350', 'width' => '400')); ?>
+					<?php echo $this->element('matching_graph', array('height' => '550', 'width' => '550')); ?>
 				</div>
 			</div>
 		</div>

@@ -23,7 +23,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				maintainAspectRatio: false,
 				pointLabelFontColor: "#26dee0",
 				pointLabelFontFamily : "'Orbitron'",
-				pointLabelFontSize : 10,
+				pointLabelFontSize : 14,
 				responsive: true,
 				scaleLineColor: "#555",
 				scaleShowLabels : false,
