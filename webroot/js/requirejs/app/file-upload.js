@@ -37,7 +37,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					$('#'+file_input_id).click();
 
 					//Remove focus
-					//e.preventDefault();
+					e.preventDefault();
 					$(this).blur();
 				});
 

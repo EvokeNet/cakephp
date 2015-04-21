@@ -24,7 +24,8 @@
         "markstory/acl_extras": "dev-master",
         "paulredmond/chosen-cakephp": "*",
         "0x46616c6b/etherpad-lite-client": "dev-master",
-        "ceeram/cakepdf": "1.0.1"
+        "ceeram/cakepdf": "1.0.1",
+        "aws/aws-sdk-php": "2.*"
     },
     "config": {
         "vendor-dir": "Vendor/"

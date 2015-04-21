@@ -57,6 +57,10 @@ button, div, p, span, a,
 	color: #ccc;
 }
 
+.evoke .text-color-darker-gray, .evoke .text-color-darker-gray p {
+	color: #A0A0A0;
+}
+
 .evoke .text-color-yellow {
 	color: #f7c71b;
 }

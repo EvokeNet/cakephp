@@ -352,3 +352,36 @@ button:hover, button:focus, .button:hover, .button:focus {
 	-o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 	transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
+
+
+/* --------------------------- */
+/* POSITION FIXED */
+/* Triangle and line  */
+/* --------------------------- */
+/* Small screens */
+@media only screen and (max-width: 40em) {
+	.small-only.position-fixed {
+		position: fixed;
+	}
+} /* max-width 640px, mobile-only styles, use when QAing mobile issues */
+
+/* Medium screens */
+@media only screen and (min-width: 40.063em) {
+	.medium-up.position-fixed {
+		position: fixed;
+	}
+} /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+	.medium-only.position-fixed {
+		position: fixed;
+	}
+} /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+
+
+/* Large screens */
+@media only screen and (min-width: 64.063em) {
+	.large-only.position-fixed {
+		position: fixed;
+	}
+} /* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */

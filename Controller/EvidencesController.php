@@ -113,8 +113,6 @@ class EvidencesController extends AppController {
  */
 public function addEvidence() {
 	if ($this->request->is('post')) {
-		debug ($this->request->data);
-		die();
 		$this->Evidence->create();
 
 		//CREATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT

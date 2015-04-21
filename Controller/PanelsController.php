@@ -65,7 +65,7 @@ class PanelsController extends AppController {
 	 //    }
 
 		// Will break out on this call
-		$this->Session->setFlash(__('VocÃª nÃ£o estÃ¡ autorizado a visualizar esta pÃ¡gina'));
+		$this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
 		$this->redirect(array('controller' => 'users', 'action' => 'profile', $this->getUserId()));
 
 		return false;

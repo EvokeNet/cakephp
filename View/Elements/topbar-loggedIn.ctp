@@ -60,11 +60,6 @@
 				</a>
 			</div>
 		</li>
-		<li>
-			<div class="column">
-				<a href="<?= $this->Html->url(array('plugin' => 'optimum', 'controller' => 'forumDiscussions', 'action' => 'view')) ?>" class="text-glow-on-hover text-color-highlight"><?php echo __('Forum'); ?></a>
-			</div>
-		</li>
 		
 		<?php if ($loggedInUser['role'] != 'user'){ ?>
 		<li>

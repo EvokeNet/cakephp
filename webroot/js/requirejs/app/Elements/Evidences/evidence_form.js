@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'handlebars', 'froala', '../FileUploader/js/FileUploader'], function ($, Handlebars) {
+	require(['jquery', 'handlebars', '../FileUploader/js/FileUploader', 'sweetalert', 'froala'], function ($, Handlebars, FileUploader, swal) {
 		$(document).ready(function(){
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
@@ -7,23 +7,95 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//SETUP FILE UPLOADER PLUGIN
 			//--------------------------------------------//
-			window.initUploader();
+			$(window)
+				.off('uploaderFileAdded') 
+				.on('uploaderFileAdded', function(event) {
+					//Show progress bar
+					$('div.files').removeClass('hidden');
+				});
 
 			$(window)
 				.off('uploadCompleted') 
 				.on('uploadCompleted', function(event) {
+					//Hide progress bar
+					$('div.files').addClass('hidden');
+
 					var detail = event.originalEvent.detail;
 			 
-					console.log('Arquivo do curso ' + detail.identifier);
-					console.log('URL do arquivo: ' + detail.url);
+					console.log('type ' + detail.mimetype);
+					console.log('URL: ' + detail.url);
+
+					//Insert data into form to save it in the DB
+					$('#evidence-form-main-content').attr('value', detail.url);
+					$('#evidence-form-type').attr('value', detail.mimetype);
+
+					//Display uplodaded content
+					$('#file-content').attr('src', detail.url).attr('alt', detail.identifier);
+
+					if ($('.upload-button-text').length) {
+						$('.upload-button-text').remove();
+					}
+
+					//Video shows
+					$('.flex-video-new').removeClass('hidden');
 				});
 
 			//--------------------------------------------//
-			//HANDLEBARS FOR DIFFERENT TYPES OF EVIDENCES
+			//EFFECT TO RESIZE EVIDENCE TYPE
 			//--------------------------------------------//
-			$(".evidence-type").click(function(){
-				var evidence_type = $(this).data("evidence-type");
+			var setup_evidence_type = function(){
+				//Title and Font-size
+				$('#evidence-type-title').remove();
+				$('#new-evidence-type').animate({fontSize: "6"},500);
+				$('#new-evidence-type h4').animate({fontSize: "7"},500);
 
+				//Load form according to the evidence type
+				evidence_type = $(this).data("evidence-type");
+				load_evidence_type_form(evidence_type);
+
+				//Active x inactive
+				$('.evidence-type').addClass('inactive');
+				$(this).removeClass('inactive').addClass('active');
+
+				//Next choice of evidence type will discard previous changes
+				$(".evidence-type").bind("click", function(event) {
+					btn_clicked = $(this);
+					var evidence_type = $(this).data("evidence-type");
+					var evidenceContentForm = $('#evidenceContentForm').html();
+
+					//Confirmation dialog
+					swal({
+						title: "Are you sure?",
+						text: "If you change your evidence type now, you will lose the special content of your evidence's focus",
+						type: "warning",
+						showCancelButton: true,
+						confirmButtonColor: "#26dee0",
+						confirmButtonText: "Yes, change my evidence type!",
+						closeOnConfirm: true
+					},
+					function(){
+						//Execute the action if confirmed
+						$.when(load_evidence_type_form(evidence_type)).then(function () {
+							$('#evidenceContentForm').html(evidenceContentForm);
+
+							//Active x inactive
+							$('.evidence-type').removeClass('active').addClass('inactive');
+							$(btn_clicked).removeClass('inactive').addClass('active');
+						});
+					});
+					event.preventDefault();
+				});
+
+				//This behavior is just for the first time any evidence type was chosen
+				$(".evidence-type").unbind('click', setup_evidence_type);
+			};
+
+			$(".evidence-type").bind('click', setup_evidence_type);
+
+			//--------------------------------------------//
+			//LOAD HANDLEBARS TEMPLATE FOR DIFFERENT TYPES OF EVIDENCES
+			//--------------------------------------------//
+			var load_evidence_type_form = function(evidence_type){
 				if ((evidence_type == "image") || (evidence_type == "video") || (evidence_type == "link")) {
 					//Compile handlebars
 					var source   = $("#evidence-type-"+evidence_type+"-template").html();
@@ -39,9 +111,11 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					//Display content
 					$('#evidence-main-content').html(html);
 				}
+				else {
+					$('#evidence-main-content').html("");
+				}
 
 				//Remove buttons to choose evidence type, and show the form
-				$('#new-evidence-type').remove();
 				$('#new-evidence-form').removeClass('hidden');
 
 				//FROALA EDITOR
@@ -53,10 +127,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				});
 
 				//Reflow
-				//window.initUploader(); //FILEUPLOADER
+				FileUploader.initUploader(); //FILEUPLOADER
 				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-			});
-
+			};
 			
 
 			//--------------------------------------------//

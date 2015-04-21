@@ -95,9 +95,9 @@
 
 		<!-- CONTENT OVERLAY - Section that dinamically loads content that will be manipulated by the user, and therefore needs focus -->
 		<div id="missions-content-overlay" class="background-color-dark absolute min-full-height full-width hidden">
-			<div class="relative margin top-5">
+			<div class="relative min-full-height">
 				<!-- CLOSE BUTTON -->
-				<div id="close-content-overlay-button" class="right absolute margin top-5 right-2">
+				<div id="close-content-overlay-button" class="right absolute margin right-2 top-5">
 					<a class="close-missions-content-overlay">
 						<span class="fa-stack fa-lg">
 							<i class="fa fa-circle fa-stack-2x text-color-dark"></i>
@@ -107,7 +107,7 @@
 				</div>
 
 				<!-- CONTENT LOADED -->
-				<div id="missions-content-overlay-body" class="content-body" >
+				<div id="missions-content-overlay-body" class="content-body min-full-height" >
 				</div>
 			</div>
 		</div>
@@ -184,7 +184,7 @@
 									    		<?php
 									    		if (isset($loggedInUser)): ?>
 								    				<a class="button small submit-evidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')); ?>">
-								    					<?= __('Submit your evidence') ?>
+								    					<?= __('Create your evidence') ?>
 								    				</a><?php
 									    		else: ?>
 									    			<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
@@ -251,9 +251,9 @@
 				</div>
 		    </div>
 
-		    <div id="tabForum" class="row full-width clearfix absolute full-height hidden" style="z-index:3">
+		    <div id="tabForum" class="row full-width clearfix absolute full-height hidden">
 		    	<div id="tabForumContent" class="full-height">
-		    		<div style="width: 40px; height: 40px; background-color:red;">
+		    		<div>
 		    			<div class="loading-circle-outside"></div>
 		    			<div class="loading-circle-inside"></div>
 			    	</div>

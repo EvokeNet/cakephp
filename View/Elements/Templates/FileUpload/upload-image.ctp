@@ -3,9 +3,14 @@
     <?php
         //CSS
         echo $this->Html->css('FileUploader.file-uploader');
+
+        $multiple = false;
+        if (isset($allowMultiple)) {
+            $multiple = $allowMultiple;
+        }
     ?>
 
-    <form action="https://silabe.s3.amazonaws.com/" method="POST" enctype="multipart/form-data" data-identifier="<?php echo (isset($identifier) ? $identifier : ''); ?>">
+    <form action="https://silabe.s3.amazonaws.com/" method="POST" multiple="<?= $multiple ?>" enctype="multipart/form-data" data-identifier="<?php echo (isset($identifier) ? $identifier : ''); ?>">
         <?php
             // Upload deadline
             $datetime = null;
@@ -78,16 +83,16 @@
 
         <div class="full-width text-center silabe-uploader" name="uploader">
             <div class="files" name="uploader-files"></div>
-            <button type="button" class="upload-file-button button tiny silabe-uploader-btn" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
-                <div id="fileinput-{{id}}-uploadbutton">
+            <button type="button" class="upload-file-button tiny paddings-0 silabe-uploader-btn" id="evidence-img-button" data-file-input-id="fileinput-{{id}}">
+                <div class="upload-button-text padding all-2">
                     <p class="margin top-2"><i class="fa fa-image fa-4x"></i></p>
                     <p><?php echo __("Upload your evidence's image"); ?></p>
                 </div>
 
-                <img id="fileinput-{{id}}-filecontent" />
+                <img id="file-content" />
             </button>
 
-            <input type="file" id='fileinput-{{id}}' name='file' class='hide upload-file-input text-center' accept='image/jpeg,image/png' /> 
+            <input type="file" id='fileinput-{{id}}' name='file' class='hide upload-file-input text-center' accept='image/jpeg,image/png' multiple="<?= $multiple ?>" /> 
 
             <input type="submit" class="button hide btn-uploader-submit" value="<?php echo __('Send image'); ?>" />
         </div>
