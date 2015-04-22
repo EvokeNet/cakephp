@@ -70,10 +70,10 @@
 					
 					<a class="menu-icon forum" id="menu-icon-tabForum" data-forum-url="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum['Forum']['id']))); ?>" data-tab-content="tabForum" data-forum-id="<?= $forum['Forum']['id'] ?>">
 						<div class="row">
-							<span class="fa fa-flask fa-2x vertical-align-middle text-color-gray"></span>
+							<span class="fa fa-lightbulb-o fa-2x vertical-align-middle text-color-gray"></span>
 						</div>
 						<div class="row menu-icon-label">
-							<span><?= __('Collaborate') ?></span>
+							<span><?= __('Discuss') ?></span>
 						</div>
 					</a>
 					<?php

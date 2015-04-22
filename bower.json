@@ -19,6 +19,7 @@
     "slick-carousel": "~1.3.11",
     "sticky-kit": "~1.0.4",
     "sweetalert": "*",
-    "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar"
+    "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar",
+    "moment": "~2.10.2"
   }
 }

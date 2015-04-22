@@ -199,6 +199,10 @@ button, div, p, span, a,
 	margin:0!important;
 }
 
+.evoke .margin.all-5 {
+	margin: 5em;
+}
+
 .evoke .margin.top-05 {
 	margin-top: 0.5em;
 }
