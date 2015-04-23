@@ -37,9 +37,6 @@
 
 	<!-- EVIDENCE FORM -->
 	<div id="new-evidence-form" class="form-evoke-style hidden">
-		<a href="http://www.google.com" id="linkTeste">Link preview of google</a>
-		<div id="link-container-teste"></div>
-
 		<?php
 		//EDIT
 		if (isset($evidence)) {

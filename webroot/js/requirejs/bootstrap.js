@@ -14,7 +14,7 @@ requirejs.config({
         jquery : 'jquery/dist/jquery.min',
         jqueryui : 'jquery-ui/jquery-ui.min',
         jqueryslimscroll : 'jquery.slimscroll/jquery.slimscroll.min',
-        linkpreview: 'linkpreview/library/js/bootstrap-linkpreview',
+        linkpreview: 'linkpreview/library/js/bootstrap-linkpreview.min',
         list: 'list.js/dist/list.min',
         modernizr: 'modernizr/modernizr',
         sidr: 'sidr/jquery.sidr.min',

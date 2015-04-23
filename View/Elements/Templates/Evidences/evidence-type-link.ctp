@@ -1,9 +1,13 @@
+<?php
+	//CSS
+	echo $this->Html->css('linkpreview');
+?>
 <script id="evidence-type-link-template" type="text/x-handlebars-template">
-	<?php echo $this->Form->input('main-content', array('label' => __('Link'), 'class' => 'radius', 'id' => 'evidenceLink', 'value' => 'www.google.com')); ?>
+	<?php echo $this->Form->input('main-content', array('label' => __('Link'), 'class' => 'radius', 'id' => 'evidenceLink')); ?>
 
-	<button id="refresh-button" class="btn" type="button">Preview</button>
+	<button id="refresh-button" class="hidden" type="button">Preview</button>
 
-	<div id="preview-container"></div>
+	<div id="preview-container" class="row"></div>
 </script>
 
 <?php
