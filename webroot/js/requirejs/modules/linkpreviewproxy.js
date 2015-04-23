@@ -7,9 +7,8 @@ define(['require'], function(require){
         return decodeURIComponent(url.split(proxy_url+"?url=")[1]);
     }
 
-    var jqAjax = $.ajax;
-    $.ajax = function(settings) {
-        if (settings && settings.url) {
+    $.ajaxPrefilter(function( settings ) {
+        if (settings && settings.crossDomain && settings.url) {
             var proxy_url = webroot+'components/linkpreview/demos/php-proxy/proxy.php';
             settings.url = proxifyUrl(proxy_url,settings.url);
 
@@ -32,6 +31,7 @@ define(['require'], function(require){
                 settingsCopy.error(jqXHR, textStatus, errorThrown);
             };
         }
-        jqAjax(settings);
-    };
+
+        settings.crossDomain = false;
+    });
 });

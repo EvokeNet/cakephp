@@ -110,6 +110,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 					//Display content
 					$('#evidence-main-content').html(html);
+
+					//Evidence type in the form
+					$('#evidence-form-type').attr('value', evidence_type);
 				}
 				else {
 					$('#evidence-main-content').html("");

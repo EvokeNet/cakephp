@@ -108,23 +108,8 @@ if (isset($evidence)):
 					</div>
 
 					<div class="margin top-2">
-						<!-- MAIN CONTENT -->
-						<?php
-							if (isset($evidence['Evidence']['main-content'])):
-								//IMAGE
-								if (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "image")):
-								?>
-									<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
-								//VIDEO
-								elseif (isset($evidence['Evidence']['type']) && (substr( $evidence['Evidence']['type'], 0, 5) === "video")):
-								?>
-									<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" /><?php
-								endif;
-							endif;
-						?>
-
 						<!-- EVIDENCE CREATION INFO -->
-						<p>
+						<p class="text-center">
 							<?php
 								$creation_date = date_format(date_create($evidence['Evidence']['created']),"m/d/Y");
 
@@ -139,88 +124,35 @@ if (isset($evidence)):
 								}
 							?>
 						</p>
-					</div>
-				</div>
 
-				<!-- RATING/SHARE BAR -->
-				<div class="padding top-05 bottom-05 border-top-divisor">
-					<ul class="inline-list margins-0">
-						<!-- RATING -->
-						<li>
-							<h6 class="text-color-highlight"><?= __('VOTE') ?></h6>
-						</li>
-						<li>
-							<?php
-							//ALREADY VOTED
-							if (count($like) > 0) :
-								$text_color_like = 'text-color-highlight-important'; ?>
-								<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('You have already voted on this evidence') ?>">
-									<a id="buttonLikeEvidence" class="button-icon disabled" disabled
-									   href="#"> 
-										<i class="fa fa-thumbs-up <?= $text_color_like ?> fa-1x"></i>
-									</a>
-								</span><?php
-							else:
-								$text_color_like = 'text-color-yellow'; ?>
-								<a id="buttonLikeEvidence" class="button-icon"
-									href="<?= $this->Html->url(array('controller' => 'likes', 'action' => 'add', $evidence['Evidence']['id']))?>">
-									<i class="fa fa-thumbs-o-up <?= $text_color_like ?> fa-1x"></i>
-								</a><?php
-							endif; ?>
-							
-						</li>
-						<li class="margins-0">
-							<span class="<?= $text_color_like ?>">&nbsp; <?= count($likes) ?></span>
-						</li>
-
-						<!-- COMMENTS -->
-						<li class="padding left-1">
-							<h6 class="text-color-highlight"><?= __('COMMENTS') ?></h6>						
-						</li>
-						<li class="margins-0">
-							<span class="text-color-yellow">&nbsp; <?= count($comments) ?></span>
-						</li>
-
-						<!-- SHARE -->
-						<li class="padding left-1">
-							<h6 class="text-color-highlight"><?= __('SHARE') ?></h6>
-						</li>
-						<li>
-							<a class="button-icon" href="javascript:fbShare('<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>')" alt="<?= __('Share on facebook') ?>">
-								<span class="fa-stack fa-small">
-									<i class="fa fa-square fa-stack-1x fa-12x facebook-icon"></i>
-									<i class="fa fa-facebook fa-stack-1x fa-07x fa-inverse "></i>
-								</span>
-							</a>
-						</li>
-						<li>
-							<a class="button-icon" href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false" alt="<?= __('Share on google plus') ?>">
-								<span class="fa-stack fa-small">
-									<i class="fa fa-square fa-stack-1x fa-12x google-icon"></i>
-									<i class="fa fa-google-plus fa-stack-1x fa-07x fa-inverse "></i>
-								</span>
-							</a>
-						</li>
-
-						<!-- VIEW FULL PAGE -->
+						<!-- MAIN CONTENT -->
 						<?php
-						if ($ajax): ?>
-						<li class="padding left-1">
-							<h6 class="text-color-highlight"><?= __('VIEW') ?></h6>
-						</li>
-						<li>
-							<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Open evidence page') ?>">
-								<a target="_blank" id="evidenceViewFull" href="<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $evidence['Evidence']['id']))?>">
-									<span class="fa-stack fa-small">
-										<i class="fa fa-square fa-stack-1x fa-12x"></i>
-										<i class="fa fa-expand fa-stack-1x fa-07x fa-inverse text-color-dark"></i>
-									</span>
-								</a>
-							</span>
-						</li><?php
-						endif;
+							if (isset($evidence['Evidence']['main-content']) && isset($evidence['Evidence']['type'])):
+								//IMAGE
+								if (substr( $evidence['Evidence']['type'], 0, 5) === "image"):
+								?>
+									<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" />
+								<?php
+
+								//VIDEO
+								elseif (substr( $evidence['Evidence']['type'], 0, 5) === "video"):
+								?>
+									<div class="flex-video-new">
+										<iframe width="420" height="315" src="<?= $evidence['Evidence']['main-content'] ?>" frameborder="0" allowfullscreen></iframe>
+									</div>
+								<?php
+
+								//LINK
+								elseif (substr( $evidence['Evidence']['type'], 0, 4) === "link"):
+								?>
+									<a id="evidenceLink" href="<?= $evidence['Evidence']['main-content'] ?>" class="hidden"></a>
+
+								<?php
+									echo $this->element('Templates/Evidences/evidence-type-link-view');
+								endif;
+							endif;
 						?>
-					</ul>
+					</div>
 				</div>
 
 				<!-- CONTENT -->
@@ -298,6 +230,88 @@ if (isset($evidence)):
 					<?php endif; ?>
 				</div>  	
 				<?php endif; ?>
+
+
+				<!-- RATING/SHARE BAR -->
+				<div class="border-top-divisor <?= ($ajax) ? 'fixed bottom-0 full-width background-color-standard padding top-1 bottom-1' : 'padding top-05 bottom-05' ?>">
+					<ul class="inline-list-centered margins-0">
+						<!-- RATING -->
+						<li>
+							<h6 class="text-color-highlight"><?= __('VOTE') ?></h6>
+						</li>
+						<li>
+							<?php
+							//ALREADY VOTED
+							if (count($like) > 0) :
+								$text_color_like = 'text-color-highlight-important'; ?>
+								<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('You have already voted on this evidence') ?>">
+									<a id="buttonLikeEvidence" class="button-icon disabled" disabled
+									   href="#"> 
+										<i class="fa fa-thumbs-up <?= $text_color_like ?> fa-1x"></i>
+									</a>
+								</span><?php
+							else:
+								$text_color_like = 'text-color-yellow'; ?>
+								<a id="buttonLikeEvidence" class="button-icon"
+									href="<?= $this->Html->url(array('controller' => 'likes', 'action' => 'add', $evidence['Evidence']['id']))?>">
+									<i class="fa fa-thumbs-o-up <?= $text_color_like ?> fa-1x"></i>
+								</a><?php
+							endif; ?>
+							
+						</li>
+						<li class="margins-0">
+							<span class="<?= $text_color_like ?>">&nbsp; <?= count($likes) ?></span>
+						</li>
+
+						<!-- COMMENTS -->
+						<li class="padding left-1">
+							<h6 class="text-color-highlight"><?= __('COMMENTS') ?></h6>						
+						</li>
+						<li class="margins-0">
+							<span class="text-color-yellow">&nbsp; <?= count($comments) ?></span>
+						</li>
+
+						<!-- SHARE -->
+						<li class="padding left-1">
+							<h6 class="text-color-highlight"><?= __('SHARE') ?></h6>
+						</li>
+						<li>
+							<a class="button-icon" href="javascript:fbShare('<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>')" alt="<?= __('Share on facebook') ?>">
+								<span class="fa-stack fa-small">
+									<i class="fa fa-square fa-stack-1x fa-12x facebook-icon"></i>
+									<i class="fa fa-facebook fa-stack-1x fa-07x fa-inverse "></i>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="button-icon" href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?= $_SERVER['SERVER_NAME']."/evidences/view/".$evidence['Evidence']['id'] ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false" alt="<?= __('Share on google plus') ?>">
+								<span class="fa-stack fa-small">
+									<i class="fa fa-square fa-stack-1x fa-12x google-icon"></i>
+									<i class="fa fa-google-plus fa-stack-1x fa-07x fa-inverse "></i>
+								</span>
+							</a>
+						</li>
+
+						<!-- VIEW FULL PAGE -->
+						<?php
+						if ($ajax): ?>
+						<li class="padding left-1">
+							<h6 class="text-color-highlight"><?= __('VIEW') ?></h6>
+						</li>
+						<li>
+							<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Open evidence page') ?>">
+								<a target="_blank" id="evidenceViewFull" href="<?= $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $evidence['Evidence']['id']))?>">
+									<span class="fa-stack fa-small">
+										<i class="fa fa-square fa-stack-1x fa-12x"></i>
+										<i class="fa fa-expand fa-stack-1x fa-07x fa-inverse text-color-dark"></i>
+									</span>
+								</a>
+							</span>
+						</li><?php
+						endif;
+						?>
+					</ul>
+				</div>
 
 				<!-- POST A COMMENT -->
 				<div class="padding all-1 border-top-divisor clearfix">

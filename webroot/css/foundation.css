@@ -385,3 +385,14 @@ button:hover, button:focus, .button:hover, .button:focus {
 		position: fixed;
 	}
 } /* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */
+
+/* --------------------------- */
+/* INLINE LIST */
+/* --------------------------- */
+.evoke ul.inline-list-centered {
+	list-style-type: none;
+	text-align: center
+}
+.evoke ul.inline-list-centered li {
+	display: inline-block;
+}

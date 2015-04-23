@@ -404,6 +404,15 @@ button, div, p, span, a,
 	position: relative;
 }
 
+.evoke .fixed.bottom-0 {
+	top: initial;
+	bottom: 0;
+}
+.evoke .fixed.right-0 {
+	left: initial;
+	right: 0;
+}
+
 /* --------------------------- */
 /* DISPLAY */
 /* --------------------------- */
