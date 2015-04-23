@@ -12,14 +12,15 @@
     "jquery-ui": "*",
     "jquery.cookie": "1.4.1",
     "kibo": "git://github.com/marquete/kibo",
+    "linkpreview": "git://github.com/Ekito/bootstrap-linkpreview",
     "list.js": "1.*",
+    "moment": "~2.10.2",
     "mrmrs-colors": "master",
     "requirejs": "2.1.10",
     "skrollr": "0.6.26",
     "slick-carousel": "~1.3.11",
     "sticky-kit": "~1.0.4",
     "sweetalert": "*",
-    "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar",
-    "moment": "~2.10.2"
+    "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar"
   }
 }
