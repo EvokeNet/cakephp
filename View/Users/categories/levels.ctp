@@ -17,20 +17,20 @@
 		
 		<div class="small-8 medium-8 large-8 columns maincolumn padding top-2">
 
-			<div class = "default">
-				<h3 class = "padding bottom-1"> <?= strtoupper(__('Leaderboard by levels')) ?> </h3>
+			<div>
+				<h1 class="text-color-highlight text-center"> <?= strtoupper(__('Leaderboard by levels')) ?> </h1>
 			</div>
 
 			<div class="evoke sheer-background headings">
 				
-				<h1 id="positionh1" class = "float-right"><?= strtoupper(__("Your position: ")) ?> <span id="positionHolder">5</span></h1>
+				<h2 id="positionh1" class="text-center padding bottom-1 top-1"><?= strtoupper(__("Your position: ")) ?> <span id="positionHolder">5</span></h2>
 
-				<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5">
-					<li><h3><?= strtoupper(__("Position")) ?></h3></li>
-					<li><h3><?= strtoupper(__("Agent ID")) ?></h3></li>
-					<li><h3><?= strtoupper(__("Agent name")) ?></h3></li>
-					<li><h3><?= strtoupper(__("Level")) ?></h3></li>
-					<li><h3><?= strtoupper(__("XP")) ?></h3></li>
+				<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5 text-center">
+					<li><h4><?= strtoupper(__("Position")) ?></h4></li>
+					<li><h4><?= strtoupper(__("Agent ID")) ?></h4></li>
+					<li><h4><?= strtoupper(__("Agent name")) ?></h4></li>
+					<li><h4><?= strtoupper(__("Level")) ?></h4></li>
+					<li><h4><?= strtoupper(__("XP")) ?></h4></li>
 				</ul>
 				<?php 
 					$pos = 1;
@@ -42,8 +42,8 @@
 							if($usr['id'] == $user['id'])
 								$position[0] = $pos;
 							?>
-							<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5">
-								<li><h1 style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></h1></li>
+							<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5 text-center">
+								<li><p><?= $pos ?></p></li>
 
 								<li>
 									<?php $pic = $this->UserPicture->getPictureAbsolutePath($usr); ?>
@@ -51,9 +51,9 @@
 										<img src="<?=$pic?>" class="img-circular square-40px img-glow-on-hover-small" alt="<?= __('User profile picture') ?>" />
 									</div>
 		  						</li>
-		  						<li><h3 style = "font-size: 2.5rem;"><?= $usr['name'] ?></h3></li>
-	  							<li><h3><?= $usr['level']?></h3></li>
-	  							<li><h3><?= $p ?></h3></li>
+		  						<li><p><?= $usr['name'] ?></p></li>
+	  							<li><p><?= $usr['level']?></p></li>
+	  							<li><p><?= $p ?></p></li>
 	  							<span class = "evoke leaderboard-border"></span>
 								</ul>
 						<?php 

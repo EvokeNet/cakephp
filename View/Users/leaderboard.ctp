@@ -111,11 +111,11 @@
 							<h1 class = "margin bottom-1"><?= strtoupper($pp['PowerPoint']['name']) ?></h1>
 
 							<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5">
-								<li><h3><?= strtoupper(__("Position")) ?></h3></li>
-								<li><h3><?= strtoupper(__("Agent ID")) ?></h3></li>
-								<li><h3><?= strtoupper(__("Agent name")) ?></h3></li>
-								<li><h3><?= strtoupper(__("Level")) ?></h3></li>
-								<li><h3><?= strtoupper(__("Points")) ?></h3></li>
+								<li><h4><?= strtoupper(__("Position")) ?></h4></li>
+								<li><h4><?= strtoupper(__("Agent ID")) ?></h4></li>
+								<li><h4><?= strtoupper(__("Agent name")) ?></h4></li>
+								<li><h4><?= strtoupper(__("Level")) ?></h4></li>
+								<li><h4><?= strtoupper(__("Points")) ?></h4></li>
 							</ul>
 							<?php
 								$pos = 1;
@@ -127,7 +127,7 @@
 
 									 	<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5">
 
-											<li><h1 style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></h1></li>
+											<li><p style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></p></li>
 
 											<li>
 												<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
@@ -144,9 +144,9 @@
 
 						  						</a>
 						  					</li>
-						  					<li><h3 style = "font-size: 2.5rem;"><?= $usr['name'] ?></h3></li>
-						  					<li><h3><?= $usr['level']?></h3></li>
-						  					<li><h3><?= $pps ?></h3></li>
+						  					<li><p style = "font-size: 2.5rem;"><?= $usr['name'] ?></p></li>
+						  					<li><p><?= $usr['level']?></p></li>
+						  					<li><p><?= $pps ?></p></li>
 				  							<span class = "evoke leaderboard-border"></span>
 			  							</ul>
 										<?php 

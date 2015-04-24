@@ -18,12 +18,12 @@
 	<div class="small-8 medium-8 large-8 columns maincolumn padding top-2">
 
 		<div class = "default">
-			<h3 class = "padding bottom-1"> <?= strtoupper(__('Leaderboard by power points')) ?> </h3>
+			<h1 class="text-color-highlight text-center"> <?= strtoupper(__('Leaderboard by powerpoints')) ?> </h1>
 		</div>
 
 		<div class="evoke sheer-background headings">
 			
-			<h1 id="positionh1" class = "float-right"><?= strtoupper(__("Your position: ")) ?> <span id="positionHolder">5</span></h1>
+			<h2 id="positionh1" class="text-center padding bottom-1 top-1"><?= strtoupper(__("Your position: ")) ?> <span id="positionHolder">5</span><
 
 			<?php $index = 1; ?>
 				

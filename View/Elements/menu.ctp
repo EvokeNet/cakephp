@@ -46,24 +46,22 @@
 	//debug($userNotifications);
 ?>
 
-<div class = "evoke menu-bg sidebar">
-	<ul>
+<div class = "evoke menu-bg sidebar margin top-5">
+	<ul class="no-marker">
 	  <li <?=$dashboardlink?>><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard')) ?>"><i class="fa fa-folder-open" style="padding-right: 10px;"></i><?= strtoupper(__('Dashboard')) ?></a></li>
 	  
 	  <li <?=$missionslink?>><a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'index')) ?>"><i class="fa fa-crosshairs" style="padding-right: 10px;"></i><?= strtoupper(__('Missions')) ?></a></li>
 	  
 	  <li <?=$evokationslink?>><a href="<?= $this->Html->url(array('controller' => 'groups', 'action' => 'evokations')) ?>"><i class="fa fa-users" style="padding-right: 10px;"></i><?= strtoupper(__('Evokations')) ?></a></li>
 	  
-	  <li <?=$forumslink?>><a href="<?= $this->Html->url(array('controller' => 'forums', 'action' => 'index')) ?>"><i class="fa fa-comments" style="padding-right: 10px;"></i></i><?= strtoupper(__('Forums')) ?></a></li>
-	  
 	  <li <?=$badgeslink?>><a href="<?= $this->Html->url(array('controller' => 'badges', 'action' => 'index')) ?>"><i class="fa fa-shield" style="padding-right: 10px;"></i><?= strtoupper(__('Badges')) ?></a></li>
-	  
+	 <!--  
 	  <li <?=$notificationslink?>>
 	  	<a id = "notificationsItem" href="#">
 	  		<i class="fa fa-exclamation-triangle" style="padding-right: 10px;"></i><?= strtoupper(__('Notifications')) ?>
 	  		<div id="msgs" style = "display:inline"><div class="message"></div></div>
   		</a>
-  	  </li>
+  	  </li> -->
 	  
 	  <li <?=$leaderboardlink?>><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard')) ?>"><i class="fa fa-trophy" style="padding-right: 10px;"></i><?=strtoupper(__('Leaderboard')) ?></a></li>
 	  

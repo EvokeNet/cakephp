@@ -18,12 +18,14 @@
 	<div class="small-8 medium-8 large-8 columns maincolumn padding top-2">
 
 		<div class = "default">
-			<h3 class = "padding bottom-1"> <?= strtoupper(__('Leaderboard by evokations')) ?> </h3>
+			<h1 class="text-color-highlight text-center"> <?= strtoupper(__('Leaderboard by evokation')) ?> </h1>
 		</div>
 
 		<div class="evoke sheer-background headings">
+
+			<h2 id="positionh1" class="text-center padding bottom-1 top-1"><?= strtoupper(__("Your position: ")) ?> <span id="positionHolder">5</span></h2>
 			
-			<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
+			<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4 text-center">
 				<li><h3><?= strtoupper(__("Position")) ?></h3></li>
 				<li><h3><?= strtoupper(__("Group Pic")) ?></h3></li>
 				<li><h3><?= strtoupper(__("Evokation name")) ?></h3></li>
@@ -37,7 +39,7 @@
 				foreach($vote_rank as $key => $value):
 					foreach ($evokations as $group):
 						if($key == $group['Evokation']['id']): ?>
-							<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4">
+							<ul class="small-block-grid-4 medium-block-grid-4 large-block-grid-4 text-center">
 								<li><h1 style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></h1></li>
 
 								<li>
