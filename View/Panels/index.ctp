@@ -1,84 +1,16 @@
 <?php
-	$this->extend('/Common/topbar');
-	$this->start('menu');
+	echo $this->Html->css(
+		array(
+			'evoke-new',
+			'panels-new',
+			'circle'
+		)
+	);
 ?>
 
-<div class="evoke panels contain-to-grid top-bar-background panels-bg">
-  <nav class="top-bar row full-width-alternate margin top-05" data-topbar>
-    <ul class="title-area">
-	    <li class="name">
-	      <h1><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'dashboard', $user['User']['id'])); ?>"><?= ('Evoke') ?></a></h1>
-	    </li>
-	     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-	  </ul>
-
-	  <section class="top-bar-section">
-	    <!-- Right Nav Section -->
-	    <ul class="right top-bar-background">
-
-	      <li class="active">
-	      	<a href="#">
-	      		<?php if($user['User']['photo_attachment'] == null) : ?>
-					<?php if($user['User']['facebook_id'] == null) : ?>
-						<img src="<?= $this->webroot.'img/user_avatar.jpg' ?>"   class = "evoke top-bar icon"/>
-					<?php else : ?>	
-						<img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large"  class = "evoke top-bar icon"/>
-					<?php endif; ?>
-					
-	  			<?php else : ?>
-	  				<img src="<?= $this->webroot.'files/attachment/attachment/'.$user['User']['photo_dir'].'/'.$user['User']['photo_attachment'] ?>" class = "evoke top-bar icon"/>
-	  			<?php endif; ?>		
-	      	</a>
-      	  </li>
-
-	     <!--  <li class="active" id = "top-bar-name">
-
-	      	<?php if(isset($user['User'])) :?>
-				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'profile', $user['User']['id'])); ?>"><span><?= $user['User']['name'] ?></span></a>
-			<?php else :?>
-				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'login')); ?>"><span><?= __('Unidentified Agent, please login') ?></span></a>
-			<?php endif; ?>
-
-      	  </li> -->
-
-	      <li class="has-dropdown">
-	        <a href="#">
-	        	<?php if(isset($user['User'])) :?>
-					<span><?= $user['User']['name'] ?></span>
-				<?php else :?>
-					<span><?= __('Unidentified Agent, please login') ?></span>
-				<?php endif; ?>
-	        </a>
-	        <ul class="dropdown">
-	          	<?php if(isset($user['User'])) :?>
-					<li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $user['User']['id'])) ?>"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;<?= __('See profile') ?></a></li>
-	          		<li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'logout')) ?>"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;&nbsp;<?= __('Sign Out') ?></a></li>
-				<?php else :?>
-					 <li><a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'login')) ?>"><?= __('Log in') ?></a></li>
-				<?php endif; ?>
-
-	        </ul>
-	      </li>
-
-	      <li class="evoke divider"></li>
-
-	      <li class="has-dropdown">
-	        <a href="#"><?= __('Language') ?></a>
-	        <ul class="dropdown">
-	          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'en')) ?>"><?= __('English') ?></a></li>
-	          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'es')) ?>"><?= __('Spanish') ?></a></li>
-	        </ul>
-	      </li>
-
-	    </ul>
-
-	    <!-- Left Nav Section -->
-	    <!-- <ul class="left">
-	      <li><a href="#">Left Nav Button</a></li>
-	    </ul> -->
-	  </section>
-  </nav>
+<!-- TOPBAR MENU -->
+<div id="missions-menu" class="sticky fixed">
+	<?php echo $this->element('topbar', array('sticky' => '', 'fixed' => '')); ?>
 </div>
 
 <?php 
@@ -87,7 +19,7 @@
 ?>
 
 <section>
-	<div class="evoke row full-width-alternate admin-panel-bg">
+	<div class="row full-width margin top-5">
 
 	  <div class="small-1 columns no-padding">
 	  	<div class = "evoke menu-bg sidebar menucolumn" style = "height: 1500px; background-color:#1f232a">
@@ -956,12 +888,6 @@
 
     
 <?php 
-	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
-	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
-	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
-	// echo $this->Html->script("https://www.google.com/jsapi", array('inline' => false));
-	echo $this->Html->script('menu_height');
 	echo $this->Html->css('animate');
 	echo $this->Html->script('jquery.watable');
 

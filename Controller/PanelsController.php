@@ -121,7 +121,7 @@ class PanelsController extends AppController {
 
 		$groups = $this->Group->getGroups();
 
-		$allPickedIssues = $this->UserIssue->find('all');
+		$allPickedIssues = $this->UserIssue->find('all', array('contain' => 'Issue'));
 		$pickedIssues = array();
 		foreach ($allPickedIssues as $key => $pickedIssue) {
 			if(isset($pickedIssues[$pickedIssue['Issue']['id']])) {
@@ -462,7 +462,7 @@ class PanelsController extends AppController {
 
 		$users_of_my_missions = $this->User->UserMission->find('all', array(
 				'order' => array(
-					'User.name ASC'
+					'user_id ASC'
 				)
 			));
 
@@ -568,8 +568,9 @@ class PanelsController extends AppController {
 				}
 			}
 
-		$allPickedIssues = $this->UserIssue->find('all');
+		$allPickedIssues = $this->UserIssue->find('all', array('contain' => 'Issue'));
 		$pickedIssues = array();
+		debug($allPickedIssues);
 		foreach ($allPickedIssues as $key => $pickedIssue) {
 			if(isset($pickedIssues[$pickedIssue['Issue']['id']])) {
 				$pickedIssues[$pickedIssue['Issue']['id']]['issue'] = $pickedIssue['Issue']['name'];

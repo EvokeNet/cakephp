@@ -1359,98 +1359,86 @@ class UsersController extends AppController {
  */
 	public function leaderboard($label = null) {
 
-		$user = $this->User->find('first', array(
-			'conditions' => array(
-				'User.id' => $this->getUserId()
-			)
-		));
-
+		$user = $this->Auth->user();
 		$userid = $this->getUserId();
 
 		$username = explode(' ', $this->getUserName());
 
+		//USERS ORDERED BY NUMBER OF POINTS
+		$max_leaderboard_users = 6; //Total of leaders on the leaderboard (including the top ones)
 
-		$lang = $this->getCurrentLanguage();
-		$flags['_en'] = true;
-		$flags['_es'] = false;
-		if($lang=='es') {
-			$flags['_en'] = false;
-			$flags['_es'] = true;
-		}
-		//getting leaderboard data:
-			//getting user power points
+		$this->paginate = array(
+		    'joins' => array(
+                array(
+                	'table' => 'points',
+                	'alias' => 'Points',
+                	'type' => 'inner',  //join of your choice left, right, or inner
+                    'conditions' => array(
+						'Points.user_id = User.id'
+					)
+                ),
+            ),
+		    'fields' => array(
+				'User.*',
+				'sum(Points.value) as total_points'
+			),
+		    'group' => 'Points.user_id',
+		    'order' => array('total_points DESC'),
+		);
 
-		$powerpoints_users = array(); // will contain [pp_id][user_id] = total of that pp
+		$points_users = $this->paginate($this->User);
 
-		$points_users = array(); // will contain [points][][user]
-
+		//POWER POINTS
+		$this->loadModel('PowerPoint');
+		$power_points = $this->PowerPoint->find('all');
 		$allusers = $this->User->find('all');
 
-			//debug($vote_rank);
+		$this->loadModel('Point');
 
-			$this->loadModel('PowerPoint');
-			$power_points = $this->PowerPoint->find('all');
+		foreach ($allusers as $usr) {
 
-			$this->loadModel('Point');
-			//$points = $this->Point->find('all');
+			$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
+				'conditions' => array(
+					'UserPowerPoint.user_id' => $usr['User']['id']
+				)
+			));
 
-			foreach ($allusers as $usr) {
-				$points = $this->Point->find('all', array(
-					'conditions' => array(
-						'Point.user_id' => $usr['User']['id']
-					)
-				));
-				$usrpoints = 0;
-				foreach ($points as $point) {
-					$usrpoints += $point['Point']['value'];
-				}
+			$tmp = array();
+			foreach ($powerpoints_user as $powerpoint_user) {
+				if(isset($tmp[$powerpoint_user['UserPowerPoint']['power_points_id']])) {
 
-				$usr['User']['level'] = $this->getLevel($usrpoints);
-				$points_users[$usrpoints][] = $usr['User'];
+					$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] += $powerpoint_user['UserPowerPoint']['quantity'];
+				} else {
 
-				$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
-					'conditions' => array(
-						'UserPowerPoint.user_id' => $usr['User']['id']
-					)
-				));
-
-				$tmp = array();
-				foreach ($powerpoints_user as $powerpoint_user) {
-					if(isset($tmp[$powerpoint_user['UserPowerPoint']['power_points_id']])) {
-
-						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] += $powerpoint_user['UserPowerPoint']['quantity'];
-					} else {
-
-						$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] = $powerpoint_user['UserPowerPoint']['quantity'];
-					}
-				}
-
-				foreach ($power_points as $p_index => $pp) {
-					if($flags['_es']) {
-						$power_points[$p_index]['PowerPoint']['name'] = $pp['PowerPoint']['name_es'];
-						// $missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
-					}
-					$qtdUser = 0;
-					if(isset($tmp[$pp['PowerPoint']['id']]))
-						$qtdUser = $tmp[$pp['PowerPoint']['id']];
-
-					$powerpoints_users[$pp['PowerPoint']['id']][$qtdUser][] = $usr['User'];
+					$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] = $powerpoint_user['UserPowerPoint']['quantity'];
 				}
 			}
 
-			foreach ($power_points as $pp) {
+			foreach ($power_points as $p_index => $pp) {
+				if($flags['_es']) {
+					$power_points[$p_index]['PowerPoint']['name'] = $pp['PowerPoint']['name_es'];
+					// $missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
+				}
+				$qtdUser = 0;
+				if(isset($tmp[$pp['PowerPoint']['id']]))
+					$qtdUser = $tmp[$pp['PowerPoint']['id']];
 
-				krsort($powerpoints_users[$pp['PowerPoint']['id']]);
-
+				$powerpoints_users[$pp['PowerPoint']['id']][$qtdUser][] = $usr['User'];
 			}
-			krsort($points_users);
+		}
 
-		$this->set(compact('label', 'userid', 'username', 'user', 'users', 'powerpoints_users', 'power_points', 'points_users', 'lang'));
+		foreach ($power_points as $pp) {
+			krsort($powerpoints_users[$pp['PowerPoint']['id']]);
+		}
 
+		$this->set(compact('label', 'userid', 'username', 'user', 'points_users', 'power_points', 'powerpoints_users'));
+
+		//**RENDERS LEADERBOARD BY LEVELS**//
 		if(empty($label)) {
 			$this->render('categories/levels');
 		}
 
+		//**RENDERS LEADERBOARD BY EVOKATIONS**//
 		if($label == 'evokation') {
 
 			$this->loadModel('Evokation');
@@ -1486,6 +1474,7 @@ class UsersController extends AppController {
 			$this->render('categories/evokation');
 		}
 
+		//**RENDERS LEADERBOARD BY POWERPOINTS**//
 		if(is_numeric($label)) {
 
 			$this->loadModel('PowerPoint');
@@ -1500,7 +1489,6 @@ class UsersController extends AppController {
 
 			$this->render('categories/power_points');
 		}
-
 	}
 
 /**

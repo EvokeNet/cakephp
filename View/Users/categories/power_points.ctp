@@ -1,18 +1,15 @@
 <?php
-	
-	$this->extend('/Common/topbar');
-	$this->start('menu');
-
-	echo $this->element('header', array('user' => $user));
-	$this->end(); 
-
+	$this->start('topbar');
+	echo $this->element('topbar');
+	$this->end();
 ?>
 
-<section class="evoke leaderboard default-background">	
+
+<section class="leaderboard">	
 
 	<?php echo $this->Session->flash(); ?>
 
-	<div class="evoke row full-width-alternate">
+	<div class="row full-width">
 
 	<div class="small-2 medium-2 large-2 columns padding-left">
   		<?php echo $this->element('menu', array('user' => $user));?>
@@ -21,7 +18,7 @@
 	<div class="small-8 medium-8 large-8 columns maincolumn padding top-2">
 
 		<div class = "default">
-			<h3 class = "padding bottom-1"> <?= strtoupper(__('Leaderboard')) ?> </h3>
+			<h3 class = "padding bottom-1"> <?= strtoupper(__('Leaderboard by power points')) ?> </h3>
 		</div>
 
 		<div class="evoke sheer-background headings">
@@ -52,19 +49,10 @@
 								<li><h1 style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></h1></li>
 
 								<li>
-									<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
-										<?php if($usr['photo_attachment'] == null) : 
-			  								if($usr['facebook_id'] == null) : 
-												$pic = $this->webroot.'img/user_avatar.jpg';
-											else : 
-												$pic = "https://graph.facebook.com/". $usr['facebook_id'] . "/picture?type=large";
-											endif;
-			  							else : 
-			  								$pic =  $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/'.$usr['photo_attachment'];
-			  							endif; ?>
-										<div class="evoke dashboard users-icon" style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
-
-			  						</a>
+									<?php $pic = $this->UserPicture->getPictureAbsolutePath($usr); ?>
+									<div class="centering-block">
+										<img src="<?=$pic?>" class="img-circular square-40px img-glow-on-hover-small" alt="<?= __('User profile picture') ?>" />
+									</div>
 			  					</li>
 			  					<li><h3 style = "font-size: 2.5rem;"><?= $usr['name'] ?></h3></li>
 			  					<li><h3><?= $usr['level']?></h3></li>

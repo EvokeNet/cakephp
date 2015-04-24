@@ -94,7 +94,7 @@
 
             <input type="file" id='fileinput-{{id}}' name='file' class='hide text-center' accept='image/jpeg,image/png' multiple="<?= $multiple ?>" /> 
 
-            <input type="submit" class="button hide btn-uploader-submit" value="<?php echo __('Send image'); ?>" />
+            <input type="submit" class="button hidden btn-uploader-submit" value="<?php echo __('Send image'); ?>" />
         </div>
 
         <?php if (isset($alert)): ?>

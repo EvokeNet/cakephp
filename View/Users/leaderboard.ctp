@@ -1,31 +1,27 @@
 <?php
-	
-	$this->extend('/Common/topbar');
-	$this->start('menu');
-
-	echo $this->element('header', array('user' => $user));
-	$this->end(); 
-
+	$this->start('topbar');
+	echo $this->element('topbar');
+	$this->end();
 ?>
 
-<section class="evoke leaderboard default-background">	
+<section class="leaderboard">	
 
-	<?php echo $this->Session->flash(); ?>
+<?php echo $this->Session->flash(); ?>
 
-	<div class="evoke row full-width-alternate">
+<div class="row full-width">
 
-	<div class="small-2 medium-2 large-2 columns padding-left">
+	<div class="small-3 columns padding-left">
   		<?php echo $this->element('menu', array('user' => $user));?>
 	</div>	
 	
-	<div class="small-8 medium-8 large-8 columns maincolumn padding top-2">
+	<div class="small-9 columns maincolumn padding top-2">
 
 		<div class = "default">
 			<h3 class = "padding bottom-1"> <?= strtoupper(__('Leaderboard')) ?> </h3>
 		</div>
 
-		<div class="evoke sheer-background">
-			<div class="tabs-content evoke headings">
+		<div class="sheer-background">
+			<div class="tabs-content headings">
 				<h1 id="positionh1" class = "float-right"><?= strtoupper(__("Your position: ")) ?> <span id="positionHolder">5</span></h1>
 				<div class="content vertical active" id="panelXP">
 
@@ -38,37 +34,29 @@
 					</ul>
 					<?php 
 						$pos = 1;
-						foreach ($points_users as $p => $point) {
-							foreach ($point as $usr) { 
-								if($usr['id'] == $user['User']['id'])
-									$position[0] = $pos;
-								?>
-								<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5">
-									<li><h1 style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></h1></li>
+						foreach ($points_users as $p => $user_point) {
+							$usr = $user_point['User'];
+							$usr_points = $user_point[0]['total_points'];
 
-									<li>
-										<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'dashboard', $usr['id']))?>">
-										<?php if($usr['photo_attachment'] == null) : 
-			  								if($usr['facebook_id'] == null) : 
-												$pic = $this->webroot.'img/user_avatar.jpg';
-											else : 
-												$pic = "https://graph.facebook.com/". $usr['facebook_id'] . "/picture?type=large";
-											endif;
-			  							else : 
-			  								$pic =  $this->webroot.'files/attachment/attachment/'.$usr['photo_dir'].'/'.$usr['photo_attachment'];
-			  							endif; ?>
-										<div class="evoke dashboard users-icon" style="min-width: 5vw; min-height: 5vw; background-image: url(<?=$pic?>); background-position:center; background-size: 100% Auto;"></div>
+							if($usr['id'] == $user['id'])
+								$position[0] = $pos;
+							?>
+							<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5">
+								<li><h1 style = "font-size: 4rem; margin-left: 10%; margin-top: -5px; line-height: 1.0em;"><?= $pos ?></h1></li>
 
-			  							</a>
-			  						</li>
-			  						<li><h3 style = "font-size: 2.5rem;"><?= $usr['name'] ?></h3></li>
-		  							<li><h3><?= $usr['level']?></h3></li>
-		  							<li><h3><?= $p ?></h3></li>
-		  							<span class = "evoke leaderboard-border"></span>
-	  							</ul>
-								<?php 
-								$pos++;
-							}
+								<li>
+									<?php $pic = $this->UserPicture->getPictureAbsolutePath($usr); ?>
+									<div class="centering-block">
+										<img src="<?=$pic?>" class="img-circular square-40px img-glow-on-hover-small" alt="<?= __('User profile picture') ?>" />
+									</div>
+		  						</li>
+		  						<li><h3 style = "font-size: 2.5rem;"><?= $usr['name'] ?></h3></li>
+	  							<li><h3><?= $usr['level']?></h3></li>
+	  							<li><h3><?= $usr_points ?></h3></li>
+	  							<span class = "evoke leaderboard-border"></span>
+  							</ul>
+							<?php 
+							$pos++;
 						}
 					?>
 
@@ -133,7 +121,7 @@
 								$pos = 1;
 								foreach ($powerpoints_users[$pp['PowerPoint']['id']] as $pps => $ppusr) {
 									foreach ($ppusr as $usr) {
-										if($usr['id'] == $user['User']['id'])
+										if($usr['id'] == $user['id'])
 											$position[$index] = $pos;
 									 	?>
 
@@ -222,13 +210,6 @@
 
 
 
-<?php 
-	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
-	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
-	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
-	echo $this->Html->script('menu_height', array('inline' => false));
-?>
 <script type="text/javascript" charset="utf-8">
 	$("#positionHolder").text('<?= $position[0]?>');
 

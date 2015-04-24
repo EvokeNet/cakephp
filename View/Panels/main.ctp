@@ -10,15 +10,18 @@
 
 	// $redis = new Redis() or die("Cannot load Redis module.");
 	// $redis->connect('127.0.0.1');
+	$average_level = $average_points = $allies_user = 0;
 
-	$average_level = $userLevels['all']/sizeof($all_users);
-	$average_level = number_format($average_level, 2);
+	if (sizeof($all_users) > 0) {
+		$average_level = $userLevels['all']/sizeof($all_users);
+		$average_level = number_format($average_level, 2);
 
-	$average_points = $userLevels['allP']/sizeof($all_users);
-	$average_points = number_format($average_points, 2);
+		$average_points = $userLevels['allP']/sizeof($all_users);
+		$average_points = number_format($average_points, 2);
 
-	$allies_user = sizeof($allRelations)/sizeof($all_users);
-	$allies_user = number_format($allies_user, 2);
+		$allies_user = sizeof($allRelations)/sizeof($all_users);
+		$allies_user = number_format($allies_user, 2);
+	}
 
 	$chosenIssues = array();
 	foreach ($pickedIssues as $issue) {
@@ -26,8 +29,11 @@
 	}
 	krsort($chosenIssues);
 
-	$pe = sizeof($pending_evokations)/sizeof($groups);
-	$ae = sizeof($approved_evokations)/sizeof($groups);
+	$pe = $ae = 0;
+	if (isset($groups) && (sizeof($groups) > 0)) {
+		$pe = sizeof($pending_evokations)/sizeof($groups);
+		$ae = sizeof($approved_evokations)/sizeof($groups);
+	}
 
 ?>
 
@@ -36,7 +42,7 @@
 	<?php echo $this->element('topbar', array('sticky' => '', 'fixed' => '')); ?>
 </div>
 
-<div class="row row-full-width padding top-4" data-equalizer>
+<div class="row full-width padding top-4" data-equalizer>
   <!-- <div class="large-2 columns padding-left-0 gradient-on-right"  style = "background-color: #26dee0; padding-right:0px" data-equalizer-watch> -->
 	<div class="large-2 columns padding-left-0 gradient-on-right" data-equalizer-watch>
 
