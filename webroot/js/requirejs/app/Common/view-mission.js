@@ -22,7 +22,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			  },
 			  onBeforeChange: function(slider, currentIndex, targetIndex){
 			  	//Page number
-			  	$('#page-number').html(targetIndex+1);
+			  	$('#page-number').empty().append(targetIndex+1);
 			  },
 			  onAfterChange: function(slider,index){
 				//Carousel height is adaptative according to the currently displayed image (not the tallest image on the set)
@@ -146,16 +146,16 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//Close overlay button
 			//--------------------------------------------//
 			$(".close-missions-content-overlay").click(function(){
-				//Hide content overlay and show tab-bar and main section
-				$('.main-section').removeClass("hidden");
-				$('.tab-bar').removeClass("hidden");
-				$('.close-sidebar-button').fadeIn("hidden");
-				$('#missions-content-overlay').fadeOut('fast');
-
 				//Clear content-body and its event
 				$('#missions-content-overlay-body').off(); //clear events in previous elements
 				$('#missions-content-overlay-body *').off(); 
-				$('#missions-content-overlay-body').html('');
+				$('#missions-content-overlay-body').empty();
+
+				//Hide content overlay and show tab-bar and main section
+				$('#missions-content-overlay').fadeOut('fast');
+				$('.main-section').removeClass("hidden");
+				$('.tab-bar').removeClass("hidden");
+				$('.close-sidebar-button').fadeIn("hidden");
 			});
 
 			//--------------------------------------------//
@@ -178,7 +178,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					url: $(this).attr("href")+"/true",
 					type:"POST",
 					beforeSend: function() {
-						$('#missions-content-overlay .content-body').html('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
+						$('#missions-content-overlay .content-body').empty().append('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
 						$('#missions-content-overlay').fadeIn('slow');
 						$('.main-section').addClass("hidden");
 						$('.tab-bar').addClass("hidden");
@@ -225,7 +225,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					data: {forum_id: forum_id},
 					beforeSend: function() {
 						$('#tabForumContent').empty().append('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
-						$('#tabForumContent').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+						$('#tabForumContent').empty().append('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
 					},
 					success: function(data) {
 						//Display content

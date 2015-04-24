@@ -8,7 +8,7 @@ define(['require'], function(require){
     }
 
     $.ajaxPrefilter(function( settings ) {
-        if (settings && settings.crossDomain && settings.url) {
+        if (settings && settings.crossDomain && settings.url && settings.complete && settings.success && settings.error) {
             var proxy_url = webroot+'components/linkpreview/demos/php-proxy/proxy.php';
             settings.url = proxifyUrl(proxy_url,settings.url);
 
@@ -30,8 +30,8 @@ define(['require'], function(require){
             settings.error = function(jqXHR, textStatus, errorThrown) {
                 settingsCopy.error(jqXHR, textStatus, errorThrown);
             };
-        }
 
-        settings.crossDomain = false;
+            settings.crossDomain = false;
+        }
     });
 });

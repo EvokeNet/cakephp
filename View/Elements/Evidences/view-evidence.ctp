@@ -300,7 +300,6 @@ if (isset($evidence)):
 
 					<div class="padding left-2 right-2">
 						<?php 
-						// echo $this->fetch('script2');
 							echo $this->element('comment_form', array(
 								'evidence_id' => $evidence['Evidence']['id'],
 								'user_id' => $loggedInUser['id'],
