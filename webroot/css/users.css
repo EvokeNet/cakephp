@@ -74,3 +74,19 @@ div.evoke.slide.background-cover.active div.img-caption-bottom {
 .evoke .user-panel-leaderboard .profile-content {
 	margin-top: 100px;
 }
+
+/* --------------------------- */
+/* LEADERBOARD */
+/* --------------------------- */
+.icon-medal-stack .icon-medal2 {
+	color: #323234;
+}
+
+.icon-medal-stack .fa-circle {
+	margin-top: 0.3em;
+}
+
+.icon-medal-stack .medal-text {
+	margin-top: 0.6em;
+	font-size: 0.6em;
+}

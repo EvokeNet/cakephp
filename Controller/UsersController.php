@@ -40,9 +40,9 @@ class UsersController extends AppController {
 * @return void
 */
 	public function beforeFilter() {
-        parent::beforeFilter();
-        $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot');
-    }
+		parent::beforeFilter();
+		$this->Auth->allow('add', 'login', 'logout', 'register', 'forgot');
+	}
 
 //    public function forgot() {
 //		if ($this->request->is('post')) {
@@ -98,59 +98,59 @@ class UsersController extends AppController {
 		// 		return false;
 		// }
 
-    public function createTempPassword($len) {
+	public function createTempPassword($len) {
 			$pass = '';
-		   	$lchar = 0;
-		   	$char = 0;
-		   	for($i = 0; $i < $len; $i++) {
-		    	while($char == $lchar) {
-		       		$char = rand(48, 109);
-		       		if($char > 57) $char += 7;
-		       		if($char > 90) $char += 6;
-		     	}
+			$lchar = 0;
+			$char = 0;
+			for($i = 0; $i < $len; $i++) {
+				while($char == $lchar) {
+					$char = rand(48, 109);
+					if($char > 57) $char += 7;
+					if($char > 90) $char += 6;
+				}
 				$pass .= chr($char);
-		     	$lchar = $char;
-		   	}
-		   	return $pass;
+				$lchar = $char;
+			}
+			return $pass;
 		}
 
-    public function changePassword() {
-    	$usr = $this->User->find('first', array(
-    		'conditions' => array(
-    			'User.id' => $this->getUserId()
-    		)
-    	));
+	public function changePassword() {
+		$usr = $this->User->find('first', array(
+			'conditions' => array(
+				'User.id' => $this->getUserId()
+			)
+		));
 
-    	if(empty($usr))
-    		$this->redirect($this->referer());
+		if(empty($usr))
+			$this->redirect($this->referer());
 
 
-    	if ($this->request->is('post')) {
-    		// debug($this->request->data);
-    		if(AuthComponent::password($this->request->data['User']['password']) == $usr['User']['password']) {
-    			// debug('match');
-    			if($this->request->data['User']['tmp'] == $this->request->data['User']['tmp2']) {
-    				// debug('new password match');
-    				$this->User->id = $this->getUserId();
-    				$insert['User']['id'] = $this->getUserId();
-    				$insert['User']['role_id'] = $this->getUserRole();
-    				$insert['User']['password'] = $this->request->data['User']['tmp'];
-    				$this->User->save($insert);
-    				$this->Session->setFlash(__("Your password was changed."), 'flash_message');
-    				$this->redirect(array('action' => 'dashboard'));
-    			} else {
-    				$this->Session->setFlash(__("The new passwords do not match."), 'flash_message');
-    				$this->redirect(array('action' => 'changePassword'));
-    			}
-    		} else {
-    			$this->Session->setFlash(__("The current password does not match."), 'flash_message');
-    			$this->redirect(array('action' => 'changePassword'));
-    		}
-    	}
+		if ($this->request->is('post')) {
+			// debug($this->request->data);
+			if(AuthComponent::password($this->request->data['User']['password']) == $usr['User']['password']) {
+				// debug('match');
+				if($this->request->data['User']['tmp'] == $this->request->data['User']['tmp2']) {
+					// debug('new password match');
+					$this->User->id = $this->getUserId();
+					$insert['User']['id'] = $this->getUserId();
+					$insert['User']['role_id'] = $this->getUserRole();
+					$insert['User']['password'] = $this->request->data['User']['tmp'];
+					$this->User->save($insert);
+					$this->Session->setFlash(__("Your password was changed."), 'flash_message');
+					$this->redirect(array('action' => 'dashboard'));
+				} else {
+					$this->Session->setFlash(__("The new passwords do not match."), 'flash_message');
+					$this->redirect(array('action' => 'changePassword'));
+				}
+			} else {
+				$this->Session->setFlash(__("The current password does not match."), 'flash_message');
+				$this->redirect(array('action' => 'changePassword'));
+			}
+		}
 
-    	$this->set(compact('usr'));
-    	// die();
-    }
+		$this->set(compact('usr'));
+		// die();
+	}
 
 /**
  * login method
@@ -176,7 +176,7 @@ class UsersController extends AppController {
 		$google_oauthV2 = new Google_Service_Oauth2($client);
 
 		$client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
-    	$client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
+		$client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
 
 		// $authUrl = $client->createAuthUrl();
 		// $this->set('authUrl', $authUrl);
@@ -202,17 +202,17 @@ class UsersController extends AppController {
 
 		if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 
-		 	// $client->setAccessToken($_SESSION['access_token']);
+			// $client->setAccessToken($_SESSION['access_token']);
 
 			// $attributes = $client->verifyIdToken($token->id_token, '502819941527.apps.googleusercontent.com')->getAttributes();
    //      	$gplus_id = $attributes["payload"]["sub"];
 
-		 	$user_profile = $google_oauthV2->userinfo->get();
-		 	$_SESSION['user']['name'] = $user_profile['name'];
-		 	$_SESSION['user']['google_id'] = $user_profile['id'];
-            $_SESSION['user']['email'] = $user_profile['email'];
+			$user_profile = $google_oauthV2->userinfo->get();
+			$_SESSION['user']['name'] = $user_profile['name'];
+			$_SESSION['user']['google_id'] = $user_profile['id'];
+			$_SESSION['user']['email'] = $user_profile['email'];
 
-		  	$user_google = $this->User->find('first', array('conditions' => array('User.id' => $_SESSION['user']['email'])));
+			$user_google = $this->User->find('first', array('conditions' => array('User.id' => $_SESSION['user']['email'])));
 
 			if(empty($user_google)) {
 
@@ -442,21 +442,21 @@ class UsersController extends AppController {
 
 	public function moreEvidences($lastOne, $limit = 1, $user_id = -1){
 		$this->autoRender = false; // We don't render a view in this example
-    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+		$this->request->onlyAllow('ajax'); // No direct access via browser URL
 
-   		$last = $this->User->Evidence->find('first', array(
-    		'conditions' => array(
-    			'Evidence.id' => $lastOne
-    		)
-    	));
+		$last = $this->User->Evidence->find('first', array(
+			'conditions' => array(
+				'Evidence.id' => $lastOne
+			)
+		));
 
-    	$lang = $this->getCurrentLanguage();
+		$lang = $this->getCurrentLanguage();
 
-    	if(empty($last))
-    			return json_encode(array());
+		if(empty($last))
+				return json_encode(array());
 
-	   	if($user_id==-1) {
-		   	$obj = $this->User->Evidence->find('all', array(
+		if($user_id==-1) {
+			$obj = $this->User->Evidence->find('all', array(
 				'order' => array(
 					'Evidence.created DESC'
 				),
@@ -484,40 +484,40 @@ class UsersController extends AppController {
 		$ind = 'Evidence';
 
 
-    	$data = "";
+		$data = "";
 
-	    $str = "lastBegin-1lastEnd";
-	    $older = "";
-    	foreach ($obj as $key => $value) {
-    		$view = new View($this, false);
+		$str = "lastBegin-1lastEnd";
+		$older = "";
+		foreach ($obj as $key => $value) {
+			$view = new View($this, false);
 			$content = ($view->element($el, array('e' => $value, 'lang' => $lang)));
 
 			$data .= $content .' ';
 
-    		$older = $value[$ind]['id'];
-    	}
-    	if($older != "") {
-    		$str = "lastBegin".$older."lastEnd";
-    	}
-    	return $str.$data;
+			$older = $value[$ind]['id'];
+		}
+		if($older != "") {
+			$str = "lastBegin".$older."lastEnd";
+		}
+		return $str.$data;
 	}
 
 
 	public function moreEvokations($lastOne, $limit = 1, $user_id = -1){
 		$this->autoRender = false; // We don't render a view in this example
-    	$this->request->onlyAllow('ajax'); // No direct access via browser URL
+		$this->request->onlyAllow('ajax'); // No direct access via browser URL
 
-    	$this->loadModel('Evokation');
-   		$last = $this->Evokation->find('first', array(
-    		'conditions' => array(
-    			'Evokation.id' => $lastOne
-    		)
-    	));
+		$this->loadModel('Evokation');
+		$last = $this->Evokation->find('first', array(
+			'conditions' => array(
+				'Evokation.id' => $lastOne
+			)
+		));
 
-    	if(empty($last))
-    			return json_encode(array());
+		if(empty($last))
+				return json_encode(array());
 
-    	$obj = $this->Evokation->find('all', array(
+		$obj = $this->Evokation->find('all', array(
 			'order' => array(
 				'Evokation.modified DESC'
 			),
@@ -605,12 +605,12 @@ class UsersController extends AppController {
 		$ind = 'Evokation';
 
 
-    	$data = "";
+		$data = "";
 
-	    $str = "lastBegin-1lastEnd";
-	    $older = "";
-    	foreach ($obj as $key => $value) {
-    		$showFollowButton = true;
+		$str = "lastBegin-1lastEnd";
+		$older = "";
+		foreach ($obj as $key => $value) {
+			$showFollowButton = true;
 			foreach($common as $my) :
 				if(array_search($my['Evokation']['id'], $value['Evokation'])) {
 					$showFollowButton = false;
@@ -618,7 +618,7 @@ class UsersController extends AppController {
 				}
 			endforeach;
 
-    		$view = new View($this, false);
+			$view = new View($this, false);
 
 			if($showFollowButton)
 				$content = ($view->element($el, array('e' => $value, 'evokationsFollowing' => $evokationsFollowing, 'my_id' => $this->getUserId())));
@@ -627,12 +627,12 @@ class UsersController extends AppController {
 
 			$data .= $content .' ';
 
-    		$older = $value[$ind]['id'];
-    	}
-    	if($older != "") {
-    		$str = "lastBegin".$older."lastEnd";
-    	}
-    	return $str.$data;
+			$older = $value[$ind]['id'];
+		}
+		if($older != "") {
+			$str = "lastBegin".$older."lastEnd";
+		}
+		return $str.$data;
 	}
 
 
@@ -664,7 +664,7 @@ class UsersController extends AppController {
 			else {
 				$this->Session->setFlash(__("Typed passwords don't match"));
 				//$this->redirect(array('action' => 'changePassword', '?arg='.$this->params['url']['arg']));
-	  		}
+			}
 		}
 	}
 
@@ -836,13 +836,13 @@ class UsersController extends AppController {
 			));
 
 			foreach ($feed as $key => $value) {
-			 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
-		 	 		$value['Notification']['origin'] == 'commentEvidence') {
-		 	 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
-		 	 			unset($feed[$key]);
-		 	 		}
-		 	 	}
-		 	}
+				if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
+					$value['Notification']['origin'] == 'commentEvidence') {
+					if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
+						unset($feed[$key]);
+					}
+				}
+			}
 		}
 
 		if(!empty($my_notifies)){
@@ -856,14 +856,14 @@ class UsersController extends AppController {
 			));
 
 			foreach ($notifies as $key => $value) {
-			 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
-		 	 		$value['Notification']['origin'] == 'commentEvidence') {
-		 	 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
-		 	 			unset($notifies[$key]);
-		 	 		}
-		 	 	}
+				if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
+					$value['Notification']['origin'] == 'commentEvidence') {
+					if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
+						unset($notifies[$key]);
+					}
+				}
 
-		 	 	if($value['Notification']['origin'] == 'gritBadge'){
+				if($value['Notification']['origin'] == 'gritBadge'){
 					foreach($badges as $badge):
 						if($badge['Badge']['id'] == $value['Notification']['origin_id']){
 							$notifies[$key]['badge_name'] = $badge['Badge']['name'];
@@ -871,7 +871,7 @@ class UsersController extends AppController {
 						}
 					endforeach;
 				}
-		 	}
+			}
 		}
 
 		$this->loadModel('Mission');
@@ -941,13 +941,13 @@ class UsersController extends AppController {
 
 
 			$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
-	            'entity_id' => $not['AdminNotification']['id'],
-	            'user_id' => $this->getUserId(),
-	            'entity' => 'showNotification'
-	        ));
+				'entity_id' => $not['AdminNotification']['id'],
+				'user_id' => $this->getUserId(),
+				'entity' => 'showNotification'
+			));
 
-	        $this->getEventManager()->dispatch($event);
-	        // break;
+			$this->getEventManager()->dispatch($event);
+			// break;
 		}
 
 		//get all newer than that one
@@ -968,14 +968,14 @@ class UsersController extends AppController {
 			$this->User->AdminNotificationsUser->save($insert);
 
 			$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
-	            'entity_id' => $not['AdminNotification']['id'],
-	            'user_id' => $this->getUserId(),
-	            'entity' => 'showNotification'
-	        ));
+				'entity_id' => $not['AdminNotification']['id'],
+				'user_id' => $this->getUserId(),
+				'entity' => 'showNotification'
+			));
 
 			// debug($not);
-	        $this->getEventManager()->dispatch($event);
-	        // break;
+			$this->getEventManager()->dispatch($event);
+			// break;
 		}
 
 		$a_posts = array();
@@ -1094,23 +1094,23 @@ class UsersController extends AppController {
 		$max_leaderboard_users = 6; //Total of leaders on the leaderboard (including the top ones)
 
 		$leaderboard_users = $this->User->find('all', array(
-		    'joins' => array(
-                array(
-                	'table' => 'points',
-                	'alias' => 'Points',
-                	'type' => 'left',  //join of your choice left, right, or inner
-                    'conditions' => array(
+			'joins' => array(
+				array(
+					'table' => 'points',
+					'alias' => 'Points',
+					'type' => 'left',  //join of your choice left, right, or inner
+					'conditions' => array(
 						'Points.user_id = User.id'
 					)
-                ),
-            ),
-		    'fields' => array(
+				),
+			),
+			'fields' => array(
 				'User.*',
 				'sum(Points.value) as total_points'
 			),
-		    'group' => 'Points.user_id',
-		    'order' => array('total_points DESC'),
-		    'limit' => 60
+			'group' => 'Points.user_id',
+			'order' => array('total_points DESC'),
+			'limit' => 60
 		));
 
 		//FRIENDS
@@ -1305,11 +1305,11 @@ class UsersController extends AppController {
 
 			if ($this->request->data['UserIssue']['issue_id']) {
 				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {
-			        $insert = array('user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'issue_id' => $a);
+					$insert = array('user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'issue_id' => $a);
 
-			        $exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'UserIssue.issue_id' => $a)));
-			        if(!$exists) $this->User->UserIssue->save($insert);
-			    }
+					$exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'UserIssue.issue_id' => $a)));
+					if(!$exists) $this->User->UserIssue->save($insert);
+				}
 			}
 
 			return $this->redirect(array('controller' => 'users', 'action' => 'matching_results', $id));
@@ -1364,28 +1364,11 @@ class UsersController extends AppController {
 
 		$username = explode(' ', $this->getUserName());
 
+		//POSITION OF THIS USER
+		$user_position = $this->User->getLeaderboardPosition($userid);
+
 		//USERS ORDERED BY NUMBER OF POINTS
-		$max_leaderboard_users = 6; //Total of leaders on the leaderboard (including the top ones)
-
-		$this->paginate = array(
-		    'joins' => array(
-                array(
-                	'table' => 'points',
-                	'alias' => 'Points',
-                	'type' => 'inner',  //join of your choice left, right, or inner
-                    'conditions' => array(
-						'Points.user_id = User.id'
-					)
-                ),
-            ),
-		    'fields' => array(
-				'User.*',
-				'sum(Points.value) as total_points'
-			),
-		    'group' => 'Points.user_id',
-		    'order' => array('total_points DESC'),
-		);
-
+		$this->paginate = $this->User->getLeaderboardQuery();
 		$points_users = $this->paginate($this->User);
 
 		//POWER POINTS
@@ -1431,64 +1414,7 @@ class UsersController extends AppController {
 			krsort($powerpoints_users[$pp['PowerPoint']['id']]);
 		}
 
-		$this->set(compact('label', 'userid', 'username', 'user', 'points_users', 'power_points', 'powerpoints_users'));
-
-		//**RENDERS LEADERBOARD BY LEVELS**//
-		if(empty($label)) {
-			$this->render('categories/levels');
-		}
-
-		//**RENDERS LEADERBOARD BY EVOKATIONS**//
-		if($label == 'evokation') {
-
-			$this->loadModel('Evokation');
-
-			$evokations = $this->Evokation->find('all', array(
-				'conditions' => array(
-					'Evokation.sent' => 1
-				)
-			));
-
-			$votes = $this->Evokation->Vote->find('all');
-
-			$vote_rank = array();
-
-			foreach($evokations as $e):
-				foreach($votes as $v):
-					$var = $v['Vote']['value'] + 1;
-					if($v['Vote']['evokation_id'] == $e['Evokation']['id']){
-						if(isset($vote_rank[$e['Evokation']['id']]))
-							$vote_rank[$e['Evokation']['id']] += $var;
-						else
-							$vote_rank[$e['Evokation']['id']] = $var;
-					}
-				endforeach;
-				if(!isset($vote_rank[$e['Evokation']['id']]))
-					$vote_rank[$e['Evokation']['id']] = 0;
-			endforeach;
-
-			arsort($vote_rank);
-
-			$this->set(compact('evokations', 'votes', 'vote_rank'));
-
-			$this->render('categories/evokation');
-		}
-
-		//**RENDERS LEADERBOARD BY POWERPOINTS**//
-		if(is_numeric($label)) {
-
-			$this->loadModel('PowerPoint');
-
-			$powerlabel = $this->PowerPoint->find('first', array(
-				'conditions' => array(
-					'PowerPoint.id' => $label
-				)
-			));
-
-			$this->set(compact('powerlabel'));
-
-			$this->render('categories/power_points');
-		}
+		$this->set(compact('label', 'userid', 'username', 'user', 'user_position', 'points_users', 'power_points', 'powerpoints_users'));
 	}
 
 /**
