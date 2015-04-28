@@ -50,7 +50,6 @@ class User extends AppModel {
 	);
 
 
-
 /**
  * Display field
  *
@@ -95,11 +94,6 @@ class User extends AppModel {
 				}
 
 				//Now that the attachment has been saved, it has a directory and a file name for the attachment, that will be stored also in the user table
-				// $recent = $this->Attachment->find('first', array(
-				// 	'conditions' => array(
-				// 		'Attachment.id' => $this->Attachment->id
-				// 	)
-				// ));
 				$recent = $this->Attachment->findById($this->Attachment->id);
 
 				//The previous attachment has to be deleted
@@ -119,8 +113,19 @@ class User extends AppModel {
 			return true;
 		}
 
+		// Could not save because of conflicting registers
+		$same_email = $this->find('count', array('conditions' => array('User.email' => $insert['User']['email'])));
+		if ($same_email > 0) {
+			throw new Exception(__("Your email is already registered in our database."));
+		}
+
+		$same_username = $this->find('count', array('conditions' => array('User.username' => $insert['User']['username'])));
+		if ($same_username > 0) {
+			throw new Exception(__("This username is already in use. Please choose another one."));
+		}
+
 		// Throw an exception for the controller
-		throw new Exception(__("This post could not be saved. Please try again"));
+		throw new Exception(__("Sorry, your registered cannot be completed. Please check your data and try again."));
 	}
 
  /**
@@ -179,16 +184,14 @@ class User extends AppModel {
 	}
 
 	/**
-	 * Gets the position 
-	 * @param int $userLevel Id of the current level
-	 * @return object Next level (if there is one - else null)
+	 * Gets the position of the user in the leaderboard
+	 * @param int $user_id Id of the user
+	 * @return object User with two other fields (rank and total_points)
 	 */
-	public function getLeaderboardPosition($user_id = null){
+	public function getLeaderboardPosition($user_id){
 		if (!$this->exists($user_id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
-
-		$options = $this->getLeaderboardQuery();
 
 		$leaderboard_users = $this->find('all',$this->getLeaderboardQuery());
 		
@@ -205,7 +208,7 @@ class User extends AppModel {
 	}
 
 	/**
-	 * Gets the query options that generate the leaderboard
+	 * Gets the query options that generate the leaderboard, ordered by the number of points
 	 * @return array Query options
 	 */
 	public function getLeaderboardQuery(){
@@ -225,11 +228,69 @@ class User extends AppModel {
 				'sum(Points.value) as total_points'
 			),
 			'group' => 'Points.user_id',
-			'order' => array('total_points DESC')
+			'order' => array('total_points' => 'DESC')
 		);
 	}
 
+	public function updateAllLevels() {
+		$all_users = $this->find('all');
+		
+		foreach ($all_users as $key => $user) {
+			$level = $this->getLevel($user['User']['id']);
 
+			$userModel = new User();
+			$userModel->id = $user['User']['id'];
+			$userModel->set(array('level'=> $level['Level']['level']));
+			$userModel->save();
+		}
+		// die();
+	}
+
+	/**
+	 * Gets the level that corresponds to the total points of this user
+	 * @param int $user_id User id
+	 * @return object Level
+	 */
+	public function getLevel($user_id){
+		App::import('model','Level');
+		$levelModel = new Level();
+
+		$total_points = $this->getTotalPoints($user_id);
+		return $levelModel->getLevel($total_points);
+	}
+
+
+	/**
+	 * Gets the total number of points of this user
+	 * @param int $user_id User id
+	 * @return int Total number of points
+	 */
+	public function getTotalPoints($user_id){
+		$user_points = $this->find('first',array(
+			'joins' => array(
+				array(
+					'table' => 'points',
+					'alias' => 'Points',
+					'type' => 'left',  //join of your choice left, right, or inner
+					'conditions' => array(
+						'Points.user_id = User.id'
+					)
+				)
+			),
+			'conditions' => array('user_id' => $user_id),
+			'fields' => array(
+				'sum(Points.value) as total_points'
+			),
+			'group' => 'Points.user_id'
+		));
+
+		if ($user_points == null) {
+			return array();
+		}
+		return $user_points[0]['total_points'];
+	}
+
+	
 
 
 	function parentNode() {

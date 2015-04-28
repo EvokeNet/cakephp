@@ -570,7 +570,6 @@ class PanelsController extends AppController {
 
 		$allPickedIssues = $this->UserIssue->find('all', array('contain' => 'Issue'));
 		$pickedIssues = array();
-		debug($allPickedIssues);
 		foreach ($allPickedIssues as $key => $pickedIssue) {
 			if(isset($pickedIssues[$pickedIssue['Issue']['id']])) {
 				$pickedIssues[$pickedIssue['Issue']['id']]['issue'] = $pickedIssue['Issue']['name'];

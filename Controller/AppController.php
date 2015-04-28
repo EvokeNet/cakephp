@@ -56,33 +56,33 @@ class AppController extends Controller {
 * @return void
 */
 	public function beforeFilter() {
-				$this->set('loggedIn', $this->Auth->loggedIn());
-				//$this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
+			$this->set('loggedIn', $this->Auth->loggedIn());
+			//$this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'dashboard');
 
-				$this->_checkBrowserLanguage();
+			$this->_checkBrowserLanguage();
 
-				//Info from the user that is currently logged in
-				$cuser = $this->Auth->user();
-				$loggedInUser = $this->Auth->user();
-				
-				$userPoints = $this->getPoints($this->getUserId());
-				$userLevel = $this->getLevel($userPoints); //level ID
-				$userNextLevel = $this->getNextLevel($userLevel); //next level object
-				$userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
+			//Info from the user that is currently logged in
+			$cuser = $this->Auth->user();
+			$loggedInUser = $this->Auth->user();
+			
+			$userPoints = $this->getPoints($this->getUserId());
+			$userLevel = $this->getLevel($userPoints); //level ID
+			$userNextLevel = $this->getNextLevel($userLevel); //next level object
+			$userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
 
-				if (!empty($this->accessLevels)) {
-						$this->Auth->authorize = 'Controller';
-						$this->Auth->deny();
-				} else {
-						$this->Auth->allow();
-				}
+			if (!empty($this->accessLevels)) {
+					$this->Auth->authorize = 'Controller';
+					$this->Auth->deny();
+			} else {
+					$this->Auth->allow();
+			}
 
-				//$userNotifications = $this->getNotificationsNumber($this->getUserId());
+			//$userNotifications = $this->getNotificationsNumber($this->getUserId());
 
-				$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
-		}
+			$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
+	}
 
-		public function isAuthorized($user = null) {
+	public function isAuthorized($user = null) {
 
 		if (!empty ($this->accessLevels)) {
 
@@ -411,43 +411,28 @@ class AppController extends Controller {
 
 	}
 
+	/**
+	 * Gets the total number of points of a user
+	 * Uses a function in the User model
+	 * @param int $user_id User id
+	 * @return int Number of points
+	 */
 	public function getPoints($user_id){
-
-		$this->loadModel('Point');
-		$all = $this->Point->find('all', array('conditions' => array('Point.user_id' => $user_id)));
-
-		$points = 0;
-		
-		foreach($all as $a){
-			$points += $a['Point']['value'];
-		}
-
-		return $points;
-
+		$this->loadModel('User');
+		$this->User->updateAllLevels();
+		$userPoints = $this->User->getTotalPoints($user_id);
+		return $userPoints;
 	}
 
 	/**
-	 * Gets the next level number
-	 * @param int $userLevel Id of the current level
-	 * @return int Next level number
+	 * Gets the level (just the number) that corresponds to a certain number of points
+	 * @param int $userPoints Number of points 
+	 * @return int Level
 	 */
 	public function getLevel($userPoints){
-
 		$this->loadModel('Level');
-
-		$levels = $this->Level->find('all', array('order' => array('Level.points ASC')));
-
-		$level = 0;
-
-		foreach($levels as $l):
-			if ($l['Level']['points'] <= $userPoints) {
-				$level = $l['Level']['level'];
-			} else {
-				break;
-			}
-		endforeach;
-		
-		return $level;
+		$level = $this->Level->getLevel($userPoints);
+		return $level['Level']['level'];
 	}
 
 	/**

@@ -7,285 +7,286 @@ App::uses('Controller', 'AppController');
 class PointListener implements CakeEventListener {
 
 	public function implementedEvents() {
-        return array(
+		return array(
 
-            'Controller.Evidence.create' => 'addPoints',
+			'Controller.Evidence.create' => 'addPoints',
 
-            'Model.UserFriend.follow' => 'followUserPoints',
+			'Model.UserFriend.follow' => 'followUserPoints',
 
-            'Model.UserAnswer.add' => 'addUserAnswerPoints',
+			'Model.UserAnswer.add' => 'addUserAnswerPoints',
 
-            'Model.User.add' => 'addRegisterPoints',
+			'Model.User.add' => 'addRegisterPoints',
 
-            'Model.Group.create' => 'createGroupPoints',
+			'Model.Group.create' => 'createGroupPoints',
 
-            'Model.GroupsUser.join' => 'joinGroupPoints',
+			'Model.GroupsUser.join' => 'joinGroupPoints',
 
-            'Controller.Phase.completed' => 'completePhasePoints',
-            
-            'Model.Comment.evidence' => 'commentEvidencePoints',
-            
-            'Model.Comment.evokation' => 'commentEvokationPoints',
+			'Controller.Phase.completed' => 'completePhasePoints',
+			
+			'Model.Comment.evidence' => 'commentEvidencePoints',
+			
+			'Model.Comment.evokation' => 'commentEvokationPoints',
 
-            'Model.Like.evidence' => 'likeEvidencePoints',
-            
-            'Model.Vote.evokation' => 'voteEvokationPoints',
-            
-            'Model.EvokationFollower.add' => 'followEvokationPoints',
+			'Model.Like.evidence' => 'likeEvidencePoints',
+			
+			'Model.Vote.evokation' => 'voteEvokationPoints',
+			
+			'Model.EvokationFollower.add' => 'followEvokationPoints',
 
-            'Controller.BasicTraining.completed' => 'completedBasicTraining',
-            
-            'Model.Evidence.delete' => 'deletePoints',
-            'Model.UserFriend.unfollow' => 'deletePoints',
-            'Model.Group.delete' => 'deletePoints',
-            'Model.GroupsUser.unjoin' => 'deletePoints',
-            'Model.CommentRemove.evidence' => 'deletePoints',
-            'Model.Unlike.evidence' => 'deletePoints',
-            'Model.EvokationFollower.delete' => 'deletePoints',
+			'Controller.BasicTraining.completed' => 'completedBasicTraining',
+			
+			'Model.Evidence.delete' => 'deletePoints',
+			'Model.UserFriend.unfollow' => 'deletePoints',
+			'Model.Group.delete' => 'deletePoints',
+			'Model.GroupsUser.unjoin' => 'deletePoints',
+			'Model.CommentRemove.evidence' => 'deletePoints',
+			'Model.Unlike.evidence' => 'deletePoints',
+			'Model.EvokationFollower.delete' => 'deletePoints',
 
-        );
-    }
+		);
+	}
 
-    public function deletePoints($event){
+	public function deletePoints($event){
 
-    	$point = ClassRegistry::init('Point');
+		$point = ClassRegistry::init('Point');
 
- 		$exists = $point->find('first', array(
-            'conditions' => array(
-                'user_id' => $event->data['user_id'], 
-                'origin_id' => $event->data['entity_id'], 
-                'origin' => $event->data['entity']))
-        );
+		$exists = $point->find('first', array(
+			'conditions' => array(
+				'user_id' => $event->data['user_id'], 
+				'origin_id' => $event->data['entity_id'], 
+				'origin' => $event->data['entity']))
+		);
 
- 		if($exists){
-	 		$point->delete($exists['Point']['id']);
-	 	}
-    }
+		if($exists){
+			$point->delete($exists['Point']['id']);
+		}
+	}
 
- 	public function addPoints($event){
-        // $quests = ClassRegistry::init('Quest');
+	public function addPoints($event){
+		// $quests = ClassRegistry::init('Quest');
 
-        // $quest = $quests->find('first', array('conditions' => array('Quest.id' => $event->subject()->data['Evidence']['quest_id'])));
+		// $quest = $quests->find('first', array('conditions' => array('Quest.id' => $event->subject()->data['Evidence']['quest_id'])));
 
- 		$point = ClassRegistry::init('Point');
- 		$point->create();
- 		$insertData = array(
-            'user_id' => $event->data['user_id'], 
-            'origin_id' => $event->data['origin_id'], 
-            'origin' => $event->data['origin'], 
-            'value' => $event->data['points']
-        );
- 		$point->saveAll($insertData);
- 	} 
+		$point = ClassRegistry::init('Point');
+		$point->create();
+		$insertData = array(
+			'user_id' => $event->data['user_id'], 
+			'origin_id' => $event->data['origin_id'], 
+			'origin' => $event->data['origin'], 
+			'value' => $event->data['points']
+		);
 
-    public function completedBasicTraining($event){
-        // $quests = ClassRegistry::init('Quest');
+		$point->saveAll($insertData);
+	} 
 
-        // $quest = $quests->find('first', array('conditions' => array('Quest.id' => $event->subject()->data['Evidence']['quest_id'])));
+	public function completedBasicTraining($event){
+		// $quests = ClassRegistry::init('Quest');
 
-        $point = ClassRegistry::init('Point');
-        $point->create();
-        $insertData = array(
-            'user_id' => $event->data['user_id'], 
-            'origin_id' => $event->data['entity_id'], 
-            'origin' => $event->data['entity'], 
-            'value' => $event->data['points']
-        );
-        $point->saveAll($insertData);
+		// $quest = $quests->find('first', array('conditions' => array('Quest.id' => $event->subject()->data['Evidence']['quest_id'])));
 
-        $users = ClassRegistry::init('User');
+		$point = ClassRegistry::init('Point');
+		$point->create();
+		$insertData = array(
+			'user_id' => $event->data['user_id'], 
+			'origin_id' => $event->data['entity_id'], 
+			'origin' => $event->data['entity'], 
+			'value' => $event->data['points']
+		);
+		$point->saveAll($insertData);
 
-        $users->id = $event->data['user_id'];
-        $users->saveField('basic_training', 1);
+		$users = ClassRegistry::init('User');
 
-        // $user = $users->find('first', array('conditions' => array('id' => $event->data['user_id'])));
-        // $users->create();
-        // $insertUserData = array(
-        //     'basic_trainning' => 1, 
-        // );
-        // $users->updateAll($insertUserData);
+		$users->id = $event->data['user_id'];
+		$users->saveField('basic_training', 1);
+
+		// $user = $users->find('first', array('conditions' => array('id' => $event->data['user_id'])));
+		// $users->create();
+		// $insertUserData = array(
+		//     'basic_trainning' => 1, 
+		// );
+		// $users->updateAll($insertUserData);
 
 
-    } 
+	} 
 
- 	public function followUserPoints($event){
-        //get the actual amount of points for this action
-        $value = $event->data['points'];
+	public function followUserPoints($event){
+		//get the actual amount of points for this action
+		$value = $event->data['points'];
 
- 		$point = ClassRegistry::init('Point');
- 		$point->create();
- 		$insertData = array(
-            'user_id' => $event->subject()->data['UserFriend']['user_id'], 
-            'origin_id' => $event->subject()->data['UserFriend']['friend_id'], 
-            'origin' => 'followUser', 
-            'value' => $value
-        );
- 		$point->saveAll($insertData);
- 	}
+		$point = ClassRegistry::init('Point');
+		$point->create();
+		$insertData = array(
+			'user_id' => $event->subject()->data['UserFriend']['user_id'], 
+			'origin_id' => $event->subject()->data['UserFriend']['friend_id'], 
+			'origin' => 'followUser', 
+			'value' => $value
+		);
+		$point->saveAll($insertData);
+	}
 
- 	public function addRegisterPoints($event){
-        //get the actual amount of points for this action
-        $value = $event->data['points'];
-        
-        $point = ClassRegistry::init('Point');
- 		$point->create();
- 		$insertData = array(
-            'user_id' => $event->subject()->data['User']['id'], 
-            'origin_id' => $event->subject()->data['User']['id'], 
-            'origin' => 'register', 
-            'value' => $value
-        );
+	public function addRegisterPoints($event){
+		//get the actual amount of points for this action
+		$value = $event->data['points'];
+		
+		$point = ClassRegistry::init('Point');
+		$point->create();
+		$insertData = array(
+			'user_id' => $event->subject()->data['User']['id'], 
+			'origin_id' => $event->subject()->data['User']['id'], 
+			'origin' => 'register', 
+			'value' => $value
+		);
 
- 		$point->saveAll($insertData);
- 	}
+		$point->saveAll($insertData);
+	}
 
- 	public function createGroupPoints($event){
-        //get the actual amount of points for this action
-        $value = $event->data['points'];
+	public function createGroupPoints($event){
+		//get the actual amount of points for this action
+		$value = $event->data['points'];
 
- 		$point = ClassRegistry::init('Point');
- 		$point->create();
- 		$insertData = array(
-            'user_id' => $event->subject()->data['Group']['user_id'], 
-            'origin_id' => $event->subject()->data['Group']['id'], 
-            'origin' => 'group', 
-            'value' => $value
-        );
- 		$point->saveAll($insertData);
- 	}
+		$point = ClassRegistry::init('Point');
+		$point->create();
+		$insertData = array(
+			'user_id' => $event->subject()->data['Group']['user_id'], 
+			'origin_id' => $event->subject()->data['Group']['id'], 
+			'origin' => 'group', 
+			'value' => $value
+		);
+		$point->saveAll($insertData);
+	}
 
- 	public function joinGroupPoints($event){
-        //get the actual amount of points for this action
-        $value = $event->data['points'];
+	public function joinGroupPoints($event){
+		//get the actual amount of points for this action
+		$value = $event->data['points'];
 
- 		$point = ClassRegistry::init('Point');
- 		$point->create();
- 		$insertData = array(
-            'user_id' => $event->subject()->data['GroupsUser']['user_id'], 
-            'origin_id' => $event->subject()->data['GroupsUser']['group_id'], 
-            'origin' => 'groupJoin', 
-            'value' => $value
-        );
- 		$point->saveAll($insertData);
- 	}
+		$point = ClassRegistry::init('Point');
+		$point->create();
+		$insertData = array(
+			'user_id' => $event->subject()->data['GroupsUser']['user_id'], 
+			'origin_id' => $event->subject()->data['GroupsUser']['group_id'], 
+			'origin' => 'groupJoin', 
+			'value' => $value
+		);
+		$point->saveAll($insertData);
+	}
 
- 	public function addUserAnswerPoints($event){
+	public function addUserAnswerPoints($event){
 
-        $value = $event->data['points'];
+		$value = $event->data['points'];
 
- 		$point = ClassRegistry::init('Point');
+		$point = ClassRegistry::init('Point');
 
- 		$exists = $point->find('first', array('conditions' => array('user_id' => $event->subject()->data['UserAnswer']['user_id'], 'origin_id' => $event->subject()->data['UserAnswer']['question_id'], 'origin' => 'answer')));
+		$exists = $point->find('first', array('conditions' => array('user_id' => $event->subject()->data['UserAnswer']['user_id'], 'origin_id' => $event->subject()->data['UserAnswer']['question_id'], 'origin' => 'answer')));
 
- 		if(!$exists){
-	 		$point->create();
-	 		$insertData = array(
-                'user_id' => $event->subject()->data['UserAnswer']['user_id'], 
-                'origin_id' => $event->subject()->data['UserAnswer']['question_id'], 
-                'origin' => 'answer', 
-                'value' => $value
-            );
-	 		$point->saveAll($insertData);
-	 	}
- 	}
+		if(!$exists){
+			$point->create();
+			$insertData = array(
+				'user_id' => $event->subject()->data['UserAnswer']['user_id'], 
+				'origin_id' => $event->subject()->data['UserAnswer']['question_id'], 
+				'origin' => 'answer', 
+				'value' => $value
+			);
+			$point->saveAll($insertData);
+		}
+	}
 
- 	public function completePhasePoints($event){
+	public function completePhasePoints($event){
 
-        $value = $event->data['points'];
+		$value = $event->data['points'];
 
- 		$point = ClassRegistry::init('Point');
+		$point = ClassRegistry::init('Point');
 
- 		$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
+		$exists = $point->find('first', array('conditions' => array('user_id' => $event->data['user_id'], 'origin_id' => $event->data['entity_id'], 'origin' => $event->data['entity'])));
 
- 		if(!$exists){
-	 		$point->create();
-	 		$insertData = array(
-                'user_id' => $event->data['user_id'], 
-                'origin_id' => $event->data['entity_id'], 
-                'origin' => $event->data['entity'], 
-                'value' => $value
-            );
-	 		$point->saveAll($insertData);
-	 	}
- 	}
+		if(!$exists){
+			$point->create();
+			$insertData = array(
+				'user_id' => $event->data['user_id'], 
+				'origin_id' => $event->data['entity_id'], 
+				'origin' => $event->data['entity'], 
+				'value' => $value
+			);
+			$point->saveAll($insertData);
+		}
+	}
 
- 	public function commentEvidencePoints($event){
-        //get the actual amount of points for this action
-        $value = $event->data['points'];
+	public function commentEvidencePoints($event){
+		//get the actual amount of points for this action
+		$value = $event->data['points'];
 
- 		$point = ClassRegistry::init('Point');
- 		$point->create();
- 		$insertData = array(
-            'user_id' => $event->subject()->data['Comment']['user_id'], 
-            'origin_id' => $event->subject()->data['Comment']['id'], 
-            'origin' => 'commentEvidence', 
-            'value' => $value
-        );
- 		$point->saveAll($insertData);
+		$point = ClassRegistry::init('Point');
+		$point->create();
+		$insertData = array(
+			'user_id' => $event->subject()->data['Comment']['user_id'], 
+			'origin_id' => $event->subject()->data['Comment']['id'], 
+			'origin' => 'commentEvidence', 
+			'value' => $value
+		);
+		$point->saveAll($insertData);
 
- 	}
+	}
 
- 	public function commentEvokationPoints($event){
-        //get the actual amount of points for this action
-        $value = $event->data['points'];
+	public function commentEvokationPoints($event){
+		//get the actual amount of points for this action
+		$value = $event->data['points'];
 
- 		$point = ClassRegistry::init('Point');
- 		$point->create();
- 		$insertData = array(
-            'user_id' => $event->subject()->data['Comment']['user_id'], 
-            'origin_id' => $event->subject()->data['Comment']['evokation_id'], 
-            'origin' => 'commentEvokation', 
-            'value' => $value
-        );
- 		$point->saveAll($insertData);
+		$point = ClassRegistry::init('Point');
+		$point->create();
+		$insertData = array(
+			'user_id' => $event->subject()->data['Comment']['user_id'], 
+			'origin_id' => $event->subject()->data['Comment']['evokation_id'], 
+			'origin' => 'commentEvokation', 
+			'value' => $value
+		);
+		$point->saveAll($insertData);
 
- 	}
+	}
 
- 	public function likeEvidencePoints($event){
-        //get the actual amount of points for this action
-        $value = $event->data['points'];
-        
- 		$point = ClassRegistry::init('Point');
- 		$point->create();
- 		$insertData = array(
-            'user_id' => $event->subject()->data['Like']['user_id'], 
-            'origin_id' => $event->subject()->data['Like']['id'], 
-            'origin' => 'likeEvidence', 
-            'value' => $value
-        );
- 		$point->saveAll($insertData);
- 	}
+	public function likeEvidencePoints($event){
+		//get the actual amount of points for this action
+		$value = $event->data['points'];
+		
+		$point = ClassRegistry::init('Point');
+		$point->create();
+		$insertData = array(
+			'user_id' => $event->subject()->data['Like']['user_id'], 
+			'origin_id' => $event->subject()->data['Like']['id'], 
+			'origin' => 'likeEvidence', 
+			'value' => $value
+		);
+		$point->saveAll($insertData);
+	}
 
- 	public function voteEvokationPoints($event){
-        //get the actual amount of points for this action
-        $value = $event->data['points'];
+	public function voteEvokationPoints($event){
+		//get the actual amount of points for this action
+		$value = $event->data['points'];
 
- 		$point = ClassRegistry::init('Point');
- 		$point->create();
- 		$insertData = array(
-            'user_id' => $event->subject()->data['Vote']['user_id'], 
-            'origin_id' => $event->subject()->data['Vote']['evokation_id'], 
-            'origin' => 'voteEvokation', 
-            'value' => $value
-        );
- 		$point->saveAll($insertData);
- 	}
+		$point = ClassRegistry::init('Point');
+		$point->create();
+		$insertData = array(
+			'user_id' => $event->subject()->data['Vote']['user_id'], 
+			'origin_id' => $event->subject()->data['Vote']['evokation_id'], 
+			'origin' => 'voteEvokation', 
+			'value' => $value
+		);
+		$point->saveAll($insertData);
+	}
 
- 	public function followEvokationPoints($event){
-        //get the actual amount of points for this action
-        $value = $event->data['points'];
+	public function followEvokationPoints($event){
+		//get the actual amount of points for this action
+		$value = $event->data['points'];
 
- 		$point = ClassRegistry::init('Point');
- 		$point->create();
- 		$insertData = array(
-            'user_id' => $event->subject()->data['EvokationFollower']['user_id'], 
-            'origin_id' => $event->subject()->data['EvokationFollower']['evokation_id'], 
-            'origin' => 'followEvokation', 
-            'value' => $value
-        );
- 		$point->saveAll($insertData);
+		$point = ClassRegistry::init('Point');
+		$point->create();
+		$insertData = array(
+			'user_id' => $event->subject()->data['EvokationFollower']['user_id'], 
+			'origin_id' => $event->subject()->data['EvokationFollower']['evokation_id'], 
+			'origin' => 'followEvokation', 
+			'value' => $value
+		);
+		$point->saveAll($insertData);
 
- 	}
+	}
 
 }
 

@@ -33,6 +33,8 @@ class UsersController extends AppController {
 
 	public $helpers = array('Menu');
 
+	public $paginate;
+
 /**
 *
 * beforeFilter method
@@ -1357,64 +1359,20 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function leaderboard($label = null) {
+	public function leaderboard() {
 
 		$user = $this->Auth->user();
 		$userid = $this->getUserId();
-
-		$username = explode(' ', $this->getUserName());
 
 		//POSITION OF THIS USER
 		$user_position = $this->User->getLeaderboardPosition($userid);
 
 		//USERS ORDERED BY NUMBER OF POINTS
+		$this->User->virtualFields['total_points'] = 'SUM(Points.value)';
 		$this->paginate = $this->User->getLeaderboardQuery();
-		$points_users = $this->paginate($this->User);
+		$points_users = $this->paginate('User');
 
-		//POWER POINTS
-		$this->loadModel('PowerPoint');
-		$power_points = $this->PowerPoint->find('all');
-		$allusers = $this->User->find('all');
-
-		$this->loadModel('Point');
-
-		foreach ($allusers as $usr) {
-
-			$powerpoints_user = $this->User->UserPowerPoint->find('all', array(
-				'conditions' => array(
-					'UserPowerPoint.user_id' => $usr['User']['id']
-				)
-			));
-
-			$tmp = array();
-			foreach ($powerpoints_user as $powerpoint_user) {
-				if(isset($tmp[$powerpoint_user['UserPowerPoint']['power_points_id']])) {
-
-					$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] += $powerpoint_user['UserPowerPoint']['quantity'];
-				} else {
-
-					$tmp[$powerpoint_user['UserPowerPoint']['power_points_id']] = $powerpoint_user['UserPowerPoint']['quantity'];
-				}
-			}
-
-			foreach ($power_points as $p_index => $pp) {
-				if($flags['_es']) {
-					$power_points[$p_index]['PowerPoint']['name'] = $pp['PowerPoint']['name_es'];
-					// $missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
-				}
-				$qtdUser = 0;
-				if(isset($tmp[$pp['PowerPoint']['id']]))
-					$qtdUser = $tmp[$pp['PowerPoint']['id']];
-
-				$powerpoints_users[$pp['PowerPoint']['id']][$qtdUser][] = $usr['User'];
-			}
-		}
-
-		foreach ($power_points as $pp) {
-			krsort($powerpoints_users[$pp['PowerPoint']['id']]);
-		}
-
-		$this->set(compact('label', 'userid', 'username', 'user', 'user_position', 'points_users', 'power_points', 'powerpoints_users'));
+		$this->set(compact('userid', 'user', 'user_position', 'points_users'));
 	}
 
 /**

@@ -88,8 +88,8 @@
 								</div>
 							</li>
 							<li><p><?= $usr['name'] ?></p></li>
-							<li><p><?= $usr['level']?></p></li>
-							<li><p><?= $p ?></p></li>
+							<li><p><?= $usr['level'] ?></p></li>
+							<li><p><?= $usr['total_points'] ?></p></li>
 							<span class = "evoke leaderboard-border"></span>
 							</ul>
 					<?php 
