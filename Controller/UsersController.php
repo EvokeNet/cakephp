@@ -128,11 +128,8 @@ class UsersController extends AppController {
 
 
 		if ($this->request->is('post')) {
-			// debug($this->request->data);
 			if(AuthComponent::password($this->request->data['User']['password']) == $usr['User']['password']) {
-				// debug('match');
 				if($this->request->data['User']['tmp'] == $this->request->data['User']['tmp2']) {
-					// debug('new password match');
 					$this->User->id = $this->getUserId();
 					$insert['User']['id'] = $this->getUserId();
 					$insert['User']['role_id'] = $this->getUserRole();
@@ -1279,8 +1276,6 @@ class UsersController extends AppController {
  */
 	public function matching($id = null) {
 		//List issues (all, and already saved)
-		//debug($loggedIn);
-
 		$issues = $this->User->UserIssue->Issue->find('list');
 		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
 

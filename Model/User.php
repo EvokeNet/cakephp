@@ -236,11 +236,7 @@ class User extends AppModel {
 		$all_users = $this->find('all');
 		
 		foreach ($all_users as $key => $user) {
-			debug($user['User']['id']);
-
 			$level = $this->getLevel($user['User']['id']);
-
-			debug($level);
 
 			if ($level != null) {
 				$userModel = new User();
@@ -261,7 +257,6 @@ class User extends AppModel {
 		$levelModel = new Level();
 
 		$total_points = $this->getTotalPoints($user_id);
-		debug($total_points);
 		return $levelModel->getLevel($total_points);
 	}
 

@@ -11,8 +11,6 @@ class Level extends AppModel {
 	 * @return object Level
 	 */
 	public function getLevel($points){
-		debug($points);
-
 		$level = $this->find('first', array(
 			'conditions' => array("Level.points <= $points"),
 			'order' => array('Level.points DESC')
