@@ -261,6 +261,7 @@ class User extends AppModel {
 		$levelModel = new Level();
 
 		$total_points = $this->getTotalPoints($user_id);
+		debug($total_points);
 		return $levelModel->getLevel($total_points);
 	}
 
