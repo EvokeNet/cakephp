@@ -402,7 +402,6 @@ class AppController extends Controller {
 	 */
 	public function getPoints($user_id){
 		$this->loadModel('User');
-		$this->User->updateAllLevels();
 		$userPoints = $this->User->getTotalPoints($user_id);
 		return $userPoints;
 	}

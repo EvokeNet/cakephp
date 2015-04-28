@@ -231,22 +231,7 @@ class User extends AppModel {
 			'order' => array('total_points' => 'DESC')
 		);
 	}
-
-	public function updateAllLevels() {
-		$all_users = $this->find('all');
-		
-		foreach ($all_users as $key => $user) {
-			$level = $this->getLevel($user['User']['id']);
-
-			if ($level != null) {
-				$userModel = new User();
-				$userModel->id = $user['User']['id'];
-				$userModel->set(array('level'=> $level['Level']['level']));
-				$userModel->save();
-			}
-		}
-	}
-
+	
 	/**
 	 * Gets the level that corresponds to the total points of this user
 	 * @param int $user_id User id
