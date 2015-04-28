@@ -237,11 +237,12 @@ class User extends AppModel {
 		
 		foreach ($all_users as $key => $user) {
 			$level = $this->getLevel($user['User']['id']);
-
-			$userModel = new User();
-			$userModel->id = $user['User']['id'];
-			$userModel->set(array('level'=> $level['Level']['level']));
-			$userModel->save();
+			if ($level != null) {
+				$userModel = new User();
+				$userModel->id = $user['User']['id'];
+				$userModel->set(array('level'=> $level['Level']['level']));
+				$userModel->save();
+			}
 		}
 		// die();
 	}
