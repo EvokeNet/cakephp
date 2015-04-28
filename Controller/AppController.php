@@ -94,20 +94,6 @@ class AppController extends Controller {
 				$accessLevel = $this->accessLevels['*'];
 			}
 
-			// debug($this->UserRole->is($accessLevel));
-			// debug('hey');
-
-			// if($this->UserRole->is($accessLevel)){
-			//     return true;
-			//     debug('ops');
-
-			// } else{
-			//     debug('de');
-			//     $this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
-			//     $this->redirect(array('controller' => 'users', 'action' => 'view', $this->Auth->user('user_id')));
-			//     return false;
-			// }
-
 			if(!empty ($accessLevel)) {
 				return $this->UserRole->is($accessLevel);
 			}
@@ -386,10 +372,7 @@ class AppController extends Controller {
 
 	}
 
-	public function saveNotifications($notes, $user_id){
-
-		debug($notes);
-		
+	public function saveNotifications($notes, $user_id){		
 		$this->loadModel('Notification');
 
 		$all = $this->Notification->find('all', array(
@@ -476,8 +459,6 @@ class AppController extends Controller {
 	public function getUserId() {
 		$currentuser = $this->Auth->user();
 		if(isset($currentuser['id'])) return $currentuser['id'];
-		// debug($currentuser);
-		// die();
 		return $currentuser['User']['id'];
 	}
 
@@ -492,8 +473,4 @@ class AppController extends Controller {
 		if(isset($currentuser['role_id'])) return $currentuser['role_id'];
 		return $currentuser['User']['role_id'];
 	}
-
-	// public function canUploadMedias($model, $id) {
-	//     return true;
-	// }
 }

@@ -237,6 +237,7 @@ class User extends AppModel {
 		
 		foreach ($all_users as $key => $user) {
 			$level = $this->getLevel($user['User']['id']);
+			
 			if ($level != null) {
 				$userModel = new User();
 				$userModel->id = $user['User']['id'];
@@ -244,7 +245,6 @@ class User extends AppModel {
 				$userModel->save();
 			}
 		}
-		// die();
 	}
 
 	/**
