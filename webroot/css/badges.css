@@ -8,14 +8,7 @@
 }
 
 .evoke .badges-bg p{
-	color:#fff;
-	font-family: 'AlegreyaRegular';
 	font-size:1.2vw;
-}
-
-.evoke .badges-bg h1{
-	color:#fff;
-	font-family: 'AlegreyaBold';
 }
 
 .evoke .badges-knob{
@@ -51,14 +44,10 @@
 }
 
 .evoke .badges-bg p{
-	color:#fff;
-	font-family: 'AlegreyaRegular';
 	font-size:1.2vw;
 }
 
 .evoke .badges-bg h1{
-	color:#fff;
-	font-family: 'AlegreyaBold';
 	font-size: 3.0vw;
 }
 
@@ -69,6 +58,9 @@
 .evoke .badges.view .mask,.view .content {
    height: 12vw;
 }
+.evoke .badge.view {
+	border: none;
+} 
 
 .evoke .badges.view-first:hover img {
    -webkit-transform: none;
@@ -82,6 +74,6 @@
    font-size: 4vw;
    font-weight: bold;
    margin-top: 2vw;
-   color:#c65862;
+   color:#26dee0;
    text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
 }

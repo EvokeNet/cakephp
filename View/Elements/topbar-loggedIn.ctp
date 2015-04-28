@@ -60,6 +60,22 @@
 				</a>
 			</div>
 		</li>
+
+		<li>
+			<div class="column">
+				<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard')); ?>" class="text-glow-on-hover text-color-highlight">
+					<?php echo __('Leaderboard'); ?>
+				</a>
+			</div>
+		</li>
+
+		<li>
+			<div class="column">
+				<a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index')); ?>" class="text-glow-on-hover text-color-highlight">
+					<?php echo __('Badges'); ?>
+				</a>
+			</div>
+		</li>
 		
 		<?php if ($loggedInUser['role'] != 'user'){ ?>
 		<li>

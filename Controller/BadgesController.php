@@ -30,13 +30,6 @@ class BadgesController extends AppController {
 		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
 			$this->redirect(array('controller' => 'users', 'action' => 'login'));
 		}
-
-		//checking Acl permission
-		/*
-		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
-			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
-			$this->redirect($this->referer());
-		}*/
     }
 
 /**
@@ -45,33 +38,18 @@ class BadgesController extends AppController {
  * @return void
  */
 	public function index() {
-		// $this->Badge->recursive = 0;
 		$badges = $this->Badge->find('all');
 
-		$lang = $this->getCurrentLanguage();
-		$flags['_en'] = true;
-		$flags['_es'] = false;
-		if($lang=='es') {
-			$flags['_en'] = false;
-			$flags['_es'] = true;
-		}
-
-		$this->loadModel('PowerPoint');
-		$tmp = $this->PowerPoint->find('all');
-		$allPowerPoints = array();
-		foreach ($tmp as $tmpkey => $tmpvalue) {
-			if($flags['_es']){
-				$tmp[$tmpkey]['PowerPoint']['name'] = $tmp[$tmpkey]['PowerPoint']['name_es'];
-			}
-			$allPowerPoints[$tmpvalue['PowerPoint']['id']] = $tmp[$tmpkey]['PowerPoint'];
-		}
+		//List of badges of the current user (just the badge IDs)
+		$myBadges = $this->Badge->UserBadge->find('list', array(
+			'fields' => array('badge_id'),
+			'conditions' => array(
+				'UserBadge.user_id' => $this->getUserId()
+			)
+		));
 
 		foreach ($badges as $b => $badge) {
-			if($flags['_es']){
-				$badges[$b]['Badge']['name'] = $badge['Badge']['name_es'];
-				$badges[$b]['Badge']['description'] = $badge['Badge']['description_es'];
-			}
-
+			//IMAGE
 			$this->loadModel('Attachment');
 			$badge_img = $this->Attachment->find('first', array(
 				'conditions' => array(
@@ -82,74 +60,20 @@ class BadgesController extends AppController {
 			if(!empty($badge_img)) {
 				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
 				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
-			} 
+			}
 
-			$hasBadge = $this->Badge->UserBadge->find('first', array(
-				'conditions' => array(
-					'UserBadge.badge_id' => $badge['Badge']['id'],
-					'UserBadge.user_id' => $this->getUserId()
-				)
-			));
-
-			if(empty($hasBadge)) {
-				$badges[$b]['Badge']['owns'] = false;
-			} else {
+			//OWNS: if the user owns the badge
+			if(in_array($badge['Badge']['id'], $myBadges)) {
 				$badges[$b]['Badge']['owns'] = true;
 			}
-
-			$pps = array();
-			$badgeGoal = 0;
-			$badgeCurrent = 0;
-			foreach ($badge['BadgePowerPoint'] as $bpp) {
-				if($bpp['power_points_id'] == null) {
-					//percentage for such power point
-
-					$goal = $bpp['quantity'];
-					$current = $this->getUserPowerPoints($this->getUserId());
-					
-					if($current > $goal)
-						$current = $goal;
-
-					$badgeGoal += $goal;
-					$badgeCurrent += $current;
-					$insert['UserPercentage'] = ($current / $goal) * 100;
-					$insert['UserGoal'] = $goal;
-					$insert['name'] = __('All powers');
-
-					$pps[] = $insert;
-				} else {
-					if(isset($allPowerPoints[$bpp['power_points_id']])) {
-						//percentage for such power point
-
-						$goal = $bpp['quantity'];
-						$current = $this->getUserPowerPoints($this->getUserId(), $bpp['power_points_id']);
-						
-						if($current > $goal)
-							$current = $goal;
-
-						$badgeGoal += $goal;
-						$badgeCurrent += $current;
-
-						$allPowerPoints[$bpp['power_points_id']]['UserPercentage'] = ($current / $goal) * 100;
-						$allPowerPoints[$bpp['power_points_id']]['UserGoal'] = $goal;
-						$pps[] = $allPowerPoints[$bpp['power_points_id']];
-					}
-				}
+			else {
+				$badges[$b]['Badge']['owns'] = false;
 			}
 
-
-			if($badge['Badge']['power_points_only'] == 1) {
-				//the badge completition depends only on powerpoints
-				if($badgeGoal == 0)
-					$badges[$b]['Badge']['UserPercentage'] = 0;
-				else
-					$badges[$b]['Badge']['UserPercentage'] = ($badgeCurrent / $badgeGoal) * 100;
-			}
-
-			$badges[$b]['Badge']['PowerPoints'] = $pps;
+			//PROGRESS
+			$badges[$b]['Badge']['UserPercentage'] = rand(0,100); // ($badgeCurrent / $badgeGoal) * 100;
 		}
-		//$this->set('badges', $this->Paginator->paginate());
-
+		
 		$this->loadModel('User');
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
