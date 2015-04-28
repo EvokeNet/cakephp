@@ -236,8 +236,12 @@ class User extends AppModel {
 		$all_users = $this->find('all');
 		
 		foreach ($all_users as $key => $user) {
+			debug($user['User']['id']);
+
 			$level = $this->getLevel($user['User']['id']);
-			
+
+			debug($level);
+
 			if ($level != null) {
 				$userModel = new User();
 				$userModel->id = $user['User']['id'];
