@@ -277,7 +277,7 @@ class User extends AppModel {
 				array(
 					'table' => 'points',
 					'alias' => 'Points',
-					'type' => 'left',  //join of your choice left, right, or inner
+					'type' => 'inner',
 					'conditions' => array(
 						'Points.user_id = User.id'
 					)
@@ -291,7 +291,7 @@ class User extends AppModel {
 		));
 
 		if ($user_points == null) {
-			return array();
+			return 0;
 		}
 		return $user_points[0]['total_points'];
 	}
