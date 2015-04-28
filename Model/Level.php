@@ -16,6 +16,8 @@ class Level extends AppModel {
 			'order' => array('Level.points DESC')
 		));
 
+		debug($points);
+
 		debug($level);
 		
 		return $level;
