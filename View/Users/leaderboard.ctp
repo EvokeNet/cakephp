@@ -8,6 +8,9 @@
 	$this->start('image_header');
 	echo $this->element('image_header',array('imgHeaderTitle' => 'Leaderboard', 'imgSrc' => ($this->webroot.'img/header-leaderboard.jpg')));
 	$this->end();
+
+	/* Paginator */
+	$paginatorParams = $this->Paginator->params();
 ?>
 
 <section class="leaderboard">	
@@ -36,6 +39,27 @@
 					<h2 class="text-color-highlight"><?= $user_position['name'] ?></h2>
 					<h4><?= __('Points: ') ?><?= $user_position['total_points'] ?></h4>
 					<h4><?= __('Level: ') ?><?= $user_position['level'] ?></h4>
+					<p class="margin top-1">
+						<?php
+							//Calculating page where the user's rank is
+							$my_rank_page = (int) ($user_position['rank'] / $paginatorParams['limit']);
+							$my_rank_page_rest = $user_position['rank'] % $paginatorParams['limit'];
+
+							if ($my_rank_page_rest > 0) {
+								$my_rank_page += 1;
+							}
+						?>
+						<a href="<?= $this->Html->url(array(
+									'action' => 'leaderboard',
+									'escape'=>false,
+									'page' => $my_rank_page
+								)); ?>
+								#rank<?= $user_position['rank'] ?>"
+							class="text-color-highlight">
+							<i class="fa fa-arrow-circle-down text-color-highlight"></i>
+							<?= __('Go to my rank') ?>
+						</a>
+					</p>
 				</div>
 
 				<!-- GRAPH -->
@@ -61,7 +85,7 @@
 			</div>
 
 			<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5 text-center">
-				<li><h4><?= strtoupper(__("Position")) ?></h4></li>
+				<li id="rank1"><h4><?= strtoupper(__("Position")) ?></h4></li>
 				<li><h4><?= strtoupper(__("Agent ID")) ?></h4></li>
 				<li><h4><?= strtoupper(__("Agent name")) ?></h4></li>
 				<li><h4><?= strtoupper(__("Level")) ?></h4></li>
@@ -75,11 +99,12 @@
 						$usr_points = $user_point[0]['total_points'];
 
 						//Calculate position
-						$paginatorParams = $this->Paginator->params();
 						$position = $pos_index + ( ((int)$this->Paginator->counter('{:page}') - 1) * $paginatorParams['limit'] );
 						?>
 						<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5 text-center">
-							<li><p><?= $position ?></p></li>
+							<li id="rank<?= $position + 1 ?>"> <!-- Plus one just because of the margin -->
+								<p><?= $position ?></p>
+							</li>
 
 							<li>
 								<?php $pic = $this->UserPicture->getPictureAbsolutePath($usr); ?>
@@ -91,7 +116,7 @@
 							<li><p><?= $usr['level'] ?></p></li>
 							<li><p><?= $usr['total_points'] ?></p></li>
 							<span class = "evoke leaderboard-border"></span>
-							</ul>
+						</ul>
 					<?php 
 						$pos_index++;
 					// endforeach;

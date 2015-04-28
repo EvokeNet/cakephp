@@ -435,7 +435,6 @@ class UsersController extends AppController {
  */
 	public function index() {
 		$this->User->recursive = 0;
-		//$this->set('users', $this->Paginator->paginate());
 	}
 
 
@@ -1607,16 +1606,6 @@ class UsersController extends AppController {
 		// return $this->redirect(array('action' => 'index'));
 		return $this->redirect($this->referer());
 	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	// public function admin_index() {
-	// 	$this->User->recursive = 0;
-	// 	$this->set('users', $this->Paginator->paginate());
-	// }
 
 /**
  * admin_view method
