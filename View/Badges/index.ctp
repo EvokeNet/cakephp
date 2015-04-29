@@ -1,7 +1,6 @@
 <?php
 	/* CSS */
 	echo $this->Html->css('badge_round');
-	echo $this->Html->css('mission_hover');
 
 	/* Top bar */
 	$this->start('topbar');
@@ -14,27 +13,30 @@
 	$this->end();
 ?>
 <div class="row standard-width">
-	<div class="small-10 medium-10 large-10 columns margin top-2">
-		<div class="text-center black-bg badges-bg">
-			<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4">
+	<div class="small-12 columns margin top-2">
+		<div class="row text-center black-bg badges-bg">
 				<?php 
 
-				foreach($badges as $b => $badge): ?>
-					<li>
-						<div id="<?= $badge['Badge']['id'] ?>" class="badge view view-first" data-progress="<?= $badge['Badge']['UserPercentage'] ?>">
-							<div class="loader">
-								<div class="loader-bg img-circular">
-									<!-- BADGE IMAGE -->
-									<?php
-										$image_url = $this->webroot.'img/badge.png';
-										if(isset($badge['Badge']['img_dir'])) {
-											$image_url = $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'];
-										}
-									?>
-									
-									<img src='<?= $image_url ?>' alt="<?= 'Badge '.$badge['Badge']['name'].' icon' ?>" />
-								</div>    
+				foreach($badges as $b => $badge):
+					$badge_id = $badge['Badge']['id'];
+				?>
+					<div class="badge centered-block margin all-2">
+						<div id="<?= $badge_id ?>" class="closed view view-first" data-progress="<?= $badge['Badge']['UserPercentage'] ?>">
+							<div class="badge-image loader">
+								<!-- BADGE IMAGE -->
+								<?php
+									$image_url = $this->webroot.'img/badge.png';
+									if(isset($badge['Badge']['img_dir'])) {
+										$image_url = $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'];
+									}
+								?>
+								<div class="loader-bg img-circular background-cover full-width" data-interchange="['<?= $image_url ?>',(default)]">
+									<noscript>
+										<img src="<?= $image_url ?>" alt="<?= 'Badge '.$badge['Badge']['name'].' icon' ?>" />
+									</noscript>
+								</div>
 
+								<!-- PROGRESS -->
 								<div class="spiner-holder-one animate-0-25-a">
 									<?php if($badge['Badge']['UserPercentage'] != 0):?>
 										<div class="spiner-holder-two animate-0-25-b">
@@ -54,7 +56,7 @@
 										<div class="spiner-holder-two animate-50-75-b">
 											<div class="loader-spiner"></div>
 										</div>
-									<?php endif?>										        
+									<?php endif?>
 								</div>
 								<div class="spiner-holder-one animate-75-100-a">
 									<?php if($badge['Badge']['UserPercentage'] != 0):?>
@@ -64,20 +66,92 @@
 									<?php endif?>
 								</div>
 							</div>
-							<div class="badges mask">
+							<div class="badge-progress">
 								<p class="btext"></p>
 							</div>
 						</div>
 
-						<!-- BADGE TITLE -->
-						<h3 class="<?= ($badge['Badge']['owns'] == 1) ? 'text-color-highlight' : '' ?>">
-							<?= $badge['Badge']['name'] ?>
-						</h3>
+						<!-- BADGE TITLE AND DESCRIPTION -->
+						<div id="badge-description-<?= $badge_id ?>" class="badge-description">
+							<h3 class="<?= ($badge['Badge']['owns'] == 1) ? 'text-color-highlight' : '' ?>">
+								<?= $badge['Badge']['name'] ?>
+							</h3>
 
-						<p><?= $badge['Badge']['description']?></p>
-					</li>
+							<p><?= $badge['Badge']['description']?></p>
+						</div>
+
+
+						<!-- BADGE SKILLS -->
+						<div id="badge-skills-<?= $badge_id ?>" class="badge-skills hide text-center">
+							<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4">
+								<li class="closed" data-badge-id="<?= $badge_id ?>">
+									<i class="fa fa-bolt fa-3x text-color-highlight"></i>
+									<h5 class="text-color-highlight"><?= __('Commandes the World of Ideas') ?></h5>
+
+									<ul class="badge-achievements hide">
+										<li>
+											<p><?= __('Takes on unfamiliar problems') ?></p>
+										</li>
+										<li>
+											<p><?= __('Articulates a hypothesis about a system') ?></p>
+										</li>
+										<li>
+											<p><?= __('Illuminates the interconnectedness of ideas') ?></p>
+										</li>
+									</ul>
+								</li>
+								<li class="closed">
+									<i class="fa fa-dot-circle-o fa-3x text-color-highlight"></i>
+									<h5 class="text-color-highlight"><?= __('Never gives up') ?></h5>
+
+									<ul class="badge-achievements hide">
+										<li>
+											<p><?= __('Displays critical reflection') ?></p>
+										</li>
+										<li>
+											<p><?= __('Is not afraid to consistently question to seek answers') ?></p>
+										</li>
+										<li>
+											<p><?= __('Shares reasoning with others through visualizations') ?></p>
+										</li>
+									</ul>
+								</li>
+								<li class="closed">
+									<i class="fa fa-eye fa-3x text-color-highlight"></i>
+									<h5 class="text-color-highlight"><?= __('Displays clarity of vision') ?></h5>
+
+									<ul class="badge-achievements hide">
+										<li>
+											<p><?= __('Researches many sources of information') ?></p>
+										</li>
+										<li>
+											<p><?= __('Connects disparate disciplines') ?></p>
+										</li>
+										<li>
+											<p><?= __('Understands through self reflection') ?></p>
+										</li>
+									</ul>
+								</li>
+								<li class="closed">
+									<i class="fa fa-fire fa-3x text-color-highlight"></i>
+									<h5 class="text-color-highlight"><?= __('Ventures into the unknown') ?></h5>
+
+									<ul class="badge-achievements hide">
+										<li>
+											<p><?= __('Collaborates with others') ?></p>
+										</li>
+										<li>
+											<p><?= __('Engages with other agents') ?></p>
+										</li>
+										<li>
+											<p><?= __('Shares resources freely') ?></p>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
 				<?php endforeach;?>
-			</ul>
 		</div>
 
 	</div>
