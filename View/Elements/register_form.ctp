@@ -13,24 +13,25 @@
 
 				<!-- PROFILE PICTURE UPLOAD -->
 				<div class="pass"> 
-		           <button type="button" class="button" id="upload-img">
-		               <i class="fa fa-user"></i>
-		               <?php echo __('Profile picture'); ?>
-		           </button>
+					<?php
+						echo $this->Form->input('file', array(
+							'accept' => 'image/jpeg,image/png',
+							'type'   => 'file',
+							'label'  => __('Profile picture'),
+							'class'  => 'hidden upload-file-input',
+							'div'    => false,
+							'name' => 'data[Attachment][][attachment]',
+							'id' => 'upload-profile-img-fileinput'
+						));
+					?>
 
-		           <span id="file-name"></span>
-		           <?php
-		               echo $this->Form->input('file', array(
-		                   'accept' => 'image/jpeg,image/png',
-		                   'type'   => 'file',
-		                   'label'  => false,
-		                   'class'  => 'hidden upload',
-		                   'div'    => false,
-		                   'name' => 'data[Attachment][][attachment]',
-		                   'id' => 'AttachmentImgAttachment'
-		               ));
-		           ?>
-		       </div>
+					<a type="button" class="button thin upload-file-button" id="upload-profile-img-button" data-file-input-id="upload-profile-img-fileinput">
+						<i class="fa fa-user"></i>
+						<?php echo __('Upload'); ?>
+					</a>
+
+					<span id="upload-profile-img-fileinput-filename"> <?= (isset($user['photo_attachment']) ? $user['photo_attachment'] : '') ?></span>
+				</div>
 		</div>
 
 		<div class="medium-6 columns">
@@ -70,15 +71,6 @@
 								'separator' => '&nbsp;&nbsp;',
 								'style' => 'width:auto'
 						));
-
-						// echo $this->Form->input('birth_dt', array(
-						// 	'type' => 'date',
-						// 	'label' => 'Expiration Date',
-						// 	'dateFormat' => 'MDY',
-						// 	'empty' => true,
-						// 	'separator' => '&nbsp;',
-						// 	'minYear' => date('Y') - 114,
-						// 	'maxYear' => date('Y')));
 					?>
 					<!-- COUNTRY -->
 					<?php
@@ -108,19 +100,7 @@
 
 		</div>
 		<?php echo $this->Form->end(); ?>
-		<?php
-			// echo $this->Html->script('/components/jquery/dist/jquery.js');
-			// echo $this->Html->script('/components/jquery-ui/ui/datepicker.js');
-		?>
 	</div>
-
-	<?php $this->start('script'); ?>
-	<script>
-		// $(function() {
-		// 	$( "#datepicker" ).datepicker();
-		// });
-	</script>
-	<?php $this->end(); ?>
 
 <?php
 	//SCRIPT
