@@ -1,4 +1,4 @@
-require(['../requirejs/bootstrap'], function () {
+require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery','chartjs'], function ($) {
 		
 		//--------------------------------------------//

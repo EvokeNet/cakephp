@@ -833,6 +833,7 @@ button, .button {
 .evoke .button-icon:hover {
 	text-transform: none;
 }
+.evoke .button.disabled,
 .evoke .button-icon.disabled, .evoke .button-icon.disabled i, .evoke .button-icon.disabled span {
 	color: #ccc;
 	pointer-events: none !important;

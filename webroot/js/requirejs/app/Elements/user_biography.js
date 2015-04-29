@@ -10,8 +10,11 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					$(this).load(
 						$(this).attr('href'), 
 						function () {
-							$(this).html("<?= __('Congratulations! The user has been added.') ?>");
-							$(this).attr('href','#');
+							$(this)
+								.html("Congratulations! The user has been added.")
+								.attr('href','#')
+								.addClass('disabled')
+								.removeClass('button');
 						}
 					); 
 				}
