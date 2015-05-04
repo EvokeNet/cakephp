@@ -3,7 +3,7 @@
 	echo $this->Html->css('linkpreview');
 ?>
 <script id="evidence-type-link-template" type="text/x-handlebars-template">
-	<?php echo $this->Form->input('evidenceLink', array('label' => __('Link'), 'class' => 'radius', 'id' => 'evidenceLink')); ?>
+	<?php echo $this->Form->input('evidenceLink', array('label' => __('Link'), 'class' => 'radius', 'id' => 'evidenceLink', 'value' => 'http://')); ?>
 
 	<button id="refresh-button" class="hidden" type="button">Preview</button>
 
