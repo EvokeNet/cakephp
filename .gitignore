@@ -15,4 +15,9 @@ Plugin/Upload
 Plugin/Utility
 tmp/
 dbv/data/meta/revision
+
+# editor Visual Studio Code
 .settings
+
+# Nodejs
+node_modules
