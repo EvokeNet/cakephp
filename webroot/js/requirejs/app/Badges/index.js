@@ -1,11 +1,12 @@
 require(['../requirejs/bootstrap'], function () {
 	require(['jquery', 'jqueryui'], function ($) {
 		
-		//--------------------------------------------//
-		//Progress
-		//--------------------------------------------//
+		
 		$(document).ready(function() {
-			$(".badge .view").each(function( index ) {
+			//--------------------------------------------//
+			//Show progress circle around badge
+			//--------------------------------------------//
+			$(".view").each(function( index ) {
 				var badge_id = $(this).attr('id');
 				var progress = $(this).data('progress');
 
@@ -42,67 +43,99 @@ require(['../requirejs/bootstrap'], function () {
 				$("#"+badge_id+" .btext").html(progress+"%");
 			});
 
-			$('.loader-bg')
-				.on("mouseover", function(){
-					$(this).addClass("img-glow");
-				})
-				.on("mouseout", function(){
-					$(this).removeClass("img-glow");
+			//--------------------------------------------//
+			//Click on badge: expand skills
+			//--------------------------------------------//
+			$('.view').bind('click', make_badges_small);
+			
+			var make_badges_small = function(){
+				//Close all other badges
+				$('.view.closed').each(function() {
+					var badge_id = $(this).attr('id');
+					close_badge(badge_id);
 				});
-
-			$('.badge .closed')
-				.on("click", function(){
-					//Close other open badges
-					$('.badge .expanded').each(function() {
-						var badge_id = $(this).attr('id');
-						close_badge(badge_id);
-					});
-
-					//Expand this badge
+				
+				//Decrease title size
+				$('.badge-title').css('font-size','1em');
+				
+				//This behavior is just for the first time any badge was clicked on
+				$('.view').unbind('click', make_badges_small);
+			};
+			
+			$('.view').on("click", function(){
+				//Expand this badge
+				if ($(this).hasClass('closed')) {
 					var badge_id = $(this).attr('id');
 					expand_badge(badge_id);
-				});
-
+				}
+			});
+			
 			function expand_badge(badge_id) {
-				$('.badge .view').removeClass('closed').addClass('expanded');
-
-				//Turn smaller
-				$('#badge_id .badge-image').animate({
-					height: "4vw",
-					width: "4vw"
-				},500);
-
-				//Hide description
-				$('#badge-description-'+badge_id).fadeOut('fast', function() {
-					//Show skills
-					$('#badge-skills-'+badge_id).show("slide", { direction: "left" }, 400);
+				console.log('expand badge '+badge_id);
+				
+				//Close other open badges
+				$('.view.expanded').each(function() {
+					var expanded_badge_id = $(this).attr('id');
+					close_badge(expanded_badge_id);
 				});
-			}
-
-			function close_badge(badge_id) {
-				$('.badge .view').addClass('closed').removeClass('expanded');
+				
+				//Class expanded
+				$('#'+badge_id).removeClass('closed opacity-04').addClass('expanded');
+				
+				//Parent full-width
+				$('#'+badge_id).parent('.badge').addClass('full-width');
 
 				//Turn bigger
-				$('#badge_id .badge-image').animate({
+				$('#'+badge_id).animate({
 					height: "12vw",
 					width: "12vw"
 				},500);
-
-				//Show description
-				$('#badge-description-'+badge_id).fadeIn('fast', function() {
-					//Hide skills
-					$('#badge-skills-'+badge_id).hide("slide", { direction: "left" }, 100);
-				});
+				
+				//Hide title
+				$('#'+badge_id+' .badge-title').hide();
+				
+				//Expand content
+				$('#badge-content-'+badge_id).show("pulsate", 200);
+			}
+			
+			function close_badge(badge_id) {
+				console.log('close badge ' +badge_id);
+				
+				$('#'+badge_id).removeClass('expanded').addClass('closed opacity-04');
+				
+				//Parent full-width
+				$('#'+badge_id).parent('.badge').removeClass('full-width');
+				
+				//Turn smaller
+				$('#'+badge_id).animate({
+					height: "4vw",
+					width: "4vw"
+				},200);
+				
+				//Show title
+				$('#'+badge_id+' .badge-title').show();
+				
+				//Hide content
+				$('#badge-content-'+badge_id).children('.badge-skills .badge-achievements').hide();
+				$('#badge-content-'+badge_id).hide("puff", 50);
 			}
 
-			$('.badge .expanded')
-				.on("click", function(){
-					$(this).addClass("img-circular opacity-03");
-				});
 
-			$('.badge-skills li.closed')
+			//--------------------------------------------//
+			//Click on skill: expand/close achievements
+			//--------------------------------------------//
+			$('.badge-skills li')
 				.on("click", function(){
-					$(this).children('.badge-achievements').show("slide", { direction: "left" }, 400);
+					//Expand achievements
+					if ($(this).hasClass('closed')) {
+						$(this).removeClass('closed').addClass('expanded');
+						$(this).children('.badge-achievements').show("slide", { direction: "left" }, 400);
+					}
+					//Close achievements
+					else {
+						$(this).addClass('closed').removeClass('expanded');
+						$(this).children('.badge-achievements').hide("slide", { direction: "left" }, 400);
+					}
 				});
 
                                                                                               

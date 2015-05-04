@@ -1,16 +1,3 @@
-.evoke .badges-bg img{
-	margin-bottom:20px;
-}
-
-.evoke .badges-bg li{
-	text-align:center;
-	padding-bottom:40px;
-}
-
-.evoke .badges-bg p{
-	/*font-size:1.2vw;*/
-}
-
 .evoke .badges-knob{
 	width: 8.7vw!important;
 	height: auto!important;
@@ -43,31 +30,17 @@
 	padding-bottom:40px;
 }
 
-.evoke .badges-bg p{
-	/*font-size:1.2vw;*/
+.evoke .badge {
+	height: 12vw;
 }
 
-.evoke .badges-bg h1{
-	font-size: 3.0vw;
+.evoke .badge .view,.view .content {
+	width: 12vw;
+	height: 12vw;
 }
 
-.evoke .badges.view {
-   overflow: visible;
-}
-
-.evoke .badges.view .mask,.view .content {
-   height: 12vw;
-}
-.evoke .badge.view {
-	border: none;
-} 
-
-.evoke .badges.view-first:hover img {
-   -webkit-transform: none;
-   -moz-transform: none;
-   -o-transform: none;
-   -ms-transform: none;
-   transform: none;
+.evoke .view.closed + .badge-content {
+	display: none;
 }
 
 .evoke .badges.mask p{
@@ -77,3 +50,4 @@
    color:#26dee0;
    text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
 }
+

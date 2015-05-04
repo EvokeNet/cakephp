@@ -267,6 +267,10 @@ button, div, p, span, a,
 	margin-bottom: 4em;
 }
 
+.evoke .margin.bottom-5 {
+	margin-bottom: 5em;
+}
+
 .evoke .margin.right-05 {
 	margin-right: 0.5em;
 }
@@ -280,6 +284,10 @@ button, div, p, span, a,
 }
 
 .evoke .margin.right-3 {
+	margin-right: 3em;
+}
+
+.evoke .margin.right-5 {
 	margin-right: 3em;
 }
 
