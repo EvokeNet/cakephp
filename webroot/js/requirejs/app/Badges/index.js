@@ -96,7 +96,7 @@ require(['../requirejs/bootstrap'], function () {
 				$('#'+badge_id+' .badge-title').hide();
 				
 				//Expand content
-				$('#badge-content-'+badge_id).show("pulsate", 200);
+				$('#badge-content-'+badge_id).show("blind", 500);
 			}
 			
 			function close_badge(badge_id) {				
