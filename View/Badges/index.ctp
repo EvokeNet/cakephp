@@ -20,7 +20,7 @@
 			foreach($badges as $b => $badge):
 				$badge_id = $badge['Badge']['id'];
 			?>
-				<div id="<?= $badge_id ?>" class="centered-block margin right-5 view closed" data-progress="<?= $badge['Badge']['UserPercentage'] ?>">
+				<div id="<?= $badge_id ?>" class="centered-block margin right-5  view closed" data-progress="<?= $badge['Badge']['UserPercentage'] ?>">
 					<!-- BADGE IMAGE -->
 					<div class="badge-image loader">	
 						<?php
