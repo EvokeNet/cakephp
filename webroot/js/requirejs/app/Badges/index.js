@@ -47,11 +47,9 @@ require(['../requirejs/bootstrap'], function () {
 			//Click on badge: make all other badges small initially
 			//--------------------------------------------//
 			var make_badges_small = function(){
-				console.log('make all other badges small');
 				//Close all other badges
 				$('.view.closed').each(function() {
 					var badge_id = $(this).attr('id');
-					console.log('badge '+badge_id);
 					close_badge(badge_id);
 				});
 				
