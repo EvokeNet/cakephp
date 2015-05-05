@@ -467,6 +467,8 @@ class PanelsController extends AppController {
 				'contain' => 'User'
 			));
 
+		debug($users_of_my_missions);
+
 			$userLevels['max'] = 0;
 			$userLevels['all'] = 0;
 			$userLevels['maxP'] = 0;
