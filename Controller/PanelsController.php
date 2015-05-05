@@ -463,42 +463,43 @@ class PanelsController extends AppController {
 		$users_of_my_missions = $this->User->UserMission->find('all', array(
 				'order' => array(
 					'user_id ASC'
-				)
+				),
+				'contain' => 'User'
 			));
 
-			// $userLevels['max'] = 0;
-			// $userLevels['all'] = 0;
-			// $userLevels['maxP'] = 0;
-			// $userLevels['allP'] = 0;
-			// $countries = array();
-			// $unknown_countries = 0;
-			// foreach ($users_of_my_missions as $usr) {
-			// 	$userPoints = $this->getPoints($usr['User']['id']);
-	  //       	$userLevels['allP'] += $userPoints;
-	  //       	// debug($usr['User']['name'] . ' '.$userPoints);
-	  //       	if($userLevels['maxP'] < $userPoints) {
-	  //       		$userLevels['maxP'] = $userPoints;
-	  //       	}
+			$userLevels['max'] = 0;
+			$userLevels['all'] = 0;
+			$userLevels['maxP'] = 0;
+			$userLevels['allP'] = 0;
+			$countries = array();
+			$unknown_countries = 0;
+			foreach ($users_of_my_missions as $usr) {
+				$userPoints = $this->getPoints($usr['User']['id']);
+	        	$userLevels['allP'] += $userPoints;
+	        	// debug($usr['User']['name'] . ' '.$userPoints);
+	        	if($userLevels['maxP'] < $userPoints) {
+	        		$userLevels['maxP'] = $userPoints;
+	        	}
 
-	  //       	$userLevel = $this->getLevel($userPoints);
+	        	$userLevel = $this->getLevel($userPoints);
 
-	  //       	$userLevels['all'] += $userLevel;
-	  //       	if($userLevels['max'] < $userLevel) {
-	  //       		$userLevels['max'] = $userLevel;
-	  //       	}
+	        	$userLevels['all'] += $userLevel;
+	        	if($userLevels['max'] < $userLevel) {
+	        		$userLevels['max'] = $userLevel;
+	        	}
 
-			// 	if(!is_null($usr['User']['country']) && $usr['User']['country'] != '' && $usr['User']['country'] != ' ') {
-			// 		$currentcountry = $usr['User']['country'];
-			// 		if(isset($countries[$currentcountry])) {
-			// 			$countries[$currentcountry]++;
-			// 		} else {
-			// 			$countries[$currentcountry] = 1;
-			// 		}
-			// 	} else {
-			// 		$unknown_countries++;
-			// 	}
+				if(!is_null($usr['User']['country']) && $usr['User']['country'] != '' && $usr['User']['country'] != ' ') {
+					$currentcountry = $usr['User']['country'];
+					if(isset($countries[$currentcountry])) {
+						$countries[$currentcountry]++;
+					} else {
+						$countries[$currentcountry] = 1;
+					}
+				} else {
+					$unknown_countries++;
+				}
 
-			// }
+			}
 
 		$allRelations = $this->UserFriend->find('all');
 
