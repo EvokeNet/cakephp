@@ -70,9 +70,7 @@ require(['../requirejs/bootstrap'], function () {
 				}
 			});
 			
-			function expand_badge(badge_id) {
-				console.log('expand badge '+badge_id);
-				
+			function expand_badge(badge_id) {				
 				//Close other open badges
 				$('.view.expanded').each(function() {
 					var expanded_badge_id = $(this).attr('id');
@@ -98,9 +96,7 @@ require(['../requirejs/bootstrap'], function () {
 				$('#badge-content-'+badge_id).show("pulsate", 200);
 			}
 			
-			function close_badge(badge_id) {
-				console.log('close badge ' +badge_id);
-				
+			function close_badge(badge_id) {				
 				$('#'+badge_id).removeClass('expanded').addClass('closed opacity-04');
 				
 				//Parent full-width
