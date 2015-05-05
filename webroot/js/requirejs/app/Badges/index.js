@@ -44,10 +44,8 @@ require(['../requirejs/bootstrap'], function () {
 			});
 
 			//--------------------------------------------//
-			//Click on badge: expand skills
+			//Click on badge: make all other badges small initially
 			//--------------------------------------------//
-			$('.view').bind('click', make_badges_small);
-			
 			var make_badges_small = function(){
 				console.log('make all other badges small');
 				//Close all other badges
@@ -63,7 +61,12 @@ require(['../requirejs/bootstrap'], function () {
 				//This behavior is just for the first time any badge was clicked on
 				$('.view').unbind('click', make_badges_small);
 			};
-			
+
+			$('.view').bind('click', make_badges_small);
+
+			//--------------------------------------------//
+			//Click on badge: expand skills
+			//--------------------------------------------//
 			$('.view').on("click", function(){
 				//Expand this badge
 				if ($(this).hasClass('closed')) {
