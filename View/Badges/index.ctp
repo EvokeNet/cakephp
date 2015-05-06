@@ -93,7 +93,7 @@
 								$image_url = $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'];
 							}
 						?>
-						<div class="img-circular img-glow-on-hover background-cover background-center badge-main-image" data-interchange="['<?= $image_url ?>',(default)]">
+						<div class="img-circular background-cover background-center badge-main-image" data-interchange="['<?= $image_url ?>',(default)]">
 							<noscript>
 								<img src="<?= $image_url ?>" alt="<?= 'Badge '.$badge['Badge']['name'].' icon' ?>" />
 							</noscript>
