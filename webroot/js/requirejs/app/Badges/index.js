@@ -47,12 +47,12 @@ require(['../requirejs/bootstrap'], function () {
 			//Click on badge: make all other badges small initially
 			//--------------------------------------------//
 			var make_badges_small = function(){
-				//Close all other badges
-				$('.view.closed').each(function() {
-					var badge_id = $(this).attr('id');
-					close_badge(badge_id);
-				});
-				
+				//Turn smaller
+				$('.badge-image').animate({
+					height: "4vw",
+					width: "4vw"
+				},200);
+
 				//Decrease title size
 				$('.badge-title').css('font-size','1em');
 				
@@ -85,18 +85,14 @@ require(['../requirejs/bootstrap'], function () {
 				
 				//Parent full-width
 				$('#'+badge_id).parent('.badge').addClass('full-width');
-
-				//Turn bigger
-				$('#'+badge_id).animate({
-					height: "12vw",
-					width: "12vw"
-				},500);
-				
-				//Hide title
-				$('#'+badge_id+' .badge-title').hide();
 				
 				//Expand content
 				$('#badge-content-'+badge_id).show("blind", 500);
+
+				//Go to the top of the badge content
+				$("html, body").animate({
+					scrollTop: $('.badge').offset().top
+				}, 400);
 			}
 			
 			function close_badge(badge_id) {				
@@ -104,15 +100,6 @@ require(['../requirejs/bootstrap'], function () {
 				
 				//Parent full-width
 				$('#'+badge_id).parent('.badge').removeClass('full-width');
-				
-				//Turn smaller
-				$('#'+badge_id).animate({
-					height: "4vw",
-					width: "4vw"
-				},200);
-				
-				//Show title
-				$('#'+badge_id+' .badge-title').show();
 				
 				//Hide content
 				$('#badge-content-'+badge_id).children('.badge-skills .badge-achievements').hide();
@@ -123,21 +110,11 @@ require(['../requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//Click on skill: expand/close achievements
 			//--------------------------------------------//
-			$('.badge-skills li')
+			$('#tabs-skills li')
 				.on("click", function(){
-					//Expand achievements
-					if ($(this).hasClass('closed')) {
-						$(this).removeClass('closed').addClass('expanded');
-						$(this).children('.badge-achievements').show("slide", { direction: "left" }, 400);
-					}
-					//Close achievements
-					else {
-						$(this).addClass('closed').removeClass('expanded');
-						$(this).children('.badge-achievements').hide("slide", { direction: "left" }, 400);
-					}
+					$('#tabs-skills li').removeClass('text-glow');
+					$(this).addClass('text-glow');
 				});
-
-                                                                                              
 		});
 	});
 });

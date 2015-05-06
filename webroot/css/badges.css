@@ -21,22 +21,9 @@
 	background-repeat: initial initial!important;
 }
 
-.evoke .badges-bg img{
-	margin-bottom:20px;
-}
-
-.evoke .badges-bg li{
-	text-align:center;
-	padding-bottom:40px;
-}
-
-.evoke .badge {
+.evoke .badge-image {
 	height: 12vw;
-}
-
-.evoke .badge .view,.view .content {
 	width: 12vw;
-	height: 12vw;
 }
 
 .evoke .view.closed + .badge-content {
@@ -47,7 +34,29 @@
    font-size: 4vw;
    font-weight: bold;
    margin-top: 2vw;
-   color:#26dee0;
+   color: #26dee0;
    text-shadow: 0px 2px 2px rgba(0,0,0, 0.6);
 }
 
+
+/* --------------------------- */
+/* SKILLS TABS */
+/* --------------------------- */
+.evoke ul.tabs {
+	display: table-cell !important;
+}
+
+.evoke ul.tabs li {
+	display: table-cell;
+	float: none;
+	vertical-align: bottom;
+}
+
+/* --------------------------- */
+/* BADGE IMAGE IN DESCRIPTION */
+/* --------------------------- */
+.evoke .badge-main-image {
+	height: 10em;
+	width: 10em;
+	margin: auto;
+}

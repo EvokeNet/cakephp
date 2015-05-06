@@ -396,3 +396,19 @@ button:hover, button:focus, .button:hover, .button:focus {
 .evoke ul.inline-list-centered li {
 	display: inline-block;
 }
+
+
+/* --------------------------- */
+/* ACCORDION */
+/* --------------------------- */
+.evoke .accordion .accordion-navigation > .content.active,
+.evoke .accordion dd > .content.active {
+	background-color: #292929; /* background-color-light-dark */
+}
+
+.evoke .accordion .accordion-navigation > a,
+.evoke .accordion dd > a  {
+	background-color: #111; /* background-color-darkest */
+	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	color: #26dee0; /* text-color-highlight */
+}

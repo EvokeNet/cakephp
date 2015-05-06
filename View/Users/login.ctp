@@ -16,10 +16,9 @@
 ?>
 
 	<div class="evoke login fullpage">
+		<!-- MISSIONS CAROUSEL -->
 		<div class="section">
 	    	<div class="row full-width full-height missions-carousel">
-
-
 	    		<?php foreach($missions as $mission): 
 
     			//COVER IMAGE
@@ -53,6 +52,7 @@
 	    	</div>
 	    </div>
 	    
+	    <!-- WHAT IS EVOKE? -->
 	    <div class="section evoke login gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
 		    	<h1 class="text-color-highlight text-center margin bottom-1"><?php echo ('What is Evoke?'); ?></h1>
@@ -61,6 +61,8 @@
 				</p>
 			</div>
 	    </div>
+
+	    <!-- EVOKE VIDEO -->
 	    <div class="section evoke login gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
 				<div class="flex-video widescreen vimeo">
@@ -68,12 +70,16 @@
 				</div>
 			</div>
 	    </div>
+
+	    <!-- WHY WAS EVOKE CREATED? -->
 	    <div class="section evoke login gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
 		    	<h2 class="text-color-highlight text-center margin bottom-1"><?php echo ('Why was Evoke created?'); ?></h2>
 		    	<p class="font-size-important"><?php echo ('The Evoke network was created to identify voices that are not heard and to give them the tools and support to change their community, their world.  The network believes that every individual can make a difference and when connected to others, change the world.'); ?></p>
 			</div>
 	    </div>
+
+	    <!-- HOW DOES EVOKE WORK? (TABS EXPLAINING) -->
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row standard-width full-height centering-block table padding top-2 text-center">
 		    	<h2 class="text-color-highlight text-center margin bottom-1"><?php echo ('Gameplay'); ?></h2>
@@ -156,12 +162,17 @@
 				</div>
 			</div>
 	    </div>
+
+	    <!-- WHO IS BEHIND EVOKE? -->
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
 	    		<h2 class="text-color-highlight text-center margin bottom-1"><?php echo ('Who is behind Evoke?'); ?></h2>
 		    	<p class="font-size-important"><?php echo ('Evoke is an innovation project of the World Bank in collaboration with partners around the world.'); ?></p>
 		    </div>
 	    </div>
+
+
+	    <!-- REGISTER -->
 	    <div class="section evoke gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
 	    		<h2 class="text-color-highlight text-center margin bottom-1"><?php echo ('How to become an agent?'); ?></h2>
