@@ -70,7 +70,7 @@
 					</div>
 					
 					<!-- BADGE TITLE -->
-					<p class="font-highlight badge-title <?= ($badge['Badge']['owns'] == 1) ? 'text-color-highlight' : '' ?>">
+					<p class="font-highlight badge-title text-color-highlight">
 						<?= $badge['Badge']['name'] ?>
 					</p>
 				</div>
@@ -100,7 +100,7 @@
 						</div>
 
 						<!-- BADGE TITLE -->
-						<h3 class="<?= ($badge['Badge']['owns'] == 1) ? 'text-color-highlight' : '' ?>">
+						<h3 class="text-color-highlight">
 							<?= $badge['Badge']['name'] ?>
 						</h3>
 					
