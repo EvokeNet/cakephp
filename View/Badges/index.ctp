@@ -110,10 +110,10 @@
 						</div>
 
 						<!-- BADGE SKILLS (tabs) -->
-						<div id="badge-skills-<?= $badge_id ?>" class="row standard-width margins-auto full-height centering-block table text-center">
+						<div id="badge-skills-<?= $badge_id ?>" class="row badge-skills standard-width margins-auto full-height centering-block table text-center">
 							<!-- SKILLS (TAB LINKS) -->
 							<div class="evoke small-block-grid-5 tabs-style-linetriangle centered-block show-for-large-up">
-								<ul id="tabs-skills" class="tabs show-for-large-up" data-tab role="tablist" data-options="deep_linking:true">
+								<ul id="tabs-skills" class="tabs show-for-large-up" data-tab role="tablist">
 									<li class="tab-title text-glow-on-hover active text-glow" role="presentational">
 										<a href="#panelBadge<?= $badge_id ?>Skill1" role="tab" aria-selected="true" controls="panelBadge<?= $badge_id ?>Skill1">
 											<i class="fa fa-bolt fa-4x text-color-highlight"></i>
@@ -237,14 +237,6 @@
 								</dl>
 							</div>
 						</div>
-
-
-						<!-- <div id="badge-skills-<?= $badge_id ?>" class="badge-skills text-center">
-							<ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4">
-								<li class="closed">
-								</li>
-							</ul>
-						</div> -->
 					</div>
 				<?php endforeach;?>
 		</div>

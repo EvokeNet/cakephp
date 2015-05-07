@@ -46,7 +46,7 @@ require(['../requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//Click on badge: make all other badges small initially
 			//--------------------------------------------//
-			var make_badges_small = function(){
+			var make_badges_small = function(e){
 				//Turn smaller
 				$('.badge-image').animate({
 					height: "4vw",
@@ -58,6 +58,8 @@ require(['../requirejs/bootstrap'], function () {
 				
 				//This behavior is just for the first time any badge was clicked on
 				$('.view').unbind('click', make_badges_small);
+
+				e.preventDefault();
 			};
 
 			$('.view').bind('click', make_badges_small);
@@ -65,12 +67,13 @@ require(['../requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//Click on badge: expand skills
 			//--------------------------------------------//
-			$('.view').on("click", function(){
+			$('.view').on("click", function(e){
 				//Expand this badge
 				if ($(this).hasClass('closed')) {
 					var badge_id = $(this).attr('id');
 					expand_badge(badge_id);
 				}
+				e.preventDefault();
 			});
 			
 			function expand_badge(badge_id) {				
@@ -102,18 +105,28 @@ require(['../requirejs/bootstrap'], function () {
 				$('#'+badge_id).parent('.badge').removeClass('full-width');
 				
 				//Hide content
-				$('#badge-content-'+badge_id).children('.badge-skills .badge-achievements').hide();
+				// $('#badge-content-'+badge_id).children('.badge-skills .badge-achievements').hide();
 				$('#badge-content-'+badge_id).hide("puff", 50);
 			}
 
 
 			//--------------------------------------------//
-			//Click on skill: expand/close achievements
+			//Click on skill: make it glow and scroll
 			//--------------------------------------------//
-			$('#tabs-skills li')
-				.on("click", function(){
+			$('#tabs-skills li a')
+				.on("click", function(e){
+					//Text glow in the active li
 					$('#tabs-skills li').removeClass('text-glow');
-					$(this).addClass('text-glow');
+					var li = $(this).parent('li');
+					$(li).addClass('text-glow');
+
+					//Go to the bottom of the badge description
+					var badge_id = $('.view.expanded').attr('id');
+					$("html, body").animate({
+						scrollTop: $('#badge-description-'+badge_id).offset().top
+					}, 400);
+
+					e.preventDefault();
 				});
 		});
 	});
