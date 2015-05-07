@@ -245,7 +245,7 @@
 										foreach ($badge_skills_and_achievements as $skill_name => $skill_content):
 											$skill_count++;
 									?>
-										<li class="tab-title text-glow-on-hover <?= ($skill_count == 0) ? 'active' : ''?> text-glow" role="presentational">
+										<li class="tab-title text-glow-on-hover <?= ($skill_count == 1) ? 'active' : ''?> text-glow" role="presentational">
 											<a href="#panelBadge<?= $badge_id ?>Skill<?= $skill_count ?>" role="tab" aria-selected="true" controls="panelBadge<?= $badge_id ?>Skill<?= $skill_count ?>">
 												<i class="fa fa-bolt fa-4x text-color-highlight"></i>
 												<h6 class="text-color-highlight text-glow-on-hover"><?= $skill_name ?></h6>
@@ -274,7 +274,7 @@
 													</a>
 
 													<!-- SKILL -->
-													<section role="tabpanel" aria-hidden="false" class="content radius <?= ($skill_count == 0) ? 'active' : ''?>" id="panelBadge<?= $badge_id ?>Skill<?= $skill_count ?>">
+													<section role="tabpanel" aria-hidden="false" class="content radius <?= ($skill_count == 1) ? 'active' : ''?>" id="panelBadge<?= $badge_id ?>Skill<?= $skill_count ?>">
 														<h6 class="margin top-2 bottom-2"><?= __('Necessary achievements:') ?></h6>
 														<ul class="badge-achievements inline-block text-left">
 															<?php
