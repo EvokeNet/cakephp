@@ -15,6 +15,7 @@ class MissionsController extends AppController {
  */
 
 	public $components = array('Paginator', 'Session', 'Access');
+	public $helpers = array('BrainstormSession.Brainstorm');
 	public $user = null;
 
 	public function beforeFilter() {
@@ -957,6 +958,26 @@ class MissionsController extends AppController {
 			)
 		));
 
+		//BRAINSTORM
+		$brainstorm_timeline_states = array(
+			array(
+				'label' => 'Individual ideas',
+				'current' => false,
+				'description' => 'These are the instructions'
+			),
+			array(
+				'label' => 'Group ideas',
+				'current' => true,
+				'description' => 'asdsada group are the instructions'
+			),
+			array(
+				'label' => 'Create evidence',
+				'current' => false,
+				'description' => 'Instructions hahahaa create evidence dsada'
+			)
+		);
+
+
 		//FACEBOOK SHARE
 		$facebook = new Facebook(array(
 			'appId' => Configure::read('fb_app_id'),
@@ -964,7 +985,7 @@ class MissionsController extends AppController {
 			'allowSignedRequest' => false
 		));
 
-		$this->set(compact('mission', 'phase', 'forum', 'novels', 'user', 'facebook'));
+		$this->set(compact('mission', 'phase', 'forum', 'novels', 'brainstorm_timeline_states', 'user', 'facebook'));
 	}
 
 

@@ -7,3 +7,6 @@
 [submodule "Plugin/Optimum"]
 	path = Plugin/Optimum
 	url = git@bitbucket.org:quantica/optimum.git
+[submodule "Plugin/BrainstormSession"]
+	path = Plugin/BrainstormSession
+	url = git@bitbucket.org:quantica/brainstorm-session.git
