@@ -183,13 +183,13 @@
 										    </p>
 										   
 										   <!-- CALL FOR EVIDENCE CREATION -->
-										    <div class="margin top-2">
+										    <div class="margin top-3">
 									    		<?php
 									    		if (isset($loggedInUser)):
 									    			//SIMPLE PHASES DO NOT HAVE BRAINSTORMING
 									    			if ($phase['Phase']['type'] == 0): ?>
 									    				<p class="text-center">
-										    				<a class="button small submit-evidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')); ?>">
+										    				<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')); ?>">
 										    					<?= __('Create your evidence') ?>
 										    				</a>
 										    			</p><?php
@@ -197,11 +197,54 @@
 									    			//ACT PHASE HAS BRAINSTORM
 									    			else: ?>
 									    				<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
-									    				echo $this->element('BrainstormSession.timeline',array('states' => $brainstorm_timeline_states));
+
+										    				//BRAINSTORM
+															$brainstorm_timeline_states = array(
+																array(
+																	'label' => 'Individual ideas',
+																	'current' => true,
+																	'description' => '
+																		<p class="text-center">
+																			'.__('Instructions here').'
+																		</p>
+																		<p class="text-center">
+																			<a class="button small open-mission-overlay"
+																			   href="'.$this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'addIdeas', 1, $q['id'])).'">
+																			   '. __("Start brainstorming").'
+																			</a>
+																		</p>
+																		'
+																),
+																array(
+																	'label' => 'Group ideas',
+																	'current' => false,
+																	'description' => '
+																		<p class="text-center">
+																			<a class="button small open-mission-overlay"
+																			   href="'.$this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')).'">
+																			   '. __("Vote in your group's ideas").'
+																			</a>
+																		</p>
+																		'
+																),
+																array(
+																	'label' => 'Create evidence',
+																	'current' => false,
+																	'description' => '
+																		<p class="text-center">
+																			<a class="button small open-mission-overlay"
+																			   href="'.$this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')).'">
+																			   '. __("Start brainstorming!").'
+																			</a>
+																		</p>
+																		'
+																)
+															);
+										    				echo $this->element('BrainstormSession.timeline',array('states' => $brainstorm_timeline_states));
 									    			endif;
 									    		else: ?>
 									    			<p class="text-center">
-										    			<span data-tooltip aria-haspopup="true" class="has-tip" title="In preview mode, you can test this form, but not submit an actual response. Click to test it!">
+										    			<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('In preview mode, you can test this form, but not submit an actual response. Click to test it!') ?>">
 										    				<a href="#" class="button small disabled" disabled><?= __('Submit your evidence') ?></a>
 										    			</span>
 										    		</p><?php
