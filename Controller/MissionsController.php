@@ -15,13 +15,14 @@ class MissionsController extends AppController {
  */
 
 	public $components = array('Paginator', 'Session', 'Access');
+	public $helpers = array('BrainstormSession.Brainstorm');
 	public $user = null;
 
 	public function beforeFilter() {
-        parent::beforeFilter();
-        
-        $this->user = array();
-        //get user data into public var
+		parent::beforeFilter();
+		
+		$this->user = array();
+		//get user data into public var
 		$this->user['role_id'] = $this->getUserRole();
 		$this->user['id'] = $this->getUserId();
 		$this->user['name'] = $this->getUserName();
@@ -38,7 +39,7 @@ class MissionsController extends AppController {
 			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."), 'flash_error_message');	
 			$this->redirect(array('controller' => 'users', 'action' => 'dashboard', $this->user['id']));
 		}*/
-    }
+	}
 
 /**
  * index method
@@ -88,19 +89,19 @@ class MissionsController extends AppController {
 
 		if($basic_training == 1){
 			$insertData = array(
-	            'user_id' => $user_id,  
-	            'phase_checklist_id' => 3,
-	            'mission_id' => $mission_id,
-	            'phase_id' => $phase_id,
-	            'completed' => true,
-	        );
+				'user_id' => $user_id,  
+				'phase_checklist_id' => 3,
+				'mission_id' => $mission_id,
+				'phase_id' => $phase_id,
+				'completed' => true,
+			);
 
 			$check3 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
-	            'UserPhaseChecklist.user_id' => $user_id,  
-	            'UserPhaseChecklist.phase_checklist_id' => 3,
-	            'UserPhaseChecklist.mission_id' => $mission_id,
-	            'UserPhaseChecklist.phase_id' => $phase_id,
-	        )));
+				'UserPhaseChecklist.user_id' => $user_id,  
+				'UserPhaseChecklist.phase_checklist_id' => 3,
+				'UserPhaseChecklist.mission_id' => $mission_id,
+				'UserPhaseChecklist.phase_id' => $phase_id,
+			)));
 
 			if(empty($check3))
 				$this->UserPhaseChecklist->saveAll($insertData);
@@ -514,79 +515,79 @@ class MissionsController extends AppController {
 
 		if((count($missionPhases) == $count_completed_phases) && ($user['User']['basic_training'] == 1) && (isset($badge))){
 			$event = new CakeEvent('Controller.Mission.grit', $this, array(
-	            'entity_id' => $badge['Badge']['id'],
-	            'user_id' => $this->getUserId(),
-	            'entity' => 'gritBadge',
-	            'mission_name' => $mission['Mission']['title']
-	        ));
+				'entity_id' => $badge['Badge']['id'],
+				'user_id' => $this->getUserId(),
+				'entity' => 'gritBadge',
+				'mission_name' => $mission['Mission']['title']
+			));
 
-	        $this->getEventManager()->dispatch($event);
+			$this->getEventManager()->dispatch($event);
 		}
 		
 		if(isset($completed[$missionPhase['Phase']['id']]) && ($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']])){
 
 			$event = new CakeEvent('Controller.Phase.completed', $this, array(
-	            'entity_id' => $missionPhase['Phase']['id'],
-	            'user_id' => $this->getUserId(),
-	            'entity' => 'phaseCompleted',
-	            'points' => $missionPhase['Phase']['points'],
-	            'phase_name' => $missionPhase['Phase']['name'],
-	            'next_phase' => $nextMP['Phase']['id'],
-	            'mission_id' => $missionPhase['Mission']['id']
-	        ));
+				'entity_id' => $missionPhase['Phase']['id'],
+				'user_id' => $this->getUserId(),
+				'entity' => 'phaseCompleted',
+				'points' => $missionPhase['Phase']['points'],
+				'phase_name' => $missionPhase['Phase']['name'],
+				'next_phase' => $nextMP['Phase']['id'],
+				'mission_id' => $missionPhase['Mission']['id']
+			));
 
-	        $this->getEventManager()->dispatch($event);
+			$this->getEventManager()->dispatch($event);
 
-	        $is_phase_completed = true;
+			$is_phase_completed = true;
 
-	        // $this->loadModel('Notification');
+			// $this->loadModel('Notification');
 
-	        // $exists = $this->Notification->find('first', array('conditions' => array('origin_id' => $missionPhase['Phase']['id'], 'user_id' => $this->getUserId(),
-	        //     'origin' => 'phaseCompleted')));
+			// $exists = $this->Notification->find('first', array('conditions' => array('origin_id' => $missionPhase['Phase']['id'], 'user_id' => $this->getUserId(),
+			//     'origin' => 'phaseCompleted')));
 
-	        // if(!$exists)
-	        // 	$this->Session->setFlash(__("You have completed the Basic Training"), 'flash_lightbox_message');
+			// if(!$exists)
+			// 	$this->Session->setFlash(__("You have completed the Basic Training"), 'flash_lightbox_message');
 
-	        // $event2 = new CakeEvent('Controller.Phase.notifyCompleted', $this, array(
-	        //     'entity_id' => $missionPhase['Phase']['id'],
-	        //     'user_id' => $this->getUserId(),
-	        //     'entity' => 'phaseCompleted',
-	        // ));
+			// $event2 = new CakeEvent('Controller.Phase.notifyCompleted', $this, array(
+			//     'entity_id' => $missionPhase['Phase']['id'],
+			//     'user_id' => $this->getUserId(),
+			//     'entity' => 'phaseCompleted',
+			// ));
 
-	        // $this->getEventManager()->dispatch($event2);
+			// $this->getEventManager()->dispatch($event2);
 
-	        // $this->Session->setFlash(sprintf(__("You have completed the %s Phase"), $missionPhase['Phase']['name']), 'flash_lightbox_message');
+			// $this->Session->setFlash(sprintf(__("You have completed the %s Phase"), $missionPhase['Phase']['name']), 'flash_lightbox_message');
 
 		} if(isset($completed[$missionPhase['Phase']['id']]) && 
 			($completed[$missionPhase['Phase']['id']] == $total[$missionPhase['Phase']['id']]) && 
 			($mission['Mission']['basic_training'] == 1) && ($user['User']['basic_training'] == 0)){
 
 			$this->loadModel('PointsDefinition');
-	        $def = new PointsDefinition();
-	        $preset_point = $def->find('first', array(
-	            'conditions' => array(
-	                'type' => 'BasicTraining'
-	            )
-	        ));
+			$def = new PointsDefinition();
+			$preset_point = $def->find('first', array(
+				'conditions' => array(
+					'type' => 'BasicTraining'
+				)
+			));
 
-	        if($preset_point)
-	            $value = $preset_point['PointsDefinition']['points'];
+			if($preset_point)
+				$value = $preset_point['PointsDefinition']['points'];
 
 			$event3 = new CakeEvent('Controller.BasicTraining.completed', $this, array(
-	            'entity_id' => $mission['Mission']['id'],
-	            'user_id' => $this->getUserId(),
-	            'entity' => 'BasicTraining',
-	            'points' => $value
-	        ));
+				'entity_id' => $mission['Mission']['id'],
+				'user_id' => $this->getUserId(),
+				'entity' => 'BasicTraining',
+				'points' => $value
+			));
 
-	        $this->getEventManager()->dispatch($event3);
+			$this->getEventManager()->dispatch($event3);
 
-	        // $this->loadModel('Notification');
+			// $this->loadModel('Notification');
 
-	        // $exists = $this->Notification->find('first', array('conditions' => array('origin_id' => $mission['Mission']['id'], 'user_id' => $this->getUserId(),
-	        //     'origin' => 'phaseCompleted')));
-	        // if(!$exists)
-	        	// $this->Session->setFlash(__("You have completed the Basic Training"), 'flash_lightbox_message');
+			// $exists = $this->Notification->find('first', array('conditions' => array('origin_id' => $mission['Mission']['id'], 'user_id' => $this->getUserId(),
+			//     'origin' => 'phaseCompleted')));
+			// if(!$exists)
+				// $this->Session->setFlash(__("You have completed the Basic Training"), 'flash_lightbox_message');
 			//return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user['User']['id']));
 		}
 
@@ -710,28 +711,28 @@ class MissionsController extends AppController {
 	public function moreEvidences(){
 		$this->autoRender = false; // We don't render a view
 		
-	   	//QUERY
-	   	$newEvidences = $this->getEvidences(
+		//QUERY
+		$newEvidences = $this->getEvidences(
 			$this->request->query('mission_id'),
 			$this->request->query('user_id'),
 			$this->request->query('limit'),
 			$this->request->query('offset'),
 			$this->request->query('order_by'));
 
-	   	//GENERATE HTML TO BE RETURNED
+		//GENERATE HTML TO BE RETURNED
 		$elementToRender = 'Evidences/evidence_list_item';
 		$ind = 'Evidence';
 		
-    	$newEvidencesHTML = "";
+		$newEvidencesHTML = "";
 
-    	foreach ($newEvidences as $key => $value) {
-    		$view = new View($this, false);
+		foreach ($newEvidences as $key => $value) {
+			$view = new View($this, false);
 			$content = ($view->element($elementToRender, array('e' => $value)));
 
 			$newEvidencesHTML .= $content .' ';
-    	}
+		}
 
-    	return $newEvidencesHTML;
+		return $newEvidencesHTML;
 	}
 
 /**

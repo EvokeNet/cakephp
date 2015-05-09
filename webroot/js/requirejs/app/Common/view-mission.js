@@ -171,9 +171,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			
 
 			//--------------------------------------------//
-			//EVIDENCE: ADD EVIDENCE FORM OPENS ON THE MISSION-OVERLAY ON THE LEFT
+			//OPEN LINK IN MISSION OVERLAY
+			//Used for submitting evidences, brainstorm etc.
 			//--------------------------------------------//
-			$(".submit-evidence.button").click(function(event){
+			$(".button.open-mission-overlay").click(function(event){
 				$.ajax({
 					url: $(this).attr("href")+"/true",
 					type:"POST",
