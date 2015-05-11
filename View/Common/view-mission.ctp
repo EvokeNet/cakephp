@@ -114,8 +114,8 @@
 		
 		<!-- MAIN SECTION -->
 		<section class="main-section relative min-full-height">
-		    <div id="missionSidebar" class="row full-width clearfix absolute full-height hidden" data-equalizer>
-		    	<!-- MISSION SUBMENU (description, phases) -->
+			<div id="missionSidebar" class="row full-width clearfix absolute full-height hidden" data-equalizer>
+				<!-- MISSION SUBMENU (description, phases) -->
 				<div class="mission-sidebar small-6 medium-6 large-4 columns min-full-height" data-equalizer-watch>
 					<div class="missions-submenu padding top-1 left-3">
 						<?php echo $this->fetch('missionsSubmenuContent'); ?>
@@ -175,30 +175,30 @@
 
 											<!-- REWARDS -->
 											<h5 class="text-color-highlight text-center"><?= __('REWARDS') ?></h5>
-								    		<p class="text-center"><?= __('Submitting an evidence for this quest is worth skills for these badges:') ?></p>
-								    		<p class="text-center">
-										    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
-										    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
-										    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
-										    </p>
+											<p class="text-center"><?= __('Submitting an evidence for this quest is worth skills for these badges:') ?></p>
+											<p class="text-center">
+												<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
+												<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
+												<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
+											</p>
 										   
 										   <!-- CALL FOR EVIDENCE CREATION -->
-										    <div class="margin top-3">
-									    		<?php
-									    		if (isset($loggedInUser)):
-									    			//SIMPLE PHASES DO NOT HAVE BRAINSTORMING
-									    			if ($phase['Phase']['type'] == 0): ?>
-									    				<p class="text-center">
-										    				<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')); ?>">
-										    					<?= __('Create your evidence') ?>
-										    				</a>
-										    			</p><?php
+											<div class="margin top-3">
+												<?php
+												if (isset($loggedInUser)):
+													//SIMPLE PHASES DO NOT HAVE BRAINSTORMING
+													if ($phase['Phase']['type'] == 0): ?>
+														<p class="text-center">
+															<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')); ?>">
+																<?= __('Create your evidence') ?>
+															</a>
+														</p><?php
 
-									    			//ACT PHASE HAS BRAINSTORM
-									    			else: ?>
-									    				<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
+													//ACT PHASE HAS BRAINSTORM
+													else: ?>
+														<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
 
-										    				//BRAINSTORM
+															//BRAINSTORM
 															$brainstorm_timeline_states = array(
 																array(
 																	'label' => 'Individual ideas',
@@ -209,8 +209,8 @@
 																		</p>
 																		<p class="text-center">
 																			<a class="button small open-mission-overlay"
-																			   href="'.$this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'addIdeas', 1, $q['id'])).'">
-																			   '. __("Start brainstorming").'
+																				href="'.$this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'addIdeas', 1, $q['id'])).'">
+																				'. __("Start brainstorming").'
 																			</a>
 																		</p>
 																		'
@@ -221,8 +221,8 @@
 																	'description' => '
 																		<p class="text-center">
 																			<a class="button small open-mission-overlay"
-																			   href="'.$this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')).'">
-																			   '. __("Vote in your group's ideas").'
+																				href="'.$this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'voteIdeas', 1, $q['id'])).'">
+																			 	'. __("Vote in your group's ideas").'
 																			</a>
 																		</p>
 																		'
@@ -233,24 +233,24 @@
 																	'description' => '
 																		<p class="text-center">
 																			<a class="button small open-mission-overlay"
-																			   href="'.$this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')).'">
-																			   '. __("Start brainstorming!").'
+																				href="'.$this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')).'">
+																				'. __("Start brainstorming!").'
 																			</a>
 																		</p>
 																		'
 																)
 															);
-										    				echo $this->element('BrainstormSession.timeline',array('states' => $brainstorm_timeline_states));
-									    			endif;
-									    		else: ?>
-									    			<p class="text-center">
-										    			<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('In preview mode, you can test this form, but not submit an actual response. Click to test it!') ?>">
-										    				<a href="#" class="button small disabled" disabled><?= __('Submit your evidence') ?></a>
-										    			</span>
-										    		</p><?php
-									    		endif; ?>
-									    	</div>
-								    	</div>
+															echo $this->element('BrainstormSession.timeline',array('states' => $brainstorm_timeline_states));
+													endif;
+												else: ?>
+													<p class="text-center">
+														<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('In preview mode, you can test this form, but not submit an actual response. Click to test it!') ?>">
+															<a href="#" class="button small disabled" disabled><?= __('Submit your evidence') ?></a>
+														</span>
+													</p><?php
+												endif; ?>
+											</div>
+										</div>
 									</div>
 
 								<?php
@@ -307,29 +307,29 @@
 						</div>
 					</aside>
 				</div>
-		    </div>
+			</div>
 
-		    <div id="tabForum" class="row full-width clearfix absolute full-height hidden">
-		    	<div id="tabForumContent" class="full-height">
-		    		<div>
-		    			<div class="loading-circle-outside"></div>
-		    			<div class="loading-circle-inside"></div>
-			    	</div>
-		    	</div>
-		    </div>
+			<div id="tabForum" class="row full-width clearfix absolute full-height hidden">
+				<div id="tabForumContent" class="full-height">
+					<div>
+						<div class="loading-circle-outside"></div>
+						<div class="loading-circle-inside"></div>
+					</div>
+				</div>
+			</div>
 
 			<!-- GRAPHIC NOVEL -->
 			<div class="section missions-graphic-novel">
-	    		<div id="loading">
-	    			<div class="loading-circle-outside"></div>
-	    			<div class="loading-circle-inside"></div>
-	    		</div>
+				<div id="loading">
+					<div class="loading-circle-outside"></div>
+					<div class="loading-circle-inside"></div>
+				</div>
 
-		    	<div class="missions-carousel full-width">
-		    		<?php foreach ($novels as $novel) :
-		    			//Reserve height space for image before HTML loads it
-		    			//IMPORTANT: This is only fast when the image is in the same server!!!
-			    		list($width_img, $height_img) = getimagesize('./files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
+				<div class="missions-carousel full-width">
+					<?php foreach ($novels as $novel) :
+						//Reserve height space for image before HTML loads it
+						//IMPORTANT: This is only fast when the image is in the same server!!!
+						list($width_img, $height_img) = getimagesize('./files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
 					?>
 						<div>
 							<img data-lazy="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" height="<?= $height_img ?>px" class="full-width" />
@@ -344,10 +344,10 @@
 							<a href="" class="close">×</a>
 						</div>
 					<?php } ?>
-		    	</div>
+				</div>
 
-		    	<!-- NAVIGATION BAR -->
-		    	<div id="navigationBar" class="evoke row full-width fixed sticky contain-to-grid padding top-1 bottom-1 text-center background-color-dark-opacity-05 bottom-0">
+				<!-- NAVIGATION BAR -->
+				<div id="navigationBar" class="evoke row full-width fixed sticky contain-to-grid padding top-1 bottom-1 text-center background-color-dark-opacity-05 bottom-0">
 						<div class="small-12 medium-12 large-12 columns centering-block">
 							<ul class="inline-list centered-block margins-0">
 								<li><h5 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h5></li>
@@ -356,9 +356,9 @@
 								<li><div id="slickNextArrow"></div></li>
 								<li><div id="slickArrows"></div></li>
 							</ul>
-				    	</div>
-		    	</div>
-		    </div>
+						</div>
+				</div>
+			</div>
 
 		</section>
 	</div>
