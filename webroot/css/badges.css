@@ -42,10 +42,6 @@
 /* --------------------------- */
 /* SKILLS TABS */
 /* --------------------------- */
-.evoke ul.tabs {
-	display: table-cell !important;
-}
-
 .evoke ul.tabs li {
 	display: table-cell;
 	float: none;
