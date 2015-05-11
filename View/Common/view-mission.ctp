@@ -198,49 +198,8 @@
 													else: ?>
 														<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
 
-															//BRAINSTORM
-															$brainstorm_timeline_states = array(
-																array(
-																	'label' => 'Individual ideas',
-																	'current' => true,
-																	'description' => '
-																		<p class="text-center">
-																			'.__('Instructions here').'
-																		</p>
-																		<p class="text-center">
-																			<a class="button small open-mission-overlay"
-																				href="'.$this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'addIdeas', 1, $q['id'])).'">
-																				'. __("Start brainstorming").'
-																			</a>
-																		</p>
-																		'
-																),
-																array(
-																	'label' => 'Group ideas',
-																	'current' => false,
-																	'description' => '
-																		<p class="text-center">
-																			<a class="button small open-mission-overlay"
-																				href="'.$this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'voteIdeas', 1, $q['id'])).'">
-																			 	'. __("Vote in your group's ideas").'
-																			</a>
-																		</p>
-																		'
-																),
-																array(
-																	'label' => 'Create evidence',
-																	'current' => false,
-																	'description' => '
-																		<p class="text-center">
-																			<a class="button small open-mission-overlay"
-																				href="'.$this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')).'">
-																				'. __("Start brainstorming!").'
-																			</a>
-																		</p>
-																		'
-																)
-															);
-															echo $this->element('BrainstormSession.timeline',array('states' => $brainstorm_timeline_states));
+															
+															echo $this->element('BrainstormSession.timeline',array('states' => $quest_brainstorm_timeline[$q['id']]));
 													endif;
 												else: ?>
 													<p class="text-center">

@@ -14,7 +14,7 @@ class MissionsController extends AppController {
  * @var array
  */
 
-	public $components = array('Paginator', 'Session', 'Access');
+	public $components = array('Paginator', 'Session', 'Access', 'BrainstormSessionEvoke.Timeline');
 	public $helpers = array('BrainstormSession.Brainstorm');
 	public $user = null;
 
@@ -958,6 +958,9 @@ class MissionsController extends AppController {
 			)
 		));
 
+		//BRAINSTORM TIMELINE
+		// $quest_brainstorm_timeline = $this->Timeline->setTimelineState(0);
+
 		//FACEBOOK SHARE
 		$facebook = new Facebook(array(
 			'appId' => Configure::read('fb_app_id'),
@@ -965,7 +968,7 @@ class MissionsController extends AppController {
 			'allowSignedRequest' => false
 		));
 
-		$this->set(compact('mission', 'phase', 'forum', 'novels', 'user', 'facebook'));
+		$this->set(compact('mission', 'phase', 'forum', 'novels', 'user', 'quest_brainstorm_timeline', 'facebook'));
 	}
 
 
