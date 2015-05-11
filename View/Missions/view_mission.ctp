@@ -23,13 +23,13 @@
                 		//CURRENT PHASE
                 		if ($mission_phase['id'] == $phase['Phase']['id']) {
                 			$mission_phase_status = 'current';
-                			$mission_status_message = "<br />".__("<strong><span class='text-color-dark'>Current phase.</span></strong>");
+                			$mission_status_message = "<br /><strong><span class='text-color-dark'>".__('Current phase.')."</span></strong>";
                 		}
                 		else {
                 			//PAST OR AVAILABLE FUTURE (completed last phase) - CAN GO BACK
                     		if (($mission_phase['completed']) || ($current_phase_counter > 0 && $mission['Phase'][$current_phase_counter-1]['completed'])) {
                 				$mission_phase_status = 'available';
-                				$mission_status_message = "<br />".__("<strong><span class='text-color-dark'>Click to access the phase content.</span></strong>");
+                				$mission_status_message = "<br /><strong><span class='text-color-dark'>".__('Click to access the phase content.')."</span></strong>";
 
                         		//DEFINE MISSION URL DEPENDING ON WHETHER THE USER IS LOGGED IN OR NOT
 	                        	if (isset($loggedIn) && ($loggedIn)) {
@@ -44,8 +44,8 @@
 	                        }
 	                        //FUTURE - CAN'T GO YET
 	                        else {
-	                        	$mission_status_message = "<br />".__("<strong><span class='text-color-dark'>This phase will be available when you complete the mandatory quests of the previous phase.</span></strong>");
-	                        	$mission_phase_status = 'disabled';
+	                        	$mission_status_message = "<br /><strong><span class='text-color-dark'>".__("This phase will be available when you complete the mandatory quests of the previous phase.")."</span></strong>";
+	                        	$mission_phase_status = 'looks-disabled';
 	                        	$mission_phase_url = "#";
 	                        }
                 		}
