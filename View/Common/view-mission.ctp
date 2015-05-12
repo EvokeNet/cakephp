@@ -205,7 +205,7 @@
 																	'current' => true,
 																	'description' => '
 																		<p class="text-center">
-																			'.__('Instructions here').'
+																			'.__('Before submitting your evidence to this quest, you will brainstorm with your group. After you start, your group members will have 3 days to submit their ideas of evidences, before picking the team favorites.').'
 																		</p>
 																		<p class="text-center">
 																			<a class="button small open-mission-overlay"
@@ -220,8 +220,11 @@
 																	'current' => false,
 																	'description' => '
 																		<p class="text-center">
+																			'.__('Now that everybody has submitted ideas, it is time to pick your top choices').'
+																		</p>
+																		<p class="text-center">
 																			<a class="button small open-mission-overlay"
-																			   href="'.$this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')).'">
+																			   ref="'.$this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'voteIdeas', 1, $q['id'])).'">
 																			   '. __("Vote in your group's ideas").'
 																			</a>
 																		</p>
@@ -232,15 +235,63 @@
 																	'current' => false,
 																	'description' => '
 																		<p class="text-center">
+																			'.__('Now you can create your evidence based on the team\'s top choices').'
+																		</p>
+																		<p class="text-center">
 																			<a class="button small open-mission-overlay"
 																			   href="'.$this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')).'">
-																			   '. __("Start brainstorming!").'
+																			   '. __("Create your evidence").'
 																			</a>
 																		</p>
 																		'
 																)
 															);
 										    				echo $this->element('BrainstormSession.timeline',array('states' => $brainstorm_timeline_states));
+
+
+
+										    				////////////////////////TEMPORARIO/////////////////////////////
+										    				?>
+										    				<div id="brainstorm_step1_description" class="hidden">
+										    					<p></p>
+										    					<p class="text-center">
+																	<?= __('Before submitting your evidence to this quest, you will brainstorm with your group. After you start, your group members will have 3 days to submit their ideas of evidences, before picking the team favorites.') ?>
+																</p>
+																<p class="text-center">
+																	<a class="button small open-mission-overlay" id="brainstorm_step1"
+																	   href="<?= $this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'addIdeas', 1, $q['id'])) ?>">
+																	   <?= __("Start brainstorming") ?>
+																	</a>
+																</p>
+															</div>
+
+															<div id="brainstorm_step2_description" class="hidden">
+																<p></p>
+																<p class="text-center">
+																	<?= __('Now that everybody has submitted ideas, it is time to pick your top choices') ?>
+																</p>
+																<p class="text-center">
+																	<a class="button small open-mission-overlay" id="brainstorm_step2"
+																	   href="<?= $this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'voteIdeas', 1, $q['id'], 'false')) ?>">
+																	   <?= __("Vote in your group's ideas") ?>
+																	</a>
+																</p>
+															</div>
+
+															<div id="brainstorm_step3_description" class="hidden">
+																<p></p>
+																<p class="text-center">
+																	<?= __('Now you can create your evidence based on the team\'s top choices') ?>
+																</p>
+																<p class="text-center">
+																	<a class="button small open-mission-overlay" id="brainstorm_step3"
+																	   href="<?= $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')) ?>">
+																	   <?= __("Create your evidence") ?>
+																	</a>
+																</p>
+															</div>
+
+										    				<?php
 									    			endif;
 									    		else: ?>
 									    			<p class="text-center">

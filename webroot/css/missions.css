@@ -208,3 +208,10 @@
 .evoke #tabForum {
 	z-index: 3;
 }
+
+/* --------------------------- */
+/* TESTE - BRAINSTORM */
+/* --------------------------- */
+.horizontal_timeline .states .circle {
+	cursor: pointer;
+}

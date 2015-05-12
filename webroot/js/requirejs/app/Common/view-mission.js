@@ -174,7 +174,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//OPEN LINK IN MISSION OVERLAY
 			//Used for submitting evidences, brainstorm etc.
 			//--------------------------------------------//
-			$(".button.open-mission-overlay").click(function(event){
+			$("body").on("click", ".button.open-mission-overlay", function(event){
+				console.log('clicked');
 				$.ajax({
 					url: $(this).attr("href")+"/true",
 					type:"POST",
@@ -249,6 +250,22 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$("#menu-icon-tabForum").click(function(event){
 					refreshForum(event, $(this).attr("id"), $(this).data('tab-content'));
 				});
+			});
+
+			//--------------------------------------------//
+		    //BRAINSTORM BUTTONS CLICK - FAKE
+		    //--------------------------------------------//
+
+		    $("body").on( "click", ".horizontal_timeline .states .circle", function( event ) {
+		    	$(".states.active").removeClass('active');
+
+		    	var li = $(this).parents("li");
+				var index = li.index() + 1;
+				
+				li.addClass('active');
+				
+				console.log(index);
+				$('.horizontal_timeline .content').html($("#brainstorm_step"+index+"_description").html());
 			});
 
 		    
