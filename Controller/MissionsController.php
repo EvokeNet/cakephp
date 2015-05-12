@@ -968,7 +968,7 @@ class MissionsController extends AppController {
 			'allowSignedRequest' => false
 		));
 
-		$this->set(compact('mission', 'phase', 'forum', 'novels', 'user', 'quest_brainstorm_timeline', 'facebook'));
+		$this->set(compact('mission', 'phase', 'forum', 'novels', 'user', 'facebook'));
 	}
 
 
