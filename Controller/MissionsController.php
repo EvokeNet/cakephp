@@ -959,7 +959,7 @@ class MissionsController extends AppController {
 		));
 
 		//BRAINSTORM TIMELINE
-		// $quest_brainstorm_timeline = $this->Timeline->setTimelineState(0);
+		$quest_brainstorm_timeline = $this->Timeline->getCurrentTimelineState(0);
 
 		//FACEBOOK SHARE
 		$facebook = new Facebook(array(
@@ -968,7 +968,7 @@ class MissionsController extends AppController {
 			'allowSignedRequest' => false
 		));
 
-		$this->set(compact('mission', 'phase', 'forum', 'novels', 'user', 'facebook'));
+		$this->set(compact('mission', 'phase', 'forum', 'novels', 'user', 'quest_brainstorm_timeline', 'facebook'));
 	}
 
 
