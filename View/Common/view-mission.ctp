@@ -116,7 +116,7 @@
 		<section class="main-section relative min-full-height">
 		    <div id="missionSidebar" class="row full-width clearfix absolute full-height hidden" data-equalizer>
 		    	<!-- MISSION SUBMENU (description, phases) -->
-				<div class="mission-sidebar small-6 medium-6 large-4 columns min-full-height" data-equalizer-watch>
+				<div class="mission-sidebar small-12 medium-12 large-5 columns min-full-height" data-equalizer-watch data-equalizer-mq="large-up">
 					<div class="missions-submenu padding top-1 left-3">
 						<?php echo $this->fetch('missionsSubmenuContent'); ?>
 					</div>
@@ -124,7 +124,7 @@
 
 
 				<!-- CONTENT -->
-				<div class="mission-sidebar small-6 medium-6 large-8 columns min-full-height padding all-0" data-equalizer-watch>
+				<div class="mission-sidebar small-12 medium-12 large-7 columns min-full-height padding all-0" data-equalizer-watch data-equalizer-mq="large-up">
 					<!-- CONTENT: QUEST TAB -->
 					<aside class="tabContent hidden full-height" id="tabQuests">
 						<div class="table large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0 background-color-standard">
