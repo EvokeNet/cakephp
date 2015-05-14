@@ -196,13 +196,8 @@
 
 													//ACT PHASE HAS BRAINSTORM
 													elseif (isset($q['Timeline'])): ?>
-
-														<!-- JAVASCRIPT -->
-														<?php
-															$this->Html->script('BrainstormSessionEvoke.quest_brainstorm', array('inline' => false));
-														?>
 														<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
-															echo $this->element('BrainstormSession.timeline',array('states' => $q['Timeline']));
+															echo $this->element('BrainstormSessionEvoke.timeline',array('states' => $q['Timeline']));
 													endif;
 												else: ?>
 													<p class="text-center">
