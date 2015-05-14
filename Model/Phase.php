@@ -113,6 +113,19 @@ class Phase extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'Group' => array(
+			'className' => 'Group',
+			'foreignKey' => 'phase_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'Launcher' => array(
 			'className' => 'Launcher',
 			'foreignKey' => 'phase_id',

@@ -18,6 +18,7 @@ class Quest extends AppModel {
 
 	public $actsAs = array(
         'Containable',
+        'BrainstormSessionEvoke.ActPhaseBrainstorm'
         // 'Translate' => array(
         //     'title' => 'questTitle', 
         //     'description' => 'questDescription',

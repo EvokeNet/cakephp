@@ -11,6 +11,12 @@ App::uses('AppModel', 'Model');
 class Group extends AppModel {
 
 /**
+ * actsAs array
+ *
+ */
+	public $actsAs = array('Containable','BrainstormSessionEvoke.ActPhaseBrainstorm');
+
+/**
  * Display field
  *
  * @var string
@@ -137,9 +143,9 @@ class Group extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Mission' => array(
-			'className' => 'Mission',
-			'foreignKey' => 'mission_id',
+		'Phase' => array(
+			'className' => 'Phase',
+			'foreignKey' => 'phase_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

@@ -195,11 +195,14 @@
 														</p><?php
 
 													//ACT PHASE HAS BRAINSTORM
-													else: ?>
-														<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
+													elseif (isset($q['Timeline'])): ?>
 
-															
-															echo $this->element('BrainstormSession.timeline',array('states' => $quest_brainstorm_timeline[$q['id']]));
+														<!-- JAVASCRIPT -->
+														<?php
+															$this->Html->script('BrainstormSessionEvoke.quest_brainstorm', array('inline' => false));
+														?>
+														<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
+															echo $this->element('BrainstormSession.timeline',array('states' => $q['Timeline']));
 													endif;
 												else: ?>
 													<p class="text-center">

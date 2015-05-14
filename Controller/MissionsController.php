@@ -14,7 +14,7 @@ class MissionsController extends AppController {
  * @var array
  */
 
-	public $components = array('Paginator', 'Session', 'Access', 'BrainstormSessionEvoke.Timeline');
+	public $components = array('Paginator', 'Session', 'Access');
 	public $helpers = array('BrainstormSession.Brainstorm');
 	public $user = null;
 
@@ -248,7 +248,7 @@ class MissionsController extends AppController {
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 		
 		//will be used in retrieving all users groups id to get his evokations!
-		$myEvokations_groupsids = array();
+		$myGroupsIds = array();
 
 		//GROUPS
 		$hasGroup = false;
@@ -256,7 +256,7 @@ class MissionsController extends AppController {
 		foreach ($mission['Group'] as $group) {
 			if($group['user_id'] == $this->getUserId()) {
 				$hasGroup = true;
-				array_push($myEvokations_groupsids, array('Evokation.group_id' => $group['id']));
+				array_push($myGroupsIds, array('Evokation.group_id' => $group['id']));
 				//break;
 			}
 
@@ -269,7 +269,7 @@ class MissionsController extends AppController {
 			foreach ($groupsuser as $member) {
 				if($member['GroupsUser']['user_id'] == $this->getUserId()) {
 					$hasGroup = true;
-					array_push($myEvokations_groupsids, array('Evokation.group_id' => $member['GroupsUser']['group_id']));
+					array_push($myGroupsIds, array('Evokation.group_id' => $member['GroupsUser']['group_id']));
 					//break;
 				}
 			}
@@ -277,11 +277,11 @@ class MissionsController extends AppController {
 
 		//GROUP EVOKATIONS getting all user's evokations from this mission!
 		$myEvokations = array();
-		if(!empty($myEvokations_groupsids)) {
+		if(!empty($myGroupsIds)) {
 			$this->loadModel('Evokation');
 			$myEvokations = $this->Evokation->find('all', array(
 				'conditions' => array(
-					'OR' => $myEvokations_groupsids
+					'OR' => $myGroupsIds
 				)
 			));
 		}
@@ -805,8 +805,7 @@ class MissionsController extends AppController {
 		$mission = $this->Mission->find('first', array(
 			'conditions' => array('Mission.id' => $mission_id),
 			'contain' => array(
-				'Phase' => array('Quest' => 'Questionnaire'),
-				'Group'
+				'Phase' => array('Quest' => 'Questionnaire')
 			)
 		));
 
@@ -816,14 +815,14 @@ class MissionsController extends AppController {
 		if (!is_null($phase_id)) {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id, 'Phase.id' => $phase_id),
-				'contain' => array('Quest' => 'Questionnaire')
+				'contain' => array('Group', 'Quest' => 'Questionnaire')
 			));
 		}
 		//Requested a specific position
 		else if (!is_null($phase_position)) {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id, 'Phase.position' => $phase_position),
-				'contain' => array('Quest' => 'Questionnaire')
+				'contain' => array('Group', 'Quest' => 'Questionnaire')
 			));
 		}
 		//Default: phase in the first position
@@ -831,7 +830,7 @@ class MissionsController extends AppController {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id),
 				'order' => array('Phase.position' => 'asc'),
-				'contain' => array('Quest' => 'Questionnaire')
+				'contain' => array('Group', 'Quest' => 'Questionnaire')
 			));
 		}
 
@@ -852,26 +851,38 @@ class MissionsController extends AppController {
 		//---------------------------------
 		//MARK COMPLETED PHASES //this code can be improved a lot
 		//GROUPS
-		$myEvokations_groupsids = array();
+		$myGroupsIds = array();
 		$hasGroup = false;
-		//check to see if user has entered a group of this mission
-		foreach ($mission['Group'] as $group) {
-			if($group['user_id'] == $this->user['id']) {
-				$hasGroup = true;
-				array_push($myEvokations_groupsids, array('Evokation.group_id' => $group['id']));
-			}
+		$this->loadModel('GroupsUser');
 
-			$this->loadModel('GroupsUser');
-			$groupsuser = $this->GroupsUser->find('all', array(
-				'conditions' => array(
-					'GroupsUser.group_id' => $group['id']
-				)
-			));
-			foreach ($groupsuser as $member) {
-				if($member['GroupsUser']['user_id'] == $this->user['id']) {
+		//check to see if user has created/joined a group in this phase of this mission
+		//it should be just one
+		foreach ($phase['Group'] as $group) {
+			//CREATED THE GROUP
+			if ($group['user_id'] == $this->user['id']) {
+				$hasGroup = true;
+				array_push($myGroupsIds, $group['id']);
+			}
+			//JOINED THE GROUP
+			else {
+				$groupsuser = $this->GroupsUser->find('first', array(
+					'conditions' => array(
+						'GroupsUser.group_id' => $group['id'],
+						'GroupsUser.user_id' => $this->user['id']
+					)
+				));
+
+				if(!is_null($groupsuser)) {
 					$hasGroup = true;
-					array_push($myEvokations_groupsids, array('Evokation.group_id' => $member['GroupsUser']['group_id']));
+					array_push($myGroupsIds, $groupsuser['GroupsUser']['group_id']);
 				}
+			}
+		}
+
+		//BRAINSTORM TIMELINE
+		foreach ($myGroupsIds as $key => $group_id) {
+			foreach ($phase['Quest'] as $key => $quest) {
+				$phase['Quest'][$key]['Timeline'] = $this->Mission->Phase->Group->findTimelineByGroupAndQuest($group_id,$quest['id']);
 			}
 		}
 
@@ -958,9 +969,6 @@ class MissionsController extends AppController {
 			)
 		));
 
-		//BRAINSTORM TIMELINE
-		$quest_brainstorm_timeline = $this->Timeline->getCurrentTimelineState(0);
-
 		//FACEBOOK SHARE
 		$facebook = new Facebook(array(
 			'appId' => Configure::read('fb_app_id'),
@@ -968,7 +976,7 @@ class MissionsController extends AppController {
 			'allowSignedRequest' => false
 		));
 
-		$this->set(compact('mission', 'phase', 'forum', 'novels', 'user', 'quest_brainstorm_timeline', 'facebook'));
+		$this->set(compact('mission', 'phase', 'forum', 'novels', 'user', 'facebook'));
 	}
 
 

@@ -174,7 +174,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//OPEN LINK IN MISSION OVERLAY
 			//Used for submitting evidences, brainstorm etc.
 			//--------------------------------------------//
-			$(".button.open-mission-overlay").click(function(event){
+			$("body").on("click", ".button.open-mission-overlay", function(event){
 				$.ajax({
 					url: $(this).attr("href")+"/true",
 					type:"POST",
