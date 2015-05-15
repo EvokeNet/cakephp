@@ -1,6 +1,6 @@
 <?php
 	//USER PICTURE
-	$pic = $this->UserPicture->getPictureAbsolutePath($e['User']);
+	$pic = $this->Picture->getUserPictureAbsolutePath($e['User']);
 ?>
 
 

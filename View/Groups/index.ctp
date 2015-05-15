@@ -1,9 +1,4 @@
 <?php
-	$this->extend('/Common/topbar');
-	$this->start('menu');
-	echo $this->element('header', array('user' => $user));
-	$this->end(); 
-
 ?>
 
 <section class="evoke default-background">
@@ -65,6 +60,7 @@
 	  			?>
 			   </div>
 			  <div class="content margin top-2" id="panel2-2">
+
 			    <?php
 		  			foreach($myGroups as $e):
 	  					echo $this->element('group_box', array('e' => $e, 'user' => $user, 'users' => $users_groups));
@@ -87,7 +83,3 @@
 
   </div>
 </section>
-
-<?php
-	echo $this->Html->script('menu_height', array('inline' => false));
-?>

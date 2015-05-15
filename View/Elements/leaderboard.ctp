@@ -7,7 +7,7 @@
         foreach($leaderboard_users as $similar_user):
           if ($counter > 4) break; //FORCE 3 FOR UI TESTING
 
-          $pic = $this->UserPicture->getPictureAbsolutePath($similar_user['User']);
+          $pic = $this->Picture->getUserPictureAbsolutePath($similar_user['User']);
       ?>
       <li>
         <!-- PANEL -->

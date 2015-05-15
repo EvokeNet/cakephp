@@ -40,11 +40,11 @@ class GroupsController extends AppController {
 			$sumMyPoints += $point['Point']['value'];
 		}
 
-		$mission = $this->Group->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
+		$mission = $this->Group->Phase->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
 
-		$quest = $this->Group->Mission->Quest->find('first', array('conditions' => array('Quest.id' => $quest_id)));
+		$quest = $this->Group->Phase->Mission->Quest->find('first', array('conditions' => array('Quest.id' => $quest_id)));
 
-		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
+		$groups = $this->Group->find('all');
 
 		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
 
@@ -91,7 +91,7 @@ class GroupsController extends AppController {
 			$groupsIBelong = array();
 		}
 
-		$myGroups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id, 'Group.user_id' => $this->getUserId())));
+		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
 
 		$mygroups_id = array();
 
@@ -129,7 +129,7 @@ class GroupsController extends AppController {
 
 		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$missions = $this->Group->Mission->find('all');
+		$missions = $this->Group->Phase->Mission->find('all');
 
 		$groups = $this->Group->find('all');
 
@@ -179,7 +179,7 @@ class GroupsController extends AppController {
 
 		$evokations = $this->Group->Evokation->find('all', array('order' => array('Evokation.created DESC'), 'conditions' => array('Group.mission_id' => $mission_id)));
 
-		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
+		//$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
 
 		$users = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 

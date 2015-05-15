@@ -45,7 +45,7 @@
 			<?php
 				$counter = 0;
 				foreach($similar_users as $similar_user):
-					$pic = $this->UserPicture->getPictureAbsolutePath($similar_user['User']);
+					$pic = $this->Picture->getUserPictureAbsolutePath($similar_user['User']);
 			?>
 			<li>
 				<!-- PANEL -->

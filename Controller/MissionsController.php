@@ -872,7 +872,7 @@ class MissionsController extends AppController {
 					)
 				));
 
-				if(!is_null($groupsuser)) {
+				if(isset($groupsuser['GroupsUser'])) {
 					$hasGroup = true;
 					array_push($myGroupsIds, $groupsuser['GroupsUser']['group_id']);
 				}

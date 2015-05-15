@@ -22,4 +22,16 @@ App::uses('Model', 'Model');
  */
 class AppModel extends Model {
 	public $recursive = -1;
+
+/**
+ * Returns array with info from user that is logged in
+ */
+	function getCurrentUser() {
+		App::uses('CakeSession', 'Model/Datasource');
+		$Session = new CakeSession();
+
+		$user = $Session->read('Auth.User');
+
+		return $user;
+	}
 }

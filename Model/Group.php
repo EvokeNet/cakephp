@@ -23,100 +23,134 @@ class Group extends AppModel {
  */
 	public $displayField = 'title';
 
+/**
+ * Find methods array
+ *
+ */
+	// public $findMethods = array('membership' =>  true);
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+	// protected function _findMembership($state, $query, $results = array()) {
+
+ //        if ($state === 'before') {
+ //        	debug($query);
+ //            // $query['conditions']['Article.published'] = true;
+ //            return $query;
+ //        }
+ //        return $results;
+ //    }
 
 	public function getGroups($options = null) {
 		return $this->find('all', $options);
 	}
 
-	public function afterSave($created, $options = array()) {
-       
-       	if($created){
+	public function isMember($group_id, $user_id) {
+		$is_member = $this->GroupsUser->find('count',array(
+			'conditions' => array(
+				'group_id' => $group_id,
+				'user_id' => $user_id
+			)
+		));
+		return ($is_member > 0);
+	}
 
-       		$value = 1500;
-	       	//check to see if admin set a different amount of points for this action
-		    /*App::import('model','PointsDefinition');
-		    $def = new PointsDefinition();
-		    $preset_point = $def->find('first', array(
-		        'conditions' => array(
-		    	    'type' => 'EvidenceComment'
-		        )
-		    ));
-		    if($preset_point)
-		        $value = $preset_point['PointsDefinition']['points'];
+	public function afterFind($results, $primary = false) {
+		//Adds "is_owner" and "is_member" properties to the results, related to the currently logged in user
+		$user = $this->getCurrentUser();
+		foreach($results as $key => $result) {
+			$results[$key]['Group']['is_owner'] = ($result['Group']['user_id'] == $user['id']);
+			$results[$key]['Group']['is_member'] = $this->isMember($result['Group']['id'], $user['id']);
+		}
+		return $results;
+	}
+
+	public function afterSave($created, $options = array()) {
+	   
+		if($created){
+
+			$value = 1500;
+			//check to see if admin set a different amount of points for this action
+			/*App::import('model','PointsDefinition');
+			$def = new PointsDefinition();
+			$preset_point = $def->find('first', array(
+				'conditions' => array(
+					'type' => 'EvidenceComment'
+				)
+			));
+			if($preset_point)
+				$value = $preset_point['PointsDefinition']['points'];
 			*/
 
-	        $event = new CakeEvent('Model.Group.create', $this, array(
-	        	'points' => $value
-	        ));
+			$event = new CakeEvent('Model.Group.create', $this, array(
+				'points' => $value
+			));
 
-	        $this->getEventManager()->dispatch($event);
+			$this->getEventManager()->dispatch($event);
 
-	        return true;
-	    }	
-    }
+			return true;
+		}   
+	}
 
-    public function createWithAttachments($data, $hasPrev = false, $id = null) {
-        // Sanitize your images before adding them
-        $images = array();
-        if (!empty($data['Attachment'][0]) && $data['Attachment'][0]['attachment']['name'] != '') {
-        	foreach ($data['Attachment'] as $i => $image) {
-                if (is_array($data['Attachment'][$i])) {
-                    
-                    // Force setting the `model` field to this model
-                    $image['model'] = 'Group';
+	public function createWithAttachments($data, $hasPrev = false, $id = null) {
+		// Sanitize your images before adding them
+		$images = array();
+		if (!empty($data['Attachment'][0]) && $data['Attachment'][0]['attachment']['name'] != '') {
+			foreach ($data['Attachment'] as $i => $image) {
+				if (is_array($data['Attachment'][$i])) {
+					
+					// Force setting the `model` field to this model
+					$image['model'] = 'Group';
 
-                    // Unset the foreign_key if the user tries to specify it
-                    if (isset($image['foreign_key'])) {
-                        unset($image['foreign_key']);
-                    }
-                    $image['foreign_key'] = $data['Group']['id'];
+					// Unset the foreign_key if the user tries to specify it
+					if (isset($image['foreign_key'])) {
+						unset($image['foreign_key']);
+					}
+					$image['foreign_key'] = $data['Group']['id'];
 
-                }
-            }
-        }
-        $insert['Group'] = $data['Group'];
-        //$data['Attachment'] = $image;
+				}
+			}
+		}
+		$insert['Group'] = $data['Group'];
+		//$data['Attachment'] = $image;
 
-        // Try to save the data using Model::saveAll()
-        if(!$hasPrev) $this->create();
-        else {
-        	$this->id = $id;
-        	$insert['Group']['id'] = $id;
-        }
+		// Try to save the data using Model::saveAll()
+		if(!$hasPrev) $this->create();
+		else {
+			$this->id = $id;
+			$insert['Group']['id'] = $id;
+		}
 
-        if(isset($image)) {
-        	$photo['Attachment'] = $image;
-	        if (!$this->Attachment->save($photo)) {
-	        	return false;
-	        }
-	        $recent = $this->Attachment->find('first', array(
-	        	'order' => array(
-	        		'Attachment.id DESC'
-	        	),
-	        	'conditions' => array(
-	        		'Attachment.model' => 'Group',
-	        		'Attachment.foreign_key' => $data['Group']['id']
-	        	)
-	        ));
-	        $insert['Group']['photo_dir'] = $recent['Attachment']['dir'];
-	        $insert['Group']['photo_attachment'] = $recent['Attachment']['attachment'];
-    	}
-        //debug($data);
-        if ($this->save($insert)) {
-         	return true;
-        }
+		if(isset($image)) {
+			$photo['Attachment'] = $image;
+			if (!$this->Attachment->save($photo)) {
+				return false;
+			}
+			$recent = $this->Attachment->find('first', array(
+				'order' => array(
+					'Attachment.id DESC'
+				),
+				'conditions' => array(
+					'Attachment.model' => 'Group',
+					'Attachment.foreign_key' => $data['Group']['id']
+				)
+			));
+			$insert['Group']['photo_dir'] = $recent['Attachment']['dir'];
+			$insert['Group']['photo_attachment'] = $recent['Attachment']['attachment'];
+		}
+		//debug($data);
+		if ($this->save($insert)) {
+			return true;
+		}
 
-        //return false;
-        // Throw an exception for the controller
-        throw new Exception(__("This post could not be saved. Please try again"));
-    }
+		//return false;
+		// Throw an exception for the controller
+		throw new Exception(__("This post could not be saved. Please try again"));
+	}
 
   //   public function beforeDelete() {
-       
+	   
   //      $group = $this->find('first', array(
-		// 	'conditions' => array('Group.id' => $this->id))
+		//  'conditions' => array('Group.id' => $this->id))
 		// );
 
   //      $event = new CakeEvent('Model.Group.delete', $this, array(
@@ -127,7 +161,7 @@ class Group extends AppModel {
 
   //      $this->getEventManager()->dispatch($event);
 		
-	 //   return true;	
+	 //   return true;  
   //   }
 	
 /**
@@ -198,12 +232,12 @@ class Group extends AppModel {
 			'counterQuery' => ''
 		),
 		'Attachment' => array(
-            'className' => 'Attachment',
-            'foreignKey' => 'foreign_key',
-            'conditions' => array(
-                'Attachment.model' => 'Group',
-            )
-        )
+			'className' => 'Attachment',
+			'foreignKey' => 'foreign_key',
+			'conditions' => array(
+				'Attachment.model' => 'Group',
+			)
+		)
 	);
 
 
