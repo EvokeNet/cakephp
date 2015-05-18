@@ -628,6 +628,43 @@ class MissionsController extends AppController {
 	}
 
 /**
+ * Renders tab with all quests in a phase
+ * @param int $phase_id - ID of the phase
+ */
+	public function renderQuestsTab($phase_id = null) {
+		if (!$this->Mission->Phase->exists($phase_id)) {
+			throw new NotFoundException(__('Invalid mission phase'));
+		}
+
+		//PHASE
+		$phase = $this->Mission->Phase->find('first', array(
+			'conditions' => array('Phase.id' => $phase_id),
+			'contain' => array(
+				'Quest' => 'Questionnaire',
+				'Group' => array('GroupRequest' => array('conditions' => array(
+					'user_id' => $this->user['id'], //requests by currently logged in user
+					'status' => '0' //pending
+				)))
+			)
+		));
+
+		//BRAINSTORM TIMELINE
+		foreach ($phase['Group'] as $key => $group) {
+			//I am a member of this group, therefore I can see its timeline for each quest
+			if ($group['is_member']) {
+				foreach ($phase['Quest'] as $key => $quest) {
+					$phase['Quest'][$key]['Timeline'] = $this->Mission->Phase->Group->findTimelineByGroupAndQuest($group['id'],$quest['id']);
+				}
+			}
+		}
+
+		//Render
+		$this->set(compact('phase'));
+		$this->layout = 'ajax';
+		$this->render('/Elements/quest_tabs');
+	}
+
+/**
  * Renders tab with dossier content
  * @param int $mission_id - Optional ID to see dossier from a specific mission
  * @param int $limit - Optional limit to the number of items
@@ -876,13 +913,6 @@ class MissionsController extends AppController {
 					$hasGroup = true;
 					array_push($myGroupsIds, $groupsuser['GroupsUser']['group_id']);
 				}
-			}
-		}
-
-		//BRAINSTORM TIMELINE
-		foreach ($myGroupsIds as $key => $group_id) {
-			foreach ($phase['Quest'] as $key => $quest) {
-				$phase['Quest'][$key]['Timeline'] = $this->Mission->Phase->Group->findTimelineByGroupAndQuest($group_id,$quest['id']);
 			}
 		}
 

@@ -16,6 +16,19 @@ class Quest extends AppModel {
  */
 	public $displayField = 'title';
 
+/**
+ * Default ordering of data for any find operation
+ *
+ * @var string
+ */
+	public $order = "Quest.position ASC";
+
+
+/**
+ * Behaviors
+ *
+ * @var array
+ */
 	public $actsAs = array(
 		'Containable',
 		'BrainstormSessionEvoke.ActPhaseBrainstorm',

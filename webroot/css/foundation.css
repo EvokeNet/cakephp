@@ -412,3 +412,10 @@ button:hover, button:focus, .button:hover, .button:focus {
 	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
 	color: #26dee0; /* text-color-highlight */
 }
+
+/* --------------------------- */
+/* ACCORDION */
+/* --------------------------- */
+.evoke .reveal-modal {
+	background-color: #111; /* background-color-darkest */
+}

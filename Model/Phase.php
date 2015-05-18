@@ -158,7 +158,7 @@ class Phase extends AppModel {
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
+			'order' => 'Quest.position ASC',
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',

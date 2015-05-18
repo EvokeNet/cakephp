@@ -2,9 +2,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'foundation', 'froala'], function ($) {
 		$(document).ready(function(){
 			//--------------------------------------------//
-			//OPEN DOSSIER OFFCANVAS
+			//OPEN DOSSIER PANEL
 			//--------------------------------------------//
-			//CLICKING ON THE DOSSIER OFFCANVAS WILL LOAD CONTENT VIA AJAX ONCE (and keep the same content if the button is clicked later on)
+			//CLICKING ON THE DOSSIER PANEL WILL LOAD CONTENT VIA AJAX ONCE (and keep the same content if the button is clicked later on)
 			$("#menu-icon-tabDossier").one("click", function() {
 				$.ajax({
 					url: missions_load_dossier_url,
@@ -20,9 +20,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			});
 
 			//--------------------------------------------//
-			//OPEN EVIDENCE OFFCANVAS
+			//OPEN EVIDENCE PANEL
 			//--------------------------------------------//
-			//CLICKING ON THE EVIDENCE OFFCANVAS WILL LOAD CONTENT VIA AJAX (every time, in case a user created a new evidence) -- IF it's not closing
+			//CLICKING ON THE EVIDENCE PANEL WILL LOAD CONTENT VIA AJAX (every time, in case a user created a new evidence) -- IF it's not closing
 			$("#menu-icon-tabEvidences").on("click", function() {
 				if (!$("#tabEvidences").hasClass("panel-open")) { //otherwise this click is to close it
 					$.ajax({
@@ -71,6 +71,58 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				}
 			});
 
+
+			//--------------------------------------------//
+			//OPEN QUESTS PANEL
+			//--------------------------------------------//
+			//CLICKING ON THE QUEST PANEL WILL LOAD CONTENT VIA AJAX (every time)
+			$("#menu-icon-tabQuests").one("click", function(e) {
+				if (!$("#tabQuests").hasClass("panel-open")) { //otherwise this click is to close it
+					reloadTabQuests();
+				}
+				e.preventDefault();
+			});
+
+			var reloadTabQuests = function() {
+				$.ajax({
+					url: missions_load_quests_url,
+					type:"POST",
+					beforeSend: function() {
+						$('.tabQuestsContent').html('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
+					},
+					success: function(data) {
+						//Fill tab quests
+						$('.tabQuestsContent').html(data);
+
+						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+					}
+				});
+			}
+
+
+			//--------------------------------------------//
+			//Requests to join group handled with ajax
+			//--------------------------------------------//
+			$("body").on( "click", "a.button.join-group", function( event ) {
+				var modal = $(this).parents('div.reveal-modal');
+				$.ajax({
+					url: $(this).attr('href'),
+					type:"POST",
+					beforeSend: function() {
+						modal.append('<div class="loading text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
+					},
+					success: function(data) {
+						$('.loading').remove();
+						//Close modal
+						modal.foundation('reveal', 'close');
+						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+
+						//Reload quests
+						reloadTabQuests();
+					}
+				});
+				event.preventDefault();
+			});
 		});
 	});
 });

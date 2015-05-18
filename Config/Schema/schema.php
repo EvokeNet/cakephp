@@ -602,6 +602,7 @@ class EvokeSchema extends CakeSchema {
 		'points' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
 		'type' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 3, 'unsigned' => true),
 		'mandatory' => array('type' => 'integer', 'null' => false, 'default' => '1', 'length' => 2, 'unsigned' => true),
+		'position' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'indexes' => array(

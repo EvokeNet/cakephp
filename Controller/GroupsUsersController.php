@@ -504,7 +504,7 @@ class GroupsUsersController extends AppController {
  * @return void
  */
 	public function add($uid = null, $gid = null) {
-		
+		//Parameters
 		if($uid)
 			$user_id = $uid;
 		else
@@ -515,6 +515,7 @@ class GroupsUsersController extends AppController {
 		else
 			$group_id = $this->params['url']['arg2'];
 
+		//Add to the group
 		$insertData = array('user_id' => $user_id, 'group_id' => $group_id);
 
 		$exists = $this->GroupsUser->find('first', array('conditions' => array('GroupsUser.user_id' => $user_id, 'GroupsUser.group_id' => $group_id)));
@@ -536,28 +537,6 @@ class GroupsUsersController extends AppController {
 	        			'Group.id' => $gid
 	        		)
 	        	));
-
-	   //      	debug($me);
-	   //      	//attribute pp to group creator
-				// $this->loadModel('QuestPowerPoint');
-				// $pps = $this->QuestPowerPoint->find('all', array(
-				// 	'conditions' => array(
-				// 		'quest_id' => $me['Group']['quest_id']
-				// 	)
-				// ));
-
-				// foreach($pps as $pp) {
-				// 	$data['UserPowerPoint']['user_id'] = $user_id;
-				// 	$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
-				// 	$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
-				// 	$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity']*30);
-				// 	$data['UserPowerPoint']['model'] = 'Group';
-				// 	$data['UserPowerPoint']['foreign_key'] = $me['Group']['id'];
-
-				// 	$this->loadModel('UserPowerPoint');
-				// 	$this->UserPowerPoint->create();
-				// 	$this->UserPowerPoint->save($data);
-				// }
 
 				return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
 	        } else $this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
@@ -725,48 +704,63 @@ class GroupsUsersController extends AppController {
 
 /**
  * send method
+ * Send an email to the group owner requesting to join the group
  *
  * @return void
  */
-	public function send($id, $group_id){
+	public function send($group_id){
+		//Requester is the current logged in user
+		$sender = $this->GroupsUser->User->find('first', array(
+			'conditions' => array('User.id' => $this->getUserId())
+		));
 
-		$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-		
-		$sender = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+		//Group
+		$group = $this->GroupsUser->Group->find('first', array(
+			'conditions' => array('Group.id' => $group_id), 
+			'contain' => array('User','Phase')
+		));
 
-		$recipient = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $id)));
-
-		$group = $this->GroupsUser->Group->find('first', array('conditions' => array('Group.id' => $group_id)));
+		//Group owner is the recipient
+		$recipient = $group['User'];
 
 		/* Adds requests */
 		$this->loadModel('GroupRequest');
 		$insertData = array('user_id' => $this->getUserId(), 'group_id' => $group_id);
-		$exists = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $this->getUserId(), 'GroupRequest.group_id' => $group_id)));
+		$exists = $this->GroupRequest->find('first', array('conditions' => array(
+			'GroupRequest.user_id' => $this->getUserId(),
+			'GroupRequest.group_id' => $group_id
+		)));
 
+		//Repeated request
 		if(!$exists){
 	        if($this->GroupRequest->save($insertData)){
 	        	$this->Session->setFlash(__('The request has been sent'));
-	        } else $this->Session->setFlash(__('The request could not be sent'));
-		} else {
+	        }
+	        else $this->Session->setFlash(__('The request could not be sent'));
+		}
+		else {
 			$this->Session->setFlash(__('This user already requested to join this group'));
 		}
 
-		if($recipient['User']['email'] != '' && !is_null($recipient['User']['email'])
+		//Send email
+		if($recipient['email'] != '' && !is_null($recipient['email'])
 		 && $sender['User']['email'] != '' && !is_null($sender['User']['email'])) {
 
 			$Email = new CakeEmail('smtp');
-			//$Email->from(array('no-reply@quanti.ca' => $sender['User']['name']));
-			$Email->to($recipient['User']['email']);
-			$Email->subject(__('Evoke - Request to join group'));
+			$Email->from(array('no-reply@quanti.ca' => $sender['User']['firstname'].' '.$sender['User']['lastname']));
+			$Email->to($recipient['email']);
+			$Email->subject(__('Evoke - Request to join group '.$group['Group']['title']));
 			$Email->emailFormat('html');
 			$Email->template('group', 'group');
-			$Email->viewVars(array('sender' => $sender, 'recipient' => $recipient, 'group' => $group));
+			$Email->viewVars(array('sender' => $sender['User'], 'recipient' => $recipient, 'group' => $group['Group']));
 			$Email->send();
 			$this->Session->setFlash(__('The email was sent'), 'flash_message');
-		} else {
+		}
+		else {
 			$this->Session->setFlash(__('There was a problem sending the email.'), 'flash_message');
 		}
-		$this->redirect(array('controller' => 'groups', 'action' => 'index', $group['Group']['mission_id']));
+
+		$this->redirect(array('controller' => 'groups', 'action' => 'index', $group['Phase']['mission_id']));
 	}
 
 /**

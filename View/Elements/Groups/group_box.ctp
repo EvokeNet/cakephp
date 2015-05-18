@@ -1,23 +1,26 @@
+<!-- GROUP -->
 <div>
 	<div class="row full-width profile-content padding top-1 bottom-1 left-2 right-2 border-bottom-divisor background-color-light-dark-on-hover">
 		<div class="small-9 columns table-row">
 			<!-- PICTURE -->
 			<div class="table-cell vertical-align-middle square-60px">
-				<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['id']));?>">
-					<?php $pic = $this->Picture->getGroupPictureAbsolutePath($e); ?>
+				<!-- <a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['id']));?>">
+				</a> -->
+				<?php $pic = $this->Picture->getGroupPictureAbsolutePath($e); ?>
 
-					<div class="square-60px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-						<img class="hidden" src="<?= $pic ?>" alt="Group <?= $e['title'] ?>'s picture" /> <!-- For accessibility -->
-					</div>
-				</a>
+				<div class="square-60px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
+					<img class="hidden" src="<?= $pic ?>" alt="Group <?= $e['title'] ?>'s picture" /> <!-- For accessibility -->
+				</div>
+				
 			</div>
 
 			<!-- GROUP INFO -->
 			<div class="table-cell vertical-align-middle full-width padding left-1">
-				<a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['id']));?>">
-					<h5><?= $e['title']?></h5>
-					<p><?= $e['description']?></p>
-				</a>
+				<!-- <a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['id']));?>">
+				</a> -->
+				<h5><?= $e['title']?></h5>
+				<p><?= $e['description']?></p>
+				
 			</div>
 		</div>
 
@@ -40,55 +43,48 @@
 				</span>
 			</div>
 			<?php
-				if (!$e['is_member']): ?>
-					<a href="#" data-reveal-id="<?= $e['id']?>" data-reveal class = "button thin"><?= __('Send request to join')?></a>
-					<?php
-
-				elseif($e['is_owner']): ?>
+				//OWNER
+				if($e['is_owner']): ?>
 					<span class="text-color-highlight">
 						<i class="fa fa-check text-color-highlight"></i> <?= __('Owner') ?>
 					</span>
 					<?php
 
-				else: ?>
+				//MEMBER
+				elseif ($e['is_member']): ?>
 					<span class="text-color-highlight">
 						<i class="fa fa-check text-color-highlight"></i> <?= __('Member') ?>
+					</span><?php
+
+				//REQUEST PENDING
+				elseif (isset($e['GroupRequest']) && (count($e['GroupRequest']) > 0)): ?>
+					<span>
+						<i class="fa fa-exclamation-triangle"></i> <?= __('Request pending') ?>
 					</span>
+					<?php
+
+				//SEND REQUEST BUTTON
+				else: ?>
+					<a href="#" data-reveal-id="Group<?= $e['id']?>" data-reveal class = "button thin"><?= __('Send request to join')?></a>
 					<?php
 				endif; ?>
 		</div>
 	</div>
 </div>
 
-<div id="<?= $e['id']?>" class="reveal-modal" data-reveal style = "background-color: #bc5660; border: 5px solid #000">
-  <h2><?= __("Message below will be sent to owner's group")?></h2>
-  <p class="lead"></p>
-  <p></p>
+<!-- REQUEST TO JOIN -->
+<div id="Group<?= $e['id']?>" class="reveal-modal text-center" data-reveal>
+	<h1 class="text-color-highlight">
+		<?= __('Join group') ?>
+	</h1>
 
-  <!-- <table style = "background-color: #283954; padding:20px; border-spacing: 0px;"> -->
-	<div class = "screen-box" style = "padding:20px 30px">
+	<br />
+	<p><?= __("A message will be sent to the group's owner and you will receive a notification when your request is approved or declined.")?></p>
+	<br />
 
-	  <h1 style = "font-size:2.0em; color:#fff; font-weight:bold; font-family: 'AlegreyaRegular';"><?php echo sprintf(__('Hi %s', $user['User']['name']));?></h1>
-	  <h2 style = "font-size:1.5em; color:#fff; font-weight:bold; font-family: 'AlegreyaRegular';"><?php echo sprintf(__('You have one invite request for your group %s'), $e['title']);?></h2>
+	<a class="button join-group" data-group-id="<?= $e['id']?>" href="<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $loggedInUser['id'], $e['id'])); ?>">
+		<?php echo __('Send request to join');?>
+	</a>
 
-	  <div style = "background-color:#fff; min-height: 200px; padding: 20px; border-radius: 10px; border: 2px solid #000; ">
-		<div style = "position:relative; float:left"><img src="https://graph.facebook.com/<?php echo $user['User']['facebook_id']; ?>/picture?type=large" style = "max-height:150px"/></div>
-		<div style = "margin-left: 160px;">
-		  <ul style = "list-style:none; font-family: 'AlegreyaRegular'; margin-left:50px">
-			<li style = "font-family: 'AlegreyaRegular"><?php echo $user['User']['name'];?></li>
-			<li style = "font-family: 'AlegreyaRegular"><?php echo $user['User']['email'];?></li>
-			<li style = "font-family: 'AlegreyaRegular"><?php echo $user['User']['birthdate'];?></li>
-			<li style = "font-family: 'AlegreyaRegular"><?php echo $user['User']['biography'];?></li>
-		  </ul>
-		</div>
-	  </div>
-
-	  <button class = "evoke button general green" style = "margin-top:30px"><?php echo __('Accept User');?></a></button>
-
-	  <button class = "evoke button general red" style = "margin-top:30px"><?php echo __('Decline User');?></button>
-	</div>
-
-	<a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $user['User']['id'], $e['id'])); ?>" class = "button general green"><?php echo __('Send request to join');?></a>
-
-  <a class="close-reveal-modal">&#215;</a>
+	<a class="close-reveal-modal">&#215;</a>
 </div>
