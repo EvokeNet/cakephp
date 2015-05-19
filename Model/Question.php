@@ -16,8 +16,12 @@ class Question extends AppModel {
  */
 	public $displayField = 'description';
 
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+/**
+ * Behaviors
+ *
+ * @var array
+ */
+	public $actsAs = array('Containable');
 
 /**
  * belongsTo associations

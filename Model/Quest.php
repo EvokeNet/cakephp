@@ -60,6 +60,90 @@ class Quest extends AppModel {
 		)
 	);
 
+	public function hasCompleted($user_id,$quest_id) {
+		if (!$this->exists($quest_id)) {
+			throw new NotFoundException(__('Invalid quest'));
+		}
+
+		$quest = $this->findById($quest_id);
+
+		$response = $this->getQuestResponse($user_id,$quest_id);
+
+		switch ($quest['Quest']['type']) {
+			case self::TYPE_EVIDENCE:
+			case self::TYPE_BRAINSTORM:
+				if (isset($response['Evidence']) && (count($response['Evidence']) > 0)) {
+					return true;
+				}
+				return false;
+
+			case self::TYPE_QUESTIONNAIRE:
+				if (isset($response['Question']) && (count($response['Question']['UserAnswers']) > 0)) {
+					return true;
+				}
+				return false;
+
+			case self::TYPE_GROUP_CREATION:
+				if (isset($response['GroupsUser']) && (count($response['GroupsUser']) > 0)) {
+					return true;
+				}
+				return false;
+
+			case self::TYPE_EVOKATION:
+				if (!is_null($response['Evokation']) && (count($response['Evokation']) > 0)) {
+					return true;
+				}
+				return false;
+		}
+		return false;
+	}
+
+	public function getQuestResponse($user_id,$quest_id) {
+		if (!$this->exists($quest_id)) {
+			throw new NotFoundException(__('Invalid quest'));
+		}
+
+		$quest = $this->findById($quest_id);
+
+		switch ($quest['Quest']['type']) {
+			case self::TYPE_EVIDENCE:
+			case self::TYPE_BRAINSTORM:
+				return $this->Evidence->findByUserIdAndQuestId($user_id,$quest_id);
+			case self::TYPE_QUESTIONNAIRE:
+				return $this->Questionnaire->find('first',array(
+					'conditions' => array('quest_id' => $quest_id),
+					'contain' => array(
+						'Question' => array('UserAnswer' => array(
+							'conditions' => array('user_id' => $user_id)
+						))
+					)
+				));
+			case self::TYPE_GROUP_CREATION:
+				return $this->Group->find('first',array(
+					'conditions' => array('quest_id' => $quest_id),
+					'contain' => array('GroupsUser' => array(
+						'conditions' => array('user_id' => $user_id)
+					))
+				));
+			case self::TYPE_EVOKATION:
+				//GROUP THIS USER IS MEMBER OF
+				$group = $this->Group->find('first',array(
+					'conditions' => array('quest_id' => $quest_id),
+					'contain' => array(
+						'GroupsUser' => array(
+							'conditions' => array('user_id' => $user_id)
+						)
+					)
+				));
+				if (!is_null($group) && (count($group['GroupsUser']) > 0)) {
+					//EVOKATION BY THIS GROUP
+					return $this->Group->Evokation->findByGroupId($group_id);
+				}
+				return array();
+		}
+		return null;
+	}
+
 	public function createWithAttachments($data, $hasPrev = false, $id = null) {
 		// Sanitize your images before adding them
 		$images = array();
@@ -127,6 +211,19 @@ class Quest extends AppModel {
 	public $hasMany = array(
 		'Evidence' => array(
 			'className' => 'Evidence',
+			'foreignKey' => 'quest_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Group' => array(
+			'className' => 'Group',
 			'foreignKey' => 'quest_id',
 			'dependent' => false,
 			'conditions' => '',

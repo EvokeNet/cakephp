@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'foundation', 'froala'], function ($) {
+	require(['evoke', 'missionpanels', 'evokeData', 'foundation', 'froala'], function (evoke,missionPanels,evokeData) {
 		$(document).ready(function(){
 			//--------------------------------------------//
 			//OPEN DOSSIER PANEL
@@ -7,10 +7,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//CLICKING ON THE DOSSIER PANEL WILL LOAD CONTENT VIA AJAX ONCE (and keep the same content if the button is clicked later on)
 			$("#menu-icon-tabDossier").one("click", function() {
 				$.ajax({
-					url: missions_load_dossier_url,
+					url: evokeData.missions_load_dossier_url,
 					type:"POST",
 					beforeSend: function() {
-						$('.tabDossierContent').html('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
+						$('.tabDossierContent').html(evoke.loadingAnimation);
 					},
 					success: function(data) {
 						$('.tabDossierContent').html(data);
@@ -26,10 +26,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$("#menu-icon-tabEvidences").on("click", function() {
 				if (!$("#tabEvidences").hasClass("panel-open")) { //otherwise this click is to close it
 					$.ajax({
-						url: missions_load_evidences_url,
+						url: evokeData.missions_load_evidences_url,
 						type:"POST",
 						beforeSend: function() {
-							$('.tabEvidencesContent').html('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
+							$('.tabEvidencesContent').html(evoke.loadingAnimation);
 						},
 						success: function(data) {
 							//Fill tab evidence
@@ -42,7 +42,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 									type:"POST",
 									beforeSend: function() {
 										//SHOW OVERLAY WITH LOADING IMAGE
-										$('.content-body').html('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
+										$('.content-body').html(evoke.loadingAnimation);
 										$('#missions-content-overlay').fadeIn("fast");
 										//HIDE SECTION BEHIND
 										$('.main-section').addClass("hidden");
@@ -78,27 +78,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//CLICKING ON THE QUEST PANEL WILL LOAD CONTENT VIA AJAX (every time)
 			$("#menu-icon-tabQuests").one("click", function(e) {
 				if (!$("#tabQuests").hasClass("panel-open")) { //otherwise this click is to close it
-					reloadTabQuests();
+					missionPanels.reloadTabQuests();
 				}
 				e.preventDefault();
 			});
-
-			var reloadTabQuests = function() {
-				$.ajax({
-					url: missions_load_quests_url,
-					type:"POST",
-					beforeSend: function() {
-						$('.tabQuestsContent').html('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
-					},
-					success: function(data) {
-						//Fill tab quests
-						$('.tabQuestsContent').html(data);
-
-						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-					}
-				});
-			}
-
 
 			//--------------------------------------------//
 			//Requests to join group handled with ajax
@@ -109,7 +92,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					url: $(this).attr('href'),
 					type:"POST",
 					beforeSend: function() {
-						modal.append('<div class="loading text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
+						modal.append(evoke.loadingAnimation);
 					},
 					success: function(data) {
 						$('.loading').remove();
@@ -118,7 +101,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 
 						//Reload quests
-						reloadTabQuests();
+						missionPanels.reloadTabQuests();
 					}
 				});
 				event.preventDefault();

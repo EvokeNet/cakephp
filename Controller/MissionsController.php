@@ -639,25 +639,29 @@ class MissionsController extends AppController {
 		//PHASE
 		$phase = $this->Mission->Phase->find('first', array(
 			'conditions' => array('Phase.id' => $phase_id),
-			'contain' => array(
-				'Quest' => 'Questionnaire',
-				'Group' => array('GroupRequest' => array('conditions' => array(
-					'user_id' => $this->user['id'], //requests by currently logged in user
-					'status' => '0' //pending
-				)))
-			)
+			'contain' => array('Quest' => 'Group')
 		));
+		debug($phase);
+		die();
 
-		//BRAINSTORM TIMELINE
-		foreach ($phase['Group'] as $key => $group) {
-			//I am a member of this group, therefore I can see its timeline for each quest
-			if ($group['is_member']) {
-				foreach ($phase['Quest'] as $key => $quest) {
-					$phase['Quest'][$key]['Timeline'] = $this->Mission->Phase->Group->findTimelineByGroupAndQuest($group['id'],$quest['id']);
+		
+		foreach ($phase['Quest'] as $key => $quest) {
+			//WHETHER THE USER HAS COMPLETED THE QUEST OR NOT
+			$phase['Quest'][$key]['has_completed'] = $this->Mission->Phase->Quest->hasCompleted($this->user['id'], $quest['id']);
+			$phase['Quest'][$key]['Response'] = $this->Mission->Phase->Quest->getQuestResponse($this->user['id'], $quest['id']);
+
+			//BRAINSTORM TIMELINE
+			foreach ($quest['Group'] as $group_key => $group) { //group belongs to the quest it was created in
+				if ($group['is_member']) {
+					//I am a member of this group, therefore I can see its timeline for all the quests of this phase
+					foreach ($phase['Quest'] as $key2 => $quest2) {
+						$phase['Quest'][$key2]['Timeline'] = $this->Mission->Phase->Group->findTimelineByGroupAndQuest($group['id'],$quest2['id']);
+					}
 				}
 			}
 		}
 
+		
 		//Render
 		$this->set(compact('phase'));
 		$this->layout = 'ajax';
@@ -956,7 +960,7 @@ class MissionsController extends AppController {
 
 				//if it was a questionnaire type quest
 				//theres only one
-				if(!empty($q['Questionnaire'])) {
+				if(isset($q['Questionnaire']) && !empty($q['Questionnaire'])) {
 					foreach ($previous_answers as $previous_answer) {
 						if($q['Quest']['id'] == $q['Questionnaire']['quest_id'] && $q['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {
 							$done = true; 

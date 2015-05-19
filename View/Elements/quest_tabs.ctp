@@ -51,36 +51,49 @@
 					<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
 				</p>
 			   
-			   <!-- CALL TO ACTION -->
-				<div class="margin top-3"><?php							
-					//CREATE EVIDENCE
-					if ($q['type'] == Quest::TYPE_EVIDENCE): ?>
-						<p class="text-center">
-							<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $q['mission_id'], $q['phase_id'], $q['id'], 'false')); ?>">
-								<?= __('Create your evidence') ?>
-							</a>
-						</p><?php
-					//CREATE GROUP
-					elseif ($q['type'] == Quest::TYPE_GROUP_CREATION): ?>
-						<p class="text-center">
-							<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'groups', 'action' => 'index')); ?>">
-								<?= __('Create your group') ?>
-							</a>
-						</p>
-						<p class="text-center">
-							<?= __('Or join groups already created for this phase:') ?>
-						</p>
+			   <!-- QUEST RESPONSE OR CALL TO ACTION -->
+				<div class="margin top-3"><?php
+					//QUEST RESPONSE
+					if ($q['has_completed']): ?>
+						<h5 class="text-color-highlight text-center"><?= __('Congratulations! You have already completed this quest!') ?></h5><?php
 
-						<?php
-						foreach($phase['Group'] as $e):
-							// if ($e['quest_id'] == $q['id']):
-								echo $this->element('Groups/group_box', array('e' => $e));
-							// endif;
-						endforeach;
-					//BRAINSTORM
-					elseif ($q['type'] == Quest::TYPE_BRAINSTORM): ?>
-						<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
-							echo $this->element('BrainstormSessionEvoke.timeline',array('states' => $q['Timeline']));
+						//EVIDENCE OR BRAINSTORM
+						if (($q['type'] == Quest::TYPE_EVIDENCE) || ($q['type'] == Quest::TYPE_BRAINSTORM)):
+							echo $this->element('Evidences/evidence_list_item',array('e' => $q['Response']['Evidence']));
+						//GROUP CREATION
+						elseif ($q['type'] == Quest::TYPE_GROUP_CREATION):
+							echo $this->element('Groups/group_box', array('e' => $q['Response']['Group']));
+						endif;
+
+					//CALL TO ACTION
+					else:
+						//EVIDENCE
+						if ($q['type'] == Quest::TYPE_EVIDENCE): ?>
+							<p class="text-center">
+								<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $q['mission_id'], $q['phase_id'], $q['id'], 'false')); ?>">
+									<?= __('Create your evidence') ?>
+								</a>
+							</p><?php
+
+						//CREATE GROUP
+						elseif ($q['type'] == Quest::TYPE_GROUP_CREATION): ?>
+							<p class="text-center">
+								<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'groups', 'action' => 'index')); ?>">
+									<?= __('Create your group') ?>
+								</a>
+							</p>
+							<p class="text-center"> <?= __('Or join groups already created for this phase:') ?> </p>
+
+							<?php
+							foreach($q['Group'] as $group):
+								echo $this->element('Groups/group_box', array('e' => $group));
+							endforeach;
+
+						//BRAINSTORM
+						elseif ($q['type'] == Quest::TYPE_BRAINSTORM): ?>
+							<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
+								echo $this->element('BrainstormSessionEvoke.timeline',array('states' => $q['Timeline']));
+						endif;
 					endif; ?>
 				</div>
 			</div>

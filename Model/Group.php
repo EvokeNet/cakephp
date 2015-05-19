@@ -23,23 +23,6 @@ class Group extends AppModel {
  */
 	public $displayField = 'title';
 
-/**
- * Find methods array
- *
- */
-	// public $findMethods = array('membership' =>  true);
-
-
-	// protected function _findMembership($state, $query, $results = array()) {
-
- //        if ($state === 'before') {
- //        	debug($query);
- //            // $query['conditions']['Article.published'] = true;
- //            return $query;
- //        }
- //        return $results;
- //    }
-
 	public function getGroups($options = null) {
 		return $this->find('all', $options);
 	}
@@ -56,11 +39,23 @@ class Group extends AppModel {
 
 	public function afterFind($results, $primary = false) {
 		//Adds "is_owner" and "is_member" properties to the results, related to the currently logged in user
-		$user = $this->getCurrentUser();
-		foreach($results as $key => $result) {
-			$results[$key]['Group']['is_owner'] = ($result['Group']['user_id'] == $user['id']);
-			$results[$key]['Group']['is_member'] = $this->isMember($result['Group']['id'], $user['id']);
-		}
+		// $user = $this->getCurrentUser();
+		// foreach($results as $key => $result) {
+		// 	debug($result['Group']);
+		// 	if (isset($result['Group'])) {
+		// 		//MULTIPLE RESULTS
+		// 		if (count($result['Group']) < 1)
+		// 		{
+		// 			$results[$key]['Group']['is_owner'] = ($result['Group']['user_id'] == $user['id']);
+		// 			$results[$key]['Group']['is_member'] = $this->isMember($result['Group']['id'], $user['id']);
+		// 		}
+		// 		// RESULTS
+		// 		else {
+		// 			$results[$key]['Group'][$key_group]['is_owner'] = ($result_group['user_id'] == $user['id']);
+		// 			$results[$key]['Group'][$key_group]['is_member'] = $this->isMember($result_group['id'], $user['id']);
+		// 		}
+		// 	}
+		// }
 		return $results;
 	}
 
@@ -180,6 +175,13 @@ class Group extends AppModel {
 		'Phase' => array(
 			'className' => 'Phase',
 			'foreignKey' => 'phase_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Quest' => array(
+			'className' => 'Quest',
+			'foreignKey' => 'quest_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

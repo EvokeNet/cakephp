@@ -30,7 +30,7 @@ $title = __('Evoke Network');
 
 		echo $this->Html->meta('icon');
 
-		
+		//COMPONENTS CSS
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min'); //Icon font - font-awesome
@@ -47,16 +47,19 @@ $title = __('Evoke Network');
 
 		echo $this->Html->css('/components/sweetalert/lib/sweet-alert.css'); //Sweet alert - alert boxes
 
+		//EVOKE CSS
 		echo $this->Html->css('evoke');
 		
-		
+		//FILE-SPECIFIC CSS
 		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
 			echo $this->Html->css($cssInclude); //CSS for each view set
 		}
 
-		echo $this->fetch('meta');
+		//VIEW-SPECIFIC CSS
 		echo $this->fetch('css');
 
+		//META
+		echo $this->fetch('meta');
 		echo $this->fetch('social-metatags');
 
 	?>
@@ -91,7 +94,15 @@ $title = __('Evoke Network');
         var webroot = "<?php echo $this->webroot; ?>";
     </script>
     <?php
+    	//REQUIREJS BOOTSTRAP
 	    echo $this->Html->script("/components/requirejs/require", array('data-main' => $this->webroot.'js/requirejs/bootstrap'));
+
+	    //EVOKEDATA MODULE: FETCH JAVASCRIPT VARIABLES FROM VIEWS
+		$this->Html->scriptStart(array('inline' => false)); ?>
+			define('evokeData', function () {
+				return <?php echo $this->fetch('evoke_javascript_variables') ?>;
+			}); <?php
+		$this->Html->scriptEnd();
 
 	    //SCRIPTS IN EACH VIEW
 		echo $this->fetch('script');

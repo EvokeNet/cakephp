@@ -9,6 +9,14 @@ App::uses('AppModel', 'Model');
  */
 class UserAnswer extends AppModel {
 
+/**
+ * Behaviors
+ *
+ * @var array
+ */
+	public $actsAs = array('Containable');
+
+
 	public function afterSave($created, $options = array()) {
        
        	if($created){
@@ -46,8 +54,6 @@ class UserAnswer extends AppModel {
 	        return true;
 	    }	
     }
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
  * belongsTo associations
