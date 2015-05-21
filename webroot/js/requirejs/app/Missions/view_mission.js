@@ -77,9 +77,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//CLICKING ON THE QUEST PANEL WILL LOAD CONTENT VIA AJAX (every time)
 			$("#menu-icon-tabQuests").one("click", function(e) {
-				if (!$("#tabQuests").hasClass("panel-open")) { //otherwise this click is to close it
-					missionPanels.reloadTabQuests();
-				}
+				missionPanels.reloadTabQuests();
 				e.preventDefault();
 			});
 
@@ -105,6 +103,62 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					}
 				});
 				event.preventDefault();
+			});
+
+			//--------------------------------------------//
+			//Requests to join group handled with ajax
+			//--------------------------------------------//
+			$("body").on( "click", "a.button.join-group", function( event ) {
+				var modal = $(this).parents('div.reveal-modal');
+				$.ajax({
+					url: $(this).attr('href'),
+					type:"POST",
+					beforeSend: function() {
+						modal.append(evoke.loadingAnimation);
+					},
+					success: function(data) {
+						$('.loading').remove();
+						//Close modal
+						modal.foundation('reveal', 'close');
+						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+
+						//Reload quests
+						missionPanels.reloadTabQuests();
+					}
+				});
+				event.preventDefault();
+			});
+
+			//--------------------------------------------//
+			//ADD GROUP
+			//--------------------------------------------//
+			$('.add-group form').submit(function(e){
+				$.ajax({
+					type: "POST",
+					url: $(this).attr('action'),
+					data: $(this).serialize(), // serializes the form's elements.
+					success: function(data) {
+						if (data) {
+							//Confirmation dialog
+							swal({
+								title: "Sucess",
+								text: "Your group has been successfully created!",
+								type: "success",
+								confirmButtonColor: "#26dee0",
+								confirmButtonText: "Ok",
+								closeOnConfirm: true
+							},
+							function() {
+								$('.close-missions-content-overlay').click();
+								
+								//Reload quests
+								missionPanels.reloadTabQuests();
+							});
+						}
+					}
+				});
+
+				return false;
 			});
 		});
 	});

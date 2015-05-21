@@ -55,14 +55,23 @@
 				<div class="margin top-3"><?php
 					//QUEST RESPONSE
 					if ($q['has_completed']): ?>
-						<h5 class="text-color-highlight text-center"><?= __('Congratulations! You have already completed this quest!') ?></h5><?php
+						<div class="margin bottom-3 text-center">
+							<h5 class="text-color-highlight"><?= __('Congratulations!') ?></h5>
+							<p class="font-highlight"><?= __('You have already completed this quest!') ?></p>
+						</div><?php
 
 						//EVIDENCE OR BRAINSTORM
-						if (($q['type'] == Quest::TYPE_EVIDENCE) || ($q['type'] == Quest::TYPE_BRAINSTORM)):
-							echo $this->element('Evidences/evidence_list_item',array('e' => $q['Response']['Evidence']));
+						if (($q['type'] == Quest::TYPE_EVIDENCE) || ($q['type'] == Quest::TYPE_BRAINSTORM)): ?>
+
+							<p class="text-center"><?= __('This is the evidence you submitted:') ?><?php
+
+							echo $this->element('Evidences/evidence_list_item',array('e' => $q['Response']));
 						//GROUP CREATION
-						elseif ($q['type'] == Quest::TYPE_GROUP_CREATION):
-							echo $this->element('Groups/group_box', array('e' => $q['Response']['Group']));
+						elseif ($q['type'] == Quest::TYPE_GROUP_CREATION): ?>
+
+							<p class="text-center"><?= __('Your group is:') ?><?php
+
+							echo $this->element('Groups/group_box', array('group' => $q['Response']['Group']));
 						endif;
 
 					//CALL TO ACTION
@@ -78,21 +87,33 @@
 						//CREATE GROUP
 						elseif ($q['type'] == Quest::TYPE_GROUP_CREATION): ?>
 							<p class="text-center">
-								<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'groups', 'action' => 'index')); ?>">
+								<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'groups', 'action' => 'add', $q['id'])); ?>">
 									<?= __('Create your group') ?>
 								</a>
-							</p>
-							<p class="text-center"> <?= __('Or join groups already created for this phase:') ?> </p>
+							</p><?php
 
-							<?php
-							foreach($q['Group'] as $group):
-								echo $this->element('Groups/group_box', array('e' => $group));
-							endforeach;
+							//JOIN EXISTING GROUPS
+							if (!empty($q['Group'])): ?>
+								<p class="text-center"> <?= __('Or join groups already created for this phase:') ?> </p>
+
+								<?php
+								foreach($q['Group'] as $group):
+									echo $this->element('Groups/group_box', array('group' => $group));
+								endforeach;
+							endif;
 
 						//BRAINSTORM
-						elseif ($q['type'] == Quest::TYPE_BRAINSTORM): ?>
-							<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
+						elseif ($q['type'] == Quest::TYPE_BRAINSTORM): 
+							//NO TIMELINE => NEEDS A GROUP (this checking can be improved)
+							if (!isset($q['Timeline'])): ?>
+								<div data-alert class="alert-box info radius">
+									<p><?= __('Attention: You will be able to complete this quest once you join a group!') ?></p>
+								</div><?php
+							//DISPLAYS TIMELINE
+							else: ?>
+								<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
 								echo $this->element('BrainstormSessionEvoke.timeline',array('states' => $q['Timeline']));
+							endif;
 						endif;
 					endif; ?>
 				</div>

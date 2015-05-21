@@ -60,6 +60,16 @@ class Quest extends AppModel {
 		)
 	);
 
+/**
+ * Checks if a user has completed this quest
+ * Based on the type of quest, this method gets the response sent by the user
+ * ( @see self::getQuestResponse() )
+ * Then, the method checks if the response is enough to complete the quest
+ *
+ * @param int User ID
+ * @param int Quest ID
+ * @return boolean True if the user has completed the quest, false otherwise
+ */
 	public function hasCompleted($user_id,$quest_id) {
 		if (!$this->exists($quest_id)) {
 			throw new NotFoundException(__('Invalid quest'));
@@ -78,8 +88,13 @@ class Quest extends AppModel {
 				return false;
 
 			case self::TYPE_QUESTIONNAIRE:
-				if (isset($response['Question']) && (count($response['Question']['UserAnswers']) > 0)) {
-					return true;
+				if (isset($response['Question'])) {
+					foreach ($response['Question'] as $key => $question) {
+						//At least one question of the quest's questionnaire was answered
+						if (isset($question['UserAnswer']) && !empty($question['UserAnswer'])) {
+							return true;
+						}
+					}
 				}
 				return false;
 
@@ -108,14 +123,20 @@ class Quest extends AppModel {
 		switch ($quest['Quest']['type']) {
 			case self::TYPE_EVIDENCE:
 			case self::TYPE_BRAINSTORM:
-				return $this->Evidence->findByUserIdAndQuestId($user_id,$quest_id);
+				return $this->Evidence->find('first',array(
+					'conditions' => array(
+						'user_id' => $user_id,
+						'quest_id' => $quest_id
+					),
+					'contain' => array('User')
+				));
 			case self::TYPE_QUESTIONNAIRE:
 				return $this->Questionnaire->find('first',array(
 					'conditions' => array('quest_id' => $quest_id),
 					'contain' => array(
-						'Question' => array('UserAnswer' => array(
-							'conditions' => array('user_id' => $user_id)
-						))
+						'Question' => array(
+							'UserAnswer' => array('conditions' => array('user_id' => $user_id))
+						)
 					)
 				));
 			case self::TYPE_GROUP_CREATION:

@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'foundation', 'slickcarousel', 'stickykit', 'jqueryui'], function ($) {
+	require(['jquery', 'evoke', 'foundation', 'slickcarousel', 'stickykit', 'jqueryui'], function ($,evoke) {
 		$(document).ready(function(){
 			
 			//--------------------------------------------//
@@ -179,7 +179,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					url: $(this).attr("href"),
 					type:"POST",
 					beforeSend: function() {
-						$('#missions-content-overlay .content-body').empty().append('<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>');
+						$('#missions-content-overlay .content-body').empty().append(evoke.loadingAnimation);
 						$('#missions-content-overlay').fadeIn('slow');
 						$('.main-section').addClass("hidden");
 						$('.tab-bar').addClass("hidden");
@@ -225,8 +225,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					type:"POST",
 					data: {forum_id: forum_id},
 					beforeSend: function() {
-						$('#tabForumContent').empty().append('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
-						$('#tabForumContent').empty().append('<div class="text-center"><i class="fa fa-spinner fa-spin fa-3x"></i></div>');
+						$('#tabForumContent').empty().append(evoke.loadingAnimation);
 					},
 					success: function(data) {
 						//Display content

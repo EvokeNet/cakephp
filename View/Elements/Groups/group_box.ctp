@@ -4,60 +4,62 @@
 		<div class="small-9 columns table-row">
 			<!-- PICTURE -->
 			<div class="table-cell vertical-align-middle square-60px">
-				<!-- <a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['id']));?>">
+				<!-- <a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['id']));?>">
 				</a> -->
-				<?php $pic = $this->Picture->getGroupPictureAbsolutePath($e); ?>
+				<?php $pic = $this->Picture->getGroupPictureAbsolutePath($group); ?>
 
 				<div class="square-60px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-					<img class="hidden" src="<?= $pic ?>" alt="Group <?= $e['title'] ?>'s picture" /> <!-- For accessibility -->
+					<img class="hidden" src="<?= $pic ?>" alt="Group <?= $group['title'] ?>'s picture" /> <!-- For accessibility -->
 				</div>
 				
 			</div>
 
 			<!-- GROUP INFO -->
 			<div class="table-cell vertical-align-middle full-width padding left-1">
-				<!-- <a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $e['id']));?>">
+				<!-- <a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['id']));?>">
 				</a> -->
-				<h5><?= $e['title']?></h5>
-				<p><?= $e['description']?></p>
+				<h5><?= $group['title']?></h5>
+				<p><?= $group['description']?></p>
 				
 			</div>
 		</div>
 
 		<!-- SOCIAL NETWORK and RELATION TO THE LOGGED IN USER -->
 		<div class="small-3 columns text-center">
-			<div class="margin bottom-1 top">
-				<span class="fa-stack fa-lg grow-on-hover">
-					<i class="fa fa-square fa-stack-2x facebook-icon background"></i>
-					<i class="fa fa-facebook fa-stack-1x fa-inverse text-color-dark"></i>
-				</span>
-
-				<span class="fa-stack fa-lg grow-on-hover">
-					<i class="fa fa-square fa-stack-2x twitter-icon background"></i>
-					<i class="fa fa-twitter fa-stack-1x fa-inverse text-color-dark"></i>
-				</span>
-
-				<span class="fa-stack fa-lg grow-on-hover">
-					<i class="fa fa-square fa-stack-2x google-icon background"></i>
-					<i class="fa fa-google-plus fa-stack-1x fa-inverse text-color-dark"></i>
-				</span>
+			<div class="margin bottom-1 top"><?php
+				if (isset($group['facebook']) && !empty($group['facebook'])): ?>
+					<a href="<?= $group['facebook'] ?>" target="_blank" class="button-icon">
+						<span class="fa-stack grow-on-hover">
+							<i class="fa fa-square fa-stack-2x facebook-icon background"></i>
+							<i class="fa fa-facebook fa-stack-1x fa-inverse text-color-dark"></i>
+						</span>
+					</a><?php
+				endif;
+				if (isset($group['twitter']) && !empty($group['twitter'])): ?>
+					<a href="<?= $group['twitter'] ?>" target="_blank" class="button-icon">
+						<span class="fa-stack grow-on-hover">
+							<i class="fa fa-square fa-stack-2x twitter-icon background"></i>
+							<i class="fa fa-twitter fa-stack-1x fa-inverse text-color-dark"></i>
+						</span>
+					</a><?php
+				endif; ?>
 			</div>
 			<?php
 				//OWNER
-				if($e['is_owner']): ?>
+				if($group['is_owner']): ?>
 					<span class="text-color-highlight">
 						<i class="fa fa-check text-color-highlight"></i> <?= __('Owner') ?>
 					</span>
 					<?php
 
 				//MEMBER
-				elseif ($e['is_member']): ?>
+				elseif ($group['is_member']): ?>
 					<span class="text-color-highlight">
 						<i class="fa fa-check text-color-highlight"></i> <?= __('Member') ?>
 					</span><?php
 
 				//REQUEST PENDING
-				elseif (isset($e['GroupRequest']) && (count($e['GroupRequest']) > 0)): ?>
+				elseif (isset($group['GroupRequest']) && (count($group['GroupRequest']) > 0)): ?>
 					<span>
 						<i class="fa fa-exclamation-triangle"></i> <?= __('Request pending') ?>
 					</span>
@@ -65,7 +67,7 @@
 
 				//SEND REQUEST BUTTON
 				else: ?>
-					<a href="#" data-reveal-id="Group<?= $e['id']?>" data-reveal class = "button thin"><?= __('Send request to join')?></a>
+					<a href="#" data-reveal-id="Group<?= $group['id']?>" data-reveal class="button thin"><?= __('Send request to join')?></a>
 					<?php
 				endif; ?>
 		</div>
@@ -73,7 +75,7 @@
 </div>
 
 <!-- REQUEST TO JOIN -->
-<div id="Group<?= $e['id']?>" class="reveal-modal text-center" data-reveal>
+<div id="Group<?= $group['id']?>" class="reveal-modal text-center" data-reveal>
 	<h1 class="text-color-highlight">
 		<?= __('Join group') ?>
 	</h1>
@@ -82,7 +84,7 @@
 	<p><?= __("A message will be sent to the group's owner and you will receive a notification when your request is approved or declined.")?></p>
 	<br />
 
-	<a class="button join-group" data-group-id="<?= $e['id']?>" href="<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $loggedInUser['id'], $e['id'])); ?>">
+	<a class="button join-group" data-group-id="<?= $group['id']?>" href="<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $loggedInUser['id'], $group['id'])); ?>">
 		<?php echo __('Send request to join');?>
 	</a>
 

@@ -419,3 +419,15 @@ button:hover, button:focus, .button:hover, .button:focus {
 .evoke .reveal-modal {
 	background-color: #111; /* background-color-darkest */
 }
+
+/* --------------------------- */
+/* ALERT BOXES */
+/* --------------------------- */
+.evoke .alert-box.info {
+	background-color: #28B2B4;
+	color: #000;
+}
+
+.evoke .alert-box.info p {
+	color: #000;
+}

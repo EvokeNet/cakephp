@@ -636,32 +636,46 @@ class MissionsController extends AppController {
 			throw new NotFoundException(__('Invalid mission phase'));
 		}
 
+		$user = $this->Auth->user();
+
 		//PHASE
 		$phase = $this->Mission->Phase->find('first', array(
 			'conditions' => array('Phase.id' => $phase_id),
 			'contain' => array('Quest' => 'Group')
 		));
-		debug($phase);
-		die();
 
-		
-		foreach ($phase['Quest'] as $key => $quest) {
+		foreach ($phase['Quest'] as $key => &$quest) {
 			//WHETHER THE USER HAS COMPLETED THE QUEST OR NOT
-			$phase['Quest'][$key]['has_completed'] = $this->Mission->Phase->Quest->hasCompleted($this->user['id'], $quest['id']);
-			$phase['Quest'][$key]['Response'] = $this->Mission->Phase->Quest->getQuestResponse($this->user['id'], $quest['id']);
+			$quest['has_completed'] = $this->Mission->Phase->Quest->hasCompleted($this->user['id'], $quest['id']);
 
-			//BRAINSTORM TIMELINE
-			foreach ($quest['Group'] as $group_key => $group) { //group belongs to the quest it was created in
+			//RESPONSE (if completed)
+			if ($quest['has_completed']) {
+				$quest['Response'] = $this->Mission->Phase->Quest->getQuestResponse($this->user['id'], $quest['id']);
+
+				//GROUP -- CHECK IF THE USER IS MEMBER/OWNER
+				if ($quest['type'] == Quest::TYPE_GROUP_CREATION) {
+					$quest['Response']['Group']['is_owner'] = $this->Mission->Phase->Group->isOwner($quest['Response']['Group']['id'], $user['id']);
+					$quest['Response']['Group']['is_member'] = $this->Mission->Phase->Group->isMember($quest['Response']['Group']['id'], $user['id']);
+				}
+			}
+			
+			//GROUP -- CHECK IF THE USER IS MEMBER/OWNER
+			foreach ($quest['Group'] as $group_key => &$group) { //group belongs to the quest it was created in
+				$group['is_owner'] = $this->Mission->Phase->Group->isOwner($group['id'], $user['id']);
+				$group['is_member'] = $this->Mission->Phase->Group->isMember($group['id'], $user['id']);
+
+				//BRAINSTORM TIMELINE
+				//Members of the group see the brainstorm timeline for all the quests of the phase
 				if ($group['is_member']) {
-					//I am a member of this group, therefore I can see its timeline for all the quests of this phase
-					foreach ($phase['Quest'] as $key2 => $quest2) {
-						$phase['Quest'][$key2]['Timeline'] = $this->Mission->Phase->Group->findTimelineByGroupAndQuest($group['id'],$quest2['id']);
+					foreach ($phase['Quest'] as $key2 => &$phase_quest) {
+						if ($phase_quest['type'] == Quest::TYPE_BRAINSTORM) {
+							$phase_quest['Timeline'] = $this->Mission->Phase->Group->findTimelineByGroupAndQuest($group['id'],$phase_quest['id']);
+						}
 					}
 				}
 			}
 		}
 
-		
 		//Render
 		$this->set(compact('phase'));
 		$this->layout = 'ajax';
@@ -938,46 +952,8 @@ class MissionsController extends AppController {
 			$completed_quests = 0;
 
 			foreach ($p['Quest'] as $q) {
-				$done = false;
-
-				if ($q['mandatory'] == 1) {
-					array_push($all_mandatory_quests,$q);
-				}
-			
-				//EVIDENCES
-				$my_evidences_quest = $this->Evidence->find('all', array(
-					'order' => array('Evidence.title ASC'),
-					'conditions' => array(
-						'user_id' => $this->user['id'],
-						'quest_id' => $q['id']
-					)
-				));
-				//if it was an 'evidence' type quest
-				if(!empty($my_evidences_quest)) {
-					$done = true; 
-				}
-				
-
-				//if it was a questionnaire type quest
-				//theres only one
-				if(isset($q['Questionnaire']) && !empty($q['Questionnaire'])) {
-					foreach ($previous_answers as $previous_answer) {
-						if($q['Quest']['id'] == $q['Questionnaire']['quest_id'] && $q['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {
-							$done = true; 
-							break;
-						}
-					}
-				}
-				
-
-				//if its a group type quest, check to see if user owns or belongs to a group of this mission
-				if($q['type'] == 3) {
-					if($hasGroup) {
-						$done = true;
-					}
-				}
-
-				//COMPLETED
+				//WHETHER THE USER HAS COMPLETED THE QUEST OR NOT
+				$done = $this->Mission->Phase->Quest->hasCompleted($this->user['id'], $q['id']);
 				if($done) {
 					$completed_quests++;
 				}
@@ -990,7 +966,7 @@ class MissionsController extends AppController {
 			}
 
 			$i++;
-		}		
+		}
 
 		//GRAPHIC NOVEL
 		$novels = $this->Mission->Novel->find('all', array(

@@ -24,7 +24,6 @@ class Phase extends AppModel {
 /**
  * actsAs array
  *
- * 
  */
 	public $actsAs = array(
 		'Containable',
@@ -76,8 +75,6 @@ class Phase extends AppModel {
 		endforeach;
 
 	}
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
  * belongsTo associations
