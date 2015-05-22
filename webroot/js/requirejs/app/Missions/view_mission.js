@@ -35,40 +35,16 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 							//Fill tab evidence
 							$('.tabEvidencesContent').html(data);
 
-							//CLICKING ON EACH EVIDENCE OPENS IT ON THE MISSION-OVERLAY ON THE LEFT
-							$(".tabEvidencesContent").on( "click", "a.evidence-list-item-link", function( event ) {
-								$.ajax({
-									url: $(this).attr("href")+"/true",
-									type:"POST",
-									beforeSend: function() {
-										//SHOW OVERLAY WITH LOADING IMAGE
-										$('.content-body').html(evoke.loadingAnimation);
-										$('#missions-content-overlay').fadeIn("fast");
-										//HIDE SECTION BEHIND
-										$('.main-section').addClass("hidden");
-										$('.tab-bar').addClass("hidden");
-										$('.close-sidebar-button').fadeOut('fast');
-									},
-									success: function(data) {
-										//Go to the top
-										$("html, body").animate({
-											scrollTop: 0
-										}, 300);
-
-										//#missions-content-overlay Content
-										$(".content-body").html(data);
-
-										//Reflow
-										$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-									}
-								});
-								event.preventDefault();
-							});
-
 							$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 						}
 					});
 				}
+			});
+
+			//CLICKING ON EACH EVIDENCE OPENS IT ON THE MISSION-OVERLAY ON THE LEFT
+			$("body").on( "click", "a.evidence-list-item-link", function( event ) {
+				missionPanels.openInMissionOverlay($(this).attr("href")+"/true");
+				event.preventDefault();
 			});
 
 
@@ -82,7 +58,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			});
 
 			//--------------------------------------------//
-			//Requests to join group handled with ajax
+			//QUEST - JOIN GROUP Requests to join group handled with ajax
 			//--------------------------------------------//
 			$("body").on( "click", "a.button.join-group", function( event ) {
 				var modal = $(this).parents('div.reveal-modal');
@@ -104,33 +80,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				});
 				event.preventDefault();
 			});
-
+			
 			//--------------------------------------------//
-			//Requests to join group handled with ajax
-			//--------------------------------------------//
-			$("body").on( "click", "a.button.join-group", function( event ) {
-				var modal = $(this).parents('div.reveal-modal');
-				$.ajax({
-					url: $(this).attr('href'),
-					type:"POST",
-					beforeSend: function() {
-						modal.append(evoke.loadingAnimation);
-					},
-					success: function(data) {
-						$('.loading').remove();
-						//Close modal
-						modal.foundation('reveal', 'close');
-						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-
-						//Reload quests
-						missionPanels.reloadTabQuests();
-					}
-				});
-				event.preventDefault();
-			});
-
-			//--------------------------------------------//
-			//ADD GROUP
+			//QUEST - ADD GROUP
 			//--------------------------------------------//
 			$('.add-group form').submit(function(e){
 				$.ajax({

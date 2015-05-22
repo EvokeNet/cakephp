@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'evoke', 'foundation', 'slickcarousel', 'stickykit', 'jqueryui'], function ($,evoke) {
+	require(['jquery', 'evoke', 'missionpanels', 'foundation', 'slickcarousel', 'stickykit', 'jqueryui'], function ($, evoke, missionPanels) {
 		$(document).ready(function(){
 			
 			//--------------------------------------------//
@@ -146,16 +146,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//Close overlay button
 			//--------------------------------------------//
 			$(".close-missions-content-overlay").click(function(){
-				//Clear content-body and its event
-				$('#missions-content-overlay-body').off(); //clear events in previous elements
-				$('#missions-content-overlay-body *').off(); 
-				$('#missions-content-overlay-body').empty();
-
-				//Hide content overlay and show tab-bar and main section
-				$('#missions-content-overlay').fadeOut('fast');
-				$('.main-section').removeClass("hidden");
-				$('.tab-bar').removeClass("hidden");
-				$('.close-sidebar-button').fadeIn("hidden");
+				missionPanels.closeMissionOverlay();
 			});
 
 			//--------------------------------------------//
@@ -175,31 +166,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//Used for submitting evidences, brainstorm etc.
 			//--------------------------------------------//
 			$("body").on("click", ".button.open-mission-overlay", function(event){
-				$.ajax({
-					url: $(this).attr("href"),
-					type:"POST",
-					beforeSend: function() {
-						$('#missions-content-overlay .content-body').empty().append(evoke.loadingAnimation);
-						$('#missions-content-overlay').fadeIn('slow');
-						$('.main-section').addClass("hidden");
-						$('.tab-bar').addClass("hidden");
-						$('.close-sidebar-button').fadeOut("fast");
-					},
-					success: function(data) {
-						//Go to the top of the page
-						$("html, body").animate({
-							scrollTop: 0
-						}, 300);
-
-						//Display content
-						$('#missions-content-overlay-body').off(); //clear events in previous elements
-						$('#missions-content-overlay-body *').off(); //clear events in previous elements
-						$("#missions-content-overlay-body").html(data);
-
-						//Reflow
-						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
-					}
-				});
+				missionPanels.openInMissionOverlay($(this).attr("href"));
 				event.preventDefault();
 			});
 
