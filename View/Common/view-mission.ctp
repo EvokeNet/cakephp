@@ -127,189 +127,8 @@
 				<div class="mission-sidebar small-12 medium-12 large-7 columns min-full-height padding all-0" data-equalizer-watch data-equalizer-mq="large-up">
 					<!-- CONTENT: QUEST TAB -->
 					<aside class="tabContent hidden full-height" id="tabQuests">
-						<div class="table large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0 background-color-standard">
-							
-							<dl class="tabs vertical table-cell full-width  margin right-1" id="questsTabs" data-tab>
-								<?php 
-									$counter = 1;
-									$active = 'class = "active"';
-
-									if (isset($phase['Quest'])) {
-										foreach($phase['Quest'] as $q): 
-											if($counter != 1)
-												$active = null;
-											?>
-											<dd <?= $active ?>><a href="#quest<?= $counter ?>" class="text-glow-on-hover"><?= $q['title'] ?></a></dd>
-											<?php
-											$counter++;
-										endforeach;
-
-										//NO QUESTS: Show alert
-										if (count($phase['Quest']) < 1) { ?>
-											<div data-alert="" class="alert-box radius">
-												<?= __('There are no quests available in this mission.') ?>
-												<a href="" class="close">×</a>
-											</div>
-										<?php }
-									}
-								?>
-							</dl>
-
-							<div class="tabs-content table-cell vertical-align-top full-width gradient-on-left">
-								<?php 
-									$counter = 1;
-									$active = 'active'; ?>
-
-								<?php 
-									if (isset($phase['Quest'])) {
-										foreach($phase['Quest'] as $q): 
-											if($counter != 1)
-												$active = null;
-											?>
-									
-									<div class="content <?= $active ?>" id="quest<?= $counter ?>">
-										<div class = "margin right-1">
-											<!-- QUEST TITLE AND DESCRIPTION -->
-											<h3 class="text-color-highlight text-center"><?= $q['title'] ?></h3>
-											<?= $q['description'] ?>
-
-											<!-- REWARDS -->
-											<h5 class="text-color-highlight text-center"><?= __('REWARDS') ?></h5>
-								    		<p class="text-center"><?= __('Submitting an evidence for this quest is worth skills for these badges:') ?></p>
-								    		<p class="text-center">
-										    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
-										    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
-										    	<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
-										    </p>
-										   
-										   <!-- CALL FOR EVIDENCE CREATION -->
-										    <div class="margin top-3">
-									    		<?php
-									    		if (isset($loggedInUser)):
-									    			//SIMPLE PHASES DO NOT HAVE BRAINSTORMING
-									    			if ($phase['Phase']['type'] == 0): ?>
-									    				<p class="text-center">
-										    				<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')); ?>">
-										    					<?= __('Create your evidence') ?>
-										    				</a>
-										    			</p><?php
-
-									    			//ACT PHASE HAS BRAINSTORM
-									    			else: ?>
-									    				<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
-
-										    				//BRAINSTORM
-															$brainstorm_timeline_states = array(
-																array(
-																	'label' => 'Individual ideas',
-																	'current' => true,
-																	'description' => '
-																		<p class="text-center">
-																			'.__('Before submitting your evidence to this quest, you will brainstorm with your group. After you start, your group members will have 3 days to submit their ideas of evidences, before picking the team favorites.').'
-																		</p>
-																		<p class="text-center">
-																			<a class="button small open-mission-overlay"
-																			   href="'.$this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'addIdeas', 1, $q['id'])).'">
-																			   '. __("Start brainstorming").'
-																			</a>
-																		</p>
-																		'
-																),
-																array(
-																	'label' => 'Group ideas',
-																	'current' => false,
-																	'description' => '
-																		<p class="text-center">
-																			'.__('Now that everybody has submitted ideas, it is time to pick your top choices').'
-																		</p>
-																		<p class="text-center">
-																			<a class="button small open-mission-overlay"
-																			   ref="'.$this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'voteIdeas', 1, $q['id'])).'">
-																			   '. __("Vote in your group's ideas").'
-																			</a>
-																		</p>
-																		'
-																),
-																array(
-																	'label' => 'Create evidence',
-																	'current' => false,
-																	'description' => '
-																		<p class="text-center">
-																			'.__('Now you can create your evidence based on the team\'s top choices').'
-																		</p>
-																		<p class="text-center">
-																			<a class="button small open-mission-overlay"
-																			   href="'.$this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')).'">
-																			   '. __("Create your evidence").'
-																			</a>
-																		</p>
-																		'
-																)
-															);
-										    				echo $this->element('BrainstormSession.timeline',array('states' => $brainstorm_timeline_states));
-
-
-
-										    				////////////////////////TEMPORARIO/////////////////////////////
-										    				?>
-										    				<div id="brainstorm_step1_description" class="hidden">
-										    					<p></p>
-										    					<p class="text-center">
-																	<?= __('Before submitting your evidence to this quest, you will brainstorm with your group. After you start, your group members will have 3 days to submit their ideas of evidences, before picking the team favorites.') ?>
-																</p>
-																<p class="text-center">
-																	<a class="button small open-mission-overlay" id="brainstorm_step1"
-																	   href="<?= $this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'addIdeas', 1, $q['id'])) ?>">
-																	   <?= __("Start brainstorming") ?>
-																	</a>
-																</p>
-															</div>
-
-															<div id="brainstorm_step2_description" class="hidden">
-																<p></p>
-																<p class="text-center">
-																	<?= __('Now that everybody has submitted ideas, it is time to pick your top choices') ?>
-																</p>
-																<p class="text-center">
-																	<a class="button small open-mission-overlay" id="brainstorm_step2"
-																	   href="<?= $this->Html->url(array('plugin' => 'brainstorm_session', 'controller'=> 'brainstorm_ideas', 'action' => 'voteIdeas', 1, $q['id'], 'false')) ?>">
-																	   <?= __("Vote in your group's ideas") ?>
-																	</a>
-																</p>
-															</div>
-
-															<div id="brainstorm_step3_description" class="hidden">
-																<p></p>
-																<p class="text-center">
-																	<?= __('Now you can create your evidence based on the team\'s top choices') ?>
-																</p>
-																<p class="text-center">
-																	<a class="button small open-mission-overlay" id="brainstorm_step3"
-																	   href="<?= $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $mission['Mission']['id'], $q['phase_id'], $q['id'], 'false')) ?>">
-																	   <?= __("Create your evidence") ?>
-																	</a>
-																</p>
-															</div>
-
-										    				<?php
-									    			endif;
-									    		else: ?>
-									    			<p class="text-center">
-										    			<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('In preview mode, you can test this form, but not submit an actual response. Click to test it!') ?>">
-										    				<a href="#" class="button small disabled" disabled><?= __('Submit your evidence') ?></a>
-										    			</span>
-										    		</p><?php
-									    		endif; ?>
-									    	</div>
-								    	</div>
-									</div>
-
-								<?php
-										$counter++;
-										endforeach;
-									} ?>
-
-							</div>
+						<div class="table large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0 background-color-standard tabs-content tabQuestsContent full-width">
+							<?php echo $this->fetch('tabQuestsContent'); ?>
 						</div>
 					</aside>
 
@@ -358,29 +177,29 @@
 						</div>
 					</aside>
 				</div>
-		    </div>
+			</div>
 
-		    <div id="tabForum" class="row full-width clearfix absolute full-height hidden">
-		    	<div id="tabForumContent" class="full-height">
-		    		<div>
-		    			<div class="loading-circle-outside"></div>
-		    			<div class="loading-circle-inside"></div>
-			    	</div>
-		    	</div>
-		    </div>
+			<div id="tabForum" class="row full-width clearfix absolute full-height hidden">
+				<div id="tabForumContent" class="full-height">
+					<div>
+						<div class="loading-circle-outside"></div>
+						<div class="loading-circle-inside"></div>
+					</div>
+				</div>
+			</div>
 
 			<!-- GRAPHIC NOVEL -->
 			<div class="section missions-graphic-novel">
-	    		<div id="loading">
-	    			<div class="loading-circle-outside"></div>
-	    			<div class="loading-circle-inside"></div>
-	    		</div>
+				<div id="loading">
+					<div class="loading-circle-outside"></div>
+					<div class="loading-circle-inside"></div>
+				</div>
 
-		    	<div class="missions-carousel full-width">
-		    		<?php foreach ($novels as $novel) :
-		    			//Reserve height space for image before HTML loads it
-		    			//IMPORTANT: This is only fast when the image is in the same server!!!
-			    		list($width_img, $height_img) = getimagesize('./files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
+				<div class="missions-carousel full-width">
+					<?php foreach ($novels as $novel) :
+						//Reserve height space for image before HTML loads it
+						//IMPORTANT: This is only fast when the image is in the same server!!!
+						list($width_img, $height_img) = getimagesize('./files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
 					?>
 						<div>
 							<img data-lazy="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" height="<?= $height_img ?>px" class="full-width" />
@@ -395,10 +214,10 @@
 							<a href="" class="close">×</a>
 						</div>
 					<?php } ?>
-		    	</div>
+				</div>
 
-		    	<!-- NAVIGATION BAR -->
-		    	<div id="navigationBar" class="evoke row full-width fixed sticky contain-to-grid padding top-1 bottom-1 text-center background-color-dark-opacity-05 bottom-0">
+				<!-- NAVIGATION BAR -->
+				<div id="navigationBar" class="evoke row full-width fixed sticky contain-to-grid padding top-1 bottom-1 text-center background-color-dark-opacity-05 bottom-0">
 						<div class="small-12 medium-12 large-12 columns centering-block">
 							<ul class="inline-list centered-block margins-0">
 								<li><h5 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h5></li>
@@ -407,9 +226,9 @@
 								<li><div id="slickNextArrow"></div></li>
 								<li><div id="slickArrows"></div></li>
 							</ul>
-				    	</div>
-		    	</div>
-		    </div>
+						</div>
+				</div>
+			</div>
 
 		</section>
 	</div>

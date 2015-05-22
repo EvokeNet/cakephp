@@ -8,8 +8,12 @@ App::uses('AppModel', 'Model');
  */
 class Questionnaire extends AppModel {
 
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+/**
+ * Behaviors
+ *
+ * @var array
+ */
+	public $actsAs = array('Containable');
 
 /**
  * belongsTo associations
@@ -44,7 +48,7 @@ class Questionnaire extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
+		),
 	);
 
 }

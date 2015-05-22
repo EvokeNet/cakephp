@@ -15,7 +15,7 @@ class MissionsController extends AppController {
  */
 
 	public $components = array('Paginator', 'Session', 'Access');
-	public $helpers = array('BrainstormSession.Brainstorm');
+	public $helpers = array('BrainstormSession.Brainstorm' => array('unavailable_content_hidden' => true));
 	public $user = null;
 
 	public function beforeFilter() {
@@ -248,7 +248,7 @@ class MissionsController extends AppController {
 		$quests = $this->Mission->Quest->find('all', array('conditions' => array('Quest.mission_id' => $id, 'Quest.phase_id' => $missionPhase['Phase']['id'])));
 		
 		//will be used in retrieving all users groups id to get his evokations!
-		$myEvokations_groupsids = array();
+		$myGroupsIds = array();
 
 		//GROUPS
 		$hasGroup = false;
@@ -256,7 +256,7 @@ class MissionsController extends AppController {
 		foreach ($mission['Group'] as $group) {
 			if($group['user_id'] == $this->getUserId()) {
 				$hasGroup = true;
-				array_push($myEvokations_groupsids, array('Evokation.group_id' => $group['id']));
+				array_push($myGroupsIds, array('Evokation.group_id' => $group['id']));
 				//break;
 			}
 
@@ -269,7 +269,7 @@ class MissionsController extends AppController {
 			foreach ($groupsuser as $member) {
 				if($member['GroupsUser']['user_id'] == $this->getUserId()) {
 					$hasGroup = true;
-					array_push($myEvokations_groupsids, array('Evokation.group_id' => $member['GroupsUser']['group_id']));
+					array_push($myGroupsIds, array('Evokation.group_id' => $member['GroupsUser']['group_id']));
 					//break;
 				}
 			}
@@ -277,11 +277,11 @@ class MissionsController extends AppController {
 
 		//GROUP EVOKATIONS getting all user's evokations from this mission!
 		$myEvokations = array();
-		if(!empty($myEvokations_groupsids)) {
+		if(!empty($myGroupsIds)) {
 			$this->loadModel('Evokation');
 			$myEvokations = $this->Evokation->find('all', array(
 				'conditions' => array(
-					'OR' => $myEvokations_groupsids
+					'OR' => $myGroupsIds
 				)
 			));
 		}
@@ -628,6 +628,61 @@ class MissionsController extends AppController {
 	}
 
 /**
+ * Renders tab with all quests in a phase
+ * @param int $phase_id - ID of the phase
+ */
+	public function renderQuestsTab($phase_id = null) {
+		if (!$this->Mission->Phase->exists($phase_id)) {
+			throw new NotFoundException(__('Invalid mission phase'));
+		}
+
+		$user = $this->Auth->user();
+
+		//PHASE
+		$phase = $this->Mission->Phase->find('first', array(
+			'conditions' => array('Phase.id' => $phase_id),
+			'contain' => array('Quest' => 'Group')
+		));
+
+		foreach ($phase['Quest'] as $key => &$quest) {
+			//WHETHER THE USER HAS COMPLETED THE QUEST OR NOT
+			$quest['has_completed'] = $this->Mission->Phase->Quest->hasCompleted($this->user['id'], $quest['id']);
+
+			//RESPONSE (if completed)
+			if ($quest['has_completed']) {
+				$quest['Response'] = $this->Mission->Phase->Quest->getQuestResponse($this->user['id'], $quest['id']);
+
+				//GROUP -- CHECK IF THE USER IS MEMBER/OWNER
+				if ($quest['type'] == Quest::TYPE_GROUP_CREATION) {
+					$quest['Response']['Group']['is_owner'] = $this->Mission->Phase->Group->isOwner($quest['Response']['Group']['id'], $user['id']);
+					$quest['Response']['Group']['is_member'] = $this->Mission->Phase->Group->isMember($quest['Response']['Group']['id'], $user['id']);
+				}
+			}
+			
+			//GROUP -- CHECK IF THE USER IS MEMBER/OWNER
+			foreach ($quest['Group'] as $group_key => &$group) { //group belongs to the quest it was created in
+				$group['is_owner'] = $this->Mission->Phase->Group->isOwner($group['id'], $user['id']);
+				$group['is_member'] = $this->Mission->Phase->Group->isMember($group['id'], $user['id']);
+
+				//BRAINSTORM TIMELINE
+				//Members of the group see the brainstorm timeline for all the quests of the phase
+				if ($group['is_member']) {
+					foreach ($phase['Quest'] as $key2 => &$phase_quest) {
+						if ($phase_quest['type'] == Quest::TYPE_BRAINSTORM) {
+							$phase_quest['Timeline'] = $this->Mission->Phase->Group->findTimelineByGroupAndQuest($group['id'],$phase_quest['id']);
+						}
+					}
+				}
+			}
+		}
+
+		//Render
+		$this->set(compact('phase'));
+		$this->layout = 'ajax';
+		$this->render('/Elements/quest_tabs');
+	}
+
+/**
  * Renders tab with dossier content
  * @param int $mission_id - Optional ID to see dossier from a specific mission
  * @param int $limit - Optional limit to the number of items
@@ -805,8 +860,7 @@ class MissionsController extends AppController {
 		$mission = $this->Mission->find('first', array(
 			'conditions' => array('Mission.id' => $mission_id),
 			'contain' => array(
-				'Phase' => array('Quest' => 'Questionnaire'),
-				'Group'
+				'Phase' => array('Quest' => 'Questionnaire')
 			)
 		));
 
@@ -816,14 +870,14 @@ class MissionsController extends AppController {
 		if (!is_null($phase_id)) {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id, 'Phase.id' => $phase_id),
-				'contain' => array('Quest' => 'Questionnaire')
+				'contain' => array('Group', 'Quest' => 'Questionnaire')
 			));
 		}
 		//Requested a specific position
 		else if (!is_null($phase_position)) {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id, 'Phase.position' => $phase_position),
-				'contain' => array('Quest' => 'Questionnaire')
+				'contain' => array('Group', 'Quest' => 'Questionnaire')
 			));
 		}
 		//Default: phase in the first position
@@ -831,7 +885,7 @@ class MissionsController extends AppController {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id),
 				'order' => array('Phase.position' => 'asc'),
-				'contain' => array('Quest' => 'Questionnaire')
+				'contain' => array('Group', 'Quest' => 'Questionnaire')
 			));
 		}
 
@@ -852,25 +906,30 @@ class MissionsController extends AppController {
 		//---------------------------------
 		//MARK COMPLETED PHASES //this code can be improved a lot
 		//GROUPS
-		$myEvokations_groupsids = array();
+		$myGroupsIds = array();
 		$hasGroup = false;
-		//check to see if user has entered a group of this mission
-		foreach ($mission['Group'] as $group) {
-			if($group['user_id'] == $this->user['id']) {
-				$hasGroup = true;
-				array_push($myEvokations_groupsids, array('Evokation.group_id' => $group['id']));
-			}
+		$this->loadModel('GroupsUser');
 
-			$this->loadModel('GroupsUser');
-			$groupsuser = $this->GroupsUser->find('all', array(
-				'conditions' => array(
-					'GroupsUser.group_id' => $group['id']
-				)
-			));
-			foreach ($groupsuser as $member) {
-				if($member['GroupsUser']['user_id'] == $this->user['id']) {
+		//check to see if user has created/joined a group in this phase of this mission
+		//it should be just one
+		foreach ($phase['Group'] as $group) {
+			//CREATED THE GROUP
+			if ($group['user_id'] == $this->user['id']) {
+				$hasGroup = true;
+				array_push($myGroupsIds, $group['id']);
+			}
+			//JOINED THE GROUP
+			else {
+				$groupsuser = $this->GroupsUser->find('first', array(
+					'conditions' => array(
+						'GroupsUser.group_id' => $group['id'],
+						'GroupsUser.user_id' => $this->user['id']
+					)
+				));
+
+				if(isset($groupsuser['GroupsUser'])) {
 					$hasGroup = true;
-					array_push($myEvokations_groupsids, array('Evokation.group_id' => $member['GroupsUser']['group_id']));
+					array_push($myGroupsIds, $groupsuser['GroupsUser']['group_id']);
 				}
 			}
 		}
@@ -893,46 +952,8 @@ class MissionsController extends AppController {
 			$completed_quests = 0;
 
 			foreach ($p['Quest'] as $q) {
-				$done = false;
-
-				if ($q['mandatory'] == 1) {
-					array_push($all_mandatory_quests,$q);
-				}
-			
-				//EVIDENCES
-				$my_evidences_quest = $this->Evidence->find('all', array(
-					'order' => array('Evidence.title ASC'),
-					'conditions' => array(
-						'user_id' => $this->user['id'],
-						'quest_id' => $q['id']
-					)
-				));
-				//if it was an 'evidence' type quest
-				if(!empty($my_evidences_quest)) {
-					$done = true; 
-				}
-				
-
-				//if it was a questionnaire type quest
-				//theres only one
-				if(!empty($q['Questionnaire'])) {
-					foreach ($previous_answers as $previous_answer) {
-						if($q['Quest']['id'] == $q['Questionnaire']['quest_id'] && $q['Questionnaire']['id'] == $previous_answer['Question']['questionnaire_id']) {
-							$done = true; 
-							break;
-						}
-					}
-				}
-				
-
-				//if its a group type quest, check to see if user owns or belongs to a group of this mission
-				if($q['type'] == 3) {
-					if($hasGroup) {
-						$done = true;
-					}
-				}
-
-				//COMPLETED
+				//WHETHER THE USER HAS COMPLETED THE QUEST OR NOT
+				$done = $this->Mission->Phase->Quest->hasCompleted($this->user['id'], $q['id']);
 				if($done) {
 					$completed_quests++;
 				}
@@ -945,7 +966,7 @@ class MissionsController extends AppController {
 			}
 
 			$i++;
-		}		
+		}
 
 		//GRAPHIC NOVEL
 		$novels = $this->Mission->Novel->find('all', array(

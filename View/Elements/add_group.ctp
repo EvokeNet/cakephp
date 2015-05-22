@@ -1,15 +1,9 @@
 <div class="groups form">
 <?php
-	if(isset($mission))
-		echo $this->Form->create('Group', array(
-			'controller' => 'groups',
-			'action' => 'add'
-		));
-	else
-		echo $this->Form->create('Group', array(
-			'controller' => 'groups',
-			'action' => 'add'
-		));
+	echo $this->Form->create('Group', array(
+		'controller' => 'groups',
+		'action' => 'add'
+	));
 ?>
 
 	<h2><?php echo __('Add Group'); ?></h2>
@@ -46,7 +40,7 @@
 
 	?>
 	</fieldset>
-	<button class="evoke button general" type="submit">
+	<button class="button" type="submit">
 		<?php echo __('Create Group')?>
 	</button>
 	<?php echo $this->Form->end(); ?>

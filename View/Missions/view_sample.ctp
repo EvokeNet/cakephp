@@ -54,6 +54,80 @@
 	</div><?php
 	$this->end();
 
+	//TEMPLATE ELEMENT: TAB QUESTS
+	$this->start('tabQuestsContent'); ?>
+		<dl class="tabs vertical table-cell full-width  margin right-1" id="questsTabs" data-tab>
+			<?php 
+				$counter = 1;
+				$active = 'class = "active"';
+
+				if (isset($phase['Quest'])) {
+					foreach($phase['Quest'] as $q): 
+						if($counter != 1)
+							$active = null;
+						?>
+						<dd <?= $active ?>><a href="#quest<?= $counter ?>" class="text-glow-on-hover"><?= $q['title'] ?></a></dd>
+						<?php
+						$counter++;
+					endforeach;
+
+					//NO QUESTS: Show alert
+					if (count($phase['Quest']) < 1) { ?>
+						<div data-alert="" class="alert-box radius">
+							<?= __('There are no quests available in this mission.') ?>
+							<a href="" class="close">×</a>
+						</div>
+					<?php }
+				}
+			?>
+		</dl>
+
+		<div class="tabs-content table-cell vertical-align-top full-width gradient-on-left">
+			<?php 
+				$counter = 1;
+				$active = 'active'; ?>
+
+			<?php 
+				if (isset($phase['Quest'])) {
+					foreach($phase['Quest'] as $q): 
+						if($counter != 1)
+							$active = null;
+						?>
+				
+				<div class="content <?= $active ?>" id="quest<?= $counter ?>">
+					<div class = "margin right-1">
+						<!-- QUEST TITLE AND DESCRIPTION -->
+						<h3 class="text-color-highlight text-center"><?= $q['title'] ?></h3>
+						<?= $q['description'] ?>
+
+						<!-- REWARDS -->
+						<h5 class="text-color-highlight text-center"><?= __('REWARDS') ?></h5>
+						<p class="text-center"><?= __('Submitting an evidence for this quest is worth skills for these badges:') ?></p>
+						<p class="text-center">
+							<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
+							<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
+							<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
+						</p>
+					   
+					   <!-- PREVIEW MODE -->
+						<div class="margin top-3">
+							<p class="text-center">
+								<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('In preview mode, you can test this form, but not submit an actual response. Click to test it!') ?>">
+									<a href="#" class="button small disabled" disabled><?= __('Submit your evidence') ?></a>
+								</span>
+							</p>
+						</div>
+					</div>
+				</div>
+
+			<?php
+					$counter++;
+					endforeach;
+				} ?>
+
+		</div><?php
+	$this->end();
+
 	//TEMPLATE ELEMENT: TAB DOSSIER
 	$this->start('tabDossierContent'); ?>
 		<div class="tabs-content background-color-standard opacity-07 full-width full-height padding all-2">

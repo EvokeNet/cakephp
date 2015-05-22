@@ -1,13 +1,3 @@
-<?php
-	$this->extend('/Common/topbar');
-	$this->start('menu');
-
-	$countMembers = count($groupsUsers);
-
-	echo $this->element('header', array('user' => $user));
-	$this->end(); 
-	
-?>
 
 <section class="evoke default-background">
 
@@ -170,7 +160,3 @@
 
   </div>
 </section>
-
-<?php
-	echo $this->Html->script('menu_height', array('inline' => false));
-?>

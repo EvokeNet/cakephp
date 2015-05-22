@@ -24,7 +24,6 @@ class Phase extends AppModel {
 /**
  * actsAs array
  *
- * 
  */
 	public $actsAs = array(
 		'Containable',
@@ -77,8 +76,6 @@ class Phase extends AppModel {
 
 	}
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
 /**
  * belongsTo associations
  *
@@ -102,6 +99,19 @@ class Phase extends AppModel {
 	public $hasMany = array(
 		'Evidence' => array(
 			'className' => 'Evidence',
+			'foreignKey' => 'phase_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Group' => array(
+			'className' => 'Group',
 			'foreignKey' => 'phase_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -145,7 +155,7 @@ class Phase extends AppModel {
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
+			'order' => 'Quest.position ASC',
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',

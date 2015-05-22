@@ -107,7 +107,7 @@
 							</li>
 
 							<li>
-								<?php $pic = $this->UserPicture->getPictureAbsolutePath($usr); ?>
+								<?php $pic = $this->Picture->getUserPictureAbsolutePath($usr); ?>
 								<div class="centering-block">
 									<img src="<?=$pic?>" class="img-circular square-40px img-glow-on-hover-small" alt="<?= __('User profile picture') ?>" />
 								</div>

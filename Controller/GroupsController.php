@@ -40,11 +40,11 @@ class GroupsController extends AppController {
 			$sumMyPoints += $point['Point']['value'];
 		}
 
-		$mission = $this->Group->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
+		$mission = $this->Group->Phase->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
 
-		$quest = $this->Group->Mission->Quest->find('first', array('conditions' => array('Quest.id' => $quest_id)));
+		$quest = $this->Group->Phase->Mission->Quest->find('first', array('conditions' => array('Quest.id' => $quest_id)));
 
-		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
+		$groups = $this->Group->find('all');
 
 		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
 
@@ -91,7 +91,7 @@ class GroupsController extends AppController {
 			$groupsIBelong = array();
 		}
 
-		$myGroups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id, 'Group.user_id' => $this->getUserId())));
+		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
 
 		$mygroups_id = array();
 
@@ -129,7 +129,7 @@ class GroupsController extends AppController {
 
 		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$missions = $this->Group->Mission->find('all');
+		$missions = $this->Group->Phase->Mission->find('all');
 
 		$groups = $this->Group->find('all');
 
@@ -179,7 +179,7 @@ class GroupsController extends AppController {
 
 		$evokations = $this->Group->Evokation->find('all', array('order' => array('Evokation.created DESC'), 'conditions' => array('Group.mission_id' => $mission_id)));
 
-		$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
+		//$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
 
 		$users = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
@@ -263,76 +263,127 @@ class GroupsController extends AppController {
 	}
 
 /**
- * add method
+ * Receive group data via post and creates it in the database
  *
+ * @return redirect to view the group created
+ */
+public function addGroup() {
+	if ($this->request->is('post')) {
+		$this->Group->create();
+		if ($this->Group->save($this->request->data)) {
+
+			$me = $this->Group->find('first', array(
+				'conditions' => array(
+					'Group.id' => $this->Group->id
+				)
+			));
+
+			//GROUP USER
+			$insert['GroupsUser']['user_id'] = $me['Group']['user_id'];
+			$insert['GroupsUser']['group_id'] = $me['Group']['id'];
+			//add owner to groupsusers
+			$this->Group->GroupsUser->create();
+			$this->Group->GroupsUser->save($insert);
+
+			//CREATES BRAINSTORM AND ASSOCIATIONS FOR ALL PHASE QUESTS
+			$phase = $this->Group->Phase->find('first', array(
+				'conditions' => array('id' => $me['Group']['phase_id']),
+				'contain' => 'Quest'
+			));
+
+			//All the quests in the phase
+			foreach ($phase['Quest'] as $key => $quest) {
+				//Create brainstorm
+				$this->loadModel('BrainstormSession.Brainstorm');
+				$this->Brainstorm->create();
+				$insertData = array('user_id' => $me['Group']['user_id']);
+				$this->Brainstorm->save($insertData);
+
+				$brainstorm_id = $this->Brainstorm->id;
+
+				//Create brainstorm association with the two models
+				$this->Brainstorm->BrainstormAssociation->create();
+				$insertData = array(
+					array(
+						'brainstorm_id' => $brainstorm_id,
+						'model' => 'Group',
+						'foreign_id' => $me['Group']['id']
+					),
+					array(
+						'brainstorm_id' => $brainstorm_id,
+						'model' => 'Quest',
+						'foreign_id' => $quest['id']
+					)
+				);
+				$this->Brainstorm->BrainstormAssociation->saveAll($insertData);
+			}
+
+			//POWER POINTS
+			//attribute pp to group creator
+			$this->loadModel('QuestPowerPoint');
+			$pps = $this->QuestPowerPoint->find('all', array(
+				'conditions' => array(
+					'quest_id' => $me['Group']['quest_id']
+				)
+			));
+
+			foreach($pps as $pp) {
+				$data['UserPowerPoint']['user_id'] = $me['Group']['user_id'];
+				$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
+				$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
+				$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity'] * 30);
+				$data['UserPowerPoint']['model'] = 'Group';
+				$data['UserPowerPoint']['foreign_key'] = $me['Group']['id'];
+
+				$this->loadModel('UserPowerPoint');
+				$this->UserPowerPoint->create();
+				$this->UserPowerPoint->save($data);
+			}
+
+			if ($this->request->is('ajax')) {
+				return true;
+			}
+			$this->Session->setFlash(__('The group has been saved.'), 'flash_message');
+			return $this->redirect(array('action' => 'view', $this->Group->id));
+		}
+	}
+
+	if ($this->request->is('ajax')) {
+		return false;
+	}
+	$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
+}
+
+/**
+ * Renders add view (form to add a group)
+ * The group is associated with a given quest, and with the currently logged in user
+ *
+ * @param int $quest_id Id of the quest it will be associated to
  * @return void
  */
-	public function add($mission_id = null) {
-		if(isset($this->request->data['Group']['quest_id']) && !is_null($this->request->data['Group']['quest_id'])) {
-			$this->redirect($this->referer());
+	public function add($quest_id = null) {
+		if (($quest_id == null) && isset($this->request->data['Group']['quest_id'])) {
+			throw new NotFoundException(__('Invalid quest'));
 		}
-		if(isset($this->request->data['Group']['mission_id']))
-			$mission_id = $this->request->data['Group']['mission_id'];
+
+		//QUEST ID
+		if ($quest_id == null) {
+			$quest_id = $this->request->data['Group']['quest_id'];
+		}
+		
+		//MISSION
+		$quest = $this->Group->Quest->findById($quest_id);
+		$mission_id = $quest['Quest']['mission_id'];
+		$phase_id = $quest['Quest']['phase_id'];
+
+		$user_id = $this->getUserId();
+		$this->set(compact('user_id', 'mission_id', 'phase_id', 'quest_id'));
+
+		//AJAX RENDERS ELEMENT DIRECTLY
 		if ($this->request->is('post')) {
-			$this->Group->create();
-			if ($this->Group->save($this->request->data)) {
-
-				$me = $this->Group->find('first', array(
-					'conditions' => array(
-						'Group.id' => $this->Group->id
-					)
-				));
-
-
-				$insert['GroupsUser']['user_id'] = $me['Group']['user_id'];
-				$insert['GroupsUser']['group_id'] = $me['Group']['id'];
-				//add owner to groupsusers
-				$this->Group->GroupsUser->create();
-				$this->Group->GroupsUser->save($insert);
-
-				//attribute pp to group creator
-				$this->loadModel('QuestPowerPoint');
-				$pps = $this->QuestPowerPoint->find('all', array(
-					'conditions' => array(
-						'quest_id' => $me['Group']['quest_id']
-					)
-				));
-
-				foreach($pps as $pp) {
-					$data['UserPowerPoint']['user_id'] = $me['Group']['user_id'];
-					$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
-					$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
-					$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity'] * 30);
-					$data['UserPowerPoint']['model'] = 'Group';
-					$data['UserPowerPoint']['foreign_key'] = $me['Group']['id'];
-
-					$this->loadModel('UserPowerPoint');
-					$this->UserPowerPoint->create();
-					$this->UserPowerPoint->save($data);
-				}
-
-				$this->Session->setFlash(__('The group has been saved.'), 'flash_message');
-				return $this->redirect(array('action' => 'view', $this->Group->id));
-			} else {
-				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
-			}
+			$this->layout = 'ajax';
+			$this->render('/Elements/Groups/add_group');
 		}
-
-
-		$this->loadModel('Mission');
-		$missions = $this->Mission->find('list');
-
-		if(!is_null($mission_id)) {
-			$tmp = $this->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
-			if(!empty($tmp)) {
-				$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
-			}
-		}
-
-		$userid = $this->getUserId();
-		$users = $this->Group->User->find('list');
-		$evokations = $this->Group->Evokation->find('list');
-		$this->set(compact('users', 'userid', 'evokations', 'mission', 'missions'));
 	}
 
 /**

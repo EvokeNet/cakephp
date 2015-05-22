@@ -194,19 +194,6 @@ class Mission extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Group' => array(
-			'className' => 'Group',
-			'foreignKey' => 'mission_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'MissionIssue' => array(
 			'className' => 'MissionIssue',
 			'foreignKey' => 'mission_id',
@@ -252,7 +239,7 @@ class Mission extends AppModel {
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
+			'order' => 'Quest.position ASC',
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',

@@ -14,7 +14,7 @@
 	<div class="medium-2 columns gradient-on-right profile-sidebar" data-equalizer-watch>
 		<!-- PROFILE -->
 		<div class="row padding top-2 bottom-1 left-2 right-2">
-			<?php $pic = $this->UserPicture->getPictureAbsolutePath($user['User']); ?>
+			<?php $pic = $this->Picture->getUserPictureAbsolutePath($user['User']); ?>
 
 			<div class="centering-block large-12 medium-6 small-6 margins-auto text-center">
 				<div class="centered-block square-150px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
@@ -49,7 +49,7 @@
 		      <?php
 		        $counter = 0;
 		        foreach($similar_users as $similar_user):
-		        	$pic = $this->UserPicture->getPictureAbsolutePath($similar_user['User']); ?>
+		        	$pic = $this->Picture->getUserPictureAbsolutePath($similar_user['User']); ?>
 		      <li>
 		        <!-- PANEL -->
 		        <a href="#" data-reveal-id="modalProfilePotentialAllies<?= $counter ?>">
@@ -131,7 +131,7 @@
 						$counter = 0;
 						
 						foreach($followers as $ally):
-							$pic = $this->UserPicture->getPictureAbsolutePath($ally['User']); ?>
+							$pic = $this->Picture->getUserPictureAbsolutePath($ally['User']); ?>
 							<li class="text-center">
 								<!-- PICTURE -->
 								<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
