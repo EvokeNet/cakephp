@@ -10,3 +10,6 @@
 [submodule "Plugin/BrainstormSession"]
 	path = Plugin/BrainstormSession
 	url = git@bitbucket.org:quantica/brainstorm-session.git
+[submodule "Plugin/BrainstormSessionEvoke"]
+	path = Plugin/BrainstormSessionEvoke
+	url = git@bitbucket.org:quantica/brainstorm-session-evoke.git
