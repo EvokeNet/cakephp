@@ -41,8 +41,8 @@ class Quest extends AppModel {
 
 	const TYPE_EVIDENCE = 0;
 	const TYPE_QUESTIONNAIRE = 1;
-	const TYPE_GROUP_CREATION = 2;
-	const TYPE_BRAINSTORM = 3;
+	const TYPE_BRAINSTORM = 2;
+	const TYPE_GROUP_CREATION = 3;
 	const TYPE_EVOKATION = 4;
 
 /**
@@ -54,8 +54,8 @@ class Quest extends AppModel {
 		'type' => array(
 			self::TYPE_EVIDENCE => 'EVIDENCE',
 			self::TYPE_QUESTIONNAIRE => 'QUESTIONNAIRE',
-			self::TYPE_GROUP_CREATION => 'GROUP_CREATION',
 			self::TYPE_BRAINSTORM => 'BRAINSTORM',
+			self::TYPE_GROUP_CREATION => 'GROUP_CREATION',
 			self::TYPE_EVOKATION => 'EVOKATION'
 		)
 	);
