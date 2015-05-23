@@ -67,7 +67,7 @@
 
 				//SEND REQUEST BUTTON
 				else: ?>
-					<a href="#" data-reveal-id="Group<?= $group['id']?>" data-reveal class="button thin"><?= __('Send request to join')?></a>
+					<a href="#" data-reveal-id="Group<?= $group['id']?>" data-reveal class="button small"><?= __('Send request to join')?></a>
 					<?php
 				endif; ?>
 		</div>
