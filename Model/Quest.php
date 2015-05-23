@@ -78,6 +78,7 @@ class Quest extends AppModel {
 		$quest = $this->findById($quest_id);
 
 		$response = $this->getQuestResponse($user_id,$quest_id);
+		debug($response);
 
 		switch ($quest['Quest']['type']) {
 			case self::TYPE_EVIDENCE:
