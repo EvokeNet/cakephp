@@ -1,7 +1,7 @@
 <!-- GROUP -->
 <div>
 	<div class="row full-width profile-content padding top-1 bottom-1 left-2 right-2 border-bottom-divisor background-color-light-dark-on-hover">
-		<div class="small-9 columns table-row">
+		<div class="small-8 columns table-row">
 			<!-- PICTURE -->
 			<div class="table-cell vertical-align-middle square-60px">
 				<!-- <a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['id']));?>">
@@ -25,7 +25,7 @@
 		</div>
 
 		<!-- SOCIAL NETWORK and RELATION TO THE LOGGED IN USER -->
-		<div class="small-3 columns text-center">
+		<div class="small-4 columns text-center">
 			<div class="margin bottom-1 top"><?php
 				if (isset($group['facebook']) && !empty($group['facebook'])): ?>
 					<a href="<?= $group['facebook'] ?>" target="_blank" class="button-icon">

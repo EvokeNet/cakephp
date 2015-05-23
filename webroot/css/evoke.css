@@ -838,6 +838,10 @@ button, .button {
 	padding-bottom: 0.5rem;
 }
 
+.evoke button.small, .evoke .button.small {
+	padding: 1rem 1rem;
+}
+
 .evoke .button-icon:hover {
 	text-transform: none;
 }
