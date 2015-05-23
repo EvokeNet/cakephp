@@ -78,7 +78,6 @@ class Quest extends AppModel {
 		$quest = $this->findById($quest_id);
 
 		$response = $this->getQuestResponse($user_id,$quest_id);
-		debug($response);
 
 		switch ($quest['Quest']['type']) {
 			case self::TYPE_EVIDENCE:
@@ -141,11 +140,20 @@ class Quest extends AppModel {
 					)
 				));
 			case self::TYPE_GROUP_CREATION:
-				return $this->Group->find('first',array(
-					'conditions' => array('quest_id' => $quest_id),
-					'contain' => array('GroupsUser' => array(
-						'conditions' => array('user_id' => $user_id)
-					))
+				return $this->Group->GroupsUser->find('first', array(
+					'joins' => array(
+						array(
+							'table' => 'groups',
+							'alias' => 'Group',
+							'type' => 'inner',
+							'conditions' => array('Group.id = GroupsUser.group_id')
+						)
+					),
+					'fields' => array('Group.*','GroupsUser.*'),
+					'conditions' => array(
+						'GroupsUser.user_id' => $user_id,
+						'Group.quest_id' => $quest_id
+					)
 				));
 			case self::TYPE_EVOKATION:
 				//GROUP THIS USER IS MEMBER OF
