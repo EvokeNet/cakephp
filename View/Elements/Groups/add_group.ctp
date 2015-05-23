@@ -1,6 +1,7 @@
 <div class="row standard-width margin top-5">
 	<?php
 		echo $this->Form->create('Group', array(
+			'id' => 'createGroupForm',
 			'controller' => 'groups',
 			'action' => 'addGroup'
 		));
@@ -34,3 +35,8 @@
 	</button>
 	<?php echo $this->Form->end(); ?>
 </div>
+
+<?php
+	//SCRIPT
+	$this->Html->script('requirejs/app/Elements/Groups/add_group.js', array('inline' => false));
+?>

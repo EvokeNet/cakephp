@@ -341,15 +341,16 @@ public function addGroup() {
 			}
 
 			if ($this->request->is('ajax')) {
+				$this->autoRender = false;
 				return true;
 			}
 			$this->Session->setFlash(__('The group has been saved.'), 'flash_message');
-			return true;
-			// return $this->redirect(array('action' => 'view', $this->Group->id));
+			return $this->redirect(array('action' => 'view', $this->Group->id));
 		}
 	}
 
 	if ($this->request->is('ajax')) {
+		$this->autoRender = false;
 		return false;
 	}
 	$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
