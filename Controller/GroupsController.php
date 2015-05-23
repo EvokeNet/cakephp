@@ -279,8 +279,9 @@ public function addGroup() {
 			));
 
 			//GROUP USER
-			$insert['GroupsUser']['user_id'] = $me['Group']['user_id'];
-			$insert['GroupsUser']['group_id'] = $me['Group']['id'];
+			$insert['GroupsUser']['user_id'] = $this->getUserId();
+			$insert['GroupsUser']['group_id'] = $this->Group->id;
+
 			//add owner to groupsusers
 			$this->Group->GroupsUser->create();
 			$this->Group->GroupsUser->save($insert);
@@ -316,28 +317,6 @@ public function addGroup() {
 					)
 				);
 				$this->Brainstorm->BrainstormAssociation->saveAll($insertData);
-			}
-
-			//POWER POINTS
-			//attribute pp to group creator
-			$this->loadModel('QuestPowerPoint');
-			$pps = $this->QuestPowerPoint->find('all', array(
-				'conditions' => array(
-					'quest_id' => $me['Group']['quest_id']
-				)
-			));
-
-			foreach($pps as $pp) {
-				$data['UserPowerPoint']['user_id'] = $me['Group']['user_id'];
-				$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
-				$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
-				$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity'] * 30);
-				$data['UserPowerPoint']['model'] = 'Group';
-				$data['UserPowerPoint']['foreign_key'] = $me['Group']['id'];
-
-				$this->loadModel('UserPowerPoint');
-				$this->UserPowerPoint->create();
-				$this->UserPowerPoint->save($data);
 			}
 
 			if ($this->request->is('ajax')) {
