@@ -344,7 +344,8 @@ public function addGroup() {
 				return true;
 			}
 			$this->Session->setFlash(__('The group has been saved.'), 'flash_message');
-			return $this->redirect(array('action' => 'view', $this->Group->id));
+			return true;
+			// return $this->redirect(array('action' => 'view', $this->Group->id));
 		}
 	}
 
