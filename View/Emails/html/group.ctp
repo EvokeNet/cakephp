@@ -2,7 +2,7 @@
 </head>
 
 
-<h1><?php echo sprintf(__('Hi %s', $recipient['firstname'].' '.$recipient['lastname']));?></h1>
+<h1><?php echo sprintf(__('Hi %s!', $recipient['firstname'].' '.$recipient['lastname']));?></h1>
 <h2><?php echo sprintf(__('You have one request to join your group %s'), $group['title']);?></h2>
 
 <table class="margin: auto;">
@@ -29,11 +29,11 @@
 <br />
 
 <div style="text-align: center;">
-	<a href="<?php echo $_SERVER['SERVER_NAME'].'/evoke/groupsUsers/add/?arg='.$sender['id'].'&arg2='.$group['id']; ?>" <?= $style_link ?>>
+	<a href="<?php echo $_SERVER['SERVER_NAME'].'/groupsUsers/add/?arg='.$sender['id'].'&arg2='.$group['id']; ?>" <?= $style_link ?>>
 		<?php echo __('Accept User');?>
 	</a>
 
-	<a href="<?php echo $_SERVER['SERVER_NAME'].'/evoke/groupRequests/decline/?arg='.$sender['id'].'&arg2='.$group['id']; ?>" <?= $style_link ?>>
+	<a href="<?php echo $_SERVER['SERVER_NAME'].'/groupRequests/decline/?arg='.$sender['id'].'&arg2='.$group['id']; ?>" <?= $style_link ?>>
 		<?php echo __('Decline User');?>
 	</a>
 </div>
