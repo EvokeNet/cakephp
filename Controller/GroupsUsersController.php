@@ -709,6 +709,10 @@ class GroupsUsersController extends AppController {
  * @return void
  */
 	public function send($group_id){
+		if (!$this->GroupsUser->Group->exists($group_id)) {
+			throw new NotFoundException(__('Invalid group'));
+		}
+
 		//Requester is the current logged in user
 		$sender = $this->GroupsUser->User->find('first', array(
 			'conditions' => array('User.id' => $this->getUserId())

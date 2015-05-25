@@ -84,7 +84,7 @@
 	<p><?= __("A message will be sent to the group's owner and you will receive a notification when your request is approved or declined.")?></p>
 	<br />
 
-	<a class="button join-group" data-group-id="<?= $group['id']?>" href="<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $loggedInUser['id'], $group['id'])); ?>">
+	<a class="button join-group" data-group-id="<?= $group['id']?>" href="<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'send', $group['id'])); ?>">
 		<?php echo __('Send request to join');?>
 	</a>
 
