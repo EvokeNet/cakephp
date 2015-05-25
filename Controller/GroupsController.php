@@ -19,9 +19,9 @@ class GroupsController extends AppController {
 	public $user = null;
 
 	public function beforeFilter() {
-        parent::beforeFilter();
-        ini_set('memory_limit', '256M'); // emergencial measure
-    }
+		parent::beforeFilter();
+		ini_set('memory_limit', '256M'); // emergencial measure
+	}
 
 /**
  * index method
@@ -279,12 +279,12 @@ public function addGroup() {
 			));
 
 			//GROUP USER
-			$insert['GroupsUser']['user_id'] = $this->getUserId();
-			$insert['GroupsUser']['group_id'] = $this->Group->id;
+			$insert_group_user['GroupsUser']['user_id'] = $this->getUserId();
+			$insert_group_user['GroupsUser']['group_id'] = $this->Group->id;
 
 			//add owner to groupsusers
 			$this->Group->GroupsUser->create();
-			$this->Group->GroupsUser->save($insert);
+			$this->Group->GroupsUser->save($insert_group_user);
 
 			//CREATES BRAINSTORM AND ASSOCIATIONS FOR ALL PHASE QUESTS
 			$phase = $this->Group->Phase->find('first', array(
@@ -319,9 +319,45 @@ public function addGroup() {
 				$this->Brainstorm->BrainstormAssociation->saveAll($insertData);
 			}
 
+			//CREATES FORUM
+			$this->loadModel('Optimum.Forum');
+			$this->Forum->create();
+			$this->Forum->save();
+			$forum_id = $this->Forum->id;
+
+			//CREATES FORUM FILTERS
+			$insert_forum_filters = array(
+				'ForumFilter' => array(
+					array(
+						'forum_id' => $forum_id,
+						'model' => 'Mission',
+						'filter_value' => $phase['Phase']['mission_id']
+					),
+					array(
+						'forum_id' => $forum_id,
+						'model' => 'Phase',
+						'filter_value' => $phase['Phase']['id']
+					),
+					array(
+						'forum_id' => $forum_id,
+						'model' => 'Group',
+						'filter_value' => $me['Group']['id']
+					)
+				)
+			);
+			$this->Forum->create();
+			$this->Forum->saveAll($insert_forum_filters);
+
+			//RENDER VIEW (OR NOT)
 			if ($this->request->is('ajax')) {
 				$this->autoRender = false;
-				return true;
+
+				return json_encode(array(
+					'group_id' => $me['Group']['id'],
+					'mission_id' => $phase['Phase']['mission_id'],
+					'phase_id' => $phase['Phase']['id'],
+					'forum_id' => $forum_id
+				));
 			}
 			$this->Session->setFlash(__('The group has been saved.'), 'flash_message');
 			return $this->redirect(array('action' => 'view', $this->Group->id));
@@ -630,4 +666,5 @@ public function addGroup() {
 			$this->Session->setFlash(__('The group could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

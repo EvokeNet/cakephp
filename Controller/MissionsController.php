@@ -904,6 +904,20 @@ class MissionsController extends AppController {
 		));
 
 		//---------------------------------
+		//GROUP FORUM
+		$this->loadModel('Optimum.Forum');
+		$forum_group = $this->Forum->find('first', array(
+			'contain' => array(
+				'ForumFilter' => array(
+					'conditions' => array(
+						'ForumFilter.model' => 'Phase',
+						'ForumFilter.filter_value' => $phase['Phase']['id']
+					)
+				)
+			)
+		));
+
+		//---------------------------------
 		//MARK COMPLETED PHASES //this code can be improved a lot
 		//GROUPS
 		$myGroupsIds = array();

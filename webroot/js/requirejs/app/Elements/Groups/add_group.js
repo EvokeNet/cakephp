@@ -13,8 +13,21 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					$('.content-body').empty().append(evoke.loadingAnimation);
 				},
 				success: function(data) {
+					console.log(data);
+					//RELOAD TAB QUESTS
 					missionPanels.closeMissionOverlay();
 					missionPanels.reloadTabQuests();
+
+					//GROUP FORUM ICON IS NOW ENABLED
+					var forum_url = $('#menu-icon-tabForumGroup').data('forum-url');
+					console.log(forum_url);
+
+					forum_url.append(data.forum_id);
+					console.log($('#menu-icon-tabForumGroup').data('forum-url'));
+
+					$('#menu-icon-tabForumGroup').data('forum-id',data.forum_id);
+
+					$('#menu-icon-tabForumGroup').removeClass('hidden');
 				}
 			});
 			

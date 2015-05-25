@@ -80,6 +80,31 @@
 					endif;
 					?>
 
+					<!-- GROUP FORUM -->
+					<?php
+					//Phase ACT shows group forum
+					if ($phase['Phase']['position'] == 3):
+						$forum_group_id = '';
+						if (isset($forum_group) && isset($forum_group['Forum'])) {
+							$forum_group_id = $forum_group['Forum']['id'];
+						}
+						?>
+					<a class="menu-icon forum <?= (isset($forum_group) && isset($forum_group['Forum'])) ? '' : 'hidden' ?>"
+						id="menu-icon-tabForumGroup"
+						data-forum-url="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum_group_id))); ?>"
+						data-tab-content="tabForum"
+						data-forum-id="<?= $forum_group_id ?>">
+							<div class="row">
+								<span class="fa fa-users fa-2x vertical-align-middle text-color-gray"></span>
+							</div>
+							<div class="row menu-icon-label">
+								<span><?= __('Group') ?></span>
+							</div>
+					</a>
+					<?php
+					endif;
+					?>
+
 					<!-- MENU -->
 					<a class="menu-icon default" id="menu-icon-tabMenu" data-tab-content="tabMenu">
 						<div class="row">
