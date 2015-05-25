@@ -7,6 +7,14 @@
 	z-index: 0;
 }
 
+.login-button-wrapper {
+	margin-top: -3px;
+}
+
+.login-social-networks {
+    margin-top: 4px;
+}
+
 /* Tabs */
 .evoke .login .tabs {
 	line-height: 92px;
@@ -25,7 +33,7 @@
 
 
 /* Slide */
-div.evoke.slide.background-cover.active div.img-caption-bottom {
+.evoke.slide.background-cover.active .img-caption-bottom {
 	width: 50%;
 }
 

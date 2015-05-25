@@ -21,10 +21,10 @@
 				?>
 			</div>
 			<div class="small-12 medium-3 large-3 columns">
-				<div class="small-only-text-center">
+				<div class="small-only-text-center login-button-wrapper">
 					<span class="show-for-small-only  margin top-1"></span>
 
-					<button type="submit" class="small full-width">
+					<button type="submit" class="thin full-width">
 						<?php echo __('Sign in'); ?>
 					</button>
 				</div>
@@ -32,7 +32,7 @@
 
 			<!-- OTHER SIGN IN METHODS -->
 			<div class="small-12 medium-3 large-3 columns">
-				<div class="text-center">
+				<div class="text-center login-social-networks">
 					<?php echo __('OR'); ?>
 
 					<a href="<?php echo $fbLoginUrl; ?>" class="button-icon">

@@ -121,6 +121,10 @@ button:hover, button:focus, .button:hover, .button:focus {
 	font-size: 0.7rem;
 }
 
+.f-topbar-fixed {
+	padding-top: 58px;
+}
+
 /* --------------------------- */
 /* OFF-CANVAS */
 /* --------------------------- */
