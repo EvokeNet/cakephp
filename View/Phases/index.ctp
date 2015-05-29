@@ -21,7 +21,7 @@
 			<?php echo $this->Html->link($phase['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $phase['Mission']['id'])); ?>
 		</td>
 		<td><?php echo h($phase['Phase']['position']); ?>&nbsp;</td>
-		<td><?php echo h($phase['Phase']['type']); ?>&nbsp;</td>
+		<td><?php echo h($phase_types_array[$phase['Phase']['type']]); ?>&nbsp;</td>
 		<td><?php echo h($phase['Phase']['created']); ?>&nbsp;</td>
 		<td><?php echo h($phase['Phase']['modified']); ?>&nbsp;</td>
 		<td class="actions">

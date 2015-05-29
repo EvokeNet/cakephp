@@ -26,16 +26,14 @@ class PhasesController extends AppController {
 		$this->user['role_id'] = $this->getUserRole();
 		$this->user['id'] = $this->getUserId();
 		$this->user['name'] = $this->getUserName();
+
+		//Phase types
+		$phase_types_array = $this->Phase->enum('type');
+		$this->set(compact('phase_types_array'));
 		
 		//there was some problem in retrieving user's info concerning his/her role : send him home
 		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
 			$this->redirect(array('controller' => 'users', 'action' => 'login'));
-		}
-
-		//checking Acl permission
-		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
-			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."));	
-			$this->redirect($this->referer());
 		}
     }
 

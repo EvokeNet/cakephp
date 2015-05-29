@@ -197,7 +197,7 @@
 					endforeach;
 
 					//if its a group type quest, check to see if user owns or belongs to a group of this mission
-					if($q['Quest']['type'] == 3) {
+					if($q['Quest']['type'] == Quest::TYPE_GROUP_CREATION) {
 						if($hasGroup) {
 							$evidence_exists = true;
 						}

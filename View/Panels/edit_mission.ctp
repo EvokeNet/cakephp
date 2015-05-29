@@ -243,7 +243,7 @@
 							// echo $this->Form->input('description_es', array('label' => __('Spanish Description'), 'required' => true));
 							echo $this->Form->input('points', array('label' => __('Points'), 'required' => true));
 							echo $this->Form->hidden('mission_id', array('value' => $id));
-							echo $this->Form->radio('type', array(0 => 'Discussion', 1 => 'Project'), array('required' => true));
+							echo $this->Form->radio('type', array($phase_types_array), array('required' => true));
 							echo $this->Form->radio('show_dossier', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => 1));
 							echo $this->Form->hidden('form_type', array('value' => 'phase'));
 							echo $this->Form->input('position', array('required' => true));
@@ -334,7 +334,7 @@
 									// echo $this->Form->input('description_es', array('label' => __('Spanish Description'), 'value' => $phase['Phase']['description_es'], 'required' => true));
 									echo $this->Form->input('points', array('label' => __('Points'), 'value' => $phase['Phase']['points'], 'required' => true));
 									echo $this->Form->hidden('mission_id', array('value' => $id));
-									echo $this->Form->radio('type', array(0 => 'Discussion', 1 => 'Project'), array('value' => $phase['Phase']['type'], 'required' => true));
+									echo $this->Form->radio('type', array($phase_types_array), array('value' => $phase['Phase']['type'], 'required' => true));
 									echo $this->Form->radio('show_dossier', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => 1, 'value' => $phase['Phase']['show_dossier']));
 									echo $this->Form->hidden('form_type', array('value' => 'phase'));
 									echo $this->Form->input('position', array('value' => $phase['Phase']['position'], 'required' => true));

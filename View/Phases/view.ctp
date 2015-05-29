@@ -28,7 +28,7 @@
 		</dd>
 		<dt><?php echo __('Type'); ?></dt>
 		<dd>
-			<?php echo h($phase['Phase']['type']); ?>
+			<?php echo h($phase_types_array[$phase['Phase']['type']]); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>

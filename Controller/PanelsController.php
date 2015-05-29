@@ -1077,12 +1077,6 @@ class PanelsController extends AppController {
 			)
 		));
 
-		//image attached to mission, to be displayed in mission data tab
-		// $mission_img = null;
-		// if(!is_null($id)){
-		// 	$mission_img = $this->Attachment->find('all', array('order' => array('Attachment.id' => 'desc'), 'conditions' => array('Model' => 'Mission', 'foreign_key' => $id)));
-		// }
-
 		$dossier_files = null;
 		$dossier = null;
 		//checking to see if i already have a dossier and, if so, if I already have files attached to it
@@ -1248,15 +1242,11 @@ class PanelsController extends AppController {
 			}
 		}
 
-		/*$this->Quest->create();
-		$data['Quest']['description'] = "Quest description goes here..";
-		$data['Quest']['mission_id'] = $id;
-		$newQuest = $this->Quest->save($data);
-		debug($newQuest);*/
+		$phase_types_array = $this->Phase->enum('type');
 
 		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag',
 			'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en', 'dossier_links', 'dossier_videos', 'launchers',
-			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints', 'phase_types_array'));
 	}
 
 
@@ -1504,6 +1494,9 @@ class PanelsController extends AppController {
 * adds a new quest to the specific phase of the 'current-adding' mission
 */
 	public function add_quest($id, $origin = 'add_mission'){
+		$quest_types_array = $this->Quest->enum('type');
+		$this->set(compact('quest_types_array'));
+
 		if ($this->request->is('post')) {
 
 			$data = $this->request->data;
@@ -1537,7 +1530,7 @@ class PanelsController extends AppController {
 				}
 
 				//now checking to see if it were a questionnarie type quest (type = 1)
-				if($this->request->data['Quest']['type'] == 1) {
+				if($this->request->data['Quest']['type'] == Quest::TYPE_QUESTIONNAIRE) {
 					//create a questionnaire..
 					$questionnaire_data = array("Questionnaire" => array("quest_id" => $quest_id));
 					$this->Questionnaire->create();
@@ -1561,11 +1554,7 @@ class PanelsController extends AppController {
 										//create question answer for each question
 										$answer['question_id'] = $question_id;
 										$this->Answer->create();
-										if ($this->Answer->save($answer)) {
-											// $this->Session->setFlash(__('The answer has been saved.'));
-										} else {
-											// $this->Session->setFlash(__('The answer could not be saved. Please, try again.'));
-										}
+										$this->Answer->save($answer);
 									}
 								}
 							} else {
@@ -1637,7 +1626,7 @@ class PanelsController extends AppController {
 				}
 
 				//now checking to see if it were a questionnarie type quest (type = 1)
-				if($this->request->data['Quest']['type'] == 1) {
+				if($this->request->data['Quest']['type'] == Quest::TYPE_QUESTIONNAIRE) {
 					//destroy previous questionnaire of this quest and all other subjects
 					$this->destroyQuestionnaire($quest_id);
 
@@ -1784,7 +1773,7 @@ class PanelsController extends AppController {
 				$this->Session->setFlash(__('The quest has been deleted.'));
 
 				//now checking to see if it were a questionnarie type quest (type = 1)
-				if($this->Quest->type == 1) {
+				if($this->Quest->type == Quest::TYPE_QUESTIONNAIRE) {
 					//destroy previous questionnaire of this quest and all other subjects
 					$this->destroyQuestionnaire($quest_id);
 				}

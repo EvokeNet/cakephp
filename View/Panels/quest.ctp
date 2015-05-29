@@ -128,7 +128,7 @@
         		echo $this->Form->hidden('mission_id', array('value' => $mission_id));
         		echo $this->Form->hidden('phase_id', array('value' => $phase_id));
                 echo $this->Form->hidden('type', array('value' => $me['Quest']['type']));
-        		if($me['Quest']['type'] == 1) {
+        		if($me['Quest']['type'] == Quest::TYPE_QUESTIONNAIRE) {
         			//present the already registered questions of this questionnaire
         			$my_questionnaire = null;
         			foreach ($questionnaires as $questionnaire) {

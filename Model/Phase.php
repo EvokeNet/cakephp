@@ -17,8 +17,6 @@ class Phase extends AppModel {
  *
  * @var string
  */
-	
-	// public $name = 'Phase';
 	public $displayField = 'name';
 
 /**
@@ -27,11 +25,29 @@ class Phase extends AppModel {
  */
 	public $actsAs = array(
 		'Containable',
+		'Enumerable'
         // 'Translate' => array(
         //     'name' => 'phaseName', 
         //     'description' => 'phaseDescription'
         // )
     );
+
+    const TYPE_INDIVIDUAL = 0;
+	const TYPE_GROUP = 1;
+	const TYPE_EVOKATION = 2;
+
+/**
+ * Enumerable fields (handled by Enumerable behavior)
+ *
+ * @var array
+ */
+	public $enum = array(
+		'type' => array(
+			self::TYPE_INDIVIDUAL => 'Individual phase',
+			self::TYPE_GROUP => 'Group phase',
+			self::TYPE_EVOKATION => 'Evokation phase'
+		)
+	);
 
     public $translateModel = 'PhaseTranslation';
     public $translateTable = 'phase_translations';

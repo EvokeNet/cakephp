@@ -118,7 +118,7 @@ class QuestsController extends AppController {
 					}
 
 					//now checking to see if it were a questionnarie type quest (type = 1)
-					if($this->request->data['Quest']['type'] == 1) {
+					if($this->request->data['Quest']['type'] == Quest::TYPE_QUESTIONNAIRE) {
 						//create a questionnaire..
 						$questionnaire_data = array("Questionnaire" => array("quest_id" => $quest_id));
 						$this->Questionnaire->create();

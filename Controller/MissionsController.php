@@ -466,7 +466,7 @@ class MissionsController extends AppController {
 			
 
 			//if its a group type quest, check to see if user owns or belongs to a group of this mission
-			if($q['Quest']['type'] == 3) {
+			if($q['Quest']['type'] == Quest::TYPE_GROUP_CREATION) {
 				if($hasGroup) {
 					$done = true;
 				}
@@ -621,7 +621,7 @@ class MissionsController extends AppController {
 
 		if($mission['Mission']['basic_training'] == 1)
 			$this->render('basic_training');
-		else if($missionPhase['Phase']['type'] == 0)
+		else if($missionPhase['Phase']['type'] == Phase::TYPE_INDIVIDUAL)
 			$this->render('view_discussion');
 		else
 			$this->render('view_project');

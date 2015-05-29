@@ -144,17 +144,17 @@
 
 		//check the correct type of quest!
 		//its a normal evidence type quest
-		if($q['Quest']['type'] == 2) { 
+		if($q['Quest']['type'] ==  Quest::TYPE_EVIDENCE) { 
 			echo '<a href = "'. $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $mission['Mission']['id'], $missionPhase['Phase']['id'], $q['Quest']['id'])) . '" class = "button">' . __('Add Discussion') . '</a>';
 		}
 
 		//its a group type of quest
-		if($q['Quest']['type'] == 3) { 
+		if($q['Quest']['type'] == Quest::TYPE_GROUP_CREATION) { 
 			echo '<a href = "'. $this->Html->url(array('controller' => 'groups', 'action' => 'index', $mission['Mission']['id'], $q['Quest']['id'])) .'" class = "button">' . __('Join/Create a group!') . '</a>';
 		}
 
 		//its an evokation type of quest
-		if($q['Quest']['type'] == 4) { 
+		if($q['Quest']['type'] == Quest::TYPE_EVOKATION) { 
 			echo '<a href = "'. $this->Html->url(array('controller' => 'evidences', 'action' => 'add', $mission['Mission']['id'], $missionPhase['Phase']['id'], $q['Quest']['id'], true)) . '" class = "button">' . __('Add Evokation') . '</a>';
 		}
 

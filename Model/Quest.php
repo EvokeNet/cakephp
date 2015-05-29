@@ -52,11 +52,11 @@ class Quest extends AppModel {
  */
 	public $enum = array(
 		'type' => array(
-			self::TYPE_EVIDENCE => 'EVIDENCE',
-			self::TYPE_QUESTIONNAIRE => 'QUESTIONNAIRE',
-			self::TYPE_BRAINSTORM => 'BRAINSTORM',
-			self::TYPE_GROUP_CREATION => 'GROUP_CREATION',
-			self::TYPE_EVOKATION => 'EVOKATION'
+			self::TYPE_EVIDENCE => 'Evidence',
+			self::TYPE_QUESTIONNAIRE => 'Questionnaire',
+			self::TYPE_BRAINSTORM => 'Brainstorm',
+			self::TYPE_GROUP_CREATION => 'Group creation',
+			self::TYPE_EVOKATION => 'Evokation'
 		)
 	);
 
@@ -105,7 +105,7 @@ class Quest extends AppModel {
 				return false;
 
 			case self::TYPE_EVOKATION:
-				if (!is_null($response['Evokation']) && (count($response['Evokation']) > 0)) {
+				if (isset($response['Evokation']) && (count($response['Evokation']) > 0)) {
 					return true;
 				}
 				return false;
@@ -165,7 +165,7 @@ class Quest extends AppModel {
 						)
 					)
 				));
-				if (!is_null($group) && (count($group['GroupsUser']) > 0)) {
+				if (isset($group['GroupsUser']) && (count($group['GroupsUser']) > 0)) {
 					//EVOKATION BY THIS GROUP
 					return $this->Group->Evokation->findByGroupId($group_id);
 				}
