@@ -21,7 +21,11 @@ App::uses('AppModel', 'Model');
 class User extends AppModel {
 
 
-
+/**
+ * actsAs array
+ *
+ */
+	public $actsAs = array('Containable');
 
 	public $name = 'User';
 

@@ -3,25 +3,23 @@
 	<div class="row full-width profile-content padding top-1 bottom-1 left-2 right-2 border-bottom-divisor background-color-light-dark-on-hover">
 		<div class="small-8 columns table-row">
 			<!-- PICTURE -->
-			<div class="table-cell vertical-align-middle square-60px">
-				<!-- <a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['id']));?>">
-				</a> -->
-				<?php $pic = $this->Picture->getGroupPictureAbsolutePath($group); ?>
+			<a class="open-mission-overlay" href="<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['id']));?>">
+				<div class="table-cell vertical-align-middle square-60px">
+					<?php $pic = $this->Picture->getGroupPictureAbsolutePath($group); ?>
 
-				<div class="square-60px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-					<img class="hidden" src="<?= $pic ?>" alt="Group <?= $group['title'] ?>'s picture" /> <!-- For accessibility -->
+					<div class="square-60px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
+						<img class="hidden" src="<?= $pic ?>" alt="Group <?= $group['title'] ?>'s picture" /> <!-- For accessibility -->
+					</div>
+					
 				</div>
-				
-			</div>
 
-			<!-- GROUP INFO -->
-			<div class="table-cell vertical-align-middle full-width padding left-1">
-				<!-- <a href = "<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['id']));?>">
-				</a> -->
-				<h5><?= $group['title']?></h5>
-				<p><?= $group['description']?></p>
-				
-			</div>
+				<!-- GROUP INFO -->
+				<div class="table-cell vertical-align-middle full-width padding left-1">
+					<h5><?= $group['title']?></h5>
+					<p><?= $group['description']?></p>
+					
+				</div>
+			</a>
 		</div>
 
 		<!-- SOCIAL NETWORK and RELATION TO THE LOGGED IN USER -->

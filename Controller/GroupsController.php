@@ -209,7 +209,10 @@ class GroupsController extends AppController {
 			throw new NotFoundException(__('Invalid group'));
 		}
 
-		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
+		$options = array(
+			'contain' => array('User', 'Phase' => 'Mission'),
+			'conditions' => array('Group.' . $this->Group->primaryKey => $id
+		));
 		$group = $this->Group->find('first', $options);
 		$this->loadModel('Attachment');
 		$group_img = $this->Attachment->find('first', array(
@@ -232,7 +235,12 @@ class GroupsController extends AppController {
 			$sumMyPoints += $point['Point']['value'];
 		}
 
-		$groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.group_id' => $id)));
+		$groupsUsers = $this->Group->GroupsUser->find('all', array(
+			'contain' => 'User',
+			'conditions' => array('GroupsUser.group_id' => $id)
+		));
+
+		$countMembers = count($groupsUsers);
 
 		$iam_member = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
 
@@ -259,7 +267,7 @@ class GroupsController extends AppController {
 
 		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $me)));
 
-		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'group_img', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints', 'myEvokation', 'iam_member'));
+		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'group_img', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints', 'myEvokation', 'iam_member', 'countMembers'));
 	}
 
 /**
@@ -550,6 +558,7 @@ public function addGroup() {
 		if(!$user_id || !$id) return false;
 		$this->loadModel('GroupsUser');
 		$users = $this->GroupsUser->find('all', array(
+			'contain' => 'User',
 			'conditions' => array(
 				'GroupsUser.group_id' => $id
 			)

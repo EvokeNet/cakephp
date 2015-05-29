@@ -9,6 +9,12 @@ App::uses('AppModel', 'Model');
 class GroupsUser extends AppModel {
 
 
+/**
+ * actsAs array
+ *
+ */
+	public $actsAs = array('Containable');
+
 	public function getGroupAndUsers($group_id = null) {
 		return $this->Group->find('first', array(
 			'conditions' => array(
