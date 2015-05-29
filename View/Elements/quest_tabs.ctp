@@ -114,6 +114,14 @@
 								<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
 								echo $this->element('BrainstormSessionEvoke.timeline',array('states' => $q['Timeline']));
 							endif;
+
+						//EVOKATION
+						elseif ($q['type'] == Quest::TYPE_EVOKATION): ?>
+							<p class="text-center">
+								<a class="button small open-mission-overlay disabled">
+									<?= __('Create your evokation') ?>
+								</a>
+							</p><?php
 						endif;
 					endif; ?>
 				</div>
