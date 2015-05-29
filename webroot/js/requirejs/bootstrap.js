@@ -3,6 +3,7 @@ requirejs.config({
 	paths: {
 		// EVOKE SPECIFIC MODULES
 		evoke: '../js/requirejs/app/evoke',
+		ajax_retry: '../js/requirejs/modules/ajax_retry',
 		missionpanels: '../js/requirejs/modules/mission_panels',
 		// COMPONENTS (ALPHABETICAL ORDER PLEASE)
 		chartjs : 'chartjs/Chart.min',
@@ -15,6 +16,7 @@ requirejs.config({
 		fullpage: 'fullpage.js/jquery.fullPage.min',
 		handlebars: 'handlebars/handlebars.min',
 		jquery : 'jquery/dist/jquery.min',
+		jqueryajaxretry: 'jquery-ajax-retry/dist/jquery.ajax-retry.min',
 		jqueryui : 'jquery-ui/jquery-ui.min',
 		jqueryslimscroll : 'jquery.slimscroll/jquery.slimscroll.min',
 		linkpreview: 'linkpreview/library/js/bootstrap-linkpreview.min',
@@ -49,6 +51,6 @@ requirejs.config({
 	}
 });
 
-require(['evoke'], function (evoke) {
+require(['evoke', 'ajax_retry'], function (evoke) {
 	evoke.initialize();
 });
