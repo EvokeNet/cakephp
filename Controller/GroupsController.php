@@ -198,76 +198,39 @@ class GroupsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		$me = $this->getUserId();
-
-		$flags = array(
-			'_owner' => false,
-			'_member' => false
-		);
-
 		if (!$this->Group->exists($id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
 
-		$options = array(
-			'contain' => array('User', 'Phase' => 'Mission'),
-			'conditions' => array('Group.' . $this->Group->primaryKey => $id
-		));
-		$group = $this->Group->find('first', $options);
-		$this->loadModel('Attachment');
-		$group_img = $this->Attachment->find('first', array(
-			'order' => array(
-				'Attachment.id DESC'
-			),
-			'conditions' => array(
-				'Attachment.model' => 'Group',
-				'Attachment.foreign_key' => $id
+		$user = $this->Auth->user();
+
+		//GROUP
+		$group_array = $this->Group->find('first', array(
+			'conditions' => array('Group.id' => $id),
+			'contain' => array(
+				'User',
+				'Phase' => 'Mission',
+				'GroupsUser' => 'User'
 			)
 		));
 
-		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $me)));
+		//Separating array for layout variables
+		$group = $group_array['Group'];
+		$groupsUsers = $group_array['GroupsUser'];
+		$groupOwner = $group_array['User'];
+		$groupMission = $group_array['Phase']['Mission'];
 
-		$myPoints = $this->Group->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+		//MEMBERSHIP
+		$group['is_owner'] = $this->Group->isOwner($id, $user['id']);
+		$group['is_member'] = $this->Group->isMember($id, $user['id']);
 
-		$sumMyPoints = 0;
-		
-		foreach($myPoints as $point){
-			$sumMyPoints += $point['Point']['value'];
-		}
-
-		$groupsUsers = $this->Group->GroupsUser->find('all', array(
-			'contain' => 'User',
-			'conditions' => array('GroupsUser.group_id' => $id)
-		));
-
-		$countMembers = count($groupsUsers);
-
-		$iam_member = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
-
-		//check to see if i am the owner
-		if($this->isOwner($me, $id)) {
-			$flags['_owner'] = true;
-			$flags['_member'] = true;
-		} else {
-			//i am not the owner... am i at least part of the group?
-			if($this->isMember($me, $id)) {
-				$flags['_member'] = true;
-			}
-		}
-
-		$myEvokation = $this->Group->Evokation->find('first', array(
-			'conditions' => array(
-				'Evokation.group_id' => $id
-			)
-		));
-
+		//GROUP REQUESTS
 		$groupsRequestsPending = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status = 0')));
 
 		$groupsRequests = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status' => array(1, 2))));
 
-		$userRequest = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.user_id' => $me)));
-
-		$this->set(compact('user', 'userRequest', 'groupsUsers', 'group', 'group_img', 'groupsRequests', 'groupsRequestsPending', 'flags', 'myPoints', 'myEvokation', 'iam_member', 'countMembers'));
+		//Variables
+		$this->set(compact('user', 'group', 'groupOwner', 'groupsUsers', 'groupMission', 'groupsRequests', 'groupsRequestsPending'));
 	}
 
 /**

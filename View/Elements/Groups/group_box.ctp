@@ -1,25 +1,37 @@
 <!-- GROUP -->
 <div>
-	<div class="row full-width profile-content padding top-1 bottom-1 left-2 right-2 border-bottom-divisor background-color-light-dark-on-hover">
-		<div class="small-8 columns table-row">
-			<!-- PICTURE -->
-			<a class="open-mission-overlay" href="<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['id']));?>">
-				<div class="table-cell vertical-align-middle square-60px">
-					<?php $pic = $this->Picture->getGroupPictureAbsolutePath($group); ?>
+	<div class="row full-width profile-content padding top-1 bottom-1 left-2 right-2 border-top-divisor border-bottom-divisor background-color-dark-opacity-05 background-color-light-dark-on-hover">
+		<div class="small-8 columns table-row"> <?php
 
-					<div class="square-60px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-						<img class="hidden" src="<?= $pic ?>" alt="Group <?= $group['title'] ?>'s picture" /> <!-- For accessibility -->
+			//LINK TO OPEN GROUP PAGE IN MISSION OVERLAY
+			if (isset($link_to_group_page) && ($link_to_group_page)): ?>
+				<a class="open-mission-overlay" href="<?php echo $this->Html->url(array('controller' => 'groups', 'action' => 'view', $group['id']));?>"> <?php
+			endif; ?>
+
+					<!-- PICTURE -->
+					<div class="table-cell vertical-align-middle square-60px">
+						<?php $pic = $this->Picture->getGroupPictureAbsolutePath($group); ?>
+
+						<div class="square-60px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
+							<img class="hidden" src="<?= $pic ?>" alt="Group <?= $group['title'] ?>'s picture" /> <!-- For accessibility -->
+						</div>
+						
 					</div>
-					
-				</div>
 
-				<!-- GROUP INFO -->
-				<div class="table-cell vertical-align-middle full-width padding left-1">
-					<h5><?= $group['title']?></h5>
-					<p><?= $group['description']?></p>
-					
-				</div>
-			</a>
+					<!-- GROUP INFO -->
+					<div class="table-cell vertical-align-middle full-width padding left-1">
+						<?php if (isset($show_title) && ($show_title)): ?>
+							<h5><?= $group['title']?></h5>
+						<?php endif; ?>
+
+
+						<p><?= $group['description']?></p>
+					</div> <?php
+		
+			if (isset($link_to_group_page) && ($link_to_group_page)): ?>
+				</a> <?php
+			endif; ?>
+	
 		</div>
 
 		<!-- SOCIAL NETWORK and RELATION TO THE LOGGED IN USER -->
@@ -46,7 +58,7 @@
 				//OWNER
 				if($group['is_owner']): ?>
 					<span class="text-color-highlight">
-						<i class="fa fa-check text-color-highlight"></i> <?= __('Owner') ?>
+						<i class="fa fa-check text-color-highlight"></i> <?= __('Leader') ?>
 					</span>
 					<?php
 

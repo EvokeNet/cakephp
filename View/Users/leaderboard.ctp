@@ -14,9 +14,6 @@
 ?>
 
 <section class="leaderboard">	
-
-	<?php echo $this->Session->flash(); ?>
-
 	<div class="row standard-width">
 		<div class="small-12 columns padding top-2">
 

@@ -313,7 +313,7 @@ button:hover, button:focus, .button:hover, .button:focus {
 /* COMPLEMENTING TABS */
 /* Small-image  */
 /* --------------------------- */
-.tabs-style-small-image dd {
+.tabs-style-image-and-text dd {
 	background-color: transparent;
 }
 

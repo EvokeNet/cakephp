@@ -19,104 +19,7 @@
 
 	<div id="missions-body" class="missions full-height clearfix">
 		<!-- MENU ICONS (BUTTONS TO OPEN MISSION-TAB-CONTENT) -->
-		<nav class="tab-bar" id="tab-bar-off-canvas">
-			<div class="close-sidebar-button fixed left-small text-center hidden">
-				<a class="close-sidebar">
-					<div class="row">
-						<i class="fa fa-angle-double-left fa-2x"></i>
-					</div>
-					<div class="row menu-icon-label">
-						<span><?= __('Back') ?></span>
-					</div>
-				</a>
-			</div>
-
-			<section class="left-small" id="menu-left-small">
-				<div class="left-small-content text-center background-color-standard opacity-07 padding bottom-1">
-					<!-- QUESTS -->
-					<a class="menu-icon default" id="menu-icon-tabQuests" data-tab-content="tabQuests">
-						<div class="row">
-							<span class="icon-brankic icon-compass fa-2x vertical-align-middle text-color-gray"></span>
-						</div>
-						<div class="row menu-icon-label">
-							<span><?= __('Quests') ?></span>
-						</div>
-					</a>
-
-					<!-- DOSSIER -->
-					<a class="menu-icon default" id="menu-icon-tabDossier" data-tab-content="tabDossier">
-						<div class="row">
-							<span class="icon-brankic icon-cabinet2 fa-2x vertical-align-middle text-color-gray"></span>
-						</div>
-						<div class="row menu-icon-label">
-							<span><?= __('Dossier') ?></span>
-						</div>
-					</a>
-					
-					<!-- EVIDENCES -->
-					<a class="menu-icon default" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
-						<div class="row">
-							<span class="icon-brankic icon-wallet fa-2x vertical-align-middle text-color-gray"></span>
-						</div>
-						<div class="row menu-icon-label">
-							<span><?= __('Evidences') ?></span>
-						</div>
-					</a>
-					
-
-					<!-- FORUM -->
-					<?php
-					if (isset($forum) && isset($forum['Forum'])): ?>
-					
-					<a class="menu-icon forum" id="menu-icon-tabForum" data-forum-url="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum['Forum']['id']))); ?>" data-tab-content="tabForum" data-forum-id="<?= $forum['Forum']['id'] ?>">
-						<div class="row">
-							<span class="fa fa-lightbulb-o fa-2x vertical-align-middle text-color-gray"></span>
-						</div>
-						<div class="row menu-icon-label">
-							<span><?= __('Discuss') ?></span>
-						</div>
-					</a>
-					<?php
-					endif;
-					?>
-
-					<!-- GROUP FORUM -->
-					<?php
-					//Phase ACT shows group forum
-					if ($phase['Phase']['position'] == 3):
-						$forum_group_id = '';
-						if (isset($forum_group) && isset($forum_group['Forum'])) {
-							$forum_group_id = $forum_group['Forum']['id'];
-						}
-						?>
-					<a class="menu-icon forum <?= (isset($forum_group) && isset($forum_group['Forum'])) ? '' : 'hidden' ?>"
-						id="menu-icon-tabForumGroup"
-						data-forum-url="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum_group_id))); ?>"
-						data-tab-content="tabForum"
-						data-forum-id="<?= $forum_group_id ?>">
-							<div class="row">
-								<span class="fa fa-users fa-2x vertical-align-middle text-color-gray"></span>
-							</div>
-							<div class="row menu-icon-label">
-								<span><?= __('Group') ?></span>
-							</div>
-					</a>
-					<?php
-					endif;
-					?>
-
-					<!-- MENU -->
-					<a class="menu-icon default" id="menu-icon-tabMenu" data-tab-content="tabMenu">
-						<div class="row">
-							<span class="icon-brankic icon-grid icon-size-medium vertical-align-middle text-color-gray"></span>
-						</div>
-						<div class="row menu-icon-label">
-							<span><?= __('Menu') ?></span>
-						</div>
-					</a>
-				</div>
-			</section>
-		</nav>
+		<?php echo $this->fetch('panelsMenu'); ?>
 
 		<!-- CONTENT OVERLAY - Section that dinamically loads content that will be manipulated by the user, and therefore needs focus -->
 		<div id="missions-content-overlay" class="background-color-dark absolute min-full-height full-width hidden">
@@ -143,7 +46,7 @@
 		    	<!-- MISSION SUBMENU (description, phases) -->
 				<div class="mission-sidebar small-12 medium-12 large-5 columns min-full-height" data-equalizer-watch data-equalizer-mq="large-up">
 					<div class="missions-submenu padding top-1 left-3">
-						<?php echo $this->fetch('missionsSubmenuContent'); ?>
+						<?php echo $this->fetch('panelsMainContent'); ?>
 					</div>
 				</div>
 
@@ -168,37 +71,6 @@
 					<aside class="tabContent hidden full-height" id="tabEvidences">
 						<div class="large-12 large-centered columns full-height paddings-0 background-color-standard margin right-1">
 							<?php echo $this->fetch('tabEvidencesContent'); ?>
-						</div>
-					</aside>
-
-					<!-- MENU -->
-					<aside class="tabContent hidden full-height" id="tabMenu">
-						<div class="large-12 large-centered full-height background-color-standard tabMenuContent">
-							<ul class=" full-width no-marker">
-								<!-- OTHER MISSIONS -->
-								<li class="table full-width text-center">
-									<div class="table-cell  vertical-align-middle background-cover" data-interchange="['<?= $this->webroot.'img/missionTabMenu_missions.jpg' ?>',(default)]">
-										<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class="text-glow-on-hover">
-											<div class="inline-block padding all-2 margin bottom-1 background-color-standard img-circular border-color-highlight border-style-solid img-glow-on-hover-small">
-												<span class="icon-brankic icon-folder fa-4x text-color-highlight"></span>
-											</div>
-											<h4 class="text-color-highlight"><?= __('See other missions') ?></h4>
-										</a>
-									</div>
-								</li>
-
-								<!-- EVOKATION -->
-								<li class="table full-width text-center">
-									<div class="table-cell  vertical-align-middle background-cover" data-interchange="['<?= $this->webroot.'img/missionTabMenu_evokation.jpg' ?>',(default)]">
-										<a href="#" class="text-glow-on-hover">
-											<div class="inline-block padding all-2 margin bottom-1 background-color-standard img-circular border-color-highlight border-style-solid img-glow-on-hover-small">
-												<span class="icon-brankic icon-rocket fa-4x text-color-highlight"></span>
-											</div>
-											<h4 class="text-color-highlight"><?= __('Create your evokation') ?></h4>
-										</a>
-									</div>
-								</li>
-							</ul>
 						</div>
 					</aside>
 				</div>

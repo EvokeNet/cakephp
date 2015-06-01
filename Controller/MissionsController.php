@@ -679,7 +679,7 @@ class MissionsController extends AppController {
 		//Render
 		$this->set(compact('phase'));
 		$this->layout = 'ajax';
-		$this->render('/Elements/quest_tabs');
+		$this->render('/Elements/Missions/quest_tabs');
 	}
 
 /**
@@ -866,18 +866,25 @@ class MissionsController extends AppController {
 
 		//---------------------------------
 		//PHASE THAT WILL BE RENDERED
+		$phase_contain = array(
+			'Group' => array(
+				'User',
+				'GroupsUser' => 'User'
+			),
+			'Quest' => 'Questionnaire'
+		);
 		//Did not request a specific phase ID
 		if (!is_null($phase_id)) {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id, 'Phase.id' => $phase_id),
-				'contain' => array('Group', 'Quest' => 'Questionnaire')
+				'contain' => $phase_contain
 			));
 		}
 		//Requested a specific position
 		else if (!is_null($phase_position)) {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id, 'Phase.position' => $phase_position),
-				'contain' => array('Group', 'Quest' => 'Questionnaire')
+				'contain' => $phase_contain
 			));
 		}
 		//Default: phase in the first position
@@ -885,7 +892,7 @@ class MissionsController extends AppController {
 			$phase = $this->Mission->Phase->find('first', array(
 				'conditions' => array('Phase.mission_id' => $mission_id),
 				'order' => array('Phase.position' => 'asc'),
-				'contain' => array('Group', 'Quest' => 'Questionnaire')
+				'contain' => $phase_contain
 			));
 		}
 
@@ -905,7 +912,6 @@ class MissionsController extends AppController {
 
 		//---------------------------------
 		//GROUP FORUM
-		$this->loadModel('Optimum.Forum');
 		$forum_group = $this->Forum->find('first', array(
 			'contain' => array(
 				'ForumFilter' => array(
@@ -920,31 +926,28 @@ class MissionsController extends AppController {
 		//---------------------------------
 		//MARK COMPLETED PHASES //this code can be improved a lot
 		//GROUPS
-		$myGroupsIds = array();
+		$myGroups = array();
 		$hasGroup = false;
+		$this->loadModel('Group');
 		$this->loadModel('GroupsUser');
 
 		//check to see if user has created/joined a group in this phase of this mission
 		//it should be just one
-		foreach ($phase['Group'] as $group) {
-			//CREATED THE GROUP
-			if ($group['user_id'] == $this->user['id']) {
-				$hasGroup = true;
-				array_push($myGroupsIds, $group['id']);
-			}
-			//JOINED THE GROUP
-			else {
-				$groupsuser = $this->GroupsUser->find('first', array(
-					'conditions' => array(
-						'GroupsUser.group_id' => $group['id'],
-						'GroupsUser.user_id' => $this->user['id']
-					)
-				));
+		foreach ($phase['Group'] as &$group) {
+			//MEMBERSHIP
+			$group['is_owner'] = $this->Group->isOwner($group['id'], $user['id']);
+			$group['is_member'] = $this->Group->isMember($group['id'], $user['id']);
 
-				if(isset($groupsuser['GroupsUser'])) {
-					$hasGroup = true;
-					array_push($myGroupsIds, $groupsuser['GroupsUser']['group_id']);
-				}
+			//IS OWNER OR MEMBER
+			if ($group['is_owner'] || $group['is_member']) {
+				$hasGroup = true;
+
+				//GROUP REQUESTS
+				$group['requests_pending'] = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $group['id'], 'GroupRequest.status = 0')));
+
+				$group['requests'] = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $group['id'], 'GroupRequest.status' => array(1, 2))));
+
+				array_push($myGroups, $group);
 			}
 		}
 
@@ -1000,7 +1003,7 @@ class MissionsController extends AppController {
 			'allowSignedRequest' => false
 		));
 
-		$this->set(compact('mission', 'phase', 'forum', 'novels', 'user', 'facebook'));
+		$this->set(compact('mission', 'phase', 'myGroups', 'forum', 'novels', 'user', 'facebook'));
 	}
 
 
