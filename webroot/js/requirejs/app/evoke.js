@@ -20,7 +20,7 @@ define(['modernizr', 'foundation'], function(Modernizr, Foundation) {
 	/**
 	 * Loading animation
 	 */
-	evoke.loadingAnimation = '<div class="text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>';
+	evoke.loadingAnimation = '<div class="loading text-center"><div class="loading-circle-outside"></div><div class="loading-circle-inside"></div></div>';
 
 	return evoke;
 });

@@ -6,9 +6,8 @@
 		endforeach;
 	endif; ?>
 </div>
-<div class="moreEvidencesLoading text-center hidden padding all-1">
-	<div class="loading-circle-outside"></div>
-	<div class="loading-circle-inside"></div>
+<div class="moreEvidencesLoading hidden padding all-1">
+	<?php echo $this->element('loading_animation'); ?>
 </div>
 
 <!-- SCRIPT -->

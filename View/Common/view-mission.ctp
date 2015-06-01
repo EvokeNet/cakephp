@@ -206,18 +206,14 @@
 
 			<div id="tabForum" class="row full-width clearfix absolute full-height hidden">
 				<div id="tabForumContent" class="full-height">
-					<div>
-						<div class="loading-circle-outside"></div>
-						<div class="loading-circle-inside"></div>
-					</div>
+					<?php echo $this->element('loading_animation'); ?>
 				</div>
 			</div>
 
 			<!-- GRAPHIC NOVEL -->
 			<div class="section missions-graphic-novel">
 				<div id="loading">
-					<div class="loading-circle-outside"></div>
-					<div class="loading-circle-inside"></div>
+					<?php echo $this->element('loading_animation'); ?>
 				</div>
 
 				<div class="missions-carousel full-width">
@@ -234,8 +230,8 @@
 					<?php
 					//NO GRAPHIC NOVEL (just in case)
 					if (count($novels) < 1) {?>
-						<div data-alert="" class="alert-box radius">
-							Alert: There is no graphic novel available in this mission.
+						<div data-alert class="alert-box radius">
+							<?= __('Alert: There is no graphic novel available in this mission.'); ?>
 							<a href="" class="close">×</a>
 						</div>
 					<?php } ?>
