@@ -1,6 +1,6 @@
 <!-- GROUP -->
 <div>
-	<div class="row full-width profile-content padding top-1 bottom-1 left-2 right-2 border-top-divisor border-bottom-divisor background-color-dark-opacity-05 background-color-light-dark-on-hover">
+	<div class="row full-width profile-content padding top-1 bottom-1 left-2 right-2 border-top-divisor border-bottom-divisor background-color-light-dark-on-hover">
 		<div class="small-8 columns table-row"> <?php
 
 			//LINK TO OPEN GROUP PAGE IN MISSION OVERLAY

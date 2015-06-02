@@ -8,33 +8,21 @@
 	$this->end();
 
 	//PANELS MAIN CONTENT
-	$this->start('panelsMainContent'); ?>
+	$this->start('panelsMainContent');
 
-		<div class="content">
-			<h1 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h1>
-
-			<?php
-			//PHASES BAR
-			echo $this->element('phases_bar',array(
-				'mission' => $mission,
-				'current_phase' => $phase['Phase']['id']
-			));
-
-			//Content depends on the phase
-			switch($phase['Phase']['type']) {
-				case Phase::TYPE_INDIVIDUAL:
-					echo $this->element('Missions/panel_mission_info',array('mission' => $mission));
-					break;
-				case Phase::TYPE_GROUP:
-					foreach ($myGroups as $group) {
-						echo $this->element('Missions/panel_group_area', array('group' => $group));
-					}
-					break;
-				case Phase::TYPE_EVOKATION:
-					echo $this->element('Missions/panel_evokation_area');
-			}
-			?>
-		</div> <?php
+		//Content depends on the phase
+		switch($phase['Phase']['type']) {
+			case Phase::TYPE_INDIVIDUAL:
+				echo $this->element('Missions/panel_mission_info',array('mission' => $mission, 'phase_id' => $phase['Phase']['id']));
+				break;
+			case Phase::TYPE_GROUP:
+				foreach ($myGroups as $group) {
+					echo $this->element('Missions/panel_group_area', array('group' => $group, 'phase_id' => $phase['Phase']['id']));
+				}
+				break;
+			case Phase::TYPE_EVOKATION:
+				echo $this->element('Missions/panel_evokation_area', array('phase_id' => $phase['Phase']['id']));
+		}
 
 	$this->end();
 
