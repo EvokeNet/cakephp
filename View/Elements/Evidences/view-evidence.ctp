@@ -126,25 +126,25 @@ if (isset($evidence)):
 
 						<!-- MAIN CONTENT -->
 						<?php
-							if (isset($evidence['Evidence']['main-content']) && isset($evidence['Evidence']['type'])):
+							if (isset($evidence['Evidence']['main_content']) && isset($evidence['Evidence']['type'])):
 								//IMAGE
 								if (substr( $evidence['Evidence']['type'], 0, 5) === "image"):
 								?>
-									<img src="<?= $evidence['Evidence']['main-content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" />
+									<img src="<?= $evidence['Evidence']['main_content'] ?>" alt="$evidence['Evidence']['title']" class="full-width" />
 								<?php
 
 								//VIDEO
 								elseif (substr( $evidence['Evidence']['type'], 0, 5) === "video"):
 								?>
 									<div class="flex-video-new">
-										<iframe width="420" height="315" src="<?= $evidence['Evidence']['main-content'] ?>" frameborder="0" allowfullscreen></iframe>
+										<iframe width="420" height="315" src="<?= $evidence['Evidence']['main_content'] ?>" frameborder="0" allowfullscreen></iframe>
 									</div>
 								<?php
 
 								//LINK
 								elseif (substr( $evidence['Evidence']['type'], 0, 4) === "link"):
 								?>
-									<a id="evidenceLink" href="<?= $evidence['Evidence']['main-content'] ?>" class="hidden"></a>
+									<a id="evidenceLink" href="<?= $evidence['Evidence']['main_content'] ?>" class="hidden"></a>
 
 								<?php
 									echo $this->element('Templates/Evidences/evidence-type-link-view');
