@@ -104,7 +104,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					//Execute handlebars
 					var context = {
 						id: 'evidence-1',
-						input_file_name: 'main-content'
+						input_file_name: 'main_content'
 					};
 					var html = template(context);
 

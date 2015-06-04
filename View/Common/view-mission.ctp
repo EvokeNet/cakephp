@@ -44,8 +44,8 @@
 		<section class="main-section relative min-full-height">
 		    <div id="missionSidebar" class="row full-width clearfix absolute full-height hidden" data-equalizer>
 		    	<!-- MISSION SUBMENU (description, phases) -->
-				<div class="mission-sidebar small-12 medium-12 large-5 columns min-full-height" data-equalizer-watch data-equalizer-mq="large-up">
-					<div class="missions-submenu padding top-1 left-3">
+				<div class="mission-sidebar small-12 medium-12 large-5 columns min-full-height padding all-0" data-equalizer-watch data-equalizer-mq="large-up">
+					<div class="missions-submenu">
 						<?php echo $this->fetch('panelsMainContent'); ?>
 					</div>
 				</div>

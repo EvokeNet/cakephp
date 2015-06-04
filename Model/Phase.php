@@ -54,11 +54,11 @@ class Phase extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-	public function getNextPhase($phase, $id) {
+	public function getNextPhase($phase, $mission_id) {
 
 		$mps = $this->Mission->Phase->find('all', array(
 			'conditions' => array(
-				'Phase.mission_id' => $id
+				'Phase.mission_id' => $mission_id
 		)));
 
 		if($phase['Phase']['position'] == count($mps))
@@ -73,14 +73,14 @@ class Phase extends AppModel {
 
 	}
 
-	public function getPrevPhase($phase, $id) {
+	public function getPrevPhase($phase, $mission_id) {
 
 		if($phase['Phase']['position'] == 1)
 			return null;
 
 		$mps = $this->Mission->Phase->find('all', array(
 			'conditions' => array(
-				'Phase.mission_id' => $id
+				'Phase.mission_id' => $mission_id
 		)));
 
 		foreach($mps as $key => $mp):
@@ -92,6 +92,7 @@ class Phase extends AppModel {
 
 	}
 
+	
 /**
  * belongsTo associations
  *

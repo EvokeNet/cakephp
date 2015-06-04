@@ -80,7 +80,7 @@
 			<div id="evidence-main-content" class="margin top-2 bottom-2">
 			</div>
 
-			<?php echo $this->Form->hidden('main-content', array('value' => '', 'id' => 'evidence-form-main-content')); ?>
+			<?php echo $this->Form->hidden('main_content', array('value' => '', 'id' => 'evidence-form-main-content')); ?>
 
 			<?php echo $this->Form->hidden('type', array('value' => '', 'id' => 'evidence-form-type')); ?>
 

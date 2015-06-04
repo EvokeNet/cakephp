@@ -20,12 +20,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						$('#preview-container').append($("#evidenceLink").val());
 					}
 
-					console.log($("#evidenceLink").val());
-
 					//Update form
 					$('#evidence-form-main-content').attr('value', $("#evidenceLink").val());
-
-					console.log($('#evidence-form-main-content').attr("value"));
 				}
 			});
 		};

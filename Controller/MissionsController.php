@@ -931,6 +931,27 @@ class MissionsController extends AppController {
 		$this->loadModel('Group');
 		$this->loadModel('GroupsUser');
 
+		//Phase evokation - group is created in previous phase
+		if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
+			$previousPhase = $this->Mission->Phase->getPrevPhase($phase, $phase['Phase']['mission_id']);
+			$previousPhaseGroups = $this->Group->find('all', array(
+				'conditions' => array('phase_id' => $previousPhase['Phase']['id']),
+				'contain' => array(
+					'User',
+					'GroupsUser' => 'User'
+				)
+			));
+
+			debug($previousPhaseGroups);
+
+			debug(Set::classicExtract($previousPhaseGroups, '{n}.Group'));
+
+			// Set::combine($a, '{n}.User.id', '{n}.User.Data');
+
+			$phase['Group'] = Set::classicExtract($previousPhaseGroups, '{n}.Group');
+		}
+		debug($phase['Group']);
+
 		//check to see if user has created/joined a group in this phase of this mission
 		//it should be just one
 		foreach ($phase['Group'] as &$group) {
