@@ -9,9 +9,9 @@
 	$this->end();
 ?>
 
-<div class="evoke row background-color-standard full-width" data-equalizer>
+<div class="evoke row background-color-standard full-width" data-equalizer data-equalizer-mq="large-up">
 	<!-- LEFT SIDEBAR -->
-	<div class="medium-2 columns gradient-on-right profile-sidebar" data-equalizer-watch>
+	<div class="small-12 medium-5 large-3 columns gradient-on-right profile-sidebar" data-equalizer-watch>
 		<!-- PROFILE -->
 		<div class="row padding top-2 bottom-1 left-2 right-2">
 			<?php $pic = $this->Picture->getUserPictureAbsolutePath($user['User']); ?>
@@ -43,7 +43,7 @@
 		</div>
 
 		<!-- POTENTIAL ALLIES -->
-		<div class="row padding top-1 bottom-1 left-2 right-2 border-top-divisor">
+		<div class="row hide-for-small-only padding top-1 bottom-1 left-2 right-2 border-top-divisor">
 			<h4><?= __('Potential allies') ?></h4>
 		    <ul class="full-width small-block-grid-1">
 		      <?php
@@ -88,8 +88,8 @@
 	</div>
 
 	<!-- CENTER -->
-	<div class="medium-8 columns padding top-2 bottom-2 left-4 right-4" data-equalizer-watch>
-		<div class="row">
+	<div class="small-12 medium-7 large-9 columns padding top-2 bottom-2 left-2 right-2" data-equalizer-watch>
+		<div class="row standard-width">
 			<!-- PSYCHOMETRIC ANALYSIS -->
 			<div class="large-6 medium-12 columns">
 				<h3><?= __('Psychometric Analysis') ?></h3>
@@ -101,7 +101,9 @@
 			<!-- RADAR GRAPH FOR MATCHING RESULTS -->
 			<div class="large-6 medium-12 columns centering-block">
 				<div class="text-center vertical-align-middle centered-block">
-					<?php echo $this->element('matching_graph', array('height' => '550', 'width' => '550')); ?>
+					<div>
+						<?php echo $this->element('matching_graph', array('height' => '550', 'width' => '550')); ?>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -167,9 +169,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- RIGHT SIDEBAR -->
-	<div class="medium-2 columns gradient-on-left padding all-2" data-equalizer-watch>...</div>
 </div>
 
 <?php
