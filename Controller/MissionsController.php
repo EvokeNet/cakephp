@@ -860,17 +860,17 @@ class MissionsController extends AppController {
 		$mission = $this->Mission->find('first', array(
 			'conditions' => array('Mission.id' => $mission_id),
 			'contain' => array(
-				'Phase' => array('Quest' => 'Questionnaire')
+				'Phase' => array('Quest' => 'Questionnaire'),
+				'Group' => array(
+					'User',
+					'GroupsUser' => 'User'
+				)
 			)
 		));
 
 		//---------------------------------
 		//PHASE THAT WILL BE RENDERED
 		$phase_contain = array(
-			'Group' => array(
-				'User',
-				'GroupsUser' => 'User'
-			),
 			'Quest' => 'Questionnaire'
 		);
 		//Did not request a specific phase ID
