@@ -93,6 +93,13 @@ class Group extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
+		'Mission' => array(
+			'className' => 'Mission',
+			'foreignKey' => 'mission_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Phase' => array(
 			'className' => 'Phase',
 			'foreignKey' => 'phase_id',
