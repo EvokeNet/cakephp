@@ -91,5 +91,83 @@ define(['jquery','evoke','evokeData'], function($,evoke,evokeData) {
 		});
 	}
 
+	//--------------------------------------------//
+	//Open mission content above graphic novel
+	//--------------------------------------------//
+	missionPanels.open_panel = function(panel_button,panel_source) {
+		$(panel_source).addClass("panel-open");
+
+		//Add opacity behind
+		$(panel_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
+		$('.main-section .missions-graphic-novel').addClass('blur-strong opacity-04'); //Blur everything else
+
+		
+		//Show content in front
+		if (panel_source != '#tabForum') {
+			$('.mission-sidebar').css("height",""); //restart data-equalizer of the sidebar columns
+			$('#missionSidebar').show("slide", { direction: "left" }, 400, function(){
+				$(panel_source).fadeIn('fast');
+				$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
+			});
+		}
+		else {
+			$(panel_source).fadeIn('fast');
+			$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
+		}
+
+		//Possible to close panel
+		$('.close-sidebar-button').fadeIn('fast');
+	}
+
+	missionPanels.close_panel = function(panel_button,panel_source,changingTabs) {
+		$(panel_source).removeClass("panel-open");
+
+		//Show content in front
+		$(panel_source).fadeOut('fast');
+		if (panel_source != '#tabForum') {
+			$('#missionSidebar').hide("slide", { direction: "left" }, 0, function() {
+				$(panel_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
+
+				if (!changingTabs) {
+					//Remove opacity behind
+					$('.main-section .missions-graphic-novel').removeClass('blur-strong opacity-04'); //Remove blur in everything else
+				}
+			});
+		}
+		else {
+			$(panel_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
+
+			if (!changingTabs) {
+				//Remove opacity behind
+				$('.main-section .missions-graphic-novel').removeClass('blur-strong opacity-04'); //Remove blur in everything else
+			}
+		}
+
+		//Not possible to close panel
+		$('.close-sidebar-button').fadeOut('fast');
+	}
+
+	/* Open or close a panel */
+	missionPanels.toggle_panel = function(idMenuIcon,idTabContent) {
+		var changingTabs = false;
+
+		//Closing a currently open tab
+		if ((idTabContent != undefined) && !$('#'+idTabContent).hasClass("panel-open")) {
+			changingTabs = true;
+		}
+
+		//Close currently open tab (if any)
+		var open_tab = $('.panel-open');
+		if ($(open_tab).length) {
+			var open_tab_id = $(open_tab).attr('id');
+			missionPanels.close_panel('#menu-icon-'+open_tab_id,'#'+open_tab_id,changingTabs);
+		}
+
+		//Opening another tab
+		if (changingTabs) {
+			missionPanels.open_panel('#'+idMenuIcon,'#'+idTabContent);	
+		}
+	}
+
 	return missionPanels;
 });

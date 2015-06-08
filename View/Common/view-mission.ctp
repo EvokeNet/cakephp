@@ -123,8 +123,3 @@
 
 		</section>
 	</div>
-
-<?php
-	//SCRIPT
-	$this->Html->script('requirejs/app/Common/view-mission.js', array('inline' => false));
-?>

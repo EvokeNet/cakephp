@@ -45,94 +45,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//Changes the position of the arrows
 			$('#slickPrevArrow').append($('.slick-prev'));
 			$('#slickNextArrow').append($('.slick-next'));
-
-			//Hide sidebar content with jquery (so that it can be shown afterwards)
-			$('#missionSidebar').hide().removeClass("hidden");
-			$('.tabContent').hide().removeClass("hidden");
-			$('#missions-content-overlay').hide().removeClass("hidden");
-			$('.close-sidebar-button').hide().removeClass("hidden");
-			$('#tabForum').hide().removeClass("hidden");
-
-
-			//--------------------------------------------//
-			//Open mission content above graphic novel
-			//--------------------------------------------//
-			function open_panel(panel_button,panel_source) {
-				$(panel_source).addClass("panel-open");
-
-				//Add opacity behind
-				$(panel_button+" span").addClass("text-color-highlight").removeClass("text-color-gray"); //Icon highlight
-				$('.main-section .missions-graphic-novel').addClass('blur-strong opacity-04'); //Blur everything else
-				
-				//Show content in front
-				if (panel_source != '#tabForum') {
-					$('.mission-sidebar').css("height",""); //restart data-equalizer of the sidebar columns
-					$('#missionSidebar').show("slide", { direction: "left" }, 400, function(){
-						$(panel_source).fadeIn('fast');
-						$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
-					});
-				}
-				else {
-					$(panel_source).fadeIn('fast');
-					$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns
-				}
-
-				//Possible to close panel
-				$('.close-sidebar-button').fadeIn('fast');
-			}
-
-			function close_panel(panel_button,panel_source,changingTabs) {
-				$(panel_source).removeClass("panel-open");
-
-				//Show content in front
-				$(panel_source).fadeOut('fast');
-				if (panel_source != '#tabForum') {
-					$('#missionSidebar').hide("slide", { direction: "left" }, 0, function() {
-						$(panel_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
-
-						if (!changingTabs) {
-							//Remove opacity behind
-							$('.main-section .missions-graphic-novel').removeClass('blur-strong opacity-04'); //Remove blur in everything else
-						}
-					});
-				}
-				else {
-					$(panel_button+" span").removeClass("text-color-highlight").addClass("text-color-gray"); //Icon grey
-
-					if (!changingTabs) {
-						//Remove opacity behind
-						$('.main-section .missions-graphic-novel').removeClass('blur-strong opacity-04'); //Remove blur in everything else
-					}
-				}
-
-				//Not possible to close panel
-				$('.close-sidebar-button').fadeOut('fast');
-			}
-
-			/* Open or close a panel */
-			function toggle_panel(idMenuIcon,idTabContent) {
-				var changingTabs = false;
-
-				//Closing a currently open tab
-				if ((idTabContent != undefined) && !$('#'+idTabContent).hasClass("panel-open")) {
-					changingTabs = true;
-				}
-
-				//Close currently open tab (if any)
-				var open_tab = $('.panel-open');
-				if ($(open_tab).length) {
-					var open_tab_id = $(open_tab).attr('id');
-					close_panel('#menu-icon-'+open_tab_id,'#'+open_tab_id,changingTabs);
-				}
-
-				//Opening another tab
-				if (changingTabs) {
-					open_panel('#'+idMenuIcon,'#'+idTabContent);	
-				}
-			}
+			
 
 			$('.menu-icon.default').click(function(){
-				toggle_panel($(this).attr("id"), $(this).data('tab-content'));
+				missionPanels.toggle_panel($(this).attr("id"), $(this).data('tab-content'));
 			});
 
 			//--------------------------------------------//
@@ -154,7 +70,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$(".close-sidebar-button").click(function(){
 				//Show content in front
-				toggle_panel();
+				missionPanels.toggle_panel();
 
 				//Not possible to close panel
 				$(this).fadeOut("fast");
@@ -180,7 +96,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					});
 				}
 
-				toggle_panel(panel_button, panel_source);
+				missionPanels.toggle_panel(panel_button, panel_source);
 				event.preventDefault();
 			};
 

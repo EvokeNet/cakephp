@@ -45,6 +45,12 @@
 
 
 <?php
+	//Advanced phases display quest panel by default
+	$open_by_default = false;
+	if ($phase['Phase']['type'] != Phase::TYPE_INDIVIDUAL) {
+		$open_by_default = true;
+	}
+
 	//LOADING QUESTS
 	$load_quests_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderQuestsTab', 
 		$phase['Phase']['id']
@@ -73,7 +79,8 @@
 		echo json_encode(array(
 			'missions_load_quests_url' => $load_quests_url,
 			'missions_load_dossier_url' => $load_dossier_url,
-			'missions_load_evidences_url' => $load_evidences_url
+			'missions_load_evidences_url' => $load_evidences_url,
+			'open_quests_by_default' => $open_by_default
 		));
 	$this->end();
 

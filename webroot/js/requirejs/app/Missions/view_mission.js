@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['evoke', 'missionpanels', 'evokeData', 'foundation', 'froala'], function (evoke,missionPanels,evokeData) {
+	require(['evoke', 'missionpanels', 'evokeData', '../js/requirejs/app/Common/view-mission', 'foundation', 'froala'], function (evoke,missionPanels,evokeData) {
 		$(document).ready(function(){
 			//--------------------------------------------//
 			//OPEN DOSSIER PANEL
@@ -56,6 +56,15 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				missionPanels.reloadTabQuests();
 				e.preventDefault();
 			});
+
+			//--------------------------------------------//
+			//OPEN QUESTS PANEL BY DEFAULT
+			//--------------------------------------------//
+			if (evokeData.open_quests_by_default && (evokeData.open_quests_by_default === true)) {
+				missionPanels.open_panel("#menu-icon-tabQuests", "#tabQuests");
+				missionPanels.reloadTabQuests();
+			}
+			
 
 			//--------------------------------------------//
 			//QUEST - JOIN GROUP Requests to join group handled with ajax
