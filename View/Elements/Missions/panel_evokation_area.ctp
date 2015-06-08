@@ -23,8 +23,8 @@
 		<div class="padding top-2">
 			<?php echo $this->element('Groups/member_list',array(
 				'group' => $group,
-				'groupOwner' => $group['User'],
-				'groupsUsers' => $group['GroupsUser'],
+				'groupOwner' => $group['Leader'],
+				'members' => $group['Member'],
 				'show_title' => false)); ?>
 		</div>
 	</div>
@@ -40,8 +40,8 @@
 		<div class="padding top-2">
 			<?php echo $this->element('Evokations/evokation_status',array(
 				'group' => $group,
-				'groupOwner' => $group['User'],
-				'groupsUsers' => $group['GroupsUser'],
+				'groupOwner' => $group['Leader'],
+				'members' => $group['Member'],
 				'show_title' => false)); ?>
 		</div>
 	</div>

@@ -86,7 +86,7 @@ class Group extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'User' => array(
+		'Leader' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
 			'conditions' => '',
@@ -177,7 +177,7 @@ class Group extends AppModel {
  * @var array
  */
 	public $hasAndBelongsToMany = array(
-		'User' => array(
+		'Member' => array(
 			'className' => 'User',
 			'joinTable' => 'groups_users',
 			'foreignKey' => 'group_id',

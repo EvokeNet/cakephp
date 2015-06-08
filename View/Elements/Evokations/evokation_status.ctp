@@ -1,5 +1,5 @@
 <?php
 
-foreach ($evokation_quests as ) {
+// foreach ($evokation_quests as ) {
 	
-}
+// }

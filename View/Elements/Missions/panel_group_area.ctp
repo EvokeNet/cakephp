@@ -51,17 +51,17 @@
 			<!-- GROUP INFO -->
 			<div class="text-center">
 				<h5 class="text-color-highlight"><?= __('Team leader');?></h5>
-				<p><?= $group['User']['name'] ?></p>
+				<p><?= $group['Leader']['name'] ?></p>
 			</div>
 
 			<!-- LIST OF MEMBERS -->	
 			<div class="padding top-2">
-				<h4 class="text-color-highlight text-center"><?= __('Members') ?><?= ': '.count($group['GroupsUser']) ?></h4>
+				<h4 class="text-color-highlight text-center"><?= __('Members') ?><?= ': '.count($group['Member']) ?></h4>
 
 				<?php echo $this->element('Groups/member_list',array(
 					'group' => $group,
-					'groupOwner' => $group['User'],
-					'groupsUsers' => $group['GroupsUser'],
+					'groupOwner' => $group['Leader'],
+					'members' => $group['Member'],
 					'show_title' => false)); ?>
 
 				<?php

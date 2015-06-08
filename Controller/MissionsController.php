@@ -861,10 +861,7 @@ class MissionsController extends AppController {
 			'conditions' => array('Mission.id' => $mission_id),
 			'contain' => array(
 				'Phase' => array('Quest' => 'Questionnaire'),
-				'Group' => array(
-					'User',
-					'GroupsUser' => 'User'
-				)
+				'Group'
 			)
 		));
 
@@ -924,33 +921,13 @@ class MissionsController extends AppController {
 		));
 
 		//---------------------------------
-		//MARK COMPLETED PHASES //this code can be improved a lot
 		//GROUPS
 		$myGroups = array();
 		$hasGroup = false;
 		$this->loadModel('Group');
 		$this->loadModel('GroupsUser');
 
-		//Phase evokation - group is created in previous phase
-		// if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
-		// 	$previousPhase = $this->Mission->Phase->getPrevPhase($phase, $phase['Phase']['mission_id']);
-		// 	$previousPhaseGroups = $this->Group->find('all', array(
-		// 		'conditions' => array('phase_id' => $previousPhase['Phase']['id']),
-		// 		'contain' => array(
-		// 			'User',
-		// 			'GroupsUser' => 'User'
-		// 		)
-		// 	));
-
-		// 	debug($previousPhaseGroups);
-
-		// 	debug(Set::classicExtract($previousPhaseGroups, '{n}.Group'));
-
-		// 	// Set::combine($a, '{n}.User.id', '{n}.User.Data');
-
-		// 	$phase['Group'] = Set::classicExtract($previousPhaseGroups, '{n}.Group');
-		// }
-		// debug($phase['Group']);
+		
 
 		//check to see if user has created/joined a group in this mission
 		//it should be just one
@@ -962,6 +939,14 @@ class MissionsController extends AppController {
 			//IS OWNER OR MEMBER
 			if ($group['is_owner'] || $group['is_member']) {
 				$hasGroup = true;
+
+				//GROUP LEADER AND MEMBERS
+				$group_details = $this->Group->find('first',array(
+					'conditions' => array('Group.id' => $group['id']),
+					'contain' => array('Leader', 'Member')
+				));
+				$group['Leader'] = $group_details['Leader'];
+				$group['Member'] = $group_details['Member'];
 
 				//GROUP REQUESTS
 				$group['requests_pending'] = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $group['id'], 'GroupRequest.status = 0')));
