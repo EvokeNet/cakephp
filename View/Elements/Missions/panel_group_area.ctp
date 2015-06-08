@@ -1,4 +1,4 @@
-<div class="content background-color-dark-opacity-05">
+<div class="content background-color-dark-opacity-05 min-full-height">
 	<!-- MISSION TITLE -->
 	<div class="padding all-1">
 		<h1 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h1>

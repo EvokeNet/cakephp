@@ -1,4 +1,4 @@
-<div class="content background-color-dark-opacity-05">
+<div class="content background-color-dark-opacity-05 min-full-height">
 	<!-- MISSION TITLE -->
 	<div class="padding all-1">
 		<h1 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h1>
@@ -33,7 +33,7 @@
 	<div class="padding left-1 right-1">
 		<!-- TITLE -->
 		<div class="text-center">
-			<h5 class="text-color-highlight"><?= __('Evokation status') ?></h5>
+			<h5 class="text-color-highlight"><?= __('Status of the evokation parts') ?></h5>
 		</div>
 
 		<!-- STATUS -->	
@@ -44,5 +44,10 @@
 				'members' => $group['Member'],
 				'show_title' => false)); ?>
 		</div>
+	</div>
+
+	<!-- EVOKATION PREVIEW -->
+	<div class="text-center">
+		<button class="button thin disabled"><?= __('Evokation preview') ?></button>
 	</div>
 </div>

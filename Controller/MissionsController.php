@@ -896,16 +896,14 @@ class MissionsController extends AppController {
 		//---------------------------------
 		//FORUM
 		$this->loadModel('Optimum.Forum');
-		$forum = $this->Forum->find('first', array(
-			'contain' => array(
-				'ForumFilter' => array(
-					'conditions' => array(
-						'ForumFilter.model' => 'Phase',
-						'ForumFilter.filter_value' => $phase['Phase']['id']
-					)
+		$forum_filter = $this->Forum->ForumFilter->find('first', array(
+				'contain' => 'Forum',
+				'conditions' => array(
+					'ForumFilter.model' => 'Phase',
+					'ForumFilter.filter_value' => $phase['Phase']['id']
 				)
-			)
 		));
+		$forum = $forum_filter['Forum'];
 
 		//---------------------------------
 		//GROUP FORUM

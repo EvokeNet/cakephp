@@ -25,17 +25,6 @@ if (!isset($menu_buttons)) {
 	<section class="left-small" id="menu-left-small">
 		<div class="left-small-content text-center background-color-standard opacity-07 padding bottom-1">
 			<?php
-			//EVIDENCES
-			if (in_array('Evidences', $menu_buttons)): ?>
-				<a class="menu-icon default" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
-					<div class="row">
-						<span class="icon-brankic icon-wallet fa-2x vertical-align-middle text-color-gray"></span>
-					</div>
-					<div class="row menu-icon-label">
-						<span><?= __('Evidences') ?></span>
-					</div>
-				</a><?php
-			endif;
 
 			//QUESTS
 			if (in_array('Quests', $menu_buttons)): ?>
@@ -45,6 +34,18 @@ if (!isset($menu_buttons)) {
 					</div>
 					<div class="row menu-icon-label">
 						<span><?= __('Quests') ?></span>
+					</div>
+				</a><?php
+			endif;
+
+			//EVIDENCES
+			if (in_array('Evidences', $menu_buttons)): ?>
+				<a class="menu-icon default" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
+					<div class="row">
+						<span class="icon-brankic icon-wallet fa-2x vertical-align-middle text-color-gray"></span>
+					</div>
+					<div class="row menu-icon-label">
+						<span><?= __('Evidences') ?></span>
 					</div>
 				</a><?php
 			endif;
@@ -63,9 +64,9 @@ if (!isset($menu_buttons)) {
 
 			//FORUM
 			if (in_array('Forum', $menu_buttons)):
-				if (isset($forum) && isset($forum['Forum'])): ?>
+				if (isset($forum)): ?>
 				
-					<a class="menu-icon forum" id="menu-icon-tabForum" data-forum-url="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum['Forum']['id']))); ?>" data-tab-content="tabForum" data-forum-id="<?= $forum['Forum']['id'] ?>">
+					<a class="menu-icon forum" id="menu-icon-tabForum" data-forum-url="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum['id']))); ?>" data-tab-content="tabForum" data-forum-id="<?= $forum['id'] ?>">
 						<div class="row">
 							<span class="fa fa-lightbulb-o fa-2x vertical-align-middle text-color-gray"></span>
 						</div>
