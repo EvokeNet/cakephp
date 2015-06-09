@@ -45,9 +45,9 @@ if (isset($evidence)):
 						//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE
 						if(isset($loggedInUser) && ($evidence['Evidence']['user_id'] == $loggedInUser['id'])): ?>
 							<div class="row padding top-1 bottom-1 text-center font-size-small">
-								<a id="buttonEditEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" alt="<?= __('Edit Evidence') ?>" class="button thin">
+								<!--<a id="buttonEditEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" alt="<?= __('Edit Evidence') ?>" class="button thin">
 									<?php echo __('Edit Evidence');?>
-								</a>
+								</a>-->
 
 								<a id="buttonDeleteEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" alt="<?= __('Delete Evidence') ?>" class="button thin">
 									<?php echo __('Delete Evidence');?>
@@ -93,9 +93,9 @@ if (isset($evidence)):
 								//USER OWNS THIS EVIDENCE - CAN EDIT AND DELETE
 								if(isset($loggedInUser) && ($evidence['Evidence']['user_id'] == $loggedInUser['id'])): ?>
 									<!-- EDIT -->
-									<a id="buttonEditEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" alt="<?= __('Edit Evidence') ?>" class="padding left-1">
+									<!-- <a id="buttonEditEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'edit', $evidence['Evidence']['id'])); ?>" alt="<?= __('Edit Evidence') ?>" class="padding left-1">
 										<i class="fa fa-pencil fa-lg"></i>
-									</a>
+									</a> -->
 
 									<!-- DELETE -->
 									<a id="buttonDeleteEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" alt="<?= __('Delete Evidence') ?>" class="padding left-1">
