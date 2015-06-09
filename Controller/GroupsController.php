@@ -216,7 +216,7 @@ class GroupsController extends AppController {
 
 		//Separating array for layout variables
 		$group = $group_array['Group'];
-		$groupsUsers = $group_array['Member'];
+		$members = $group_array['Member'];
 		$groupOwner = $group_array['Leader'];
 		$groupMission = $group_array['Phase']['Mission'];
 
@@ -230,7 +230,7 @@ class GroupsController extends AppController {
 		$groupsRequests = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status' => array(1, 2))));
 
 		//Variables
-		$this->set(compact('user', 'group', 'groupOwner', 'groupsUsers', 'groupMission', 'groupsRequests', 'groupsRequestsPending'));
+		$this->set(compact('user', 'group', 'groupOwner', 'members', 'groupMission', 'groupsRequests', 'groupsRequestsPending'));
 	}
 
 /**
