@@ -35,7 +35,6 @@ button, div, p, span, a,
 
 /* Visibility */
 .evoke .hidden {
-	visibility: hidden;
 	display: none;
 }
 .evoke .overflow-hidden {

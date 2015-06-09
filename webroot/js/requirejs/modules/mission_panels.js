@@ -1,4 +1,4 @@
-define(['jquery','evoke','evokeData'], function($,evoke,evokeData) {
+define(['jquery','evoke','evokeData','jqueryui'], function($,evoke,evokeData) {
 	function missionPanels() {}
 
 	/**
@@ -52,7 +52,7 @@ define(['jquery','evoke','evokeData'], function($,evoke,evokeData) {
 		$('#missions-content-overlay').fadeOut('fast');
 		$('.main-section').removeClass("hidden");
 		$('.tab-bar').removeClass("hidden");
-		$('.close-sidebar-button').fadeIn("hidden");
+		$('.close-sidebar-button').removeClass("hidden");
 	}
 
 	/**
@@ -105,6 +105,7 @@ define(['jquery','evoke','evokeData'], function($,evoke,evokeData) {
 		//Show content in front
 		if (panel_source != '#tabForum') {
 			$('.mission-sidebar').css("height",""); //restart data-equalizer of the sidebar columns
+
 			$('#missionSidebar').show("slide", { direction: "left" }, 400, function(){
 				$(panel_source).fadeIn('fast');
 				$(document).foundation('equalizer', 'reflow'); //data-equalizer for sidebar columns

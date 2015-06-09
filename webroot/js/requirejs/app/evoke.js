@@ -1,4 +1,4 @@
-define(['jquery','modernizr', 'foundation'], function(jQuery,Modernizr, Foundation) {
+define(['modernizr', 'foundation'], function(Modernizr, Foundation) {
 
 	function evoke() {}
 
@@ -14,15 +14,6 @@ define(['jquery','modernizr', 'foundation'], function(jQuery,Modernizr, Foundati
 					equalize_on_stack: true
 				}
 			});
-
-			//Override jquery's show function to remove class hidden when it exists
-			var originalShow = jQuery.fn.show;
-			jQuery.fn.show = function()
-			{
-				$(this).removeClass('hidden');
-				// Now go back to jQuery's original show()
-				return originalShow.apply(this, arguments);  
-			};
 		});
 	};
 
