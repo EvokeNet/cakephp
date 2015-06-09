@@ -26,7 +26,7 @@
 			<p><?= $groupOwner['name'] ?></p>
 
 			<h5 class="text-color-highlight"><?= __('Members');?></h5>
-			<p><?= count($groupsUsers) ?></p>
+			<p><?= count($members) ?></p>
 
 			<h5 class="text-color-highlight"><?= __('Mission');?></h5>
 			<p><?= $groupMission['title'] ?></p>
