@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery','evoke','missionpanels'], function ($,evoke,missionPanels) {
+	require(['jquery','evoke','missionpanels','sweetalert'], function ($,evoke,missionPanels,swal) {
 		//--------------------------------------------//
 		//SUBMIT A FORM TO ADD A GROUP VIA AJAX
 		//--------------------------------------------//
@@ -13,21 +13,12 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					$('.content-body').empty().append(evoke.loadingAnimation);
 				},
 				success: function(data) {
-					console.log(data);
 					//RELOAD TAB QUESTS
 					missionPanels.closeMissionOverlay();
 					missionPanels.reloadTabQuests();
 
-					//GROUP FORUM ICON IS NOW ENABLED
-					var forum_url = $('#menu-icon-tabForumGroup').data('forum-url');
-					console.log(forum_url);
-
-					forum_url.append(data.forum_id);
-					console.log($('#menu-icon-tabForumGroup').data('forum-url'));
-
-					$('#menu-icon-tabForumGroup').data('forum-id',data.forum_id);
-
-					$('#menu-icon-tabForumGroup').removeClass('hidden');
+					//Confirmation dialog
+					swal("You created a group!","Invite your friends and accept their requests to join the group!\n\n Important: only after your group is complete you should start to brainstorm your evidence!","success");
 				}
 			});
 			
