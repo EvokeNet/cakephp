@@ -25,7 +25,7 @@ requirejs.config({
 		sidr: 'sidr/jquery.sidr.min',
 		slickcarousel: 'slick-carousel/slick/slick.min',
 		stickykit: 'sticky-kit/jquery.sticky-kit.min',
-		sweetalert: 'sweetalert/lib/sweet-alert.min'
+		sweetalert: 'sweetalert/dist/sweetalert.min'
 	},
 	shim: {
 		// EVOKE SPECIFIC MODULES
