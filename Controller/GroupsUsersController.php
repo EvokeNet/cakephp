@@ -856,6 +856,37 @@ class GroupsUsersController extends AppController {
 	}
 
 /**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function deleteMembership($group_id = null, $user_id = null) {
+		//Groups user
+		$gu = $this->GroupsUser->find('first', array(
+			'conditions' => array(
+				'GroupsUser.group_id' => $group_id,
+				'GroupsUser.user_id' => $user_id
+			)
+		));
+
+		if (!isset($gu['GroupsUser']) || !isset($gu['GroupsUser']['id'])) {
+			throw new NotFoundException(__('Invalid groups user'));
+		}
+
+
+		$this->GroupsUser->id = $gu['GroupsUser']['id'];		
+		
+		if ($this->GroupsUser->delete()) {
+			$this->Session->setFlash(__('The groups user has been deleted.'));
+		} else {
+			$this->Session->setFlash(__('The groups user could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']));
+	}
+
+/**
  * admin_index method
  *
  * @return void

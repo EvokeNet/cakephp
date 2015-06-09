@@ -208,16 +208,16 @@ class GroupsController extends AppController {
 		$group_array = $this->Group->find('first', array(
 			'conditions' => array('Group.id' => $id),
 			'contain' => array(
-				'User',
-				'Phase' => 'Mission',
-				'GroupsUser' => 'User'
+				'Leader',
+				'Member',
+				'Phase' => 'Mission'
 			)
 		));
 
 		//Separating array for layout variables
 		$group = $group_array['Group'];
-		$groupsUsers = $group_array['GroupsUser'];
-		$groupOwner = $group_array['User'];
+		$groupsUsers = $group_array['Member'];
+		$groupOwner = $group_array['Leader'];
 		$groupMission = $group_array['Phase']['Mission'];
 
 		//MEMBERSHIP
