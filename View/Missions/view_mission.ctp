@@ -13,14 +13,17 @@
 		//Content depends on the phase
 		switch($phase['Phase']['type']) {
 			case Phase::TYPE_INDIVIDUAL:
+				echo "Individual phase";
 				echo $this->element('Missions/panel_mission_info',array('mission' => $mission, 'phase_id' => $phase['Phase']['id']));
 				break;
 			case Phase::TYPE_GROUP:
+				echo "Group phase";
 				foreach ($myGroups as $group) {
 					echo $this->element('Missions/panel_group_area', array('mission' => $mission, 'group' => $group, 'phase_id' => $phase['Phase']['id']));
 				}
 				break;
 			case Phase::TYPE_EVOKATION:
+				echo "Evokation phase";
 				foreach ($myGroups as $group) {
 					echo $this->element('Missions/panel_evokation_area', array('mission' => $mission, 'group' => $group, 'phase_id' => $phase['Phase']['id']));
 				}
