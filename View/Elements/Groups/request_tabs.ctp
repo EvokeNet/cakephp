@@ -14,7 +14,7 @@
 
 			//REQUESTS
 			foreach($groupsRequestsPending as $g): ?>
-				<li><?php echo $g['User']['name']; ?>
+				<li><?php echo $g['Leader']['name']; ?>
 					<div class="button-bar">
 						<ul class="button-group">
 						<li><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'add', $g['GroupRequest']['user_id'], $g['GroupRequest']['group_id'])); ?>" class = "button"><?php echo __('Accept');?></a></li>
@@ -43,7 +43,7 @@
 					if ($g['GroupRequest']['status'] == 1) $status = __('Accepted');
 					else $status = __('Declined');
 
-					echo sprintf(__("Requester: Agent %s </br> Status: %s", $g['User']['name'], $status));
+					echo sprintf(__("Requester: Agent %s </br> Status: %s", $g['Leader']['name'], $status));
 					?>
 				</li> <?php
 			endforeach; ?>
