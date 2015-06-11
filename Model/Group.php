@@ -14,7 +14,11 @@ class Group extends AppModel {
  * actsAs array
  *
  */
-	public $actsAs = array('Containable','BrainstormSessionEvoke.ActPhaseBrainstorm');
+	public $actsAs = array(
+		'Containable',
+		'BrainstormSessionEvoke.ActPhaseBrainstorm',
+		'Optimum.ForumFilterable'
+	);
 
 /**
  * Display field

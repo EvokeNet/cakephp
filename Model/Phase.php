@@ -25,7 +25,9 @@ class Phase extends AppModel {
  */
 	public $actsAs = array(
 		'Containable',
-		'Enumerable'
+		'Enumerable',
+		'BrainstormSessionEvoke.ActPhaseBrainstorm',
+		'Optimum.ForumFilterable'
         // 'Translate' => array(
         //     'name' => 'phaseName', 
         //     'description' => 'phaseDescription'

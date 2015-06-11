@@ -896,27 +896,7 @@ class MissionsController extends AppController {
 		//---------------------------------
 		//FORUM
 		$this->loadModel('Optimum.Forum');
-		$forum_filter = $this->Forum->ForumFilter->find('first', array(
-				'contain' => 'Forum',
-				'conditions' => array(
-					'ForumFilter.model' => 'Phase',
-					'ForumFilter.filter_value' => $phase['Phase']['id']
-				)
-		));
-		$forum = $forum_filter['Forum'];
-
-		//---------------------------------
-		//GROUP FORUM
-		$forum_group = $this->Forum->find('first', array(
-			'contain' => array(
-				'ForumFilter' => array(
-					'conditions' => array(
-						'ForumFilter.model' => 'Phase',
-						'ForumFilter.filter_value' => $phase['Phase']['id']
-					)
-				)
-			)
-		));
+		$forum = $this->Mission->Phase->findForum($phase['Phase']['id']);
 
 		//---------------------------------
 		//GROUPS
@@ -924,8 +904,6 @@ class MissionsController extends AppController {
 		$hasGroup = false;
 		$this->loadModel('Group');
 		$this->loadModel('GroupsUser');
-
-		
 
 		//check to see if user has created/joined a group in this mission
 		//it should be just one
@@ -937,6 +915,9 @@ class MissionsController extends AppController {
 			//IS OWNER OR MEMBER
 			if ($group['is_owner'] || $group['is_member']) {
 				$hasGroup = true;
+
+				//GROUP FORUM
+				$group['Forum'] = $this->Group->findForum($group['id']);
 
 				//GROUP LEADER AND MEMBERS
 				$group_details = $this->Group->find('first',array(
@@ -954,6 +935,8 @@ class MissionsController extends AppController {
 				array_push($myGroups, $group);
 			}
 		}
+
+		
 
 		//ANSWERS
 		$this->loadModel('UserAnswer');
