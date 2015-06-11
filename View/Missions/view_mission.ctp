@@ -12,8 +12,9 @@
 
 		//Content depends on the phase
 		switch($phase['Phase']['type']) {
-			//INDIVIDUAL PHASE, OR PERSON WITHOUT A GROUP
-			case (Phase::TYPE_INDIVIDUAL || (count($myGroups) < 1)):
+			//INDIVIDUAL PHASE
+			case Phase::TYPE_INDIVIDUAL:
+			case (isset($myGroups) && (count($myGroups) < 1)): //OR PERSON WITHOUT A GROUP
 				echo $this->element('Missions/panel_mission_info',array('mission' => $mission, 'phase_id' => $phase['Phase']['id']));
 				break;
 			//GROUP PHASE
