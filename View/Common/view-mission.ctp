@@ -74,11 +74,38 @@
 				</div>
 			</div>
 
+			<!-- EVOKE FORUM -->
 			<div id="tabForum" class="row full-width clearfix absolute full-height hidden">
-				<div id="tabForumContent" class="full-height">
+				<!-- FORUM TITLE -->
+				<div class="full-width background-color-darkest padding all-1">
+					<h5 class="text-center">
+						<span class="fa fa-lightbulb-o fa-2x vertical-align-middle margin right-05"></span>
+						<?= __('Evoke Forum') ?>
+					</h5>
+				</div>
+
+				<!-- FORUM CONTENT -->
+				<div id="tabForumContent" class="content full-height">
 					<?php echo $this->element('loading_animation'); ?>
 				</div>
 			</div>
+
+			<!-- GROUP FORUM -->
+			<div id="tabGroupForum" class="row full-width clearfix absolute full-height hidden">
+				<!-- FORUM TITLE -->
+				<div class="full-width background-color-darkest padding all-1">
+					<h5 class="text-center">
+						<span class="fa fa-lightbulb-o fa-2x vertical-align-middle margin right-05"></span>
+						<?= __('Group Forum') ?>
+					</h5>
+				</div>
+
+				<!-- FORUM CONTENT -->
+				<div id="tabGroupForumContent" class="content full-height">
+					<?php echo $this->element('loading_animation'); ?>
+				</div>
+			</div>
+
 
 			<!-- GRAPHIC NOVEL -->
 			<div class="section missions-graphic-novel">

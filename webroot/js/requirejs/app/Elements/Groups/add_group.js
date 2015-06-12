@@ -18,7 +18,18 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					missionPanels.reloadTabQuests();
 
 					//Confirmation dialog
-					swal("You created a group!","Invite your friends and accept their requests to join the group!\n\n Important: only after your group is complete you should start to brainstorm your evidence!","success");
+					sweetAlert({
+						title: "You created a group!",
+						text: "<p>Invite your friends and accept their requests to join the group!</p><br />"+
+							"<p><span class='red'>Important:</span> only after your group is complete you should start to brainstorm your evidence!</p>",
+						type: "success",
+						confirmButtonColor: "#DD6B55",
+						closeOnConfirm: false,
+						html: true
+					}, function(){
+						//RELOAD PAGE (just to reload group area - this can be improved)
+						location.reload();
+					});
 				}
 			});
 			

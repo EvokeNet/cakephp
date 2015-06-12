@@ -257,6 +257,11 @@ public function addGroup() {
 			$this->Group->GroupsUser->create();
 			$this->Group->GroupsUser->save($insert_group_user);
 
+
+			//CREATES RELATED FORUM
+			$forum_id = $this->Group->addRelatedForum($me['Group']['id']);
+
+
 			//CREATES BRAINSTORM AND ASSOCIATIONS FOR ALL PHASE QUESTS
 			$phase = $this->Group->Phase->find('first', array(
 				'conditions' => array('id' => $me['Group']['phase_id']),
@@ -289,35 +294,6 @@ public function addGroup() {
 				);
 				$this->Brainstorm->BrainstormAssociation->saveAll($insertData);
 			}
-
-			//CREATES FORUM
-			$this->loadModel('Optimum.Forum');
-			$this->Forum->create();
-			$this->Forum->save();
-			$forum_id = $this->Forum->id;
-
-			//CREATES FORUM FILTERS
-			$insert_forum_filters = array(
-				'ForumFilter' => array(
-					array(
-						'forum_id' => $forum_id,
-						'model' => 'Mission',
-						'filter_value' => $phase['Phase']['mission_id']
-					),
-					array(
-						'forum_id' => $forum_id,
-						'model' => 'Phase',
-						'filter_value' => $phase['Phase']['id']
-					),
-					array(
-						'forum_id' => $forum_id,
-						'model' => 'Group',
-						'filter_value' => $me['Group']['id']
-					)
-				)
-			);
-			$this->Forum->create();
-			$this->Forum->saveAll($insert_forum_filters);
 
 			//RENDER VIEW (OR NOT)
 			if ($this->request->is('ajax')) {

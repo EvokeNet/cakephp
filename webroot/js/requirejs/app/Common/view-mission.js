@@ -48,6 +48,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			
 
 			$('.menu-icon.default').click(function(){
+				console.log('toggle panel');
 				missionPanels.toggle_panel($(this).attr("id"), $(this).data('tab-content'));
 			});
 
@@ -100,38 +101,51 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				event.preventDefault();
 			};
 
-			$("#menu-icon-tabForum").one("click", function() {
-				var forum_id = $(this).data("forum-id");
+			var initializeForum = function(forum_id, forum_url, forum_container) {
 
 				$.ajax({
-					url: $(this).data("forum-url"),
+					url: forum_url,
 					type:"POST",
 					data: {forum_id: forum_id},
 					beforeSend: function() {
-						$('#tabForumContent').empty().append(evoke.loadingAnimation);
+						$('#'+forum_container+' .content').empty().append(evoke.loadingAnimation);
 					},
 					success: function(data) {
+						//Define root element 
+						var rootElement = '#'+forum_container+' .optimum';
+
 						//Display content
-						$('#tabForum').off(); //clear events in previous elements
-						$('#tabForum *').off(); //clear events in previous elements
-						$('#tabForumContent').html(data);
+						$('#'+forum_container).off(); //clear events in previous elements
+						$('#'+forum_container+' *').off(); //clear events in previous elements
+						$('#'+forum_container+' .content').html(data);
 
 						//Reflow
 						$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 
 						require(['../Optimum/js/app'], function (OptimumForum) {
+							OptimumForum.initialize(rootElement);
 							OptimumForum.App.PluginIntegration.transitionTo('discussions',forum_id);
 						});
 					}
 				});
+			}
 
-				refreshForum(event, $(this).attr("id"), $(this).data('tab-content'));
+			$(".menu-icon.forum").one("click", function() {
+				var button_id = $(this).attr("id");
+				var forum_id = $(this).data("forum-id");
+				var forum_url = $(this).data("forum-url");
+				var forum_container = $(this).data('tab-content');
 
-				//Bind event so that it happens in every click
-				$("#menu-icon-tabForum").click(function(event){
-					refreshForum(event, $(this).attr("id"), $(this).data('tab-content'));
+				initializeForum(forum_id,forum_url,forum_container);
+
+				refreshForum(event, button_id, forum_container);
+
+				//Bind event so that it only refreshes in every click
+				$(this).click(function(event){
+					refreshForum(event, button_id, forum_container);
 				});
 			});
+
 
 			//--------------------------------------------//
 		    //BRAINSTORM BUTTONS CLICK - FAKE

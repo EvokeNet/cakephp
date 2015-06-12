@@ -77,6 +77,23 @@ if (!isset($menu_buttons)) {
 
 				endif;
 			endif;
+
+
+			//GROUP FORUM
+			if (in_array('GroupForum', $menu_buttons)):
+				if (isset($group_forum)): ?>
+				
+					<a class="menu-icon forum" id="menu-icon-tabGroupForum" data-forum-url="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$group_forum['id']))); ?>" data-tab-content="tabGroupForum" data-forum-id="<?= $group_forum['id'] ?>">
+						<div class="row">
+							<span class="fa fa-user fa-2x vertical-align-middle text-color-gray"></span>
+						</div>
+						<div class="row menu-icon-label">
+							<span><?= __('Group') ?></span>
+						</div>
+					</a><?php
+
+				endif;
+			endif;
 			?>
 		</div>
 	</section>

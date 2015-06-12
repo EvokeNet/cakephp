@@ -4,7 +4,26 @@
 
 	//PANELS MENU
 	$this->start('panelsMenu');
-	echo $this->element('Missions/mission_menu_bar');
+
+		$menu_parameters = array();
+
+		//Menu depends on the phase
+		switch($phase['Phase']['type']) {
+			//PHASES WITH GROUPS HAVE GROUP FORUM
+			case Phase::TYPE_GROUP:
+			case Phase::TYPE_EVOKATION:
+				if (count($myGroups) > 0) {
+					$group = $myGroups[0];
+					$menu_parameters = array(
+						'menu_buttons' => array('Back','Quests','Dossier','Evidences','Forum','GroupForum'),
+						'group_forum' => $group['Forum']
+					);
+				}
+		}
+
+		//Render menu element
+		echo $this->element('Missions/mission_menu_bar',$menu_parameters);
+
 	$this->end();
 
 	//PANELS MAIN CONTENT

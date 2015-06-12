@@ -103,7 +103,7 @@ define(['jquery','evoke','evokeData','jqueryui'], function($,evoke,evokeData) {
 
 		
 		//Show content in front
-		if (panel_source != '#tabForum') {
+		if ($(panel_button).hasClass('default')) {
 			$('.mission-sidebar').css("height",""); //restart data-equalizer of the sidebar columns
 
 			$('#missionSidebar').show("slide", { direction: "left" }, 400, function(){

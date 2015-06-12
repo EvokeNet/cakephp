@@ -25,8 +25,8 @@
 			//GROUP FORUM BUTTON
 			$forum_group_id = '';
 
-			if (isset($forum_group) && isset($forum_group['Forum'])) {
-				$forum_group_id = $forum_group['Forum']['id'];
+			if (isset($group['Forum'])) {
+				$forum_group_id = $group['Forum']['id'];
 			} ?>
 
 			<div class="text-center">

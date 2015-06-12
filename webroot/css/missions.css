@@ -205,7 +205,7 @@
 /* --------------------------- */
 /* FORUM */
 /* --------------------------- */
-.evoke #tabForum {
+.evoke #tabForum, .evoke #tabGroupForum {
 	z-index: 3;
 }
 
