@@ -15,7 +15,7 @@
 				if (count($myGroups) > 0) {
 					$group = $myGroups[0];
 					$menu_parameters = array(
-						'menu_buttons' => array('Back','Quests','Dossier','Evidences','Forum','GroupForum'),
+						'menu_buttons' => array('Back','Quests','Dossier','Evidences','GroupForum'),
 						'group_forum' => $group['Forum']
 					);
 				}
