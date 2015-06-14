@@ -2,7 +2,7 @@
 	//VIEW-MISSION COMMON TEMPLATE
 	$this->extend('/Common/view-mission');
 
-	//PANELS MENU
+	//MENU TO OPEN PANELS (menu-icons)
 	$this->start('panelsMenu');
 
 		$menu_parameters = array();
@@ -26,7 +26,7 @@
 
 	$this->end();
 
-	//PANELS MAIN CONTENT
+	//PANELS MAIN CONTENT (does not change according to open tab)
 	$this->start('panelsMainContent');
 
 		//Content depends on the phase

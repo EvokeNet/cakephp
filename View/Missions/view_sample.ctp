@@ -2,56 +2,58 @@
 	//VIEW-MISSION COMMON TEMPLATE
 	$this->extend('/Common/view-mission');
 
-	//MISSION SUBMENU
-	$this->start('missionsSubmenuContent'); ?>
-	<div class="content">
-		<h1 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h1>
+	//MENU TO OPEN PANELS (menu-icons)
+	$this->start('panelsMenu');
 
-		<!-- PROGRESS BAR -->
-		<div class="button-bar phases-bar padding top-05 bottom-05">
-			<ul class="button-group radius">
-				<?php
-                	//FOR NOW THE PHASE ICONS ARE HARDCODED!
-                	$mission_phase_icons = array("fa-graduation-cap", "fa-flag", "fa-fighter-jet", "fa-eye", "fa-flash");
+		$menu_parameters = array();
 
-                	$current_phase_counter = 0;
-                	foreach ($mission['Phase'] as $mission_phase):
-                		$mission_phase_url = "#";
+		//Menu depends on the phase
+		switch($phase['Phase']['type']) {
+			//PHASES WITH GROUPS HAVE GROUP FORUM
+			case Phase::TYPE_GROUP:
+			case Phase::TYPE_EVOKATION:
+				if (count($myGroups) > 0) {
+					$group = $myGroups[0];
+					$menu_parameters = array(
+						'menu_buttons' => array('Back','Quests','Dossier','Evidences','GroupForum'),
+						'group_forum' => $group['Forum']
+					);
+				}
+				else {
+					$menu_parameters = array(
+						'menu_buttons' => array('Back','Quests','Dossier','Evidences')
+					);
+				}
+		}
 
-                		//CURRENT PHASE
-                		if ($mission_phase['id'] == $phase['Phase']['id']) {
-                			$mission_phase_status = 'current';
-                			$mission_status_message = "<br />".__("<strong><span class='text-color-dark'>Current phase.</span></strong>");
-                		}
-                		else {
-                        	$mission_status_message = "<br />".__("<strong><span class='text-color-dark'>This phase is not available for preview.</span></strong>");
-                        	$mission_phase_status = 'disabled';
-                        	$mission_phase_url = "#";
-                		}
-                		
-                        ?>
-                		
-                		<li>
-                			<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= $mission_phase['description'].$mission_status_message ?>">
-								<a href="<?= $mission_phase_url ?>" class="button small thin <?= $mission_phase_status ?> font-weight-bold">
-									<?php
-									if (array_key_exists($mission_phase['position'], $mission_phase_icons)): ?>
-										<i class="fa <?= $mission_phase_icons[$mission_phase['position']] ?> fa-lg"></i> <?php
-									endif; ?>
-									<?= $mission_phase['name'] ?>
-								</a>
-							</span>
-						</li><?php
+		//Render menu element
+		echo $this->element('Missions/mission_menu_bar',$menu_parameters);
 
-						$current_phase_counter++;
-                	endforeach;
-                ?>
-			</ul>
-		</div>
+	$this->end();
 
-		<!-- MISSION DESCRIPTION -->
-		<p class="text-shadow-dark mission-description"><?php echo h($mission['Mission']['description']); ?></p>
-	</div><?php
+	//PANELS MAIN CONTENT (does not change according to open tab)
+	$this->start('panelsMainContent');
+
+		//Content depends on the phase
+		switch($phase['Phase']['type']) {
+			//INDIVIDUAL PHASE
+			case Phase::TYPE_INDIVIDUAL:
+			case (isset($myGroups) && (count($myGroups) < 1)): //OR PERSON WITHOUT A GROUP
+				echo $this->element('Missions/panel_mission_info',array('mission' => $mission, 'phase_id' => $phase['Phase']['id']));
+				break;
+			//GROUP PHASE
+			case Phase::TYPE_GROUP:
+				foreach ($myGroups as $group) {
+					echo $this->element('Missions/panel_group_area', array('mission' => $mission, 'group' => $group, 'phase_id' => $phase['Phase']['id']));
+				}
+				break;
+			//EVOKATION PHASE
+			case Phase::TYPE_EVOKATION:
+				foreach ($myGroups as $group) {
+					echo $this->element('Missions/panel_evokation_area', array('mission' => $mission, 'group' => $group, 'phase_id' => $phase['Phase']['id']));
+				}
+		}
+
 	$this->end();
 
 	//TEMPLATE ELEMENT: TAB QUESTS
@@ -113,7 +115,7 @@
 						<div class="margin top-3">
 							<p class="text-center">
 								<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('In preview mode, you can test this form, but not submit an actual response. Click to test it!') ?>">
-									<a href="#" class="button small disabled" disabled><?= __('Submit your evidence') ?></a>
+									<a href="#" class="button small looks-disabled" disabled><?= __('Submit your evidence') ?></a>
 								</span>
 							</p>
 						</div>
@@ -142,4 +144,9 @@
 		</div><?php
 	$this->end();
 
+?>
+
+<?php
+	//SCRIPT
+	$this->Html->script('requirejs/app/Common/view-mission.js', array('inline' => false));
 ?>
