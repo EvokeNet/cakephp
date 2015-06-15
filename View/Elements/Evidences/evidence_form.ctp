@@ -108,7 +108,7 @@ endif;
 				//NO SUBMITTING SAMPLE FORM
 				if (!isset($sample_form) || (!$sample_form)): ?>
 					<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('In preview mode you cannot submit an actual evidence.') ?>">
-						<button class="thin right margin top-05 text-center disabled" type="submit">
+						<button type="button" class="thin right margin top-05 text-center disabled">
 							<?= __('Submit') ?>
 						</button>
 					</span><?php
