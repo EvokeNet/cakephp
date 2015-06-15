@@ -67,11 +67,12 @@ if (!isset($menu_buttons)) {
 				if (isset($forum)): ?>
 				
 					<a class="menu-icon forum" id="menu-icon-tabForum" data-forum-url="<?php echo rawurldecode($this->Html->url(array(
-						'plugin' => 'optimum',
-						'controller' => 'forum',
-						'action' => 'view',
-						'general'
-					))); ?>" data-tab-content="tabForum" data-forum-id="<?= $forum['id'] ?>">
+							'plugin' => 'optimum',
+							'controller' => 'forum',
+							'action' => 'view',
+							'general'
+						), true)); ?>"
+						data-tab-content="tabForum" data-forum-id="<?= $forum['id'] ?>">
 						<div class="row">
 							<span class="fa fa-lightbulb-o fa-2x vertical-align-middle text-color-gray"></span>
 						</div>
@@ -90,11 +91,12 @@ if (!isset($menu_buttons)) {
 				
 					<a class="menu-icon forum" id="menu-icon-tabGroupForum"
 						data-forum-url="<?php echo rawurldecode($this->Html->url(array(
-							'plugin' => 'optimum',
-							'controller' => 'forum',
-							'action' => 'view',
-							'group'
-						))); ?>" data-tab-content="tabGroupForum" data-forum-id="<?= $group_forum['id'] ?>">
+								'plugin' => 'optimum',
+								'controller' => 'forum',
+								'action' => 'view',
+								'group'
+							), true)); ?>"
+						data-tab-content="tabGroupForum" data-forum-id="<?= $group_forum['id'] ?>">
 						<div class="row">
 							<span class="fa fa-user fa-2x vertical-align-middle text-color-gray"></span>
 						</div>
