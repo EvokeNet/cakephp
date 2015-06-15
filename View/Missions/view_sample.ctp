@@ -114,8 +114,10 @@
 					   <!-- PREVIEW MODE -->
 						<div class="margin top-3">
 							<p class="text-center">
-								<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('In preview mode, you can test this form, but not submit an actual response. Click to test it!') ?>">
-									<a href="#" class="button small looks-disabled" disabled><?= __('Submit your evidence') ?></a>
+								<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('In preview mode you cannot submit an actual evidence.') ?>">
+									<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'add', $q['mission_id'], $q['phase_id'], $q['id'], 'false')); ?>">
+										<?= __('Submit your evidence') ?>
+									</a>
 								</span>
 							</p>
 						</div>

@@ -435,3 +435,9 @@ button:hover, button:focus, .button:hover, .button:focus {
 .evoke .alert-box.info p {
 	color: #000;
 }
+
+.evoke .alert-box.warning {
+	background-color: #F7F682;
+	border-color: #BEA601;
+	color: #3f3f3f;
+}

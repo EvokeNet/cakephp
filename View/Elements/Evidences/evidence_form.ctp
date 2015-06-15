@@ -1,3 +1,13 @@
+<?php
+//SAMPLE FORM ALERT
+if (!isset($sample_form) || (!$sample_form)): ?>
+	<div data-alert class="alert-box warning radius margin top-2">
+		<?= __('Alert: This is a sample form. In preview mode you cannot submit an actual evidence.'); ?>
+	</div> <?php
+endif;
+?>
+
+
 <div class="row">
 	<div id="new-evidence-type">
 		<!-- EXPLANATION -->
@@ -95,19 +105,29 @@
 				//CONTENT
 				echo $this->Form->input('content', array('label' => __('Edit your evidence:'), 'type' => 'textarea', 'class' => 'radius', 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
 
-				//SUBMIT BUTTON
-				if (!isset($button_class)) {
-					$button_class = 'button thin right margin top-05 text-center text-glow-on-hover';
-				}
-				?>
-				<button class="buttonSubmitEvidence <?= $button_class ?>" type="submit">
+				//NO SUBMITTING SAMPLE FORM
+				if (!isset($sample_form) || (!$sample_form)): ?>
+					<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('In preview mode you cannot submit an actual evidence.') ?>">
+						<button class="thin right margin top-05 text-center disabled" type="submit">
+							<?= __('Submit') ?>
+						</button>
+					</span><?php
 
-					<?php if (isset($button_icon) && ($button_icon)): ?>
-						<i class="fa fa-floppy-o fa-2x"></i><br />
-					<?php endif;?>
-					
-					<?= __('Submit') ?>
-				</button>
+				//SUBMIT BUTTON
+				else:
+					if (!isset($button_class)) {
+						$button_class = 'button thin right margin top-05 text-center text-glow-on-hover';
+					}
+					?>
+					<button class="buttonSubmitEvidence <?= $button_class ?>" type="submit">
+
+						<?php if (isset($button_icon) && ($button_icon)): ?>
+							<i class="fa fa-floppy-o fa-2x"></i><br />
+						<?php endif;?>
+						
+						<?= __('Submit') ?>
+					</button> <?php
+				endif; ?>
 
 			<?php 
 		    echo $this->Form->end();
