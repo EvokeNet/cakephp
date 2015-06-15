@@ -111,6 +111,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			};
 
 			var initializeForum = function(forum_id, forum_url, forum_container, panel_button) {
+				console.log(forum_url);
 				$.ajax({
 					url: forum_url,
 					type:"POST",
