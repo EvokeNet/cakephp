@@ -29,18 +29,6 @@
 				$forum_group_id = $group['Forum']['id'];
 			} ?>
 
-			<div class="text-center">
-				<a class="button"
-					id="tabForumGroup"
-					data-forum-url="<?php echo rawurldecode($this->Html->url(array('plugin' => 'optimum', 'controller' => 'forum', 'action' => 'view', "#/".$forum_group_id))); ?>"
-					data-tab-content="tabForum"
-					data-forum-id="<?= $forum_group_id ?>">
-					
-					<?= __('Access group discussions') ?>
-
-				</a>
-			</div>
-
 			<!-- GROUP BOX -->
 			<div class="padding left-1">
 				<?php echo $this->element('Groups/group_box',array('group' => $group, 'show_title' => false)); ?>
