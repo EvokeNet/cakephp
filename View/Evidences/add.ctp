@@ -41,7 +41,13 @@
 
 		<!-- FORM -->
 		<?php
+		if (!isset($loggedIn) || (!$loggedIn)) {
+			echo $this->element('Evidences/evidence_form', array('sample_form' => true));
+		}
+		else {
 			echo $this->element('Evidences/evidence_form');
+		}
+			
 		?>
 	</div>
 </div>
