@@ -111,7 +111,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			};
 
 			var initializeForum = function(forum_id, forum_url, forum_container, panel_button) {
-				console.log(forum_url);
 				$.ajax({
 					url: forum_url,
 					type:"POST",
@@ -120,8 +119,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						$('#'+forum_container+' .content').empty().append(evoke.loadingAnimation);
 					},
 					success: function(data) {
-						
-
 						//Display content
 						$('#'+forum_container).off(); //clear events in previous elements
 						$('#'+forum_container+' *').off(); //clear events in previous elements

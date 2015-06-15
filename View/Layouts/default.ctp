@@ -91,7 +91,7 @@ $title = __('Evoke Network');
 
 	
 	<script type="text/javascript">
-        var webroot = "<?php echo $this->webroot; ?>";
+        var webroot = "<?php echo Router::url('/', true); ?>";
     </script>
     <?php
     	//REQUIREJS BOOTSTRAP
