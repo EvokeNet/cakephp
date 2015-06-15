@@ -28,13 +28,13 @@ class Phase extends AppModel {
 		'Enumerable',
 		'BrainstormSessionEvoke.ActPhaseBrainstorm',
 		'Optimum.ForumFilterable'
-        // 'Translate' => array(
-        //     'name' => 'phaseName', 
-        //     'description' => 'phaseDescription'
-        // )
-    );
+		// 'Translate' => array(
+		//     'name' => 'phaseName', 
+		//     'description' => 'phaseDescription'
+		// )
+	);
 
-    const TYPE_INDIVIDUAL = 0;
+	const TYPE_INDIVIDUAL = 0;
 	const TYPE_GROUP = 1;
 	const TYPE_EVOKATION = 2;
 
@@ -51,11 +51,61 @@ class Phase extends AppModel {
 		)
 	);
 
-    public $translateModel = 'PhaseTranslation';
-    public $translateTable = 'phase_translations';
+	public $translateModel = 'PhaseTranslation';
+	public $translateTable = 'phase_translations';
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+/**
+ * Checks if a user has completed this phase (at least one quest completed)
+ *
+ * @param int User ID
+ * @param int Phase ID
+ * @return boolean True if the user has completed one or more quests, false otherwise
+ */
+	public function hasCompleted($user_id, $phase_id) {
+		$quest_ids = $this->Quest->find('list',array(
+			'conditions' => array('phase_id' => $phase_id)
+		));
 
+		//Completed phase if completed at least one quest
+		foreach ($quest_ids as $quest_id => $quest_title) {
+			if ($this->Quest->hasCompleted($user_id,$quest_id))  {
+				return true;
+			}
+		}
+		return false;
+	}
+
+/**
+ * Returns current phase (all phases before have been completed)
+ *
+ * @param int User ID
+ * @param int Mission ID
+ * @return Phase object (if any)
+ */
+	public function getCurrentPhase($user_id, $mission_id) {
+		$mission_phases = $this->find('all',array(
+			'conditions' => array('mission_id' => $mission_id)
+		));
+
+		debug($mission_phases);
+
+		$completed_previous = true;
+		$phase = null;
+
+		//Current phase is the one before which all phases have been completed
+		foreach ($mission_phases as $key => $phase) {
+			$completed_current = $this->hasCompleted($user_id,$phase['Phase']['id']);
+
+			if ($completed_previous && !$completed_current) {
+				return $phase;
+			}
+			
+			$completed_previous = $completed_current;
+		}
+
+		return $phase;
+	}
+	
 	public function getNextPhase($phase, $mission_id) {
 
 		$mps = $this->Mission->Phase->find('all', array(

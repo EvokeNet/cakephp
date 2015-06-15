@@ -10,6 +10,7 @@
 			foreach ($mission['Phase'] as $mission_phase):
 				$mission_phase_url = "#";
 				$mission_status_message = "";
+				$button_type = '';
 
 				//CURRENT PHASE
 				if ($mission_phase['id'] == $current_phase) {
@@ -44,6 +45,7 @@
 						$mission_status_message = "<br /><strong><span class='text-color-dark'>".__("This phase will be available when you complete the mandatory quests of the previous phase.")."</span></strong>";
 						$mission_phase_status = 'looks-disabled';
 						$mission_phase_url = "#";
+						$button_type = 'type="button"';
 					}
 				}
 				
@@ -51,7 +53,7 @@
 				
 				<li>
 					<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= $mission_status_message.'<br /><br />'.$mission_phase['description'] ?>">
-						<a href="<?= $mission_phase_url ?>" class="button small thin <?= $mission_phase_status ?> font-weight-bold">
+						<a href="<?= $mission_phase_url ?>" <?= $button_type ?> class="button small thin <?= $mission_phase_status ?> font-weight-bold">
 							<?php
 							if (array_key_exists($mission_phase['position'], $mission_phase_icons)): ?>
 								<i class="fa <?= $mission_phase_icons[$mission_phase['position']] ?> fa-lg"></i> <?php

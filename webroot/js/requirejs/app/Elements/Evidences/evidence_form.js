@@ -143,7 +143,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					$(this).attr('action'), 	//URL
 					$(this).serialize(),		//Form data
 					$(this).attr('method') 	//GET or POST
-				).done(missionPanels.reloadTabQuests());
+				).done(function() {
+					missionPanels.reloadTabQuests();
+					missionPanels.reloadMainContent();
+				});
 				
 				event.preventDefault();
 			});

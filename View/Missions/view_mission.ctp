@@ -29,25 +29,7 @@
 	//PANELS MAIN CONTENT (does not change according to open tab)
 	$this->start('panelsMainContent');
 
-		//Content depends on the phase
-		switch($phase['Phase']['type']) {
-			//INDIVIDUAL PHASE
-			case Phase::TYPE_INDIVIDUAL:
-			case (isset($myGroups) && (count($myGroups) < 1)): //OR PERSON WITHOUT A GROUP
-				echo $this->element('Missions/panel_mission_info',array('mission' => $mission, 'phase_id' => $phase['Phase']['id']));
-				break;
-			//GROUP PHASE
-			case Phase::TYPE_GROUP:
-				foreach ($myGroups as $group) {
-					echo $this->element('Missions/panel_group_area', array('mission' => $mission, 'group' => $group, 'phase_id' => $phase['Phase']['id']));
-				}
-				break;
-			//EVOKATION PHASE
-			case Phase::TYPE_EVOKATION:
-				foreach ($myGroups as $group) {
-					echo $this->element('Missions/panel_evokation_area', array('mission' => $mission, 'group' => $group, 'phase_id' => $phase['Phase']['id']));
-				}
-		}
+		echo $this->element('Missions/panels_main_content',array('mission' => $mission, 'phase' => $phase, 'myGroups' => $myGroups));
 
 	$this->end();
 
@@ -96,6 +78,8 @@
 	));
 	$load_evidences_url = str_replace('amp;', '', $load_evidences_url); //Workaround for Cakephp 2.x
 
+	//LOADING MAIN CONTENT
+	$load_main_content_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderPanelsMainContent', $mission['Mission']['id']));
 
 	//JAVASCRIPT VARIABLES
 	$this->start('evoke_javascript_variables');
@@ -103,7 +87,8 @@
 			'missions_load_quests_url' => $load_quests_url,
 			'missions_load_dossier_url' => $load_dossier_url,
 			'missions_load_evidences_url' => $load_evidences_url,
-			'open_quests_by_default' => $open_by_default
+			'open_quests_by_default' => $open_by_default,
+			'load_main_content_url' => $load_main_content_url
 		));
 	$this->end();
 

@@ -628,6 +628,36 @@ class MissionsController extends AppController {
 	}
 
 /**
+ * Renders panels main content
+ * @param int $phase_id - ID of the current phase
+ */
+	public function renderPanelsMainContent($mission_id = null) {
+
+		if (!$this->Mission->exists($mission_id)) {
+			throw new NotFoundException(__('Invalid mission'));
+		}
+
+		$user = $this->Auth->user();
+
+		$mission = $this->Mission->find('first', array(
+			'conditions' => array('id' => $mission_id),
+			'contain' => 'Group'
+		));
+		debug($mission);
+
+		$phase = $this->Mission->Phase->getCurrentPhase($user['id'], $mission_id);
+		debug($phase);
+
+
+		$myGroups = $mission['Group'];
+
+		//Render
+		$this->set(compact('phase','mission','myGroups'));
+		$this->layout = 'ajax';
+		$this->render('/Elements/Missions/panels_main_content');
+	}
+
+/**
  * Renders tab with all quests in a phase
  * @param int $phase_id - ID of the phase
  */
@@ -951,24 +981,7 @@ class MissionsController extends AppController {
 
 		$i = 0;
 		foreach ($mission['Phase'] as $p) {
-			//MANDATORY IN THIS PHASE
-			$all_mandatory_quests = array();
-			$completed_quests = 0;
-
-			foreach ($p['Quest'] as $q) {
-				//WHETHER THE USER HAS COMPLETED THE QUEST OR NOT
-				$done = $this->Mission->Phase->Quest->hasCompleted($this->user['id'], $q['id']);
-				if($done) {
-					$completed_quests++;
-				}
-			}
-
-			//PHASE COMPLETED IF ALL MANDATORY QUESTS ARE COMPLETED
-			$mission['Phase'][$i]['completed'] = false;
-			if ($completed_quests >= count($all_mandatory_quests)) {
-				$mission['Phase'][$i]['completed'] = true;
-			}
-
+			$mission['Phase'][$i]['completed'] = $this->Mission->Phase->hasCompleted($this->user['id'],$p['id']);
 			$i++;
 		}
 

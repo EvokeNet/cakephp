@@ -56,6 +56,27 @@ define(['jquery','evoke','evokeData','jqueryui'], function($,evoke,evokeData) {
 	}
 
 	/**
+	 * Reload panels main content
+	 */
+	missionPanels.reloadMainContent = function() {
+		var tabQuestsContent = $('#panelsMainContent');
+
+		$.ajax({
+			url: evokeData.load_main_content_url,
+			type:"POST",
+			beforeSend: function() {
+				tabQuestsContent.html(evoke.loadingAnimation);
+			},
+			success: function(data) {
+				//Fill tab quests
+				tabQuestsContent.html(data);
+
+				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+			}
+		});
+	}
+
+	/**
 	 * Reload tab with Quests, but keep the same quest open
 	 */
 	missionPanels.reloadTabQuests = function() {
