@@ -14,7 +14,7 @@
 	<ul class="large-block-grid-3 medium-block-grid-1 small-block-grid-1" data-equalizer>
 		<!-- OPTION 1 - PROFILE -->
 		<li>
-			<div class="table full-width background-color-light-dark padding left-2 right-2 top-1 bottom-1" data-equalizer-watch>
+			<div class="table full-width background-color-darkest padding left-2 right-2 top-1 bottom-1" data-equalizer-watch>
 				<div class="table-cell vertical-align-middle padding right-1">
 					<div class="square-150px img-circular border-width-02 border-style-solid border-color-highlight">
 						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $user_id)); ?>">
@@ -23,7 +23,7 @@
 					</div>
 				</div>
 				<div class="table-cell full-width vertical-align-middle text-center">
-					<h4 class="text-color-highlight uppercase"><?= __('Option 1') ?></h4>
+					<h4 class="text-color-highlight uppercase"><?= __('Step 1') ?></h4>
 					<p><?= __('Create your superhero identity and build your network') ?></p>
 					<a class="button thin" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $user_id)); ?>"><?= __('GO') ?></a>
 				</div>
@@ -36,12 +36,12 @@
 				<div class="table-cell vertical-align-middle padding right-1">
 					<div class="square-150px img-circular  border-width-02 border-style-solid border-color-highlight">
 						<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>">
-							<img src="<?= $this->webroot.'img/thumb-engage.jpg' ?>" alt="<?= __('Engage in a mission') ?>" class="img-circular" />
+							<img src="<?= $this->webroot.'img/thumb-quests.jpg' ?>" alt="<?= __('Engage in a mission') ?>" class="img-circular" />
 					</div>
 				</div>
 				<div class="table-cell full-width vertical-align-middle text-center">
-					<h4 class="text-color-highlight uppercase"><?= __('Option 2') ?></h4>
-					<p><?= __('Engage in a mission and build skills') ?></p>
+					<h4 class="text-color-highlight uppercase"><?= __('Step 2') ?></h4>
+					<p><?= __('Complete your basic training and earn your first badge') ?></p>
 					<a class="button thin" href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>"><?= __('GO') ?></a>
 				</div>
 			</div>
@@ -52,15 +52,15 @@
 			<div class="table full-width background-color-light-dark padding left-2 right-2 top-1 bottom-1" data-equalizer-watch>
 				<div class="table-cell vertical-align-middle padding right-1">
 					<div class="square-150px img-circular  border-width-02 border-style-solid border-color-highlight">
-						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'evokation')); ?>">
-							<img src="<?= $this->webroot.'img/thumb-quests.jpg' ?>" alt="<?= __('Create your evokation') ?>" class="img-circular" />
+						<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>">
+							<img src="<?= $this->webroot.'img/thumb-engage.jpg' ?>" alt="<?= __('Create your evokation') ?>" class="img-circular" />
 						</a>
 					</div>
 				</div>
 				<div class="table-cell full-width vertical-align-middle text-center">
-					<h4 class="text-color-highlight uppercase"><?= __('Option 3') ?></h4>
-					<p><?= __('Create your evokation') ?></p>
-					<a class="button thin" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'evokation')); ?>"><?= __('GO') ?></a>
+					<h4 class="text-color-highlight uppercase"><?= __('Step 3') ?></h4>
+					<p><?= __('Engage in a mission and build skills') ?></p>
+					<a class="button thin" href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>"><?= __('GO') ?></a>
 				</div>
 			</div>
 		</li>
