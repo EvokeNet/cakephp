@@ -70,7 +70,7 @@ else: ?>
 
 								<p class="text-center"><?= __('Your group is:') ?><?php
 
-								echo $this->element('Groups/group_box', array('group' => $q['Response']['Group']));
+								echo $this->element('Groups/group_box', array('group' => $q['Response']['Group'], 'show_title' => true));
 							endif;
 
 						//CALL TO ACTION
@@ -97,7 +97,7 @@ else: ?>
 
 									<?php
 									foreach($q['Group'] as $group):
-										echo $this->element('Groups/group_box', array('group' => $group));
+										echo $this->element('Groups/group_box', array('group' => $group, 'show_title' => true));
 									endforeach;
 								endif;
 
