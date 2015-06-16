@@ -657,7 +657,6 @@ class MissionsController extends AppController {
 		//GROUPS
 		$myGroups = array();
 		$this->loadModel('Group');
-		$this->loadModel('GroupsUser');
 
 		//check to see if user has created/joined a group in this mission
 		//it should be just one
@@ -671,17 +670,10 @@ class MissionsController extends AppController {
 				$hasGroup = true;
 
 				//GROUP LEADER AND MEMBERS
-				$group_details = $this->Group->find('first',array(
+				$group = $this->Group->find('first',array(
 					'conditions' => array('Group.id' => $group['id']),
-					'contain' => array('Leader', 'Member')
+					'contain' => array('Leader', 'Member','GroupRequestsPending','GroupRequestsDone')
 				));
-				$group['Leader'] = $group_details['Leader'];
-				$group['Member'] = $group_details['Member'];
-
-				//GROUP REQUESTS
-				$group['requests_pending'] = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $group['id'], 'GroupRequest.status = 0')));
-
-				$group['requests'] = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $group['id'], 'GroupRequest.status' => array(1, 2))));
 
 				array_push($myGroups, $group);
 			}
@@ -991,15 +983,12 @@ class MissionsController extends AppController {
 				//GROUP LEADER AND MEMBERS
 				$group_details = $this->Group->find('first',array(
 					'conditions' => array('Group.id' => $group['id']),
-					'contain' => array('Leader', 'Member')
+					'contain' => array('Leader', 'Member','GroupRequestsPending','GroupRequestsDone')
 				));
 				$group['Leader'] = $group_details['Leader'];
 				$group['Member'] = $group_details['Member'];
-
-				//GROUP REQUESTS
-				$group['requests_pending'] = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $group['id'], 'GroupRequest.status = 0')));
-
-				$group['requests'] = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $group['id'], 'GroupRequest.status' => array(1, 2))));
+				$group['GroupRequestsPending'] = $group_details['GroupRequestsPending'];
+				$group['GroupRequestsDone'] = $group_details['GroupRequestsDone'];
 
 				array_push($myGroups, $group);
 			}

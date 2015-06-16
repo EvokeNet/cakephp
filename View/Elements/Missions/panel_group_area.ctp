@@ -60,8 +60,8 @@
 
 						<?php echo $this->element('Groups/request_tabs',array(
 							'group' => $group,
-							'groupsRequestsPending' => $group['requests_pending'],
-							'groupsRequests' => $group['requests'],
+							'groupsRequestsPending' => $group['GroupRequestsPending'],
+							'groupsRequests' => $group['GroupRequestsDone'],
 							'show_title' => false)); ?>
 					</div> <?php
 				endif; ?>

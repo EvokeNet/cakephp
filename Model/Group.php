@@ -69,6 +69,42 @@ class Group extends AppModel {
 		return ($is_member > 0);
 	}
 
+
+
+/**
+ * Return the first group in which the user is a member in this mission (if any)
+ *
+ * @param int Mission ID
+ * @param int User ID
+ * @param array Contain argument
+ * @return Group array or null, if the user is not a member of any group in this mission
+ */
+	public function getGroupInMission($mission_id, $user_id, $group_contain) {
+		$group = $this->find('first', array(
+			'joins' => array(
+				array(
+					'table' => 'groups_users',
+					'type' => 'inner',
+					'conditions' => array(
+						'groups_users.group_id = Group.id',
+						'groups_users.user_id' => $user_id
+					)
+				),
+			),
+			'fields' => array(
+				'Group.*'
+			),
+			'conditions' => array(
+				'Group.mission_id' => $mission_id
+			),
+			'group' => 'Group.id',
+			'contain' => $group_contain
+		));
+
+		return $group;
+	}
+
+
 	public function afterSave($created, $options = array()) {
 	   
 		// if($created){
@@ -157,6 +193,32 @@ class Group extends AppModel {
 			'foreignKey' => 'group_id',
 			'dependent' => false,
 			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'GroupRequestsPending' => array(
+			'className' => 'GroupRequest',
+			'foreignKey' => 'group_id',
+			'dependent' => false,
+			'conditions' => array('status' => 0),
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'GroupRequestsDone' => array(
+			'className' => 'GroupRequest',
+			'foreignKey' => 'group_id',
+			'dependent' => false,
+			'conditions' => array('status' => array(1, 2)),
 			'fields' => '',
 			'order' => '',
 			'limit' => '',

@@ -62,15 +62,37 @@ class Phase extends AppModel {
  * @return boolean True if the user has completed one or more quests, false otherwise
  */
 	public function hasCompleted($user_id, $phase_id) {
+		$phase = $this->findById($phase_id);
+
 		$quest_ids = $this->Quest->find('list',array(
 			'conditions' => array('phase_id' => $phase_id)
 		));
 
-		//Completed phase if completed at least one quest
-		foreach ($quest_ids as $quest_id => $quest_title) {
-			if ($this->Quest->hasCompleted($user_id,$quest_id))  {
-				return true;
+		//Individual phases: Completed phase if completed at least one quest
+		if ($phase['Phase']['type'] == Phase::TYPE_INDIVIDUAL) {
+			foreach ($quest_ids as $quest_id => $quest_title) {
+				if ($this->Quest->hasCompleted($user_id,$quest_id))  {
+					return true;
+				}
 			}
+		}
+
+		//Group phases: the entire group has to have completed all quests
+		else if (($phase['Phase']['type'] == Phase::TYPE_GROUP) || ($phase['Phase']['type'] == Phase::TYPE_EVOKATION)) {
+			$mission_id = $phase['Phase']['mission_id'];
+
+			$userGroupInMission = $this->Mission->Group->getGroupInMission($mission_id, $user_id, array('Member'));
+
+			//All quests
+			foreach ($quest_ids as $quest_id => $quest_title) {
+				//If one user from the group didn't complete it, the phase is not completed
+				foreach($userGroupInMission['Member'] as $key => $user) {
+					if (!$this->Quest->hasCompleted($user['id'],$quest_id))  {
+						return false;
+					}
+				}
+			}
+			return true;
 		}
 		return false;
 	}
@@ -86,8 +108,6 @@ class Phase extends AppModel {
 		$mission_phases = $this->find('all',array(
 			'conditions' => array('mission_id' => $mission_id)
 		));
-
-		debug($mission_phases);
 
 		$completed_previous = true;
 		$phase = null;

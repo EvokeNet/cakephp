@@ -60,6 +60,7 @@ class Quest extends AppModel {
 		)
 	);
 
+
 /**
  * Checks if a user has completed this quest
  * Based on the type of quest, this method gets the response sent by the user

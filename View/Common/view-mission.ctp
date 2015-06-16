@@ -53,7 +53,7 @@
 				<div class="mission-sidebar small-12 medium-12 large-7 columns min-full-height padding all-0" data-equalizer-watch data-equalizer-mq="large-up">
 					<!-- CONTENT: QUEST TAB -->
 					<aside class="tabContent hidden full-height" id="tabQuests">
-						<div class="table large-12 large-centered columns tabs-style-small-image right full-height overflow-hidden paddings-0 background-color-standard tabs-content tabQuestsContent full-width">
+						<div class="table large-12 large-centered columns tabs-style-small-image full-height overflow-hidden paddings-0 background-color-standard tabs-content tabQuestsContent full-width">
 							<?php echo $this->fetch('tabQuestsContent'); ?>
 						</div>
 					</aside>
