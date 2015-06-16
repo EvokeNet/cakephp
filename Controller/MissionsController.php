@@ -629,7 +629,7 @@ class MissionsController extends AppController {
 
 /**
  * Renders panels main content
- * @param int $phase_id - ID of the current phase
+ * @param int $mission_id - ID of the current mission
  */
 	public function renderPanelsMainContent($mission_id = null) {
 
@@ -641,15 +641,51 @@ class MissionsController extends AppController {
 
 		$mission = $this->Mission->find('first', array(
 			'conditions' => array('id' => $mission_id),
-			'contain' => 'Group'
+			'contain' => array('Group', 'Phase')
 		));
-		debug($mission);
 
-		$phase = $this->Mission->Phase->getCurrentPhase($user['id'], $mission_id);
-		debug($phase);
+		//COMPLETED PHASE
+		$i = 0;
+		foreach ($mission['Phase'] as $p) {
+			$mission['Phase'][$i]['completed'] = $this->Mission->Phase->hasCompleted($this->user['id'],$p['id']);
+			$i++;
+		}
 
+		//CURRENTLY DISPLAYING PHASE (determined in the view actions)
+		$phase = $this->Session->read('displayedPhase');
 
-		$myGroups = $mission['Group'];
+		//GROUPS
+		$myGroups = array();
+		$this->loadModel('Group');
+		$this->loadModel('GroupsUser');
+
+		//check to see if user has created/joined a group in this mission
+		//it should be just one
+		foreach ($mission['Group'] as &$group) {
+			//MEMBERSHIP
+			$group['is_owner'] = $this->Group->isOwner($group['id'], $user['id']);
+			$group['is_member'] = $this->Group->isMember($group['id'], $user['id']);
+
+			//IS OWNER OR MEMBER
+			if ($group['is_owner'] || $group['is_member']) {
+				$hasGroup = true;
+
+				//GROUP LEADER AND MEMBERS
+				$group_details = $this->Group->find('first',array(
+					'conditions' => array('Group.id' => $group['id']),
+					'contain' => array('Leader', 'Member')
+				));
+				$group['Leader'] = $group_details['Leader'];
+				$group['Member'] = $group_details['Member'];
+
+				//GROUP REQUESTS
+				$group['requests_pending'] = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $group['id'], 'GroupRequest.status = 0')));
+
+				$group['requests'] = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $group['id'], 'GroupRequest.status' => array(1, 2))));
+
+				array_push($myGroups, $group);
+			}
+		}
 
 		//Render
 		$this->set(compact('phase','mission','myGroups'));
@@ -923,6 +959,9 @@ class MissionsController extends AppController {
 			));
 		}
 
+		//Session variable for currently displayed phase
+		$this->Session->write('displayedPhase', $phase);
+
 		//---------------------------------
 		//FORUM
 		$this->loadModel('Optimum.Forum');
@@ -976,9 +1015,7 @@ class MissionsController extends AppController {
 			)
 		));
 
-		//COMPLETED MANDATORY QUESTS
-		$this->loadModel('Evidence');
-
+		//COMPLETED PHASE
 		$i = 0;
 		foreach ($mission['Phase'] as $p) {
 			$mission['Phase'][$i]['completed'] = $this->Mission->Phase->hasCompleted($this->user['id'],$p['id']);
@@ -1028,6 +1065,9 @@ class MissionsController extends AppController {
 			'order' => array('Phase.position' => 'asc'),
 			'contain' => 'Quest'
 		));
+
+		//Session variable for currently displayed phase
+		$this->Session->write('displayedPhase', $phase);
 
 		//GRAPHIC NOVELS
 		$novels = $this->Mission->Novel->find('all', array(

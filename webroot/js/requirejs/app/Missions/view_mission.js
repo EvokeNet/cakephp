@@ -89,38 +89,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				});
 				event.preventDefault();
 			});
-			
-			//--------------------------------------------//
-			//QUEST - ADD GROUP
-			//--------------------------------------------//
-			$('.add-group form').submit(function(e){
-				$.ajax({
-					type: "POST",
-					url: $(this).attr('action'),
-					data: $(this).serialize(), // serializes the form's elements.
-					success: function(data) {
-						if (data) {
-							//Confirmation dialog
-							swal({
-								title: "Sucess",
-								text: "Your group has been successfully created!",
-								type: "success",
-								confirmButtonColor: "#26dee0",
-								confirmButtonText: "Ok",
-								closeOnConfirm: true
-							},
-							function() {
-								$('.close-missions-content-overlay').click();
-								
-								//Reload quests
-								missionPanels.reloadTabQuests();
-							});
-						}
-					}
-				});
-
-				return false;
-			});
 		});
 	});
 });

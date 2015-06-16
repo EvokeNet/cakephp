@@ -24,11 +24,11 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 							"<p><span class='red'>Important:</span> only after your group is complete you should start to brainstorm your evidence!</p>",
 						type: "success",
 						confirmButtonColor: "#DD6B55",
-						closeOnConfirm: false,
+						closeOnConfirm: true,
 						html: true
 					}, function(){
-						//RELOAD PAGE (just to reload group area - this can be improved)
-						location.reload();
+						//Reload main content
+						missionPanels.reloadMainContent();
 					});
 				}
 			});
