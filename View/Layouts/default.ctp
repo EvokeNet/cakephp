@@ -46,6 +46,7 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/css/froala.css'); //Overriding some of the froala css
 
 		echo $this->Html->css('/components/sweetalert/dist/sweetalert.css'); //Sweet alert - alert boxes
+		echo $this->Html->css('/css/sweetalert.css'); //Overriding some of the sweet alert css
 
 		//EVOKE CSS
 		echo $this->Html->css('evoke');
