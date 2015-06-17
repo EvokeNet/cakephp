@@ -1,4 +1,4 @@
-<div id="panelsMainContent">
+<div id="panelsMainContent" class="full-height">
 <?php
 	//Content depends on the phase
 	switch($phase['Phase']['type']) {
