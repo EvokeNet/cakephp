@@ -12,8 +12,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$(window).scroll(throttle(function() {
 				var space_for_loading_image = 150;
 
-				//if ($(window).scrollTop() >= $(document).height() - $(window).height() - space_for_loading_image) {
-				if ($(window).scrollTop() >= $(window).height() - space_for_loading_image) {
+				if ($(window).scrollTop() >= $(document).height() - $(window).height() - space_for_loading_image) {
+				// if ($(window).scrollTop() >= $(window).height() - space_for_loading_image) {
 					if (evidence_list_has_ended == false) {
 						fillExtraContentEvidenceList();
 					}

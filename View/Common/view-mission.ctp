@@ -42,7 +42,7 @@
 		
 		<!-- MAIN SECTION -->
 		<section class="main-section relative min-full-height">
-		    <div id="missionSidebar" class="row full-width clearfix absolute full-height hidden" data-equalizer>
+		    <div id="missionSidebar" class="row full-width clearfix absolute min-full-height hidden" data-equalizer>
 		    	<!-- MISSION SUBMENU (description, phases) -->
 				<div class="missions-submenu mission-sidebar small-12 medium-12 large-5 columns min-full-height padding all-0" data-equalizer-watch data-equalizer-mq="large-up">
 					<?php echo $this->fetch('panelsMainContent'); ?>
@@ -75,7 +75,7 @@
 			</div>
 
 			<!-- EVOKE FORUM -->
-			<div id="tabForum" class="row full-width clearfix absolute full-height hidden">
+			<div id="tabForum" class="row full-width clearfix absolute min-full-height hidden">
 				<!-- FORUM TITLE -->
 				<div class="full-width background-color-darkest padding all-1">
 					<h5 class="text-center">
@@ -91,7 +91,7 @@
 			</div>
 
 			<!-- GROUP FORUM -->
-			<div id="tabGroupForum" class="row full-width clearfix absolute full-height hidden">
+			<div id="tabGroupForum" class="row full-width clearfix absolute min-full-height hidden">
 				<!-- FORUM TITLE -->
 				<div class="full-width background-color-darkest padding all-1">
 					<h5 class="text-center">
