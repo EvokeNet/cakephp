@@ -72,6 +72,7 @@ define(['jquery','evoke','evokeData','jqueryui'], function($,evoke,evokeData) {
 				tabQuestsContent.html(data);
 
 				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+				$(document).foundation('equalizer','reflow');
 			}
 		});
 	}
@@ -108,6 +109,7 @@ define(['jquery','evoke','evokeData','jqueryui'], function($,evoke,evokeData) {
 				}
 
 				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
+				$(document).foundation('equalizer','reflow');
 			}
 		});
 	}

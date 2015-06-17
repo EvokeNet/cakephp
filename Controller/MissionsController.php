@@ -632,7 +632,6 @@ class MissionsController extends AppController {
  * @param int $mission_id - ID of the current mission
  */
 	public function renderPanelsMainContent($mission_id = null) {
-
 		if (!$this->Mission->exists($mission_id)) {
 			throw new NotFoundException(__('Invalid mission'));
 		}
@@ -670,10 +669,14 @@ class MissionsController extends AppController {
 				$hasGroup = true;
 
 				//GROUP LEADER AND MEMBERS
-				$group = $this->Group->find('first',array(
+				$group_details = $this->Group->find('first',array(
 					'conditions' => array('Group.id' => $group['id']),
 					'contain' => array('Leader', 'Member','GroupRequestsPending','GroupRequestsDone')
 				));
+				$group['Leader'] = $group_details['Leader'];
+				$group['Member'] = $group_details['Member'];
+				$group['GroupRequestsPending'] = $group_details['GroupRequestsPending'];
+				$group['GroupRequestsDone'] = $group_details['GroupRequestsDone'];
 
 				array_push($myGroups, $group);
 			}
