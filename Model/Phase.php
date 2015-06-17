@@ -83,7 +83,12 @@ class Phase extends AppModel {
 
 			$userGroupInMission = $this->Mission->Group->getGroupInMission($mission_id, $user_id, array('Member'));
 
-			//All quests
+			//No group
+			if (is_null($userGroupInMission) || (!isset($userGroupInMission['Member']))) {
+				return false;
+			}
+
+			//All quests in this phase
 			foreach ($quest_ids as $quest_id => $quest_title) {
 				//If one user from the group didn't complete it, the phase is not completed
 				foreach($userGroupInMission['Member'] as $key => $user) {
