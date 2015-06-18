@@ -1,4 +1,9 @@
 <?php
+$element = 'evidence';
+if (isset($evokation_part) && ($evokation_part)) {
+	$element = 'evokation part';
+}
+
 //SAMPLE FORM ALERT
 if (isset($sample_form) && ($sample_form)): ?>
 	<div data-alert class="alert-box warning radius margin top-2">
@@ -12,7 +17,7 @@ endif;
 	<div id="new-evidence-type">
 		<!-- EXPLANATION -->
 		<div id="evidence-type-title" class="row text-center margin top-3 bottom-2">
-			<?= __('Your can choose the focus of your evidence:') ?>
+			<?= __('Your can choose the focus of your '.$element.':') ?>
 		</div>
 
 		<!-- BUTTONS TO CHOOSE EVIDENCE TYPE -->
@@ -103,7 +108,7 @@ endif;
 				)));
 
 				//CONTENT
-				echo $this->Form->input('content', array('label' => __('Edit your evidence:'), 'type' => 'textarea', 'class' => 'radius', 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
+				echo $this->Form->input('content', array('label' => __('Edit your '.$element.':'), 'type' => 'textarea', 'class' => 'radius', 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
 
 				//SUBMIT BUTTON
 				if (!isset($sample_form) || (!$sample_form)):
