@@ -14,9 +14,13 @@ class UserMatchingAnswer extends AppModel {
  * @var string
  */
 	public $displayField = 'matching_answer';
-
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	
+/**
+ * Behaviors
+ *
+ * @var array
+ */
+	public $actsAs = array('Containable');
 
 /**
  * belongsTo associations
@@ -27,6 +31,13 @@ class UserMatchingAnswer extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'MatchingAnswer' => array(
+			'className' => 'MatchingAnswer',
+			'foreignKey' => 'matching_answer_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

@@ -1271,22 +1271,56 @@ class UsersController extends AppController {
 
 		//List questions (all, and already saved)
 		$this->loadModel('MatchingQuestion');
-		$this->loadModel('UserMatchingAnswer');
 		$matching_questions = $this->MatchingQuestion->find('all');
-		$selected_matching_answer = $this->User->UserMatchingAnswer->find('all', array('conditions' => array('UserMatchingAnswer.user_id' => $id)));
+
+		foreach ($matching_questions as &$question) {
+			$question['MatchingAnswer'] = $this->MatchingQuestion->MatchingAnswer->find('list',array(
+				'conditions' => array('matching_question_id' => $question['MatchingQuestion']['id'])
+			));
+		}
 
 		$user_id = $id;
 
+		//SUBMITTING FORM
 		if ($this->request->is('post', 'put')) {
-			$counter = 0;
+			debug($this->request->data);
+			die();
 			if (isset($this->request->data['UserMatchingAnswer']['matching_answer'])) {
+				$user_id = $this->request->data['UserMatchingAnswer']['user_id'];
+				$question_id = $this->request->data['UserMatchingAnswer']['matching_question_id'];
+
 				foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $key => $u):
-					$insert['UserMatchingAnswer']['user_id'] = $this->request->data['UserMatchingAnswer']['user_id'];
-					$insert['UserMatchingAnswer']['matching_question_id'] = $this->request->data['UserMatchingAnswer']['matching_question_id'][$counter];
-					$insert['UserMatchingAnswer']['matching_answer'] = $u;
-					$this->User->UserMatchingAnswer->create();
-					$this->User->UserMatchingAnswer->save($insert);
-					$counter++;
+					debug($u);
+					//ESSAY
+					if (isset($u['description'])) {
+						$insert = array();
+						$insert['UserMatchingAnswer']['user_id'] = $user_id;
+						$insert['UserMatchingAnswer']['matching_question_id'] = $question_id;
+						$insert['UserMatchingAnswer']['description'] = $u['description'];
+
+						$this->User->UserMatchingAnswer->create();
+						$this->User->UserMatchingAnswer->save($insert);
+					}
+					//SINGLE-CHOICE
+					elseif (!is_array($u['matching_answer_id'])) {
+						$insert = array();
+						$insert['UserMatchingAnswer']['user_id'] = $user_id;
+						$insert['UserMatchingAnswer']['matching_question_id'] = $question_id;
+						$insert['UserMatchingAnswer']['matching_answer_id'] = $u['matching_answer_id'];
+					}
+					//MULTIPLE-CHOICE
+					else {
+						foreach($u['matching_answer_id'] as $k => $m_id) {
+							$insert = array();
+							$insert['UserMatchingAnswer']['user_id'] = $user_id;
+							$insert['UserMatchingAnswer']['matching_question_id'] = $question_id;
+							$insert['UserMatchingAnswer']['matching_answer_id'] = $m_id;
+
+							$this->User->UserMatchingAnswer->create();
+							$this->User->UserMatchingAnswer->save($insert);
+						}
+					}
+					
 				endforeach;
 			}
 
@@ -1302,7 +1336,7 @@ class UsersController extends AppController {
 			return $this->redirect(array('controller' => 'users', 'action' => 'matching_results', $id));
 		}
 
-		$this->set(compact('matching_questions', 'selected_matching_answer', 'user_id', 'issues', 'selectedIssues'));
+		$this->set(compact('matching_questions', 'user_id', 'issues', 'selectedIssues'));
 	}
 
 /**

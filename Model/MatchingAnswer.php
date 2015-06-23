@@ -1,11 +1,11 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * MatchingQuestion Model
+ * Answer Model
  *
- * @property UsersMatchingAnswer $UsersMatchingAnswer
+ * @property Question $Question
  */
-class MatchingQuestion extends AppModel {
+class MatchingAnswer extends AppModel {
 
 /**
  * Display field
@@ -22,27 +22,29 @@ class MatchingQuestion extends AppModel {
 	public $actsAs = array('Containable');
 
 /**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'MatchingQuestion' => array(
+			'className' => 'MatchingQuestion',
+			'foreignKey' => 'matching_question_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+
+/**
  * hasMany associations
  *
  * @var array
  */
 	public $hasMany = array(
-		'MatchingAnswer' => array(
-			'className' => 'MatchingAnswer',
-			'foreignKey' => 'matching_question_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'UserMatchingAnswer' => array(
 			'className' => 'UserMatchingAnswer',
-			'foreignKey' => 'matching_question_id',
+			'foreignKey' => 'matching_answer_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -54,5 +56,4 @@ class MatchingQuestion extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
 }
