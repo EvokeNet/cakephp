@@ -1269,10 +1269,11 @@ class UsersController extends AppController {
 		$issues = $this->User->UserIssue->Issue->find('list');
 		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
 
-		//List questions (all, and already saved)
+		//List all matching questions
 		$this->loadModel('MatchingQuestion');
 		$matching_questions = $this->MatchingQuestion->find('all');
 
+		//For each question, list possible answers
 		foreach ($matching_questions as &$question) {
 			$question['MatchingAnswer'] = $this->MatchingQuestion->MatchingAnswer->find('list',array(
 				'conditions' => array('matching_question_id' => $question['MatchingQuestion']['id'])
@@ -1283,53 +1284,25 @@ class UsersController extends AppController {
 
 		//SUBMITTING FORM
 		if ($this->request->is('post', 'put')) {
-			debug($this->request->data);
-			die();
+			//SAVE USER_MATCHING_ANSWER
 			if (isset($this->request->data['UserMatchingAnswer']['matching_answer'])) {
 				$user_id = $this->request->data['UserMatchingAnswer']['user_id'];
-				$question_id = $this->request->data['UserMatchingAnswer']['matching_question_id'];
 
-				foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $key => $u):
-					debug($u);
+				foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $question_id => $u) {
 					//ESSAY
 					if (isset($u['description'])) {
-						$insert = array();
-						$insert['UserMatchingAnswer']['user_id'] = $user_id;
-						$insert['UserMatchingAnswer']['matching_question_id'] = $question_id;
-						$insert['UserMatchingAnswer']['description'] = $u['description'];
-
-						$this->User->UserMatchingAnswer->create();
-						$this->User->UserMatchingAnswer->save($insert);
+						$this->User->UserMatchingAnswer->saveChoiceAnswer($user_id, $question_id, $u['description']);
 					}
 					//SINGLE-CHOICE
 					elseif (!is_array($u['matching_answer_id'])) {
-						$insert = array();
-						$insert['UserMatchingAnswer']['user_id'] = $user_id;
-						$insert['UserMatchingAnswer']['matching_question_id'] = $question_id;
-						$insert['UserMatchingAnswer']['matching_answer_id'] = $u['matching_answer_id'];
+						$this->User->UserMatchingAnswer->saveChoiceAnswer($user_id, $question_id, $u['matching_answer_id']);
 					}
 					//MULTIPLE-CHOICE
 					else {
 						foreach($u['matching_answer_id'] as $k => $m_id) {
-							$insert = array();
-							$insert['UserMatchingAnswer']['user_id'] = $user_id;
-							$insert['UserMatchingAnswer']['matching_question_id'] = $question_id;
-							$insert['UserMatchingAnswer']['matching_answer_id'] = $m_id;
-
-							$this->User->UserMatchingAnswer->create();
-							$this->User->UserMatchingAnswer->save($insert);
+							$this->User->UserMatchingAnswer->saveChoiceAnswer($user_id, $question_id, $m_id);
 						}
 					}
-					
-				endforeach;
-			}
-
-			if ($this->request->data['UserIssue']['issue_id']) {
-				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {
-					$insert = array('user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'issue_id' => $a);
-
-					$exists = $this->User->UserIssue->find('first', array('conditions' => array('UserIssue.user_id' => $this->request->data['UserMatchingAnswer']['user_id'], 'UserIssue.issue_id' => $a)));
-					if(!$exists) $this->User->UserIssue->save($insert);
 				}
 			}
 

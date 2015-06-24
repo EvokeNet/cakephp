@@ -10,11 +10,16 @@
 	$this->end();
 ?>
 	<div class="row standard-width">
-	  <div class="medium-6 columns form-evoke-style">
-	  	<h3 class="margin bottom-1"><?= __('About you') ?></h3>
-	  	<?php
-			
-	  		
+	  <div class="small-12 columns form-evoke-style">
+		<div class="margin all-5 top-1 text-center">
+			<h3 class="text-color-highlight "><?= __('About you') ?></h3>
+
+			<p><?= __('Congratulations, you have ventured further than most by answering this call.') ?> </p>
+			<p><?= __('Now, it\'s time to fine out what type of Evoke agent are you.  Do you know?  What are the strengths, passions, and abilities you will bring to the Evoke network?') ?></p>
+			<p><?= __('Answer the following and find out what type of Super Hero is hiding inside you...') ?></p>
+		</div>
+
+		<?php
 			//NO QUESTIONS: Show alert
 			if (count($matching_questions) < 1): ?>
 				<div data-alert="" class="alert-box radius">
@@ -40,10 +45,6 @@
 							<p class="text-color-highlight"><?= $question['description'] ?></p>
 						</label>
 						<?php
-
-						//QUESTION ID
-						echo $this->Form->hidden('matching_question_id', array('value' => $question['id']));
-
 						if ($question['type'] == 'essay'){
 							//show him a text area with the question description as the label
 							echo $this->Form->input('matching_answer]['.$question['id'].'][description', array('textarea','required' => true, 'label' => false));
@@ -73,7 +74,7 @@
 						?>
 					</div> <?php
 				}
-		  		?>
+				?>
 
 				<div class="text-center">
 					<button class="submit small"><?php echo __('Submit'); ?></button>
@@ -82,23 +83,6 @@
 			<?php 
 			endif; ?>
 			
-	  </div>
-	  <div class="medium-6 columns">
-	  	<h3 class="margin bottom-1"><?= __('Check the items that interest you the most') ?></h3>
-	  	<?php
-	  		//NO ISSUES: Show alert
-			if (!$issues): ?>
-				<div data-alert="" class="alert-box radius">
-					<?= __('There are no matching interests available at this moment.') ?>
-					<a href="" class="close">Ã—</a>
-				</div>
-			<?php
-			//HAS ISSUES AND QUESTIONS (has a form that can be sent)
-			elseif(count($matching_questions) > 0):
-				$counter = 0;
-				echo $this->Form->input('UserIssue.issue_id', array('class' => 'edit-user-issues form-evoke-style', 'type' => 'select', 'multiple' => 'checkbox', 'label' => false));
-				echo $this->Form->end();
-			endif; ?>
 	  </div>
 	</div>
 
