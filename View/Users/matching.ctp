@@ -74,7 +74,7 @@
 						else if($question['type'] == 'order') {
 							//show list of empty fields to put the order
 							?>
-							<ul id="sortable" class="no-marker margins-0"><?php
+							<ul class="sortable no-marker margins-0"><?php
 							foreach ($matching_question['MatchingAnswer'] as $answer): ?>
 								<li class="background-color-light-dark padding all-05 margin bottom-05">
 									<?= $answer ?>

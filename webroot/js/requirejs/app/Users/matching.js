@@ -18,8 +18,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//Sortable list with drag and drop effect
 			//--------------------------------------------//
-			$( "#sortable" ).sortable();
-			$( "#sortable" ).disableSelection();
+			$( ".sortable" ).sortable();
+			$( ".sortable" ).disableSelection();
 		});
 	});
 });
