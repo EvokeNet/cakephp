@@ -46,11 +46,11 @@
 						</label>
 						<?php
 						if ($question['type'] == 'essay'){
-							//show him a text area with the question description as the label
+							//show text area
 							echo $this->Form->input('matching_answer]['.$question['id'].'][description', array('textarea','required' => true, 'label' => false));
 						}
-						if ($question['type'] == 'single-choice'){
-							//show him the question description followed by radio buttons
+						else if ($question['type'] == 'single-choice'){
+							//show radio buttons
 							echo $this->Form->input('matching_answer]['.$question['id'].'][matching_answer_id', array('type' => 'radio',
 								'options' => $matching_question['MatchingAnswer'], 
 								'required' => true, 
@@ -60,8 +60,8 @@
 								'after' => '<small class="error">'.__('Required field.').'</small>'
 							));
 						}
-						if($question['type'] == 'multiple-choice'){
-							//show him the question description followed by radio buttons
+						else if($question['type'] == 'multiple-choice'){
+							//show checkboxes
 							echo $this->Form->input('matching_answer]['.$question['id'].'][matching_answer_id', array('multiple' => 'checkbox',
 								'options' => $matching_question['MatchingAnswer'], 
 								'required' => true, 
@@ -70,6 +70,17 @@
 								'separator' => '<br />',
 								'after' => '<small class="error">'.__('Required field.').'</small>'
 							));
+						}
+						else if($question['type'] == 'order') {
+							//show list of empty fields to put the order
+							?>
+							<ul id="sortable" class="no-marker margins-0"><?php
+							foreach ($matching_question['MatchingAnswer'] as $answer): ?>
+								<li class="background-color-light-dark padding all-05 margin bottom-05">
+									<?= $answer ?>
+								</li> <?php
+							endforeach; ?>
+							</ul> <?php
 						}
 						?>
 					</div> <?php
