@@ -108,11 +108,24 @@
 			</div>
 		</div>
 
-		<!-- ALLIES -->
+		<!-- BIOGRAPHY -->
 		<div class="row border-top-divisor">
-			<div class="small-12 columns margin top-2">
+			<div class="small-12 columns margin top-2 bottom-2">
 				<h3><?= __('About') ?></h3>
-				<?= $user['User']['biography'] ?>
+				<?php
+				
+				if (!empty($user['User']['biography'])):
+					echo $user['User']['biography'];
+				else: ?>
+					<div data-alert="" class="alert-box radius">
+						<?= __('You have not added a biography yet!') ?>
+					</div>
+					<div class="text-center">
+						<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?>"><?php echo __('Complete your profile!'); ?></a>
+					</div>
+					<?php
+				endif;
+				?>
 			</div>
 		</div>
 

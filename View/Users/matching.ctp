@@ -72,7 +72,7 @@
 							));
 						}
 						else if($question['type'] == 'order') {
-							//show list of empty fields to put the order
+							//show list of fields to drag and drop in order
 							?>
 							<ul id="sortable-question-<?= $question['id'] ?>" class="sortable no-marker margins-0"><?php
 							foreach ($matching_question['MatchingAnswer'] as $answer): ?>
