@@ -21,9 +21,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					$('div.files').addClass('hidden');
 
 					var detail = event.originalEvent.detail;
-			 
-					console.log('type ' + detail.mimetype);
-					console.log('URL: ' + detail.url);
 
 					//Insert data into form to save it in the DB
 					$('#evidence-form-main-content').attr('value', detail.url);
@@ -133,6 +130,16 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				FileUploader.initUploader(); //FILEUPLOADER
 				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 			};
+			
+			//--------------------------------------------//
+			//EDITING AN EVIDENCE: ALREADY LOADS EVIDENCE TYPE FORM
+			//--------------------------------------------//
+			var evidence_type = $('#evidence-form-type').attr('value');
+			console.log(evidence_type);
+			if (evidence_type != null) {
+				load_evidence_type_form(evidence_type);
+				console.log('load_evidence_type_form '+evidence_type);
+			}
 			
 
 			//--------------------------------------------//

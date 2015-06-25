@@ -671,14 +671,34 @@ class MissionsController extends AppController {
 				//GROUP LEADER AND MEMBERS
 				$group_details = $this->Group->find('first',array(
 					'conditions' => array('Group.id' => $group['id']),
-					'contain' => array('Leader', 'Member','GroupRequestsPending','GroupRequestsDone')
+					'contain' => array('Leader', 'Member','GroupRequestsPending','GroupRequestsDone','Evokation')
 				));
 				$group['Leader'] = $group_details['Leader'];
 				$group['Member'] = $group_details['Member'];
 				$group['GroupRequestsPending'] = $group_details['GroupRequestsPending'];
 				$group['GroupRequestsDone'] = $group_details['GroupRequestsDone'];
+				$group['Evokation'] = $group_details['Evokation'];
 
 				array_push($myGroups, $group);
+			}
+		}
+
+		//QUESTS TO DISPLAY IN THE EVOKATION PHASE
+		$evokationQuests = array();
+		if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
+			//Evokation quests in this mission
+			$evokationQuests = $this->Mission->Phase->Quest->find('evokePhase',array(
+				'conditions' => array('mission_id' => $mission_id)
+			));
+
+			//Status
+			foreach ($evokationQuests as &$quest) {
+				if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'])) {
+					$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
+				}
+				else {
+					$quest['Quest']['status'] = Quest::STATUS_NOT_STARTED;
+				}
 			}
 		}
 
@@ -986,12 +1006,13 @@ class MissionsController extends AppController {
 				//GROUP LEADER AND MEMBERS
 				$group_details = $this->Group->find('first',array(
 					'conditions' => array('Group.id' => $group['id']),
-					'contain' => array('Leader', 'Member','GroupRequestsPending','GroupRequestsDone')
+					'contain' => array('Leader', 'Member','GroupRequestsPending','GroupRequestsDone','Evokation')
 				));
 				$group['Leader'] = $group_details['Leader'];
 				$group['Member'] = $group_details['Member'];
 				$group['GroupRequestsPending'] = $group_details['GroupRequestsPending'];
 				$group['GroupRequestsDone'] = $group_details['GroupRequestsDone'];
+				$group['Evokation'] = $group_details['Evokation'];
 
 				array_push($myGroups, $group);
 			}

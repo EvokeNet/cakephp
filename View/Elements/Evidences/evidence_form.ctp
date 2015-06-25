@@ -1,7 +1,7 @@
 <?php
-$element = 'evidence';
+$element_title = 'evidence';
 if (isset($evokation_part) && ($evokation_part)) {
-	$element = 'evokation part';
+	$element_title = 'evokation part';
 }
 
 //SAMPLE FORM ALERT
@@ -17,7 +17,7 @@ endif;
 	<div id="new-evidence-type">
 		<!-- EXPLANATION -->
 		<div id="evidence-type-title" class="row text-center margin top-3 bottom-2">
-			<?= __('Your can choose the focus of your '.$element.':') ?>
+			<?= __('Your can choose the focus of your '.$element_title.':') ?>
 		</div>
 
 		<!-- BUTTONS TO CHOOSE EVIDENCE TYPE -->
@@ -95,9 +95,9 @@ endif;
 			<div id="evidence-main-content" class="margin top-2 bottom-2">
 			</div>
 
-			<?php echo $this->Form->hidden('main_content', array('value' => '', 'id' => 'evidence-form-main-content')); ?>
+			<?php echo $this->Form->hidden('main_content', array('value' => $evidence_main_content, 'id' => 'evidence-form-main-content')); ?>
 
-			<?php echo $this->Form->hidden('type', array('value' => '', 'id' => 'evidence-form-type')); ?>
+			<?php echo $this->Form->hidden('type', array('value' => $evidence_type, 'id' => 'evidence-form-type')); ?>
 
 
 			<!-- REGULAR CONTENT -->
@@ -108,7 +108,12 @@ endif;
 				)));
 
 				//CONTENT
-				echo $this->Form->input('content', array('label' => __('Edit your '.$element.':'), 'type' => 'textarea', 'class' => 'radius', 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
+				echo $this->Form->input('content', array('label' => __('Edit your '.$element_title.':'), 'type' => 'textarea', 'class' => 'radius', 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
+
+				//EVOKATION
+				if (isset($evokation_id)) {
+					echo $this->Form->hidden('evokation_id', array('value' => $evokation_id));
+				}
 
 				//SUBMIT BUTTON
 				if (!isset($sample_form) || (!$sample_form)):

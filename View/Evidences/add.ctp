@@ -6,7 +6,12 @@
 ?>
 <!-- TOPBAR MENU -->
 
-
+<?php
+$element_title = 'evidence';
+if (isset($evokation_part) && ($evokation_part)) {
+	$element_title = 'evokation part';
+}
+?>
 
 <div class="evidence row full-width padding top-4 full-height">
 
@@ -21,7 +26,7 @@
 
 				<!-- BADGES -->
 				<h5 class="text-color-darker-gray text-center"><?= __('REWARDS') ?></h5>
-				<p class="text-center"><?= __('Submitting an evidence for this quest is worth 3 badges:') ?></p>
+				<p class="text-center"><?= __('Submitting an '.$element_title.' for this quest is worth 3 badges:') ?></p>
 				<p class="text-center">
 					<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
 					<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
@@ -36,7 +41,7 @@
 	<div class="column small-12 medium-8 padding top-3 right-4">
 		<!-- TITLE -->
 		<h1 class="text-glow text-center">
-			<?= __('Create your evidence') ?>
+			<?= __('Create your '.$element_title) ?>
 		</h1>
 
 		<!-- FORM -->

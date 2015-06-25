@@ -258,6 +258,12 @@ public function addGroup() {
 			$this->Group->GroupsUser->save($insert_group_user);
 
 
+			//EVOKATION
+			$insert_evokation['Evokation']['group_id'] = $this->Group->id;
+			$this->Group->Evokation->create();
+			$this->Group->Evokation->save($insert_evokation);
+
+
 			//CREATES RELATED FORUM
 			$forum_id = $this->Group->addRelatedForum($me['Group']['id']);
 

@@ -132,7 +132,7 @@ public function addEvidence() {
  * Renders add view (form to add an evidence)
  * @return void
  */
-	public function add($mission_id, $phase_id, $quest_id = null, $evokation = false) {
+	public function add($mission_id, $phase_id, $quest_id = null, $evokation_id = null) {
 		//AJAX LOAD EVIDENCE FORM
 		if ($this->request->is('ajax')) {
 			$this->layout = 'ajax';
@@ -144,7 +144,16 @@ public function addEvidence() {
 			$quest = $this->Quest->findById($quest_id);
 		}
 
-		$this->set(compact('mission_id', 'phase_id', 'quest_id', 'evokation', 'quest'));
+		//EVOKATION
+		$evokation_part = false;
+		if (!is_null($evokation_id)) {
+			$evokation_part = true;
+		}
+
+		$evidence_type = null;
+		$evidence_main_content = null;
+
+		$this->set(compact('evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part'));
 	}
 
 /**
@@ -155,193 +164,49 @@ public function addEvidence() {
  * @return void
  */
 	public function edit($id = null, $ajax = false) {
-		if (!$this->Evidence->exists($id)) {
-			throw new NotFoundException(__('Invalid evidence'));
+		//AJAX LOAD EVIDENCE FORM
+		if ($this->request->is('ajax')) {
+			$this->layout = 'ajax';
 		}
 
-
-		$me = $this->Evidence->find('first', array('conditions' => array('Evidence.id' => $id)));
-
-		$myPoints = $this->Evidence->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
-
-		$sumMyPoints = 0;
-		
-		foreach($myPoints as $point){
-			$sumMyPoints += $point['Point']['value'];
-		}
-
-		$this->loadModel('Dossier');
-		$this->loadModel('Attachment');
-
-		$dossier = $this->Dossier->find('first', array(
-			'conditions' => array(
-				'mission_id' => $me['Evidence']['mission_id']
-			)
-		));
-
-		if(!empty($dossier)) {
-			//dossier files
-			$dossier_files = $this->Attachment->find('all', array(
-				'conditions' => array(
-					'Attachment.foreign_key' => $dossier['Dossier']['id'],
-					'Attachment.model' => 'Dossier'
-				)
-			));
-		} else {
-			$dossier_files = array();
-		}
-
-		$lang = $this->getCurrentLanguage();
-		$flags['_en'] = true;
-		$flags['_es'] = false;
-		if($lang=='es') {
-			$flags['_en'] = false;
-			$flags['_es'] = true;
-		}
-
-		if($flags['_es'])
-			$langs = 'es';
-		else
-			$langs = 'en';
-
-		$links = $this->Evidence->Mission->DossierLink->find('all', array('conditions' => array('DossierLink.mission_id' => $me['Evidence']['mission_id'], 'DossierLink.language' => $langs)));
-		$video_links = $this->Evidence->Mission->DossierVideo->find('all', array('conditions' => array('DossierVideo.mission_id' => $me['Evidence']['mission_id'], 'DossierVideo.language' => $langs)));
-
-		if($me['Evidence']['user_id'] != $this->getUserId()) {
-			//debug($me);
-			$this->Session->setFlash(__('You have no permission to edit an evidence that does not belong to you.'));
-			$this->redirect($this->referer());
-		}
-
+		//SAVING
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Evidence->createWithAttachments($this->request->data, true, $id)) {
-				
-				//check to see if there are img/files that are no loner to be related to the quest...
-				if(isset($this->request->data['Attachment']['Old'])) {
-					$this->destroyAttachments($this->request->data['Attachment']['Old']);
-				}
-
-				//$this->Session->setFlash(__('The evidence has been saved.'));
-
-				/* Starts event */
-				$value = 1;
-				$origin = 'evidence';
-
-				if($me['Evidence']['evokation'] == 1)
-					$origin = 'evidenceEvokation';
-
-		        $quest = $this->Evidence->Quest->find('first', array(
-		        	'conditions' => array(
-		        		'Quest.id' => $me['Evidence']['quest_id'])));
-
-		        if($quest)
-		            $value = $quest['Quest']['points'];
-
-		        $event = new CakeEvent('Controller.Evidence.create', $this, array(
-		        	'user_id' => $me['Evidence']['user_id'], 
-		            'origin_id' => $me['Evidence']['id'], 
-		            'origin' => $origin, 
-		        	'points' => $value,
-		        ));
-
-		        $this->getEventManager()->dispatch($event);
-
-		        //////////////////COMENTADO PELA GABI///////////////
-		  //       //attribute pp to this user if hasnt won from this very evidence:
-				// $this->loadModel('UserPowerPoint');
-				// $hasWonPowerPointsFromThis = $this->UserPowerPoint->find('first', array(
-				// 	'conditions' => array(
-				// 		'UserPowerPoint.user_id' => $this->getUserId(),
-				// 		'UserPowerPoint.model' => 'Evidence',
-				// 		'UserPowerPoint.foreign_key' => $me['Evidence']['id']
-				// 	)
-				// ));
-
-				// if(empty($hasWonPowerPointsFromThis)) {
-
-				// 	$this->loadModel('QuestPowerPoint');
-				// 	$pps = $this->QuestPowerPoint->find('all', array(
-				// 		'conditions' => array(
-				// 			'quest_id' => $me['Evidence']['quest_id']
-				// 		)
-				// 	));
-
-				// 	foreach($pps as $pp) {
-				// 		$data['UserPowerPoint']['user_id'] = $me['Evidence']['user_id'];
-				// 		$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
-				// 		$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
-				// 		$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity'] * 30);
-				// 		$data['UserPowerPoint']['model'] = 'Evidence';
-				// 		$data['UserPowerPoint']['foreign_key'] = $me['Evidence']['id'];
-
-				// 		$this->loadModel('UserPowerPoint');
-				// 		$this->UserPowerPoint->create();
-				// 		$this->UserPowerPoint->save($data);
-				// 	}
-				// }
-				//////////////////COMENTADO PELA GABI///////////////
-
-				// if(empty($this->request->data['Evidence']['content'])) {
-				// 	//debug($me);
-				// 	$this->Session->setFlash(__('You need to fill the content'),'flash_message');
-				// 	$this->redirect($this->referer());
-				// }
-
-		        $this->Session->setFlash(__('The evidence has been saved'));
-
-				/* Ends event */
-
-				//REDIRECT TO VIEW THE EVIDENCE
+			if ($this->Evidence->save($this->request->data)) {
 				return $this->redirect(array(
 					'header' => $this->request->header, //Use the same header - useful if the requester is ajax
 					'action' => 'view', 
-					$me['Evidence']['id']
+					$this->Evidence->id
 				));
 			} else {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
+				return;
 			}
-		} else {
-			$options = array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id));
-			$this->request->data = $this->Evidence->find('first', $options);
 		}
 
-		//getting power points from evoke to display the ones related to quests in quests' lightboxes
-		$this->loadModel('PowerPoint');
-		$tmp = $this->PowerPoint->find('all');
-		$allPowerPoints = array(); //will contain all evoke's powerpoints with the first index as their id's (i.e. the power point with id 33 will be at $allPowerPoints[33])
-		foreach ($tmp as $tmpKey => $tmpPP) {
-			if($flags['_es']) {
-				$tmp[$tmpKey]['PowerPoint']['name']	= $tmp[$tmpKey]['PowerPoint']['name_es'];
-				$tmp[$tmpKey]['PowerPoint']['description']	= $tmp[$tmpKey]['PowerPoint']['description_es'];
-			}
-			$allPowerPoints[$tmpPP['PowerPoint']['id']] = $tmp[$tmpKey];
+		//VIEWING PAGE TO EDIT
+		$evidence = $this->Evidence->findById($id);
+
+		$evidence_type = $evidence['Evidence']['type'];
+		$evidence_main_content = $evidence['Evidence']['main_content'];
+
+		$mission_id = $evidence['Evidence']['mission_id'];
+		$phase_id = $evidence['Evidence']['phase_id'];
+		$quest_id = $evidence['Evidence']['quest_id'];
+		$evokation_id = $evidence['Evidence']['evokation_id'];
+
+		//LOAD QUEST
+		$this->loadModel("Quest");
+		if ($quest_id != null) {
+			$quest = $this->Quest->findById($quest_id);
 		}
 
-		$user = $this->Evidence->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-		$users = $this->Evidence->User->find('list');
-		$quests = $this->Evidence->Quest->find('list');
-		$missions = $this->Evidence->Mission->find('list');
-		$phases = $this->Evidence->Phase->find('list');
-
-		$this->loadModel('Attachment');
-		$attachments = $this->Attachment->find('all', array(
-			'conditions' => array(
-				'Attachment.foreign_key' => $me['Evidence']['id'],
-				'Attachment.model' => 'Evidence'
-			)
-		));
-
-		$q = $this->Evidence->Quest->find('first', array('conditions' => array('Quest.id' => $me['Evidence']['quest_id'])));
-
-		$lang = $this->getCurrentLanguage();
-
-		$this->set(compact('dossier_files', 'lang', 'allPowerPoints', 'dossier', 'links', 'video_links', 'user', 'users', 'quests', 'q', 'missions', 'phases', 'attachments', 'sumMyPoints', 'me', 'ajax'));
-
-		//AJAX LOAD EVIDENCE
-		if ($ajax) {
-			$this->layout = 'ajax';
+		//EVOKATION
+		$evokation_part = false;
+		if (!is_null($evokation_id)) {
+			$evokation_part = true;
 		}
+
+		$this->set(compact('evidence', 'evidence_type', 'evidence_main_content', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part'));
 	}
 
 	public function destroyAttachments($data){
