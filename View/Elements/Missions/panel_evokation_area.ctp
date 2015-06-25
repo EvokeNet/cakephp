@@ -42,6 +42,7 @@
 				'group' => $group,
 				'groupOwner' => $group['Leader'],
 				'members' => $group['Member'],
+				'evokation_quests' => $evokationQuests,
 				'show_title' => false)); ?>
 		</div>
 	</div>

@@ -16,7 +16,7 @@
 		//EVOKATION PHASE
 		case Phase::TYPE_EVOKATION:
 			foreach ($myGroups as $group) {
-				echo $this->element('Missions/panel_evokation_area', array('mission' => $mission, 'group' => $group, 'phase_id' => $phase['Phase']['id']));
+				echo $this->element('Missions/panel_evokation_area', array('mission' => $mission, 'group' => $group, 'phase_id' => $phase['Phase']['id'], 'evokationQuests' => $evokationQuests));
 			}
 	}
 ?>

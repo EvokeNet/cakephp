@@ -23,6 +23,12 @@ class Quest extends AppModel {
  */
 	public $order = "Quest.position ASC";
 
+/**
+ * Custom find types
+ *
+ * @var array
+ */
+	public $findMethods = array('evokePhase' =>  true);
 
 /**
  * Behaviors
@@ -45,6 +51,10 @@ class Quest extends AppModel {
 	const TYPE_GROUP_CREATION = 3;
 	const TYPE_EVOKATION = 4;
 
+	const STATUS_NOT_STARTED = 0;
+	const STATUS_IN_PROGRESS = 1;
+	const STATUS_COMPLETED = 2;
+
 /**
  * Enumerable fields (handled by Enumerable behavior)
  *
@@ -57,6 +67,11 @@ class Quest extends AppModel {
 			self::TYPE_BRAINSTORM => 'Brainstorm',
 			self::TYPE_GROUP_CREATION => 'Group creation',
 			self::TYPE_EVOKATION => 'Evokation'
+		),
+		'status' => array(
+			self::STATUS_NOT_STARTED => 'Not started',
+			self::STATUS_IN_PROGRESS => 'In progress',
+			self::STATUS_COMPLETED => 'Completed'
 		)
 	);
 
@@ -114,6 +129,13 @@ class Quest extends AppModel {
 		return false;
 	}
 
+/**
+ * Based on the type of quest, this method gets the response sent by the user
+ *
+ * @param int User ID
+ * @param int Quest ID
+ * @return object Quest response
+ */
 	public function getQuestResponse($user_id,$quest_id) {
 		if (!$this->exists($quest_id)) {
 			throw new NotFoundException(__('Invalid quest'));
@@ -174,6 +196,55 @@ class Quest extends AppModel {
 		}
 		return null;
 	}
+
+
+/**
+ * Custom find query that adds conditions to filter queries that belong to the Evoke phase
+ * (queries with type Evokation, or queries of other types that are votable in the Evoke phase)
+ *
+ */
+	protected function _findEvokePhase($state, $query, $results = array()) {
+		if ($state === 'before') {
+			$evokePhaseCondition = array(
+				'OR' => array(
+					'Quest.votable' => true,
+					'Quest.type' => Quest::TYPE_EVOKATION
+				)
+			);
+			if (is_array($query['conditions'])) {
+				array_push($query['conditions'], $evokePhaseCondition);
+			}
+			else {
+				$query['conditions'] = $evokePhaseCondition;
+			}
+			
+			return $query;
+		}
+		return $results;
+	}
+
+	// public function getEvokePhaseQuestStatus($user_id,$quest_id) {
+	// 	if (!$this->exists($quest_id)) {
+	// 		throw new NotFoundException(__('Invalid quest'));
+	// 	}
+
+	// 	$quest = $this->findById($quest_id);
+
+	// 	$response = $this->getQuestResponse($user_id,$quest_id);
+
+	// 	//VOTABLE
+	// 	if ($quest['Quest']['votable'] == true):
+	// 		if (isset($response['Evokation']) && (count($response['Evokation']) > 0)) {
+	// 			return true;
+	// 		}
+	// 		return false;
+	// 	}
+	// 	//EVOKE PHASE QUEST
+	// 	else {
+
+	// 	}
+	// 	return false;
+	// }
 
 	public function createWithAttachments($data, $hasPrev = false, $id = null) {
 		// Sanitize your images before adding them

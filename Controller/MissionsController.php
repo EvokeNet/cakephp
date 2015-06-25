@@ -1032,7 +1032,26 @@ class MissionsController extends AppController {
 			'allowSignedRequest' => false
 		));
 
-		$this->set(compact('mission', 'phase', 'myGroups', 'forum', 'novels', 'user', 'facebook'));
+		//QUESTS TO DISPLAY IN THE EVOKATION PHASE
+		$evokationQuests = array();
+		if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
+			//Evokation quests in this mission
+			$evokationQuests = $this->Mission->Phase->Quest->find('evokePhase',array(
+				'conditions' => array('mission_id' => $mission_id)
+			));
+
+			//Status
+			foreach ($evokationQuests as &$quest) {
+				if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'])) {
+					$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
+				}
+				else {
+					$quest['Quest']['status'] = Quest::STATUS_NOT_STARTED;
+				}
+			}
+		}
+
+		$this->set(compact('mission', 'phase', 'myGroups', 'forum', 'novels', 'user', 'facebook', 'evokationQuests'));
 	}
 
 
