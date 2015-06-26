@@ -671,7 +671,9 @@ class MissionsController extends AppController {
 				//GROUP LEADER AND MEMBERS
 				$group_details = $this->Group->find('first',array(
 					'conditions' => array('Group.id' => $group['id']),
-					'contain' => array('Leader', 'Member','GroupRequestsPending','GroupRequestsDone','Evokation')
+					'contain' => array('Leader', 'Member','GroupRequestsPending','GroupRequestsDone',
+						'Evokation' => 'Evidence'
+					)
 				));
 				$group['Leader'] = $group_details['Leader'];
 				$group['Member'] = $group_details['Member'];
@@ -693,7 +695,7 @@ class MissionsController extends AppController {
 
 			//Status
 			foreach ($evokationQuests as &$quest) {
-				if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'])) {
+				if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'],$phase['Phase']['id'])) {
 					$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
 				}
 				else {
@@ -702,8 +704,10 @@ class MissionsController extends AppController {
 			}
 		}
 
+		debug($evokationQuests);
+
 		//Render
-		$this->set(compact('phase','mission','myGroups'));
+		$this->set(compact('phase','mission','myGroups','evokationQuests'));
 		$this->layout = 'ajax';
 		$this->render('/Elements/Missions/panels_main_content');
 	}
@@ -1006,7 +1010,9 @@ class MissionsController extends AppController {
 				//GROUP LEADER AND MEMBERS
 				$group_details = $this->Group->find('first',array(
 					'conditions' => array('Group.id' => $group['id']),
-					'contain' => array('Leader', 'Member','GroupRequestsPending','GroupRequestsDone','Evokation')
+					'contain' => array('Leader','Member','GroupRequestsPending','GroupRequestsDone',
+						'Evokation' => 'Evidence'
+					)
 				));
 				$group['Leader'] = $group_details['Leader'];
 				$group['Member'] = $group_details['Member'];
@@ -1017,7 +1023,6 @@ class MissionsController extends AppController {
 				array_push($myGroups, $group);
 			}
 		}
-
 		
 
 		//ANSWERS
@@ -1063,7 +1068,7 @@ class MissionsController extends AppController {
 
 			//Status
 			foreach ($evokationQuests as &$quest) {
-				if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'])) {
+				if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'],$phase['Phase']['id'])) {
 					$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
 				}
 				else {

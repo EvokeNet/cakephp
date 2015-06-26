@@ -115,7 +115,7 @@ else: ?>
 								endif;
 
 							//EVOKATION
-							elseif ($q['type'] == Quest::TYPE_EVOKATION): ?>
+							elseif ($q['type'] == Quest::TYPE_EVOKATION_PART): ?>
 								<p class="text-center">
 									<a class="button small open-mission-overlay disabled">
 										<?= __('Create your evokation') ?>

@@ -55,12 +55,18 @@ endif;
 		<?php
 		//EDIT
 		if (isset($evidence)) {
-			echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'edit', $evidence['id'])));
+			debug($evidence);
+			echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'editEvidence')));
+
+
+			echo $this->Form->hidden('id', array('value' => $evidence['id']));
 		}
 		//CREATE
 		else {
 			echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'addEvidence')));
 
+			$evidence['type'] = "";
+			$evidence['main_content'] = "";
 			$evidence['title'] = "";
 			$evidence['content'] = "";
 		}
@@ -95,9 +101,9 @@ endif;
 			<div id="evidence-main-content" class="margin top-2 bottom-2">
 			</div>
 
-			<?php echo $this->Form->hidden('main_content', array('value' => $evidence_main_content, 'id' => 'evidence-form-main-content')); ?>
+			<?php echo $this->Form->hidden('main_content', array('value' => $evidence['main_content'], 'id' => 'evidence-form-main-content')); ?>
 
-			<?php echo $this->Form->hidden('type', array('value' => $evidence_type, 'id' => 'evidence-form-type')); ?>
+			<?php echo $this->Form->hidden('type', array('value' => $evidence['type'], 'id' => 'evidence-form-type')); ?>
 
 
 			<!-- REGULAR CONTENT -->

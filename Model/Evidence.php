@@ -57,66 +57,7 @@ class Evidence extends AppModel {
             return true;
         }
         return false;
-        // Throw an exception for the controller
-        //throw new Exception(__("This post could not be saved. Please try again"));
     }
-
-   //  public function afterSave($created, $options = array()) {
-       
-   //     	if($created){
-	  //       $value = 1;
-   //     		//check to see if admin set a different amount of points for this action
-	  //       App::import('model','Quest');
-	  //       $quests = new Quest();
-
-	  //       $evidence = $this->find('first', array(
-			// 	'conditions' => array('Evidence.id' => $this->id))
-			// );
-
-			// if($evidence['Evidence']['evokation'] == 1)
-			// 	$entity = 'evokationQuest';
-			// else
-			// 	$entity = 'evidence';
-
-	  //       $quest = $quests->find('first', array(
-	  //       	'conditions' => array(
-	  //       		'Quest.id' => $evidence['Evidence']['quest_id'])));
-
-	  //       if($quest)
-	  //           $value = $quest['Quest']['points'];
-
-	  //       $event = new CakeEvent('Model.Evidence.create', $this, array(
-	  //       	'points' => $value,
-	  //       	'entity' => $entity
-	  //       ));
-
-	  //       $this->getEventManager()->dispatch($event);
-
-	  //       return true;
-	  //   }	
-   //  }
-
-
-	/* 
-	// Comentado pois havia erro na pagina de login
-    public function beforeDelete() {
-       
-       $evidence = $this->find('first', array(
-			'conditions' => array('Evidence.id' => $this->id))
-		);
-
-       $event = new CakeEvent('Model.Group.delete', $this, array(
-            'entity_id' => $evidence['Evidence']['id'],
-            'user_id' => $evidence['Evidence']['user_id'],
-            'entity' => 'evidence'
-        ));
-
-       $this->getEventManager()->dispatch($event);
-		
-	   return true;	
-    }*/
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
  * belongsTo associations
@@ -127,6 +68,13 @@ class Evidence extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Evokation' => array(
+			'className' => 'Evokation',
+			'foreignKey' => 'evokation_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

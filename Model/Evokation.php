@@ -14,6 +14,22 @@ class Evokation extends AppModel {
  */
 	public $displayField = 'title';
 
+/**
+ * Checks if the evokation has been completed
+ *
+ * @param int Evokation ID
+ * @return boolean True if the evokation has been marked complete, false otherwise
+ */
+	public function isComplete($evokation_id) {
+		if (!$this->exists($evokation_id)) {
+			throw new NotFoundException(__('Invalid evokation'));
+		}
+
+		$evokation = $this->findById($evokation_id);
+
+		return $evokation['Evokation']['final_sent'];
+	}
+
 /*
  * belongsTo associations
  *
@@ -45,6 +61,19 @@ class Evokation extends AppModel {
 		),
 		'Vote' => array(
 			'className' => 'Vote',
+			'foreignKey' => 'evokation_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Evidence' => array(
+			'className' => 'Evidence',
 			'foreignKey' => 'evokation_id',
 			'dependent' => false,
 			'conditions' => '',

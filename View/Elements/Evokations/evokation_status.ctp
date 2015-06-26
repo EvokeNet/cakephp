@@ -3,18 +3,31 @@
 //EVOKATION
 $evokation_id = null;
 if (isset($group['Evokation'])) {
-	$evokation_id = $group['Evokation'][0]['id'];
+	$evokation = $group['Evokation'][0];
+	$evokation_id = $evokation['id'];
 }
 
 //EVOKATION QUESTS
-foreach ($evokationQuests as $key => $quest): ?>
+foreach ($evokationQuests as $key => $quest):
+	//FIND CORRESPONDING EVIDENCE (if already created)
+	if (isset($evokation)) {
+		$evidence = Hash::extract(
+			$evokation, 
+			'Evidence.{n}[quest_id='.$quest['Quest']['id'].']'
+		);
+		if (!empty($evidence)) {
+			$evidence = $evidence[0];
+		}
+	}
+	
+	?>
 	<li>
 		<p>
 		<?php
 		switch ($quest['Quest']['status']) {
 			case Quest::STATUS_IN_PROGRESS: ?>
 				<a class="button thin open-mission-overlay" href="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'edit', 
-					$evidence_id
+					$evidence['id']
 				));?>">
 					<i class="fa fa-check-circle green"></i>
 					<span class="font-highlight green"><?= $quest['Quest']['title'] ?></span>

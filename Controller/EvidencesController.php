@@ -157,6 +157,25 @@ public function addEvidence() {
 	}
 
 /**
+ * Receive evidence data via post and update it in the database
+ * @return redirect to view the evidence created
+ */
+public function editEvidence() {
+	if ($this->request->is('post')) {
+		//UPDATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT
+		if ($this->Evidence->save($this->request->data)) {
+			return $this->redirect(array(
+				'header' => $this->request->header,
+				'action' => 'view', 
+				$this->Evidence->id
+			));
+		} else {
+			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
+		}
+	}
+}
+
+/**
  * edit method
  *
  * @throws NotFoundException
@@ -167,20 +186,6 @@ public function addEvidence() {
 		//AJAX LOAD EVIDENCE FORM
 		if ($this->request->is('ajax')) {
 			$this->layout = 'ajax';
-		}
-
-		//SAVING
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Evidence->save($this->request->data)) {
-				return $this->redirect(array(
-					'header' => $this->request->header, //Use the same header - useful if the requester is ajax
-					'action' => 'view', 
-					$this->Evidence->id
-				));
-			} else {
-				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
-				return;
-			}
 		}
 
 		//VIEWING PAGE TO EDIT
@@ -375,8 +380,10 @@ public function addEvidence() {
 		if ($this->Evidence->delete()) {
 			$this->Session->setFlash(__('The evidence has been deleted.'));
 			if (!$ajax) {
-				return $this->redirect(array('controller' => 'users', 'action' => 'profile'));
+				$user = $this->Auth->user();
+				return $this->redirect(array('controller' => 'users', 'action' => 'profile', $user['id']));
 			}
+			return true;
 		} else {
 			$this->Session->setFlash(__('The evidence could not be deleted. Please, try again.'));
 		}

@@ -49,7 +49,7 @@ class Quest extends AppModel {
 	const TYPE_QUESTIONNAIRE = 1;
 	const TYPE_BRAINSTORM = 2;
 	const TYPE_GROUP_CREATION = 3;
-	const TYPE_EVOKATION = 4;
+	const TYPE_EVOKATION_PART = 4;
 
 	const STATUS_NOT_STARTED = 0;
 	const STATUS_IN_PROGRESS = 1;
@@ -66,7 +66,7 @@ class Quest extends AppModel {
 			self::TYPE_QUESTIONNAIRE => 'Questionnaire',
 			self::TYPE_BRAINSTORM => 'Brainstorm',
 			self::TYPE_GROUP_CREATION => 'Group creation',
-			self::TYPE_EVOKATION => 'Evokation'
+			self::TYPE_EVOKATION_PART => 'Evokation'
 		),
 		'status' => array(
 			self::STATUS_NOT_STARTED => 'Not started',
@@ -80,24 +80,27 @@ class Quest extends AppModel {
  * Checks if a user has completed this quest
  * Based on the type of quest, this method gets the response sent by the user
  * ( @see self::getQuestResponse() )
+ * The phase to which the response relates can be specified, if different from the quest phase.
  * Then, the method checks if the response is enough to complete the quest
  *
  * @param int User ID
  * @param int Quest ID
+ * @param int Phase ID - If not specified, the quest response will be related to the phase in which the quest was created
  * @return boolean True if the user has completed the quest, false otherwise
  */
-	public function hasCompleted($user_id,$quest_id) {
+	public function hasCompleted($user_id,$quest_id,$phase_id = null) {
 		if (!$this->exists($quest_id)) {
 			throw new NotFoundException(__('Invalid quest'));
 		}
 
 		$quest = $this->findById($quest_id);
 
-		$response = $this->getQuestResponse($user_id,$quest_id);
+		$response = $this->getQuestResponse($user_id,$quest_id,$phase_id);
 
 		switch ($quest['Quest']['type']) {
 			case self::TYPE_EVIDENCE:
 			case self::TYPE_BRAINSTORM:
+			case self::TYPE_EVOKATION_PART:
 				if (isset($response['Evidence']) && (count($response['Evidence']) > 0)) {
 					return true;
 				}
@@ -119,37 +122,40 @@ class Quest extends AppModel {
 					return true;
 				}
 				return false;
-
-			case self::TYPE_EVOKATION:
-				if (isset($response['Evokation']) && (count($response['Evokation']) > 0)) {
-					return true;
-				}
-				return false;
 		}
 		return false;
 	}
 
 /**
  * Based on the type of quest, this method gets the response sent by the user
+ * The phase to which the response relates can be specified, if different from the quest phase
  *
  * @param int User ID
  * @param int Quest ID
+ * @param int Phase ID - If not specified, the quest response will be related to the phase in which the quest was created
  * @return object Quest response
  */
-	public function getQuestResponse($user_id,$quest_id) {
+	public function getQuestResponse($user_id,$quest_id,$phase_id = null) {
 		if (!$this->exists($quest_id)) {
 			throw new NotFoundException(__('Invalid quest'));
 		}
 
 		$quest = $this->findById($quest_id);
 
+		//Default phase ID: the one in which the quest was created
+		if ($phase_id == null) {
+			$phase_id = $quest['Quest']['phase_id'];
+		}
+
 		switch ($quest['Quest']['type']) {
 			case self::TYPE_EVIDENCE:
 			case self::TYPE_BRAINSTORM:
+			case self::TYPE_EVOKATION_PART:
 				return $this->Evidence->find('first',array(
 					'conditions' => array(
 						'user_id' => $user_id,
-						'quest_id' => $quest_id
+						'quest_id' => $quest_id,
+						'phase_id' => $phase_id
 					),
 					'contain' => array('User')
 				));
@@ -178,21 +184,6 @@ class Quest extends AppModel {
 						'Group.quest_id' => $quest_id
 					)
 				));
-			case self::TYPE_EVOKATION:
-				//GROUP THIS USER IS MEMBER OF
-				$group = $this->Group->find('first',array(
-					'conditions' => array('quest_id' => $quest_id),
-					'contain' => array(
-						'GroupsUser' => array(
-							'conditions' => array('user_id' => $user_id)
-						)
-					)
-				));
-				if (isset($group['GroupsUser']) && (count($group['GroupsUser']) > 0)) {
-					//EVOKATION BY THIS GROUP
-					return $this->Group->Evokation->findByGroupId($group_id);
-				}
-				return array();
 		}
 		return null;
 	}
@@ -208,7 +199,7 @@ class Quest extends AppModel {
 			$evokePhaseCondition = array(
 				'OR' => array(
 					'Quest.votable' => true,
-					'Quest.type' => Quest::TYPE_EVOKATION
+					'Quest.type' => Quest::TYPE_EVOKATION_PART
 				)
 			);
 			if (is_array($query['conditions'])) {
