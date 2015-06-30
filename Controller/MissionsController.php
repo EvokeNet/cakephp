@@ -704,8 +704,6 @@ class MissionsController extends AppController {
 			}
 		}
 
-		debug($evokationQuests);
-
 		//Render
 		$this->set(compact('phase','mission','myGroups','evokationQuests'));
 		$this->layout = 'ajax';

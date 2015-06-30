@@ -55,7 +55,6 @@ endif;
 		<?php
 		//EDIT
 		if (isset($evidence)) {
-			debug($evidence);
 			echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'editEvidence')));
 
 
@@ -170,7 +169,7 @@ endif;
         'safePath'   => 'Evidence/'
 	));
 
-	echo $this->element('Templates/Evidences/evidence-type-link');
+	echo $this->element('Templates/Evidences/evidence-type-link', array('evidence' => $evidence));
 
 	//SCRIPT
 	$this->Html->script('requirejs/app/Elements/Evidences/evidence_form.js', array('inline' => false));

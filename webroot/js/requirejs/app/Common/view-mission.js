@@ -83,8 +83,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//Used for submitting evidences, brainstorm etc.
 			//--------------------------------------------//
 			$("body").on("click", ".open-mission-overlay", function(event){
-				missionPanels.openInMissionOverlay($(this).attr("href"));
+				$(this).blur(); //unfocus
 				event.preventDefault();
+				missionPanels.openInMissionOverlay($(this).attr("href"));
 			});
 
 			//--------------------------------------------//

@@ -135,10 +135,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//EDITING AN EVIDENCE: ALREADY LOADS EVIDENCE TYPE FORM
 			//--------------------------------------------//
 			var evidence_type = $('#evidence-form-type').attr('value');
-			console.log(evidence_type);
-			if (evidence_type != null) {
+			if (evidence_type) {
 				load_evidence_type_form(evidence_type);
-				console.log('load_evidence_type_form '+evidence_type);
 			}
 			
 

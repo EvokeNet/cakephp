@@ -11,14 +11,21 @@ define(['jquery','evoke','evokeData','jqueryui'], function($,evoke,evokeData) {
 		if (!ajax_type) {
 			ajax_type = 'POST';
 		}
+
+		missions_content_overlay = $('#missions-content-overlay');
+		missions_content_overlay_body = $('#missions-content-overlay-body');
+
 		return $.ajax({
 			url: ajax_url,
 			data: ajax_data,
 			type: ajax_type,
 			beforeSend: function() {
+				//Clear content-body and its events
+				$('.content-body *').off();
+				$('.content-body').children().remove();
 				//SHOW OVERLAY WITH LOADING IMAGE
-				$('.content-body').empty().append(evoke.loadingAnimation);
-				$('#missions-content-overlay').fadeIn("slow");
+				$('.content-body').append(evoke.loadingAnimation);
+				missions_content_overlay.fadeIn("slow");
 				//HIDE SECTION BEHIND
 				$('.main-section').addClass("hidden");
 				$('.tab-bar').addClass("hidden");
@@ -32,7 +39,19 @@ define(['jquery','evoke','evokeData','jqueryui'], function($,evoke,evokeData) {
 
 				//Display content
 				$('#missions-content-overlay-body *').off(); //clear events in previous elements
-				$('#missions-content-overlay-body').off().html(data);
+				missions_content_overlay_body.off();
+				missions_content_overlay_body.children().remove();
+				missions_content_overlay_body.html(data);
+
+				//Focus on first input, or, at least, in the first element
+				first_input = $("#missions-content-overlay-body input:visible:first");
+				if (first_input.length > 0) {
+					first_input.focus();
+				}
+				else {
+					$("#missions-content-overlay-body :visible:first").focus();
+				}
+				
 
 				//Reflow
 				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
@@ -44,9 +63,10 @@ define(['jquery','evoke','evokeData','jqueryui'], function($,evoke,evokeData) {
 	 * Open content in the mission overlay layer via AJAX
 	 */
 	missionPanels.closeMissionOverlay = function() {
-		//Clear content-body and its event
-		$('#missions-content-overlay-body *').off(); //clear events in previous elements
-		$('#missions-content-overlay-body').off().empty();
+		//Clear content-body and its events
+		$('#missions-content-overlay-body *').off();
+		$('#missions-content-overlay-body').off();
+		$('#missions-content-overlay-body').children().remove();
 
 		//Hide content overlay and show tab-bar and main section
 		$('#missions-content-overlay').fadeOut('fast');
