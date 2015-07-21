@@ -1,6 +1,3 @@
-[submodule "etherpad"]
-	path = etherpad
-	url = https://github.com/ether/etherpad-lite.git
 [submodule "Plugin/FileUploader"]
 	path = Plugin/FileUploader
 	url = git@bitbucket.org:quantica/silabe-fileuploader.git

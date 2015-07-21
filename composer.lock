@@ -1,22 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "547a76036d413b9c6132f3ba5192ba11",
+    "hash": "10cfa2a7ce0579a568f9cf838a4f6a4a",
     "packages": [
         {
-            "name": "0x46616c6b/etherpad-lite-client",
-            "version": "dev-master",
+            "name": "aws/aws-sdk-php",
+            "version": "2.8.14",
             "source": {
                 "type": "git",
-                "url": "https://github.com/0x46616c6b/etherpad-lite-client.git",
-                "reference": "fa2f0fd185097bed6b371c2422c705d6a5d6f258"
+                "url": "https://github.com/aws/aws-sdk-php.git",
+                "reference": "cc3f63f695e15e4b1e6ee0e090c32bfde78115a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/0x46616c6b/etherpad-lite-client/zipball/fa2f0fd185097bed6b371c2422c705d6a5d6f258",
-                "reference": "fa2f0fd185097bed6b371c2422c705d6a5d6f258",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/cc3f63f695e15e4b1e6ee0e090c32bfde78115a4",
+                "reference": "cc3f63f695e15e4b1e6ee0e090c32bfde78115a4",
                 "shasum": ""
             },
             "require": {
@@ -24,39 +25,62 @@
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "*@stable"
+                "doctrine/cache": "~1.0",
+                "ext-openssl": "*",
+                "monolog/monolog": "~1.4",
+                "phpunit/phpunit": "~4.0",
+                "phpunit/phpunit-mock-objects": "2.3.1",
+                "symfony/yaml": "~2.1"
+            },
+            "suggest": {
+                "doctrine/cache": "Adds support for caching of credentials and responses",
+                "ext-apc": "Allows service description opcode caching, request and response caching, and credentials caching",
+                "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages",
+                "monolog/monolog": "Adds support for logging HTTP requests and responses",
+                "symfony/yaml": "Eases the ability to write manifests for creating jobs in AWS Import/Export"
             },
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "EtherpadLite": "src/"
+                    "Aws": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-3.0"
+                "Apache-2.0"
             ],
             "authors": [
                 {
-                    "name": "Louis Miller",
-                    "email": "louis@systemli.org"
+                    "name": "Amazon Web Services",
+                    "homepage": "http://aws.amazon.com"
                 }
             ],
-            "description": "PHP Client for Etherpad Lite",
-            "time": "2014-03-10 07:38:59"
+            "description": "AWS SDK for PHP - Use Amazon Web Services in your PHP project",
+            "homepage": "http://aws.amazon.com/sdkforphp",
+            "keywords": [
+                "amazon",
+                "aws",
+                "cloud",
+                "dynamodb",
+                "ec2",
+                "glacier",
+                "s3",
+                "sdk"
+            ],
+            "time": "2015-07-14 20:48:28"
         },
         {
             "name": "cakephp/debug_kit",
-            "version": "2.2.3",
+            "version": "2.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "fce9fca6e2e54469c4826d26392322d3f2e3cb9d"
+                "reference": "c91103061d9b7ec3141e642913f88090a292b2bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/fce9fca6e2e54469c4826d26392322d3f2e3cb9d",
-                "reference": "fce9fca6e2e54469c4826d26392322d3f2e3cb9d",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/c91103061d9b7ec3141e642913f88090a292b2bf",
+                "reference": "c91103061d9b7ec3141e642913f88090a292b2bf",
                 "shasum": ""
             },
             "require": {
@@ -92,7 +116,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2014-02-01 21:15:24"
+            "time": "2014-11-22 17:58:32"
         },
         {
             "name": "ceeram/CakePdf",
@@ -129,24 +153,25 @@
         },
         {
             "name": "composer/installers",
-            "version": "v1.0.13",
+            "version": "v1.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "26d37e307f9aa6e2e81806a6525666f8ab5ba0ff"
+                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/26d37e307f9aa6e2e81806a6525666f8ab5ba0ff",
-                "reference": "26d37e307f9aa6e2e81806a6525666f8ab5ba0ff",
+                "url": "https://api.github.com/repos/composer/installers/zipball/d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
+                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
                 "shasum": ""
             },
             "replace": {
+                "roundcube/plugin-installer": "*",
                 "shama/baton": "*"
             },
             "require-dev": {
                 "composer/composer": "1.0.*@dev",
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "4.1.*"
             },
             "type": "composer-installer",
             "extra": {
@@ -168,27 +193,34 @@
                 {
                     "name": "Kyle Robinson Young",
                     "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama",
-                    "role": "Developer"
+                    "homepage": "https://github.com/shama"
                 }
             ],
             "description": "A multi-framework Composer library installer",
             "homepage": "http://composer.github.com/installers/",
             "keywords": [
                 "Craft",
+                "Dolibarr",
                 "Hurad",
                 "MODX Evo",
                 "OXID",
+                "SMF",
+                "Thelia",
                 "WolfCMS",
                 "agl",
+                "aimeos",
                 "annotatecms",
+                "bitrix",
                 "cakephp",
+                "chef",
                 "codeigniter",
                 "concrete5",
                 "croogo",
+                "dokuwiki",
                 "drupal",
                 "elgg",
                 "fuelphp",
+                "grav",
                 "installer",
                 "joomla",
                 "kohana",
@@ -198,9 +230,12 @@
                 "mako",
                 "mediawiki",
                 "modulework",
+                "moodle",
                 "phpbb",
                 "piwik",
                 "ppi",
+                "puppet",
+                "roundcube",
                 "shopware",
                 "silverstripe",
                 "symfony",
@@ -209,19 +244,19 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2014-04-09 16:12:43"
+            "time": "2015-02-18 17:17:01"
         },
         {
             "name": "facebook/php-sdk",
             "version": "v3.2.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/facebook/facebook-php-sdk.git",
+                "url": "https://github.com/facebookarchive/facebook-php-sdk.git",
                 "reference": "6714042fa2f5979d4c64c7d11fb4bcab16bdf6cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/facebook-php-sdk/zipball/6714042fa2f5979d4c64c7d11fb4bcab16bdf6cb",
+                "url": "https://api.github.com/repos/facebookarchive/facebook-php-sdk/zipball/6714042fa2f5979d4c64c7d11fb4bcab16bdf6cb",
                 "reference": "6714042fa2f5979d4c64c7d11fb4bcab16bdf6cb",
                 "shasum": ""
             },
@@ -296,16 +331,16 @@
         },
         {
             "name": "guzzle/guzzle",
-            "version": "v3.9.1",
+            "version": "v3.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "92d9934f2fca1da15178c91239576ae26e505e60"
+                "reference": "0645b70d953bc1c067bbc8d5bc53194706b628d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/92d9934f2fca1da15178c91239576ae26e505e60",
-                "reference": "92d9934f2fca1da15178c91239576ae26e505e60",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/0645b70d953bc1c067bbc8d5bc53194706b628d9",
+                "reference": "0645b70d953bc1c067bbc8d5bc53194706b628d9",
                 "shasum": ""
             },
             "require": {
@@ -346,10 +381,13 @@
                 "zendframework/zend-cache": "2.*,<2.3",
                 "zendframework/zend-log": "2.*,<2.3"
             },
+            "suggest": {
+                "guzzlehttp/guzzle": "Guzzle 5 has moved to a new package name. The package you have installed, Guzzle 3, is deprecated."
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.8-dev"
+                    "dev-master": "3.9-dev"
                 }
             },
             "autoload": {
@@ -373,7 +411,7 @@
                     "homepage": "https://github.com/guzzle/guzzle/contributors"
                 }
             ],
-            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "description": "PHP HTTP client. This library is deprecated in favor of https://packagist.org/packages/guzzlehttp/guzzle",
             "homepage": "http://guzzlephp.org/",
             "keywords": [
                 "client",
@@ -384,7 +422,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-05-07 17:04:22"
+            "time": "2015-03-18 18:23:50"
         },
         {
             "name": "josegonzalez/cakephp-upload",
@@ -593,16 +631,16 @@
         },
         {
             "name": "paulredmond/chosen-cakephp",
-            "version": "2.1.4",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paulredmond/chosen-cakephp.git",
-                "reference": "505b5a7a9d68214c9f77a82d00bde5103c715832"
+                "reference": "f45db03fb174a1bf5429c3c15dd51813923b75e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paulredmond/chosen-cakephp/zipball/505b5a7a9d68214c9f77a82d00bde5103c715832",
-                "reference": "505b5a7a9d68214c9f77a82d00bde5103c715832",
+                "url": "https://api.github.com/repos/paulredmond/chosen-cakephp/zipball/f45db03fb174a1bf5429c3c15dd51813923b75e0",
+                "reference": "f45db03fb174a1bf5429c3c15dd51813923b75e0",
                 "shasum": ""
             },
             "require": {
@@ -611,7 +649,10 @@
             },
             "type": "cakephp-plugin",
             "extra": {
-                "installer-name": "Chosen"
+                "installer-name": "Chosen",
+                "branch-alias": {
+                    "dev-master": "2.2.x-dev"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -637,7 +678,7 @@
                 "cakephp",
                 "plugin"
             ],
-            "time": "2013-05-11 22:25:45"
+            "time": "2015-01-09 05:36:04"
         },
         {
             "name": "pear-pear.cakephp.org/CakePHP",
@@ -667,27 +708,28 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.5.0",
-            "target-dir": "Symfony/Component/EventDispatcher",
+            "version": "v2.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8"
+                "reference": "9310b5f9a87ec2ea75d20fec0b0017c77c66dac3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8",
-                "reference": "cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/9310b5f9a87ec2ea75d20fec0b0017c77c66dac3",
+                "reference": "9310b5f9a87ec2ea75d20fec0b0017c77c66dac3",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": ">=5.3.9"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~2.0",
-                "symfony/dependency-injection": "~2.0",
-                "symfony/stopwatch": "~2.2"
+                "symfony/config": "~2.0,>=2.0.5",
+                "symfony/dependency-injection": "~2.6",
+                "symfony/expression-language": "~2.6",
+                "symfony/phpunit-bridge": "~2.7",
+                "symfony/stopwatch": "~2.3"
             },
             "suggest": {
                 "symfony/dependency-injection": "",
@@ -696,11 +738,11 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Symfony\\Component\\EventDispatcher\\": ""
                 }
             },
@@ -711,105 +753,27 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
+                    "email": "fabien@symfony.com"
                 },
                 {
                     "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "Symfony EventDispatcher Component",
-            "homepage": "http://symfony.com",
-            "time": "2014-04-29 10:13:57"
-        },
-        {
-            "name": "titon/utility",
-            "version": "0.13.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/titon/utility.git",
-                "reference": "93561fb34277739594341b818a1b089f0c4e0592"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/titon/utility/zipball/93561fb34277739594341b818a1b089f0c4e0592",
-                "reference": "93561fb34277739594341b818a1b089f0c4e0592",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "ext-fileinfo": "*",
-                "ext-mcrypt": "*",
-                "ext-simplexml": "*",
-                "titon/test": "dev-master",
-                "titon/type": "*"
-            },
-            "suggest": {
-                "ext-fileinfo": "Validate file mime types with the Validate class",
-                "ext-mcrypt": "Encrypt and decrypt data with the Crypt class",
-                "ext-simplexml": "Convert XML to other file types with the Converter class"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Titon\\Utility": "src/"
-                },
-                "files": [
-                    "src/bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2"
-            ],
-            "authors": [
-                {
-                    "name": "Miles Johnson",
-                    "homepage": "http://milesj.me"
-                }
-            ],
-            "description": "The Titon utility package provides convenience classes for basic tasks like validation, formatting, sanitization and more.",
-            "homepage": "http://titon.io",
-            "keywords": [
-                "converter",
-                "crypt",
-                "format",
-                "hash",
-                "inflector",
-                "number",
-                "path",
-                "sanitize",
-                "string",
-                "time",
-                "titon",
-                "utility",
-                "uuid",
-                "validate"
-            ],
-            "time": "2014-05-31 19:00:44"
+            "homepage": "https://symfony.com",
+            "time": "2015-06-18 19:21:56"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "google/apiclient": 10,
-        "markstory/acl_extras": 20,
-        "0x46616c6b/etherpad-lite-client": 20
+        "markstory/acl_extras": 20
     },
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
 }

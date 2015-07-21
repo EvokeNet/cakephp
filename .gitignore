@@ -6,13 +6,7 @@ webroot/components
 webroot/uploads/*
 webroot/files/*
 webroot/img/uploads/*
-Plugin/AclExtras
-Plugin/CakePdf
-Plugin/Chosen
-Plugin/DebugKit
-Plugin/Media
-Plugin/Upload
-Plugin/Utility
+Plugin/*
 tmp/
 dbv/data/meta/revision
 

@@ -169,7 +169,6 @@
 
 <?php 
 	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-	echo $this->Html->script('/components/etherpad/js/etherpad.js', array('inline' => false)); 
 	echo $this->Html->script('evokation', array('inline' => false));
 	echo $this->Html->script('menu_height', array('inline' => false));
 	echo $this->Html->script('sticky', array('inline' => false));
