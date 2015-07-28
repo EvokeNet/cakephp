@@ -31,8 +31,6 @@ $title = __('Evoke Network');
 		echo $this->Html->meta('icon');
 
 		//COMPONENTS CSS
-		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
-
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min'); //Icon font - font-awesome
 		echo $this->Html->css('font-awesome'); //Overriding some of the font-awesome css
 		
