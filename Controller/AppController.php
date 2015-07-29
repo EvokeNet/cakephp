@@ -32,7 +32,7 @@ class AppController extends Controller {
 		'Session',
 		'Auth' => array(
 			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
-						'authError' => 'Você não tem permissão para ver essa página'
+				'authError' => 'Você não tem permissão para ver essa página'
 		),
 		'UserRole'
 	);
@@ -56,31 +56,31 @@ class AppController extends Controller {
 * @return void
 */
 	public function beforeFilter() {
-			//Determine language if not already determined
-			$this->_checkBrowserLanguage();
+		//Determine language if not already determined
+		$this->_checkBrowserLanguage();
 
-			//Info from the user that is currently logged in
-			$this->set('loggedIn', $this->Auth->loggedIn());
-			$cuser = $this->Auth->user();
-			$loggedInUser = $this->Auth->user();
-			
-			//User definitions
-			$userPoints = $this->getPoints($this->getUserId());
-			$userLevel = $this->getLevel($userPoints); //level ID
-			$userNextLevel = $this->getNextLevel($userLevel); //next level object
-			$userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
+		//Info from the user that is currently logged in
+		$this->set('loggedIn', $this->Auth->loggedIn());
+		$cuser = $this->Auth->user();
+		$loggedInUser = $this->Auth->user();
+		
+		//User definitions
+		$userPoints = $this->getPoints($this->getUserId());
+		$userLevel = $this->getLevel($userPoints); //level ID
+		$userNextLevel = $this->getNextLevel($userLevel); //next level object
+		$userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
 
-			//Access level
-			if (!empty($this->accessLevels)) {
-					$this->Auth->authorize = 'Controller';
-					$this->Auth->deny();
-			} else {
-					$this->Auth->allow();
-			}
+		//Access level
+		// if (!empty($this->accessLevels)) {
+		// 		$this->Auth->authorize = 'Controller';
+		// 		$this->Auth->deny();
+		// } else {
+		// 		$this->Auth->allow();
+		// }
 
-			//$userNotifications = $this->getNotificationsNumber($this->getUserId());
+		//$userNotifications = $this->getNotificationsNumber($this->getUserId());
 
-			$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
+		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
 	}
 
 
@@ -131,14 +131,12 @@ class AppController extends Controller {
  *
  * @param string Language to be registered as current language in CakeSession
  */
-	public function changeLanguage ($lang='en') {
+	public function changeLanguage ($lang) {
 		$this->autoRender = false;
 		$this->Session->write('Config.language', $lang);
 
 		$this->redirect($this->referer()); //in order to redirect the user to the page from which it was called
 	}
-
-
 
 
 

@@ -1,6 +1,9 @@
 /* OVERRIDE STYLES - FULLPAGE.JS PLUGIN */
 
 /* Slides */
+.fp-slides {
+	z-index: initial;
+}
 .fp-slidesNav {
 	position: absolute;
 	left: 0;
