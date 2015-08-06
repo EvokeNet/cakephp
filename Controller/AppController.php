@@ -90,30 +90,35 @@ class AppController extends Controller {
  */
 	protected function _checkBrowserLanguage(){
 		if (!$this->Session->check('Config.language')){
-			//Language(s) registered in the user's browser 
-			$languageHeader = $this->request->header('Accept-language');
-
-			//Get just 1st language
-			$languages = explode(',', $languageHeader);
-			if (count($languages) > 0) {
-				$languageHeader = $languages[0];
-			}
-			else {
-				$languageHeader = substr($languageHeader, 0, 2);
-			}
-			
 			//Languages supported in Evoke
 			$supported_languages = Configure::read('Config.supported_languages');
 
+			//Language(s) registered in the user's browser 
+			$languageHeader = $this->request->header('Accept-language');
+
+			$lang = 'en';
+			if ($languageHeader) {
+				//Get just 1st language
+				$languages = explode(',', $languageHeader);
+				if (count($languages) > 0) {
+					$lang = $languages[0];
+				}
+				else {
+					$lang = substr($languageHeader, 0, 2);
+				}
+			}
+
 			//Browser language if it is supported
-			if (in_array($languageHeader, $supported_languages)) {
-				$this->Session->write('Config.language', $languageHeader);
+			if (in_array($lang, $supported_languages)) {
+				$this->Session->write('Config.language', $lang);
 			}
 			//Default: english
 			else {
 				$this->Session->write('Config.language', 'en');
 			}
 		}
+
+		Configure::write('Config.language', $this->Session->read('Config.language'));
 	}
 
 

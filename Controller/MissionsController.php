@@ -704,6 +704,21 @@ class MissionsController extends AppController {
 			}
 		}
 
+
+		//TRANSLATION
+		$lang = $this->getCurrentLanguage();
+		if ($lang == 'es') {
+			//Mission
+			$mission['Mission']['title'] = $mission['Mission']['title_es'];
+			$mission['Mission']['description'] = $mission['Mission']['description_es'];
+
+			//All phases
+			foreach ($mission['Phase'] as $phase) {
+				$phase['Phase']['name'] = $phase['Phase']['name_es'];
+				$phase['Phase']['description'] = $phase['Phase']['description_es'];
+			}
+		}
+
 		//Render
 		$this->set(compact('phase','mission','myGroups','evokationQuests'));
 		$this->layout = 'ajax';
@@ -721,6 +736,8 @@ class MissionsController extends AppController {
 
 		$user = $this->Auth->user();
 
+		$lang = $this->getCurrentLanguage();
+
 		//PHASE
 		$phase = $this->Mission->Phase->find('first', array(
 			'conditions' => array('Phase.id' => $phase_id),
@@ -728,6 +745,12 @@ class MissionsController extends AppController {
 		));
 
 		foreach ($phase['Quest'] as $key => &$quest) {
+			//TRANSLATION
+			if ($lang == 'es') {
+				$quest['title'] = $quest['title_es'];
+				$quest['description'] = $quest['description_es'];
+			}
+
 			//WHETHER THE USER HAS COMPLETED THE QUEST OR NOT
 			$quest['has_completed'] = $this->Mission->Phase->Quest->hasCompleted($this->user['id'], $quest['id']);
 
@@ -938,6 +961,8 @@ class MissionsController extends AppController {
 
 		$user = $this->Auth->user();
 
+		$lang = $this->getCurrentLanguage();
+
 		//---------------------------------
 		//MISSION -> ALL PHASES
 		$mission = $this->Mission->find('first', array(
@@ -1022,7 +1047,7 @@ class MissionsController extends AppController {
 			}
 		}
 		
-
+		//---------------------------------
 		//ANSWERS
 		$this->loadModel('UserAnswer');
 		$previous_answers = $this->UserAnswer->find('all', array(
@@ -1031,6 +1056,7 @@ class MissionsController extends AppController {
 			)
 		));
 
+		//---------------------------------
 		//COMPLETED PHASE
 		$i = 0;
 		foreach ($mission['Phase'] as $p) {
@@ -1038,6 +1064,7 @@ class MissionsController extends AppController {
 			$i++;
 		}
 
+		//---------------------------------
 		//GRAPHIC NOVEL
 		$novels = $this->Mission->Novel->find('all', array(
 			'order' => array(
@@ -1045,10 +1072,11 @@ class MissionsController extends AppController {
 			),
 			'conditions' => array(
 				'Novel.mission_id' => $mission_id,
-				'Novel.language' => 'en'
+				'Novel.language' => $lang
 			)
 		));
 
+		//---------------------------------
 		//FACEBOOK SHARE
 		$facebook = new Facebook(array(
 			'appId' => Configure::read('fb_app_id'),
@@ -1056,6 +1084,7 @@ class MissionsController extends AppController {
 			'allowSignedRequest' => false
 		));
 
+		//---------------------------------
 		//QUESTS TO DISPLAY IN THE EVOKATION PHASE
 		$evokationQuests = array();
 		if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
@@ -1075,6 +1104,24 @@ class MissionsController extends AppController {
 			}
 		}
 
+		//---------------------------------
+		//TRANSLATION
+		if ($lang == 'es') {
+			//Mission
+			$mission['Mission']['title'] = $mission['Mission']['title_es'];
+			$mission['Mission']['description'] = $mission['Mission']['description_es'];
+
+			//All phases
+			foreach ($mission['Phase'] as &$mission_phase) {
+				$mission_phase['name'] = $mission_phase['name_es'];
+				$mission_phase['description'] = $mission_phase['description_es'];
+			}
+
+			//Current phase
+			$phase['Phase']['name'] = $phase['Phase']['name_es'];
+			$phase['Phase']['description'] = $phase['Phase']['description_es'];
+		}
+
 		$this->set(compact('mission', 'phase', 'myGroups', 'forum', 'novels', 'user', 'facebook', 'evokationQuests'));
 	}
 
@@ -1085,6 +1132,8 @@ class MissionsController extends AppController {
  */
 	public function view_sample($id = null) {
 		$user = $this->Auth->user();
+
+		$lang = $this->getCurrentLanguage();
 
 		//MISSION -> PHASES
 		$mission = $this->Mission->find('first', array(
@@ -1111,7 +1160,7 @@ class MissionsController extends AppController {
 			),
 			'conditions' => array(
 				'Novel.mission_id' => $id,
-				'Novel.language' => 'en'
+				'Novel.language' => $lang
 			)
 		));
 
