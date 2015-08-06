@@ -150,6 +150,21 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					$(this).attr('method') 	//GET or POST
 				).done(function() {
 					missionPanels.reloadTabQuests();
+
+					// //TODO: checar se mudou de fase
+					// //TODO: se mudou, mostrar alguma alert box como essa:
+					// swal({
+					// 	title: "Congratulations!",
+					// 	text: "You just unlocked a phase! You can keep working on this phase, but you can also take a look on the next one.",
+					// 	type: "success"
+					// },
+					// function(){
+					// 	//Execute the action if confirmed
+					// });
+					// //se vc mostrar essa forma, a alert box vai aparecer na visualizacao da evidencia que ele/a acabou de criar.
+
+					// //vc pode tbm mostrar em View/Elements/Missions/panel_mission_info.ctp, porque na linha abaixo esse element sera atualizado e mostrado 
+					// //(ele carrega o phases_bar, aquela caixinha com as 4 fases, e abaixo dela, a descricao da missao)
 					missionPanels.reloadMainContent();
 				});
 				

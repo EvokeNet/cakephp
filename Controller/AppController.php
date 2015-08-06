@@ -85,7 +85,7 @@ class AppController extends Controller {
 
 
 /**
- * Read the browser language and sets the website language to it if available. 
+ * If no language was defined, read the browser language and sets the website language to it if available
  * 
  */
 	protected function _checkBrowserLanguage(){
@@ -103,7 +103,7 @@ class AppController extends Controller {
 			}
 			
 			//Languages supported in Evoke
-			$supported_languages = $this->Session->read('Config.supported_languages');
+			$supported_languages = Configure::read('Config.supported_languages');
 
 			//Browser language if it is supported
 			if (in_array($languageHeader, $supported_languages)) {
