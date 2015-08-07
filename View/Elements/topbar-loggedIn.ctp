@@ -12,15 +12,15 @@
 				<?php echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
 			</li>
 
+			<!-- LANGUAGE -->
+			<?php echo $this->element('language_switcher'); ?>
+
 			<li class="evoke divider"></li>
-
-
 
 			<!-- USER NAME -->
 			<li class="active">
 				<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>"><?= __('Agent ').$loggedInUser['firstname'] ?></a>
 			</li>
-
 
 			<!-- USER PROFILE PICTURE WITH DROPDOWN MENU -->
 			<li class="has-dropdown">

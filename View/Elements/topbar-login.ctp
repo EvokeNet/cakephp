@@ -2,13 +2,14 @@
 	$fbLoginUrl = $this->Session->read('fbLoginUrl');
 ?>
 
-<!-- Form with Foundation validation -->
-<?php echo $this->Form->create('User', array('data-abide',
-											 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
+
 
 <ul class="<?php echo isset($ulClass) ? $ulClass : ''; ?>">
 	<!-- USERNAME, PASSWORD, AND SUBMIT BUTTON -->
 	<li class="has-form">
+		<!-- Form with Foundation validation -->
+		<?php echo $this->Form->create('User', array('data-abide', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
+
 		<div class="row collapse">
 			<div class="small-6 medium-3 large-3 columns">
 				<?php 
@@ -51,10 +52,16 @@
 				</div>
 			</div>
 		</div>
+		
+		<?php echo $this->Form->end(); ?>
 	</li>
+
+
+
+	<!-- LANGUAGE -->
+	<?php echo $this->element('language_switcher'); ?>
 
 	<!-- FORGOT PASSWORD (NOT USED FOR NOW) -->
 	<!--<a href = "#" class = "evoke login password"><?php //echo __('Forgot your password?');?></a> -->
 	<!--send to correct address-->
 </ul>
-<?php echo $this->Form->end(); ?>
