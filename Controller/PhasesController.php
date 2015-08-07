@@ -20,7 +20,7 @@ class PhasesController extends AppController {
 
 	public function beforeFilter() {
         parent::beforeFilter();
-        
+
         $this->user = array();
         //get user data into public var
 		$this->user['role_id'] = $this->getUserRole();
@@ -30,7 +30,7 @@ class PhasesController extends AppController {
 		//Phase types
 		$phase_types_array = $this->Phase->enum('type');
 		$this->set(compact('phase_types_array'));
-		
+
 		//there was some problem in retrieving user's info concerning his/her role : send him home
 		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
 			$this->redirect(array('controller' => 'users', 'action' => 'login'));
@@ -105,7 +105,7 @@ class PhasesController extends AppController {
 		// } else {
 		// 	return $this->redirect($this->referer());
 		// }
-		
+
 		$this->Phase->id = $id;
 
 		if (!$this->Phase->exists()) {
@@ -115,7 +115,7 @@ class PhasesController extends AppController {
 		//$phase = $this->Phase->find('first', array('conditions' => array('Phase.id' => $id)));
 
 		//$this->Phase->locale = Configure::read('Config.languages');
-		
+
 		if ($this->request->is('post', 'put')) {
 
 			if ($this->Phase->saveAll($this->request->data)) {
@@ -124,7 +124,7 @@ class PhasesController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The phase could not be saved. Please, try again.'));
 			}
-		} 
+		}
 		// else {
 		// 	$options = array('conditions' => array('Phase.' . $this->Phase->primaryKey => $id));
 		// 	$this->request->data = $this->Phase->find('first', $options);
@@ -243,4 +243,70 @@ class PhasesController extends AppController {
 			$this->Session->setFlash(__('The phase could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+	/**
+	 * checkSubscription method
+	 *
+	 * @return void
+	 */
+		public function checkSubscription() {
+
+			$this->autoRender = false;
+
+			if ($this->request->is('post')) {
+
+				// debug($this->request->data['user_id']);
+				// $k = json_decode($this->request->data);
+				// debug($k);
+				// die();
+				// debug($_POST['user_id']);
+			// return json_encode($_POST);
+
+			$this->loadModel('MissionSubscription');
+			$mission_subsc = $this->MissionSubscription->find('first', array('conditions' => array('user_id' => $_POST['user_id'], 'mission_id' => $_POST['mission_id'])));
+
+
+
+			if(!empty($mission_subsc)){
+				$oldPhaseId = $mission_subsc['MissionSubscription']['phase_id'];
+			}
+			else {
+				$first_phase = $this->Phase->find('first', array('conditions' => array('mission_id' => $_POST['mission_id']), 'order' => 'position'));
+				$oldPhaseId = $first_phase['Phase']['id'];
+			}
+
+			// debug($this->Phase->getCurrentPhase($_POST['user_id'], $_POST['mission_id']));
+
+			$phase = $this->Phase->getCurrentPhase($_POST['user_id'], $_POST['mission_id']);
+// die();
+			//Still in the same phase
+			if($phase['Phase']['id'] == $oldPhaseId){
+				$json_data = array('flag' => 1);
+				return json_encode($json_data);
+
+			} else{
+
+				if(!empty($mission_subsc)){
+
+					$data = array('id' => $mission_subsc['MissionSubscription']['id'], 'user_id' => $_POST['user_id'], 'mission_id' => $_POST['mission_id'], 'phase_id' => $phase['Phase']['id']);
+					$this->MissionSubscription->save($data);
+
+				} else{
+
+					$this->MissionSubscription->create();
+					$data = array('user_id' => $_POST['user_id'], 'mission_id' => $_POST['mission_id'], 'phase_id' => $phase['Phase']['id']);
+					$this->MissionSubscription->save($data);
+
+				}
+				
+				$json_data = array('flag' => 0);
+				return json_encode($json_data);
+
+			}
+
+		}
+
+		}
+
+}

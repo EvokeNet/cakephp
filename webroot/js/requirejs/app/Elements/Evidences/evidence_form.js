@@ -8,14 +8,14 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//SETUP FILE UPLOADER PLUGIN
 			//--------------------------------------------//
 			$(window)
-				.off('uploaderFileAdded') 
+				.off('uploaderFileAdded')
 				.on('uploaderFileAdded', function(event) {
 					//Show progress bar
 					$('div.files').removeClass('hidden');
 				});
 
 			$(window)
-				.off('uploadCompleted') 
+				.off('uploadCompleted')
 				.on('uploadCompleted', function(event) {
 					//Hide progress bar
 					$('div.files').addClass('hidden');
@@ -130,7 +130,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				FileUploader.initUploader(); //FILEUPLOADER
 				$(document).foundation('reflow'); //Reflow foundation so that all the behaviors apply to the new elements loaded via ajax
 			};
-			
+
 			//--------------------------------------------//
 			//EDITING AN EVIDENCE: ALREADY LOADS EVIDENCE TYPE FORM
 			//--------------------------------------------//
@@ -138,37 +138,85 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			if (evidence_type) {
 				load_evidence_type_form(evidence_type);
 			}
-			
+
 
 			//--------------------------------------------//
 			//EVIDENCE: SUBMITTING A FORM TO EDIT AN EVIDENCE LOADS EVIDENCE VIEW VIA AJAX
 			//--------------------------------------------//
 			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
-				missionPanels.openInMissionOverlay(
-					$(this).attr('action'), 	//URL
-					$(this).serialize(),		//Form data
-					$(this).attr('method') 	//GET or POST
-				).done(function() {
-					missionPanels.reloadTabQuests();
 
-					// //TODO: checar se mudou de fase
-					// //TODO: se mudou, mostrar alguma alert box como essa:
-					// swal({
-					// 	title: "Congratulations!",
-					// 	text: "You just unlocked a phase! You can keep working on this phase, but you can also take a look on the next one.",
-					// 	type: "success"
-					// },
-					// function(){
-					// 	//Execute the action if confirmed
-					// });
-					// //se vc mostrar essa forma, a alert box vai aparecer na visualizacao da evidencia que ele/a acabou de criar.
+				console.log(event);
 
-					// //vc pode tbm mostrar em View/Elements/Missions/panel_mission_info.ctp, porque na linha abaixo esse element sera atualizado e mostrado 
-					// //(ele carrega o phases_bar, aquela caixinha com as 4 fases, e abaixo dela, a descricao da missao)
-					missionPanels.reloadMainContent();
+				//CHAMAR POR AJAX ACTION ADDEVIDENCE
+				//O RETORNO DEVE SER DEU CERTO -> ID OU NAO DEU CERTO -> MSG DE Error
+
+				// $('#EvidenceAddForm').submit();
+
+				$.ajax({
+					url: "/evoke/evidences/addEvidence",
+					type:"POST",
+					data: $('form').serializeArray(),
+					beforeSend: function() {
+						// console.log($('form').serialize());
+						// console.log($('form').serializeArray());
+					},
+					success: function(dataAddEvidence) {
+						console.log('data'+dataAddEvidence);
+						var objAddEvidence = $.parseJSON(dataAddEvidence);
+
+						$.ajax({
+							url: "/evoke/phases/checkSubscription",
+							type:"POST",
+							data:objAddEvidence,
+							beforeSend: function() {
+								console.log('k'+objAddEvidence);
+							},
+							success: function(data) {
+								console.log('data: '+data);
+								// var obj = JSON.parse(data);
+								var obj = $.parseJSON(data);
+
+								console.log('jkht'+obj.flag);
+
+								if(obj.flag == 0){
+
+									swal({
+										title: "Congratulations!",
+										text: "You just unlocked a phase! You can keep working on this phase, but you can also take a look on the next one.",
+										type: "success"
+									},
+									function(){
+
+									});
+
+								}
+
+								//Execute the action if confirmed
+								missionPanels.openInMissionOverlay(
+									"/evoke/evidences/view/"+objAddEvidence.evidence_id 	//URL DE VISUALIZACAO DA EVIDENCE
+								).done(function() {
+									missionPanels.reloadTabQuests();
+									missionPanels.reloadMainContent();
+								});
+							}
+						});
+
+					}
 				});
-				
+
+				// $.ajax({
+        // // url: 'some-url',
+        // type: 'post',
+        // dataType: 'json',
+        // data: $('form#EvidenceAddForm').serialize(),
+        // success: function(data) {
+				// 	console.log(data);
+        //  }
+				// 	});
+
 				event.preventDefault();
+				return false;
+
 			});
 		});
 	});

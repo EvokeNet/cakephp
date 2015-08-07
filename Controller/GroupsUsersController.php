@@ -25,7 +25,7 @@ class GroupsUsersController extends AppController {
 	// public function index() {
 	// 	$this->GroupsUser->recursive = 0;
 	// 	$this->set('groupsUsers', $this->Paginator->paginate());
-		
+
 	// 	$userid = $this->getUserId();
 	// 	$username = explode(' ', $this->getUserName());
 	// 	$user = $this->GroupsUser->User->find('first', array('conditions' => array('User.id' => $userid)));
@@ -65,7 +65,7 @@ class GroupsUsersController extends AppController {
 				$this->Evokation->read(null, $this->request->data['id']);
 				$this->Evokation->set('title', $this->request->data['title']);
 				$this->Evokation->set('abstract', $this->request->data['abstract']);
-				
+
 				if ($this->Evokation->save()) {
 					return true;
 				} else {
@@ -114,7 +114,7 @@ class GroupsUsersController extends AppController {
 					if(!$folder->create($dir)) {
 						return false;
 					}
-				} 
+				}
 
 				$filename = WWW_ROOT . $dir . DS . $this->request->data['Evokation']['image_uploader']['name'];
 				if(move_uploaded_file($this->request->data['Evokation']['image_uploader']['tmp_name'], $filename)) {
@@ -172,6 +172,17 @@ class GroupsUsersController extends AppController {
 	        		)
 	        	));
 
+						//A completar - Renata
+						$Email = new CakeEmail('smtp');
+						$Email->from(array('no-reply@quanti.ca' => $sender['User']['firstname'].' '.$sender['User']['lastname']));
+						$Email->to($recipient['email']);
+						$Email->subject(__('Evoke - Request to join group '.$group['Group']['title']));
+						$Email->emailFormat('html');
+						$Email->template('group', 'group');
+						$Email->viewVars(array('sender' => $sender['User'], 'recipient' => $recipient, 'group' => $group['Group']));
+						$Email->send();
+						//A completar - Renata
+
 				return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
 	        } else $this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
 		} else {
@@ -215,7 +226,7 @@ class GroupsUsersController extends AppController {
 
 		//Group
 		$group = $this->GroupsUser->Group->find('first', array(
-			'conditions' => array('Group.id' => $group_id), 
+			'conditions' => array('Group.id' => $group_id),
 			'contain' => array('User','Phase')
 		));
 
@@ -324,7 +335,7 @@ class GroupsUsersController extends AppController {
 				)
 			));
 
-			foreach($pps as $pp) {				
+			foreach($pps as $pp) {
 				$this->loadModel('UserPowerPoint');
 				$old = $this->UserPowerPoint->find('first', array(
 					'conditions' => array(
@@ -371,8 +382,8 @@ class GroupsUsersController extends AppController {
 		}
 
 
-		$this->GroupsUser->id = $gu['GroupsUser']['id'];		
-		
+		$this->GroupsUser->id = $gu['GroupsUser']['id'];
+
 		if ($this->GroupsUser->delete()) {
 			$this->Session->setFlash(__('The groups user has been deleted.'));
 		} else {

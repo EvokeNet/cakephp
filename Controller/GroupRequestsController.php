@@ -117,7 +117,7 @@ class GroupRequestsController extends AppController {
  * @return void
  */
 	public function decline($uid = null, $gid = null) {
-		
+
 		if($uid)
 			$user_id = $uid;
 		else
@@ -127,12 +127,24 @@ class GroupRequestsController extends AppController {
 			$group_id = $gid;
 		else
 			$group_id = $this->params['url']['arg2'];
-		
+
 		//Update request status
     	$request = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $user_id, 'GroupRequest.group_id' => $group_id)));
     	if($request){
     		$this->GroupRequest->id = $request['GroupRequest']['id'];
     		$this->GroupRequest->save(array('status' => 2));
+
+				//A completar - Renata
+				$Email = new CakeEmail('smtp');
+				$Email->from(array('no-reply@quanti.ca' => $sender['User']['firstname'].' '.$sender['User']['lastname']));
+				$Email->to($recipient['email']);
+				$Email->subject(__('Evoke - Request to join group '.$group['Group']['title']));
+				$Email->emailFormat('html');
+				$Email->template('group', 'group');
+				$Email->viewVars(array('sender' => $sender['User'], 'recipient' => $recipient, 'group' => $group['Group']));
+				$Email->send();
+				//A completar - Renata
+
     		$this->Session->setFlash(__('The request was declined'));
     		return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
     	} else {

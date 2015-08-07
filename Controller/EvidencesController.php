@@ -112,16 +112,21 @@ class EvidencesController extends AppController {
  * @return redirect to view the evidence created
  */
 public function addEvidence() {
+
+	$this->autoRender = false;
 	if ($this->request->is('post')) {
 		$this->Evidence->create();
 
+		// debug($this->request->data);
+		// debug($_POST);
+		// return json_encode($_POST);
+
 		//CREATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT
 		if ($this->Evidence->save($this->request->data)) {
-			return $this->redirect(array(
-				'header' => $this->request->header, //Use the same header - useful if the requester is ajax
-				'action' => 'view', 
-				$this->Evidence->id
-			));
+			$json_data = array('user_id' => $this->request->data['Evidence']['user_id'], 'mission_id' => $this->request->data['Evidence']['mission_id'], 'evidence_id' => $this->Evidence->id);
+			// debug($this->request->data);
+			// debug($_POST);
+			return json_encode($json_data);
 		} else {
 			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 		}
@@ -166,7 +171,7 @@ public function editEvidence() {
 		if ($this->Evidence->save($this->request->data)) {
 			return $this->redirect(array(
 				'header' => $this->request->header,
-				'action' => 'view', 
+				'action' => 'view',
 				$this->Evidence->id
 			));
 		} else {
@@ -237,7 +242,7 @@ public function editEvidence() {
 	 * @access public
 	 * @param Array $imagem
 	 * @param String $data
-	*/ 
+	*/
 	public function checa_dir($dir)
 	{
 		$folder = new Folder();
@@ -252,7 +257,7 @@ public function editEvidence() {
 	 * @param Array $imagem
 	 * @param String $data
 	 * @return nome da imagem
-	*/ 
+	*/
 	public function checa_nome($imagem, $dir)
 	{
 		$imagem_info = pathinfo($dir.$imagem['name']);
@@ -274,7 +279,7 @@ public function editEvidence() {
 	 * @access public
 	 * @param Array $imagem
 	 * @param String $data
-	*/ 
+	*/
 	public function trata_nome($imagem_nome)
 	{
 		$imagem_nome = strtolower(Inflector::slug($imagem_nome,'-'));
@@ -286,7 +291,7 @@ public function editEvidence() {
 	 * @access public
 	 * @param Array $imagem
 	 * @param String $data
-	*/ 
+	*/
 	public function move_arquivos($imagem, $dir)
 	{
 		$arquivo = new File($imagem['tmp_name']);
@@ -317,7 +322,7 @@ public function editEvidence() {
 		// $this->checa_dir($dir);
 
 		$folder = new Folder();
-		
+
 		if (!is_dir($dir)){
 			$folder->create($dir);
 		}
@@ -387,7 +392,7 @@ public function editEvidence() {
 		} else {
 			$this->Session->setFlash(__('The evidence could not be deleted. Please, try again.'));
 		}
-		
+
 		$this->autoRender = false;
 	}
 
