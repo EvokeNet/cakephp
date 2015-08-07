@@ -166,22 +166,24 @@ class GroupsUsersController extends AppController {
 	        		$this->GroupsUser->Group->GroupRequest->save(array('status' => 1));
 	        	}
 
-	        	$me = $this->GroupsUser->Group->find('first', array(
+	        	$group = $this->GroupsUser->Group->find('first', array(
 	        		'conditions' => array(
 	        			'Group.id' => $gid
-	        		)
+	        		),
+	        		'contain' => array('Leader')
 	        	));
 
-						//A completar - Renata
-						$Email = new CakeEmail('smtp');
-						$Email->from(array('no-reply@quanti.ca' => $sender['User']['firstname'].' '.$sender['User']['lastname']));
-						$Email->to($recipient['email']);
-						$Email->subject(__('Evoke - Request to join group '.$group['Group']['title']));
-						$Email->emailFormat('html');
-						$Email->template('group', 'group');
-						$Email->viewVars(array('sender' => $sender['User'], 'recipient' => $recipient, 'group' => $group['Group']));
-						$Email->send();
-						//A completar - Renata
+				//A completar - Renata
+				$Email = new CakeEmail('smtp');
+				$Email->from('no-reply@quanti.ca');
+				// $Email->to($recipient['email']);
+				$Email->to('gscardine@quanti.ca');
+				$Email->subject(__('Evoke: You joined group '.$group['Group']['title']));
+				$Email->emailFormat('html');
+				$Email->template('group', 'group');
+				$Email->viewVars(array('sender' => $sender['User'], 'recipient' => $group['Leader'], 'group' => $group['Group']));
+				$Email->send();
+				//A completar - Renata
 
 				return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
 	        } else $this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
@@ -227,11 +229,11 @@ class GroupsUsersController extends AppController {
 		//Group
 		$group = $this->GroupsUser->Group->find('first', array(
 			'conditions' => array('Group.id' => $group_id),
-			'contain' => array('User','Phase')
+			'contain' => array('Leader','Phase')
 		));
 
 		//Group owner is the recipient
-		$recipient = $group['User'];
+		$recipient = $group['Leader'];
 
 		/* Adds requests */
 		$this->loadModel('GroupRequest');

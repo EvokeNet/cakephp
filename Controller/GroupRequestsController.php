@@ -137,8 +137,9 @@ class GroupRequestsController extends AppController {
 				//A completar - Renata
 				$Email = new CakeEmail('smtp');
 				$Email->from(array('no-reply@quanti.ca' => $sender['User']['firstname'].' '.$sender['User']['lastname']));
-				$Email->to($recipient['email']);
-				$Email->subject(__('Evoke - Request to join group '.$group['Group']['title']));
+				// $Email->to($recipient['email']);
+				$Email->to('gscardine@quanti.ca');
+				$Email->subject(__('Evoke: Request declined to join group '.$group['Group']['title']));
 				$Email->emailFormat('html');
 				$Email->template('group', 'group');
 				$Email->viewVars(array('sender' => $sender['User'], 'recipient' => $recipient, 'group' => $group['Group']));
