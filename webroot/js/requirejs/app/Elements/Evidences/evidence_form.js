@@ -146,7 +146,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
 				//ADD EVIDENCE
 				$.ajax({
-					url: webroot+"/evidences/addEvidence",
+					url: webroot+"evidences/addEvidence",
 					type:"POST",
 					data: $('form').serializeArray(),
 					success: function(dataAddEvidence) {
@@ -154,7 +154,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 						//CHECK IF A PHASE WAS UNLOCKED
 						$.ajax({
-							url: webroot+"/phases/checkSubscription",
+							url: webroot+"phases/checkSubscription",
 							type:"POST",
 							data:objAddEvidence,
 							success: function(data) {
@@ -172,7 +172,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 								//Execute the action if confirmed
 								missionPanels.openInMissionOverlay(
-									webroot+"/evidences/view/"+objAddEvidence.evidence_id 	//URL DE VISUALIZACAO DA EVIDENCE
+									webroot+"evidences/view/"+objAddEvidence.evidence_id 	//URL DE VISUALIZACAO DA EVIDENCE
 								).done(function() {
 									missionPanels.reloadTabQuests();
 									missionPanels.reloadMainContent();
