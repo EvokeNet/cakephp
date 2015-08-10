@@ -377,6 +377,8 @@ public function editEvidence() {
  * @return void
  */
 	public function delete($id = null, $ajax = false) {
+		$this->autoRender = false;
+		
 		$this->Evidence->id = $id;
 		if (!$this->Evidence->exists()) {
 			throw new NotFoundException(__('Invalid evidence'));
@@ -395,8 +397,6 @@ public function editEvidence() {
 			}
 			return false;
 		}
-
-		$this->autoRender = false;
 	}
 
 /**
