@@ -166,27 +166,26 @@ class GroupsUsersController extends AppController {
 	        		$this->GroupsUser->Group->GroupRequest->save(array('status' => 1));
 	        	}
 
+	        	//Group details
 	        	$group = $this->GroupsUser->Group->find('first', array(
 	        		'conditions' => array(
-	        			'Group.id' => $gid
+	        			'Group.id' => $group_id
 	        		),
-	        		'contain' => array('Leader')
+	        		'contain' => array('Leader', 'Phase')
 	        	));
 
-				//A completar - Renata
 				$Email = new CakeEmail('smtp');
-				$Email->from('no-reply@quanti.ca');
-				// $Email->to($recipient['email']);
-				$Email->to('gscardine@quanti.ca');
-				$Email->subject(__('Evoke: You joined group '.$group['Group']['title']));
+				$Email->from(array('no-reply@quanti.ca' => $group['Group']['title']));
+				$Email->to($recipient['email']);
+				$Email->subject(__('(Evoke) You joined group "%s"',$group['Group']['title']));
 				$Email->emailFormat('html');
-				$Email->template('group', 'group');
-				$Email->viewVars(array('sender' => $sender['User'], 'recipient' => $group['Leader'], 'group' => $group['Group']));
+				$Email->template('group_request_approved', 'default');
+				$Email->viewVars(array('recipient' => $group['Leader'], 'group' => $group['Group'], 'phase' => $group['Phase']));
 				$Email->send();
-				//A completar - Renata
 
 				return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
-	        } else $this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
+	        }
+	        return false;
 		} else {
 			$this->Session->setFlash(__('This user already belongs to this group.'));
 			return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
@@ -261,18 +260,28 @@ class GroupsUsersController extends AppController {
 			$Email = new CakeEmail('smtp');
 			$Email->from(array('no-reply@quanti.ca' => $sender['User']['firstname'].' '.$sender['User']['lastname']));
 			$Email->to($recipient['email']);
-			$Email->subject(__('Evoke - Request to join group '.$group['Group']['title']));
+			$Email->subject(__('(Evoke) Request to join group "%s"',$group['Group']['title']));
 			$Email->emailFormat('html');
-			$Email->template('group', 'group');
+			$Email->template('group_new_request', 'default');
 			$Email->viewVars(array('sender' => $sender['User'], 'recipient' => $recipient, 'group' => $group['Group']));
 			$Email->send();
 			$this->Session->setFlash(__('The email was sent'), 'flash_message');
+
+			//AJAX
+			if ($this->request->is('ajax')) {
+				return true;
+			}
 		}
 		else {
 			$this->Session->setFlash(__('There was a problem sending the email.'), 'flash_message');
+
+			//AJAX
+			if ($this->request->is('ajax')) {
+				return false;
+			}
 		}
 
-		$this->redirect(array('controller' => 'groups', 'action' => 'index', $group['Phase']['mission_id']));
+		$this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
 	}
 
 /**

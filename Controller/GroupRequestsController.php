@@ -129,22 +129,35 @@ class GroupRequestsController extends AppController {
 			$group_id = $this->params['url']['arg2'];
 
 		//Update request status
-    	$request = $this->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $user_id, 'GroupRequest.group_id' => $group_id)));
-    	if($request){
+    	$request = $this->GroupRequest->find('first', array(
+    		'conditions' => array(
+    			'GroupRequest.user_id' => $user_id,
+    			'GroupRequest.group_id' => $group_id
+    		),
+    		'contain' => 'User'
+    	));
+
+    	if ($request) {
+    		//Update request status
     		$this->GroupRequest->id = $request['GroupRequest']['id'];
     		$this->GroupRequest->save(array('status' => 2));
 
-				//A completar - Renata
-				$Email = new CakeEmail('smtp');
-				$Email->from(array('no-reply@quanti.ca' => $sender['User']['firstname'].' '.$sender['User']['lastname']));
-				// $Email->to($recipient['email']);
-				$Email->to('gscardine@quanti.ca');
-				$Email->subject(__('Evoke: Request declined to join group '.$group['Group']['title']));
-				$Email->emailFormat('html');
-				$Email->template('group', 'group');
-				$Email->viewVars(array('sender' => $sender['User'], 'recipient' => $recipient, 'group' => $group['Group']));
-				$Email->send();
-				//A completar - Renata
+        	//Group details
+        	$group = $this->GroupRequest->Group->find('first', array(
+        		'conditions' => array(
+        			'Group.id' => $group_id
+        		),
+        		'contain' => array('Leader', 'Phase')
+        	));
+
+			$Email = new CakeEmail('smtp');
+			$Email->from(array('no-reply@quanti.ca' => $group['Group']['title']));
+			$Email->to($recipient['email']);
+			$Email->subject(__('(Evoke) Request declined to join group "%s"', $group['Group']['title']));
+			$Email->emailFormat('html');
+			$Email->template('group_request_declined', 'default');
+			$Email->viewVars(array('recipient' => $request['User'], 'group' => $group['Group'], 'phase' => $group['Phase']));
+			$Email->send();
 
     		$this->Session->setFlash(__('The request was declined'));
     		return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));

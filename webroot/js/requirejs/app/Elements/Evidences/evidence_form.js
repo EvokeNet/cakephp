@@ -144,56 +144,35 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//EVIDENCE: SUBMITTING A FORM TO EDIT AN EVIDENCE LOADS EVIDENCE VIEW VIA AJAX
 			//--------------------------------------------//
 			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
-
-				console.log(event);
-
-				//CHAMAR POR AJAX ACTION ADDEVIDENCE
-				//O RETORNO DEVE SER DEU CERTO -> ID OU NAO DEU CERTO -> MSG DE Error
-
-				// $('#EvidenceAddForm').submit();
-
+				//ADD EVIDENCE
 				$.ajax({
-					url: "/evoke/evidences/addEvidence",
+					url: webroot+"/evidences/addEvidence",
 					type:"POST",
 					data: $('form').serializeArray(),
-					beforeSend: function() {
-						// console.log($('form').serialize());
-						// console.log($('form').serializeArray());
-					},
 					success: function(dataAddEvidence) {
-						console.log('data'+dataAddEvidence);
 						var objAddEvidence = $.parseJSON(dataAddEvidence);
 
+						//CHECK IF A PHASE WAS UNLOCKED
 						$.ajax({
-							url: "/evoke/phases/checkSubscription",
+							url: webroot+"/phases/checkSubscription",
 							type:"POST",
 							data:objAddEvidence,
-							beforeSend: function() {
-								console.log('k'+objAddEvidence);
-							},
 							success: function(data) {
-								console.log('data: '+data);
-								// var obj = JSON.parse(data);
 								var obj = $.parseJSON(data);
-
-								console.log('jkht'+obj.flag);
 
 								if(obj.flag == 0){
 
 									swal({
-										title: "Congratulations!",
-										text: "You just unlocked a phase! You can keep working on this phase, but you can also take a look on the next one.",
+										title: "Phase unlocked!",
+										text: "Congratulations, you just unlocked a phase! You can keep working on this phase, but you can also take a look on the next one.",
 										type: "success"
-									},
-									function(){
-
 									});
 
 								}
 
 								//Execute the action if confirmed
 								missionPanels.openInMissionOverlay(
-									"/evoke/evidences/view/"+objAddEvidence.evidence_id 	//URL DE VISUALIZACAO DA EVIDENCE
+									webroot+"/evidences/view/"+objAddEvidence.evidence_id 	//URL DE VISUALIZACAO DA EVIDENCE
 								).done(function() {
 									missionPanels.reloadTabQuests();
 									missionPanels.reloadMainContent();
@@ -204,19 +183,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					}
 				});
 
-				// $.ajax({
-        // // url: 'some-url',
-        // type: 'post',
-        // dataType: 'json',
-        // data: $('form#EvidenceAddForm').serialize(),
-        // success: function(data) {
-				// 	console.log(data);
-        //  }
-				// 	});
-
 				event.preventDefault();
-				return false;
-
 			});
 		});
 	});
