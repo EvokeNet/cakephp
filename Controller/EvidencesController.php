@@ -390,7 +390,10 @@ public function editEvidence() {
 			}
 			return true;
 		} else {
-			$this->Session->setFlash(__('The evidence could not be deleted. Please, try again.'));
+			if (!$ajax) {
+				$this->Session->setFlash(__('The evidence could not be deleted. Please, try again.'));
+			}
+			return false;
 		}
 
 		$this->autoRender = false;

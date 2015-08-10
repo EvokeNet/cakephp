@@ -99,7 +99,10 @@ if (isset($evidence)):
 
 									<!-- DELETE -->
 									<a id="buttonDeleteEvidence" href="<?php echo $this->Html->url(array('controller'=> 'evidences', 'action' => 'delete', $evidence['Evidence']['id'])); ?>" alt="<?= __('Delete Evidence') ?>" class="padding left-1">
-										<i class="fa fa-times-circle fa-lg"></i>
+										<span class="fa-stack">
+											<i class="fa fa-circle fa-stack-2x"></i>
+											<i class="fa fa-trash-o text-color-dark fa-stack-1x fa-inverse"></i>
+										</span>
 									</a><?php
 								endif;
 							endif; ?>
