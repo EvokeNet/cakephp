@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-08-06 17:01-0300\n"
-"PO-Revision-Date: 2015-08-06 18:52-0300\n"
+"POT-Creation-Date: 2015-08-11 14:29-0300\n"
+"PO-Revision-Date: 2015-08-11 14:31-0300\n"
 "Last-Translator: Nicole Amaral <nicole5287@gmail.com>\n"
 "Language-Team: Evoke Team\n"
 "Language: es\n"
@@ -876,7 +876,7 @@ msgid "See All"
 msgstr "Ver Todo"
 
 #: /Elements/comment.ctp:4 /Elements/comment_evokation.ctp:4
-#: /Elements/Evidences/view-evidence.ctp:236 /Evokations/view.ctp:110
+#: /Elements/Evidences/view-evidence.ctp:239 /Evokations/view.ctp:110
 msgid "Share a Thought"
 msgstr "Compartir tus pensamientos"
 
@@ -895,7 +895,7 @@ msgstr "Agenta, inscríbate para compartir tus pensamientos"
 msgid "Log in"
 msgstr "Inscribirte"
 
-#: /Elements/comment_box.ctp:22 /Elements/topbar-loggedIn.ctp:21
+#: /Elements/comment_box.ctp:22 /Elements/topbar-loggedIn.ctp:22
 #: /Elements/user_biography.ctp:19
 msgid "Agent "
 msgstr "Agente"
@@ -908,7 +908,7 @@ msgstr ""
 msgid "Agent, sign in to share a thought"
 msgstr ""
 
-#: /Elements/comment_form.ctp:57 /Elements/topbar-login.ctp:28
+#: /Elements/comment_form.ctp:57 /Elements/topbar-login.ctp:29
 #: /Pages/dmcanotifications.ctp:104;110
 msgid "Sign in"
 msgstr "Inscríbate"
@@ -987,23 +987,24 @@ msgstr "Nivel"
 msgid "Points"
 msgstr "Puntos"
 
-#: /Elements/header.ctp:71 /Elements/topbar.ctp:35 /Groups/admin_view.ctp:54
-#: /GroupsUsers/view.ctp:29 /Missions/view.ctp:35 /Panels/add_mission.ctp:67
-#: /Panels/edit_mission.ctp:67 /Panels/quest.ctp:67 /Users/view.ctp:29
+#: /Elements/header.ctp:71 /Elements/language_switcher.ctp:5
+#: /Groups/admin_view.ctp:54 /GroupsUsers/view.ctp:29 /Missions/view.ctp:35
+#: /Panels/add_mission.ctp:67 /Panels/edit_mission.ctp:67 /Panels/quest.ctp:67
+#: /Users/view.ctp:29
 msgid "Language"
 msgstr "Idioma"
 
-#: /Elements/header.ctp:73 /Elements/register_form.ctp:88
-#: /Elements/topbar.ctp:37 /GroupsUsers/view.ctp:31 /Missions/view.ctp:37
-#: /Panels/add_mission.ctp:69 /Panels/edit_mission.ctp:69 /Panels/quest.ctp:69
-#: /Users/edit.ctp:75 /Users/view.ctp:31
+#: /Elements/header.ctp:73 /Elements/language_switcher.ctp:7
+#: /Elements/register_form.ctp:88 /GroupsUsers/view.ctp:31
+#: /Missions/view.ctp:37 /Panels/add_mission.ctp:69 /Panels/edit_mission.ctp:69
+#: /Panels/quest.ctp:69 /Users/edit.ctp:75 /Users/view.ctp:31
 msgid "English"
 msgstr "Inglés"
 
-#: /Elements/header.ctp:74 /Elements/register_form.ctp:88
-#: /Elements/topbar.ctp:38 /GroupsUsers/view.ctp:32 /Missions/view.ctp:38
-#: /Panels/add_mission.ctp:70 /Panels/edit_mission.ctp:70 /Panels/quest.ctp:70
-#: /Users/edit.ctp:75 /Users/view.ctp:32
+#: /Elements/header.ctp:74 /Elements/language_switcher.ctp:8
+#: /Elements/register_form.ctp:88 /GroupsUsers/view.ctp:32
+#: /Missions/view.ctp:38 /Panels/add_mission.ctp:70 /Panels/edit_mission.ctp:70
+#: /Panels/quest.ctp:70 /Users/edit.ctp:75 /Users/view.ctp:32
 msgid "Spanish"
 msgstr "Espanol"
 
@@ -1161,19 +1162,19 @@ msgstr "Medallas"
 msgid "Admin"
 msgstr ""
 
-#: /Elements/topbar-login.ctp:15
+#: /Elements/topbar-login.ctp:16
 msgid "username"
 msgstr ""
 
-#: /Elements/topbar-login.ctp:20
+#: /Elements/topbar-login.ctp:21
 msgid "password"
 msgstr ""
 
-#: /Elements/topbar-login.ctp:36
+#: /Elements/topbar-login.ctp:37
 msgid "OR"
 msgstr ""
 
-#: /Elements/topbar.ctp:69 /Pages/dmcanotifications.ctp:186
+#: /Elements/topbar.ctp:57 /Pages/dmcanotifications.ctp:186
 msgid "Evoke Registration"
 msgstr "Registración Evoke"
 
@@ -1269,43 +1270,43 @@ msgstr "Eliminar Evidencia"
 msgid "Quest "
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:118
+#: /Elements/Evidences/view-evidence.ctp:121
 msgid " in "
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:119
+#: /Elements/Evidences/view-evidence.ctp:122
 msgid " in response to "
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:122
+#: /Elements/Evidences/view-evidence.ctp:125
 msgid "Created in "
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:165
+#: /Elements/Evidences/view-evidence.ctp:168
 msgid "Evidence's attachments:"
 msgstr "Archivos Evidencia"
 
-#: /Elements/Evidences/view-evidence.ctp:276
+#: /Elements/Evidences/view-evidence.ctp:279
 msgid "VOTE"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:283
+#: /Elements/Evidences/view-evidence.ctp:286
 msgid "You have already voted on this evidence"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:304
+#: /Elements/Evidences/view-evidence.ctp:307
 msgid "COMMENTS"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:312
+#: /Elements/Evidences/view-evidence.ctp:315
 msgid "SHARE"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:315
+#: /Elements/Evidences/view-evidence.ctp:318
 msgid "Share on facebook"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:323
+#: /Elements/Evidences/view-evidence.ctp:326
 msgid "Share on google plus"
 msgstr ""
 
@@ -1375,11 +1376,11 @@ msgstr "Solicitudes Aceptados/Rechazados"
 msgid "There are no requests pending"
 msgstr ""
 
-#: /Elements/Groups/request_tabs.ctp:20
+#: /Elements/Groups/request_tabs.ctp:20 /Emails/html/group_new_request.ctp:29
 msgid "Accept"
 msgstr "Aceptar"
 
-#: /Elements/Groups/request_tabs.ctp:23
+#: /Elements/Groups/request_tabs.ctp:23 /Emails/html/group_new_request.ctp:33
 msgid "Decline"
 msgstr "Rechazar"
 
@@ -2532,41 +2533,51 @@ msgstr "Sexo"
 msgid "Birthday"
 msgstr ""
 
-#: /Emails/html/group.ctp:5
-msgid "Hi %s!"
+#: /Emails/html/group_new_request.ctp:2
+#: /Emails/html/group_request_approved.ctp:2
+#: /Emails/html/group_request_declined.ctp:2
+msgid "Hello, agent %s!"
 msgstr ""
 
-#: /Emails/html/group.ctp:6
+#: /Emails/html/group_new_request.ctp:4
 msgid "You have one request to join your group %s"
 msgstr ""
 
-#: /Emails/html/group.ctp:12
+#: /Emails/html/group_new_request.ctp:10
 msgid "User picture"
 msgstr ""
 
-#: /Emails/html/group.ctp:16
+#: /Emails/html/group_new_request.ctp:14
 msgid "User: "
 msgstr ""
 
-#: /Emails/html/group.ctp:17
+#: /Emails/html/group_new_request.ctp:15
 msgid "Email: "
 msgstr ""
 
-#: /Emails/html/group.ctp:18
-msgid "Country: "
+#: /Emails/html/group_new_request.ctp:16
+msgid "Biography: "
 msgstr ""
 
-#: /Emails/html/group.ctp:19
-msgid "Short biography: "
+#: /Emails/html/group_request_approved.ctp:4
+msgid "Your request to join group \"%s\" was accepted!"
 msgstr ""
 
-#: /Emails/html/group.ctp:33
-msgid "Accept User"
-msgstr "Aceptar Usuario"
+#: /Emails/html/group_request_approved.ctp:7
+msgid "Access Evoke and help your group!"
+msgstr ""
 
-#: /Emails/html/group.ctp:37
-msgid "Decline User"
-msgstr "Rechazar Usuario"
+#: /Emails/html/group_request_declined.ctp:4
+msgid "Unfortunately, your request to join group \"%s\" was declined."
+msgstr ""
+
+#: /Emails/html/group_request_declined.ctp:6
+msgid "But don't worry!"
+msgstr ""
+
+#: /Emails/html/group_request_declined.ctp:9
+msgid "Access Evoke and join another group, or create your own!"
+msgstr ""
 
 #: /EvidenceTags/add.ctp:4
 msgid "Add Evidence Tag"
@@ -3442,9 +3453,13 @@ msgstr ""
 msgid "New Child Issue"
 msgstr ""
 
-#: /Layouts/default.ctp:10
+#: /Layouts/default.ctp:10 /Layouts/Emails/html/default.ctp:19;101
 msgid "Evoke Network"
 msgstr "Evoke - La Red"
+
+#: /Layouts/Emails/html/default.ctp:119
+msgid "Evoke "
+msgstr ""
 
 #: /Likes/add.ctp:4
 msgid "Add Like"
@@ -5326,11 +5341,11 @@ msgstr "Respuesta eliminada. "
 msgid "The answer could not be deleted. Please, try again."
 msgstr "Respuesta no eliminada. Por favor, intenta de nuevo."
 
-#: /App.php:172 /Panels.php:68
+#: /App.php:177 /Panels.php:68
 msgid "Você não está autorizado a visualizar esta página"
 msgstr ""
 
-#: /App.php:178
+#: /App.php:183
 msgid "Você não tem permissão para ver essa página."
 msgstr ""
 
@@ -5394,31 +5409,31 @@ msgstr "Etiqueta eliminada. "
 msgid "The evidence tag could not be deleted. Please, try again."
 msgstr "Etiqueta no eliminada. POr favor, intenta de nuevo. "
 
-#: /Evidences.php:50;377;413;450;480
+#: /Evidences.php:50;384;421;458;488
 msgid "Invalid evidence"
 msgstr "Evidencia no válida. "
 
-#: /Evidences.php:126;173;431;457
+#: /Evidences.php:131;178;439;465
 msgid "The evidence could not be saved. Please, try again."
 msgstr "Etiqueta no guardada. Por favor, intenta de nuevo. "
 
-#: /Evidences.php:227 /Panels.php:1696
+#: /Evidences.php:232 /Panels.php:1696
 msgid "The attachment has been deleted."
 msgstr "Archivo eliminado. "
 
-#: /Evidences.php:229 /Panels.php:1698
+#: /Evidences.php:234 /Panels.php:1698
 msgid "The attachment could not be deleted. Please, try again."
 msgstr "Archivo no eliminado. Por favor, intenta de nuevo. "
 
-#: /Evidences.php:381;484
+#: /Evidences.php:388;492
 msgid "The evidence has been deleted."
 msgstr "Evidencia eliminada. "
 
-#: /Evidences.php:388;486
+#: /Evidences.php:396;494
 msgid "The evidence could not be deleted. Please, try again."
 msgstr "Evidencia no eliminada. Por favor, intenta de nuevo. "
 
-#: /Evidences.php:428;454
+#: /Evidences.php:436;462
 msgid "The evidence has been saved."
 msgstr "Evidencia guardada. "
 
@@ -5498,31 +5513,35 @@ msgstr "Evokation eliminada. "
 msgid "The evokation could not be deleted. Please, try again."
 msgstr "Evokation no eliminada. Por favor, intenta de nuevo. "
 
-#: /GroupRequests.php:38;73;101;162;197;225
+#: /GroupRequests.php:38;73;101;188;223;251
 msgid "Invalid group request"
 msgstr "Soititud de grupo no válida. "
 
-#: /GroupRequests.php:53;77;177;201
+#: /GroupRequests.php:53;77;203;227
 msgid "The group request has been saved."
 msgstr "Solicitud de grupo guardada. "
 
-#: /GroupRequests.php:56;80;180;204
+#: /GroupRequests.php:56;80;206;230
 msgid "The group request could not be saved. Please, try again."
 msgstr "Solicitud de grupo no guardada. Por favor, intenta de nuevo. "
 
-#: /GroupRequests.php:105;229
+#: /GroupRequests.php:105;255
 msgid "The group request has been deleted."
 msgstr "Solicitud de grupo eliminada. "
 
-#: /GroupRequests.php:107;231
+#: /GroupRequests.php:107;257
 msgid "The group request could not be deleted. Please, try again."
 msgstr "Solicitud de grupo no guardada. Por favor, intenta de nuevo. "
 
-#: /GroupRequests.php:136
+#: /GroupRequests.php:156
+msgid "(Evoke) Request declined to join group \"%s\""
+msgstr ""
+
+#: /GroupRequests.php:162
 msgid "The request was declined"
 msgstr "Solicitud rechazada. "
 
-#: /Groups.php:202;368;415;551;586;614 /GroupsUsers.php:208 /Group.php:44;60
+#: /Groups.php:202;368;415;551;586;614 /GroupsUsers.php:220 /Group.php:44;60
 msgid "Invalid group"
 msgstr "Grupo no válido."
 
@@ -5555,51 +5574,55 @@ msgstr "Grupo eliminado. "
 msgid "The group could not be deleted. Please, try again."
 msgstr "Grupo no eliminado. Por favor, intenta de nuevo. "
 
-#: /GroupsUsers.php:160;278;418;442
+#: /GroupsUsers.php:160;300;440;464
 msgid "The groups user has been saved."
 msgstr "Usario de grupo guardado. "
 
-#: /GroupsUsers.php:176;281;421;445
-msgid "The groups user could not be saved. Please, try again."
-msgstr "Usuario de grupo no guardado. Por favor, intenta de nuevo. "
+#: /GroupsUsers.php:180
+msgid "(Evoke) You joined group \"%s\""
+msgstr ""
 
-#: /GroupsUsers.php:178
+#: /GroupsUsers.php:190
 msgid "This user already belongs to this group."
 msgstr "Este usuario ya es miembro del grupo. "
 
-#: /GroupsUsers.php:236
+#: /GroupsUsers.php:248
 msgid "The request has been sent"
 msgstr "Solicitud enviado."
 
-#: /GroupsUsers.php:238
+#: /GroupsUsers.php:250
 msgid "The request could not be sent"
 msgstr "Solicitud no enviado."
 
-#: /GroupsUsers.php:241
+#: /GroupsUsers.php:253
 msgid "This user already requested to join this group"
 msgstr ""
 
-#: /GroupsUsers.php:251
-msgid "Evoke - Request to join group "
+#: /GroupsUsers.php:263
+msgid "(Evoke) Request to join group \"%s\""
 msgstr ""
 
-#: /GroupsUsers.php:256
+#: /GroupsUsers.php:268
 msgid "The email was sent"
 msgstr "Correo enviado."
 
-#: /GroupsUsers.php:259
+#: /GroupsUsers.php:276
 msgid "There was a problem sending the email."
 msgstr "Hubo un problam en enviar el correo."
 
-#: /GroupsUsers.php:274;307;370;403;438;466
+#: /GroupsUsers.php:296;329;392;425;460;488
 msgid "Invalid groups user"
 msgstr "Usuario de grupo no válido."
 
-#: /GroupsUsers.php:346;377;470
+#: /GroupsUsers.php:303;443;467
+msgid "The groups user could not be saved. Please, try again."
+msgstr "Usuario de grupo no guardado. Por favor, intenta de nuevo. "
+
+#: /GroupsUsers.php:368;399;492
 msgid "The groups user has been deleted."
 msgstr "Usario de grupo ha sido eliminado. "
 
-#: /GroupsUsers.php:348;379;472
+#: /GroupsUsers.php:370;401;494
 msgid "The groups user could not be deleted. Please, try again."
 msgstr "Usuario de grupo no eliminado. Por favor, intenta de nuevo."
 
@@ -5716,7 +5739,27 @@ msgstr "Tema de misión eliminado. "
 msgid "The mission issue could not be deleted. Please, try again."
 msgstr "Team de misión eliminado. Por favor, intenta de nuevo. "
 
-#: /Missions.php:125;636;936;1131;1221;1249;1284;1316;1341
+#: /MissionSubscriptions0.php:38;74;103
+msgid "Invalid mission subscription"
+msgstr ""
+
+#: /MissionSubscriptions0.php:53;78
+msgid "The mission subscription has been saved."
+msgstr ""
+
+#: /MissionSubscriptions0.php:56;81
+msgid "The mission subscription could not be saved. Please, try again."
+msgstr ""
+
+#: /MissionSubscriptions0.php:107
+msgid "The mission subscription has been deleted."
+msgstr ""
+
+#: /MissionSubscriptions0.php:109
+msgid "The mission subscription could not be deleted. Please, try again."
+msgstr ""
+
+#: /Missions.php:125;636;959;1180;1270;1298;1333;1365;1390
 msgid "Invalid mission"
 msgstr "Misión no válida. "
 
@@ -5736,23 +5779,23 @@ msgstr ""
 msgid "You need to finish at least one quest to go to next phase"
 msgstr ""
 
-#: /Missions.php:719
+#: /Missions.php:734
 msgid "Invalid mission phase"
 msgstr ""
 
-#: /Missions.php:1200;1225;1299;1320
+#: /Missions.php:1249;1274;1348;1369
 msgid "The mission has been saved."
 msgstr "Misión guardada. "
 
-#: /Missions.php:1203;1228;1302;1323 /Panels.php:693;823;1011;1225
+#: /Missions.php:1252;1277;1351;1372 /Panels.php:693;823;1011;1225
 msgid "The mission could not be saved. Please, try again."
 msgstr "Misión no guardado. Por favor, intenta de nuevo. "
 
-#: /Missions.php:1253;1345
+#: /Missions.php:1302;1394
 msgid "The mission has been deleted."
 msgstr "Misión eliminada. "
 
-#: /Missions.php:1259;1347
+#: /Missions.php:1308;1396
 msgid "The mission could not be deleted. Please, try again."
 msgstr "Misión no eliminada. Por favor, intenta de nuevo.  "
 
@@ -6464,6 +6507,270 @@ msgstr ""
 #: //Forum/view.ctp:157
 msgid "Create new discussion"
 msgstr ""
+
+#: /Errors/error400.ctp:12 /Errors/error500.ctp:12
+msgid "Error"
+msgstr ""
+
+#: /Errors/error400.ctp:14
+msgid "The requested address %s was not found on this server."
+msgstr ""
+
+#: /Errors/error500.ctp:13
+msgid "An Internal Error Has Occurred."
+msgstr ""
+
+#: /Layouts/error.ctp:10
+msgid "CakePHP: the rapid development php framework"
+msgstr ""
+
+#: /Pages/home.ctp:16
+msgid "Release Notes for CakePHP %s."
+msgstr ""
+
+#: /Pages/home.ctp:18
+msgid "Read the changelog"
+msgstr ""
+
+#: /Pages/home.ctp:29
+msgid "URL rewriting is not properly configured on your server."
+msgstr ""
+
+#: /Pages/home.ctp:40
+msgid "Your version of PHP is 5.2.8 or higher."
+msgstr ""
+
+#: /Pages/home.ctp:44
+msgid ""
+"Your version of PHP is too low. You need PHP 5.2.8 or higher to use CakePHP."
+msgstr ""
+
+#: /Pages/home.ctp:53
+msgid "Your tmp directory is writable."
+msgstr ""
+
+#: /Pages/home.ctp:57
+msgid "Your tmp directory is NOT writable."
+msgstr ""
+
+#: /Pages/home.ctp:67
+msgid "The %s is being used for core caching. To change the config edit %s"
+msgstr ""
+
+#: /Pages/home.ctp:71
+msgid "Your cache is NOT working. Please check the settings in %s"
+msgstr ""
+
+#: /Pages/home.ctp:81
+msgid "Your database configuration file is present."
+msgstr ""
+
+#: /Pages/home.ctp:86
+msgid "Your database configuration file is NOT present."
+msgstr ""
+
+#: /Pages/home.ctp:88
+msgid "Rename %s to %s"
+msgstr ""
+
+#: /Pages/home.ctp:113
+msgid "CakePHP is able to connect to the database."
+msgstr ""
+
+#: /Pages/home.ctp:117
+msgid "CakePHP is NOT able to connect to the database."
+msgstr ""
+
+#: /Pages/home.ctp:129
+msgid "PCRE has not been compiled with Unicode support."
+msgstr ""
+
+#: /Pages/home.ctp:131
+msgid ""
+"Recompile PCRE with Unicode support by adding <code>--enable-unicode-"
+"properties</code> when configuring"
+msgstr ""
+
+#: /Pages/home.ctp:140
+msgid "DebugKit plugin is present"
+msgstr ""
+
+#: /Pages/home.ctp:144
+msgid ""
+"DebugKit is not installed. It will help you inspect and debug different "
+"aspects of your application."
+msgstr ""
+
+#: /Pages/home.ctp:146
+msgid "You can install it from %s"
+msgstr ""
+
+#: /Pages/home.ctp:152
+msgid "Editing this Page"
+msgstr ""
+
+#: /Pages/home.ctp:155
+msgid ""
+"To change the content of this page, edit: %s.<br />\n"
+"To change its layout, edit: %s.<br />\n"
+"You can also add some CSS styles for your pages at: %s."
+msgstr ""
+
+#: /Pages/home.ctp:162
+msgid "Getting Started"
+msgstr ""
+
+#: /Pages/home.ctp:166
+msgid "New"
+msgstr ""
+
+#: /Pages/home.ctp:166
+msgid "CakePHP 2.0 Docs"
+msgstr ""
+
+#: /Pages/home.ctp:175
+msgid "The 15 min Blog Tutorial"
+msgstr ""
+
+#: /Pages/home.ctp:182
+msgid "Official Plugins"
+msgstr ""
+
+#: /Pages/home.ctp:187
+msgid ""
+"provides a debugging toolbar and enhanced debugging tools for CakePHP "
+"applications."
+msgstr ""
+
+#: /Pages/home.ctp:191
+msgid ""
+"contains various localized validation classes and translations for specific "
+"countries"
+msgstr ""
+
+#: /Pages/home.ctp:196
+msgid "More about CakePHP"
+msgstr ""
+
+#: /Pages/home.ctp:198
+msgid ""
+"CakePHP is a rapid development framework for PHP which uses commonly known "
+"design patterns like Active Record, Association Data Mapping, Front "
+"Controller and MVC."
+msgstr ""
+
+#: /Pages/home.ctp:201
+msgid ""
+"Our primary goal is to provide a structured framework that enables PHP users "
+"at all levels to rapidly develop robust web applications, without any loss "
+"to flexibility."
+msgstr ""
+
+#: /Pages/home.ctp:206
+msgid "The Rapid Development Framework"
+msgstr ""
+
+#: /Pages/home.ctp:207
+msgid "CakePHP Documentation"
+msgstr ""
+
+#: /Pages/home.ctp:208
+msgid "Your Rapid Development Cookbook"
+msgstr ""
+
+#: /Pages/home.ctp:209
+msgid "CakePHP API"
+msgstr ""
+
+#: /Pages/home.ctp:210
+msgid "Quick API Reference"
+msgstr ""
+
+#: /Pages/home.ctp:211
+msgid "The Bakery"
+msgstr ""
+
+#: /Pages/home.ctp:212
+msgid "Everything CakePHP"
+msgstr ""
+
+#: /Pages/home.ctp:213
+msgid "CakePHP Plugins"
+msgstr ""
+
+#: /Pages/home.ctp:214
+msgid "A comprehensive list of all CakePHP plugins created by the community"
+msgstr ""
+
+#: /Pages/home.ctp:215
+msgid "CakePHP Community Center"
+msgstr ""
+
+#: /Pages/home.ctp:216
+msgid "Everything related to the CakePHP community in one place"
+msgstr ""
+
+#: /Pages/home.ctp:217
+msgid "CakePHP Google Group"
+msgstr ""
+
+#: /Pages/home.ctp:218
+msgid "Community mailing list"
+msgstr ""
+
+#: /Pages/home.ctp:220
+msgid "Live chat about CakePHP"
+msgstr ""
+
+#: /Pages/home.ctp:221
+msgid "CakePHP Code"
+msgstr ""
+
+#: /Pages/home.ctp:222
+msgid "Find the CakePHP code on GitHub and contribute to the framework"
+msgstr ""
+
+#: /Pages/home.ctp:223;224
+msgid "CakePHP Issues"
+msgstr ""
+
+#: /Pages/home.ctp:225;226
+msgid "CakePHP Roadmaps"
+msgstr ""
+
+#: /Pages/home.ctp:227
+msgid "Training"
+msgstr ""
+
+#: /Pages/home.ctp:228
+msgid "Join a live session and get skilled with the framework"
+msgstr ""
+
+#: /Pages/home.ctp:229
+msgid "CakeFest"
+msgstr ""
+
+#: /Pages/home.ctp:230
+msgid "Don't miss our annual CakePHP conference"
+msgstr ""
+
+#: /Pages/home.ctp:231
+msgid "Cake Software Foundation"
+msgstr ""
+
+#: /Pages/home.ctp:232
+msgid "Promoting development related to CakePHP"
+msgstr ""
+
+#: /test.php:84
+msgid "Debug setting does not allow access to this URL."
+msgstr ""
+
+#~ msgid "Accept User"
+#~ msgstr "Aceptar Usuario"
+
+#~ msgid "Decline User"
+#~ msgstr "Rechazar Usuario"
 
 #~ msgid "Your comment was saved"
 #~ msgstr "Comentario guardado. "
