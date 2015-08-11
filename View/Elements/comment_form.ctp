@@ -25,7 +25,7 @@ if(($user_id)): ?>
 				if (!isset($content_class)) {
 					$content_class = 'radius';
 				}
-				echo $this->Form->input('content', array('label' => 'Comment:', 'type' => 'textarea', 'class' => $content_class, 'value' => $content, 'id' => 'newCommentForm'));
+				echo $this->Form->input('content', array('label' => 'Comment:', 'type' => 'textarea', 'class' => $content_class." newCommentForm", 'value' => $content));
 			}
 		?>
 
@@ -34,7 +34,7 @@ if(($user_id)): ?>
 			$button_class = 'button thin full-width margin top-05 text-center text-glow-on-hover';
 		}
 		?>
-		<button class="<?= $button_class ?>" type="submit">
+		<button class="buttonEditComment <?= $button_class ?>" type="submit">
 
 			<?php if (isset($button_icon) && ($button_icon)): ?>
 				<i class="fa fa-floppy-o fa-2x"></i><br />

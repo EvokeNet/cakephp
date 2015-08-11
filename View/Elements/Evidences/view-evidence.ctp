@@ -252,11 +252,6 @@ if (isset($evidence)):
 							));
 
 						?>
-						<?php
-							//Form with redis
-							// echo $this->Form->input('mm', array('type' => 'textarea', 'label' => __('Comment:'), 'class' => 'radius'));
-							// echo '<button id="commenties" class="button thin disabled">'.__('Send').'</button>';
-						?>
 					</div>
 				</div>
 
