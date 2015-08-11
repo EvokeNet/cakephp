@@ -11,17 +11,17 @@
 		<?php echo $this->Form->create('User', array('data-abide', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
 
 		<div class="row collapse">
-			<div class="small-6 medium-3 large-3 columns">
+			<div class="small-6 medium-4 large-4 columns">
 				<?php 
 					echo $this->Form->input('username', array('label' => false, 'type' => 'text', 'placeholder' =>  __('username'), 'class' => 'radius', 'required' => true));
 				?>
 			</div>
-			<div class="small-6 medium-3 large-3 columns">
+			<div class="small-6 medium-4 large-4 columns">
 				<?php 
 					echo $this->Form->input('password', array('label' => false, 'type' => 'password', 'placeholder' =>  __('password'), 'class' => 'radius', 'required'));
 				?>
 			</div>
-			<div class="small-12 medium-3 large-3 columns">
+			<div class="small-12 medium-4 large-4 columns">
 				<div class="small-only-text-center login-button-wrapper">
 					<span class="show-for-small-only  margin top-1"></span>
 
@@ -32,7 +32,7 @@
 			</div>
 
 			<!-- OTHER SIGN IN METHODS -->
-			<div class="small-12 medium-3 large-3 columns">
+			<!-- <div class="small-12 medium-3 large-3 columns">
 				<div class="text-center login-social-networks">
 					<?php echo __('OR'); ?>
 
@@ -50,7 +50,7 @@
 						</span>
 					</a>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		
 		<?php echo $this->Form->end(); ?>
