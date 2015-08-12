@@ -10,6 +10,12 @@
 
 
 <?php
+	//JAVASCRIPT VARIABLES
+	$this->start('evoke_javascript_variables');
+		$evidence_view_url = $this->Html->url(array('controller' => 'evidences', 'action' => 'view', $evidence['Evidence']['id']));
+		echo "evokeData.evidence_view_url = '$evidence_view_url';";
+	$this->end();
+
 	//FOOTER
 	$this->start('footer');
 	echo $this->element('footer');

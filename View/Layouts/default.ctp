@@ -98,9 +98,11 @@ $title = __('Evoke Network');
 
 	    //EVOKEDATA MODULE: FETCH JAVASCRIPT VARIABLES FROM VIEWS
 		$this->Html->scriptStart(array('inline' => false)); ?>
-			define('evokeData', function () {
-				return <?php echo $this->fetch('evoke_javascript_variables') ?>;
-			}); <?php
+		require(['<?= $this->webroot ?>js/requirejs/bootstrap'], function () {
+			require(['evokedata'], function (evokeData) {
+				<?php echo $this->fetch('evoke_javascript_variables') ?>;
+			});
+		}); <?php
 		$this->Html->scriptEnd();
 
 	    //SCRIPTS IN EACH VIEW

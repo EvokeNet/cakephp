@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'sweetalert', 'missionpanels', 'froala', '../js/requirejs/modules/facebook_share'], function ($, swal, missionPanels) {
+	require(['jquery', 'sweetalert', 'missionpanels', 'evokedata', 'froala', '../js/requirejs/modules/facebook_share'], function ($, swal, missionPanels, evokeData) {
 		$(document).ready(function(){
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
@@ -89,10 +89,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						type: 'POST',
 						url: $(this).attr('href'),
 						success: function(response) {
-							//Refresh page using the link on the view button
-							$('#missions-content-overlay-body').off(); //clear events in previous elements
-							$('#missions-content-overlay-body *').off(); //clear events in previous elements
-							$('#missions-content-overlay-body').load($("#evidenceViewFull").attr('href'));
+							//Refresh mission overlay with the content of the view
+							missionPanels.openInMissionOverlay(evokeData.evidence_view_url, null, 'POST');
 						}
 					});
 

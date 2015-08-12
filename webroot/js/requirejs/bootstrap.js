@@ -3,6 +3,7 @@ requirejs.config({
 	paths: {
 		// EVOKE SPECIFIC MODULES
 		evoke: '../js/requirejs/app/evoke',
+		evokedata: '../js/requirejs/app/evoke_data',
 		ajax_retry: '../js/requirejs/modules/ajax_retry',
 		missionpanels: '../js/requirejs/modules/mission_panels',
 		// COMPONENTS (ALPHABETICAL ORDER PLEASE)
