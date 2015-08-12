@@ -662,10 +662,14 @@ class MissionsController extends AppController {
 			if ($group['is_owner'] || $group['is_member']) {
 				$hasGroup = true;
 
-				//GROUP LEADER AND MEMBERS
+				//GROUP LEADER, MEMBERS, REQUESTS, and EVOKATIONS/EVIDENCES
 				$group_details = $this->Group->find('first',array(
 					'conditions' => array('Group.id' => $group['id']),
-					'contain' => array('Leader', 'Member','GroupRequestsPending','GroupRequestsDone',
+					'contain' => array(
+						'Leader',
+						'Member',
+						'GroupRequestsPending' => 'User',
+						'GroupRequestsDone' => 'User',
 						'Evokation' => 'Evidence'
 					)
 				));
@@ -1024,10 +1028,14 @@ class MissionsController extends AppController {
 				//GROUP FORUM
 				$group['Forum'] = $this->Group->findForum($group['id']);
 
-				//GROUP LEADER AND MEMBERS
+				//GROUP LEADER, MEMBERS, REQUESTS, and EVOKATIONS/EVIDENCES
 				$group_details = $this->Group->find('first',array(
 					'conditions' => array('Group.id' => $group['id']),
-					'contain' => array('Leader','Member','GroupRequestsPending','GroupRequestsDone',
+					'contain' => array(
+						'Leader',
+						'Member',
+						'GroupRequestsPending' => 'User',
+						'GroupRequestsDone' => 'User',
 						'Evokation' => 'Evidence'
 					)
 				));

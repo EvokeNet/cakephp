@@ -39,6 +39,8 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/components/foundation/css/foundation');
 		echo $this->Html->css('foundation'); //Overriding some of the foundation css
 
+		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
+
 		echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_style.min.css'); //Froala - rendering text
 		echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_editor.min.css'); //Froala - rendering text
 		echo $this->Html->css('/css/froala.css'); //Overriding some of the froala css
