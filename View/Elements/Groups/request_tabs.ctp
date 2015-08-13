@@ -25,11 +25,11 @@
 					//ACCEPT
 					echo $this->Html->link(
 						__('Accept'),
-						array('controller' => 'groupsUsers', 'action' => 'add/', '?' => array(
+						array('controller' => 'groupsUsers', 'action' => 'add', '?' => array(
 							'arg' => $request_pending['user_id'], 
 							'arg2' => $request_pending['group_id']
 						)),
-						array('class' => "button thin bg-green")
+						array('class' => "buttonAcceptRequest button thin bg-green")
 					);
 
 					echo " ";
@@ -41,7 +41,7 @@
 							'arg' => $request_pending['user_id'], 
 							'arg2' => $request_pending['group_id']
 						)),
-						array('class' => "button thin bg-red")
+						array('class' => "buttonDeclineRequest button thin bg-red")
 					);
 					?>
 				</li> <?php

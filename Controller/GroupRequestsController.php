@@ -152,7 +152,7 @@ class GroupRequestsController extends AppController {
 
 			$Email = new CakeEmail('smtp');
 			$Email->from(array('no-reply@quanti.ca' => $group['Group']['title']));
-			$Email->to($recipient['email']);
+			$Email->to($request['User']['email']);
 			$Email->subject(__('(Evoke) Request declined to join group "%s"', $group['Group']['title']));
 			$Email->emailFormat('html');
 			$Email->template('group_request_declined', 'default');

@@ -69,3 +69,9 @@
 		</div>
 	</div>
 </div>
+
+
+<?php
+	//SCRIPT
+	$this->Html->script('requirejs/app/Elements/Missions/panel_group_area.js', array('inline' => false));
+?>
