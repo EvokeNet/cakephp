@@ -36,14 +36,13 @@
 			}
 
 			//REQUESTS
-
 			foreach($groupsRequests as $g):?>
 				<li>
 					<?php
-					if ($g['GroupRequest']['status'] == 1) $status = __('Accepted');
-					else $status = __('Declined');
+					$status = __('Declined');
+					if ($g['status'] == 1) $status = __('Accepted');
 
-					echo sprintf(__("Requester: Agent %s </br> Status: %s", $g['Leader']['name'], $status));
+					echo sprintf(__("Requester: Agent %s </br> Status: %s", $groupOwner['name'], $status));
 					?>
 				</li> <?php
 			endforeach; ?>

@@ -42,7 +42,7 @@
 				<p><?= $group['Leader']['name'] ?></p>
 			</div>
 
-			<!-- LIST OF MEMBERS -->	
+			<!-- LIST OF MEMBERS -->
 			<div class="padding top-2">
 				<h4 class="text-color-highlight text-center"><?= __('Members') ?><?= ': '.count($group['Member']) ?></h4>
 
@@ -60,6 +60,7 @@
 
 						<?php echo $this->element('Groups/request_tabs',array(
 							'group' => $group,
+							'groupOwner' => $group['Leader'],
 							'groupsRequestsPending' => $group['GroupRequestsPending'],
 							'groupsRequests' => $group['GroupRequestsDone'],
 							'show_title' => false)); ?>
