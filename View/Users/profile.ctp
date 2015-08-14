@@ -23,6 +23,11 @@
 			</div>
 
 			<h4 class="text-color-highlight text-center margin top-1"><?= $user['User']['name'] ?></h4>
+			<div class = "margin top-2" style = "text-align:center">
+				<?php if(!$is_friend && $user['User']['id'] != $users['User']['id']): ?>
+					<a class="button small addally uppercase" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $loggedInUser['id'], $user['User']['id'], false)); ?>"><?php echo __('ADD ALLY'); ?></a>
+				<?php endif; ?>
+			</div>
 			<div>
 				<p class="text-center">
 					<?= (isset($user['User']['mini_biography']) && (($user['User']['mini_biography']) != ""))
@@ -52,11 +57,9 @@
 		        	$pic = $this->Picture->getUserPictureAbsolutePath($similar_user['User']); ?>
 		      <li>
 		        <!-- PANEL -->
-		        <a href="#" data-reveal-id="modalProfilePotentialAllies<?= $counter ?>">
+		        <!-- <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $similar_user['User']['id'], false)); ?>" data-reveal-id="modalProfilePotentialAllies<?= $counter ?>"> -->
+						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $similar_user['User']['id'], false)); ?>">
 		          <div class="table full-width profile-content padding top-1">
-		          	
-
-
 
 		          	<!-- USER PICTURE -->
 		          	<div class="table-cell vertical-align-middle square-40px">
@@ -113,7 +116,7 @@
 			<div class="small-12 columns margin top-2 bottom-2">
 				<h3><?= __('About') ?></h3>
 				<?php
-				
+
 				if (!empty($user['User']['biography'])):
 					echo $user['User']['biography'];
 				else: ?>
@@ -144,7 +147,7 @@
 					<?php
 					if (count($followers) > 0):
 						$counter = 0;
-						
+
 						foreach($followers as $ally):
 							$pic = $this->Picture->getUserPictureAbsolutePath($ally['User']); ?>
 							<li class="text-center">
