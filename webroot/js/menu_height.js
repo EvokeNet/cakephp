@@ -1,10 +1,15 @@
-$(document).ready(function() {
-    menuHeight();
-});
+require([webroot+'js/requirejs/bootstrap'], function () {
+	require(['jquery'], function($) {
 
-function menuHeight(){
-	$(".maincolumn").each(function() {
-        $('.menucolumn').css("height", $(this).innerHeight());
-        //alert($(this).innerHeight());
-    });
-}
+		$(document).ready(function() {
+			menuHeight();
+		});
+
+		function menuHeight(){
+			$(".maincolumn").each(function() {
+				$('.menucolumn').css("height", $(this).innerHeight());
+			});
+		}
+		
+	});
+});

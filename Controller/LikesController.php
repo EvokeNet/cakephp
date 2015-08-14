@@ -102,14 +102,25 @@ class LikesController extends AppController {
 				$this->UserPowerPoint->save($data);
 			}
 
-			$this->Session->setFlash(__('Your like was computed'));
 
-			// //REDIRECT TO REFERER
-			// return $this->redirect(array(
-			// 	'header' => $this->request->header, //Use the same header - useful if the requester is ajax
-			// 	$this->referer()
-			// ));
+			//AJAX LOAD
+			if ($this->request->is('ajax')) {
+				return true;
+			}
+
+			//NOT AJAX
+			$this->Session->setFlash(__('Your like was computed'));
+			return $this->redirect(array(
+				'header' => $this->request->header, //Use the same header
+				$this->referer()
+			));
 		} else {
+			//AJAX LOAD
+			if ($this->request->is('ajax')) {
+				return false;
+			}
+
+			//NOT AJAX
 			$this->Session->setFlash(__('The like could not be saved. Please, try again.'));
 		}
 	}

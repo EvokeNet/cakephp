@@ -1,4 +1,4 @@
-define(['jquery','evoke','evokeData','jqueryui'], function($,evoke,evokeData) {
+define(['jquery','evoke','evokedata','jqueryui'], function($,evoke,evokeData) {
 	function missionPanels() {}
 
 	/**

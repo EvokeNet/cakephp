@@ -83,13 +83,13 @@
 
 	//JAVASCRIPT VARIABLES
 	$this->start('evoke_javascript_variables');
-		echo json_encode(array(
-			'missions_load_quests_url' => $load_quests_url,
-			'missions_load_dossier_url' => $load_dossier_url,
-			'missions_load_evidences_url' => $load_evidences_url,
-			'open_quests_by_default' => $open_by_default,
-			'load_main_content_url' => $load_main_content_url
-		));
+		echo "
+		evokeData.missions_load_quests_url = '$load_quests_url';
+		evokeData.missions_load_dossier_url = '$load_dossier_url';
+		evokeData.missions_load_evidences_url = '$load_evidences_url';
+		evokeData.open_quests_by_default = '$open_by_default';
+		evokeData.load_main_content_url = '$load_main_content_url';
+		";
 	$this->end();
 
 	//SCRIPT

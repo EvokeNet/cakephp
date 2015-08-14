@@ -32,7 +32,7 @@
 			<?php if(isset($loggedInUser) && $comment['Comment']['user_id'] == $loggedInUser['id']): ?>
 				<div class="small-2 medium-2 large-2 columns">
 					<div class="comment-box-delete margin bottom-1">
-						<a href = "<?php echo $this->Html->url(array('controller'=> 'comments', 'action' => 'delete', $comment['Comment']['id'])); ?>">
+						<a href = "<?php echo $this->Html->url(array('controller'=> 'comments', 'action' => 'delete', $comment['Comment']['id'])); ?>" class="buttonDeleteComment">
 							<i class="fa fa-times-circle fa-lg"></i>
 						</a>
 					</div>
@@ -42,7 +42,7 @@
 					</a>
 
 					<!-- Lightbox for commenting form -->
-					<div id="modalEvidenceComment<?= $comment['Comment']['id'] ?>" class="reveal-modal background-color-darkest" data-reveal>
+					<div id="modalEvidenceComment<?= $comment['Comment']['id'] ?>" class="modalEvidenceComment reveal-modal background-color-darkest" data-reveal>
 						<h1><?= __('Edit comment') ?></h1>
 						<?php 
 							echo $this->element('comment_form', array(

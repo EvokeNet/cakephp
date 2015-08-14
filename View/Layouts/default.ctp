@@ -39,6 +39,8 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/components/foundation/css/foundation');
 		echo $this->Html->css('foundation'); //Overriding some of the foundation css
 
+		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
+
 		echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_style.min.css'); //Froala - rendering text
 		echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_editor.min.css'); //Froala - rendering text
 		echo $this->Html->css('/css/froala.css'); //Overriding some of the froala css
@@ -98,9 +100,11 @@ $title = __('Evoke Network');
 
 	    //EVOKEDATA MODULE: FETCH JAVASCRIPT VARIABLES FROM VIEWS
 		$this->Html->scriptStart(array('inline' => false)); ?>
-			define('evokeData', function () {
-				return <?php echo $this->fetch('evoke_javascript_variables') ?>;
-			}); <?php
+		require(['<?= $this->webroot ?>js/requirejs/bootstrap'], function () {
+			require(['evokedata'], function (evokeData) {
+				<?php echo $this->fetch('evoke_javascript_variables') ?>;
+			});
+		}); <?php
 		$this->Html->scriptEnd();
 
 	    //SCRIPTS IN EACH VIEW

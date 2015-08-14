@@ -44,8 +44,8 @@
 
 					echo sprintf(__("Requester: Agent %s </br> Status: %s", $groupOwner['name'], $status));
 					?>
-				</li> <?php
-			endforeach; ?>
+				</li>
+			<?php endforeach; ?>
 		</ul>
 	</div>
 </div>

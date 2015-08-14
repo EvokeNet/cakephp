@@ -11,15 +11,18 @@ if (isset($evidence)):
 		  	<nav class="breadcrumbs margin top-1 bottom-1">
 		  		<!-- MISSION -->
 				<?php echo $this->Html->link(
-					__('Mission: ').$evidence['Mission']['title'], 
+					__('Mission %s',$evidence['Mission']['title']), 
 					array('controller' => 'missions', 'action' => 'view_mission', $evidence['Mission']['id'])
 				); ?>
 
 				<!-- PHASE -->
-				<?php echo $this->Html->link($evidence['Phase']['name'], array('controller' => 'missions', 'action' => 'view', $evidence['Mission']['id'], $evidence['Phase']['position']));?>
+				<?php echo $this->Html->link(
+					__('Phase %s',$evidence['Phase']['name']),
+					array('controller' => 'missions', 'action' => 'view_mission', $evidence['Mission']['id'], $evidence['Phase']['position'])
+				); ?>
 
 				<!-- EVIDENCE -->
-				<a class="current" href="#"><?php echo $evidence['Evidence']['title'];?></a>
+				<a class="current" href="#"><?php echo __('Evidence %s',$evidence['Evidence']['title']); ?></a>
 			</nav> <?php 
 		endif; ?>
 
@@ -248,11 +251,6 @@ if (isset($evidence)):
 								'button_icon' => false
 							));
 
-						?>
-						<?php
-							//Form with redis
-							// echo $this->Form->input('mm', array('type' => 'textarea', 'label' => __('Comment:'), 'class' => 'radius'));
-							// echo '<button id="commenties" class="button thin disabled">'.__('Send').'</button>';
 						?>
 					</div>
 				</div>

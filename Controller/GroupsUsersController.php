@@ -160,7 +160,10 @@ class GroupsUsersController extends AppController {
 	        	$this->Session->setFlash(__('The groups user has been saved.'));
 
 	        	//Update request status
-	        	$request = $this->GroupsUser->Group->GroupRequest->find('first', array('conditions' => array('GroupRequest.user_id' => $user_id, 'GroupRequest.group_id' => $group_id)));
+	        	$request = $this->GroupsUser->Group->GroupRequest->find('first', array(
+	        		'conditions' => array('GroupRequest.user_id' => $user_id, 'GroupRequest.group_id' => $group_id),
+	        		'contain' => 'User'
+	        	));
 	        	if($request){
 	        		$this->GroupsUser->Group->GroupRequest->id = $request['GroupRequest']['id'];
 	        		$this->GroupsUser->Group->GroupRequest->save(array('status' => 1));
@@ -174,13 +177,14 @@ class GroupsUsersController extends AppController {
 	        		'contain' => array('Leader', 'Phase')
 	        	));
 
+	        	//Email for requester
 				$Email = new CakeEmail('smtp');
 				$Email->from(array('no-reply@quanti.ca' => $group['Group']['title']));
-				$Email->to($recipient['email']);
+				$Email->to($request['User']['email']);
 				$Email->subject(__('(Evoke) You joined group "%s"',$group['Group']['title']));
 				$Email->emailFormat('html');
 				$Email->template('group_request_approved', 'default');
-				$Email->viewVars(array('recipient' => $group['Leader'], 'group' => $group['Group'], 'phase' => $group['Phase']));
+				$Email->viewVars(array('recipient' => $request['User'], 'group' => $group['Group'], 'phase' => $group['Phase']));
 				$Email->send();
 
 				return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
