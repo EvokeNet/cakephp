@@ -8,6 +8,8 @@ App::uses('AppModel', 'Model');
  */
 class UserFriend extends AppModel {
 
+	public $actsAs = array('Containable');
+	
 	public function afterSave($created, $options = array()) {
        
        	if($created){

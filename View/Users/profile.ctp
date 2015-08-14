@@ -23,13 +23,26 @@
 			</div>
 
 			<h4 class="text-color-highlight text-center margin top-1"><?= $user['User']['name'] ?></h4>
-			<div class = "margin top-2" style = "text-align:center">
-				<?php if(empty($is_friend) && $user['User']['id'] != $users['User']['id']): ?>
-					<a class="button small addally uppercase" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $loggedInUser['id'], $user['User']['id'], false)); ?>"><?php echo __('ADD ALLY'); ?></a>
-				<?php elseif(!empty($is_friend) && $user['User']['id'] != $users['User']['id']): ?>
-					<p><?= __("It's your ally") ?></p>
+
+			<!-- ALLIANCE -->
+			<div class="padding top-1 text-center">
+				<!-- ADD AS AN ALLY -->
+				<?php if(empty($is_friend) && ($user['User']['id'] != $users['User']['id'])): ?>
+					<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $user['User']['id'], $loggedInUser['id'], false)); ?>">
+						<i class="fa fa-plus"></i>
+						<?= __('Add as ally') ?>
+					</a>
+				
+				<!-- ALREADY AN ALLY -->
+				<?php elseif(!empty($is_friend) && ($user['User']['id'] != $users['User']['id'])): ?>
+					<a class="button small disabled">
+						<i class="fa fa-check"></i>
+						<?= __('Your ally') ?>
+					</a>
 				<?php endif; ?>
 			</div>
+
+			<!-- BIOGRAPHY -->
 			<div>
 				<p class="text-center">
 					<?= (isset($user['User']['mini_biography']) && (($user['User']['mini_biography']) != ""))
@@ -52,43 +65,44 @@
 		<!-- POTENTIAL ALLIES -->
 		<div class="row hide-for-small-only padding top-1 bottom-1 left-2 right-2 border-top-divisor">
 			<h4><?= __('Potential allies') ?></h4>
-		    <ul class="full-width small-block-grid-1">
-		      <?php
-		        $counter = 0;
-		        foreach($similar_users as $similar_user):
-		        	$pic = $this->Picture->getUserPictureAbsolutePath($similar_user['User']); ?>
-		      <li>
-		        <!-- PANEL -->
-		        <!-- <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $similar_user['User']['id'], false)); ?>" data-reveal-id="modalProfilePotentialAllies<?= $counter ?>"> -->
-						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $similar_user['User']['id'], false)); ?>">
-		          <div class="table full-width profile-content padding top-1">
+			<ul class="full-width small-block-grid-1">
+			  <?php
+				$counter = 0;
+				foreach($similar_users as $similar_user):
+					$pic = $this->Picture->getUserPictureAbsolutePath($similar_user['User']); ?>
 
-		          	<!-- USER PICTURE -->
-		          	<div class="table-cell vertical-align-middle square-40px">
-		          		<div class="square-40px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-			          		<img class="hidden" src="<?= $pic ?>" alt="<?= $similar_user['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
+					<li>
+					<!-- PANEL -->
+					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $similar_user['User']['id'], false)); ?>">
+
+						<div class="table full-width profile-content padding top-1">
+							<!-- USER PICTURE -->
+							<div class="table-cell vertical-align-middle square-40px">
+								<div class="square-40px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
+									<img class="hidden" src="<?= $pic ?>" alt="<?= $similar_user['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
+								</div>
+							</div>
+
+							<!-- USER INFO -->
+							<div class="table-cell vertical-align-middle padding left-1">
+								<p class="user-name margins-0">
+									<?= $similar_user['User']['name'] ?>
+								</p>
+
+								<small>Level <?= $similar_user['User']['level'] ?></small>
+							</div>
 						</div>
-		          	</div>
+					</a>
 
-		            <!-- USER INFO -->
-		            <div class="table-cell vertical-align-middle padding left-1">
-		              <p class="user-name margins-0">
-		                <?= $similar_user['User']['name'] ?>
-		              </p>
+					<!-- VIEW AGENT DETAILS MODAL -->
+					<?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'PotentialAllies'.$counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
+					</li>
 
-		              <small>Level <?= $similar_user['User']['level'] ?></small>
-		            </div>
-		          </div>
-		        </a>
-
-		        <!-- VIEW AGENT DETAILS MODAL -->
-		        <?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'PotentialAllies'.$counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
-		      </li>
-		      <?php
-		          $counter++;
-		        endforeach;
-		      ?>
-		    </ul>
+				<?php
+					$counter++;
+				endforeach;
+				?>
+			</ul>
 		</div>
 	</div>
 
@@ -118,9 +132,18 @@
 			<div class="small-12 columns margin top-2 bottom-2">
 				<h3><?= __('About') ?></h3>
 				<?php
-
+				//Has biography
 				if (!empty($user['User']['biography'])):
 					echo $user['User']['biography'];
+
+				//Doesn't have biography and it's not me
+				elseif ($user['User']['id'] != $users['User']['id']): ?>
+					<div data-alert="" class="alert-box radius">
+						<?= __('This user has not added a biography yet.') ?>
+					</div>
+					<?php
+
+				//Doesn't have biography and it's me
 				else: ?>
 					<div data-alert="" class="alert-box radius">
 						<?= __('You have not added a biography yet!') ?>
@@ -139,24 +162,26 @@
 			<div class="small-12 columns margin top-2">
 
 				<div class="row margins-0">
-					<h3 class="left margin right-2"><?= __('Allies') ?></h3>
+					<h3 class="left margin right-2"><?= __("Allies I follow") ?></h3>
 					<!-- <a class="button small disabled" disabled href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'index')); ?>"><?php echo __('ALL USERS'); ?></a> -->
 				</div>
 
 
 				<!-- ALLIES GRID -->
-				<ul class="large-block-grid-6 medium-block-grid-3 small-block-grid-2 no-marker">
-					<?php
-					if (count($followers) > 0):
-						$counter = 0;
+				<?php
+				//Has allies
+				if (count($friends) > 0): ?>
+					<ul class="large-block-grid-6 medium-block-grid-3 small-block-grid-2 no-marker">
 
-						foreach($followers as $ally):
-							$pic = $this->Picture->getUserPictureAbsolutePath($ally['User']); ?>
+					<?php
+						$counter = 0;
+						foreach($friends as $ally):
+							$pic = $this->Picture->getUserPictureAbsolutePath($ally['Friend']); ?>
 							<li class="text-center">
 								<!-- PICTURE -->
-								<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
-									<img class="profile-picture small radius img-glow-on-hover-small" src='<?= $pic ?>' alt="<?= $ally['User']['name'] ?>'s profile picture" />
-									<p class="text-center text-glow-on-hover"><?= $ally['User']['name'] ?></p>
+								<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['Friend']['id'], false)); ?>">
+									<img class="profile-picture small radius img-glow-on-hover-small" src='<?= $pic ?>' alt="<?= $ally['Friend']['name'] ?>'s profile picture" />
+									<p class="text-center text-glow-on-hover"><?= $ally['Friend']['name'] ?></p>
 								</a>
 
 								<!-- MODAL USER BIOGRAPHY -->
@@ -165,12 +190,22 @@
 						<?php
 							$counter++;
 						endforeach;
-					else: ?>
-						<div data-alert="" class="alert-box radius">
-							<?= __('You have no allies! Get started looking at people similar to you!') ?>
-						</div><?php
-					endif; ?>
-				</ul>
+					?>
+
+					</ul> <?php
+
+				//Doesn't have allies and it's not me
+				elseif ($user['User']['id'] != $users['User']['id']): ?>
+					<div data-alert="" class="alert-box radius">
+						<?= __('This user has no allies yet.') ?>
+					</div><?php
+
+				//Doesn't have allies and it's me
+				else: ?>
+					<div data-alert="" class="alert-box radius">
+						<?= __('You have no allies! Get started looking at people similar to you!') ?>
+					</div><?php
+				endif; ?>
 			</div>
 		</div>
 

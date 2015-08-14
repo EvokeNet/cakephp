@@ -1104,29 +1104,35 @@ class UsersController extends AppController {
 		//FRIENDS
 		$is_friend = $this->User->UserFriend->find('first', array(
 			'conditions' => array(
-				'UserFriend.user_id' => array($this->getUserId(), $id),
-				'UserFriend.friend_id' => array($this->getUserId(), $id)
+				'UserFriend.user_id' => $this->getUserId(),
+				'UserFriend.friend_id' => $id
 			)
 		));
 
 		$allies = array();
 
-		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
+		$friends = $this->User->UserFriend->find('all', array(
+			'conditions' => array('UserFriend.user_id' => $id),
+			'contain' => 'Friend'
+		));
 
-		$followers = $this->User->UserFriend->find('all', array('recursive' => 0, 'conditions' => array('UserFriend.friend_id' => $id))); //this->getUserId()
+		$followers = $this->User->UserFriend->find('all', array(
+			'conditions' => array('UserFriend.friend_id' => $id),
+			'contain' => 'Friend'
+		));
 
-		$are_friends = array();
+		// $are_friends = array();
 
-		foreach($friends as $friend){
-			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
-		}
+		// foreach($friends as $friend){
+		// 	array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
+		// }
 
-		if(!empty($are_friends)){
-			$allies = $this->User->find('all', array(
-				'conditions' => array(
-					'OR' => $are_friends
-			)));
-		}
+		// if(!empty($are_friends)){
+		// 	$allies = $this->User->find('all', array(
+		// 		'conditions' => array(
+		// 			'OR' => $are_friends
+		// 	)));
+		// }
 
 		//EVIDENCES
 		$myevidences = $this->User->Evidence->find('all', array(
@@ -1254,7 +1260,7 @@ class UsersController extends AppController {
 		//List of similar users (for now, any 4 users; later, matching results)
 		$similar_users = $this->User->find('all', array('limit' => 6));
 
-		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
+		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'friends', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
 			'power_points', 'points_users', 'leaderboard_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'similar_users'));
 

@@ -11,6 +11,7 @@
 		"jquery-ajax-retry": "*",
 		"jquery-ui": "*",
 		"jquery.cookie": "1.4.1",
+		"jquery-tokeninput": "master",
 		"kibo": "git://github.com/marquete/kibo",
 		"linkpreview": "git://github.com/Ekito/bootstrap-linkpreview",
 		"list.js": "1.*",

@@ -833,12 +833,12 @@ button, .button {
 }
 
 .evoke button.thin, .evoke .button.thin {
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
 }
 
 .evoke button.small, .evoke .button.small {
-	padding: 1rem 1rem;
+	padding: 0.5em 1em;
 }
 
 .evoke .button-icon:hover {
