@@ -4,48 +4,82 @@
 </dl>
 
 <div class="tabs-content background-color-light-dark">
-	<div class="content active" id="panel2-1">
-		<ul>
-			<?php
-			//NO REQUESTS
-			if (count($groupsRequestsPending) <= 0) {
-				echo __('There are no requests pending');
-			}
+	<div class="content padding all-1 active" id="panel2-1">
+		
+		<?php
+		//NO REQUESTS
+		if (count($group['GroupRequestsPending']) <= 0) {
+			echo __('There are no requests pending.');
+		}
+		//REQUESTS
+		else {
+			echo "<ul>";
 
-			//REQUESTS
-			foreach($groupsRequestsPending as $g): ?>
-				<li><?php echo $g['Leader']['name']; ?>
-					<div class="button-bar">
-						<ul class="button-group">
-						<li><a href = "<?php echo $this->Html->url(array('controller' => 'groupsUsers', 'action' => 'add', $g['GroupRequest']['user_id'], $g['GroupRequest']['group_id'])); ?>" class = "button"><?php echo __('Accept');?></a></li>
-						</ul>
-						<ul class="button-group">
-						<li><a href = "<?php echo $this->Html->url(array('controller' => 'groupRequests', 'action' => 'decline', $g['GroupRequest']['user_id'], $g['GroupRequest']['group_id'])); ?>" class = "button alert"><?php echo __('Decline');?></a></li>
-						</ul>
-					</div>
-				</li> <?php
-			endforeach; ?>
-		</ul>
-	</div>
-	<div class="content" id="panel2-2">
-		<ul>
-			<?php
-			//NO REQUESTS
-			if (count($groupsRequests) <= 0) {
-				echo __('There were no requests accepted or declined.');
-			}
-
-			//REQUESTS
-			foreach($groupsRequests as $g):?>
+			foreach($group['GroupRequestsPending'] as $request_pending): ?>
 				<li>
 					<?php
-					$status = __('Declined');
-					if ($g['status'] == 1) $status = __('Accepted');
+					echo date('d/m/Y H:i', strtotime($request_pending['created'])).": ";
+					echo __("Agent %s", $request_pending['User']['name']);
+					echo "<br /><br />";
 
-					echo sprintf(__("Requester: Agent %s </br> Status: %s", $groupOwner['name'], $status));
+					//ACCEPT
+					echo $this->Html->link(
+						__('Accept'),
+						array('controller' => 'groupsUsers', 'action' => 'add', '?' => array(
+							'arg' => $request_pending['user_id'], 
+							'arg2' => $request_pending['group_id']
+						)),
+						array('class' => "buttonAcceptRequest button thin bg-green")
+					);
+
+					echo " ";
+
+					//DECLINE
+					echo $this->Html->link(
+						__('Decline'),
+						array('controller' => 'groupRequests', 'action' => 'decline', '?' => array(
+							'arg' => $request_pending['user_id'], 
+							'arg2' => $request_pending['group_id']
+						)),
+						array('class' => "buttonDeclineRequest button thin bg-red")
+					);
 					?>
-				</li>
-			<?php endforeach; ?>
-		</ul>
+				</li> <?php
+			endforeach;
+
+			echo "</ul>";
+		}
+		?>
+
+	</div>
+	<div class="content padding all-1" id="panel2-2">
+		<?php
+		//NO REQUESTS
+		if (count($group['GroupRequestsDone']) <= 0) {
+			echo __('There were no requests accepted or declined.');
+		}
+		//REQUESTS
+		else {
+			foreach($group['GroupRequestsDone'] as $request_done):?>
+				<p>
+					<?php
+					if ($request_done['status'] == 1) {
+						$icon = '<i class="fa fa-check-circle green"></i>';
+						$status = __('Accepted');
+					}
+					else {
+						$icon = '<i class="fa fa-times-circle red"></i>';
+						$status = __('Declined');
+					}
+
+					echo $icon." ";
+					echo date('d/m/Y H:i', strtotime($request_done['created'])).": ";
+					echo __("Agent %s", $request_done['User']['name']);
+					echo " ($status)";
+					?>
+				</p> <?php
+			endforeach;
+		}
+		?>
 	</div>
 </div>
