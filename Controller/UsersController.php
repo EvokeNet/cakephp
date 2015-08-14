@@ -1077,7 +1077,7 @@ class UsersController extends AppController {
 		else
 			$percentage = 0;
 
-		
+
 		//LEADERBOARD
 		$max_leaderboard_users = 6; //Total of leaders on the leaderboard (including the top ones)
 
@@ -1102,7 +1102,12 @@ class UsersController extends AppController {
 		));
 
 		//FRIENDS
-		$is_friend = $this->User->UserFriend->find('first', array('conditions' => array('UserFriend.user_id' => $this->getUserId(), 'UserFriend.friend_id' => $id)));
+		$is_friend = $this->User->UserFriend->find('first', array(
+			'conditions' => array(
+				'UserFriend.user_id' => array($this->getUserId(), $id),
+				'UserFriend.friend_id' => array($this->getUserId(), $id)
+			)
+		));
 
 		$allies = array();
 

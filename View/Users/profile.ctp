@@ -24,8 +24,10 @@
 
 			<h4 class="text-color-highlight text-center margin top-1"><?= $user['User']['name'] ?></h4>
 			<div class = "margin top-2" style = "text-align:center">
-				<?php if(!$is_friend && $user['User']['id'] != $users['User']['id']): ?>
+				<?php if(empty($is_friend) && $user['User']['id'] != $users['User']['id']): ?>
 					<a class="button small addally uppercase" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $loggedInUser['id'], $user['User']['id'], false)); ?>"><?php echo __('ADD ALLY'); ?></a>
+				<?php elseif(!empty($is_friend) && $user['User']['id'] != $users['User']['id']): ?>
+					<p><?= __("It's your ally") ?></p>
 				<?php endif; ?>
 			</div>
 			<div>
