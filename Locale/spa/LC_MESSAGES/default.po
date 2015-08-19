@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-08-11 14:29-0300\n"
-"PO-Revision-Date: 2015-08-11 14:31-0300\n"
+"POT-Creation-Date: 2015-08-19 20:34-0300\n"
+"PO-Revision-Date: 2015-08-19 20:41-0300\n"
 "Last-Translator: Nicole Amaral <nicole5287@gmail.com>\n"
 "Language-Team: Evoke Team\n"
 "Language: es\n"
@@ -309,7 +309,7 @@ msgstr "Seguro que quieres eliminar este medio?"
 
 #: /Badges/index.ctp:278
 msgid "Necessary achievements:"
-msgstr ""
+msgstr "Hazaña necesaria"
 
 #: /Badges/view.ctp:2 /Panels/index.ctp:1766
 msgid "Badge"
@@ -650,6 +650,8 @@ msgid ""
 "Page {:page} of {:pages}, showing {:current} records out of {:count} total, "
 "starting on record {:start}, ending on {:end}"
 msgstr ""
+"Pagina {:pagina} de {:paginas}, mostrando {:actual} registros de cada {:"
+"contar} totales, a partir del registro {:empezar}  , que finaliza en {:fin}"
 
 #: /Comments/admin_index.ctp:41 /Comments/index.ctp:41
 #: /EvidenceTags/admin_index.ctp:39 /EvidenceTags/index.ctp:39
@@ -803,20 +805,20 @@ msgstr "Eliminar Comentario"
 
 #: /Common/view-mission.ctp:83 Evoke//Elements/forum_title.ctp:5
 msgid "Evoke Forum"
-msgstr ""
+msgstr "Foro de Evoke"
 
 #: /Common/view-mission.ctp:99
 msgid "Group Forum"
-msgstr ""
+msgstr "Foro de Grupo"
 
 #: /Common/view-mission.ctp:131
 msgid "Alert: There is no graphic novel available in this mission."
-msgstr ""
+msgstr "Alerta: No existe una novela grafica disponible para esta misión"
 
 #: /Elements/add_quest.ctp:13 /Panels/edit_mission.ctp:272;302
 #: /Panels/mission_edition.ctp:168
 msgid "Add a Quest"
-msgstr "Agregar un desafío"
+msgstr "Agregar una misión "
 
 #: /Elements/add_quest.ctp:17 /Panels/add_mission.ctp:108
 #: /Panels/edit_mission.ctp:163;237;325
@@ -869,14 +871,14 @@ msgstr "Opción multiple"
 
 #: /Elements/add_quest.ctp:93 /Panels/mission_edition.ctp:245 /Quests/add.ctp:4
 msgid "Add Quest"
-msgstr "Agregar un desafío"
+msgstr "Agregar un Desafio"
 
 #: /Elements/badges.ctp:2
 msgid "See All"
 msgstr "Ver Todo"
 
 #: /Elements/comment.ctp:4 /Elements/comment_evokation.ctp:4
-#: /Elements/Evidences/view-evidence.ctp:239 /Evokations/view.ctp:110
+#: /Elements/Evidences/view-evidence.ctp:242 /Evokations/view.ctp:110
 msgid "Share a Thought"
 msgstr "Compartir tus pensamientos"
 
@@ -887,7 +889,7 @@ msgstr "Publicar"
 
 #: /Elements/comment.ctp:19 /Elements/comment_evokation.ctp:17
 msgid "Agent, log in to share a thought"
-msgstr "Agenta, inscríbate para compartir tus pensamientos"
+msgstr "Agente, inscríbate para compartir tus pensamientos"
 
 #: /Elements/comment.ctp:22 /Elements/comment_evokation.ctp:20
 #: /Elements/header.ctp:88 /Panels/add_mission.ctp:58
@@ -902,57 +904,59 @@ msgstr "Agente"
 
 #: /Elements/comment_box.ctp:46
 msgid "Edit comment"
-msgstr ""
+msgstr "Editar un comentario"
 
 #: /Elements/comment_form.ctp:53
 msgid "Agent, sign in to share a thought"
-msgstr ""
+msgstr "Agente, por favor registrarse para compartir tus pensamientos"
 
 #: /Elements/comment_form.ctp:57 /Elements/topbar-login.ctp:29
 #: /Pages/dmcanotifications.ctp:104;110
 msgid "Sign in"
-msgstr "Inscríbate"
+msgstr "Inscríbete"
 
 #: /Elements/dossier_tabs.ctp:6
 msgid "Links"
-msgstr ""
+msgstr "Vinculos"
 
 #: /Elements/dossier_tabs.ctp:12
 msgid "Videos"
-msgstr ""
+msgstr "Videos"
 
 #: /Elements/dossier_tabs.ctp:18
 msgid "Texts"
-msgstr ""
+msgstr "Texto"
 
 #: /Elements/dossier_tabs.ctp:24
 msgid "Pictures"
-msgstr ""
+msgstr "Imagenes"
 
 #: /Elements/dossier_tabs.ctp:36
 msgid "There are no links available at this moment."
-msgstr ""
+msgstr "No existen vinculos disponibles en este momento"
 
 #: /Elements/dossier_tabs.ctp:60
 msgid "There are no videos available at this moment."
-msgstr ""
+msgstr "No existen videos disponibles en este momento"
 
 #: /Elements/dossier_tabs.ctp:97
 msgid "There are no texts available at this moment."
-msgstr ""
+msgstr "No existen textos disponibles en este momento"
 
 #: /Elements/dossier_tabs.ctp:116
 msgid ""
 "It looks like your browser can't open this file. Try downloading it instead."
 msgstr ""
+"Parece que tu brouser no puede habrir este tipo de archivo. En ves de esto "
+"intenta descargarla"
 
 #: /Elements/dossier_tabs.ctp:131
 msgid "There are no pictures available at this moment."
-msgstr ""
+msgstr "No existen imagenes disponibles en este momento"
 
 #: /Elements/footer.ctp:6
 msgid "2014"
-msgstr ""
+msgstr "2014"
 
 #: /Elements/footer.ctp:6 /Evokations/view.ctp:21 /GroupsUsers/view.ctp:9
 #: /Missions/view.ctp:15 /Users/view.ctp:9
@@ -969,7 +973,7 @@ msgstr "Términos de Servicio"
 
 #: /Elements/footer.ctp:12
 msgid "The World Bank"
-msgstr ""
+msgstr "El Banco Mundial"
 
 #: /Elements/header.ctp:44 /Panels/add_mission.ctp:40;50
 #: /Panels/edit_mission.ctp:40;50 /Panels/quest.ctp:40;50
@@ -1014,7 +1018,7 @@ msgstr "Editar información"
 
 #: /Elements/header.ctp:85
 msgid "Change password"
-msgstr ""
+msgstr "Cambia tu contraseña"
 
 #: /Elements/header.ctp:86 /GroupsUsers/view.ctp:25 /Missions/view.ctp:31
 #: /Panels/add_mission.ctp:56 /Panels/edit_mission.ctp:56 /Panels/quest.ctp:56
@@ -1025,44 +1029,49 @@ msgstr "Desconectar"
 #: /Elements/notification_box.ctp:27;31
 msgid "Agent %s commented an evidence you posted"
 msgstr ""
+"El % de los Agentes comentaron a la evidencia que subiste a la plataforma"
 
 #: /Elements/notification_box.ctp:35
 msgid "Agent %s liked an evidence you posted"
-msgstr ""
+msgstr "El % de los Agentes les gusto la evidencia que subiste a la plataforma"
 
 #: /Elements/notification_box.ctp:39
 msgid "Agent %s commented an evokation your group posted"
 msgstr ""
+"El % de los Agentes comentaron a la evocación que tu crupo subio a la "
+"plataforma"
 
 #: /Elements/notification_box.ctp:43
 msgid "You won the %s badge"
-msgstr ""
+msgstr "Ganaste la medalla del %"
 
 #: /Elements/phases_bar.ctp:18
 msgid "Current phase."
-msgstr ""
+msgstr "La face actual"
 
 #: /Elements/phases_bar.ctp:22
 msgid "This phase is not available for preview."
-msgstr ""
+msgstr "Esta face no esta disponible para una vista previa"
 
 #: /Elements/phases_bar.ctp:30
 msgid "Click to access the phase content."
-msgstr ""
+msgstr "Haga click aca para tener acceso al contenido de esta face"
 
 #: /Elements/phases_bar.ctp:45
 msgid ""
 "This phase will be available when you complete the mandatory quests of the "
 "previous phase."
 msgstr ""
+"Esta fase estará disponible al completar los desafíos obligatorios de la "
+"fase anterior."
 
 #: /Elements/quest.ctp:13
 msgid "Powers related to this quest: "
-msgstr ""
+msgstr "Los poderes relacionados con este desafío son:"
 
 #: /Elements/quest.ctp:17
 msgid "Needed to get the following badges: "
-msgstr ""
+msgstr "Nececitas conseguir las siguientes medallas"
 
 #: /Elements/quest.ctp:128
 msgid "Save answers"
@@ -1086,33 +1095,33 @@ msgstr "Correo"
 
 #: /Elements/register_form.ctp:6
 msgid "Please verify your email address"
-msgstr ""
+msgstr "Por favor verifica que el correo electronico, es el correcto"
 
 #: /Elements/register_form.ctp:9 /Elements/panel/add_user.ctp:30
 #: /Elements/panel/edit_user.ctp:31 /Groups/admin_view.ctp:100
 #: /Pages/dmcanotifications.ctp:192 /Roles/view.ctp:40 /Users/admin_view.ctp:34
 msgid "Password"
-msgstr "Contrasena"
+msgstr "Contraseña"
 
 #: /Elements/register_form.ctp:10
 msgid "Confirm Password"
-msgstr ""
+msgstr "Confirmar contraseña"
 
 #: /Elements/register_form.ctp:20 /Users/edit.ctp:50
 msgid "Profile picture"
-msgstr ""
+msgstr "Imagen de perfil"
 
 #: /Elements/register_form.ctp:30 /Users/edit.ctp:60
 msgid "Upload"
-msgstr ""
+msgstr "Subir a la plataforma"
 
 #: /Elements/register_form.ctp:42 /Users/edit.ctp:25
 msgid "First name"
-msgstr ""
+msgstr "Nombre"
 
 #: /Elements/register_form.ctp:47 /Users/edit.ctp:30
 msgid "Last name"
-msgstr ""
+msgstr "Apellido"
 
 #: /Elements/register_form.ctp:55 /Elements/panel/add_user.ctp:20
 #: /Elements/panel/edit_user.ctp:21 /Groups/admin_view.ctp:99
@@ -1122,20 +1131,58 @@ msgstr "Usuario"
 
 #: /Elements/register_form.ctp:88 /Users/edit.ctp:75
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugues"
 
-#: /Elements/register_form.ctp:94 /Pages/dmcanotifications.ctp:87
-#: /Users/login.ctp:181
+#: /Elements/register_form.ctp:94 /Elements/topbar-login.ctp:39
+#: /Pages/dmcanotifications.ctp:87 /Users/login.ctp:181
 msgid "Sign up"
 msgstr "Inscríbate"
 
 #: /Elements/register_form.ctp:96
 msgid "Already an agent? Sign in on the top bar!"
-msgstr ""
+msgstr "¿Ya eres un agente? "
+
+#: /Elements/social_networks_bar.ctp:7 /Elements/panel/add_user.ctp:49
+#: /Elements/panel/edit_user.ctp:51 /Groups/admin_view.ctp:101
+#: /Panels/main.ctp:318;392 /Roles/view.ctp:41 /Users/admin_view.ctp:39
+#: /Users/edit.ctp:115
+msgid "Facebook"
+msgstr "Facebook"
+
+#: /Elements/social_networks_bar.ctp:19 /Elements/panel/add_user.ctp:52
+#: /Elements/panel/edit_user.ctp:54 /Groups/admin_view.ctp:102
+#: /Organizations/view.ctp:34 /Panels/main.ctp:321;395 /Roles/view.ctp:42
+#: /Users/admin_view.ctp:44 /Users/edit.ctp:120
+msgid "Twitter"
+msgstr "Twitter"
+
+#: /Elements/social_networks_bar.ctp:31 /Elements/panel/add_user.ctp:60
+#: /Elements/panel/edit_user.ctp:62 /Groups/admin_view.ctp:103
+#: /Roles/view.ctp:43 /Users/admin_view.ctp:49 /Users/edit.ctp:133
+msgid "Instagram"
+msgstr "Instagram"
+
+#: /Elements/social_networks_bar.ctp:43 /Elements/panel/add_user.ctp:41
+#: /Elements/panel/edit_user.ctp:43 /Groups/admin_view.ctp:104
+#: /Organizations/view.ctp:24 /Panels/index.ctp:89 /Panels/main.ctp:310;381
+#: /Roles/view.ctp:44 /Users/admin_view.ctp:54
+msgid "Website"
+msgstr "Página Web"
+
+#: /Elements/social_networks_bar.ctp:55 /Elements/panel/add_user.ctp:44
+#: /Elements/panel/edit_user.ctp:46 /Groups/admin_view.ctp:105
+#: /Organizations/view.ctp:39 /Panels/main.ctp:313;387 /Roles/view.ctp:45
+#: /Users/admin_view.ctp:59 /Users/edit.ctp:140
+msgid "Blog"
+msgstr "Blog"
+
+#: /Elements/social_networks_bar.ctp:67
+msgid "Email address"
+msgstr "Correo electronico"
 
 #: /Elements/topbar-loggedIn.ctp:30 /Users/profile.ctp:21
 msgid "Your profile picture"
-msgstr ""
+msgstr "Tu imagen de perfil"
 
 #: /Elements/topbar-loggedIn.ctp:38 /Users/view.ctp:58
 msgid "Edit profile"
@@ -1143,14 +1190,14 @@ msgstr "Editar perfil"
 
 #: /Elements/topbar-loggedIn.ctp:45
 msgid "Sign out"
-msgstr ""
+msgstr "Ingresar"
 
 #: /Elements/topbar-loggedIn.ctp:59 /Missions/admin_index.ctp:2
 #: /Missions/view.ctp:56 /Panels/index.ctp:29;658;1621
 msgid "Missions"
 msgstr "Misiones"
 
-#: /Elements/topbar-loggedIn.ctp:67 /Users/profile.ctp:175
+#: /Elements/topbar-loggedIn.ctp:67 /Users/profile.ctp:222
 msgid "Leaderboard"
 msgstr "Nube de lideres"
 
@@ -1160,19 +1207,19 @@ msgstr "Medallas"
 
 #: /Elements/topbar-loggedIn.ctp:83
 msgid "Admin"
-msgstr ""
+msgstr "Admin"
 
 #: /Elements/topbar-login.ctp:16
 msgid "username"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #: /Elements/topbar-login.ctp:21
 msgid "password"
-msgstr ""
+msgstr "Contraseña"
 
-#: /Elements/topbar-login.ctp:37
+#: /Elements/topbar-login.ctp:47
 msgid "OR"
-msgstr ""
+msgstr "O"
 
 #: /Elements/topbar.ctp:57 /Pages/dmcanotifications.ctp:186
 msgid "Evoke Registration"
@@ -1180,17 +1227,19 @@ msgstr "Registración Evoke"
 
 #: /Elements/user_biography.ctp:39
 msgid "ADD ALLY"
-msgstr ""
+msgstr "AÑADIR ALIADO"
 
 #: /Elements/Evidences/evidence_form.ctp:10
 msgid ""
 "Alert: This is a sample form. In preview mode you cannot submit an actual "
 "evidence."
 msgstr ""
+"Alerta : Este es un formulario de muestra. En el modo de vista previa no se "
+"puede presentar una evidencia real."
 
 #: /Elements/Evidences/evidence_form.ctp:20
 msgid "Your can choose the focus of your "
-msgstr ""
+msgstr "Puedes escoger el foco de tu"
 
 #: /Elements/Evidences/evidence_form.ctp:28 /Missions/admin_view.ctp:19
 msgid "Image"
@@ -1198,17 +1247,17 @@ msgstr "Imagen"
 
 #: /Elements/Evidences/evidence_form.ctp:34
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: /Elements/Evidences/evidence_form.ctp:40
 #: /Elements/Templates/Evidences/evidence-type-link.ctp:12
 #: /Panels/edit_mission.ctp:383 /Panels/mission_edition.ctp:325
 msgid "Link"
-msgstr ""
+msgstr "Hipervinculo"
 
 #: /Elements/Evidences/evidence_form.ctp:46
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 #: /Elements/Evidences/evidence_form.ctp:111 /Evidences/admin_view.ctp:9
 #: /Evokations/admin_view.ctp:9 /Groups/admin_view.ctp:9;52
@@ -1222,105 +1271,112 @@ msgstr "Título"
 
 #: /Elements/Evidences/evidence_form.ctp:111
 msgid "Please enter a title"
-msgstr ""
+msgstr "por favor introduzca un título"
 
 #: /Elements/Evidences/evidence_form.ctp:116 /Evidences/edit.ctp:44
 msgid "Edit your "
-msgstr ""
+msgstr "Edite su"
 
 #: /Elements/Evidences/evidence_form.ctp:139 /Missions/view_sample.ctp:117
 msgid "In preview mode you cannot submit an actual evidence."
-msgstr ""
+msgstr "En el modo de vista previa no se puede presentar una evidencia real ."
 
 #: /Elements/Evidences/evidence_form.ctp:156
 msgid "Format: .jpg, .png, or .gif"
-msgstr ""
+msgstr "Formato: jpg, .png, o .gif"
 
 #: /Elements/Evidences/evidence_form.ctp:160
 msgid "Upload image"
-msgstr ""
+msgstr "Subir imagen a la plataforma"
 
 #: /Elements/Evidences/evidence_form.ctp:164
 msgid "Formats: .mp4, .mov, or .flv"
-msgstr ""
+msgstr "Formato: .mp4, .mov, o .flv"
 
 #: /Elements/Evidences/evidence_form.ctp:168
 msgid "Upload video"
-msgstr ""
+msgstr "Subir video a la plataforma"
 
 #: /Elements/Evidences/evidence_list_item.ctp:28
-#: /Elements/Evidences/view-evidence.ctp:40
+#: /Elements/Evidences/view-evidence.ctp:43
 msgid "By "
-msgstr ""
+msgstr "Por"
 
-#: /Elements/Evidences/view-evidence.ctp:14 /Evokations/view.ctp:44
-#: /Missions/view.ctp:125
-msgid "Mission: "
-msgstr "Misión"
+#: /Elements/Evidences/view-evidence.ctp:14 /Missions/view.ctp:58
+msgid "Mission %s"
+msgstr "Misión %s"
 
-#: /Elements/Evidences/view-evidence.ctp:48;49;96 /Evidences/admin_view.ctp:54
+#: /Elements/Evidences/view-evidence.ctp:20
+msgid "Phase %s"
+msgstr "Face %s"
+
+#: /Elements/Evidences/view-evidence.ctp:25
+msgid "Evidence %s"
+msgstr "Evidencia %s"
+
+#: /Elements/Evidences/view-evidence.ctp:51;52;99 /Evidences/admin_view.ctp:54
 msgid "Edit Evidence"
 msgstr "Editar Evidencia"
 
-#: /Elements/Evidences/view-evidence.ctp:52;53;101 /Evidences/admin_view.ctp:55
+#: /Elements/Evidences/view-evidence.ctp:55;56;104 /Evidences/admin_view.ctp:55
 msgid "Delete Evidence"
 msgstr "Eliminar Evidencia"
 
-#: /Elements/Evidences/view-evidence.ctp:65
+#: /Elements/Evidences/view-evidence.ctp:68
 msgid "Quest "
-msgstr ""
+msgstr "Desafio"
 
-#: /Elements/Evidences/view-evidence.ctp:121
+#: /Elements/Evidences/view-evidence.ctp:124
 msgid " in "
-msgstr ""
-
-#: /Elements/Evidences/view-evidence.ctp:122
-msgid " in response to "
-msgstr ""
+msgstr "en"
 
 #: /Elements/Evidences/view-evidence.ctp:125
-msgid "Created in "
-msgstr ""
+msgid " in response to "
+msgstr "en respuesta a"
 
-#: /Elements/Evidences/view-evidence.ctp:168
+#: /Elements/Evidences/view-evidence.ctp:128
+msgid "Created in "
+msgstr "Creado en"
+
+#: /Elements/Evidences/view-evidence.ctp:171
 msgid "Evidence's attachments:"
 msgstr "Archivos Evidencia"
 
-#: /Elements/Evidences/view-evidence.ctp:279
+#: /Elements/Evidences/view-evidence.ctp:277
 msgid "VOTE"
-msgstr ""
+msgstr "VOTE"
 
-#: /Elements/Evidences/view-evidence.ctp:286
+#: /Elements/Evidences/view-evidence.ctp:284
 msgid "You have already voted on this evidence"
-msgstr ""
+msgstr "Ya ha votado en esta evidencia"
 
-#: /Elements/Evidences/view-evidence.ctp:307
+#: /Elements/Evidences/view-evidence.ctp:305
 msgid "COMMENTS"
-msgstr ""
+msgstr "COMENTARIOS"
 
-#: /Elements/Evidences/view-evidence.ctp:315
+#: /Elements/Evidences/view-evidence.ctp:313
 msgid "SHARE"
-msgstr ""
+msgstr "COMPARTIR"
 
-#: /Elements/Evidences/view-evidence.ctp:318
+#: /Elements/Evidences/view-evidence.ctp:316
 msgid "Share on facebook"
-msgstr ""
+msgstr "Compartir en Facebook"
 
-#: /Elements/Evidences/view-evidence.ctp:326
+#: /Elements/Evidences/view-evidence.ctp:324
 msgid "Share on google plus"
-msgstr ""
+msgstr "Compartir en Google+"
 
 #: /Elements/Evokations/evokation_status.ctp:35
 msgid "(in progress)"
-msgstr ""
+msgstr "(en progreso)"
 
 #: /Elements/Evokations/evokation_status.ctp:47
 msgid "(start now)"
-msgstr ""
+msgstr "(empezar ahora)"
 
 #: /Elements/Evokations/evokation_status.ctp:53
 msgid "()"
-msgstr ""
+msgstr "()"
 
 #: /Elements/Groups/add_group.ctp:10
 msgid "Add Group"
@@ -1336,7 +1392,7 @@ msgstr "Crear Grupo"
 
 #: /Elements/Groups/group_box.ctp:61
 msgid "Leader"
-msgstr ""
+msgstr "Lider"
 
 #: /Elements/Groups/group_box.ctp:68
 msgid "Member"
@@ -1344,7 +1400,7 @@ msgstr "Miembro "
 
 #: /Elements/Groups/group_box.ctp:74
 msgid "Request pending"
-msgstr ""
+msgstr "Pedido pendiente"
 
 #: /Elements/Groups/group_box.ctp:80;98
 msgid "Send request to join"
@@ -1352,13 +1408,15 @@ msgstr "Enviar solicitud para unirte "
 
 #: /Elements/Groups/group_box.ctp:90
 msgid "Join group"
-msgstr ""
+msgstr "Unirse a el grupo"
 
 #: /Elements/Groups/group_box.ctp:94
 msgid ""
 "A message will be sent to the group's owner and you will receive a "
 "notification when your request is approved or declined."
 msgstr ""
+"Un mensaje será enviado al propietario del grupo, usted recibirá una "
+"notificación cuando su solicitud sea aprobada o rechazada."
 
 #: /Elements/Groups/member_list.ctp:21
 msgid "Remove user"
@@ -1373,32 +1431,32 @@ msgid "Accepted/Declined Requests"
 msgstr "Solicitudes Aceptados/Rechazados"
 
 #: /Elements/Groups/request_tabs.ctp:12
-msgid "There are no requests pending"
-msgstr ""
+msgid "There are no requests pending."
+msgstr "No existen solicitudes pendientes."
 
-#: /Elements/Groups/request_tabs.ctp:20 /Emails/html/group_new_request.ctp:29
+#: /Elements/Groups/request_tabs.ctp:22;77
+msgid "Agent %s"
+msgstr "Agente %s"
+
+#: /Elements/Groups/request_tabs.ctp:27 /Emails/html/group_new_request.ctp:29
 msgid "Accept"
 msgstr "Aceptar"
 
-#: /Elements/Groups/request_tabs.ctp:23 /Emails/html/group_new_request.ctp:33
+#: /Elements/Groups/request_tabs.ctp:39 /Emails/html/group_new_request.ctp:33
 msgid "Decline"
 msgstr "Rechazar"
 
-#: /Elements/Groups/request_tabs.ctp:35
+#: /Elements/Groups/request_tabs.ctp:59
 msgid "There were no requests accepted or declined."
-msgstr ""
+msgstr "No hubo solicitudes aceptado ni rechazado."
 
-#: /Elements/Groups/request_tabs.ctp:43
+#: /Elements/Groups/request_tabs.ctp:68
 msgid "Accepted"
 msgstr "Aceptado"
 
-#: /Elements/Groups/request_tabs.ctp:44
+#: /Elements/Groups/request_tabs.ctp:72
 msgid "Declined"
 msgstr "Rechazado"
-
-#: /Elements/Groups/request_tabs.ctp:46
-msgid "Requester: Agent %s </br> Status: %s"
-msgstr "Solicitante: Agente %s </br> Estado: %s"
 
 #: /Elements/Missions/mission_menu_bar.ctp:18 /Panels/edit_mission.ctp:351
 msgid "Back"
@@ -1408,7 +1466,7 @@ msgstr "Atrás"
 #: /Missions/view_discussion.ctp:77 /Missions/view_project.ctp:75
 #: /Quests/admin_index.ctp:2 /Quests/index.ctp:2
 msgid "Quests"
-msgstr ""
+msgstr "Desafio"
 
 #: /Elements/Missions/mission_menu_bar.ctp:48 /Evidences/admin_index.ctp:2
 #: /Evidences/index.ctp:2
@@ -1419,11 +1477,11 @@ msgstr "Evidencia"
 #: /Missions/view_discussion.ctp:78 /Missions/view_project.ctp:76
 #: /Panels/mission_edition.ctp:23
 msgid "Dossier"
-msgstr ""
+msgstr "Archivo"
 
 #: /Elements/Missions/mission_menu_bar.ctp:80
 msgid "Discuss"
-msgstr ""
+msgstr "Discutir"
 
 #: /Elements/Missions/mission_menu_bar.ctp:104 /GroupRequests/admin_view.ctp:14
 #: /GroupRequests/view.ctp:14 /Groups/admin_view.ctp:2
@@ -1433,19 +1491,19 @@ msgstr "Grupo"
 
 #: /Elements/Missions/panel_evokation_area.ctp:19
 msgid "Group "
-msgstr ""
+msgstr "Grupo"
 
 #: /Elements/Missions/panel_evokation_area.ctp:36
 msgid "Status of the evokation parts"
-msgstr ""
+msgstr "Estado actual de las partes de la evokación"
 
 #: /Elements/Missions/panel_evokation_area.ctp:53
 msgid "Evokation preview"
-msgstr ""
+msgstr "previsualización de la Evocación"
 
 #: /Elements/Missions/panel_group_area.ctp:41 /Groups/view.ctp:25
 msgid "Team leader"
-msgstr ""
+msgstr "Lider del equipo"
 
 #: /Elements/Missions/panel_group_area.ctp:47 /Groups/view.ctp:28;37
 msgid "Members"
@@ -1457,16 +1515,18 @@ msgstr "Solicitudes"
 
 #: /Elements/Missions/quest_tabs.ctp:6 /Missions/view_sample.ctp:79
 msgid "There are no quests available in this mission."
-msgstr ""
+msgstr "No existen desafíos disponibles para esta misión"
 
 #: /Elements/Missions/quest_tabs.ctp:45 /Evidences/add.ctp:28
 #: /Evidences/edit.ctp:28 /Missions/view_sample.ctp:106
 msgid "REWARDS"
-msgstr ""
+msgstr "RECOMPENSA"
 
 #: /Elements/Missions/quest_tabs.ctp:46 /Missions/view_sample.ctp:107
 msgid "Submitting an evidence for this quest is worth skills for these badges:"
 msgstr ""
+" El presentar evidencia para este desafío equivale a habilidades para las "
+"medallas"
 
 #: /Elements/Missions/quest_tabs.ctp:58
 msgid "Congratulations!"
@@ -1474,1047 +1534,1015 @@ msgstr "Felicidades!"
 
 #: /Elements/Missions/quest_tabs.ctp:59
 msgid "You have already completed this quest!"
-msgstr ""
+msgstr "Ya has completado este desafío!"
 
 #: /Elements/Missions/quest_tabs.ctp:65
 msgid "This is the evidence you submitted:"
-msgstr ""
+msgstr "Esta es la evidadencia que subiste a la plataforma:"
 
 #: /Elements/Missions/quest_tabs.ctp:71
 msgid "Your group is:"
-msgstr ""
+msgstr "Tu grupo es"
 
 #: /Elements/Missions/quest_tabs.ctp:82
 msgid "Create your evidence"
-msgstr ""
+msgstr "Crea tu evidencia:"
 
 #: /Elements/Missions/quest_tabs.ctp:90
 msgid "Create your group"
-msgstr ""
+msgstr "Crea tu grupo"
 
 #: /Elements/Missions/quest_tabs.ctp:96
 msgid "Or join groups already created for this phase:"
-msgstr ""
+msgstr "O unete a grupos ya creados para esta face"
 
 #: /Elements/Missions/quest_tabs.ctp:109
 msgid ""
 "Attention: You will be able to complete this quest once you join a group!"
-msgstr ""
+msgstr "Atención: Podras  completar est desafío una ves te unas a un grupo!"
 
 #: /Elements/Missions/quest_tabs.ctp:113
 msgid "EVIDENCE CREATION PROCESS"
-msgstr ""
+msgstr "EVIDENCIA DEL PROCESO CREATIVO"
 
 #: /Elements/Missions/quest_tabs.ctp:121 /Users/enter_site.ctp:56
 msgid "Create your evokation"
-msgstr ""
+msgstr "Crea tu Evokación"
 
 #: /Elements/Templates/FileUpload/upload-image.ctp:89
 msgid "Upload your evidence's image"
-msgstr ""
+msgstr "sube la evidencia de tu imagen"
 
 #: /Elements/Templates/FileUpload/upload-image.ctp:97
 msgid "Send image"
-msgstr ""
+msgstr "Enviar imagen"
 
 #: /Elements/Templates/FileUpload/upload-video.ctp:84
 msgid "Upload your evidence's video"
-msgstr ""
+msgstr "sube la evidencia de tu video"
 
 #: /Elements/Templates/FileUpload/upload-video.ctp:94
 msgid "Send video"
-msgstr ""
+msgstr "Enviar video"
 
 #: /Elements/panel/add_user.ctp:34 /Elements/panel/edit_user.ctp:35
 #: /Panels/index.ctp:337;370;1620 /Roles/view.ctp:2
 msgid "Role"
 msgstr "Papel"
 
-#: /Elements/panel/add_user.ctp:41 /Elements/panel/edit_user.ctp:43
-#: /Groups/admin_view.ctp:104 /Organizations/view.ctp:24 /Panels/index.ctp:89
-#: /Panels/main.ctp:310;381 /Roles/view.ctp:44 /Users/admin_view.ctp:54
-msgid "Website"
-msgstr "Página Web"
-
-#: /Elements/panel/add_user.ctp:44 /Elements/panel/edit_user.ctp:46
-#: /Groups/admin_view.ctp:105 /Organizations/view.ctp:39
-#: /Panels/main.ctp:313;387 /Roles/view.ctp:45 /Users/admin_view.ctp:59
-#: /Users/edit.ctp:140
-msgid "Blog"
-msgstr "Blog"
-
-#: /Elements/panel/add_user.ctp:49 /Elements/panel/edit_user.ctp:51
-#: /Groups/admin_view.ctp:101 /Panels/main.ctp:318;392 /Roles/view.ctp:41
-#: /Users/admin_view.ctp:39 /Users/edit.ctp:115
-msgid "Facebook"
-msgstr "Facebook"
-
-#: /Elements/panel/add_user.ctp:52 /Elements/panel/edit_user.ctp:54
-#: /Groups/admin_view.ctp:102 /Organizations/view.ctp:34
-#: /Panels/main.ctp:321;395 /Roles/view.ctp:42 /Users/admin_view.ctp:44
-#: /Users/edit.ctp:120
-msgid "Twitter"
-msgstr "Twitter"
-
 #: /Elements/panel/add_user.ctp:57 /Elements/panel/edit_user.ctp:59
 #: /Panels/main.ctp:398
 msgid "Google +"
-msgstr ""
-
-#: /Elements/panel/add_user.ctp:60 /Elements/panel/edit_user.ctp:62
-#: /Groups/admin_view.ctp:103 /Roles/view.ctp:43 /Users/admin_view.ctp:49
-#: /Users/edit.ctp:133
-msgid "Instagram"
-msgstr "Instagram"
+msgstr "Google +"
 
 #: /Elements/panel/add_user.ctp:65 /Panels/index.ctp:80
 #: /Panels/main.ctp:329;403
 msgid "Date of Establishment"
-msgstr ""
+msgstr "Fecha de fundación"
 
 #: /Elements/panel/add_user.ctp:82 /Elements/panel/edit_user.ctp:85
 msgid "Please select a country"
-msgstr ""
+msgstr "Poo favor selecione un pais"
 
 #: /Elements/panel/add_user.ctp:83 /Elements/panel/edit_user.ctp:86
 msgid "Afganistan"
-msgstr ""
+msgstr "Afganistan"
 
 #: /Elements/panel/add_user.ctp:84 /Elements/panel/edit_user.ctp:87
 msgid "Albania"
-msgstr ""
+msgstr "Albania"
 
 #: /Elements/panel/add_user.ctp:85 /Elements/panel/edit_user.ctp:88
 msgid "Algeria"
-msgstr ""
+msgstr "Algeria"
 
 #: /Elements/panel/add_user.ctp:86 /Elements/panel/edit_user.ctp:89
 msgid "American Samoa"
-msgstr ""
+msgstr "Samoa Americana"
 
 #: /Elements/panel/add_user.ctp:87 /Elements/panel/edit_user.ctp:90
 msgid "Andorra"
-msgstr ""
+msgstr "Andorra"
 
 #: /Elements/panel/add_user.ctp:88 /Elements/panel/edit_user.ctp:91
 msgid "Angola"
-msgstr ""
+msgstr "Angola"
 
 #: /Elements/panel/add_user.ctp:89 /Elements/panel/edit_user.ctp:92
 msgid "Anguilla"
-msgstr ""
+msgstr "Anguila"
 
 #: /Elements/panel/add_user.ctp:90 /Elements/panel/edit_user.ctp:93
 msgid "Antarctica"
-msgstr ""
+msgstr "Antarctica"
 
 #: /Elements/panel/add_user.ctp:91 /Elements/panel/edit_user.ctp:94
 msgid "Antigua and Barbuda"
-msgstr ""
+msgstr "Antigua y Barbuda"
 
 #: /Elements/panel/add_user.ctp:92 /Elements/panel/edit_user.ctp:95
 msgid "Argentina"
-msgstr ""
+msgstr "Argentina"
 
 #: /Elements/panel/add_user.ctp:93 /Elements/panel/edit_user.ctp:96
 msgid "Armenia"
-msgstr ""
+msgstr "Armenia"
 
 #: /Elements/panel/add_user.ctp:94 /Elements/panel/edit_user.ctp:97
 msgid "Aruba"
-msgstr ""
+msgstr "Aruba"
 
 #: /Elements/panel/add_user.ctp:95 /Elements/panel/edit_user.ctp:98
 msgid "Australia"
-msgstr ""
+msgstr "Australia"
 
 #: /Elements/panel/add_user.ctp:96 /Elements/panel/edit_user.ctp:99
 msgid "Austria"
-msgstr ""
+msgstr "Austria"
 
 #: /Elements/panel/add_user.ctp:97 /Elements/panel/edit_user.ctp:100
 msgid "Azerbaijan"
-msgstr ""
+msgstr "Azerbaiyán"
 
 #: /Elements/panel/add_user.ctp:98 /Elements/panel/edit_user.ctp:101
 msgid "Bahamas"
-msgstr ""
+msgstr "Bahamas"
 
 #: /Elements/panel/add_user.ctp:99 /Elements/panel/edit_user.ctp:102
 msgid "Bahrain"
-msgstr ""
+msgstr "Bahrein"
 
 #: /Elements/panel/add_user.ctp:100 /Elements/panel/edit_user.ctp:103
 msgid "Bangladesh"
-msgstr ""
+msgstr "Bangladesh"
 
 #: /Elements/panel/add_user.ctp:101 /Elements/panel/edit_user.ctp:104
 msgid "Barbados"
-msgstr ""
+msgstr "Barbados"
 
 #: /Elements/panel/add_user.ctp:102 /Elements/panel/edit_user.ctp:105
 msgid "Belarus"
-msgstr ""
+msgstr "Bielorusia"
 
 #: /Elements/panel/add_user.ctp:103 /Elements/panel/edit_user.ctp:106
 msgid "Belgium"
-msgstr ""
+msgstr "Bélgica"
 
 #: /Elements/panel/add_user.ctp:104 /Elements/panel/edit_user.ctp:107
 msgid "Belize"
-msgstr ""
+msgstr "Belice"
 
 #: /Elements/panel/add_user.ctp:105 /Elements/panel/edit_user.ctp:108
 msgid "Benin"
-msgstr ""
+msgstr "Benín"
 
 #: /Elements/panel/add_user.ctp:106 /Elements/panel/edit_user.ctp:109
 msgid "Bermuda"
-msgstr ""
+msgstr "Bermuda"
 
 #: /Elements/panel/add_user.ctp:107 /Elements/panel/edit_user.ctp:110
 msgid "Bhutan"
-msgstr ""
+msgstr "Bután"
 
 #: /Elements/panel/add_user.ctp:108 /Elements/panel/edit_user.ctp:111
 msgid "Bolivia"
-msgstr ""
+msgstr "Bolivia"
 
 #: /Elements/panel/add_user.ctp:109 /Elements/panel/edit_user.ctp:112
 msgid "Bosnia and Herzegowina"
-msgstr ""
+msgstr "Bosnia-Herzegovina"
 
 #: /Elements/panel/add_user.ctp:110 /Elements/panel/edit_user.ctp:113
 msgid "Botswana"
-msgstr ""
+msgstr "Botswana"
 
 #: /Elements/panel/add_user.ctp:111 /Elements/panel/edit_user.ctp:114
 msgid "Bouvet Island"
-msgstr ""
+msgstr "Isla Bouvet"
 
 #: /Elements/panel/add_user.ctp:112 /Elements/panel/edit_user.ctp:115
 msgid "Brazil"
-msgstr ""
+msgstr "Brazil"
 
 #: /Elements/panel/add_user.ctp:114 /Elements/panel/edit_user.ctp:117
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "Estado de Brunéi Darussalam"
 
 #: /Elements/panel/add_user.ctp:115 /Elements/panel/edit_user.ctp:118
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgaria"
 
 #: /Elements/panel/add_user.ctp:116 /Elements/panel/edit_user.ctp:119
 msgid "Burkina Faso"
-msgstr ""
+msgstr "Burkina Faso"
 
 #: /Elements/panel/add_user.ctp:117 /Elements/panel/edit_user.ctp:120
 msgid "Burundi"
-msgstr ""
+msgstr "Burundi"
 
 #: /Elements/panel/add_user.ctp:118 /Elements/panel/edit_user.ctp:121
 msgid "Cambodia"
-msgstr ""
+msgstr "Cambodia"
 
 #: /Elements/panel/add_user.ctp:119 /Elements/panel/edit_user.ctp:122
 msgid "Cameroon"
-msgstr ""
+msgstr "Camerún"
 
 #: /Elements/panel/add_user.ctp:120 /Elements/panel/edit_user.ctp:123
 msgid "Canada"
-msgstr ""
+msgstr "Canada"
 
 #: /Elements/panel/add_user.ctp:121 /Elements/panel/edit_user.ctp:124
 msgid "Cape Verde"
-msgstr ""
+msgstr "Cabo Verde"
 
 #: /Elements/panel/add_user.ctp:122 /Elements/panel/edit_user.ctp:125
 msgid "Cayman Islands"
-msgstr ""
+msgstr "Islas Caimán"
 
 #: /Elements/panel/add_user.ctp:123 /Elements/panel/edit_user.ctp:126
 msgid "Central African Republic"
-msgstr ""
+msgstr "Republica Centro Africana"
 
 #: /Elements/panel/add_user.ctp:124 /Elements/panel/edit_user.ctp:127
 msgid "Chad"
-msgstr ""
+msgstr "Chad"
 
 #: /Elements/panel/add_user.ctp:125 /Elements/panel/edit_user.ctp:128
 msgid "Chile"
-msgstr ""
+msgstr "Chile"
 
 #: /Elements/panel/add_user.ctp:126 /Elements/panel/edit_user.ctp:129
 msgid "China"
-msgstr ""
+msgstr "China"
 
 #: /Elements/panel/add_user.ctp:127 /Elements/panel/edit_user.ctp:130
 msgid "Christmas Island"
-msgstr ""
+msgstr "Islas Navidad"
 
 #: /Elements/panel/add_user.ctp:128 /Elements/panel/edit_user.ctp:131
 msgid "Cocos (Keeling) Islands"
-msgstr ""
+msgstr "Islas Coco"
 
 #: /Elements/panel/add_user.ctp:129 /Elements/panel/edit_user.ctp:132
 msgid "Colombia"
-msgstr ""
+msgstr "Colombia"
 
 #: /Elements/panel/add_user.ctp:130 /Elements/panel/edit_user.ctp:133
 msgid "Comoros"
-msgstr ""
+msgstr "Comores"
 
 #: /Elements/panel/add_user.ctp:131 /Elements/panel/edit_user.ctp:134
 msgid "Congo"
-msgstr ""
+msgstr "Congo"
 
 #: /Elements/panel/add_user.ctp:133 /Elements/panel/edit_user.ctp:136
 msgid "Cook Islands"
-msgstr ""
+msgstr "Islas Cook"
 
 #: /Elements/panel/add_user.ctp:134 /Elements/panel/edit_user.ctp:137
 msgid "Costa Rica"
-msgstr ""
+msgstr "Costa Rica"
 
 #: /Elements/panel/add_user.ctp:135 /Elements/panel/edit_user.ctp:138
 msgid "Cote d'Ivoire"
-msgstr ""
+msgstr "Costa de Marfil"
 
 #: /Elements/panel/add_user.ctp:136 /Elements/panel/edit_user.ctp:139
 msgid "Croatia (Hrvatska)"
-msgstr ""
+msgstr "Croacia"
 
 #: /Elements/panel/add_user.ctp:137 /Elements/panel/edit_user.ctp:140
 msgid "Cuba"
-msgstr ""
+msgstr "Cuba"
 
 #: /Elements/panel/add_user.ctp:138 /Elements/panel/edit_user.ctp:141
 msgid "Cyprus"
-msgstr ""
+msgstr "Chipre"
 
 #: /Elements/panel/add_user.ctp:139 /Elements/panel/edit_user.ctp:142
 msgid "Czech Republic"
-msgstr ""
+msgstr "República Checa"
 
 #: /Elements/panel/add_user.ctp:140 /Elements/panel/edit_user.ctp:143
 msgid "Denmark"
-msgstr ""
+msgstr "Dinamarca"
 
 #: /Elements/panel/add_user.ctp:141 /Elements/panel/edit_user.ctp:144
 msgid "Djibouti"
-msgstr ""
+msgstr "Djibouti"
 
 #: /Elements/panel/add_user.ctp:142 /Elements/panel/edit_user.ctp:145
 msgid "Dominica"
-msgstr ""
+msgstr "Dominica"
 
 #: /Elements/panel/add_user.ctp:143 /Elements/panel/edit_user.ctp:146
 msgid "Dominican Republic"
-msgstr ""
+msgstr "República Dominicana"
 
 #: /Elements/panel/add_user.ctp:144 /Elements/panel/edit_user.ctp:147
 msgid "East Timor"
-msgstr ""
+msgstr "Timor del Este"
 
 #: /Elements/panel/add_user.ctp:145 /Elements/panel/edit_user.ctp:148
 msgid "Ecuador"
-msgstr ""
+msgstr "Ecuador"
 
 #: /Elements/panel/add_user.ctp:146 /Elements/panel/edit_user.ctp:149
 msgid "Egypt"
-msgstr ""
+msgstr "Egipto"
 
 #: /Elements/panel/add_user.ctp:147 /Elements/panel/edit_user.ctp:150
 msgid "El Salvador"
-msgstr ""
+msgstr "El Salvador"
 
 #: /Elements/panel/add_user.ctp:148 /Elements/panel/edit_user.ctp:151
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "Guinea Ecuatorial"
 
 #: /Elements/panel/add_user.ctp:149 /Elements/panel/edit_user.ctp:152
 msgid "Eritrea"
-msgstr ""
+msgstr "Eritrea"
 
 #: /Elements/panel/add_user.ctp:150 /Elements/panel/edit_user.ctp:153
 msgid "Estonia"
-msgstr ""
+msgstr "Estonia"
 
 #: /Elements/panel/add_user.ctp:151 /Elements/panel/edit_user.ctp:154
 msgid "Ethiopia"
-msgstr ""
+msgstr "Etiopia"
 
 #: /Elements/panel/add_user.ctp:152 /Elements/panel/edit_user.ctp:155
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "Islas Malvinas"
 
 #: /Elements/panel/add_user.ctp:153 /Elements/panel/edit_user.ctp:156
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Islas Faroe"
 
 #: /Elements/panel/add_user.ctp:154 /Elements/panel/edit_user.ctp:157
 msgid "Fiji"
-msgstr ""
+msgstr "Fiyi"
 
 #: /Elements/panel/add_user.ctp:155 /Elements/panel/edit_user.ctp:158
 msgid "Finland"
-msgstr ""
+msgstr "Finlandia"
 
 #: /Elements/panel/add_user.ctp:156 /Elements/panel/edit_user.ctp:159
 msgid "France"
-msgstr ""
+msgstr "Francia"
 
 #: /Elements/panel/add_user.ctp:158 /Elements/panel/edit_user.ctp:161
 msgid "French Guiana"
-msgstr ""
+msgstr "Guinea Francesa"
 
 #: /Elements/panel/add_user.ctp:159 /Elements/panel/edit_user.ctp:162
 msgid "French Polynesia"
-msgstr ""
+msgstr "Polinecia Francesa"
 
 #: /Elements/panel/add_user.ctp:160 /Elements/panel/edit_user.ctp:163
 msgid "French Southern Territories"
-msgstr ""
+msgstr "Territorios Franceses del Sur"
 
 #: /Elements/panel/add_user.ctp:161 /Elements/panel/edit_user.ctp:164
 msgid "Gabon"
-msgstr ""
+msgstr "Gabón"
 
 #: /Elements/panel/add_user.ctp:162 /Elements/panel/edit_user.ctp:165
 msgid "Gambia"
-msgstr ""
+msgstr "Gambia"
 
 #: /Elements/panel/add_user.ctp:163 /Elements/panel/edit_user.ctp:166
 msgid "Georgia"
-msgstr ""
+msgstr "Georgia"
 
 #: /Elements/panel/add_user.ctp:164 /Elements/panel/edit_user.ctp:167
 msgid "Germany"
-msgstr ""
+msgstr "Alemania"
 
 #: /Elements/panel/add_user.ctp:165 /Elements/panel/edit_user.ctp:168
 msgid "Ghana"
-msgstr ""
+msgstr "Ghana"
 
 #: /Elements/panel/add_user.ctp:166 /Elements/panel/edit_user.ctp:169
 msgid "Gibraltar"
-msgstr ""
+msgstr "Gibraltar"
 
 #: /Elements/panel/add_user.ctp:167 /Elements/panel/edit_user.ctp:170
 msgid "Greece"
-msgstr ""
+msgstr "Grecia"
 
 #: /Elements/panel/add_user.ctp:168 /Elements/panel/edit_user.ctp:171
 msgid "Greenland"
-msgstr ""
+msgstr "Groenlandia"
 
 #: /Elements/panel/add_user.ctp:169 /Elements/panel/edit_user.ctp:172
 msgid "Grenada"
-msgstr ""
+msgstr "Granada"
 
 #: /Elements/panel/add_user.ctp:170 /Elements/panel/edit_user.ctp:173
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadalupe"
 
 #: /Elements/panel/add_user.ctp:171 /Elements/panel/edit_user.ctp:174
 msgid "Guam"
-msgstr ""
+msgstr "guam"
 
 #: /Elements/panel/add_user.ctp:172 /Elements/panel/edit_user.ctp:175
 msgid "Guatemala"
-msgstr ""
+msgstr "guatemala"
 
 #: /Elements/panel/add_user.ctp:173 /Elements/panel/edit_user.ctp:176
 msgid "Guinea"
-msgstr ""
+msgstr "República Guinea"
 
 #: /Elements/panel/add_user.ctp:174 /Elements/panel/edit_user.ctp:177
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "Guinea-Bissau"
 
 #: /Elements/panel/add_user.ctp:175 /Elements/panel/edit_user.ctp:178
 msgid "Guyana"
-msgstr ""
+msgstr "Guayana"
 
 #: /Elements/panel/add_user.ctp:176 /Elements/panel/edit_user.ctp:179
 msgid "Haiti"
-msgstr ""
+msgstr "Haiti"
 
 #: /Elements/panel/add_user.ctp:179 /Elements/panel/edit_user.ctp:182
 msgid "Honduras"
-msgstr ""
+msgstr "Honduras"
 
 #: /Elements/panel/add_user.ctp:180 /Elements/panel/edit_user.ctp:183
 msgid "Hong Kong"
-msgstr ""
+msgstr "Hong Kong"
 
 #: /Elements/panel/add_user.ctp:181 /Elements/panel/edit_user.ctp:184
 msgid "Hungary"
-msgstr ""
+msgstr "Hungría"
 
 #: /Elements/panel/add_user.ctp:182 /Elements/panel/edit_user.ctp:185
 msgid "Iceland"
-msgstr ""
+msgstr "Islandia"
 
 #: /Elements/panel/add_user.ctp:183 /Elements/panel/edit_user.ctp:186
 msgid "India"
-msgstr ""
+msgstr "India"
 
 #: /Elements/panel/add_user.ctp:184 /Elements/panel/edit_user.ctp:187
 msgid "Indonesia"
-msgstr ""
+msgstr "Indonesia"
 
 #: /Elements/panel/add_user.ctp:185 /Elements/panel/edit_user.ctp:188
 msgid "Iran (Islamic Republic of)"
-msgstr ""
+msgstr "Iran"
 
 #: /Elements/panel/add_user.ctp:186 /Elements/panel/edit_user.ctp:189
 msgid "Iraq"
-msgstr ""
+msgstr "Irak"
 
 #: /Elements/panel/add_user.ctp:187 /Elements/panel/edit_user.ctp:190
 msgid "Ireland"
-msgstr ""
+msgstr "Irlanda"
 
 #: /Elements/panel/add_user.ctp:188 /Elements/panel/edit_user.ctp:191
 msgid "Israel"
-msgstr ""
+msgstr "I"
 
 #: /Elements/panel/add_user.ctp:189 /Elements/panel/edit_user.ctp:192
 msgid "Italy"
-msgstr ""
+msgstr "Italy"
 
 #: /Elements/panel/add_user.ctp:190 /Elements/panel/edit_user.ctp:193
 msgid "Jamaica"
-msgstr ""
+msgstr "Jamaica"
 
 #: /Elements/panel/add_user.ctp:191 /Elements/panel/edit_user.ctp:194
 msgid "Japan"
-msgstr ""
+msgstr "Japon"
 
 #: /Elements/panel/add_user.ctp:192 /Elements/panel/edit_user.ctp:195
 msgid "Jordan"
-msgstr ""
+msgstr "Jordania"
 
 #: /Elements/panel/add_user.ctp:193 /Elements/panel/edit_user.ctp:196
 msgid "Kazakhstan"
-msgstr ""
+msgstr "Kazajstán"
 
 #: /Elements/panel/add_user.ctp:194 /Elements/panel/edit_user.ctp:197
 msgid "Kenya"
-msgstr ""
+msgstr "Kenia"
 
 #: /Elements/panel/add_user.ctp:195 /Elements/panel/edit_user.ctp:198
 msgid "Kiribati"
-msgstr ""
+msgstr "Kiribati"
 
 #: /Elements/panel/add_user.ctp:196 /Elements/panel/edit_user.ctp:199
 msgid "Korea, Democratic People's Republic of"
-msgstr ""
+msgstr "Corea del Norte"
 
 #: /Elements/panel/add_user.ctp:197 /Elements/panel/edit_user.ctp:200
 msgid "Korea, Republic of"
-msgstr ""
+msgstr "Corea del Sur"
 
 #: /Elements/panel/add_user.ctp:198 /Elements/panel/edit_user.ctp:201
 msgid "Kuwait"
-msgstr ""
+msgstr "Kuwait"
 
 #: /Elements/panel/add_user.ctp:199 /Elements/panel/edit_user.ctp:202
 msgid "Kyrgyzstan"
-msgstr ""
+msgstr "Kirguistán"
 
 #: /Elements/panel/add_user.ctp:200 /Elements/panel/edit_user.ctp:203
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "República Democrática Popular Lao"
 
 #: /Elements/panel/add_user.ctp:201 /Elements/panel/edit_user.ctp:204
 msgid "Latvia"
-msgstr ""
+msgstr "Letonia"
 
 #: /Elements/panel/add_user.ctp:202 /Elements/panel/edit_user.ctp:205
 msgid "Lebanon"
-msgstr ""
+msgstr "Líbano"
 
 #: /Elements/panel/add_user.ctp:203 /Elements/panel/edit_user.ctp:206
 msgid "Lesotho"
-msgstr ""
+msgstr "Lesotho"
 
 #: /Elements/panel/add_user.ctp:204 /Elements/panel/edit_user.ctp:207
 msgid "Liberia"
-msgstr ""
+msgstr "Liberia"
 
 #: /Elements/panel/add_user.ctp:205 /Elements/panel/edit_user.ctp:208
 msgid "Libyan Arab Jamahiriya"
-msgstr ""
+msgstr "Libia"
 
 #: /Elements/panel/add_user.ctp:206 /Elements/panel/edit_user.ctp:209
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: /Elements/panel/add_user.ctp:207 /Elements/panel/edit_user.ctp:210
 msgid "Lithuania"
-msgstr ""
+msgstr "Lituania"
 
 #: /Elements/panel/add_user.ctp:208 /Elements/panel/edit_user.ctp:211
 msgid "Luxembourg"
-msgstr ""
+msgstr "Luxemburgo"
 
 #: /Elements/panel/add_user.ctp:209 /Elements/panel/edit_user.ctp:212
 msgid "Macau"
-msgstr ""
+msgstr "Macao"
 
 #: /Elements/panel/add_user.ctp:210 /Elements/panel/edit_user.ctp:213
 msgid "Macedonia, The Former Yugoslav Republic of"
-msgstr ""
+msgstr "Macedonia"
 
 #: /Elements/panel/add_user.ctp:211 /Elements/panel/edit_user.ctp:214
 msgid "Madagascar"
-msgstr ""
+msgstr "Madagascar"
 
 #: /Elements/panel/add_user.ctp:212 /Elements/panel/edit_user.ctp:215
 msgid "Malawi"
-msgstr ""
+msgstr "Malawi"
 
 #: /Elements/panel/add_user.ctp:213 /Elements/panel/edit_user.ctp:216
 msgid "Malaysia"
-msgstr ""
+msgstr "Malasia"
 
 #: /Elements/panel/add_user.ctp:214 /Elements/panel/edit_user.ctp:217
 msgid "Maldives"
-msgstr ""
+msgstr "Maldivas"
 
 #: /Elements/panel/add_user.ctp:215 /Elements/panel/edit_user.ctp:218
 msgid "Mali"
-msgstr ""
+msgstr "Malí"
 
 #: /Elements/panel/add_user.ctp:216 /Elements/panel/edit_user.ctp:219
 msgid "Malta"
-msgstr ""
+msgstr "Malta"
 
 #: /Elements/panel/add_user.ctp:217 /Elements/panel/edit_user.ctp:220
 msgid "Marshall Islands"
-msgstr ""
+msgstr "Islas Marshall"
 
 #: /Elements/panel/add_user.ctp:218 /Elements/panel/edit_user.ctp:221
 msgid "Martinique"
-msgstr ""
+msgstr "Martinica"
 
 #: /Elements/panel/add_user.ctp:219 /Elements/panel/edit_user.ctp:222
 msgid "Mauritania"
-msgstr ""
+msgstr "Mauritania"
 
 #: /Elements/panel/add_user.ctp:220 /Elements/panel/edit_user.ctp:223
 msgid "Mauritius"
-msgstr ""
+msgstr "Mauricio"
 
 #: /Elements/panel/add_user.ctp:221 /Elements/panel/edit_user.ctp:224
 msgid "Mayotte"
-msgstr ""
+msgstr "Mayotte"
 
 #: /Elements/panel/add_user.ctp:222 /Elements/panel/edit_user.ctp:225
 msgid "Mexico"
-msgstr ""
+msgstr "México"
 
 #: /Elements/panel/add_user.ctp:223 /Elements/panel/edit_user.ctp:226
 msgid "Micronesia, Federated States of"
-msgstr ""
+msgstr "Micronesia, Estados Federados de"
 
 #: /Elements/panel/add_user.ctp:224 /Elements/panel/edit_user.ctp:227
 msgid "Moldova, Republic of"
-msgstr ""
+msgstr "Moldavia"
 
 #: /Elements/panel/add_user.ctp:225 /Elements/panel/edit_user.ctp:228
 msgid "Monaco"
-msgstr ""
+msgstr "Mónaco"
 
 #: /Elements/panel/add_user.ctp:226 /Elements/panel/edit_user.ctp:229
 msgid "Mongolia"
-msgstr ""
+msgstr "Mongolia"
 
 #: /Elements/panel/add_user.ctp:227 /Elements/panel/edit_user.ctp:230
 msgid "Montserrat"
-msgstr ""
+msgstr "Montserrat"
 
 #: /Elements/panel/add_user.ctp:228 /Elements/panel/edit_user.ctp:231
 msgid "Morocco"
-msgstr ""
+msgstr "Marruecos"
 
 #: /Elements/panel/add_user.ctp:229 /Elements/panel/edit_user.ctp:232
 msgid "Mozambique"
-msgstr ""
+msgstr "Mozambique"
 
 #: /Elements/panel/add_user.ctp:230 /Elements/panel/edit_user.ctp:233
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar, Birmania"
 
 #: /Elements/panel/add_user.ctp:231 /Elements/panel/edit_user.ctp:234
 msgid "Namibia"
-msgstr ""
+msgstr "Namibia"
 
 #: /Elements/panel/add_user.ctp:232 /Elements/panel/edit_user.ctp:235
 msgid "Nauru"
-msgstr ""
+msgstr "Narau"
 
 #: /Elements/panel/add_user.ctp:233 /Elements/panel/edit_user.ctp:236
 msgid "Nepal"
-msgstr ""
+msgstr "Nepal"
 
 #: /Elements/panel/add_user.ctp:234 /Elements/panel/edit_user.ctp:237
 msgid "Netherlands"
-msgstr ""
+msgstr "Países Bajos"
 
 #: /Elements/panel/add_user.ctp:235 /Elements/panel/edit_user.ctp:238
 msgid "Netherlands Antilles"
-msgstr ""
+msgstr "Antillas Holandesas"
 
 #: /Elements/panel/add_user.ctp:236 /Elements/panel/edit_user.ctp:239
 msgid "New Caledonia"
-msgstr ""
+msgstr "Nueva Caledonia"
 
 #: /Elements/panel/add_user.ctp:237 /Elements/panel/edit_user.ctp:240
 msgid "New Zealand"
-msgstr ""
+msgstr "Nueva Zelanda"
 
 #: /Elements/panel/add_user.ctp:238 /Elements/panel/edit_user.ctp:241
 msgid "Nicaragua"
-msgstr ""
+msgstr "Nicaragua"
 
 #: /Elements/panel/add_user.ctp:239 /Elements/panel/edit_user.ctp:242
 msgid "Niger"
-msgstr ""
+msgstr "Niger"
 
 #: /Elements/panel/add_user.ctp:240 /Elements/panel/edit_user.ctp:243
 msgid "Nigeria"
-msgstr ""
+msgstr "Nigeria"
 
 #: /Elements/panel/add_user.ctp:241 /Elements/panel/edit_user.ctp:244
 msgid "Niue"
-msgstr ""
+msgstr "Niue"
 
 #: /Elements/panel/add_user.ctp:242 /Elements/panel/edit_user.ctp:245
 msgid "Norfolk Island"
-msgstr ""
+msgstr "Isla Norfolk"
 
 #: /Elements/panel/add_user.ctp:243 /Elements/panel/edit_user.ctp:246
 msgid "Northern Mariana Islands"
-msgstr ""
+msgstr "Marianas del Norte"
 
 #: /Elements/panel/add_user.ctp:244 /Elements/panel/edit_user.ctp:247
 msgid "Norway"
-msgstr ""
+msgstr "Noruega"
 
 #: /Elements/panel/add_user.ctp:245 /Elements/panel/edit_user.ctp:248
 msgid "Oman"
-msgstr ""
+msgstr "Omán"
 
 #: /Elements/panel/add_user.ctp:246 /Elements/panel/edit_user.ctp:249
 msgid "Pakistan"
-msgstr ""
+msgstr "Pakistán"
 
 #: /Elements/panel/add_user.ctp:247 /Elements/panel/edit_user.ctp:250
 msgid "Palau"
-msgstr ""
+msgstr "Palau"
 
 #: /Elements/panel/add_user.ctp:248 /Elements/panel/edit_user.ctp:251
 msgid "Panama"
-msgstr ""
+msgstr "Panamá"
 
 #: /Elements/panel/add_user.ctp:249 /Elements/panel/edit_user.ctp:252
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papúa-Nueva Guinea"
 
 #: /Elements/panel/add_user.ctp:250 /Elements/panel/edit_user.ctp:253
 msgid "Paraguay"
-msgstr ""
+msgstr "Paraguay"
 
 #: /Elements/panel/add_user.ctp:251 /Elements/panel/edit_user.ctp:254
 msgid "Peru"
-msgstr ""
+msgstr "Perú"
 
 #: /Elements/panel/add_user.ctp:252 /Elements/panel/edit_user.ctp:255
 msgid "Philippines"
-msgstr ""
+msgstr "Filipinas"
 
 #: /Elements/panel/add_user.ctp:253 /Elements/panel/edit_user.ctp:256
 msgid "Pitcairn"
-msgstr ""
+msgstr "Isla Pitcairn"
 
 #: /Elements/panel/add_user.ctp:254 /Elements/panel/edit_user.ctp:257
 msgid "Poland"
-msgstr ""
+msgstr "Polonia"
 
 #: /Elements/panel/add_user.ctp:255 /Elements/panel/edit_user.ctp:258
 msgid "Portugal"
-msgstr ""
+msgstr "Portugal"
 
 #: /Elements/panel/add_user.ctp:256 /Elements/panel/edit_user.ctp:259
 msgid "Puerto Rico"
-msgstr ""
+msgstr "Puerto Rico"
 
 #: /Elements/panel/add_user.ctp:257 /Elements/panel/edit_user.ctp:260
 msgid "Qatar"
-msgstr ""
+msgstr "Qatar"
 
 #: /Elements/panel/add_user.ctp:258 /Elements/panel/edit_user.ctp:261
 msgid "Reunion"
-msgstr ""
+msgstr "Reunión"
 
 #: /Elements/panel/add_user.ctp:259 /Elements/panel/edit_user.ctp:262
 msgid "Romania"
-msgstr ""
+msgstr "Rumanía"
 
 #: /Elements/panel/add_user.ctp:260 /Elements/panel/edit_user.ctp:263
 msgid "Russian Federation"
-msgstr ""
+msgstr "federación Rusa"
 
 #: /Elements/panel/add_user.ctp:261 /Elements/panel/edit_user.ctp:264
 msgid "Rwanda"
-msgstr ""
+msgstr "Ruanda"
 
 #: /Elements/panel/add_user.ctp:262 /Elements/panel/edit_user.ctp:265
 msgid "Saint Kitts and Nevis"
-msgstr ""
+msgstr "San Cristobal y Nevis"
 
 #: /Elements/panel/add_user.ctp:263 /Elements/panel/edit_user.ctp:266
 msgid "Saint LUCIA"
-msgstr ""
+msgstr "Santa Lucía"
 
 #: /Elements/panel/add_user.ctp:264 /Elements/panel/edit_user.ctp:267
 msgid "Saint Vincent and the Grenadines"
-msgstr ""
+msgstr "San Vincente y Granadinas"
 
 #: /Elements/panel/add_user.ctp:265 /Elements/panel/edit_user.ctp:268
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 #: /Elements/panel/add_user.ctp:266 /Elements/panel/edit_user.ctp:269
 msgid "San Marino"
-msgstr ""
+msgstr "San Marino"
 
 #: /Elements/panel/add_user.ctp:267 /Elements/panel/edit_user.ctp:270
 msgid "Sao Tome and Principe"
-msgstr ""
+msgstr "Santo Tomé y Príncipe"
 
 #: /Elements/panel/add_user.ctp:268 /Elements/panel/edit_user.ctp:271
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Arabia Saudita"
 
 #: /Elements/panel/add_user.ctp:269 /Elements/panel/edit_user.ctp:272
 msgid "Senegal"
-msgstr ""
+msgstr "Senegal"
 
 #: /Elements/panel/add_user.ctp:270 /Elements/panel/edit_user.ctp:273
 msgid "Seychelles"
-msgstr ""
+msgstr "Seychelles"
 
 #: /Elements/panel/add_user.ctp:271 /Elements/panel/edit_user.ctp:274
 msgid "Sierra Leone"
-msgstr ""
+msgstr "Sierra Leona"
 
 #: /Elements/panel/add_user.ctp:272 /Elements/panel/edit_user.ctp:275
 msgid "Singapore"
-msgstr ""
+msgstr "Singapur"
 
 #: /Elements/panel/add_user.ctp:273 /Elements/panel/edit_user.ctp:276
 msgid "Slovakia (Slovak Republic)"
-msgstr ""
+msgstr "Eslovaquia"
 
 #: /Elements/panel/add_user.ctp:274 /Elements/panel/edit_user.ctp:277
 msgid "Slovenia"
-msgstr ""
+msgstr "Eslovenia"
 
 #: /Elements/panel/add_user.ctp:275 /Elements/panel/edit_user.ctp:278
 msgid "Solomon Islands"
-msgstr ""
+msgstr "Islas Salomón"
 
 #: /Elements/panel/add_user.ctp:276 /Elements/panel/edit_user.ctp:279
 msgid "Somalia"
-msgstr ""
+msgstr "Somalia"
 
 #: /Elements/panel/add_user.ctp:277 /Elements/panel/edit_user.ctp:280
 msgid "South Africa"
-msgstr ""
+msgstr "Sudáfrica"
 
 #: /Elements/panel/add_user.ctp:278 /Elements/panel/edit_user.ctp:281
 msgid "South Georgia and the South Sandwich Islands"
-msgstr ""
+msgstr "Islas Georgias del Sur y Sandwich del Sur"
 
 #: /Elements/panel/add_user.ctp:279 /Elements/panel/edit_user.ctp:282
 msgid "Spain"
-msgstr ""
+msgstr "España"
 
 #: /Elements/panel/add_user.ctp:280 /Elements/panel/edit_user.ctp:283
 msgid "Sri Lanka"
-msgstr ""
+msgstr "Sri Lanka"
 
 #: /Elements/panel/add_user.ctp:281 /Elements/panel/edit_user.ctp:284
 msgid "St. Helena"
-msgstr ""
+msgstr "Santa Helena"
 
 #: /Elements/panel/add_user.ctp:282 /Elements/panel/edit_user.ctp:285
 msgid "St. Pierre and Miquelon"
-msgstr ""
+msgstr "San Pedro y Miquelón"
 
 #: /Elements/panel/add_user.ctp:283 /Elements/panel/edit_user.ctp:286
 msgid "Sudan"
-msgstr ""
+msgstr "Sudán"
 
 #: /Elements/panel/add_user.ctp:284 /Elements/panel/edit_user.ctp:287
 msgid "Suriname"
-msgstr ""
+msgstr "Surinam"
 
 #: /Elements/panel/add_user.ctp:285 /Elements/panel/edit_user.ctp:288
 msgid "Svalbard and Jan Mayen Islands"
-msgstr ""
+msgstr "Svalbard y Jan Mayen"
 
 #: /Elements/panel/add_user.ctp:286 /Elements/panel/edit_user.ctp:289
 msgid "Swaziland"
-msgstr ""
+msgstr "Swazilandia"
 
 #: /Elements/panel/add_user.ctp:287 /Elements/panel/edit_user.ctp:290
 msgid "Sweden"
-msgstr ""
+msgstr "Suecia"
 
 #: /Elements/panel/add_user.ctp:288 /Elements/panel/edit_user.ctp:291
 msgid "Switzerland"
-msgstr ""
+msgstr "Suiza"
 
 #: /Elements/panel/add_user.ctp:289 /Elements/panel/edit_user.ctp:292
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Siria"
 
 #: /Elements/panel/add_user.ctp:290 /Elements/panel/edit_user.ctp:293
 msgid "Taiwan, Province of China"
-msgstr ""
+msgstr "Taiwan"
 
 #: /Elements/panel/add_user.ctp:291 /Elements/panel/edit_user.ctp:294
 msgid "Tajikistan"
-msgstr ""
+msgstr "Tajikistan"
 
 #: /Elements/panel/add_user.ctp:292 /Elements/panel/edit_user.ctp:295
 msgid "Tanzania, United Republic of"
-msgstr ""
+msgstr "Tanzania"
 
 #: /Elements/panel/add_user.ctp:293 /Elements/panel/edit_user.ctp:296
 msgid "Thailand"
-msgstr ""
+msgstr "Tailandia"
 
 #: /Elements/panel/add_user.ctp:294 /Elements/panel/edit_user.ctp:297
 msgid "Togo"
-msgstr ""
+msgstr "Togo"
 
 #: /Elements/panel/add_user.ctp:295 /Elements/panel/edit_user.ctp:298
 msgid "Tokelau"
-msgstr ""
+msgstr "Tokelau"
 
 #: /Elements/panel/add_user.ctp:296 /Elements/panel/edit_user.ctp:299
 msgid "Tonga"
-msgstr ""
+msgstr "Tonga"
 
 #: /Elements/panel/add_user.ctp:297 /Elements/panel/edit_user.ctp:300
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "Trinidad y Tobago"
 
 #: /Elements/panel/add_user.ctp:298 /Elements/panel/edit_user.ctp:301
 msgid "Tunisia"
-msgstr ""
+msgstr "Túnez"
 
 #: /Elements/panel/add_user.ctp:299 /Elements/panel/edit_user.ctp:302
 msgid "Turkey"
-msgstr ""
+msgstr "Turquía"
 
 #: /Elements/panel/add_user.ctp:300 /Elements/panel/edit_user.ctp:303
 msgid "Turkmenistan"
-msgstr ""
+msgstr "Turkmenistan"
 
 #: /Elements/panel/add_user.ctp:301 /Elements/panel/edit_user.ctp:304
 msgid "Turks and Caicos Islands"
-msgstr ""
+msgstr "Islas Turcas y Caicos"
 
 #: /Elements/panel/add_user.ctp:302 /Elements/panel/edit_user.ctp:305
 msgid "Tuvalu"
-msgstr ""
+msgstr "Tuvalu"
 
 #: /Elements/panel/add_user.ctp:303 /Elements/panel/edit_user.ctp:306
 msgid "Uganda"
-msgstr ""
+msgstr "Uganda"
 
 #: /Elements/panel/add_user.ctp:304 /Elements/panel/edit_user.ctp:307
 msgid "Ukraine"
-msgstr ""
+msgstr "Ucrania"
 
 #: /Elements/panel/add_user.ctp:305 /Elements/panel/edit_user.ctp:308
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "Emiratos Árabes Unidos"
 
 #: /Elements/panel/add_user.ctp:306 /Elements/panel/edit_user.ctp:309
 msgid "United Kingdom"
-msgstr ""
+msgstr "Reino Unido"
 
 #: /Elements/panel/add_user.ctp:307 /Elements/panel/edit_user.ctp:310
 msgid "United States"
-msgstr ""
+msgstr "Estados Unidos"
 
 #: /Elements/panel/add_user.ctp:308 /Elements/panel/edit_user.ctp:311
 msgid "United States Minor Outlying Islands"
-msgstr ""
+msgstr "slas Ultramarinas Menores de Estados Unidos"
 
 #: /Elements/panel/add_user.ctp:309 /Elements/panel/edit_user.ctp:312
 msgid "Uruguay"
-msgstr ""
+msgstr "Uruguay"
 
 #: /Elements/panel/add_user.ctp:310 /Elements/panel/edit_user.ctp:313
 msgid "Uzbekistan"
-msgstr ""
+msgstr "Uzbekistán"
 
 #: /Elements/panel/add_user.ctp:311 /Elements/panel/edit_user.ctp:314
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 #: /Elements/panel/add_user.ctp:312 /Elements/panel/edit_user.ctp:315
 msgid "Venezuela"
-msgstr ""
+msgstr "Vanuatu"
 
 #: /Elements/panel/add_user.ctp:313 /Elements/panel/edit_user.ctp:316
 msgid "Viet Nam"
-msgstr ""
+msgstr "Vietnam"
 
 #: /Elements/panel/add_user.ctp:314 /Elements/panel/edit_user.ctp:317
 msgid "Virgin Islands (British)"
-msgstr ""
+msgstr "Islas Virgenes Británicas"
 
 #: /Elements/panel/add_user.ctp:315 /Elements/panel/edit_user.ctp:318
 msgid "Virgin Islands (U.S.)"
-msgstr ""
+msgstr "Islas Virgenes Americanas"
 
 #: /Elements/panel/add_user.ctp:316 /Elements/panel/edit_user.ctp:319
 msgid "Wallis and Futuna Islands"
-msgstr ""
+msgstr "Wallis y Futuna"
 
 #: /Elements/panel/add_user.ctp:317 /Elements/panel/edit_user.ctp:320
 msgid "Western Sahara"
-msgstr ""
+msgstr "Sáhara Occidental"
 
 #: /Elements/panel/add_user.ctp:318 /Elements/panel/edit_user.ctp:321
 msgid "Yemen"
-msgstr ""
+msgstr "Yemen"
 
 #: /Elements/panel/add_user.ctp:319 /Elements/panel/edit_user.ctp:322
 msgid "Yugoslavia"
-msgstr ""
+msgstr "Yugoslavia"
 
 #: /Elements/panel/add_user.ctp:320 /Elements/panel/edit_user.ctp:323
 msgid "Zambia"
-msgstr ""
+msgstr "Zambia"
 
 #: /Elements/panel/add_user.ctp:321 /Elements/panel/edit_user.ctp:324
 msgid "Zimbabwe"
-msgstr ""
+msgstr "Zimbabwe"
 
 #: /Elements/panel/add_user.ctp:322 /Elements/panel/edit_user.ctp:325
 msgid "Country"
-msgstr ""
+msgstr "Nacion"
 
 #: /Elements/panel/add_user.ctp:326 /Elements/panel/edit_user.ctp:329
 msgid "male"
@@ -2527,41 +2555,41 @@ msgstr "Feminino"
 #: /Elements/panel/add_user.ctp:326 /Elements/panel/edit_user.ctp:329
 #: /Groups/admin_view.ctp:97 /Roles/view.ctp:37 /Users/admin_view.ctp:19
 msgid "Sex"
-msgstr "Sexo"
+msgstr "Genero"
 
 #: /Elements/panel/edit_user.ctp:67
 msgid "Birthday"
-msgstr ""
+msgstr "Cumpleaños"
 
 #: /Emails/html/group_new_request.ctp:2
 #: /Emails/html/group_request_approved.ctp:2
 #: /Emails/html/group_request_declined.ctp:2
 msgid "Hello, agent %s!"
-msgstr ""
+msgstr "Hola, agente %s!"
 
 #: /Emails/html/group_new_request.ctp:4
 msgid "You have one request to join your group %s"
-msgstr ""
+msgstr "Usted tiene una solicitud para unirse a su grupo % "
 
 #: /Emails/html/group_new_request.ctp:10
 msgid "User picture"
-msgstr ""
+msgstr "Imagen del Usuario"
 
 #: /Emails/html/group_new_request.ctp:14
 msgid "User: "
-msgstr ""
+msgstr "Usuario"
 
 #: /Emails/html/group_new_request.ctp:15
 msgid "Email: "
-msgstr ""
+msgstr "Correo electronico"
 
 #: /Emails/html/group_new_request.ctp:16
 msgid "Biography: "
-msgstr ""
+msgstr "Biografía:"
 
 #: /Emails/html/group_request_approved.ctp:4
 msgid "Your request to join group \"%s\" was accepted!"
-msgstr ""
+msgstr "Tu solicitud para unirse a el grupo \"%s\" fue aceptado!"
 
 #: /Emails/html/group_request_approved.ctp:7
 msgid "Access Evoke and help your group!"
@@ -2587,7 +2615,7 @@ msgstr "Agregar Etiqueta de Evidencia"
 #: /EvidenceTags/admin_edit.ctp:18 /EvidenceTags/admin_view.ctp:36
 #: /EvidenceTags/edit.ctp:18 /EvidenceTags/view.ctp:36
 msgid "List Evidence Tags"
-msgstr ""
+msgstr "Lista de Etiquetas de Evidencia"
 
 #: /EvidenceTags/add.ctp:23 /EvidenceTags/admin_add.ctp:19
 #: /EvidenceTags/admin_edit.ctp:21 /EvidenceTags/admin_index.ctp:51
@@ -2653,15 +2681,15 @@ msgstr "Eliminar Etiqueta"
 
 #: /Evidences/add.ctp:24 /Evidences/edit.ctp:24
 msgid "Quest: "
-msgstr ""
+msgstr "Desafio:"
 
 #: /Evidences/add.ctp:29 /Evidences/edit.ctp:29
 msgid "Submitting an "
-msgstr ""
+msgstr "Presentar una:"
 
 #: /Evidences/add.ctp:44
 msgid "Create your "
-msgstr ""
+msgstr "Crea tu:"
 
 #: /Evidences/admin_add.ctp:4
 msgid "Admin Add Evidence"
@@ -2815,11 +2843,11 @@ msgstr "Valor"
 
 #: /Evidences/edit.ctp:49;50
 msgid "Delete "
-msgstr ""
+msgstr "Eliminar"
 
 #: /EvokationFollowers/add.ctp:4
 msgid "Add Evokation Follower"
-msgstr "Agegar Seguidor de Evokation"
+msgstr "Agregar Seguidor de Evokation"
 
 #: /EvokationFollowers/add.ctp:16 /EvokationFollowers/admin_add.ctp:16
 #: /EvokationFollowers/admin_edit.ctp:18 /EvokationFollowers/admin_view.ctp:36
@@ -2997,29 +3025,33 @@ msgstr "Grupos Relacionados"
 msgid "Evokation Id"
 msgstr "ID Evokation"
 
+#: /Evokations/view.ctp:44 /Missions/view.ctp:125
+msgid "Mission: "
+msgstr "Misión"
+
 #: /Evokations/view.ctp:45
 msgid "Projects"
 msgstr "Evokations"
 
 #: /Evokations/view.ctp:57
 msgid "Work in progress"
-msgstr ""
+msgstr "Trabajo en Progreso"
 
 #: /Evokations/view.ctp:61
 msgid "Waiting for approval"
-msgstr ""
+msgstr "A la espera de la aprobación"
 
 #: /Evokations/view.ctp:64
 msgid "Approved!"
-msgstr ""
+msgstr "Aprovado"
 
 #: /Evokations/view.ctp:69
 msgid "EDIT PROJECT"
-msgstr ""
+msgstr "Editar Projecto"
 
 #: /Evokations/view.ctp:74
 msgid "Latest updates"
-msgstr ""
+msgstr "Últimas actualizaciones"
 
 #: /Evokations/view.ctp:94
 msgid "Current update:"
@@ -3166,23 +3198,23 @@ msgstr "Guardar información de grupo"
 
 #: /Groups/evokations.ctp:28
 msgid "Evokations Teams"
-msgstr ""
+msgstr "Equipos de Evocación"
 
 #: /Groups/evokations.ctp:34 /Users/dashboard.ctp:148
 msgid "All Evokations"
-msgstr ""
+msgstr "Todas las Evocaciones"
 
 #: /Groups/evokations.ctp:35
 msgid "My Evokations"
-msgstr ""
+msgstr "Mis Evocaciones"
 
 #: /Groups/evokations.ctp:112;138
 msgid "By Missions"
-msgstr ""
+msgstr "Por Misiones"
 
 #: /Groups/index.ctp:5
 msgid "Mission: %s"
-msgstr ""
+msgstr "% de Mision:"
 
 #: /Groups/index.ctp:10;20
 msgid "Create a group"
@@ -3190,7 +3222,7 @@ msgstr "Crear un grupo"
 
 #: /Groups/index.ctp:31
 msgid "All Evokation Teams"
-msgstr ""
+msgstr "Todos los Equipos de Evocación"
 
 #: /Groups/index.ctp:32
 msgid "My Evokation Teams"
@@ -3244,11 +3276,11 @@ msgstr "Area de Desarrollo Evokation"
 
 #: /GroupsUsers/edit.ctp:17
 msgid "Assets"
-msgstr ""
+msgstr "bienes"
 
 #: /GroupsUsers/edit.ctp:40
 msgid "Evidences from your group:"
-msgstr ""
+msgstr "Evidencia de su grupo"
 
 #: /GroupsUsers/edit.ctp:58
 msgid "ACTIONS"
@@ -3307,6 +3339,8 @@ msgid ""
 "Chat with your group members! Go on &ldquo;View&rdquo; -> &ldquo;Chat&rdquo; "
 "to activate this feature"
 msgstr ""
+"Chatea con miembros de su grupo ! Ir en y ldquo ; Ver y rdquo; - > & Ldquo ; "
+"Chat & rdquo; para activar esta función"
 
 #: /GroupsUsers/edit.ctp:159
 msgid "Deadlines"
@@ -3390,19 +3424,19 @@ msgstr "Listar Temas"
 #: /Issues/admin_index.ctp:50 /Issues/admin_view.ctp:44 /Issues/edit.ctp:21
 #: /Issues/index.ctp:50 /Issues/view.ctp:44
 msgid "New Parent Issue"
-msgstr ""
+msgstr "Nuevas tematicas iniciales"
 
 #: /Issues/admin_add.ctp:4
 msgid "Admin Add Issue"
-msgstr ""
+msgstr "Admin agregar tema de misión"
 
 #: /Issues/admin_edit.ctp:4
 msgid "Admin Edit Issue"
-msgstr ""
+msgstr "Admin editar tema de misión"
 
 #: /Issues/admin_index.ctp:2 /Issues/index.ctp:2 /Panels/index.ctp:32;1907
 msgid "Issues"
-msgstr ""
+msgstr "Lista de tematicas de misión"
 
 #: /Issues/admin_index.ctp:48 /Issues/admin_view.ctp:42 /Issues/index.ctp:48
 #: /Issues/view.ctp:42 /MissionIssues/add.ctp:20
@@ -3414,18 +3448,18 @@ msgstr ""
 #: /UserIssues/admin_index.ctp:48 /UserIssues/admin_view.ctp:31
 #: /UserIssues/edit.ctp:22 /UserIssues/index.ctp:48 /UserIssues/view.ctp:31
 msgid "New Issue"
-msgstr ""
+msgstr "nuevo tema de Misión"
 
 #: /Issues/admin_view.ctp:2 /Issues/view.ctp:2 /MissionIssues/admin_view.ctp:14
 #: /MissionIssues/view.ctp:14 /Panels/edit_mission.ctp:194;200
 #: /Panels/index.ctp:1533 /Panels/mission_edition.ctp:84;90
 #: /UserIssues/admin_view.ctp:14 /UserIssues/view.ctp:14
 msgid "Issue"
-msgstr ""
+msgstr "Tema de misión"
 
 #: /Issues/admin_view.ctp:9 /Issues/view.ctp:9
 msgid "Parent Issue"
-msgstr ""
+msgstr "Tematica inicial"
 
 #: /Issues/admin_view.ctp:19;55 /Issues/view.ctp:19;55 /Panels/index.ctp:153
 #: /Panels/main.ctp:587;614
@@ -3447,19 +3481,19 @@ msgstr "Temas Relacionados"
 
 #: /Issues/admin_view.ctp:53 /Issues/view.ctp:53
 msgid "Parent Id"
-msgstr ""
+msgstr "Tematica inicial"
 
 #: /Issues/admin_view.ctp:80 /Issues/view.ctp:80
 msgid "New Child Issue"
-msgstr ""
+msgstr "Nueva Tematica Secundaria"
 
 #: /Layouts/default.ctp:10 /Layouts/Emails/html/default.ctp:19;101
 msgid "Evoke Network"
-msgstr "Evoke - La Red"
+msgstr "Red Evoke"
 
 #: /Layouts/Emails/html/default.ctp:119
 msgid "Evoke "
-msgstr ""
+msgstr "Evoke"
 
 #: /Likes/add.ctp:4
 msgid "Add Like"
@@ -3501,7 +3535,7 @@ msgstr "Elminar Voto"
 
 #: /MatchingQuestions/add.ctp:4
 msgid "Add Matching Question"
-msgstr ""
+msgstr "Añadir Pregunta Coincidente"
 
 #: /MatchingQuestions/add.ctp:15 /MatchingQuestions/admin_add.ctp:15
 #: /MatchingQuestions/admin_edit.ctp:17 /MatchingQuestions/admin_view.ctp:31
@@ -3512,7 +3546,7 @@ msgstr ""
 #: /UserMatchingAnswers/admin_view.ctp:45 /UserMatchingAnswers/edit.ctp:22
 #: /UserMatchingAnswers/index.ctp:53 /UserMatchingAnswers/view.ctp:45
 msgid "List Matching Questions"
-msgstr ""
+msgstr "Listar Pregunta Coincidente"
 
 #: /MatchingQuestions/add.ctp:16 /MatchingQuestions/edit.ctp:18
 #: /MatchingQuestions/index.ctp:43 /MatchingQuestions/view.ctp:33
@@ -3521,7 +3555,7 @@ msgstr ""
 #: /UserMatchingAnswers/admin_view.ctp:41 /UserMatchingAnswers/edit.ctp:19
 #: /UserMatchingAnswers/view.ctp:41
 msgid "List User Matching Answers"
-msgstr ""
+msgstr "Listar Respuestas Coincidentes de Usuarios"
 
 #: /MatchingQuestions/add.ctp:17 /MatchingQuestions/edit.ctp:19
 #: /MatchingQuestions/index.ctp:44 /MatchingQuestions/view.ctp:34;70
@@ -3529,30 +3563,30 @@ msgstr ""
 #: /UserMatchingAnswers/admin_view.ctp:42 /UserMatchingAnswers/index.ctp:50
 #: /UserMatchingAnswers/view.ctp:42
 msgid "New User Matching Answer"
-msgstr ""
+msgstr "Respuesta Coincidente de un Nuevo Usuario"
 
 #: /MatchingQuestions/admin_add.ctp:4
 msgid "Admin Add Matching Question"
-msgstr ""
+msgstr "Admin añadir una Pregunta Coincidente"
 
 #: /MatchingQuestions/admin_add.ctp:16 /MatchingQuestions/admin_edit.ctp:18
 #: /MatchingQuestions/admin_index.ctp:43 /MatchingQuestions/admin_view.ctp:33
 msgid "List Users Matching Answers"
-msgstr ""
+msgstr "Listar respuestas Coincidentes de Usuarios"
 
 #: /MatchingQuestions/admin_add.ctp:17 /MatchingQuestions/admin_edit.ctp:19
 #: /MatchingQuestions/admin_index.ctp:44
 #: /MatchingQuestions/admin_view.ctp:34;68
 msgid "New Users Matching Answer"
-msgstr ""
+msgstr "Respuestas Coincidentes de Nuevos Usuarios"
 
 #: /MatchingQuestions/admin_edit.ctp:4
 msgid "Admin Edit Matching Question"
-msgstr ""
+msgstr "Admin Editar Respuestas Coincidentes"
 
 #: /MatchingQuestions/admin_index.ctp:2 /MatchingQuestions/index.ctp:2
 msgid "Matching Questions"
-msgstr ""
+msgstr "Preguntas Coincidentes"
 
 #: /MatchingQuestions/admin_index.ctp:42 /MatchingQuestions/admin_view.ctp:32
 #: /MatchingQuestions/index.ctp:42 /MatchingQuestions/view.ctp:32
@@ -3562,38 +3596,38 @@ msgstr ""
 #: /UserMatchingAnswers/admin_view.ctp:46 /UserMatchingAnswers/edit.ctp:23
 #: /UserMatchingAnswers/index.ctp:54 /UserMatchingAnswers/view.ctp:46
 msgid "New Matching Question"
-msgstr ""
+msgstr "Nueva Pregunta Coincidente"
 
 #: /MatchingQuestions/admin_view.ctp:2;9 /MatchingQuestions/view.ctp:2;9
 #: /UserMatchingAnswers/admin_view.ctp:14 /UserMatchingAnswers/view.ctp:14
 msgid "Matching Question"
-msgstr ""
+msgstr "Pregunta Coincidente"
 
 #: /MatchingQuestions/admin_view.ctp:29 /MatchingQuestions/edit.ctp:4
 #: /MatchingQuestions/view.ctp:29
 msgid "Edit Matching Question"
-msgstr ""
+msgstr "Editar Pregunta Coincidente"
 
 #: /MatchingQuestions/admin_view.ctp:30 /MatchingQuestions/view.ctp:30
 msgid "Delete Matching Question"
-msgstr ""
+msgstr "Eliminar Pregunta Coincidente"
 
 #: /MatchingQuestions/admin_view.ctp:38
 msgid "Related Users Matching Answers"
-msgstr ""
+msgstr "Respuestas Coincidentes de Usuarios Relacionados"
 
 #: /MatchingQuestions/admin_view.ctp:43 /MatchingQuestions/view.ctp:44
 msgid "Matching Question Id"
-msgstr ""
+msgstr "Id de Pregrunta Coincidente"
 
 #: /MatchingQuestions/admin_view.ctp:44 /MatchingQuestions/view.ctp:45
 #: /UserMatchingAnswers/admin_view.ctp:19 /UserMatchingAnswers/view.ctp:19
 msgid "Matching Answer"
-msgstr ""
+msgstr "Respuesta Coincidente"
 
 #: /MatchingQuestions/view.ctp:38
 msgid "Related User Matching Answers"
-msgstr ""
+msgstr "Respuestas Coincidentes de Usuarios Relacionados"
 
 #: /Menus/add.ctp:4
 msgid "Add Menu"
@@ -3825,13 +3859,9 @@ msgstr "Buena suerte!"
 msgid "Now, go out there and become an agent of change!"
 msgstr "Ahora, adelante y conviértate en un agente de cambio!"
 
-#: /Missions/index.ctp:14 /Users/dashboard.ctp:74
+#: /Missions/index.ctp:12 /Users/dashboard.ctp:74
 msgid "Choose a mission"
 msgstr "Escoge una misión"
-
-#: /Missions/view.ctp:58
-msgid "Mission %s"
-msgstr "Misión %s"
 
 #: /Missions/view.ctp:126
 msgid "Created by: "
@@ -3879,7 +3909,7 @@ msgstr "<-   Volver a %s"
 
 #: /Missions/view_discussion.ctp:79
 msgid "Evidence Stream"
-msgstr ""
+msgstr "Corriete de Evidencia"
 
 #: /Missions/view_discussion.ctp:240
 msgid "Most Liked"
@@ -3895,7 +3925,7 @@ msgstr "Volver a %s"
 
 #: /Missions/view_project.ctp:77
 msgid "Evokations Stream"
-msgstr ""
+msgstr "Corriente de Evocaciones"
 
 #: /Missions/view_project.ctp:218
 msgid "Latest Projects"
@@ -3907,11 +3937,11 @@ msgstr "Evokations Exitosas"
 
 #: /Missions/view_sample.ctp:119
 msgid "Submit your evidence"
-msgstr ""
+msgstr "Presentar la Evidencia"
 
 #: /Missions/view_sample.ctp:138;145
 msgid "This section is not available in preview."
-msgstr ""
+msgstr "Esta sección no está disponible en la vista previa ."
 
 #: /Notifications/add.ctp:4
 msgid "Add Notification"
@@ -4026,7 +4056,7 @@ msgstr "Registrar"
 
 #: /Panels/add_mission.ctp:55 /Panels/edit_mission.ctp:55 /Panels/quest.ctp:55
 msgid "See profile"
-msgstr ""
+msgstr "Ver Perfil"
 
 #: /Panels/add_mission.ctp:89
 msgid "Creating Mission"
@@ -4039,12 +4069,12 @@ msgstr "Agregar Misión"
 #: /Panels/add_mission.ctp:113 /Panels/edit_mission.ctp:174
 #: /Panels/mission_edition.ctp:64 /Panels/organization.ctp:72
 msgid "Video Link"
-msgstr ""
+msgstr "Link de Video"
 
 #: /Panels/add_mission.ctp:114 /Panels/edit_mission.ctp:175
 #: /Panels/mission_edition.ctp:65 /Panels/organization.ctp:73
 msgid "Spanish Video Link"
-msgstr ""
+msgstr "Link de Video en Español"
 
 #: /Panels/add_mission.ctp:133 /Panels/edit_mission.ctp:206
 #: /Panels/mission_edition.ctp:96 /Panels/organization.ctp:92
@@ -4069,6 +4099,8 @@ msgid ""
 "Your mission has no Phase and, therefore, will not be displayed to other "
 "agents. Please add a Phase to your mission!"
 msgstr ""
+"Su misión no tiene ninguna fase y, por lo tanto, no se mostrará a otros "
+"agentes. Por favor, añada una fase de su misión!"
 
 #: /Panels/add_mission.ctp:152 /Panels/edit_mission.ctp:130
 msgid "Stay in this page"
@@ -4093,15 +4125,15 @@ msgstr "Novela Gráfica"
 
 #: /Panels/edit_mission.ctp:136 /Panels/quest.ctp:101
 msgid "Return to Admin Index"
-msgstr ""
+msgstr "Regresar al Indice de Administración"
 
 #: /Panels/edit_mission.ctp:161;236;323 /Panels/mission_edition.ctp:123;263
 msgid "English Title"
-msgstr ""
+msgstr "Titulo en Ingles"
 
 #: /Panels/edit_mission.ctp:165;238;327 /Panels/mission_edition.ctp:127;267
 msgid "English Description"
-msgstr ""
+msgstr "Descri´ci{on en Ingles"
 
 #: /Panels/edit_mission.ctp:223;234
 msgid "Add a Phase"
@@ -4120,47 +4152,47 @@ msgstr "Misión no accesible hasta que tenga por lo menos una fase."
 #: /Panels/edit_mission.ctp:319 /Panels/mission_edition.ctp:259
 #: /Phases/admin_view.ctp:49 /Phases/edit.ctp:4 /Phases/view.ctp:49
 msgid "Edit Phase"
-msgstr ""
+msgstr "Editar Face"
 
 #: /Panels/edit_mission.ctp:364 /Panels/mission_edition.ctp:306
 msgid "Dossier Links"
-msgstr ""
+msgstr "Link de Archivo"
 
 #: /Panels/edit_mission.ctp:365 /Panels/mission_edition.ctp:307
 msgid "Dossier Videos"
-msgstr ""
+msgstr "Videos de Archivo"
 
 #: /Panels/edit_mission.ctp:366 /Panels/mission_edition.ctp:308
 msgid "Dossier Attachments"
-msgstr ""
+msgstr "Documentos Adjuntos de Archivo"
 
 #: /Panels/edit_mission.ctp:370;379 /Panels/mission_edition.ctp:312;321
 msgid "Add a Link"
-msgstr ""
+msgstr "añadir un Link"
 
 #: /Panels/edit_mission.ctp:395 /Panels/mission_edition.ctp:337
 msgid "Dossier Link"
-msgstr ""
+msgstr "Link de Archivo"
 
 #: /Panels/edit_mission.ctp:419 /Panels/mission_edition.ctp:361
 msgid "Save links"
-msgstr ""
+msgstr "Guardar Link"
 
 #: /Panels/edit_mission.ctp:424;433 /Panels/mission_edition.ctp:366;375
 msgid "Add a Video"
-msgstr ""
+msgstr "Añadir un Video"
 
 #: /Panels/edit_mission.ctp:437 /Panels/mission_edition.ctp:379
 msgid "Video embed link"
-msgstr ""
+msgstr "Link integrado en el Video"
 
 #: /Panels/edit_mission.ctp:459 /Panels/mission_edition.ctp:401
 msgid "Dossier Video"
-msgstr ""
+msgstr "Video de Archivo"
 
 #: /Panels/edit_mission.ctp:474 /Panels/mission_edition.ctp:416
 msgid "Save videos"
-msgstr ""
+msgstr "Salvar Video"
 
 #: /Panels/edit_mission.ctp:480 /Panels/mission_edition.ctp:422
 msgid ""
@@ -4181,31 +4213,31 @@ msgstr "Guardar expediente"
 
 #: /Panels/edit_mission.ctp:543 /Panels/mission_edition.ctp:487
 msgid "Graphic novel launcher"
-msgstr ""
+msgstr "Aplicativo de la Novela Grafica"
 
 #: /Panels/edit_mission.ctp:544 /Panels/mission_edition.ctp:488
 msgid "English graphic novel"
-msgstr ""
+msgstr "Novela Grafica en Ingles"
 
 #: /Panels/edit_mission.ctp:545 /Panels/mission_edition.ctp:489
 msgid "Spanish graphic novel"
-msgstr ""
+msgstr "Novela Grafica en Español"
 
 #: /Panels/edit_mission.ctp:561 /Panels/mission_edition.ctp:505
 msgid "launcher"
-msgstr ""
+msgstr "Aplicativo"
 
 #: /Panels/edit_mission.ctp:575 /Panels/mission_edition.ctp:519
 msgid "Save Launchers"
-msgstr ""
+msgstr "Salvar Aplicativos"
 
 #: /Panels/edit_mission.ctp:602;645 /Panels/mission_edition.ctp:546;589
 msgid "Page number"
-msgstr ""
+msgstr "número de página"
 
 #: /Panels/edit_mission.ctp:619;662 /Panels/mission_edition.ctp:563;606
 msgid "Save Novels"
-msgstr ""
+msgstr "Salvar Novelas"
 
 #: /Panels/index.ctp:34
 msgid "Levels"
@@ -4246,7 +4278,7 @@ msgstr "Agregar tema"
 
 #: /Panels/index.ctp:170
 msgid "Define Levels"
-msgstr ""
+msgstr "Definir Niveles"
 
 #: /Panels/index.ctp:213 /Panels/main.ctp:940
 msgid "Save levels"
@@ -4270,7 +4302,7 @@ msgstr "Agregar Medalla"
 
 #: /Panels/index.ctp:298 /Panels/organization.ctp:220
 msgid "Obtained exclusively with power points"
-msgstr ""
+msgstr "Obetinido exclusivamente con puntos de poder"
 
 #: /Panels/index.ctp:333;366
 msgid "Change role"
@@ -4335,59 +4367,59 @@ msgstr "Guardar configuraciones"
 
 #: /Panels/index.ctp:656
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: /Panels/index.ctp:686
 msgid "Mission(s)"
-msgstr ""
+msgstr "Mision(es)"
 
 #: /Panels/index.ctp:698
 msgid "Organization(s)"
-msgstr ""
+msgstr "Organización(es)"
 
 #: /Panels/index.ctp:710
 msgid "Badge(s)"
-msgstr ""
+msgstr "Medalla(s)"
 
 #: /Panels/index.ctp:722
 msgid "Power(s)"
-msgstr ""
+msgstr "Poder(es)"
 
 #: /Panels/index.ctp:753;771 /Panels/main.ctp:171;185
 msgid "Average"
-msgstr ""
+msgstr "Promedio"
 
 #: /Panels/index.ctp:757;775 /Panels/main.ctp:176;190
 msgid "Highest"
-msgstr ""
+msgstr "Mayor"
 
 #: /Panels/index.ctp:788 /Panels/main.ctp:146
 msgid "Allies per user"
-msgstr ""
+msgstr "ALiados por Usuario"
 
 #: /Panels/index.ctp:802
 msgid "Evokation(s)"
-msgstr ""
+msgstr "Evocaciones"
 
 #: /Panels/index.ctp:809 /Panels/main.ctp:223
 msgid "Pending"
-msgstr ""
+msgstr "Pendiente"
 
 #: /Panels/index.ctp:813 /Panels/main.ctp:232
 msgid "Approved"
-msgstr ""
+msgstr "Aprovado"
 
 #: /Panels/index.ctp:824 /Panels/main.ctp:241
 msgid "Chosen Issues"
-msgstr ""
+msgstr "Tematicas Elegidas"
 
 #: /Panels/index.ctp:838
 msgid "Users around the world"
-msgstr ""
+msgstr "Usuarios a lo Largo del Mundo"
 
 #: /Panels/index.ctp:843 /Panels/main.ctp:260
 msgid "Users from unknown countries"
-msgstr ""
+msgstr "Usuarios de Naciones Desconocidas"
 
 #: /Panels/index.ctp:1537
 msgid "Each mission is related to an issue"
@@ -4395,15 +4427,15 @@ msgstr "Cada misión está relacionada a un tema"
 
 #: /Panels/index.ctp:1538
 msgid "Search Missions by Issue"
-msgstr ""
+msgstr "Buscar Misiones por Tematica"
 
 #: /Panels/index.ctp:1546
 msgid "Find missions, edit or even delete them"
-msgstr "Encontrar misiones, editarlas o eliminarlas"
+msgstr "Encontrar misiónes, editarlas o eliminarlas"
 
 #: /Panels/index.ctp:1547
 msgid "Search Missions by Title"
-msgstr ""
+msgstr "Buscar Misiones por Titulo"
 
 #: /Panels/index.ctp:1628
 msgid "Check and modify users role"
@@ -4411,7 +4443,7 @@ msgstr "Modificar papeles de usuarios"
 
 #: /Panels/index.ctp:1629
 msgid "Search Users by Role"
-msgstr ""
+msgstr "Buscar Usuarios por Rol"
 
 #: /Panels/index.ctp:1637
 msgid "Find users"
@@ -4419,115 +4451,115 @@ msgstr "Buscar usuarios"
 
 #: /Panels/index.ctp:1638
 msgid "Search Users by Name"
-msgstr ""
+msgstr "Buscar Usuarios por Nombre"
 
 #: /Panels/index.ctp:1759
 msgid "Organization owner of this badge"
-msgstr ""
+msgstr "Organización Dueña de Esta Medalla"
 
 #: /Panels/index.ctp:1760
 msgid "Search Badges by Organizations"
-msgstr ""
+msgstr "Buscar Medallas de Organización"
 
 #: /Panels/index.ctp:1768
 msgid "Find Badges, edit or even delete them"
-msgstr ""
+msgstr "Buscar Medallas, editarlas o eliminarlas"
 
 #: /Panels/index.ctp:1769
 msgid "Search for Badges"
-msgstr ""
+msgstr "Buscar Medallas"
 
 #: /Panels/index.ctp:1847
 msgid "Find Organizations, edit or even delete them"
-msgstr ""
+msgstr "Buscar Organización. editarla o incluso elminarla."
 
 #: /Panels/index.ctp:1848
 msgid "Search for Organizations"
-msgstr ""
+msgstr "Buscar Organizaciones"
 
 #: /Panels/index.ctp:1909
 msgid "Find issues, edit or even delete them"
-msgstr ""
+msgstr "Buscar Tematica, editarla o incluso eliminarla."
 
 #: /Panels/index.ctp:1910
 msgid "Search for Issue"
-msgstr ""
+msgstr "Buscar Tematica"
 
 #: /Panels/index.ctp:1972
 msgid "Find power points in Evoke"
-msgstr ""
+msgstr "Encontrar Punto de Poder en Evoke"
 
 #: /Panels/index.ctp:1973
 msgid "Search for Power Point"
-msgstr ""
+msgstr "Buscar Punto de Poder"
 
 #: /Panels/index.ctp:2034
 msgid "By mission"
-msgstr ""
+msgstr "Por Mision"
 
 #: /Panels/index.ctp:2035
 msgid "Search evokations by mission..."
-msgstr ""
+msgstr "Buscar Evocaciones por Mision"
 
 #: /Panels/index.ctp:2042
 msgid "By status"
-msgstr ""
+msgstr "Por Status"
 
 #: /Panels/index.ctp:2043
 msgid "Search Evokations by Status"
-msgstr ""
+msgstr "Buscar evocacion por Status"
 
 #: /Panels/index.ctp:2048
 msgid "Group Title"
-msgstr ""
+msgstr "Título de Grupo"
 
 #: /Panels/index.ctp:2050
 msgid "By group"
-msgstr ""
+msgstr "Por grupo"
 
 #: /Panels/index.ctp:2051
 msgid "Search Evokations by Group"
-msgstr ""
+msgstr "Buscar Evocaciones por Grupo"
 
 #: /Panels/index.ctp:2056
 msgid "Evokation Title"
-msgstr ""
+msgstr "Titulo de la Evocación"
 
 #: /Panels/index.ctp:2058;2172
 msgid "By title"
-msgstr ""
+msgstr "Por Titulo"
 
 #: /Panels/index.ctp:2059
 msgid "Search for Evokations by Title"
-msgstr ""
+msgstr "Buscar Evocaciones por Titulo"
 
 #: /Panels/index.ctp:2156
 msgid "By creator"
-msgstr ""
+msgstr "Por creador"
 
 #: /Panels/index.ctp:2157
 msgid "Search by Creator"
-msgstr ""
+msgstr "Buscar por Creador"
 
 #: /Panels/index.ctp:2164
 msgid "By event"
-msgstr ""
+msgstr "Por Evento"
 
 #: /Panels/index.ctp:2165
 msgid "Search by Event"
-msgstr ""
+msgstr "Buscar Por Evento"
 
 #: /Panels/index.ctp:2173
 msgid "Search by Title"
-msgstr ""
+msgstr "Buscar por Titulo"
 
 #: /Panels/main.ctp:62
 msgid "Organization "
-msgstr ""
+msgstr "Organización"
 
 #: /Panels/main.ctp:86
 msgid "Missions Created"
-msgstr ""
+msgstr "Misiones Creadas"
 
 #: /Panels/main.ctp:158
 msgid "Evokation Teams"
@@ -4535,72 +4567,72 @@ msgstr "Equipos de Evokation"
 
 #: /Panels/main.ctp:247
 msgid "Monthly Visitors"
-msgstr ""
+msgstr "Visitantes Mensuales"
 
 #: /Panels/main.ctp:256
 msgid "Users Geolocation"
-msgstr ""
+msgstr "Geolocación de Usuarios"
 
 #: /Panels/main.ctp:270
 msgid "Search organization"
-msgstr ""
+msgstr "Buscar por organización"
 
 #: /Panels/main.ctp:429;724 /Panels/organization.ctp:236;265
 msgid "Search user"
-msgstr ""
+msgstr "Buscar usuario"
 
 #: /Panels/main.ctp:461
 msgid "Search admin notification"
-msgstr ""
+msgstr "Buscar notificación de administrador"
 
 #: /Panels/main.ctp:555
 msgid "Search issues"
-msgstr ""
+msgstr "buscar tematicas"
 
 #: /Panels/main.ctp:628
 msgid "Search power points"
-msgstr ""
+msgstr "Buscar Puntos de Poder"
 
 #: /Panels/main.ctp:909
 msgid "Define Levels "
-msgstr ""
+msgstr "Definir Niveles"
 
 #: /Panels/mission_edition.ctp:119 /Phases/add.ctp:4
 msgid "Add Phase"
-msgstr ""
+msgstr "añadir una Face"
 
 #: /Panels/organization.ctp:27
 msgid "Search missions"
-msgstr ""
+msgstr "Buscar Misiones"
 
 #: /Panels/organization.ctp:108
 msgid "Search badges"
-msgstr ""
+msgstr "Buscar Medallas"
 
 #: /Panels/quest.ctp:103 /Quests/admin_view.ctp:44 /Quests/edit.ctp:4
 #: /Quests/view.ctp:44
 msgid "Edit Quest"
-msgstr ""
+msgstr "Editar Desafio"
 
 #: /Panels/quest.ctp:255
 msgid "Save Quest"
-msgstr ""
+msgstr "Salvar Desafio"
 
 #: /Phases/add.ctp:10 /Phases/edit.ctp:11
 msgid "Discussion"
-msgstr ""
+msgstr "Discución"
 
 #: /Phases/add.ctp:10 /Phases/edit.ctp:11
 msgid "Project"
-msgstr ""
+msgstr "Proyecto"
 
 #: /Phases/admin_add.ctp:4
 msgid "Admin Add Phase"
-msgstr ""
+msgstr "Admin Añadir Face"
 
 #: /Phases/admin_edit.ctp:4
 msgid "Admin Edit Phase"
-msgstr ""
+msgstr "Admin Editar Face"
 
 #: /Phases/admin_view.ctp:24 /Phases/view.ctp:24 /Users/leaderboard.ctp:85
 msgid "Position"
@@ -4608,374 +4640,374 @@ msgstr "Posición"
 
 #: /Phases/admin_view.ctp:29 /Phases/view.ctp:29
 msgid "Type"
-msgstr ""
+msgstr "tipo"
 
 #: /Phases/admin_view.ctp:50 /Phases/view.ctp:50
 msgid "Delete Phase"
-msgstr ""
+msgstr "Eliminar Face"
 
 #: /Points/add.ctp:4
 msgid "Add Point"
-msgstr ""
+msgstr "Añador Punto"
 
 #: /Points/add.ctp:16 /Points/admin_add.ctp:16 /Points/admin_edit.ctp:18
 #: /Points/admin_view.ctp:26 /Points/edit.ctp:18 /Points/view.ctp:26
 #: /Users/admin_add.ctp:32 /Users/admin_edit.ctp:34 /Users/admin_index.ctp:69
 #: /Users/admin_view.ctp:89 /Users/index.ctp:71
 msgid "List Points"
-msgstr ""
+msgstr "Listar Puntos"
 
 #: /Points/admin_add.ctp:4
 msgid "Admin Add Point"
-msgstr ""
+msgstr "Admin Añadir Punto"
 
 #: /Points/admin_edit.ctp:4
 msgid "Admin Edit Point"
-msgstr ""
+msgstr "Admin Editar Punto"
 
 #: /Points/admin_index.ctp:42 /Points/admin_view.ctp:27 /Points/index.ctp:42
 #: /Points/view.ctp:27 /Users/admin_add.ctp:33 /Users/admin_edit.ctp:35
 #: /Users/admin_index.ctp:70 /Users/admin_view.ctp:90;237 /Users/index.ctp:72
 msgid "New Point"
-msgstr ""
+msgstr "Nuevo Punto"
 
 #: /Points/admin_view.ctp:2 /Points/view.ctp:2
 msgid "Point"
-msgstr ""
+msgstr "Punto"
 
 #: /Points/admin_view.ctp:24 /Points/edit.ctp:4 /Points/view.ctp:24
 msgid "Edit Point"
-msgstr ""
+msgstr "Editar Punto"
 
 #: /Points/admin_view.ctp:25 /Points/view.ctp:25
 msgid "Delete Point"
-msgstr ""
+msgstr "eliminar Punto"
 
 #: /Quests/admin_add.ctp:4
 msgid "Admin Add Quest"
-msgstr ""
+msgstr "Admin Añadir Desafío"
 
 #: /Quests/admin_edit.ctp:4
 msgid "Admin Edit Quest"
-msgstr ""
+msgstr "Admin Editar Desafío"
 
 #: /Quests/admin_view.ctp:45 /Quests/view.ctp:45
 msgid "Delete Quest"
-msgstr ""
+msgstr "Eliminar Desafío"
 
 #: /Quests/admin_view.ctp:67 /Quests/view.ctp:67
 msgid "Phase Id"
-msgstr ""
+msgstr "Id de Face"
 
 #: /Roles/add.ctp:4
 msgid "Add Role"
-msgstr ""
+msgstr "añadir rol"
 
 #: /Roles/add.ctp:15 /Roles/edit.ctp:17 /Roles/view.ctp:21
 msgid "List Roles"
-msgstr ""
+msgstr "Listar Roles"
 
 #: /Roles/edit.ctp:4 /Roles/view.ctp:19
 msgid "Edit Role"
-msgstr ""
+msgstr "Editar Rol"
 
 #: /Roles/index.ctp:2
 msgid "Roles"
-msgstr ""
+msgstr "Roles"
 
 #: /Roles/index.ctp:38 /Roles/view.ctp:22
 msgid "New Role"
-msgstr ""
+msgstr "Nuevos Roles"
 
 #: /Roles/view.ctp:20
 msgid "Delete Role"
-msgstr ""
+msgstr "eliminar Roles"
 
 #: /Tags/add.ctp:4
 msgid "Add Tag"
-msgstr ""
+msgstr "Añadir  Etiqueta"
 
 #: /Tags/admin_add.ctp:4
 msgid "Admin Add Tag"
-msgstr ""
+msgstr "Admin añadir Etiqueta"
 
 #: /Tags/admin_edit.ctp:4
 msgid "Admin Edit Tag"
-msgstr ""
+msgstr "Admin Editar Etiqueta"
 
 #: /Tags/admin_index.ctp:2 /Tags/index.ctp:2
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetas"
 
 #: /Tags/admin_view.ctp:14 /Tags/view.ctp:14
 msgid "Instances"
-msgstr ""
+msgstr "Instancias"
 
 #: /Tags/admin_view.ctp:34 /Tags/edit.ctp:4 /Tags/view.ctp:34
 msgid "Edit Tag"
-msgstr ""
+msgstr "Editar Etiqueta"
 
 #: /Tags/admin_view.ctp:35 /Tags/view.ctp:35
 msgid "Delete Tag"
-msgstr ""
+msgstr "Eliminar Etiqueta"
 
 #: /UserAnswers/add.ctp:4
 msgid "Add User Answer"
-msgstr ""
+msgstr "Añadir Respuestas de Usuario"
 
 #: /UserAnswers/add.ctp:18 /UserAnswers/admin_add.ctp:18
 #: /UserAnswers/admin_edit.ctp:20 /UserAnswers/admin_view.ctp:46
 #: /UserAnswers/edit.ctp:20 /UserAnswers/view.ctp:46
 msgid "List User Answers"
-msgstr ""
+msgstr "Listar Respuestas de Usuario"
 
 #: /UserAnswers/add.ctp:21 /UserAnswers/admin_add.ctp:21
 #: /UserAnswers/admin_edit.ctp:23 /UserAnswers/admin_index.ctp:57
 #: /UserAnswers/admin_view.ctp:50 /UserAnswers/edit.ctp:23
 #: /UserAnswers/index.ctp:57 /UserAnswers/view.ctp:50
 msgid "List Questions"
-msgstr ""
+msgstr "Listar Preguntas"
 
 #: /UserAnswers/add.ctp:22 /UserAnswers/admin_add.ctp:22
 #: /UserAnswers/admin_edit.ctp:24 /UserAnswers/admin_index.ctp:58
 #: /UserAnswers/admin_view.ctp:51 /UserAnswers/edit.ctp:24
 #: /UserAnswers/index.ctp:58 /UserAnswers/view.ctp:51
 msgid "New Question"
-msgstr ""
+msgstr "Nueva Pregunta"
 
 #: /UserAnswers/add.ctp:23 /UserAnswers/admin_add.ctp:23
 #: /UserAnswers/admin_edit.ctp:25 /UserAnswers/admin_index.ctp:59
 #: /UserAnswers/admin_view.ctp:52 /UserAnswers/edit.ctp:25
 #: /UserAnswers/index.ctp:59 /UserAnswers/view.ctp:52
 msgid "List Answers"
-msgstr ""
+msgstr "Listar Respuestas"
 
 #: /UserAnswers/add.ctp:24 /UserAnswers/admin_add.ctp:24
 #: /UserAnswers/admin_edit.ctp:26 /UserAnswers/admin_index.ctp:60
 #: /UserAnswers/admin_view.ctp:53 /UserAnswers/edit.ctp:26
 #: /UserAnswers/index.ctp:60 /UserAnswers/view.ctp:53
 msgid "New Answer"
-msgstr ""
+msgstr "Nueva Respuesta"
 
 #: /UserAnswers/admin_add.ctp:4
 msgid "Admin Add User Answer"
-msgstr ""
+msgstr "Admin Añadir Respuesta de Usuario"
 
 #: /UserAnswers/admin_edit.ctp:4
 msgid "Admin Edit User Answer"
-msgstr ""
+msgstr "Admin Editar Respuesta de Usuario"
 
 #: /UserAnswers/admin_index.ctp:2 /UserAnswers/index.ctp:2
 msgid "User Answers"
-msgstr ""
+msgstr "Respuestas de Usuario"
 
 #: /UserAnswers/admin_index.ctp:54 /UserAnswers/admin_view.ctp:47
 #: /UserAnswers/index.ctp:54 /UserAnswers/view.ctp:47
 msgid "New User Answer"
-msgstr ""
+msgstr "Nueva Respuesta de Usuario"
 
 #: /UserAnswers/admin_view.ctp:2 /UserAnswers/view.ctp:2
 msgid "User Answer"
-msgstr ""
+msgstr "Respuestas de Usuario"
 
 #: /UserAnswers/admin_view.ctp:14 /UserAnswers/view.ctp:14
 msgid "Question"
-msgstr ""
+msgstr "Pregunta"
 
 #: /UserAnswers/admin_view.ctp:19 /UserAnswers/view.ctp:19
 msgid "Answer"
-msgstr ""
+msgstr "Respuesta "
 
 #: /UserAnswers/admin_view.ctp:44 /UserAnswers/edit.ctp:4
 #: /UserAnswers/view.ctp:44
 msgid "Edit User Answer"
-msgstr ""
+msgstr "Editar Respuesta de Usuario"
 
 #: /UserAnswers/admin_view.ctp:45 /UserAnswers/view.ctp:45
 msgid "Delete User Answer"
-msgstr ""
+msgstr "Eliminar Respuesta de Usuario"
 
 #: /UserFriends/add.ctp:4
 msgid "Add User Friend"
-msgstr ""
+msgstr "Añadir Usuario Amigo"
 
 #: /UserFriends/add.ctp:16 /UserFriends/admin_add.ctp:16
 #: /UserFriends/admin_edit.ctp:18 /UserFriends/admin_view.ctp:36
 msgid "List User Friends"
-msgstr ""
+msgstr "Listar Usuarios Amigos"
 
 #: /UserFriends/admin_add.ctp:4
 msgid "Admin Add User Friend"
-msgstr ""
+msgstr "Amin Añadir Usuario Amigo"
 
 #: /UserFriends/admin_edit.ctp:4
 msgid "Admin Edit User Friend"
-msgstr ""
+msgstr "Admin Editar Usuario Amigo"
 
 #: /UserFriends/admin_index.ctp:2 /UserFriends/index.ctp:2
 msgid "User Friends"
-msgstr ""
+msgstr "Usuarios Amigos"
 
 #: /UserFriends/admin_index.ctp:46 /UserFriends/admin_view.ctp:37
 #: /UserFriends/index.ctp:46
 msgid "New User Friend"
-msgstr ""
+msgstr "Nuevo Usuario Amigo"
 
 #: /UserFriends/admin_view.ctp:2
 msgid "User Friend"
-msgstr ""
+msgstr "Usuario Amigo"
 
 #: /UserFriends/admin_view.ctp:14
 msgid "Friend Id"
-msgstr ""
+msgstr "Id de Amigo"
 
 #: /UserFriends/admin_view.ctp:34
 msgid "Edit User Friend"
-msgstr ""
+msgstr "Editar Usuario Amigo"
 
 #: /UserFriends/admin_view.ctp:35
 msgid "Delete User Friend"
-msgstr ""
+msgstr "Eliminar Usuario Amigo"
 
 #: /UserIssues/add.ctp:4
 msgid "Add User Issue"
-msgstr ""
+msgstr "Añadir Problematica de Usuario"
 
 #: /UserIssues/add.ctp:16 /UserIssues/admin_add.ctp:16
 #: /UserIssues/admin_edit.ctp:18 /UserIssues/admin_view.ctp:26
 #: /UserIssues/edit.ctp:18 /UserIssues/view.ctp:26
 msgid "List User Issues"
-msgstr ""
+msgstr "Listar Problematicas de Usuario"
 
 #: /UserIssues/admin_add.ctp:4
 msgid "Admin Add User Issue"
-msgstr ""
+msgstr "Admini Añadir Problematicas de Usuario"
 
 #: /UserIssues/admin_edit.ctp:4
 msgid "Admin Edit User Issue"
-msgstr ""
+msgstr "Admin Editar Problematicas de Usuario"
 
 #: /UserIssues/admin_index.ctp:2 /UserIssues/index.ctp:2
 msgid "User Issues"
-msgstr ""
+msgstr "Problematicas de Usuario"
 
 #: /UserIssues/admin_index.ctp:44 /UserIssues/admin_view.ctp:27
 #: /UserIssues/index.ctp:44 /UserIssues/view.ctp:27
 msgid "New User Issue"
-msgstr ""
+msgstr "Nueva Problematica de Usuario"
 
 #: /UserIssues/admin_view.ctp:2 /UserIssues/view.ctp:2
 msgid "User Issue"
-msgstr ""
+msgstr "Problematica de Usuario"
 
 #: /UserIssues/admin_view.ctp:24 /UserIssues/edit.ctp:4 /UserIssues/view.ctp:24
 msgid "Edit User Issue"
-msgstr ""
+msgstr "Editar Problematica de Usuario"
 
 #: /UserIssues/admin_view.ctp:25 /UserIssues/view.ctp:25
 msgid "Delete User Issue"
-msgstr ""
+msgstr "Eliminar Problematica de Usuario"
 
 #: /UserMatchingAnswers/add.ctp:4
 msgid "Add User Matching Answer"
-msgstr ""
+msgstr "Añadir Respuesta Coincidente de Usuario"
 
 #: /UserMatchingAnswers/admin_add.ctp:4
 msgid "Admin Add User Matching Answer"
-msgstr ""
+msgstr "Admin Añadir Respuesta Coincidente de Usuario"
 
 #: /UserMatchingAnswers/admin_edit.ctp:4
 msgid "Admin Edit User Matching Answer"
-msgstr ""
+msgstr "Admin Editar Respuesta Coincidente de Usuario"
 
 #: /UserMatchingAnswers/admin_index.ctp:2 /UserMatchingAnswers/index.ctp:2
 msgid "User Matching Answers"
-msgstr ""
+msgstr "Respuestas Coincidentes de Usuario"
 
 #: /UserMatchingAnswers/admin_view.ctp:2 /UserMatchingAnswers/view.ctp:2
 msgid "User Matching Answer"
-msgstr ""
+msgstr "Respuesta Coincidente de Usuario"
 
 #: /UserMatchingAnswers/admin_view.ctp:39 /UserMatchingAnswers/edit.ctp:4
 #: /UserMatchingAnswers/view.ctp:39
 msgid "Edit User Matching Answer"
-msgstr ""
+msgstr "Editar Respuesta Coincidente de Usuario"
 
 #: /UserMatchingAnswers/admin_view.ctp:40 /UserMatchingAnswers/view.ctp:40
 msgid "Delete User Matching Answer"
-msgstr ""
+msgstr "Eliminar Respuesta Coincidente de Usuario"
 
 #: /UserMissions/add.ctp:4
 msgid "Add User Mission"
-msgstr ""
+msgstr "añadir Mision de Usuario"
 
 #: /UserMissions/add.ctp:16 /UserMissions/admin_add.ctp:16
 #: /UserMissions/admin_edit.ctp:18 /UserMissions/admin_view.ctp:36
 #: /UserMissions/edit.ctp:18 /UserMissions/view.ctp:36
 msgid "List User Missions"
-msgstr ""
+msgstr "Listar Misiones de Usuario"
 
 #: /UserMissions/admin_add.ctp:4
 msgid "Admin Add User Mission"
-msgstr ""
+msgstr "Admin Editar Mision de Usuario"
 
 #: /UserMissions/admin_edit.ctp:4
 msgid "Admin Edit User Mission"
-msgstr ""
+msgstr "Admin Editar Misione de Usuario"
 
 #: /UserMissions/admin_index.ctp:2 /UserMissions/index.ctp:2
 msgid "User Missions"
-msgstr ""
+msgstr "Misiones de Usuario"
 
 #: /UserMissions/admin_index.ctp:48 /UserMissions/admin_view.ctp:37
 #: /UserMissions/index.ctp:48 /UserMissions/view.ctp:37
 msgid "New User Mission"
-msgstr ""
+msgstr "Nueva Misione de Usuario"
 
 #: /UserMissions/admin_view.ctp:2 /UserMissions/view.ctp:2
 msgid "User Mission"
-msgstr ""
+msgstr "Mision de Usuario"
 
 #: /UserMissions/admin_view.ctp:34 /UserMissions/edit.ctp:4
 #: /UserMissions/view.ctp:34
 msgid "Edit User Mission"
-msgstr ""
+msgstr "Editar Mision de Usuario"
 
 #: /UserMissions/admin_view.ctp:35 /UserMissions/view.ctp:35
 msgid "Delete User Mission"
-msgstr ""
+msgstr "Eliminar Mision de Usuario"
 
 #: /Users/add.ctp:6
 msgid "Add User"
-msgstr ""
+msgstr "Añadir Usuario"
 
 #: /Users/admin_add.ctp:4
 msgid "Admin Add User"
-msgstr ""
+msgstr "Admin Añadir Usuario"
 
 #: /Users/admin_add.ctp:34 /Users/admin_edit.ctp:36 /Users/admin_index.ctp:71
 #: /Users/admin_view.ctp:91 /Users/index.ctp:73
 msgid "List User Badges"
-msgstr ""
+msgstr "Listar Medallas de Usuario"
 
 #: /Users/admin_add.ctp:35 /Users/admin_edit.ctp:37 /Users/admin_index.ctp:72
 #: /Users/admin_view.ctp:92;272 /Users/index.ctp:74
 msgid "New User Badge"
-msgstr ""
+msgstr "Nueva Medallas de Usuario"
 
 #: /Users/admin_add.ctp:36 /Users/admin_edit.ctp:38 /Users/admin_index.ctp:73
 #: /Users/admin_view.ctp:93 /Users/index.ctp:75
 msgid "List User Organizations"
-msgstr ""
+msgstr "Listar Organizaciones de Usuario"
 
 #: /Users/admin_add.ctp:37 /Users/admin_edit.ctp:39 /Users/admin_index.ctp:74
 #: /Users/admin_view.ctp:94;303 /Users/index.ctp:76
 msgid "New User Organization"
-msgstr ""
+msgstr "Nueva Organizacion de Usuario"
 
 #: /Users/admin_edit.ctp:4
 msgid "Admin Edit User"
-msgstr ""
+msgstr "Admin Editar Usuario"
 
 #: /Users/admin_view.ctp:29
 msgid "Login"
@@ -4987,67 +5019,67 @@ msgstr "Editar usuario"
 
 #: /Users/admin_view.ctp:80
 msgid "Delete User"
-msgstr ""
+msgstr "eliminar Usuario"
 
 #: /Users/admin_view.ctp:211
 msgid "Related Points"
-msgstr ""
+msgstr "Puntos Relacionados"
 
 #: /Users/admin_view.ctp:242
 msgid "Related User Badges"
-msgstr ""
+msgstr "Medallas Relacionadas de Usuario"
 
 #: /Users/admin_view.ctp:248
 msgid "Badge Id"
-msgstr ""
+msgstr "Id de Medalla"
 
 #: /Users/admin_view.ctp:277
 msgid "Related User Organizations"
-msgstr ""
+msgstr "Organizaciones relacionadas de Usuario"
 
 #: /Users/admin_view.ctp:283
 msgid "Organization Id"
-msgstr ""
+msgstr "Id de Organización"
 
 #: /Users/allies.ctp:31
 msgid "Agent %s's Allies"
-msgstr ""
+msgstr "% de Agentes Aliados"
 
 #: /Users/allies.ctp:176
 msgid "Following"
-msgstr ""
+msgstr "Siguiendo"
 
 #: /Users/allies.ctp:177
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #: /Users/change_password.ctp:21
 msgid "Change Password"
-msgstr ""
+msgstr "Cambiar Contraseña"
 
 #: /Users/change_password.ctp:31
 msgid "Confirm current password"
-msgstr ""
+msgstr "Confirmar Contraseña Actual"
 
 #: /Users/change_password.ctp:32
 msgid "Enter new password"
-msgstr ""
+msgstr "Introducir Nueva Contraseña"
 
 #: /Users/change_password.ctp:33
 msgid "Re-type new password"
-msgstr ""
+msgstr "Introducir Nueva Contraseña"
 
 #: /Users/change_password.ctp:36
 msgid "Confirm new password"
-msgstr ""
+msgstr "Confirmar contraseña"
 
 #: /Users/dashboard.ctp:144
 msgid "Evidence/Project Stream"
-msgstr ""
+msgstr "Flujo de Evidencia"
 
 #: /Users/dashboard.ctp:147
 msgid "All Evidences"
-msgstr ""
+msgstr "Toda la Evidencia"
 
 #: /Users/dashboard.ctp:210
 msgid "Agent %s, it's time to start your Basic Training"
@@ -5067,91 +5099,91 @@ msgstr "Empezamos!"
 
 #: /Users/edit.ctp:128
 msgid "Google Plus"
-msgstr ""
+msgstr "Gogogle+"
 
 #: /Users/edit.ctp:139
 msgid "Personal Site"
-msgstr ""
+msgstr "Citio Personal"
 
 #: /Users/edit.ctp:144
 msgid "Mini bio"
-msgstr ""
+msgstr "Mini Biografía"
 
 #: /Users/edit.ctp:154
 msgid " Characters Remaining"
-msgstr ""
+msgstr "Caracteres Restantes"
 
 #: /Users/edit.ctp:161
 msgid "Save"
-msgstr ""
+msgstr "Salvar"
 
 #: /Users/enter_site.ctp:21
 msgid "Create your superhero identity"
-msgstr ""
+msgstr "Crear Tu Identidad de Super Heroe"
 
 #: /Users/enter_site.ctp:26
 msgid "Step 1"
-msgstr ""
+msgstr "Paso 1"
 
 #: /Users/enter_site.ctp:27
 msgid "Create your superhero identity and build your network"
-msgstr ""
+msgstr "Crear su identidad de superhéroe y construir su red"
 
 #: /Users/enter_site.ctp:28;45;63
 msgid "GO"
-msgstr ""
+msgstr "GO"
 
 #: /Users/enter_site.ctp:39
 msgid "Engage in a mission"
-msgstr ""
+msgstr "Iniciar una Mision"
 
 #: /Users/enter_site.ctp:43
 msgid "Step 2"
-msgstr ""
+msgstr "Paso 2"
 
 #: /Users/enter_site.ctp:44
 msgid "Complete your basic training and earn your first badge"
-msgstr ""
+msgstr "Completa tu entrenamiento básico y gana tu primera medalla"
 
 #: /Users/enter_site.ctp:61
 msgid "Step 3"
-msgstr ""
+msgstr "Paso 3"
 
 #: /Users/enter_site.ctp:62
 msgid "Engage in a mission and build skills"
-msgstr ""
+msgstr "Participar en una misión y desarrolla tus habilidades"
 
 #: /Users/forgot.ctp:21
 msgid "Password Recovery"
-msgstr ""
+msgstr "Recuperación de contraseña"
 
 #: /Users/forgot.ctp:26
 msgid "Calculate"
-msgstr ""
+msgstr "Clacular"
 
 #: /Users/forgot.ctp:29
 msgid "Send email"
-msgstr ""
+msgstr "Enviar correo electronico"
 
 #: /Users/leaderboard.ctp:37
 msgid "Points: "
-msgstr ""
+msgstr "Puntos:"
 
 #: /Users/leaderboard.ctp:38
 msgid "Level: "
-msgstr ""
+msgstr "Nivel:"
 
 #: /Users/leaderboard.ctp:57
 msgid "Go to my rank"
-msgstr ""
+msgstr "Ir a mi rango"
 
 #: /Users/leaderboard.ctp:86
 msgid "Agent ID"
-msgstr ""
+msgstr "ID de Agente"
 
 #: /Users/leaderboard.ctp:87
 msgid "Agent name"
-msgstr ""
+msgstr "Nombre de Agente"
 
 #: /Users/leaderboard.ctp:89
 msgid "XP"
@@ -5159,16 +5191,18 @@ msgstr "XP"
 
 #: /Users/leaderboard.ctp:109
 msgid "User profile picture"
-msgstr ""
+msgstr "Imagen de perfil del usuario"
 
 #: /Users/matching.ctp:15
 msgid "About you"
-msgstr ""
+msgstr "Hacerca de ti:"
 
 #: /Users/matching.ctp:17
 msgid ""
 "Congratulations, you have ventured further than most by answering this call."
 msgstr ""
+"Felicitaciones, te has aventurado más allá de la mayoría por responder a "
+"esta llamada."
 
 #: /Users/matching.ctp:18
 msgid ""
@@ -5176,98 +5210,124 @@ msgid ""
 "What are the strengths, passions, and abilities you will bring to the Evoke "
 "network?"
 msgstr ""
+"Ahora, es hora de identificar a qué tipo de agente Evoque ers. ¿Sabes? "
+"¿Cuáles son las fortalezas, las pasiones y las habilidades que traes a la "
+"red Evoque?"
 
 #: /Users/matching.ctp:19
 msgid ""
 "Answer the following and find out what type of Super Hero is hiding inside "
 "you..."
 msgstr ""
+"Responde a la siguiente y averiguar qué tipo de superhéroe se esconde dentro "
+"de ti ..."
 
 #: /Users/matching.ctp:26
 msgid "There are no matching questions available at this moment."
-msgstr ""
+msgstr "No hay preguntas coincidentes disponibles en este momento ."
 
 #: /Users/matching.ctp:60;71
 msgid "Required field."
-msgstr ""
+msgstr "Campo requerido."
 
 #: /Users/matching_results.ctp:16
 msgid "You are an entrepreneurial agent!"
-msgstr ""
+msgstr "Usted es un agente emprendedor!"
 
-#: /Users/matching_results.ctp:17 /Users/profile.ctp:96
+#: /Users/matching_results.ctp:17 /Users/profile.ctp:122
 msgid ""
 "Congratulations, Agent! Most do not make it this far. Your profile shows "
 "great promise."
 msgstr ""
+"Felicidades  ¡gente! La mayoría no llega tan lejos. Su perfil promete mucho."
 
-#: /Users/matching_results.ctp:18 /Users/profile.ctp:97
+#: /Users/matching_results.ctp:18 /Users/profile.ctp:123
 msgid "You have the heart of a Local Leader!"
-msgstr ""
+msgstr "Posees el Corazon de un Lider Local"
 
-#: /Users/matching_results.ctp:19 /Users/profile.ctp:98
+#: /Users/matching_results.ctp:19 /Users/profile.ctp:124
 msgid ""
 "Your Entrepreneurship and Local Insight are key to you. Embrace your "
 "qualities and use them for the better."
 msgstr ""
+"Tus capacidades Emprendedoras y Vision Local son claves para ti. Aferrate a "
+"tus qualidades y usalas para mejorar el mundo."
 
 #: /Users/matching_results.ctp:20
 msgid ""
 "Continue to explore who you are, who you could be, on your profile page. Or "
 "start your mission. Or begin to think about your world chanding idea!"
 msgstr ""
+"Continua explorando quién eres, que podría ser, en tu página de perfil. O "
+"iniciar tu misión. O empieza a pensar en tu idea que cambiara el mundo!!"
 
 #: /Users/matching_results.ctp:22
 msgid "Explore evoke!"
-msgstr ""
+msgstr "Explora Evoke"
 
 #: /Users/matching_results.ctp:29
 msgid "Assessment"
-msgstr ""
+msgstr "Valoración"
 
 #: /Users/matching_results.ctp:39
 msgid "These are agents with a profile similar to yours"
-msgstr ""
+msgstr "Estos son los agentes con un perfil similar al tuyo"
 
 #: /Users/matching_results.ctp:60
 msgid "View Agent"
-msgstr ""
+msgstr "Mirar Agente"
 
-#: /Users/profile.ctp:47
+#: /Users/profile.ctp:33
+msgid "Add as ally"
+msgstr "Añadir aliado"
+
+#: /Users/profile.ctp:40
+msgid "Your ally"
+msgstr "Tu aliado"
+
+#: /Users/profile.ctp:70
 msgid "Potential allies"
-msgstr ""
-
-#: /Users/profile.ctp:95
-msgid "Psychometric Analysis"
-msgstr ""
-
-#: /Users/profile.ctp:114
-msgid "About"
-msgstr ""
+msgstr "Aliados Potenciales"
 
 #: /Users/profile.ctp:121
+msgid "Psychometric Analysis"
+msgstr "Análisis Psicometrico"
+
+#: /Users/profile.ctp:140
+msgid "About"
+msgstr "Aserca de"
+
+#: /Users/profile.ctp:149
+msgid "This user has not added a biography yet."
+msgstr ""
+
+#: /Users/profile.ctp:156
 msgid "You have not added a biography yet!"
-msgstr ""
+msgstr "No has añadido una biografía !"
 
-#: /Users/profile.ctp:124
+#: /Users/profile.ctp:159
 msgid "Complete your profile!"
-msgstr ""
+msgstr "Completa tu Perfil!"
 
-#: /Users/profile.ctp:137
-msgid "Allies"
-msgstr "Alizanzas"
+#: /Users/profile.ctp:172
+msgid "Allies I follow"
+msgstr "Aliados yo sigo"
 
-#: /Users/profile.ctp:138
+#: /Users/profile.ctp:173
 msgid "ALL USERS"
-msgstr ""
+msgstr "TODOS LOS USUARIOS"
 
-#: /Users/profile.ctp:165
+#: /Users/profile.ctp:207
+msgid "This user has no allies yet."
+msgstr "Este usuário no tiene ningun aliado."
+
+#: /Users/profile.ctp:213
 msgid "You have no allies! Get started looking at people similar to you!"
-msgstr ""
+msgstr "No tienes aliados! Comiensa a buscar personas similares a ti!"
 
-#: /Users/profile.ctp:180
+#: /Users/profile.ctp:227
 msgid "Badges earned"
-msgstr ""
+msgstr "Medallas Ganadas"
 
 #: /Users/view.ctp:60
 msgid "Forget Ally"
@@ -5303,23 +5363,27 @@ msgstr "Eliminar Voto"
 
 #: /AdminNotifications.php:38;72;101;131;165;192
 msgid "Invalid admin notification"
-msgstr ""
+msgstr "Notificación de administración no válida"
 
 #: /AdminNotifications.php:53;78;146;169
 msgid "The admin notification has been saved."
-msgstr ""
+msgstr "La notificación de administración se ha guardado."
 
 #: /AdminNotifications.php:56;81;149;172
 msgid "The admin notification could not be saved. Please, try again."
 msgstr ""
+"La notificación de administración no se pudo guardar. Por favor, vuelva a "
+"intentarlo."
 
 #: /AdminNotifications.php:105;196
 msgid "The admin notification has been deleted."
-msgstr ""
+msgstr "La notificación de administración ha sido eliminada."
 
 #: /AdminNotifications.php:107;198
 msgid "The admin notification could not be deleted. Please, try again."
 msgstr ""
+"La notificación de administración no se pudo eliminar. Por favor, vuelva a "
+"intentarlo."
 
 #: /Answers.php:38;72;99
 msgid "Invalid answer"
@@ -5343,11 +5407,11 @@ msgstr "Respuesta no eliminada. Por favor, intenta de nuevo."
 
 #: /App.php:177 /Panels.php:68
 msgid "Você não está autorizado a visualizar esta página"
-msgstr ""
+msgstr "No está autorizado para ver esta página"
 
 #: /App.php:183
 msgid "Você não tem permissão para ver essa página."
-msgstr ""
+msgstr "Usted no tiene permiso para ver esta página ."
 
 #: /Badges.php:121;210;292;324;356;381
 msgid "Invalid badge"
@@ -5535,13 +5599,13 @@ msgstr "Solicitud de grupo no guardada. Por favor, intenta de nuevo. "
 
 #: /GroupRequests.php:156
 msgid "(Evoke) Request declined to join group \"%s\""
-msgstr ""
+msgstr "(Evoke) Solicitud rechazada para unirse a el grupo \"%s\""
 
 #: /GroupRequests.php:162
 msgid "The request was declined"
 msgstr "Solicitud rechazada. "
 
-#: /Groups.php:202;368;415;551;586;614 /GroupsUsers.php:220 /Group.php:44;60
+#: /Groups.php:202;368;415;551;586;614 /GroupsUsers.php:224 /Group.php:44;60
 msgid "Invalid group"
 msgstr "Grupo no válido."
 
@@ -5574,55 +5638,55 @@ msgstr "Grupo eliminado. "
 msgid "The group could not be deleted. Please, try again."
 msgstr "Grupo no eliminado. Por favor, intenta de nuevo. "
 
-#: /GroupsUsers.php:160;300;440;464
+#: /GroupsUsers.php:160;304;444;468
 msgid "The groups user has been saved."
 msgstr "Usario de grupo guardado. "
 
-#: /GroupsUsers.php:180
+#: /GroupsUsers.php:184
 msgid "(Evoke) You joined group \"%s\""
-msgstr ""
+msgstr "(Evoke) Solicitud aceptado para unirse a el grupo \"%s\""
 
-#: /GroupsUsers.php:190
+#: /GroupsUsers.php:194
 msgid "This user already belongs to this group."
 msgstr "Este usuario ya es miembro del grupo. "
 
-#: /GroupsUsers.php:248
+#: /GroupsUsers.php:252
 msgid "The request has been sent"
 msgstr "Solicitud enviado."
 
-#: /GroupsUsers.php:250
+#: /GroupsUsers.php:254
 msgid "The request could not be sent"
 msgstr "Solicitud no enviado."
 
-#: /GroupsUsers.php:253
+#: /GroupsUsers.php:257
 msgid "This user already requested to join this group"
-msgstr ""
+msgstr "Este usuario ya solicitó a unirse a este grupo"
 
-#: /GroupsUsers.php:263
+#: /GroupsUsers.php:267
 msgid "(Evoke) Request to join group \"%s\""
-msgstr ""
+msgstr "(Evoke) Solicitud para unirse a el grupo \"%s\""
 
-#: /GroupsUsers.php:268
+#: /GroupsUsers.php:272
 msgid "The email was sent"
 msgstr "Correo enviado."
 
-#: /GroupsUsers.php:276
+#: /GroupsUsers.php:280
 msgid "There was a problem sending the email."
 msgstr "Hubo un problam en enviar el correo."
 
-#: /GroupsUsers.php:296;329;392;425;460;488
+#: /GroupsUsers.php:300;333;396;429;464;492
 msgid "Invalid groups user"
 msgstr "Usuario de grupo no válido."
 
-#: /GroupsUsers.php:303;443;467
+#: /GroupsUsers.php:307;447;471
 msgid "The groups user could not be saved. Please, try again."
-msgstr "Usuario de grupo no guardado. Por favor, intenta de nuevo. "
+msgstr "Usuario de grupo no guardado. Por favor, intenta de nuevo"
 
-#: /GroupsUsers.php:368;399;492
+#: /GroupsUsers.php:372;403;496
 msgid "The groups user has been deleted."
 msgstr "Usario de grupo ha sido eliminado. "
 
-#: /GroupsUsers.php:370;401;494
+#: /GroupsUsers.php:374;405;498
 msgid "The groups user could not be deleted. Please, try again."
 msgstr "Usuario de grupo no eliminado. Por favor, intenta de nuevo."
 
@@ -5655,49 +5719,51 @@ msgstr "Tema eliminado. "
 msgid "The issue could not be deleted. Please, try again."
 msgstr "Tema no eliminado. Por favor, intenta de nuevo."
 
-#: /Likes.php:38;126;155;220;255;283
+#: /Likes.php:38;137;166;231;266;294
 msgid "Invalid like"
 msgstr "Voto no válido."
 
-#: /Likes.php:105
+#: /Likes.php:112
 msgid "Your like was computed"
 msgstr "Voto a ha sido computado. "
 
-#: /Likes.php:113;133;238;262
+#: /Likes.php:124;144;249;273
 msgid "The like could not be saved. Please, try again."
 msgstr "Voto no guardado. Por favor, intenta de nuevo."
 
-#: /Likes.php:130;235;259
+#: /Likes.php:141;246;270
 msgid "The like has been saved."
 msgstr "Voto guardado. "
 
-#: /Likes.php:287
+#: /Likes.php:298
 msgid "The like has been deleted."
 msgstr "Voto eliminado. "
 
-#: /Likes.php:289
+#: /Likes.php:300
 msgid "The like could not be deleted. Please, try again."
 msgstr "Voto no eliminado. Por favor, intenta de nuevo. "
 
 #: /MatchingQuestions.php:38;70;95;125;157;182
 msgid "Invalid matching question"
-msgstr ""
+msgstr "Pregunta Coincidente Invalida"
 
 #: /MatchingQuestions.php:53;74;140;161
 msgid "The matching question has been saved."
-msgstr ""
+msgstr "Pregunta Coincidente guardado exitosamente."
 
 #: /MatchingQuestions.php:56;77;143;164
 msgid "The matching question could not be saved. Please, try again."
 msgstr ""
+"La pregunta similar no pudo ser guardada.  Por favor, intenta de nuevo. "
 
 #: /MatchingQuestions.php:99;186
 msgid "The matching question has been deleted."
-msgstr ""
+msgstr "La pregunta de correspondiente ha sido eliminado."
 
 #: /MatchingQuestions.php:101;188
 msgid "The matching question could not be deleted. Please, try again."
 msgstr ""
+"La pregunta concidebnte no pudo se elminada.  Por favor, intenta de nuevo. "
 
 #: /Menus.php:38;70;95;125;157;182
 msgid "Invalid menu"
@@ -5759,43 +5825,27 @@ msgstr ""
 msgid "The mission subscription could not be deleted. Please, try again."
 msgstr ""
 
-#: /Missions.php:125;636;959;1180;1270;1298;1333;1365;1390
+#: /Missions.php:630;957;1182;1272;1300;1335;1367;1392
 msgid "Invalid mission"
 msgstr "Misión no válida. "
 
-#: /Missions.php:146
-msgid "You haven't completed the Basic Training"
-msgstr "No has completado el entrenamiendo básico. "
-
-#: /Missions.php:166
-msgid "There are no phases for this mission"
-msgstr ""
-
-#: /Missions.php:614
-msgid "You need to finish at least to quests to complete Basic Training"
-msgstr ""
-
-#: /Missions.php:618
-msgid "You need to finish at least one quest to go to next phase"
-msgstr ""
-
-#: /Missions.php:734
+#: /Missions.php:732
 msgid "Invalid mission phase"
-msgstr ""
+msgstr "Mision de face invalida"
 
-#: /Missions.php:1249;1274;1348;1369
+#: /Missions.php:1251;1276;1350;1371
 msgid "The mission has been saved."
 msgstr "Misión guardada. "
 
-#: /Missions.php:1252;1277;1351;1372 /Panels.php:693;823;1011;1225
+#: /Missions.php:1254;1279;1353;1374 /Panels.php:693;823;1011;1225
 msgid "The mission could not be saved. Please, try again."
 msgstr "Misión no guardado. Por favor, intenta de nuevo. "
 
-#: /Missions.php:1302;1394
+#: /Missions.php:1304;1396
 msgid "The mission has been deleted."
 msgstr "Misión eliminada. "
 
-#: /Missions.php:1308;1396
+#: /Missions.php:1310;1398
 msgid "The mission could not be deleted. Please, try again."
 msgstr "Misión no eliminada. Por favor, intenta de nuevo.  "
 
@@ -5867,11 +5917,11 @@ msgstr "Fase guardada. "
 msgid "Invalid phase"
 msgstr "Fase no válida. "
 
-#: /Panels.php:1480 /Users.php:1477;1504;1556;1631;1652
+#: /Panels.php:1480 /Users.php:1495;1522;1574;1649;1670
 msgid "The user has been saved."
 msgstr "Usuario guardado. "
 
-#: /Panels.php:1483 /Users.php:1480;1507;1559;1634;1655
+#: /Panels.php:1483 /Users.php:1498;1525;1577;1652;1673
 msgid "The user could not be saved. Please, try again."
 msgstr "Usuario no guardado. Por favor, intenta de nuevo. "
 
@@ -5960,7 +6010,7 @@ msgid "The powerpoint could not be deleted. Please, try again."
 msgstr "Presentación no eliminada. Por favor, intenta de nuevo. "
 
 #: /Panels.php:2045
-#: /Users.php:682;1015;1057;1428;1498;1525;1545;1595;1616;1648;1673
+#: /Users.php:685;1018;1060;1446;1516;1543;1563;1613;1634;1666;1691
 #: /User.php:197
 msgid "Invalid user"
 msgstr "Usuario no válido. "
@@ -5971,31 +6021,31 @@ msgstr "Tema guardada. "
 
 #: /Panels.php:2178
 msgid "Project Approved"
-msgstr ""
+msgstr "Proyecto Aprovado"
 
 #: /Panels.php:2179
 msgid "Congratulations, agent! Your project"
-msgstr ""
+msgstr "Felicitaciones, agente ! Su proyecto"
 
 #: /Panels.php:2180
 msgid "was approved and you have successfully completed the"
-msgstr ""
+msgstr "fue aprobado y ha completado con éxito la"
 
 #: /Panels.php:2180
 msgid "mission"
-msgstr ""
+msgstr "misión"
 
 #: /Panels.php:2182
 msgid "Project Not Approved!"
-msgstr ""
+msgstr "¡Proyecto no arpovado!"
 
 #: /Panels.php:2183
 msgid "Agent, your project"
-msgstr ""
+msgstr "¡Agente, su proyecto"
 
 #: /Panels.php:2183
 msgid "failed!"
-msgstr ""
+msgstr "Fallo!"
 
 #: /Phases.php:74;122;191;214
 msgid "The phase has been saved."
@@ -6027,23 +6077,23 @@ msgstr "Punto eliminado. Por favor, intenta de nuevo. "
 
 #: /PowerPoints.php:38;70;96;126;158;183
 msgid "Invalid power point"
-msgstr ""
+msgstr "Punto de poder invalido"
 
 #: /PowerPoints.php:53;75;141;162
 msgid "The power point has been saved."
-msgstr ""
+msgstr "EL punto de poder a sido salvado"
 
 #: /PowerPoints.php:56;78;144;165
 msgid "The power point could not be saved. Please, try again."
-msgstr ""
+msgstr "El punto de poder no pudo ser salvado. Favor Intentalo de Nuevo"
 
 #: /PowerPoints.php:100;187
 msgid "The power point has been deleted."
-msgstr ""
+msgstr "El punto de poder ha sido eliminado."
 
 #: /PowerPoints.php:102;189
 msgid "The power point could not be deleted. Please, try again."
-msgstr ""
+msgstr "El punto de poder no pudo ser eliminado. Favor Intentalo de Nuevo"
 
 #: /Questionnaires.php:38;72;99
 msgid "Invalid questionnaire"
@@ -6127,23 +6177,24 @@ msgstr "Respuesta de usuario no elimiando. Por favor, intenta de nuevo. "
 
 #: /UserBadges.php:38;73;101;131;166;194
 msgid "Invalid user badge"
-msgstr ""
+msgstr "Medalla de usuario invalida"
 
 #: /UserBadges.php:53;77;146;170
 msgid "The user badge has been saved."
-msgstr ""
+msgstr "La medalla de usuario fue salvada"
 
 #: /UserBadges.php:56;80;149;173
 msgid "The user badge could not be saved. Please, try again."
 msgstr ""
+"La medalla de usuario no pudo ser salvada. Por favor, intenta de nuevo. "
 
 #: /UserBadges.php:105;198
 msgid "The user badge has been deleted."
-msgstr ""
+msgstr "La medalla de usuario fue eliminada."
 
 #: /UserBadges.php:107;200
 msgid "The user badge could not be deleted. Please, try again."
-msgstr ""
+msgstr "The user badge could not be deleted. Please, try again."
 
 #: /UserFriends.php:38;82;110;143;177;204
 msgid "Invalid user friend"
@@ -6199,23 +6250,27 @@ msgstr "Tema de usuario no eliminado. Por favor, intenta de nuevo. "
 
 #: /UserMatchingAnswers.php:38;95;123;153;188;216
 msgid "Invalid user matching answer"
-msgstr ""
+msgstr "Respuesta correspondiente de usuario invalida"
 
 #: /UserMatchingAnswers.php:99;168;192
 msgid "The user matching answer has been saved."
-msgstr ""
+msgstr "La respuesta correspondiente de usuario a sido salvada"
 
 #: /UserMatchingAnswers.php:102;171;195
 msgid "The user matching answer could not be saved. Please, try again."
 msgstr ""
+"La respuesta correspondiente de usuario no pudo ser salvada. Favor "
+"intentarlo de nuevo"
 
 #: /UserMatchingAnswers.php:127;220
 msgid "The user matching answer has been deleted."
-msgstr ""
+msgstr "La respuesta correspondiente de usuario a sido eliminada"
 
 #: /UserMatchingAnswers.php:129;222
 msgid "The user matching answer could not be deleted. Please, try again."
 msgstr ""
+"La respuesta correspondiente de usuario a sido no pudo ser eliminada por "
+"favor intental"
 
 #: /UserMissions.php:38;73;101;131;166;194
 msgid "Invalid user mission"
@@ -6251,41 +6306,43 @@ msgstr "Organización no eliminada. Por favor, intenta de nuevo. "
 
 #: /Users.php:138
 msgid "Your password was changed."
-msgstr ""
+msgstr "Tu contraseña a cambiado."
 
 #: /Users.php:141
 msgid "The new passwords do not match."
-msgstr ""
+msgstr "Las nuevas contraseñas no concide con la anterior"
 
 #: /Users.php:145
 msgid "The current password does not match."
-msgstr ""
+msgstr "La contraseña actual no coincide."
 
 #: /Users.php:407
 msgid "Your login and/or password was incorrect. Please try again."
 msgstr ""
+"Su nombre de usuario y/o contraseña es incorrecta. Por favor, vuelva a "
+"intentar lo."
 
 #: /Users.php:651
 msgid "O usuário foi salvo com sucesso."
-msgstr ""
+msgstr "El usuario se ha guardado correctamente."
 
-#: /Users.php:659
+#: /Users.php:662
 msgid "O usuário não pôde ser salvo. Por favor, tente novamente."
-msgstr ""
+msgstr "El usuario no se ha podido guardar. Por favor, vuelva a intentarlo."
 
-#: /Users.php:663
+#: /Users.php:666
 msgid "Typed passwords don't match"
-msgstr ""
+msgstr "Las contraseñas no coinciden"
 
-#: /Users.php:1529;1599;1677
+#: /Users.php:1547;1617;1695
 msgid "The user has been deleted."
 msgstr "Usuario eliminado. "
 
-#: /Users.php:1531;1601;1679
+#: /Users.php:1549;1619;1697
 msgid "The user could not be deleted. Please, try again."
 msgstr "Usuario no eliminado. Por favor, intenta de nuevo. "
 
-#: /Users.php:1588
+#: /Users.php:1606
 msgid "You can't delete other users. Permission denied."
 msgstr "No puedes eliminar a otros usuarios. Permiso negado. "
 
@@ -6316,48 +6373,56 @@ msgstr "Publicación no guardada. Por favor, intenta de nuevo. "
 #: /User.php:123
 msgid "Your email is already registered in our database."
 msgstr ""
+"Esta dirección de correo electrónico ya está registrado en nuestra base de "
+"datos."
 
 #: /User.php:128
 msgid "This username is already in use. Please choose another one."
-msgstr ""
+msgstr "Este nombre de usuario ya está en uso. Por favor elija otro."
 
 #: /User.php:132
 msgid ""
 "Sorry, your registered cannot be completed. Please check your data and try "
 "again."
 msgstr ""
+"Lo sentimos, su registro no se puede completar . Por favor, compruebe sus "
+"datos e inténtelo de nuevo ."
 
 #: //BrainstormIdeas.php:51
 msgid "Sorry, your ideas could not be saved. Please, try again."
 msgstr ""
+"Lo sentimos, pero sus ideas no podrían salvarse. Por favor, vuelva a "
+"intentarlo."
 
 #: //BrainstormIdeas.php:92
 msgid "Invalid brainstorm"
-msgstr ""
+msgstr "Lluvia de ideas Invalidas"
 
 #: //BrainstormIdeas.php:108
 msgid "Sorry, your vote could not be saved. Please, try again."
 msgstr ""
+"Lo sentimos, pero su voto no podía ser salvado. Por favor, vuelva a "
+"intentarlo."
 
 #: //Elements/add_ideas.ctp:6
 msgid "Write an idea down:"
-msgstr ""
+msgstr "Escribe una Idea"
 
 #: //Elements/add_ideas.ctp:10
 msgid "Make a cupcake with the logo colors"
-msgstr ""
+msgstr "Hacer un cupcake on los colores del logotipo"
 
 #: //Elements/add_ideas.ctp:48
 msgid "Submit selected ideas"
-msgstr ""
+msgstr "Presentar ideas seleccionadas"
 
 #: //Elements/vote_ideas.ctp:35
 msgid "Submit votes"
-msgstr ""
+msgstr "Presentar votos"
 
 #: Evoke//Behavior/ActPhaseBrainstormBehavior.php:149
 msgid "Individual ideas"
-msgstr ""
+msgstr "Ideas Individuales"
 
 #: Evoke//Behavior/ActPhaseBrainstormBehavior.php:152
 msgid ""
@@ -6365,148 +6430,164 @@ msgid ""
 "group. After you start, your group members will have 3 days to submit their "
 "ideas of evidences, before picking the team favorites."
 msgstr ""
+"Antes de presentar su evidencia para esta búsqueda, usted tendrá una lluvia "
+"de ideas con su grupo. Después de iniciar, los miembros del grupo tendrán 3 "
+"días para presentar sus ideas de evidencias, antes de recoger los favoritos "
+"del equipo ."
 
 #: Evoke//Behavior/ActPhaseBrainstormBehavior.php:156
 msgid "Start brainstorming"
-msgstr ""
+msgstr "Inicien Llvia de ideas"
 
 #: Evoke//Behavior/ActPhaseBrainstormBehavior.php:159;174
 msgid " days"
-msgstr ""
+msgstr "Días"
 
 #: Evoke//Behavior/ActPhaseBrainstormBehavior.php:159;174
 msgid "Your group members have "
 msgstr ""
+"Antes de presentar su evidencia para esta búsqueda, usted tendrá una lluvia "
+"de ideas con su grupo. Después de iniciar, los miembros del grupo tendrán 3 "
+"días para presentar sus ideas de evidencias, antes de recoger los favoritos "
+"del equipo."
 
 #: Evoke//Behavior/ActPhaseBrainstormBehavior.php:164
 msgid "Group ideas"
-msgstr ""
+msgstr "Ideas de grupo"
 
 #: Evoke//Behavior/ActPhaseBrainstormBehavior.php:167
 msgid ""
 "Now that everybody has submitted ideas, it is time to pick your top choices!"
 msgstr ""
+"¡hora que todo el mundo ha presentado ideas, es el momento de elegir sus "
+"mejores opcione!"
 
 #: Evoke//Behavior/ActPhaseBrainstormBehavior.php:171
 msgid "Vote in your group's ideas"
-msgstr ""
+msgstr "Vota por las ideas de tu grupo"
 
 #: Evoke//Behavior/ActPhaseBrainstormBehavior.php:179;187
 msgid "Create evidence"
-msgstr ""
+msgstr "Crear Evidencia"
 
 #: Evoke//Behavior/ActPhaseBrainstormBehavior.php:182
 msgid ""
 "Now you can create your evidence based on the team's top choices! Good luck!"
 msgstr ""
+"Ahora usted puede crear su evidencia basada en mejores opciones del equipo! "
+"Buena suerte!"
 
 #: Evoke//Elements/add_ideas.ctp:4
 msgid "Add your individual ideas for evidences"
-msgstr ""
+msgstr "Añadir sus ideas individuales para evidencias"
 
 #: Evoke//Elements/vote_ideas.ctp:4
 msgid "Vote in your top 3 ideas from the group"
-msgstr ""
+msgstr "Votar por las 3 mejores ideas del grupo"
 
 #: //Forum.php:81;106;164;189
 msgid "Invalid forum"
-msgstr ""
+msgstr "Foro Ivalido"
 
 #: //Forum.php:133;168
 msgid "The forum has been saved."
-msgstr ""
+msgstr "El formun a sido salvado"
 
 #: //Forum.php:136;171
 msgid "The forum could not be saved. Please, try again."
-msgstr ""
+msgstr "El Forum no pudo ser salvado"
 
 #: //Forum.php:193
 msgid "The forum has been deleted."
-msgstr ""
+msgstr "El forum a sido eliminado"
 
 #: //Forum.php:195
 msgid "The forum could not be deleted. Please, try again."
-msgstr ""
+msgstr "El foro no se pudo eliminar. Por favor, vuelva a intentarlo."
 
 #: //ForumDiscussions.php:56;73;129;157
 msgid "Invalid forum discussion"
-msgstr ""
+msgstr "Foro de discusión no válido"
 
 #: //ForumDiscussions.php:108;133
 msgid "The forum discussion has been saved."
-msgstr ""
+msgstr "El foro de debate se ha guardado ."
 
 #: //ForumDiscussions.php:111;136
 msgid "The forum discussion could not be saved. Please, try again."
 msgstr ""
+"El foro de discusión no se pudo guardar. Por favor, vuelva a intentarlo."
 
 #: //ForumDiscussions.php:161
 msgid "The forum discussion has been deleted."
-msgstr ""
+msgstr "El foro de debate ha sido eliminado."
 
 #: //ForumDiscussions.php:163
 msgid "The forum discussion could not be deleted. Please, try again."
 msgstr ""
+"El foro de discusión no se pudo eliminar. Por favor, vuelva a intentarlo."
 
 #: //ForumPosts.php:46;103;131
 msgid "Invalid forum post"
-msgstr ""
+msgstr "Mensaje del foro no es válido"
 
 #: //ForumPosts.php:83;107
 msgid "The forum post has been saved."
-msgstr ""
+msgstr "El mensaje del foro se ha guardado."
 
 #: //ForumPosts.php:86;110
 msgid "The forum post could not be saved. Please, try again."
 msgstr ""
+"El mensaje del foro no se pudo guardar. Por favor, vuelva a intentarlo."
 
 #: //ForumPosts.php:135
 msgid "The forum post has been deleted."
-msgstr ""
+msgstr "El mensaje del foro ha sido eliminado."
 
 #: //ForumPosts.php:137
 msgid "The forum post could not be deleted. Please, try again."
 msgstr ""
+"El mensaje del foro no se pudo eliminar. Por favor, vuelva a intentarlo."
 
 #: //Forum/add.ctp:6
 msgid "Create a forum"
-msgstr ""
+msgstr "Crear un foro"
 
 #: //Forum/add.ctp:12
 msgid "Categories:"
-msgstr ""
+msgstr "Categorias"
 
 #: //Forum/add.ctp:19
 msgid "(Optional)"
-msgstr ""
+msgstr "(opcional)"
 
 #: //Forum/add.ctp:35
 msgid "There are no forum categories. Create the forum anyway?"
-msgstr ""
+msgstr "No hay categorías foro. Crear el foro de todos modos?"
 
 #: //Forum/index.ctp:7
 msgid "Forums"
-msgstr ""
+msgstr "Foro"
 
 #: //Forum/view.ctp:60
 msgid "Last updated: "
-msgstr ""
+msgstr "Última actualización:"
 
 #: //Forum/view.ctp:68
 msgid "Click in + to create the first forum discussion!"
-msgstr ""
+msgstr "¡Haga clic en + para crear el primer foro de debate!"
 
 #: //Forum/view.ctp:123
 msgid "Be the first to post in this discussion!"
-msgstr ""
+msgstr "¡Sé el primero en publicar en este debate !"
 
 #: //Forum/view.ctp:144
 msgid "TOP"
-msgstr ""
+msgstr "TOP"
 
 #: //Forum/view.ctp:157
 msgid "Create new discussion"
-msgstr ""
+msgstr "Crear nueva discusión"
 
 #: /Errors/error400.ctp:12 /Errors/error500.ctp:12
 msgid "Error"
@@ -6762,15 +6843,47 @@ msgstr ""
 msgid "Promoting development related to CakePHP"
 msgstr ""
 
-#: /test.php:84
-msgid "Debug setting does not allow access to this URL."
-msgstr ""
+#~ msgid "There are no requests pending"
+#~ msgstr "No hay solicitudes pendientes"
+
+#~ msgid "Requester: Agent %s </br> Status: %s"
+#~ msgstr "Solicitante: Agente %s </br> Estado: %s"
+
+#~ msgid "Allies"
+#~ msgstr "Aliados"
+
+#~ msgid "You haven't completed the Basic Training"
+#~ msgstr "No has completado el entrenamiendo básico. "
+
+#~ msgid "There are no phases for this mission"
+#~ msgstr "No hay fases para esta misión"
+
+#~ msgid "You need to finish at least to quests to complete Basic Training"
+#~ msgstr ""
+#~ "Tienes que terminar al menos un desafío para completar el entrenamiento "
+#~ "básico"
+
+#~ msgid "You need to finish at least one quest to go to next phase"
+#~ msgstr ""
+#~ "Tienes que terminar al menos un desafío para poder ir a la siguiente fase"
+
+#~ msgid "Hi %s!"
+#~ msgstr "Hola %"
+
+#~ msgid "Country: "
+#~ msgstr "Nación:"
+
+#~ msgid "Short biography: "
+#~ msgstr "Breve biografía:"
 
 #~ msgid "Accept User"
 #~ msgstr "Aceptar Usuario"
 
 #~ msgid "Decline User"
 #~ msgstr "Rechazar Usuario"
+
+#~ msgid "Evoke - Request to join group "
+#~ msgstr "Evoke - Solicitar a unirse a grupo"
 
 #~ msgid "Your comment was saved"
 #~ msgstr "Comentario guardado. "

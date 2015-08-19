@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2015-08-11 14:29-0300\n"
+"POT-Creation-Date: 2015-08-19 20:33-0300\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -1726,7 +1726,7 @@ msgstr ""
 
 #: /Elements/comment.ctp:4
 #: /Elements/comment_evokation.ctp:4
-#: /Elements/Evidences/view-evidence.ctp:239
+#: /Elements/Evidences/view-evidence.ctp:242
 #: /Evokations/view.ctp:110
 msgid "Share a Thought"
 msgstr ""
@@ -2027,6 +2027,7 @@ msgid "Portuguese"
 msgstr ""
 
 #: /Elements/register_form.ctp:94
+#: /Elements/topbar-login.ctp:39
 #: /Pages/dmcanotifications.ctp:87
 #: /Users/login.ctp:181
 msgid "Sign up"
@@ -2034,6 +2035,67 @@ msgstr ""
 
 #: /Elements/register_form.ctp:96
 msgid "Already an agent? Sign in on the top bar!"
+msgstr ""
+
+#: /Elements/social_networks_bar.ctp:7
+#: /Elements/panel/add_user.ctp:49
+#: /Elements/panel/edit_user.ctp:51
+#: /Groups/admin_view.ctp:101
+#: /Panels/main.ctp:318;392
+#: /Roles/view.ctp:41
+#: /Users/admin_view.ctp:39
+#: /Users/edit.ctp:115
+msgid "Facebook"
+msgstr ""
+
+#: /Elements/social_networks_bar.ctp:19
+#: /Elements/panel/add_user.ctp:52
+#: /Elements/panel/edit_user.ctp:54
+#: /Groups/admin_view.ctp:102
+#: /Organizations/view.ctp:34
+#: /Panels/main.ctp:321;395
+#: /Roles/view.ctp:42
+#: /Users/admin_view.ctp:44
+#: /Users/edit.ctp:120
+msgid "Twitter"
+msgstr ""
+
+#: /Elements/social_networks_bar.ctp:31
+#: /Elements/panel/add_user.ctp:60
+#: /Elements/panel/edit_user.ctp:62
+#: /Groups/admin_view.ctp:103
+#: /Roles/view.ctp:43
+#: /Users/admin_view.ctp:49
+#: /Users/edit.ctp:133
+msgid "Instagram"
+msgstr ""
+
+#: /Elements/social_networks_bar.ctp:43
+#: /Elements/panel/add_user.ctp:41
+#: /Elements/panel/edit_user.ctp:43
+#: /Groups/admin_view.ctp:104
+#: /Organizations/view.ctp:24
+#: /Panels/index.ctp:89
+#: /Panels/main.ctp:310;381
+#: /Roles/view.ctp:44
+#: /Users/admin_view.ctp:54
+msgid "Website"
+msgstr ""
+
+#: /Elements/social_networks_bar.ctp:55
+#: /Elements/panel/add_user.ctp:44
+#: /Elements/panel/edit_user.ctp:46
+#: /Groups/admin_view.ctp:105
+#: /Organizations/view.ctp:39
+#: /Panels/main.ctp:313;387
+#: /Roles/view.ctp:45
+#: /Users/admin_view.ctp:59
+#: /Users/edit.ctp:140
+msgid "Blog"
+msgstr ""
+
+#: /Elements/social_networks_bar.ctp:67
+msgid "Email address"
 msgstr ""
 
 #: /Elements/topbar-loggedIn.ctp:30
@@ -2058,7 +2120,7 @@ msgid "Missions"
 msgstr ""
 
 #: /Elements/topbar-loggedIn.ctp:67
-#: /Users/profile.ctp:175
+#: /Users/profile.ctp:222
 msgid "Leaderboard"
 msgstr ""
 
@@ -2080,7 +2142,7 @@ msgstr ""
 msgid "password"
 msgstr ""
 
-#: /Elements/topbar-login.ctp:37
+#: /Elements/topbar-login.ctp:47
 msgid "OR"
 msgstr ""
 
@@ -2169,67 +2231,74 @@ msgid "Upload video"
 msgstr ""
 
 #: /Elements/Evidences/evidence_list_item.ctp:28
-#: /Elements/Evidences/view-evidence.ctp:40
+#: /Elements/Evidences/view-evidence.ctp:43
 msgid "By "
 msgstr ""
 
 #: /Elements/Evidences/view-evidence.ctp:14
-#: /Evokations/view.ctp:44
-#: /Missions/view.ctp:125
-msgid "Mission: "
+#: /Missions/view.ctp:58
+msgid "Mission %s"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:48;49;96
+#: /Elements/Evidences/view-evidence.ctp:20
+msgid "Phase %s"
+msgstr ""
+
+#: /Elements/Evidences/view-evidence.ctp:25
+msgid "Evidence %s"
+msgstr ""
+
+#: /Elements/Evidences/view-evidence.ctp:51;52;99
 #: /Evidences/admin_view.ctp:54
 msgid "Edit Evidence"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:52;53;101
+#: /Elements/Evidences/view-evidence.ctp:55;56;104
 #: /Evidences/admin_view.ctp:55
 msgid "Delete Evidence"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:65
+#: /Elements/Evidences/view-evidence.ctp:68
 msgid "Quest "
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:121
+#: /Elements/Evidences/view-evidence.ctp:124
 msgid " in "
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:122
+#: /Elements/Evidences/view-evidence.ctp:125
 msgid " in response to "
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:125
+#: /Elements/Evidences/view-evidence.ctp:128
 msgid "Created in "
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:168
+#: /Elements/Evidences/view-evidence.ctp:171
 msgid "Evidence's attachments:"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:279
+#: /Elements/Evidences/view-evidence.ctp:277
 msgid "VOTE"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:286
+#: /Elements/Evidences/view-evidence.ctp:284
 msgid "You have already voted on this evidence"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:307
+#: /Elements/Evidences/view-evidence.ctp:305
 msgid "COMMENTS"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:315
+#: /Elements/Evidences/view-evidence.ctp:313
 msgid "SHARE"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:318
+#: /Elements/Evidences/view-evidence.ctp:316
 msgid "Share on facebook"
 msgstr ""
 
-#: /Elements/Evidences/view-evidence.ctp:326
+#: /Elements/Evidences/view-evidence.ctp:324
 msgid "Share on google plus"
 msgstr ""
 
@@ -2294,33 +2363,33 @@ msgid "Accepted/Declined Requests"
 msgstr ""
 
 #: /Elements/Groups/request_tabs.ctp:12
-msgid "There are no requests pending"
+msgid "There are no requests pending."
 msgstr ""
 
-#: /Elements/Groups/request_tabs.ctp:20
+#: /Elements/Groups/request_tabs.ctp:22;77
+msgid "Agent %s"
+msgstr ""
+
+#: /Elements/Groups/request_tabs.ctp:27
 #: /Emails/html/group_new_request.ctp:29
 msgid "Accept"
 msgstr ""
 
-#: /Elements/Groups/request_tabs.ctp:23
+#: /Elements/Groups/request_tabs.ctp:39
 #: /Emails/html/group_new_request.ctp:33
 msgid "Decline"
 msgstr ""
 
-#: /Elements/Groups/request_tabs.ctp:35
+#: /Elements/Groups/request_tabs.ctp:59
 msgid "There were no requests accepted or declined."
 msgstr ""
 
-#: /Elements/Groups/request_tabs.ctp:43
+#: /Elements/Groups/request_tabs.ctp:68
 msgid "Accepted"
 msgstr ""
 
-#: /Elements/Groups/request_tabs.ctp:44
+#: /Elements/Groups/request_tabs.ctp:72
 msgid "Declined"
-msgstr ""
-
-#: /Elements/Groups/request_tabs.ctp:46
-msgid "Requester: Agent %s </br> Status: %s"
 msgstr ""
 
 #: /Elements/Missions/mission_menu_bar.ctp:18
@@ -2472,62 +2541,10 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: /Elements/panel/add_user.ctp:41
-#: /Elements/panel/edit_user.ctp:43
-#: /Groups/admin_view.ctp:104
-#: /Organizations/view.ctp:24
-#: /Panels/index.ctp:89
-#: /Panels/main.ctp:310;381
-#: /Roles/view.ctp:44
-#: /Users/admin_view.ctp:54
-msgid "Website"
-msgstr ""
-
-#: /Elements/panel/add_user.ctp:44
-#: /Elements/panel/edit_user.ctp:46
-#: /Groups/admin_view.ctp:105
-#: /Organizations/view.ctp:39
-#: /Panels/main.ctp:313;387
-#: /Roles/view.ctp:45
-#: /Users/admin_view.ctp:59
-#: /Users/edit.ctp:140
-msgid "Blog"
-msgstr ""
-
-#: /Elements/panel/add_user.ctp:49
-#: /Elements/panel/edit_user.ctp:51
-#: /Groups/admin_view.ctp:101
-#: /Panels/main.ctp:318;392
-#: /Roles/view.ctp:41
-#: /Users/admin_view.ctp:39
-#: /Users/edit.ctp:115
-msgid "Facebook"
-msgstr ""
-
-#: /Elements/panel/add_user.ctp:52
-#: /Elements/panel/edit_user.ctp:54
-#: /Groups/admin_view.ctp:102
-#: /Organizations/view.ctp:34
-#: /Panels/main.ctp:321;395
-#: /Roles/view.ctp:42
-#: /Users/admin_view.ctp:44
-#: /Users/edit.ctp:120
-msgid "Twitter"
-msgstr ""
-
 #: /Elements/panel/add_user.ctp:57
 #: /Elements/panel/edit_user.ctp:59
 #: /Panels/main.ctp:398
 msgid "Google +"
-msgstr ""
-
-#: /Elements/panel/add_user.ctp:60
-#: /Elements/panel/edit_user.ctp:62
-#: /Groups/admin_view.ctp:103
-#: /Roles/view.ctp:43
-#: /Users/admin_view.ctp:49
-#: /Users/edit.ctp:133
-msgid "Instagram"
 msgstr ""
 
 #: /Elements/panel/add_user.ctp:65
@@ -4445,6 +4462,11 @@ msgstr ""
 msgid "Evokation Id"
 msgstr ""
 
+#: /Evokations/view.ctp:44
+#: /Missions/view.ctp:125
+msgid "Mission: "
+msgstr ""
+
 #: /Evokations/view.ctp:45
 msgid "Projects"
 msgstr ""
@@ -5429,13 +5451,9 @@ msgstr ""
 msgid "Now, go out there and become an agent of change!"
 msgstr ""
 
-#: /Missions/index.ctp:14
+#: /Missions/index.ctp:12
 #: /Users/dashboard.ctp:74
 msgid "Choose a mission"
-msgstr ""
-
-#: /Missions/view.ctp:58
-msgid "Mission %s"
 msgstr ""
 
 #: /Missions/view.ctp:126
@@ -6984,17 +7002,17 @@ msgid "You are an entrepreneurial agent!"
 msgstr ""
 
 #: /Users/matching_results.ctp:17
-#: /Users/profile.ctp:96
+#: /Users/profile.ctp:122
 msgid "Congratulations, Agent! Most do not make it this far. Your profile shows great promise."
 msgstr ""
 
 #: /Users/matching_results.ctp:18
-#: /Users/profile.ctp:97
+#: /Users/profile.ctp:123
 msgid "You have the heart of a Local Leader!"
 msgstr ""
 
 #: /Users/matching_results.ctp:19
-#: /Users/profile.ctp:98
+#: /Users/profile.ctp:124
 msgid "Your Entrepreneurship and Local Insight are key to you. Embrace your qualities and use them for the better."
 msgstr ""
 
@@ -7018,39 +7036,55 @@ msgstr ""
 msgid "View Agent"
 msgstr ""
 
-#: /Users/profile.ctp:47
+#: /Users/profile.ctp:33
+msgid "Add as ally"
+msgstr ""
+
+#: /Users/profile.ctp:40
+msgid "Your ally"
+msgstr ""
+
+#: /Users/profile.ctp:70
 msgid "Potential allies"
 msgstr ""
 
-#: /Users/profile.ctp:95
+#: /Users/profile.ctp:121
 msgid "Psychometric Analysis"
 msgstr ""
 
-#: /Users/profile.ctp:114
+#: /Users/profile.ctp:140
 msgid "About"
 msgstr ""
 
-#: /Users/profile.ctp:121
+#: /Users/profile.ctp:149
+msgid "This user has not added a biography yet."
+msgstr ""
+
+#: /Users/profile.ctp:156
 msgid "You have not added a biography yet!"
 msgstr ""
 
-#: /Users/profile.ctp:124
+#: /Users/profile.ctp:159
 msgid "Complete your profile!"
 msgstr ""
 
-#: /Users/profile.ctp:137
-msgid "Allies"
+#: /Users/profile.ctp:172
+msgid "Allies I follow"
 msgstr ""
 
-#: /Users/profile.ctp:138
+#: /Users/profile.ctp:173
 msgid "ALL USERS"
 msgstr ""
 
-#: /Users/profile.ctp:165
+#: /Users/profile.ctp:207
+msgid "This user has no allies yet."
+msgstr ""
+
+#: /Users/profile.ctp:213
 msgid "You have no allies! Get started looking at people similar to you!"
 msgstr ""
 
-#: /Users/profile.ctp:180
+#: /Users/profile.ctp:227
 msgid "Badges earned"
 msgstr ""
 
@@ -7341,7 +7375,7 @@ msgid "The request was declined"
 msgstr ""
 
 #: /Groups.php:202;368;415;551;586;614
-#: /GroupsUsers.php:220
+#: /GroupsUsers.php:224
 #: /Group.php:44;60
 msgid "Invalid group"
 msgstr ""
@@ -7377,55 +7411,55 @@ msgstr ""
 msgid "The group could not be deleted. Please, try again."
 msgstr ""
 
-#: /GroupsUsers.php:160;300;440;464
+#: /GroupsUsers.php:160;304;444;468
 msgid "The groups user has been saved."
 msgstr ""
 
-#: /GroupsUsers.php:180
+#: /GroupsUsers.php:184
 msgid "(Evoke) You joined group \"%s\""
 msgstr ""
 
-#: /GroupsUsers.php:190
+#: /GroupsUsers.php:194
 msgid "This user already belongs to this group."
 msgstr ""
 
-#: /GroupsUsers.php:248
+#: /GroupsUsers.php:252
 msgid "The request has been sent"
 msgstr ""
 
-#: /GroupsUsers.php:250
+#: /GroupsUsers.php:254
 msgid "The request could not be sent"
 msgstr ""
 
-#: /GroupsUsers.php:253
+#: /GroupsUsers.php:257
 msgid "This user already requested to join this group"
 msgstr ""
 
-#: /GroupsUsers.php:263
+#: /GroupsUsers.php:267
 msgid "(Evoke) Request to join group \"%s\""
 msgstr ""
 
-#: /GroupsUsers.php:268
+#: /GroupsUsers.php:272
 msgid "The email was sent"
 msgstr ""
 
-#: /GroupsUsers.php:276
+#: /GroupsUsers.php:280
 msgid "There was a problem sending the email."
 msgstr ""
 
-#: /GroupsUsers.php:296;329;392;425;460;488
+#: /GroupsUsers.php:300;333;396;429;464;492
 msgid "Invalid groups user"
 msgstr ""
 
-#: /GroupsUsers.php:303;443;467
+#: /GroupsUsers.php:307;447;471
 msgid "The groups user could not be saved. Please, try again."
 msgstr ""
 
-#: /GroupsUsers.php:368;399;492
+#: /GroupsUsers.php:372;403;496
 msgid "The groups user has been deleted."
 msgstr ""
 
-#: /GroupsUsers.php:370;401;494
+#: /GroupsUsers.php:374;405;498
 msgid "The groups user could not be deleted. Please, try again."
 msgstr ""
 
@@ -7463,27 +7497,27 @@ msgstr ""
 msgid "The issue could not be deleted. Please, try again."
 msgstr ""
 
-#: /Likes.php:38;126;155;220;255;283
+#: /Likes.php:38;137;166;231;266;294
 msgid "Invalid like"
 msgstr ""
 
-#: /Likes.php:105
+#: /Likes.php:112
 msgid "Your like was computed"
 msgstr ""
 
-#: /Likes.php:113;133;238;262
+#: /Likes.php:124;144;249;273
 msgid "The like could not be saved. Please, try again."
 msgstr ""
 
-#: /Likes.php:130;235;259
+#: /Likes.php:141;246;270
 msgid "The like has been saved."
 msgstr ""
 
-#: /Likes.php:287
+#: /Likes.php:298
 msgid "The like has been deleted."
 msgstr ""
 
-#: /Likes.php:289
+#: /Likes.php:300
 msgid "The like could not be deleted. Please, try again."
 msgstr ""
 
@@ -7567,44 +7601,28 @@ msgstr ""
 msgid "The mission subscription could not be deleted. Please, try again."
 msgstr ""
 
-#: /Missions.php:125;636;959;1180;1270;1298;1333;1365;1390
+#: /Missions.php:630;957;1182;1272;1300;1335;1367;1392
 msgid "Invalid mission"
 msgstr ""
 
-#: /Missions.php:146
-msgid "You haven't completed the Basic Training"
-msgstr ""
-
-#: /Missions.php:166
-msgid "There are no phases for this mission"
-msgstr ""
-
-#: /Missions.php:614
-msgid "You need to finish at least to quests to complete Basic Training"
-msgstr ""
-
-#: /Missions.php:618
-msgid "You need to finish at least one quest to go to next phase"
-msgstr ""
-
-#: /Missions.php:734
+#: /Missions.php:732
 msgid "Invalid mission phase"
 msgstr ""
 
-#: /Missions.php:1249;1274;1348;1369
+#: /Missions.php:1251;1276;1350;1371
 msgid "The mission has been saved."
 msgstr ""
 
-#: /Missions.php:1252;1277;1351;1372
+#: /Missions.php:1254;1279;1353;1374
 #: /Panels.php:693;823;1011;1225
 msgid "The mission could not be saved. Please, try again."
 msgstr ""
 
-#: /Missions.php:1302;1394
+#: /Missions.php:1304;1396
 msgid "The mission has been deleted."
 msgstr ""
 
-#: /Missions.php:1308;1396
+#: /Missions.php:1310;1398
 msgid "The mission could not be deleted. Please, try again."
 msgstr ""
 
@@ -7681,12 +7699,12 @@ msgid "Invalid phase"
 msgstr ""
 
 #: /Panels.php:1480
-#: /Users.php:1477;1504;1556;1631;1652
+#: /Users.php:1495;1522;1574;1649;1670
 msgid "The user has been saved."
 msgstr ""
 
 #: /Panels.php:1483
-#: /Users.php:1480;1507;1559;1634;1655
+#: /Users.php:1498;1525;1577;1652;1673
 msgid "The user could not be saved. Please, try again."
 msgstr ""
 
@@ -7793,7 +7811,7 @@ msgid "The powerpoint could not be deleted. Please, try again."
 msgstr ""
 
 #: /Panels.php:2045
-#: /Users.php:682;1015;1057;1428;1498;1525;1545;1595;1616;1648;1673
+#: /Users.php:685;1018;1060;1446;1516;1543;1563;1613;1634;1666;1691
 #: /User.php:197
 msgid "Invalid user"
 msgstr ""
@@ -8104,23 +8122,23 @@ msgstr ""
 msgid "O usuário foi salvo com sucesso."
 msgstr ""
 
-#: /Users.php:659
+#: /Users.php:662
 msgid "O usuário não pôde ser salvo. Por favor, tente novamente."
 msgstr ""
 
-#: /Users.php:663
+#: /Users.php:666
 msgid "Typed passwords don't match"
 msgstr ""
 
-#: /Users.php:1529;1599;1677
+#: /Users.php:1547;1617;1695
 msgid "The user has been deleted."
 msgstr ""
 
-#: /Users.php:1531;1601;1679
+#: /Users.php:1549;1619;1697
 msgid "The user could not be deleted. Please, try again."
 msgstr ""
 
-#: /Users.php:1588
+#: /Users.php:1606
 msgid "You can't delete other users. Permission denied."
 msgstr ""
 
@@ -8573,9 +8591,5 @@ msgstr ""
 
 #: /Pages/home.ctp:232
 msgid "Promoting development related to CakePHP"
-msgstr ""
-
-#: /test.php:84
-msgid "Debug setting does not allow access to this URL."
 msgstr ""
 
