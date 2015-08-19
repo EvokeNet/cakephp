@@ -9,14 +9,20 @@ body {
 }
 
 *, html, body,
-button, div, p, span, a,
-.evoke .button {
+div, p, span, a {
 	font-family: 'Raleway', 'Arial', sans-serif;
 	font-size: 100%;
 	color: #cccccc;
 	-webkit-text-stroke: 0.1px;
 	-webkit-font-smoothing: antialiased;
 	word-break: break-word;
+}
+
+button, .button {
+	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	font-size: 100%;
+	-webkit-text-stroke: 0.1px;
+	-webkit-font-smoothing: antialiased;
 }
 
 /* Headings */
