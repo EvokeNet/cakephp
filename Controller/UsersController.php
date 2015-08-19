@@ -1258,7 +1258,11 @@ class UsersController extends AppController {
 
 		//SIMILAR USERS
 		//List of similar users (for now, any 4 users; later, matching results)
-		$similar_users = $this->User->find('all', array('limit' => 6));
+		$similar_users = $this->User->find('all', array(
+			'conditions' => 'User.id != '.$this->getUserId(),
+			'limit' => 6,
+			'order' => 'rand()'
+		));
 
 		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'friends', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',

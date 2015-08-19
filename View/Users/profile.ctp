@@ -63,47 +63,54 @@
 		</div>
 
 		<!-- POTENTIAL ALLIES -->
-		<div class="row hide-for-small-only padding top-1 bottom-1 left-2 right-2 border-top-divisor">
-			<h4><?= __('Potential allies') ?></h4>
-			<ul class="full-width small-block-grid-1">
-			  <?php
-				$counter = 0;
-				foreach($similar_users as $similar_user):
-					$pic = $this->Picture->getUserPictureAbsolutePath($similar_user['User']); ?>
+		<?php
+		//Show only in my profile
+		if ($user['User']['id'] == $users['User']['id']): ?>
+			<div class="row hide-for-small-only padding top-1 bottom-1 left-2 right-2 border-top-divisor">
+				<h4><?= __('Potential allies') ?></h4>
+				<ul class="full-width small-block-grid-1">
+				  <?php
+					$counter = 0;
+					foreach($similar_users as $similar_user):
+						$pic = $this->Picture->getUserPictureAbsolutePath($similar_user['User']); ?>
 
-					<li>
-					<!-- PANEL -->
-					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $similar_user['User']['id'], false)); ?>">
+						<li>
+						<!-- PANEL -->
+						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $similar_user['User']['id'], false)); ?>">
 
-						<div class="table full-width profile-content padding top-1">
-							<!-- USER PICTURE -->
-							<div class="table-cell vertical-align-middle square-40px">
-								<div class="square-40px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-									<img class="hidden" src="<?= $pic ?>" alt="<?= $similar_user['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
+							<div class="table full-width profile-content padding top-1">
+								<!-- USER PICTURE -->
+								<div class="table-cell vertical-align-middle square-40px">
+									<div class="square-40px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
+										<img class="hidden" src="<?= $pic ?>" alt="<?= $similar_user['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
+									</div>
+								</div>
+
+								<!-- USER INFO -->
+								<div class="table-cell vertical-align-middle padding left-1">
+									<p class="user-name margins-0">
+										<?= $similar_user['User']['name'] ?>
+									</p>
+
+									<small>Level <?= $similar_user['User']['level'] ?></small>
 								</div>
 							</div>
+						</a>
 
-							<!-- USER INFO -->
-							<div class="table-cell vertical-align-middle padding left-1">
-								<p class="user-name margins-0">
-									<?= $similar_user['User']['name'] ?>
-								</p>
+						<!-- VIEW AGENT DETAILS MODAL -->
+						<?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'PotentialAllies'.$counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
+						</li>
 
-								<small>Level <?= $similar_user['User']['level'] ?></small>
-							</div>
-						</div>
-					</a>
+					<?php
+						$counter++;
+					endforeach;
+					?>
+				</ul>
+			</div>
 
-					<!-- VIEW AGENT DETAILS MODAL -->
-					<?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'PotentialAllies'.$counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
-					</li>
-
-				<?php
-					$counter++;
-				endforeach;
-				?>
-			</ul>
-		</div>
+			<?php
+		endif;
+		?>
 	</div>
 
 	<!-- CENTER -->

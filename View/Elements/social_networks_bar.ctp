@@ -2,7 +2,7 @@
 if (isset($social_networks_user)):
 ?>
 	<?php
-	if (!is_null($social_networks_user['facebook'])): ?>
+	if (!empty($social_networks_user['facebook'])): ?>
 		<!-- FACEBOOK -->
 		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Facebook') ?>">
 			<a href="<?= $social_networks_user['facebook'] ?>" target="_blank" class="button-icon">
@@ -14,7 +14,7 @@ if (isset($social_networks_user)):
 		</span><?php
 	endif;
 
-	if (!is_null($social_networks_user['twitter'])): ?>
+	if (!empty($social_networks_user['twitter'])): ?>
 		<!-- TWITTER -->
 		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Twitter') ?>">
 			<a href="<?= $social_networks_user['twitter'] ?>" target="_blank" class="button-icon">
@@ -26,7 +26,7 @@ if (isset($social_networks_user)):
 		</span> <?php
 	endif;
 
-	if (!is_null($social_networks_user['instagram'])): ?>
+	if (!empty($social_networks_user['instagram'])): ?>
 		<!-- INSTAGRAM -->
 		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Instagram') ?>">
 			<a href="<?= $social_networks_user['instagram'] ?>" target="_blank" class="button-icon">
@@ -38,7 +38,7 @@ if (isset($social_networks_user)):
 		</span> <?php
 	endif;
 
-	if (!is_null($social_networks_user['website'])): ?>
+	if (!empty($social_networks_user['website'])): ?>
 		<!-- WEBSITE -->
 		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Website') ?>">
 			<a href="<?= $social_networks_user['website'] ?>" target="_blank" class="button-icon">
@@ -50,7 +50,7 @@ if (isset($social_networks_user)):
 		</span> <?php
 	endif;
 
-	if (!is_null($social_networks_user['blog'])): ?>
+	if (!empty($social_networks_user['blog'])): ?>
 		<!-- BLOG -->
 		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Blog') ?>">
 			<a href="<?= $social_networks_user['blog'] ?>" target="_blank" class="button-icon">
@@ -62,7 +62,7 @@ if (isset($social_networks_user)):
 		</span> <?php
 	endif;
 
-	if (!is_null($social_networks_user['email'])): ?>
+	if (!empty($social_networks_user['email'])): ?>
 		<!-- EMAIL -->
 		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Email address') ?>">
 			<a href="mailto:<?= $social_networks_user['email'] ?>" class="button-icon">
