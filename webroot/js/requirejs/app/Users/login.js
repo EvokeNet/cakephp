@@ -45,6 +45,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					}
 				});
 			});
+
+			$('form:first *:input[type!=hidden]:first').focus();
 		});
 	});
 });

@@ -13,7 +13,7 @@
 		<div class="row collapse">
 			<div class="small-6 medium-3 large-3 columns">
 				<?php 
-					echo $this->Form->input('username', array('label' => false, 'type' => 'text', 'placeholder' =>  __('username'), 'class' => 'radius', 'required' => true));
+					echo $this->Form->input('username', array('label' => false, 'type' => 'text', 'placeholder' =>  __('username'), 'class' => 'radius', 'required' => true, 'autofocus'));
 				?>
 			</div>
 			<div class="small-6 medium-3 large-3 columns">
