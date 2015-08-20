@@ -12,10 +12,13 @@ body {
 div, p, span, a {
 	font-family: 'Raleway', 'Arial', sans-serif;
 	font-size: 100%;
-	color: #cccccc;
 	-webkit-text-stroke: 0.1px;
 	-webkit-font-smoothing: antialiased;
 	word-break: break-word;
+}
+
+*, html, body, div, p {
+	color: #cccccc;
 }
 
 button, .button {

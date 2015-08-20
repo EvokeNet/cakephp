@@ -85,7 +85,6 @@ class Comment extends AppModel {
         		endforeach;
 
         		$aux_array['array_count'] = $count;
-        		//array_push($aux_array, 'array_count' => $count);
 
         		$event = new CakeEvent('Model.Comment.notifyEvokation', $this, $aux_array);
 

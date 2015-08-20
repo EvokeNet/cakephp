@@ -428,7 +428,6 @@ class UsersController extends AppController {
 	}
 
 /**
-*
  * index method
  *
  * @return void
@@ -437,7 +436,14 @@ class UsersController extends AppController {
 		$this->User->recursive = 0;
 	}
 
-
+/**
+ * Return the HTML code for a set of evidences
+ *
+ * @param int $lastOne Id of the last evidence (it will start by the next ID)
+ * @param int $limit Limit of evidences to get in the find query
+ * @param int $user_id Default -1. If different, the evidences returned will have been created by this user
+ * @return string HTML code
+ */
 	public function moreEvidences($lastOne, $limit = 1, $user_id = -1){
 		$this->autoRender = false; // We don't render a view in this example
 		$this->request->onlyAllow('ajax'); // No direct access via browser URL
@@ -480,7 +486,6 @@ class UsersController extends AppController {
 
 		$el = 'evidence';
 		$ind = 'Evidence';
-
 
 		$data = "";
 

@@ -60,7 +60,9 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
-//Amazon AccessKey for file upload
+/**
+ * Amazon AccessKey for file upload
+ */
 Configure::load('amazon');
 
 require APP . '/Vendor/autoload.php';
@@ -73,17 +75,11 @@ CakePlugin::loadAll(array(
 	'Optimum' => array('routes' => true)
 ));
 
-
-
-//DISABLING REDIS TEMPORARILY
-// App::uses('NotificationsListener', 'Event');
-// CakeEventManager::instance()->attach(new NotificationsListener());
-
+/**
+ * Events
+ */
 App::uses('CakeEventManager', 'Event');
-App::uses('PointListener', 'Event');
-CakeEventManager::instance()->attach(new PointListener());
-App::uses('BadgeListener', 'Event');
-CakeEventManager::instance()->attach(new BadgeListener());
+
 
 /**
  * Configures Optimum Plugin
