@@ -112,9 +112,9 @@ class AppController extends Controller {
 			if (in_array($lang, $supported_languages)) {
 				$this->Session->write('Config.language', $lang);
 			}
-			//Default: english
+			//Default: spanish (for the playtest)
 			else {
-				$this->Session->write('Config.language', 'en');
+				$this->Session->write('Config.language', 'es');
 			}
 		}
 
