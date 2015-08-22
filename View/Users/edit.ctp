@@ -95,7 +95,14 @@
 				<div class="large-6 columns">
 					<?php
 						echo $this->Form->input('country', array(
-								'options' => array('Colombia','Brasil','USA','South Africa','China','Sweden','Other'),
+								'options' => array(
+									'Colombia' => __('Colombia'),
+									'Brasil' => __('Brasil'),
+									'USA' => __('USA'),
+									'South Africa' => __('South Africa'),
+									'China' => __('China'),
+									'Sweden' => __('Sweden'),
+									'' => __('Other'),
 								'empty' => '(choose one)'
 						));
 					?>
