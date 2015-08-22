@@ -792,12 +792,23 @@ class MissionsController extends AppController {
  * @param int $limit - Optional limit to the number of items
  */
 	public function renderDossierTab($mission_id = null, $limit = null) {
+		if ($this->params->query['mission_id'] && is_null($mission_id)) {
+			$mission_id = $this->params->query['mission_id'];
+		}
+		if ($this->params->query['limit'] && is_null($limit)) {
+			$limit = $this->params->query['limit'];
+		}
+
 		$dossier_query_params = array();
+		$lang = $this->getCurrentLanguage();
 
 		//FUNCTION PARAMS
 		//Dossier from a specific mission
 		if (!is_null($mission_id)) {
-			$dossier_query_params['conditions'] = array('mission_id' => $mission_id);
+			$dossier_query_params['conditions'] = array(
+				'mission_id' => $mission_id,
+				'language' => $lang
+			);
 		}
 
 		//Limit to the query
@@ -808,7 +819,7 @@ class MissionsController extends AppController {
 
 		//RUN DOSSIER QUERY
 		$this->loadModel('Dossier');
-		$dossier = $this->Dossier->find('first', $dossier_query_params);
+		$dossier = $this->Dossier->find('first');
 		
 		//Dossier files (may be pictures, videos etc.: will be determined by field Type)
 		$this->loadModel('Attachment');
