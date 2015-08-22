@@ -36,10 +36,13 @@ if (isset($evidence)):
 					<div class="text-center padding left-2 right-1">
 						<!-- USER INFO - EVIDENCE CREATOR -->
 						<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $evidence['User']['id']))?>">
-							<?php $pic = $this->Picture->getUserPictureAbsolutePath($evidence['User']); ?>
-							<div class="margins-auto square-150px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-								<img class="hidden" src="<?= $pic ?>" alt="<?= $evidence['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
-							</div>
+
+							<?= $this->Picture->showUserCircularPicture(
+								$evidence['User'],
+								'square-150px',
+								__("%s's profile picture",$evidence['User']['name'])
+							); ?>
+							
 							<h4 class="text-color-highlight"><?= __('By ').$evidence['User']['name']?></h4>
 						</a>
 

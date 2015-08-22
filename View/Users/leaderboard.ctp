@@ -86,34 +86,41 @@
 				<li><h4><?= strtoupper(__("Agent ID")) ?></h4></li>
 				<li><h4><?= strtoupper(__("Agent name")) ?></h4></li>
 				<li><h4><?= strtoupper(__("Level")) ?></h4></li>
-				<li><h4><?= strtoupper(__("XP")) ?></h4></li>
+				<li><h4><?= strtoupper(__("Points")) ?></h4></li>
 			</ul>
 			<?php 
 				$pos_index = 1;
 				foreach ($points_users as $p => $user_point):
 					// foreach ($point as $usr):
-						$usr = $user_point['User'];
-						$usr_points = $user_point[0]['total_points'];
+					$usr = $user_point['User'];
+					$usr_points = $user_point[0]['total_points'];
 
-						//Calculate position
-						$position = $pos_index + ( ((int)$this->Paginator->counter('{:page}') - 1) * $paginatorParams['limit'] );
-						?>
-						<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5 text-center">
-							<li id="rank<?= $position + 1 ?>"> <!-- Plus one just because of the margin -->
-								<p><?= $position ?></p>
-							</li>
+					//Calculate position
+					$position = $pos_index + ( ((int)$this->Paginator->counter('{:page}') - 1) * $paginatorParams['limit'] );
+					?>
 
-							<li>
-								<?php $pic = $this->Picture->getUserPictureAbsolutePath($usr); ?>
-								<div class="centering-block">
-									<img src="<?=$pic?>" class="img-circular square-40px img-glow-on-hover-small" alt="<?= __('User profile picture') ?>" />
-								</div>
-							</li>
-							<li><p><?= $usr['name'] ?></p></li>
-							<li><p><?= $usr['level'] ?></p></li>
-							<li><p><?= $usr['total_points'] ?></p></li>
-							<span class = "evoke leaderboard-border"></span>
-						</ul>
+						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $usr['id'], false)); ?>">
+
+							<ul class="small-block-grid-5 medium-block-grid-5 large-block-grid-5 text-center radius background-color-light-dark-on-hover text-glow-on-hover border-top-divisor  padding top-2 bottom-0">
+								<li id="rank<?= $position + 1 ?>"> <!-- Plus one just because of the margin -->
+									<p><?= $position ?></p>
+								</li>
+
+								<li>
+									<!-- USER PICTURE -->
+									<?= $this->Picture->showUserCircularPicture(
+										$usr,
+										'square-40px',
+										__("%s's profile picture",$usr['name'])
+									); ?>
+								</li>
+								<li><p><?= $usr['name'] ?></p></li>
+								<li><p><?= $usr['level'] ?></p></li>
+								<li><p><?= $usr['total_points'] ?></p></li>
+								<span class = "leaderboard-border"></span>
+							</ul>
+
+						</a>
 					<?php 
 						$pos_index++;
 					// endforeach;

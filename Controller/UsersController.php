@@ -1342,9 +1342,21 @@ class UsersController extends AppController {
  */
 	public function matching_results($id = null) {
 		//List of similar users (for now, any 4 users; later, matching results)
-		$similar_users = $this->User->find('all', array('limit' => 4));
+		$similar_users = $this->User->find('all', array(
+			'conditions' => 'User.id != '.$this->getUserId(),
+			'limit' => 4,
+			'order' => 'rand()'
+		));
 
-		$this->set(compact('similar_users'));
+		//FRIENDS
+		$friends_ids = $this->User->UserFriend->find('list', array(
+			'fields' => 'UserFriend.friend_id',
+			'conditions' => array(
+				'UserFriend.user_id' => $this->getUserId()
+			)
+		));
+
+		$this->set(compact('similar_users','friends_ids'));
 	}
 
 /**

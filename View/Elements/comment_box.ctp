@@ -1,12 +1,16 @@
 <div class="table full-width padding top-1 bottom-1 left-2 right-2 border-bottom-divisor background-color-standard background-color-light-dark-on-hover">
 	<!-- USER PICTURE -->
 	<div class="table-cell vertical-align-middle square-60px">
-		<?php $pic = $this->Picture->getUserPictureAbsolutePath($comment['User']); ?>
-		<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $comment['User']['id'])); ?>">
-			<div class="square-60px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-				<img class="hidden" src="<?= $pic ?>" alt="<?= $comment['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
-			</div>
+
+		<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $comment['User']['id'])); ?>" target="_blank">
+
+			<?= $this->Picture->showUserCircularPicture(
+				$comment['User'],
+				'square-60px',
+				__("%'s profile picture", $comment['User']['name'])
+			); ?>
 		</a>
+
 	</div>
 
 	<!-- COMMENT INFO -->
@@ -18,7 +22,7 @@
 			<div class="small-10 medium-10 large-10 columns">
 				<!-- AGENT NAME AND COMMENT DATE -->
 				<h5>
-					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $comment['User']['id'])); ?>">
+					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $comment['User']['id'])); ?>" target="_blank">
 						<span class="text-color-highlight"><?= __('Agent ') ?><?= $comment['User']['name'] ?></span>
 						<?php echo date('F j, Y', strtotime($comment['Comment']['created'])); ?>
 					</a>

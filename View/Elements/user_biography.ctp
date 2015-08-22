@@ -5,9 +5,13 @@ if (isset($modal) && ($modal == true)): ?>
 endif; ?>
 
 		<div class="left margin right-2">
-			<?php $pic = $this->Picture->getUserPictureAbsolutePath($user['User']); ?>
+
 			<!-- PICTURE -->
-			<img class="profile-picture radius border-style-solid border-color-highlight border-width-01" src='<?= $pic ?>' alt="<?= $user['User']['name'] ?>'s profile picture" />
+			<?= $this->Picture->showUserCircularPicture(
+				$user['User'],
+				'square-150px',
+				__("%s's profile picture", $user['User']['name'])
+			); ?>
 
 			<!-- SOCIAL NETWORKS -->
 			<div>

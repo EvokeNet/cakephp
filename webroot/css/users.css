@@ -67,14 +67,6 @@
 	width: 40px;
 }
 
-/* User panel */
-.evoke .user-panel .profile-picture {
-	margin: -100px auto 20px auto;
-}
-.evoke .user-panel .profile-content {
-	margin-top: 100px;
-}
-
 /* User panel leaderboard */
 .evoke .user-panel-leaderboard .profile-picture {
 	margin: -125px auto 0px auto;

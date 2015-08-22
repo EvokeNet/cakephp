@@ -1,17 +1,15 @@
-<?php
-	//USER PICTURE
-	$pic = $this->Picture->getUserPictureAbsolutePath($e['User']);
-?>
-
 
 <!-- EVIDENCE -->
 <div class="table full-width profile-content padding top-1 bottom-1 left-2 right-2 border-bottom-divisor background-color-standard-opacity-07 background-color-light-dark-on-hover">
 	<!-- USER PICTURE -->
 	<div class="table-cell vertical-align-middle square-60px">
 		<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $e['User']['id'])); ?>">
-			<div class="square-60px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-				<img class="hidden" src="<?= $pic ?>" alt="<?= $e['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
-			</div>
+
+			<?= $this->Picture->showUserCircularPicture(
+				$e['User'],
+				'square-60px',
+				__("%s's profile picture",$e['User']['name'])
+			); ?>
 		</a>
 	</div>
 

@@ -14,14 +14,15 @@
 	<div class="small-12 medium-5 large-3 columns gradient-on-right profile-sidebar" data-equalizer-watch>
 		<!-- PROFILE -->
 		<div class="row padding top-2 bottom-1 left-2 right-2">
-			<?php $pic = $this->Picture->getUserPictureAbsolutePath($user['User']); ?>
 
-			<div class="centering-block large-12 medium-6 small-6 margins-auto text-center">
-				<div class="centered-block square-150px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-					<img class="hidden" src="<?= $pic ?>" alt="<?= __('Your profile picture') ?>" /> <!-- For accessibility -->
-				</div>
-			</div>
+			<!-- PICTURE -->
+			<?= $this->Picture->showUserCircularPicture(
+				$user['User'],
+				'square-150px',
+				__("Your profile picture")
+			); ?>
 
+			<!-- NAME -->
 			<h4 class="text-color-highlight text-center margin top-1"><?= $user['User']['name'] ?></h4>
 
 			<!-- ALLIANCE -->
@@ -71,34 +72,33 @@
 				<ul class="full-width small-block-grid-1">
 				  <?php
 					$counter = 0;
-					foreach($similar_users as $similar_user):
-						$pic = $this->Picture->getUserPictureAbsolutePath($similar_user['User']); ?>
+					foreach($similar_users as $similar_user): ?>
 
 						<li>
-						<!-- PANEL -->
-						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $similar_user['User']['id'], false)); ?>">
+							<!-- PANEL -->
+							<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $similar_user['User']['id'], false)); ?>">
 
-							<div class="table full-width profile-content padding top-1">
-								<!-- USER PICTURE -->
-								<div class="table-cell vertical-align-middle square-40px">
-									<div class="square-40px background-cover background-center img-circular" style="background-image: url(<?= $pic ?>);">
-										<img class="hidden" src="<?= $pic ?>" alt="<?= $similar_user['User']['name'] ?>'s profile picture" /> <!-- For accessibility -->
+								<div class="table full-width profile-content padding top-1">
+									<!-- USER PICTURE -->
+									<?= $this->Picture->showUserCircularPicture(
+										$similar_user['User'],
+										'square-40px',
+										__("%s's profile picture",$similar_user['User']['name'])
+									); ?>
+
+									<!-- USER INFO -->
+									<div class="table-cell vertical-align-middle padding left-1">
+										<p class="user-name margins-0">
+											<?= $similar_user['User']['name'] ?>
+										</p>
+
+										<small>Level <?= $similar_user['User']['level'] ?></small>
 									</div>
 								</div>
+							</a>
 
-								<!-- USER INFO -->
-								<div class="table-cell vertical-align-middle padding left-1">
-									<p class="user-name margins-0">
-										<?= $similar_user['User']['name'] ?>
-									</p>
-
-									<small>Level <?= $similar_user['User']['level'] ?></small>
-								</div>
-							</div>
-						</a>
-
-						<!-- VIEW AGENT DETAILS MODAL -->
-						<?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'PotentialAllies'.$counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
+							<!-- VIEW AGENT DETAILS MODAL -->
+							<?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'PotentialAllies'.$counter, 'user' => $similar_user, 'add_button' => true)); ?>
 						</li>
 
 					<?php
@@ -183,16 +183,23 @@
 					<?php
 						$counter = 0;
 						foreach($friends as $ally):
-							$pic = $this->Picture->getUserPictureAbsolutePath($ally['Friend']); ?>
+							 ?>
 							<li class="text-center">
 								<!-- PICTURE -->
+
 								<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['Friend']['id'], false)); ?>">
-									<img class="profile-picture small radius img-glow-on-hover-small" src='<?= $pic ?>' alt="<?= $ally['Friend']['name'] ?>'s profile picture" />
+									
+									<?= $this->Picture->showUserCircularPicture(
+										$ally['Friend'],
+										'square-40px',
+										__("%s's profile picture",$ally['Friend']['name'])
+									); ?>
+								
 									<p class="text-center text-glow-on-hover"><?= $ally['Friend']['name'] ?></p>
 								</a>
 
 								<!-- MODAL USER BIOGRAPHY -->
-								<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $ally, 'pic' => $pic, 'add_button' => false)); ?>
+								<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $ally, 'add_button' => false)); ?>
 							</li>
 						<?php
 							$counter++;

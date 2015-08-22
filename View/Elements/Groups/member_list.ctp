@@ -5,11 +5,11 @@
 				<a target="_blank" href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'profile', $member['id'])) ?>">
 
 					<!-- USER PICTURE -->
-					<?php $pic = $this->Picture->getUserPictureAbsolutePath($member); ?>
-
-					<div class="square-60px background-cover background-center img-circular margins-auto" style="background-image: url(<?= $pic ?>);">
-						<img class="hidden" src="<?= $pic ?>" alt="User <?= $member['username'] ?>'s picture" /> <!-- For accessibility -->
-					</div>
+					<?= $this->Picture->showUserCircularPicture(
+						$member,
+						'square-60px',
+						__("%s's profile picture",$member['name'])
+					); ?>
 
 					<!-- USER NAME -->
 					<h6><?= $member['name'] ?></h6>

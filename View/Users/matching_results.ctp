@@ -34,9 +34,10 @@
 
 	<div class="row">
 		<!-- SIMILAR AGENTS TITLE -->
-		<div class="small-12 columns margin top-2">
+		<div class="small-12 columns margin top-2 bottom-2">
 			<?php if (count($similar_users) > 0): ?>
 			<h3><?= __('These are agents with a profile similar to yours') ?></h3>
+			<p> <?= __('Get started following them: add them as allies!') ?> </p>
 			<?php endif; ?>
 		</div>
 
@@ -45,24 +46,60 @@
 			<?php
 				$counter = 0;
 				foreach($similar_users as $similar_user):
-					$pic = $this->Picture->getUserPictureAbsolutePath($similar_user['User']);
 			?>
 			<li>
 				<!-- PANEL -->
-				<a href="#" data-reveal-id="modalProfile<?= $counter ?>">
+				<!-- <a href="#" data-reveal-id="modalProfile<?= $counter ?>"> -->
+				
 					<div class="profile-content panel radius text-center margin right-05" data-equalizer-watch>
 						<!-- USER PICTURE -->
-						<img class="profile-picture radius" src='<?= $pic ?>' alt="<?= $similar_user['User']['name'] ?>'s profile picture" />
+						<?= $this->Picture->showUserCircularPicture(
+							$similar_user['User'],
+							'square-150px',
+							__("%s's profile picture",$similar_user['User']['name'])
+						); ?>
 
 						<!-- USER SHORT BIOGRAPHY -->
 						<h4 class="text-color-highlight"><?= $similar_user['User']['name'] ?></h4>
-						<p><?= $this->Text->getExcerpt($similar_user['User']['biography'], 30, '...') ?></p>
-						<button class="submit small "><?php echo __('View Agent'); ?></button>
+
+						<?php
+						//Has mini_biography
+						if (!empty($similar_user['User']['mini_biography'])): ?>
+							<p><?= $similar_user['User']['mini_biography'] ?></p>
+						<?php
+						//Has biography
+						elseif (!empty($similar_user['User']['biography'])): ?>
+							<p><?= $this->Text->getExcerpt($similar_user['User']['biography'], 30, '...') ?></p>
+						<?php
+						//Doesn't have anything
+						else: ?>
+							<div data-alert="" class="alert-box radius">
+								<?= __('This user has not added a biography yet.') ?>
+							</div> <?php
+						endif;
+						?>
+
+						<!-- ADD AS AN ALLY -->
+						<?php if(!in_array($similar_user['User']['id'], $friends_ids) && ($similar_user['User']['id'] != $loggedInUser['id'])): ?>
+							<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $similar_user['User']['id'], $loggedInUser['id'], false)); ?>" target="_blank" onclick="location.reload()">
+								<i class="fa fa-plus"></i>
+								<?= __('Add as ally') ?>
+							</a>
+						
+						<!-- ALREADY AN ALLY -->
+						<?php elseif(in_array($similar_user['User']['id'], $friends_ids) && ($similar_user['User']['id'] != $loggedInUser['id'])): ?>
+							<a class="button small disabled">
+								<i class="fa fa-check"></i>
+								<?= __('Your ally') ?>
+							</a>
+						<?php endif; ?>
+
+						<!-- <button class="submit small "><?php echo __('View Agent'); ?></button> -->
 					</div>
-				</a>
+				<!-- </a> -->
 
 				<!-- VIEW AGENT DETAILS MODAL -->
-				<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $similar_user, 'pic' => $pic, 'add_button' => true)); ?>
+				<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $similar_user, 'add_button' => true)); ?>
 			</li>
 			<?php
 					$counter++;
