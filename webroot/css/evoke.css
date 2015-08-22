@@ -424,13 +424,21 @@ button, .button {
 	position: relative;
 }
 
-.evoke .fixed.bottom-0 {
+.evoke .fixed.top-0, .evoke .absolute.top-0 {
+	top: 0;
+	bottom: initial;
+}
+.evoke .fixed.bottom-0, .evoke .absolute.bottom-0 {
 	top: initial;
 	bottom: 0;
 }
-.evoke .fixed.right-0 {
+.evoke .fixed.right-0, .evoke .absolute.right-0 {
 	left: initial;
 	right: 0;
+}
+.evoke .fixed.left-0, .evoke .absolute.left-0 {
+	left: 0;
+	right: initial;
 }
 
 /* --------------------------- */
