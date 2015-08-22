@@ -102,7 +102,8 @@
 									'South Africa' => __('South Africa'),
 									'China' => __('China'),
 									'Sweden' => __('Sweden'),
-									'' => __('Other'),
+									'' => __('Other')
+								),
 								'empty' => '(choose one)'
 						));
 					?>
