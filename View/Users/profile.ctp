@@ -5,7 +5,7 @@
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => 'Profile', 'imgSrc' => ($this->webroot.'img/header-profile.jpg'), 'margin' => false));
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Profile'), 'imgSrc' => ($this->webroot.'img/header-profile.jpg'), 'margin' => false));
 	$this->end();
 ?>
 
@@ -69,6 +69,7 @@
 		if ($user['User']['id'] == $users['User']['id']): ?>
 			<div class="row hide-for-small-only padding top-1 bottom-1 left-2 right-2 border-top-divisor">
 				<h4><?= __('Potential allies') ?></h4>
+
 				<ul class="full-width small-block-grid-1">
 				  <?php
 					$counter = 0;
@@ -80,11 +81,13 @@
 
 								<div class="table full-width profile-content padding top-1">
 									<!-- USER PICTURE -->
+						          	<div class="table-cell vertical-align-middle square-40px">
 									<?= $this->Picture->showUserCircularPicture(
 										$similar_user['User'],
 										'square-40px',
 										__("%s's profile picture",$similar_user['User']['name'])
 									); ?>
+									</div>
 
 									<!-- USER INFO -->
 									<div class="table-cell vertical-align-middle padding left-1">
@@ -106,6 +109,9 @@
 					endforeach;
 					?>
 				</ul>
+
+
+				<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'view_all')); ?>"><?php echo __('SEE ALL USERS'); ?></a>
 			</div>
 
 			<?php
@@ -170,7 +176,8 @@
 
 				<div class="row margins-0">
 					<h3 class="left margin right-2"><?= __("Allies I follow") ?></h3>
-					<!-- <a class="button small disabled" disabled href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'index')); ?>"><?php echo __('ALL USERS'); ?></a> -->
+
+					<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'view_all')); ?>"><?php echo __('SEE ALL USERS'); ?></a>
 				</div>
 
 
@@ -191,7 +198,7 @@
 									
 									<?= $this->Picture->showUserCircularPicture(
 										$ally['Friend'],
-										'square-40px',
+										'square-60px',
 										__("%s's profile picture",$ally['Friend']['name'])
 									); ?>
 								

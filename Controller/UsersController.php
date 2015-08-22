@@ -1361,6 +1361,29 @@ class UsersController extends AppController {
 
 /**
  *
+ * View all users
+ *
+ * @return void
+ */
+	public function view_all() {
+		//All users but current user
+		$all_users = $this->User->find('all', array(
+			'conditions' => 'User.id != '.$this->getUserId()
+		));
+
+		//Friends
+		$friends_ids = $this->User->UserFriend->find('list', array(
+			'fields' => 'UserFriend.friend_id',
+			'conditions' => array(
+				'UserFriend.user_id' => $this->getUserId()
+			)
+		));
+
+		$this->set(compact('all_users','friends_ids'));
+	}
+
+/**
+ *
  * enter site
  *
  * @return void
