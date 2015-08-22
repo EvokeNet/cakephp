@@ -160,6 +160,22 @@ class UsersController extends AppController {
 
 		$this->loadModel('Mission');
 		$missions = $this->Mission->find('all');
+		$video_url = 'http://player.vimeo.com/video/94984840';
+
+		//---------------------------------
+		//TRANSLATION
+
+		$lang = $this->getCurrentLanguage();
+
+		if ($lang == 'es') {
+			$video_url = 'http://player.vimeo.com/video/93164917';
+			
+			//Missions
+			foreach($missions as &$mission) {
+				$mission['Mission']['title'] = $mission['Mission']['title_es'];
+				$mission['Mission']['description'] = $mission['Mission']['description_es'];
+			}
+		}
 
 		$client = new Google_Client();
 		$client->setApplicationName('Evoke');
@@ -292,8 +308,8 @@ class UsersController extends AppController {
 
 		));
 
-		$browserLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-		$this->set(compact('browserLanguage'));
+		// $browserLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+		// $this->set(compact('browserLanguage'));
 
 		if(isset($this->params['url']['code'])) {
 
@@ -414,7 +430,7 @@ class UsersController extends AppController {
 			$this->Session->write('fbLoginUrl', $fbLoginUrl); //Stores facebook URL in session to be accessed by other views/controllers
 		}
 
-		$this->set(compact('missions'));
+		$this->set(compact('missions','video_url'));
 	}
 
 /**

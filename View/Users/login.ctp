@@ -7,12 +7,6 @@
 	$this->start('topbar');
 	echo $this->element('topbar');
 	$this->end();
-
-	//VIDEO
-	if($browserLanguage == 'es')
-		$video_url = 'http://player.vimeo.com/video/93164917';
-	else
-		$video_url = 'http://player.vimeo.com/video/94984840';
 ?>
 
 	<div class="evoke login fullpage">
@@ -38,10 +32,7 @@
 						<div class="evoke padding top-1 bottom-1 left-5 right-5 background-color-dark-opacity-05">
 							<a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'view_sample', $mission['Mission']['id']))?>">
 								<h2 class="text-color-highlight"><?= $mission['Mission']['title'] ?></h2>
-								<p>
-								<?php
-									echo $mission['Mission']['description'];
-									?>
+								<p> <?= $mission['Mission']['description']; ?>
 								</p>
 							</a>
 						</div></div>
