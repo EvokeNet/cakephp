@@ -9,7 +9,7 @@
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => 'Edit Profile', 'imgSrc' => ($this->webroot.'img/header-registering.jpg')));
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Edit Profile'), 'imgSrc' => ($this->webroot.'img/header-registering.jpg')));
 	$this->end();
 ?>
 
@@ -72,8 +72,12 @@
 				<div class="large-6 columns">
 					<?php
 						echo $this->Form->input('language', array(
-								'options' => array('portuguese' => __('Portuguese'), 'english' => __('English'), 'spanish' => __('Spanish')),
-								'empty' => '(choose one)'
+							'options' => array(
+								'es' => __('Spanish'),
+								'pt_BR' => __('Portuguese'),
+								'en' => __('English')
+							),
+							'empty' => '(choose one)'
 						));
 
 						echo $this->Form->input('birthdate', array(
@@ -91,7 +95,7 @@
 				<div class="large-6 columns">
 					<?php
 						echo $this->Form->input('country', array(
-								'options' => array('Brasil','USA','South Africa','Colombia'),
+								'options' => array('Colombia','Brasil','USA','South Africa','China','Sweden','Other'),
 								'empty' => '(choose one)'
 						));
 					?>

@@ -75,8 +75,8 @@
 					<!-- COUNTRY -->
 					<?php
 						echo $this->Form->input('country', array(
-						    'options' => array('Brasil','USA','South Africa','Colombia'),
-						    'empty' => '(choose one)'
+								'options' => array('Colombia','Brasil','USA','South Africa','China','Sweden','Other'),
+								'empty' => '(choose one)'
 						));
 					?>
 				</div>
@@ -84,9 +84,12 @@
 					<!-- LANGUAGE -->
 					<?php
 						echo $this->Form->input('language', array(
-							'required' => true,
-						    'options' => array('portuguese' => __('Portuguese'), 'english' => __('English'), 'spanish' => __('Spanish')),
-						    'empty' => '(choose one)'
+							'options' => array(
+								'es' => __('Spanish'),
+								'pt_BR' => __('Portuguese'),
+								'en' => __('English')
+							),
+							'empty' => '(choose one)'
 						));
 					?>
 
