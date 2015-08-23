@@ -84,21 +84,30 @@ else: ?>
 								</p><?php
 
 							//CREATE GROUP
-							elseif ($q['type'] == Quest::TYPE_GROUP_CREATION): ?>
-								<p class="text-center">
-									<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'groups', 'action' => 'add', $q['id'])); ?>">
-										<?= __('Create your group') ?>
-									</a>
-								</p><?php
+							elseif ($q['type'] == Quest::TYPE_GROUP_CREATION):
+								//Requests pending
+								if (count($q['GroupRequestsPending']) > 0): ?>
+									<div data-alert class="alert-box info radius">
+										<p><?= __('Waiting for acceptance of your request to join group.') ?></p>
+									</div><?php
+									
+								//No requests pending
+								else: ?>
+									<p class="text-center">
+										<a class="button small open-mission-overlay" href="<?php echo $this->Html->url(array('controller'=> 'groups', 'action' => 'add', $q['id'])); ?>">
+											<?= __('Create your group') ?>
+										</a>
+									</p><?php
 
-								//JOIN EXISTING GROUPS
-								if (!empty($q['Group'])): ?>
-									<p class="text-center"> <?= __('Or join groups already created for this phase:') ?> </p>
+									//JOIN EXISTING GROUPS
+									if (!empty($q['Group'])): ?>
+										<p class="text-center"> <?= __('Or join groups already created for this phase:') ?> </p>
 
-									<?php
-									foreach($q['Group'] as $group):
-										echo $this->element('Groups/group_box', array('group' => $group, 'show_title' => true));
-									endforeach;
+										<?php
+										foreach($q['Group'] as $group):
+											echo $this->element('Groups/group_box', array('group' => $group, 'show_title' => true));
+										endforeach;
+									endif;
 								endif;
 
 							//BRAINSTORM

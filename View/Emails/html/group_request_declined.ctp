@@ -7,5 +7,11 @@
 
 <p align="center" style="text-align: center;"><?php echo $this->Html->link(
 		__('Access Evoke and join another group, or create your own!'), 
-		array('controller' => 'missions', 'action' => 'view_mission', $group['mission_id'], $phase['position'])
+		array(
+			'controller' => 'missions', 
+			'action' => 'view_mission', 
+			$group['mission_id'], 
+			$phase['position'],
+			'full_base' => true
+		)
 	); ?></p>

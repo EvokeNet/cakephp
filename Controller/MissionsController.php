@@ -630,12 +630,12 @@ class MissionsController extends AppController {
 			throw new NotFoundException(__('Invalid mission'));
 		}
 
-		$user = $this->Auth->user();
-
 		$mission = $this->Mission->find('first', array(
-			'conditions' => array('id' => $mission_id),
+			'conditions' => array('Mission.id' => $mission_id),
 			'contain' => array('Group', 'Phase')
 		));
+
+		$user = $this->Auth->user();
 
 		//COMPLETED PHASE
 		$i = 0;
@@ -705,15 +705,16 @@ class MissionsController extends AppController {
 
 		//TRANSLATION
 		$lang = $this->getCurrentLanguage();
+		
 		if ($lang == 'es') {
 			//Mission
 			$mission['Mission']['title'] = $mission['Mission']['title_es'];
 			$mission['Mission']['description'] = $mission['Mission']['description_es'];
 
 			//All phases
-			foreach ($mission['Phase'] as $phase) {
-				$phase['Phase']['name'] = $phase['Phase']['name_es'];
-				$phase['Phase']['description'] = $phase['Phase']['description_es'];
+			foreach ($mission['Phase'] as &$mission_phase) {
+				$mission_phase['name'] = $mission_phase['name_es'];
+				$mission_phase['description'] = $mission_phase['description_es'];
 			}
 		}
 
@@ -736,8 +737,13 @@ class MissionsController extends AppController {
 
 		$lang = $this->getCurrentLanguage();
 
+		$this->loadModel('Phase');
+		$this->loadModel('Quest');
+		$this->loadModel('Group');
+		$this->loadModel('User');
+
 		//PHASE
-		$phase = $this->Mission->Phase->find('first', array(
+		$phase = $this->Phase->find('first', array(
 			'conditions' => array('Phase.id' => $phase_id),
 			'contain' => array('Quest' => 'Group')
 		));
@@ -750,30 +756,35 @@ class MissionsController extends AppController {
 			}
 
 			//WHETHER THE USER HAS COMPLETED THE QUEST OR NOT
-			$quest['has_completed'] = $this->Mission->Phase->Quest->hasCompleted($this->user['id'], $quest['id']);
+			$quest['has_completed'] = $this->Quest->hasCompleted($this->user['id'], $quest['id']);
 
 			//RESPONSE (if completed)
 			if ($quest['has_completed']) {
-				$quest['Response'] = $this->Mission->Phase->Quest->getQuestResponse($this->user['id'], $quest['id']);
+				$quest['Response'] = $this->Quest->getQuestResponse($this->user['id'], $quest['id']);
 
-				//GROUP -- CHECK IF THE USER IS MEMBER/OWNER
+				//GROUP -- CHECK IF THE USER IS MEMBER/OWNER / 
 				if ($quest['type'] == Quest::TYPE_GROUP_CREATION) {
-					$quest['Response']['Group']['is_owner'] = $this->Mission->Phase->Group->isOwner($quest['Response']['Group']['id'], $user['id']);
-					$quest['Response']['Group']['is_member'] = $this->Mission->Phase->Group->isMember($quest['Response']['Group']['id'], $user['id']);
+					$quest['Response']['Group']['is_owner'] = $this->Group->isOwner($quest['Response']['Group']['id'], $user['id']);
+					$quest['Response']['Group']['is_member'] = $this->Group->isMember($quest['Response']['Group']['id'], $user['id']);
 				}
+			}
+
+			//GROUP -- CHECK IF THE USER SENT REQUESTS
+			if ($quest['type'] == Quest::TYPE_GROUP_CREATION) {
+				$quest['GroupRequestsPending'] = $this->Group->GroupRequest->findAllByUserIdAndStatus($user['id'],0);
 			}
 			
 			//GROUP -- CHECK IF THE USER IS MEMBER/OWNER
 			foreach ($quest['Group'] as $group_key => &$group) { //group belongs to the quest it was created in
-				$group['is_owner'] = $this->Mission->Phase->Group->isOwner($group['id'], $user['id']);
-				$group['is_member'] = $this->Mission->Phase->Group->isMember($group['id'], $user['id']);
+				$group['is_owner'] = $this->Group->isOwner($group['id'], $user['id']);
+				$group['is_member'] = $this->Group->isMember($group['id'], $user['id']);
 
 				//BRAINSTORM TIMELINE
 				//Members of the group see the brainstorm timeline for all the quests of the phase
 				if ($group['is_member']) {
 					foreach ($phase['Quest'] as $key2 => &$phase_quest) {
 						if ($phase_quest['type'] == Quest::TYPE_BRAINSTORM) {
-							$phase_quest['Timeline'] = $this->Mission->Phase->Group->findTimelineByGroupAndQuest($group['id'],$phase_quest['id']);
+							$phase_quest['Timeline'] = $this->Group->findTimelineByGroupAndQuest($group['id'],$phase_quest['id']);
 						}
 					}
 				}

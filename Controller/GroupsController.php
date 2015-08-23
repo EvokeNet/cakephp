@@ -210,6 +210,8 @@ class GroupsController extends AppController {
 			'contain' => array(
 				'Leader',
 				'Member',
+				'GroupRequestsPending' => 'User',
+				'GroupRequestsDone' => 'User',
 				'Phase' => 'Mission'
 			)
 		));
@@ -225,12 +227,11 @@ class GroupsController extends AppController {
 		$group['is_member'] = $this->Group->isMember($id, $user['id']);
 
 		//GROUP REQUESTS
-		$groupsRequestsPending = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status = 0')));
-
-		$groupsRequests = $this->Group->GroupRequest->find('all', array('conditions' => array('GroupRequest.group_id' => $id, 'GroupRequest.status' => array(1, 2))));
+		$group['GroupRequestsPending'] = $group_array['GroupRequestsPending'];
+		$group['GroupRequestsDone'] = $group_array['GroupRequestsDone'];
 
 		//Variables
-		$this->set(compact('user', 'group', 'groupOwner', 'members', 'groupMission', 'groupsRequests', 'groupsRequestsPending'));
+		$this->set(compact('user', 'group', 'groupOwner', 'members', 'groupMission'));
 	}
 
 /**

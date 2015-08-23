@@ -8,7 +8,7 @@
 		
 		<?php
 		//NO REQUESTS
-		if (count($group['GroupRequestsPending']) <= 0) {
+		if ((!isset($group['GroupRequestsPending'])) || (count($group['GroupRequestsPending']) <= 0)) {
 			echo __('There are no requests pending.');
 		}
 		//REQUESTS
@@ -55,12 +55,12 @@
 	<div class="content padding all-1" id="panel2-2">
 		<?php
 		//NO REQUESTS
-		if (count($group['GroupRequestsDone']) <= 0) {
+		if ((!isset($group['GroupRequestsDone'])) || (count($group['GroupRequestsDone']) <= 0)) {
 			echo __('There were no requests accepted or declined.');
 		}
 		//REQUESTS
 		else {
-			foreach($group['GroupRequestsDone'] as $request_done):?>
+			foreach($group['GroupRequestsDone'] as $request_done): ?>
 				<p>
 					<?php
 					if ($request_done['status'] == 1) {
