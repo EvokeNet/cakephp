@@ -81,7 +81,7 @@
 
 						<!-- ADD AS AN ALLY -->
 						<?php if(!in_array($similar_user['User']['id'], $friends_ids) && ($similar_user['User']['id'] != $loggedInUser['id'])): ?>
-							<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $similar_user['User']['id'], $loggedInUser['id'], false)); ?>" target="_blank" onclick="location.reload()">
+							<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'add_friend', $similar_user['User']['id'], true, 'users_matching_results')); ?>" target="_blank" onclick="location.reload()">
 								<i class="fa fa-plus"></i>
 								<?= __('Add as ally') ?>
 							</a>

@@ -29,7 +29,7 @@
 			<div class="padding top-1 text-center">
 				<!-- ADD AS AN ALLY -->
 				<?php if(empty($is_friend) && ($user['User']['id'] != $users['User']['id'])): ?>
-					<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $user['User']['id'], $loggedInUser['id'], false)); ?>">
+					<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'add_friend', $user['User']['id'], true, 'users_profile')); ?>">
 						<i class="fa fa-plus"></i>
 						<?= __('Add as ally') ?>
 					</a>

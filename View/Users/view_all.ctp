@@ -53,7 +53,7 @@
 					<div class="full-width absolute bottom-0 left-0">
 						<!-- ADD AS AN ALLY -->
 						<?php if(!in_array($user['User']['id'], $friends_ids) && ($user['User']['id'] != $loggedInUser['id'])): ?>
-							<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $user['User']['id'], $loggedInUser['id'], false)); ?>" target="_blank" onclick="location.reload()">
+							<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'add_friend', $user['User']['id'], true, 'users_view_all')); ?>" target="_blank" onclick="location.reload()">
 								<i class="fa fa-plus"></i>
 								<?= __('Add as ally') ?>
 							</a>

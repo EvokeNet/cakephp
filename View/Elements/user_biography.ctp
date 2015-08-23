@@ -40,7 +40,7 @@ endif; ?>
 			if (isset($add_button) && ($add_button == true)):?>
 				<!-- ADD -->
 				<div class="text-center  margin top-2">
-					<a class="button small addally uppercase" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $loggedInUser['id'], $user['User']['id'], false)); ?>"><?php echo __('ADD ALLY'); ?></a>
+					<a class="button small addally uppercase" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'add_friend', $user['User']['id'], true, 'element_user_biography')); ?>"><?php echo __('ADD ALLY'); ?></a>
 				</div><?php 
 			endif; ?>
 

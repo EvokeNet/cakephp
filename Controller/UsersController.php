@@ -1081,6 +1081,20 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 
+		//------------- FOR THE PLAYTEST ------------- //
+		$loggedInUserId = $this->getUserId();
+		$this->loadModel('LogPlaytest');
+		//MY OWN PROFILE
+		if ($id == $this->getUserId()) {
+			$this->LogPlaytest->log_playtest_add('my_profile_opened', $loggedInUserId);
+		}
+		//ANOTHER PROFILE
+		else {
+			$this->LogPlaytest->log_playtest_add('another_profile_opened', $id);
+		}
+		//------------- FOR THE PLAYTEST ------------- //
+
+
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
@@ -1451,17 +1465,21 @@ class UsersController extends AppController {
  * @param bool $redirect Boolean indicating if the function should redirect after adding the friend. Default true.
  * @return string Text saying if the user has been added or not. Returned when the user is not redirected.
  */
-	public function add_friend($user_to = null, $redirect = null) {
-		$this->request->data['User']['id'] = $this->getUserId();
-		$this->request->data['Friend']['id'] = $user_to;
+	public function add_friend($user_to = null, $redirect = null, $source_link = null) {
+		$this->autoRender = false;
 
-		if($result = $this->User->saveAll($this->request->data)) {
-			if (is_null($redirect)) {
-				$this->redirect(array('action' => 'view', $user_to));
+		$this->request->data['UserFriend']['user_id'] = $this->getUserId();
+		$this->request->data['UserFriend']['friend_id'] = $user_to;
+		$this->request->data['UserFriend']['source_link'] = $source_link;
+
+		$this->loadModel('UserFriend');
+		if($result = $this->UserFriend->saveAll($this->request->data)) {
+			if (is_null($redirect) || ($redirect == true)) {
+				$this->redirect(array('action' => 'profile', $user_to));
 			}
 		}
-		elseif (is_null($redirect)) {
-			$this->redirect(array('action' => 'view', $user_to));
+		elseif (is_null($redirect) || ($redirect == true)) {
+			$this->redirect(array('action' => 'profile', $user_to));
 		}
 	}
 

@@ -19,6 +19,18 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				});
 			});
 
+			//LOG DOSSIER
+			$("#menu-icon-tabDossier").on("click", function() {
+				$.ajax({
+					url: evokeData.log_dossier_url,
+					type:"POST",
+					data: {action_performed: 'dossier_tab_opened'},
+					success: function(data) {
+						console.log('Opened tab dossier - log '+data);
+					}
+				});
+			});
+
 			//--------------------------------------------//
 			//OPEN EVIDENCE PANEL
 			//--------------------------------------------//

@@ -81,6 +81,9 @@
 	//LOADING MAIN CONTENT
 	$load_main_content_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderPanelsMainContent', $mission['Mission']['id']));
 
+	//LOG DOSSIER
+	$log_dossier_url = $this->Html->url(array('controller' => 'log_playtests', 'action' => 'add'));
+
 	//JAVASCRIPT VARIABLES
 	$this->start('evoke_javascript_variables');
 		echo "
@@ -89,6 +92,8 @@
 		evokeData.missions_load_evidences_url = '$load_evidences_url';
 		evokeData.open_quests_by_default = '$open_by_default';
 		evokeData.load_main_content_url = '$load_main_content_url';
+
+		evokeData.log_dossier_url = '$log_dossier_url';
 		";
 	$this->end();
 

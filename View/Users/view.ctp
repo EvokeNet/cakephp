@@ -59,7 +59,7 @@
 				<?php elseif($flags['_friended']): ?>
 					<a href="<?php echo $this->Html->url(array('action' => 'remove_friend', $user['User']['id'])) ?>" class="evoke button bg-red"><?php echo __('Forget Ally'); ?></a>
 				<?php else: ?>
-					<a href="<?php echo $this->Html->url(array('action' => 'add_friend', $user['User']['id'])) ?>" class="evoke button"><?php echo __('Add Ally'); ?></a>
+					<a href="<?php echo $this->Html->url(array('action' => 'add_friend', $user['User']['id'], true, 'users_view')) ?>" class="evoke button"><?php echo __('Add Ally'); ?></a>
 				<?php endif; ?>
 
 				<a href="#" class="evoke button bg-green"><?php echo __('Message'); ?></a>
