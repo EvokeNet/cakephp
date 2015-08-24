@@ -62,12 +62,12 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 					//Confirmation dialog
 					swal({
-						title: "Are you sure?",
-						text: "If you change your evidence type now, you will lose the special content of your evidence's focus",
+						title: "Esta seguro?",
+						text: "Si cambia el tipo de evidencia ahora, perderá el contenido especial de enfoque de su evidencia",
 						type: "warning",
 						showCancelButton: true,
 						confirmButtonColor: "#26dee0",
-						confirmButtonText: "Yes, change my evidence type!",
+						confirmButtonText: "Sí, cambiar mi tipo de evidencia!",
 						closeOnConfirm: true
 					},
 					function(){
@@ -163,8 +163,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 								if(obj.flag == 0){
 
 									swal({
-										title: "Phase unlocked!",
-										text: "Congratulations, you just unlocked a phase! You can keep working on this phase, but you can also take a look on the next one.",
+										title: "Face Abierta!",
+										text: "Felicidades, acaba de desbloquear una face! Puede seguir trabajando en esta face, pero también se puede echar un vistazo a la siguiente.",
 										type: "success"
 									});
 
