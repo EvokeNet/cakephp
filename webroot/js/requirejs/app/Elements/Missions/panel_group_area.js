@@ -8,27 +8,27 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			var remove_url = $(this).attr('href');
 
 			swal({
-				title: "Are you sure?",
-				text: "This user will no longer be part of your group.",
+				title: "Estas seguro?",
+				text: "Este usuario ya no sera parte de su grupo.",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
-				confirmButtonText: "Yes, I'm sure",
+				confirmButtonText: "Si, estoy seguro",
 				closeOnConfirm: false
 			}, function() {
 				$.ajax({
 				  url: remove_url+'/true',
 				  success: function() {
 					swal({
-						title: "Done!",
-						text: "The user has been removed from your group.",
+						title: "Hecho!",
+						text: "El usuario ha sido removido de su grupo.",
 						type: "success"
 					}, function(){
 						missionPanels.reloadMainContent();
 					});
 				  },
 				  error: function() {
-					swal("Error", "Sorry, this user could not be removed.", "error");
+					swal("Error", "Lo sentimos, este usuario no puede ser eliminado.", "error");
 				  }
 				});
 			});
@@ -44,7 +44,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				type: 'POST',
 				url: $(this).attr('href'),
 				success: function(response) {
-					swal("Done!", "Request accepted!", "success");
+					swal("Hecho!", "Solicitud aceptada!", "success");
 					missionPanels.reloadMainContent();
 				}
 			});
@@ -59,7 +59,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				type: 'POST',
 				url: $(this).attr('href'),
 				success: function(response) {
-					swal("Done!", "Request denied.", "success");
+					swal("Hecho!", "Solicitud rechazada.", "success");
 					missionPanels.reloadMainContent();
 				}
 			});
