@@ -14,11 +14,11 @@ define(['jquery','sweetalert', 'jqueryajaxretry'], function($,swal){
 				.fail(function(){
 					//Session expired
 					if (jqXHR.status === 401) {
-						swal("Oops...", 'Your session has expired. Please sign in again.', "error");
+						swal("Vaya...", 'Su sesion ha terminado. Por favor, iniciar sesion de nuevo.', "error");
 					}
 					//General errors
 					else {
-						swal("Oh no!", 'Sorry, we could not retrieve this page. Please try again.', "error");
+						swal("Oh no!", 'Lo sentimos, no hemos podido recuperar esta pagina. Por favor, vuelva a intentarlo.', "error");
 					}
 				});
 		}
