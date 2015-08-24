@@ -219,18 +219,18 @@
 							'Es abierto y flexible' => array(
 								'achievements' => array(
 									'Abraza nuevas ideas de diferentes culturas y perspectivas',
-									'InteractÃºa con ideas cada vez mÃ¡s complejas',
+									'Interacta con ideas cada vez mas complejas',
 									'Ve problemas de injusticia social como problemas a resolver'
 								)
 							),
-							'APLICA LA IMAGINACIÃ“N. Es original' => array(
+							'APLICA LA IMAGINACION. Es original.' => array(
 								'achievements' => array(
-									'Presenta una vista Ãºnica del mundo',
+									'Presenta una vista unica del mundo',
 									'Presenta asuntos en nuevas maneras',
 									'Presenta ideas en una diversidad de formas'
 								)
 							),
-							'Demonstra una claridad de visiÃ³n' => array(
+							'Demonstra una claridad de vision' => array(
 								'achievements' => array(
 									'Desarrolla ideas con evidencia clara',
 									'Inspira pensamiento profundo',
@@ -255,9 +255,9 @@
 							),
 							'Participa activamente en redes' => array(
 								'achievements' => array(
-									'EvalÃºa constructiva otros agentes',
+									'Evalia constructiva otros agentes',
 									'Hace comentarios en la evidencia de otros agentes',
-									'Proporciona retroalimentaciÃ³n respetuosa a otros agentes'
+									'Proporciona retroalimentacion respetuosa a otros agentes'
 								)
 							),
 							'Nunca se rinde' => array(
@@ -278,23 +278,23 @@
 							),
 							'REVELA LOS SISTEMAS' => array(
 								'achievements' => array(
-									'Articula una hipÃ³tesis sobre un sistema',
-									'Se ilumina la interconexiÃ³n de las ideas',
+									'Articula una hipotesis sobre un sistema',
+									'Se ilumina la interconexion de las ideas',
 									'Modela un sistema'
 								)
 							),
 							'Intensamente CURIOSO' => array(
 								'achievements' => array(
-									'Muestra reflexiÃ³n crÃ­tica',
+									'Muestra reflexion critica',
 									'No tiene miedo de cuestionar constantemente para buscar respuestas',
-									'Comparta razonamiento con los demÃ¡s a travÃ©s de visualizaciones'
+									'Comparta razonamiento con los demas a traves de visualizaciones'
 								)
 							),
-							'CONECTA A FUENTES MÃšLTIPLES DE LA INFORMACIÃ“N Y DEL CONOCIMIENTO' => array(
+							'CONECTA A FUENTES MULTIPLES DE LA INFORMACION Y DEL CONOCIMIENTO' => array(
 								'achievements' => array(
-									'Investiga muchas fuentes de informaciÃ³n',
+									'Investiga muchas fuentes de informacion',
 									'Conecta disciplinas dispares',
-									'Entiende a travÃ©s de la auto-reflexiÃ³n'
+									'Entiende a traves de la auto-reflexion'
 								)
 							)
 						),
@@ -306,11 +306,11 @@
 									'Busca respuestas de la red'
 								)
 							),
-							'Muestra una generosidad de espÃ­ritu' => array(
+							'Muestra una generosidad de espiritu' => array(
 								'achievements' => array(
 									'Participa con otros agentes',
 									'Comparta recursos libremente',
-									'Colabora con los demÃ¡s'
+									'Colabora con los demas'
 								)
 							),
 							'INSPIRA' => array(
@@ -320,9 +320,9 @@
 									'Inicia movimientos'
 								)
 							),
-							'Muestra PASIÃ“N Y EMPATÃA' => array(
+							'Muestra PASION Y EMPATIA' => array(
 								'achievements' => array(
-									'Entiende cÃ³mo otros se sienten',
+									'Entiende como otros se sienten',
 									'Es un apasionado de hacer una diferencia',
 									'Muestra un sentido de pertenencia'
 								)
