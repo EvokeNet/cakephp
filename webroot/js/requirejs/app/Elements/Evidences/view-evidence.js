@@ -18,12 +18,12 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$('#buttonDeleteEvidence').click(function(event){
 				swal({
-					title: "Are you sure?",
-					text: "You will not be able to recover your evidence.",
+					title: "Estas seguro?",
+					text: "Usted no sera capaz de recuperar su evidencia.",
 					type: "warning",
 					showCancelButton: true,
 					confirmButtonColor: "#DD6B55",
-					confirmButtonText: "Yes, delete it!",
+					confirmButtonText: "Si, eliminala!",
 					closeOnConfirm: false
 				},
 				function(){
@@ -32,8 +32,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					  url: $('#buttonDeleteEvidence').attr('href')+'/true',
 					  success: function() {
 						swal({
-							title: "Deleted!",
-							text: "Your evidence has been deleted.",
+							title: "Eliminada!",
+							text: "Tu evidencia ha sido eliminada.",
 							type: "success"
 						}, function(){
 							//RELOAD WINDOW
@@ -42,7 +42,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					  },
 					  error: function() {
 					  	//Error message
-						swal("Error", "Sorry, your evidence could not be deleted.", "error");
+						swal("Error", "Lo siento, no fue posible eliminar tu evidencia.", "error");
 					  }
 					});
 				});
@@ -65,12 +65,12 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				.on("click", "a.buttonDeleteComment", function( event ) {
 					var delete_comment_url = $(this).attr('href')+'/true';
 					swal({
-						title: "Are you sure?",
-						text: "You will not be able to recover your evidence.",
+						title: "Estas seguro?",
+						text: "Usted no sera capaz de recuperar su comentario.",
 						type: "warning",
 						showCancelButton: true,
 						confirmButtonColor: "#DD6B55",
-						confirmButtonText: "Yes, delete it!",
+						confirmButtonText: "Si, eliminalo!",
 						closeOnConfirm: true
 					},
 					function(){
