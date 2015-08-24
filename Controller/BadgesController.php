@@ -38,6 +38,8 @@ class BadgesController extends AppController {
  * @return void
  */
 	public function index() {
+		$lang = $this->getCurrentLanguage();
+		
 		$badges = $this->Badge->find('all');
 
 		//List of badges of the current user (just the badge IDs)
@@ -49,6 +51,12 @@ class BadgesController extends AppController {
 		));
 
 		foreach ($badges as $b => $badge) {
+			if ($lang == 'es') {
+				//TRANSLATION
+				$badges[$b]['Badge']['name'] = $badges[$b]['Badge']['name_es'];
+				$badges[$b]['Badge']['description'] = $badges[$b]['Badge']['description_es'];
+			}
+			
 			//IMAGE
 			$this->loadModel('Attachment');
 			$badge_img = $this->Attachment->find('first', array(
@@ -73,6 +81,7 @@ class BadgesController extends AppController {
 			//PROGRESS
 			$badges[$b]['Badge']['UserPercentage'] = rand(0,100); // ($badgeCurrent / $badgeGoal) * 100;
 		}
+
 		
 		$this->loadModel('User');
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
