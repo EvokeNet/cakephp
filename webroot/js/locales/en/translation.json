@@ -1,0 +1,72 @@
+{
+	"app":{
+		"elements":{
+			"evidences":{
+				"evidence_form":{
+					"msg_change_type": {
+						"title": "Are you sure?",
+						"text": "If you change your evidence type now, you will lose the special content of your evidence's focus.",
+						"confirmButtonText": "Yes, change my evidence type!",
+						"cancelButtonText": "Cancel"
+					},
+					"msg_phase_unlocked":{
+						"title": "Phase unlocked!",
+						"text": "Congratulations, you just unlocked a phase! You can keep working on this phase, but you can also take a look on the next one."
+					}
+				},
+				"view_evidence":{
+					"msg_delete_evidence": {
+						"title": "Are you sure?",
+						"text": "You will not be able to recover your evidence.",
+						"confirmButtonText": "Yes, delete it!",
+						"cancelButtonText": "Cancel"
+					},
+					"msg_evidence_deleted": {
+						"title": "Deleted!",
+						"text": "Your evidence has been deleted."
+					},
+					"msg_error_delete": {
+						"title": "Error!",
+						"text": "Sorry, your evidence could not be deleted."
+					},
+					"msg_delete_comment": {
+						"title": "Are you sure?",
+						"text": "You will not be able to recover your evidence.",
+						"confirmButtonText": "Yes, delete it!",
+						"cancelButtonText": "Cancel"
+					}
+				}
+			},
+			"missions": {
+				"panel_group_area": {
+					"msg_remove_group_member": {
+						"title": "Are you sure?",
+						"text": "This user will no longer be part of your group.",
+						"confirmButtonText": "Yes, I'm sure",
+						"cancelButtonText": "Cancel"
+					},
+					"msg_meber_removed": {
+						"title": "Done!",
+						"text": "The user has been removed from your group.",
+					},
+					"msg_error_remove": {
+						"title": "Error",
+						"text": "Sorry, this user could not be removed."
+					},
+					"msg_acc_request": {
+						"title": "Done!",
+						"text": "Request accepted!"
+					},
+					"msg_refuse_request": {
+						"title": "Done!",
+						"text": "Request refused!"
+					}
+
+				}
+			}
+		}
+	},
+	"modules":{
+
+	}
+}

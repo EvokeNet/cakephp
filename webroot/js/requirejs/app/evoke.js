@@ -1,4 +1,4 @@
-define(['modernizr', 'foundation'], function(Modernizr, Foundation) {
+define(['modernizr', 'foundation', 'i18next'], function(Modernizr, Foundation) {
 
 	function evoke() {}
 
@@ -14,6 +14,7 @@ define(['modernizr', 'foundation'], function(Modernizr, Foundation) {
 					equalize_on_stack: true
 				}
 			});
+
 		});
 	};
 

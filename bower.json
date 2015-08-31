@@ -8,6 +8,7 @@
 		"FroalaWysiwygEditor": "1.2.3",
 		"fullpage.js": "~2.2.1",
 		"handlebars": "*",
+		"i18next": "*",
 		"jquery-ajax-retry": "*",
 		"jquery-ui": "*",
 		"jquery.cookie": "1.4.1",

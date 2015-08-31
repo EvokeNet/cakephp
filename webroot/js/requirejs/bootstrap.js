@@ -16,6 +16,7 @@ requirejs.config({
 		froala: 'FroalaWysiwygEditor/js/froala_editor.min',
 		fullpage: 'fullpage.js/jquery.fullPage.min',
 		handlebars: 'handlebars/handlebars.min',
+		i18next: 'i18next/i18next.min',
 		jquery : 'jquery/dist/jquery.min',
 		jqueryajaxretry: 'jquery-ajax-retry/dist/jquery.ajax-retry.min',
 		jqueryui : 'jquery-ui/jquery-ui.min',

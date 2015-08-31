@@ -62,12 +62,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 					//Confirmation dialog
 					swal({
-						title: "Are you sure?",
-						text: "If you change your evidence type now, you will lose the special content of your evidence's focus",
+						title: i18n.t("app.elements.evidences.evidence_form.msg_change_type.title"),
+						text: i18n.t("app.elements.evidences.evidence_form.msg_change_type.text"),
 						type: "warning",
 						showCancelButton: true,
 						confirmButtonColor: "#26dee0",
-						confirmButtonText: "Yes, change my evidence type!",
+						confirmButtonText: i18n.t("app.elements.evidences.evidence_form.msg_change_type.confirmButtonText"),
+						cancelButtonText: i18n.t("app.elements.evidences.evidence_form.msg_change_type.cancelButtonText"),
 						closeOnConfirm: true
 					},
 					function(){

@@ -107,5 +107,5 @@
 
 <?php
 	//SCRIPT
-	$this->Html->script('requirejs/app/file-upload.js', array('inline' => false));
+	$this->Html->script('requirejs/app/file_upload.js', array('inline' => false));
 ?>
