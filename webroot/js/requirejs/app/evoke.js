@@ -14,7 +14,9 @@ define(['modernizr', 'foundation', 'i18next'], function(Modernizr, Foundation) {
 					equalize_on_stack: true
 				}
 			});
-
+			i18n.init({ lng: "en" ,
+                  resGetPath: webroot+"js/locales/__lng__/__ns__.json",
+                }, function(err, t) {});
 		});
 	};
 
