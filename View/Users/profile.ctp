@@ -246,6 +246,12 @@
 </div>
 
 <?php
+	//JAVASCRIPT VARIABLES
+	$this->start('evoke_javascript_variables');
+		
+		echo "evokeData.webroot = 'TESTE';";
+	$this->end();
+
 	//SCRIPT
 	$this->Html->script('requirejs/app/Users/profile.js', array('inline' => false));
 ?>

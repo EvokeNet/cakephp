@@ -1,4 +1,4 @@
-define(['modernizr', 'foundation', 'i18next'], function(Modernizr, Foundation) {
+define(['modernizr', 'foundation', 'evokedata','i18next'], function(Modernizr, Foundation, evokeData) {
 
 	function evoke() {}
 
@@ -14,9 +14,17 @@ define(['modernizr', 'foundation', 'i18next'], function(Modernizr, Foundation) {
 					equalize_on_stack: true
 				}
 			});
-			i18n.init({ lng: "en" ,
-                  resGetPath: webroot+"js/locales/__lng__/__ns__.json",
-                }, function(err, t) {});
+			var path = webroot+'js/locales/__lng__/__ns__.json';
+			
+			i18n.init({ lng: evokeData.language , resGetPath: path,
+                }, function(err, t) {
+                	
+                	//alert("PATH: "+path);
+                });
+			i18n.setLng(evokeData.language, { fixLng: true }, function(err, t) { 
+          		/* loading done */
+          		console.log("EVOKE LANG: "+evokeData.language);
+        	});
 		});
 	};
 

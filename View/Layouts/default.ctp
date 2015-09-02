@@ -102,6 +102,8 @@ $title = __('Evoke Network');
 		$this->Html->scriptStart(array('inline' => false)); ?>
 		require(['<?= $this->webroot ?>js/requirejs/bootstrap'], function () {
 			require(['evokedata'], function (evokeData) {
+				evokeData.webroot  = "<?php echo Router::url('/', true); ?>";
+				evokeData.language = "<?php echo $language; ?>";
 				<?php echo $this->fetch('evoke_javascript_variables') ?>;
 			});
 		}); <?php

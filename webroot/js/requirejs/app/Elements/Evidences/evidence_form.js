@@ -1,5 +1,6 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'handlebars', '../FileUploader/js/FileUploader', 'missionpanels', 'sweetalert', 'froala'], function ($, Handlebars, FileUploader, missionPanels, swal) {
+	require(['jquery', 'handlebars', '../FileUploader/js/FileUploader', 'missionpanels', 'sweetalert', 'i18next', 'froala'], 
+		function ($, Handlebars, FileUploader, missionPanels, swal) {
 		$(document).ready(function(){
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
@@ -164,8 +165,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 								if(obj.flag == 0){
 
 									swal({
-										title: "Phase unlocked!",
-										text: "Congratulations, you just unlocked a phase! You can keep working on this phase, but you can also take a look on the next one.",
+										title: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.title"),
+										text: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.text"),
 										type: "success"
 									});
 

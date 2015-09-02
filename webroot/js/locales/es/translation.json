@@ -1,0 +1,81 @@
+{
+	"app":{
+		"elements":{
+			"evidences":{
+				"evidence_form":{
+					"msg_change_type": {
+						"title": "¿Estás seguro?",
+						"text": "Si cambia el tipo de evidencia ahora, perderá el contenido especial de enfoque de su evidencia.",
+						"confirmButtonText": "Sí, cambiar mi tipo de evidencia!",
+						"cancelButtonText": "Cancelar"
+					},
+					"msg_phase_unlocked":{
+						"title": "Fase abierto!",
+						"text": "Felicidades, acaba de desbloquear una fase! Puede seguir trabajando en esta fase, pero también se puede echar un vistazo a la siguiente."
+					}
+				},
+				"view_evidence":{
+					"msg_delete_evidence": {
+						"title": "¿Estás seguro?",
+						"text": "Usted no será capaz de recuperar su evidencia.",
+						"confirmButtonText": "Sí, eliminarla!",
+						"cancelButtonText": "Cancelar"
+					},
+					"msg_evidence_deleted": {
+						"title": "Eliminado!",
+						"text": "Su evidencia ha sido eliminado."
+					},
+					"msg_error_delete": {
+						"title": "Error!",
+						"text": "Lo sentimos, la evidencia no se pudo eliminar."
+					},
+					"msg_delete_comment": {
+						"title": "¿Estás seguro?",
+						"text": "Usted no será capaz de recuperar su comentario.",
+						"confirmButtonText": "Sí, eliminarlo!",
+						"cancelButtonText": "Cancelar"
+					}
+				}
+			},
+			"missions": {
+				"panel_group_area": {
+					"msg_remove_group_member": {
+						"title": "¿Estás seguro?",
+						"text": "Este usuario ya no será parte de su grupo.",
+						"confirmButtonText": "Sí, estoy seguro",
+						"cancelButtonText": "Cancelar"
+					},
+					"msg_meber_removed": {
+						"title": "¡Hecho!",
+						"text": "El usuario ha sido removido de su grupo."
+					},
+					"msg_error_remove": {
+						"title": "Error",
+						"text": "Lo sentimos, este usuario no puede ser eliminado."
+					},
+					"msg_acc_request": {
+						"title": "¡Hecho!",
+						"text": "¡Solicitud aceptada!"
+					},
+					"msg_refuse_request": {
+						"title": "¡Hecho!",
+						"text": "¡Solicitud rechazada!"
+					}
+
+				}
+			}
+		}
+	},
+	"modules":{
+		"ajax_retry":{
+			"session_expired":{
+				"title": "Vaya...",
+				"text": "Su sesión ha termindado. Por favor, iniciar sesión de nuevo."
+			},
+			"retrieve_error":{
+				"title": "Oh no!",
+				"text": "Lo sentimos, no hemos podido recuperar esta página. Por favor, vuelva a intentarlo."
+			}
+		}
+	}
+}

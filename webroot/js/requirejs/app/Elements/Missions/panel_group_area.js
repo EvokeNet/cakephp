@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery','missionpanels', 'sweetalert'], function ($,missionPanels,swal) {
+	require(['jquery','missionpanels', 'sweetalert', 'i18next'], function ($,missionPanels,swal) {
 
 		//--------------------------------------------//
 		//REMOVE GROUP MEMBER CONFIRMATION ALERT BOX
@@ -8,27 +8,31 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			var remove_url = $(this).attr('href');
 
 			swal({
-				title: "Are you sure?",
-				text: "This user will no longer be part of your group.",
+				title: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_user.title"),
+				text: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_user.text"),
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
-				confirmButtonText: "Yes, I'm sure",
+				confirmButtonText: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_user.confirmButtonText"),
+				cancelButtonText: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_user.cancelButtonText"),
 				closeOnConfirm: false
 			}, function() {
 				$.ajax({
 				  url: remove_url+'/true',
 				  success: function() {
 					swal({
-						title: "Done!",
-						text: "The user has been removed from your group.",
+						title: i18n.t("app.elements.missions.panel_group_area.msg_member_removed.title"),
+						text: i18n.t("app.elements.missions.panel_group_area.msg_member_removed.text"),
 						type: "success"
 					}, function(){
 						missionPanels.reloadMainContent();
 					});
 				  },
 				  error: function() {
-					swal("Error", "Sorry, this user could not be removed.", "error");
+					swal(i18n.t("app.elements.missions.panel_group_area.msg_error_remove.title"),
+						i18n.t("app.elements.missions.panel_group_area.msg_error_remove.text"),
+						"error"
+					);
 				  }
 				});
 			});
@@ -44,7 +48,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				type: 'POST',
 				url: $(this).attr('href'),
 				success: function(response) {
-					swal("Done!", "Request accepted!", "success");
+					swal(i18n.t("app.elements.missions.panel_group_area.msg_acc_request.title"),
+						i18n.t("app.elements.missions.panel_group_area.msg_acc_request.text"),
+						"success"
+					);
 					missionPanels.reloadMainContent();
 				}
 			});
@@ -59,7 +66,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				type: 'POST',
 				url: $(this).attr('href'),
 				success: function(response) {
-					swal("Done!", "Request denied.", "success");
+					swal(i18n.t("app.elements.missions.panel_group_area.msg_refuse_request.title"),
+						i18n.t("app.elements.missions.panel_group_area.msg_refuse_request.text"),
+						"success"
+					);
 					missionPanels.reloadMainContent();
 				}
 			});

@@ -58,6 +58,7 @@ class AppController extends Controller {
 	public function beforeFilter() {
 		//Determine language if not already determined
 		$this->_checkBrowserLanguage();
+		$this->language = $language = $this->getCurrentLanguage();
 
 		//Info from the user that is currently logged in
 		$this->set('loggedIn', $this->Auth->loggedIn());
@@ -80,7 +81,7 @@ class AppController extends Controller {
 
 		//$userNotifications = $this->getNotificationsNumber($this->getUserId());
 
-		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser'));
+		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language'));
 	}
 
 

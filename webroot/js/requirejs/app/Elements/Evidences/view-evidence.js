@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery', 'sweetalert', 'missionpanels', 'evokedata', 'froala', '../js/requirejs/modules/facebook_share'], function ($, swal, missionPanels, evokeData) {
+	require(['jquery', 'sweetalert', 'missionpanels', 'evokedata', 'froala', 'i18next', '../js/requirejs/modules/facebook_share'], function ($, swal, missionPanels, evokeData) {
 		$(document).ready(function(){
 			$('#missions-content-overlay-body').off(); //clear events in previous elements
 			$('#missions-content-overlay-body *').off(); //clear events in previous elements
@@ -18,12 +18,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$('#buttonDeleteEvidence').click(function(event){
 				swal({
-					title: "Are you sure?",
-					text: "You will not be able to recover your evidence.",
+					title: i18n.t("app.elements.evidences.view_evidence.msg_delete_evidence.title"),
+					text: i18n.t("app.elements.evidences.view_evidence.msg_delete_evidence.text"),
 					type: "warning",
 					showCancelButton: true,
 					confirmButtonColor: "#DD6B55",
-					confirmButtonText: "Yes, delete it!",
+					confirmButtonText: i18n.t("app.elements.evidences.view_evidence.msg_delete_evidence.confirmButtonText"),
+					cancelButtonText: i18n.t("app.elements.evidences.view_evidence.msg_delete_evidence.cancelButtonText"),
 					closeOnConfirm: false
 				},
 				function(){
@@ -32,8 +33,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					  url: $('#buttonDeleteEvidence').attr('href')+'/true',
 					  success: function() {
 						swal({
-							title: "Deleted!",
-							text: "Your evidence has been deleted.",
+							title: i18n.t("app.elements.evidences.view_evidence.msg_evidence_deleted.title"),
+							text: i18n.t("app.elements.evidences.view_evidence.msg_evidence_deleted.text"),
 							type: "success"
 						}, function(){
 							//RELOAD WINDOW
@@ -42,7 +43,10 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					  },
 					  error: function() {
 					  	//Error message
-						swal("Error", "Sorry, your evidence could not be deleted.", "error");
+						swal(i18n.t("app.elements.evidences.view_evidence.msg_error_delete.title"),
+						 	i18n.t("app.elements.evidences.view_evidence.msg_error_delete.text"),
+						 	"error"
+						);
 					  }
 					});
 				});
@@ -65,12 +69,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				.on("click", "a.buttonDeleteComment", function( event ) {
 					var delete_comment_url = $(this).attr('href')+'/true';
 					swal({
-						title: "Are you sure?",
-						text: "You will not be able to recover your evidence.",
+						title: i18n.t("app.elements.evidences.view_evidence.msg_delete_comment.title"),
+						text: i18n.t("app.elements.evidences.view_evidence.msg_delete_comment.text"),
 						type: "warning",
 						showCancelButton: true,
 						confirmButtonColor: "#DD6B55",
-						confirmButtonText: "Yes, delete it!",
+						confirmButtonText: i18n.t("app.elements.evidences.view_evidence.msg_delete_comment.confirmButtonText"),
+						cancelButtonText: i18n.t("app.elements.evidences.view_evidence.msg_delete_comment.cancelButtonText"),
 						closeOnConfirm: true
 					},
 					function(){

@@ -31,7 +31,7 @@
 					},
 					"msg_delete_comment": {
 						"title": "Are you sure?",
-						"text": "You will not be able to recover your comment.",
+						"text": "You will not be able to recover your evidence.",
 						"confirmButtonText": "Yes, delete it!",
 						"cancelButtonText": "Cancel"
 					}
@@ -45,7 +45,7 @@
 						"confirmButtonText": "Yes, I'm sure",
 						"cancelButtonText": "Cancel"
 					},
-					"msg_member_removed": {
+					"msg_meber_removed": {
 						"title": "Done!",
 						"text": "The user has been removed from your group."
 					},
@@ -67,15 +67,6 @@
 		}
 	},
 	"modules":{
-		"ajax_retry":{
-			"session_expired":{
-				"title": "Oops...",
-				"text": "Your session has expired. Please sign in again."
-			},
-			"retrieve_error":{
-				"title": "Oh no!",
-				"text": "Sorry, we could not retrieve this page. Please try again."
-			}
-		}
+
 	}
 }

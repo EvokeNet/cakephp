@@ -14,11 +14,17 @@ define(['jquery','sweetalert', 'jqueryajaxretry'], function($,swal){
 				.fail(function(){
 					//Session expired
 					if (jqXHR.status === 401) {
-						swal("Oops...", 'Your session has expired. Please sign in again.', "error");
+						swal(i18n.t("modules.ajax_retry.session_expired.title"),
+							i18n.t("modules.ajax_retry.session_expired.text"),
+							"error"
+						);
 					}
 					//General errors
 					else {
-						swal("Oh no!", 'Sorry, we could not retrieve this page. Please try again.', "error");
+						swal(i18n.t("modules.ajax_retry.retrieve_error.title"),
+							i18n.t("modules.ajax_retry.retrieve_error.text"),
+							"error"
+						);
 					}
 				});
 		}
