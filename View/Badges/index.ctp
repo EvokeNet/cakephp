@@ -82,7 +82,7 @@
 		<!-- BADGE CONTENT -->
 		<div class="row text-center">
 				<?php 
-					$skills_and_achievements = array(
+					$skills_and_achievements_es = array(
 						'0' => array( //Badge Creative Visionary
 							'Commandes the World of Ideas' => array(
 								'achievements' => array(
@@ -204,6 +204,132 @@
 							)
 						)
 					);
+					
+
+
+					$skills_and_achievements = array(
+						'0' => array( //Badge Creative Visionary
+							'Domina el mundo de ideas' => array(
+								'achievements' => array(
+									'Generar muchas ideas nuevas',
+									'Simplificar ideas complejas',
+									'Sintetizar las ideas'
+								)
+							),
+							'Es abierto y flexible' => array(
+								'achievements' => array(
+									'Abraza nuevas ideas de diferentes culturas y perspectivas',
+									'Interactúa con ideas cada vez más complejas',
+									'Ve problemas de injusticia social como problemas a resolver'
+								)
+							),
+							'APLICA LA IMAGINACIÓN. Es original' => array(
+								'achievements' => array(
+									'Presenta una vista única del mundo',
+									'Presenta asuntos en nuevas maneras',
+									'Presenta ideas en una diversidad de formas'
+								)
+							),
+							'Demonstra una claridad de visión' => array(
+								'achievements' => array(
+									'Desarrolla ideas con evidencia clara',
+									'Inspira pensamiento profundo',
+									'Mueve un concepto a la realidad'
+								)
+							)
+						),
+						'1' => array( //Deep Collaborator
+							'ENTIENDE un problema y lo comunica claramente' => array(
+								'achievements' => array(
+									'Busca entendimiento',
+									'Participa con otros agentes',
+									'Presenta ideas en una forma convincente'
+								)
+							),
+							'PARTICIPA EN EQUIPOS DIVERSOS' => array(
+								'achievements' => array(
+									'Colabora con agentes distantes',
+									'Trabaja en equipos con diversidad de opiniones',
+									'Cumple las cosas por trabajar con otros'
+								)
+							),
+							'Participa activamente en redes' => array(
+								'achievements' => array(
+									'Evalúa constructiva otros agentes',
+									'Hace comentarios en la evidencia de otros agentes',
+									'Proporciona retroalimentación respetuosa a otros agentes'
+								)
+							),
+							'Nunca se rinde' => array(
+								'achievements' => array(
+									'Muestra compromiso implacable',
+									'Reflexiona sobre lo que significa ser valiente',
+									'Crea las ideas para cambiar el mundo'
+								)
+							)
+						),
+						'2' => array( //Systems Thinker
+							'Resuelve problemas' => array(
+								'achievements' => array(
+									'Aborda problemas no familiares',
+									'Plantea preguntas importantes',
+									'Identifica el problema claramente'
+								)
+							),
+							'REVELA LOS SISTEMAS' => array(
+								'achievements' => array(
+									'Articula una hipótesis sobre un sistema',
+									'Se ilumina la interconexión de las ideas',
+									'Modela un sistema'
+								)
+							),
+							'Intensamente CURIOSO' => array(
+								'achievements' => array(
+									'Muestra reflexión crítica',
+									'No tiene miedo de cuestionar constantemente para buscar respuestas',
+									'Comparta razonamiento con los demás a través de visualizaciones'
+								)
+							),
+							'CONECTA A FUENTES MÚLTIPLES DE LA INFORMACIÓN Y DEL CONOCIMIENTO' => array(
+								'achievements' => array(
+									'Investiga muchas fuentes de información',
+									'Conecta disciplinas dispares',
+									'Entiende a través de la auto-reflexión'
+								)
+							)
+						),
+						'3' => array( //Social Activist
+							'Se Aventura AL DESCONOCIDO' => array(
+								'achievements' => array(
+									'Dedicarse a los problemas no familiares',
+									'Plantea preguntas intrigantes',
+									'Busca respuestas de la red'
+								)
+							),
+							'Muestra una generosidad de espíritu' => array(
+								'achievements' => array(
+									'Participa con otros agentes',
+									'Comparta recursos libremente',
+									'Colabora con los demás'
+								)
+							),
+							'INSPIRA' => array(
+								'achievements' => array(
+									'Motiva a otros a tomar accion',
+									'Narra historias convincentes',
+									'Inicia movimientos'
+								)
+							),
+							'Muestra PASIÓN Y EMPATÍA' => array(
+								'achievements' => array(
+									'Entiende cómo otros se sienten',
+									'Es un apasionado de hacer una diferencia',
+									'Muestra un sentido de pertenencia'
+								)
+							)
+						)
+					);
+
 				$badge_count = -1;
 				foreach($badges as $b => $badge):
 					$badge_count++;
