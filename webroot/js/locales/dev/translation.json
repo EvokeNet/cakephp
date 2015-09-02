@@ -31,7 +31,7 @@
 					},
 					"msg_delete_comment": {
 						"title": "Are you sure?",
-						"text": "You will not be able to recover your evidence.",
+						"text": "You will not be able to recover your comment.",
 						"confirmButtonText": "Yes, delete it!",
 						"cancelButtonText": "Cancel"
 					}
@@ -45,7 +45,7 @@
 						"confirmButtonText": "Yes, I'm sure",
 						"cancelButtonText": "Cancel"
 					},
-					"msg_meber_removed": {
+					"msg_member_removed": {
 						"title": "Done!",
 						"text": "The user has been removed from your group."
 					},
@@ -63,10 +63,29 @@
 					}
 
 				}
+			},
+			"groups": {
+				"add_group": {
+					"msg_group_created":{
+						"title": "You created a group!",
+						"text_invite": "Invite your friends and accept their requests to join the group!",
+						"text_important": "Important: ",
+						"text_warning": "only after your group is complete you should start to brainstorm your evidence!"
+					}
+				}
 			}
 		}
 	},
 	"modules":{
-
+		"ajax_retry":{
+			"session_expired":{
+				"title": "Oops...",
+				"text": "Your session has expired. Please sign in again."
+			},
+			"retrieve_error":{
+				"title": "Oh no!",
+				"text": "Sorry, we could not retrieve this page. Please try again."
+			}
+		}
 	}
 }

@@ -8,13 +8,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			var remove_url = $(this).attr('href');
 
 			swal({
-				title: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_user.title"),
-				text: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_user.text"),
+				title: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_member.title"),
+				text: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_member.text"),
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#DD6B55",
-				confirmButtonText: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_user.confirmButtonText"),
-				cancelButtonText: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_user.cancelButtonText"),
+				confirmButtonText: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_member.confirmButtonText"),
+				cancelButtonText: i18n.t("app.elements.missions.panel_group_area.msg_remove_group_member.cancelButtonText"),
 				closeOnConfirm: false
 			}, function() {
 				$.ajax({

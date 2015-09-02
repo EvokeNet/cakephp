@@ -153,7 +153,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					data: $('form').serializeArray(),
 					success: function(dataAddEvidence) {
 						var objAddEvidence = $.parseJSON(dataAddEvidence);
-
+						console.log("Before");
 						//CHECK IF A PHASE WAS UNLOCKED
 						$.ajax({
 							url: webroot+"phases/checkSubscription",
@@ -161,7 +161,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 							data:objAddEvidence,
 							success: function(data) {
 								var obj = $.parseJSON(data);
-
+								console.log("SUCCESS: "+obj.flag);
 								if(obj.flag == 0){
 
 									swal({

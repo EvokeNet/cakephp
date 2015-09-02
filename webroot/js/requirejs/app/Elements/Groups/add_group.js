@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['jquery','evoke','missionpanels','sweetalert'], function ($,evoke,missionPanels,swal) {
+	require(['jquery','evoke','missionpanels','sweetalert', 'i18next'], function ($,evoke,missionPanels,swal) {
 		//--------------------------------------------//
 		//SUBMIT A FORM TO ADD A GROUP VIA AJAX
 		//--------------------------------------------//
@@ -18,10 +18,11 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					missionPanels.reloadTabQuests();
 
 					//Confirmation dialog
-					sweetAlert({
-						title: "You created a group!",
-						text: "<p>Invite your friends and accept their requests to join the group!</p><br />"+
-							"<p><span class='red'>Important:</span> only after your group is complete you should start to brainstorm your evidence!</p>",
+					swal({
+						title: i18n.t("app.elements.groups.add_group.msg_group_created.title"),
+						text: "<p>"+i18n.t("app.elements.groups.add_group.msg_group_created.text_invite")+"</p><br />"+
+							"<p><span class='red'>"+i18n.t("app.elements.groups.add_group.msg_group_created.text_important")+
+							"</span>"+i18n.t("app.elements.groups.add_group.msg_group_created.text_warning")+"</p>",
 						type: "success",
 						confirmButtonColor: "#DD6B55",
 						closeOnConfirm: true,

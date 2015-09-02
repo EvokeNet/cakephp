@@ -63,6 +63,16 @@
 					}
 
 				}
+			},
+			"groups": {
+				"add_group": {
+					"msg_group_created":{
+						"title": "You created a group!",
+						"text_invite": "Invite your friends and accept their requests to join the group!",
+						"text_important": "Important: ",
+						"text_warning": "only after your group is complete you should start to brainstorm your evidence!"
+					}
+				}
 			}
 		}
 	},
