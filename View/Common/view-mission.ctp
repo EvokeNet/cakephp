@@ -127,7 +127,7 @@
 					<?php
 					//NO GRAPHIC NOVEL (just in case)
 					if (count($novels) < 1) {?>
-						<div data-alert class="alert-box radius">
+						<div data-alert class="alert-box radius alert-fade-out">
 							<?= __('Alert: There is no graphic novel available in this mission.'); ?>
 							<a href="" class="close">×</a>
 						</div>

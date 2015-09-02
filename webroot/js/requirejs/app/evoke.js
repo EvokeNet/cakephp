@@ -14,8 +14,8 @@ define(['modernizr', 'foundation', 'evokedata','i18next'], function(Modernizr, F
 					equalize_on_stack: true
 				}
 			});
-			var path = webroot+'js/locales/__lng__/__ns__.json';
-			
+			var path = webroot+'js/locales/__lng__/__ns__.json'; // path to the translation.json of each language
+			//init rhe i18next library
 			i18n.init({ lng: evokeData.language , resGetPath: path,
                 }, function(err, t) {
                 	
@@ -25,6 +25,12 @@ define(['modernizr', 'foundation', 'evokedata','i18next'], function(Modernizr, F
           		/* loading done */
           		console.log("EVOKE LANG: "+evokeData.language);
         	});
+
+			/**
+			* Alert fadeout
+			*/
+        	var alert = $('.alert-fade-out'); // add alert to this class if you want it to desapear after sometime
+			setTimeout(function(){ $(alert).fadeOut(500) }, 5000); // after 5 seconds, fade it out in 0.5 seconds
 		});
 	};
 
