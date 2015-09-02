@@ -160,14 +160,12 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 							success: function(data) {
 								var obj = $.parseJSON(data);
 
-								if(obj.flag == 0){
-
+								if(obj.phase_unlocked == 1){
 									swal({
 										title: "Phase unlocked!",
 										text: "Congratulations, you just unlocked a phase! You can keep working on this phase, but you can also take a look on the next one.",
 										type: "success"
 									});
-
 								}
 
 								//Execute the action if confirmed
