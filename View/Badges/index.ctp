@@ -82,7 +82,7 @@
 		<!-- BADGE CONTENT -->
 		<div class="row text-center">
 				<?php 
-					$skills_and_achievements_es = array(
+					$skills_and_achievements = array(
 						'0' => array( //Badge Creative Visionary
 							'Commandes the World of Ideas' => array(
 								'achievements' => array(
@@ -207,7 +207,7 @@
 					
 
 
-					$skills_and_achievements = array(
+					$skills_and_achievements_es = array(
 						'0' => array( //Badge Creative Visionary
 							'Domina el mundo de ideas' => array(
 								'achievements' => array(
@@ -330,11 +330,6 @@
 						)
 					);
 
-				//LANGUAGE
-				if ($lang == 'es') {
-					$skills_and_achievements = $skills_and_achievements_es;
-				}
-
 				$badge_count = -1;
 				foreach($badges as $b => $badge):
 					$badge_count++;
@@ -371,7 +366,16 @@
 							<div class="evoke small-block-grid-5 tabs-style-linetriangle full-width margins-0 centered-block show-for-large-up">
 								<ul id="tabs-skills" class="tabs full-width show-for-large-up" data-tab role="tablist">
 									<?php
-										$badge_skills_and_achievements = $skills_and_achievements[$badge_count];
+										//LANGUAGE
+										if ($lang == 'es') {
+											debug('HOULA');
+											$badge_skills_and_achievements = $skills_and_achievements_es[$badge_count];
+										}
+										else {
+											debug('RELOU');
+											$badge_skills_and_achievements = $skills_and_achievements[$badge_count];
+										}
+
 										$skill_count = 0;
 										foreach ($badge_skills_and_achievements as $skill_name => $skill_content):
 											$skill_count++;
@@ -393,7 +397,7 @@
 								<dl class="accordion" data-accordion>
 									<dd class="accordion-navigation">
 										<?php
-											$badge_skills_and_achievements = $skills_and_achievements[$badge_count];
+											// $badge_skills_and_achievements = $skills_and_achievements[$badge_count];
 											$skill_count = 0;
 											foreach ($badge_skills_and_achievements as $skill_name => $skill_content):
 												$skill_count++;
