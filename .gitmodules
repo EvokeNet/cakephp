@@ -1,12 +1,16 @@
 [submodule "Plugin/FileUploader"]
 	path = Plugin/FileUploader
 	url = git@bitbucket.org:quantica/silabe-fileuploader.git
+        branch = master
 [submodule "Plugin/Optimum"]
 	path = Plugin/Optimum
 	url = git@bitbucket.org:quantica/optimum.git
+        branch = master
 [submodule "Plugin/BrainstormSession"]
 	path = Plugin/BrainstormSession
 	url = git@bitbucket.org:quantica/brainstorm-session.git
+        branch = master
 [submodule "Plugin/BrainstormSessionEvoke"]
 	path = Plugin/BrainstormSessionEvoke
 	url = git@bitbucket.org:quantica/brainstorm-session-evoke.git
+        branch = master
