@@ -683,24 +683,24 @@ class MissionsController extends AppController {
 			}
 		}
 
-		//QUESTS TO DISPLAY IN THE EVOKATION PHASE
-		$evokationQuests = array();
-		if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
-			//Evokation quests in this mission
-			$evokationQuests = $this->Mission->Phase->Quest->find('evokePhase',array(
-				'conditions' => array('mission_id' => $mission_id)
-			));
+		// //QUESTS TO DISPLAY IN THE EVOKATION PHASE
+		// $evokationQuests = array();
+		// if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
+		// 	//Evokation quests in this mission
+		// 	$evokationQuests = $this->Mission->Phase->Quest->find('evokePhase',array(
+		// 		'conditions' => array('mission_id' => $mission_id)
+		// 	));
 
-			//Status
-			foreach ($evokationQuests as &$quest) {
-				if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'],$phase['Phase']['id'])) {
-					$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
-				}
-				else {
-					$quest['Quest']['status'] = Quest::STATUS_NOT_STARTED;
-				}
-			}
-		}
+		// 	//Status
+		// 	foreach ($evokationQuests as &$quest) {
+		// 		if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'],$phase['Phase']['id'])) {
+		// 			$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
+		// 		}
+		// 		else {
+		// 			$quest['Quest']['status'] = Quest::STATUS_NOT_STARTED;
+		// 		}
+		// 	}
+		// }
 
 
 		//TRANSLATION
@@ -722,6 +722,49 @@ class MissionsController extends AppController {
 		$this->set(compact('phase','mission','myGroups','evokationQuests'));
 		$this->layout = 'ajax';
 		$this->render('/Elements/Missions/panels_main_content');
+	}
+
+/**
+ * Renders the quests for the evokaiton part
+ * @param int $phase_id - ID of the phase
+ * @param int $mission_id - ID of the mission
+ */
+	public function renderEvokationQuests($phase_id = null, $mission_id) {
+		if (!$this->Mission->Phase->exists($phase_id)) {
+			throw new NotFoundException(__('Invalid mission phase'));
+		}
+
+		//QUESTS TO DISPLAY IN THE EVOKATION PHASE
+		$this->loadModel('Quest');
+		//evokePhase is a custom find type to retrieve just the quests to be displayed in the Evoke phase
+		$evokationQuests = $this->Quest->find('evokePhase',array(
+			'conditions' => array('mission_id' => $mission_id)
+		));
+
+		// //QUESTS TO DISPLAY IN THE EVOKATION PHASE
+		// $evokationQuests = array();
+		// if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
+		// 	//Evokation quests in this mission
+		// 	$evokationQuests = $this->Mission->Phase->Quest->find('evokePhase',array(
+		// 		'conditions' => array('mission_id' => $mission_id)
+		// 	));
+
+		// 	//Status
+		// 	foreach ($evokationQuests as &$quest) {
+		// 		if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'],$phase['Phase']['id'])) {
+		// 			$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
+		// 		}
+		// 		else {
+		// 			$quest['Quest']['status'] = Quest::STATUS_NOT_STARTED;
+		// 		}
+		// 	}
+		// }
+
+		//Render
+		$this->set(compact('phase_id', 'evokationQuests'));
+		$this->layout = 'ajax';
+		$this->render('/Elements/Missions/evokation_quests');
+
 	}
 
 /**
@@ -1108,25 +1151,25 @@ class MissionsController extends AppController {
 			'allowSignedRequest' => false
 		));
 
-		//---------------------------------
-		//QUESTS TO DISPLAY IN THE EVOKATION PHASE
-		$evokationQuests = array();
-		if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
-			//Evokation quests in this mission
-			$evokationQuests = $this->Mission->Phase->Quest->find('evokePhase',array(
-				'conditions' => array('mission_id' => $mission_id)
-			));
+		// //---------------------------------
+		// //QUESTS TO DISPLAY IN THE EVOKATION PHASE
+		// $evokationQuests = array();
+		// if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
+		// 	//Evokation quests in this mission
+		// 	$evokationQuests = $this->Mission->Phase->Quest->find('evokePhase',array(
+		// 		'conditions' => array('mission_id' => $mission_id)
+		// 	));
 
-			//Status
-			foreach ($evokationQuests as &$quest) {
-				if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'],$phase['Phase']['id'])) {
-					$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
-				}
-				else {
-					$quest['Quest']['status'] = Quest::STATUS_NOT_STARTED;
-				}
-			}
-		}
+		// 	//Status
+		// 	foreach ($evokationQuests as &$quest) {
+		// 		if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'],$phase['Phase']['id'])) {
+		// 			$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
+		// 		}
+		// 		else {
+		// 			$quest['Quest']['status'] = Quest::STATUS_NOT_STARTED;
+		// 		}
+		// 	}
+		// }
 
 		//---------------------------------
 		//TRANSLATION

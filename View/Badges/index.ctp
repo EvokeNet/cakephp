@@ -82,7 +82,7 @@
 		<!-- BADGE CONTENT -->
 		<div class="row text-center">
 				<?php 
-					$skills_and_achievements = array(
+					$skills_and_achievements_es = array(
 						'0' => array( //Badge Creative Visionary
 							'Commandes the World of Ideas' => array(
 								'achievements' => array(
@@ -207,7 +207,7 @@
 					
 
 
-					$skills_and_achievements_es = array(
+					$skills_and_achievements = array(
 						'0' => array( //Badge Creative Visionary
 							'Domina el mundo de ideas' => array(
 								'achievements' => array(
@@ -219,18 +219,18 @@
 							'Es abierto y flexible' => array(
 								'achievements' => array(
 									'Abraza nuevas ideas de diferentes culturas y perspectivas',
-									'Interacta con ideas cada vez mas complejas',
+									'Interactúa con ideas cada vez más complejas',
 									'Ve problemas de injusticia social como problemas a resolver'
 								)
 							),
-							'APLICA LA IMAGINACION. Es original.' => array(
+							'APLICA LA IMAGINACIÓN. Es original' => array(
 								'achievements' => array(
-									'Presenta una vista unica del mundo',
+									'Presenta una vista única del mundo',
 									'Presenta asuntos en nuevas maneras',
 									'Presenta ideas en una diversidad de formas'
 								)
 							),
-							'Demonstra una claridad de vision' => array(
+							'Demonstra una claridad de visión' => array(
 								'achievements' => array(
 									'Desarrolla ideas con evidencia clara',
 									'Inspira pensamiento profundo',
@@ -255,9 +255,9 @@
 							),
 							'Participa activamente en redes' => array(
 								'achievements' => array(
-									'Evalia constructiva otros agentes',
+									'Evalúa constructiva otros agentes',
 									'Hace comentarios en la evidencia de otros agentes',
-									'Proporciona retroalimentacion respetuosa a otros agentes'
+									'Proporciona retroalimentación respetuosa a otros agentes'
 								)
 							),
 							'Nunca se rinde' => array(
@@ -278,23 +278,23 @@
 							),
 							'REVELA LOS SISTEMAS' => array(
 								'achievements' => array(
-									'Articula una hipotesis sobre un sistema',
-									'Se ilumina la interconexion de las ideas',
+									'Articula una hipótesis sobre un sistema',
+									'Se ilumina la interconexión de las ideas',
 									'Modela un sistema'
 								)
 							),
 							'Intensamente CURIOSO' => array(
 								'achievements' => array(
-									'Muestra reflexion critica',
+									'Muestra reflexión crítica',
 									'No tiene miedo de cuestionar constantemente para buscar respuestas',
-									'Comparta razonamiento con los demas a traves de visualizaciones'
+									'Comparta razonamiento con los demás a través de visualizaciones'
 								)
 							),
-							'CONECTA A FUENTES MULTIPLES DE LA INFORMACION Y DEL CONOCIMIENTO' => array(
+							'CONECTA A FUENTES MÚLTIPLES DE LA INFORMACIÓN Y DEL CONOCIMIENTO' => array(
 								'achievements' => array(
-									'Investiga muchas fuentes de informacion',
+									'Investiga muchas fuentes de información',
 									'Conecta disciplinas dispares',
-									'Entiende a traves de la auto-reflexion'
+									'Entiende a través de la auto-reflexión'
 								)
 							)
 						),
@@ -306,11 +306,11 @@
 									'Busca respuestas de la red'
 								)
 							),
-							'Muestra una generosidad de espiritu' => array(
+							'Muestra una generosidad de espíritu' => array(
 								'achievements' => array(
 									'Participa con otros agentes',
 									'Comparta recursos libremente',
-									'Colabora con los demas'
+									'Colabora con los demás'
 								)
 							),
 							'INSPIRA' => array(
@@ -320,9 +320,9 @@
 									'Inicia movimientos'
 								)
 							),
-							'Muestra PASION Y EMPATIÂA' => array(
+							'Muestra PASIÓN Y EMPATÍA' => array(
 								'achievements' => array(
-									'Entiende como otros se sienten',
+									'Entiende cómo otros se sienten',
 									'Es un apasionado de hacer una diferencia',
 									'Muestra un sentido de pertenencia'
 								)
@@ -366,16 +366,7 @@
 							<div class="evoke small-block-grid-5 tabs-style-linetriangle full-width margins-0 centered-block show-for-large-up">
 								<ul id="tabs-skills" class="tabs full-width show-for-large-up" data-tab role="tablist">
 									<?php
-										//LANGUAGE
-										if ($lang == 'es') {
-											debug('HOULA');
-											$badge_skills_and_achievements = $skills_and_achievements_es[$badge_count];
-										}
-										else {
-											debug('RELOU');
-											$badge_skills_and_achievements = $skills_and_achievements[$badge_count];
-										}
-
+										$badge_skills_and_achievements = $skills_and_achievements[$badge_count];
 										$skill_count = 0;
 										foreach ($badge_skills_and_achievements as $skill_name => $skill_content):
 											$skill_count++;
@@ -397,7 +388,7 @@
 								<dl class="accordion" data-accordion>
 									<dd class="accordion-navigation">
 										<?php
-											// $badge_skills_and_achievements = $skills_and_achievements[$badge_count];
+											$badge_skills_and_achievements = $skills_and_achievements[$badge_count];
 											$skill_count = 0;
 											foreach ($badge_skills_and_achievements as $skill_name => $skill_content):
 												$skill_count++;

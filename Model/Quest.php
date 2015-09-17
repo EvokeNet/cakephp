@@ -45,15 +45,16 @@ class Quest extends AppModel {
 		// )
 	);
 
-	const TYPE_EVIDENCE = 0;
-	const TYPE_QUESTIONNAIRE = 1;
-	const TYPE_BRAINSTORM = 2;
+	const TYPE_EVIDENCE 	  = 0;
+	const TYPE_QUESTIONNAIRE  = 1;
+	const TYPE_BRAINSTORM 	  = 2;
 	const TYPE_GROUP_CREATION = 3;
 	const TYPE_EVOKATION_PART = 4;
 
 	const STATUS_NOT_STARTED = 0;
-	const STATUS_IN_PROGRESS = 1;
-	const STATUS_COMPLETED = 2;
+	const STATUS_IN_USE		 = 1; // bloked for other users
+	const STATUS_IN_PROGRESS = 2; // started but not finished
+	const STATUS_COMPLETED   = 3;
 
 /**
  * Enumerable fields (handled by Enumerable behavior)
@@ -210,6 +211,8 @@ class Quest extends AppModel {
 			}
 			
 			return $query;
+		}else{
+			
 		}
 		return $results;
 	}

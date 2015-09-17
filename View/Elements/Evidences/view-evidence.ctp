@@ -124,11 +124,11 @@ if (isset($evidence)):
 								//ADDITIONAL USER INFO AND QUEST INFO FOR AJAX
 								if ($ajax) {
 									echo $evidence['User']['name'];
-									echo __(' in ').$creation_date;
-									echo __(' in response to ').$evidence['Quest']['title'];
+									echo __(' in %s', $creation_date);
+									echo __(' in response to %s', $evidence['Quest']['title']);
 								}
 								else {
-									echo __('Created in ').$creation_date;
+									echo __('Created in %s', $creation_date);
 								}
 							?>
 						</p>

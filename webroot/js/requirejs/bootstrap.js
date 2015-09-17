@@ -6,6 +6,7 @@ requirejs.config({
 		evokedata: '../js/requirejs/app/evoke_data',
 		ajax_retry: '../js/requirejs/modules/ajax_retry',
 		missionpanels: '../js/requirejs/modules/mission_panels',
+		brainstormlanguages: webroot+'brainstorm_session/js/languages',
 		// COMPONENTS (ALPHABETICAL ORDER PLEASE)
 		chartjs : 'chartjs/Chart.min',
 		ember: 'ember/ember.min',

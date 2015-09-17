@@ -246,13 +246,9 @@ class PhasesController extends AppController {
 	}
 
 	/**
-	 * Check user subscription to a mission, and return JSON with details from the subscription
-	 * 
-	 * Receives data from post: 
-	 * int $_POST['user_id']
-	 * int $_POST['mission_id']
+	 * checkSubscription method
 	 *
-	 * @return JSON
+	 * @return void
 	 */
 		public function checkSubscription() {
 
@@ -260,50 +256,56 @@ class PhasesController extends AppController {
 
 			if ($this->request->is('post')) {
 
-				$this->loadModel('MissionSubscription');
-				$mission_subsc = $this->MissionSubscription->find('first', array(
-					'conditions' => array(
-						'user_id' => $_POST['user_id'],
-						'mission_id' => $_POST['mission_id']
-					)
-				));
+				// debug($this->request->data['user_id']);
+				// $k = json_decode($this->request->data);
+				// debug($k);
+				// die();
+				// debug($_POST['user_id']);
+			// return json_encode($_POST);
+
+			$this->loadModel('MissionSubscription');
+			$mission_subsc = $this->MissionSubscription->find('first', array('conditions' => array('user_id' => $_POST['user_id'], 'mission_id' => $_POST['mission_id'])));
+
+
+
+			if(!empty($mission_subsc)){
+				$oldPhaseId = $mission_subsc['MissionSubscription']['phase_id'];
+			}
+			else {
+				$first_phase = $this->Phase->find('first', array('conditions' => array('mission_id' => $_POST['mission_id']), 'order' => 'position'));
+				$oldPhaseId = $first_phase['Phase']['id'];
+			}
+
+			// debug($this->Phase->getCurrentPhase($_POST['user_id'], $_POST['mission_id']));
+
+			$phase = $this->Phase->getCurrentPhase($_POST['user_id'], $_POST['mission_id']);
+// die();
+			//Still in the same phase
+			if($phase['Phase']['id'] == $oldPhaseId){
+				$json_data = array('flag' => 1);
+				return json_encode($json_data);
+
+			} else{
 
 				if(!empty($mission_subsc)){
-					$oldPhaseId = $mission_subsc['MissionSubscription']['phase_id'];
-				}
-				else {
-					$first_phase = $this->Phase->find('first', array('conditions' => array('mission_id' => $_POST['mission_id']), 'order' => 'position'));
-					$oldPhaseId = $first_phase['Phase']['id'];
-				}
 
-				$phase = $this->Phase->getCurrentPhase($_POST['user_id'], $_POST['mission_id']);
-	
-				//Still in the same phase
-				if($phase['Phase']['id'] == $oldPhaseId){
-					$json_data = array('phase_unlocked' => 0);
-					return json_encode($json_data);
-				}
-				else {
+					$data = array('id' => $mission_subsc['MissionSubscription']['id'], 'user_id' => $_POST['user_id'], 'mission_id' => $_POST['mission_id'], 'phase_id' => $phase['Phase']['id']);
+					$this->MissionSubscription->save($data);
 
-					if(!empty($mission_subsc)){
+				} else{
 
-						$data = array('id' => $mission_subsc['MissionSubscription']['id'], 'user_id' => $_POST['user_id'], 'mission_id' => $_POST['mission_id'], 'phase_id' => $phase['Phase']['id']);
-						$this->MissionSubscription->save($data);
-
-					} else{
-
-						$this->MissionSubscription->create();
-						$data = array('user_id' => $_POST['user_id'], 'mission_id' => $_POST['mission_id'], 'phase_id' => $phase['Phase']['id']);
-						$this->MissionSubscription->save($data);
-
-					}
-					
-					$json_data = array('phase_unlocked' => 1);
-					return json_encode($json_data);
+					$this->MissionSubscription->create();
+					$data = array('user_id' => $_POST['user_id'], 'mission_id' => $_POST['mission_id'], 'phase_id' => $phase['Phase']['id']);
+					$this->MissionSubscription->save($data);
 
 				}
+				
+				$json_data = array('flag' => 0);
+				return json_encode($json_data);
 
 			}
+
+		}
 
 		}
 

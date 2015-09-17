@@ -40,8 +40,6 @@ class BadgesController extends AppController {
 	public function index() {
 		$badges = $this->Badge->find('all');
 
-		$lang = $this->getCurrentLanguage();
-
 		//List of badges of the current user (just the badge IDs)
 		$myBadges = $this->Badge->UserBadge->find('list', array(
 			'fields' => array('badge_id'),
@@ -51,12 +49,6 @@ class BadgesController extends AppController {
 		));
 
 		foreach ($badges as $b => $badge) {
-			//TRANSLATION
-			if ($lang == 'es') {
-				$badges[$b]['Badge']['name'] = $badges[$b]['Badge']['name_es'];
-				$badges[$b]['Badge']['description'] = $badges[$b]['Badge']['description_es'];
-			}
-
 			//IMAGE
 			$this->loadModel('Attachment');
 			$badge_img = $this->Attachment->find('first', array(
@@ -85,7 +77,7 @@ class BadgesController extends AppController {
 		$this->loadModel('User');
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$this->set(compact('user', 'badges', 'lang'));
+		$this->set(compact('user', 'badges'));
 	}
 
 

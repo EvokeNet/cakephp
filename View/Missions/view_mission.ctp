@@ -56,10 +56,17 @@
 		$open_by_default = true;
 	}
 
-	//LOADING QUESTS
-	$load_quests_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderQuestsTab', 
-		$phase['Phase']['id']
-	));
+	if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
+		//LOADING QUESTS FOR EVOKATION PARTS
+		$load_quests_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderEvokationQuests', 
+			$phase['Phase']['id'], $mission['Mission']['id']
+		));
+	}else{
+		//LOADING QUESTS
+		$load_quests_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderQuestsTab', 
+			$phase['Phase']['id']
+		));
+	}
 	$load_quests_url = str_replace('amp;', '', $load_quests_url); //Workaround for Cakephp 2.x
 
 	//LOADING DOSSIER

@@ -42,6 +42,21 @@
 		
 		<!-- MAIN SECTION -->
 		<section class="main-section relative min-full-height">
+			<div class="row full-width small-12 medium-12 large-12">
+				<!-- MISSION TITLE-->
+				<div class="column padding all-1 small-12 medium-12 large-6">
+					<h1 class="text-glow "><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h1>
+				</div>
+				<div class="column padding all-1 small-12 medium-12 large-6 "><!--vertical-align-middle"-->
+					<?php
+					//PHASES BAR
+					echo $this->element('phases_bar',array(
+						'mission' => $mission,
+						'current_phase' => $phase['Phase']['id']
+					));
+					?>
+				</div>
+			</div>
 		    <div id="missionSidebar" class="row full-width clearfix absolute min-full-height hidden" data-equalizer>
 		    	<!-- MISSION SUBMENU (description, phases) -->
 				<div class="missions-submenu mission-sidebar small-12 medium-12 large-5 columns min-full-height padding all-0" data-equalizer-watch data-equalizer-mq="large-up">

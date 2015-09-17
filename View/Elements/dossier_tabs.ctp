@@ -43,7 +43,7 @@
 			<?php foreach($links as $link): ?>
 				<li class="padding left-1 right-1 top-05 bottom-05 border-bottom-divisor background-color-light-dark-on-hover border-left-highlight-on-hover">
 					<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= $link['DossierLink']['description'] ?>">
-						<a href="<?= $link['DossierLink']['link'] ?>" class="text-glow-on-hover text-color-highlight" target="_blank">
+						<a href="//<?= $link['DossierLink']['link'] ?>" class="text-glow-on-hover text-color-highlight">
 							<?= $link['DossierLink']['title'] ?>
 						</a>
 					</span>
