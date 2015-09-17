@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Checking dependencies
+type -P composer &> /dev/null || {
+    echo -e "\033[31;1mComposer not found\033[m"
+    echo -e "\033[43;30;1mDownload Composer: \033[m\033[43;30;1;4mhttps://getcomposer.org\033[m"
+    exit 1
+}
+
+type -P node &> /dev/null || {
+    echo -e "\033[31;1mNode.js not found\033[m"
+    echo -e "\033[43;30;1mDownload Node.js: \033[m\033[43;30;1;4mhttps://nodejs.org\033[m"
+    exit 1
+}
+
+type -P git &> /dev/null || {
+    echo -e "\033[31;1mGit not found\033[m"
+    echo -e "\033[43;30;1mDownload Git: \033[m\033[43;30;1;4mhttps://www.git-scm.com\033[m"
+    exit 1
+}
+
+type -P bower &> /dev/null || {
+    echo -e "\033[31;1mBower not found\033[m"
+    echo -e "\033[43;30;1mRun the following command to install it: \033[m\033[43;34;1msudo npm install -g bower\033[m"
+    exit 1
+}
+
+# Installing
+echo -e "1) Installing back-end dependencies...\n"
+composer install || {
+    echo -e "\n\033[31;1mFailed\033[m"
+    exit 1
+}
+
+echo -e "\n2) Generating config files...\n"
+
+cp Config/core.php.default Config/core.php
+cp Config/database.php.default Config/database.php
+cp Config/email.php.default Config/email.php
+
+#echo -e "\n2) Loading database schema..."
+#./Vendor/bin/cake schema update || {
+#    echo -e "\n\033[31;1mFailed\033[m"
+#    exit 1
+#}
+
+echo -e "\n3) Installing front-end dependencies...\n"
+bower update || {
+    echo -e "\n\033[31;1mFailed\033[m"
+    exit 1
+}
+
+echo -e "\n\033[32;1mEvoke installed! \033[m"
+echo -e "\033[33;5m!!\033[m \033[33;1mDON'T FORGET TO CHECK YOUR CONFIG FILES\033[m \033[33;5m!!\033[m"
+

@@ -161,13 +161,15 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 							data:objAddEvidence,
 							success: function(data) {
 								var obj = $.parseJSON(data);
+								console.log("SUCCESS: "+obj.flag);
+								if(obj.flag == 0){
 
-								if(obj.phase_unlocked == 1){
 									swal({
 										title: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.title"),
 										text: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.text"),
 										type: "success"
 									});
+
 								}
 
 								//Execute the action if confirmed

@@ -23,6 +23,7 @@ define(['modernizr', 'foundation', 'evokedata','i18next'], function(Modernizr, F
                 });
 			i18n.setLng(evokeData.language, { fixLng: true }, function(err, t) { 
           		/* loading done */
+          		console.log("WEBROOT: "+webroot);
           		console.log("EVOKE LANG: "+evokeData.language);
         	});
 

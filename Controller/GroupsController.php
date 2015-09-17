@@ -243,7 +243,6 @@ public function addGroup() {
 	if ($this->request->is('post')) {
 		$this->Group->create();
 		if ($this->Group->save($this->request->data)) {
-
 			$me = $this->Group->find('first', array(
 				'conditions' => array(
 					'Group.id' => $this->Group->id
@@ -302,10 +301,12 @@ public function addGroup() {
 				$this->Brainstorm->BrainstormAssociation->saveAll($insertData);
 			}
 
+			$this->loadModel('GroupQuestStatus');
+			$this->GroupQuestStatus->initQuests($me['Group']['id'], $phase['Phase']['mission_id']);
+
 			//RENDER VIEW (OR NOT)
 			if ($this->request->is('ajax')) {
 				$this->autoRender = false;
-
 				return json_encode(array(
 					'group_id' => $me['Group']['id'],
 					'mission_id' => $phase['Phase']['mission_id'],
@@ -314,11 +315,13 @@ public function addGroup() {
 				));
 			}
 			$this->Session->setFlash(__('The group has been saved.'), 'flash_message');
+
 			return $this->redirect(array('action' => 'view', $this->Group->id));
 		}
 	}
 
 	if ($this->request->is('ajax')) {
+		debug("IF4");
 		$this->autoRender = false;
 		return false;
 	}
