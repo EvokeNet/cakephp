@@ -31,7 +31,7 @@ foreach ($evokationQuests as $key => $quest):
 	?>
 	<li>
 		<p>
-			<a class="button thin open-mission-overlay" href="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => $action, 
+			<a class="button thin open-mission-overlay large-6 medium-8 small-8 text-left" href="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => $action, 
 						$quest['Quest']['mission_id'],
 						$phase_id,
 						$quest['Quest']['id'],
@@ -39,7 +39,7 @@ foreach ($evokationQuests as $key => $quest):
 						$evokation_id
 					));?>">
 				<i class="fa fa-pencil text-color-highlight"></i>
-				<span class="font-highlight text-color-highlight"><?= $quest['Quest']['title'] ?></span>
+				<span class="font-highlight text-color-highlight "><?= $quest['Quest']['title'] ?></span>
 			</a>
 		
 		</p>
