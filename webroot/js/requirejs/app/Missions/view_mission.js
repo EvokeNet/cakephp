@@ -54,6 +54,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//CLICKING ON THE QUEST PANEL WILL LOAD CONTENT VIA AJAX (every time)
 			$("#menu-icon-tabQuests").one("click", function(e) {
 				missionPanels.reloadTabQuests();
+				// $("#gn").css("overflow", "hidden");
+				// console.log("hidden");
 				e.preventDefault();
 			});
 
