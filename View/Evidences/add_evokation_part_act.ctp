@@ -13,19 +13,19 @@ if (isset($evokation_part) && ($evokation_part)) {
 }
 ?>
 
-<div class="row full-width padding top-5" >
+<div class="row full-width padding top-5 background-color-darkest border-bottom-divisor border-color-highlight radius" >
 	<div class="column small-12 medium-12 large-12 centering-block" >
 	<?php
 			if (isset($quest)): ?>
 				<!-- QUEST DESCRIPTION -->	
-				<h4 class="text-color-darker-gray"><?= __('Quest: '.$quest['Quest']['title']) ?></h4>
+				<h2 class="text-glow"><?= __('Quest: '.$quest['Quest']['title']) ?></h2>
 				<?= $quest['Quest']['description'] ?>
 				<?php
 			endif;
 			?>
 	</div>
 </div>
-<div class="evidence row full-width padding top-4 full-height">	
+<div class="evidence row full-width full-height">	
 
 	<div class="column background-color-standard small-12 medium-4 full-height-vh">
 		<h4 class="text-color-darker-gray"><?=__('Your group\'s evidences are here:')?></h4>
@@ -77,9 +77,9 @@ if (isset($evokation_part) && ($evokation_part)) {
 
 	<div class="column small-12 medium-8 padding top-3 right-4">
 		<!-- TITLE -->
-		<h1 class="text-glow text-center">
+		<h2 class="text-glow text-center">
 			<?= __('Create your '.$element_title) ?>
-		</h1>
+		</h2>
 
 		<!-- FORM -->
 		<?php

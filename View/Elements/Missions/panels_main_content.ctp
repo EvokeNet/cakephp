@@ -9,15 +9,11 @@
 			break;
 		//GROUP PHASE
 		case Phase::TYPE_GROUP:
+		case Phase::TYPE_EVOKATION:
 			foreach ($myGroups as $group) {
 				echo $this->element('Missions/panel_group_area', array('mission' => $mission, 'group' => $group, 'phase_id' => $phase['Phase']['id']));
 			}
 			break;
-		//EVOKATION PHASE
-		case Phase::TYPE_EVOKATION:
-			foreach ($myGroups as $group) {
-				echo $this->element('Missions/panel_evokation_area', array('mission' => $mission, 'group' => $group, 'phase_id' => $phase['Phase']['id']));
-			}
 	}
 ?>
 </div>

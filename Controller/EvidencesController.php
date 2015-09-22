@@ -195,6 +195,43 @@ public function addEvidence() {
 
 		$this->set(compact('evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part', 'act_evidences'));
 	}
+
+/**
+ * Renders add_evokation_part_act view (form to add an evidence)
+ * @return void
+ */
+	public function add_evokation_part_pure($mission_id, $phase_id, $quest_id, $evokation_id = null) {
+		//AJAX LOAD EVIDENCE FORM
+		if ($this->request->is('ajax')) {
+			$this->layout = 'ajax';
+		}
+
+		//LOAD QUEST
+		$this->loadModel("Quest");
+		// if ($quest_id != null) {
+		// 	$quest = $this->Quest->findById($quest_id);
+		// }
+
+		$quest = $this->Quest->findById($quest_id);
+
+		$act_phase_id = $quest['Quest']['phase_id'];
+
+		//EVOKATION
+		$evokation_part = false;
+		if (!is_null($evokation_id)) {
+			$evokation_part = true;
+		}
+
+		$evidence_type = null;
+		$evidence_main_content = null;
+
+		$user_id = $this->Auth->user()['id'];
+
+		$act_evidences = $this->Evidence->getGroupEvidences($user_id, $quest_id, $act_phase_id);
+
+		$this->set(compact('evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part', 'act_evidences'));
+	}
+
 /**
  * Receive evidence data via post and update it in the database
  * @return redirect to view the evidence created
