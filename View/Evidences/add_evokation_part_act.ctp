@@ -25,9 +25,10 @@ if (isset($evokation_part) && ($evokation_part)) {
 			?>
 	</div>
 </div>
-<div class="evidence row full-width full-height">	
 
-	<div class="column background-color-standard small-12 medium-4 full-height-vh">
+<div class="evidence row full-width min-full-height">	
+
+	<div class="column background-color-standard small-12 medium-4 min-full-height padding bottom-2 top-3">
 		<h4 class="text-color-darker-gray"><?=__('Your group\'s evidences are here:')?></h4>
 		<dl class="accordion" data-accordion>
 			<?php
@@ -51,14 +52,14 @@ if (isset($evokation_part) && ($evokation_part)) {
 								elseif (substr( $evidence['Evidence']['type'], 0, 5) === "video"):
 								?>
 									<div class="flex-video-new">
-										<iframe width="420" height="315" src="<?= $evidence['Evidence']['main_content'] ?>" frameborder="0" allowfullscreen></iframe>
+										<iframe width="420" height="315" autoplay="false" src="<?= $evidence['Evidence']['main_content'] ?>" frameborder="0" allowfullscreen></iframe>
 									</div>
 								<?php
 
 								//LINK
 								elseif (substr( $evidence['Evidence']['type'], 0, 4) === "link"):
 								?>
-									<a id="evidenceLink" href="<?= $evidence['Evidence']['main_content'] ?>" class="hidden"></a>
+									<a class="evidenceLink" href="<?= $evidence['Evidence']['main_content'] ?>" class="hidden"></a>
 
 								<?php
 									echo $this->element('Templates/Evidences/evidence-type-link-view');
@@ -75,7 +76,7 @@ if (isset($evokation_part) && ($evokation_part)) {
 		</dl>
 	</div>
 
-	<div class="column small-12 medium-8 padding top-3 right-4">
+	<div class="column small-12 medium-8 padding top-3 left-4 right-4 min-full-height">
 		<!-- TITLE -->
 		<h2 class="text-glow text-center">
 			<?= __('Create your '.$element_title) ?>

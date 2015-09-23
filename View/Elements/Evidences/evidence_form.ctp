@@ -116,7 +116,8 @@ endif;
 				echo $this->Form->input('content', array('label' => __('Edit your '.$element_title.':'), 'type' => 'textarea', 'class' => 'radius', 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
 
 				//EVOKATION
-				if (isset($evokation_id)) {
+				if (isset($evokation_id) && $evokation_id != 'false') {
+					//debug($evokation_id);
 					echo $this->Form->hidden('evokation_id', array('value' => $evokation_id));
 				}
 

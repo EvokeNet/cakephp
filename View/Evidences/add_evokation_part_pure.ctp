@@ -19,14 +19,14 @@ if (isset($evokation_part) && ($evokation_part)) {
 }
 ?>
 
-<div class="evidence row full-width padding top-4 full-height">
+<div class="evidence row full-width padding top-4 min-full-height">
 
 
-	<div class="column small-12 medium-4 medium-up position-fixed padding top-0 left-0 right-5 full-height">
+	<div class="column small-12 medium-4 medium-up position-fixed padding top-0 left-0 right-5 min-full-height">
 		<?php
 		if (isset($quest)): ?>
 			<!-- QUEST DESCRIPTION -->
-			<div class="evidence row background-color-standard padding all-2 margins-auto full-height-vh">
+			<div class="evidence row background-color-standard padding all-2 margins-auto min-full-height">
 				<h4 class="text-color-darker-gray"><?= __('Quest: ').$quest['Quest']['title'] ?></h4>
 				<?= $quest['Quest']['description'] ?>
 
@@ -44,7 +44,7 @@ if (isset($evokation_part) && ($evokation_part)) {
 	</div>
 
 
-	<div class="column small-12 medium-8 padding top-3 right-4">
+	<div class="column small-12 medium-8 padding top-3 right-4 min-full-height">
 		<!-- TITLE -->
 		<h1 class="text-glow text-center">
 			<?= __('Create your '.$element_title) ?>

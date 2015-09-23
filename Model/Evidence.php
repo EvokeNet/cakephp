@@ -65,11 +65,16 @@ class Evidence extends AppModel {
     		'conditions'=> array('user_id' => $user_id),
     		'fields' 	=> array('group_id')
     	))['GroupsUser']['group_id'];
+
+    	//debug($group_id);
+
     	// get the users id's of the users who belong to the same group ($group_id)
     	$users = Hash::extract($this->User->Group->GroupsUser->find('all', array(
     		'conditions' => array('group_id' => $group_id),
     		'fields'     => array('user_id')
     	)), '{n}.GroupsUser.user_id');
+
+    	//debug($users);
 
 		$evidences = $this->find('all', array(
 			'conditions' => array(
@@ -79,6 +84,9 @@ class Evidence extends AppModel {
 			)
 			//,'contain' => array('User')
 		));
+
+		//debug($evidences);
+
 		return $evidences;
     }
 

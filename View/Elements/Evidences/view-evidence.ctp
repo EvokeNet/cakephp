@@ -153,7 +153,7 @@ if (isset($evidence)):
 								//LINK
 								elseif (substr( $evidence['Evidence']['type'], 0, 4) === "link"):
 								?>
-									<a id="evidenceLink" href="<?= $evidence['Evidence']['main_content'] ?>" class="hidden"></a>
+									<a class="evidenceLink" href="<?= $evidence['Evidence']['main_content'] ?>" class="hidden"></a>
 
 								<?php
 									echo $this->element('Templates/Evidences/evidence-type-link-view');
