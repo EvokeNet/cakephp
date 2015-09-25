@@ -90,6 +90,14 @@ class Evidence extends AppModel {
 		return $evidences;
     }
 
+    public function getEvokationParts($evokation_id){
+    	return $this->find('all', array(
+    		'conditions' => array(
+    			'evokation_id' => $evokation_id
+    		)
+    	));
+    }
+
 /**
  * belongsTo associations
  *

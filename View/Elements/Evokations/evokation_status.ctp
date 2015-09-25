@@ -1,13 +1,6 @@
 <ul class="no-marker">
 <?php
-//EVOKATION
-$evokation_id = null;
-if (isset($group['Evokation'])) {
-	$evokation = $group['Evokation'][0];
-	$evokation_id = $evokation['id'];
 
-}
-//print_r($evokationQuests);
 //EVOKATION QUESTS
 foreach ($evokationQuests as $key => $quest):
 	// if the type of quest is different of the type requested, do nothing
@@ -35,7 +28,6 @@ foreach ($evokationQuests as $key => $quest):
 						$quest['Quest']['mission_id'],
 						$phase_id,
 						$quest['Quest']['id'],
-						$quest['Quest']['phase_id'],
 						$evokation_id
 					));?>">
 				<i class="fa fa-pencil text-color-highlight"></i>

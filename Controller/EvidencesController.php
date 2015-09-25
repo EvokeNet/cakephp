@@ -197,7 +197,7 @@ public function addEvidence() {
 	}
 
 /**
- * Renders add_evokation_part_act view (form to add an evidence)
+ * Renders add_evokation_part_pure view (form to add an evidence)
  * @return void
  */
 	public function add_evokation_part_pure($mission_id, $phase_id, $quest_id, $evokation_id = null) {
@@ -208,9 +208,6 @@ public function addEvidence() {
 
 		//LOAD QUEST
 		$this->loadModel("Quest");
-		// if ($quest_id != null) {
-		// 	$quest = $this->Quest->findById($quest_id);
-		// }
 
 		$quest = $this->Quest->findById($quest_id);
 
@@ -230,6 +227,25 @@ public function addEvidence() {
 		$act_evidences = $this->Evidence->getGroupEvidences($user_id, $quest_id, $act_phase_id);
 
 		$this->set(compact('evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part', 'act_evidences'));
+	}
+
+	public function preview_evokation($evokation_id){
+		
+		//debug($evokation_id);
+		$evokation_parts = $this->Evidence->getEvokationParts($evokation_id);
+		
+
+		$this->loadModel("Quest");
+
+		//debug($evokation_parts[0]['Evidence']['mission_id']);
+
+		$quests = $this->Quest->find('evokePhase', array(
+		 		'conditions' => array('mission_id' => $evokation_parts[0]['Evidence']['mission_id'])
+		));
+
+		//print_r($quests);
+
+		$this->set(compact('evokation_parts', 'quests'));
 	}
 
 /**

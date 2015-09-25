@@ -56,10 +56,12 @@
 		$open_by_default = true;
 	}
 
+	//debug($group);
+
 	if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
 		//LOADING QUESTS FOR EVOKATION PARTS
 		$load_quests_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderEvokationQuests', 
-			$phase['Phase']['id'], $mission['Mission']['id']
+			$phase['Phase']['id'], $mission['Mission']['id'], $group['Evokation'][0]['id']
 		));
 	}else{
 		//LOADING QUESTS

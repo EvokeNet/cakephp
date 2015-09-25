@@ -17,7 +17,7 @@ endif;
 	<div id="new-evidence-type">
 		<!-- EXPLANATION -->
 		<div id="evidence-type-title" class="row text-center margin top-3 bottom-2">
-			<?= __('Your can choose the focus of your '.$element_title.':') ?>
+			<?= __('Your can choose the focus of your %s:', $element_title) ?>
 		</div>
 
 		<!-- BUTTONS TO CHOOSE EVIDENCE TYPE -->

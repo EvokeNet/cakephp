@@ -33,13 +33,18 @@
 				<div class="column small-12 medium-6 large-6 padding left-5">
 						<!-- EVOKATION PREVIEW -->
 						<div class="text-center">
-							<button class="button thin disabled"><?= __('Preview') ?></button>
+							<a class="button small open-mission-overlay large-6 medium-8 small-8 text-left" href="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'preview_evokation', 
+										$evokation_id
+									));?>">
+								<i class="fa fa-pencil text-color-highlight"></i>
+								<span class="font-highlight text-color-highlight "><?= __('Preview') ?></span>
+							</a>
 						</div>
 				</div>
 				<div class="column small-12 medium-6 large-6">
 					<!-- SEND EVOKATION -->
 					<div class="text-center">
-						<button class="button thin disabled"><?= __('Send') ?></button>
+						<button class="button small disabled"><?= __('Send') ?></button>
 					</div>
 				</div>
 			</div>

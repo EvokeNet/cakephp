@@ -729,7 +729,7 @@ class MissionsController extends AppController {
  * @param int $phase_id - ID of the phase
  * @param int $mission_id - ID of the mission
  */
-	public function renderEvokationQuests($phase_id = null, $mission_id) {
+	public function renderEvokationQuests($phase_id = null, $mission_id, $evokation_id) {
 		if (!$this->Mission->Phase->exists($phase_id)) {
 			throw new NotFoundException(__('Invalid mission phase'));
 		}
@@ -741,27 +741,8 @@ class MissionsController extends AppController {
 			'conditions' => array('mission_id' => $mission_id)
 		));
 
-		// //QUESTS TO DISPLAY IN THE EVOKATION PHASE
-		// $evokationQuests = array();
-		// if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
-		// 	//Evokation quests in this mission
-		// 	$evokationQuests = $this->Mission->Phase->Quest->find('evokePhase',array(
-		// 		'conditions' => array('mission_id' => $mission_id)
-		// 	));
-
-		// 	//Status
-		// 	foreach ($evokationQuests as &$quest) {
-		// 		if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'],$phase['Phase']['id'])) {
-		// 			$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
-		// 		}
-		// 		else {
-		// 			$quest['Quest']['status'] = Quest::STATUS_NOT_STARTED;
-		// 		}
-		// 	}
-		// }
-
 		//Render
-		$this->set(compact('phase_id', 'evokationQuests'));
+		$this->set(compact('phase_id', 'evokationQuests', 'evokation_id'));
 		$this->layout = 'ajax';
 		$this->render('/Elements/Missions/evokation_quests');
 
@@ -1174,10 +1155,12 @@ class MissionsController extends AppController {
 		//---------------------------------
 		//TRANSLATION
 		if ($lang == 'es') {
+			//debug($mission['Mission']['description']);
+			//print_r($mission['Mission']['description_es']);
 			//Mission
 			$mission['Mission']['title'] = $mission['Mission']['title_es'];
 			$mission['Mission']['description'] = $mission['Mission']['description_es'];
-
+			//print_r($mission['Mission']['description']);
 			//All phases
 			foreach ($mission['Phase'] as &$mission_phase) {
 				$mission_phase['name'] = $mission_phase['name_es'];

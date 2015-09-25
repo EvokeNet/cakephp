@@ -14,7 +14,7 @@ if (isset($evokation_part) && ($evokation_part)) {
 ?>
 
 <div class="row full-width padding top-5 background-color-darkest border-bottom-divisor border-color-highlight radius" >
-	<div class="column small-12 medium-12 large-12 centering-block" >
+	<div class="columns small-12 medium-12 large-12 centering-block" >
 	<?php
 			if (isset($quest)): ?>
 				<!-- QUEST DESCRIPTION -->	
@@ -28,17 +28,18 @@ if (isset($evokation_part) && ($evokation_part)) {
 
 <div class="evidence row full-width min-full-height">	
 
-	<div class="column background-color-standard small-12 medium-4 min-full-height padding bottom-2 top-3">
+	<div class="columns background-color-standard small-12 medium-4 min-full-height padding bottom-2 top-3">
 		<h4 class="text-color-darker-gray"><?=__('Your group\'s evidences are here:')?></h4>
 		<dl class="accordion" data-accordion>
 			<?php
 				$i = 1;
+				$accordionClass = "content active";
 				foreach ($act_evidences as $evidence):
 					//debug($evidence);
 			?>
 		  		<dd class="accordion-navigation">
 		    		<a href="#panel<?= $i ?>"><?= $evidence['Evidence']['title'] ?></a>
-		    		<div id="panel<?= $i++ ?>" class="content active">
+		    		<div id="panel<?= $i++ ?>" class="<?= $accordionClass ?>">
 		    			<!-- MAIN CONTENT -->
 						<?php
 							if (isset($evidence['Evidence']['main_content']) && isset($evidence['Evidence']['type'])):
@@ -71,12 +72,13 @@ if (isset($evokation_part) && ($evokation_part)) {
 		    		</div>
 		  		</dd>
 		  	<?php
+		  		$accordionClass = "content";
 				endforeach;
 			?>
 		</dl>
 	</div>
 
-	<div class="column small-12 medium-8 padding top-3 left-4 right-4 min-full-height">
+	<div class="columns small-12 medium-8 padding top-3 left-4 right-4 min-full-height">
 		<!-- TITLE -->
 		<h2 class="text-glow text-center">
 			<?= __('Create your '.$element_title) ?>
