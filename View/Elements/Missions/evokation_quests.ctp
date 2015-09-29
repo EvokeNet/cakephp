@@ -33,8 +33,12 @@
 				<div class="column small-12 medium-6 large-6 padding left-5">
 						<!-- EVOKATION PREVIEW -->
 						<div class="text-center">
+							<?php
+								//print_r( $evokationQuests);
+							?>
 							<a class="button small open-mission-overlay large-6 medium-8 small-8 text-left" href="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'preview_evokation', 
-										$evokation_id
+										$evokation_id,
+										$evokationQuests[0]['Quest']['mission_id']
 									));?>">
 								<i class="fa fa-pencil text-color-highlight"></i>
 								<span class="font-highlight text-color-highlight "><?= __('Preview') ?></span>

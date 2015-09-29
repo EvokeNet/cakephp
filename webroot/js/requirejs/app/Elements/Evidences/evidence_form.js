@@ -171,10 +171,16 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 									});
 
 								}
+								
+								var filePath = webroot+"evidences/view/"+objAddEvidence.evidence_id; 	//URL DE VISUALIZACAO DA EVIDENCE
+								// if it is an evokaiton part, open evokation preview instead
+								if ($('#EvidenceEvokationId').length){
+									filePath = webroot+"evidences/preview_evokation/"+$('#EvidenceEvokationId').val()+"/"+$('#EvidenceMissionId').val();
+								}
 
 								//Execute the action if confirmed
 								missionPanels.openInMissionOverlay(
-									webroot+"evidences/view/"+objAddEvidence.evidence_id 	//URL DE VISUALIZACAO DA EVIDENCE
+									filePath
 								).done(function() {
 									missionPanels.reloadTabQuests();
 									missionPanels.reloadMainContent();

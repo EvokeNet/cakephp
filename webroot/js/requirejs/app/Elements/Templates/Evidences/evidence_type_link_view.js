@@ -24,6 +24,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				var container = $(this).siblings(".preview-container");
 				var refresh   = $(this).siblings(".refresh-button");
 
+			
+
 				$(this).linkpreview({
 					previewContainer: container,
 					refreshButton: refresh,

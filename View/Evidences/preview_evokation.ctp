@@ -36,13 +36,14 @@ if (isset($evokation_part) && ($evokation_part)) {
 									//VIDEO
 									elseif (substr( $evidence['Evidence']['type'], 0, 5) === "video"):
 									?>
-										<div class="flex-video-new">
+										<div class="flex-video">
 											<iframe width="420" height="315" autoplay="false" src="<?= $evidence['Evidence']['main_content'] ?>" frameborder="0" allowfullscreen></iframe>
 										</div>
 									<?php
 
 									//LINK
 									elseif (substr( $evidence['Evidence']['type'], 0, 4) === "link"):
+										debug("THIS IS A LINK EVIDENCE");
 									?>
 										<a class="evidenceLink" href="<?= $evidence['Evidence']['main_content'] ?>" class="hidden"></a>
 
