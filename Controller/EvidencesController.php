@@ -266,16 +266,15 @@ public function addEvidence() {
  * @return redirect to view the evidence created
  */
 public function editEvidence() {
-	if ($this->request->is('post')) {
+	$this->autoRender = false;
+
+	if ($this->request->is('post') || $this->request->is('put')) {
 		//UPDATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT
 		if ($this->Evidence->save($this->request->data)) {
-			return $this->redirect(array(
-				'header' => $this->request->header,
-				'action' => 'view',
-				$this->Evidence->id
-			));
+			return true;
 		} else {
 			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
+			return false;
 		}
 	}
 }
