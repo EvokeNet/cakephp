@@ -140,7 +140,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			var evidence_type = $('#evidence-form-type').attr('value');
 			if (evidence_type) {
 				//load_evidence_type_form(evidence_type);
-				$(".evidence-type").filter('[data-evidence-type="'+evidence_type+'"]').click();
+				var type_split = evidence_type.split("/")[0];
+				$(".evidence-type").filter('[data-evidence-type="'+type_split+'"]').click();
 			}
 
 
