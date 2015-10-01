@@ -59,22 +59,36 @@ class Evidence extends AppModel {
         return false;
     }
 
+    // public function getGroupIdFromUser($user_id){
+    // 	return $this->User->Group->GroupsUser->find('first', array(
+    // 		'conditions'=> array('user_id' => $user_id),
+    // 		'fields' 	=> array('group_id')
+    // 	))['GroupsUser']['group_id'];
+    // }
+
+    // public function getUsersFromGroup($group_id){
+    // 	return Hash::extract($this->User->Group->GroupsUser->find('all', array(
+    // 		'conditions' => array('group_id' => $group_id),
+    // 		'fields'     => array('user_id')
+    // 	)), '{n}.GroupsUser.user_id');
+    // }
+
+    // Returns an array of the evidences submitted in this mission in the $phase_id resquested
     public function getGroupEvidences($user_id, $quest_id, $phase_id){
+
+    	//debug($phase_id);
+
     	// get the id of the group which this user belongs
     	$group_id = $this->User->Group->GroupsUser->find('first', array(
     		'conditions'=> array('user_id' => $user_id),
     		'fields' 	=> array('group_id')
-    	))['GroupsUser']['group_id'];
-
-    	//debug($group_id);
+    	))['GroupsUser']['group_id']; //getGroupIdFromUser($user_id);
 
     	// get the users id's of the users who belong to the same group ($group_id)
     	$users = Hash::extract($this->User->Group->GroupsUser->find('all', array(
     		'conditions' => array('group_id' => $group_id),
     		'fields'     => array('user_id')
-    	)), '{n}.GroupsUser.user_id');
-
-    	//debug($users);
+    	)), '{n}.GroupsUser.user_id'); //getUsersFromGroup($group_id);
 
 		$evidences = $this->find('all', array(
 			'conditions' => array(
@@ -82,10 +96,7 @@ class Evidence extends AppModel {
 				'quest_id' => $quest_id,
 				'phase_id' => $phase_id
 			)
-			//,'contain' => array('User')
 		));
-
-		//debug($evidences);
 
 		return $evidences;
     }

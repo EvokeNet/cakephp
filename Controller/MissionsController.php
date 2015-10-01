@@ -736,13 +736,26 @@ class MissionsController extends AppController {
 
 		//QUESTS TO DISPLAY IN THE EVOKATION PHASE
 		$this->loadModel('Quest');
+		$this->loadModel('Evidence');
 		//evokePhase is a custom find type to retrieve just the quests to be displayed in the Evoke phase
 		$evokationQuests = $this->Quest->find('evokePhase',array(
 			'conditions' => array('mission_id' => $mission_id)
 		));
 
+		$user_id  = $this->Auth->user()['id'];
+
+    	$evk_parts = $this->Evidence->find('all', array(
+    		'conditions' => array(
+    			'user_id' 	   => $user_id,
+    			'evokation_id' => $evokation_id
+    		)
+    	));
+		
+		// flag to check if this user has subimitted all evokation parts for this mission
+		$done = count($evk_parts) == count($evokationQuests);
+
 		//Render
-		$this->set(compact('phase_id', 'evokationQuests', 'evokation_id'));
+		$this->set(compact('phase_id', 'evokationQuests', 'evokation_id', 'done'));
 		$this->layout = 'ajax';
 		$this->render('/Elements/Missions/evokation_quests');
 

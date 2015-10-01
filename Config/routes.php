@@ -36,11 +36,6 @@
 	);
 
 	Router::connect(
-    	'/evokation/*',
-    	array('controller' => 'groupsUsers', 'action' => 'edit')
-	);
-
-	Router::connect(
     	'/terms',
     	array('controller' => 'pages', 'action' => 'terms')
 	);

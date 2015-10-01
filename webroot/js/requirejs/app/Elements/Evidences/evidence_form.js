@@ -115,6 +115,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				}
 				else {
 					$('#evidence-main-content').html("");
+					$('#evidence-form-type').attr('value', 'text');
 				}
 
 				//Remove buttons to choose evidence type, and show the form
@@ -138,7 +139,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			var evidence_type = $('#evidence-form-type').attr('value');
 			if (evidence_type) {
-				load_evidence_type_form(evidence_type);
+				//load_evidence_type_form(evidence_type);
+				var type_split = evidence_type.split("/")[0];
+				$(".evidence-type").filter('[data-evidence-type="'+type_split+'"]').click();
 			}
 
 
@@ -147,41 +150,56 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
 				//ADD EVIDENCE
+				console.log($(this).serializeArray());
 				$.ajax({
-					url: webroot+"evidences/addEvidence",
+					url: $(this).attr('action'),//webroot+"evidences/addEvidence",
 					type:"POST",
-					data: $('form').serializeArray(),
+					data: $(this).serializeArray(),
+
 					success: function(dataAddEvidence) {
-						var objAddEvidence = $.parseJSON(dataAddEvidence);
-						console.log("Before");
-						//CHECK IF A PHASE WAS UNLOCKED
-						$.ajax({
-							url: webroot+"phases/checkSubscription",
-							type:"POST",
-							data:objAddEvidence,
-							success: function(data) {
-								var obj = $.parseJSON(data);
-								console.log("SUCCESS: "+obj.flag);
-								if(obj.flag == 0){
+						var filePath = '';
+						if(dataAddEvidence == true){
 
-									swal({
-										title: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.title"),
-										text: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.text"),
-										type: "success"
-									});
+						}else if(dataAddEvidence == false){
 
+						}else{
+							var objAddEvidence = $.parseJSON(dataAddEvidence);
+							console.log("Before");
+							//CHECK IF A PHASE WAS UNLOCKED
+							$.ajax({
+								url: webroot+"phases/checkSubscription",
+								type:"POST",
+								data:objAddEvidence,
+								success: function(data) {
+									filePath = webroot+"evidences/view/"+objAddEvidence.evidence_id; 	//URL DE VISUALIZACAO DA EVIDENCE
+									var obj = $.parseJSON(data);
+									console.log("SUCCESS: "+obj.flag);
+									if(obj.flag == 0){
+
+										swal({
+											title: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.title"),
+											text: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.text"),
+											type: "success"
+										});
+									}
 								}
+							});
+						}
+						if ($('#EvidenceId').length){
+							filepath = webroot+"evidences/view/"+$('#EvidenceId').val();
+						}
+						// if it is an evokaiton part, open evokation preview instead
+						if ($('#EvidenceEvokationId').length){
+							filePath = webroot+"evidences/preview_evokation/"+$('#EvidenceEvokationId').val()+"/"+$('#EvidenceMissionId').val();
+						}
 
-								//Execute the action if confirmed
-								missionPanels.openInMissionOverlay(
-									webroot+"evidences/view/"+objAddEvidence.evidence_id 	//URL DE VISUALIZACAO DA EVIDENCE
-								).done(function() {
-									missionPanels.reloadTabQuests();
-									missionPanels.reloadMainContent();
-								});
-							}
+						//Execute the action if confirmed
+						missionPanels.openInMissionOverlay(
+							filePath
+						).done(function() {
+							missionPanels.reloadTabQuests();
+							missionPanels.reloadMainContent();
 						});
-
 					}
 				});
 

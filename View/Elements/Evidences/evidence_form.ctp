@@ -54,26 +54,27 @@ endif;
 	<div id="new-evidence-form" class="form-evoke-style hidden">
 		<?php
 		//EDIT
-		if (isset($evidence)) {
+		if (isset($this->request->data['Evidence'])) {
 			echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'editEvidence')));
 
 
-			echo $this->Form->hidden('id', array('value' => $evidence['id']));
+			// echo $this->Form->hidden('id', array('value' => $evidence['id']));
 		}
 		//CREATE
 		else {
 			echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'addEvidence')));
 
-			$evidence['type'] = "";
-			$evidence['main_content'] = "";
-			$evidence['title'] = "";
-			$evidence['content'] = "";
+			// $evidence['type'] = "";
+			// $evidence['main_content'] = "";
+			// $evidence['title'] = "";
+			// $evidence['content'] = "";
 		}
 		?>
 
 		<div class="full-width">
 			<?php
 				$upload_path = "";
+				echo $this->Form->hidden('id');
 				//MISSION
 				if (isset($mission_id)) {
 					echo $this->Form->hidden('mission_id', array('value' => $mission_id));
@@ -100,20 +101,20 @@ endif;
 			<div id="evidence-main-content" class="margin top-2 bottom-2">
 			</div>
 
-			<?php echo $this->Form->hidden('main_content', array('value' => $evidence['main_content'], 'id' => 'evidence-form-main-content')); ?>
+			<?php echo $this->Form->hidden('main_content', array('id' => 'evidence-form-main-content')); ?>
 
-			<?php echo $this->Form->hidden('type', array('value' => $evidence['type'], 'id' => 'evidence-form-type')); ?>
+			<?php echo $this->Form->hidden('type', array('id' => 'evidence-form-type')); ?>
 
 
 			<!-- REGULAR CONTENT -->
 			<?php
 				//TITLE
-				echo $this->Form->input('title', array('required' => true, 'label' => __('Title'), 'value' => $evidence['title'], 'class' => 'radius', 'errorMessage' => __('Please enter a title'), 'error' => array(
+				echo $this->Form->input('title', array('required' => true, 'label' => __('Title'), 'class' => 'radius', 'errorMessage' => __('Please enter a title'), 'error' => array(
 					'attributes' => array('wrap' => 'div', 'class' => 'alert-box alert radius')
 				)));
 
 				//CONTENT
-				echo $this->Form->input('content', array('label' => __('Edit your '.$element_title.':'), 'type' => 'textarea', 'class' => 'radius', 'value' => $evidence['content'], 'id' => 'evidenceContentForm'));
+				echo $this->Form->input('content', array('label' => __('Edit your '.$element_title.':'), 'type' => 'textarea', 'class' => 'radius', 'id' => 'evidenceContentForm'));
 
 				//EVOKATION
 				if (isset($evokation_id) && $evokation_id != 'false') {
@@ -170,7 +171,7 @@ endif;
         'safePath'   => 'Evidence/'
 	));
 
-	echo $this->element('Templates/Evidences/evidence-type-link', array('evidence' => $evidence));
+	echo $this->element('Templates/Evidences/evidence-type-link');
 
 	//SCRIPT
 	$this->Html->script('requirejs/app/Elements/Evidences/evidence_form.js', array('inline' => false));

@@ -181,11 +181,24 @@ public function addEvidence() {
 			$this->layout = 'ajax';
 		}
 
+		debug($mission_id, $phase_id, $quest_id);
+
+		$thisEvokation = $this->Evidence->find('first', array(
+			'conditions' => array(
+				'mission_id'   => $mission_id,
+				'phase_id'     => $phase_id,
+				'quest_id'	   => $quest_id,
+				'evokation_id' => $evokation_id
+			)
+		));
+		// IF THIS EVIDENCE HAS ALREADY BEEN SUBMITTED
+		//debug($thisEvokation);
+		if(count($thisEvokation)){
+			$this->request->data['Evidence'] = $thisEvokation['Evidence'];
+		}
+		//debug($this->request->data['Evidence']);
 		//LOAD QUEST
 		$this->loadModel("Quest");
-		// if ($quest_id != null) {
-		// 	$quest = $this->Quest->findById($quest_id);
-		// }
 
 		$quest = $this->Quest->findById($quest_id);
 
@@ -233,16 +246,16 @@ public function addEvidence() {
 		$evidence_type = null;
 		$evidence_main_content = null;
 
-		$user_id = $this->Auth->user()['id'];
+		//$user_id = $this->Auth->user()['id'];
 
 		$act_evidences = $this->Evidence->getGroupEvidences($user_id, $quest_id, $act_phase_id);
 
 		$this->set(compact('evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part', 'act_evidences'));
 	}
 
-	public function preview_evokation($evokation_id){
+	public function preview_evokation($evokation_id, $mission_id){
 		
-		//debug($evokation_id);
+		debug($mission_id);
 		$evokation_parts = $this->Evidence->getEvokationParts($evokation_id);
 		
 
@@ -251,7 +264,7 @@ public function addEvidence() {
 		//debug($evokation_parts[0]['Evidence']['mission_id']);
 
 		$quests = $this->Quest->find('evokePhase', array(
-		 		'conditions' => array('mission_id' => $evokation_parts[0]['Evidence']['mission_id'])
+		 		'conditions' => array('mission_id' => $mission_id)
 		));
 
 		//print_r($quests);
@@ -264,16 +277,15 @@ public function addEvidence() {
  * @return redirect to view the evidence created
  */
 public function editEvidence() {
-	if ($this->request->is('post')) {
+	$this->autoRender = false;
+
+	if ($this->request->is('post') || $this->request->is('put')) {
 		//UPDATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT
 		if ($this->Evidence->save($this->request->data)) {
-			return $this->redirect(array(
-				'header' => $this->request->header,
-				'action' => 'view',
-				$this->Evidence->id
-			));
+			return true;
 		} else {
 			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
+			return false;
 		}
 	}
 }
