@@ -158,7 +158,18 @@ public function addEvidence() {
 		$evidence_type = null;
 		$evidence_main_content = null;
 
-		$this->set(compact('evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part'));
+		//GROUP
+		$this->loadModel('Group');
+		$group = $this->Group->getGroupInMission($mission_id, $this->Auth->user()['id']);
+
+		//BRAINSTORM IDEA
+		if (count($group) > 0) {
+			$brainstorm_ideas = $this->Group->getTopIdeas($group['Group']['id'], $quest_id);
+		}
+
+		$this->set(compact(
+			'evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part',
+			'brainstorm_ideas'));
 	}
 /**
  * Renders add_evokation_part_act view (form to add an evidence)

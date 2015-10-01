@@ -23,7 +23,7 @@
 
 		<!-- CONTENT OVERLAY - Section that dinamically loads content that will be manipulated by the user, and therefore needs focus -->
 		<div id="missions-content-overlay" class="background-color-dark absolute min-full-height full-width hidden">
-			<div class="relative min-full-height">
+			<div class="min-full-height">
 				<!-- CLOSE BUTTON -->
 				<div id="close-content-overlay-button" class="right absolute margin right-2 top-5">
 					<a class="close-missions-content-overlay">
