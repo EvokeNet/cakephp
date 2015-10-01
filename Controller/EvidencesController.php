@@ -170,6 +170,8 @@ public function addEvidence() {
 			$this->layout = 'ajax';
 		}
 
+		debug($mission_id, $phase_id, $quest_id);
+
 		$thisEvokation = $this->Evidence->find('first', array(
 			'conditions' => array(
 				'mission_id' => $mission_id,
