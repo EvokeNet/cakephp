@@ -174,9 +174,10 @@ public function addEvidence() {
 
 		$thisEvokation = $this->Evidence->find('first', array(
 			'conditions' => array(
-				'mission_id' => $mission_id,
-				'phase_id'   => $phase_id,
-				'quest_id'   => $quest_id
+				'mission_id'   => $mission_id,
+				'phase_id'     => $phase_id,
+				'quest_id'	   => $quest_id,
+				'evokation_id' => $evokation_id
 			)
 		));
 		// IF THIS EVIDENCE HAS ALREADY BEEN SUBMITTED
