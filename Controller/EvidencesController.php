@@ -170,11 +170,21 @@ public function addEvidence() {
 			$this->layout = 'ajax';
 		}
 
+		$thisEvokation = $this->Evidence->find('first', array(
+			'conditions' => array(
+				'mission_id' => $mission_id,
+				'phase_id'   => $phase_id,
+				'quest_id'   => $quest_id
+			)
+		));
+		// IF THIS EVIDENCE HAS ALREADY BEEN SUBMITTED
+		//debug($thisEvokation);
+		if(count($thisEvokation)){
+			$this->request->data['Evidence'] = $thisEvokation['Evidence'];
+		}
+		//debug($this->request->data['Evidence']);
 		//LOAD QUEST
 		$this->loadModel("Quest");
-		// if ($quest_id != null) {
-		// 	$quest = $this->Quest->findById($quest_id);
-		// }
 
 		$quest = $this->Quest->findById($quest_id);
 
@@ -222,7 +232,7 @@ public function addEvidence() {
 		$evidence_type = null;
 		$evidence_main_content = null;
 
-		$user_id = $this->Auth->user()['id'];
+		//$user_id = $this->Auth->user()['id'];
 
 		$act_evidences = $this->Evidence->getGroupEvidences($user_id, $quest_id, $act_phase_id);
 

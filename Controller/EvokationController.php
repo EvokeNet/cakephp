@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
  * @property Evokation $Evokation
  * @property PaginatorComponent $Paginator
  */
-class EvokationsController extends AppController {
+class EvokationController extends AppController {
 
 /**
  * Components
@@ -82,13 +82,18 @@ class EvokationsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null) {		
 		if (!$this->Evokation->exists($id)) {
 			throw new NotFoundException(__('Invalid evokation'));
 		}
+		$this->request->data['id'] = $id;
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Evokation->save($this->request->data)) {
 				$this->Session->setFlash(__('The evokation has been saved.'));
+				if($this->request->is('ajax')){
+					$this->autoRender = false;
+					return true;
+				}
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The evokation could not be saved. Please, try again.'));

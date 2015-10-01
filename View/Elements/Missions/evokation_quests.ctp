@@ -34,7 +34,11 @@
 						<!-- EVOKATION PREVIEW -->
 						<div class="text-center">
 							<?php
-								//print_r( $evokationQuests);
+								$btnSendClass = '';
+								// if all evokation parts were sent
+								if(!(isset($done)) || !$done){
+									$btnSendClass = 'disabled';
+								}
 							?>
 							<a class="button small open-mission-overlay large-6 medium-8 small-8 text-left" href="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'preview_evokation', 
 										$evokation_id,
@@ -48,10 +52,19 @@
 				<div class="column small-12 medium-6 large-6">
 					<!-- SEND EVOKATION -->
 					<div class="text-center">
-						<button class="button small disabled"><?= __('Send') ?></button>
+						<a class="button small send-evokation <?= $btnSendClass ?>" href="<?php echo $this->Html->url(array('controller' => 'evokation', 'action' => 'edit',
+								$evokation_id
+							)); ?>">
+							<i class="fa fa-pencil text-color-highlight"></i>
+							<span class="font-highlight text-color-highlight "><?= __('Send') ?></span>
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>		
+</div>
+<?php
+//SCRIPT
+	$this->Html->script('requirejs/app/Elements/Missions/evokation_quests.js', array('inline' => false));
+?>

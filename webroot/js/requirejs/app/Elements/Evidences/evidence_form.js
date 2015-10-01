@@ -115,6 +115,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				}
 				else {
 					$('#evidence-main-content').html("");
+					$('#evidence-form-type').attr('value', 'text');
 				}
 
 				//Remove buttons to choose evidence type, and show the form
@@ -138,7 +139,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			var evidence_type = $('#evidence-form-type').attr('value');
 			if (evidence_type) {
-				load_evidence_type_form(evidence_type);
+				//load_evidence_type_form(evidence_type);
+				$(".evidence-type").filter('[data-evidence-type="'+evidence_type+'"]').click();
 			}
 
 

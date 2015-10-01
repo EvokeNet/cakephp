@@ -2,14 +2,14 @@
 	//CSS
 	echo $this->Html->css('linkpreview');
 
-	//LINK
-	$default_link = 'http://';
-	if (isset($evidence) && ($evidence['type'] == 'link')) {
-		$default_link = $evidence['main_content'];
-	}
+	// //LINK
+	// $default_link = 'http://';
+	// if (isset($evidence) && ($evidence['type'] == 'link')) {
+	// 	$default_link = $evidence['main_content'];
+	// }
 ?>
 <script id="evidence-type-link-template" type="text/x-handlebars-template">
-	<?php echo $this->Form->input('evidenceLink', array('label' => __('Link'), 'class' => 'radius', 'id' => 'evidenceLink', 'value' => $default_link)); ?>
+	<?php echo $this->Form->input('evidenceLink', array('label' => __('Link'), 'class' => 'radius', 'id' => 'evidenceLink')); ?>
 
 	<button id="refresh-button" class="hidden" type="button">Preview</button>
 

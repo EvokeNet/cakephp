@@ -62,6 +62,12 @@
 						"text": "Request refused!"
 					}
 
+				},
+				"evokation_quests": {
+					"msg_evokation_saved": {
+						"title": "Done!",
+						"text": "Your Evokation was successfully sent!"
+					}
 				}
 			},
 			"groups": {
