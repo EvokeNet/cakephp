@@ -56,18 +56,10 @@ endif;
 		//EDIT
 		if (isset($this->request->data['Evidence'])) {
 			echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'editEvidence')));
-
-
-			// echo $this->Form->hidden('id', array('value' => $evidence['id']));
 		}
 		//CREATE
 		else {
 			echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'addEvidence')));
-
-			// $evidence['type'] = "";
-			// $evidence['main_content'] = "";
-			// $evidence['title'] = "";
-			// $evidence['content'] = "";
 		}
 		?>
 

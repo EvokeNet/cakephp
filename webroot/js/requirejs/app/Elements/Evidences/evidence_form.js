@@ -24,7 +24,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					var detail = event.originalEvent.detail;
 
 					//Insert data into form to save it in the DB
-					$('#evidence-form-main-content').attr('value', detail.url);
+					//$('#evidence-form-main-content').attr('value', detail.url);
 					$('#evidence-form-type').attr('value', detail.mimetype);
 
 					//Display uplodaded content
