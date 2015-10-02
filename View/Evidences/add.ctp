@@ -13,25 +13,38 @@ if (isset($evokation_part) && ($evokation_part)) {
 }
 ?>
 
-<div class="evidence row full-width padding top-4 full-height">
-
-
-	<div class="column small-12 medium-4 medium-up position-fixed padding top-0 left-0 right-5 full-height">
+<div class="evidence row full-width padding top-4 min-full-height">
+	<div class="column small-12 medium-4 medium-up padding top-0 left-0 right-5">
 		<?php
 		if (isset($quest)): ?>
 			<!-- QUEST DESCRIPTION -->
-			<div class="evidence row background-color-standard padding all-2 margins-auto full-height-vh">
+			<div class="evidence row background-color-standard padding all-2 margins-auto">
 				<h4 class="text-color-darker-gray"><?= __('Quest: ').$quest['Quest']['title'] ?></h4>
 				<?= $quest['Quest']['description'] ?>
 
-				<!-- BADGES -->
-				<h5 class="text-color-darker-gray text-center"><?= __('REWARDS') ?></h5>
-				<p class="text-center"><?= __('Submitting an %s for this quest is worth 3 badges:', $element_title) ?></p>
-				<p class="text-center">
-					<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge1.png' ?>" alt="Quests" />
-					<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
-					<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
-				</p>
+				<?php
+				/* BRAINSTORM */
+				if (isset($brainstorm_ideas)) {
+					if (isset($brainstorm_ideas) && !empty($brainstorm_ideas)) {
+					?>
+						<h2 class="text-center text-color-highlight"><?= __('Top 3 ideas') ?></h2>
+
+						<?php
+						$count = 1;
+						foreach ($brainstorm_ideas as $idea) {
+							?>
+							<div class="margin top-05 bottom-05">
+								#<?= $count++ ?>: <?= $idea[0]['brainstorm_idea__content'] ?>
+							</div>
+							<?php
+						}
+						?>
+					<?php
+					}
+				}
+				
+				?>
+				
 			</div><?php
 		endif;
 		?>

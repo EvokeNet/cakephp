@@ -81,7 +81,7 @@ class Phase extends AppModel {
 		else if (($phase['Phase']['type'] == Phase::TYPE_GROUP) || ($phase['Phase']['type'] == Phase::TYPE_EVOKATION)) {
 			$mission_id = $phase['Phase']['mission_id'];
 
-			$userGroupInMission = $this->Mission->Group->getGroupInMission($mission_id, $user_id, array('Member'));
+			$userGroupInMission = $this->Mission->Group->getGroupInMission($mission_id, $user_id, array('contain' => 'Member'));
 
 			//No group
 			if (is_null($userGroupInMission) || (!isset($userGroupInMission['Member']))) {

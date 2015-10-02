@@ -76,10 +76,10 @@ class Group extends AppModel {
  *
  * @param int Mission ID
  * @param int User ID
- * @param array Contain argument
+ * @param array Options of the find query (for example, a contain argument)
  * @return Group array or null, if the user is not a member of any group in this mission
  */
-	public function getGroupInMission($mission_id, $user_id, $group_contain) {
+	public function getGroupInMission($mission_id, $user_id, $options = '') {
 		$group = $this->find('first', array(
 			'joins' => array(
 				array(
@@ -98,7 +98,7 @@ class Group extends AppModel {
 				'Group.mission_id' => $mission_id
 			),
 			'group' => 'Group.id',
-			'contain' => $group_contain
+			$options
 		));
 
 		return $group;
