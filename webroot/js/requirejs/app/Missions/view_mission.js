@@ -54,15 +54,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//CLICKING ON THE QUEST PANEL WILL LOAD CONTENT VIA AJAX (every time)
 			$("#menu-icon-tabQuests").one("click", function(e) {
 				missionPanels.reloadTabQuests();
-				// $("#gn").css("overflow", "hidden");
-				// console.log("hidden");
 				e.preventDefault();
 			});
 
 			//--------------------------------------------//
 			//OPEN QUESTS PANEL BY DEFAULT
 			//--------------------------------------------//
-			if (evokeData.open_quests_by_default && (evokeData.open_quests_by_default === true)) {
+			if (evokeData.open_quests_by_default) {
 				missionPanels.open_panel("#menu-icon-tabQuests", "#tabQuests");
 				missionPanels.reloadTabQuests();
 			}
