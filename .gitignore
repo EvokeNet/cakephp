@@ -1,7 +1,13 @@
 Vendor/
+
+composer
 composer.phar
+
 Config/amazon.php
+Config/core.php
 Config/database.php
+Config/email.php
+
 webroot/components
 webroot/uploads/*
 webroot/files/*
