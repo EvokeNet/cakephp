@@ -2,6 +2,11 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery', 'foundation'], function ($) {
 		$(document).ready(function(){
 			//--------------------------------------------//
+			//LOAD MORE EVIDENCES WHEN CLICKING BUTTON
+			//--------------------------------------------//
+			$("#btnLoadMoreEvidences").on("click", fillExtraContentEvidenceList);
+
+			//--------------------------------------------//
 			//LOAD MORE EVIDENCES WHEN SCROLLING
 			//--------------------------------------------//
 			var evidence_list_has_ended = false; //nothing else to load
@@ -51,14 +56,19 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				    beforeSend: function(xhr) {
 				        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 				        $(".moreEvidencesLoading").removeClass("hidden");
+				        $("#btnLoadMoreEvidences").addClass("hidden");
 				    },
 				    completed: function() {
 				    	$(".moreEvidencesLoading").addClass("hidden");
+				    	$("#btnLoadMoreEvidences").removeClass("hidden");
 				    },
 				    success: function(response) {
 				    	if (response.length == 0) {
 				    		evidence_list_has_ended = true;
+				    		//Hide loading image
 				    		$(".moreEvidencesLoading").addClass("hidden");
+				    		//Hide button to load more evidences
+				    		$("#btnLoadMoreEvidences").fadeOut();
 				    	}
 				    	else {
 				    		//APPEND CONTENT

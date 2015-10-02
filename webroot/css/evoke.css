@@ -881,9 +881,28 @@ button, .button {
 	padding: 0.5em 1em;
 }
 
+/* Button icon */
 .evoke .button-icon:hover {
 	text-transform: none;
 }
+
+.evoke .button-icon.highlight-black .fa-stack-2x {
+	color: #26dee0;
+}
+
+.evoke .button-icon.highlight-black .fa-inverse {
+	color: #ffffff;
+}
+
+.evoke .button-icon.highlight-black:hover .fa-stack-2x {
+	color: #000000
+}
+
+.evoke .button-icon.highlight-black:hover .fa-inverse {
+	color: #26dee0;
+}
+
+/* Disabled */
 .evoke .button.disabled,
 .evoke .button-icon.disabled, .evoke .button-icon.disabled i, .evoke .button-icon.disabled span {
 	color: #ccc;

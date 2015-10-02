@@ -6,6 +6,19 @@
 		endforeach;
 	endif; ?>
 </div>
+
+<!-- BUTTON LOAD MORE -->
+<div class="moreEvidencesButtonContainer text-center margin all-1 bottom-2">
+	<a id="btnLoadMoreEvidences" class="button-icon highlight-black">
+		<span class="fa-stack fa-lg">
+			<i class="fa fa-circle fa-stack-2x"></i>
+			<i class="fa fa-arrow-down fa-stack-1x fa-inverse"></i>
+		</span>
+		<p class="text-color-highlight"><?= __('Load more') ?></p>
+	</a>
+</div>
+
+<!-- LOADING ANIMATION -->
 <div class="moreEvidencesLoading hidden padding all-1">
 	<?php echo $this->element('loading_animation'); ?>
 </div>
