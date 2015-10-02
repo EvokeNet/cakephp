@@ -674,10 +674,8 @@ class UsersController extends AppController {
 					$user = $this->User->find('first', array('conditions' => array('User.id' => $this->User->id)));
 					$this->Auth->login($user['User']);
 
-					//NORMALLY IT WOULD REDIRECT TO THE MATCHING PAGE
-					// return $this->redirect(array('action' => 'matching', $this->User->id));
-					//FOR THE PLAYTEST, IT TAKES YOU TO THE MATCHING RESULTS PAGE
-					return $this->redirect(array('action' => 'matching_results', $this->User->id));
+					// REDIRECT TO THE MATCHING PAGE
+					return $this->redirect(array('action' => 'matching', $this->User->id));
 				}
 				else {
 					$this->Session->setFlash(__('O usuário não pôde ser salvo. Por favor, tente novamente.'));
