@@ -24,7 +24,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					var detail = event.originalEvent.detail;
 
 					//Insert data into form to save it in the DB
-					//$('#evidence-form-main-content').attr('value', detail.url);
+					$('#evidence-form-main-content').attr('value', detail.url);
 					$('#evidence-form-type').attr('value', detail.mimetype);
 
 					//Display uplodaded content
@@ -95,6 +95,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//LOAD HANDLEBARS TEMPLATE FOR DIFFERENT TYPES OF EVIDENCES
 			//--------------------------------------------//
 			var load_evidence_type_form = function(evidence_type){
+				console.log("Evidence type: "+evidence_type);
 				if ((evidence_type == "image") || (evidence_type == "video") || (evidence_type == "link")) {
 					//Compile handlebars
 					var source   = $("#evidence-type-"+evidence_type+"-template").html();
@@ -150,7 +151,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
 				//ADD EVIDENCE
-				console.log($(this).serializeArray());
 				$.ajax({
 					url: $(this).attr('action'),//webroot+"evidences/addEvidence",
 					type:"POST",

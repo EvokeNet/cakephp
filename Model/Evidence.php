@@ -59,25 +59,8 @@ class Evidence extends AppModel {
         return false;
     }
 
-    // public function getGroupIdFromUser($user_id){
-    // 	return $this->User->Group->GroupsUser->find('first', array(
-    // 		'conditions'=> array('user_id' => $user_id),
-    // 		'fields' 	=> array('group_id')
-    // 	))['GroupsUser']['group_id'];
-    // }
-
-    // public function getUsersFromGroup($group_id){
-    // 	return Hash::extract($this->User->Group->GroupsUser->find('all', array(
-    // 		'conditions' => array('group_id' => $group_id),
-    // 		'fields'     => array('user_id')
-    // 	)), '{n}.GroupsUser.user_id');
-    // }
-
     // Returns an array of the evidences submitted in this mission in the $phase_id resquested
     public function getGroupEvidences($user_id, $quest_id, $phase_id){
-
-    	//debug($phase_id);
-
     	// get the id of the group which this user belongs
     	$group_id = $this->User->Group->GroupsUser->find('first', array(
     		'conditions'=> array('user_id' => $user_id),
@@ -97,7 +80,6 @@ class Evidence extends AppModel {
 				'phase_id' => $phase_id
 			)
 		));
-
 		return $evidences;
     }
 
