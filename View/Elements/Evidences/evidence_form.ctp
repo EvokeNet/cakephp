@@ -56,6 +56,8 @@ endif;
 		//EDIT
 		if (isset($this->request->data['Evidence'])) {
 			echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'editEvidence')));
+
+			echo $this->Form->hidden('id');
 		}
 		//CREATE
 		else {
@@ -66,7 +68,7 @@ endif;
 		<div class="full-width">
 			<?php
 				$upload_path = "";
-				echo $this->Form->hidden('id');
+				
 				//MISSION
 				if (isset($mission_id)) {
 					echo $this->Form->hidden('mission_id', array('value' => $mission_id));

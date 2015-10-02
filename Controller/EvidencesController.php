@@ -158,18 +158,7 @@ public function addEvidence() {
 		$evidence_type = null;
 		$evidence_main_content = null;
 
-		//GROUP
-		$this->loadModel('Group');
-		$group = $this->Group->getGroupInMission($mission_id, $this->Auth->user()['id']);
-
-		//BRAINSTORM IDEA
-		if (count($group) > 0) {
-			$brainstorm_ideas = $this->Group->getTopIdeas($group['Group']['id'], $quest_id);
-		}
-
-		$this->set(compact(
-			'evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part',
-			'brainstorm_ideas'));
+		$this->set(compact('evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part'));
 	}
 /**
  * Renders add_evokation_part_act view (form to add an evidence)
@@ -253,23 +242,32 @@ public function addEvidence() {
 		$this->set(compact('evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part', 'act_evidences'));
 	}
 
-	public function preview_evokation($evokation_id, $mission_id){
-		
-		debug($mission_id);
+	public function preview_evokation($evokation_id, $mission_id, $phase_id){
+
 		$evokation_parts = $this->Evidence->getEvokationParts($evokation_id);
 		
 
 		$this->loadModel("Quest");
+		$this->loadModel("Mission");
 
-		//debug($evokation_parts[0]['Evidence']['mission_id']);
+		//TRANSLATION
+		$lang = $this->getCurrentLanguage();
+		if ($lang == 'es') {
+			$lang = 'title_es';
+		}else{
+			$lang = 'title';
+		}
+
+		$mission_title = $this->Mission->find('first', array(
+			'conditions' => array('id' => $mission_id),
+			'fields'	 => array('title', 'title_es')
+		))['Mission'][$lang];
 
 		$quests = $this->Quest->find('evokePhase', array(
 		 		'conditions' => array('mission_id' => $mission_id)
 		));
 
-		//print_r($quests);
-
-		$this->set(compact('evokation_parts', 'quests'));
+		$this->set(compact('evokation_parts', 'quests', 'phase_id', 'evokation_id', 'mission_title'));
 	}
 
 /**

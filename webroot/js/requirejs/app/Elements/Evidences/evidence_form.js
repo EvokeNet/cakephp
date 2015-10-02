@@ -95,7 +95,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//LOAD HANDLEBARS TEMPLATE FOR DIFFERENT TYPES OF EVIDENCES
 			//--------------------------------------------//
 			var load_evidence_type_form = function(evidence_type){
-				console.log("Evidence type: "+evidence_type);
 				if ((evidence_type == "image") || (evidence_type == "video") || (evidence_type == "link")) {
 					//Compile handlebars
 					var source   = $("#evidence-type-"+evidence_type+"-template").html();
@@ -159,9 +158,22 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					success: function(dataAddEvidence) {
 						var filePath = '';
 						if(dataAddEvidence == true){
-
+							if ($('#EvidenceId').length){
+								filePath = webroot+"evidences/view/"+$('#EvidenceId').val();
+							}
+							// if it is an evokaiton part, open evokation preview instead
+							if ($('#EvidenceEvokationId').length){
+								filePath = webroot+"evidences/preview_evokation/"+$('#EvidenceEvokationId').val()+"/"+$('#EvidenceMissionId').val();
+							}
+							//Execute the action if confirmed
+							missionPanels.openInMissionOverlay(
+								filePath
+							).done(function() {
+								missionPanels.reloadTabQuests();
+								missionPanels.reloadMainContent();
+							});
 						}else if(dataAddEvidence == false){
-
+							//ERROR
 						}else{
 							var objAddEvidence = $.parseJSON(dataAddEvidence);
 							console.log("Before");
@@ -171,7 +183,12 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 								type:"POST",
 								data:objAddEvidence,
 								success: function(data) {
+									console.log("AJAX");
 									filePath = webroot+"evidences/view/"+objAddEvidence.evidence_id; 	//URL DE VISUALIZACAO DA EVIDENCE
+									// if it is an evokaiton part, open evokation preview instead
+									if ($('#EvidenceEvokationId').length){
+										filePath = webroot+"evidences/preview_evokation/"+$('#EvidenceEvokationId').val()+"/"+$('#EvidenceMissionId').val()+"/"+$('#EvidencePhaseId').val();
+									}
 									var obj = $.parseJSON(data);
 									console.log("SUCCESS: "+obj.flag);
 									if(obj.flag == 0){
@@ -182,24 +199,17 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 											type: "success"
 										});
 									}
+									//Execute the action if confirmed
+									missionPanels.openInMissionOverlay(
+										filePath
+									).done(function() {
+										missionPanels.reloadTabQuests();
+										missionPanels.reloadMainContent();
+									});
 								}
 							});
 						}
-						if ($('#EvidenceId').length){
-							filepath = webroot+"evidences/view/"+$('#EvidenceId').val();
-						}
-						// if it is an evokaiton part, open evokation preview instead
-						if ($('#EvidenceEvokationId').length){
-							filePath = webroot+"evidences/preview_evokation/"+$('#EvidenceEvokationId').val()+"/"+$('#EvidenceMissionId').val();
-						}
-
-						//Execute the action if confirmed
-						missionPanels.openInMissionOverlay(
-							filePath
-						).done(function() {
-							missionPanels.reloadTabQuests();
-							missionPanels.reloadMainContent();
-						});
+						
 					}
 				});
 

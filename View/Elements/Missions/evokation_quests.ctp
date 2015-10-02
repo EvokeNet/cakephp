@@ -42,7 +42,8 @@
 							?>
 							<a class="button small open-mission-overlay large-6 medium-8 small-8 text-left" href="<?php echo $this->Html->url(array('controller' => 'evidences', 'action' => 'preview_evokation', 
 										$evokation_id,
-										$evokationQuests[0]['Quest']['mission_id']
+										$evokationQuests[0]['Quest']['mission_id'],
+										$phase_id
 									));?>">
 								<i class="fa fa-pencil text-color-highlight"></i>
 								<span class="font-highlight text-color-highlight "><?= __('Preview') ?></span>
@@ -52,7 +53,7 @@
 				<div class="column small-12 medium-6 large-6">
 					<!-- SEND EVOKATION -->
 					<div class="text-center">
-						<a class="button small send-evokation <?= $btnSendClass ?>" href="<?php echo $this->Html->url(array('controller' => 'evokation', 'action' => 'edit',
+						<a class="button small send-evokation <?= $btnSendClass ?>" href="<?php echo $this->Html->url(array('controller' => 'evokation', 'action' => 'edit', //edit because it only changes one field of the evokation that is already in the DB
 								$evokation_id
 							)); ?>">
 							<i class="fa fa-pencil text-color-highlight"></i>
