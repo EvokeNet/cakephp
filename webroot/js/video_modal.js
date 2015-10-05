@@ -1,1 +1,0 @@
-$('#videoModal').foundation('reveal', 'open');

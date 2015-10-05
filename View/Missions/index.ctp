@@ -48,7 +48,6 @@
 
 <?php
 	echo $this->Html->script('image_hover', array('inline' => false));
-	echo $this->Html->script('menu_height', array('inline' => false));
 ?>
 
 <?php
