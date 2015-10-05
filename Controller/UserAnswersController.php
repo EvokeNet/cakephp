@@ -17,36 +17,13 @@ class UserAnswersController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->UserAnswer->recursive = 0;
-		$this->set('userAnswers', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->UserAnswer->exists($id)) {
-			throw new NotFoundException(__('Invalid user answer'));
-		}
-		$options = array('conditions' => array('UserAnswer.' . $this->UserAnswer->primaryKey => $id));
-		$this->set('userAnswer', $this->UserAnswer->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add($mission_id) {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			
 			//user has completed a quest, so if he doesnt exist in 'usersmissions', add him now!
@@ -90,45 +67,40 @@ class UserAnswersController extends AppController {
 			}
 
 			$this->Session->setFlash(__('The questionnaire was saved'), 'flash_message');
-			return $this->redirect($this->referer());
-		}
-		$users = $this->UserAnswer->User->find('list');
-		$questions = $this->UserAnswer->Question->find('list');
-		$answers = $this->UserAnswer->Answer->find('list');
-		$this->set(compact('users', 'questions', 'answers'));
-	}
-
-	public function insertAnswer($data, $control = 1) {
-		//check if user had already answered such questions, if so, delete them...
-		if($control == 1) $this->checkPreviousAnswers($data['question_id']);
-
-		$this->UserAnswer->create();
-		if ($this->UserAnswer->save($data)) {
-			$this->Session->setFlash(__('The user answer has been saved.'));
-		} else {
-			$this->Session->setFlash(__('The user answer could not be saved. Please, try again.'));
 		}
 	}
 
-	public function checkPreviousAnswers($question_id = null) {
-		//check to see if this user had already answered this question..
-		$previous_answers = $this->UserAnswer->find('all', array(
-			'conditions' => array(
-				'UserAnswer.question_id' => $question_id,
-				'user_id' => $this->getUserId()
-			)
-		));
+	// public function insertAnswer($data, $control = 1) {
+	// 	//check if user had already answered such questions, if so, delete them...
+	// 	if($control == 1) $this->checkPreviousAnswers($data['question_id']);
 
-		//for every answer found to this question, erase it
-		foreach ($previous_answers as $previous_answer) {
-			$this->UserAnswer->id = $previous_answer['UserAnswer']['id'];
-			if ($this->UserAnswer->delete()) {
-				$this->Session->setFlash(__('The user answer has been deleted.'));
-			} else {
-				$this->Session->setFlash(__('The user answer could not be deleted. Please, try again.'));
-			}
-		}
-	}
+	// 	$this->UserAnswer->create();
+	// 	if ($this->UserAnswer->save($data)) {
+	// 		$this->Session->setFlash(__('The user answer has been saved.'));
+	// 	} else {
+	// 		$this->Session->setFlash(__('The user answer could not be saved. Please, try again.'));
+	// 	}
+	// }
+
+	// public function checkPreviousAnswers($question_id = null) {
+	// 	//check to see if this user had already answered this question..
+	// 	$previous_answers = $this->UserAnswer->find('all', array(
+	// 		'conditions' => array(
+	// 			'UserAnswer.question_id' => $question_id,
+	// 			'user_id' => $this->getUserId()
+	// 		)
+	// 	));
+
+	// 	//for every answer found to this question, erase it
+	// 	foreach ($previous_answers as $previous_answer) {
+	// 		$this->UserAnswer->id = $previous_answer['UserAnswer']['id'];
+	// 		if ($this->UserAnswer->delete()) {
+	// 			$this->Session->setFlash(__('The user answer has been deleted.'));
+	// 		} else {
+	// 			$this->Session->setFlash(__('The user answer could not be deleted. Please, try again.'));
+	// 		}
+	// 	}
+	// }
 
 /**
  * edit method
@@ -138,6 +110,8 @@ class UserAnswersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserAnswer->exists($id)) {
 			throw new NotFoundException(__('Invalid user answer'));
 		}
@@ -152,10 +126,6 @@ class UserAnswersController extends AppController {
 			$options = array('conditions' => array('UserAnswer.' . $this->UserAnswer->primaryKey => $id));
 			$this->request->data = $this->UserAnswer->find('first', $options);
 		}
-		$users = $this->UserAnswer->User->find('list');
-		$questions = $this->UserAnswer->Question->find('list');
-		$answers = $this->UserAnswer->Answer->find('list');
-		$this->set(compact('users', 'questions', 'answers'));
 	}
 
 /**
@@ -166,6 +136,8 @@ class UserAnswersController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserAnswer->id = $id;
 		if (!$this->UserAnswer->exists()) {
 			throw new NotFoundException(__('Invalid user answer'));
@@ -176,5 +148,5 @@ class UserAnswersController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user answer could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

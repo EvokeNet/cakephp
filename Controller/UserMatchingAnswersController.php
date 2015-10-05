@@ -17,49 +17,17 @@ class UserMatchingAnswersController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->UserMatchingAnswer->recursive = 0;
-		$this->set('userMatchingAnswers', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->UserMatchingAnswer->exists($id)) {
-			throw new NotFoundException(__('Invalid user matching answer'));
-		}
-		$options = array('conditions' => array('UserMatchingAnswer.' . $this->UserMatchingAnswer->primaryKey => $id));
-		$this->set('userMatchingAnswer', $this->UserMatchingAnswer->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post', 'put')) {
-			// debug($this->request->data);
-			// debug($this->request->data['UserMatchingAnswer']['matching_question_id'][0]);
-			// debug($this->request->data['UserIssue']['issue_id']);
 			$counter = 0;
 			$check = null;
 			foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $key => $u):
-				// debug('key '.$key);
-				// debug('counter '.$counter);
-				// $counter++;
-				// debug($this->request->data['UserMatchingAnswer']['matching_question_id'][$counter]);
-				// debug($u);
-
 				$insert['UserMatchingAnswer']['user_id'] = $this->request->data['UserMatchingAnswer']['user_id'];
 				$insert['UserMatchingAnswer']['matching_question_id'] = $this->request->data['UserMatchingAnswer']['matching_question_id'][$counter];
 				$insert['UserMatchingAnswer']['matching_answer'] = $u;
@@ -68,19 +36,7 @@ class UserMatchingAnswersController extends AppController {
 
 				$counter++;
 			endforeach;
-			// die();
-
-			// $this->UserMatchingAnswer->create();
-			// if ($this->UserMatchingAnswer->save($this->request->data)) {
-			// 	$this->Session->setFlash(__('The user matching answer has been saved.'));
-			// 	//return $this->redirect(array('action' => 'index'));
-			// } else {
-			// 	$this->Session->setFlash(__('The user matching answer could not be saved. Please, try again.'));
-			// }
 		}
-		$users = $this->UserMatchingAnswer->User->find('list');
-		$matchingQuestions = $this->UserMatchingAnswer->MatchingQuestion->find('list');
-		$this->set(compact('users', 'matchingQuestions'));
 	}
 
 /**
@@ -91,6 +47,8 @@ class UserMatchingAnswersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserMatchingAnswer->exists($id)) {
 			throw new NotFoundException(__('Invalid user matching answer'));
 		}
@@ -105,9 +63,6 @@ class UserMatchingAnswersController extends AppController {
 			$options = array('conditions' => array('UserMatchingAnswer.' . $this->UserMatchingAnswer->primaryKey => $id));
 			$this->request->data = $this->UserMatchingAnswer->find('first', $options);
 		}
-		$users = $this->UserMatchingAnswer->User->find('list');
-		$matchingQuestions = $this->UserMatchingAnswer->MatchingQuestion->find('list');
-		$this->set(compact('users', 'matchingQuestions'));
 	}
 
 /**
@@ -118,6 +73,8 @@ class UserMatchingAnswersController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserMatchingAnswer->id = $id;
 		if (!$this->UserMatchingAnswer->exists()) {
 			throw new NotFoundException(__('Invalid user matching answer'));
@@ -128,32 +85,6 @@ class UserMatchingAnswersController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user matching answer could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->UserMatchingAnswer->recursive = 0;
-		$this->set('userMatchingAnswers', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->UserMatchingAnswer->exists($id)) {
-			throw new NotFoundException(__('Invalid user matching answer'));
-		}
-		$options = array('conditions' => array('UserMatchingAnswer.' . $this->UserMatchingAnswer->primaryKey => $id));
-		$this->set('userMatchingAnswer', $this->UserMatchingAnswer->find('first', $options));
 	}
 
 /**
@@ -162,6 +93,8 @@ class UserMatchingAnswersController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->UserMatchingAnswer->create();
 			if ($this->UserMatchingAnswer->save($this->request->data)) {
@@ -171,9 +104,6 @@ class UserMatchingAnswersController extends AppController {
 				$this->Session->setFlash(__('The user matching answer could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->UserMatchingAnswer->User->find('list');
-		$matchingQuestions = $this->UserMatchingAnswer->MatchingQuestion->find('list');
-		$this->set(compact('users', 'matchingQuestions'));
 	}
 
 /**
@@ -184,6 +114,8 @@ class UserMatchingAnswersController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserMatchingAnswer->exists($id)) {
 			throw new NotFoundException(__('Invalid user matching answer'));
 		}
@@ -198,9 +130,6 @@ class UserMatchingAnswersController extends AppController {
 			$options = array('conditions' => array('UserMatchingAnswer.' . $this->UserMatchingAnswer->primaryKey => $id));
 			$this->request->data = $this->UserMatchingAnswer->find('first', $options);
 		}
-		$users = $this->UserMatchingAnswer->User->find('list');
-		$matchingQuestions = $this->UserMatchingAnswer->MatchingQuestion->find('list');
-		$this->set(compact('users', 'matchingQuestions'));
 	}
 
 /**
@@ -211,6 +140,8 @@ class UserMatchingAnswersController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserMatchingAnswer->id = $id;
 		if (!$this->UserMatchingAnswer->exists()) {
 			throw new NotFoundException(__('Invalid user matching answer'));
@@ -221,6 +152,5 @@ class UserMatchingAnswersController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user matching answer could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
 	}
 }

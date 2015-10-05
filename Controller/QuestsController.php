@@ -40,36 +40,13 @@ class QuestsController extends AppController {
     }
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Quest->recursive = 0;
-		$this->set('quests', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Quest->exists($id)) {
-			throw new NotFoundException(__('Invalid quest'));
-		}
-		$options = array('conditions' => array('Quest.' . $this->Quest->primaryKey => $id));
-		$this->set('quest', $this->Quest->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Quest->create();
 			if ($this->Quest->save($this->request->data)) {
@@ -79,9 +56,6 @@ class QuestsController extends AppController {
 				//$this->Session->setFlash(__('The quest could not be saved. Please, try again.'));
 			}
 		}
-		$missions = $this->Quest->Mission->find('list');
-		$phases = $this->Quest->Phase->find('list');
-		$this->set(compact('missions', 'phases'));
 	}
 
 /**
@@ -90,6 +64,8 @@ class QuestsController extends AppController {
  * @return void
  */
 	public function panel_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			
 			
@@ -167,9 +143,6 @@ class QuestsController extends AppController {
 				$this->redirect($this->referer());
 			
 		}
-		// $missions = $this->Quest->Mission->find('list');
-		// $phases = $this->Quest->Phase->find('list');
-		// $this->set(compact('missions', 'phases'));
 	}
 
 /**
@@ -180,6 +153,8 @@ class QuestsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Quest->exists($id)) {
 			throw new NotFoundException(__('Invalid quest'));
 		}
@@ -194,9 +169,6 @@ class QuestsController extends AppController {
 			$options = array('conditions' => array('Quest.' . $this->Quest->primaryKey => $id));
 			$this->request->data = $this->Quest->find('first', $options);
 		}
-		$missions = $this->Quest->Mission->find('list');
-		$phases = $this->Quest->Phase->find('list');
-		$this->set(compact('missions', 'phases'));
 	}
 
 /**
@@ -207,6 +179,8 @@ class QuestsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Quest->id = $id;
 		if (!$this->Quest->exists()) {
 			throw new NotFoundException(__('Invalid quest'));
@@ -217,32 +191,6 @@ class QuestsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The quest could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->Quest->recursive = 0;
-		$this->set('quests', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Quest->exists($id)) {
-			throw new NotFoundException(__('Invalid quest'));
-		}
-		$options = array('conditions' => array('Quest.' . $this->Quest->primaryKey => $id));
-		$this->set('quest', $this->Quest->find('first', $options));
 	}
 
 /**
@@ -251,6 +199,8 @@ class QuestsController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Quest->create();
 			if ($this->Quest->save($this->request->data)) {
@@ -260,9 +210,6 @@ class QuestsController extends AppController {
 				$this->Session->setFlash(__('The quest could not be saved. Please, try again.'));
 			}
 		}
-		$missions = $this->Quest->Mission->find('list');
-		$phases = $this->Quest->Phase->find('list');
-		$this->set(compact('missions', 'phases'));
 	}
 
 /**
@@ -273,6 +220,8 @@ class QuestsController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Quest->exists($id)) {
 			throw new NotFoundException(__('Invalid quest'));
 		}
@@ -287,9 +236,6 @@ class QuestsController extends AppController {
 			$options = array('conditions' => array('Quest.' . $this->Quest->primaryKey => $id));
 			$this->request->data = $this->Quest->find('first', $options);
 		}
-		$missions = $this->Quest->Mission->find('list');
-		$phases = $this->Quest->Phase->find('list');
-		$this->set(compact('missions', 'phases'));
 	}
 
 /**
@@ -300,6 +246,8 @@ class QuestsController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Quest->id = $id;
 		if (!$this->Quest->exists()) {
 			throw new NotFoundException(__('Invalid quest'));
@@ -310,5 +258,5 @@ class QuestsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The quest could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

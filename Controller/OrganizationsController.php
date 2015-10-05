@@ -40,36 +40,13 @@ class OrganizationsController extends AppController {
     }
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Organization->recursive = 0;
-		$this->set('organizations', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Organization->exists($id)) {
-			throw new NotFoundException(__('Invalid organization'));
-		}
-		$options = array('conditions' => array('Organization.' . $this->Organization->primaryKey => $id));
-		$this->set('organization', $this->Organization->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Organization->create();
 			if ($this->Organization->save($this->request->data)) {
@@ -89,6 +66,8 @@ class OrganizationsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Organization->exists($id)) {
 			throw new NotFoundException(__('Invalid organization'));
 		}
@@ -122,6 +101,8 @@ class OrganizationsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Organization->id = $id;
 		if (!$this->Organization->exists()) {
 			throw new NotFoundException(__('Invalid organization'));
@@ -133,14 +114,10 @@ class OrganizationsController extends AppController {
 			$this->redirect($this->referer());
 		}
 
-
-		//$this->request->onlyAllow('post', 'delete');
 		if ($this->Organization->delete()) {
 			$this->Session->setFlash(__('The organization has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The organization could not be deleted. Please, try again.'));
 		}
-		//returning to the admin panel
-		return $this->redirect($this->referer());
 	}
 }

@@ -17,36 +17,13 @@ class PointsController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Point->recursive = 0;
-		$this->set('points', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Point->exists($id)) {
-			throw new NotFoundException(__('Invalid point'));
-		}
-		$options = array('conditions' => array('Point.' . $this->Point->primaryKey => $id));
-		$this->set('point', $this->Point->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Point->create();
 			if ($this->Point->save($this->request->data)) {
@@ -56,8 +33,6 @@ class PointsController extends AppController {
 				$this->Session->setFlash(__('The point could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Point->User->find('list');
-		$this->set(compact('users'));
 	}
 
 /**
@@ -68,6 +43,8 @@ class PointsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Point->exists($id)) {
 			throw new NotFoundException(__('Invalid point'));
 		}
@@ -82,8 +59,6 @@ class PointsController extends AppController {
 			$options = array('conditions' => array('Point.' . $this->Point->primaryKey => $id));
 			$this->request->data = $this->Point->find('first', $options);
 		}
-		$users = $this->Point->User->find('list');
-		$this->set(compact('users'));
 	}
 
 /**
@@ -94,42 +69,18 @@ class PointsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Point->id = $id;
 		if (!$this->Point->exists()) {
 			throw new NotFoundException(__('Invalid point'));
 		}
-		//$this->request->onlyAllow('post', 'delete');
+
 		if ($this->Point->delete()) {
 			$this->Session->setFlash(__('The point has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The point could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->Point->recursive = 0;
-		$this->set('points', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Point->exists($id)) {
-			throw new NotFoundException(__('Invalid point'));
-		}
-		$options = array('conditions' => array('Point.' . $this->Point->primaryKey => $id));
-		$this->set('point', $this->Point->find('first', $options));
 	}
 
 /**
@@ -138,6 +89,8 @@ class PointsController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Point->create();
 			if ($this->Point->save($this->request->data)) {
@@ -147,8 +100,6 @@ class PointsController extends AppController {
 				$this->Session->setFlash(__('The point could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Point->User->find('list');
-		$this->set(compact('users'));
 	}
 
 /**
@@ -159,6 +110,8 @@ class PointsController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Point->exists($id)) {
 			throw new NotFoundException(__('Invalid point'));
 		}
@@ -173,8 +126,6 @@ class PointsController extends AppController {
 			$options = array('conditions' => array('Point.' . $this->Point->primaryKey => $id));
 			$this->request->data = $this->Point->find('first', $options);
 		}
-		$users = $this->Point->User->find('list');
-		$this->set(compact('users'));
 	}
 
 /**
@@ -185,6 +136,8 @@ class PointsController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Point->id = $id;
 		if (!$this->Point->exists()) {
 			throw new NotFoundException(__('Invalid point'));
@@ -195,5 +148,5 @@ class PointsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The point could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

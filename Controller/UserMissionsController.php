@@ -17,36 +17,13 @@ class UserMissionsController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->UserMission->recursive = 0;
-		$this->set('userMissions', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->UserMission->exists($id)) {
-			throw new NotFoundException(__('Invalid user mission'));
-		}
-		$options = array('conditions' => array('UserMission.' . $this->UserMission->primaryKey => $id));
-		$this->set('userMission', $this->UserMission->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->UserMission->create();
 			if ($this->UserMission->save($this->request->data)) {
@@ -56,9 +33,6 @@ class UserMissionsController extends AppController {
 				$this->Session->setFlash(__('The user mission could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->UserMission->User->find('list');
-		$missions = $this->UserMission->Mission->find('list');
-		$this->set(compact('users', 'missions'));
 	}
 
 /**
@@ -69,6 +43,8 @@ class UserMissionsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserMission->exists($id)) {
 			throw new NotFoundException(__('Invalid user mission'));
 		}
@@ -83,9 +59,6 @@ class UserMissionsController extends AppController {
 			$options = array('conditions' => array('UserMission.' . $this->UserMission->primaryKey => $id));
 			$this->request->data = $this->UserMission->find('first', $options);
 		}
-		$users = $this->UserMission->User->find('list');
-		$missions = $this->UserMission->Mission->find('list');
-		$this->set(compact('users', 'missions'));
 	}
 
 /**
@@ -96,6 +69,8 @@ class UserMissionsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserMission->id = $id;
 		if (!$this->UserMission->exists()) {
 			throw new NotFoundException(__('Invalid user mission'));
@@ -106,32 +81,6 @@ class UserMissionsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user mission could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->UserMission->recursive = 0;
-		$this->set('userMissions', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->UserMission->exists($id)) {
-			throw new NotFoundException(__('Invalid user mission'));
-		}
-		$options = array('conditions' => array('UserMission.' . $this->UserMission->primaryKey => $id));
-		$this->set('userMission', $this->UserMission->find('first', $options));
 	}
 
 /**
@@ -140,6 +89,8 @@ class UserMissionsController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->UserMission->create();
 			if ($this->UserMission->save($this->request->data)) {
@@ -149,9 +100,6 @@ class UserMissionsController extends AppController {
 				$this->Session->setFlash(__('The user mission could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->UserMission->User->find('list');
-		$missions = $this->UserMission->Mission->find('list');
-		$this->set(compact('users', 'missions'));
 	}
 
 /**
@@ -162,6 +110,8 @@ class UserMissionsController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserMission->exists($id)) {
 			throw new NotFoundException(__('Invalid user mission'));
 		}
@@ -176,9 +126,6 @@ class UserMissionsController extends AppController {
 			$options = array('conditions' => array('UserMission.' . $this->UserMission->primaryKey => $id));
 			$this->request->data = $this->UserMission->find('first', $options);
 		}
-		$users = $this->UserMission->User->find('list');
-		$missions = $this->UserMission->Mission->find('list');
-		$this->set(compact('users', 'missions'));
 	}
 
 /**
@@ -189,6 +136,8 @@ class UserMissionsController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserMission->id = $id;
 		if (!$this->UserMission->exists()) {
 			throw new NotFoundException(__('Invalid user mission'));
@@ -200,4 +149,5 @@ class UserMissionsController extends AppController {
 			$this->Session->setFlash(__('The user mission could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

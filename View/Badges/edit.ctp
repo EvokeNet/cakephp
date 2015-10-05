@@ -6,19 +6,6 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
-		echo '<fieldset><legend> ' .__('Necessary Power Points to get Badge') . '</legend>';
-        foreach ($powerpoints as $power) {
-            $previous = 0;
-            foreach ($mypp as $pp) {
-                if($pp['BadgePowerPoint']['power_points_id'] == $power['PowerPoint']['id'] && $pp['BadgePowerPoint']['badge_id'] == $me['Badge']['id'])
-                    $previous = $pp['BadgePowerPoint']['quantity'];
-            }
-            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
-                'label' => $power['PowerPoint']['name'],
-                'value' => $previous
-            ));
-        }
-        echo '</fieldset>';
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

@@ -39,36 +39,13 @@ class UserOrganizationsController extends AppController {
     }
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->UserOrganization->recursive = 0;
-		$this->set('userOrganizations', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->UserOrganization->exists($id)) {
-			throw new NotFoundException(__('Invalid user organization'));
-		}
-		$options = array('conditions' => array('UserOrganization.' . $this->UserOrganization->primaryKey => $id));
-		$this->set('userOrganization', $this->UserOrganization->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->UserOrganization->create();
 			if ($this->UserOrganization->save($this->request->data)) {
@@ -78,9 +55,6 @@ class UserOrganizationsController extends AppController {
 				$this->Session->setFlash(__('The user organization could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->UserOrganization->User->find('list');
-		$organizations = $this->UserOrganization->Organization->find('list');
-		$this->set(compact('users', 'organizations'));
 	}
 
 /**
@@ -91,6 +65,8 @@ class UserOrganizationsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserOrganization->exists($id)) {
 			throw new NotFoundException(__('Invalid user organization'));
 		}
@@ -105,9 +81,6 @@ class UserOrganizationsController extends AppController {
 			$options = array('conditions' => array('UserOrganization.' . $this->UserOrganization->primaryKey => $id));
 			$this->request->data = $this->UserOrganization->find('first', $options);
 		}
-		$users = $this->UserOrganization->User->find('list');
-		$organizations = $this->UserOrganization->Organization->find('list');
-		$this->set(compact('users', 'organizations'));
 	}
 
 /**
@@ -118,6 +91,8 @@ class UserOrganizationsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserOrganization->id = $id;
 		if (!$this->UserOrganization->exists()) {
 			throw new NotFoundException(__('Invalid user organization'));
@@ -128,5 +103,5 @@ class UserOrganizationsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user organization could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

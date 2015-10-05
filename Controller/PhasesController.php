@@ -38,36 +38,13 @@ class PhasesController extends AppController {
     }
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Phase->recursive = 0;
-		$this->set('phases', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Phase->exists($id)) {
-			throw new NotFoundException(__('Invalid phase'));
-		}
-		$options = array('conditions' => array('Phase.' . $this->Phase->primaryKey => $id));
-		$this->set('phase', $this->Phase->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Phase->create();
 			if ($this->Phase->saveAll($this->request->data)) {
@@ -77,8 +54,6 @@ class PhasesController extends AppController {
 				$this->Session->setFlash(__('The phase could not be saved. Please, try again.'));
 			}
 		}
-		$missions = $this->Phase->Mission->find('list');
-		$this->set(compact('missions'));
 	}
 
 /**
@@ -89,22 +64,7 @@ class PhasesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		// if (!$this->Phase->exists($id)) {
-		// 	throw new NotFoundException(__('Invalid phase'));
-		// }
-
-		// $this->Phase->id = $id;
-
-		// if ($this->request->is(array('post', 'put'))) {
-		// 	if ($this->Phase->saveAll($this->request->data)) {
-		// 		$this->Session->setFlash(__('The user has been saved.'));
-		// 		return $this->redirect($this->referer());
-		// 	} else {
-		// 		$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-		// 	}
-		// } else {
-		// 	return $this->redirect($this->referer());
-		// }
+		$this->autoRender = false;
 
 		$this->Phase->id = $id;
 
@@ -112,12 +72,7 @@ class PhasesController extends AppController {
 			throw new NotFoundException(__('Invalid phase'));
 		}
 
-		//$phase = $this->Phase->find('first', array('conditions' => array('Phase.id' => $id)));
-
-		//$this->Phase->locale = Configure::read('Config.languages');
-
 		if ($this->request->is('post', 'put')) {
-
 			if ($this->Phase->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The phase has been saved.'.$id));
 				return $this->redirect($this->referer());
@@ -125,12 +80,6 @@ class PhasesController extends AppController {
 				$this->Session->setFlash(__('The phase could not be saved. Please, try again.'));
 			}
 		}
-		// else {
-		// 	$options = array('conditions' => array('Phase.' . $this->Phase->primaryKey => $id));
-		// 	$this->request->data = $this->Phase->find('first', $options);
-		// }
-		// $missions = $this->Phase->Mission->find('list');
-		// $this->set(compact('missions'));
 	}
 
 /**
@@ -141,6 +90,8 @@ class PhasesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Phase->id = $id;
 		if (!$this->Phase->exists()) {
 			throw new NotFoundException(__('Invalid phase'));
@@ -151,32 +102,6 @@ class PhasesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The phase could not be deleted. Please, try again.'));
 		}
-		$this->redirect($this->referer());
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->Phase->recursive = 0;
-		$this->set('phases', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Phase->exists($id)) {
-			throw new NotFoundException(__('Invalid phase'));
-		}
-		$options = array('conditions' => array('Phase.' . $this->Phase->primaryKey => $id));
-		$this->set('phase', $this->Phase->find('first', $options));
 	}
 
 /**
@@ -185,6 +110,8 @@ class PhasesController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Phase->create();
 			if ($this->Phase->save($this->request->data)) {
@@ -194,8 +121,6 @@ class PhasesController extends AppController {
 				$this->Session->setFlash(__('The phase could not be saved. Please, try again.'));
 			}
 		}
-		$missions = $this->Phase->Mission->find('list');
-		$this->set(compact('missions'));
 	}
 
 /**
@@ -206,6 +131,8 @@ class PhasesController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Phase->exists($id)) {
 			throw new NotFoundException(__('Invalid phase'));
 		}
@@ -220,8 +147,6 @@ class PhasesController extends AppController {
 			$options = array('conditions' => array('Phase.' . $this->Phase->primaryKey => $id));
 			$this->request->data = $this->Phase->find('first', $options);
 		}
-		$missions = $this->Phase->Mission->find('list');
-		$this->set(compact('missions'));
 	}
 
 /**
@@ -232,6 +157,8 @@ class PhasesController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Phase->id = $id;
 		if (!$this->Phase->exists()) {
 			throw new NotFoundException(__('Invalid phase'));
@@ -242,33 +169,21 @@ class PhasesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The phase could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
 	}
 
-	/**
-	 * checkSubscription method
-	 *
-	 * @return void
-	 */
-		public function checkSubscription() {
+/**
+ * checkSubscription method
+ *
+ * @return void
+ */
+	public function checkSubscription() {
+		$this->autoRender = false;
 
-			$this->autoRender = false;
-
-			if ($this->request->is('post')) {
-
-				// debug($this->request->data['user_id']);
-				// $k = json_decode($this->request->data);
-				// debug($k);
-				// die();
-				// debug($_POST['user_id']);
-			// return json_encode($_POST);
-
+		if ($this->request->is('post')) {
 			$this->loadModel('MissionSubscription');
 			$mission_subsc = $this->MissionSubscription->find('first', array('conditions' => array('user_id' => $_POST['user_id'], 'mission_id' => $_POST['mission_id'])));
 
-
-
-			if(!empty($mission_subsc)){
+			if (!empty($mission_subsc)){
 				$oldPhaseId = $mission_subsc['MissionSubscription']['phase_id'];
 			}
 			else {
@@ -276,16 +191,15 @@ class PhasesController extends AppController {
 				$oldPhaseId = $first_phase['Phase']['id'];
 			}
 
-			// debug($this->Phase->getCurrentPhase($_POST['user_id'], $_POST['mission_id']));
-
 			$phase = $this->Phase->getCurrentPhase($_POST['user_id'], $_POST['mission_id']);
-// die();
+
 			//Still in the same phase
-			if($phase['Phase']['id'] == $oldPhaseId){
+			if ($phase['Phase']['id'] == $oldPhaseId){
 				$json_data = array('flag' => 1);
 				return json_encode($json_data);
 
-			} else{
+			}
+			else {
 
 				if(!empty($mission_subsc)){
 
@@ -304,9 +218,6 @@ class PhasesController extends AppController {
 				return json_encode($json_data);
 
 			}
-
 		}
-
-		}
-
+	}
 }

@@ -16,30 +16,6 @@ class EvokationTagsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->EvokationTag->recursive = 0;
-		$this->set('evokationTags', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->EvokationTag->exists($id)) {
-			throw new NotFoundException(__('Invalid evokation tag'));
-		}
-		$options = array('conditions' => array('EvokationTag.' . $this->EvokationTag->primaryKey => $id));
-		$this->set('evokationTag', $this->EvokationTag->find('first', $options));
-	}
 
 /**
  * add method
@@ -47,6 +23,7 @@ class EvokationTagsController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->EvokationTag->create();
 			if ($this->EvokationTag->save($this->request->data)) {
@@ -56,9 +33,6 @@ class EvokationTagsController extends AppController {
 				$this->Session->setFlash(__('The evokation tag could not be saved. Please, try again.'));
 			}
 		}
-		$evokations = $this->EvokationTag->Evokation->find('list');
-		$tags = $this->EvokationTag->Tag->find('list');
-		$this->set(compact('evokations', 'tags'));
 	}
 
 /**
@@ -69,6 +43,7 @@ class EvokationTagsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->EvokationTag->exists($id)) {
 			throw new NotFoundException(__('Invalid evokation tag'));
 		}
@@ -83,9 +58,6 @@ class EvokationTagsController extends AppController {
 			$options = array('conditions' => array('EvokationTag.' . $this->EvokationTag->primaryKey => $id));
 			$this->request->data = $this->EvokationTag->find('first', $options);
 		}
-		$evokations = $this->EvokationTag->Evokation->find('list');
-		$tags = $this->EvokationTag->Tag->find('list');
-		$this->set(compact('evokations', 'tags'));
 	}
 
 /**
@@ -96,6 +68,7 @@ class EvokationTagsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
 		$this->EvokationTag->id = $id;
 		if (!$this->EvokationTag->exists()) {
 			throw new NotFoundException(__('Invalid evokation tag'));
@@ -110,36 +83,12 @@ class EvokationTagsController extends AppController {
 	}
 
 /**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->EvokationTag->recursive = 0;
-		$this->set('evokationTags', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->EvokationTag->exists($id)) {
-			throw new NotFoundException(__('Invalid evokation tag'));
-		}
-		$options = array('conditions' => array('EvokationTag.' . $this->EvokationTag->primaryKey => $id));
-		$this->set('evokationTag', $this->EvokationTag->find('first', $options));
-	}
-
-/**
  * admin_add method
  *
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->EvokationTag->create();
 			if ($this->EvokationTag->save($this->request->data)) {
@@ -149,9 +98,6 @@ class EvokationTagsController extends AppController {
 				$this->Session->setFlash(__('The evokation tag could not be saved. Please, try again.'));
 			}
 		}
-		$evokations = $this->EvokationTag->Evokation->find('list');
-		$tags = $this->EvokationTag->Tag->find('list');
-		$this->set(compact('evokations', 'tags'));
 	}
 
 /**
@@ -162,6 +108,7 @@ class EvokationTagsController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->EvokationTag->exists($id)) {
 			throw new NotFoundException(__('Invalid evokation tag'));
 		}
@@ -176,9 +123,6 @@ class EvokationTagsController extends AppController {
 			$options = array('conditions' => array('EvokationTag.' . $this->EvokationTag->primaryKey => $id));
 			$this->request->data = $this->EvokationTag->find('first', $options);
 		}
-		$evokations = $this->EvokationTag->Evokation->find('list');
-		$tags = $this->EvokationTag->Tag->find('list');
-		$this->set(compact('evokations', 'tags'));
 	}
 
 /**
@@ -189,6 +133,7 @@ class EvokationTagsController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
 		$this->EvokationTag->id = $id;
 		if (!$this->EvokationTag->exists()) {
 			throw new NotFoundException(__('Invalid evokation tag'));
@@ -200,4 +145,5 @@ class EvokationTagsController extends AppController {
 			$this->Session->setFlash(__('The evokation tag could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

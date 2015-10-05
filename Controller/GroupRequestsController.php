@@ -16,30 +16,30 @@ class GroupRequestsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->GroupRequest->recursive = 0;
-		$this->set('groupRequests', $this->Paginator->paginate());
-	}
+// /**
+//  * index method
+//  *
+//  * @return void
+//  */
+// 	public function index() {
+// 		$this->GroupRequest->recursive = 0;
+// 		$this->set('groupRequests', $this->Paginator->paginate());
+// 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->GroupRequest->exists($id)) {
-			throw new NotFoundException(__('Invalid group request'));
-		}
-		$options = array('conditions' => array('GroupRequest.' . $this->GroupRequest->primaryKey => $id));
-		$this->set('groupRequest', $this->GroupRequest->find('first', $options));
-	}
+// /**
+//  * view method
+//  *
+//  * @throws NotFoundException
+//  * @param string $id
+//  * @return void
+//  */
+// 	public function view($id = null) {
+// 		if (!$this->GroupRequest->exists($id)) {
+// 			throw new NotFoundException(__('Invalid group request'));
+// 		}
+// 		$options = array('conditions' => array('GroupRequest.' . $this->GroupRequest->primaryKey => $id));
+// 		$this->set('groupRequest', $this->GroupRequest->find('first', $options));
+// 	}
 
 /**
  * add method
@@ -47,6 +47,7 @@ class GroupRequestsController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->GroupRequest->create();
 			if ($this->GroupRequest->save($this->request->data)) {
@@ -56,9 +57,6 @@ class GroupRequestsController extends AppController {
 				$this->Session->setFlash(__('The group request could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->GroupRequest->User->find('list');
-		$groups = $this->GroupRequest->Group->find('list');
-		$this->set(compact('users', 'groups'));
 	}
 
 /**
@@ -69,6 +67,7 @@ class GroupRequestsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->GroupRequest->exists($id)) {
 			throw new NotFoundException(__('Invalid group request'));
 		}
@@ -83,9 +82,6 @@ class GroupRequestsController extends AppController {
 			$options = array('conditions' => array('GroupRequest.' . $this->GroupRequest->primaryKey => $id));
 			$this->request->data = $this->GroupRequest->find('first', $options);
 		}
-		$users = $this->GroupRequest->User->find('list');
-		$groups = $this->GroupRequest->Group->find('list');
-		$this->set(compact('users', 'groups'));
 	}
 
 /**
@@ -96,6 +92,7 @@ class GroupRequestsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
 		$this->GroupRequest->id = $id;
 		if (!$this->GroupRequest->exists()) {
 			throw new NotFoundException(__('Invalid group request'));
@@ -117,6 +114,7 @@ class GroupRequestsController extends AppController {
  * @return void
  */
 	public function decline($uid = null, $gid = null) {
+		$this->autoRender = false;
 
 		if($uid)
 			$user_id = $uid;
@@ -166,30 +164,6 @@ class GroupRequestsController extends AppController {
     	}
 	}
 
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->GroupRequest->recursive = 0;
-		$this->set('groupRequests', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->GroupRequest->exists($id)) {
-			throw new NotFoundException(__('Invalid group request'));
-		}
-		$options = array('conditions' => array('GroupRequest.' . $this->GroupRequest->primaryKey => $id));
-		$this->set('groupRequest', $this->GroupRequest->find('first', $options));
-	}
 
 /**
  * admin_add method
@@ -197,6 +171,7 @@ class GroupRequestsController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->GroupRequest->create();
 			if ($this->GroupRequest->save($this->request->data)) {
@@ -206,9 +181,6 @@ class GroupRequestsController extends AppController {
 				$this->Session->setFlash(__('The group request could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->GroupRequest->User->find('list');
-		$groups = $this->GroupRequest->Group->find('list');
-		$this->set(compact('users', 'groups'));
 	}
 
 /**
@@ -219,6 +191,7 @@ class GroupRequestsController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->GroupRequest->exists($id)) {
 			throw new NotFoundException(__('Invalid group request'));
 		}
@@ -233,9 +206,6 @@ class GroupRequestsController extends AppController {
 			$options = array('conditions' => array('GroupRequest.' . $this->GroupRequest->primaryKey => $id));
 			$this->request->data = $this->GroupRequest->find('first', $options);
 		}
-		$users = $this->GroupRequest->User->find('list');
-		$groups = $this->GroupRequest->Group->find('list');
-		$this->set(compact('users', 'groups'));
 	}
 
 /**
@@ -246,6 +216,7 @@ class GroupRequestsController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
 		$this->GroupRequest->id = $id;
 		if (!$this->GroupRequest->exists()) {
 			throw new NotFoundException(__('Invalid group request'));
@@ -256,5 +227,5 @@ class GroupRequestsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The group request could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

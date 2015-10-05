@@ -16,36 +16,13 @@ class VotesController extends AppController {
 	public $components = array('Paginator');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Vote->recursive = 0;
-		$this->set('votes', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Vote->exists($id)) {
-			throw new NotFoundException(__('Invalid vote'));
-		}
-		$options = array('conditions' => array('Vote.' . $this->Vote->primaryKey => $id));
-		$this->set('vote', $this->Vote->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Vote->create();
 			if ($this->Vote->save($this->request->data)) {
@@ -56,9 +33,6 @@ class VotesController extends AppController {
 				$this->Session->setFlash(__('The vote could not be saved. Please, try again.'));
 			}
 		}
-		$evokations = $this->Vote->Evokation->find('list');
-		$users = $this->Vote->User->find('list');
-		$this->set(compact('evokations', 'users'));
 	}
 
 /**
@@ -69,6 +43,8 @@ class VotesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Vote->exists($id)) {
 			throw new NotFoundException(__('Invalid vote'));
 		}
@@ -85,9 +61,6 @@ class VotesController extends AppController {
 			$options = array('conditions' => array('Vote.' . $this->Vote->primaryKey => $id));
 			$this->request->data = $this->Vote->find('first', $options);
 		}
-		$evokations = $this->Vote->Evokation->find('list');
-		$users = $this->Vote->User->find('list');
-		$this->set(compact('evidences', 'users'));
 	}
 
 /**
@@ -98,6 +71,8 @@ class VotesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Vote->id = $id;
 		if (!$this->Vote->exists()) {
 			throw new NotFoundException(__('Invalid vote'));
@@ -108,32 +83,6 @@ class VotesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The vote could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->Vote->recursive = 0;
-		$this->set('votes', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Vote->exists($id)) {
-			throw new NotFoundException(__('Invalid vote'));
-		}
-		$options = array('conditions' => array('Vote.' . $this->Vote->primaryKey => $id));
-		$this->set('vote', $this->Vote->find('first', $options));
 	}
 
 /**
@@ -142,6 +91,8 @@ class VotesController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Vote->create();
 			if ($this->Vote->save($this->request->data)) {
@@ -151,9 +102,6 @@ class VotesController extends AppController {
 				$this->Session->setFlash(__('The vote could not be saved. Please, try again.'));
 			}
 		}
-		$evidences = $this->Vote->Evidence->find('list');
-		$users = $this->Vote->User->find('list');
-		$this->set(compact('evidences', 'users'));
 	}
 
 /**
@@ -164,6 +112,8 @@ class VotesController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Vote->exists($id)) {
 			throw new NotFoundException(__('Invalid vote'));
 		}
@@ -178,9 +128,6 @@ class VotesController extends AppController {
 			$options = array('conditions' => array('Vote.' . $this->Vote->primaryKey => $id));
 			$this->request->data = $this->Vote->find('first', $options);
 		}
-		$evidences = $this->Vote->Evidence->find('list');
-		$users = $this->Vote->User->find('list');
-		$this->set(compact('evidences', 'users'));
 	}
 
 /**
@@ -191,6 +138,8 @@ class VotesController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Vote->id = $id;
 		if (!$this->Vote->exists()) {
 			throw new NotFoundException(__('Invalid vote'));
@@ -201,5 +150,5 @@ class VotesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The vote could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

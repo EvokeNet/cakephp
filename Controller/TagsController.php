@@ -16,30 +16,6 @@ class TagsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Tag->recursive = 0;
-		$this->set('tags', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Tag->exists($id)) {
-			throw new NotFoundException(__('Invalid tag'));
-		}
-		$options = array('conditions' => array('Tag.' . $this->Tag->primaryKey => $id));
-		$this->set('tag', $this->Tag->find('first', $options));
-	}
 
 /**
  * add method
@@ -47,6 +23,8 @@ class TagsController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Tag->create();
 			if ($this->Tag->save($this->request->data)) {
@@ -66,6 +44,8 @@ class TagsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Tag->exists($id)) {
 			throw new NotFoundException(__('Invalid tag'));
 		}
@@ -90,6 +70,8 @@ class TagsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Tag->id = $id;
 		if (!$this->Tag->exists()) {
 			throw new NotFoundException(__('Invalid tag'));
@@ -100,32 +82,6 @@ class TagsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The tag could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->Tag->recursive = 0;
-		$this->set('tags', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Tag->exists($id)) {
-			throw new NotFoundException(__('Invalid tag'));
-		}
-		$options = array('conditions' => array('Tag.' . $this->Tag->primaryKey => $id));
-		$this->set('tag', $this->Tag->find('first', $options));
 	}
 
 /**
@@ -134,6 +90,8 @@ class TagsController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Tag->create();
 			if ($this->Tag->save($this->request->data)) {
@@ -153,6 +111,8 @@ class TagsController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Tag->exists($id)) {
 			throw new NotFoundException(__('Invalid tag'));
 		}
@@ -177,6 +137,8 @@ class TagsController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Tag->id = $id;
 		if (!$this->Tag->exists()) {
 			throw new NotFoundException(__('Invalid tag'));
@@ -188,4 +150,5 @@ class TagsController extends AppController {
 			$this->Session->setFlash(__('The tag could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

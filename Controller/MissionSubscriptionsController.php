@@ -17,36 +17,13 @@ class MissionSubscriptionsController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->MissionSubscription->recursive = 0;
-		$this->set('missionSubscriptions', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->MissionSubscription->exists($id)) {
-			throw new NotFoundException(__('Invalid mission subscription'));
-		}
-		$options = array('conditions' => array('MissionSubscription.' . $this->MissionSubscription->primaryKey => $id));
-		$this->set('missionSubscription', $this->MissionSubscription->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->MissionSubscription->create();
 			if ($this->MissionSubscription->save($this->request->data)) {
@@ -56,10 +33,6 @@ class MissionSubscriptionsController extends AppController {
 				$this->Session->setFlash(__('The mission subscription could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->MissionSubscription->User->find('list');
-		$missions = $this->MissionSubscription->Mission->find('list');
-		$phases = $this->MissionSubscription->Phase->find('list');
-		$this->set(compact('users', 'missions', 'phases'));
 	}
 
 /**
@@ -70,6 +43,8 @@ class MissionSubscriptionsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->MissionSubscription->exists($id)) {
 			throw new NotFoundException(__('Invalid mission subscription'));
 		}
@@ -84,10 +59,6 @@ class MissionSubscriptionsController extends AppController {
 			$options = array('conditions' => array('MissionSubscription.' . $this->MissionSubscription->primaryKey => $id));
 			$this->request->data = $this->MissionSubscription->find('first', $options);
 		}
-		$users = $this->MissionSubscription->User->find('list');
-		$missions = $this->MissionSubscription->Mission->find('list');
-		$phases = $this->MissionSubscription->Phase->find('list');
-		$this->set(compact('users', 'missions', 'phases'));
 	}
 
 /**
@@ -98,6 +69,8 @@ class MissionSubscriptionsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->MissionSubscription->id = $id;
 		if (!$this->MissionSubscription->exists()) {
 			throw new NotFoundException(__('Invalid mission subscription'));
@@ -108,6 +81,5 @@ class MissionSubscriptionsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The mission subscription could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
 	}
 }
