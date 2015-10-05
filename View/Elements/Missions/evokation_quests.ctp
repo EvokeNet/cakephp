@@ -45,7 +45,7 @@
 										$evokationQuests[0]['Quest']['mission_id'],
 										$phase_id
 									));?>">
-								<i class="fa fa-pencil text-color-highlight"></i>
+								<i class="fa fa-eye text-color-highlight"></i>
 								<span class="font-highlight text-color-highlight "><?= __('Preview') ?></span>
 							</a>
 						</div>

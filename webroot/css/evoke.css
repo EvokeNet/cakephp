@@ -946,6 +946,9 @@ button, .button {
 .evoke .website-icon {
 	color: #D36A6A;
 }
+.evoke .check-icon{
+	font-size: 200px;
+}
 
 /* --------------------------- */
 /* PROGRESS BAR */

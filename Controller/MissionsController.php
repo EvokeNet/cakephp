@@ -734,9 +734,9 @@ class MissionsController extends AppController {
 			throw new NotFoundException(__('Invalid mission phase'));
 		}
 
-		//QUESTS TO DISPLAY IN THE EVOKATION PHASE
 		$this->loadModel('Quest');
 		$this->loadModel('Evidence');
+		$this->loadModel('Evokation');
 		//evokePhase is a custom find type to retrieve just the quests to be displayed in the Evoke phase
 		$evokationQuests = $this->Quest->find('evokePhase',array(
 			'conditions' => array('mission_id' => $mission_id)
@@ -750,6 +750,21 @@ class MissionsController extends AppController {
     			'evokation_id' => $evokation_id
     		)
     	));
+
+    	$sent = $this->Evokation->find('first', array(
+    		'conditions' => array(
+    			'id' => $evokation_id
+    		),
+    		'fields' => array(
+    			'final_sent'
+    		)
+    	))['Evokation']['final_sent'];
+
+    	$toRender = '/Elements/Missions/evokation_quests';
+    	// If this evokation has already been sent
+    	if($sent){
+    		$toRender = '/Elements/Missions/evokation_sent';
+    	}
 		
 		// flag to check if this user has subimitted all evokation parts for this mission
 		$done = count($evk_parts) == count($evokationQuests);
@@ -757,7 +772,7 @@ class MissionsController extends AppController {
 		//Render
 		$this->set(compact('phase_id', 'evokationQuests', 'evokation_id', 'done'));
 		$this->layout = 'ajax';
-		$this->render('/Elements/Missions/evokation_quests');
+		$this->render($toRender);
 
 	}
 
