@@ -2,7 +2,7 @@
 	//CSS overriding fullpage.js plugin
 	$cssBaseUrl = Configure::read('App.cssBaseUrl');
 	echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
-	echo $this->Html->css('fullpage.css');
+	echo $this->Html->css('/css/plugins/fullpage.css');
 
 	$this->start('topbar');
 	echo $this->element('topbar');
