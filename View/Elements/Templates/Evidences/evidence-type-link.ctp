@@ -1,12 +1,6 @@
 <?php
 	//CSS
-	echo $this->Html->css('linkpreview');
-
-	// //LINK
-	// $default_link = 'http://';
-	// if (isset($evidence) && ($evidence['type'] == 'link')) {
-	// 	$default_link = $evidence['main_content'];
-	// }
+	echo $this->Html->css('/css/plugins/linkpreview');
 ?>
 <script id="evidence-type-link-template" type="text/x-handlebars-template">
 	<?php echo $this->Form->input('evidenceLink', array('label' => __('Link'), 'class' => 'radius', 'id' => 'evidenceLink')); ?>

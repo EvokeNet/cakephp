@@ -32,21 +32,21 @@ $title = __('Evoke Network');
 
 		//COMPONENTS CSS
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min'); //Icon font - font-awesome
-		echo $this->Html->css('font-awesome'); //Overriding some of the font-awesome css
+		echo $this->Html->css('/css/plugins/font-awesome'); //Overriding some of the font-awesome css
 		
-		echo $this->Html->css('font-brankic'); //Icon font - brankic 1979
+		echo $this->Html->css('/css/font/font-brankic'); //Icon font - brankic 1979
 		
 		echo $this->Html->css('/components/foundation/css/foundation');
-		echo $this->Html->css('foundation'); //Overriding some of the foundation css
+		echo $this->Html->css('/css/plugins/foundation'); //Overriding some of the foundation css
 
 		echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 
 		echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_style.min.css'); //Froala - rendering text
 		echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_editor.min.css'); //Froala - rendering text
-		echo $this->Html->css('/css/froala.css'); //Overriding some of the froala css
+		echo $this->Html->css('/css/plugins/froala.css'); //Overriding some of the froala css
 
 		echo $this->Html->css('/components/sweetalert/dist/sweetalert.css'); //Sweet alert - alert boxes
-		echo $this->Html->css('/css/sweetalert.css'); //Overriding some of the sweet alert css
+		echo $this->Html->css('/css/plugins/sweetalert.css'); //Overriding some of the sweet alert css
 
 		//EVOKE CSS
 		echo $this->Html->css('evoke');

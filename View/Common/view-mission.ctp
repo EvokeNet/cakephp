@@ -3,7 +3,7 @@
 	echo $this->Html->css(
 		array(
 			'/components/slick-carousel/slick/slick.css',
-			'slick.css'
+			'/css/plugins/slick.css'
 		)
 	);
 ?>

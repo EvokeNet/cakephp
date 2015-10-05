@@ -1,6 +1,6 @@
 <?php
 	//CSS
-	echo $this->Html->css('linkpreview');
+	echo $this->Html->css('/css/plugins/linkpreview');
 ?>
 
 <button id="refresh-button" class="refresh-button hidden" type="button">Preview</button>
