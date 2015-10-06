@@ -18,13 +18,9 @@ define(['modernizr', 'foundation', 'evokedata','i18next'], function(Modernizr, F
 			//init rhe i18next library
 			i18n.init({ lng: evokeData.language , resGetPath: path,
                 }, function(err, t) {
-                	
-                	//alert("PATH: "+path);
                 });
 			i18n.setLng(evokeData.language, { fixLng: true }, function(err, t) { 
           		/* loading done */
-          		console.log("WEBROOT: "+webroot);
-          		console.log("EVOKE LANG: "+evokeData.language);
         	});
 
 			/**

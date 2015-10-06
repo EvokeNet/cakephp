@@ -18,45 +18,7 @@ class EvokationController extends AppController {
 	
 	public function beforeFilter() {
         parent::beforeFilter();
-        //$this->Auth->allow('view');
     }
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Evokation->recursive = 0;
-		$this->set('evokations', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @deprecated This method has been emptied out in Evoke 2.0. Previously, it used etherpad for evokation content.
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null, $update_id = null) {
-		if (!$this->Evokation->exists($id)) {
-			throw new NotFoundException(__('Invalid evokation'));
-		}
-	}
-
-/**
- * view draft method
- *
- * @deprecated This method has been emptied out in Evoke 2.0.
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function viewDraft($id = null) {
-		if (!$this->Evokation->exists($id)) {
-			throw new NotFoundException(__('Invalid evokation'));
-		}
-	}
 
 /**
  * add method
@@ -64,6 +26,7 @@ class EvokationController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->Evokation->create();
 			if ($this->Evokation->save($this->request->data)) {
@@ -82,7 +45,8 @@ class EvokationController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {		
+	public function edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->Evokation->exists($id)) {
 			throw new NotFoundException(__('Invalid evokation'));
 		}
@@ -112,6 +76,7 @@ class EvokationController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
 		$this->Evokation->id = $id;
 		if (!$this->Evokation->exists()) {
 			throw new NotFoundException(__('Invalid evokation'));
@@ -126,36 +91,12 @@ class EvokationController extends AppController {
 	}
 
 /**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->Evokation->recursive = 0;
-		$this->set('evokations', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Evokation->exists($id)) {
-			throw new NotFoundException(__('Invalid evokation'));
-		}
-		$options = array('conditions' => array('Evokation.' . $this->Evokation->primaryKey => $id));
-		$this->set('evokation', $this->Evokation->find('first', $options));
-	}
-
-/**
  * admin_add method
  *
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->Evokation->create();
 			if ($this->Evokation->save($this->request->data)) {
@@ -175,6 +116,7 @@ class EvokationController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->Evokation->exists($id)) {
 			throw new NotFoundException(__('Invalid evokation'));
 		}
@@ -199,6 +141,7 @@ class EvokationController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
 		$this->Evokation->id = $id;
 		if (!$this->Evokation->exists()) {
 			throw new NotFoundException(__('Invalid evokation'));
@@ -210,4 +153,5 @@ class EvokationController extends AppController {
 			$this->Session->setFlash(__('The evokation could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

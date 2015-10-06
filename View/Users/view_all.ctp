@@ -5,7 +5,7 @@
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => __('Evoke users'), 'imgSrc' => ($this->webroot.'img/header-profile.jpg'), 'margin' => false));
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Evoke players'), 'imgSrc' => ($this->webroot.'img/header-profile.jpg'), 'margin' => false));
 	$this->end();
 ?>
 

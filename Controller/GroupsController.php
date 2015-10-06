@@ -24,173 +24,6 @@ class GroupsController extends AppController {
 	}
 
 /**
- * index method
- *
- * @return void
- */
-	public function index($mission_id = null, $quest_id = null) {
-		
-		// $user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-		// $myPoints = $this->Group->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
-
-		// $sumMyPoints = 0;
-		
-		// foreach($myPoints as $point){
-		// 	$sumMyPoints += $point['Point']['value'];
-		// }
-
-		// $mission = $this->Group->Phase->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
-
-		// $quest = $this->Group->Phase->Mission->Quest->find('first', array('conditions' => array('Quest.id' => $quest_id)));
-
-		// $groups = $this->Group->find('all');
-
-		// $groupsUsers = $this->Group->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
-
-		// $groups_id = array();
-
-		// foreach($groups as $group):
-		// 	array_push($groups_id, array('Evokation.group_id' => $group['Group']['id']));
-		// 	//array_push($groupsBelongs, array('GroupsUser.group_id' => $group['Group']['id'], 'GroupsUser.user_id' => $this->getUserId()));
-		// endforeach;
-
-		// if(!empty($groups_id)) {
-		// 	//retrieve all organizations I am part of as a list to be displayed in a combobox
-		// 	$evokations = $this->Group->Evokation->find('all', array(
-		// 		'order' => array(
-		// 			'Evokation.created DESC'
-		// 		),
-		// 		'conditions' => array(
-		// 			'OR' => $groups_id
-		// 		)
-		// 	));
-		// } else {
-		// 	$evokations = array();
-		// }
-
-		// $groupsBelongs = array();
-
-		// foreach($groupsUsers as $group):
-		// 	$g = $this->Group->find('first', array('conditions' => array('Group.id' => $group['GroupsUser']['group_id'])));
-		// 	if($g['Group']['user_id'] != $this->getUserId())
-		// 		array_push($groupsBelongs, array('Group.id' => $group['GroupsUser']['group_id']));
-		// endforeach;
-		
-		// if(!empty($groupsUsers) && !(empty($groupsBelongs))) {
-		// 	//retrieve all organizations I am part of as a list to be displayed in a combobox
-		// 	$groupsIBelong = $this->Group->find('all', array(
-		// 		'order' => array(
-		// 			'Group.created DESC'
-		// 		),
-		// 		'conditions' => array(
-		// 			'OR' => $groupsBelongs
-		// 		)
-		// 	));
-		// } else {
-		// 	$groupsIBelong = array();
-		// }
-
-		// $myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
-
-		// $mygroups_id = array();
-
-		// foreach($myGroups as $g):
-		// 	array_push($mygroups_id, array('Evokation.group_id' => $g['Group']['id']));
-		// endforeach;
-
-		// if(!empty($mygroups_id)) {
-		// 	//retrieve all organizations I am part of as a list to be displayed in a combobox
-		// 	$myevokations = $this->Group->Evokation->find('all', array(
-		// 		'order' => array(
-		// 			'Evokation.created DESC'
-		// 		),
-		// 		'conditions' => array(
-		// 			'OR' => $mygroups_id
-		// 		)
-		// 	));
-		// } else {
-		// 	$myevokations = array();
-		// }
-
-		// $this->loadModel('GroupsUser');
-		// $users_groups = $this->GroupsUser->find('all');
-
-		// $this->set(compact('user','groups', 'myGroups', 'mission', 'evokations', 'myevokations', 'groupsIBelong', 'users_groups', 'sumMyPoints', 'quest_id'));
-		
-	}
-
-/**
- * evokations method
- *
- * @return void
- */
-	public function evokations() {
-
-		$user = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-		$missions = $this->Group->Phase->Mission->find('all');
-
-		$groups = $this->Group->find('all');
-
-		$evokations = $this->Group->Evokation->find('all');
-
-		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
-
-		$this->loadModel('GroupsUser');
-		$users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $this->getUserId())));
-
-		$mygroups_id = array();
-
-		foreach($users_groups as $g):
-			array_push($mygroups_id, array('Evokation.group_id' => $g['GroupsUser']['group_id']));
-		endforeach;
-
-		$myevokations = array();
-
-		if(!empty($mygroups_id)) {
-			//retrieve all organizations I am part of as a list to be displayed in a combobox
-			$myevokations = $this->Group->Evokation->find('all', array(
-				'order' => array(
-					'Evokation.created DESC'
-				),
-				'conditions' => array(
-					'OR' => $mygroups_id
-				)
-			));
-		} 
-
-		$this->set(compact('missionIssues', 'myevokations', 'evokations', 'groups', 'user', 'myGroups', 'missions', 'users_groups'));
-		
-	}
-
-
-	public function by_mission($mission_id = null) {
-		if(is_null($mission_id)) {
-			$this->redirect(array('action' => 'index'));
-		}
-
-		$this->loadModel('Mission');
-		$mission = $this->Mission->find('first', array('conditions' => array('Mission.id' => $mission_id)));
-		
-		if(empty($mission)) {
-			$this->redirect(array('action' => 'index'));	
-		}
-
-		$evokations = $this->Group->Evokation->find('all', array('order' => array('Evokation.created DESC'), 'conditions' => array('Group.mission_id' => $mission_id)));
-
-		//$groups = $this->Group->find('all', array('conditions' => array('Group.mission_id' => $mission_id)));
-
-		$users = $this->Group->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-		$myGroups = $this->Group->find('all', array('conditions' => array('Group.user_id' => $this->getUserId())));
-
-		$this->set(compact('users', 'myGroups', 'groups', 'mission', 'evokations'));
-
-		$this->render('index');
-	}
-
-/**
  * view method
  *
  * @throws NotFoundException
@@ -435,35 +268,6 @@ public function addGroup() {
 		));
 
 		if ($this->Group->delete()) {
-
-
-			//attribute pp to evidence owner
-			$this->loadModel('QuestPowerPoint');
-			$pps = $this->QuestPowerPoint->find('all', array(
-				'conditions' => array(
-					'quest_id' => $group['Group']['quest_id']
-				)
-			));
-
-			foreach($pps as $pp){
-				$this->loadModel('UserPowerPoint');
-				$old = $this->UserPowerPoint->find('first', array(
-					'conditions' => array(
-						'user_id' => $group['Group']['user_id'],
-						'power_points_id' => $pp['QuestPowerPoint']['power_points_id'],
-						'quest_id' => $pp['QuestPowerPoint']['quest_id'],
-						'quantity' => ($pp['QuestPowerPoint']['quantity'] * 30),
-						'model' => 'Group',
-						'foreign_key' => $group['Group']['id']
-					)
-				));
-
-				if(!empty($old)) {
-					$this->UserPowerPoint->id = $old['UserPowerPoint']['id'];
-					$this->UserPowerPoint->delete();
-				}
-			}
-
 			$this->Session->setFlash(__('The group has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The group could not be deleted. Please, try again.'));
@@ -472,98 +276,13 @@ public function addGroup() {
 	}
 
 
-	public function createProject($group_id = null){
-		if(!$group_id)
-			$this->redirect($this->referer());
-		
-		
-		$group = $this->Group->find('first', array(
-			'conditions' => array(
-				'Group.id' => $group_id
-			)
-		));
-
-		if(empty($group))
-			$this->redirect($this->referer());
-
-
-		if($this->isMember($this->getUserId(), $group_id) || $this->isOwner($this->getUserId(), $group_id)) {
-
-			$insertData['Evokation']['title'] = $group['Group']['title'] . "'s Evokation";
-			$insertData['Evokation']['group_id'] = $group_id;
-
-			$this->loadModel('Evokation');
-			$this->Evokation->create();
-			$this->Evokation->save($insertData);
-
-			$this->redirect(array('controller' => 'groupsUsers', 'action' => 'edit', $group_id));
-		} else {
-			$this->redirect($this->referer());
-		}
-
-	}
-
-	public function isMember($user_id = null, $id = null){
-		if(!$user_id || !$id) return false;
-		$this->loadModel('GroupsUser');
-		$users = $this->GroupsUser->find('all', array(
-			'contain' => 'User',
-			'conditions' => array(
-				'GroupsUser.group_id' => $id
-			)
-		));
-
-		foreach ($users as $usr) {
-				if($usr['User']['id'] == $user_id) return true;
-		}
-		return false;
-	}
-
-	public function isOwner($user_id = null, $id = null){
-		if(!$user_id || !$id) return false;
-		
-		$group = $this->Group->find('first', array(
-			'conditions' => array(
-				'user_id' => $user_id,
-				'Group.id' => $id
-			)
-		));
-
-		if(empty($group)) return false;
-		return true;
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	// public function admin_index() {
-	// 	$this->Group->recursive = 0;
-	// 	$this->set('groups', $this->Paginator->paginate());
-	// }
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Group->exists($id)) {
-			throw new NotFoundException(__('Invalid group'));
-		}
-		$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
-		$this->set('group', $this->Group->find('first', $options));
-	}
-
 /**
  * admin_add method
  *
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->Group->create();
 			if ($this->Group->save($this->request->data)) {
@@ -573,9 +292,6 @@ public function addGroup() {
 				$this->Session->setFlash(__('The group could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Group->User->find('list');
-		$evokations = $this->Group->Evokation->find('list');
-		$this->set(compact('users', 'evokations'));
 	}
 
 /**
@@ -586,6 +302,7 @@ public function addGroup() {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->Group->exists($id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
@@ -600,9 +317,6 @@ public function addGroup() {
 			$options = array('conditions' => array('Group.' . $this->Group->primaryKey => $id));
 			$this->request->data = $this->Group->find('first', $options);
 		}
-		$users = $this->Group->User->find('list');
-		$evokations = $this->Group->Evokation->find('list');
-		$this->set(compact('users', 'evokations'));
 	}
 
 /**
@@ -613,6 +327,7 @@ public function addGroup() {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
 		$this->Group->id = $id;
 		if (!$this->Group->exists()) {
 			throw new NotFoundException(__('Invalid group'));

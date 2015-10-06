@@ -147,21 +147,6 @@
 							'required' => true,
 							'value' => $m['Badge']['description']
 						));
-
-						echo '<fieldset><legend> ' .__('Necessary Power Points to get Badge') . '</legend>';
-				        foreach ($powerpoints as $power) {
-				            $previous = 0;
-				            foreach ($mypp as $pp) {
-				                if($pp['BadgePowerPoint']['power_points_id'] == $power['PowerPoint']['id'] && $pp['BadgePowerPoint']['badge_id'] == $m['Badge']['id'])
-				                    $previous = $pp['BadgePowerPoint']['quantity'];
-				            }
-				            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
-				                'label' => $power['PowerPoint']['name'],
-				                'value' => $previous
-				            ));
-				        }
-				        echo '</fieldset>';
-
 					?>
 					<button class="button tiny" type="submit">
 						<?php echo __('Save Changes')?>
@@ -191,34 +176,6 @@
 				echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
 				echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 
-				echo '<fieldset><legend> ' .__('Necessary Power Points to get Badge') . '</legend>';
-		        foreach ($powerpoints as $power) {
-		            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
-		                'label' => $power['PowerPoint']['name'],
-		                'value' => 0
-		            ));
-		        }
-		        echo $this->Form->input('Power.0.quantity', array(
-		                'label' => 'No specific power',
-		                'value' => 0
-		            ));
-		        echo '</fieldset>';
-
-				// echo '<fieldset><legend> ' .__('Necessary Power Points to get Badge') . '</legend>';
-		  //       foreach ($powerpoints as $power) {
-		  //           $previous = 0;
-		  //           foreach ($mypp as $pp) {
-		  //               if($pp['BadgePowerPoint']['power_points_id'] == $power['PowerPoint']['id'] && $pp['BadgePowerPoint']['badge_id'] == $m['Badge']['id'])
-		  //                   $previous = $pp['BadgePowerPoint']['quantity'];
-		  //           }
-		  //           echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
-		  //               'label' => $power['PowerPoint']['name']
-		  //           ));
-		  //       }
-		  //       echo '</fieldset>';
-
-		        echo $this->Form->radio('power_points_only', array(1 => 'Yes', 0 => 'No'), array('label' => __('Obtained exclusively with power points'), 'required' => true, 'default' => 1));
-								
 				echo $this->Form->hidden('organization_id', array('value' => $organization['Organization']['id']));
 
 			?>

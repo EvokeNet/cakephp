@@ -38,34 +38,6 @@ class IssuesController extends AppController {
 		}
     }
 
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Issue->recursive = 0;
-		$this->set('issues', $this->Paginator->paginate());
-
-		// $this->loadModel('MissionIssue');
-		// $missionissues = $this->MissionIssue->find('all', array('order' => 'MissionIssue.issue_id',));
-		// $this->set(compact('missionissues'));
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Issue->exists($id)) {
-			throw new NotFoundException(__('Invalid issue'));
-		}
-		$options = array('conditions' => array('Issue.' . $this->Issue->primaryKey => $id));
-		$this->set('issue', $this->Issue->find('first', $options));
-	}
 
 /**
  * add method
@@ -73,6 +45,7 @@ class IssuesController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->Issue->create();
 			if ($this->Issue->save($this->request->data)) {
@@ -82,8 +55,6 @@ class IssuesController extends AppController {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
 			}
 		}
-		$parentIssues = $this->Issue->ParentIssue->find('list');
-		$this->set(compact('parentIssues'));
 	}
 
 /**
@@ -94,6 +65,7 @@ class IssuesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->Issue->exists($id)) {
 			throw new NotFoundException(__('Invalid issue'));
 		}
@@ -110,8 +82,6 @@ class IssuesController extends AppController {
 			$options = array('conditions' => array('Issue.' . $this->Issue->primaryKey => $id));
 			$this->request->data = $this->Issue->find('first', $options);
 		}
-		$parentIssues = $this->Issue->ParentIssue->find('list');
-		$this->set(compact('parentIssues'));
 	}
 
 /**
@@ -122,11 +92,12 @@ class IssuesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Issue->id = $id;
 		if (!$this->Issue->exists()) {
 			throw new NotFoundException(__('Invalid issue'));
 		}
-		//$this->request->onlyAllow('post', 'delete');
 		if ($this->Issue->delete()) {
 			$this->Session->setFlash(__('The issue has been deleted.'));
 
@@ -140,30 +111,6 @@ class IssuesController extends AppController {
 		return $this->redirect($this->referer());
 	}
 
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->Issue->recursive = 0;
-		$this->set('issues', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Issue->exists($id)) {
-			throw new NotFoundException(__('Invalid issue'));
-		}
-		$options = array('conditions' => array('Issue.' . $this->Issue->primaryKey => $id));
-		$this->set('issue', $this->Issue->find('first', $options));
-	}
 
 /**
  * admin_add method
@@ -171,6 +118,7 @@ class IssuesController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->Issue->create();
 			if ($this->Issue->save($this->request->data)) {
@@ -180,8 +128,6 @@ class IssuesController extends AppController {
 				$this->Session->setFlash(__('The issue could not be saved. Please, try again.'));
 			}
 		}
-		$parentIssues = $this->Issue->ParentIssue->find('list');
-		$this->set(compact('parentIssues'));
 	}
 
 /**
@@ -192,6 +138,7 @@ class IssuesController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->Issue->exists($id)) {
 			throw new NotFoundException(__('Invalid issue'));
 		}
@@ -206,8 +153,6 @@ class IssuesController extends AppController {
 			$options = array('conditions' => array('Issue.' . $this->Issue->primaryKey => $id));
 			$this->request->data = $this->Issue->find('first', $options);
 		}
-		$parentIssues = $this->Issue->ParentIssue->find('list');
-		$this->set(compact('parentIssues'));
 	}
 
 /**
@@ -218,6 +163,7 @@ class IssuesController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
 		$this->Issue->id = $id;
 		if (!$this->Issue->exists()) {
 			throw new NotFoundException(__('Invalid issue'));
@@ -229,4 +175,5 @@ class IssuesController extends AppController {
 			$this->Session->setFlash(__('The issue could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

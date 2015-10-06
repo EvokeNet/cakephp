@@ -29,12 +29,6 @@
 		<div class="large-6 columns">
 			<?= $this->Form->input('password', array('required' => true, 'label' => __('Password'))) ?>
 		</div>
-		<div class="large-6 columns">
-		 	<?= $this->Form->input('role_id', array(
-					'label' => __('Role'),
-					'options' => $roles_list,
-			)) ?>
-		</div>
 	</div>
 	<div class="row">
 		<div class="large-6 columns">
@@ -52,14 +46,6 @@
 		 	<?= $this->Form->input('twitter', array('label' => __('Twitter'))) ?>
 		</div>
 	</div>
-	<!-- <div class="row">
-		<div class="large-6 columns">
-			<?= $this->Form->input('google_plus', array('label' => __('Google +'))) ?>
-		</div>
-		<div class="large-6 columns">
-		 	<?= $this->Form->input('instagram', array('label' => __('Instagram'))) ?>
-		</div>
-	</div> -->
 	<div class="row">
 		<div class="large-12 columns">
 		  <label><?= __('Date of Establishment') ?>

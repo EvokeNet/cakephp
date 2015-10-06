@@ -15,23 +15,12 @@
 
 		echo $this->Form->input('title', array('required' => true));
         echo $this->Form->input('title_es', array('label' => __('Spanish Title')));
-        /*echo $this->Form->input('id');
-        debug($newQuest);
-		echo $this->Media->ckeditor('content', array('label' => __('Description'), 'value' => $newQuest['Quest']['description']));*/
+        
         echo $this->Form->input('description', array('required' => true));
         echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
 
         echo $this->Form->input('todo_list', array('required' => true));
         echo $this->Form->input('points', array('required' => true));
-
-        echo '<fieldset><legend> ' .__('Define Quest Power Points') . '</legend>';
-        foreach ($powerpoints as $power) {
-            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
-                'label' => $power['PowerPoint']['name'],
-                'value' => 0
-            ));
-        }
-        echo '</fieldset>';
 
         echo $this->Form->radio('mandatory', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => 1));//
 		echo $this->Form->radio('type', array($quest_types_array), array('id' => 'questtype', 'required' => true));//
@@ -60,12 +49,6 @@
                         <?php echo __('Essay'); ?>
                     </a>
                 </li>
-                <!--<li>
-                    <a href="#" id="likert-scale-question" class="btn-create-question">
-                        <i class="icon-sort-by-attributes"></i>
-                        <?php echo __('1 to 5 scale'); ?>
-                    </a>
-                </li>-->
                 <li>
                     <a href="#" id="single-choice-question" class="btn-create-question">
                         <i class="icon-circle-blank"></i>
@@ -92,12 +75,3 @@
 	<button class="button small" type="submit">
 		<?php echo __('Add Quest')?>
 	</button>
-	<?php echo $this->Form->end(); 
-    echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-    //echo $this->Html->script('/components/foundation/js/foundation.min.js');
-    //echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
-    echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
-  
-	echo $this->Html->script('survey'); 
-    echo $this->Html->script('quest_attachments');
-    ?>

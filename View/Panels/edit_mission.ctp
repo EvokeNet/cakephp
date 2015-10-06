@@ -32,16 +32,6 @@
 	      	</a>
       	  </li>
 
-	     <!--  <li class="active" id = "top-bar-name">
-
-	      	<?php if(isset($user['User'])) :?>
-				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'profile', $user['User']['id'])); ?>"><span><?= $user['User']['name'] ?></span></a>
-			<?php else :?>
-				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'login')); ?>"><span><?= __('Unidentified Agent, please login') ?></span></a>
-			<?php endif; ?>
-
-      	  </li> -->
-
 	      <li class="has-dropdown">
 	        <a href="#">
 	        	<?php if(isset($user['User'])) :?>
@@ -72,11 +62,6 @@
 	      </li>
 
 	    </ul>
-
-	    <!-- Left Nav Section -->
-	    <!-- <ul class="left">
-	      <li><a href="#">Left Nav Button</a></li>
-	    </ul> -->
 	  </section>
   </nav>
 </div>
@@ -91,20 +76,14 @@
 
 	  	<div class = "evoke menu-bg sidebar menucolumn" style = "height: 1500px; background-color:#1f232a">
 		  	<dl class="panels tabs vertical" data-tab>
-				<!-- <dd class="<?php echo $mission_tag ?>"><a href="#mission"><?= strtoupper(__('Mission Data')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd> -->
 
 				<dd class="<?php echo $mission_tag ?>" style = "text-align:center"><a href="#mission"><i class="fa fa-clipboard" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Mission Data')) ?></a></dd>
 
 				<?php if(isset($id) && !is_null($id)) : ?>
-					<!-- <dd class="<?php echo $phases_tag ?>"><a href="#phases"><?= strtoupper(__('Phases')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd> -->
 
 					<dd class="<?php echo $phases_tag ?>" style = "text-align:center"><a href="#phases"><i class="fa fa-list-alt" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Phases')) ?></a></dd>
 
-					<!-- <dd class="<?php echo $dossier_tag ?>"><a href="#dossier"><?= strtoupper(__('Mission Dossier')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd> -->
-
 					<dd class="<?php echo $dossier_tag ?>" style = "text-align:center"><a href="#dossier"><i class="fa fa-file-text-o" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Mission Dossier')) ?></a></dd>
-
-					<!-- <dd class="<?php echo $novel_tag ?>"><a href="#graphic"><?= strtoupper(__('Graphic Novel')) ?><i class="fa fa-angle-right" style = "float:right; margin-top:5px"></i></a></dd> -->
 
 					<dd class="<?php echo $novel_tag ?>" style = "text-align:center"><a href="#graphic"><i class="fa fa-picture-o" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Graphic Novel')) ?></a></dd>
 
@@ -153,11 +132,6 @@
 						?>
 
 						<?php
-
-							//debug($mission);
-							// debug($mission['missionTitle']);
-							// debug($mission['missionDescription'][0]['content']);
-
 							echo $this->Form->input('Mission.title.eng', array('value' => $mission['missionTitle'][0]['content'], 'label' => __('English Title'), 'required' => true));
 							
 							echo $this->Form->input('Mission.title.spa', array('value' => $mission['missionTitle'][1]['content'], 'label' => __('Spanish Title')));
@@ -165,11 +139,6 @@
 							echo $this->Form->input('Mission.description.eng', array('value' => $mission['missionDescription'][0]['content'], 'label' => __('English Description'), 'required' => true));
 							
 							echo $this->Form->input('Mission.description.spa', array('value' => $mission['missionDescription'][1]['content'], 'label' => __('Spanish Description')));
-
-							// echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title'), 'required' => true));
-							// echo $this->Form->input('title_es', array('value' => $mission['Mission']['title_es'], 'label' => __('Spanish Title')));
-							// echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description'), 'required' => true));
-							// echo $this->Form->input('description_es', array('value' => $mission['Mission']['description_es'], 'label' => __('Spanish Description')));
 
 							echo $this->Form->input('video_link', array('value' => $mission['Mission']['video_link_es'], 'label' => __('Video Link')));
 							echo $this->Form->input('video_link_es', array('value' => $mission['Mission']['video_link_es'], 'label' => __('Spanish Video Link')));
@@ -218,8 +187,6 @@
 
 				<div class="content <?php echo $phases_tag ?> large-10 columns margin top" id="phases">
 					
-					<!-- <a href ="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'add_mission')) ?>" class="button general"><?php echo __('New Mission');?></a> -->
-
 					<a class="button general" href="#" data-reveal-id="myModalPhase" data-reveal><?php echo __('Add a Phase');?></a>
 
 					<div id="myModalPhase" class="phases form reveal-modal tiny" data-reveal>
@@ -237,10 +204,7 @@
 							echo $this->Form->input('Phase.name.spa', array('label' => __('Spanish Title')));
 							echo $this->Form->input('Phase.description.eng', array('label' => __('English Description'), 'required' => true));
 							echo $this->Form->input('Phase.description.spa', array('label' => __('Spanish Description')));
-							// echo $this->Form->input('name', array('label' => __('Name'), 'required' => true));
-							// echo $this->Form->input('name_es', array('label' => __('Spanish Name'), 'required' => true));
-							// echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
-							// echo $this->Form->input('description_es', array('label' => __('Spanish Description'), 'required' => true));
+
 							echo $this->Form->input('points', array('label' => __('Points'), 'required' => true));
 							echo $this->Form->hidden('mission_id', array('value' => $id));
 							echo $this->Form->radio('type', array($phase_types_array), array('required' => true));
@@ -264,12 +228,9 @@
 								<thead>
 									<tr class="sort">
 										<th>
-											<!-- <a href="#" data-reveal-id="myModalEditPhase-<?= $phase['Phase']['id'] ?>" data-reveal><?= $phase['Phase']['name'] ?></a> -->
 											<?= $phase['Phase']['name'] ?>
 										</th>
 										<th style="text-align:right">
-											<!-- lightbox to add quest to certain phase -->
-					  						<!-- <a href="#" data-reveal-id="myModalQuest" onclick="document.getElementById('phase').setAttribute('value', '<?php echo $phase['Phase']['id']; ?>')" data-reveal><?php echo __('Add a Quest');?></a>  --> 
 					  						<a href="#" data-reveal-id="myModalPhase" data-reveal><i class="fa fa-plus"></i></a>&nbsp;&nbsp;
 					  						<a href="#" data-reveal-id="myModalEditPhase-<?= $phase['Phase']['id'] ?>" data-reveal><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
 					  						<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_phase', $id, $phase['Phase']['id'], 'add_mission'), array('id' => 'deletePhases'. $phase['Phase']['id'], 'style' => 'display:none'));?>
@@ -292,13 +253,6 @@
 
 									<tr>
 										<td colspan="2">
-											<!-- list the already existing quests under this phase -->
-											<?php 
-												// foreach ($phase['Quest'] as $quest) { 
-												// 	echo $this->Html->Link('['.$quest['title'].'] ', array('controller' => 'panels', 'action' => 'quest', $phase['Phase']['id'], $id, $quest['id']));
-												// }	
-											?>
-
 											<a href="#" class = "button general" data-reveal-id="myModalQuest" onclick="document.getElementById('phase').setAttribute('value', '<?php echo $phase['Phase']['id']; ?>')" data-reveal><?php echo __('Add a Quest');?></a> 
 										</td>
 									</tr>
@@ -328,10 +282,6 @@
 									
 									echo $this->Form->input('Phase.description.spa', array('value' => $phase['phaseDescription'][1]['content'], 'label' => __('Spanish Description')));
 
-									// echo $this->Form->input('name', array('label' => __('Name'), 'value' => $phase['Phase']['name'], 'required' => true));
-									// echo $this->Form->input('name_es', array('label' => __('Spanish Name'), 'value' => $phase['Phase']['name_es'], 'required' => true));
-									// echo $this->Form->input('description', array('label' => __('Description'), 'value' => $phase['Phase']['description'], 'required' => true));
-									// echo $this->Form->input('description_es', array('label' => __('Spanish Description'), 'value' => $phase['Phase']['description_es'], 'required' => true));
 									echo $this->Form->input('points', array('label' => __('Points'), 'value' => $phase['Phase']['points'], 'required' => true));
 									echo $this->Form->hidden('mission_id', array('value' => $id));
 									echo $this->Form->radio('type', array($phase_types_array), array('value' => $phase['Phase']['type'], 'required' => true));
@@ -347,14 +297,10 @@
 					<?php endforeach; ?>
 					<?php endif; ?>
 
-					<!-- <button class="button secondary small">
-						<?php echo $this->Html->Link(__('Back'), array('controller' => 'panels', 'action' => 'add_mission', $id, 'mission')); ?>
-					</button> -->
-
 					<!-- Lightbox for adding quest to phase form -->
 					<div id="myModalQuest" class="reveal-modal tiny" data-reveal>
 						<?php 
-							echo $this->element('add_quest', array('mission_id' => $id, 'origin' => 'edit_mission', 'powerpoints' => $powerpoints));
+							echo $this->element('add_quest', array('mission_id' => $id, 'origin' => 'edit_mission'));
 						?>
 						<a class="close-reveal-modal">&#215;</a>
 					</div>
@@ -677,13 +623,6 @@
 	</div>
 
 </section>
-
-<?php 
-	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
-	echo $this->Html->script('dossier_attachments'); 
-?>
-
     <!-- necessary function to add remove the already existing questions -->
     <script type="text/javascript">
     	<?php 

@@ -17,36 +17,13 @@ class UserBadgesController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->UserBadge->recursive = 0;
-		$this->set('userBadges', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->UserBadge->exists($id)) {
-			throw new NotFoundException(__('Invalid user badge'));
-		}
-		$options = array('conditions' => array('UserBadge.' . $this->UserBadge->primaryKey => $id));
-		$this->set('userBadge', $this->UserBadge->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->UserBadge->create();
 			if ($this->UserBadge->save($this->request->data)) {
@@ -56,9 +33,6 @@ class UserBadgesController extends AppController {
 				$this->Session->setFlash(__('The user badge could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->UserBadge->User->find('list');
-		$badges = $this->UserBadge->Badge->find('list');
-		$this->set(compact('users', 'badges'));
 	}
 
 /**
@@ -69,6 +43,8 @@ class UserBadgesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserBadge->exists($id)) {
 			throw new NotFoundException(__('Invalid user badge'));
 		}
@@ -83,9 +59,6 @@ class UserBadgesController extends AppController {
 			$options = array('conditions' => array('UserBadge.' . $this->UserBadge->primaryKey => $id));
 			$this->request->data = $this->UserBadge->find('first', $options);
 		}
-		$users = $this->UserBadge->User->find('list');
-		$badges = $this->UserBadge->Badge->find('list');
-		$this->set(compact('users', 'badges'));
 	}
 
 /**
@@ -96,6 +69,8 @@ class UserBadgesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserBadge->id = $id;
 		if (!$this->UserBadge->exists()) {
 			throw new NotFoundException(__('Invalid user badge'));
@@ -106,32 +81,6 @@ class UserBadgesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user badge could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->UserBadge->recursive = 0;
-		$this->set('userBadges', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->UserBadge->exists($id)) {
-			throw new NotFoundException(__('Invalid user badge'));
-		}
-		$options = array('conditions' => array('UserBadge.' . $this->UserBadge->primaryKey => $id));
-		$this->set('userBadge', $this->UserBadge->find('first', $options));
 	}
 
 /**
@@ -140,6 +89,8 @@ class UserBadgesController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->UserBadge->create();
 			if ($this->UserBadge->save($this->request->data)) {
@@ -149,9 +100,6 @@ class UserBadgesController extends AppController {
 				$this->Session->setFlash(__('The user badge could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->UserBadge->User->find('list');
-		$badges = $this->UserBadge->Badge->find('list');
-		$this->set(compact('users', 'badges'));
 	}
 
 /**
@@ -162,6 +110,8 @@ class UserBadgesController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserBadge->exists($id)) {
 			throw new NotFoundException(__('Invalid user badge'));
 		}
@@ -176,9 +126,6 @@ class UserBadgesController extends AppController {
 			$options = array('conditions' => array('UserBadge.' . $this->UserBadge->primaryKey => $id));
 			$this->request->data = $this->UserBadge->find('first', $options);
 		}
-		$users = $this->UserBadge->User->find('list');
-		$badges = $this->UserBadge->Badge->find('list');
-		$this->set(compact('users', 'badges'));
 	}
 
 /**
@@ -189,6 +136,8 @@ class UserBadgesController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserBadge->id = $id;
 		if (!$this->UserBadge->exists()) {
 			throw new NotFoundException(__('Invalid user badge'));
@@ -199,6 +148,5 @@ class UserBadgesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user badge could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
 	}
 }

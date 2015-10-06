@@ -38,30 +38,6 @@ class MissionIssuesController extends AppController {
 		}
     }
 
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->MissionIssue->recursive = 0;
-		$this->set('missionIssues', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->MissionIssue->exists($id)) {
-			throw new NotFoundException(__('Invalid mission issue'));
-		}
-		$options = array('conditions' => array('MissionIssue.' . $this->MissionIssue->primaryKey => $id));
-		$this->set('missionIssue', $this->MissionIssue->find('first', $options));
-	}
 
 /**
  * add method
@@ -69,6 +45,8 @@ class MissionIssuesController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->MissionIssue->create();
 			if ($this->MissionIssue->save($this->request->data)) {
@@ -78,9 +56,6 @@ class MissionIssuesController extends AppController {
 				$this->Session->setFlash(__('The mission issue could not be saved. Please, try again.'));
 			}
 		}
-		$missions = $this->MissionIssue->Mission->find('list');
-		$issues = $this->MissionIssue->Issue->find('list');
-		$this->set(compact('missions', 'issues'));
 	}
 
 /**
@@ -91,6 +66,8 @@ class MissionIssuesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->MissionIssue->exists($id)) {
 			throw new NotFoundException(__('Invalid mission issue'));
 		}
@@ -105,9 +82,6 @@ class MissionIssuesController extends AppController {
 			$options = array('conditions' => array('MissionIssue.' . $this->MissionIssue->primaryKey => $id));
 			$this->request->data = $this->MissionIssue->find('first', $options);
 		}
-		$missions = $this->MissionIssue->Mission->find('list');
-		$issues = $this->MissionIssue->Issue->find('list');
-		$this->set(compact('missions', 'issues'));
 	}
 
 /**
@@ -118,6 +92,8 @@ class MissionIssuesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->MissionIssue->id = $id;
 		if (!$this->MissionIssue->exists()) {
 			throw new NotFoundException(__('Invalid mission issue'));
@@ -128,32 +104,6 @@ class MissionIssuesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The mission issue could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->MissionIssue->recursive = 0;
-		$this->set('missionIssues', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->MissionIssue->exists($id)) {
-			throw new NotFoundException(__('Invalid mission issue'));
-		}
-		$options = array('conditions' => array('MissionIssue.' . $this->MissionIssue->primaryKey => $id));
-		$this->set('missionIssue', $this->MissionIssue->find('first', $options));
 	}
 
 /**
@@ -162,6 +112,8 @@ class MissionIssuesController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->MissionIssue->create();
 			if ($this->MissionIssue->save($this->request->data)) {
@@ -171,9 +123,6 @@ class MissionIssuesController extends AppController {
 				$this->Session->setFlash(__('The mission issue could not be saved. Please, try again.'));
 			}
 		}
-		$missions = $this->MissionIssue->Mission->find('list');
-		$issues = $this->MissionIssue->Issue->find('list');
-		$this->set(compact('missions', 'issues'));
 	}
 
 /**
@@ -184,6 +133,8 @@ class MissionIssuesController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->MissionIssue->exists($id)) {
 			throw new NotFoundException(__('Invalid mission issue'));
 		}
@@ -198,9 +149,6 @@ class MissionIssuesController extends AppController {
 			$options = array('conditions' => array('MissionIssue.' . $this->MissionIssue->primaryKey => $id));
 			$this->request->data = $this->MissionIssue->find('first', $options);
 		}
-		$missions = $this->MissionIssue->Mission->find('list');
-		$issues = $this->MissionIssue->Issue->find('list');
-		$this->set(compact('missions', 'issues'));
 	}
 
 /**
@@ -211,6 +159,8 @@ class MissionIssuesController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->MissionIssue->id = $id;
 		if (!$this->MissionIssue->exists()) {
 			throw new NotFoundException(__('Invalid mission issue'));
@@ -222,4 +172,5 @@ class MissionIssuesController extends AppController {
 			$this->Session->setFlash(__('The mission issue could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

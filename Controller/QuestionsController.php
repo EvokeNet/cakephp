@@ -17,36 +17,13 @@ class QuestionsController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Question->recursive = 0;
-		$this->set('questions', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Question->exists($id)) {
-			throw new NotFoundException(__('Invalid question'));
-		}
-		$options = array('conditions' => array('Question.' . $this->Question->primaryKey => $id));
-		$this->set('question', $this->Question->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Question->create();
 			if ($this->Question->save($this->request->data)) {
@@ -56,8 +33,6 @@ class QuestionsController extends AppController {
 				$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
 			}
 		}
-		$questionnaires = $this->Question->Questionnaire->find('list');
-		$this->set(compact('questionnaires'));
 	}
 
 /**
@@ -68,6 +43,8 @@ class QuestionsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Question->exists($id)) {
 			throw new NotFoundException(__('Invalid question'));
 		}
@@ -82,8 +59,6 @@ class QuestionsController extends AppController {
 			$options = array('conditions' => array('Question.' . $this->Question->primaryKey => $id));
 			$this->request->data = $this->Question->find('first', $options);
 		}
-		$questionnaires = $this->Question->Questionnaire->find('list');
-		$this->set(compact('questionnaires'));
 	}
 
 /**
@@ -94,6 +69,8 @@ class QuestionsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Question->id = $id;
 		if (!$this->Question->exists()) {
 			throw new NotFoundException(__('Invalid question'));
@@ -104,5 +81,5 @@ class QuestionsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The question could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

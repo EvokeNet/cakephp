@@ -32,16 +32,6 @@
 	      	</a>
       	  </li>
 
-	     <!--  <li class="active" id = "top-bar-name">
-
-	      	<?php if(isset($user['User'])) :?>
-				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'profile', $user['User']['id'])); ?>"><span><?= $user['User']['name'] ?></span></a>
-			<?php else :?>
-				<a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'login')); ?>"><span><?= __('Unidentified Agent, please login') ?></span></a>
-			<?php endif; ?>
-
-      	  </li> -->
-
 	      <li class="has-dropdown">
 	        <a href="#">
 	        	<?php if(isset($user['User'])) :?>
@@ -73,10 +63,6 @@
 
 	    </ul>
 
-	    <!-- Left Nav Section -->
-	    <!-- <ul class="left">
-	      <li><a href="#">Left Nav Button</a></li>
-	    </ul> -->
 	  </section>
   </nav>
 </div>
@@ -86,7 +72,6 @@
 <section class="evoke margin top-2">
 	<div class="row evoke max-width">
 		<div class="small-12 medium-12 large-12 columns">
-			<!-- <h1><?= __('Creating Mission')?><?php if(isset($id) && !is_null($id)) : echo ': ' . $mission['Mission']['title']; endif;?></h1> -->
 			
 			<div class="table-bordered form">
 
@@ -159,6 +144,3 @@
 		</div>
 	</div>
 </section>
-<?php 
-	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-?>

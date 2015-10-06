@@ -46,75 +46,21 @@ class UsersController extends AppController {
 		$this->Auth->allow('add', 'login', 'logout', 'register', 'forgot');
 	}
 
-//    public function forgot() {
-//		if ($this->request->is('post')) {
-//
-//      		if ($this->MathCaptcha->validate($this->request->data['User']['captcha'])) {
-//        		$usr = $this->User->find('first', array(
-//        			'conditions' => array(
-//        				'User.email' => $this->request->data['User']['email']
-//        			)
-//        		));
-//
-//        		if(!$usr) {
-//        			$this->Session->setFlash('The email does not match with our database.', 'flash_message');
-//        			return;
-//        		}
-//        		$newpass = $this->createTempPassword(8);
-//        		$insert['User']['password'] = $newpass;
-//        		$insert['User']['id'] = $usr['User']['id'];
-//        		$this->User->id = $usr['User']['id'];
-//        		if($this->User->save($insert)) {
-//
-//	        		//sending email with new password
-//	        		if($usr['User']['email'] != '' && !is_null($usr['User']['email'])) {
-//
-//						$Email = new CakeEmail('smtp');
-//						//$Email->from(array('no-reply@quanti.ca' => $sender['User']['name']));
-//						$Email->to($usr['User']['email']);
-//						$Email->subject(__('Evoke - New Password'));
-//						// $Email->emailFormat('html');
-//						// $Email->template('group', 'group');
-//						// $Email->viewVars(array('sender' => $usr, 'recipient' => $usr));
-//						$Email->send(__('Your new EVOKE password is') . ' '.$newpass.'. '.__('Please change your password as soon as possible.'));
-//						$this->Session->setFlash(__('The email was sent.'), 'flash_message');
-//						$this->redirect(array('action' => 'login'));
-//					} else {
-//						$this->Session->setFlash(__('There was a problem sending the email.', 'flash_message'));
-//					}
-//				} else {
-//					$this->Session->setFlash(__('There was a problem generating the new password.', 'flash_message'));
-//				}
-//      		} else {
-//        		$this->Session->setFlash('The result of the calculation was incorrect. Please, try again.', 'flash_message');
-//      		}
-//    	}
-//        $this->set('captcha', $this->MathCaptcha->getCaptcha());
-//    }
-
-		// public function isAuthorized($user = null) {
-		// 		if (parent::isAuthorized($user)) {
-		// 				return true;
-		// 		}
-		//
-		// 		return false;
-		// }
-
-	public function createTempPassword($len) {
-			$pass = '';
-			$lchar = 0;
-			$char = 0;
-			for($i = 0; $i < $len; $i++) {
-				while($char == $lchar) {
-					$char = rand(48, 109);
-					if($char > 57) $char += 7;
-					if($char > 90) $char += 6;
-				}
-				$pass .= chr($char);
-				$lchar = $char;
-			}
-			return $pass;
-		}
+	// public function createTempPassword($len) {
+	// 		$pass = '';
+	// 		$lchar = 0;
+	// 		$char = 0;
+	// 		for($i = 0; $i < $len; $i++) {
+	// 			while($char == $lchar) {
+	// 				$char = rand(48, 109);
+	// 				if($char > 57) $char += 7;
+	// 				if($char > 90) $char += 6;
+	// 			}
+	// 			$pass .= chr($char);
+	// 			$lchar = $char;
+	// 		}
+	// 		return $pass;
+	// 	}
 
 	public function changePassword() {
 		$usr = $this->User->find('first', array(
@@ -184,44 +130,16 @@ class UsersController extends AppController {
 		$client->setRedirectUri(Configure::read('google_redirect_uri'));
 		$client->setDeveloperKey(Configure::read('google_developer_key'));
 
-		// $client->setScopes("https://www.googleapis.com/auth/plus.login");
-		// $client->setAccessType('offline');
-		// $client->setApprovalPrompt('auto');
-
 		$google_oauthV2 = new Google_Service_Oauth2($client);
 
 		$client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
 		$client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
 
-		// $authUrl = $client->createAuthUrl();
-		// $this->set('authUrl', $authUrl);
-
-		// $_SESSION['access_token'] = null;
-		// debug($_SESSION['accessToken']);
-		// if(isset($_REQUEST['code'])){
-		//     $_SESSION['accessToken'] = get_oauth2_token($_REQUEST['code']);
-		// }
-
-		//debug($client);
-
-		//debug($this->request['url']['code']);
-
 		if (isset($this->params['url']['code'])) {
 		  $client->authenticate($this->params['url']['code']);
 		  $_SESSION['access_token'] = $client->getAccessToken();
-		//   $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-		//   header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
-
-
-		// debug($client->getAccessToken());
 
 		if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-
-			// $client->setAccessToken($_SESSION['access_token']);
-
-			// $attributes = $client->verifyIdToken($token->id_token, '502819941527.apps.googleusercontent.com')->getAttributes();
-   //      	$gplus_id = $attributes["payload"]["sub"];
-
 			$user_profile = $google_oauthV2->userinfo->get();
 			$_SESSION['user']['name'] = $user_profile['name'];
 			$_SESSION['user']['google_id'] = $user_profile['id'];
@@ -242,19 +160,7 @@ class UsersController extends AppController {
 				if($this->User->save($user_google)) {
 					$user_google['User']['id'] = $this->User->id;
 					$this->Auth->login($user_google);
-					// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
-					//return $this->redirect(array('action' => 'dashboard'));
-					// $this->Session->setFlash('', 'opening_lightbox_message');
-					// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
-			  //           'user_id' => $this->User->id,
-			  //           'user_ip' => $_SERVER['SERVER_ADDR'],
-			  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
-			  //       ));
-
-			  //       $this->getEventManager()->dispatch($event);
 					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 					return $this->redirect(array('action' => 'edit', $this->User->id));
 				} else {
@@ -274,19 +180,8 @@ class UsersController extends AppController {
 
 				$user_google['User']['id'] = $this->User->id;
 				$this->Auth->login($user_google);
-				// $this->Session->write('Auth.User.id', $user['User']['id']);
-
-				// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
-		  //           'user_id' => $this->User->id,
-		  //           'user_ip' => $_SERVER['SERVER_ADDR'],
-		  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
-		  //       ));
-
-		  //       $this->getEventManager()->dispatch($event);
 
 				$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 				return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->User->id));
 
@@ -307,9 +202,6 @@ class UsersController extends AppController {
 			'allowSignedRequest' => false,
 
 		));
-
-		// $browserLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-		// $this->set(compact('browserLanguage'));
 
 		if(isset($this->params['url']['code'])) {
 
@@ -346,21 +238,9 @@ class UsersController extends AppController {
 					if($this->User->save($user)) {
 						$user['User']['id'] = $this->User->id;
 						$this->Auth->login($user);
-						// $this->Session->write('Auth.User.id', $this->User->getLastInsertID());
-						//return $this->redirect(array('action' => 'dashboard'));
 						$this->Session->setFlash('', 'opening_lightbox_message');
 
-						// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
-				  //           'user_id' => $this->User->id,
-				  //           'user_ip' => $_SERVER['SERVER_ADDR'],
-				  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
-				  //       ));
-
-				  //       $this->getEventManager()->dispatch($event);
-
 						$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 						return $this->redirect(array('action' => 'edit', $this->User->id));
 					} else {
@@ -380,18 +260,8 @@ class UsersController extends AppController {
 
 					$user['User']['id'] = $this->User->id;
 					$this->Auth->login($user);
-					// $this->Session->write('Auth.User.id', $user['User']['id']);
-					// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
-			  //           'user_id' => $this->User->id,
-			  //           'user_ip' => $_SERVER['SERVER_ADDR'],
-			  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
-			  //       ));
-
-			  //       $this->getEventManager()->dispatch($event);
 
 					$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-					//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 					return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->User->id));
 
@@ -401,17 +271,7 @@ class UsersController extends AppController {
 
 		} else if ($this->Auth->login()) {
 
-			// $event = new CakeEvent('Controller.Users.countVisits', $this, array(
-	  //           'user_id' => $this->User->id,
-	  //           'user_ip' => $_SERVER['SERVER_ADDR'],
-	  //           'date' => date('Y:m:d', $_SERVER['REQUEST_TIME']),
-	  //       ));
-
-	  //       $this->getEventManager()->dispatch($event);
-
 			$date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-			//$this->Visit->countVisitor($this->User->id, $_SERVER['SERVER_ADDR'], $_SERVER['REQUEST_TIME']);
 
 			return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->Auth->user('id')));
 
@@ -683,389 +543,48 @@ class UsersController extends AppController {
 			}
 			else {
 				$this->Session->setFlash(__("Typed passwords don't match"));
-				//$this->redirect(array('action' => 'changePassword', '?arg='.$this->params['url']['arg']));
 			}
 		}
 	}
 
+
 /**
- *
- * dashboard method
+ * allies method
  *
  * @return void
  */
-	public function dashboard($id = null) {
-		$me = $this->getUserId();
-		if(is_null($id)){
-			//send him to his on dashboard
-			$id = $me;
-		}
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
+	// public function allies($id) {
+	// 	if (!$this->User->exists($id)) {
+	// 		throw new NotFoundException(__('Invalid user'));
+	// 	}
 
-		if($id != $this->getUserId()){
-			$this->redirect(array('action'=>'profile', $id));
-		}
+	// 	$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
-		$lang = $this->getCurrentLanguage();
-		$flags['_en'] = true;
-		$flags['_es'] = false;
-		if($lang=='es') {
-			$flags['_en'] = false;
-			$flags['_es'] = true;
-		}
+	// 	$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
+	// 	$allies = array();
 
-		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+	// 	$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
-		$myPoints = $this->User->Point->find('all', array('conditions' => array('Point.user_id' => $this->getUserId())));
+	// 	$are_friends = array();
+	// 	//$allies = array();
 
-		$sumMyPoints = $this->getPoints($this->getUserId());
+	// 	foreach($friends as $friend){
+	// 		array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
+	// 	}
 
-		$myLevel = $this->getLevel($sumMyPoints);
+	// 	if(!empty($are_friends)){
+	// 		$allies = $this->User->find('all', array(
+	// 			'conditions' => array(
+	// 				'OR' => $are_friends
+	// 		)));
+	// 	} else{
+	// 		$allies = array();
+	// 		//$notifies = array();
+	// 	}
 
-		$this->loadModel('Level');
-
-		$thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $myLevel+1)));
-
-		if(!empty($thisLevel))
-			$percentage = round(($sumMyPoints / $thisLevel['Level']['points']) * 100);
-		else
-			$percentage = 0;
-
-		$evidence = $this->User->Evidence->find('all', array(
-			'order' => array(
-				'Evidence.modified DESC'
-			),
-			'conditions' => array(
-				'Evidence.title != ' => ''
-			),
-			'limit' => 8 // CHANGE 8
-		));
-
-		$this->loadModel('Badge');
-
-		$badges = $this->Badge->find('all', array('conditions' => array('Badge.mission_id' > 0)));
-
-		$this->loadModel('Evokation');
-		$evokations = $this->Evokation->find('all', array(
-			'order' => array(
-				'Evokation.modified DESC'
-			),
-			'conditions' => array(
-				'Evokation.sent' => 1
-			),
-			'limit' => 8 // CHANGE 8
-		));
-
-		$evokationsFollowing = $this->User->EvokationFollower->find('all', array(
-			'conditions' => array(
-				'EvokationFollower.user_id' => $this->getUserId()
-			)
-		));
-
-		$myEvokations = array();
-		foreach ($evokations as $evokation) {
-			$mine = false;
-			if($evokation['Group']['user_id'] == $id)
-				$mine = true;
-
-			$this->loadModel('Group');
-			$group_evokation = $this->Group->GroupsUser->find('first', array(
-				'conditions' => array(
-					'GroupsUser.group_id' => $evokation['Group']['id'],
-					'GroupsUser.user_id' => $id
-				)
-			));
-
-			if(!empty($group_evokation))
-				$mine = true;
-
-			if($mine){
-				array_push($myEvokations, $evokation);
-			}
-		}
-
-		// $myevidences = $this->User->Evidence->find('all', array(
-		// 	'order' => array(
-		// 		'Evidence.modified DESC'
-		// 	),
-		// 	'conditions' => array(
-		// 		'Evidence.user_id' => $id,
-		// 		'Evidence.title != ' => ''
-		// 	),
-		// 	'limit' => 8
-		// ));
-
-		// $allies = array();
-
-		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
-
-		$are_friends = array();
-		$mine_allies = array();
-		$post_allies = array();
-		$topic_allies = array();
-		$my_notifies = array();
-		//$allies = array();
-
-		//debug($friends);
-
-		foreach($friends as $friend){
-			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
-			array_push($mine_allies, array('Notification.user_id' => $friend['UserFriend']['friend_id']));
-			array_push($my_notifies, array('Notification.user_id' => $users['User']['id']));
-			array_push($post_allies, array('Post.user_id' => $friend['UserFriend']['friend_id']));
-			array_push($topic_allies, array('Topic.user_id' => $friend['UserFriend']['friend_id']));
-		}
-
-		//debug($are_friends);
-
-		$this->loadModel('Notification');
-
-		$notifies = array();
-		$feed = array();
-
-		// if(!empty($are_friends)){
-		// 	$allies = $this->User->find('all', array(
-		// 		'conditions' => array(
-		// 			'OR' => $are_friends
-		// 	)));
-
-		// 	// foreach ($notifies as $key => $value) {
-		// 	// 	if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
-		// 	// 	 $value['Notification']['origin'] == 'commentEvidence') {
-		// 	// 		if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
-		// 	// 			unset($notifies[$key]);
-		// 	// 		}
-		// 	// 	}
-		// 	// }
-		// } else{
-		// 	$allies = array();
-		// }
-
-		if(!empty($mine_allies)){
-			$feed = $this->Notification->find('all', array(
-				'conditions' => array(
-					'OR' => $mine_allies
-				),
-				'order' => array(
-					'Notification.created DESC'
-				)
-			));
-
-			foreach ($feed as $key => $value) {
-				if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
-					$value['Notification']['origin'] == 'commentEvidence') {
-					if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
-						unset($feed[$key]);
-					}
-				}
-			}
-		}
-
-		if(!empty($my_notifies)){
-			$notifies = $this->Notification->find('all', array(
-				'conditions' => array(
-					'OR' => $my_notifies
-				),
-				'order' => array(
-					'Notification.created DESC'
-				)
-			));
-
-			foreach ($notifies as $key => $value) {
-				if($value['Notification']['origin'] == 'evidence' || $value['Notification']['origin'] == 'like' ||
-					$value['Notification']['origin'] == 'commentEvidence') {
-					if(is_null($value['Evidence']['id']) || $value['Evidence']['id'] == '') {
-						unset($notifies[$key]);
-					}
-				}
-
-				if($value['Notification']['origin'] == 'gritBadge'){
-					foreach($badges as $badge):
-						if($badge['Badge']['id'] == $value['Notification']['origin_id']){
-							$notifies[$key]['badge_name'] = $badge['Badge']['name'];
-							break;
-						}
-					endforeach;
-				}
-			}
-		}
-
-		$this->loadModel('Mission');
-		$missions = $this->Mission->find('all', array(
-			'order' => array('Mission.created')
-		));
-
-		// debug(count($missions));
-		// debug(Configure::read('Config.language'));
-		// debug($this->langToLocale(Configure::read('Config.language')));
-
-		$show_basic_training = false;
-		$mission_ids = array();
-		foreach ($missions as $m => $mission) {
-			// $mission_ids[] = array('Attachment.foreign_key' => $mission['Mission']['id'], 'Attachment.model' => 'Mission');
-			if($flags['_es']) {
-				$missions[$m]['Mission']['title'] = $mission['Mission']['title_es'];
-				// $missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
-			}
-
-			if($mission['Mission']['basic_training'] == 1) {
-				if($users['User']['basic_training'] == 0) {
-					$insert['User']['id'] = $this->getUserId();
-					$insert['User']['role_id'] = $this->getUserRole();
-					$insert['User']['basic_training'] = 1;
-
-					$this->User->id = $insert['User']['id'];
-					$this->User->save($insert);
-
-					$show_basic_training = true;
-				}
-				$basic_training = $mission;
-				unset($missions[$m]);
-			}
-
-		}
-
-		$allusers = $this->User->find('all');
-
-		//admin notifications check:
-		$this->loadModel('AdminNotification');
-
-		if(isset($users['AdminNotificationsUser'][0])) {
-			//holds the last notification directed to this user
-			$last = $users['AdminNotificationsUser'][count($users['AdminNotificationsUser']) - 1];
-			//$last['id'] = 0;
-		} else {
-			$last['admin_notification_id'] = 0;
-		}
-
-		//get all newer than that one
-		$adminNotifications = $this->AdminNotification->find('all', array(
-			'conditions' => array(
-				'AdminNotification.id >' => $last['admin_notification_id'],
-				'AdminNotification.user_target' => null
-			)
-		));
-
-		foreach ($adminNotifications as $not) {
-			//he sees it..
-			$insert['AdminNotificationsUser']['user_id'] = $users['User']['id'];
-			$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
-
-			$this->User->AdminNotificationsUser->create();
-			$this->User->AdminNotificationsUser->save($insert);
-
-
-			$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
-				'entity_id' => $not['AdminNotification']['id'],
-				'user_id' => $this->getUserId(),
-				'entity' => 'showNotification'
-			));
-
-			$this->getEventManager()->dispatch($event);
-			// break;
-		}
-
-		//get all newer than that one
-		$adminNotificationsToMe = $this->AdminNotification->find('all', array(
-			'conditions' => array(
-				'AdminNotification.id >' => $last['admin_notification_id'],
-				'AdminNotification.user_target' => $this->getUserId()
-			)
-		));
-
-
-		foreach ($adminNotificationsToMe as $not) {
-			//he sees it..
-			$insert['AdminNotificationsUser']['user_id'] = $users['User']['id'];
-			$insert['AdminNotificationsUser']['admin_notification_id'] = $not['AdminNotification']['id'];
-
-			$this->User->AdminNotificationsUser->create();
-			$this->User->AdminNotificationsUser->save($insert);
-
-			$event = new CakeEvent('Controller.AdminNotificationsUser.show', $this, array(
-				'entity_id' => $not['AdminNotification']['id'],
-				'user_id' => $this->getUserId(),
-				'entity' => 'showNotification'
-			));
-
-			// debug($not);
-			$this->getEventManager()->dispatch($event);
-			// break;
-		}
-
-		$a_posts = array();
-		$a_topics = array();
-
-
-		// if(!empty($post_allies)){
-		// 	$this->Post->recursive = 1;
-		// 	$a_posts = $this->Post->find('all', array(
-		// 		'conditions' => array(
-		// 			'OR' => $post_allies
-		// 		)
-		// 	));
-		// }
-
-		// if(!empty($topic_allies)){
-		// 	$this->Topic->recursive = 1;
-		// 	$a_topics = $this->Topic->find('all', array(
-		// 		'conditions' => array(
-		// 			'OR' => $topic_allies
-		// 		)
-		// 	));
-		// }
-
-
-		$this->set(compact('badges', 'feed', 'a_posts', 'a_topics', 'user', 'users', 'adminNotifications', 'adminNotificationsToMe', 'evidence', 'myevidences', 'missions', 'lang',
-			'imgs', 'sumMyPoints', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'percentage', 'basic_training', 'notifies',
-			'show_basic_training', 'evokations', 'evokationsFollowing', 'myEvokations'));
-		//'groups', 'my_photo', 'user_photo',
-
-	}
-
-/**
- * logout method
- *
- * @return void
- */
-	public function allies($id) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-
-		$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
-
-		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-		$allies = array();
-
-		$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
-
-		$followers = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.friend_id' => $id))); //this->getUserId()
-
-		$are_friends = array();
-		//$allies = array();
-
-		foreach($friends as $friend){
-			array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
-		}
-
-		if(!empty($are_friends)){
-			$allies = $this->User->find('all', array(
-				'conditions' => array(
-					'OR' => $are_friends
-			)));
-		} else{
-			$allies = array();
-			//$notifies = array();
-		}
-
-		$this->set(compact('followers', 'user', 'users', 'friends', 'allies'));
-	}
+	// 	$this->set(compact('user', 'users', 'friends', 'allies'));
+	// }
 
 /**
  *
@@ -1137,24 +656,6 @@ class UsersController extends AppController {
 			'conditions' => array('UserFriend.user_id' => $id),
 			'contain' => 'Friend'
 		));
-
-		$followers = $this->User->UserFriend->find('all', array(
-			'conditions' => array('UserFriend.friend_id' => $id),
-			'contain' => 'Friend'
-		));
-
-		// $are_friends = array();
-
-		// foreach($friends as $friend){
-		// 	array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
-		// }
-
-		// if(!empty($are_friends)){
-		// 	$allies = $this->User->find('all', array(
-		// 		'conditions' => array(
-		// 			'OR' => $are_friends
-		// 	)));
-		// }
 
 		//EVIDENCES
 		$myevidences = $this->User->Evidence->find('all', array(
@@ -1287,8 +788,8 @@ class UsersController extends AppController {
 		));
 
 		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'friends', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
-			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'powerpoints_users', 'viewerEvokation',
-			'power_points', 'points_users', 'leaderboard_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'similar_users'));
+			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'viewerEvokation',
+			'points_users', 'leaderboard_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'similar_users'));
 
 	}
 
@@ -1407,16 +908,6 @@ class UsersController extends AppController {
 	}
 
 /**
- * see a preview of the evokation page
- *
- * @return void
- */
-	public function evokation() {
-
-	}
-
-
-/**
  *
  * leaderboard
  *
@@ -1481,68 +972,13 @@ class UsersController extends AppController {
 	}
 
 /**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		$flags = array(
-			'_self' => false,
-			'_friended' => false
-		);
-
-
-		$user_from = $this->getUserId();
-
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-
-		$user = $this->User->read(null, $id);
-
-
-		//check if it's myself, if it is, send to dashboard
-		if($user_from == $id) {
-			$this->redirect(array('action' => 'dashboard', $id));
-		}
-
-		$username = explode(' ', $this->getUserName());
-
-		$this->set(compact('username'));
-
-		$userFriends = $this->User->find('first', array(
-			'conditions' => array(
-				'User.id' => $user_from
-			),
-			'contain' => array(
-				'Friend' => array(
-					'conditions' => array(
-						'user_from' => $user_from,
-						'user_to' => $id
-					)
-				)
-			)
-		));
-
-		$friendship = $userFriends['Friend'];
-
-		if($user['User']['id'] == $user_from) {
-			$flags['_self'] = true;
-		} else if(isset($friendship) && !empty($friendship)) {
-			$flags['_friended'] = true;
-		}
-
-		$this->set(compact('user', 'flags'));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -1552,10 +988,6 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
 		}
-
-		$roles = $this->User->Role->find('list');
-		$this->set(compact("roles"));
-
 	}
 
 /**
@@ -1676,20 +1108,6 @@ class UsersController extends AppController {
 		return $this->redirect($this->referer());
 	}
 
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
-	}
 
 /**
  * admin_add method
@@ -1697,6 +1115,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -1716,6 +1136,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -1740,6 +1162,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
@@ -1750,6 +1174,5 @@ class UsersController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
 	}
 }

@@ -17,36 +17,13 @@ class QuestionnairesController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Questionnaire->recursive = 0;
-		$this->set('questionnaires', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Questionnaire->exists($id)) {
-			throw new NotFoundException(__('Invalid questionnaire'));
-		}
-		$options = array('conditions' => array('Questionnaire.' . $this->Questionnaire->primaryKey => $id));
-		$this->set('questionnaire', $this->Questionnaire->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->Questionnaire->create();
 			if ($this->Questionnaire->save($this->request->data)) {
@@ -56,8 +33,6 @@ class QuestionnairesController extends AppController {
 				$this->Session->setFlash(__('The questionnaire could not be saved. Please, try again.'));
 			}
 		}
-		$quests = $this->Questionnaire->Quest->find('list');
-		$this->set(compact('quests'));
 	}
 
 /**
@@ -68,6 +43,8 @@ class QuestionnairesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->Questionnaire->exists($id)) {
 			throw new NotFoundException(__('Invalid questionnaire'));
 		}
@@ -82,8 +59,6 @@ class QuestionnairesController extends AppController {
 			$options = array('conditions' => array('Questionnaire.' . $this->Questionnaire->primaryKey => $id));
 			$this->request->data = $this->Questionnaire->find('first', $options);
 		}
-		$quests = $this->Questionnaire->Quest->find('list');
-		$this->set(compact('quests'));
 	}
 
 /**
@@ -94,6 +69,8 @@ class QuestionnairesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->Questionnaire->id = $id;
 		if (!$this->Questionnaire->exists()) {
 			throw new NotFoundException(__('Invalid questionnaire'));
@@ -104,5 +81,5 @@ class QuestionnairesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The questionnaire could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

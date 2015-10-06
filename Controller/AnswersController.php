@@ -16,30 +16,6 @@ class AnswersController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Answer->recursive = 0;
-		$this->set('answers', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Answer->exists($id)) {
-			throw new NotFoundException(__('Invalid answer'));
-		}
-		$options = array('conditions' => array('Answer.' . $this->Answer->primaryKey => $id));
-		$this->set('answer', $this->Answer->find('first', $options));
-	}
 
 /**
  * add method
@@ -47,6 +23,7 @@ class AnswersController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->Answer->create();
 			if ($this->Answer->save($this->request->data)) {
@@ -68,6 +45,7 @@ class AnswersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->Answer->exists($id)) {
 			throw new NotFoundException(__('Invalid answer'));
 		}
@@ -94,6 +72,7 @@ class AnswersController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
 		$this->Answer->id = $id;
 		if (!$this->Answer->exists()) {
 			throw new NotFoundException(__('Invalid answer'));
@@ -104,5 +83,5 @@ class AnswersController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The answer could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

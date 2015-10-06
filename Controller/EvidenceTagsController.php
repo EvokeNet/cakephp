@@ -17,36 +17,12 @@ class EvidenceTagsController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->EvidenceTag->recursive = 0;
-		$this->set('evidenceTags', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->EvidenceTag->exists($id)) {
-			throw new NotFoundException(__('Invalid evidence tag'));
-		}
-		$options = array('conditions' => array('EvidenceTag.' . $this->EvidenceTag->primaryKey => $id));
-		$this->set('evidenceTag', $this->EvidenceTag->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->EvidenceTag->create();
 			if ($this->EvidenceTag->save($this->request->data)) {
@@ -56,9 +32,6 @@ class EvidenceTagsController extends AppController {
 				$this->Session->setFlash(__('The evidence tag could not be saved. Please, try again.'));
 			}
 		}
-		$evidences = $this->EvidenceTag->Evidence->find('list');
-		$tags = $this->EvidenceTag->Tag->find('list');
-		$this->set(compact('evidences', 'tags'));
 	}
 
 /**
@@ -69,6 +42,7 @@ class EvidenceTagsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->EvidenceTag->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence tag'));
 		}
@@ -83,9 +57,6 @@ class EvidenceTagsController extends AppController {
 			$options = array('conditions' => array('EvidenceTag.' . $this->EvidenceTag->primaryKey => $id));
 			$this->request->data = $this->EvidenceTag->find('first', $options);
 		}
-		$evidences = $this->EvidenceTag->Evidence->find('list');
-		$tags = $this->EvidenceTag->Tag->find('list');
-		$this->set(compact('evidences', 'tags'));
 	}
 
 /**
@@ -96,6 +67,7 @@ class EvidenceTagsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
 		$this->EvidenceTag->id = $id;
 		if (!$this->EvidenceTag->exists()) {
 			throw new NotFoundException(__('Invalid evidence tag'));
@@ -110,36 +82,12 @@ class EvidenceTagsController extends AppController {
 	}
 
 /**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->EvidenceTag->recursive = 0;
-		$this->set('evidenceTags', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->EvidenceTag->exists($id)) {
-			throw new NotFoundException(__('Invalid evidence tag'));
-		}
-		$options = array('conditions' => array('EvidenceTag.' . $this->EvidenceTag->primaryKey => $id));
-		$this->set('evidenceTag', $this->EvidenceTag->find('first', $options));
-	}
-
-/**
  * admin_add method
  *
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->EvidenceTag->create();
 			if ($this->EvidenceTag->save($this->request->data)) {
@@ -149,9 +97,6 @@ class EvidenceTagsController extends AppController {
 				$this->Session->setFlash(__('The evidence tag could not be saved. Please, try again.'));
 			}
 		}
-		$evidences = $this->EvidenceTag->Evidence->find('list');
-		$tags = $this->EvidenceTag->Tag->find('list');
-		$this->set(compact('evidences', 'tags'));
 	}
 
 /**
@@ -162,6 +107,7 @@ class EvidenceTagsController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->EvidenceTag->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence tag'));
 		}
@@ -176,9 +122,6 @@ class EvidenceTagsController extends AppController {
 			$options = array('conditions' => array('EvidenceTag.' . $this->EvidenceTag->primaryKey => $id));
 			$this->request->data = $this->EvidenceTag->find('first', $options);
 		}
-		$evidences = $this->EvidenceTag->Evidence->find('list');
-		$tags = $this->EvidenceTag->Tag->find('list');
-		$this->set(compact('evidences', 'tags'));
 	}
 
 /**
@@ -189,6 +132,7 @@ class EvidenceTagsController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
 		$this->EvidenceTag->id = $id;
 		if (!$this->EvidenceTag->exists()) {
 			throw new NotFoundException(__('Invalid evidence tag'));
@@ -200,4 +144,5 @@ class EvidenceTagsController extends AppController {
 			$this->Session->setFlash(__('The evidence tag could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

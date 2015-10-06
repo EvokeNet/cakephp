@@ -36,11 +36,6 @@
 							));
 							echo '<div class="input file" style="display:none"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
 							echo $this->Form->input('description', array('required' => true, 'value' => $group['Group']['description'], 'type' => 'textarea'));
-							// echo $this->Form->input('facebook');
-							// echo $this->Form->input('twitter');
-							// echo $this->Form->input('instagram');
-							// echo $this->Form->input('website', array('label' => __('Website')));
-							// echo $this->Form->input('blog');
 							
 						?>
 					<div class = "evoke text-align"><button type="submit" class= "evoke button general submit-button-margin margin top-2"><i class="fa fa-floppy-o fa-2x">&nbsp;&nbsp;</i><?= strtoupper(__('Save group information')) ?></button> </div>
@@ -52,12 +47,7 @@
 	</div>
 </section>
 
-<?php 
-	echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));
-	//echo $this->Html->script('/components/foundation/js/foundation.min.js');
-	//echo $this->Html->script('/components/foundation/js/foundation.min.js', array('inline' => false));
-	echo $this->Html->script("https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js", array('inline' => false));
-?>
+
 <script type="text/javascript" charset="utf-8">
 	$("#imageUpload").css( 'cursor', 'pointer' );
 

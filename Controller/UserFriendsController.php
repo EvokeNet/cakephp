@@ -16,30 +16,6 @@ class UserFriendsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->UserFriend->recursive = 0;
-		$this->set('userFriends', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->UserFriend->exists($id)) {
-			throw new NotFoundException(__('Invalid user friend'));
-		}
-		$options = array('conditions' => array('UserFriend.' . $this->UserFriend->primaryKey => $id));
-		$this->set('userFriend', $this->UserFriend->find('first', $options));
-	}
 
 /**
  * Add a user as a friend
@@ -49,6 +25,8 @@ class UserFriendsController extends AppController {
  * @return void
  */
 	public function add($new_friend_id = null, $id = null, $redirect_after = true) {
+		$this->autoRender = false;
+
 		if (!$this->UserFriend->User->exists($id) OR !$this->UserFriend->User->exists($new_friend_id)) {
 			throw new NotFoundException(__('User not found'));
 		}
@@ -78,6 +56,8 @@ class UserFriendsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserFriend->exists($id)) {
 			throw new NotFoundException(__('Invalid user friend'));
 		}
@@ -92,9 +72,6 @@ class UserFriendsController extends AppController {
 			$options = array('conditions' => array('UserFriend.' . $this->UserFriend->primaryKey => $id));
 			$this->request->data = $this->UserFriend->find('first', $options);
 		}
-		$users = $this->UserFriend->User->find('list');
-		$friends = $this->UserFriend->User->find('list');
-		$this->set(compact('users', 'friends'));
 	}
 
 /**
@@ -105,6 +82,8 @@ class UserFriendsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserFriend->id = $id;
 		if (!$this->UserFriend->exists()) {
 			throw new NotFoundException(__('Invalid user friend'));
@@ -112,38 +91,11 @@ class UserFriendsController extends AppController {
 
 		$user = $this->UserFriend->find('first', array('conditions' => array('UserFriend.id' => $id)));
 
-		//$this->request->onlyAllow('post', 'delete');
 		if ($this->UserFriend->delete()) {
 			$this->Session->setFlash(__('The user friend has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The user friend could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('controller' => 'users', 'action' => 'dashboard', $user['UserFriend']['friend_id']));
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->UserFriend->recursive = 0;
-		$this->set('userFriends', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->UserFriend->exists($id)) {
-			throw new NotFoundException(__('Invalid user friend'));
-		}
-		$options = array('conditions' => array('UserFriend.' . $this->UserFriend->primaryKey => $id));
-		$this->set('userFriend', $this->UserFriend->find('first', $options));
 	}
 
 /**
@@ -152,6 +104,8 @@ class UserFriendsController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->UserFriend->create();
 			if ($this->UserFriend->save($this->request->data)) {
@@ -161,8 +115,6 @@ class UserFriendsController extends AppController {
 				$this->Session->setFlash(__('The user friend could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->UserFriend->User->find('list');
-		$this->set(compact('users'));
 	}
 
 /**
@@ -173,6 +125,8 @@ class UserFriendsController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserFriend->exists($id)) {
 			throw new NotFoundException(__('Invalid user friend'));
 		}
@@ -187,8 +141,6 @@ class UserFriendsController extends AppController {
 			$options = array('conditions' => array('UserFriend.' . $this->UserFriend->primaryKey => $id));
 			$this->request->data = $this->UserFriend->find('first', $options);
 		}
-		$users = $this->UserFriend->User->find('list');
-		$this->set(compact('users'));
 	}
 
 /**
@@ -199,6 +151,8 @@ class UserFriendsController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserFriend->id = $id;
 		if (!$this->UserFriend->exists()) {
 			throw new NotFoundException(__('Invalid user friend'));
@@ -209,5 +163,5 @@ class UserFriendsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user friend could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

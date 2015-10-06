@@ -160,6 +160,10 @@
 	font-size: 80%;
 }
 
+a.evidence-type {
+	display: block;
+}
+
 #new-evidence-type .active h4, #new-evidence-type .active i {
 	color: #26dee0;
 }

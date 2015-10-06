@@ -16,42 +16,16 @@ class UserIssuesController extends AppController {
 	public $components = array('Paginator');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->UserIssue->recursive = 0;
-		$this->set('userIssues', $this->Paginator->paginate());
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->UserIssue->exists($id)) {
-			throw new NotFoundException(__('Invalid user issue'));
-		}
-		$options = array('conditions' => array('UserIssue.' . $this->UserIssue->primaryKey => $id));
-		$this->set('userIssue', $this->UserIssue->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
  */
 	public function add() {
+		$this->autoRender = false;
+
 		$id = null;
 		if ($this->request->is('post', 'put')) {
-			// debug($this->request->data);
-			// die();
 			$status = false;
-			// $user = $this->request->data['UserIssue']['user_id'];
 			$id = $this->request->data['UserIssue']['user_id'];
 			if(isset($this->request->data['UserIssue']) && is_array($this->request->data['UserIssue']['issue_id'])) {
 				foreach ($this->request->data['UserIssue']['issue_id'] as $a) {	  
@@ -62,22 +36,9 @@ class UserIssuesController extends AppController {
 			    }
 			}
 
-			// foreach ($this->request->data['UserIssue']['issue_id'] as $a) {
-		 //        $this->UserIssue->create();
-		 //        $insertData = array('user_id' => $user, 'issue_id' => $a);
-		 //        $status = $this->UserIssue->save($insertData);
-		 //        if(!$status) {$this->Session->setFlash(__('The user issue could not be saved. Please, try again.')); break;}
-		 //    } 
-	        
-	  //       if($status) 
-
 	        $this->Session->setFlash(__('The user issue has been saved.'));
 		    return $this->redirect(array('controller' => 'users', 'action' => 'matching_results', $id));
-		    //return $this->redirect(array('action' => 'index'));
 		}
-		$users = $this->UserIssue->User->find('list');
-		$issues = $this->UserIssue->Issue->find('list');
-		$this->set(compact('users', 'issues'));
 	}
 
 /**
@@ -88,6 +49,8 @@ class UserIssuesController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserIssue->exists($id)) {
 			throw new NotFoundException(__('Invalid user issue'));
 		}
@@ -102,9 +65,6 @@ class UserIssuesController extends AppController {
 			$options = array('conditions' => array('UserIssue.' . $this->UserIssue->primaryKey => $id));
 			$this->request->data = $this->UserIssue->find('first', $options);
 		}
-		$users = $this->UserIssue->User->find('list');
-		$issues = $this->UserIssue->Issue->find('list');
-		$this->set(compact('users', 'issues'));
 	}
 
 /**
@@ -115,6 +75,8 @@ class UserIssuesController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserIssue->id = $id;
 		if (!$this->UserIssue->exists()) {
 			throw new NotFoundException(__('Invalid user issue'));
@@ -125,32 +87,6 @@ class UserIssuesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user issue could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}
-
-/**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->UserIssue->recursive = 0;
-		$this->set('userIssues', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->UserIssue->exists($id)) {
-			throw new NotFoundException(__('Invalid user issue'));
-		}
-		$options = array('conditions' => array('UserIssue.' . $this->UserIssue->primaryKey => $id));
-		$this->set('userIssue', $this->UserIssue->find('first', $options));
 	}
 
 /**
@@ -159,6 +95,8 @@ class UserIssuesController extends AppController {
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
+
 		if ($this->request->is('post')) {
 			$this->UserIssue->create();
 			if ($this->UserIssue->save($this->request->data)) {
@@ -168,9 +106,6 @@ class UserIssuesController extends AppController {
 				$this->Session->setFlash(__('The user issue could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->UserIssue->User->find('list');
-		$issues = $this->UserIssue->Issue->find('list');
-		$this->set(compact('users', 'issues'));
 	}
 
 /**
@@ -181,6 +116,8 @@ class UserIssuesController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
+
 		if (!$this->UserIssue->exists($id)) {
 			throw new NotFoundException(__('Invalid user issue'));
 		}
@@ -195,9 +132,6 @@ class UserIssuesController extends AppController {
 			$options = array('conditions' => array('UserIssue.' . $this->UserIssue->primaryKey => $id));
 			$this->request->data = $this->UserIssue->find('first', $options);
 		}
-		$users = $this->UserIssue->User->find('list');
-		$issues = $this->UserIssue->Issue->find('list');
-		$this->set(compact('users', 'issues'));
 	}
 
 /**
@@ -208,6 +142,8 @@ class UserIssuesController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
+
 		$this->UserIssue->id = $id;
 		if (!$this->UserIssue->exists()) {
 			throw new NotFoundException(__('Invalid user issue'));
@@ -218,5 +154,5 @@ class UserIssuesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The user issue could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

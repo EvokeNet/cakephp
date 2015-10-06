@@ -9,7 +9,7 @@
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => 'Register', 'imgSrc' => ($this->webroot.'img/header-registering.jpg')));
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Register'), 'imgSrc' => ($this->webroot.'img/header-registering.jpg')));
 	$this->end();
 ?>
 

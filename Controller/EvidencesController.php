@@ -21,22 +21,10 @@ class EvidencesController extends AppController {
 
 	public $user = null;
 
-	//public $helpers = array('Media.Media');
-
 	public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('view','add');
     }
-
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Evidence->recursive = 0;
-		$this->set('evidences', $this->Paginator->paginate());
-	}
 
 /**
  * view method
@@ -117,15 +105,9 @@ public function addEvidence() {
 	if ($this->request->is('post')) {
 		$this->Evidence->create();
 
-		// debug($this->request->data);
-		// debug($_POST);
-		// return json_encode($_POST);
-
 		//CREATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT
 		if ($this->Evidence->save($this->request->data)) {
 			$json_data = array('user_id' => $this->request->data['Evidence']['user_id'], 'mission_id' => $this->request->data['Evidence']['mission_id'], 'evidence_id' => $this->Evidence->id);
-			// debug($this->request->data);
-			// debug($_POST);
 			return json_encode($json_data);
 		} else {
 			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
@@ -181,11 +163,10 @@ public function addEvidence() {
 			)
 		));
 		// IF THIS EVIDENCE HAS ALREADY BEEN SUBMITTED
-		//debug($thisEvokation);
 		if(count($thisEvokation)){
 			$this->request->data['Evidence'] = $thisEvokation['Evidence'];
 		}
-		//debug($this->request->data['Evidence']);
+
 		//LOAD QUEST
 		$this->loadModel("Quest");
 
@@ -327,155 +308,6 @@ public function editEvidence() {
 		$this->set(compact('evidence', 'evidence_type', 'evidence_main_content', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part'));
 	}
 
-	public function destroyAttachments($data){
-		//iterate received array and check if attachment is meant to desapear
-		foreach ($data as $d) {
-			if(!strpos($d['id'], 'NO-')) {
-				//good to go, lets erase it..
-				$this->loadModel('Attachment');
-				$this->Attachment->id = $d['id'];
-				$a['Attachment']['model'] = null;
-				$a['Attachment']['foreign_key'] = null;
-				if ($this->Attachment->save($a)) {
-					$this->Session->setFlash(__('The attachment has been deleted.'));
-				} else {
-					$this->Session->setFlash(__('The attachment could not be deleted. Please, try again.'));
-				}
-			}
-		}
-	}
-
-	/**
-	 * Verifica se o diretório existe, se não ele cria.
-	 * @access public
-	 * @param Array $imagem
-	 * @param String $data
-	*/
-	public function checa_dir($dir)
-	{
-		$folder = new Folder();
-		if (!is_dir($dir)){
-			$folder->create($dir);
-		}
-	}
-
-	/**
-	 * Verifica se o nome do arquivo já existe, se existir adiciona um numero ao nome e verifica novamente
-	 * @access public
-	 * @param Array $imagem
-	 * @param String $data
-	 * @return nome da imagem
-	*/
-	public function checa_nome($imagem, $dir)
-	{
-		$imagem_info = pathinfo($dir.$imagem['name']);
-		$imagem_nome = $this->trata_nome($imagem_info['filename']).'.'.$imagem_info['extension'];
-		debug($imagem_nome);
-		$conta = 2;
-		while (file_exists($dir.$imagem_nome)) {
-			$imagem_nome  = $this->trata_nome($imagem_info['filename']).'-'.$conta;
-			$imagem_nome .= '.'.$imagem_info['extension'];
-			$conta++;
-			debug($imagem_nome);
-		}
-		$imagem['name'] = $imagem_nome;
-		return $imagem;
-	}
-
-	/**
-	 * Trata o nome removendo espaços, acentos e caracteres em maiúsculo.
-	 * @access public
-	 * @param Array $imagem
-	 * @param String $data
-	*/
-	public function trata_nome($imagem_nome)
-	{
-		$imagem_nome = strtolower(Inflector::slug($imagem_nome,'-'));
-		return $imagem_nome;
-	}
-
-	/**
-	 * Move o arquivo para a pasta de destino.
-	 * @access public
-	 * @param Array $imagem
-	 * @param String $data
-	*/
-	public function move_arquivos($imagem, $dir)
-	{
-		$arquivo = new File($imagem['tmp_name']);
-		$arquivo->copy($dir.$imagem['name']);
-		$arquivo->close();
-	}
-
-/**
- * upload method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function uploadPicMedium($id = null) {
-
-		$this->layout = false;
-		$this->autoRender = false;
-
-		$img = $_FILES['file'];
-
-		$dir = WWW_ROOT . 'files' . DS . 'attachment' . DS . 'attachment' . DS . 'medium' . DS;
-
-		if(($img['error']!=0) and ($img['size']==0)) {
-			throw new NotImplementedException('Something went wrong. Error '.$img['error'].' Size: '.$img['size']);
-		}
-
-		// $this->checa_dir($dir);
-
-		$folder = new Folder();
-
-		if (!is_dir($dir)){
-			$folder->create($dir);
-		}
-
-		// $img = $this->checa_nome($img, $dir);
-
-		$img_info = pathinfo($dir.$img['name']);
-		$img_nome = $this->trata_nome($img_info['filename']).'.'.$img_info['extension'];
-		//debug($img_nome);
-		$counter = 2;
-
-		while (file_exists($dir.$img_nome)) {
-			$img_nome  = $this->trata_nome($img_info['filename']).'-'.$counter;
-			$img_nome .= '.'.$img_info['extension'];
-			$counter++;
-			//debug($img_nome);
-		}
-
-		$img['name'] = $img_nome;
-
-		// $this->move_arquivos($img, $dir);
-
-		$file = new File($img['tmp_name']);
-		$file->copy($dir . $img['name']);
-		$file->close();
-
-		// debug($dir. $img['name']);
-		//echo $dir. $img['name'];
-		echo $this->webroot . 'webroot' . DS . 'files' . DS . 'attachment' . DS . 'attachment' . DS . 'medium' . DS . $img['name'];
-
-	}
-
-/**
- * upload method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function deletePicMedium() {
-
-		// debug($_POST['file']['name']);
-		// debug($_POST['name']);
-
-	}
 
 /**
  * delete method
@@ -508,36 +340,12 @@ public function editEvidence() {
 	}
 
 /**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->Evidence->recursive = 0;
-		$this->set('evidences', $this->Paginator->paginate());
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Evidence->exists($id)) {
-			throw new NotFoundException(__('Invalid evidence'));
-		}
-		$options = array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id));
-		$this->set('evidence', $this->Evidence->find('first', $options));
-	}
-
-/**
  * admin_add method
  *
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->Evidence->create();
 			if ($this->Evidence->save($this->request->data)) {
@@ -547,11 +355,6 @@ public function editEvidence() {
 				$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 			}
 		}
-		$users = $this->Evidence->User->find('list');
-		$quests = $this->Evidence->Quest->find('list');
-		$missions = $this->Evidence->Mission->find('list');
-		$phases = $this->Evidence->Phase->find('list');
-		$this->set(compact('users', 'quests', 'missions', 'phases'));
 	}
 
 /**
@@ -562,6 +365,7 @@ public function editEvidence() {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->Evidence->exists($id)) {
 			throw new NotFoundException(__('Invalid evidence'));
 		}
@@ -576,11 +380,6 @@ public function editEvidence() {
 			$options = array('conditions' => array('Evidence.' . $this->Evidence->primaryKey => $id));
 			$this->request->data = $this->Evidence->find('first', $options);
 		}
-		$users = $this->Evidence->User->find('list');
-		$quests = $this->Evidence->Quest->find('list');
-		$missions = $this->Evidence->Mission->find('list');
-		$phases = $this->Evidence->Phase->find('list');
-		$this->set(compact('users', 'quests', 'missions', 'phases'));
 	}
 
 /**
@@ -591,6 +390,7 @@ public function editEvidence() {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
 		$this->Evidence->id = $id;
 		if (!$this->Evidence->exists()) {
 			throw new NotFoundException(__('Invalid evidence'));

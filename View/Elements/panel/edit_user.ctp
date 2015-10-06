@@ -1,9 +1,5 @@
 <!-- Add new user form -->
 <div id="myModalEditUser<?= $m['User']['id'] ?>" class="reveal-modal tiny" data-reveal>
-  <!-- <h2>Awesome. I have it.</h2>
-  <p class="lead">Your couch.  It is mine.</p>
-  <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p> -->
-
   	<?php echo $this->Form->create('User', array(
    		'url' => array(
    			'controller' => 'users',
@@ -30,13 +26,6 @@
 		<div class="large-6 columns">
 			<?= $this->Form->input('password', array('required' => true, 'label' => __('Password'), 'value' => $m['User']['password'])) ?>
 		</div>
-		<div class="large-6 columns">
-		 	<?= $this->Form->input('role_id', array(
-					'label' => __('Role'),
-					'options' => $roles_list,
-					'value' => $m['User']['role_id']
-			)) ?>
-		</div>
 	</div>
 	<div class="row">
 		<div class="large-6 columns">
@@ -54,14 +43,6 @@
 		 	<?= $this->Form->input('twitter', array('label' => __('Twitter'), 'value' => $m['User']['twitter'])) ?>
 		</div>
 	</div>
-	<!-- <div class="row">
-		<div class="large-6 columns">
-			<?= $this->Form->input('google_plus', array('label' => __('Google +'))) ?>
-		</div>
-		<div class="large-6 columns">
-		 	<?= $this->Form->input('instagram', array('label' => __('Instagram'))) ?>
-		</div>
-	</div> -->
 	<div class="row">
 		<div class="large-12 columns">
 		  <label><?= __('Birthday') ?>

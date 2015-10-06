@@ -71,16 +71,6 @@ class AppController extends Controller {
 		$userNextLevel = $this->getNextLevel($userLevel); //next level object
 		$userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
 
-		//Access level
-		// if (!empty($this->accessLevels)) {
-		// 		$this->Auth->authorize = 'Controller';
-		// 		$this->Auth->deny();
-		// } else {
-		// 		$this->Auth->allow();
-		// }
-
-		//$userNotifications = $this->getNotificationsNumber($this->getUserId());
-
 		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language'));
 	}
 
