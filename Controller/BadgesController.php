@@ -80,50 +80,6 @@ class BadgesController extends AppController {
 		$this->set(compact('user', 'badges'));
 	}
 
-
-
-
-	// public function getUserPowerPoints($user_id, $power_points_id = null) {
-	// 	$this->loadModel('UserPowerPoint');
-	// 	$check = array();
-	// 	if($power_points_id == null) {
-	// 		$check = $this->UserPowerPoint->find('all', array(
-	// 			'conditions' => array(
-	// 				'UserPowerPoint.user_id' => $user_id
-	// 			)
-	// 		));
-	// 	} else {
-	// 		$check = $this->UserPowerPoint->find('all', array(
-	// 			'conditions' => array(
-	// 				'UserPowerPoint.user_id' => $user_id,
-	// 				'UserPowerPoint.power_points_id' => $power_points_id
-	// 			)
-	// 		));
-	// 	}
-
-	// 	$sum = 0;
-	// 	foreach ($check as $data) {
-	// 		$sum += $data['UserPowerPoint']['quantity'];
-	// 	}
-	// 	return $sum;
-	// }
-
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	// public function view($id = null) {
-	// 	if (!$this->Badge->exists($id)) {
-	// 		throw new NotFoundException(__('Invalid badge'));
-	// 	}
-	// 	$options = array('conditions' => array('Badge.' . $this->Badge->primaryKey => $id));
-	// 	$this->set('badge', $this->Badge->find('first', $options));
-	// }
-
 /**
  * add method
  *
@@ -148,30 +104,10 @@ class BadgesController extends AppController {
 	public function panel_add() {
 
 		if ($this->request->is('post')) {
-			
-			$powerInsert['Power'] = $this->request->data['Power'];
-			unset($this->request->data['Power']);
-
 			$this->Badge->create();
 			if ($this->Badge->createWithAttachments($this->request->data)) {
 
 				$badge_id = $this->Badge->id;
-				//create questpowerpoints entries..
-				
-				foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
-					if($powerEntry['quantity'] > 0){
-						$insert['BadgePowerPoint']['badge_id'] = $badge_id;
-						$insertId = $powerId;
-						if($powerId == 0) {
-							$insertId = null;
-						}
-						$insert['BadgePowerPoint']['power_points_id'] = $insertId;
-						$insert['BadgePowerPoint']['quantity'] = $powerEntry['quantity'];
-
-						$this->Badge->BadgePowerPoint->create();
-						$this->Badge->BadgePowerPoint->save($insert);
-					}
-				}
 
 				$this->Session->setFlash(__('The badge has been saved.'));
 				return $this->redirect($this->referer());
@@ -196,34 +132,6 @@ class BadgesController extends AppController {
 		$this->Badge->id = $id;
 		if ($this->request->is(array('post', 'put'))) {
 
-			$powerInsert['Power'] = $this->request->data['Power'];
-			unset($this->request->data['Power']);
-			
-			//create questpowerpoints entries..
-			foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
-				if($powerEntry['quantity'] > 0){
-					$insert['BadgePowerPoint']['quest_id'] = $id;
-					$insert['BadgePowerPoint']['power_points_id'] = $powerId;
-					$insert['BadgePowerPoint']['quantity'] = $powerEntry['quantity'];
-					
-					$this->loadModel('BadgePowerPoint');
-					$old = $this->BadgePowerPoint->find('first', array(
-						'conditions' => array(
-							'badge_id' => $id,
-							'power_points_id' => $powerId
-						)
-					));
-
-					if($old) {
-						$this->BadgePowerPoint->id = $old['BadgePowerPoint']['id'];
-					} else {
-						$this->BadgePowerPoint->create();
-					}
-					$this->BadgePowerPoint->save($insert);
-				}
-			}
-
-
 			if ($this->Badge->save($this->request->data)) {
 				$this->Session->setFlash(__('The badge has been saved.'));
 				return $this->redirect($this->referer());
@@ -231,17 +139,12 @@ class BadgesController extends AppController {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
 			}
 		} else {
-			$this->loadModel('PowerPoint');
-			$powerpoints = $this->PowerPoint->find('all');
-			
-			$this->Badge->id = $id;
-			$mypp = $this->Badge->BadgePowerPoint->find('all');
 
 			$options = array('conditions' => array('Badge.' . $this->Badge->primaryKey => $id));
 			$this->request->data = $this->Badge->find('first', $options);
 			$me = $this->Badge->find('first', $options);
 
-			$this->set(compact('mypp', 'powerpoints', 'me'));
+			$this->set(compact('me'));
 
 		}
 	}

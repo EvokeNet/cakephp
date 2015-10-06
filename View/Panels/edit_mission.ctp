@@ -347,14 +347,10 @@
 					<?php endforeach; ?>
 					<?php endif; ?>
 
-					<!-- <button class="button secondary small">
-						<?php echo $this->Html->Link(__('Back'), array('controller' => 'panels', 'action' => 'add_mission', $id, 'mission')); ?>
-					</button> -->
-
 					<!-- Lightbox for adding quest to phase form -->
 					<div id="myModalQuest" class="reveal-modal tiny" data-reveal>
 						<?php 
-							echo $this->element('add_quest', array('mission_id' => $id, 'origin' => 'edit_mission', 'powerpoints' => $powerpoints));
+							echo $this->element('add_quest', array('mission_id' => $id, 'origin' => 'edit_mission'));
 						?>
 						<a class="close-reveal-modal">&#215;</a>
 					</div>

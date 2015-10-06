@@ -339,103 +339,12 @@ public function addGroup() {
 		));
 
 		if ($this->Group->delete()) {
-
-
-			//attribute pp to evidence owner
-			$this->loadModel('QuestPowerPoint');
-			$pps = $this->QuestPowerPoint->find('all', array(
-				'conditions' => array(
-					'quest_id' => $group['Group']['quest_id']
-				)
-			));
-
-			foreach($pps as $pp){
-				$this->loadModel('UserPowerPoint');
-				$old = $this->UserPowerPoint->find('first', array(
-					'conditions' => array(
-						'user_id' => $group['Group']['user_id'],
-						'power_points_id' => $pp['QuestPowerPoint']['power_points_id'],
-						'quest_id' => $pp['QuestPowerPoint']['quest_id'],
-						'quantity' => ($pp['QuestPowerPoint']['quantity'] * 30),
-						'model' => 'Group',
-						'foreign_key' => $group['Group']['id']
-					)
-				));
-
-				if(!empty($old)) {
-					$this->UserPowerPoint->id = $old['UserPowerPoint']['id'];
-					$this->UserPowerPoint->delete();
-				}
-			}
-
 			$this->Session->setFlash(__('The group has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The group could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
-
-	// public function createProject($group_id = null){
-	// 	if(!$group_id)
-	// 		$this->redirect($this->referer());
-		
-		
-	// 	$group = $this->Group->find('first', array(
-	// 		'conditions' => array(
-	// 			'Group.id' => $group_id
-	// 		)
-	// 	));
-
-	// 	if(empty($group))
-	// 		$this->redirect($this->referer());
-
-
-	// 	if($this->isMember($this->getUserId(), $group_id) || $this->isOwner($this->getUserId(), $group_id)) {
-
-	// 		$insertData['Evokation']['title'] = $group['Group']['title'] . "'s Evokation";
-	// 		$insertData['Evokation']['group_id'] = $group_id;
-
-	// 		$this->loadModel('Evokation');
-	// 		$this->Evokation->create();
-	// 		$this->Evokation->save($insertData);
-
-	// 		$this->redirect(array('controller' => 'groupsUsers', 'action' => 'edit', $group_id));
-	// 	} else {
-	// 		$this->redirect($this->referer());
-	// 	}
-
-	// }
-
-	// public function isMember($user_id = null, $id = null){
-	// 	if(!$user_id || !$id) return false;
-	// 	$this->loadModel('GroupsUser');
-	// 	$users = $this->GroupsUser->find('all', array(
-	// 		'contain' => 'User',
-	// 		'conditions' => array(
-	// 			'GroupsUser.group_id' => $id
-	// 		)
-	// 	));
-
-	// 	foreach ($users as $usr) {
-	// 			if($usr['User']['id'] == $user_id) return true;
-	// 	}
-	// 	return false;
-	// }
-
-	// public function isOwner($user_id = null, $id = null){
-	// 	if(!$user_id || !$id) return false;
-		
-	// 	$group = $this->Group->find('first', array(
-	// 		'conditions' => array(
-	// 			'user_id' => $user_id,
-	// 			'Group.id' => $id
-	// 		)
-	// 	));
-
-	// 	if(empty($group)) return false;
-	// 	return true;
-	// }
 
 
 /**

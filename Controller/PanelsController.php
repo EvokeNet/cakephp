@@ -10,7 +10,7 @@ class PanelsController extends AppController {
 //	public $components = array('Access');
 	public $uses = array('User', 'UserIssue', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group',
 		'DossierLink', 'UserFriend', 'DossierVideo', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire',
-		'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'PowerPoint', 'QuestPowerPoint', 'BadgePowerPoint', 'Level',
+		'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'Level',
 		'AdminNotification', 'Novel', 'Launcher');
 	public $user = null;
 	public $helpers = array('Chosen.Chosen');
@@ -82,7 +82,6 @@ class PanelsController extends AppController {
 		$missions_tab = $this->defineCurrentTab('missions', $args);
 		$issues_tab = $this->defineCurrentTab('issues', $args);
 		$levels_tab = $this->defineCurrentTab('levels', $args);
-		$powerpoints_tab = $this->defineCurrentTab('powerpoints', $args);
 		$badges_tab = $this->defineCurrentTab('badges', $args);
 		$users_tab = $this->defineCurrentTab('users', $args);
 		$pending_tab = $this->defineCurrentTab('pending', $args);
@@ -100,8 +99,6 @@ class PanelsController extends AppController {
 		//loading things that are independent from user role (admin/manager)
 		$issues = $this->Issue->getIssues();
 
-		$powerpoints = $this->PowerPoint->find('all');
-
 		//get all general notifications
 		$notifications = $this->AdminNotification->find('all', array(
 			'conditions' => array(
@@ -113,9 +110,6 @@ class PanelsController extends AppController {
 
 		//needed to issues' add form
 		$parentIssues = $this->Issue->ParentIssue->find('list');
-
-		$roles_list = $this->Role->find('list');
-		$roles = $this->Role->getRoles();
 
 		$all_users = $this->User->getUsers();
 
@@ -375,9 +369,9 @@ class PanelsController extends AppController {
 
 		$this->set(compact('flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations',
 			'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 'unknown_countries', 'countries',
-			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels', 'pending_evokations', 'approved_evokations', 'notifications',
+			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'levels', 'pending_evokations', 'approved_evokations', 'notifications',
 			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
-			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'powerpoints_tab', 'badges_tab', 'users_tab', 'pending_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
+			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'pending_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
 
 		// $this->render('main');
 	}
@@ -386,20 +380,15 @@ class PanelsController extends AppController {
 
 		$this->loadModel('Badge');
 		$this->loadModel('Level');
-		$this->loadModel('PowerPoint');
 		$this->loadModel('Role');
 		$this->loadModel('Evokation');
 		$this->loadModel('AdminNotification');
 		$this->loadModel('MissionIssue');
 		$this->loadModel('Organization');
 		$this->loadModel('PointsDefinition');
-		$this->loadModel('PowerPoint');
 		$this->loadModel('Group');
 		$this->loadModel('UserIssue');
 		$this->loadModel('UserFriend');
-
-		$roles_list = $this->Role->find('list');
-		$roles = $this->Role->getRoles();
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
@@ -454,12 +443,6 @@ class PanelsController extends AppController {
 			)
 		));
 
-		$power_points = $this->PowerPoint->find('all', array(
-			'order' => array(
-				'PowerPoint.name DESC'
-			)
-		));
-
 		$users_of_my_missions = $this->User->UserMission->find('all', array(
 				'order' => array(
 					'user_id ASC'
@@ -504,7 +487,6 @@ class PanelsController extends AppController {
 		$allRelations = $this->UserFriend->find('all');
 
 		$all_users = $this->User->getUsers();
-		$powerpoints = $this->PowerPoint->find('all');
 
 		$all_points = $this->PointsDefinition->find('all');
 		$register_points = array();
@@ -599,9 +581,9 @@ class PanelsController extends AppController {
 
 		$this->set(compact('user', 'users', 'all_evokations', 'flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations',
 			'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 'unknown_countries', 'countries',
-			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'powerpoints', 'levels', 'pending_evokations', 'approved_evokations', 'admin_notifications', 'notifications',
-			'register_points', 'allies_points', 'power_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
-			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'powerpoints_tab', 'badges_tab', 'users_tab', 'pending_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
+			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'levels', 'pending_evokations', 'approved_evokations', 'admin_notifications', 'notifications',
+			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
+			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'pending_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
 
 
 		$this->set(compact('badges', 'missions_issues', 'organizations'));
@@ -616,22 +598,11 @@ class PanelsController extends AppController {
 		$this->loadModel('MissionIssue');
 		$this->loadModel('User');
 
-		$this->loadModel('PowerPoint');
-
-		$this->loadModel('Role');
-
-		$roles_list = $this->Role->find('list');
-		$roles = $this->Role->getRoles();
-
 		$organization = $this->Organization->find('first', array(
 			'conditions' => array(
 				'Organization.id' => $org_id
 			)
 		));
-
-		$powerpoints = $this->PowerPoint->find('all');
-
-		$mypp = $this->Badge->BadgePowerPoint->find('all');
 
 		$missions_issues =
 			$this->MissionIssue->Mission->find('all', array(
@@ -734,7 +705,7 @@ class PanelsController extends AppController {
 			));
 		}
 
-		$this->set(compact('mypp', 'powerpoints', 'me', 'badges', 'issues', 'mission', 'missions', 'missions_issues', 'roles', 'roles_list', 'users', 'organization', 'organizations'));
+		$this->set(compact('mypp', 'me', 'badges', 'issues', 'mission', 'missions', 'missions_issues', 'roles', 'roles_list', 'users', 'organization', 'organizations'));
 
 		// $this->render('dashboard');
 	}
@@ -758,8 +729,6 @@ class PanelsController extends AppController {
 
 		//list of issues to be loaded at the combo box..
 		$issues = $this->Issue->find('list');
-
-		$powerpoints = $this->PowerPoint->find('all');
 
 		if($this->user['role_id'] == 1){
 			$flags = array(
@@ -844,8 +813,6 @@ class PanelsController extends AppController {
 
 		//list of issues to be loaded at the combo box..
 		$issues = $this->Issue->find('list');
-
-		$powerpoints = $this->PowerPoint->find('all');
 
 		//list of phases to be shown at the 'add phases to a mission' scenario..
 		$phases = $this->Phase->find('all', array(
@@ -1028,15 +995,10 @@ class PanelsController extends AppController {
 			}
 		}
 
-		/*$this->Quest->create();
-		$data['Quest']['description'] = "Quest description goes here..";
-		$data['Quest']['mission_id'] = $id;
-		$newQuest = $this->Quest->save($data);
-		debug($newQuest);*/
 
 		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag',
 			'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en', 'dossier_links', 'dossier_videos', 'launchers',
-			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints'));
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest'));
 	}
 
 /*
@@ -1064,8 +1026,6 @@ class PanelsController extends AppController {
 
 		//list of issues to be loaded at the combo box..
 		$issues = $this->Issue->find('list');
-
-		$powerpoints = $this->PowerPoint->find('all');
 
 		//list of phases to be shown at the 'add phases to a mission' scenario..
 		$phases = $this->Phase->find('all', array(
@@ -1246,7 +1206,7 @@ class PanelsController extends AppController {
 
 		$this->set(compact('user', 'language', 'flags', 'username', 'userid', 'userrole', 'mission_tag', 'dossier_tag', 'phases_tag', 'quests_tag',
 			'badges_tag', 'points_tag', 'id','mission', 'issues', 'novel_tag', 'novels_es', 'novels_en', 'dossier_links', 'dossier_videos', 'launchers',
-			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'powerpoints', 'phase_types_array'));
+			'organizations', 'phases', 'questionnaires', 'answers', 'mission_img', 'dossier', 'dossier_files', 'newQuest', 'phase_types_array'));
 	}
 
 
@@ -1502,10 +1462,6 @@ class PanelsController extends AppController {
 			$data = $this->request->data;
 			unset($data['Quest']['id']);
 
-
-			$powerInsert['Power'] = $data['Power'];
-			unset($data['Power']);
-
 			//creating a quest with its possible attachments
 			if ($this->Quest->createWithAttachments($data)) {
 				$this->Session->setFlash(__('The quest has been saved.'));
@@ -1516,18 +1472,6 @@ class PanelsController extends AppController {
 
 				$data['Quest']['id'] = $quest_id;
 				$this->Quest->save($data);
-
-				//create questpowerpoints entries..
-				foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
-					if($powerEntry['quantity'] > 0){
-						$insert['QuestPowerPoint']['quest_id'] = $quest_id;
-						$insert['QuestPowerPoint']['power_points_id'] = $powerId;
-						$insert['QuestPowerPoint']['quantity'] = $powerEntry['quantity'];
-
-						$this->QuestPowerPoint->create();
-						$this->QuestPowerPoint->save($insert);
-					}
-				}
 
 				//now checking to see if it were a questionnarie type quest (type = 1)
 				if($this->request->data['Quest']['type'] == Quest::TYPE_QUESTIONNAIRE) {
@@ -1588,34 +1532,6 @@ class PanelsController extends AppController {
 	public function edit_quest($id, $quest_id, $origin = 'add_mission'){
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Quest->id = $quest_id;
-
-
-			$powerInsert['Power'] = $this->request->data['Power'];
-			unset($this->request->data['Power']);
-
-			//create questpowerpoints entries..
-			foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
-				if($powerEntry['quantity'] > 0){
-					$insert['QuestPowerPoint']['quest_id'] = $quest_id;
-					$insert['QuestPowerPoint']['power_points_id'] = $powerId;
-					$insert['QuestPowerPoint']['quantity'] = $powerEntry['quantity'];
-
-					$old = $this->QuestPowerPoint->find('first', array(
-						'conditions' => array(
-							'quest_id' => $quest_id,
-							'power_points_id' => $powerId
-						)
-					));
-
-					if($old) {
-						$this->QuestPowerPoint->id = $old['QuestPowerPoint']['id'];
-					} else {
-						$this->QuestPowerPoint->create();
-					}
-					$this->QuestPowerPoint->save($insert);
-				}
-			}
-
 
 			//saves it supporting the addition of new images
 			if ($this->Quest->createWithAttachments($this->request->data, true, $quest_id)) {
@@ -1821,12 +1737,8 @@ class PanelsController extends AppController {
 			)
 		));
 
-		$powerpoints = $this->PowerPoint->find('all');
-
 		$this->Quest->id = $id;
-		$mypp = $this->Quest->QuestPowerPoint->find('all');
-
-		$this->set(compact('phase_id', 'mission_id', 'me', 'questionnaires', 'answers', 'origin', 'attachments', 'mypp', 'powerpoints', 'user'));
+		$this->set(compact('phase_id', 'mission_id', 'me', 'questionnaires', 'answers', 'origin', 'attachments', 'user'));
 	}
 
 /*
@@ -1915,44 +1827,6 @@ class PanelsController extends AppController {
 		}
 	}
 
-/*
-* add_powerpoint method
-* adds a powerpoint via admin panel and returns to it
-*/
-	public function add_powerpoint() {
-		if ($this->request->is('post')) {
-			$this->PowerPoint->create();
-			if ($this->PowerPoint->save($this->request->data)) {
-				$this->Session->setFlash(__('The powerpoint has been saved.'));
-				return $this->redirect(array('action' => 'index', 'powerpoints'));
-			} else {
-				$this->Session->setFlash(__('The powerpoint could not be saved. Please, try again.'));
-			}
-		}
-	}
-
-/*
-* delete_powerpoint method
-* delete a powerpoint via admin panel and returns to it
-*/
-	public function delete_powerpoint($id = null) {
-		if ($this->request->is('post')) {
-
-			$this->PowerPoint->id = $id;
-			if (!$this->PowerPoint->exists()) {
-				throw new NotFoundException(__('Invalid powerpoint'));
-			}
-			if ($this->PowerPoint->delete()) {
-				$this->Session->setFlash(__('The powerpoint has been deleted.'));
-				return $this->redirect(array('action' => 'index', 'powerpoints'));
-			} else {
-				$this->Session->setFlash(__('The powerpoint could not be deleted. Please, try again.'));
-			}
-		}
-	}
-
-
-
 
 /*
 * add_issue method
@@ -2003,30 +1877,10 @@ class PanelsController extends AppController {
 */
 	public function add_badge() {
 		if ($this->request->is('post')) {
-
-			$powerInsert['Power'] = $this->request->data['Power'];
-			unset($this->request->data['Power']);
-
 			$this->Badge->create();
 			if ($this->Badge->createWithAttachments($this->request->data)) {
 
 				$badge_id = $this->Badge->id;
-				//create questpowerpoints entries..
-
-				foreach ($powerInsert['Power'] as $powerId => $powerEntry) {
-					if($powerEntry['quantity'] > 0){
-						$insert['BadgePowerPoint']['badge_id'] = $badge_id;
-						$insertId = $powerId;
-						if($powerId == 0) {
-							$insertId = null;
-						}
-						$insert['BadgePowerPoint']['power_points_id'] = $insertId;
-						$insert['BadgePowerPoint']['quantity'] = $powerEntry['quantity'];
-
-						$this->BadgePowerPoint->create();
-						$this->BadgePowerPoint->save($insert);
-					}
-				}
 
 				$this->Session->setFlash(__('The badge has been saved.'));
 				return $this->redirect(array('action' => 'index', 'badges'));
@@ -2193,12 +2047,6 @@ class PanelsController extends AppController {
 				continue;
 
 			//check to see if he has a social innovator badge yet
-			$my_powerpoints = $this->UserPowerPoint->find('all', array(
-	        	'conditions' => array(
-	        		'UserPowerPoint.user_id' => $member['GroupsUser']['user_id']
-	        	)
-	        ));
-
 			$hasThisBadge = $this->UserBadge->find('first', array(
 				'conditions' => array(
 					'UserBadge.badge_id' => $socialInnovator['Badge']['id'],
@@ -2208,21 +2056,6 @@ class PanelsController extends AppController {
 
 			if(!empty($hasThisBadge))
 				continue;
-
-	        $gotit = 0;
-		    foreach ($my_powerpoints as $my_pp) {
-		    	$gotit += $my_pp['UserPowerPoint']['quantity'];
-		    }
-
-		    if($gotit >= 3000) {
-		    	//dispatch badge won
-		  //   	$event = new CakeEvent('Model.BadgesUser.won', $this, array(
-				//     'badge_id' => $b['badge_id'],
-				//     'user_id' => $this->data['UserPowerPoint']['user_id']
-				// ));
-
-				// $this->getEventManager()->dispatch($event);
-		    }
 
 		}
 		return $this->redirect(array('action' => 'index', 'pending'));

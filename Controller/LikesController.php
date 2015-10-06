@@ -57,29 +57,6 @@ class LikesController extends AppController {
 
 		$this->Like->create();
 		if ($this->Like->save($data)) {
-
-			//attribute pp to evidence owner
-			$this->loadModel('QuestPowerPoint');
-			$pps = $this->QuestPowerPoint->find('all', array(
-				'conditions' => array(
-					'quest_id' => $evidence['Evidence']['quest_id']
-				)
-			));
-
-			foreach($pps as $pp) {
-				$data['UserPowerPoint']['user_id'] = $evidence['Evidence']['user_id'];
-				$data['UserPowerPoint']['power_points_id'] = $pp['QuestPowerPoint']['power_points_id'];
-				$data['UserPowerPoint']['quest_id'] = $pp['QuestPowerPoint']['quest_id'];
-				$data['UserPowerPoint']['quantity'] = ($pp['QuestPowerPoint']['quantity'] * 30);
-				$data['UserPowerPoint']['model'] = 'Evidence';
-				$data['UserPowerPoint']['foreign_key'] = $evidence['Evidence']['id'];
-
-				$this->loadModel('UserPowerPoint');
-				$this->UserPowerPoint->create();
-				$this->UserPowerPoint->save($data);
-			}
-
-
 			//AJAX LOAD
 			if ($this->request->is('ajax')) {
 				return true;
@@ -153,32 +130,6 @@ class LikesController extends AppController {
 		}
 
 		if ($this->Like->delete()) {
-
-			//attribute pp to evidence owner
-			$this->loadModel('QuestPowerPoint');
-			$pps = $this->QuestPowerPoint->find('all', array(
-				'conditions' => array(
-					'quest_id' => $evidence['Evidence']['quest_id']
-				)
-			));
-
-			foreach ($pps as $pp) {
-				$this->loadModel('UserPowerPoint');
-				$old = $this->UserPowerPoint->find('first', array(
-					'conditions' => array(
-						'user_id' => $evidence['Evidence']['user_id'],
-						'power_points_id' => $pp['QuestPowerPoint']['power_points_id'],
-						'quest_id' => $pp['QuestPowerPoint']['quest_id'],
-						'quantity' => ($pp['QuestPowerPoint']['quantity'] * 30),
-						'model' => 'Evidence',
-						'foreign_key' => $evidence['Evidence']['id']
-					)
-				));
-				if(!empty($old)) {
-					$this->UserPowerPoint->id = $old['UserPowerPoint']['id'];
-					$this->UserPowerPoint->delete();
-				}
-			}
 			//$this->Session->setFlash(__('The like has been deleted.'));
 		} else {
 			//$this->Session->setFlash(__('The like could not be deleted. Please, try again.'));

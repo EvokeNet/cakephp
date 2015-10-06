@@ -108,22 +108,6 @@
                 echo $this->Form->input('description_es', array('value' => $me['Quest']['description_es'], 'label' => __('Spanish Description')));
                 echo $this->Form->input('todo_list', array('value' => $me['Quest']['todo_list']));
                 echo $this->Form->input('points', array('value' => $me['Quest']['points']));
-
-
-                echo '<fieldset><legend> ' .__('Define Quest Power Points') . '</legend>';
-                foreach ($powerpoints as $power) {
-                    $previous = 0;
-                    foreach ($mypp as $pp) {
-                        if($pp['QuestPowerPoint']['power_points_id'] == $power['PowerPoint']['id'] && $pp['QuestPowerPoint']['quest_id'] == $me['Quest']['id'])
-                            $previous = $pp['QuestPowerPoint']['quantity'];
-                    }
-                    echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
-                        'label' => $power['PowerPoint']['name'],
-                        'value' => $previous
-                    ));
-                }
-                echo '</fieldset>';
-
                 echo $this->Form->radio('mandatory', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => $me['Quest']['mandatory']));//
         		echo $this->Form->hidden('mission_id', array('value' => $mission_id));
         		echo $this->Form->hidden('phase_id', array('value' => $phase_id));
@@ -133,7 +117,6 @@
         			$my_questionnaire = null;
         			foreach ($questionnaires as $questionnaire) {
         				if($questionnaire['Questionnaire']['quest_id'] == $me['Quest']['id']){
-        					//debug($questionnaire);
         					$my_questionnaire = $questionnaire;
         					break;
         				}
@@ -203,12 +186,6 @@
                             <?php echo __('Essay'); ?>
                         </a>
                     </li>
-                    <!--<li>
-                        <a href="#" id="likert-scale-question" class="btn-create-question">
-                            <i class="icon-sort-by-attributes"></i>
-                            <?php echo __('1 to 5 scale'); ?>
-                        </a>
-                    </li>-->
                     <li>
                         <a href="#" id="single-choice-question" class="btn-create-question">
                             <i class="icon-circle-blank"></i>
@@ -261,9 +238,7 @@
         </div>
     </div>
 
-    <?php echo $this->Html->script('/components/jquery/jquery.min.js');//, array('inline' => false));?>
     <?php echo $this->Html->script('survey'); ?>
-    <?//echo $this->Html->script('quest_attachments'); ?>
 
     <!-- necessary function to add remove the already existing questions -->
     <script type="text/javascript">

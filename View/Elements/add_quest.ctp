@@ -24,15 +24,6 @@
         echo $this->Form->input('todo_list', array('required' => true));
         echo $this->Form->input('points', array('required' => true));
 
-        echo '<fieldset><legend> ' .__('Define Quest Power Points') . '</legend>';
-        foreach ($powerpoints as $power) {
-            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
-                'label' => $power['PowerPoint']['name'],
-                'value' => 0
-            ));
-        }
-        echo '</fieldset>';
-
         echo $this->Form->radio('mandatory', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => 1));//
 		echo $this->Form->radio('type', array($quest_types_array), array('id' => 'questtype', 'required' => true));//
 		echo $this->Form->hidden('mission_id', array('value' => $mission_id));

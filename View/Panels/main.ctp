@@ -115,18 +115,6 @@
 	  <li><!-- Your content goes here -->
 	  	<div class="row"  >
 			<div class="large-4 columns"  >
-				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-star-o fa-3x"></i></div>
-			</div>
-			<div class="large-8 columns"  >
-				<div style = "font-size:2.5em;"><?= sizeof($powerpoints) ?></div>
-				<div style = "word-wrap: break-word;"><?= strtoupper(__('Power Points')) ?></div>
-			</div>
-		</div>
-	  </li>
-
-	  <li><!-- Your content goes here -->
-	  	<div class="row"  >
-			<div class="large-4 columns"  >
 				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-user fa-3x"></i></div>
 			</div>
 			<div class="large-8 columns"  >
@@ -618,102 +606,6 @@
 							<?php echo __('Add'); ?>
 						</button>
 						<?php echo $this->Form->end(); ?>
-
-			  <a class="close-reveal-modal">&#215;</a>
-			</div>
-
-		</li>
-
-		<li>
-			<input type="search" class="light-table-filter" data-table="order-table-ppoints" placeholder="<?= __('Search power points') ?>">
-			<table class="order-table-ppoints paginated" id = "ppointsTable">
-				<thead>
-					<tr>
-						<th width="25"><input type="checkbox" onclick="checkAll('ppointsTable', 'pps')" name="chk[]" id="pss" /></th>
-						<th><?= _('Power Points') ?></th>
-			      		<th width="25"></th>
-			      		<th width="25"><a href="#" data-reveal-id="myModalAddPP"><i class="fa fa-plus fa-lg"></i></a></th><!-- Button to add new user -->
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach($power_points as $i): ?>
-			  		<tr>
-			  		  <td><input type="checkbox" name="chkbox[]"></td>
-				      <td><?= $i['PowerPoint']['name'] ?></td>
-				      <td><a href="#" data-reveal-id="myModalEditPP<?= $i['PowerPoint']['id'] ?>"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
-				      <td><a href="<?php echo $this->Html->url(array('controller'=>'PowerPoint', 'action' => 'delete', $i['PowerPoint']['id'])); ?>"><i class="fa fa-times fa-lg"></i></a></td>
-				    </tr>
-
-				    <!-- Add new notification form -->
-					<div id="myModalEditPP<?= $i['PowerPoint']['id'] ?>" class="reveal-modal tiny" data-reveal>
-				  		<?php echo $this->Form->create('PowerPoint', array(
-					   		'url' => array(
-					   			'controller' => 'PowerPoints',
-					   			'action' => 'edit',
-					   			$i['PowerPoint']['id']
-					   		)));
-
-							echo $this->Form->input('name', array(
-								'label' => __('Name'),
-								'required' => true,
-								'value' => $i['PowerPoint']['name']
-							));
-							// echo $this->Form->input('name_es', array(
-							// 	'label' => __('Spanish Name'),
-							// 	'value' => $i['PowerPoint']['name_es']
-							// ));
-							echo $this->Form->input('description', array(
-								'label' => __('Description'),
-								'type' => 'textarea',
-								'required' => true,
-								'value' => $i['PowerPoint']['description']
-							));
-							// echo $this->Form->input('description_es', array(
-							// 	'label' => __('Spanish Description'),
-							// 	'type' => 'textarea',
-							// 	'value' => $i['PowerPoint']['description_es']
-							// ));
-						?>
-							<button class="button general" type="submit">
-								<?php echo __('Edit'); ?>
-							</button>
-							<?php echo $this->Form->end(); ?>
-
-					  <a class="close-reveal-modal">&#215;</a>
-					</div>
-
-					<?php endforeach; ?>
-				</tbody>
-			</table>
-
-			<!-- Add new notification form -->
-			<div id="myModalAddPP" class="reveal-modal tiny" data-reveal>
-		  		<?php echo $this->Form->create('PowerPoint', array(
-			   		'url' => array(
-			   			'controller' => 'PowerPoints',
-			   			'action' => 'add')
-					));
-					echo $this->Form->input('name', array(
-						'label' => __('Name'),
-						'required' => true
-					));
-					// echo $this->Form->input('name_es', array(
-					// 	'label' => __('Spanish Name')
-					// ));
-					echo $this->Form->input('description', array(
-						'label' => __('Description'),
-						'type' => 'textarea',
-						'required' => true
-					));
-					// echo $this->Form->input('description_es', array(
-					// 	'label' => __('Spanish Description'),
-					// 	'type' => 'textarea'
-					// ));
-				?>
-					<button class="button general" type="submit">
-						<?php echo __('Add'); ?>
-					</button>
-					<?php echo $this->Form->end(); ?>
 
 			  <a class="close-reveal-modal">&#215;</a>
 			</div>

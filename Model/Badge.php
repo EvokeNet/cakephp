@@ -70,19 +70,6 @@ class Badge extends AppModel {
 	);
 
 	public $hasMany = array(
-		'BadgePowerPoint' => array(
-			'className' => 'BadgePowerPoint',
-			'foreignKey' => 'badge_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'UserBadge' => array(
 			'className' => 'UserBadge',
 			'foreignKey' => 'badge_id',

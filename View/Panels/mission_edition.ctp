@@ -169,22 +169,10 @@
 
 										echo $this->Form->input('Quest.title.eng');
 								        echo $this->Form->input('Quest.title.spa', array('label' => __('Spanish Title')));
-								        /*echo $this->Form->input('id');
-								        debug($newQuest);
-										echo $this->Media->ckeditor('content', array('label' => __('Description'), 'value' => $newQuest['Quest']['description']));*/
 								        echo $this->Form->input('Quest.description.eng');
 								        echo $this->Form->input('Quest.description.spa', array('label' => __('Spanish Description')));
 
 								        echo $this->Form->input('points', array('required' => true));
-
-								        echo '<fieldset><legend> ' .__('Define Quest Power Points') . '</legend>';
-								        foreach ($powerpoints as $power) {
-								            echo $this->Form->input('Power.' . $power['PowerPoint']['id'] . '.quantity', array(
-								                'label' => $power['PowerPoint']['name'],
-								                'value' => 0
-								            ));
-								        }
-								        echo '</fieldset>';
 
 								        echo $this->Form->radio('mandatory', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => 1));//
 										echo $this->Form->radio('type', array(1 => 'Questionnaire', 2 => 'Evidence', 3 => 'Group', 4 => 'Evokation'), array('id' => 'questtype', 'required' => true));//
@@ -212,12 +200,6 @@
 									                        <?php echo __('Essay'); ?>
 									                    </a>
 									                </li>
-									                <!--<li>
-									                    <a href="#" id="likert-scale-question" class="btn-create-question">
-									                        <i class="icon-sort-by-attributes"></i>
-									                        <?php echo __('1 to 5 scale'); ?>
-									                    </a>
-									                </li>-->
 									                <li>
 									                    <a href="#" id="single-choice-question" class="btn-create-question">
 									                        <i class="icon-circle-blank"></i>
@@ -267,11 +249,7 @@
 									echo $this->Form->input('Phase.description.eng', array('value' => $phase['phaseDescription'][0]['content'], 'label' => __('English Description')));
 									
 									echo $this->Form->input('Phase.description.spa', array('value' => $phase['phaseDescription'][1]['content'], 'label' => __('Spanish Description')));
-
-									// echo $this->Form->input('name', array('label' => __('Name'), 'value' => $phase['Phase']['name'], 'required' => true));
-									// echo $this->Form->input('name_es', array('label' => __('Spanish Name'), 'value' => $phase['Phase']['name_es'], 'required' => true));
-									// echo $this->Form->input('description', array('label' => __('Description'), 'value' => $phase['Phase']['description'], 'required' => true));
-									// echo $this->Form->input('description_es', array('label' => __('Spanish Description'), 'value' => $phase['Phase']['description_es'], 'required' => true));
+									
 									echo $this->Form->input('points', array('label' => __('Points'), 'value' => $phase['Phase']['points'], 'required' => true));
 									echo $this->Form->radio('type', array(0 => 'Discussion', 1 => 'Project'), array('value' => $phase['Phase']['type'], 'required' => true));
 									echo $this->Form->radio('show_dossier', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => 1, 'value' => $phase['Phase']['show_dossier']));

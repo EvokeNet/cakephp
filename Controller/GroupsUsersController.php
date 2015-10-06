@@ -177,6 +177,8 @@ class GroupsUsersController extends AppController {
  * @return void
  */
 	public function send($group_id){
+		$this->autoRender = false;
+
 		if (!$this->GroupsUser->Group->exists($group_id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
@@ -245,33 +247,6 @@ class GroupsUsersController extends AppController {
 		$this->redirect(array('controller' => 'groups', 'action' => 'view', $group_id));
 	}
 
-// /**
-//  * edit method
-//  *
-//  * @throws NotFoundException
-//  * @param string $id
-//  * @return void
-//  */
-// 	public function edit2($id = null) {
-// 		if (!$this->GroupsUser->exists($id)) {
-// 			throw new NotFoundException(__('Invalid groups user'));
-// 		}
-// 		if ($this->request->is(array('post', 'put'))) {
-// 			if ($this->GroupsUser->save($this->request->data)) {
-// 				$this->Session->setFlash(__('The groups user has been saved.'));
-// 				return $this->redirect(array('action' => 'index'));
-// 			} else {
-// 				$this->Session->setFlash(__('The groups user could not be saved. Please, try again.'));
-// 			}
-// 		} else {
-// 			$options = array('conditions' => array('GroupsUser.' . $this->GroupsUser->primaryKey => $id));
-// 			$this->request->data = $this->GroupsUser->find('first', $options);
-// 		}
-// 		$users = $this->GroupsUser->User->find('list');
-// 		$groups = $this->GroupsUser->Group->find('list');
-// 		$this->set(compact('users', 'groups'));
-// 	}
-
 /**
  * delete method
  *
@@ -279,100 +254,33 @@ class GroupsUsersController extends AppController {
  * @param string $id
  * @return void
  */
-	// public function delete($id = null) {
-	// 	$gu = $this->GroupsUser->find('first', array(
-	// 		'conditions' => array(
-	// 			'GroupsUser.user_id' => $id
-	// 		)
-	// 	));
-	// 	$this->GroupsUser->id = $gu['GroupsUser']['id'];
-	// 	if (!$this->GroupsUser->exists()) {
-	// 		throw new NotFoundException(__('Invalid groups user'));
-	// 	}
-	// 	//$this->request->onlyAllow('post', 'delete');
+	public function delete($id = null) {
+		$this->autoRender = false;
 
-	// 	$group = $this->GroupsUser->Group->find('first', array(
-	// 		'conditions' => array(
-	// 			'Group.id' => $gu['GroupsUser']['group_id']
-	// 		)
-	// 	));
+		$gu = $this->GroupsUser->find('first', array(
+			'conditions' => array(
+				'GroupsUser.user_id' => $id
+			)
+		));
+		$this->GroupsUser->id = $gu['GroupsUser']['id'];
+		
+		if (!$this->GroupsUser->exists()) {
+			throw new NotFoundException(__('Invalid groups user'));
+		}
 
-	// 	if ($this->GroupsUser->delete()) {
+		$group = $this->GroupsUser->Group->find('first', array(
+			'conditions' => array(
+				'Group.id' => $gu['GroupsUser']['group_id']
+			)
+		));
 
-	// 		//attribute pp to evidence owner
-	// 		$this->loadModel('QuestPowerPoint');
-	// 		$pps = $this->QuestPowerPoint->find('all', array(
-	// 			'conditions' => array(
-	// 				'quest_id' => $group['Group']['quest_id']
-	// 			)
-	// 		));
-
-	// 		foreach($pps as $pp) {
-	// 			$this->loadModel('UserPowerPoint');
-	// 			$old = $this->UserPowerPoint->find('first', array(
-	// 				'conditions' => array(
-	// 					'user_id' => $id,
-	// 					'power_points_id' => $pp['QuestPowerPoint']['power_points_id'],
-	// 					'quest_id' => $pp['QuestPowerPoint']['quest_id'],
-	// 					'quantity' => ($pp['QuestPowerPoint']['quantity']*30),
-	// 					'model' => 'Group',
-	// 					'foreign_key' => $group['Group']['id']
-	// 				)
-	// 			));
-
-	// 			if(!empty($old)) {
-	// 				$this->UserPowerPoint->id = $old['UserPowerPoint']['id'];
-	// 				$this->UserPowerPoint->delete();
-	// 			}
-	// 		}
-
-	// 		$this->Session->setFlash(__('The groups user has been deleted.'));
-	// 	} else {
-	// 		$this->Session->setFlash(__('The groups user could not be deleted. Please, try again.'));
-	// 	}
-	// 	return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']));
-	// }
-
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	// public function deleteMembership($group_id = null, $user_id = null) {
-	// 	//Groups user
-	// 	$gu = $this->GroupsUser->find('first', array(
-	// 		'conditions' => array(
-	// 			'GroupsUser.group_id' => $group_id,
-	// 			'GroupsUser.user_id' => $user_id
-	// 		)
-	// 	));
-
-	// 	if (!isset($gu['GroupsUser']) || !isset($gu['GroupsUser']['id'])) {
-	// 		throw new NotFoundException(__('Invalid groups user'));
-	// 	}
-
-
-	// 	$this->GroupsUser->id = $gu['GroupsUser']['id'];
-
-	// 	if ($this->GroupsUser->delete()) {
-	// 		$this->Session->setFlash(__('The groups user has been deleted.'));
-	// 	} else {
-	// 		$this->Session->setFlash(__('The groups user could not be deleted. Please, try again.'));
-	// 	}
-	// 	return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']));
-	// }
-
-/**
- * admin_index method
- *
- * @return void
- */
-	// public function admin_index() {
-	// 	$this->GroupsUser->recursive = 0;
-	// 	$this->set('groupsUsers', $this->Paginator->paginate());
-	// }
+		if ($this->GroupsUser->delete()) {
+			$this->Session->setFlash(__('The groups user has been deleted.'));
+		} else {
+			$this->Session->setFlash(__('The groups user could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('controller' => 'groups', 'action' => 'view', $group['Group']['id']));
+	}
 
 /**
  * admin_add method
