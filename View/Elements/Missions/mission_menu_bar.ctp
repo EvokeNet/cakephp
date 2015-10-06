@@ -50,18 +50,6 @@ if (!isset($menu_buttons)) {
 				</a><?php
 			endif;
 
-			//EVOKATIONS
-			if (in_array('Evokations', $menu_buttons)): ?>
-				<a class="menu-icon default" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
-					<div class="row">
-						<span class="fa fa-list-alt fa-2x vertical-align-middle text-color-gray"></span>
-					</div>
-					<div class="row menu-icon-label">
-						<span><?= __('Evokations') ?></span>
-					</div>
-				</a><?php
-			endif;
-
 			//DOSSIER
 			if (in_array('Dossier', $menu_buttons)): ?>
 				<a class="menu-icon default" id="menu-icon-tabDossier" data-tab-content="tabDossier">

@@ -11,19 +11,11 @@
 		switch($phase['Phase']['type']) {
 			//PHASES WITH GROUPS HAVE GROUP FORUM
 			case Phase::TYPE_GROUP:
-				if (count($myGroups) > 0) {
-					$group = $myGroups[0];
-					$menu_parameters = array(
-						'menu_buttons' => array('Back','Quests','Dossier','Evidences','GroupForum'),
-						'group_forum' => $group['Forum']
-					);
-				}
-				break;
 			case Phase::TYPE_EVOKATION:
 				if (count($myGroups) > 0) {
 					$group = $myGroups[0];
 					$menu_parameters = array(
-						'menu_buttons' => array('Back','Quests','Dossier','Evokations','GroupForum'),
+						'menu_buttons' => array('Back','Quests','Dossier','Evidences','GroupForum'),
 						'group_forum' => $group['Forum']
 					);
 				}
