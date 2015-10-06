@@ -1,18 +1,4 @@
 <div class="content background-color-dark-opacity-05 min-full-height">
-	<!-- MISSION TITLE -->
-	<!-- <div class="padding all-1">
-		<h1 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h1>
-
-		<?php
-		//PHASES BAR
-		// echo $this->element('phases_bar',array(
-		// 	'mission' => $mission,
-		// 	'current_phase' => $phase_id
-		// ));
-		?>
-	</div> -->
-
-
 	<!-- GROUP AREA -->
 	<div class="full-width">
 		<!-- GROUP BOX -->

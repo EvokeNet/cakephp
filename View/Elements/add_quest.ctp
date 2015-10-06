@@ -15,9 +15,7 @@
 
 		echo $this->Form->input('title', array('required' => true));
         echo $this->Form->input('title_es', array('label' => __('Spanish Title')));
-        /*echo $this->Form->input('id');
-        debug($newQuest);
-		echo $this->Media->ckeditor('content', array('label' => __('Description'), 'value' => $newQuest['Quest']['description']));*/
+        
         echo $this->Form->input('description', array('required' => true));
         echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
 

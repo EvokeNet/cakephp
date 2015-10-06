@@ -60,8 +60,6 @@
 							<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert', 'id' => 'orgsDelete'.$organization['Organization']['id'], 'style' => 'display:none' )); ?>
 					<?php }	?>
 
-					<!-- <button class="button" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></button> -->
-
 					<a href ="#" class="button general" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></a>
 
 					<div id="myModalOrganization" class="reveal-modal tiny" data-reveal>
@@ -89,13 +87,6 @@
 								echo $this->Form->input('twitter');
 								echo $this->Form->input('blog');
 								if($flags['_admin']) {
-									//if its an admin, use $possible_managers..
-									/*echo $this->Form->input('UserOrganization.users_id', array(
-										'label' => __('Possible Managers'),
-										'options' => $possible_managers,
-										'multiple' => 'checkbox',
-										'required' => true
-									));*/
 									echo $this->Chosen->select(
 									    'UserOrganization.users_id',
 									    $possible_managers,
@@ -121,8 +112,7 @@
 					
 				</div>
 				<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
-					<?php //echo $this->Html->Link(__('Add new Mission'), array('controller' => 'panels', 'action' => 'add_mission'), array( 'class' => 'button'));?>
-			  		
+
 			  		<a href ="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'add_mission')) ?>" class="button general"><?php echo __('New Mission');?></a>
 
 				  		<!-- creating delete post buttons to be referenced at js -->
@@ -133,7 +123,6 @@
 					<div id="MissionsHolder" style="width:auto"></div> 
 				</div>
 				<div class="content <?php echo $issues_tab; ?>" id="issues">
-		  			<!-- <button class="button" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></button> -->
 
 		  			<a href = "#" class="button general" data-reveal-id="myModalIssue" data-reveal><?php echo __('New Issue');?></a>
 
@@ -146,7 +135,6 @@
 						
 						<?php echo __('Add an Issue'); ?>
 						<?php
-							//echo $this->Form->input('parent_id');
 							echo $this->Form->input('name', array('label' => __('Name')));
 							echo $this->Form->input('slug', array('label' => __('Slug')));
 						?>
@@ -255,36 +243,6 @@
 				<div class="content <?php echo $users_tab; ?>" id="users">
 					<?php if($flags['_admin']) :
 						foreach ($all_users as $user) : ?>
-							<!-- <button class="button small" id="ShowUser-<?php echo $user['User']['id']; ?>" data-reveal-id="user-<?php echo $user['User']['id']; ?>" style="display:none" data-reveal></button>
-								
-							<div id="user-<?php echo $user['User']['id']; ?>" class="reveal-modal tiny" data-reveal>
-								<?php 
-									echo $this->Form->create('User', array(
-								 		'url' => array(
-								 			'controller' => 'panels',
-								 			'action' => 'edit_user_role', 
-								 			$user['User']['id']
-								 		)
-									));
-								 ?>
-								<fieldset>
-									<legend><?php echo __('Change role') .': '. $user['User']['name']; ?></legend>
-								<?php
-									echo $this->Form->hidden('id', array('value' => $user['User']['id']));
-									echo $this->Form->input('role_id', array(
-										'label' => __('Role'),
-										'options' => $roles_list,
-										'value' => $user['User']['role_id']
-									));
-								?>
-								</fieldset>
-									<button class="button tiny" type="submit">
-										<?php echo __('Save Changes')?>
-									</button>
-									<?php echo $this->Form->end(); ?>
-								<a class="close-reveal-modal">&#215;</a>
-							</div> -->
-
 							<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'users', 'action' => 'delete', $user['User']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteUser'.$user['User']['id'], 'style' => 'display:none')); ?>
 
 							<button class="button small" id="EditUser-<?= $user['User']['id'] ?>" data-reveal-id="myModalEditUser-<?= $user['User']['id'] ?>" style="display:none" data-reveal></button>
@@ -361,7 +319,6 @@
 					<div id="EvokationsHolder"></div>
 				</div>
 				<div class="content <?php echo $media_tab; ?>" id="media">
-					<!-- <button class="button" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></button> -->
 
 					<a href ="#" class="button general" data-reveal-id="myModalNotification" data-reveal><?php echo __('New Notification');?></a>
 
@@ -423,10 +380,6 @@
 						</div>
 
 						<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'deleteNotification', $n['AdminNotification']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteNotification'.$n['AdminNotification']['id'], 'style' => 'display:none')); ?>
-
-						<!-- show him/her how the notification will be seen -->
-						<!-- <button class="button small" id="EditNot-<?php echo $n['AdminNotification']['id']; ?>" data-reveal-id="myModalEditNotification-<?php echo $n['AdminNotification']['id']; ?>" data-reveal>dede</button> -->
-									<!-- Lightbox for editing evokation status -->
 
 						<button class="button small" id="EditNot-<?php echo $n['AdminNotification']['id']; ?>" data-reveal-id="myModalEditNotification-<?php echo $n['AdminNotification']['id']; ?>" style="display:none" data-reveal></button>
 
@@ -858,12 +811,6 @@
           			echo '["'.$key.'", '.$value.'],';
           		}
           	?>
-          // ['Germany', 200],
-          // ['United States', 300],
-          // ['Brazil', 400],
-          // ['Canada', 500],
-          // ['France', 600],
-          // ['RU', 700]
         ]);
 
         var options = {

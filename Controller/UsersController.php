@@ -908,16 +908,6 @@ class UsersController extends AppController {
 	}
 
 /**
- * see a preview of the evokation page
- *
- * @return void
- */
-	public function evokation() {
-
-	}
-
-
-/**
  *
  * leaderboard
  *
@@ -979,63 +969,6 @@ class UsersController extends AppController {
 			$this->redirect(array('action' => 'view', $user_to));
 		}
 
-	}
-
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		$flags = array(
-			'_self' => false,
-			'_friended' => false
-		);
-
-
-		$user_from = $this->getUserId();
-
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-
-		$user = $this->User->read(null, $id);
-
-
-		//check if it's myself, if it is, send to dashboard
-		if($user_from == $id) {
-			$this->redirect(array('action' => 'dashboard', $id));
-		}
-
-		$username = explode(' ', $this->getUserName());
-
-		$this->set(compact('username'));
-
-		$userFriends = $this->User->find('first', array(
-			'conditions' => array(
-				'User.id' => $user_from
-			),
-			'contain' => array(
-				'Friend' => array(
-					'conditions' => array(
-						'user_from' => $user_from,
-						'user_to' => $id
-					)
-				)
-			)
-		));
-
-		$friendship = $userFriends['Friend'];
-
-		if($user['User']['id'] == $user_from) {
-			$flags['_self'] = true;
-		} else if(isset($friendship) && !empty($friendship)) {
-			$flags['_friended'] = true;
-		}
-
-		$this->set(compact('user', 'flags'));
 	}
 
 /**

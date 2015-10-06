@@ -32,16 +32,6 @@
             </a>
           </li>
 
-         <!--  <li class="active" id = "top-bar-name">
-
-            <?php if(isset($user['User'])) :?>
-                <a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'profile', $user['User']['id'])); ?>"><span><?= $user['User']['name'] ?></span></a>
-            <?php else :?>
-                <a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'login')); ?>"><span><?= __('Unidentified Agent, please login') ?></span></a>
-            <?php endif; ?>
-
-          </li> -->
-
           <li class="has-dropdown">
             <a href="#">
                 <?php if(isset($user['User'])) :?>
@@ -72,11 +62,6 @@
           </li>
 
         </ul>
-
-        <!-- Left Nav Section -->
-        <!-- <ul class="left">
-          <li><a href="#">Left Nav Button</a></li>
-        </ul> -->
       </section>
   </nav>
 </div>

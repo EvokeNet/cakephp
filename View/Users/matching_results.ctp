@@ -6,7 +6,7 @@
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => 'Agent key strengths', 'imgSrc' => ($this->webroot.'img/header-profile.jpg')));
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Agent key strengths'), 'imgSrc' => ($this->webroot.'img/header-profile.jpg')));
 	$this->end();
 ?>
 

@@ -1,5 +1,4 @@
 <?php
-
 	echo $this->Html->css(
 		array(
 			'evoke-new',
@@ -8,8 +7,6 @@
 		)
 	);
 
-	// $redis = new Redis() or die("Cannot load Redis module.");
-	// $redis->connect('127.0.0.1');
 	$average_level = $average_points = $allies_user = 0;
 
 	if (sizeof($all_users) > 0) {
@@ -43,14 +40,10 @@
 </div>
 
 <div class="row full-width padding top-4" data-equalizer>
-  <!-- <div class="large-2 columns padding-left-0 gradient-on-right"  style = "background-color: #26dee0; padding-right:0px" data-equalizer-watch> -->
 	<div class="large-2 columns padding-left-0 gradient-on-right" data-equalizer-watch>
 
 		<div class = "side-menu">
 		  <ul class="side-menu side-nav">
-
-				<!-- <div style = "background-color: rgb(66, 157, 158); height:40px"></div> -->
-
 				<li class = "active">
 					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'main')) ?>">
 						<?= __('Statistics') ?>
@@ -62,10 +55,6 @@
 						<?= __('Organization ').$o['Organization']['name'] ?>
 					</a>
 				</li>
-
-		  			<!-- <a href = "<?= $this->Html->url(array('controller' => 'panels', 'action' => 'organization', $o['Organization']['id'])) ?>">
-		  				<div class = "padding-05"><i class="fa fa-university fa-lg"></i>&nbsp;&nbsp;&nbsp;<span><?= $o['Organization']['name'] ?></span></div>
-		  			</a> -->
 			<?php endforeach; ?>
 
 		</ul>
@@ -222,14 +211,6 @@
 			</div>
 		</div>
 	  </div>
-
-	  <!-- <div class="large-3 columns" >
-	    <h1 style = "font-size: 1.5em; color: #555; font-weight:bold;">
-		<i class="fa fa-list-ul"></i>&nbsp;
-  		<?= __('Chosen Issues') ?>
-	  	</h1>
-		<div id="piechart"></div>
-	  </div> -->
 
 	<div class="large-8 columns" >
 		<h5><?= __('Monthly Visitors') ?></h5>

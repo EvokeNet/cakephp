@@ -1,9 +1,5 @@
 <!-- Add new user form -->
 <div id="myModalEditUser<?= $m['User']['id'] ?>" class="reveal-modal tiny" data-reveal>
-  <!-- <h2>Awesome. I have it.</h2>
-  <p class="lead">Your couch.  It is mine.</p>
-  <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p> -->
-
   	<?php echo $this->Form->create('User', array(
    		'url' => array(
    			'controller' => 'users',

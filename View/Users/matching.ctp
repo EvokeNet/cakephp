@@ -6,7 +6,7 @@
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => 'Generating your agent profile', 'imgSrc' => ($this->webroot.'img/header-registering.jpg')));
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Generating your agent profile'), 'imgSrc' => ($this->webroot.'img/header-registering.jpg')));
 	$this->end();
 ?>
 	<div class="row standard-width">

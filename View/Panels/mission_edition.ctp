@@ -41,21 +41,6 @@
 		?>
 
 		<?php
-
-			//debug($mission);
-			// debug($mission['missionTitle']);
-			// debug($mission['missionDescription'][0]['content']);
-
-			echo $this->Session->flash();
-
-			// echo $this->Form->input('Mission.title.eng', array('value' => $mission['Mission']['title'], 'label' => __('English Title'), 'required' => true));
-			
-			// echo $this->Form->input('Mission.title.spa', array('value' => $mission['missionTitle'][1]['content'], 'label' => __('Spanish Title')));
-
-			// echo $this->Form->input('Mission.description.eng', array('value' => $mission['missionDescription'][0]['content'], 'label' => __('English Description'), 'required' => true));
-			
-			// echo $this->Form->input('Mission.description.spa', array('value' => $mission['missionDescription'][1]['content'], 'label' => __('Spanish Description')));
-
 			echo $this->Form->input('title', array('value' => $mission['Mission']['title'], 'label' => __('Title'), 'required' => true));
 			echo $this->Form->input('title_es', array('value' => $mission['Mission']['title_es'], 'label' => __('Spanish Title')));
 			echo $this->Form->input('description', array('value' => $mission['Mission']['description'], 'label' => __('Description'), 'required' => true));
@@ -128,10 +113,6 @@
 				
 				echo $this->Form->input('Phase.description.spa', array('label' => __('Spanish Description')));
 
-				// echo $this->Form->input('name', array('label' => __('Name'), 'value' => $phase['Phase']['name'], 'required' => true));
-				// echo $this->Form->input('name_es', array('label' => __('Spanish Name'), 'value' => $phase['Phase']['name_es'], 'required' => true));
-				// echo $this->Form->input('description', array('label' => __('Description'), 'value' => $phase['Phase']['description'], 'required' => true));
-				// echo $this->Form->input('description_es', array('label' => __('Spanish Description'), 'value' => $phase['Phase']['description_es'], 'required' => true));
 				echo $this->Form->input('points', array('label' => __('Points'), 'required' => true));
 				echo $this->Form->radio('type', array(0 => 'Discussion', 1 => 'Project'), array('required' => true));
 				echo $this->Form->radio('show_dossier', array(1 => 'Yes', 0 => 'No'), array('required' => true, 'default' => 1));
@@ -595,9 +576,3 @@
 	</div>
   </div>
 </div>
-
-<?php 
-	echo $this->Html->script('/components/jquery/jquery.min.js');
-	echo $this->Html->script('survey'); 
-	echo $this->Html->script('quest_attachments');
-?>

@@ -6,7 +6,7 @@
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => 'Leaderboard', 'imgSrc' => ($this->webroot.'img/header-leaderboard.jpg')));
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Leaderboard'), 'imgSrc' => ($this->webroot.'img/header-leaderboard.jpg')));
 	$this->end();
 
 	/* Paginator */

@@ -1,20 +1,4 @@
 <div class="content background-color-dark-opacity-05 min-full-height">
-	<!-- MISSION TITLE -->
-	<!--
-	<div class="padding all-1">
-		<h1 class="text-glow"><?= (isset($mission['Mission'])) ? $mission['Mission']['title'] : '' ?></h1>
-
-		<?php
-		/*
-		//PHASES BAR
-		echo $this->element('phases_bar',array(
-			'mission' => $mission,
-			'current_phase' => $phase_id
-		));
-		*/
-		?>
-	</div>
-	-->
 	<!-- GROUP INFO -->
 	<div class="padding left-1 right-1">
 		<!-- GROUP TITLE -->
@@ -31,25 +15,6 @@
 				'show_title' => false)); ?>
 		</div>
 	</div>
-
-	<!-- EVOKATION STATUS -->
-	<!--<div class="padding left-1 right-1">-->
-		<!-- TITLE -->
-		<!--<div class="text-center">
-			<h5 class="text-color-highlight"><?= __('Status of the evokation parts') ?></h5>
-		</div>-->
-
-		<!-- STATUS -->	
-		<!--<div class="padding top-2">
-			<?php echo $this->element('Evokations/evokation_status',array(
-				'group' => $group,
-				'groupOwner' => $group['Leader'],
-				'members' => $group['Member'],
-				'phase_id' => $phase_id,
-				'evokation_quests' => $evokationQuests,
-				'show_title' => false)); ?>
-		</div>
-	</div>-->
 
 	<!-- EVOKATION PREVIEW -->
 	<div class="text-center">
