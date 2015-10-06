@@ -1,0 +1,19 @@
+.link-preview {
+	margin-top: 20px;
+}
+
+.link-preview div > a:first-child, .link-preview .span8 > a:first-child {
+	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	color: #26dee0;
+}
+
+.link-preview img {
+	max-height: 120px;
+	max-width: 100%;
+}
+.link-preview h4 {
+	margin-top: 0;
+}
+.link-preview .alert {
+	margin-bottom: 0;
+}
