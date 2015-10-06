@@ -95,6 +95,14 @@
 	));
 	$load_evidences_url = str_replace('amp;', '', $load_evidences_url); //Workaround for Cakephp 2.x
 
+	//LOADING EVIDENCES
+	$load_evokations_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderEvokationList', 
+		'?' => array(
+			'mission_id' => $mission['Mission']['id'], 
+			'limit' => 10)
+	));
+	$load_evokations_url = str_replace('amp;', '', $load_evokations_url); //Workaround for Cakephp 2.x
+
 	//LOADING MAIN CONTENT
 	$load_main_content_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderPanelsMainContent', $mission['Mission']['id']));
 
@@ -104,6 +112,7 @@
 		evokeData.missions_load_quests_url = '$load_quests_url';
 		evokeData.missions_load_dossier_url = '$load_dossier_url';
 		evokeData.missions_load_evidences_url = '$load_evidences_url';
+		evokeData.missions_load_evokations_url = '$load_evokations_url';
 		evokeData.open_quests_by_default = '$open_by_default';
 		evokeData.load_main_content_url = '$load_main_content_url';
 		";

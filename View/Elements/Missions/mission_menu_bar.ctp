@@ -52,7 +52,7 @@ if (!isset($menu_buttons)) {
 
 			//EVOKATIONS
 			if (in_array('Evokations', $menu_buttons)): ?>
-				<a class="menu-icon default" id="menu-icon-tabEvidences" data-tab-content="tabEvidences">
+				<a class="menu-icon default" id="menu-icon-tabEvokations" data-tab-content="tabEvidences">
 					<div class="row">
 						<span class="fa fa-list-alt fa-2x vertical-align-middle text-color-gray"></span>
 					</div>

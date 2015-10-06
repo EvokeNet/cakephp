@@ -933,6 +933,51 @@ class MissionsController extends AppController {
 		$this->render('/Elements/Evidences/evidence_list');
 	}
 
+	public function renderEvokationList(){
+		$mission_id = $this->request->query('mission_id');
+		$groups = $this->getEvokations($mission_id);
+
+		debug($groups);
+		die();
+		// $evidences = ...
+
+		//Render
+		$this->set(compact('evidences'));
+		$this->layout = 'ajax';
+		$this->render('/Elements/Evidences/evidence_list');
+	}
+
+
+	public function getEvokations($mission_id = null, $offset = null, $limit = null){
+		$this->autoRender = false; // We don't render a view
+
+		$evokation_query_params = array();
+		$evokation_query_params['conditions'] = array();
+		$evokation_query_params['joins'] = array(
+			array(
+				'table'      => 'evokations',
+				'alias'      => 'EvokationJoin',
+				'type'       => 'INNER',
+				'conditions' => array(
+					'EvokationJoin.group_id   = Group.id',
+					'EvokationJoin.final_sent = 1'
+				)
+			)
+		);
+
+		if (!is_null($mission_id)) {
+			$evokation_query_params['conditions']['mission_id'] = $mission_id;
+		}
+		if (!is_null($offset)) {
+			$evokation_query_params['offset'] = $offset;
+		}
+		if (!is_null($limit)) {
+			$evokation_query_params['limit'] = $limit;
+		}
+
+		$this->loadModel('Group');
+		return $this->Group->find('all', $evokation_query_params);
+	}
 /**
  * Returns the HTML of a list of evidences to be rendered
  * @param int $mission_id - Optional ID to see evidences from a specific mission
@@ -966,6 +1011,31 @@ class MissionsController extends AppController {
 		}
 
 		return $newEvidencesHTML;
+	}
+
+	public function moreEvokations(){
+		$this->autoRender = false; // We don't render a view
+		
+		//QUERY
+		$newEvokations = $this->getEvokations(
+			$this->request->query('mission_id'),
+			$this->request->query('limit'),
+			$this->request->query('offset'));
+
+		//GENERATE HTML TO BE RETURNED
+		$elementToRender = 'Evokations/evokation_list_item';
+		$ind = 'Evokation';
+		
+		$newEvokationsHTML = "";
+
+		foreach ($newEvokations as $key => $value) {
+			$view = new View($this, false);
+			$content = ($view->element($elementToRender, array('e' => $value)));
+
+			$newEvokationsHTML .= $content .' ';
+		}
+
+		return $newEvokationsHTML;
 	}
 
 /**
