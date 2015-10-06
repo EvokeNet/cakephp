@@ -16,31 +16,6 @@ class GroupRequestsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
-// /**
-//  * index method
-//  *
-//  * @return void
-//  */
-// 	public function index() {
-// 		$this->GroupRequest->recursive = 0;
-// 		$this->set('groupRequests', $this->Paginator->paginate());
-// 	}
-
-// /**
-//  * view method
-//  *
-//  * @throws NotFoundException
-//  * @param string $id
-//  * @return void
-//  */
-// 	public function view($id = null) {
-// 		if (!$this->GroupRequest->exists($id)) {
-// 			throw new NotFoundException(__('Invalid group request'));
-// 		}
-// 		$options = array('conditions' => array('GroupRequest.' . $this->GroupRequest->primaryKey => $id));
-// 		$this->set('groupRequest', $this->GroupRequest->find('first', $options));
-// 	}
-
 /**
  * add method
  *

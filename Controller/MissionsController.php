@@ -68,41 +68,6 @@ class MissionsController extends AppController {
 	}
 
 /**
- * index method
- *
- * @return void
- */
-	// public function link($user_id, $basic_training, $mission_id, $phase_id, $url) {
-
-	// 	$this->loadModel('UserPhaseChecklist');
-
-	// 	if($basic_training == 1){
-	// 		$insertData = array(
-	// 			'user_id' => $user_id,  
-	// 			'phase_checklist_id' => 3,
-	// 			'mission_id' => $mission_id,
-	// 			'phase_id' => $phase_id,
-	// 			'completed' => true,
-	// 		);
-
-	// 		$check3 = $this->UserPhaseChecklist->find('first', array('conditions' => array(
-	// 			'UserPhaseChecklist.user_id' => $user_id,  
-	// 			'UserPhaseChecklist.phase_checklist_id' => 3,
-	// 			'UserPhaseChecklist.mission_id' => $mission_id,
-	// 			'UserPhaseChecklist.phase_id' => $phase_id,
-	// 		)));
-
-	// 		if(empty($check3))
-	// 			$this->UserPhaseChecklist->saveAll($insertData);
-
-	// 	} 
-
-	// 	$url = str_replace('HTMLSLASH', '/', $url);
-	// 	return $this->redirect('http://'.$url);
-
-	// }
-
-/**
  * Renders panels main content
  * @param int $mission_id - ID of the current mission
  */
@@ -163,26 +128,6 @@ class MissionsController extends AppController {
 				array_push($myGroups, $group);
 			}
 		}
-
-		// //QUESTS TO DISPLAY IN THE EVOKATION PHASE
-		// $evokationQuests = array();
-		// if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
-		// 	//Evokation quests in this mission
-		// 	$evokationQuests = $this->Mission->Phase->Quest->find('evokePhase',array(
-		// 		'conditions' => array('mission_id' => $mission_id)
-		// 	));
-
-		// 	//Status
-		// 	foreach ($evokationQuests as &$quest) {
-		// 		if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'],$phase['Phase']['id'])) {
-		// 			$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
-		// 		}
-		// 		else {
-		// 			$quest['Quest']['status'] = Quest::STATUS_NOT_STARTED;
-		// 		}
-		// 	}
-		// }
-
 
 		//TRANSLATION
 		$lang = $this->getCurrentLanguage();
@@ -640,26 +585,6 @@ class MissionsController extends AppController {
 			'secret' => Configure::read('fb_app_secret'),
 			'allowSignedRequest' => false
 		));
-
-		// //---------------------------------
-		// //QUESTS TO DISPLAY IN THE EVOKATION PHASE
-		// $evokationQuests = array();
-		// if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
-		// 	//Evokation quests in this mission
-		// 	$evokationQuests = $this->Mission->Phase->Quest->find('evokePhase',array(
-		// 		'conditions' => array('mission_id' => $mission_id)
-		// 	));
-
-		// 	//Status
-		// 	foreach ($evokationQuests as &$quest) {
-		// 		if ($this->Mission->Phase->Quest->hasCompleted($user['id'],$quest['Quest']['id'],$phase['Phase']['id'])) {
-		// 			$quest['Quest']['status'] = Quest::STATUS_IN_PROGRESS;
-		// 		}
-		// 		else {
-		// 			$quest['Quest']['status'] = Quest::STATUS_NOT_STARTED;
-		// 		}
-		// 	}
-		// }
 
 		//---------------------------------
 		//TRANSLATION

@@ -21,8 +21,6 @@ class EvidencesController extends AppController {
 
 	public $user = null;
 
-	//public $helpers = array('Media.Media');
-
 	public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('view','add');
@@ -165,11 +163,10 @@ public function addEvidence() {
 			)
 		));
 		// IF THIS EVIDENCE HAS ALREADY BEEN SUBMITTED
-		//debug($thisEvokation);
 		if(count($thisEvokation)){
 			$this->request->data['Evidence'] = $thisEvokation['Evidence'];
 		}
-		//debug($this->request->data['Evidence']);
+
 		//LOAD QUEST
 		$this->loadModel("Quest");
 

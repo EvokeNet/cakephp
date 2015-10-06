@@ -21,21 +21,6 @@ class LikesController extends AppController {
  *
  * @return void
  */
-	// public function add() {
-	// 	if ($this->request->is('post')) {
-	// 		$this->Like->create();
-	// 		if ($this->Like->save($this->request->data)) {
-	// 			$this->Session->setFlash(__('The like has been saved.'));
-	// 			return $this->redirect(array('action' => 'index'));
-	// 		} else {
-	// 			$this->Session->setFlash(__('The like could not be saved. Please, try again.'));
-	// 		}
-	// 	}
-	// 	$evidences = $this->Like->Evidence->find('list');
-	// 	$users = $this->Like->User->find('list');
-	// 	$this->set(compact('evidences', 'users'));
-	// }
-
 	public function add($evidence_id = null) {
 		$this->autoRender = false;
 

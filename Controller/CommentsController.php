@@ -29,7 +29,6 @@ class CommentsController extends AppController {
 			$this->Comment->create();
 
 			if ($this->Comment->save($this->request->data)) {
-				// echo $this->Html->script('notifications/send.js');
 
 				//REDIRECT TO VIEW THE EVIDENCE
 				if($this->request->data['Comment']['evidence_id']) {
@@ -117,30 +116,6 @@ class CommentsController extends AppController {
 			$this->redirect($this->referer());
 	}
 
-// /**
-//  * get user by id method
-//  *
-//  * @throws NotFoundException
-//  * @param string $id
-//  * @return void
-//  */
-// 	public function getUserById($id = null) {
-// 		$this->Comment->id = $id;
-// 		if (!$this->Comment->exists()) {
-// 			throw new NotFoundException(__('Invalid comment'));
-// 		}
-// 		$this->request->onlyAllow('post', 'delete');
-// 		if ($this->Comment->delete()) {
-// 			$this->Session->setFlash(__('The comment has been deleted.'));
-// 		} else {
-// 			$this->Session->setFlash(__('The comment could not be deleted. Please, try again.'));
-// 		}
-// 		return $this->redirect(array('action' => 'index'));
-
-// 	}
-
-
-
 /**
  * admin_edit method
  *
@@ -189,4 +164,5 @@ class CommentsController extends AppController {
 			$this->Session->setFlash(__('The comment could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}
