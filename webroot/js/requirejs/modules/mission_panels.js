@@ -14,7 +14,6 @@ define(['jquery','evoke','evokedata','jqueryui'], function($,evoke,evokeData) {
 
 		missions_content_overlay = $('#missions-content-overlay');
 		missions_content_overlay_body = $('#missions-content-overlay-body');
-		console.log("URL: "+ajax_url);
 		return $.ajax({
 			url: ajax_url,
 			data: ajax_data,

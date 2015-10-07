@@ -1,7 +1,8 @@
-<div id="moreEvokationsTarget" class="evidences-list">
+<div id="moreEvokationsTarget" class="evokations-list">
 	<?php 
 	if (isset($groups)):
 		foreach($groups as $g):
+			//debug($g);
 			echo $this->element('Evokations/evokation_list_item', array('g' => $g));
 		endforeach;
 	endif; ?>
@@ -25,9 +26,11 @@
 
 <!-- SCRIPT -->
 <?php
-	//LOADING EVokationS
+	//LOADING EVOKATIONS
 	$load_evokations_url = $this->Html->url(array('controller' => 'missions', 'action' => 'moreEvokations', 
-		'?' => array('mission_id' => $this->request->query('mission_id'))
+		'?' => array(
+			'mission_id' => $this->request->query('mission_id')
+		)
 	));
 	$load_evokations_url = str_replace('amp;', '', $load_evokations_url); //Workaround for Cakephp 2.x
 

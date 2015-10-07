@@ -361,16 +361,15 @@ class MissionsController extends AppController {
 
 	public function renderEvokationList(){
 		$mission_id = $this->request->query('mission_id');
-		$groups = $this->getEvokations($mission_id);
+		$limit      = $this->request->query('limit');
+		$offset     = $this->request->query('offset');
+		$groups     = $this->getEvokations($mission_id, $offset, $limit);
 
-		debug($groups);
-		die();
-		// $evidences = ...
 
 		//Render
-		$this->set(compact('evidences'));
+		$this->set(compact('groups'));
 		$this->layout = 'ajax';
-		$this->render('/Elements/Evidences/evidence_list');
+		$this->render('/Elements/Evokations/evokation_list');
 	}
 
 
@@ -400,6 +399,8 @@ class MissionsController extends AppController {
 		if (!is_null($limit)) {
 			$evokation_query_params['limit'] = $limit;
 		}
+		// get the evokation that each group has sent
+		$evokation_query_params['contain'] = 'Evokation';
 
 		$this->loadModel('Group');
 		return $this->Group->find('all', $evokation_query_params);
@@ -445,8 +446,10 @@ class MissionsController extends AppController {
 		//QUERY
 		$newEvokations = $this->getEvokations(
 			$this->request->query('mission_id'),
-			$this->request->query('limit'),
-			$this->request->query('offset'));
+			$this->request->query('offset'),
+			$this->request->query('limit'));
+
+		// debug($newEvokations);
 
 		//GENERATE HTML TO BE RETURNED
 		$elementToRender = 'Evokations/evokation_list_item';
@@ -455,8 +458,9 @@ class MissionsController extends AppController {
 		$newEvokationsHTML = "";
 
 		foreach ($newEvokations as $key => $value) {
+			// debug($value);
 			$view = new View($this, false);
-			$content = ($view->element($elementToRender, array('e' => $value)));
+			$content = ($view->element($elementToRender, array('g' => $value)));
 
 			$newEvokationsHTML .= $content .' ';
 		}

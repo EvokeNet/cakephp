@@ -223,7 +223,7 @@ public function addEvidence() {
 		$this->set(compact('evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part', 'act_evidences'));
 	}
 
-	public function preview_evokation($evokation_id, $mission_id, $phase_id){
+	public function preview_evokation($evokation_id, $mission_id, $phase_id = null){
 
 		$evokation_parts = $this->Evidence->getEvokationParts($evokation_id);
 		

@@ -69,6 +69,11 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				event.preventDefault();
 			});
 
+			//CLICKING ON EACH EVIDENCE OPENS IT ON THE MISSION-OVERLAY ON THE LEFT
+			$("body").on( "click", "a.evokation-list-item-link", function( event ) {
+				missionPanels.openInMissionOverlay($(this).attr("href")+"/true");
+				event.preventDefault();
+			});
 
 			//--------------------------------------------//
 			//OPEN QUESTS PANEL
