@@ -1,6 +1,6 @@
 <?php 
-	//VIEW-MISSION COMMON TEMPLATE
-	$this->extend('/Common/view-mission');
+	//MISSION COMMON LAYOUT
+	$this->extend('/Common/mission_layout');
 
 	//MENU TO OPEN PANELS (menu-icons)
 	$this->start('panelsMenu');
