@@ -28,10 +28,6 @@ class Phase extends AppModel {
 		'Enumerable',
 		'BrainstormSessionEvoke.ActPhaseBrainstorm',
 		'Optimum.ForumFilterable'
-		// 'Translate' => array(
-		//     'name' => 'phaseName', 
-		//     'description' => 'phaseDescription'
-		// )
 	);
 
 	const TYPE_INDIVIDUAL = 0;

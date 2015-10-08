@@ -39,10 +39,6 @@ class Quest extends AppModel {
 		'Containable',
 		'BrainstormSessionEvoke.ActPhaseBrainstorm',
 		'Enumerable'
-		// 'Translate' => array(
-		//     'title' => 'questTitle', 
-		//     'description' => 'questDescription',
-		// )
 	);
 
 	const TYPE_EVIDENCE 	  = 0;
