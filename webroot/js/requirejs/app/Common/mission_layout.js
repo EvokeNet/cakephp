@@ -100,9 +100,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					var rootElement = '#'+panel_source+' .optimum';
 
 					require(['../Optimum/js/app'], function (OptimumForum) {
-						// OptimumForum.initializeForum(rootElement);
 						OptimumForum.App.DiscussionsRoute.reopen();
-						// OptimumForum.App.PluginIntegration.transitionTo('discussions',forum_id);
 					});
 				}
 
