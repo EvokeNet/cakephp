@@ -100,7 +100,6 @@ define(['jquery','evoke','evokedata','jqueryui'], function($,evoke,evokeData) {
 	 * Reload tab with Quests, but keep the same quest open
 	 */
 	missionPanels.reloadTabQuests = function() {
-		//console.log("HERE");
 		var tabQuestsContent = $('.tabQuestsContent');
 		var active_tab_index = tabQuestsContent.find('dd.active').index();
 
