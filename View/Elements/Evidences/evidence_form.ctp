@@ -49,7 +49,6 @@ endif;
 		</div>
 	</div>
 
-
 	<!-- EVIDENCE FORM -->
 	<div id="new-evidence-form" class="form-evoke-style hidden">
 		<?php

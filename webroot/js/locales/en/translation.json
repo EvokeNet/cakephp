@@ -12,6 +12,10 @@
 					"msg_phase_unlocked":{
 						"title": "Phase unlocked!",
 						"text": "Congratulations, you just unlocked a phase! You can keep working on this phase, but you can also take a look on the next one."
+					},
+					"msg_empty_link":{
+						"title": "Empty link!",
+						"text": "You have to fill the link field to submit this kind of Evokation part."
 					}
 				},
 				"view_evidence":{

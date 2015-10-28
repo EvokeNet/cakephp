@@ -168,6 +168,13 @@ class MissionsController extends AppController {
 			'conditions' => array('mission_id' => $mission_id)
 		));
 
+		foreach ($evokationQuests as $key => &$eq) {
+			$user_id  = $this->Auth->user()['id'];
+			$quest_id = $eq['Quest']['id'];
+			
+			$eq['status'] = $this->Quest->getStatus($user_id, $quest_id, $phase_id);
+		}
+
 		$user_id  = $this->Auth->user()['id'];
 
     	$evk_parts = $this->Evidence->find('all', array(

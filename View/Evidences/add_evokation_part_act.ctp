@@ -27,7 +27,22 @@ if (isset($evokation_part) && ($evokation_part)) {
 </div>
 
 <div class="evidence row full-width min-full-height">	
-
+	<script>
+		// multi expand dont closa a panel when another one is opened
+		$(document).foundation({
+		  accordion: {
+		    // specify the class used for accordion panels
+		    content_class: 'content',
+		    // specify the class used for active (or open) accordion panels
+		    active_class: 'active',
+		    // allow multiple accordion panels to be active at the same time
+		    multi_expand: true,
+		    // allow accordion panels to be closed by clicking on their headers
+		    // setting to false only closes accordion panels when another is opened
+		    toggleable: true
+		  }
+		});
+	</script>
 	<div class="columns background-color-standard small-12 medium-4 min-full-height padding bottom-2 top-3">
 		<h4 class="text-color-darker-gray"><?=__('Your group\'s evidences are here:')?></h4>
 		<dl class="accordion" data-accordion>
@@ -81,16 +96,16 @@ if (isset($evokation_part) && ($evokation_part)) {
 	<div class="columns small-12 medium-8 padding top-3 left-4 right-4 min-full-height">
 		<!-- TITLE -->
 		<h2 class="text-glow text-center">
-			<?= __('Create your '.$element_title) ?>
+			<?= __('Create your %s', $element_title) ?>
 		</h2>
 
 		<!-- FORM -->
 		<?php
 		if (!isset($loggedIn) || (!$loggedIn)) {
-			echo $this->element('Evidences/evidence_form', array('sample_form' => true));
+			echo $this->element('Evokations/evokation_form', array('sample_form' => true));
 		}
 		else {
-			echo $this->element('Evidences/evidence_form');
+			echo $this->element('Evokations/evokation_form');
 		}
 			
 		?>

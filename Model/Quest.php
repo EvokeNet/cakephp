@@ -127,6 +127,26 @@ class Quest extends AppModel {
 		return false;
 	}
 
+	public function getStatus($user_id, $quest_id, $phase_id = null){
+		if (!$this->exists($quest_id)) {
+			throw new NotFoundException(__('Invalid quest'));
+		}
+
+		$quest = $this->findById($quest_id);
+
+		$response = $this->getQuestResponse($user_id, $quest_id, $phase_id);
+
+		if (isset($response['Evidence']) && (count($response['Evidence']) > 0)) {
+			if($response['Evidence']['editing_user_id'] != null){
+				return array(self::STATUS_IN_USE, $response['Evidence']['editing_user_id']);
+			}
+			return array(self::STATUS_IN_PROGRESS, null);
+		}
+
+		return array(self::STATUS_NOT_STARTED, null);
+
+	}
+
 /**
  * Based on the type of quest, this method gets the response sent by the user
  * The phase to which the response relates can be specified, if different from the quest phase
