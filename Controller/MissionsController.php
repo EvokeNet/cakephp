@@ -45,6 +45,10 @@ class MissionsController extends AppController {
 		}
 
 		$missions = $this->Mission->find('all');
+
+		// move basic training to the front if it's not already there
+		$this->move_basic_training_to_front($missions);
+
 		foreach ($missions as $m => $mission) {
 			if($flags['_es']) {
 				$missions[$m]['Mission']['title'] = $mission['Mission']['title_es'];
@@ -731,7 +735,7 @@ class MissionsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function basicTraining($id = null) {
+	public function basic_training($id = null) {
 		if (!$this->Mission->exists($id)) {
 			throw new NotFoundException(__('Invalid mission'));
 		}
@@ -791,6 +795,8 @@ class MissionsController extends AppController {
 		}
 
 		$this->set(compact('user', 'quests', 'questionnaires', 'previous_answers'));
+
+		$this->render();
 	}
 
 /**
@@ -928,6 +934,21 @@ class MissionsController extends AppController {
 			$this->Session->setFlash(__('The mission has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The mission could not be deleted. Please, try again.'));
+		}
+	}
+
+	private function move_basic_training_to_front(&$missions) {
+
+		if ($missions[0]['Mission']['basic_training'] != 1) {
+			$basic_training = [];
+			
+			foreach ($missions as $m => $mission) {
+				if ($mission['Mission']['basic_training'] == 1) {
+					$basic_training = $mission;
+					unset($missions[$m]);
+				}
+			}
+			array_unshift($missions, $basic_training);
 		}
 	}
 }
