@@ -1,3 +1,4 @@
+<!-- Joyride step list start -->
 <ol class="joyride-list" data-joyride>
 	<li data-text="Begin Tour">
 		<p>Before you start, take a quick tour of what you can do!</p>
@@ -8,13 +9,13 @@
 	<li data-text="Next">
 		<p>Here you will get quests to fufill.</p>
 	</li>
-	<li data-id="menu-icon-tabEvidences" data-class="custom so-awesome" data-text="Next" data-prev-text="Prev">
+	<li data-id="menu-icon-tabEvidences" data-text="Next" data-prev-text="Prev">
 		<p>Review the evidence others have gathered.</p>
 	</li>
 	<li data-text="Next">
 		<p>Here you can see and comment on the evidence gathered by your fellow agents.</p>
 	</li>
-	<li data-id="menu-icon-tabDossier" data-button="Next" data-prev-text="Prev" data-options="">
+	<li data-id="menu-icon-tabDossier" data-button="Next" data-prev-text="Prev">
 		<p>Keep track of what you've accomplished!</p>
 	</li>
 	<li data-text="Next">
@@ -28,6 +29,7 @@
 		</p>
 	</li>
 </ol>
+<!-- Joyride step list end -->
 
 <?php $this->HTML->script('requirejs/app/Elements/Missions/basic_training_tour.js',
 													array('inline' => false)) ?>
