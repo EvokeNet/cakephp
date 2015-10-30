@@ -26,20 +26,19 @@
 						<?= strtoupper($mission['Mission']['title']) ?>
 					</h1>
 				</div>
+				<div class="evoke default view view-first">
+					<a href="<?= $mission_url ?>">
+						<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
+							<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
+						<?php else :?>
+							<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+						<?php endif ?>
 
-								<div class="evoke default view view-first">
-									<a href="<?= $mission_url ?>">
-										<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
-						<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
-										<?php else :?>
-						<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
-									<?php endif ?>
-
-											<div class="mask">
-													<p><?= $this->Text->getExcerpt($mission['Mission']['description'], 200, "...") ?></p>
-											</div>
-										</a>
-								</div>
+							<div class="mask">
+									<p><?= $this->Text->getExcerpt($mission['Mission']['description'], 200, "...") ?></p>
+							</div>
+						</a>
+				</div>
 
 			<?php endforeach; ?>
 
