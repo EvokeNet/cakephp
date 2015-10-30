@@ -172,27 +172,27 @@ class MissionsController extends AppController {
 
 		$user_id  = $this->Auth->user()['id'];
 
-			$evk_parts = $this->Evidence->find('all', array(
-				'conditions' => array(
-					'user_id' 	   => $user_id,
-					'evokation_id' => $evokation_id
-				)
-			));
+		$evk_parts = $this->Evidence->find('all', array(
+			'conditions' => array(
+				'user_id' 	   => $user_id,
+				'evokation_id' => $evokation_id
+			)
+		));
 
-			$sent = $this->Evokation->find('first', array(
-				'conditions' => array(
-					'id' => $evokation_id
-				),
-				'fields' => array(
-					'final_sent'
-				)
-			))['Evokation']['final_sent'];
+		$sent = $this->Evokation->find('first', array(
+			'conditions' => array(
+				'id' => $evokation_id
+			),
+			'fields' => array(
+				'final_sent'
+			)
+		))['Evokation']['final_sent'];
 
-			$toRender = '/Elements/Missions/evokation_quests';
-			// If this evokation has already been sent
-			if($sent){
-				$toRender = '/Elements/Missions/evokation_sent';
-			}
+		$toRender = '/Elements/Missions/evokation_quests';
+		// If this evokation has already been sent
+		if($sent){
+			$toRender = '/Elements/Missions/evokation_sent';
+		}
 
 		// flag to check if this user has subimitted all evokation parts for this mission
 		$done = count($evk_parts) == count($evokationQuests);
@@ -941,7 +941,7 @@ class MissionsController extends AppController {
 
 		if ($missions[0]['Mission']['basic_training'] != 1) {
 			$basic_training = [];
-			
+
 			foreach ($missions as $m => $mission) {
 				if ($mission['Mission']['basic_training'] == 1) {
 					$basic_training = $mission;
