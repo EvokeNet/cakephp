@@ -1,7 +1,7 @@
 <!-- Joyride step list start -->
 <ol class="joyride-list" data-joyride>
 	<li data-text="Begin Tour">
-		<p><?php echo __('Before you start, take a quick tour of what you can do!') ?></p>
+		<p><?= __('Hello '.$user['User']['name'].'! Welcome to your Basic Training to become an active agent')</p>
 	</li>
 	<li data-tab="tabQuests" data-id="menu-icon-tabQuests" data-text="Next" data-options="prev_button: false">
 		<p><?php echo __('Complete Quests') ?></p>
@@ -23,11 +23,8 @@
 	</li>
 	<li data-button="End" data-prev-text="Prev">
 		<p>
-			<?php echo __('
-				Now you\'re ready to be an Evoke Net Agent!
-				Complete this mission to earn your Rookie badge and continue
-				onto the other missions!
-			') ?>
+			<h4><?= __('Good luck!') ?></h4>
+			<p><?= __("Now, go out there and become an agent of change!") ?></p>
 		</p>
 	</li>
 </ol>
