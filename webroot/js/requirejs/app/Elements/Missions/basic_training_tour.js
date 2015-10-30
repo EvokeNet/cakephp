@@ -15,14 +15,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				tip_animation_fade_speed : 300,
 				//This will run after every step of the tour
 				post_step_callback       : function() {
-					if (this['$target'][0]['id'].length > 0) { // only run this if the step is on a button
+					if (this['$target'][0]['id'].length > 0 &&
+							$('#' + this['$target'][0]['id']).attr('data-tab-content')) { // only run this if the step is on a button
 						$('#' + this['$target'][0]['id']).click();
 					}
 					window.scrollTo(0, 0); // used to reset the frame so the open tab is not too far up
 				},
-				// This will run at the end of the whole tour,
-				// it should reset everything on the page and award a badge
-				// TODO: ajax call to award basic training badge!
+				// This will run at the end of the whole tour
 				post_ride_callback       : function() {
 					$('.close-sidebar-button').click();
 				}
