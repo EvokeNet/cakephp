@@ -1,18 +1,31 @@
 <ol class="joyride-list" data-joyride>
-	<li data-id="menu-icon-tabQuests" data-text="Next" data-options="tip_location: top; prev_button: false">
-		<p>Hello and welcome to the Joyride <br>documentation page.</p>
+	<li data-text="Begin Tour">
+		<p>Before you start, take a quick tour of what you can do!</p>
+	</li>
+	<li data-tab="tabQuests" data-id="menu-icon-tabQuests" data-text="Next" data-options="prev_button: false">
+		<p>Complete Quests</p>
+	</li>
+	<li data-text="Next">
+		<p>Here you will get quests to fufill.</p>
 	</li>
 	<li data-id="menu-icon-tabEvidences" data-class="custom so-awesome" data-text="Next" data-prev-text="Prev">
-		<h4>Stop #1</h4>
-		<p>You can control all the details for you tour stop. Any valid HTML will work inside of Joyride.</p>
+		<p>Review the evidence others have gathered.</p>
 	</li>
-	<li data-id="menu-icon-tabDossier" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-		<h4>Stop #2</h4>
-		<p>Get the details right by styling Joyride with a custom stylesheet!</p>
+	<li data-text="Next">
+		<p>Here you can see and comment on the evidence gathered by your fellow agents.</p>
+	</li>
+	<li data-id="menu-icon-tabDossier" data-button="Next" data-prev-text="Prev" data-options="">
+		<p>Keep track of what you've accomplished!</p>
+	</li>
+	<li data-text="Next">
+		<p>This is where you can review the evidence you have submitted for a mission.</p>
 	</li>
 	<li data-button="End" data-prev-text="Prev">
-		<h4>Stop #3</h4>
-		<p>It works as a modal too!</p>
+		<p>
+			Now you're ready to be a full Evoke Net Agent!
+			Feel free to explore this mission more to familiarize yourself with how things work,
+			or you can continue onto your first mission!
+		</p>
 	</li>
 </ol>
 
