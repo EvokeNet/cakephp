@@ -22,7 +22,7 @@
 	</li>
 	<li data-button="End" data-prev-text="Prev">
 		<p>
-			Now you're ready to be a full Evoke Net Agent!
+			Now you're ready to be an Evoke Net Agent!
 			Feel free to explore this mission more to familiarize yourself with how things work,
 			or you can continue onto your first mission!
 		</p>
