@@ -1,7 +1,7 @@
 <!-- Joyride step list start -->
 <ol class="joyride-list" data-joyride>
 	<li data-text="Begin Tour">
-		<p><?= __('Hello '.$user['User']['name'].'! Welcome to your Basic Training to become an active agent')</p>
+		<p><?= __('Hello '.$user['name'].'! Welcome to your Basic Training to become an active agent') ?></p>
 	</li>
 	<li data-tab="tabQuests" data-id="menu-icon-tabQuests" data-text="Next" data-options="prev_button: false">
 		<p><?php echo __('Complete Quests') ?></p>
