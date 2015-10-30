@@ -25,8 +25,8 @@
 		<p>
 			<?php echo __('
 				Now you\'re ready to be an Evoke Net Agent!
-				Feel free to explore this mission more to familiarize yourself with how things work,
-				or you can continue onto your first mission!
+				Complete this mission to earn your Rookie badge and continue
+				onto the other missions!
 			') ?>
 		</p>
 	</li>
