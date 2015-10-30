@@ -735,7 +735,7 @@ class MissionsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function basic_training($id = null) {
+	public function basicTraining($id = null) {
 		if (!$this->Mission->exists($id)) {
 			throw new NotFoundException(__('Invalid mission'));
 		}
@@ -795,8 +795,6 @@ class MissionsController extends AppController {
 		}
 
 		$this->set(compact('user', 'quests', 'questionnaires', 'previous_answers'));
-
-		$this->render();
 	}
 
 /**
