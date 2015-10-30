@@ -40,23 +40,23 @@
 
 			<div class = "evoke missions graphic-cover">
 				<?php if(!empty($novels)) :?>
-					 <ul class="clearing-thumbs clearing-feature" data-clearing>
+					<ul class="clearing-thumbs clearing-feature" data-clearing>
 
-						 <li class="clearing-featured-img ">
-							 <div class = "evoke missions graphic-cover-img">
-								 <?php if(!isset($launchers[$missionPhase['Phase']['id']]['image_dir']) || is_null($launchers[$missionPhase['Phase']['id']]['image_dir'])) :?>
-									 <a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
-										 <img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
-									 </a>
-								 <?php else:?>
-									 <a href="<?= $this->webroot.'files/attachment/attachment/'.$launchers[$missionPhase['Phase']['id']]['image_dir'].'/'.$launchers[$missionPhase['Phase']['id']]['image_name'] ?>">
-										 <img src="<?= $this->webroot.'files/attachment/attachment/'.$launchers[$missionPhase['Phase']['id']]['image_dir'].'/'.$launchers[$missionPhase['Phase']['id']]['image_name'] ?>"/>
-									 </a>
-								 <?php endif;?>
-							 </div>
-						 </li>
+						<li class="clearing-featured-img ">
+							<div class = "evoke missions graphic-cover-img">
+								<?php if(!isset($launchers[$missionPhase['Phase']['id']]['image_dir']) || is_null($launchers[$missionPhase['Phase']['id']]['image_dir'])) :?>
+									<a href="<?= $this->webroot.'img/hq_cover.jpg'; ?>">
+										<img src="<?= $this->webroot.'img/hq_cover.jpg'?>">
+									</a>
+								<?php else:?>
+									<a href="<?= $this->webroot.'files/attachment/attachment/'.$launchers[$missionPhase['Phase']['id']]['image_dir'].'/'.$launchers[$missionPhase['Phase']['id']]['image_name'] ?>">
+										<img src="<?= $this->webroot.'files/attachment/attachment/'.$launchers[$missionPhase['Phase']['id']]['image_dir'].'/'.$launchers[$missionPhase['Phase']['id']]['image_name'] ?>"/>
+									</a>
+								<?php endif;?>
+							</div>
+						</li>
 
-						 <?php foreach ($novels as $novel) : ?>
+						<?php foreach ($novels as $novel) : ?>
 							<li><a href="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'].''; ?>"><img src="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" width="100%"></a></li>
 						<?php endforeach; ?>
 
@@ -70,12 +70,10 @@
 				<?= $this->element('mission_status', array('missionPhases' => $missionPhases, 'missionPhase' => $missionPhase, 'completed' => $completed, 'total' => $total)) ?>
 
 				<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
-
 					<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>" style = "height:22vw; width:100%">
-								<?php else :?>
+				<?php else :?>
 					<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>' style = "height:22vw; width:100%">
-
-								<?php endif ?>
+				<?php endif ?>
 			</div>
 
 			<div class="row full-width-alternate">
@@ -91,9 +89,9 @@
 
 						<?php if(!is_null($video) && $video != '') : ?>
 							<div class="flex-video widescreen vimeo" style = "margin-top:50px">
-							<iframe src="<?= $video ?>" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-						</div>
-					<?php endif; ?>
+								<iframe src="<?= $video ?>" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+							</div>
+						<?php endif; ?>
 
 						<p id="numero2"><?= $mission['Mission']['description'];?></p>
 
