@@ -161,12 +161,12 @@ button:hover, button:focus, .button:hover, .button:focus {
 
 .right-off-canvas-menu * {
 	-webkit-backface-visibility: visible; /* Chrome, Safari, Opera */
-		 backface-visibility: visible;
+	backface-visibility: visible;
 }
 
 .left-off-canvas-menu * {
 	-webkit-backface-visibility: visible; /* Chrome, Safari, Opera */
-		 backface-visibility: visible;
+	backface-visibility: visible;
 }
 
 .right-small {
