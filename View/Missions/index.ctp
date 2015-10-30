@@ -7,11 +7,11 @@
 	$this->end();
 ?>
 
-	  <div class="small-10 medium-10 large-10 columns maincolumn body-padding text-center full-width">
-	  	
-	  	<h3 class = "evoke padding top-1 padding bottom-1"> <?= strtoupper(__('Choose a mission')) ?> </h3>
-			
-			<?php foreach($missions as $mission): 
+		<div class="small-10 medium-10 large-10 columns maincolumn body-padding text-center full-width">
+
+			<h3 class = "evoke padding top-1 padding bottom-1"> <?= strtoupper(__('Choose a mission')) ?> </h3>
+
+			<?php foreach($missions as $mission):
 				//DEFINE MISSION URL DEPENDING ON WHETHER THE USER IS LOGGED IN OR NOT
 				if (isset($loggedIn) && ($loggedIn)) {
 					$mission_url = $this->Html->url(array('controller' => 'missions', 'action' => 'view_mission', $mission['Mission']['id']));
@@ -26,20 +26,19 @@
 						<?= strtoupper($mission['Mission']['title']) ?>
 					</h1>
 				</div>
+				<div class="evoke default view view-first">
+					<a href="<?= $mission_url ?>">
+						<?php if(!is_null($mission['Mission']['cover_dir'])) :?>
+							<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
+						<?php else :?>
+							<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+						<?php endif ?>
 
-                <div class="evoke default view view-first">
-                	<a href="<?= $mission_url ?>">
-                    <?php if(!is_null($mission['Mission']['cover_dir'])) :?>
-						<img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
-                    <?php else :?>
-						<img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
-                	<?php endif ?>
-                    
-	                    <div class="mask">
-	                        <p><?= $this->Text->getExcerpt($mission['Mission']['description'], 200, "...") ?></p>
-	                    </div>
-                    </a>
-                </div> 
+							<div class="mask">
+									<p><?= $this->Text->getExcerpt($mission['Mission']['description'], 200, "...") ?></p>
+							</div>
+						</a>
+				</div>
 
 			<?php endforeach; ?>
 
