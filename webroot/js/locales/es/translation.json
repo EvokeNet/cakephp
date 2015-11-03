@@ -16,10 +16,13 @@
 					"msg_empty_link":{
 						"title": "Campo do Hipervinculo vacio!",
 						"text": "Usted tiene que llenar el campo de Hipervinculo para enviar este tipo de Evokation part."
+<<<<<<< HEAD
 					},
 					"msg_sucess":{
 						"title": "Felicidades!",
 						"text": "Su Evokation Part ha sido enviado!"
+=======
+>>>>>>> evokationParts
 					}
 				},
 				"view_evidence":{

@@ -16,10 +16,13 @@
 					"msg_empty_link":{
 						"title": "Empty link!",
 						"text": "You have to fill the link field to submit this kind of Evokation part."
+<<<<<<< HEAD
 					},
 					"msg_sucess":{
 						"title": "Congratulations!",
 						"text": "Your Evokation Part has been submitted!"
+=======
+>>>>>>> evokationParts
 					}
 				},
 				"view_evidence":{
