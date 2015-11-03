@@ -170,28 +170,16 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					});
 				}else{
 					
-<<<<<<< HEAD
 					link = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+link+'" frameborder="1" allowfullscreen></iframe>';
 	
-=======
-					link = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+link+'" frameborder="0" allowfullscreen></iframe>';
-					//$('#videoWrapper').html = '';
-					//var btnSubmit = '<a href="#"  id="btnEmbededLink" class="button thin"><?php echo __("Submit") ?></a>';
->>>>>>> evokationParts
 					$('#videoWrapper').html(link);
 					//$('#videoWrapper').append(btnSubmit);
 				}
 			});
 
-<<<<<<< HEAD
 			$('#sendEmbededLink').on("click", function(event){
 				event.preventDefault();
 				var link = $('#embededLink').val();
-=======
-			$('#sendEmbededLink').on("click", function(){
-				var link = $('#embededLink').val();
-				console.log(link);
->>>>>>> evokationParts
 				if(link == null || link == '' || !ytVidId(link)){
 					swal({
 						title: i18n.t("app.elements.evidences.evidence_form.msg_empty_link.title"),
@@ -199,7 +187,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						type: "warning"
 					});
 				}else{
-<<<<<<< HEAD
 					var $this = $(this);
 					swal({
 						title: i18n.t("app.elements.evidences.evidence_form.msg_sucess.title"),
@@ -207,21 +194,6 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						type: "success"
 					}, function(){
 						$this.closest('form').trigger('submit');
-=======
-					console.log($('#EvidenceAddEvokationPartActForm').serializeArray());
-					$.ajax({
-						url: $('#EvidenceAddEvokationPartActForm').attr('action'),
-						type: 'POST',
-						data: $('#EvidenceAddEvokationPartActForm').serializeArray(),
-						dataType: 'json',
-						success: function(data, textStatus, jxqh) {
-							console.log(data);
-							console.log(textStatus);
-							console.log(jxqh);
-						}, error: function(a, b, c) {
-							console.log(a, b, c);
-						}
->>>>>>> evokationParts
 					});
 				}
 			});

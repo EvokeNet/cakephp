@@ -63,7 +63,6 @@ endif;
 	<!-- YOUTUBE -->
 	<div id="youTubeModal" class="reveal-modal medium background-color-standard" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 	  <h2 id="modalTitle" class="text-glow">Show us your video:</h2>
-<<<<<<< HEAD
 	  
 	 
 	  <?php 
@@ -73,14 +72,6 @@ endif;
 	  		echo "Insert here the link of your embeded video:";
 			echo $this->Form->input('main_content', array('type' => 'text', 'label' => false, 'id' => 'embededLink'));
 			echo $this->Form->hidden('type', array('value' => 'video'));
-=======
-	  <p>Insert here the link of your embeded video:</p>
-	 
-	  <?php 
-
-	  		echo $this->Form->create('Evidence', array('url' => array('controller' => 'evidences', 'action' => 'addEvidence')));
-			echo $this->Form->input('main_content', array('type' => 'text', 'label' => false, 'id' => 'embededLink'));
->>>>>>> evokationParts
 			//MISSION
 			if (isset($mission_id)) {
 				echo $this->Form->hidden('mission_id', array('value' => $mission_id));
@@ -97,28 +88,19 @@ endif;
 			if (isset($loggedInUser)) {
 				echo $this->Form->hidden('user_id', array('value' => $loggedInUser['id']));
 			}
-<<<<<<< HEAD
 			//EVOKATION ID
 			if (isset($evokation_id) && $evokation_id != 'false') {
 				echo $this->Form->hidden('evokation_id', array('value' => $evokation_id));
 			}
 			  		
-=======
-			echo $this->Form->end();  		
->>>>>>> evokationParts
 	  ?>
 	  <br/>
 	  <div class="text-right">
 	  	<a href="#"  id="btnEmbededLink" class="button thin"><?= __("Preview") ?></a>
-<<<<<<< HEAD
 	  	<input value="<?php echo __("Submit") ?>" type="submit" id="sendEmbededLink" class="button thin" href="#">
 			
 	  </div>
 	  <?php echo $this->Form->end(); ?>
-=======
-	  	<a href="#"  id="sendEmbededLink" class="button thin"><?php echo __("Submit") ?></a>
-	  </div>
->>>>>>> evokationParts
 	  <div id="videoWrapper" class="text-center"></div>
 
 	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
@@ -153,11 +135,7 @@ endif;
 			}
 			//CREATE
 			else {
-<<<<<<< HEAD
 				//debug("CREATE");
-=======
-				debug("CREATE");
->>>>>>> evokationParts
 				echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'addEvidence')));
 			}
 			?>

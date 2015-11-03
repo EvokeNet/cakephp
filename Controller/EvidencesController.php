@@ -112,14 +112,9 @@ public function addEvidence() {
 
 		//CREATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT
 		if ($this->Evidence->save($this->request->data)) {
-<<<<<<< HEAD
 			$json_data = array('user_id' => $this->request->data['Evidence']['user_id'], 'mission_id' => $this->request->data['Evidence']['mission_id'], 'evidence_id' => $this->Evidence->id);
 			//return json_encode($json_data);
 			return $this->redirect($this->referer());
-=======
-			$json_data = array(/*'user_id' => $this->request->data['Evidence']['user_id'], 'mission_id' => $this->request->data['Evidence']['mission_id'],*/ 'evidence_id' => $this->Evidence->id);
-			return json_encode($json_data);
->>>>>>> evokationParts
 		} else {
 			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 		}
