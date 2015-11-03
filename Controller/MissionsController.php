@@ -20,7 +20,7 @@ class MissionsController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-
+		
 		$this->user = array();
 		//get user data into public var
 		$this->user['role_id'] = $this->getUserRole();
@@ -44,11 +44,7 @@ class MissionsController extends AppController {
 			$flags['_es'] = true;
 		}
 
-		$missions = $this->Mission->find('all');
-
-		// move basic training to the front if it's not already there
-		$this->move_basic_training_to_front($missions);
-
+		$missions = $this->Mission->find('all', array('conditions' => array('Mission.basic_training' => 0)));
 		foreach ($missions as $m => $mission) {
 			if($flags['_es']) {
 				$missions[$m]['Mission']['title'] = $mission['Mission']['title_es'];
@@ -56,6 +52,8 @@ class MissionsController extends AppController {
 			}
 
 		}
+
+		$basic_training = $this->Mission->find('first', array('conditions' => array('Mission.basic_training' => 1)));
 
 		$this->loadModel('User');
 
@@ -133,7 +131,7 @@ class MissionsController extends AppController {
 
 		//TRANSLATION
 		$lang = $this->getCurrentLanguage();
-
+		
 		if ($lang == 'es') {
 			//Mission
 			$mission['Mission']['title'] = $mission['Mission']['title_es'];
@@ -170,30 +168,37 @@ class MissionsController extends AppController {
 			'conditions' => array('mission_id' => $mission_id)
 		));
 
-		$user_id  = $this->Auth->user()['id'];
-
-		$evk_parts = $this->Evidence->find('all', array(
-			'conditions' => array(
-				'user_id' 	   => $user_id,
-				'evokation_id' => $evokation_id
-			)
-		));
-
-		$sent = $this->Evokation->find('first', array(
-			'conditions' => array(
-				'id' => $evokation_id
-			),
-			'fields' => array(
-				'final_sent'
-			)
-		))['Evokation']['final_sent'];
-
-		$toRender = '/Elements/Missions/evokation_quests';
-		// If this evokation has already been sent
-		if($sent){
-			$toRender = '/Elements/Missions/evokation_sent';
+		foreach ($evokationQuests as $key => &$eq) {
+			$user_id  = $this->Auth->user()['id'];
+			$quest_id = $eq['Quest']['id'];
+			
+			$eq['status'] = $this->Quest->getStatus($user_id, $quest_id, $phase_id);
 		}
 
+		$user_id  = $this->Auth->user()['id'];
+
+    	$evk_parts = $this->Evidence->find('all', array(
+    		'conditions' => array(
+    			'user_id' 	   => $user_id,
+    			'evokation_id' => $evokation_id
+    		)
+    	));
+
+    	$sent = $this->Evokation->find('first', array(
+    		'conditions' => array(
+    			'id' => $evokation_id
+    		),
+    		'fields' => array(
+    			'final_sent'
+    		)
+    	))['Evokation']['final_sent'];
+
+    	$toRender = '/Elements/Missions/evokation_quests';
+    	// If this evokation has already been sent
+    	if($sent){
+    		$toRender = '/Elements/Missions/evokation_sent';
+    	}
+		
 		// flag to check if this user has subimitted all evokation parts for this mission
 		$done = count($evk_parts) == count($evokationQuests);
 
@@ -242,7 +247,7 @@ class MissionsController extends AppController {
 			if ($quest['has_completed']) {
 				$quest['Response'] = $this->Quest->getQuestResponse($this->user['id'], $quest['id']);
 
-				//GROUP -- CHECK IF THE USER IS MEMBER/OWNER /
+				//GROUP -- CHECK IF THE USER IS MEMBER/OWNER / 
 				if ($quest['type'] == Quest::TYPE_GROUP_CREATION) {
 					$quest['Response']['Group']['is_owner'] = $this->Group->isOwner($quest['Response']['Group']['id'], $user['id']);
 					$quest['Response']['Group']['is_member'] = $this->Group->isMember($quest['Response']['Group']['id'], $user['id']);
@@ -253,7 +258,7 @@ class MissionsController extends AppController {
 			if ($quest['type'] == Quest::TYPE_GROUP_CREATION) {
 				$quest['GroupRequestsPending'] = $this->Group->GroupRequest->findAllByUserIdAndStatus($user['id'],0);
 			}
-
+			
 			//GROUP -- CHECK IF THE USER IS MEMBER/OWNER
 			foreach ($quest['Group'] as $group_key => &$group) { //group belongs to the quest it was created in
 				$group['is_owner'] = $this->Group->isOwner($group['id'], $user['id']);
@@ -311,7 +316,7 @@ class MissionsController extends AppController {
 		//RUN DOSSIER QUERY
 		$this->loadModel('Dossier');
 		$dossier = $this->Dossier->find('first');
-
+		
 		//Dossier files (may be pictures, videos etc.: will be determined by field Type)
 		$this->loadModel('Attachment');
 		if(!empty($dossier)) {
@@ -417,7 +422,7 @@ class MissionsController extends AppController {
  */
 	public function moreEvidences(){
 		$this->autoRender = false; // We don't render a view
-
+		
 		//QUERY
 		$newEvidences = $this->getEvidences(
 			$this->request->query('mission_id'),
@@ -429,7 +434,7 @@ class MissionsController extends AppController {
 		//GENERATE HTML TO BE RETURNED
 		$elementToRender = 'Evidences/evidence_list_item';
 		$ind = 'Evidence';
-
+		
 		$newEvidencesHTML = "";
 
 		foreach ($newEvidences as $key => $value) {
@@ -444,7 +449,7 @@ class MissionsController extends AppController {
 
 	public function moreEvokations(){
 		$this->autoRender = false; // We don't render a view
-
+		
 		//QUERY
 		$newEvokations = $this->getEvokations(
 			$this->request->query('mission_id'),
@@ -456,7 +461,7 @@ class MissionsController extends AppController {
 		//GENERATE HTML TO BE RETURNED
 		$elementToRender = 'Evokations/evokation_list_item';
 		$ind = 'Evokation';
-
+		
 		$newEvokationsHTML = "";
 
 		foreach ($newEvokations as $key => $value) {
@@ -499,7 +504,7 @@ class MissionsController extends AppController {
 		if (!is_null($limit)) {
 			$evidence_query_params['limit'] = $limit;
 		}
-
+		
 		//Offset (distance from beggining)
 		if (!is_null($offset)) {
 			$evidence_query_params['offset'] = $offset;
@@ -624,7 +629,7 @@ class MissionsController extends AppController {
 				array_push($myGroups, $group);
 			}
 		}
-
+		
 		//---------------------------------
 		//ANSWERS
 		$this->loadModel('UserAnswer');
@@ -761,7 +766,7 @@ class MissionsController extends AppController {
 				$quests[$q]['Quest']['title'] = $quest['Quest']['title_es'];
 				$quests[$q]['Quest']['description'] = $quest['Quest']['description_es'];
 			}
-
+			
 			$my_quests_id[$k] = array('quest_id' => $quest['Quest']['id']);
 			$my_quests_id2[$k] = array('foreign_key' => $quest['Quest']['id'], 'model' => 'Quest'); //specials condiditions to search in the Attachment database'
 			$k++;
@@ -784,7 +789,7 @@ class MissionsController extends AppController {
 		));
 
 		$options = array('conditions' => array('Mission.' . $this->Mission->primaryKey => $id));
-
+		
 
 		$mission = $this->Mission->find('first', $options);
 
@@ -932,21 +937,6 @@ class MissionsController extends AppController {
 			$this->Session->setFlash(__('The mission has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The mission could not be deleted. Please, try again.'));
-		}
-	}
-
-	private function move_basic_training_to_front(&$missions) {
-
-		if ($missions[0]['Mission']['basic_training'] != 1) {
-			$basic_training = [];
-
-			foreach ($missions as $m => $mission) {
-				if ($mission['Mission']['basic_training'] == 1) {
-					$basic_training = $mission;
-					unset($missions[$m]);
-				}
-			}
-			array_unshift($missions, $basic_training);
 		}
 	}
 }

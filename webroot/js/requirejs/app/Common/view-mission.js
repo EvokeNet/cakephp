@@ -48,6 +48,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			
 
 			$('.menu-icon.default').click(function(){
+				console.log('toggle panel');
 				missionPanels.toggle_panel($(this).attr("id"), $(this).data('tab-content'));
 			});
 
@@ -96,11 +97,14 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			var refreshForum = function(panel_button, panel_source, forum_id){
 				//RELOAD EMBER FORUM
 				if (!$("#"+panel_source).hasClass("panel-open")) {
+					console.log(panel_source+' open');
 					//Define root element 
 					var rootElement = '#'+panel_source+' .optimum';
 
 					require(['../Optimum/js/app'], function (OptimumForum) {
+						// OptimumForum.initializeForum(rootElement);
 						OptimumForum.App.DiscussionsRoute.reopen();
+						// OptimumForum.App.PluginIntegration.transitionTo('discussions',forum_id);
 					});
 				}
 
@@ -129,6 +133,24 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						});
 
 						refreshForum(panel_button, forum_container, forum_id);
+						// require(['../Optimum/js/app'], function (OptimumForum) {
+						// 	console.log('initialize with rootElement: '+rootElement);
+
+						// 	OptimumForum.initializeForum(rootElement);
+						// 	var forum = OptimumForum.getForum();
+							
+						// 	console.log(forum.rootElement);
+						// 	console.log(forum_id);
+						// 	forum.App.PluginIntegration.transitionTo('discussions',forum_id);
+
+						// 	if (forum_container == "tabForum") {
+						// 		forum_general = forum;
+						// 	} else if (forum_container == "tabGroupForum") {
+						// 		forum_group = forum;
+						// 	}
+
+						// 	// refreshForum(panel_button, forum_container);
+						// });
 					}
 				});
 			}
@@ -162,6 +184,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				
 				li.addClass('active');
 				
+				console.log(index);
 				$('.horizontal_timeline .content').html($("#brainstorm_step"+index+"_description").html());
 			});
 

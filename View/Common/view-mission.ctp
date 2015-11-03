@@ -39,7 +39,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<!-- MAIN SECTION -->
 		<section class="main-section relative min-full-height">
 			<div class="row full-width small-12 medium-12 large-12">
@@ -57,9 +57,9 @@
 					?>
 				</div>
 			</div>
-			<div id="missionSidebar" class="row full-width clearfix absolute min-full-height hidden" data-equalizer>
-				<!-- MISSION SUBMENU (description, phases) -->
-				<div class="missions-submenu mission-sidebar small-12 medium-12 large-5 columns min-full-height padding all-0" data-equalizer-watch data-equalizer-mq="large-up">
+		    <div id="missionSidebar" class="row full-width clearfix absolute min-full-height hidden" data-equalizer>
+		    	<!-- MISSION SUBMENU (description, phases) -->
+				 <div class="missions-submenu mission-sidebar small-12 medium-12 large-5 columns min-full-height padding all-0" data-equalizer-watch data-equalizer-mq="large-up">
 					<?php echo $this->fetch('panelsMainContent'); ?>
 				</div>
 
@@ -138,7 +138,7 @@
 							<img data-lazy="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" height="<?= $height_img ?>px" class="full-width" />
 						</div>
 					<?php endforeach; ?>
-
+					
 					<?php
 					//NO GRAPHIC NOVEL (just in case)
 					if (count($novels) < 1) {?>

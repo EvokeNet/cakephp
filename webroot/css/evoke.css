@@ -311,6 +311,22 @@ button, .button {
 	padding: 0!important;
 }
 
+.evoke .padding.all-01 {
+	padding: 0.3em;
+}
+
+.evoke .padding.all-02 {
+	padding: 0.3em;
+}
+
+.evoke .padding.all-03 {
+	padding: 0.3em;
+}
+
+.evoke .padding.all-04 {
+	padding: 0.3em;
+}
+
 .evoke .padding.all-05 {
 	padding: 0.5em;
 }
@@ -677,6 +693,10 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 
 .evoke .background-color-highlight {
 	background-color: #26dee0;
+}
+
+.evoke .background-color-red {
+	background-color: #FF0000;
 }
 
 /* Hover */

@@ -39,6 +39,10 @@ class Quest extends AppModel {
 		'Containable',
 		'BrainstormSessionEvoke.ActPhaseBrainstorm',
 		'Enumerable'
+		// 'Translate' => array(
+		//     'title' => 'questTitle', 
+		//     'description' => 'questDescription',
+		// )
 	);
 
 	const TYPE_EVIDENCE 	  = 0;
@@ -121,6 +125,26 @@ class Quest extends AppModel {
 				return false;
 		}
 		return false;
+	}
+
+	public function getStatus($user_id, $quest_id, $phase_id = null){
+		if (!$this->exists($quest_id)) {
+			throw new NotFoundException(__('Invalid quest'));
+		}
+
+		$quest = $this->findById($quest_id);
+
+		$response = $this->getQuestResponse($user_id, $quest_id, $phase_id);
+
+		if (isset($response['Evidence']) && (count($response['Evidence']) > 0)) {
+			if($response['Evidence']['editing_user_id'] != null){
+				return array(self::STATUS_IN_USE, $response['Evidence']['editing_user_id']);
+			}
+			return array(self::STATUS_IN_PROGRESS, null);
+		}
+
+		return array(self::STATUS_NOT_STARTED, null);
+
 	}
 
 /**

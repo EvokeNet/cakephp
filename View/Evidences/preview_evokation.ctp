@@ -39,9 +39,14 @@ if (isset($evokation_part) && ($evokation_part)) {
 
 									//VIDEO
 									elseif (substr( $evidence['Evidence']['type'], 0, 5) === "video"):
+										// Specific for youtube videos, gets dthe ID of the video to embed it
+										$video_id = explode("=", $evidence['Evidence']['main_content']);
+										$video_id = $video_id[count($video_id) - 1];
+										$iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.$video_id.'" frameborder="1" allowfullscreen></iframe>';
+										//debug($iframe);
 									?>
 										<div class="flex-video">
-											<iframe width="420" height="315" autoplay="false" src="<?= $evidence['Evidence']['main_content'] ?>" frameborder="0" allowfullscreen></iframe>
+											<?php echo $iframe ?>
 										</div>
 									<?php
 
