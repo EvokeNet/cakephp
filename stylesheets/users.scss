@@ -1,0 +1,94 @@
+/* --------------------------- */
+/* LOGIN */
+/* --------------------------- */
+
+.evoke .login .fullpage {
+  z-index: 0;
+}
+
+.login-button-wrapper {
+  margin-top: -3px;
+}
+
+.login-social-networks {
+  margin-top: 4px;
+}
+
+/* Tabs */
+
+.evoke .login .tabs {
+  line-height: 92px;
+}
+
+.tabs-content {
+  width: 90%;
+  margin: auto;
+}
+
+@media all and (min-width: 650px) {
+  .tabs-content {
+    width: 70%;
+  }
+}
+
+/* Slide */
+
+.evoke {
+  &.slide.background-cover.active .img-caption-bottom {
+    width: 50%;
+  }
+  #radar-graph {
+    margin-top: -50px;
+  }
+  .profile-sidebar {
+    font-size: 0.9rem;
+    .p {
+      font-size: 0.9rem;
+    }
+  }
+  .profile-picture {
+    height: 150px;
+    width: 125px;
+    &.small {
+      height: 100px;
+      width: 80px;
+    }
+    &.smallest {
+      height: 50px;
+      width: 40px;
+    }
+  }
+  .user-panel-leaderboard {
+    .profile-picture {
+      margin: -125px auto 0px auto;
+    }
+    .profile-content {
+      margin-top: 100px;
+    }
+  }
+}
+
+/* --------------------------- */
+/* MATCHING RESULTS AND PROFILE */
+/* --------------------------- */
+
+/* Profile picture */
+
+/* User panel leaderboard */
+
+/* --------------------------- */
+/* LEADERBOARD */
+/* --------------------------- */
+
+.icon-medal-stack {
+  .icon-medal2 {
+    color: #323234;
+  }
+  .fa-circle {
+    margin-top: 0.3em;
+  }
+  .medal-text {
+    margin-top: 0.6em;
+    font-size: 0.6em;
+  }
+}

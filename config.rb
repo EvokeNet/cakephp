@@ -1,9 +1,10 @@
-http_path = "/webroot"
-css_dir = "css"
-sass_dir = "scss"
+http_path = "/"
+relative_assets = true
+css_dir = "webroot/css"
+sass_dir = "stylesheets"
 images_dir = "img"
-fonts_dir = "css/font"
 javascripts_dir = "js"
 output_style = :compressed
 relative_assets = true
 line_comments = false
+preferred_syntax = :scss
