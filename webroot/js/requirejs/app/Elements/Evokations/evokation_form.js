@@ -44,8 +44,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			var setup_evidence_type = function(){
 				//Title and Font-size
 				$('#evidence-type-title').remove();
-				$('#new-evidence-type').animate({fontSize: "6"},500);
-				$('#new-evidence-type h4').animate({fontSize: "7"},500);
+				$('#new-evidence-type').animate({fontSize: "6"}, 500);
+				$('#new-evidence-type h4').animate({fontSize: "7"}, 500);
 
 				//Load form according to the evidence type
 				evidence_type = $(this).data("evidence-type");
@@ -144,18 +144,72 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$(".evidence-type").filter('[data-evidence-type="'+type_split+'"]').click();
 			}
 
+			//--------------------------------------------//
+			//GET EMBEDED YOUTUBE LINK AND SHOW THE VIDEO
+			//--------------------------------------------//
+
+			/**
+			 * JavaScript function to match (and return) the video Id 
+			 * of any valid Youtube Url, given as input string.
+			 * @author: Stephan Schmitz <eyecatchup@gmail.com>
+			 * @url: http://stackoverflow.com/a/10315969/624466
+			 */
+			function ytVidId(url) {
+				var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+				return (url.match(p)) ? RegExp.$1 : false;
+			}
+			$('#btnEmbededLink').on("click", function(){
+
+				var link = $('#embededLink').val();
+
+				if(link == null || link == '' || !(link = ytVidId(link))){
+					swal({
+						title: i18n.t("app.elements.evidences.evidence_form.msg_empty_link.title"),
+						text: i18n.t("app.elements.evidences.evidence_form.msg_empty_link.text"),
+						type: "warning"
+					});
+				}else{
+					
+					link = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+link+'" frameborder="1" allowfullscreen></iframe>';
+	
+					$('#videoWrapper').html(link);
+					//$('#videoWrapper').append(btnSubmit);
+				}
+			});
+
+			$('#sendEmbededLink').on("click", function(event){
+				event.preventDefault();
+				var link = $('#embededLink').val();
+				if(link == null || link == '' || !ytVidId(link)){
+					swal({
+						title: i18n.t("app.elements.evidences.evidence_form.msg_empty_link.title"),
+						text: i18n.t("app.elements.evidences.evidence_form.msg_empty_link.text"),
+						type: "warning"
+					});
+				}else{
+					var $this = $(this);
+					swal({
+						title: i18n.t("app.elements.evidences.evidence_form.msg_sucess.title"),
+						text: i18n.t("app.elements.evidences.evidence_form.msg_sucess.text"),
+						type: "success"
+					}, function(){
+						$this.closest('form').trigger('submit');
+					});
+				}
+			});
 
 			//--------------------------------------------//
 			//EVIDENCE: SUBMITTING A FORM TO EDIT AN EVIDENCE LOADS EVIDENCE VIEW VIA AJAX
 			//--------------------------------------------//
 			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
 				//ADD EVIDENCE
+				console.log("ADD EVIDENCE");
 				$.ajax({
 					url: $(this).attr('action'),//webroot+"evidences/addEvidence",
 					type:"POST",
 					data: $(this).serializeArray(),
-					success: function(dataAddEvidence, b, c) {
-						console.log(dataAddEvidence, b, c);
+
+					success: function(dataAddEvidence) {
 						var filePath = '';
 						if(dataAddEvidence == true){
 							if ($('#EvidenceId').length){

@@ -88,27 +88,27 @@ button:hover, button:focus, .button:hover, .button:focus {
 }
 
 @media only screen and (min-width:40.063em) {
-	.tooltip > .nub {
-		border-color: transparent transparent #26dee0 transparent;
-		top: -10px; }
-	.tooltip.tip-top > .nub {
-		border-color: #26dee0 transparent transparent transparent;
-		top: auto;
-		bottom: -10px; }
-	.tooltip.tip-left, .tooltip.tip-right {
-		float: none !important; }
-	.tooltip.tip-left > .nub {
-		border-color: transparent transparent transparent #26dee0;
-		right: -10px;
-		left: auto;
-		top: 50%;
-		margin-top: -5px; }
-	.tooltip.tip-right > .nub {
-		border-color: transparent #26dee0 transparent transparent;
-		right: auto;
-		left: -10px;
-		top: 50%;
-		margin-top: -5px; }
+  .tooltip > .nub {
+    border-color: transparent transparent #26dee0 transparent;
+    top: -10px; }
+  .tooltip.tip-top > .nub {
+    border-color: #26dee0 transparent transparent transparent;
+    top: auto;
+    bottom: -10px; }
+  .tooltip.tip-left, .tooltip.tip-right {
+    float: none !important; }
+  .tooltip.tip-left > .nub {
+    border-color: transparent transparent transparent #26dee0;
+    right: -10px;
+    left: auto;
+    top: 50%;
+    margin-top: -5px; }
+  .tooltip.tip-right > .nub {
+    border-color: transparent #26dee0 transparent transparent;
+    right: auto;
+    left: -10px;
+    top: 50%;
+    margin-top: -5px; }
 }
 
 /* --------------------------- */
@@ -161,12 +161,12 @@ button:hover, button:focus, .button:hover, .button:focus {
 
 .right-off-canvas-menu * {
 	-webkit-backface-visibility: visible; /* Chrome, Safari, Opera */
-	backface-visibility: visible;
+   	backface-visibility: visible;
 }
 
 .left-off-canvas-menu * {
 	-webkit-backface-visibility: visible; /* Chrome, Safari, Opera */
-	backface-visibility: visible;
+   	backface-visibility: visible;
 }
 
 .right-small {
@@ -190,7 +190,7 @@ button:hover, button:focus, .button:hover, .button:focus {
 	height: 100px;
 	margin-bottom: 20px;
 	/* Newer browsers */
-	width: 10vw;
+	width: 10vw; 
 	height: 10vw;
 	margin-bottom: 2vh;
 }
@@ -231,7 +231,7 @@ button:hover, button:focus, .button:hover, .button:focus {
 	font-size: 1em;
 }
 
-.tabs-style-linetriangle ul li.tab-title.active a:after,
+.tabs-style-linetriangle ul li.tab-title.active a:after, 
 .tabs-style-linetriangle ul li.tab-title.active a:before {
 	position: absolute;
 	top: 100%;
@@ -291,12 +291,12 @@ button:hover, button:focus, .button:hover, .button:focus {
 	padding: 1em 1em 1em 2em;
 }
 
-.tabs-style-small-image dd > a:hover,
+.tabs-style-small-image dd > a:hover, 
 .tabs-style-small-image .tab-title > a:hover {
 	background-color: transparent;
 }
 
-.tabs-style-small-image dd.active a,
+.tabs-style-small-image dd.active a, 
 .tabs-style-small-image .tab-title.active a {
 	background-color: #333;
 	-webkit-box-sizing: border-box;
@@ -339,12 +339,12 @@ button:hover, button:focus, .button:hover, .button:focus {
 	padding: 1em 1em 1em 2em;
 }
 
-.tabs-style-image-and-text dd > a:hover,
+.tabs-style-image-and-text dd > a:hover, 
 .tabs-style-image-and-text .tab-title > a:hover {
 	background-color: transparent;
 }
 
-.tabs-style-image-and-text dd.active a,
+.tabs-style-image-and-text dd.active a, 
 .tabs-style-image-and-text .tab-title.active a {
 	background-color: #333;
 	-webkit-box-sizing: border-box;
@@ -443,18 +443,4 @@ button:hover, button:focus, .button:hover, .button:focus {
 	background-color: #F7F682;
 	border-color: #BEA601;
 	color: #3f3f3f;
-}
-
-/* --------------------------- */
-/* JOYRIDE */
-/* --------------------------- */
-.joyride-tip-guide .joyride-nub.left {
-	border-color: #fff !important;
-	border-top-color: transparent !important;
-	border-left-color: transparent !important;
-	border-bottom-color: transparent !important;
-}
-
-.joyride-content-wrapper {
-	box-shadow: 2px 2px 10px;
 }

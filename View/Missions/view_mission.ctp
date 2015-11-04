@@ -1,6 +1,6 @@
-<?php
-	//MISSION COMMON LAYOUT
-	$this->extend('/Common/mission_layout');
+<?php 
+	//VIEW-MISSION COMMON TEMPLATE
+	$this->extend('/Common/view-mission');
 
 	//MENU TO OPEN PANELS (menu-icons)
 	$this->start('panelsMenu');
@@ -64,50 +64,47 @@
 		$open_by_default = true;
 	}
 
+	//debug($group);
+
 	if ($phase['Phase']['type'] == Phase::TYPE_EVOKATION) {
 		//LOADING QUESTS FOR EVOKATION PARTS
-		$load_quests_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderEvokationQuests',
+		$load_quests_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderEvokationQuests', 
 			$phase['Phase']['id'], $mission['Mission']['id'], $group['Evokation'][0]['id']
 		));
 	}else{
 		//LOADING QUESTS
-		$load_quests_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderQuestsTab',
+		$load_quests_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderQuestsTab', 
 			$phase['Phase']['id']
 		));
 	}
 	$load_quests_url = str_replace('amp;', '', $load_quests_url); //Workaround for Cakephp 2.x
 
 	//LOADING DOSSIER
-	$load_dossier_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderDossierTab',
+	$load_dossier_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderDossierTab', 
 		'?' => array(
-			'mission_id' => $mission['Mission']['id'],
+			'mission_id' => $mission['Mission']['id'], 
 			'limit' => 10)
 	));
 	$load_dossier_url = str_replace('amp;', '', $load_dossier_url); //Workaround for Cakephp 2.x
 
 	//LOADING EVIDENCES
-	$load_evidences_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderEvidenceList',
+	$load_evidences_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderEvidenceList', 
 		'?' => array(
-			'mission_id' => $mission['Mission']['id'],
+			'mission_id' => $mission['Mission']['id'], 
 			'limit' => 10)
 	));
 	$load_evidences_url = str_replace('amp;', '', $load_evidences_url); //Workaround for Cakephp 2.x
 
 	//LOADING EVIDENCES
-	$load_evokations_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderEvokationList',
+	$load_evokations_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderEvokationList', 
 		'?' => array(
-			'mission_id' => $mission['Mission']['id'],
+			'mission_id' => $mission['Mission']['id'], 
 			'limit' => 10)
 	));
 	$load_evokations_url = str_replace('amp;', '', $load_evokations_url); //Workaround for Cakephp 2.x
 
 	//LOADING MAIN CONTENT
 	$load_main_content_url = $this->Html->url(array('controller' => 'missions', 'action' => 'renderPanelsMainContent', $mission['Mission']['id']));
-
-	//BASIC TRAINING TOUR
-	if($mission['Mission']['basic_training']) {
-		echo $this->element('Missions/basic_training_tour');
-	}
 
 	//JAVASCRIPT VARIABLES
 	$this->start('evoke_javascript_variables');

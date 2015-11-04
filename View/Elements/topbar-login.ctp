@@ -25,7 +25,7 @@
 				<div class="small-only-text-center login-button-wrapper">
 					<span class="show-for-small-only  margin top-1"></span>
 
-					<button type="submit" class="small full-width">
+					<button type="submit" class="thin full-width">
 						<?php echo __('Sign in'); ?>
 					</button>
 				</div>
@@ -35,7 +35,7 @@
 				<div class="small-only-text-center login-button-wrapper">
 					<span class="show-for-small-only  margin top-1"></span>
 
-					<a class="button small full-width" href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'register')) ?>">
+					<a class="button thin full-width" href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'register')) ?>">
 						<?= __('Sign up') ?>
 					</a>
 				</div>

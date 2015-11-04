@@ -1,6 +1,6 @@
 <?php
-	//MISSION COMMON LAYOUT
-	$this->extend('/Common/mission_layout');
+	//VIEW-MISSION COMMON TEMPLATE
+	$this->extend('/Common/view-mission');
 
 	//MENU TO OPEN PANELS (menu-icons)
 	$this->start('panelsMenu');
@@ -150,5 +150,5 @@
 
 <?php
 	//SCRIPT
-	$this->Html->script('requirejs/app/Common/mission_layout.js', array('inline' => false));
+	$this->Html->script('requirejs/app/Common/view-mission.js', array('inline' => false));
 ?>
