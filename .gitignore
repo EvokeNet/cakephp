@@ -21,3 +21,6 @@ dbv/data/meta/revision
 
 # Nodejs
 node_modules
+
+# .sass-cache
+.sass-cache/
