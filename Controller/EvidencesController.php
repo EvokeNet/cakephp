@@ -102,6 +102,7 @@ class EvidencesController extends AppController {
 public function addEvidence() {
 	$this->autoRender = false;
 	$this->autoLayout = false;
+
 	//debug("ADD EVIDENCE");
 	if(!empty($this->request->data['evidenceLink'])){
 		$this->request->data['Evidence']['main_content'] = $this->request->data['evidenceLink'];
@@ -113,7 +114,9 @@ public function addEvidence() {
 		//CREATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT
 		if ($this->Evidence->save($this->request->data)) {
 			$json_data = array('user_id' => $this->request->data['Evidence']['user_id'], 'mission_id' => $this->request->data['Evidence']['mission_id'], 'evidence_id' => $this->Evidence->id);
-			//return json_encode($json_data);
+			if( $this->request->is('ajax') ){
+				return json_encode($json_data);
+			}
 			return $this->redirect($this->referer());
 		} else {
 			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));

@@ -154,8 +154,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					url: $(this).attr('action'),//webroot+"evidences/addEvidence",
 					type:"POST",
 					data: $(this).serializeArray(),
-
-					success: function(dataAddEvidence) {
+					success: function(dataAddEvidence, b, c) {
+						console.log(dataAddEvidence, b, c);
 						var filePath = '';
 						if(dataAddEvidence == true){
 							if ($('#EvidenceId').length){
