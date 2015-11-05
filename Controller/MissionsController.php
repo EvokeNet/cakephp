@@ -54,7 +54,6 @@ class MissionsController extends AppController {
         $missions[$m]['Mission']['title'] = $mission['Mission']['title_es'];
         $missions[$m]['Mission']['description'] = $mission['Mission']['description_es'];
       }
-
     }
 
     $this->loadModel('User');
@@ -170,29 +169,36 @@ class MissionsController extends AppController {
       'conditions' => array('mission_id' => $mission_id)
     ));
 
+    foreach ($evokationQuests as $key => &$eq) {
+      $user_id  = $this->Auth->user()['id'];
+      $quest_id = $eq['Quest']['id'];
+
+      $eq['status'] = $this->Quest->getStatus($user_id, $quest_id, $phase_id);
+    }
+
     $user_id  = $this->Auth->user()['id'];
 
-    $evk_parts = $this->Evidence->find('all', array(
-      'conditions' => array(
-        'user_id' 	   => $user_id,
-        'evokation_id' => $evokation_id
-      )
-    ));
+      $evk_parts = $this->Evidence->find('all', array(
+        'conditions' => array(
+          'user_id' 	   => $user_id,
+          'evokation_id' => $evokation_id
+        )
+      ));
 
-    $sent = $this->Evokation->find('first', array(
-      'conditions' => array(
-        'id' => $evokation_id
-      ),
-      'fields' => array(
-        'final_sent'
-      )
-    ))['Evokation']['final_sent'];
+      $sent = $this->Evokation->find('first', array(
+        'conditions' => array(
+          'id' => $evokation_id
+        ),
+        'fields' => array(
+          'final_sent'
+        )
+      ))['Evokation']['final_sent'];
 
-    $toRender = '/Elements/Missions/evokation_quests';
-    // If this evokation has already been sent
-    if($sent){
-      $toRender = '/Elements/Missions/evokation_sent';
-    }
+      $toRender = '/Elements/Missions/evokation_quests';
+      // If this evokation has already been sent
+      if($sent){
+        $toRender = '/Elements/Missions/evokation_sent';
+      }
 
     // flag to check if this user has subimitted all evokation parts for this mission
     $done = count($evk_parts) == count($evokationQuests);
@@ -339,7 +345,6 @@ class MissionsController extends AppController {
     $this->render('/Elements/dossier_tabs');
   }
 
-
 /**
  * Renders a list of evidences in the element evidence_list
  * @param int $mission_id - Optional ID to see evidences from a specific mission
@@ -450,8 +455,6 @@ class MissionsController extends AppController {
       $this->request->query('mission_id'),
       $this->request->query('offset'),
       $this->request->query('limit'));
-
-    // debug($newEvokations);
 
     //GENERATE HTML TO BE RETURNED
     $elementToRender = 'Evokations/evokation_list_item';
@@ -684,7 +687,6 @@ class MissionsController extends AppController {
 
     $this->set(compact('mission', 'phase', 'myGroups', 'forum', 'novels', 'user', 'facebook', 'evokationQuests'));
   }
-
 
 /**
  * View the missions that are open to everybody as examples before they register (can't see some content, can't submit evidences etc.)
@@ -935,6 +937,11 @@ class MissionsController extends AppController {
     }
   }
 
+  /**
+   * Moves basic training to the front of the missions array
+   * @param  referenced array of objects $missions
+   * @return
+   */
   private function move_basic_training_to_front(&$missions) {
 
     if ($missions[0]['Mission']['basic_training'] != 1) {

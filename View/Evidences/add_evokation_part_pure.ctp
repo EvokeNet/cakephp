@@ -53,10 +53,10 @@ if (isset($evokation_part) && ($evokation_part)) {
 		<!-- FORM -->
 		<?php
 		if (!isset($loggedIn) || (!$loggedIn)) {
-			echo $this->element('Evidences/evidence_form', array('sample_form' => true));
+			echo $this->element('Evokations/evokation_form', array('sample_form' => true));
 		}
 		else {
-			echo $this->element('Evidences/evidence_form');
+			echo $this->element('Evokations/evokation_form');
 		}
 			
 		?>

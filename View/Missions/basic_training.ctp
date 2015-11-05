@@ -21,6 +21,7 @@
 
 <section class="evoke default-background">
 
+<<<<<<< HEAD
   <div class="evoke default row full-width-alternate">
 
     <div class="row">
@@ -329,11 +330,9 @@
 </section>
 
 <?php
-
   echo $this->Html->script('joyride', array('inline' => false));
   echo $this->Html->script('/components/foundation/js/vendor/jquery.cookie.js', array('inline' => false));
   echo $this->Html->script('/components/foundation/js/foundation.js', array('inline' => false));
   echo $this->Html->script('/components/foundation/js/foundation/foundation.clearing.js', array('inline' => false));
   echo $this->Html->script('menu_height', array('inline' => false));
-
 ?>

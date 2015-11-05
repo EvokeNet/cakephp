@@ -1,5 +1,5 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['evoke', 'missionpanels', 'evokedata', '../js/requirejs/app/Common/mission_layout', 'foundation', 'froala'], function (evoke,missionPanels,evokeData) {
+	require(['evoke', 'missionpanels', 'evokedata', '../js/requirejs/app/Common/view-mission', 'foundation', 'froala'], function (evoke,missionPanels,evokeData) {
 		$(document).ready(function(){
 			//--------------------------------------------//
 			//OPEN DOSSIER PANEL

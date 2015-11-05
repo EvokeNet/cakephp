@@ -49,6 +49,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			}
 
 			function fillExtraContentEvokationList(){
+				console.log("MORE EVOKATIONS...");
+				console.log(missions_evokation_list_load_evokations_url+"&offset="+evokation_list_last+"&limit="+evokation_list_load_limit);
 				$.ajax({
 				    type: 'post',
 				    url: missions_evokation_list_load_evokations_url+"&offset="+evokation_list_last+"&limit="+evokation_list_load_limit,

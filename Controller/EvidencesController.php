@@ -100,15 +100,24 @@ class EvidencesController extends AppController {
  * @return redirect to view the evidence created
  */
 public function addEvidence() {
-
 	$this->autoRender = false;
+	$this->autoLayout = false;
+
+	//debug("ADD EVIDENCE");
+	if(!empty($this->request->data['evidenceLink'])){
+		$this->request->data['Evidence']['main_content'] = $this->request->data['evidenceLink'];
+	}
+	
 	if ($this->request->is('post')) {
 		$this->Evidence->create();
 
 		//CREATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT
 		if ($this->Evidence->save($this->request->data)) {
 			$json_data = array('user_id' => $this->request->data['Evidence']['user_id'], 'mission_id' => $this->request->data['Evidence']['mission_id'], 'evidence_id' => $this->Evidence->id);
-			return json_encode($json_data);
+			if( $this->request->is('ajax') ){
+				return json_encode($json_data);
+			}
+			return $this->redirect($this->referer());
 		} else {
 			$this->Session->setFlash(__('The evidence could not be saved. Please, try again.'));
 		}
@@ -152,7 +161,6 @@ public function addEvidence() {
 			$this->layout = 'ajax';
 		}
 
-		debug($mission_id, $phase_id, $quest_id);
 
 		$thisEvokation = $this->Evidence->find('first', array(
 			'conditions' => array(
@@ -165,7 +173,29 @@ public function addEvidence() {
 		// IF THIS EVIDENCE HAS ALREADY BEEN SUBMITTED
 		if(count($thisEvokation)){
 			$this->request->data['Evidence'] = $thisEvokation['Evidence'];
-		}
+		}// }else{
+		// 	// CREATE THE EVIDENCE REGARDLESS THE USER FILL ANY FIELD
+		// 	$this->Evidence->create();
+
+		// 	$this->request->data = array(
+		// 		'Evidence' => array(
+		// 			'mission_id'      => $mission_id,
+		// 			'phase_id'        => $phase_id,
+		// 			'quest_id'	      => $quest_id,
+		// 			'user_id'	      => $this->Auth->user()['id'],
+		// 			'main_content'    => '',
+		// 			'type'		      => '',
+		// 			'title'		      => '',
+		// 			'content'		  => '',
+		// 			'evokation_id'	  => $evokation_id,
+		// 			'editing_user_id' => $this->Auth->user()['id']
+		// 		)
+		// 	);
+
+		// 	$this->Evidence->save($this->request->data);
+
+		// 	$this->request->data['Evidence']['id'] = $this->Evidence->id;
+		// }
 
 		//LOAD QUEST
 		$this->loadModel("Quest");
@@ -200,6 +230,45 @@ public function addEvidence() {
 			$this->layout = 'ajax';
 		}
 
+		$thisEvokation = $this->Evidence->find('first', array(
+			'conditions' => array(
+				'mission_id'   => $mission_id,
+				'phase_id'     => $phase_id,
+				'quest_id'	   => $quest_id,
+				'evokation_id' => $evokation_id
+			)
+		));
+
+		// IF THIS EVIDENCE HAS ALREADY BEEN SUBMITTED
+		if(count($thisEvokation)){
+			$this->request->data['Evidence'] = $thisEvokation['Evidence'];
+			$this->Evidence->save(array('Evidence' => array(
+				'editing_user_id' => $this->Auth->user()['id']
+			)));
+		}// }else{
+		// 	// CREATE THE EVIDENCE REGARDLESS THE USER FILL ANY FIELD
+		// 	$this->Evidence->create();
+
+		// 	$this->request->data = array(
+		// 		'Evidence' => array(
+		// 			'mission_id'      => $mission_id,
+		// 			'phase_id'        => $phase_id,
+		// 			'quest_id'	      => $quest_id,
+		// 			'user_id'	      => $this->Auth->user()['id'],
+		// 			'main_content'    => '',
+		// 			'type'		      => '',
+		// 			'title'		      => '',
+		// 			'content'		  => '',
+		// 			'evokation_id'	  => $evokation_id,
+		// 			'editing_user_id' => $this->Auth->user()['id']
+		// 		)
+		// 	);
+
+		// 	$this->Evidence->save($this->request->data);
+
+		// 	$this->request->data['Evidence']['id'] = $this->Evidence->id;
+		// }
+
 		//LOAD QUEST
 		$this->loadModel("Quest");
 
@@ -217,10 +286,10 @@ public function addEvidence() {
 		$evidence_main_content = null;
 
 		//$user_id = $this->Auth->user()['id'];
+		// $act_evidences = $this->Evidence->getGroupEvidences($user_id, $quest_id, $act_phase_id);
 
-		$act_evidences = $this->Evidence->getGroupEvidences($user_id, $quest_id, $act_phase_id);
-
-		$this->set(compact('evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part', 'act_evidences'));
+		$this->set(compact('evidence_type', 'mission_id', 'phase_id', 'quest_id', 'quest', 'evokation_id', 'evokation_part'));
+		//, 'act_evidences'));
 	}
 
 	public function preview_evokation($evokation_id, $mission_id, $phase_id = null){
@@ -257,7 +326,7 @@ public function addEvidence() {
  */
 public function editEvidence() {
 	$this->autoRender = false;
-
+	debug("EDIT EVIDENCE");
 	if ($this->request->is('post') || $this->request->is('put')) {
 		//UPDATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT
 		if ($this->Evidence->save($this->request->data)) {

@@ -2,6 +2,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 	//, 'evoke', 'missionpanels', 'foundation', 'slickcarousel', 'stickykit', 'jqueryui'], function ($, evoke, missionPanels) {
 	require(['jquery'],function($){
 		$('.send-evokation').on('click', function(event){
+			console.log("BEFORE AJAX");
 			$.ajax({
 				type : "POST",
 				data : {final_sent: 1},
