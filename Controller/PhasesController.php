@@ -196,7 +196,7 @@ class PhasesController extends AppController {
 			//Still in the same phase
 			if ($phase['Phase']['id'] == $oldPhaseId){
 				$json_data = array('flag' => 1);
-				return json_encode($json_data);
+				return json_encode($json_data + array('debug' => "SAME PHASE: ".$phase['Phase']['id']." ".$oldPhaseId, 'debugModel' => $phase['debug'], 'phase' => $phase['phase'], 'complete' => $phase['complete']));
 
 			}
 			else {
@@ -209,13 +209,13 @@ class PhasesController extends AppController {
 				} else{
 
 					$this->MissionSubscription->create();
-					$data = array('user_id' => $_POST['user_id'], 'mission_id' => $_POST['mission_id'], 'phase_id' => $phase['Phase']['id']);
+					$data = array('user_id' => $_POST['user_id'], 'mission_id' => $_POST['mission_id'], 'phase_id' => $phase['Phase']['id'], 'phase' => $phase['phase'], 'complete' => $phase['complete']);
 					$this->MissionSubscription->save($data);
 
 				}
 				
 				$json_data = array('flag' => 0);
-				return json_encode($json_data);
+				return json_encode($json_data + array('debug' => "DIFF PHASE: ".$phase['Phase']['id']." ".$oldPhaseId));
 
 			}
 		}

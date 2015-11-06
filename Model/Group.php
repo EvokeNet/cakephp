@@ -80,6 +80,7 @@ class Group extends AppModel {
  * @return Group array or null, if the user is not a member of any group in this mission
  */
 	public function getGroupInMission($mission_id, $user_id, $options = '') {
+		// I add the contain here, because I cound get from optioons, but it may cause some error somewhere else
 		$group = $this->find('first', array(
 			'joins' => array(
 				array(
@@ -98,9 +99,11 @@ class Group extends AppModel {
 				'Group.mission_id' => $mission_id
 			),
 			'group' => 'Group.id',
-			$options
+			'contain' => 'Member'
 		));
-
+		// debug($options);
+		// debug($group);
+		// die();
 		return $group;
 	}
 

@@ -29,10 +29,6 @@ button:hover, button:focus, .button:hover, .button:focus {
   border-radius: 5px;
 }
 
-.panel h1, .panel h2, .panel h3, .panel h4, .panel h5, .panel h6, .panel p, .panel li, .panel dl {
-  color: inherit;
-}
-
 /* --------------------------- */
 /* TABLE-CELL */
 /* --------------------------- */
@@ -101,12 +97,13 @@ button:hover, button:focus, .button:hover, .button:focus {
 
 .right-off-canvas-menu * {
   -webkit-backface-visibility: visible; /* Chrome, Safari, Opera */
-     backface-visibility: visible;
+  backface-visibility: visible;
+
 }
 
 .left-off-canvas-menu * {
   -webkit-backface-visibility: visible; /* Chrome, Safari, Opera */
-     backface-visibility: visible;
+  backface-visibility: visible;
 }
 
 .right-small {
@@ -383,4 +380,18 @@ button:hover, button:focus, .button:hover, .button:focus {
   background-color: #F7F682;
   border-color: #BEA601;
   color: #3f3f3f;
+}
+
+/* --------------------------- */
+/* JOYRIDE */
+/* --------------------------- */
+.joyride-tip-guide .joyride-nub.left {
+  border-color: #fff !important;
+  border-top-color: transparent !important;
+  border-left-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
+.joyride-content-wrapper {
+  box-shadow: 2px 2px 10px;
 }
