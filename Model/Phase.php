@@ -62,6 +62,7 @@ class Phase extends AppModel {
  * @return boolean True if the user has completed one or more quests, false otherwise
  */
 	public function hasCompleted($user_id, $phase_id) {
+		//debug("HAS COMPLETED PHASE");
 		$phase = $this->findById($phase_id);
 
 		$quest_ids = $this->Quest->find('list',array(
@@ -92,9 +93,10 @@ class Phase extends AppModel {
 			foreach ($quest_ids as $quest_id => $quest_title) {
 				//If one user from the group didn't complete it, the phase is not completed
 				foreach($userGroupInMission['Member'] as $key => $user) {
-					if (!$this->Quest->hasCompleted($user['id'],$quest_id))  {
+					if (!$this->Quest->hasCompleted($user['id'], $quest_id))  {
 						return false;
 					}
+					//debug("USR: ".$user['id']." | quest: ".$quest_id);
 				}
 			}
 			return true;
@@ -110,6 +112,8 @@ class Phase extends AppModel {
  * @return Phase object (if any)
  */
 	public function getCurrentPhase($user_id, $mission_id) {
+		//debug("GET CURRENT PHASE");
+		// get all phases for this mission
 		$mission_phases = $this->find('all',array(
 			'conditions' => array('mission_id' => $mission_id)
 		));
@@ -119,16 +123,16 @@ class Phase extends AppModel {
 
 		//Current phase is the one before which all phases have been completed
 		foreach ($mission_phases as $key => $phase) {
-			$completed_current = $this->hasCompleted($user_id,$phase['Phase']['id']);
+			$completed_current = $this->hasCompleted($user_id, $phase['Phase']['id']);
 
 			if ($completed_previous && !$completed_current) {
-				return $phase;
+				return ($phase+array("debug" => "getC", "phase" => $phase['Phase']['id'], "complete" => $completed_current));
 			}
 			
 			$completed_previous = $completed_current;
 		}
 
-		return $phase;
+		return ($phase+array("debug" => "getC2"));
 	}
 	
 	public function getNextPhase($phase, $mission_id) {

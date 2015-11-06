@@ -204,6 +204,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
 				//ADD EVIDENCE
 				console.log("ADD EVIDENCE");
+				console.log($(this).serializeArray());
 				$.ajax({
 					url: $(this).attr('action'),//webroot+"evidences/addEvidence",
 					type:"POST",
@@ -237,6 +238,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 								type:"POST",
 								data:objAddEvidence,
 								success: function(data) {
+									console.log(data);
 									console.log("AJAX");
 									filePath = webroot+"evidences/view/"+objAddEvidence.evidence_id; 	//URL DE VISUALIZACAO DA EVIDENCE
 									// if it is an evokaiton part, open evokation preview instead

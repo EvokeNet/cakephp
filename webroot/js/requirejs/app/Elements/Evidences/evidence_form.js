@@ -150,12 +150,14 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
 				//ADD EVIDENCE
+				//console.log("ADD EVIDENCE");
+				//console.log($(this).serializeArray());
 				$.ajax({
 					url: $(this).attr('action'),//webroot+"evidences/addEvidence",
 					type:"POST",
 					data: $(this).serializeArray(),
 					success: function(dataAddEvidence, b, c) {
-						console.log(dataAddEvidence, b, c);
+						//console.log(dataAddEvidence, b, c);
 						var filePath = '';
 						if(dataAddEvidence == true){
 							if ($('#EvidenceId').length){
@@ -190,7 +192,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 										filePath = webroot+"evidences/preview_evokation/"+$('#EvidenceEvokationId').val()+"/"+$('#EvidenceMissionId').val()+"/"+$('#EvidencePhaseId').val();
 									}
 									var obj = $.parseJSON(data);
-									console.log("SUCCESS: "+obj.flag);
+									//console.log("SUCCESS: "+obj.flag);
+									console.log(">>>>>>>>> AQUI <<<<<<<<<");
+									console.log(obj);
 									if(obj.flag == 0){
 
 										swal({
