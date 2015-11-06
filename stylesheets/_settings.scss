@@ -333,9 +333,9 @@ $black       : #000000;
 // $include-html-accordion-classes: $include-html-classes;
 
 // $accordion-navigation-padding: rem-calc(16);
-// $accordion-navigation-bg-color: $silver;
+$accordion-navigation-bg-color: $light-dark-background-color;
 // $accordion-navigation-hover-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -5%);
-// $accordion-navigation-active-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -3%);
+$accordion-navigation-active-bg-color: $light-dark-background-color;
 // $accordion-navigation-active-font-color: $jet;
 // $accordion-navigation-font-color: $jet;
 // $accordion-navigation-font-size: rem-calc(16);
@@ -358,7 +358,7 @@ $black       : #000000;
 // We use these to control text style.
 // $alert-font-weight: $font-weight-normal;
 // $alert-font-size: rem-calc(13);
-// $alert-font-color: $white;
+$alert-font-color: $black;
 // $alert-font-color-alt: scale-color($secondary-color, $lightness: -66%);
 
 // We use this for close hover effect.
@@ -766,7 +766,7 @@ $button-bg-hover: $highlight-color;
 // $joyride-tip-position-offset: 22px;
 
 // Here, we're setting the tip font styles
-// $joyride-tip-font-color: $white;
+$joyride-tip-font-color: $black;
 // $joyride-tip-font-size: rem-calc(14);
 // $joyride-tip-header-weight: $font-weight-bold;
 
@@ -892,7 +892,7 @@ $tabbar-menu-icon-width: $tabbar-icon-width;
 $tabbar-menu-icon-height: $tabbar-icon-height;
 $tabbar-menu-icon-padding: 0.5rem 0.2rem;
 
-// $tabbar-hamburger-icon-width: rem-calc(16);
+$tabbar-hamburger-icon-width: 0;
 // $tabbar-hamburger-icon-left: false;
 // $tabbar-hamburger-icon-top: false;
 // $tabbar-hamburger-icon-thickness: 1px;

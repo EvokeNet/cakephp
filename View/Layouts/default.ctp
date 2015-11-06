@@ -36,8 +36,6 @@ $title = __('Evoke Network');
 
     echo $this->Html->css('/css/font/font-brankic'); //Icon font - brankic 1979
 
-    // echo $this->Html->css('/components/foundation/css/foundation');
-
     echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 
     echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_style.min.css'); //Froala - rendering text
@@ -49,7 +47,6 @@ $title = __('Evoke Network');
 
     //EVOKE CSS
     echo $this->Html->css('styles');
-    echo $this->Html->css('/css/plugins/foundation'); //Overriding some of the foundation css
 
     //FILE-SPECIFIC CSS
     if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {

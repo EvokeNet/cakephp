@@ -67,24 +67,10 @@ button:hover, button:focus, .button:hover, .button:focus {
 /* --------------------------- */
 /* OFF-CANVAS */
 /* --------------------------- */
-.tab-bar-section {
-  padding: 0;
-}
-
-.tab-bar-section.left {
-  right: 0;
-}
 
 .tab-bar {
   /*height: 3.4em;*/
-  height: 0;
-}
-
-.tab-bar .menu-icon {
-  text-indent: 0;
-  padding: 0.5rem 0.2rem;
-  width: 4.725rem;
-  height: 4.225rem;
+  /*height: 0;*/
 }
 
 .tab-bar .menu-icon span::after {
@@ -192,13 +178,6 @@ button:hover, button:focus, .button:hover, .button:focus {
   border-width: 11px;
   border-top-color: #26dee0;
 }
-
-/*
-@media screen and (max-width: 58em) {
-  .tabs-style-linetriangle ul {
-    font-size: 0.6em;
-  }
-}*/
 
 /* --------------------------- */
 /* COMPLEMENTING TABS */
@@ -345,11 +324,6 @@ button:hover, button:focus, .button:hover, .button:focus {
 /* --------------------------- */
 /* ACCORDION */
 /* --------------------------- */
-.evoke .accordion .accordion-navigation > .content.active,
-.evoke .accordion dd > .content.active {
-  background-color: #292929; /* background-color-light-dark */
-}
-
 .evoke .accordion .accordion-navigation > a,
 .evoke .accordion dd > a  {
   background-color: #111; /* background-color-darkest */
@@ -369,11 +343,6 @@ button:hover, button:focus, .button:hover, .button:focus {
 /* --------------------------- */
 .evoke .alert-box.info {
   background-color: #28B2B4;
-  color: #000;
-}
-
-.evoke .alert-box.info p {
-  color: #000;
 }
 
 .evoke .alert-box.warning {

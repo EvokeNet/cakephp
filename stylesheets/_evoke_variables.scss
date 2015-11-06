@@ -1,7 +1,10 @@
 //colors
-$text-color: #ccc;
+$text-color: #cccccc;
 $text-highlight-color: #26dee0;
-  
-$panel-background-color: #252525;
+
+$dark-dark-background-color: #111111;
+$dark-background-color: #252525;
+$light-dark-background-color: #292929;
+$panel-background-color: $dark-background-color;
 
 $highlight-color: $text-highlight-color;

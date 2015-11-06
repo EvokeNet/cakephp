@@ -1,0 +1,420 @@
+/* OVERRIDE STYLES - FOUNDATION */
+
+/* --------------------------- */
+/* BUTTONS */
+/* --------------------------- */
+
+button {
+  &.disabled, &[disabled] {
+    color: #808080;
+    background-color: #333;
+  }
+}
+
+.button {
+  &.disabled, &[disabled] {
+    color: #808080;
+    background-color: #333;
+  }
+}
+
+button {
+  &.disabled {
+    &:hover, &:focus {
+      color: #808080;
+      background-color: #333;
+    }
+  }
+  &[disabled] {
+    &:hover, &:focus {
+      color: #808080;
+      background-color: #333;
+    }
+  }
+}
+
+.button {
+  &.disabled {
+    &:hover, &:focus {
+      color: #808080;
+      background-color: #333;
+    }
+  }
+  &[disabled] {
+    &:hover, &:focus {
+      color: #808080;
+      background-color: #333;
+    }
+  }
+}
+
+button {
+  &:hover, &:focus {
+    color: #333;
+    font-weight: bold;
+  }
+}
+
+.button {
+  &:hover, &:focus {
+    color: #333;
+    font-weight: bold;
+  }
+}
+
+.button-group {
+  > li:first-child {
+    button, .button {
+      border-left: 1px solid #26dee0;
+    }
+  }
+  &.radius > *:first-child {
+    button, .button {
+      border-left: 1px solid #26dee0;
+    }
+  }
+}
+
+/* --------------------------- */
+/* PANEL */
+/* --------------------------- */
+
+.panel.radius {
+  border-radius: 5px;
+}
+
+/* --------------------------- */
+/* TABLE-CELL */
+/* --------------------------- */
+
+.fp-tableCell {
+  position: relative;
+}
+
+/* --------------------------- */
+/* TOOLTIPS */
+/* --------------------------- */
+
+/*@media only screen and (min-width:40.063em) {
+  .tooltip > .nub {
+    border-color: transparent transparent #26dee0 transparent;
+    top: -10px; }
+  .tooltip.tip-top > .nub {
+    border-color: #26dee0 transparent transparent transparent;
+    top: auto;
+    bottom: -10px; }
+  .tooltip.tip-left, .tooltip.tip-right {
+    float: none !important; }
+  .tooltip.tip-left > .nub {
+    border-color: transparent transparent transparent #26dee0;
+    right: -10px;
+    left: auto;
+    top: 50%;
+    margin-top: -5px; }
+  .tooltip.tip-right > .nub {
+    border-color: transparent #26dee0 transparent transparent;
+    right: auto;
+    left: -10px;
+    top: 50%;
+    margin-top: -5px; }
+}*/
+
+/* --------------------------- */
+/* OFF-CANVAS */
+/* --------------------------- */
+
+.tab-bar {
+  /*height: 3.4em;*/
+  /*height: 0;*/
+  .menu-icon span::after {
+    display: none;
+  }
+}
+
+.offcanvas-overlap {
+  .left-off-canvas-menu, .right-off-canvas-menu {
+    z-index: 10;
+  }
+}
+
+.right-off-canvas-menu *, .left-off-canvas-menu * {
+  -webkit-backface-visibility: visible;
+  /* Chrome, Safari, Opera */
+  backface-visibility: visible;
+}
+
+.right-small, .left-small {
+  z-index: 11;
+  width: 4.725rem;
+}
+
+/* --------------------------- */
+/* COMPLEMENTING TABS */
+/* Triangle and line  */
+/* --------------------------- */
+
+.tabs-style-linetriangle {
+  .tab-image {
+    max-width: 200px;
+    /* Fallback for older browsers */
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    /* Newer browsers */
+    width: 10vw;
+    height: 10vw;
+    margin-bottom: 2vh;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  ul {
+    li.tab-title {
+      a {
+        &:hover {
+          background-color: transparent;
+        }
+        overflow: visible;
+        border-bottom: 1px solid #26dee0;
+        -webkit-transition: color 0.2s;
+        transition: color 0.2s;
+        background-color: transparent;
+        padding: 1rem 1.5rem;
+      }
+      &.active a {
+        background-color: transparent;
+      }
+    }
+    a span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 1em;
+    }
+    li.tab-title.active a {
+      span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 1em;
+      }
+      &:after, &:before {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border: solid transparent;
+        content: '';
+        pointer-events: none;
+      }
+      &:after {
+        margin-top: -1px;
+        margin-left: -10px;
+        border-width: 10px;
+        border-top-color: #333;
+      }
+      &:before {
+        margin-left: -11px;
+        border-width: 11px;
+        border-top-color: #26dee0;
+      }
+    }
+  }
+}
+
+@media (max-width: 18em) {
+  .tabs-style-linetriangle ul li.tab-title a {
+    padding: 1rem 1rem;
+  }
+}
+
+/* --------------------------- */
+/* COMPLEMENTING TABS */
+/* Small-image  */
+/* --------------------------- */
+
+.tabs-style-small-image {
+  dd {
+    background-color: #333;
+    min-width: 8em;
+  }
+  .right dd {
+    border: 1px solid rgb(70, 75, 77);
+  }
+  dd a, .tab-title a {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9rem;
+  }
+  dd > a, .tab-title > a {
+    border-bottom: 1px solid rgb(70, 75, 77);
+    background-color: #333;
+    color: #ccc;
+  }
+  .tabs-content {
+    padding: 1em 1em 1em 2em;
+  }
+  dd > a:hover, .tab-title > a:hover {
+    background-color: transparent;
+  }
+  dd.active a, .tab-title.active a {
+    background-color: #333;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: rgba(255, 255, 255, 1);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 1), 0 0 0px rgba(255, 255, 255, 1), 0 0 0px rgba(255, 255, 255, 1), 0 0 1px #26dee0, 0 0 5px #26dee0, 0 0 15px #26dee0, 0 0 10px #26dee0;
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  }
+}
+
+/* --------------------------- */
+/* COMPLEMENTING TABS */
+/* Small-image  */
+/* --------------------------- */
+
+.tabs-style-image-and-text {
+  dd {
+    background-color: transparent;
+    a {
+      padding: 0.5rem 0.7rem;
+      font-size: 0.9rem;
+    }
+  }
+  .tab-title a {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9rem;
+  }
+  dd > a {
+    border-bottom: 1px solid rgb(70, 75, 77);
+    background-color: transparent;
+    color: #ccc;
+  }
+}
+
+.tabs-style-small-image .tab-title > a {
+  border-bottom: 1px solid rgb(70, 75, 77);
+  background-color: transparent;
+  color: #ccc;
+}
+
+.tabs-style-image-and-text {
+  .right dd {
+    border: 1px solid rgb(70, 75, 77);
+  }
+  .tabs-content {
+    padding: 1em 1em 1em 2em;
+  }
+  dd > a:hover, .tab-title > a:hover {
+    background-color: transparent;
+  }
+  dd.active a, .tab-title.active a {
+    background-color: #333;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: rgba(255, 255, 255, 1);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 1), 0 0 0px rgba(255, 255, 255, 1), 0 0 0px rgba(255, 255, 255, 1), 0 0 1px #26dee0, 0 0 5px #26dee0, 0 0 15px #26dee0, 0 0 10px #26dee0;
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  }
+}
+
+/* --------------------------- */
+/* POSITION FIXED */
+/* Triangle and line  */
+/* --------------------------- */
+/* Small screens */
+@media only screen and (max-width: 40em) {
+  .small-only.position-fixed {
+    position: fixed;
+  }
+}
+
+/* max-width 640px, mobile-only styles, use when QAing mobile issues */
+
+/* Medium screens */
+@media only screen and (min-width: 40.063em) {
+  .medium-up.position-fixed {
+    position: fixed;
+  }
+}
+
+/* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+  .medium-only.position-fixed {
+    position: fixed;
+  }
+}
+
+/* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+
+/* Large screens */
+@media only screen and (min-width: 64.063em) {
+  .large-only.position-fixed {
+    position: fixed;
+  }
+}
+
+/* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */
+
+.evoke {
+  ul.inline-list-centered {
+    list-style-type: none;
+    text-align: center;
+    li {
+      display: inline-block;
+    }
+  }
+  .accordion {
+    .accordion-navigation > a, dd > a {
+      background-color: #111;
+      /* background-color-darkest */
+      font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+      color: #26dee0;
+      /* text-color-highlight */
+    }
+  }
+  .reveal-modal {
+    background-color: #111;
+    /* background-color-darkest */
+  }
+  .alert-box {
+    &.info {
+      background-color: #28B2B4;
+    }
+    &.warning {
+      background-color: #F7F682;
+      border-color: #BEA601;
+      color: #3f3f3f;
+    }
+  }
+}
+
+/* --------------------------- */
+/* JOYRIDE */
+/* --------------------------- */
+
+.joyride-tip-guide .joyride-nub.left {
+  border-color: #fff !important;
+  border-top-color: transparent !important;
+  border-left-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
+.joyride-content-wrapper {
+  box-shadow: 2px 2px 10px;
+}
