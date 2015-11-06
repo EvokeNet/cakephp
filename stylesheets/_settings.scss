@@ -839,8 +839,9 @@ $button-bg-hover: $highlight-color;
 // $include-html-off-canvas-classes: $include-html-classes;
 
 // $tabbar-bg: $oil;
-// $tabbar-height: rem-calc(45);
-// $tabbar-icon-width: $tabbar-height;
+$tabbar-height: 0;
+$tabbar-icon-width: 4.725rem;
+$tabbar-icon-height: 4.225rem;
 // $tabbar-line-height: $tabbar-height;
 // $tabbar-color: $white;
 // $tabbar-middle-padding: 0 rem-calc(10);
@@ -886,10 +887,10 @@ $button-bg-hover: $highlight-color;
 // $tabbar-menu-icon-color: $white;
 // $tabbar-menu-icon-hover: scale-color($tabbar-menu-icon-color, $lightness: -30%);
 
-// $tabbar-menu-icon-text-indent: rem-calc(35);
-// $tabbar-menu-icon-width: $tabbar-icon-width;
-// $tabbar-menu-icon-height: $tabbar-height;
-// $tabbar-menu-icon-padding: 0;
+$tabbar-menu-icon-text-indent: 0;
+$tabbar-menu-icon-width: $tabbar-icon-width;
+$tabbar-menu-icon-height: $tabbar-icon-height;
+$tabbar-menu-icon-padding: 0.5rem 0.2rem;
 
 // $tabbar-hamburger-icon-width: rem-calc(16);
 // $tabbar-hamburger-icon-left: false;
@@ -1432,7 +1433,7 @@ $tooltip-font-color: $text-color;
 // $topbar-link-padding: ($topbar-height / 3);
 // $topbar-back-link-size: rem-calc(18);
 // $topbar-link-dropdown-padding: rem-calc(20);
-// $topbar-button-font-size: .75rem;
+$topbar-button-font-size: .7rem;
 // $topbar-button-top: 7px;
 
 // Style the top bar dropdown elements

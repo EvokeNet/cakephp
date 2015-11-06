@@ -69,23 +69,6 @@ button:hover, button:focus, .button:hover, .button:focus {
 }*/
 
 /* --------------------------- */
-/* TOP-BAR */
-/* --------------------------- */
-.top-bar {
-  background-color: #333;
-}
-.evoke .top-bar input, .evoke .top-bar .button, .evoke .top-bar button {
-  font-size: 0.7rem;
-}
-.evoke .top-bar .button, .evoke .top-bar button {
-  margin-top: 3px;
-}
-
-.f-topbar-fixed {
-  padding-top: 58px;
-}
-
-/* --------------------------- */
 /* OFF-CANVAS */
 /* --------------------------- */
 .tab-bar-section {
