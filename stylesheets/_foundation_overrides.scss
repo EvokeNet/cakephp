@@ -6,29 +6,29 @@
 
 button {
   &.disabled, &[disabled] {
-    color: #808080;
-    background-color: #333;
+    color: $disabled-color;
+    background-color: $oil;
   }
 }
 
 .button {
   &.disabled, &[disabled] {
-    color: #808080;
-    background-color: #333;
+    color: $disabled-color;
+    background-color: $oil;
   }
 }
 
 button {
   &.disabled {
     &:hover, &:focus {
-      color: #808080;
-      background-color: #333;
+      color: $disabled-color;
+      background-color: $oil;
     }
   }
   &[disabled] {
     &:hover, &:focus {
-      color: #808080;
-      background-color: #333;
+      color: $disabled-color;
+      background-color: $oil;
     }
   }
 }
@@ -36,28 +36,28 @@ button {
 .button {
   &.disabled {
     &:hover, &:focus {
-      color: #808080;
-      background-color: #333;
+      color: $disabled-color;
+      background-color: $oil;
     }
   }
   &[disabled] {
     &:hover, &:focus {
-      color: #808080;
-      background-color: #333;
+      color: $disabled-color;
+      background-color: $oil;
     }
   }
 }
 
 button {
   &:hover, &:focus {
-    color: #333;
+    color: $oil;
     font-weight: bold;
   }
 }
 
 .button {
   &:hover, &:focus {
-    color: #333;
+    color: $oil;
     font-weight: bold;
   }
 }
@@ -176,9 +176,8 @@ button {
           background-color: transparent;
         }
         overflow: visible;
-        border-bottom: 1px solid #26dee0;
-        -webkit-transition: color 0.2s;
-        transition: color 0.2s;
+        border-bottom: 1px solid $highlight-color;
+        @include transition(color, 200ms, linear);
         background-color: transparent;
         padding: 1rem 1.5rem;
       }
@@ -189,6 +188,7 @@ button {
     a span {
       display: block;
       overflow: hidden;
+      -o-text-overflow: ellipsis;
       text-overflow: ellipsis;
       white-space: nowrap;
       font-size: 1em;
@@ -197,6 +197,7 @@ button {
       span {
         display: block;
         overflow: hidden;
+        -o-text-overflow: ellipsis;
         text-overflow: ellipsis;
         white-space: nowrap;
         font-size: 1em;
@@ -215,7 +216,7 @@ button {
         margin-top: -1px;
         margin-left: -10px;
         border-width: 10px;
-        border-top-color: #333;
+        border-top-color: $oil;
       }
       &:before {
         margin-left: -11px;
@@ -239,7 +240,7 @@ button {
 
 .tabs-style-small-image {
   dd {
-    background-color: #333;
+    background-color: $oil;
     min-width: 8em;
   }
   .right dd {
@@ -251,8 +252,8 @@ button {
   }
   dd > a, .tab-title > a {
     border-bottom: 1px solid rgb(70, 75, 77);
-    background-color: #333;
-    color: #ccc;
+    background-color: $oil;
+    color: $text-color;
   }
   .tabs-content {
     padding: 1em 1em 1em 2em;
@@ -261,11 +262,11 @@ button {
     background-color: transparent;
   }
   dd.active a, .tab-title.active a {
-    background-color: #333;
+    background-color: $oil;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    color: rgba(255, 255, 255, 1);
+    color: $white;
     -o-text-overflow: clip;
     text-overflow: clip;
     text-shadow: 0 0 5px rgba(255, 255, 255, 1), 0 0 0px rgba(255, 255, 255, 1), 0 0 0px rgba(255, 255, 255, 1), 0 0 1px #26dee0, 0 0 5px #26dee0, 0 0 15px #26dee0, 0 0 10px #26dee0;
@@ -296,14 +297,14 @@ button {
   dd > a {
     border-bottom: 1px solid rgb(70, 75, 77);
     background-color: transparent;
-    color: #ccc;
+    color: $text-color;
   }
 }
 
 .tabs-style-small-image .tab-title > a {
   border-bottom: 1px solid rgb(70, 75, 77);
   background-color: transparent;
-  color: #ccc;
+  color: $text-color;
 }
 
 .tabs-style-image-and-text {
@@ -317,18 +318,14 @@ button {
     background-color: transparent;
   }
   dd.active a, .tab-title.active a {
-    background-color: #333;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
+    background-color: $oil;
     box-sizing: border-box;
-    color: rgba(255, 255, 255, 1);
+    color: $white;
+    @include opacity(1);
     -o-text-overflow: clip;
     text-overflow: clip;
     text-shadow: 0 0 5px rgba(255, 255, 255, 1), 0 0 0px rgba(255, 255, 255, 1), 0 0 0px rgba(255, 255, 255, 1), 0 0 1px #26dee0, 0 0 5px #26dee0, 0 0 15px #26dee0, 0 0 10px #26dee0;
-    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
-    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    @include transition(all, 200ms, cubic-bezier(0.42, 0, 0.58, 1));
   }
 }
 
