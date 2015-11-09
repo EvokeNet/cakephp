@@ -34,7 +34,8 @@ class AppController extends Controller {
 			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
 				'authError' => 'Você não tem permissão para ver essa página'
 		),
-		'UserRole'
+		'UserRole',
+		'Language'
 	);
 
 	public $helpers = array(
@@ -105,7 +106,7 @@ class AppController extends Controller {
 			}
 			//Default: spanish (for the playtest)
 			else {
-				$this->Session->write('Config.language', 'es');
+				$this->Session->write('Config.language', 'en');
 			}
 		}
 
