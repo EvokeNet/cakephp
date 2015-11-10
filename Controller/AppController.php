@@ -34,8 +34,7 @@ class AppController extends Controller {
 			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
 				'authError' => 'Você não tem permissão para ver essa página'
 		),
-		'UserRole',
-		'Language'
+		'UserRole'
 	);
 
 	public $helpers = array(

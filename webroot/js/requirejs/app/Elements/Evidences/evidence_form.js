@@ -152,12 +152,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				//ADD EVIDENCE
 				//console.log("ADD EVIDENCE");
 				//console.log($(this).serializeArray());
+				var formData = $(this).serializeArray();
 				$.ajax({
 					url: $(this).attr('action'),//webroot+"evidences/addEvidence",
 					type:"POST",
-					data: $(this).serializeArray(),
-					success: function(dataAddEvidence, b, c) {
-						//console.log(dataAddEvidence, b, c);
+					data: formData,
+					success: function(dataAddEvidence) {
+						console.log(dataAddEvidence);
 						var filePath = '';
 						if(dataAddEvidence == true){
 							if ($('#EvidenceId').length){
@@ -178,30 +179,38 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 							//ERROR
 						}else{
 							var objAddEvidence = $.parseJSON(dataAddEvidence);
-							console.log("Before");
 							//CHECK IF A PHASE WAS UNLOCKED
 							$.ajax({
 								url: webroot+"phases/checkSubscription",
 								type:"POST",
 								data:objAddEvidence,
 								success: function(data) {
-									console.log("AJAX");
 									filePath = webroot+"evidences/view/"+objAddEvidence.evidence_id; 	//URL DE VISUALIZACAO DA EVIDENCE
 									// if it is an evokaiton part, open evokation preview instead
 									if ($('#EvidenceEvokationId').length){
 										filePath = webroot+"evidences/preview_evokation/"+$('#EvidenceEvokationId').val()+"/"+$('#EvidenceMissionId').val()+"/"+$('#EvidencePhaseId').val();
 									}
 									var obj = $.parseJSON(data);
-									//console.log("SUCCESS: "+obj.flag);
-									console.log(">>>>>>>>> AQUI <<<<<<<<<");
-									console.log(obj);
 									if(obj.flag == 0){
 
 										swal({
 											title: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.title"),
 											text: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.text"),
-											type: "success"
-										});
+											type: "success",
+											showCancelButton: true,
+									        confirmButtonText: i18n.t("app.elements.evidences.evidence_form.btn_next_phase.text"),
+									        cancelButtonText: i18n.t("app.elements.evidences.evidence_form.btn_stay_phase.text")
+											},
+											function (isConfirm){
+												if(isConfirm){
+													// redirect to the next phase											
+													window.location.href = obj.url;
+												}else{
+													// open the next phase in the phases bar
+													$('.phases-bar a:eq('+String(Number(obj.position) - 1)+')').attr('href', obj.path).removeClass('looks-disabled').addClass('available');
+												}
+											}
+										);
 									}
 									//Execute the action if confirmed
 									missionPanels.openInMissionOverlay(

@@ -13,6 +13,12 @@
 						"title": "Fase abierto!",
 						"text": "Felicidades, acaba de desbloquear una fase! Puede seguir trabajando en esta fase, pero también se puede echar un vistazo a la siguiente."
 					},
+					"btn_next_phase":{
+						"text": "¡Ir a la siguiente fase!"
+					},
+					"btn_stay_phase":{
+						"text": "¡Permanezca en esta fase!"
+					},
 					"msg_empty_link":{
 						"title": "Campo do Hipervinculo vacio!",
 						"text": "Usted tiene que llenar el campo de Hipervinculo para enviar este tipo de Evokation part."
