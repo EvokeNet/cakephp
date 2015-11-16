@@ -19,14 +19,11 @@
 					"btn_stay_phase":{
 						"text": "Stay on this phase!"
 					},
-					"msg_empty_link":{
-						"title": "Empty link!",
-						"text": "You have to fill the link field to submit this kind of Evokation part."
-					},
-					"msg_sucess":{
+					"msg_success":{
 						"title": "Congratulations!",
-						"text": "Your Evokation Part has been submitted!"
+						"text": "Your evidence has been submitted!"
 					}
+					
 				},
 				"view_evidence":{
 					"msg_delete_evidence": {
@@ -48,6 +45,24 @@
 						"text": "You will not be able to recover your comment.",
 						"confirmButtonText": "Yes, delete it!",
 						"cancelButtonText": "Cancel"
+					}
+				}
+			},
+			"evokations":{
+				"evokation_form":{
+					"msg_change_type": {
+						"title": "Are you sure?",
+						"text": "If you change your Evokation Part type now, you will lose the special content of your Evokation Part's focus.",
+						"confirmButtonText": "Yes, change my Evokation Part type!",
+						"cancelButtonText": "Cancel"
+					},
+					"msg_empty_link":{
+						"title": "Empty link!",
+						"text": "You have to fill the link field to submit this kind of Evokation part."
+					},
+					"msg_success":{
+						"title": "Congratulations!",
+						"text": "Your Evokation Part has been submitted!"
 					}
 				}
 			},

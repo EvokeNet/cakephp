@@ -326,7 +326,7 @@ public function addEvidence() {
  */
 public function editEvidence() {
 	$this->autoRender = false;
-	debug("EDIT EVIDENCE");
+	//debug("EDIT EVIDENCE");
 	if ($this->request->is('post') || $this->request->is('put')) {
 		//UPDATE EVIDENCE IN THE DB AND REDIRECT TO VIEW IT
 		if ($this->Evidence->save($this->request->data)) {

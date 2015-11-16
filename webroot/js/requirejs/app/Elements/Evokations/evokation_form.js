@@ -201,75 +201,27 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//EVIDENCE: SUBMITTING A FORM TO EDIT AN EVIDENCE LOADS EVIDENCE VIEW VIA AJAX
 			//--------------------------------------------//
-			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
+			$("#imageLinkModal").on("submit", "form.formSubmitEvidence", function( event ) {
+				event.preventDefault();
+
 				//ADD EVIDENCE
-				console.log("ADD EVIDENCE");
-				console.log($(this).serializeArray());
 				$.ajax({
 					url: $(this).attr('action'),//webroot+"evidences/addEvidence",
 					type:"POST",
 					data: $(this).serializeArray(),
 
 					success: function(dataAddEvidence) {
-						var filePath = '';
-						if(dataAddEvidence == true){
-							if ($('#EvidenceId').length){
-								filePath = webroot+"evidences/view/"+$('#EvidenceId').val();
-							}
-							// if it is an evokaiton part, open evokation preview instead
-							if ($('#EvidenceEvokationId').length){
-								filePath = webroot+"evidences/preview_evokation/"+$('#EvidenceEvokationId').val()+"/"+$('#EvidenceMissionId').val();
-							}
-							//Execute the action if confirmed
-							missionPanels.openInMissionOverlay(
-								filePath
-							).done(function() {
-								missionPanels.reloadTabQuests();
-								missionPanels.reloadMainContent();
-							});
-						}else if(dataAddEvidence == false){
-							//ERROR
-						}else{
-							var objAddEvidence = $.parseJSON(dataAddEvidence);
-							console.log("Before");
-							//CHECK IF A PHASE WAS UNLOCKED
-							$.ajax({
-								url: webroot+"phases/checkSubscription",
-								type:"POST",
-								data:objAddEvidence,
-								success: function(data) {
-									console.log(data);
-									console.log("AJAX");
-									filePath = webroot+"evidences/view/"+objAddEvidence.evidence_id; 	//URL DE VISUALIZACAO DA EVIDENCE
-									// if it is an evokaiton part, open evokation preview instead
-									if ($('#EvidenceEvokationId').length){
-										filePath = webroot+"evidences/preview_evokation/"+$('#EvidenceEvokationId').val()+"/"+$('#EvidenceMissionId').val()+"/"+$('#EvidencePhaseId').val();
-									}
-									var obj = $.parseJSON(data);
-									console.log("SUCCESS: "+obj.flag);
-									if(obj.flag == 0){
-
-										swal({
-											title: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.title"),
-											text: i18n.t("app.elements.evidences.evidence_form.msg_phase_unlocked.text"),
-											type: "success"
-										});
-									}
-									//Execute the action if confirmed
-									missionPanels.openInMissionOverlay(
-										filePath
-									).done(function() {
-										missionPanels.reloadTabQuests();
-										missionPanels.reloadMainContent();
-									});
-								}
-							});
-						}
 						
+							swal({
+								title: i18n.t("app.elements.evidences.evidence_form.msg_success.title"),
+								text: i18n.t("app.elements.evidences.evidence_form.msg_success.text"),
+								type: "success"
+							}, function(){
+								location.reload();
+							
+							});
 					}
 				});
-
-				event.preventDefault();
 			});
 		});
 	});

@@ -70,9 +70,16 @@ class Phase extends AppModel {
 		));
 
 		//Individual phases: Completed phase if completed at least one quest
-		if ($phase['Phase']['type'] == Phase::TYPE_INDIVIDUAL) {
+		/*
+		*
+		*
+		* The second condition is only there to allow a user to go from act to evoke by simply creating a group
+		*
+		*
+		*/
+		if (($phase['Phase']['type'] == Phase::TYPE_INDIVIDUAL) || ($phase['Phase']['type'] == Phase::TYPE_GROUP)) {
 			foreach ($quest_ids as $quest_id => $quest_title) {
-				if ($this->Quest->hasCompleted($user_id,$quest_id))  {
+				if ($this->Quest->hasCompleted($user_id, $quest_id))  {
 					return true;
 				}
 			}

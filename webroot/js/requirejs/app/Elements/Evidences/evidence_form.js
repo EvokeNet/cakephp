@@ -150,15 +150,13 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			$("#missions-content-overlay-body").on("submit", "form.formSubmitEvidence", function( event ) {
 				//ADD EVIDENCE
-				//console.log("ADD EVIDENCE");
-				//console.log($(this).serializeArray());
 				var formData = $(this).serializeArray();
 				$.ajax({
 					url: $(this).attr('action'),//webroot+"evidences/addEvidence",
 					type:"POST",
 					data: formData,
 					success: function(dataAddEvidence) {
-						console.log(dataAddEvidence);
+						//console.log(dataAddEvidence);
 						var filePath = '';
 						if(dataAddEvidence == true){
 							if ($('#EvidenceId').length){
@@ -211,6 +209,12 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 												}
 											}
 										);
+									}else{
+										swal({
+											title: i18n.t("app.elements.evidences.evidence_form.msg_success.title"),
+											text: i18n.t("app.elements.evidences.evidence_form.msg_success.text"),
+											type: "success"
+										});
 									}
 									//Execute the action if confirmed
 									missionPanels.openInMissionOverlay(
@@ -221,11 +225,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 									});
 								}
 							});
-						}
-						
+						}	
 					}
 				});
-
 				event.preventDefault();
 			});
 		});
