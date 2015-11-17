@@ -27,7 +27,7 @@ public function initQuests($group_id = null, $mission_id){
 	));
 	// array with all the quests ids for evoke phase
 	$questsIds = Hash::extract($evokationQuests, '{n}.Quest.id');
-	debug($questsIds);
+	//debug($questsIds);
 
 	foreach ($questsIds as $q) {
 		$data = array(
@@ -35,16 +35,12 @@ public function initQuests($group_id = null, $mission_id){
 			'quest_id' => $q,
 			'status'   => self::STATUS_NOT_STARTED
 		);
-		debug($data);
+		//debug($data);
 		$this->save($data);
 		$this->clear();
 	}
 	
 }
-
-
-
-
 
 //The Associations below have been created with all possible keys, those that are not needed can be removed
 

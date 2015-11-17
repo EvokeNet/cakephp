@@ -177,6 +177,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 							//ERROR
 						}else{
 							var objAddEvidence = $.parseJSON(dataAddEvidence);
+							console.log("ELSE");
 							//CHECK IF A PHASE WAS UNLOCKED
 							$.ajax({
 								url: webroot+"phases/checkSubscription",
