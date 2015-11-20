@@ -121,17 +121,16 @@
 
   <!-- CENTER -->
   <div class="small-12 medium-7 large-9 columns padding top-2 bottom-2 left-2 right-2" data-equalizer-watch>
-    <div class="row standard-width">
-      <!-- Current Mission -->
-      <h3 class = "evoke padding top-1 padding bottom-1"> <?= strtoupper(__('Current Mission')) ?> </h3>
+
+    <!-- Current Mission -->
+    <div class="row current-mission">
+      <h2 class="display-inline"> <?= strtoupper(__('Current Mission')) ?> - </h2>
+      <h3 class="text-color-highlight display-inline"><?= strtoupper($current_mission['Mission']['title']) ?></h3>
+
+
       <?php  $current_mission_url = $this->Html->url(array('controller' => 'missions', 'action' => 'view_mission', $current_mission['Mission']['id'])); ?>
-      <div class="background-color-dark-opacity-08 padding left-1 right-1" style="position: absolute; z-index: 1; left: 80px; margin-top: 20px;">
-        <h1 class="text-color-highlight"
-          style="font-size: 1.5vw; text-shadow: 0 0 12px rgba(0,0,0,0.85);">
-          <?= strtoupper($current_mission['Mission']['title']) ?>
-        </h1>
-      </div>
-      <div class="evoke default view view-first">
+      <!-- Mission Link -->
+      <div class="view view-first">
         <a href="<?= $current_mission_url ?>">
           <?php if(!is_null($current_mission['Mission']['cover_dir'])) :?>
             <img src="<?= $this->webroot.'files/attachment/attachment/'.$current_mission['Mission']['cover_dir'].'/'.$current_mission['Mission']['cover_attachment'] ?>">
@@ -144,9 +143,22 @@
             </div>
           </a>
       </div>
+      <!-- End Mission Link -->
+      <!-- Available Quests -->
+      <?php $mission_phase_icons = $this->Phase->getPhaseIcons(); ?>
+      <div class="quest-list">
+        <div class="button-bar phases-bar">
+          <span class="button current">
+            <i class="fa <?= $mission_phase_icons[$current_phase['position']] ?> fa-lg"></i>
+            <?php echo $current_phase['name'] ?>
+          </span>
+        </div>
+      </div>
+      <!-- End Available Quests -->
+    </div>
+    <!-- End Current Mission -->
 
-
-
+    <div class="row standard-width">
       <!-- PSYCHOMETRIC ANALYSIS -->
       <div class="large-6 medium-12 columns">
         <h3><?= __('Psychometric Analysis') ?></h3>

@@ -27,11 +27,11 @@ class UsersController extends AppController {
 
   public $components = array('UserRole');
 
-  public $uses = array('User', 'Friend', 'Mission');
+  public $uses = array('User', 'Friend');
 
   public $user = null;
 
-  public $helpers = array('Menu');
+  public $helpers = array('Menu', 'Phase');
 
   public $paginate;
 
@@ -602,6 +602,8 @@ class UsersController extends AppController {
 
     $users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
+    $user_id = $id;
+
     //LEVEL AND POINTS
     $this->loadModel('Level');
 
@@ -619,11 +621,22 @@ class UsersController extends AppController {
       $percentage = 0;
 
     // MISSIONS
+    $this->loadModel('Mission');
+    $this->loadModel('UserMission');
+    $this->loadModel('Phase');
+    $this->loadModel('Quest');
+
     if (!$user['User']['basic_training']) {
       $current_mission = $this->Mission->find('first', array('conditions' => array('Mission.basic_training' => 1)));
     } else {
       $current_mission = $this->User->UserMission->find('first', array('conditions' => array('UserMission.user_id' => $id, 'UserMission.completed' => 0)));
     }
+
+    $current_phase = $this->Phase->getCurrentPhase($user_id, $current_mission['Mission']['id'])['Phase'];
+
+    $quests = $this->Quest->find('list',array(
+      'conditions' => array('phase_id' => $current_phase['id'])
+    ));
 
     //LEADERBOARD
     $max_leaderboard_users = 6; //Total of leaders on the leaderboard (including the top ones)
@@ -825,7 +838,9 @@ class UsersController extends AppController {
       'badges',
       'show_basic_training',
       'similar_users',
-      'current_mission'));
+      'current_mission',
+      'current_phase',
+      'quests'));
   }
 
 

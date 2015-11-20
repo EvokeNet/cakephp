@@ -25,12 +25,14 @@
   }
 }
 
-/* Slide */
-
 .evoke {
+  /* Slide */
   &.slide.background-cover.active .img-caption-bottom {
     width: 50%;
   }
+  /* --------------------------- */
+  /* MATCHING RESULTS AND PROFILE */
+  /* --------------------------- */
   #radar-graph {
     margin-top: -50px;
   }
@@ -40,6 +42,8 @@
       font-size: 0.9rem;
     }
   }
+
+  /* Profile picture */
   .profile-picture {
     height: 150px;
     width: 125px;
@@ -52,6 +56,12 @@
       width: 40px;
     }
   }
+
+  /* User panel leaderboard */
+
+  /* --------------------------- */
+  /* LEADERBOARD */
+  /* --------------------------- */
   .user-panel-leaderboard {
     .profile-picture {
       margin: -125px auto 0px auto;
@@ -66,17 +76,12 @@
   }
 }
 
-/* --------------------------- */
-/* MATCHING RESULTS AND PROFILE */
-/* --------------------------- */
-
-/* Profile picture */
-
-/* User panel leaderboard */
-
-/* --------------------------- */
-/* LEADERBOARD */
-/* --------------------------- */
+/**
+ * Current Mission Section
+ */
+.current-mission {
+  
+}
 
 .icon-medal-stack {
   .icon-medal2 {
