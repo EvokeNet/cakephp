@@ -7,3 +7,6 @@ webroot/files/*
 Plugin/
 tmp/
 dbv/data/meta/revision
+.sass-cache/
+Config/amazon.php
+node_modules/
