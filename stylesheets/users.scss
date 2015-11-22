@@ -43,6 +43,16 @@
     .p {
       font-size: 0.9rem;
     }
+
+    .leaderboard {
+      max-height: 20rem;
+      overflow-y: scroll;
+
+      .other-leaders {
+        margin: 0;
+        width: 90%;
+      }
+    }
   }
 
   /* Profile picture */
@@ -131,6 +141,16 @@
    }
  }
 }
+
+/**
+ * Potential Allies
+ */
+.potential-allies-list {
+  max-height: 20rem;
+  overflow-y: scroll;
+}
+
+
 
 .icon-medal-stack {
   .icon-medal2 {

@@ -602,9 +602,15 @@ class UsersController extends AppController {
       throw new NotFoundException(__('Invalid user'));
     }
 
-    $user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
+    $user = $this->get_user($id);
 
     $users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+    if ($user['User']['id'] == $users['User']['id']) {
+      $is_current_user = true;
+    } else {
+      $is_current_user = false;
+    }
 
     $user_id = $id;
 
@@ -625,45 +631,26 @@ class UsersController extends AppController {
       $percentage = 0;
 
     // MISSIONS
-    $this->loadModel('Mission');
-    $this->loadModel('UserMission');
-    $this->loadModel('Phase');
-    $this->loadModel('Quest');
+    if ($is_current_user) {
+      $this->loadModel('Mission');
+      $this->loadModel('UserMission');
+      $this->loadModel('Phase');
+      $this->loadModel('Quest');
 
-    if (!$user['User']['basic_training']) {
-      $current_mission = $this->Mission->find('first', array('conditions' => array('Mission.basic_training' => 1)));
-    } else {
-      $current_mission = $this->Mission->find('first', array(
-        'joins' => array(
-          array(
-            'table' => 'user_missions',
-            'alias' => 'UserMission',
-            'type' => 'LEFT',
-            'foreign_key' => false,
-            'conditions' => array(
-              'UserMission.user_id' => $id,
-              'UserMission.completed' => 0
-            )
-          )
-        ),
-        'conditions' => array(
-          'Mission.basic_training' => 0
-        )
-      ));
+      if (!$user['User']['basic_training']) {
+        $current_mission = $this->Mission->find('first', array('conditions' => array('Mission.basic_training' => 1)));
+      } else {
+        $available_missions = $this->get_available_missions($id);
 
-      $available_missions = $this->Mission->find('all', array(
-        'conditions' => array(
-          'Mission.basic_training' => 0,
-          'Mission.id !=' => $current_mission['Mission']['id']
-        )
+        $current_mission = $available_missions[0];
+      }
+
+      $current_phase = $this->Phase->getCurrentPhase($user_id, $current_mission['Mission']['id'])['Phase'];
+
+      $quests = $this->Quest->find('all',array(
+        'conditions' => array('phase_id' => $current_phase['id'])
       ));
     }
-
-    $current_phase = $this->Phase->getCurrentPhase($user_id, $current_mission['Mission']['id'])['Phase'];
-
-    $quests = $this->Quest->find('all',array(
-      'conditions' => array('phase_id' => $current_phase['id'])
-    ));
 
     //LEADERBOARD
     $max_leaderboard_users = 6; //Total of leaders on the leaderboard (including the top ones)
@@ -885,7 +872,12 @@ class UsersController extends AppController {
       'current_phase',
       'quests',
       'available_missions',
+      'completed_missions',
       'allies_evidences'));
+
+    if ($is_current_user) {
+      $this->render('dashboard');
+    }
   }
 
 
@@ -1269,5 +1261,34 @@ class UsersController extends AppController {
     } else {
       $this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
     }
+  }
+
+  /**
+   * Gets User from ID
+   * @param  [type] $id [description]
+   * @return [type]     [description]
+   */
+  private function get_user($id = null) {
+    return $this->User->find('first', array('conditions' => array('User.id' => $id)));
+  }
+
+  private function get_available_missions($user_id) {
+    return $this->Mission->find('all', array(
+      'joins' => array(
+        array(
+          'table' => 'user_missions',
+          'alias' => 'UserMission',
+          'type' => 'LEFT',
+          'foreign_key' => false,
+          'conditions' => array(
+            'UserMission.user_id' => $user_id,
+            'UserMission.completed' => 0
+          )
+        )
+      ),
+      'conditions' => array(
+        'Mission.basic_training' => 0
+      )
+    ));
   }
 }
