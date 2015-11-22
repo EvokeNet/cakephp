@@ -637,19 +637,33 @@ class UsersController extends AppController {
       $this->loadModel('Phase');
       $this->loadModel('Quest');
 
+      $current_phases = array();
+      $quests = array();
+
       if (!$user['User']['basic_training']) {
         $current_mission = $this->Mission->find('first', array('conditions' => array('Mission.basic_training' => 1)));
+
+        $current_phase[]= $this->Phase->getCurrentPhase($user_id, $current_mission['Mission']['id'])['Phase'];
+
+        $quests[]= $this->Quest->find('all',array(
+          'conditions' => array('phase_id' => $current_phase['id'])
+        ));
       } else {
         $available_missions = $this->get_available_missions($id);
 
         $current_mission = $available_missions[0];
+
+        foreach($available_missions as $available_mission) {
+          $current_phases[]= $this->Phase->getCurrentPhase($user_id, $available_mission['Mission']['id'])['Phase'];
+        }
+
+        foreach($current_phases as $current_phase) {
+          $quests[]= $this->Quest->find('all',array(
+            'conditions' => array('phase_id' => $current_phase['id']),
+            'limit' => 5
+          ));
+        }
       }
-
-      $current_phase = $this->Phase->getCurrentPhase($user_id, $current_mission['Mission']['id'])['Phase'];
-
-      $quests = $this->Quest->find('all',array(
-        'conditions' => array('phase_id' => $current_phase['id'])
-      ));
     }
 
     //LEADERBOARD
@@ -869,7 +883,7 @@ class UsersController extends AppController {
       'show_basic_training',
       'similar_users',
       'current_mission',
-      'current_phase',
+      'current_phases',
       'quests',
       'available_missions',
       'completed_missions',

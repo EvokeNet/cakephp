@@ -48,11 +48,11 @@
     <!-- Available Missions -->
     <div class="available-missions">
       <h4><?php echo __('Available Missions'); ?></h4>
-      <?php foreach($available_missions as $available_mission): ?>
+      <?php foreach($available_missions as $index => $available_mission): ?>
         <?php  $available_mission_url = $this->Html->url(array('controller' => 'missions', 'action' => 'view_mission', $available_mission['Mission']['id'])); ?>
         <!-- Mission Link -->
-        <div class="view view-first">
-          <a href="<?= $available_mission_url ?>">
+        <div data-mission="mission<?php echo $available_mission['Mission']['id']; ?>" class="view view-first available-mission <?php if($index==0){echo 'selected-mission';} ?>">
+          <a>
             <?php if(!is_null($available_mission['Mission']['cover_dir'])) :?>
               <img src="<?= $this->webroot.'files/attachment/attachment/'.$available_mission['Mission']['cover_dir'].'/'.$available_mission['Mission']['cover_attachment'] ?>">
             <?php else :?>
@@ -139,58 +139,59 @@
   <div class="small-12 medium-7 large-9 columns padding top-2 bottom-2 left-2 right-2" data-equalizer-watch>
 
     <!-- Current Mission -->
-    <div class="row current-mission">
-      <h2 class="display-inline"> <?= strtoupper(__('Current Mission')) ?> - </h2>
-      <h3 class="text-color-highlight display-inline"><?= strtoupper($current_mission['Mission']['title']) ?></h3>
+    <?php foreach($available_missions as $index => $mission): ?>
+      <div id="mission<?php echo $mission['Mission']['id'] ?>" class="row current-mission <?php if($index==0){echo 'selected-mission';} ?>">
+        <h2 class="display-inline"> <?= strtoupper(__('Current Mission')) ?> - </h2>
+        <h3 class="text-color-highlight display-inline"><?= strtoupper($mission['Mission']['title']) ?></h3>
 
 
-      <?php  $current_mission_url = $this->Html->url(array('controller' => 'missions', 'action' => 'view_mission', $current_mission['Mission']['id'])); ?>
-      <!-- Mission Link -->
-      <div class="view view-first">
-        <a href="<?= $current_mission_url ?>">
-          <?php if(!is_null($current_mission['Mission']['cover_dir'])) :?>
-            <img src="<?= $this->webroot.'files/attachment/attachment/'.$current_mission['Mission']['cover_dir'].'/'.$current_mission['Mission']['cover_attachment'] ?>">
-          <?php else :?>
-            <img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
-          <?php endif ?>
+        <?php  $mission_url = $this->Html->url(array('controller' => 'missions', 'action' => 'view_mission', $mission['Mission']['id'])); ?>
+        <!-- Mission Link -->
+        <div class="view view-first">
+          <a href="<?= $mission_url ?>">
+            <?php if(!is_null($mission['Mission']['cover_dir'])) :?>
+              <img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
+            <?php else :?>
+              <img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+            <?php endif ?>
 
-            <div class="mask">
-                <p><?= $this->Text->getExcerpt($current_mission['Mission']['description'], 200, "...") ?></p>
-            </div>
-          </a>
-      </div>
-      <!-- End Mission Link -->
-      <!-- Available Quests -->
-      <?php $mission_phase_icons = $this->Phase->getPhaseIcons(); ?>
-      <div class="phase-quest">
-        <div class="row">
-          <span class="section-title small-4 medium-3 large-3 columns"><?php echo __('Current Phase'); ?></span>
-          <span class="section-title small-8 medium-9 large-9 columns"><?php echo __('Available Quests'); ?></span>
+              <div class="mask">
+                  <p><?= $this->Text->getExcerpt($mission['Mission']['description'], 200, "...") ?></p>
+              </div>
+            </a>
         </div>
-        <div class="row">
-          <div class="button-bar phases-bar small-4 medium-3 large-3 columns">
-            <span class="button current">
-              <i class="fa <?= $mission_phase_icons[$current_phase['position']] ?> fa-lg"></i>
-              <?php echo $current_phase['name'] ?>
-            </span>
+        <!-- End Mission Link -->
+        <!-- Available Quests -->
+        <?php $mission_phase_icons = $this->Phase->getPhaseIcons(); ?>
+        <div class="phase-quest">
+          <div class="row">
+            <span class="section-title small-4 medium-3 large-3 columns"><?php echo __('Current Phase'); ?></span>
+            <span class="section-title small-8 medium-9 large-9 columns"><?php echo __('Available Quests'); ?></span>
           </div>
-          <ul class="quest-list small-8 medium-9 large-9 columns">
-            <?php $quest_count = count($quests) >= 5 ? 5 : count($quests); ?>
-            <?php for($i = 0; $i < $quest_count; $i++): ?>
-              <li class="quest-link text-glow-on-hover">
-                <a href="<?= $current_mission_url ?>" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' title="<?php echo $quests[$i]['Quest']['description']; ?>">
-                  <span >
-                    <?php echo $quests[$i]['Quest']['title'] ?>
-                  </span>
-                  <span class="points">pts. <?php echo $quests[$i]['Quest']['points'] ?></span>
-                </a>
-              </li>
-            <?php endfor; ?>
-          </ul>
+          <div class="row">
+            <div class="button-bar phases-bar small-4 medium-3 large-3 columns">
+              <span class="button current">
+                <i class="fa <?= $mission_phase_icons[$current_phases[$index]['position']] ?> fa-lg"></i>
+                <?php echo $current_phases[$index]['name'] ?>
+              </span>
+            </div>
+            <ul class="quest-list small-8 medium-9 large-9 columns">
+              <?php foreach($quests[$index] as $quest): ?>
+                <li class="quest-link text-glow-on-hover">
+                  <a href="<?= $mission_url ?>" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' title="<?php echo $this->Text->getExcerpt($quest['Quest']['description'], 50, '...'); ?>">
+                    <span>
+                      <?php echo $quest['Quest']['title'] ?>
+                    </span>
+                    <span class="points">pts. <?php echo $quest['Quest']['points'] ?></span>
+                  </a>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
         </div>
+        <!-- End Available Quests -->
       </div>
-      <!-- End Available Quests -->
-    </div>
+    <?php endforeach; ?>
     <!-- End Current Mission -->
     <!-- Allies' Activity -->
     <div class="row border-top-divisor">
@@ -374,6 +375,7 @@
 
   //SCRIPT
   $this->Html->script('requirejs/app/Users/profile.js', array('inline' => false));
+  $this->Html->script('requirejs/app/Users/dashboard.js', array('inline' => false));
 ?>
 
 <?php
