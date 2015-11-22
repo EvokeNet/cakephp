@@ -92,7 +92,7 @@
     list-style: none;
     margin: 0;
 
-    li {
+    .quest-link {
       width: 19%; //allows for extra padding on end
       height: 4.5rem;
       display: inline-block;
@@ -100,10 +100,20 @@
       vertical-align: top;
       position: relative;
 
+      .has-tip {
+        color: $text-color;
+      }
+
       .points {
         position: absolute;
         bottom: 0;
         right: 0;
+      }
+
+      a {
+        width: 100%;
+        height: 100%;
+        display: block;
       }
     }
   }

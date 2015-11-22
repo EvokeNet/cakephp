@@ -95,6 +95,13 @@ button {
 /* TOOLTIPS */
 /* --------------------------- */
 
+.tooltip {
+  p, li {
+    color: $text-dark-color;
+    font-size: 0.875rem;
+  }
+}
+
 /*@media only screen and (min-width:40.063em) {
   .tooltip > .nub {
     border-color: transparent transparent #26dee0 transparent;

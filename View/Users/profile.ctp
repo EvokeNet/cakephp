@@ -161,9 +161,13 @@
           <ul class="quest-list small-8 medium-9 large-9 columns">
             <?php $quest_count = count($quests) >= 5 ? 5 : count($quests); ?>
             <?php for($i = 0; $i < $quest_count; $i++): ?>
-              <li>
-                <span><?php echo $quests[$i]['Quest']['title'] ?></span>
-                <span class="points">pts. <?php echo $quests[$i]['Quest']['points'] ?></span>
+              <li class="quest-link text-glow-on-hover">
+                <a href="<?= $current_mission_url ?>" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' title="<?php echo $quests[$i]['Quest']['description']; ?>">
+                  <span >
+                    <?php echo $quests[$i]['Quest']['title'] ?>
+                  </span>
+                  <span class="points">pts. <?php echo $quests[$i]['Quest']['points'] ?></span>
+                </a>
               </li>
             <?php endfor; ?>
           </ul>
