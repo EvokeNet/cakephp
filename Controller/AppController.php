@@ -105,7 +105,7 @@ class AppController extends Controller {
 			}
 			//Default: spanish (for the playtest)
 			else {
-				$this->Session->write('Config.language', 'es');
+				$this->Session->write('Config.language', 'en');
 			}
 		}
 

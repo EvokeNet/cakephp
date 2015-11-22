@@ -68,13 +68,15 @@
 </div>
 -->
 
+<!-- commented so flash messages do not appear anymore -->
+
 <!-- Flash messages -->
-<?php
-if($this->Session->check('Message.flash')): ?>
+<!--<?php
+//if($this->Session->check('Message.flash')): ?>
 	<div data-alert="" class="alert-box radius">
-		<?php echo $this->Session->flash(); ?>
+		<?php //echo $this->Session->flash(); ?>
 		<a href="" class="close">×</a>
 	</div>
-<?php endif; ?>
+<?php //endif; ?> -->
 
 <?php echo $this->fetch('content'); ?>

@@ -129,7 +129,7 @@ endif;
 			<?php
 			//EDIT
 			if (isset($this->request->data['Evidence'])) {
-				echo $this->Form->create('Evidence', array('class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'editEvidence')));
+				echo $this->Form->create('Evidence', array( 'class' => 'formSubmitEvidence', 'url' => array('controller' => 'evidences', 'action' => 'editEvidence')));
 
 				echo $this->Form->hidden('id');
 			}
@@ -198,7 +198,7 @@ endif;
 							$button_class = 'button thin right margin top-05 text-center text-glow-on-hover';
 						}
 						?>
-						<button class="buttonSubmitEvidence <?= $button_class ?>" type="submit">
+						<button class="buttonSubmitEvidenc <?= $button_class ?>" >
 
 							<?php if (isset($button_icon) && ($button_icon)): ?>
 								<i class="fa fa-floppy-o fa-2x"></i><br />

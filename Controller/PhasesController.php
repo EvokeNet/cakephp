@@ -193,10 +193,14 @@ class PhasesController extends AppController {
 
 			$phase = $this->Phase->getCurrentPhase($_POST['user_id'], $_POST['mission_id']);
 
+			$url  = Router::url(array('controller' => 'missions', 'action' => 'view_mission', $_POST['mission_id'], $phase['Phase']['position']), true);
+			$path = Router::url(array('controller' => 'missions', 'action' => 'view_mission', $_POST['mission_id'], $phase['Phase']['position']));
+			
 			//Still in the same phase
 			if ($phase['Phase']['id'] == $oldPhaseId){
+				/*, 'phase' => $phase['phase'], 'complete' => $phase['complete']*/
 				$json_data = array('flag' => 1);
-				return json_encode($json_data + array('debug' => "SAME PHASE: ".$phase['Phase']['id']." ".$oldPhaseId, 'debugModel' => $phase['debug'], 'phase' => $phase['phase'], 'complete' => $phase['complete']));
+				return json_encode($json_data + array('url' => $url, 'position' => $phase['Phase']['position'], 'path' => $path));
 
 			}
 			else {
@@ -215,7 +219,7 @@ class PhasesController extends AppController {
 				}
 				
 				$json_data = array('flag' => 0);
-				return json_encode($json_data + array('debug' => "DIFF PHASE: ".$phase['Phase']['id']." ".$oldPhaseId));
+				return json_encode($json_data + array('url' => $url, 'position' => $phase['Phase']['position'], 'path' => $path));
 
 			}
 		}

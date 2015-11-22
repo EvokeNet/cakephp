@@ -43,7 +43,7 @@ class UsersController extends AppController {
 */
   public function beforeFilter() {
     parent::beforeFilter();
-    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot');
+    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage');
   }
 
   // public function createTempPassword($len) {
@@ -61,6 +61,10 @@ class UsersController extends AppController {
   // 		}
   // 		return $pass;
   // 	}
+
+  public function changeLanguage($lang){
+    parent::changeLanguage($lang);
+  }
 
   public function changePassword() {
     $usr = $this->User->find('first', array(

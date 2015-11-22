@@ -13,13 +13,15 @@
 						"title": "Fase abierto!",
 						"text": "Felicidades, acaba de desbloquear una fase! Puede seguir trabajando en esta fase, pero también se puede echar un vistazo a la siguiente."
 					},
-					"msg_empty_link":{
-						"title": "Campo do Hipervinculo vacio!",
-						"text": "Usted tiene que llenar el campo de Hipervinculo para enviar este tipo de Evokation part."
+					"btn_next_phase":{
+						"text": "¡Ir a la siguiente fase!"
 					},
-					"msg_sucess":{
+					"btn_stay_phase":{
+						"text": "¡Permanezca en esta fase!"
+					},
+					"msg_success":{
 						"title": "Felicidades!",
-						"text": "Su Evokation Part ha sido enviado!"
+						"text": "Su evidencia ha sido enviado!"
 					}
 				},
 				"view_evidence":{
@@ -42,6 +44,24 @@
 						"text": "Usted no será capaz de recuperar su comentario.",
 						"confirmButtonText": "Sí, eliminarlo!",
 						"cancelButtonText": "Cancelar"
+					}
+				}
+			},
+			"evokations":{
+				"evokation_form":{
+					"msg_change_type": {
+						"title": "¿Estás seguro?",
+						"text": "Si cambia el tipo de Evokation Part ahora, perderá el contenido especial de enfoque de su Evokation Part.",
+						"confirmButtonText": "Sí, cambiar mi tipo de Evokation Part!",
+						"cancelButtonText": "Cancelar"
+					},
+					"msg_empty_link":{
+						"title": "Campo do Hipervinculo vacio!",
+						"text": "Usted tiene que llenar el campo de Hipervinculo para enviar este tipo de Evokation Part."
+					},
+					"msg_success":{
+						"title": "Felicidades!",
+						"text": "Su Evokation Part ha sido enviado!"
 					}
 				}
 			},
