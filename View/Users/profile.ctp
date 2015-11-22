@@ -146,17 +146,94 @@
       <!-- End Mission Link -->
       <!-- Available Quests -->
       <?php $mission_phase_icons = $this->Phase->getPhaseIcons(); ?>
-      <div class="quest-list">
-        <div class="button-bar phases-bar">
-          <span class="button current">
-            <i class="fa <?= $mission_phase_icons[$current_phase['position']] ?> fa-lg"></i>
-            <?php echo $current_phase['name'] ?>
-          </span>
+      <div class="phase-quest">
+        <div class="row">
+          <span class="section-title small-4 medium-3 large-3 columns"><?php echo __('Current Phase'); ?></span>
+          <span class="section-title small-8 medium-9 large-9 columns"><?php echo __('Available Quests'); ?></span>
+        </div>
+        <div class="row">
+          <div class="button-bar phases-bar small-4 medium-3 large-3 columns">
+            <span class="button current">
+              <i class="fa <?= $mission_phase_icons[$current_phase['position']] ?> fa-lg"></i>
+              <?php echo $current_phase['name'] ?>
+            </span>
+          </div>
+          <ul class="quest-list small-8 medium-9 large-9 columns">
+            <?php $quest_count = count($quests) >= 5 ? 5 : count($quests); ?>
+            <?php for($i = 0; $i < $quest_count; $i++): ?>
+              <li>
+                <span><?php echo $quests[$i]['Quest']['title'] ?></span>
+                <span class="points">pts. <?php echo $quests[$i]['Quest']['points'] ?></span>
+              </li>
+            <?php endfor; ?>
+          </ul>
         </div>
       </div>
       <!-- End Available Quests -->
     </div>
     <!-- End Current Mission -->
+    <!-- Allies' Activity -->
+    <div class="row border-top-divisor">
+      <div class="small-12 columns margin top-2">
+
+        <div class="row margins-0">
+          <h3 class="left margin right-2"><?= __("Allies' Recent Activity") ?></h3>
+        </div>
+
+
+        <!-- ALLIES GRID -->
+        <?php
+        //Has allies
+        if (count($friends) > 0): ?>
+          <ul class="large-block-grid-6 medium-block-grid-3 small-block-grid-2 no-marker">
+
+          <?php
+            foreach($friends as $index=>$ally):
+               ?>
+              <?php if(!empty($allies_evidences[$index]['Evidence'])): ?>
+                <li class="text-center">
+                  <!-- PICTURE -->
+
+                  <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view_mission', $allies_evidences[$index]['Evidence']['mission_id'])); ?>">
+
+                    <?= $this->Picture->showUserCircularPicture(
+                      $ally['Friend'],
+                      'square-60px',
+                      __("%s's profile picture",$ally['Friend']['name'])
+                    ); ?>
+
+                    <p class="text-center text-glow-on-hover">
+                      <?php
+                        if(!empty($allies_evidences[$index]['Evidence']['title'])) {
+                          echo __("Submitted Evidence: ");
+                          echo $allies_evidences[$index]['Evidence']['title'];
+                        }
+                      ?>
+                    </p>
+                  </a>
+                </li>
+            <?php
+              endif;
+            endforeach;
+            ?>
+
+          </ul> <?php
+
+        //Doesn't have allies and it's not me
+        elseif ($user['User']['id'] != $users['User']['id']): ?>
+          <div data-alert="" class="alert-box radius">
+            <?= __('This user has no allies yet.') ?>
+          </div><?php
+
+        //Doesn't have allies and it's me
+        else: ?>
+          <div data-alert="" class="alert-box radius">
+            <?= __('You have no allies! Get started looking at people similar to you!') ?>
+          </div><?php
+        endif; ?>
+      </div>
+    </div>
+    <!-- End Allies' Activity -->
 
     <div class="row standard-width">
       <!-- PSYCHOMETRIC ANALYSIS -->

@@ -634,7 +634,7 @@ class UsersController extends AppController {
 
     $current_phase = $this->Phase->getCurrentPhase($user_id, $current_mission['Mission']['id'])['Phase'];
 
-    $quests = $this->Quest->find('list',array(
+    $quests = $this->Quest->find('all',array(
       'conditions' => array('phase_id' => $current_phase['id'])
     ));
 
@@ -687,6 +687,22 @@ class UsersController extends AppController {
       ),
       'limit' => 8 // CHANGE 8
     ));
+
+    //Allies' Evidence
+    $allies_evidences = array();
+    foreach($friends as $ally) {
+      $ally_evidence = $this->User->Evidence->find('first', array(
+        'order' => array(
+          'Evidence.modified DESC'
+        ),
+        'conditions' => array(
+          'Evidence.user_id' => $ally['Friend']['id'],
+          'Evidence.title != ' => ''
+        )
+      ));
+
+      $allies_evidences[]= $ally_evidence;
+    }
 
     //GROUPS AND EVOKATION
     $this->loadModel('Group');
@@ -840,7 +856,8 @@ class UsersController extends AppController {
       'similar_users',
       'current_mission',
       'current_phase',
-      'quests'));
+      'quests',
+      'allies_evidences'));
   }
 
 

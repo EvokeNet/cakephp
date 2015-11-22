@@ -1,6 +1,8 @@
 /* --------------------------- */
 /* LOGIN */
 /* --------------------------- */
+@import 'evoke_variables';
+
 
 .evoke .login .fullpage {
   z-index: 0;
@@ -80,12 +82,36 @@
  * Current Mission Section
  */
 .current-mission {
-  
+  .section-title {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  .quest-list {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+
+    li {
+      width: 19%; //allows for extra padding on end
+      height: 4.5rem;
+      display: inline-block;
+      border-right: 1px solid $dark-gray-border;
+      vertical-align: top;
+      position: relative;
+
+      .points {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
 }
 
 .icon-medal-stack {
   .icon-medal2 {
-    color: #323234;
+    color: $text-dark-color;
   }
   .fa-circle {
     margin-top: 0.3em;
