@@ -633,7 +633,30 @@ class UsersController extends AppController {
     if (!$user['User']['basic_training']) {
       $current_mission = $this->Mission->find('first', array('conditions' => array('Mission.basic_training' => 1)));
     } else {
-      $current_mission = $this->User->UserMission->find('first', array('conditions' => array('UserMission.user_id' => $id, 'UserMission.completed' => 0)));
+      $current_mission = $this->Mission->find('first', array(
+        'joins' => array(
+          array(
+            'table' => 'user_missions',
+            'alias' => 'UserMission',
+            'type' => 'LEFT',
+            'foreign_key' => false,
+            'conditions' => array(
+              'UserMission.user_id' => $id,
+              'UserMission.completed' => 0
+            )
+          )
+        ),
+        'conditions' => array(
+          'Mission.basic_training' => 0
+        )
+      ));
+
+      $available_missions = $this->Mission->find('all', array(
+        'conditions' => array(
+          'Mission.basic_training' => 0,
+          'Mission.id !=' => $current_mission['Mission']['id']
+        )
+      ));
     }
 
     $current_phase = $this->Phase->getCurrentPhase($user_id, $current_mission['Mission']['id'])['Phase'];
@@ -861,6 +884,7 @@ class UsersController extends AppController {
       'current_mission',
       'current_phase',
       'quests',
+      'available_missions',
       'allies_evidences'));
   }
 

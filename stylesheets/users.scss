@@ -119,6 +119,19 @@
   }
 }
 
+/**
+ * Available Missions
+ */
+.available-missions {
+ .view-first {
+   .mask{
+     p {
+       margin-top: 0;
+     }
+   }
+ }
+}
+
 .icon-medal-stack {
   .icon-medal2 {
     color: $text-dark-color;

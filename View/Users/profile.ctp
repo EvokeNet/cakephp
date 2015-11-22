@@ -63,6 +63,31 @@
       <?php echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
     </div>
 
+    <!-- Available Missions -->
+    <div class="available-missions">
+      <h4><?php echo __('Available Missions'); ?></h4>
+      <?php foreach($available_missions as $available_mission): ?>
+        <?php  $available_mission_url = $this->Html->url(array('controller' => 'missions', 'action' => 'view_mission', $available_mission['Mission']['id'])); ?>
+        <!-- Mission Link -->
+        <div class="view view-first">
+          <a href="<?= $available_mission_url ?>">
+            <?php if(!is_null($available_mission['Mission']['cover_dir'])) :?>
+              <img src="<?= $this->webroot.'files/attachment/attachment/'.$available_mission['Mission']['cover_dir'].'/'.$available_mission['Mission']['cover_attachment'] ?>">
+            <?php else :?>
+              <img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+            <?php endif ?>
+
+              <div class="mask">
+                  <h4><?php echo $available_mission['Mission']['title'] ?></h4>
+                  <p><?php echo $this->Text->getExcerpt($available_mission['Mission']['description'], 25, "...") ?></p>
+              </div>
+            </a>
+        </div>
+        <!-- End Mission Link -->
+      <?php endforeach; ?>
+    </div>
+    <!-- End Available Missions -->
+
     <!-- POTENTIAL ALLIES -->
     <?php
     //Show only in my profile
