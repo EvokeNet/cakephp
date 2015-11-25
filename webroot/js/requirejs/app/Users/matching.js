@@ -20,8 +20,16 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			});
 
 			$(".nextQuestion").on("click", function(){
+				// fake a submition to trigger foundation abide validation
 				$('#questionsForm').trigger('submit');
-				//console.log($('#questionsForm'));		
+
+				var counter = $('#questionCounter').text();
+				var total   = parseFloat($('#totalQuestions').text());
+				console.log("Count: "+counter);
+				// change question counter
+				$('#questionCounter').html(++counter);
+				// increase progress bar
+				$('.meter').css('width', (parseFloat(counter-1)/total*100)+'%');
 			});
 
 

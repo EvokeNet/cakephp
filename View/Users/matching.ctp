@@ -37,6 +37,28 @@
 				$hidden = '';
 				?>
 				<div id="questionsModal" class="reveal-modal" data-reveal aria-labelledby="ModalTitle" aria-hidden="true" role="dialog" data-options="close_on_background_click:false; close_on_esc:false">
+					<!-- TITLE -->
+					<div class="row">
+						<h2 class="text-glow"><?= __('Assessment questionare:') ?></h2>
+					</div>
+					<!-- PROGRESS BAR -->
+					<div class="row collapse text-right padding top-2">
+						<div class="row">
+							<!-- QUESTIONS -->
+							<span class="left text-glow uppercase padding right-2"><?= __('Questions') ?></span>
+
+							<!-- POINTS -->
+							<div class="right">
+								<span id="questionCounter"><?= $counter?></span><?= '/' ?><span id="totalQuestions"><?= $total_questions ?></span>
+							</div>
+						</div>
+						<div class="row margin top-05">
+							<!-- PROGRESS BAR -->
+							<div class="progress level-bar radius">
+								<span class="meter" style="width: <?= floatval($counter - 1) / $total_questions * 100?>%"></span>
+							</div>
+						</div>
+					</div>
 					<?php
 						//start form to respond
 						echo $this->Form->create('UserMatchingAnswer', array('data-abide', 'id'=>'questionsForm')); 
@@ -52,7 +74,6 @@
 					
 					<div class="field-<?= $counter ?> <?= $hidden ?>">
 						<br />
-						<h4 class="text-color-highlight "><?= __('Question ').$counter.__(' of ').$total_questions ?></h4>
 						<label>
 							<p class="text-color-highlight"><?= $question['description'] ?></p>
 						</label>
@@ -100,8 +121,8 @@
 							<div class="text-right">
 								<?php 
 
-								echo $this->Form->input('button', __('Submit'), array('type' => 'submit', 'class' => 'radius button'));
-								echo $this->Form->end( );
+								echo $this->Form->input('submit', array('type' => 'submit', 'class' => 'radius button', 'value' => __('Submit'), 'label' => false));
+								echo $this->Form->end();
 
 								?>
 							</div>
