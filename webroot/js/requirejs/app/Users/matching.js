@@ -15,6 +15,29 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				}
 			});
 
+			$("#sendAnswers").on("click", function(){
+				$('a.close-reveal-modal').trigger('click');
+			});
+
+			$(".nextQuestion").on("click", function(){
+				$('#questionsForm').trigger('submit');
+				//console.log($('#questionsForm'));		
+			});
+
+
+			$('#questionsForm')
+		  		.on('invalid', function () {
+		    		if( $('div[class|="field"]:not(.hidden)').find('[data-invalid]').length == 0){
+		    			$('div[class|="field"]:not(.hidden)').addClass('hidden').next().removeClass('hidden');
+		    			$('small.error').css('display', 'none');
+		    		}else{
+		    			$('small.error').css('display', 'block');
+		    		}
+		  		})
+		  		.on('valid', function () {
+		  			$('div[class|="field"]:not(.hidden)').addClass('hidden').next().removeClass('hidden');
+		    		console.log('valid!');
+		  	});
 			//--------------------------------------------//
 			//Sortable list with drag and drop effect
 			//--------------------------------------------//

@@ -17,6 +17,7 @@
 			<p><?= __('Congratulations, you have ventured further than most by answering this call.') ?> </p>
 			<p><?= __('Now, it\'s time to fine out what type of Evoke agent are you.  Do you know?  What are the strengths, passions, and abilities you will bring to the Evoke network?') ?></p>
 			<p><?= __('Answer the following and find out what type of Super Hero is hiding inside you...') ?></p>
+			<p><a href="#" data-reveal-id="questionsModal" class="radius button">Start</a></p>
 		</div>
 
 		<?php
@@ -29,18 +30,29 @@
 			<?php
 			else:
 
-				//start form to respond
-				echo $this->Form->create('UserMatchingAnswer', array('data-abide')); 
-				echo $this->Form->hidden('user_id', array('value' => $user_id));
+				
 
-				$counter = 0;
-				foreach ($matching_questions as $key => $matching_question) {
-					$question = $matching_question['MatchingQuestion'];
+				$counter = 1;
+				$total_questions = count($matching_questions);
+				$hidden = '';
+				?>
+				<div id="questionsModal" class="reveal-modal" data-reveal aria-labelledby="ModalTitle" aria-hidden="true" role="dialog" data-options="close_on_background_click:false; close_on_esc:false">
+					<?php
+						//start form to respond
+						echo $this->Form->create('UserMatchingAnswer', array('data-abide', 'id'=>'questionsForm')); 
+						echo $this->Form->hidden('user_id', array('value' => $user_id));
+						foreach ($matching_questions as $key => $matching_question) {
+							$question = $matching_question['MatchingQuestion'];
+							if($counter > 1){
+								$hidden = 'hidden';
+							}
 					?>
 
 					<!-- QUESTION DESCRIPTION -->
-					<div class="field-<?= $counter ?>">
+					
+					<div class="field-<?= $counter ?> <?= $hidden ?>">
 						<br />
+						<h4 class="text-color-highlight "><?= __('Question ').$counter.__(' of ').$total_questions ?></h4>
 						<label>
 							<p class="text-color-highlight"><?= $question['description'] ?></p>
 						</label>
@@ -82,15 +94,35 @@
 							endforeach; ?>
 							</ul> <?php
 						}
+
+						if( $total_questions == $counter ){
+							?>
+							<div class="text-right">
+								<?php 
+
+								echo $this->Form->input('button', __('Submit'), array('type' => 'submit', 'class' => 'radius button'));
+								echo $this->Form->end( );
+
+								?>
+							</div>
+							<?php
+						}else{
+							?>
+							<div class="text-right">
+								<a href="#" class="radius button nextQuestion">Next</a>
+							</div>
+							<?php
+						}
+
 						?>
-					</div> <?php
+
+					</div> 
+					
+					<?php
+					$counter++;
 				}
 				?>
-
-				<div class="text-center">
-					<button class="submit small"><?php echo __('Submit'); ?></button>
 				</div>
-
 			<?php 
 			endif; ?>
 			
