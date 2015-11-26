@@ -27,6 +27,8 @@ class UserMatchingAnswersController extends AppController {
 		if ($this->request->is('post', 'put')) {
 			$counter = 0;
 			$check = null;
+			debug(count($this->request->data['UserMatchingAnswer']['matching_answer']));
+			die();
 			foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $key => $u):
 				$insert['UserMatchingAnswer']['user_id'] = $this->request->data['UserMatchingAnswer']['user_id'];
 				$insert['UserMatchingAnswer']['matching_question_id'] = $this->request->data['UserMatchingAnswer']['matching_question_id'][$counter];

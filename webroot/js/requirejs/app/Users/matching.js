@@ -29,7 +29,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				// change question counter
 				$('#questionCounter').html(++counter);
 				// increase progress bar
-				$('.meter').css('width', (parseFloat(counter-1)/total*100)+'%');
+				$('#questionsModal .meter').css('width', (parseFloat(counter-1)/total*100)+'%');
 			});
 
 
@@ -49,8 +49,19 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			//--------------------------------------------//
 			//Sortable list with drag and drop effect
 			//--------------------------------------------//
-			$( ".sortable" ).sortable();
-			$( ".sortable" ).disableSelection();
+			$(function() {
+			    $( ".sortable" ).sortable({
+			    	stop: function( event, ui ) {
+			        	var ul = $(ui.item[0]).parent();
+			       		ul.find('li:not(.ui-sortable-placeholder)').each(function( index, element ) {
+			        		var inputName = $(element).data('sort');
+			          		console.log($(this).parent());
+			        		$(this).parent().parent().find('input[name="' + inputName + '"]').attr('value', index+1);
+			        	}); 
+			      	}  
+				});
+				$( ".sortable" ).disableSelection();
+			});
 		});
 	});
 });

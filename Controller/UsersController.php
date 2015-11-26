@@ -806,6 +806,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function matching($id = null) {
+		debug($this->request->data);
+		die();
 		//List issues (all, and already saved)
 		$issues = $this->User->UserIssue->Issue->find('list');
 		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
@@ -828,7 +830,6 @@ class UsersController extends AppController {
 			//SAVE USER_MATCHING_ANSWER
 			if (isset($this->request->data['UserMatchingAnswer']['matching_answer'])) {
 				$user_id = $this->request->data['UserMatchingAnswer']['user_id'];
-
 				foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $question_id => $u) {
 					//ESSAY
 					if (isset($u['description'])) {

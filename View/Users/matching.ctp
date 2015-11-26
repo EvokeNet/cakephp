@@ -63,6 +63,7 @@
 						//start form to respond
 						echo $this->Form->create('UserMatchingAnswer', array('data-abide', 'id'=>'questionsForm')); 
 						echo $this->Form->hidden('user_id', array('value' => $user_id));
+		
 						foreach ($matching_questions as $key => $matching_question) {
 							$question = $matching_question['MatchingQuestion'];
 							if($counter > 1){
@@ -107,13 +108,20 @@
 						else if($question['type'] == 'order') {
 							//show list of fields to drag and drop in order
 							?>
-							<ul id="sortable-question-<?= $question['id'] ?>" class="sortable no-marker margins-0"><?php
-							foreach ($matching_question['MatchingAnswer'] as $answer): ?>
-								<li class="background-color-light-dark padding all-05 margin bottom-05">
+							<ul id="sortable" class="sortable no-marker margins-0"><?php
+							foreach ($matching_question['MatchingAnswer'] as $mqIndex => $answer): ?>
+								<li class="ui-state-default background-color-light-dark padding all-05 margin bottom-05" data-sort="<?= $mqIndex ?>">
 									<?= $answer ?>
 								</li> <?php
 							endforeach; ?>
+							
 							</ul> <?php
+							$count = 1;
+							foreach ($matching_question['MatchingAnswer'] as $mqIndex => $answer): ?>
+								<input type="hidden" name="<?= $mqIndex ?>" value="<?= $count ?>">
+							<?php
+								$count++;
+							endforeach; 
 						}
 
 						if( $total_questions == $counter ){
