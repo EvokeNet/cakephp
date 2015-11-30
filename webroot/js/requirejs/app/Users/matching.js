@@ -25,7 +25,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 
 				var counter = $('#questionCounter').text();
 				var total   = parseFloat($('#totalQuestions').text());
-				console.log("Count: "+counter);
+				//console.log("Count: "+counter);
 				// change question counter
 				$('#questionCounter').html(++counter);
 				// increase progress bar
@@ -55,8 +55,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 			        	var ul = $(ui.item[0]).parent();
 			       		ul.find('li:not(.ui-sortable-placeholder)').each(function( index, element ) {
 			        		var inputName = $(element).data('sort');
-			          		console.log($(this).parent());
-			        		$(this).parent().parent().find('input[name="' + inputName + '"]').attr('value', index+1);
+			          		//console.log($(this).parent().parent().find('input[data-answer-id="' + inputName + '"]'));
+			        		$(this).parent().parent().find('input[data-answer-id="' + inputName + '"]').attr('value', index+1);
 			        	}); 
 			      	}  
 				});

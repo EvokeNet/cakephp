@@ -59,6 +59,25 @@ class UserMatchingAnswer extends AppModel {
 		return $this->save($insert);
 	}
 
+/**
+ * Save order answer
+ *
+ * @param int user id
+ * @param int question id
+ * @param int matching answer id
+ * @return boolean True if row was saved, false if not
+ */
+	public function saveOrderAnswer($user_id, $question_id, $matching_answer_id, $matching_answer_order) {
+		$insert = array();
+		$insert['UserMatchingAnswer']['user_id'] = $user_id;
+		$insert['UserMatchingAnswer']['matching_question_id'] = $question_id;
+		$insert['UserMatchingAnswer']['matching_answer_id'] = $matching_answer_id;
+		$insert['UserMatchingAnswer']['order'] = $matching_answer_order;
+
+		$this->create();
+		return $this->save($insert);
+	}	
+
 
 /**
  * belongsTo associations
