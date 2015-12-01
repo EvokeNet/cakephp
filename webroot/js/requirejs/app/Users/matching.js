@@ -23,27 +23,38 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				// fake a submition to trigger foundation abide validation
 				$('#questionsForm').trigger('submit');
 
-				var counter = $('#questionCounter').text();
-				var total   = parseFloat($('#totalQuestions').text());
-				//console.log("Count: "+counter);
-				// change question counter
-				$('#questionCounter').html(++counter);
-				// increase progress bar
-				$('#questionsModal .meter').css('width', (parseFloat(counter-1)/total*100)+'%');
+				
 			});
 
 
 			$('#questionsForm')
 		  		.on('invalid', function () {
+		  			console.log('invalid!');
 		    		if( $('div[class|="field"]:not(.hidden)').find('[data-invalid]').length == 0){
 		    			$('div[class|="field"]:not(.hidden)').addClass('hidden').next().removeClass('hidden');
 		    			$('small.error').css('display', 'none');
+		    			
+		    			var counter = $('#questionCounter').text();
+						var total   = parseFloat($('#totalQuestions').text());
+						
+						// change question counter
+						$('#questionCounter').html(++counter);
+						// increase progress bar
+						$('#questionsModal .meter').css('width', (parseFloat(counter-1)/total*100)+'%');
 		    		}else{
 		    			$('small.error').css('display', 'block');
 		    		}
 		  		})
 		  		.on('valid', function () {
 		  			$('div[class|="field"]:not(.hidden)').addClass('hidden').next().removeClass('hidden');
+		  			
+		  			var counter = $('#questionCounter').text();
+					var total   = parseFloat($('#totalQuestions').text());
+					
+					// change question counter
+					$('#questionCounter').html(++counter);
+					// increase progress bar
+					$('#questionsModal .meter').css('width', (parseFloat(counter-1)/total*100)+'%');
 		    		console.log('valid!');
 		  	});
 			//--------------------------------------------//
