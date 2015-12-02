@@ -118,7 +118,7 @@
 							</ul> <?php
 							$count = 1;
 							foreach ($matching_question['MatchingAnswer'] as $mqIndex => $answer): ?>
-								<input type="hidden" name="<?= $mqIndex ?>" value="<?= $count ?>">
+								<input type="hidden" data-answer-id="<?= $mqIndex ?>" name="data[orderAnswer][<?= $question['id'] ?>][<?= $mqIndex ?>]" value="<?= $count ?>">
 							<?php
 								$count++;
 							endforeach; 

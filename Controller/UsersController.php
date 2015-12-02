@@ -806,8 +806,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function matching($id = null) {
-		debug($this->request->data);
-		die();
+		//debug($this->request->data);
+		//die();
 		//List issues (all, and already saved)
 		$issues = $this->User->UserIssue->Issue->find('list');
 		$selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
@@ -827,8 +827,11 @@ class UsersController extends AppController {
 
 		//SUBMITTING FORM
 		if ($this->request->is('post', 'put')) {
+			//debug($this->request->data);
+			//die();
 			//SAVE USER_MATCHING_ANSWER
 			if (isset($this->request->data['UserMatchingAnswer']['matching_answer'])) {
+				$answers = array();
 				$user_id = $this->request->data['UserMatchingAnswer']['user_id'];
 				foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $question_id => $u) {
 					//ESSAY
@@ -838,6 +841,7 @@ class UsersController extends AppController {
 					//SINGLE-CHOICE
 					elseif (!is_array($u['matching_answer_id'])) {
 						$this->User->UserMatchingAnswer->saveChoiceAnswer($user_id, $question_id, $u['matching_answer_id']);
+						$answers[] = $u['matching_answer_id'];
 					}
 					//MULTIPLE-CHOICE
 					else {
@@ -846,7 +850,16 @@ class UsersController extends AppController {
 						}
 					}
 				}
+				if(isset($this->request->data['orderAnswer'])){
+					$user_id = $this->request->data['UserMatchingAnswer']['user_id'];
+					foreach ( $this->request->data['orderAnswer'] as $question_id => $answer) {
+						foreach ($answer as $answer_id => $order) {
+							$this->User->UserMatchingAnswer->saveOrderAnswer($user_id, $question_id, $answer_id, $order);
+						}
+					}
+				}
 			}
+
 
 			return $this->redirect(array('controller' => 'users', 'action' => 'matching_results', $id));
 		}
