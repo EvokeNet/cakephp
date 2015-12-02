@@ -27,13 +27,7 @@ class SocialInnovatorQuality extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'MatchingAnswer' => array(
-			'className' => 'MatchingQuestion',
-			'foreignKey' => 'matching_question_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
+		
 	);
 
 /**
@@ -42,18 +36,12 @@ class SocialInnovatorQuality extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'UserMatchingAnswer' => array(
-			'className' => 'UserMatchingAnswer',
+		'MatchingAnswer' => array(
+			'className' => 'MatchingAnswer',
 			'foreignKey' => 'matching_answer_id',
-			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
+			'order' => ''
 		)
 	);
 }

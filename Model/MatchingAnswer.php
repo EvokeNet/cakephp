@@ -33,6 +33,13 @@ class MatchingAnswer extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'SocialInnovatorQuality' => array(
+			'className' => 'SocialInnovatorQuality',
+			'foreignKey' => 'social_innovator_quality_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

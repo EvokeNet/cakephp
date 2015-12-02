@@ -27,9 +27,9 @@ class MatchingAnswer extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'MatchingQuestion' => array(
-			'className' => 'MatchingQuestion',
-			'foreignKey' => 'matching_question_id',
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'superhero_identity_id'
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -42,18 +42,12 @@ class MatchingAnswer extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'UserMatchingAnswer' => array(
-			'className' => 'UserMatchingAnswer',
-			'foreignKey' => 'matching_answer_id',
-			'dependent' => false,
+		'SocialInnovatorQuality' => array(
+			'className' => 'User',
+			'foreignKey' => 'superhero_identity_id'
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
+			'order' => ''
 		)
 	);
 }

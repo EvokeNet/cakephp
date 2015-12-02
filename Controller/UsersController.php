@@ -806,6 +806,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function matching($id = null) {
+		
 		//debug($this->request->data);
 		//die();
 		//List issues (all, and already saved)
@@ -827,11 +828,12 @@ class UsersController extends AppController {
 
 		//SUBMITTING FORM
 		if ($this->request->is('post', 'put')) {
-			//debug($this->request->data);
-			//die();
 			//SAVE USER_MATCHING_ANSWER
 			if (isset($this->request->data['UserMatchingAnswer']['matching_answer'])) {
-				$answers = array();
+				$this->loadModel('MatchingAnswer');
+				$matching_answers = $this->MatchingAnswer->find('all');
+				$qualities = array(); // each position represents on of the social innovator qualities [0] is nothing
+				$user_answers = array();
 				$user_id = $this->request->data['UserMatchingAnswer']['user_id'];
 				foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $question_id => $u) {
 					//ESSAY
@@ -841,7 +843,7 @@ class UsersController extends AppController {
 					//SINGLE-CHOICE
 					elseif (!is_array($u['matching_answer_id'])) {
 						$this->User->UserMatchingAnswer->saveChoiceAnswer($user_id, $question_id, $u['matching_answer_id']);
-						$answers[] = $u['matching_answer_id'];
+						$user_answers[] = $u['matching_answer_id'];
 					}
 					//MULTIPLE-CHOICE
 					else {
@@ -850,18 +852,45 @@ class UsersController extends AppController {
 						}
 					}
 				}
+				foreach ($user_answers as $ua) {
+					foreach($matching_answers as $ma){
+						if($ua == $ma['MatchingAnswer']['id']){
+							$q_id = $ma['MatchingAnswer']['social_innovator_quality_id'];
+							//if it is not setted, put 1, else ++
+							$qualities[$q_id] = !isset($qualities[$q_id]) ? 1 : $qualities[$q_id] + 1;
+							break;
+						}
+					}
+				}
+				
+				$user_answers = array();
 				if(isset($this->request->data['orderAnswer'])){
 					$user_id = $this->request->data['UserMatchingAnswer']['user_id'];
 					foreach ( $this->request->data['orderAnswer'] as $question_id => $answer) {
 						foreach ($answer as $answer_id => $order) {
 							$this->User->UserMatchingAnswer->saveOrderAnswer($user_id, $question_id, $answer_id, $order);
+							$user_answers[$answer_id] = $order;
+						}
+					}
+					//this array represents the weights for each answer in the order quastions
+					$weights = array( 1 => 3, 2 => 2, 3 => 1, 4 => 0);
+					foreach ($user_answers as $ua_id => $ua) {
+
+						foreach($matching_answers as $ma){
+							if($ua_id == $ma['MatchingAnswer']['id']){
+								$q_id = $ma['MatchingAnswer']['social_innovator_quality_id'];
+								// the right weight has to be added to the quality, according to the order
+								$qualities[$q_id] = !isset($qualities[$q_id]) ? $weights[$ua] : $qualities[$q_id] + $weights[$ua];
+								break;
+							}
 						}
 					}
 				}
+				// sort in decreasing order
+				arsort($qualities);
 			}
 
-
-			return $this->redirect(array('controller' => 'users', 'action' => 'matching_results', $id));
+			return $this->redirect(array('controller' => 'users', 'action' => 'matching_results', $id, array_keys($qualities)[0], array_keys($qualities)[1]));
 		}
 
 		$this->set(compact('matching_questions', 'user_id', 'issues', 'selectedIssues'));
@@ -873,7 +902,16 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function matching_results($id = null) {
+	public function matching_results($id = null, $quality_1, $quality_2) {
+		// find superhero and prepare the text for the qualities
+
+		/**
+		
+
+
+		*/
+		debug($quality_1." ".$quality_2);
+		die();
 		//List of similar users (for now, any 4 users; later, matching results)
 		$similar_users = $this->User->find('all', array(
 			'conditions' => 'User.id != '.$this->getUserId(),
