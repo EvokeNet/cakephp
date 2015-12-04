@@ -13,10 +13,16 @@
 <div class="row standard-width">
 	<div class="row">
 		<div class="medium-6 columns">
-			<h3><?= __('You are an entrepreneurial agent!') ?></h3>
+			
+			<h3><?= __('You are a %s agent!', $superhero['SuperheroIdentity']['name']) ?></h3>
 			<p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
-			<p><?= __('You have the heart of a Local Leader!') ?></p>
-			<p><?= __('Your Entrepreneurship and Local Insight are key to you. Embrace your qualities and use them for the better.') ?></p>
+			
+			<p><h4><?= __('Primary quality:<br> %s', $first_quality['SocialInnovatorQuality']['name']) ?></h4></p>
+			<p><?= $first_quality['SocialInnovatorQuality']['description'] ?></p>
+
+			<p><h4><?= __('Secondary quality:<br> %s', $second_quality['SocialInnovatorQuality']['name']) ?></h4></p>
+			<p><?= $second_quality['SocialInnovatorQuality']['description'] ?></p>
+			
 			<p><?= __('Continue to explore who you are, who you could be, on your profile page. Or start your mission. Or begin to think about your world chanding idea!') ?></p>
 			<div class="text-center">
 				<a class="button" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site')); ?>"><?php echo __('Explore evoke!'); ?></a>

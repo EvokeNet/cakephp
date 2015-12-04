@@ -905,13 +905,33 @@ class UsersController extends AppController {
 	public function matching_results($id = null, $quality_1, $quality_2) {
 		// find superhero and prepare the text for the qualities
 
-		/**
+		$this->loadModel('SuperheroIdentity');
+		$superhero = $this->SuperheroIdentity->find('first', array(
+			'conditions' => array(
+				'quality_1' => $quality_1,
+				'quality_2' => $quality_2
+			),
+		));
+		$this->loadModel('SocialInnovatorQuality');
+
+		$first_quality = $this->SocialInnovatorQuality->find('first', array(
+			'conditions' => array(
+				'id' => $quality_1
+			),
+		));
+
+		$second_quality = $this->SocialInnovatorQuality->find('first', array(
+			'conditions' => array(
+				'id' => $quality_2
+			),
+		));
 		
+		// debug($quality_1." ".$quality_2);
+		// debug($superhero);
+		// debug($first_quality);
+		// debug($second_quality);
+		// die();
 
-
-		*/
-		debug($quality_1." ".$quality_2);
-		die();
 		//List of similar users (for now, any 4 users; later, matching results)
 		$similar_users = $this->User->find('all', array(
 			'conditions' => 'User.id != '.$this->getUserId(),
@@ -927,7 +947,7 @@ class UsersController extends AppController {
 			)
 		));
 
-		$this->set(compact('similar_users','friends_ids'));
+		$this->set(compact('similar_users', 'friends_ids', 'superhero', 'first_quality', 'second_quality'));
 	}
 
 /**
