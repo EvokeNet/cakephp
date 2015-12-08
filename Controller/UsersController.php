@@ -912,6 +912,18 @@ class UsersController extends AppController {
 				'quality_2' => $quality_2
 			),
 		));
+
+		$user = $this->User->find('first', array(
+			'conditions' => array(
+				'id' => $id
+			),
+		));
+		// debug($superhero);
+		// die();
+		//save user's superhero identity id
+		$user['User']['superhero_identity_id'] = $superhero['SuperheroIdentity']['id'];
+		$this->User->save($user);
+
 		$this->loadModel('SocialInnovatorQuality');
 
 		$first_quality = $this->SocialInnovatorQuality->find('first', array(
@@ -932,9 +944,12 @@ class UsersController extends AppController {
 		// debug($second_quality);
 		// die();
 
-		//List of similar users (for now, any 4 users; later, matching results)
+		//List of similar users (same superhero identity for now)
 		$similar_users = $this->User->find('all', array(
-			'conditions' => 'User.id != '.$this->getUserId(),
+			'conditions' => array(
+				'User.id != '.$this->getUserId(),
+				'User.superhero_identity_id' => $superhero['SuperheroIdentity']['id']
+			),
 			'limit' => 4,
 			'order' => 'rand()'
 		));
