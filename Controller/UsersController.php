@@ -791,7 +791,39 @@ class UsersController extends AppController {
 			'order' => 'rand()'
 		));
 
-		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'friends', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
+		/**
+		*
+		*get superhero id, get the social innovators ids, find them in the DB and send them to the view to put in place of the psychometric analisys
+		*
+		*/
+		$this->loadModel('SuperheroIdentity');
+
+		$superhero = $this->SuperheroIdentity->find('first', array(
+			'conditions' => array(
+				'id' => $user['User']['superhero_identity_id']
+			)
+		));
+
+		// debug($user);
+		// debug($superhero);
+		// die();
+
+		$this->loadModel('SocialInnovatorQuality');
+		$first_quality = $this->SocialInnovatorQuality->find('first', array(
+			'conditions' => array(
+				'id' => $superhero['SuperheroIdentity']['quality_1']
+			)
+		));
+
+		$second_quality = $this->SocialInnovatorQuality->find('first', array(
+			'conditions' => array(
+				'id' => $superhero['SuperheroIdentity']['quality_2']
+			)
+		));
+
+
+
+		$this->set(compact('superhero', 'first_quality', 'second_quality', 'myevokations', 'user', 'users', 'is_friend', 'friends', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'viewerEvokation',
 			'points_users', 'leaderboard_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'similar_users'));
 
@@ -922,6 +954,7 @@ class UsersController extends AppController {
 		// die();
 		//save user's superhero identity id
 		$user['User']['superhero_identity_id'] = $superhero['SuperheroIdentity']['id'];
+		unset($user['User']['password']);
 		$this->User->save($user);
 
 		$this->loadModel('SocialInnovatorQuality');
