@@ -25,7 +25,7 @@ requirejs.config({
     jqueryslimscroll : 'jquery.slimscroll/jquery.slimscroll.min',
     linkpreview: 'linkpreview/library/js/bootstrap-linkpreview.min',
     list: 'list.js/dist/list.min',
-    modernizr: 'modernizr/modernizr',
+    modernizr: 'foundation/js/vendor/modernizr',
     sidr: 'sidr/jquery.sidr.min',
     slickcarousel: 'slick-carousel/slick/slick.min',
     stickykit: 'sticky-kit/jquery.sticky-kit.min',
