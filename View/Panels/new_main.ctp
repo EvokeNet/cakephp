@@ -50,13 +50,13 @@
 	<div class="large-2 columns padding-left-0 gradient-on-right" data-equalizer-watch>
 
 		<div class="side-menu">
-		    <ul class="side-menu side-nav">
-				<li id="statisticsLink" class = "active">
+		    <ul id="links" class="side-menu side-nav">
+				<li id="statisticsLink" class ="active">
 					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'new_main')) ?>">
 						<?= __('Statistics') ?>
 					</a>
 				</li>
-				<li id="usersLink" class"">
+				<li id="usersLink" class="">
 					<a id="btnShowUserMenu">
 						<?= __('Users') ?>
 					</a>
