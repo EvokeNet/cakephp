@@ -1,4 +1,4 @@
-define(['jquery','sweetalert', 'jqueryajaxretry'], function($,swal){
+define(['jquery','sweetalert', 'jqueryajaxretry', 'i18next'], function($,swal){
 	$.ajaxPrefilter(function(opts, originalOpts, jqXHR) {
 		//Avoiding infinite loop in case the same request is refreshed
 		if (opts.refreshRequest) {

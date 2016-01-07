@@ -5,7 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property Question $Question
  */
-class SuperheroIdentity extends AppModel {
+class MatchingAnswer extends AppModel {
 
 /**
  * Display field
@@ -29,7 +29,7 @@ class SuperheroIdentity extends AppModel {
 	public $belongsTo = array(
 		'User' => array(
 			'className' => 'User',
-			'foreignKey' => 'superhero_identity_id',
+			'foreignKey' => 'superhero_identity_id'
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -44,7 +44,7 @@ class SuperheroIdentity extends AppModel {
 	public $hasMany = array(
 		'SocialInnovatorQuality' => array(
 			'className' => 'User',
-			'foreignKey' => 'superhero_identity_id',
+			'foreignKey' => 'superhero_identity_id'
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
