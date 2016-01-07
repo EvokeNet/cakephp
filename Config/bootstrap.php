@@ -72,7 +72,7 @@ spl_autoload_register(array('App', 'load'), true, true);
 
 CakePlugin::loadAll(array(
 	'bootstrap' => true,
-	'Optimum' => array('routes' => true)
+	// 'Optimum' => array('routes' => true)
 ));
 
 /**

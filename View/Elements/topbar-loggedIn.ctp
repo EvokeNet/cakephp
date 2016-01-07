@@ -9,7 +9,7 @@
 
 			<!-- LEVEL PROGRESS BAR -->
 			<li>
-				<?php echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
+				<?php //echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
 			</li>
 
 			<!-- LANGUAGE -->
@@ -25,7 +25,7 @@
 			<!-- USER PROFILE PICTURE WITH DROPDOWN MENU -->
 			<li class="has-dropdown">
 				<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>" class="button-icon">
-					
+
 						<?= $this->Picture->showUserCircularPicture(
 							$loggedInUser,
 							'square-40px',
@@ -79,7 +79,7 @@
 					</a>
 				</div>
 			</li>
-			
+
 			<?php if ($loggedInUser['role'] != 'user'){ ?>
 			<li>
 				<div class="column">
