@@ -9,11 +9,11 @@ if (!isset($phase['Quest']) || (count($phase['Quest']) < 1)):
 else: ?>
 
 	<dl class="tabs vertical table-cell full-width  margin right-1" id="questsTabs" data-tab>
-		<?php 
+		<?php
 			$counter = 1;
 			$active = 'class = "active"';
 
-			foreach($phase['Quest'] as $q): 
+			foreach($phase['Quest'] as $q):
 				if($counter != 1)
 					$active = null;
 				?>
@@ -25,16 +25,16 @@ else: ?>
 	</dl>
 
 	<div class="tabs-content table-cell vertical-align-top full-width gradient-on-left">
-		<?php 
+		<?php
 			$counter = 1;
-			$active = 'active'; 
+			$active = 'active';
 
-			foreach($phase['Quest'] as $q): 
+			foreach($phase['Quest'] as $q):
 				if ($counter != 1) {
 					$active = null;
 				}
 				?>
-			
+
 			<div class="content <?= $active ?>" id="quest<?= $counter ?>">
 				<div class = "margin right-1">
 					<!-- QUEST TITLE AND DESCRIPTION -->
@@ -49,7 +49,7 @@ else: ?>
 						<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge2.png' ?>" alt="Quests" />
 						<img class="evoke vertical-align-middle" src="<?= $this->webroot.'img/badge3.png' ?>" alt="Quests" />
 					</p>
-				   
+
 				   <!-- QUEST RESPONSE OR CALL TO ACTION -->
 					<div class="margin top-3"><?php
 						//QUEST RESPONSE
@@ -90,7 +90,7 @@ else: ?>
 									<div data-alert class="alert-box info radius">
 										<p><?= __('Waiting for acceptance of your request to join group.') ?></p>
 									</div><?php
-									
+
 								//No requests pending
 								else: ?>
 									<p class="text-center">
@@ -111,7 +111,7 @@ else: ?>
 								endif;
 
 							//BRAINSTORM
-							elseif ($q['type'] == Quest::TYPE_BRAINSTORM): 
+							elseif ($q['type'] == Quest::TYPE_BRAINSTORM):
 								//NO TIMELINE => NEEDS A GROUP (this checking can be improved)
 								if (!isset($q['Timeline'])): ?>
 									<div data-alert class="alert-box info radius">
@@ -120,7 +120,7 @@ else: ?>
 								//DISPLAYS TIMELINE
 								else: ?>
 									<h5 class="text-color-highlight text-center"><?= __('EVIDENCE CREATION PROCESS') ?></h5><?php
-									echo $this->element('BrainstormSessionEvoke.timeline',array('states' => $q['Timeline']));
+									// echo $this->element('BrainstormSessionEvoke.timeline',array('states' => $q['Timeline']));
 								endif;
 
 							//EVOKATION

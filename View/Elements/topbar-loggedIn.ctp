@@ -9,7 +9,7 @@
 
 			<!-- LEVEL PROGRESS BAR -->
 			<li>
-				<?php //echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
+				<?php echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
 			</li>
 
 			<!-- LANGUAGE -->

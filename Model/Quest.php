@@ -37,10 +37,10 @@ class Quest extends AppModel {
  */
 	public $actsAs = array(
 		'Containable',
-		'BrainstormSessionEvoke.ActPhaseBrainstorm',
+		// 'BrainstormSessionEvoke.ActPhaseBrainstorm',
 		'Enumerable'
 		// 'Translate' => array(
-		//     'title' => 'questTitle', 
+		//     'title' => 'questTitle',
 		//     'description' => 'questDescription',
 		// )
 	);
@@ -231,10 +231,10 @@ class Quest extends AppModel {
 			else {
 				$query['conditions'] = $evokePhaseCondition;
 			}
-			
+
 			return $query;
 		}else{
-			
+
 		}
 		return $results;
 	}

@@ -33,7 +33,7 @@
 						<i class="fa fa-plus"></i>
 						<?= __('Add as ally') ?>
 					</a>
-				
+
 				<!-- ALREADY AN ALLY -->
 				<?php elseif(!empty($is_friend) && ($user['User']['id'] != $users['User']['id'])): ?>
 					<a class="button small disabled">
@@ -195,13 +195,13 @@
 								<!-- PICTURE -->
 
 								<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['Friend']['id'], false)); ?>">
-									
+
 									<?= $this->Picture->showUserCircularPicture(
 										$ally['Friend'],
 										'square-60px',
 										__("%s's profile picture",$ally['Friend']['name'])
 									); ?>
-								
+
 									<p class="text-center text-glow-on-hover"><?= $ally['Friend']['name'] ?></p>
 								</a>
 
@@ -248,7 +248,7 @@
 <?php
 	//JAVASCRIPT VARIABLES
 	$this->start('evoke_javascript_variables');
-		
+
 		echo "evokeData.webroot = 'TESTE';";
 	$this->end();
 

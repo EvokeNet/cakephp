@@ -26,10 +26,10 @@ class Phase extends AppModel {
 	public $actsAs = array(
 		'Containable',
 		'Enumerable',
-		'BrainstormSessionEvoke.ActPhaseBrainstorm',
+		// 'BrainstormSessionEvoke.ActPhaseBrainstorm',
 		'Optimum.ForumFilterable'
 		// 'Translate' => array(
-		//     'name' => 'phaseName', 
+		//     'name' => 'phaseName',
 		//     'description' => 'phaseDescription'
 		// )
 	);
@@ -135,13 +135,13 @@ class Phase extends AppModel {
 			if ($completed_previous && !$completed_current) {
 				return ($phase+array("debug" => "getC", "phase" => $phase['Phase']['id'], "complete" => $completed_current));
 			}
-			
+
 			$completed_previous = $completed_current;
 		}
 
 		return ($phase+array("debug" => "getC2"));
 	}
-	
+
 	public function getNextPhase($phase, $mission_id) {
 
 		$mps = $this->Mission->Phase->find('all', array(
@@ -180,7 +180,7 @@ class Phase extends AppModel {
 
 	}
 
-	
+
 /**
  * belongsTo associations
  *

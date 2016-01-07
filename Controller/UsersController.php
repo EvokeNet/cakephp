@@ -1,12 +1,12 @@
 <?php
 
-require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
+// require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
 
 // require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'Google_Client.php';
 // require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'contrib'.DS.'Google_Oauth2Service.php';
 
-require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Client.php';
-require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Service'.DS.'Oauth2.php';
+// require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Client.php';
+// require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Service'.DS.'Oauth2.php';
 
 App::uses('AppController', 'Controller');
 
@@ -119,7 +119,7 @@ class UsersController extends AppController {
 
 		if ($lang == 'es') {
 			$video_url = 'http://player.vimeo.com/video/93164917';
-			
+
 			//Missions
 			foreach($missions as &$mission) {
 				$mission['Mission']['title'] = $mission['Mission']['title_es'];
@@ -806,7 +806,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function matching($id = null) {
-		
+
 		//debug($this->request->data);
 		//die();
 		//List issues (all, and already saved)
@@ -862,7 +862,7 @@ class UsersController extends AppController {
 						}
 					}
 				}
-				
+
 				$user_answers = array();
 				if(isset($this->request->data['orderAnswer'])){
 					$user_id = $this->request->data['UserMatchingAnswer']['user_id'];
@@ -906,7 +906,7 @@ class UsersController extends AppController {
 		// find superhero and prepare the text for the qualities
 
 		/**
-		
+
 
 
 		*/
