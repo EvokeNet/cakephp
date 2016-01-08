@@ -376,7 +376,11 @@ class PanelsController extends AppController {
 		// $this->render('main');
 	}
 
-	public function main(){
+	public function new_main(){
+		$this->main(1);
+	}
+
+	public function main($args = 0){
 
 		$this->loadModel('Badge');
 		$this->loadModel('Level');
@@ -587,9 +591,11 @@ class PanelsController extends AppController {
 
 
 		$this->set(compact('badges', 'missions_issues', 'organizations'));
-
-		$this->render('main');
-	}
+		if($args == 1){
+			$this->render('new_main');
+		}else{
+			$this->render('main');
+		}	}
 
 	public function organization($org_id = null){
 

@@ -43,7 +43,7 @@
 	<div class="large-2 columns padding-left-0 gradient-on-right" data-equalizer-watch>
 
 		<div class = "side-menu">
-		  <ul class="side-menu side-nav">
+		    <ul class="side-menu side-nav">
 				<li class = "active">
 					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'main')) ?>">
 						<?= __('Statistics') ?>
@@ -57,88 +57,91 @@
 				</li>
 			<?php endforeach; ?>
 
-		</ul>
-			</div>
-
-  </div>
-  <div class="large-10 columns" data-equalizer-watch>
-	<div class="row padding-top-1"  >
-		<div class="large-8 columns"  >
-	<ul class="small-block-grid-3">
-	  <li><!-- Your content goes here -->
-	  	<div class="row"  >
-			<div class="large-4 columns"  >
-				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-folder-open-o fa-3x"></i></div>
-			</div>
-			<div class="large-8 columns"  >
-				<div style = "font-size:2.5em;"><?= sizeof($missions_issues) ?></div>
-				<div style = "word-wrap: break-word;"><?= strtoupper(__('Missions Created')) ?></div>
-			</div>
+		    </ul>
 		</div>
-	  </li>
-
-	  <li><!-- Your content goes here -->
-	  	<div class="row"  >
-			<div class="large-4 columns"  >
-				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-bank fa-3x"></i></div>
-			</div>
-			<div class="large-8 columns"  >
-				<div style = "font-size:2.5em;"><?= sizeof($organizations) ?></div>
-				<div style = "word-wrap: break-word;"><?= strtoupper(__('Organizations')) ?></div>
-			</div>
-		</div>
-	  </li>
-
-	  <li><!-- Your content goes here -->
-	  	<div class="row"  >
-			<div class="large-4 columns"  >
-				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-shield fa-3x"></i></div>
-			</div>
-			<div class="large-8 columns"  >
-				<div style = "font-size:2.5em;"><?= sizeof($badges) ?></div>
-				<div style = "word-wrap: break-word;"><?= strtoupper(__('Badges')) ?></div>
-			</div>
-		</div>
-	  </li>
-
-	  <li><!-- Your content goes here -->
-	  	<div class="row"  >
-			<div class="large-4 columns"  >
-				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-user fa-3x"></i></div>
-			</div>
-			<div class="large-8 columns"  >
-				<div style = "font-size:2.5em;"><?= sizeof($all_users) ?></div>
-				<div style = "word-wrap: break-word;"><?= strtoupper(__('Users')) ?></div>
-			</div>
-		</div>
-	  </li>
-
-	  <li><!-- Your content goes here -->
-	  	<div class="row"  >
-			<div class="large-4 columns"  >
-				<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-sitemap fa-3x"></i></div>
-			</div>
-			<div class="large-8 columns"  >
-				<div style = "font-size:2.5em;"><?= round($allies_user) ?></div>
-				<div style = "word-wrap: break-word;"><?= strtoupper(__('Allies per user')) ?></div>
-			</div>
-		</div>
-	  </li>
-
-	  <li><!-- Your content goes here -->
-	  	<div class="row"  >
-				<div class="large-4 columns"  >
-					<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-users fa-3x"></i></div>
-				</div>
-				<div class="large-8 columns"  >
-					<div style = "font-size:2.5em;"><?= sizeof($groups) ?></div>
-					<div style = "word-wrap: break-word;"><?= strtoupper(__('Evokation Teams')) ?></div>
-				</div>
-			</div>
-	  </li>
-
-	</ul>
 	</div>
+  	<div class="large-10 columns" data-equalizer-watch>
+		<div class="row padding-top-1"  >
+			<div class="large-8 columns"  >
+				<ul class="small-block-grid-3">
+					<li><!-- Your content goes here -->
+				  		<div class="row"  >
+							<div class="large-4 columns"  >
+								<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-folder-open-o fa-3x"></i>
+								</div>
+							</div>
+							<div class="large-8 columns"  >
+								<div style = "font-size:2.5em;"><?= sizeof($missions_issues) ?>
+								</div>
+								<div style = "word-wrap: break-word;"><?= strtoupper(__('Missions Created')) ?>
+								</div>
+							</div>
+						</div>
+				  	</li>
+
+					<li><!-- Your content goes here -->
+					  	<div class="row"  >
+							<div class="large-4 columns"  >
+								<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-bank fa-3x"></i></div>
+							</div>
+							<div class="large-8 columns"  >
+								<div style = "font-size:2.5em;"><?= sizeof($organizations) ?></div>
+								<div style = "word-wrap: break-word;"><?= strtoupper(__('Organizations')) ?></div>
+							</div>
+						</div>
+					</li>
+
+					<li><!-- Your content goes here -->
+					  	<div class="row"  >
+							<div class="large-4 columns"  >
+								<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-shield fa-3x"></i></div>
+							</div>
+							<div class="large-8 columns"  >
+								<div style = "font-size:2.5em;"><?= sizeof($badges) ?></div>
+								<div style = "word-wrap: break-word;"><?= strtoupper(__('Badges')) ?></div>
+							</div>
+						</div>
+					</li>
+
+					<li><!-- Your content goes here -->
+					  	<div class="row"  >
+							<div class="large-4 columns"  >
+								<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-user fa-3x"></i></div>
+							</div>
+							<div class="large-8 columns"  >
+								<div style = "font-size:2.5em;"><?= sizeof($all_users) ?></div>
+								<div style = "word-wrap: break-word;"><?= strtoupper(__('Users')) ?></div>
+							</div>
+						</div>
+					</li>
+
+					<li><!-- Your content goes here -->
+					  	<div class="row"  >
+							<div class="large-4 columns"  >
+								<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-sitemap fa-3x"></i></div>
+							</div>
+							<div class="large-8 columns"  >
+								<div style = "font-size:2.5em;"><?= round($allies_user) ?></div>
+								<div style = "word-wrap: break-word;"><?= strtoupper(__('Allies per user')) ?></div>
+							</div>
+						</div>
+					</li>
+
+					<li><!-- Your content goes here -->
+					  	<div class="row"  >
+								<div class="large-4 columns"  >
+									<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-users fa-3x"></i></div>
+								</div>
+								<div class="large-8 columns"  >
+									<div style = "font-size:2.5em;"><?= sizeof($groups) ?></div>
+									<div style = "word-wrap: break-word;"><?= strtoupper(__('Evokation Teams')) ?></div>
+								</div>
+							</div>
+					</li>
+
+				</ul>
+			</div>
+			
 	<div class="large-4 columns"  >
 		<h5>Level</h5>
   		<div class="row">
