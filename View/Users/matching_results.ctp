@@ -12,11 +12,67 @@
 
 <div class="row standard-width">
 	<div class="row">
-		<div class="medium-6 columns">
-			<h3><?= __('You are an entrepreneurial agent!') ?></h3>
-			<p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
-			<p><?= __('You have the heart of a Local Leader!') ?></p>
-			<p><?= __('Your Entrepreneurship and Local Insight are key to you. Embrace your qualities and use them for the better.') ?></p>
+		<div class="medium-12 columns">
+			<div class = "row">
+				<div class="columns text-center">
+					<h3><?= __('You are: %s agent!', $superhero['SuperheroIdentity']['name']) ?></h3>
+					<p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
+				</div>
+			</div>
+			<div class="medium-6 columns">
+				<?php 
+					$icons = array(1 => 'fa-puzzle-piece', 2 => 'fa-users', 3 => 'fa-cogs', 4 => 'fa-comments'); 
+					$id = $first_quality['SocialInnovatorQuality']['id'];
+					$icon = $icons[$id];
+				?>
+				<div class='row'>
+					<div class="medium-12 columns text-center">
+						<i class="fa <?= $icon ?> fa-5x"></i>
+					</div>
+				</div>	
+
+				<div class='row'>
+					<div class="medium-12 columns">
+
+						<p><h4><?= $first_quality['SocialInnovatorQuality']['name'] ?></h4></p>
+					</div>
+				</div>
+				
+				<div class='row'>
+					<div class="medium-12 columns">
+						<p><?= $first_quality['SocialInnovatorQuality']['description'] ?></p>
+					</div>
+				</div>
+
+			</div>
+			<div class="large-6 medium-6 columns">
+				<?php 
+					$id = $second_quality['SocialInnovatorQuality']['id'];
+					$icon = $icons[$id];
+				?>
+				
+				<div class='row'>
+					<div class="medium-12 columns text-center">
+						<i class="fa <?= $icon ?> fa-5x"></i>
+					</div>
+				</div>	
+
+				<div class='row'>
+					<div class="medium-12 columns">
+
+						<p><h4><?= $second_quality['SocialInnovatorQuality']['name'] ?></h4></p>
+					</div>
+				</div>
+				
+				<div class='row'>
+					<div class="medium-12 columns">
+						<p><?= $second_quality['SocialInnovatorQuality']['description'] ?></p>
+					</div>
+				</div>
+					
+			</div>
+			<br>
+			<br>
 			<p><?= __('Continue to explore who you are, who you could be, on your profile page. Or start your mission. Or begin to think about your world chanding idea!') ?></p>
 			<div class="text-center">
 				<a class="button" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site')); ?>"><?php echo __('Explore evoke!'); ?></a>
@@ -24,12 +80,12 @@
 		</div>
 
 		<!-- RADAR GRAPH FOR MATCHING RESULTS -->
-		<div class="medium-6 columns centering-block">
+		<!-- <div class="medium-6 columns centering-block">
 			<div class="text-center vertical-align-middle centered-block">
 				<h4><?= __('Assessment') ?></h4>
-				<?php echo $this->element('matching_graph', array('height' => '450', 'width' => '500')); ?>
+				<?php //echo $this->element('matching_graph', array('height' => '450', 'width' => '500')); ?>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 	<div class="row">

@@ -583,8 +583,8 @@ class MissionsController extends AppController {
 
     //---------------------------------
     //FORUM
-    $this->loadModel('Optimum.Forum');
-    $forum = $this->Mission->Phase->findForum($phase['Phase']['id']);
+    // $this->loadModel('Optimum.Forum');
+    // $forum = $this->Mission->Phase->findForum($phase['Phase']['id']);
 
     //---------------------------------
     //GROUPS

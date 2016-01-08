@@ -641,7 +641,39 @@ class UsersController extends AppController {
 			'order' => 'rand()'
 		));
 
-		$this->set(compact('myevokations', 'user', 'users', 'is_friend', 'friends', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
+		/**
+		*
+		*get superhero id, get the social innovators ids, find them in the DB and send them to the view to put in place of the psychometric analisys
+		*
+		*/
+		$this->loadModel('SuperheroIdentity');
+
+		$superhero = $this->SuperheroIdentity->find('first', array(
+			'conditions' => array(
+				'id' => $user['User']['superhero_identity_id']
+			)
+		));
+
+		// debug($user);
+		// debug($superhero);
+		// die();
+
+		$this->loadModel('SocialInnovatorQuality');
+		$first_quality = $this->SocialInnovatorQuality->find('first', array(
+			'conditions' => array(
+				'id' => $superhero['SuperheroIdentity']['quality_1']
+			)
+		));
+
+		$second_quality = $this->SocialInnovatorQuality->find('first', array(
+			'conditions' => array(
+				'id' => $superhero['SuperheroIdentity']['quality_2']
+			)
+		));
+
+
+
+		$this->set(compact('superhero', 'first_quality', 'second_quality', 'myevokations', 'user', 'users', 'is_friend', 'friends', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
 			'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'viewerEvokation',
 			'points_users', 'leaderboard_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'similar_users'));
 
@@ -755,16 +787,52 @@ class UsersController extends AppController {
 	public function matching_results($id = null, $quality_1, $quality_2) {
 		// find superhero and prepare the text for the qualities
 
-		/**
+		$this->loadModel('SuperheroIdentity');
+		$superhero = $this->SuperheroIdentity->find('first', array(
+			'conditions' => array(
+				'quality_1' => $quality_1,
+				'quality_2' => $quality_2
+			),
+		));
 
+		$user = $this->User->find('first', array(
+			'conditions' => array(
+				'id' => $id
+			),
+		));
+		// debug($superhero);
+		// die();
+		//save user's superhero identity id
+		$user['User']['superhero_identity_id'] = $superhero['SuperheroIdentity']['id'];
+		unset($user['User']['password']);
+		$this->User->save($user);
 
+		$this->loadModel('SocialInnovatorQuality');
 
-		*/
-		debug($quality_1." ".$quality_2);
-		die();
-		//List of similar users (for now, any 4 users; later, matching results)
+		$first_quality = $this->SocialInnovatorQuality->find('first', array(
+			'conditions' => array(
+				'id' => $quality_1
+			),
+		));
+
+		$second_quality = $this->SocialInnovatorQuality->find('first', array(
+			'conditions' => array(
+				'id' => $quality_2
+			),
+		));
+
+		// debug($quality_1." ".$quality_2);
+		// debug($superhero);
+		// debug($first_quality);
+		// debug($second_quality);
+		// die();
+
+		//List of similar users (same superhero identity for now)
 		$similar_users = $this->User->find('all', array(
-			'conditions' => 'User.id != '.$this->getUserId(),
+			'conditions' => array(
+				'User.id != '.$this->getUserId(),
+				'User.superhero_identity_id' => $superhero['SuperheroIdentity']['id']
+			),
 			'limit' => 4,
 			'order' => 'rand()'
 		));
@@ -777,7 +845,7 @@ class UsersController extends AppController {
 			)
 		));
 
-		$this->set(compact('similar_users','friends_ids'));
+		$this->set(compact('similar_users', 'friends_ids', 'superhero', 'first_quality', 'second_quality'));
 	}
 
 /**

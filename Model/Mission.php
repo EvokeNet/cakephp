@@ -20,19 +20,19 @@ class Mission extends AppModel {
 /**
  * actsAs array
  *
- * 
+ *
  */
 	public $actsAs = array(
 		'Containable',
         // 'Translate' => array(
-        //     'title' => 'missionTitle', 
+        //     'title' => 'missionTitle',
         //     'description' => 'missionDescription',
         //     'video_link' => 'missionVideoLink'
         // )
     );
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
-	
+
 	public function getMissions() {
 		return $this->find('all');
 	}
@@ -75,7 +75,7 @@ class Mission extends AppModel {
         if (!empty($data['Attachment']['Img']) || !empty($data['Attachment']['Cover'])) {
         	foreach ($data['Attachment'] as $i => $image) {
                 if (is_array($data['Attachment'][$i]) && $data['Attachment'][$i]['attachment']['error'] == 0) {
-                	
+
                     // Force setting the `model` field to this model
                     $image['model'] = 'Mission';
 
@@ -83,7 +83,7 @@ class Mission extends AppModel {
                     if (isset($image['foreign_key'])) {
                         unset($image['foreign_key']);
                     }
-                    
+
 					$OR[] = array('Attachment.attachment' => $image['attachment']['name']);
 					$images[] = $image;
 
@@ -97,7 +97,7 @@ class Mission extends AppModel {
         }
         $data['Attachment'] = $images;
         // debug($data);
-        
+
         // Try to save the data using Model::saveAll()
         if(!$hasPrev) $this->create();
         else {
@@ -105,8 +105,8 @@ class Mission extends AppModel {
         	$data['Mission']['id'] = $id;
         }
         if ($this->saveAll($data)) {
-            
-            
+
+
             $recentAttachments = $this->Attachment->find('all', array(
             	'order' => array(
             		'Attachment.id Desc'
@@ -127,7 +127,7 @@ class Mission extends AppModel {
             		$tmp = array(0 => array('dir' => 'image_dir', 'attachment' => 'image_attachment'));
             	else
             		$tmp = array(0 => array('dir' => 'cover_dir', 'attachment' => 'cover_attachment'));
-            
+
             $insert = null;
             foreach ($recentAttachments as $att) {
             	if($k >= count($tmp)) break;
@@ -233,19 +233,19 @@ class Mission extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'PhaseChecklist' => array(
-			'className' => 'PhaseChecklist',
-			'foreignKey' => 'mission_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
+		// 'PhaseChecklist' => array(
+		// 	'className' => 'PhaseChecklist',
+		// 	'foreignKey' => 'mission_id',
+		// 	'dependent' => false,
+		// 	'conditions' => '',
+		// 	'fields' => '',
+		// 	'order' => '',
+		// 	'limit' => '',
+		// 	'offset' => '',
+		// 	'exclusive' => '',
+		// 	'finderQuery' => '',
+		// 	'counterQuery' => ''
+		// ),
 		'Quest' => array(
 			'className' => 'Quest',
 			'foreignKey' => 'mission_id',
