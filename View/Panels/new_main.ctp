@@ -77,8 +77,11 @@
 		<div id="content">
 			<div id="statistics" class="row padding-top-1"  >
 				<div class="large-12 columns"  >
+					<!-- This list show all the items in the statistics
+						 (missions, badges, organizations etc)
+					-->
 					<ul class="small-block-grid-3">
-						<li><!-- Your content goes here -->
+						<li>
 					  		<div class="row"  >
 								<div class="large-4 columns"  >
 									<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-folder-open-o fa-3x"></i>
@@ -93,7 +96,7 @@
 							</div>
 					  	</li>
 
-						<li><!-- Your content goes here -->
+						<li>
 						  	<div class="row"  >
 								<div class="large-4 columns"  >
 									<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-bank fa-3x"></i></div>
@@ -105,7 +108,7 @@
 							</div>
 						</li>
 
-						<li><!-- Your content goes here -->
+						<li>
 						  	<div class="row"  >
 								<div class="large-4 columns"  >
 									<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-shield fa-3x"></i></div>
@@ -117,7 +120,7 @@
 							</div>
 						</li>
 
-						<li><!-- Your content goes here -->
+						<li>
 						  	<div class="row"  >
 								<div class="large-4 columns"  >
 									<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-user fa-3x"></i></div>
@@ -129,7 +132,7 @@
 							</div>
 						</li>
 
-						<li><!-- Your content goes here -->
+						<li>
 						  	<div class="row"  >
 								<div class="large-4 columns"  >
 									<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-sitemap fa-3x"></i></div>
@@ -141,7 +144,7 @@
 							</div>
 						</li>
 
-						<li><!-- Your content goes here -->
+						<li>
 						  	<div class="row"  >
 									<div class="large-4 columns"  >
 										<div style = "text-align: center; margin: 30px auto;"><i class="fa fa-users fa-3x"></i></div>
