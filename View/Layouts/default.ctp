@@ -13,11 +13,14 @@ $title = __('Evoke Network');
 <html>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge;" /> <!-- Forces IE to use the last compatible version -->
-	
+
 	<!-- FONTS -->
 	<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Dosis&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
 	<?php echo $this->Html->charset(); ?>
 	<title>
@@ -33,9 +36,9 @@ $title = __('Evoke Network');
 		//COMPONENTS CSS
 		echo $this->Html->css('/components/font-awesome/css/font-awesome.min'); //Icon font - font-awesome
 		echo $this->Html->css('/css/plugins/font-awesome'); //Overriding some of the font-awesome css
-		
+
 		echo $this->Html->css('/css/font/font-brankic'); //Icon font - brankic 1979
-		
+
 		echo $this->Html->css('/components/foundation/css/foundation');
 		echo $this->Html->css('/css/plugins/foundation'); //Overriding some of the foundation css
 
@@ -49,8 +52,10 @@ $title = __('Evoke Network');
 		echo $this->Html->css('/css/plugins/sweetalert.css'); //Overriding some of the sweet alert css
 
 		//EVOKE CSS
-		echo $this->Html->css('evoke');
-		
+		// echo $this->Html->css('evoke');
+
+		echo $this->Html->css('default');
+
 		//FILE-SPECIFIC CSS
 		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
 			echo $this->Html->css($cssInclude); //CSS for each view set
@@ -69,28 +74,28 @@ $title = __('Evoke Network');
 </head>
 <body class="evoke">
 	<section role="main body" class="full-height">
-		<?php 
+		<?php
 		//TOPBAR
 		if ($this->fetch('topbar')) {
-			echo $this->fetch('topbar'); 
+			echo $this->fetch('topbar');
 		}
 
 		//IMAGE HEADER
-		if ($this->fetch('image_header')) {
-			echo $this->fetch('image_header'); 
-		}
+		// if ($this->fetch('image_header')) {
+		// 	echo $this->fetch('image_header');
+		// }
 
 		//CONTENT
 		echo $this->fetch('content');
 
 		//FOOTER
 		if ($this->fetch('footer')) {
-			echo $this->fetch('footer'); 
+			echo $this->fetch('footer');
 		}
 		?>
 	</section>
 
-	
+
 	<script type="text/javascript">
         var webroot = "<?php echo Router::url('/', true); ?>";
     </script>
@@ -125,7 +130,7 @@ $title = __('Evoke Network');
 	    socket.emit('subscribe', {channel:'notifs'});
 	  });
 
-	  //when reconnection is attempted, updates status 
+	  //when reconnection is attempted, updates status
 	  socket.on('reconnecting', function(data){
 	    setStatus('reconnecting');
 	  });

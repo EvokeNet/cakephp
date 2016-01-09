@@ -1,0 +1,22 @@
+.profile .bg{
+  background: url(../img/page005-eng80op.jpg) no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  text-align: center;
+}
+
+.profile .bg img{
+  margin-top:20x;
+}
+
+.profile .strip {
+	background: #141416; /*#1c1c1e; /*#202023;*/
+	height: 70px;
+/*	padding: 0 10px;*/
+    padding: 0.75em 0.625em;
+    position: absolute;
+    bottom: 0;
+	width: 100%;
+	z-index: 12;
+	box-sizing: border-box;
+}
