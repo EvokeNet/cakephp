@@ -20,7 +20,7 @@
 	<nav class="top-bar header-top" data-topbar role="navigation">
 		<ul class="title-area">
 			<li class="name">
-				<h1><a href="#"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>' width = "90%"></a></h1>
+				<h1><a href="#"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>' width = "150px"></a></h1>
 			</li>
 			 <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
 			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -33,11 +33,11 @@
 					<?php	echo $this->Form->input('username', array('label' => false, 'type' => 'text', 'placeholder' =>  __('username'), 'class' => 'radius', 'required' => true, 'autofocus', 'class' => 'margin-right-1em'));	?>
 				</li>
 				<li class="active">
-					<?php	echo $this->Form->input('username', array('label' => false, 'type' => 'text', 'placeholder' =>  __('username'), 'class' => 'radius', 'required' => true, 'autofocus'));	?>
+					<?php	echo $this->Form->input('password', array('label' => false, 'type' => 'text', 'placeholder' =>  __('password'), 'class' => 'radius', 'required' => true, 'autofocus'));	?>
 				</li>
-				<li class="has-form"><a href="http://foundation.zurb.com/docs" class="button"><?php echo __('Sign In'); ?></a></li>
+				<li class="has-form"><a href="http://foundation.zurb.com/docs" class="button uppercase"><?php echo __('Sign In'); ?></a></li>
 				<li class="divider"></li>
-				<li class="has-form"><a href="http://foundation.zurb.com/docs" class="button"><?php echo __('Sign Up'); ?></a></li>
+				<li class="has-form"><a href="http://foundation.zurb.com/docs" class="button uppercase"><?php echo __('Sign Up'); ?></a></li>
 				<li class="divider"></li>
 				<li class="has-dropdown">
 					<a href="#"><?php echo __('LANGUAGE'); ?></a>
@@ -80,7 +80,7 @@
   <section class="vertical-scrolling">
     <h2>fullPage.js</h2>
     <h3>This is the fourth section</h3>
-      
+
     <nav class="top-bar footer-bottom" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">

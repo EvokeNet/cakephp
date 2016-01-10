@@ -1,4 +1,4 @@
-<nav class="top-bar header-top" data-topbar role="navigation">
+<nav class="top-bar header-top-fixed" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
       <h1><a href="#"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>' width = "150px"></a></h1>

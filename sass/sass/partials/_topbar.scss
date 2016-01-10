@@ -19,18 +19,22 @@
 	margin-right: 1em;
 }
 
-// .evoke .top-bar-section ul li > a.button{
-// 	font-size: 0.8rem;
-// 	background-color: #2FCCCB;
-// 	border-color: #2FCCCB;
-// 	border-radius: 2px;
-// 	color: #FCFCFC;
-// 	padding-right: 15px;
-// 	padding-left: 15px;
-// }
+.top-bar-section ul li > a{
+  font-family: 'Dosis', 'Open-Sans', sans-serif;
+}
+
+.evoke .top-bar-section ul li > a.button{
+	font-size: 0.8rem;
+	background-color: #2FCCCB;
+	border-color: #2FCCCB;
+	border-radius: 2px;
+	color: #FCFCFC;
+	padding-right: 15px;
+	padding-left: 15px;
+}
 
 .evoke .top-bar-section ul li,
-.top-bar-section li:not(.has-form) a:not(.button) {
+.evoke .top-bar-section li:not(.has-form) a:not(.button) {
   background: #2B2C31;
 }
 
@@ -55,10 +59,24 @@
 }
 
 .header-top {
-	// background: #2B2C31;
+	background: #2B2C31;
 	/*height: 70px;*/
 	/*padding: 0 10px;*/
 	/*position: fixed;*/
+	/*top: 0;*/
+  height: 70px;
+  /*padding: 10px 0;*/
+	padding: 12px 0 10px;
+	width: 100%;
+	z-index: 12;
+	box-sizing: border-box;
+}
+
+.header-top-fixed {
+	background: #2B2C31;
+	/*height: 70px;*/
+	/*padding: 0 10px;*/
+	position: fixed;
 	/*top: 0;*/
   height: 70px;
   /*padding: 10px 0;*/

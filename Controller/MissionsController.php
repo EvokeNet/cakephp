@@ -15,7 +15,7 @@ class MissionsController extends AppController {
  */
 
   public $components = array('Paginator', 'Session', 'Access');
-  public $helpers = array('BrainstormSession.Brainstorm' => array('unavailable_content_hidden' => true));
+  // public $helpers = array('BrainstormSession.Brainstorm' => array('unavailable_content_hidden' => true));
   public $user = null;
 
   public function beforeFilter() {

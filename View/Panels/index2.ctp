@@ -13,8 +13,8 @@
 	<?php echo $this->element('topbar', array('sticky' => '', 'fixed' => '')); ?>
 </div>
 
-<?php
-	$this->end();
+<?php 
+	$this->end(); 
 	echo $this->Html->css('lightbox_ribbon');
 ?>
 
@@ -27,35 +27,35 @@
 				<dd class="<?php echo $organizations_tab; ?>" style = "text-align:center"><a href="#organizations"><i class="fa fa-bank fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Organizations')) ?></a></dd>
 
 				<dd class="<?php echo $missions_tab; ?>" style = "text-align:center"><a href="#missions"><i class="fa fa-folder-open-o fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Missions')) ?></a></dd>
-
+				
 				<?php if($flags['_admin']) : ?>
 					<dd class="<?php echo $issues_tab; ?>" style = "text-align:center"><a href="#issues"><i class="fa fa-list-ul fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Issues')) ?></a></dd>
 
 					<dd class="<?php echo $levels_tab; ?>" style = "text-align:center"><a href="#levels"><i class="fa fa-trophy fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Levels')) ?></a></dd>
-				<?php endif; ?>
-
+				<?php endif; ?>	
+				
 				<dd class="<?php echo $badges_tab; ?>" style = "text-align:center"><a href="#badges"><i class="fa fa-shield fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Badges')) ?></a></dd>
-
+				
 				<dd class="<?php echo $users_tab; ?>" style = "text-align:center"><a href="#users"><i class="fa fa-users fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Users')) ?></a></dd>
-
+				
 				<?php if($flags['_admin']) : ?>
 					<dd class="<?php echo $pending_tab; ?>" style = "text-align:center"><a href="#pending"><i class="fa fa-inbox fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Evokations')) ?></a></dd>
-
+					
 					<dd class="<?php echo $media_tab; ?>" style = "text-align:center"><a href="#media"><i class="fa fa-exclamation-circle fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Notifications & Media')) ?></a></dd>
-
+					
 					<dd class="<?php echo $settings_tab; ?>" style = "text-align:center"><a href="#settings"><i class="fa fa-cogs fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('General Settings')) ?></a></dd>
-				<?php endif; ?>
-
+				<?php endif; ?>	
+				
 				<dd id="test" class="<?php echo $statistics_tab; ?>" style = "text-align:center"><a href="#statistics"><i class="fa fa-bar-chart-o fa-lg" style = "width:100%; margin-bottom:10px"></i><?= strtoupper(__('Statistics')) ?></a></dd>
 			</dl>
 			</div>
 	  </div>
 
 	  <div class="small-11 columns no-padding">
-
+	  	
 	  	<div class="panels tabs-content vertical padding top-2">
 				<div class="content <?php echo $organizations_tab; ?>" id="organizations">
-
+					
 					<?php foreach ($organizations as $organization) { ?>
 							<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'organizations', 'action' => 'delete', $organization['Organization']['id']), array( 'class' => 'button tiny alert', 'id' => 'orgsDelete'.$organization['Organization']['id'], 'style' => 'display:none' )); ?>
 					<?php }	?>
@@ -91,15 +91,15 @@
 									    'UserOrganization.users_id',
 									    $possible_managers,
 									    array(
-									    	'data-placeholder' => __('Select the managers'),
-									    	'multiple' => true,
+									    	'data-placeholder' => __('Select the managers'), 
+									    	'multiple' => true, 
 									    	'style' => 'width: 100%; height: 36px;'
 									    )
 									);
 								} else {
 									//else use my id
 									echo $this->Form->hidden('UserOrganization.user_id', array('value' => $userid));
-								}
+								}				
 							?>
 						</fieldset>
 						<button class="button small" type="submit">
@@ -109,7 +109,7 @@
 						<a class="close-reveal-modal">&#215;</a>
 					</div>
 					<div id="OrganizationsHolder"></div>
-
+					
 				</div>
 				<div class="content <?php echo $missions_tab; ?> large-12 columns" id="missions">
 
@@ -119,8 +119,8 @@
 				  		<?php foreach ($missions_issues as $mi) : ?>
 				  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'missions', 'action' => 'delete', $mi['Mission']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteMission'.$mi['Mission']['id'], 'style' => 'display:none')); ?>
 						<?php endforeach; ?>
-
-					<div id="MissionsHolder" style="width:auto"></div>
+					
+					<div id="MissionsHolder" style="width:auto"></div> 
 				</div>
 				<div class="content <?php echo $issues_tab; ?>" id="issues">
 
@@ -132,20 +132,20 @@
 	 				   			'controller' => 'panels',
 	 				   			'action' => 'add_issue')
 							)); ?>
-
+						
 						<?php echo __('Add an Issue'); ?>
 						<?php
 							echo $this->Form->input('name', array('label' => __('Name')));
 							echo $this->Form->input('slug', array('label' => __('Slug')));
 						?>
-
+						
 						<button class="button general" type="submit">
 							<?php echo __('Add'); ?>
 						</button>
 						<?php echo $this->Form->end(); ?>
 
 						<a class="close-reveal-modal">&#215;</a>
-					</div>
+					</div>			    			
 
 						<?php foreach ($issues as $i) : ?>
 				  				<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'delete_issue', $i['Issue']['id']), array( 'class' => 'button tiny alert', 'id' => 'issuesDelete'.$i['Issue']['id'], 'style' => 'display:none')); ?>
@@ -154,7 +154,7 @@
 				</div>
 				<div class="content <?php echo $levels_tab; ?> default-content" id="levels">
 					<h3 class = "margin bottom"><?= strtoupper(__('Define Levels')) ?></h3>
-					<?php
+					<?php 
 						$nextLevel = 1;
 						echo $this->Form->create('Level', array(
 							'url' => array(
@@ -165,7 +165,7 @@
 						foreach ($levels as $level):
 							echo '<div class="row collapse">';
 							echo '<div class="large-1 columns left inline"><label for="levelOld'.$level['Level']['id'].'">Level '.$level['Level']['level'].'</label></div>';
-
+							
 							echo $this->Form->input('level.old.'.$level['Level']['id'], array(
 								'label' => false,
 								'value' => $level['Level']['points'],
@@ -176,13 +176,13 @@
 							));
 							echo '<div class="large-1 columns left"><span class="postfix">points</span></div>';
 							echo '</div>';
-
+							
 							$nextLevel++;
 						endforeach;
 
 						echo '<div class="row collapse">';
 						echo '<div class="large-1 columns left inline"><label for="levelNew'.$nextLevel.'">Level '.$nextLevel.'</label></div>';
-
+							
 						echo $this->Form->input('level.new.'.$nextLevel, array(
 							'label' => false,
 							'div' => array(
@@ -192,7 +192,7 @@
 						));
 						echo '<div class="large-1 columns left"><span class="postfix">points</span></div>';
 						echo '</div>';
-
+						
 						$nextLevel++;
 					?>
 					<button class="button general" type="submit">
@@ -211,7 +211,7 @@
  						   			'action' => 'add_badge'
  						   		),
  						   		'enctype' => 'multipart/form-data'
-							));
+							)); 
 						?>
 							<fieldset>
 								<legend><?php echo __('Add a Badge'); ?></legend>
@@ -221,7 +221,7 @@
 								echo $this->Form->input('description', array('label' => __('Description'), 'required' => true));
 								echo $this->Form->input('description_es', array('label' => __('Spanish Description')));
 								echo '<div class="input file"><label for="Attachment0Attachment">Image</label><input type="file" name="data[Attachment][0][attachment]" id="Attachment0Attachment"></div>';
-
+								
 								echo $this->Form->input('organization_id', array(
 									'label' => __('Organization'),
 									'options' => $organizations_list
@@ -249,11 +249,11 @@
 
 							<div id="myModalEditUser-<?= $user['User']['id'] ?>" class="reveal-modal medium" data-reveal>
 
-								<?php
+								<?php 
 									echo $this->Form->create('User', array(
 								 		'url' => array(
 								 			'controller' => 'panels',
-								 			'action' => 'edit_user_role',
+								 			'action' => 'edit_user_role', 
 								 			$user['User']['id']
 								 		)
 									));
@@ -274,7 +274,7 @@
 									</button>
 									<?php echo $this->Form->end(); ?>
 								<a class="close-reveal-modal">&#215;</a>
-
+							  
 							</div>
 
 						<?php endforeach; ?>
@@ -283,7 +283,7 @@
 					<div id="UsersHolder"></div>
 				</div>
 				<div class="content <?php echo $pending_tab; ?>" id="pending">
-					<?php
+					<?php 
 						$evokations = array_merge($pending_evokations, $approved_evokations);
 					?>
 
@@ -291,11 +291,11 @@
 						<button class="button small" id="ShowEvokationStatus-<?php echo $e['Evokation']['id']; ?>" data-reveal-id="evo-<?php echo $e['Evokation']['id']; ?>" style="display:none" data-reveal></button>
 									<!-- Lightbox for editing evokation status -->
 						<div id="evo-<?php echo $e['Evokation']['id']; ?>" class="reveal-modal tiny" data-reveal>
-							<?php
+							<?php 
 								echo $this->Form->create('Evokation', array(
 							 		'url' => array(
 							 			'controller' => 'panels',
-							 			'action' => 'changeEvokationStatus',
+							 			'action' => 'changeEvokationStatus', 
 							 			$e['Evokation']['id']
 							 		)
 								));
@@ -332,11 +332,11 @@
 							<legend><?php echo __('Create a Notification'); ?></legend>
 							<?php
 								echo $this->Form->input('title', array(
-									'label' => __('Title'),
+									'label' => __('Title'), 
 									'required' => true
 								));
 								echo $this->Form->input('description', array(
-									'label' => __('Description'),
+									'label' => __('Description'), 
 									'required' => true,
 									'type' => 'textarea'
 								));
@@ -376,7 +376,7 @@
 							</div>
 						  	<p class="lead"><?= $n['AdminNotification']['description'] ?></p>
 							<a class="close-reveal-modal">&#215;</a>
-
+						  
 						</div>
 
 						<?php echo $this->Form->PostLink(__('Delete'), array('controller' => 'panels', 'action' => 'deleteNotification', $n['AdminNotification']['id']), array( 'class' => 'button tiny alert', 'id' => 'deleteNotification'.$n['AdminNotification']['id'], 'style' => 'display:none')); ?>
@@ -392,7 +392,7 @@
 	 							'action' => 'editNotification',
 	 							$n['AdminNotification']['id'])
 							)); ?>
-
+								
 							<?php
 								echo $this->Form->input('title', array(
 									'label' => __('Title'),
@@ -400,7 +400,7 @@
 									'required' => true
 								));
 								echo $this->Form->input('description', array(
-									'label' => __('Description'),
+									'label' => __('Description'), 
 									'required' => true,
 									'value' => $n['AdminNotification']['description'],
 									'type' => 'textarea'
@@ -416,7 +416,7 @@
 							<?php echo $this->Form->end(); ?>
 
 						  <a class="close-reveal-modal">&#215;</a>
-
+						  
 						</div>
 
 					<?php endforeach; ?>
@@ -437,25 +437,25 @@
 							echo $this->Form->input('max_global', array(
 								//'label' => __('Define the limit of agents per group: '),
 								'value' => $groups[0]['Group']['max_global']
-							));
+							));	
 						} else {
 							echo $this->Form->input('max_global', array(
 								'label' => __('Define the limit of agents per group: ')
-							));
-						}
+							));	
+						}						
 
 						echo '</div>';
 
 						echo '<fieldset><legend>' . __('Points Definitions: ') . '</legend>';
-
+						
 						//points general def.
-
+						
 						if(!empty($register_points))
 							echo $this->Form->input('Register.points', array(
 								'label' => __("Agent's register is worth: "),
 								'value' => $register_points['PointsDefinition']['points']
 							));
-						else
+						else 
 							echo $this->Form->input('Register.points', array(
 								'label' => __("Agent's register is worth: ")
 							));
@@ -471,7 +471,7 @@
 								'label' => __("Agent's follow agent is worth: ")
 							));
 
-
+						
 						if(!empty($like_points))
 							echo $this->Form->input('Like.points', array(
 								'label' => __("Agent's like is worth: "),
@@ -518,7 +518,7 @@
 								'label' => __("Agent's evidence comment is worth: "),
 								'value' => $evidenceComment_points['PointsDefinition']['points']
 							));
-						else
+						else 
 							echo $this->Form->input('EvidenceComment.points', array(
 								'label' => __("Agent's evidence comment is worth: ")
 							));
@@ -528,7 +528,7 @@
 								'label' => __("Agent's basic training is worth: "),
 								'value' => $basicTraining_points['PointsDefinition']['points']
 							));
-						else
+						else 
 							echo $this->Form->input('BasicTraining.points', array(
 								'label' => __("Agent's basic training is worth: ")
 							));
@@ -550,7 +550,7 @@
 						</dl>
 						<div class="tabs-content">
 							<div class="content active" id="otherMetrics">
-								<?php
+								<?php 
 									$average_level = $userLevels['all']/sizeof($all_users);
 									$average_level = number_format($average_level, 2);
 
@@ -612,7 +612,7 @@
 											  	<div class="row full-width-alternate no-margin">
 													<div class="text-center">
 														<i class="fa fa-users fa-2x"></i>
-
+													
 													<h1 style = "font-size: 1.5em; color: #555; font-weight:bold;">
 														<?= __('Users')?>
 													</h1>
@@ -655,7 +655,7 @@
 													  	<h5 style = "font-size: 1.4em; color: #555"><!-- <i class="fa fa-star"></i> &nbsp;--><?= $userLevels['maxP'].' ' ?></h5>
 												  	</div>
 												</div>
-											</div>
+											</div>	
 										</li>
 										<li>
 											<div class = "yay">
@@ -738,7 +738,7 @@
 											</li>
 										<?php endforeach ?>
 									</ul>
-								</div>
+								</div>									
 							</div>
 							<div class="content" id="missionMetrics">
 								<div class="large-12 medium-12 small-12 columns">
@@ -751,7 +751,7 @@
 											</li>
 										<?php endforeach ?>
 									</ul>
-								</div>
+								</div>									
 							</div>
 						</div>
 					</div>
@@ -765,8 +765,8 @@
 <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js" type="text/javascript"></script> -->
 
 
-
-<?php
+    
+<?php 
 	echo $this->Html->css('animate');
 	echo $this->Html->script('jquery.watable');
 
@@ -779,7 +779,7 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Language', 'Speakers (in millions)'],
-          <?php
+          <?php 
           	foreach ($chosenIssues as $issueQ => $issue) {
           		foreach ($issue as $is) {
 	          		echo '["'.$is.'", '. $issueQ .'],';
@@ -806,7 +806,7 @@
       function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable([
           	['Country', 'Users '],
-          	<?php
+          	<?php 
           		foreach ($countries as $key => $value) {
           			echo '["'.$key.'", '.$value.'],';
           		}
@@ -1357,7 +1357,7 @@
         };
 
 
-        <?php
+        <?php 
 	    	$mission_titles_array = "";
 	    	$mission_ids_array = "";
 	    	foreach ($missions_issues as $mi) :
@@ -1367,13 +1367,13 @@
 	    	$mission_ids_array = substr($mission_ids_array, 0, strlen($mission_ids_array) - 2);
 	    	$mission_titles_array = substr($mission_titles_array, 0, strlen($mission_titles_array) - 2);
 	    ?>
-
-    	<?php
+    
+    	<?php 
 	    	$mission_issues_array = "";
 	    	$mission_issues_id_array = "";
-	    	foreach ($issues as $issue)
+	    	foreach ($issues as $issue) 
 	    	 	foreach ($missions_issues as $mi)
-	    			foreach ($mi['MissionIssue'] as $i)
+	    			foreach ($mi['MissionIssue'] as $i) 
 	    				if($issue['Issue']['id'] == $i['issue_id']) {
 	    					$mission_issues_array .= '"'. $issue['Issue']['name'] .'", ';
 	    					$mission_issues_id_array .= '"'. $issue['Issue']['id'] .'", ';
@@ -1424,7 +1424,7 @@
             userRole: {
                 index: 1, //The order this column should appear in the table
                 type: "string", //The type. Possible are string, number, bool, date(in milliseconds).
-                <?php
+                <?php 
                 	if($flags['_admin']) $f = strtoupper(__('Role'));
                 	else $f = strtoupper(__('Missions'));
                 ?>
@@ -1448,7 +1448,7 @@
         };
 
 
-        <?php
+        <?php 
 	    	$users_name_array = "";
 	    	$users_id_array = "";
 	    	if($flags['_admin']) :
@@ -1466,17 +1466,17 @@
 		   	$users_id_array = substr($users_id_array, 0, strlen($users_id_array) - 2);
 	    ?>
 
-    	<?php
+    	<?php 
 	    	$users_role_array = "";
 	    	$users_roleid_array = "";
 	    	$users_missions_array = "";
 	    	$users_missionsid_array = "";
 	    	if($flags['_admin']) {
-		    	foreach ($all_users as $user)
-		    		foreach ($roles as $role)
+		    	foreach ($all_users as $user) 
+		    		foreach ($roles as $role) 
 		    			if($role['Role']['id'] == $user['User']['role_id']) {
-		    				$users_role_array .= '"'. $role['Role']['name'] .'", ';
-		    				$users_roleid_array .= '"'. $role['Role']['id'] .'", ';
+		    				$users_role_array .= '"'. $role['Role']['name'] .'", ';	
+		    				$users_roleid_array .= '"'. $role['Role']['id'] .'", ';	
 		    			}
 
 		    	$users_role_array = substr($users_role_array, 0, strlen($users_role_array) - 2);
@@ -1492,14 +1492,14 @@
 		    				$ids .= $mi['Mission']['id'] . "";
 		    			}
 		    		}
-		    		$users_missions_array .= '"'. $titles .'", ';
-		    		$users_missionsid_array .= '"'. $ids .'", ';
+		    		$users_missions_array .= '"'. $titles .'", ';	
+		    		$users_missionsid_array .= '"'. $ids .'", ';	
 		    	}
 
 		    	$users_missions_array = substr($users_missions_array, 0, strlen($users_missions_array) - 2);
 	    		$users_missionsid_array = substr($users_missionsid_array, 0, strlen($users_missionsid_array) - 2);
 		  	}
-
+		   	
     	?>
         /*
           Create the actual data.
@@ -1510,8 +1510,8 @@
         var rows = [];
         var i = 1;
 
-        <?php
-        	if($flags['_admin'])
+        <?php 
+        	if($flags['_admin']) 
         		echo 'while(i <= '. sizeof($all_users) .')';
         	else
         		echo 'while(i <= '. sizeof($users_of_my_missions) .')';
@@ -1579,7 +1579,7 @@
         };
 
 
-        <?php
+        <?php 
         	$badges_size = 0;
 	    	$badges_titles_array = "";
 	    	$badges_ids_array = "";
@@ -1592,13 +1592,13 @@
 	    	$badges_titles_array = substr($badges_titles_array, 0, strlen($badges_titles_array) - 2);
     		$badges_ids_array = substr($badges_ids_array, 0, strlen($badges_ids_array) - 2);
 	    ?>
-
-    	<?php
+    
+    	<?php 
 	    	$orgs_names_array = "";
 	    	$orgs_id_array = "";
 	    	foreach ($badges as $b) {
 	    	 	if($b['Badge']['id'] == "") continue;
-	    	 	foreach ($organizations as $org)
+	    	 	foreach ($organizations as $org) 
 	    			if($org['Organization']['id'] == $b['Badge']['organization_id']) {
 	    				$orgs_names_array .= '"'. $org['Organization']['name'] .'", ';
 	    				$orgs_id_array .= '"'. $org['Organization']['id'] .'", ';
@@ -1642,7 +1642,7 @@
 
         return data;
     }
-
+    
     function getDataOrgs() {
 
         //First define the columns
@@ -1658,7 +1658,7 @@
         };
 
 
-        <?php
+        <?php 
         	$orgs_size = 0;
 	    	$orgs_array = "";
 	    	$orgsids_array = "";
@@ -1671,7 +1671,7 @@
 	    	$orgs_array = substr($orgs_array, 0, strlen($orgs_array) - 2);
     		$orgsids_array = substr($orgsids_array, 0, strlen($orgsids_array) - 2);
 	    ?>
-
+    
         /*
           Create the actual data.
           Whats worth mentioning is that you can use a 'format' property just as in the column definition,
@@ -1720,7 +1720,7 @@
         };
 
 
-        <?php
+        <?php 
         	$issues_size = 0;
 	    	$issues_array = "";
 	    	$issueids_array = "";
@@ -1733,7 +1733,7 @@
 	    	$issues_array = substr($issues_array, 0, strlen($issues_array) - 2);
     		$issueids_array = substr($issueids_array, 0, strlen($issueids_array) - 2);
 	    ?>
-
+    
         /*
           Create the actual data.
           Whats worth mentioning is that you can use a 'format' property just as in the column definition,
@@ -1806,7 +1806,7 @@
         };
 
 
-        <?php
+        <?php 
         	$evo_size = 0;
 	    	$evo_array = "";
 	    	$status_array = "";
@@ -1836,7 +1836,7 @@
     		$evo_groups_array = substr($evo_groups_array, 0, strlen($evo_groups_array) - 2);
     		$evo_groupids_array = substr($evo_groupids_array, 0, strlen($evo_groupids_array) - 2);
 	    ?>
-
+    
         /*
           Create the actual data.
           Whats worth mentioning is that you can use a 'format' property just as in the column definition,
@@ -1854,14 +1854,14 @@
 
             if(eStatus[i-1] == 1) {
             	var str = "Approved";
-            }else{
+            }else{            	
             	var str = "Pending";
             }
 
             var strE = '"ShowEvokationStatus-' + eId[i-1] + '"';
-
+            
             var doc = {
-
+            	
             	status: str,
             	statusFormat: "<a href='#' onclick='document.getElementById(" + strE +").click();' class='userId name Status " + str +"'>{0}</a>",
             	group: gName[i-1],
@@ -1918,7 +1918,7 @@
         };
 
 
-        <?php
+        <?php 
         	$not_size = 0;
 	    	$not_array = "";
 	    	$notids_array = "";
@@ -1933,9 +1933,9 @@
 	    	$not_array = substr($not_array, 0, strlen($not_array) - 2);
     		$notids_array = substr($notids_array, 0, strlen($notids_array) - 2);
     		$notuser_array = substr($notuser_array, 0, strlen($notuser_array) - 2);
-
+    		
 	    ?>
-
+    
         /*
           Create the actual data.
           Whats worth mentioning is that you can use a 'format' property just as in the column definition,
@@ -1955,7 +1955,7 @@
             var strEN = '"EditNot-'+notId[i-1] + '"';
 
             var doc = {
-
+            	
             	admin: notUser[i-1],//user name
             	adminFormat: "<a href='#' class='userId name'>{0}</a>",
             	trigger: "user log in",
@@ -1969,7 +1969,7 @@
             // strEN = '"EditNot-'+notId[i-1] + '"';
 
             // var doc = {
-
+            	
             // 	admin: notUser[i-1],//user name
             // 	adminFormat: "<a href='#' class='userId name'>{0}</a>",
             //     name: notTitle[i-1],//notification title
@@ -1996,17 +1996,17 @@
    	var notId = new Array(<?php echo $notids_array?>);
    	var notUser = new Array(<?php echo $notuser_array?>);
 
-    var eName = new Array(<?php echo $evo_array?>);
+    var eName = new Array(<?php echo $evo_array?>);    
    	var eId = new Array(<?php echo $evoids_array?>);
    	var eStatus = new Array(<?php echo $status_array?>);
-	var gName = new Array(<?php echo $evo_groups_array?>);
+	var gName = new Array(<?php echo $evo_groups_array?>);    
     var gId = new Array(<?php echo $evo_groupids_array?>);
 
-    var usersName = new Array(<?php echo $users_name_array?>);
+    var usersName = new Array(<?php echo $users_name_array?>);    
     var usersId = new Array(<?php echo $users_id_array?>);
-    var usersRole = new Array(<?php echo $users_role_array?>);
+    var usersRole = new Array(<?php echo $users_role_array?>);    
     var usersRoleId = new Array(<?php echo $users_roleid_array?>);
-    var usersMission = new Array(<?php echo $users_missions_array?>);
+    var usersMission = new Array(<?php echo $users_missions_array?>);    
     var usersMissionId = new Array(<?php echo $users_missionsid_array?>);
 
     var badgesName = new Array(<?php echo $badges_titles_array?>);
@@ -2018,10 +2018,10 @@
     var orgsId = new Array(<?php echo $orgsids_array?>);
 
 	var issuesName = new Array(<?php echo $issues_array?>);
-    var issuesId = new Array(<?php echo $issueids_array?>);
+    var issuesId = new Array(<?php echo $issueids_array?>);    
 
     var ppName = new Array(<?php echo $pp_array?>);
-    var ppId = new Array(<?php echo $ppids_array?>);
+    var ppId = new Array(<?php echo $ppids_array?>);    
 
     var issueName = new Array(<?php echo $mission_issues_array ?>);
     var issueId = new Array(<?php echo $mission_issues_id_array ?>);
@@ -2047,7 +2047,7 @@
     function badgeButtons(i) {
     	var url = getCorrectURL("badges/edit/");
     	var str = "'deleteBadge" + badgesId[i] + "'";
-    	//<a href="'+ url + badgesId[i] +'" >Edit</a> |
+    	//<a href="'+ url + badgesId[i] +'" >Edit</a> | 
     	return '<a href="'+ url + badgesId[i] +'" ><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="document.getElementById(' + str +').click();" ><i class="fa fa-times-circle"></i></a>';
     }
 
@@ -2083,24 +2083,24 @@
 
     function getCorrectURL(afterHome){
     	var str = document.URL;
-
+    	
     	//str = str.substr(7, str.length);
     	str = str.substr(0, str.indexOf("panels"));
-
+    	
     	str = str.substr(0, str.length -1);
     	// alert(str);
     	if(str.length>1) {
     		// str = str.substr(0, str.indexOf('/', 1));
-    		//alert(str);
+    		//alert(str);	
     		str = str + '/' + afterHome;
     		return str;
     	} else {
-    		//alert(str);
+    		//alert(str);	
     		return afterHome;
     	}
     	//alert(str);
     }
 
 
-
+    
 </script>
