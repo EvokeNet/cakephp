@@ -1,0 +1,123 @@
+@import 'partials/topbar';
+
+$bg-color: #28282C;
+$default-green: #2FCCCB;
+$font-dosis: 'Dosis', 'Open-Sans', sans-serif;
+$font-off-white: #FCFCFC;
+
+/* GENERAL STYLES */
+html {
+	background-color: $bg-color;
+	overflow: auto;
+}
+body {
+	background-color: $bg-color;
+	/*overflow: auto;*/
+}
+
+*, html, body,
+div, p, span, a {
+	font-family: $font-dosis;
+	font-size: 100%;
+	-webkit-text-stroke: 0.1px;
+	-webkit-font-smoothing: antialiased;
+	word-break: break-word;
+}
+
+*, html, body, div, p {
+	color: #cccccc;
+}
+
+// button, .button {
+// 	font-family: $font-dosis;
+// 	font-size: 100%;
+// 	-webkit-text-stroke: 0.1px;
+// 	-webkit-font-smoothing: antialiased;
+// }
+
+.margin-top-1em{
+  margin-top: 1em;
+}
+
+.margin-bottom-1em{
+  margin-bottom: 1em;
+}
+
+.margin-left-1em{
+  margin-left:1em;
+}
+
+.margin-right-1em{
+  margin-left:1em;
+}
+
+.margin-left-2em{
+  margin-left:2em;
+}
+
+.margin-right-2em{
+  margin-left:2em;
+}
+
+.margin-left-3em{
+  margin-left:3em;
+}
+
+.margin-right-3em{
+  margin-left:3em;
+}
+
+.evoke .font-green{
+  color: #2FCCCB;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.font-weight-bold{
+  font-weight: bold;
+}
+
+.centralize-content{
+  padding: 0 20%;
+}
+
+.centralize-content-30{
+  padding: 0 30%;
+}
+
+.evoke .row{
+    max-width: none;
+}
+
+.evoke .row .row{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.noscroll {
+	overflow: 'hidden';
+}
+
+/* Headings */
+.evoke h1, .evoke h1 a, .evoke h2, .evoke h2 a, .evoke h3, .evoke h3 a,
+.evoke h4, .evoke h4 a, .evoke h5, .evoke h5 a, .evoke h6, .evoke h6 a {
+	font-family: $font-dosis;
+}
+
+.evoke h1, .evoke h2, .evoke h3, .evoke h4, .evoke h5, .evoke h6 {
+	color: $font-off-white;
+}
+
+.evoke h3, .evoke h4, .evoke h5, .evoke h6 {
+	text-transform: uppercase;
+}
+
+/* Visibility */
+.evoke .hidden {
+	display: none;
+}
+.evoke .overflow-hidden {
+	overflow: hidden;
+}
