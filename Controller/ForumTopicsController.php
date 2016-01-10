@@ -37,8 +37,119 @@ class ForumTopicsController extends AppController {
 		if (!$this->ForumTopic->exists($id)) {
 			throw new NotFoundException(__('Invalid forum topic'));
 		}
+		
+		//FORUM TOPIC
+		$this->loadModel('ForumTopic');
+		$options = array(
+			'fields' => array(
+				'id',
+				'title',
+				'content',
+				'forum_categorie_id',
+				'User.id',
+				'User.name',
+				'created'
+			),
+			'joins' => array(
+				array(
+					'table' => 'users',
+					'alias' => 'User',
+					'type' => 'INNER',
+					'conditions' => array(
+						'ForumTopic.user_id = User.id'
+					),
+				),
+			),
+			'conditions' => array(
+				'ForumTopic.id ='.$id
+			)
+		);
+
+		$forumTopic = $this->ForumTopic->find('first',$options);
+
+		//FORUM POSTS
+		$this->loadModel('ForumPost');
+		$alias = $this->ForumPost->alias;
+
+		//CUSTOM PAGINATOR FOR FORUM POSTS
+
+		$this->paginate = array(
+			'ForumPost' => array(
+				'fields' => array(
+					'ForumPost.id',
+					'ForumPost.title',
+					'ForumPost.content',
+					'User.id',
+					'User.name',
+					'ForumPost.created'
+				),
+				'joins' => array(
+					array(
+						'table' => 'forum_topics',
+						'alias' => 'ForumTopic',
+						'type' => 'INNER',
+						'conditions' => array(
+							'ForumPost.forum_topic_id = ForumTopic.id'
+						),
+					),
+					array(
+						'table' => 'users',
+						'alias' => 'User',
+						'type' => 'INNER',
+						'conditions' => array(
+							'ForumPost.user_id = User.id'
+						),
+					),
+				),
+				'conditions' => array(
+					'ForumTopic.id ='.$id
+				),
+				'order' => array(
+					'created' => 'asc'
+				)
+			)
+		);
+
+		$forumPosts = $this->paginate($alias);
+
+		// SET VARIABLES
+		$this->set('forumPosts', $forumPosts);
+		$this->set('forumTopic', $forumTopic);
+
+	}
+
+
+/**
+ * new post method
+ *
+ * @return void
+ */	
+	public function post($id = null) {
+
+		if (!$this->ForumTopic->exists($id)) {
+				throw new NotFoundException(__('Invalid forum topic'));
+			}
+
 		$options = array('conditions' => array('ForumTopic.' . $this->ForumTopic->primaryKey => $id));
 		$this->set('forumTopic', $this->ForumTopic->find('first', $options));
+
+		if ($this->request->is('post')) {
+
+			$this->loadModel('ForumPost');
+			$this->ForumPost->create();
+
+			if ($this->ForumPost->save($this->request->data)) {
+				$this->Session->setFlash(__('The forum post has been saved.'));
+				$insertedId = $this->ForumPost->getLastInsertId();
+				$forumTopicId = $this->ForumPost->find('first',array('conditions' => 'id = '.$insertedId))['ForumPost']['forum_topic_id'];
+				$pageNumber = ceil($this->ForumPost->find('count',array('conditions' => 'forum_topic_id = '.$forumTopicId))/20);
+				return $this->redirect(array('action' => 'view/'.$id.'/page:'.$pageNumber.'#'.$insertedId));
+			} else {
+				$this->Session->setFlash(__('The forum post could not be saved. Please, try again.'));
+			}
+
+		}
+
 	}
 
 /**
@@ -57,8 +168,8 @@ class ForumTopicsController extends AppController {
 			}
 		}
 		$users = $this->ForumTopic->User->find('list');
-		$forums = $this->ForumTopic->Forum->find('list');
-		$this->set(compact('users', 'forums'));
+		$forumCategories = $this->ForumTopic->ForumCategorie->find('list');
+		$this->set(compact('users', 'forumCategories'));
 	}
 
 /**
@@ -84,8 +195,8 @@ class ForumTopicsController extends AppController {
 			$this->request->data = $this->ForumTopic->find('first', $options);
 		}
 		$users = $this->ForumTopic->User->find('list');
-		$forums = $this->ForumTopic->Forum->find('list');
-		$this->set(compact('users', 'forums'));
+		$forumCategories = $this->ForumTopic->ForumCategorie->find('list');
+		$this->set(compact('users', 'forumCategories'));
 	}
 
 /**
@@ -96,6 +207,99 @@ class ForumTopicsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->ForumTopic->id = $id;
+		if (!$this->ForumTopic->exists()) {
+			throw new NotFoundException(__('Invalid forum topic'));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->ForumTopic->delete()) {
+			$this->Session->setFlash(__('The forum topic has been deleted.'));
+		} else {
+			$this->Session->setFlash(__('The forum topic could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
+
+/**
+ * admin_index method
+ *
+ * @return void
+ */
+	public function admin_index() {
+		$this->ForumTopic->recursive = 0;
+		$this->set('forumTopics', $this->Paginator->paginate());
+	}
+
+/**
+ * admin_view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_view($id = null) {
+		if (!$this->ForumTopic->exists($id)) {
+			throw new NotFoundException(__('Invalid forum topic'));
+		}
+		$options = array('conditions' => array('ForumTopic.' . $this->ForumTopic->primaryKey => $id));
+		$this->set('forumTopic', $this->ForumTopic->find('first', $options));
+	}
+
+/**
+ * admin_add method
+ *
+ * @return void
+ */
+	public function admin_add() {
+		if ($this->request->is('post')) {
+			$this->ForumTopic->create();
+			if ($this->ForumTopic->save($this->request->data)) {
+				$this->Session->setFlash(__('The forum topic has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The forum topic could not be saved. Please, try again.'));
+			}
+		}
+		$users = $this->ForumTopic->User->find('list');
+		$forumCategories = $this->ForumTopic->ForumCategorie->find('list');
+		$this->set(compact('users', 'forumCategories'));
+	}
+
+/**
+ * admin_edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_edit($id = null) {
+		if (!$this->ForumTopic->exists($id)) {
+			throw new NotFoundException(__('Invalid forum topic'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->ForumTopic->save($this->request->data)) {
+				$this->Session->setFlash(__('The forum topic has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The forum topic could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('ForumTopic.' . $this->ForumTopic->primaryKey => $id));
+			$this->request->data = $this->ForumTopic->find('first', $options);
+		}
+		$users = $this->ForumTopic->User->find('list');
+		$forumCategories = $this->ForumTopic->ForumCategorie->find('list');
+		$this->set(compact('users', 'forumCategories'));
+	}
+
+/**
+ * admin_delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_delete($id = null) {
 		$this->ForumTopic->id = $id;
 		if (!$this->ForumTopic->exists()) {
 			throw new NotFoundException(__('Invalid forum topic'));

@@ -1,7 +1,7 @@
 <div class="forumTopics form">
 <?php echo $this->Form->create('ForumTopic'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Forum Topic'); ?></legend>
+		<legend><?php echo __('Admin Edit Forum Topic'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('title');

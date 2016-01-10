@@ -1,30 +1,37 @@
-<div class="forumPosts form">
-<?php echo $this->Form->create('ForumPost'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Forum Post'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('title');
-		echo $this->Form->input('slug');
-		echo $this->Form->input('description');
-		echo $this->Form->input('user_id');
-		echo $this->Form->input('forum_id');
-		echo $this->Form->input('forum_topic_id');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<?php
+/* CSS */
+	echo $this->Html->css('forums');
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('ForumPost.id')), array(), __('Are you sure you want to delete # %s?', $this->Form->value('ForumPost.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Forum Posts'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Forums'), array('controller' => 'forums', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Forum'), array('controller' => 'forums', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Forum Topics'), array('controller' => 'forum_topics', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Forum Topic'), array('controller' => 'forum_topics', 'action' => 'add')); ?> </li>
-	</ul>
+/* Top bar */
+	$this->start('topbar');
+	echo $this->element('topbar');
+	$this->end();
+?>
+<div class="evoke centering-block">
+
+	<!-- HEAD -->
+	<div class="forums index">
+		<!-- TOPIC LINK -->
+		<a href="/evoke/forum_topics/view/<?= $forumPost['ForumTopic']['id'] ?>">
+			<h4 class="evoke text-glow forums link-title">
+				<?= $forumPost['ForumTopic']['title'] ?>
+			</h4>
+		</a>
+	</div>
+
+	<div class="forums newpost-form">
+	<?php echo $this->Form->create('ForumPost'); ?>
+		<fieldset>
+			<legend class="forums newpost-legend text-color-highlight uppercase"><?php echo __('Edit Post'); ?></legend>
+		<?php
+			echo $this->Form->input('title');
+			echo $this->Form->input('content');
+		?>
+		<input type="hidden" name="data[ForumPost][slug]" id="ForumPostSlug" value="<?= $forumPost['ForumPost']['slug'] ?>"/>
+		<input type="hidden" name="data[ForumPost][id]" id="ForumPostUserId" value="<?= $forumPost['ForumPost']['id'] ?>"/>
+		<input type="hidden" name="data[ForumPost][user_id]" id="ForumPostUserId" value="<?= $forumPost['User']['id'] ?>"/>
+		<input type="hidden" name="data[ForumPost][forum_topic_id]" id="ForumPostForumTopicId" value="<?= $forumPost['ForumTopic']['id'] ?>"/>
+		</fieldset>
+		<?php echo $this->Form->submit(__('Submit'),array('class' => 'button thin')); ?>
+	</div>
 </div>

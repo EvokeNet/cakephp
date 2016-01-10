@@ -4,7 +4,6 @@ App::uses('AppModel', 'Model');
  * ForumPost Model
  *
  * @property User $User
- * @property Forum $Forum
  * @property ForumTopic $ForumTopic
  */
 class ForumPost extends AppModel {
@@ -28,13 +27,6 @@ class ForumPost extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Forum' => array(
-			'className' => 'Forum',
-			'foreignKey' => 'forum_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

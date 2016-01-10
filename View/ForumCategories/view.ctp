@@ -1,56 +1,82 @@
-<div class="forumCategories view">
-<h2><?php echo __('Forum Category'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($forumCategory['ForumCategory']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Title'); ?></dt>
-		<dd>
-			<?php echo h($forumCategory['ForumCategory']['title']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Slug'); ?></dt>
-		<dd>
-			<?php echo h($forumCategory['ForumCategory']['slug']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Description'); ?></dt>
-		<dd>
-			<?php echo h($forumCategory['ForumCategory']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('User Id'); ?></dt>
-		<dd>
-			<?php echo h($forumCategory['ForumCategory']['user_id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Forum'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($forumCategory['Forum']['title'], array('controller' => 'forums', 'action' => 'view', $forumCategory['Forum']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($forumCategory['ForumCategory']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($forumCategory['ForumCategory']['modified']); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Forum Category'), array('action' => 'edit', $forumCategory['ForumCategory']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Forum Category'), array('action' => 'delete', $forumCategory['ForumCategory']['id']), array(), __('Are you sure you want to delete # %s?', $forumCategory['ForumCategory']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Forum Categories'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Forum Category'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Forums'), array('controller' => 'forums', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Forum'), array('controller' => 'forums', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<?php
+/* CSS */
+	echo $this->Html->css('forums');
+
+/* Top bar */
+	$this->start('topbar');
+	echo $this->element('topbar');
+	$this->end();
+?>
+<div class="evoke centering-block">
+
+	<!-- HEAD -->
+	<div class="forums index">
+		<!-- FORUM LINK -->
+		<a href="/evoke/forums"><h4 class="evoke text-glow forums link-title"><?php echo __('Forums'); ?></h4></a>
+		<!-- FORUM TITLE -->
+		<h2 class="evoke text-glow"><?= $forumCategory['ForumCategory']['title'] ?></h2>
+
+		<!-- PAGING -->
+		<div class="forums paging">
+			<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
+			<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
+			<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
+		</div>
+
+	</div>
+
+	<!-- TOPICS -->
+
+	<table class="forums table">
+		<thead class="head">
+			<th class="left head-cell"><?php echo $this->Paginator->sort('title','Topic'); ?></th>
+			<th class="centered head-cell size1"><?php echo $this->Paginator->sort('0.'.'answers','Answers'); ?></th>
+			<th class="centered head-cell size1"><?php echo $this->Paginator->sort('view_count','Views'); ?></th>
+			<th class="centered head-cell size2"><?php echo $this->Paginator->sort('User.name','Created By'); ?></th>
+			<th class="centered head-cell size2"><?php echo $this->Paginator->sort('created','Date'); ?></th>
+		</thead>
+
+		
+
+		<?php foreach ($forumTopics as $topic): ?>
+			<?php if(isset($topic['ForumTopic']['title'])):?>
+			<tbody>
+				<tr>
+					<td class="left cell">
+						<a href="/evoke/forum_topics/view/<?= $topic['ForumTopic']['id'] ?>">
+							<?= $topic['ForumTopic']['title'] ?>
+						</a>
+					</td>
+					<td class="centered cell gray-cell">
+						<?= $topic['0']['answers'] ?>	
+					</td>
+					<td class="centered cell gray-cell">
+						<?= $topic['ForumTopic']['view_count'] ?>
+					</td>
+					<td class="left cell">
+						<a href="/evoke/users/profile/<?= $topic['ForumTopic']['user_id'] ?>">
+							<div class="user_picture centered-block square-30px background-cover background-center img-circular" style="background-image: url('/evoke/webroot/img/user_avatar.jpg');">
+							</div>
+						</a>
+						<a href="/evoke/users/profile/<?= $topic['ForumTopic']['user_id'] ?>">
+							<?= $topic['User']['name'] ?>
+						</a>
+					</td>
+					<td class="centered cell gray-cell">
+						<?= date("d-M-Y", strtotime($topic['ForumTopic']['created'])) ?>
+					</td>
+				</tr>
+			</tbody>
+			<?php endif; ?>
+		<?php endforeach; ?>
+
+	</table>
+
+	<!-- PAGING -->
+	<div class="forums paging">
+		<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
+		<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
+		<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
+	</div>
+
+</div>	

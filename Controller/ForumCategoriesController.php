@@ -17,16 +17,6 @@ class ForumCategoriesController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->ForumCategory->recursive = 0;
-		$this->set('forumCategories', $this->Paginator->paginate());
-	}
-
-/**
  * view method
  *
  * @throws NotFoundException
@@ -37,8 +27,62 @@ class ForumCategoriesController extends AppController {
 		if (!$this->ForumCategory->exists($id)) {
 			throw new NotFoundException(__('Invalid forum category'));
 		}
+
 		$options = array('conditions' => array('ForumCategory.' . $this->ForumCategory->primaryKey => $id));
-		$this->set('forumCategory', $this->ForumCategory->find('first', $options));
+
+		// FORUM CATEGORY
+		$forumCategory = $this->ForumCategory->find('first', $options);
+
+		//FORUM TOPICS
+		$this->loadModel('ForumTopic');
+		$alias = $this->ForumTopic->alias;
+
+		//CUSTOM PAGINATOR FOR FORUM TOPICS
+		$this->paginate = array(
+			'fields' => array(
+				'id',
+				'title',
+				'COUNT(ForumPost.id) `answers`',
+				'view_count',
+				'user_id',
+				'User.name',
+				'created'
+			),
+			'joins' => array(
+				array(
+					'table' => 'forum_posts',
+					'alias' => 'ForumPost',
+					'type' => 'LEFT',
+					'conditions' => array(
+						'ForumPost.forum_topic_id = ForumTopic.id'
+					),
+				),	
+				array(
+					'table' => 'users',
+					'alias' => 'User',
+					'type' => 'LEFT',
+					'conditions' => array(
+						'User.id = ForumTopic.user_id'
+					)
+				),
+			),
+			'conditions' => array(
+				'ForumTopic.forum_categorie_id ='.$forumCategory['ForumCategory']['id']
+			),
+			'order' => array(
+				'answers' => 'desc'
+			),
+			'group' => array(
+				'ForumTopic.id'
+			)
+
+		);
+
+		$forumTopics = $this->paginate($alias);
+		
+		// SET VARIABLES
+		$this->set('forumCategory', $forumCategory);
+		$this->set('forumTopics', $forumTopics);
 	}
 
 /**
@@ -56,8 +100,9 @@ class ForumCategoriesController extends AppController {
 				$this->Session->setFlash(__('The forum category could not be saved. Please, try again.'));
 			}
 		}
+		$users = $this->ForumCategory->User->find('list');
 		$forums = $this->ForumCategory->Forum->find('list');
-		$this->set(compact('forums'));
+		$this->set(compact('users', 'forums'));
 	}
 
 /**
@@ -82,8 +127,9 @@ class ForumCategoriesController extends AppController {
 			$options = array('conditions' => array('ForumCategory.' . $this->ForumCategory->primaryKey => $id));
 			$this->request->data = $this->ForumCategory->find('first', $options);
 		}
+		$users = $this->ForumCategory->User->find('list');
 		$forums = $this->ForumCategory->Forum->find('list');
-		$this->set(compact('forums'));
+		$this->set(compact('users', 'forums'));
 	}
 
 /**
@@ -147,8 +193,9 @@ class ForumCategoriesController extends AppController {
 				$this->Session->setFlash(__('The forum category could not be saved. Please, try again.'));
 			}
 		}
+		$users = $this->ForumCategory->User->find('list');
 		$forums = $this->ForumCategory->Forum->find('list');
-		$this->set(compact('forums'));
+		$this->set(compact('users', 'forums'));
 	}
 
 /**
@@ -173,8 +220,9 @@ class ForumCategoriesController extends AppController {
 			$options = array('conditions' => array('ForumCategory.' . $this->ForumCategory->primaryKey => $id));
 			$this->request->data = $this->ForumCategory->find('first', $options);
 		}
+		$users = $this->ForumCategory->User->find('list');
 		$forums = $this->ForumCategory->Forum->find('list');
-		$this->set(compact('forums'));
+		$this->set(compact('users', 'forums'));
 	}
 
 /**

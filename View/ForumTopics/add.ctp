@@ -9,7 +9,7 @@
 		echo $this->Form->input('status');
 		echo $this->Form->input('view_count');
 		echo $this->Form->input('user_id');
-		echo $this->Form->input('forum_id');
+		echo $this->Form->input('forum_categorie_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -21,8 +21,8 @@
 		<li><?php echo $this->Html->link(__('List Forum Topics'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Forums'), array('controller' => 'forums', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Forum'), array('controller' => 'forums', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Forum Categories'), array('controller' => 'forum_categories', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Forum Categorie'), array('controller' => 'forum_categories', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Forum Posts'), array('controller' => 'forum_posts', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Forum Post'), array('controller' => 'forum_posts', 'action' => 'add')); ?> </li>
 	</ul>

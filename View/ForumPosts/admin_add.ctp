@@ -1,7 +1,7 @@
 <div class="forumPosts form">
 <?php echo $this->Form->create('ForumPost'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Forum Post'); ?></legend>
+		<legend><?php echo __('Admin Add Forum Post'); ?></legend>
 	<?php
 		echo $this->Form->input('title');
 		echo $this->Form->input('slug');
