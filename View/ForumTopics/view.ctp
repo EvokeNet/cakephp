@@ -38,7 +38,7 @@
 		</dd>
 		<dt><?php echo __('Forum'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($forumTopic['Forum']['title'], array('controller' => 'forums', 'action' => 'view', $forumTopic['Forum']['id'])); ?>
+			<?php echo $this->Html->link($forumTopic['Forum']['id'], array('controller' => 'forums', 'action' => 'view', $forumTopic['Forum']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>

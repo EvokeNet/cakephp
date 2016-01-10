@@ -54,9 +54,9 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'database_name',
+		'login' => 'evoke',
+		'password' => 'my76TtraNQHe78C4',
+		'database' => 'evoke',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
