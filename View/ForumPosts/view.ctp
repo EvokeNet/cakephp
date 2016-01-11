@@ -28,7 +28,7 @@
 		</dd>
 		<dt><?php echo __('Forum'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($forumPost['Forum']['title'], array('controller' => 'forums', 'action' => 'view', $forumPost['Forum']['id'])); ?>
+			<?php echo $this->Html->link($forumPost['Forum']['id'], array('controller' => 'forums', 'action' => 'view', $forumPost['Forum']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Forum Topic'); ?></dt>

@@ -1,7 +1,6 @@
 <div class="forumTopics index">
 	<h2><?php echo __('Forum Topics'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
-	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('title'); ?></th>
@@ -15,8 +14,6 @@
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	</thead>
-	<tbody>
 	<?php foreach ($forumTopics as $forumTopic): ?>
 	<tr>
 		<td><?php echo h($forumTopic['ForumTopic']['id']); ?>&nbsp;</td>
@@ -29,7 +26,7 @@
 			<?php echo $this->Html->link($forumTopic['User']['name'], array('controller' => 'users', 'action' => 'view', $forumTopic['User']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($forumTopic['Forum']['title'], array('controller' => 'forums', 'action' => 'view', $forumTopic['Forum']['id'])); ?>
+			<?php echo $this->Html->link($forumTopic['Forum']['id'], array('controller' => 'forums', 'action' => 'view', $forumTopic['Forum']['id'])); ?>
 		</td>
 		<td><?php echo h($forumTopic['ForumTopic']['created']); ?>&nbsp;</td>
 		<td><?php echo h($forumTopic['ForumTopic']['modified']); ?>&nbsp;</td>
@@ -40,7 +37,6 @@
 		</td>
 	</tr>
 <?php endforeach; ?>
-	</tbody>
 	</table>
 	<p>
 	<?php

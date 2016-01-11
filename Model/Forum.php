@@ -3,16 +3,9 @@ App::uses('AppModel', 'Model');
 /**
  * Forum Model
  *
- * @property User $User
+ * @property ForumCategory $ForumCategory
  */
 class Forum extends AppModel {
-
-/**
- * Use table
- *
- * @var mixed False or table name
- */
-	public $useTable = 'forum';
 
 /**
  * Display field
@@ -25,17 +18,24 @@ class Forum extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * belongsTo associations
+ * hasMany associations
  *
  * @var array
  */
-	public $belongsTo = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
+	public $hasMany = array(
+		'ForumCategory' => array(
+			'className' => 'ForumCategory',
+			'foreignKey' => 'forum_id',
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => ''
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
+
 }

@@ -1,0 +1,44 @@
+.forums .title{
+    text-align: left;
+}
+
+.forums .description{
+    text-align: justify;
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+.forums .accordion-navigation{
+    width: 40%;
+    max-width: 60%;
+    margin: auto;
+    padding: 10px;
+}
+
+.forums .content{
+    padding: 5px;
+}
+
+.forums .category{
+    padding: 0px;
+    border-style: groove;
+ 	border-width: 1px;
+ 	border-color: white;
+
+}
+
+.forums .category-title{
+    padding-top: 15px;
+    padding-bottom: 5px;
+    font-size: 26px;
+}
+
+.forums .category-description{
+    padding: 5px;
+    font-size: 14px;
+    text-align: justify;
+}
+
+.forums .category-link{
+    padding-bottom: 15px;
+}

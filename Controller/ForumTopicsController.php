@@ -58,10 +58,7 @@ class ForumTopicsController extends AppController {
 		}
 		$users = $this->ForumTopic->User->find('list');
 		$forums = $this->ForumTopic->Forum->find('list');
-		$firstPosts = $this->ForumTopic->FirstPost->find('list');
-		$lastPosts = $this->ForumTopic->LastPost->find('list');
-		$lastUsers = $this->ForumTopic->LastUser->find('list');
-		$this->set(compact('users', 'forums', 'firstPosts', 'lastPosts', 'lastUsers'));
+		$this->set(compact('users', 'forums'));
 	}
 
 /**
@@ -88,10 +85,7 @@ class ForumTopicsController extends AppController {
 		}
 		$users = $this->ForumTopic->User->find('list');
 		$forums = $this->ForumTopic->Forum->find('list');
-		$firstPosts = $this->ForumTopic->FirstPost->find('list');
-		$lastPosts = $this->ForumTopic->LastPost->find('list');
-		$lastUsers = $this->ForumTopic->LastUser->find('list');
-		$this->set(compact('users', 'forums', 'firstPosts', 'lastPosts', 'lastUsers'));
+		$this->set(compact('users', 'forums'));
 	}
 
 /**

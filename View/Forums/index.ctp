@@ -1,58 +1,61 @@
-<div class="forums index">
-	<h2><?php echo __('Forums'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('title'); ?></th>
-			<th><?php echo $this->Paginator->sort('slug'); ?></th>
-			<th><?php echo $this->Paginator->sort('description'); ?></th>
-			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($forums as $forum): ?>
-	<tr>
-		<td><?php echo h($forum['Forum']['id']); ?>&nbsp;</td>
-		<td><?php echo h($forum['Forum']['title']); ?>&nbsp;</td>
-		<td><?php echo h($forum['Forum']['slug']); ?>&nbsp;</td>
-		<td><?php echo h($forum['Forum']['description']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($forum['User']['name'], array('controller' => 'users', 'action' => 'view', $forum['User']['id'])); ?>
-		</td>
-		<td><?php echo h($forum['Forum']['created']); ?>&nbsp;</td>
-		<td><?php echo h($forum['Forum']['modified']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $forum['Forum']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $forum['Forum']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $forum['Forum']['id']), array(), __('Are you sure you want to delete # %s?', $forum['Forum']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
+<?php
+/* CSS */
+	echo $this->Html->css('forums');
+
+/* Top bar */
+	$this->start('topbar');
+	echo $this->element('topbar');
+	$this->end();
+?>
+
+<div class="centering-block">
+	<div class="forums index">
+
+		<div>
+			<h2 class="evoke text-glow"><?php echo __('Forums'); ?></h2>
+
+			<!-- PAGING -->
+			<div class="paging">
+				<?= $this->Paginator->prev('<<') ?>
+				<?= $this->Paginator->numbers(array('separator' => ' ')) ?>
+				<?= $this->Paginator->next('>>') ?>
+			</div>
+		</div>
+
+
+		<!-- FORUMS -->
+		<d1 class="accordion forums accordion" data-accordion>
+
+		<?php foreach ($forums as $forum): ?>
+			<dd class="accordion-navigation">
+				<a class = "forums title" href="#forum<?= $forum['Forum']['id'] ?>">
+					<i class="fa fa-quote-right fa-2x text-color-highlight padding right-1"></i><?= $forum['Forum']['title'] ?>
+				</a>
+				<div class="content forums content" id="forum<?= $forum['Forum']['id'] ?>">
+					<div class="forums description"><?= $forum['Forum']['description'] ?> </div>
+
+					<!-- FORUM'S CATEGORIES -->
+					<div>
+						<?php foreach ($forumCategories[$forum['Forum']['id']] as $forumCategory): ?>
+						<div class="forums category">
+							<div class="forums category-title"><?= $forumCategory['ForumCategory']['title'] ?></div>
+							<div class="forums category-description"><?= $forumCategory['ForumCategory']['description'] ?></div>
+							<div class="forums category-link"><a href="forum_categories/view/<?php echo $forumCategory['ForumCategory']['id']?>">Enter Forum Discussion</a></div>
+						</div>
+						<?php endforeach; ?>
+					</div>
+				</div>
+			</dd>
+		<?php endforeach; ?>
+
+		</d1>
+
+		<!-- PAGING -->
+		<div class="paging">
+			<?= $this->Paginator->prev('<<') ?>
+			<?= $this->Paginator->numbers(array('separator' => ' ')) ?>
+			<?= $this->Paginator->next('>>') ?>
+		</div>
+
 	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Forum'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-	</ul>
 </div>
