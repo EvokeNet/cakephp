@@ -1,8 +1,8 @@
 http_path = "/"
-sass_dir = 'src'
-css_dir = './webroot/css'
-images_dir = './webroot/img'
-javascripts_dir = './webroot/js'
+sass_dir = 'sass'
+css_dir = '../webroot/css'
+images_dir = '../webroot/img'
+javascripts_dir = '../webroot/js'
 http_stylesheets_path = 'css'
 http_javascripts_path = 'js'
 http_images_path = 'img'

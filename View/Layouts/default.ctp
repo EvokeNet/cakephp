@@ -54,7 +54,7 @@ $title = __('Evoke Network');
 		//EVOKE CSS
 		// echo $this->Html->css('evoke');
 
-		echo $this->Html->css('default');
+		echo $this->Html->css('general');
 
 		//FILE-SPECIFIC CSS
 		if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
