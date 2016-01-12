@@ -4,7 +4,7 @@ App::uses('AppModel', 'Model');
  * ForumTopic Model
  *
  * @property User $User
- * @property Forum $Forum
+ * @property ForumCategorie $ForumCategorie
  * @property ForumPost $ForumPost
  */
 class ForumTopic extends AppModel {
@@ -32,9 +32,9 @@ class ForumTopic extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Forum' => array(
-			'className' => 'Forum',
-			'foreignKey' => 'forum_id',
+		'ForumCategorie' => array(
+			'className' => 'ForumCategorie',
+			'foreignKey' => 'forum_categorie_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

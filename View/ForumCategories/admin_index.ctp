@@ -18,7 +18,9 @@
 		<td><?php echo h($forumCategory['ForumCategory']['title']); ?>&nbsp;</td>
 		<td><?php echo h($forumCategory['ForumCategory']['slug']); ?>&nbsp;</td>
 		<td><?php echo h($forumCategory['ForumCategory']['description']); ?>&nbsp;</td>
-		<td><?php echo h($forumCategory['ForumCategory']['user_id']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($forumCategory['User']['name'], array('controller' => 'users', 'action' => 'view', $forumCategory['User']['id'])); ?>
+		</td>
 		<td>
 			<?php echo $this->Html->link($forumCategory['Forum']['title'], array('controller' => 'forums', 'action' => 'view', $forumCategory['Forum']['id'])); ?>
 		</td>
@@ -50,6 +52,8 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Forum Category'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Forums'), array('controller' => 'forums', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Forum'), array('controller' => 'forums', 'action' => 'add')); ?> </li>
 	</ul>

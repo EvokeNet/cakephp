@@ -1,3 +1,8 @@
+.forums .link-title{
+    padding-left: 20px;
+    text-align: left;
+}
+
 .forums .title{
     text-align: left;
 }
@@ -6,6 +11,14 @@
     text-align: justify;
     font-size: 14px;
     padding-bottom: 20px;
+}
+
+.evoke .forums.table{
+    margin: auto;
+}
+
+.forums.paging{
+    padding: 10px;
 }
 
 .forums .accordion-navigation{

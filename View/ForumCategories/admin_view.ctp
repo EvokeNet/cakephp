@@ -21,9 +21,9 @@
 			<?php echo h($forumCategory['ForumCategory']['description']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('User Id'); ?></dt>
+		<dt><?php echo __('User'); ?></dt>
 		<dd>
-			<?php echo h($forumCategory['ForumCategory']['user_id']); ?>
+			<?php echo $this->Html->link($forumCategory['User']['name'], array('controller' => 'users', 'action' => 'view', $forumCategory['User']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Forum'); ?></dt>
@@ -50,6 +50,8 @@
 		<li><?php echo $this->Form->postLink(__('Delete Forum Category'), array('action' => 'delete', $forumCategory['ForumCategory']['id']), array(), __('Are you sure you want to delete # %s?', $forumCategory['ForumCategory']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Forum Categories'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Forum Category'), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Forums'), array('controller' => 'forums', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Forum'), array('controller' => 'forums', 'action' => 'add')); ?> </li>
 	</ul>

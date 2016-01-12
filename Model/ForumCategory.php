@@ -3,6 +3,7 @@ App::uses('AppModel', 'Model');
 /**
  * ForumCategory Model
  *
+ * @property User $User
  * @property Forum $Forum
  */
 class ForumCategory extends AppModel {
@@ -23,6 +24,13 @@ class ForumCategory extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
 		'Forum' => array(
 			'className' => 'Forum',
 			'foreignKey' => 'forum_id',

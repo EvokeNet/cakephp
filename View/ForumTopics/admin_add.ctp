@@ -1,9 +1,8 @@
 <div class="forumTopics form">
 <?php echo $this->Form->create('ForumTopic'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Forum Topic'); ?></legend>
+		<legend><?php echo __('Admin Add Forum Topic'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
 		echo $this->Form->input('title');
 		echo $this->Form->input('slug');
 		echo $this->Form->input('content');
@@ -19,7 +18,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('ForumTopic.id')), array(), __('Are you sure you want to delete # %s?', $this->Form->value('ForumTopic.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Forum Topics'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
