@@ -1,16 +1,20 @@
+@import url('top-bar.css');
+@import url('profile.css');
+@import url('button.css');
+
 /* GENERAL STYLES */
 html {
-	background-color: #333;
+	background-color: #28282C;
 	overflow: auto;
 }
 body {
-	background-color: #333;
+	background-color: #28282C;
 	/*overflow: auto;*/
 }
 
 *, html, body,
 div, p, span, a {
-	font-family: 'Dosis', sans-serif;
+	/*font-family: 'Roboto', sans-serif;*/
 	font-size: 100%;
 	-webkit-text-stroke: 0.1px;
 	-webkit-font-smoothing: antialiased;
@@ -28,6 +32,67 @@ button, .button {
 	-webkit-font-smoothing: antialiased;
 }
 
+.margin-top-1em{
+  margin-top: 1em;
+}
+
+.margin-bottom-1em{
+  margin-bottom: 1em;
+}
+
+.margin-left-1em{
+  margin-left:1em;
+}
+
+.margin-right-1em{
+  margin-left:1em;
+}
+
+.margin-left-2em{
+  margin-left:2em;
+}
+
+.margin-right-2em{
+  margin-left:2em;
+}
+
+.margin-left-3em{
+  margin-left:3em;
+}
+
+.margin-right-3em{
+  margin-left:3em;
+}
+
+.evoke .font-green{
+  color: #2FCCCB;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.font-weight-bold{
+  font-weight: bold;
+}
+
+.centralize-content{
+  padding: 0 20%;
+}
+
+.centralize-content-30{
+  padding: 0 30%;
+}
+
+.evoke .row{
+    max-width: none;
+}
+
+.evoke .row .row{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
 .noscroll {
 	overflow: 'hidden';
 }
@@ -39,11 +104,11 @@ button, .button {
 }
 
 .evoke h1, .evoke h2, .evoke h3, .evoke h4, .evoke h5, .evoke h6 {
-	color: #cccccc;
+	color: #FCFCFC;
 }
 
 .evoke h3, .evoke h4, .evoke h5, .evoke h6 {
-	text-transform: uppercase;
+/*	text-transform: uppercase;*/
 }
 
 /* Visibility */
@@ -99,11 +164,11 @@ button, .button {
 
 /* FONT FAMILY */
 .evoke .font-highlight {
-	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	/*font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;*/
 }
 
 .evoke .font-regular {
-	font-family: 'Raleway', 'Arial', sans-serif;
+	/*font-family: 'Raleway', 'Arial', sans-serif;*/
 }
 
 @font-face {
@@ -557,7 +622,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 }
 
 .evoke .form-evoke-style label {
-	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	/*font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;*/
 	text-transform: uppercase;
 }
 
@@ -675,9 +740,11 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 }
 
 /* Solid */
-/*.evoke .background-color-standard {
+/*
+.evoke .background-color-standard {
 	background-color: #333;
-}*/
+}
+*/
 
 .evoke .background-color-light-dark {
 	background-color: #292929;
@@ -885,7 +952,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 /* --------------------------- */
 /* BUTTONS */
 /* --------------------------- */
-button, .button {
+/*button, .button {
 	text-transform: uppercase;
 	color: #26dee0;
 	background-color: #333;
@@ -936,7 +1003,7 @@ button, .button {
 }
 .evoke .button-icon.disabled, .evoke .button-icon.disabled i.background, .evoke .button-icon.disabled span.background {
 	color: #666;
-}
+}*/
 
 /* --------------------------- */
 /* ICONS */
@@ -1000,62 +1067,6 @@ button, .button {
 .evoke .square-150px {
 	width: 150px;
 	height: 150px;
-}
-
-/* --------------------------- */
-/* TOP BAR */
-/* --------------------------- */
-.evoke .login-top-bar {
-	z-index: 1;
-	background-color: #333;
-}
-
-.evoke .top-bar-section {
-	margin-right: 10px;
-}
-
-
-/* Padding of divs and links */
-.evoke .top-bar-section ul li:not(.has-form) a {
-	display: inline-block;
-	height: 100%;
-}
-
-.evoke .top-bar-section ul li a:not(.button), .evoke .top-bar-section ul li.has-form div {
-	padding: 0 10px;
-}
-
-.evoke .top-bar-section ul li a.button-icon, .evoke .top-bar-section .column {
-	padding: 0 3px;
-}
-
-/* Foundation overriding */
-.evoke .top-bar-section ul li p {
-	line-height: 45px; padding: 0 10px;
-}
-
-.evoke .top-bar-section ul li, .evoke .top-bar-section ul li a, .evoke .top-bar-section ul li > a,
-.evoke .top-bar-section ul li > a:hover, .evoke .top-bar-section ul li > a:active {
-	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
-	font-size: 0.8rem;
-}
-
-.top-bar-section li.active:not(.has-form) a:not(.button), .top-bar-section li.active:not(.has-form) a:not(.button):hover {
-	background-color: inherit;
-	text-transform: none;
-}
-
-.top-bar-section li:not(.has-form) a.button:hover, .top-bar-section li:not(.has-form) a.button-icon:hover {
-	background-color: inherit;
-}
-
-.top-bar-section li:not(.has-form) a:not(.button):not(.button-icon):hover {
-	background-color: #272727;
-}
-
-.top-bar-section li:not(.has-form) a:not(.button):not(.button-icon):hover {
-	border-bottom: 2px solid #26dee0;
-	margin-bottom: -2px;
 }
 
 /* --------------------------- */

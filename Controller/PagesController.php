@@ -30,8 +30,18 @@ class PagesController extends AppController {
 
 	public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('terms', 'reportissue');        
+        $this->Auth->allow('terms', 'reportissue');
     }
+
+  public function display(){
+		$lang = $this->getCurrentLanguage();
+		$video_url = 'http://player.vimeo.com/video/94984840';
+		if ($lang == 'es')
+			$video_url = 'http://player.vimeo.com/video/93164917';
+
+		$this->set(compact('video_url'));
+
+  }
 
 	public function reportissue(){
 	}

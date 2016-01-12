@@ -130,8 +130,8 @@
 					</div>
 				</div>
 				<div class="medium-6 columns">
-					<?php 
-						$icons = array(1 => 'fa-puzzle-piece', 2 => 'fa-users', 3 => 'fa-cogs', 4 => 'fa-comments'); 
+					<?php
+						$icons = array(1 => 'fa-puzzle-piece', 2 => 'fa-users', 3 => 'fa-cogs', 4 => 'fa-comments');
 						$id = $first_quality['SocialInnovatorQuality']['id'];
 						$icon = $icons[$id];
 					?>
@@ -139,7 +139,7 @@
 						<div class="medium-12 columns text-center">
 							<i class="fa <?= $icon ?> fa-5x"></i>
 						</div>
-					</div>	
+					</div>
 
 					<div class='row'>
 						<div class="medium-12 columns">
@@ -147,7 +147,7 @@
 							<p><h4><?= $first_quality['SocialInnovatorQuality']['name'] ?></h4></p>
 						</div>
 					</div>
-					
+
 					<div class='row'>
 						<div class="medium-12 columns">
 							<p><?= $first_quality['SocialInnovatorQuality']['description'] ?></p>
@@ -156,16 +156,16 @@
 
 				</div>
 				<div class="large-6 medium-6 columns">
-					<?php 
+					<?php
 						$id = $second_quality['SocialInnovatorQuality']['id'];
 						$icon = $icons[$id];
 					?>
-					
+
 					<div class='row'>
 						<div class="medium-12 columns text-center">
 							<i class="fa <?= $icon ?> fa-5x"></i>
 						</div>
-					</div>	
+					</div>
 
 					<div class='row'>
 						<div class="medium-12 columns">
@@ -173,13 +173,13 @@
 							<p><h4><?= $second_quality['SocialInnovatorQuality']['name'] ?></h4></p>
 						</div>
 					</div>
-					
+
 					<div class='row'>
 						<div class="medium-12 columns">
 							<p><?= $second_quality['SocialInnovatorQuality']['description'] ?></p>
 						</div>
 					</div>
-						
+
 				</div>
 				<br>
 				<br>
@@ -187,7 +187,7 @@
 				<div class="text-center">
 					<a class="button" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site')); ?>"><?php echo __('Explore evoke!'); ?></a>
 				</div>
-			
+
 			</div>
 		</div>
 		<br>

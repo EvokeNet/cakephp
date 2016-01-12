@@ -13,7 +13,7 @@
 		<!-- MISSIONS CAROUSEL -->
 		<div class="section">
 	    	<div class="row full-width full-height missions-carousel">
-	    		<?php foreach($missions as $mission): 
+	    		<?php foreach($missions as $mission):
 
     			//COVER IMAGE
 	    		if (!is_null($mission['Mission']['cover_dir'])) {
@@ -38,19 +38,19 @@
 						</div></div>
 					</div>
 		    	</div>
-		    	
+
 		    	<?php endforeach; ?>
 	    	</div>
 	    </div>
-	    
+
 	    <!-- WHAT IS EVOKE? -->
 	    <div class="section evoke login gradient-on-top padding top-2">
 	    	<div class="row small-width text-center">
 		    	<h1 class="text-color-highlight text-center margin bottom-1"><?php echo ('What is Evoke?'); ?></h1>
-				<p class="font-size-important"><?php echo ('Welcome to the Evoke network! If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?>
-					<?php echo ('As an Evoke agent, you will choose your mission, develop your powers, and together with agents around the world create your <strong>own world changing idea</strong>.'); ?>
-				</p>
-			</div>
+					<p class="font-size-important"><?php echo ('Welcome to the Evoke network! If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?>
+						<?php echo ('As an Evoke agent, you will choose your mission, develop your powers, and together with agents around the world create your <strong>own world changing idea</strong>.'); ?>
+					</p>
+				</div>
 	    </div>
 
 	    <!-- EVOKE VIDEO -->

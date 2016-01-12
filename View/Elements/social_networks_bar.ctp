@@ -6,10 +6,7 @@ if (isset($social_networks_user)):
 		<!-- FACEBOOK -->
 		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Facebook') ?>">
 			<a href="<?= $social_networks_user['facebook'] ?>" target="_blank" class="button-icon">
-				<span class="fa-stack fa-lg grow-on-hover">
-					<i class="fa fa-square fa-stack-2x facebook-icon background"></i>
-					<i class="fa fa-facebook fa-stack-1x fa-inverse text-color-dark"></i>
-				</span>
+				<i class="fa fa-facebook-square fa-lg"></i>
 			</a>
 		</span><?php
 	endif;
@@ -18,10 +15,7 @@ if (isset($social_networks_user)):
 		<!-- TWITTER -->
 		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Twitter') ?>">
 			<a href="<?= $social_networks_user['twitter'] ?>" target="_blank" class="button-icon">
-				<span class="fa-stack fa-lg grow-on-hover">
-					<i class="fa fa-square fa-stack-2x twitter-icon background"></i>
-					<i class="fa fa-twitter fa-stack-1x fa-inverse text-color-dark"></i>
-				</span>
+				<i class="fa fa-twitter-square fa-lg"></i>
 			</a>
 		</span> <?php
 	endif;
@@ -30,10 +24,16 @@ if (isset($social_networks_user)):
 		<!-- INSTAGRAM -->
 		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Instagram') ?>">
 			<a href="<?= $social_networks_user['instagram'] ?>" target="_blank" class="button-icon">
-				<span class="fa-stack fa-lg grow-on-hover">
-					<i class="fa fa-square fa-stack-2x instagram-icon background"></i>
-					<i class="fa fa-instagram fa-stack-1x fa-inverse text-color-dark"></i>
-				</span>
+				<i class="fa fa-instagram fa-lg"></i>
+			</a>
+		</span> <?php
+	endif;
+              
+    if (!empty($social_networks_user['google_plus'])): ?>
+		<!-- INSTAGRAM -->
+		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Instagram') ?>">
+			<a href="<?= $social_networks_user['google_plus'] ?>" target="_blank" class="button-icon">
+				<i class="fa fa-google-plus-square fa-lg"></i>
 			</a>
 		</span> <?php
 	endif;
@@ -42,37 +42,29 @@ if (isset($social_networks_user)):
 		<!-- WEBSITE -->
 		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Website') ?>">
 			<a href="<?= $social_networks_user['website'] ?>" target="_blank" class="button-icon">
-				<span class="fa-stack fa-lg grow-on-hover">
-					<i class="fa fa-square fa-stack-2x website-icon background"></i>
-					<i class="fa fa-laptop fa-stack-1x fa-inverse text-color-dark"></i>
-				</span>
+				<i class="fa fa-twitter-square fa-lg"></i>
 			</a>
 		</span> <?php
 	endif;
-
-	if (!empty($social_networks_user['blog'])): ?>
-		<!-- BLOG -->
-		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Blog') ?>">
+              
+  if (!empty($social_networks_user['blog'])): ?>
+		<!-- FACEBOOK -->
+		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Facebook') ?>">
 			<a href="<?= $social_networks_user['blog'] ?>" target="_blank" class="button-icon">
-				<span class="fa-stack fa-lg grow-on-hover">
-					<i class="fa fa-square fa-stack-2x blog-icon background"></i>
-					<i class="fa fa-pencil fa-stack-1x fa-inverse text-color-dark"></i>
-				</span>
-			</a>
-		</span> <?php
-	endif;
-
-	if (!empty($social_networks_user['email'])): ?>
-		<!-- EMAIL -->
-		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Email address') ?>">
-			<a href="mailto:<?= $social_networks_user['email'] ?>" class="button-icon">
-				<span class="fa-stack fa-lg grow-on-hover">
-					<i class="fa fa-square fa-stack-2x email-icon background"></i>
-					<i class="fa fa-envelope-o fa-stack-1x fa-inverse text-color-dark"></i>
-				</span>
+				<i class="fa fa-wordpress fa-lg"></i>
 			</a>
 		</span><?php
 	endif;
+              
+  if (!empty($social_networks_user['email'])): ?>
+		<!-- FACEBOOK -->
+		<span data-tooltip aria-haspopup="true" class="has-tip" title="<?= __('Facebook') ?>">
+			<a href="<?= $social_networks_user['email'] ?>" target="_blank" class="button-icon">
+				<i class="fa fa-envelope-square fa-lg"></i>
+			</a>
+		</span><?php
+	endif;
+
 	?>
 
 <?php endif; ?>
