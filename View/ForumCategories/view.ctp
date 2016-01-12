@@ -42,7 +42,7 @@
 			<tbody>
 				<tr>
 					<td>
-						<a href="../../forum_topics/view/<?= $topic['ForumTopic']['id'] ?>">
+						<a href="/evoke/forum_topics/view/<?= $topic['ForumTopic']['id'] ?>">
 							<?= $topic['ForumTopic']['title'] ?>
 						</a>
 					</td>
@@ -53,7 +53,7 @@
 						<?= $topic['ForumTopic']['view_count'] ?>
 					</td>
 					<td>
-						<a href="../../users/profile/<?= $topic['ForumTopic']['user_id'] ?>">
+						<a href="/evoke/users/profile/<?= $topic['ForumTopic']['user_id'] ?>">
 							<?= $topic['User']['name'] ?>
 						</a>
 					</td>

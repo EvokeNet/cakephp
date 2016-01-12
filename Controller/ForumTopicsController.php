@@ -38,7 +38,54 @@ class ForumTopicsController extends AppController {
 			throw new NotFoundException(__('Invalid forum topic'));
 		}
 		$options = array('conditions' => array('ForumTopic.' . $this->ForumTopic->primaryKey => $id));
+
+		//FORUM POSTS
+		$this->loadModel('ForumPost');
+		$alias = $this->ForumPost->alias;
+
+		//CUSTOM PAGINATOR FOR FORUM TOPICS
+		$this->paginate = array(
+			'fields' => array(
+				'id',
+				'title',
+				'content',
+				'User.id',
+				'User.name',
+				'created'
+			),
+			'joins' => array(
+				array(
+					'table' => 'forum_topics',
+					'alias' => 'ForumTopic',
+					'type' => 'INNER',
+					'conditions' => array(
+						'ForumPost.forum_topic_id = ForumTopic.id'
+					),
+				),
+				array(
+					'table' => 'users',
+					'alias' => 'User',
+					'type' => 'INNER',
+					'conditions' => array(
+						'ForumPost.user_id = User.id'
+					),
+				),
+			),
+			'conditions' => array(
+				'ForumTopic.forum_categorie_id ='.$id
+			),
+			'order' => array(
+				'created' => 'asc'
+			)
+
+		);
+
+		$forumPosts = $this->paginate($alias);
+
+		// SET VARIABLES
+		$this->set('forumPosts', $forumPosts);
 		$this->set('forumTopic', $this->ForumTopic->find('first', $options));
+
 	}
 
 /**

@@ -57,9 +57,8 @@ class ForumPostsController extends AppController {
 			}
 		}
 		$users = $this->ForumPost->User->find('list');
-		$forums = $this->ForumPost->Forum->find('list');
 		$forumTopics = $this->ForumPost->ForumTopic->find('list');
-		$this->set(compact('users', 'forums', 'forumTopics'));
+		$this->set(compact('users', 'forumTopics'));
 	}
 
 /**
@@ -85,9 +84,8 @@ class ForumPostsController extends AppController {
 			$this->request->data = $this->ForumPost->find('first', $options);
 		}
 		$users = $this->ForumPost->User->find('list');
-		$forums = $this->ForumPost->Forum->find('list');
 		$forumTopics = $this->ForumPost->ForumTopic->find('list');
-		$this->set(compact('users', 'forums', 'forumTopics'));
+		$this->set(compact('users', 'forumTopics'));
 	}
 
 /**
@@ -98,6 +96,99 @@ class ForumPostsController extends AppController {
  * @return void
  */
 	public function delete($id = null) {
+		$this->ForumPost->id = $id;
+		if (!$this->ForumPost->exists()) {
+			throw new NotFoundException(__('Invalid forum post'));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->ForumPost->delete()) {
+			$this->Session->setFlash(__('The forum post has been deleted.'));
+		} else {
+			$this->Session->setFlash(__('The forum post could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
+
+/**
+ * admin_index method
+ *
+ * @return void
+ */
+	public function admin_index() {
+		$this->ForumPost->recursive = 0;
+		$this->set('forumPosts', $this->Paginator->paginate());
+	}
+
+/**
+ * admin_view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_view($id = null) {
+		if (!$this->ForumPost->exists($id)) {
+			throw new NotFoundException(__('Invalid forum post'));
+		}
+		$options = array('conditions' => array('ForumPost.' . $this->ForumPost->primaryKey => $id));
+		$this->set('forumPost', $this->ForumPost->find('first', $options));
+	}
+
+/**
+ * admin_add method
+ *
+ * @return void
+ */
+	public function admin_add() {
+		if ($this->request->is('post')) {
+			$this->ForumPost->create();
+			if ($this->ForumPost->save($this->request->data)) {
+				$this->Session->setFlash(__('The forum post has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The forum post could not be saved. Please, try again.'));
+			}
+		}
+		$users = $this->ForumPost->User->find('list');
+		$forumTopics = $this->ForumPost->ForumTopic->find('list');
+		$this->set(compact('users', 'forumTopics'));
+	}
+
+/**
+ * admin_edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_edit($id = null) {
+		if (!$this->ForumPost->exists($id)) {
+			throw new NotFoundException(__('Invalid forum post'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->ForumPost->save($this->request->data)) {
+				$this->Session->setFlash(__('The forum post has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The forum post could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('ForumPost.' . $this->ForumPost->primaryKey => $id));
+			$this->request->data = $this->ForumPost->find('first', $options);
+		}
+		$users = $this->ForumPost->User->find('list');
+		$forumTopics = $this->ForumPost->ForumTopic->find('list');
+		$this->set(compact('users', 'forumTopics'));
+	}
+
+/**
+ * admin_delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_delete($id = null) {
 		$this->ForumPost->id = $id;
 		if (!$this->ForumPost->exists()) {
 			throw new NotFoundException(__('Invalid forum post'));

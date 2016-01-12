@@ -55,3 +55,45 @@
 .forums .category-link{
     padding-bottom: 15px;
 }
+
+.forums.post.padding{
+    padding-bottom: 20px;
+}
+
+.forums.post.icon{
+    text-align: right;
+    width: 100%;
+    margin: inherit;
+    margin: 0px;
+    padding: 0px;
+}
+
+.forums.post.title{
+    text-align: left;
+    margin: inherit;
+    margin-left: 10px;
+    margin-right: 0px;
+    width: 100%;
+}
+
+.forums.post.author{
+    text-align: left;
+    margin: inherit;
+    padding-top: 7px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.forums.post{
+    width: 75%;
+    margin: auto;
+}
+
+.forums.post.content{
+    text-align: justify;
+    color: black;
+    margin: inherit;
+    margin: 0px;
+    width: 100%;
+    font-size: 20px;
+}
