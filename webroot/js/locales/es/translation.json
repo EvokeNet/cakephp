@@ -108,6 +108,24 @@
 					}
 				}
 			}
+		},
+		"panels":{
+			"main":{
+				"msg_delete_user": {
+					"title": "¿Estás seguro?",
+					"text": "Este proceso es irreversible.",
+					"confirmButtonText": "Sí, eliminarla!",
+					"cancelButtonText": "Cancelar"
+				},
+				"msg_user_deleted": {
+					"title": "Eliminado!",
+					"text": "El usuario ha sido eliminado."
+				},
+				"msg_error_delete": {
+					"title": "Error!",
+					"text": "Lo sentimos, el usuario no podría ser eliminado."
+				}
+			}
 		}
 	},
 	"modules":{

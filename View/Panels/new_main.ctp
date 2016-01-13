@@ -1,11 +1,15 @@
-<!-- TOPBAR MENU -->
-<?php
-	$this->start('topbar');
-	echo $this->element('topbar', array('sticky' => '', 'fixed' => ''));
-	$this->end();
-?>
 
 <?php
+	// TOPBAR MENU -->
+	$this->start('topbar');
+	echo $this->element('topbar');
+	$this->end();
+
+	/* Image header */
+	$this->start('image_header');
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false));
+	$this->end();
+
 	echo $this->Html->css(
 		array(
 			'evoke-new',
@@ -41,13 +45,8 @@
 
 ?>
 
-<div class="row">
-	<div class="columns">
-		<h2 class="text-glow"><?=__("Admin Panel")?></h2>
-	</div>
-</div>
 <div class="row full-width" data-equalizer>
-	<div class="large-2 columns padding-left-0 gradient-on-right" data-equalizer-watch>
+	<div class="large-2 columns padding left-0 top-1 gradient-on-right" data-equalizer-watch>
 
 		<div class="side-menu">
 		    <ul id="links" class="side-menu side-nav">
@@ -159,9 +158,9 @@
 					</ul>
 				</div>
 			</div>
-			<div id="userMenu" class="row padding-top-1 hidden">
+			<div id="userMenu" class="row padding top-2 hidden">
 				<div class="large-12 columns"  >
-					<ul class="small-block-grid-3">
+					<ul class="small-block-grid-1">
 						<li>
 							<input type="search" class="light-table-filter" data-table="order-table-users" placeholder="<?= __('Search user') ?>">
 							<table class="order-table-users paginated" id = "usersTable">
@@ -179,7 +178,7 @@
 							  		  <td><input type="checkbox" name="chkbox[]"></td>
 								      <td><?= $m['User']['name'] ?></td>
 								      <td><a href="#" data-reveal-id="myModalEditUser<?= $m['User']['id'] ?>"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
-								      <td><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'panel_delete', $m['User']['id'])); ?>"><i class="fa fa-times fa-lg"></i></a></td>
+								      <td><a class='deleteUser' href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'panel_delete', $m['User']['id'])); ?>"><i class="fa fa-times fa-lg"></i></a></td>
 								    </tr>
 
 								    <?= $this->element('panel/edit_user', array('m' => $m)) ?>

@@ -109,6 +109,24 @@
 					}
 				}
 			}
+		},
+		"panels":{
+			"main":{
+				"msg_delete_user": {
+					"title": "Are you sure?",
+					"text": "This proccess is irreversible.",
+					"confirmButtonText": "Yes, delete it!",
+					"cancelButtonText": "Cancel"
+				},
+				"msg_user_deleted": {
+					"title": "Deleted!",
+					"text": "The user has been deleted."
+				},
+				"msg_error_delete": {
+					"title": "Error!",
+					"text": "Sorry, the user could not be deleted."
+				}
+			}
 		}
 	},
 	"modules":{
