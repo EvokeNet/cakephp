@@ -71,6 +71,26 @@ class AppController extends Controller {
 		$userNextLevel = $this->getNextLevel($userLevel); //next level object
 		$userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
 
+		//Check if the user has answered the assessment questionnaire and redirect to it, if not
+		$this->loadModel('SuperheroIdentity');
+
+		$superhero = $this->SuperheroIdentity->find('first', array(
+			'conditions' => array(
+				'id' => $cuser['superhero_identity_id']
+			)
+		));
+
+
+		// debug($cuser);
+		// debug($superhero);
+		// debug($this->request->params['action']);
+		// die();
+		
+		// check if the user has answered the asessment questionnaire and isn't already in the matching action
+		if(empty($superhero) && ($this->request->params['action'] != 'matching' && $this->request->params['action'] != 'login' && $this->request->params['action'] != 'logout')){
+			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId())); 
+		}
+
 		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language'));
 	}
 

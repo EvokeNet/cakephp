@@ -39,7 +39,7 @@
 				<div id="questionsModal" class="reveal-modal" data-reveal aria-labelledby="ModalTitle" aria-hidden="true" role="dialog" data-options="close_on_background_click:false; close_on_esc:false">
 					<!-- TITLE -->
 					<div class="row">
-						<h2 class="text-glow"><?= __('Assessment questionare:') ?></h2>
+						<h2 class="text-glow"><?= __('Assessment questionnaire:') ?></h2>
 					</div>
 					<!-- PROGRESS BAR -->
 					<div class="row collapse text-right padding top-2">

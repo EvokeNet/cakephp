@@ -606,6 +606,25 @@ class UsersController extends AppController {
 
 		$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
+		/**
+		*
+		*get superhero id, get the social innovators ids, find them in the DB and send them to the view to put in place of the psychometric analisys
+		*
+		*/
+		$this->loadModel('SuperheroIdentity');
+
+		$superhero = $this->SuperheroIdentity->find('first', array(
+			'conditions' => array(
+				'id' => $user['User']['superhero_identity_id']
+			)
+		));
+
+		// // check if the user has answered the asessment questionnaire
+		// if(empty($superhero)){
+		// 	// redirect to the questionnaire
+		// 	return $this->redirect(array('action' => 'matching', $id)); 
+		// }
+
 		//LEVEL AND POINTS
 		$this->loadModel('Level');
 
@@ -804,10 +823,6 @@ class UsersController extends AppController {
 			)
 		));
 
-		// debug($user);
-		// debug($superhero);
-		// die();
-
 		$this->loadModel('SocialInnovatorQuality');
 		$first_quality = $this->SocialInnovatorQuality->find('first', array(
 			'conditions' => array(
@@ -936,7 +951,6 @@ class UsersController extends AppController {
  */
 	public function matching_results($id = null, $quality_1, $quality_2) {
 		// find superhero and prepare the text for the qualities
-
 		$this->loadModel('SuperheroIdentity');
 		$superhero = $this->SuperheroIdentity->find('first', array(
 			'conditions' => array(
@@ -950,8 +964,7 @@ class UsersController extends AppController {
 				'id' => $id
 			),
 		));
-		// debug($superhero);
-		// die();
+		
 		//save user's superhero identity id
 		$user['User']['superhero_identity_id'] = $superhero['SuperheroIdentity']['id'];
 		unset($user['User']['password']);
@@ -970,12 +983,6 @@ class UsersController extends AppController {
 				'id' => $quality_2
 			),
 		));
-		
-		// debug($quality_1." ".$quality_2);
-		// debug($superhero);
-		// debug($first_quality);
-		// debug($second_quality);
-		// die();
 
 		//List of similar users (same superhero identity for now)
 		$similar_users = $this->User->find('all', array(
