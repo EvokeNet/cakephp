@@ -97,3 +97,55 @@
     width: 100%;
     font-size: 20px;
 }
+
+.forums.post-link.centering{    
+    margin: auto;
+    width: 56%;
+}
+
+.forums.post-link.float{    
+    text-align: right;
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.forums.post-link.box{   
+    text-align: center; 
+    display: inline-block;
+    color: white;
+    font-size: 24px;
+    background-color: red;
+    padding: 12px;
+}
+
+.forums.newpost-form .input.text label,
+.forums.newpost-form .input.textarea label{
+    font-size: 26px;
+    text-align: left;
+    color: white;
+}
+
+.forums.newpost-form .input.textarea label{
+    font-size: 26px;
+    text-align: left;
+    color: white;
+}
+
+.forums.newpost-form textarea{
+    height: 400px;
+}
+
+.forums.newpost-form{
+    width: 75%;
+    margin: auto;
+}
+
+.forums.newpost-legend{
+    background-color: transparent;
+    font-size: 26px;
+}
+
+.forums.newpost-form .button.thin{
+    font-size: 35px;
+    float: right;
+}
