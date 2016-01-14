@@ -18,9 +18,9 @@
 
 		<!-- PAGING -->
 		<div class="forums paging">
-			<?= $this->Paginator->prev('<<') ?>
-			<?= $this->Paginator->numbers(array('separator' => ' ')) ?>
-			<?= $this->Paginator->next('>>') ?>
+			<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
+			<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
+			<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
 		</div>
 
 	</div>
@@ -28,37 +28,41 @@
 	<!-- TOPICS -->
 
 	<table class="forums table">
-
-
-		<thead>
-			<th><?php echo $this->Paginator->sort('title','Topic'); ?></th>
-			<th><?php echo $this->Paginator->sort('0'.'answers','Answers'); ?></th>
-			<th><?php echo $this->Paginator->sort('view_count','Views'); ?></th>
-			<th><?php echo $this->Paginator->sort('User.name','Created By'); ?></th>
-			<th><?php echo $this->Paginator->sort('created','Date'); ?></th>
+		<thead class="head">
+			<th class="left head-cell"><?php echo $this->Paginator->sort('title','Topic'); ?></th>
+			<th class="centered head-cell size1"><?php echo $this->Paginator->sort('0.'.'answers','Answers'); ?></th>
+			<th class="centered head-cell size1"><?php echo $this->Paginator->sort('view_count','Views'); ?></th>
+			<th class="centered head-cell size2"><?php echo $this->Paginator->sort('User.name','Created By'); ?></th>
+			<th class="centered head-cell size2"><?php echo $this->Paginator->sort('created','Date'); ?></th>
 		</thead>
+
+		
 
 		<?php foreach ($forumTopics as $topic): ?>
 			<?php if(isset($topic['ForumTopic']['title'])):?>
 			<tbody>
 				<tr>
-					<td>
+					<td class="left cell">
 						<a href="/evoke/forum_topics/view/<?= $topic['ForumTopic']['id'] ?>">
 							<?= $topic['ForumTopic']['title'] ?>
 						</a>
 					</td>
-					<td>
+					<td class="centered cell gray-cell">
 						<?= $topic['0']['answers'] ?>	
 					</td>
-					<td>
+					<td class="centered cell gray-cell">
 						<?= $topic['ForumTopic']['view_count'] ?>
 					</td>
-					<td>
+					<td class="left cell">
+						<a href="/evoke/users/profile/<?= $topic['ForumTopic']['user_id'] ?>">
+							<div class="user_picture centered-block square-30px background-cover background-center img-circular" style="background-image: url('/evoke/webroot/img/user_avatar.jpg');">
+							</div>
+						</a>
 						<a href="/evoke/users/profile/<?= $topic['ForumTopic']['user_id'] ?>">
 							<?= $topic['User']['name'] ?>
 						</a>
 					</td>
-					<td>
+					<td class="centered cell gray-cell">
 						<?= date("d-M-Y", strtotime($topic['ForumTopic']['created'])) ?>
 					</td>
 				</tr>
@@ -70,9 +74,9 @@
 
 	<!-- PAGING -->
 	<div class="forums paging">
-		<?= $this->Paginator->prev('<<') ?>
-		<?= $this->Paginator->numbers(array('separator' => ' ')) ?>
-		<?= $this->Paginator->next('>>') ?>
+		<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
+		<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
+		<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
 	</div>
 
 </div>	
