@@ -13,20 +13,21 @@
 	<div class="forums index">
 		<!-- TOPICS LINK -->
 		<a href="/evoke/forum_categories/view/<?= $forumTopic['ForumTopic']['forum_categorie_id'] ?>"><h4 class="evoke text-glow forums link-title"><?php echo __('Topics'); ?></h4></a>
-
-		<!-- PAGING -->
-		<div class="forums paging">
-			<?= $this->Paginator->prev('<<') ?>
-			<?= $this->Paginator->numbers(array('separator' => ' ')) ?>
-			<?= $this->Paginator->next('>>') ?>
-		</div>
-
 	</div>
 
 	<!-- NEW POST BUTTON -->
 	<div class="forums post-link centering">
+		<!-- PAGING -->
+		<div class="forums paging post-link">
+			<div class="float">
+				<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
+				<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
+				<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
+			</div>
+		</div>
+
 		<div class="forums post-link float">
-			<a class="panel callout radius forums post-link box" href="/evoke/forum_topics/post/<?= $forumTopic['ForumTopic']['id'] ?>">
+			<a class="forums post-link box button thin" href="/evoke/forum_topics/post/<?= $forumTopic['ForumTopic']['id'] ?>">
 				REPLY
 			</a>
 		</div>
@@ -57,6 +58,25 @@
 	<!-- POSTS -->
 	<div class="forums post padding" id="<?= $post['ForumPost']['id'] ?>">
 		<div class="panel callout radius forums post">
+
+			<!-- CONFIG BUTTONS -->
+			<?php if($post['User']['id'] == $loggedInUser['id']): ?>
+			<div class="forums post-edit-link float">
+				<!-- EDIT BUTTON -->
+				<a class="forums post-edit-link box button thin" href="/evoke/forum_posts/edit/<?= $post['ForumPost']['id'] ?>">
+					EDIT
+				</a>
+
+				<!-- DELETE BUTTON -->
+				<form action="/evoke/forum_posts/delete/<?=$post['ForumPost']['id']?>" name="delete<?=$post['ForumPost']['id']?>" id="delete<?=$post['ForumPost']['id']?>" style="display:none;" method="post">
+					<input type="hidden" name="_method" value="POST">
+				</form>
+				<a class="forums post-edit-link box button thin" href="#" onclick="if (confirm('Are you sure you want to delete # 1?')) { document.delete<?=$post['ForumPost']['id']?>.submit(); } event.returnValue = false; return false;">
+					<i class="fa fa-trash-o fa-1x"></i>
+				</a>
+			</div>
+			<?php endif; ?>
+
 			<h2 class="forums post title">
 				<?= $post['ForumPost']['title'] ?>
 			</h2>
@@ -76,18 +96,20 @@
 
 	<!-- NEW POST BUTTON -->
 	<div class="forums post-link centering">
+		<!-- PAGING -->
+		<div class="forums paging post-link">
+			<div class="float">
+				<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
+				<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
+				<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
+			</div>
+		</div>
+		
 		<div class="forums post-link float">
-			<a class="panel callout radius forums post-link box" href="/evoke/forum_topics/post/<?= $forumTopic['ForumTopic']['id'] ?>">
+			<a class="forums post-link box button thin" href="/evoke/forum_topics/post/<?= $forumTopic['ForumTopic']['id'] ?>">
 				REPLY
 			</a>
 		</div>
 	</div>	
-
-	<!-- PAGING -->
-	<div class="forums paging">
-		<?= $this->Paginator->prev('<<') ?>
-		<?= $this->Paginator->numbers(array('separator' => ' ')) ?>
-		<?= $this->Paginator->next('>>') ?>
-	</div>
 
 </div>	

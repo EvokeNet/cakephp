@@ -18,7 +18,17 @@
 }
 
 .forums.paging{
-    padding: 10px;
+    padding: 5px;
+}
+
+.forums.paging .button.thin{
+    padding: 5px;
+    vertical-align: -40px;
+    width: 30px;
+}
+
+.forums.paging .float{
+    float: left;
 }
 
 .forums .accordion-navigation{
@@ -106,16 +116,24 @@
 .forums.post-link.float{    
     text-align: right;
     height: 50px;
-    margin-bottom: 15px;
+    margin-bottom: 24px;
+}
+
+.forums.post-edit-link.float{    
+    text-align: right;
 }
 
 .forums.post-link.box{   
     text-align: center; 
     display: inline-block;
-    color: white;
     font-size: 24px;
-    background-color: red;
     padding: 12px;
+}
+
+.forums.post-edit-link.box{   
+    text-align: center; 
+    display: inline-block;
+    font-size: 14px;
 }
 
 .forums.newpost-form .input.text label,

@@ -43,7 +43,7 @@
 					<div class="forums category">
 						<div class="forums category-title"><?= $forumCategory['ForumCategory']['title'] ?></div>
 						<div class="forums category-description"><?= $forumCategory['ForumCategory']['description'] ?></div>
-						<div class="forums category-link"><a href="forum_categories/view/<?php echo $forumCategory['ForumCategory']['id']?>">Enter Forum Discussion</a></div>
+						<div class="forums category-link"><a href="/evoke/forum_categories/view/<?php echo $forumCategory['ForumCategory']['id']?>">Enter Forum Discussion</a></div>
 					</div>
 					<?php endforeach; ?>
 				</div>

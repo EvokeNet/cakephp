@@ -29,9 +29,10 @@
 
 	<table class="forums table">
 
+
 		<thead>
 			<th><?php echo $this->Paginator->sort('title','Topic'); ?></th>
-			<th><?php echo $this->Paginator->sort('.answers','Answers'); ?></th>
+			<th><?php echo $this->Paginator->sort('0'.'answers','Answers'); ?></th>
 			<th><?php echo $this->Paginator->sort('view_count','Views'); ?></th>
 			<th><?php echo $this->Paginator->sort('User.name','Created By'); ?></th>
 			<th><?php echo $this->Paginator->sort('created','Date'); ?></th>

@@ -17,16 +17,6 @@ class ForumCategoriesController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->ForumCategory->recursive = 0;
-		$this->set('forumCategories', $this->Paginator->paginate());
-	}
-
-/**
  * view method
  *
  * @throws NotFoundException
@@ -89,7 +79,7 @@ class ForumCategoriesController extends AppController {
 		);
 
 		$forumTopics = $this->paginate($alias);
-
+		
 		// SET VARIABLES
 		$this->set('forumCategory', $forumCategory);
 		$this->set('forumTopics', $forumTopics);
