@@ -80,14 +80,17 @@ class AppController extends Controller {
 			)
 		));
 
-
 		// debug($cuser);
 		// debug($superhero);
 		// debug($this->request->params['action']);
 		// die();
 		
-		// check if the user has answered the asessment questionnaire and isn't already in the matching action
-		if(empty($superhero) && ($this->request->params['action'] != 'matching' && $this->request->params['action'] != 'login' && $this->request->params['action'] != 'logout')){
+		// check if the user has answered the asessment questionnaire and isn't doing it right now
+		if(empty($superhero) && $this->request->params['action'] != 'matching' 
+							 && $this->request->params['action'] != 'login'  //also, if  the user is loging in or out
+							 && $this->request->params['action'] != 'logout' // we have to allow it
+							 && $this->request->params['action'] != 'matching_results'){
+		
 			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId())); 
 		}
 

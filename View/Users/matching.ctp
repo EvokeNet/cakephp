@@ -141,6 +141,7 @@
 								<a href="#" class="radius button nextQuestion">Next</a>
 							</div>
 							<?php
+							$counter++;
 						}
 
 						?>
@@ -148,7 +149,7 @@
 					</div> 
 					
 					<?php
-					$counter++;
+					
 				}
 				?>
 				</div>
