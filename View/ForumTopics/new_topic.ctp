@@ -12,7 +12,7 @@
 	<!-- HEAD -->
 	<div class="forums index">
 		<!-- TOPIC LINK -->
-		<a href="/evoke/forum_categories/view/<?= $forumTopic['ForumCategory']['id'] ?>"><h4 class="evoke text-glow forums link-title"><?= $forumTopic['ForumCategory']['title'] ?></h4></a>
+		<a href="/evoke/forum_categories/view/<?= $forumCategory['ForumCategory']['id'] ?>"><h4 class="evoke text-glow forums link-title"><?= $forumCategory['ForumCategory']['title'] ?></h4></a>
 	</div>
 
 	<div class="forums newpost-form">
@@ -23,11 +23,10 @@
 		<input type="hidden" name="data[ForumTopic][slug]" id="ForumTopicSlug" value=""/>
 		<?=$this->Form->input('content') ?>
 		
-		<input type="hidden" name="data[ForumTopic][status]" id="ForumTopicStatus" value="<?= $forumTopic['ForumTopic']['status'] ?>"/>
-		<input type="hidden" name="data[ForumTopic][view_count]" id="ForumTopicViewCount" value="<?= $forumTopic['ForumTopic']['view_count'] ?>"/>
+		<input type="hidden" name="data[ForumTopic][status]" id="ForumTopicStatus" value=""/>
+		<input type="hidden" name="data[ForumTopic][view_count]" id="ForumTopicViewCount" value="0"/>
 		<input type="hidden" name="data[ForumTopic][user_id]" id="ForumTopicUserId" value="<?= $loggedInUser['id'] ?>"/>
-		<input type="hidden" name="data[ForumTopic][forum_categorie_id]" id="ForumTopicForumCategorieId" value="<?= $forumTopic['ForumCategory']['id'] ?>"/>
-		<input type="hidden" name="data[ForumTopic][id]" id="ForumTopicId" value="<?= $forumTopic['ForumTopic']['id'] ?>"/>
+		<input type="hidden" name="data[ForumTopic][forum_categorie_id]" id="ForumTopicForumCategorieId" value="<?= $forumCategory['ForumCategory']['id'] ?>"/>
 		</fieldset>
 		<?php echo $this->Form->submit(__('Submit'),array('class' => 'button thin')); ?>
 	</div>

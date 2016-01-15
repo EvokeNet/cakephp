@@ -38,12 +38,12 @@ class ForumCategoriesController extends AppController {
 		$alias = $this->ForumTopic->alias;
 
 		//CUSTOM PAGINATOR FOR FORUM TOPICS
-		$this->paginate = array(
+		$this->Paginator->settings = array(
 			'fields' => array(
 				'id',
 				'title',
-				'COUNT(ForumPost.id) `answers`',
 				'view_count',
+				'COUNT(ForumPost.id) as `answers`',
 				'user_id',
 				'User.name',
 				'created'
@@ -70,7 +70,7 @@ class ForumCategoriesController extends AppController {
 				'ForumTopic.forum_categorie_id ='.$forumCategory['ForumCategory']['id']
 			),
 			'order' => array(
-				'answers' => 'desc'
+				'ForumTopic.answers' => 'desc'
 			),
 			'group' => array(
 				'ForumTopic.id'

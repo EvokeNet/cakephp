@@ -23,20 +23,22 @@
 			<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
 		</div>
 
+		<!-- NEW TOPIC BUTTON -->
+		<a class="forums post-link box button thin" href="/evoke/forum_topics/new_topic/<?= $forumCategory['ForumCategory']['id'] ?>">
+			NEW TOPIC
+		</a>
+	
 	</div>
 
 	<!-- TOPICS -->
-
 	<table class="forums table">
 		<thead class="head">
 			<th class="left head-cell"><?php echo $this->Paginator->sort('title','Topic'); ?></th>
-			<th class="centered head-cell size1"><?php echo $this->Paginator->sort('0.'.'answers','Answers'); ?></th>
+			<th class="centered head-cell size1"><?php echo $this->Paginator->sort('answers','Answers'); ?></th>
 			<th class="centered head-cell size1"><?php echo $this->Paginator->sort('view_count','Views'); ?></th>
 			<th class="centered head-cell size2"><?php echo $this->Paginator->sort('User.name','Created By'); ?></th>
 			<th class="centered head-cell size2"><?php echo $this->Paginator->sort('created','Date'); ?></th>
 		</thead>
-
-		
 
 		<?php foreach ($forumTopics as $topic): ?>
 			<?php if(isset($topic['ForumTopic']['title'])):?>
