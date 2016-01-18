@@ -2,7 +2,6 @@
 	//CSS overriding fullpage.js plugin
 	$cssBaseUrl = Configure::read('App.cssBaseUrl');
 	echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
-  echo $this->Html->css('/css/fullpage.css');
 ?>
 
 <!-- <header>
@@ -17,7 +16,7 @@
 </header> -->
 
 <div>
-	<nav class="top-bar header-top" data-topbar role="navigation">
+	<nav class="top-bar header-top-fullpage" data-topbar role="navigation">
 		<ul class="title-area">
 			<li class="name">
 				<h1><a href="#"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>' width = "150px"></a></h1>
@@ -81,7 +80,7 @@
     <h2>fullPage.js</h2>
     <h3>This is the fourth section</h3>
 
-    <nav class="top-bar footer-bottom" data-topbar role="navigation">
+    <nav class="top-bar footer-bottom-fullpage" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">
           <h1><a href = "http://www.worldbank.org/" target="_blank"><img src = '<?= $this->webroot.'img/wblogo.png' ?>'></a></h1>

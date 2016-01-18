@@ -142,5 +142,7 @@ $title = __('Evoke Network');
 */
 	</script>
 
+	<?= $this->element('footer') ?>
+	
 </body>
 </html>

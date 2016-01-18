@@ -13,7 +13,7 @@
 	$paginatorParams = $this->Paginator->params();
 ?>
 
-<section class="leaderboard">	
+<section class="leaderboard">
 	<div class="row standard-width">
 		<div class="small-12 columns padding top-2">
 
@@ -21,7 +21,7 @@
 			<div class="row margin">
 				<!-- MEDAL WITH POSITION -->
 				<div class="small-6 medium-4 columns text-right padding bottom-1 top-1">
-					
+
 					<span class="fa-stack fa-5x text-center icon-medal-stack margin right-05">
 						<i class="fa fa-stack-2x icon-brankic icon-medal2 text-glow"></i>
 
@@ -66,10 +66,10 @@
 			</div>
 		</div>
 
-	
+
 		<!-- LEADERBOARD -->
 		<div class="small-12 columns">
-			
+
 			<!-- PAGINATION -->
 			<div class="padding all-2 pagination-centered">
 				<ul class="pagination">
@@ -88,7 +88,7 @@
 				<li><h4><?= strtoupper(__("Level")) ?></h4></li>
 				<li><h4><?= strtoupper(__("Points")) ?></h4></li>
 			</ul>
-			<?php 
+			<?php
 				$pos_index = 1;
 				foreach ($points_users as $p => $user_point):
 					// foreach ($point as $usr):
@@ -121,7 +121,7 @@
 							</ul>
 
 						</a>
-					<?php 
+					<?php
 						$pos_index++;
 					// endforeach;
 				endforeach;
@@ -145,10 +145,6 @@
 
 
 <?php
-	/* Footer */
-	$this->start('footer');
-	echo $this->element('footer');
-	$this->end();
 
 	//SCRIPT
 	$this->Html->script('requirejs/app/Users/leaderboard.js', array('inline' => false));

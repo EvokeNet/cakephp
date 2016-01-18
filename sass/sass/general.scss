@@ -16,6 +16,7 @@ html {
 }
 body {
 	background-color: $bg-color;
+	position: relative;
 	/*overflow: auto;*/
 }
 
@@ -30,6 +31,27 @@ div, p, span, a {
 
 *, html, body, div, p {
 	color: #cccccc;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+    background-color: $top-bar-bg;
+}
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 // button, .button {
@@ -53,6 +75,14 @@ div, p, span, a {
 
 .margin-right-1em{
   margin-right:1em;
+}
+
+.margin-top-2em{
+  margin-top:2em;
+}
+
+.margin-bottom-2em{
+  margin-bottom:2em;
 }
 
 .margin-left-2em{
@@ -102,6 +132,15 @@ div, p, span, a {
 
 .noscroll {
 	overflow: 'hidden';
+}
+
+.division{
+	border-bottom: none;
+	border-top: none;
+	border-right: solid 1px #4e4e4e;
+	clear: none;
+	height: 45px;
+	width: 0;
 }
 
 /* Headings */

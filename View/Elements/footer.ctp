@@ -1,15 +1,6 @@
-	<footer class="footer full-width <?php echo isset($footerClass) ? $footerClass : ''; ?>" id="footer">
-		<div class="row standard-width padding top-05 bottom-05">
-			<div class="small-12 medium-12 large-12 columns">
-			  		&copy;
-
-			  		<?= __('2014') ?> <?php echo strtoupper(__('Evoke'));?>
-
-			  		| <a href = "<?= $this->Html->url(array('controller' => 'pages', 'action' => 'reportissue'))?>" target="_blank"><?= __('Report an issue') ?></a>
-
-			  		| <a href = "<?= $this->Html->url(array('controller' => 'pages', 'action' => 'terms'))?>" target="_blank"><?= __('Terms of Service') ?></a>
-
-					<a href = "http://www.worldbank.org/" target="_blank"><img src='<?= $this->webroot.'img/wblogo.png' ?>' alt = "<?= __('The World Bank') ?>"/></a>
-			</div>
-		</div>
-	</footer>
+<footer class="footer">
+	<a href = "http://www.worldbank.org/" target="_blank" class = "left margin-top-1em margin-left-1em"><img src = '<?= $this->webroot.'img/wblogo.png' ?>'></a>
+	<a href = "<?= $this->Html->url(array('controller' => 'pages', 'action' => 'terms'))?>" target="_blank" class = "right uppercase margin-top-2em margin-top-1em margin-right-1em"><?= __('Terms of Service') ?></a>
+	<a href = "<?= $this->Html->url(array('controller' => 'pages', 'action' => 'reportissue'))?>" target="_blank" class = "right uppercase margin-top-2em margin-top-1em margin-right-1em"><?= __('Report an issue') ?></a>
+	<a href="#" class = "right uppercase margin-top-2em margin-left-1em margin-right-1em">&copy;&nbsp;&nbsp;<?= __('2016') ?> <?php echo strtoupper(__('Evoke'));?></a>
+</footer>

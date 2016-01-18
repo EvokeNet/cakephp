@@ -123,33 +123,33 @@ ul, li {
 /* NAV STYLES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-// .header-top {
-// 	background: #2B2C31;
-// 	/*height: 70px;*/
-// 	/*padding: 0 10px;*/
-// 	position: fixed;
-// 	/*top: 0;*/
-//   height: 70px;
-//   padding: 10px 0;
-// 	width: 100%;
-// 	z-index: 12;
-// 	box-sizing: border-box;
-// }
-//
-// .footer-bottom {
-// 	background: #2B2C31;
-// 	/*height: 70px;*/
-// 	/*padding: 0 10px;*/
-// 	/*position: fixed;*/
-// 	/*top: 0;*/
-//   bottom:0;
-//   height: 70px;
-//   padding: 10px 0;
-// 	width: 100%;
-// 	z-index: 12;
-// 	box-sizing: border-box;
-//   position: absolute;
-// }
+.header-top-fullpage {
+	background: #2B2C31;
+	/*height: 70px;*/
+	/*padding: 0 10px;*/
+	position: fixed;
+	/*top: 0;*/
+  height: 70px;
+  padding: 10px 0;
+	width: 100%;
+	z-index: 12;
+	box-sizing: border-box;
+}
+
+.footer-bottom-fullpage {
+	background: #2B2C31;
+	/*height: 70px;*/
+	/*padding: 0 10px;*/
+	/*position: fixed;*/
+	/*top: 0;*/
+  bottom:0;
+  height: 70px;
+  padding: 10px 0;
+	width: 100%;
+	z-index: 12;
+	box-sizing: border-box;
+  position: absolute;
+}
 
 h1 {
 	line-height: 70px;
