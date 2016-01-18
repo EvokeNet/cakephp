@@ -79,7 +79,15 @@ public function redirectToPostPage($id = null){
 	$pageNumber = ceil($countPosts/20);
 
 	//REDIRECT TO CORRECT PAGE
-	return $this->redirect(array('action' => '../forum_topics/view/'.$forumTopicId.'/page:'.$pageNumber.'#'.$id));
+	return $this->redirect(
+		array(
+			'controller' => 'ForumTopics',
+			'action' => 'view',
+			$forumTopicId,
+			'page' => $pageNumber,
+			'#' => $id
+		)
+	);
 }
 
 /**
@@ -129,7 +137,8 @@ public function redirectToPostPage($id = null){
 			
 		$forumPost = $this->ForumPost->find('first', $options);
 
-		if($this->Auth->user('id') != $forumPost['User']['id']){
+		//CHECK PERMISSION
+		if (!$this->Permission->hasPrivilege($id,'ForumPost')){
 			$this->redirectToPostPage($id);
 		}
 
@@ -163,8 +172,8 @@ public function redirectToPostPage($id = null){
 
 		$forumPost = $this->ForumPost->find('first',array('conditions' => array('ForumPost.id ='.$id)));
 
-		//CHECK AUTH
-		if($this->Auth->user('id') != $forumPost['User']['id']){
+		//CHECK PERMISSION
+		if (!$this->Permission->hasPrivilege($id,'ForumPost')){
 			$this->redirectToPostPage($id);
 		}
 
@@ -190,7 +199,13 @@ public function redirectToPostPage($id = null){
 			if(isset($lastForumPost['ForumPost']['id'])){
 				return $this->redirectToPostPage($lastForumPost['ForumPost']['id']);	
 			}else{
-				return $this->redirect(array('action' => '../forum_topics/view/'.$forum_topic['ForumPost']['forum_topic_id']));
+				return $this->redirect(
+					array(
+						'controller' => 'ForumTopics',
+						'action' => 'view',
+						$forumPost['ForumPost']['forum_topic_id']
+					)
+				);
 			}
 
 		} else {

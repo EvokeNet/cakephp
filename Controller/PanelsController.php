@@ -35,7 +35,7 @@ class PanelsController extends AppController {
 
     $this->user = array();
         //get user data into public var
-		$this->user['role_id'] = $this->getUserRole();
+		$this->user['role'] = $this->getUserRole();
 		$this->user['id'] = $this->getUserId();
 		$this->user['name'] = $this->getUserName();
 

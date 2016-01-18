@@ -30,6 +30,7 @@ class AppController extends Controller {
  */
 	public $components = array(
 		'Session',
+		'Permission',
 		'Auth' => array(
 			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
 				'authError' => 'Você não tem permissão para ver essa página'
@@ -309,7 +310,7 @@ class AppController extends Controller {
 
 	public function getUserRole() {
 		$currentuser = $this->Auth->user();
-		if(isset($currentuser['role_id'])) return $currentuser['role_id'];
-		return $currentuser['User']['role_id'];
+		if(isset($currentuser['role'])) return $currentuser['role'];
+		return $currentuser['User']['role'];
 	}
 }
