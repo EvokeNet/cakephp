@@ -37,7 +37,10 @@ class ForumTopicsController extends AppController {
 		if (!$this->ForumTopic->exists($id)) {
 			throw new NotFoundException(__('Invalid forum topic'));
 		}
-		
+
+		$options = array('conditions' => array('ForumTopic.' . $this->ForumTopic->primaryKey => $id));
+		$updateForumTopic = $this->ForumTopic->find('first',$options);
+
 		//FORUM TOPIC
 		$this->loadModel('ForumTopic');
 		$options = array(
@@ -66,6 +69,14 @@ class ForumTopicsController extends AppController {
 		);
 
 		$forumTopic = $this->ForumTopic->find('first',$options);
+
+		//CHECK AUTH
+		if($this->Auth->user('id') != $forumTopic['User']['id']){
+
+			//COUNT VIEW
+			$updateForumTopic['ForumTopic']['view_count'] = $updateForumTopic['ForumTopic']['view_count']+1;
+			$this->ForumTopic->save($updateForumTopic);
+		}
 
 		//FORUM POSTS
 		$this->loadModel('ForumPost');
@@ -152,6 +163,39 @@ class ForumTopicsController extends AppController {
 
 	}
 
+
+/**
+ * new topic method
+ *
+ * @return void
+ */	
+	public function new_topic($id = null) {
+
+		$this->loadModel('ForumCategory');
+		$this->loadModel('ForumTopic');
+
+		if (!$this->ForumCategory->exists($id)) {
+				throw new NotFoundException(__('Invalid forum category'));
+			}
+
+		$options = array('conditions' => array('ForumCategory.' . $this->ForumCategory->primaryKey => $id));
+		$this->set('forumCategory', $this->ForumCategory->find('first', $options));
+
+		if ($this->request->is('post')) {
+			$this->ForumTopic->create();
+
+			if ($this->ForumTopic->save($this->request->data)) {
+				$this->Session->setFlash(__('The forum topic has been saved.'));
+
+				return $this->redirect(array('action' => '../forum_categories/view/'.$id));
+			} else {
+				$this->Session->setFlash(__('The forum topic could not be saved. Please, try again.'));
+			}
+
+		}
+
+	}	
+
 /**
  * add method
  *
@@ -159,6 +203,7 @@ class ForumTopicsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			
 			$this->ForumTopic->create();
 			if ($this->ForumTopic->save($this->request->data)) {
 				$this->Session->setFlash(__('The forum topic has been saved.'));
@@ -166,7 +211,9 @@ class ForumTopicsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The forum topic could not be saved. Please, try again.'));
 			}
+			
 		}
+
 		$users = $this->ForumTopic->User->find('list');
 		$forumCategories = $this->ForumTopic->ForumCategorie->find('list');
 		$this->set(compact('users', 'forumCategories'));
@@ -183,20 +230,61 @@ class ForumTopicsController extends AppController {
 		if (!$this->ForumTopic->exists($id)) {
 			throw new NotFoundException(__('Invalid forum topic'));
 		}
+
+		//OPTIONS FOR TOPIC
+		$options = array(
+			'fields' => array(
+				'ForumTopic.id',
+				'ForumTopic.title',
+				'ForumTopic.content',
+				'ForumTopic.status',
+				'ForumTopic.view_count',
+				'ForumTopic.slug',
+				'ForumCategory.id',
+				'ForumCategory.title',
+				'User.id'
+			),
+			'joins' => array(
+				array(
+					'table' => 'forum_categories',
+					'alias' => 'ForumCategory',
+					'type' => 'INNER',
+					'conditions' => array(
+						'ForumTopic.forum_categorie_id = ForumCategory.id'
+					),
+				),
+				array(
+					'table' => 'users',
+					'alias' => 'User',
+					'type' => 'INNER',
+					'conditions' => array(
+						'ForumTopic.user_id = User.id'
+					),
+				),
+			),
+			'conditions' => array('ForumTopic.' . $this->ForumTopic->primaryKey => $id)
+		);
+			
+		$forumTopic = $this->ForumTopic->find('first', $options);
+
+		//CHECK AUTH
+		if($this->Auth->user('id') != $forumTopic['User']['id']){
+			return $this->redirect(array('action' => '../forum_topics/view/'.$forumTopic['ForumTopic']['id']));
+		}
+
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->ForumTopic->save($this->request->data)) {
 				$this->Session->setFlash(__('The forum topic has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => '../forum_topics/view/'.$forumTopic['ForumTopic']['id']));
 			} else {
 				$this->Session->setFlash(__('The forum topic could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('ForumTopic.' . $this->ForumTopic->primaryKey => $id));
-			$this->request->data = $this->ForumTopic->find('first', $options);
+			//SET FORUM TOPIC
+			$this->request->data = $forumTopic;
+			$this->set('forumTopic', $forumTopic);
 		}
-		$users = $this->ForumTopic->User->find('list');
-		$forumCategories = $this->ForumTopic->ForumCategorie->find('list');
-		$this->set(compact('users', 'forumCategories'));
+
 	}
 
 /**
@@ -208,16 +296,49 @@ class ForumTopicsController extends AppController {
  */
 	public function delete($id = null) {
 		$this->ForumTopic->id = $id;
+
 		if (!$this->ForumTopic->exists()) {
 			throw new NotFoundException(__('Invalid forum topic'));
 		}
+
+		$forumTopic = $this->ForumTopic->find('first',array('conditions' => array('ForumTopic.id ='.$id)));
+
+		//CHECK AUTH
+		if($this->Auth->user('id') != $forumTopic['ForumTopic']['user_id']){
+			return $this->redirect(array('action' => '../forum_topics/view/'.$forumTopic['ForumTopic']['id']));
+		}
+
 		$this->request->allowMethod('post', 'delete');
 		if ($this->ForumTopic->delete()) {
+
+
+			$options = array(
+				'fields' => array(
+					'ForumPost.id'
+				),
+				'conditions' => array(
+					'ForumPost.forum_topic_id ='.$forumTopic['ForumTopic']['id']
+				),
+				'order' => array(
+					'id' => 'DESC'
+				)
+			);
+
+			$this->loadModel('ForumPost');
+
+			$forumPosts = $this->ForumPost->find('all', $options);
+
+			foreach($forumPosts as $forumPost){
+				$this->ForumPost->id = $forumPost['ForumPost']['id'];
+				$this->ForumPost->delete();
+			}
+
 			$this->Session->setFlash(__('The forum topic has been deleted.'));
+			return $this->redirect(array('action' => '../forum_categories/view/'.$forumTopic['ForumTopic']['forum_categorie_id']));
+
 		} else {
 			$this->Session->setFlash(__('The forum topic could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
 	}
 
 /**

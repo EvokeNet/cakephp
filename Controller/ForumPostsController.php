@@ -116,12 +116,12 @@ public function redirectToPostPage($id = null){
 					),
 				),
 				array(
-				'table' => 'users',
-				'alias' => 'User',
-				'type' => 'INNER',
-				'conditions' => array(
-					'ForumPost.user_id = User.id'
-				),
+					'table' => 'users',
+					'alias' => 'User',
+					'type' => 'INNER',
+					'conditions' => array(
+						'ForumPost.user_id = User.id'
+					),
 				),
 			),
 			'conditions' => array('ForumPost.' . $this->ForumPost->primaryKey => $id)
@@ -163,6 +163,7 @@ public function redirectToPostPage($id = null){
 
 		$forumPost = $this->ForumPost->find('first',array('conditions' => array('ForumPost.id ='.$id)));
 
+		//CHECK AUTH
 		if($this->Auth->user('id') != $forumPost['User']['id']){
 			$this->redirectToPostPage($id);
 		}

@@ -10,7 +10,7 @@
 .forums .description{
     text-align: justify;
     font-size: 14px;
-    padding-bottom: 20px;
+    padding: 0px 0px 20px 0px;
 }
 
 .evoke .forums.table{
@@ -106,7 +106,7 @@
 }
 
 .forums .category-description{
-    padding: 5px;
+    padding: 10px 15px 15px 10px;
     font-size: 14px;
     text-align: justify;
 }
@@ -140,6 +140,13 @@
     margin: inherit;
     padding-top: 7px;
     margin-left: 10px;
+    font-size: 14px;
+}
+
+.forums.post.time{
+    width: 100%;
+    color: black;
+    padding-top: 5px;
     font-size: 14px;
 }
 
