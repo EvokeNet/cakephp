@@ -18,9 +18,9 @@
 
 			<!-- PAGING -->
 			<div class="forums paging">
-				<?= $this->Paginator->prev('<<') ?>
-				<?= $this->Paginator->numbers(array('separator' => ' ')) ?>
-				<?= $this->Paginator->next('>>') ?>
+				<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
+				<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
+				<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
 			</div>
 		</div>
 
@@ -41,9 +41,15 @@
 				<div>
 					<?php foreach ($forumCategories[$forum['Forum']['id']] as $forumCategory): ?>
 					<div class="forums category">
-						<div class="forums category-title"><?= $forumCategory['ForumCategory']['title'] ?></div>
-						<div class="forums category-description"><?= $forumCategory['ForumCategory']['description'] ?></div>
-						<div class="button thin"><a href="/evoke/forum_categories/view/<?php echo $forumCategory['ForumCategory']['id']?>">Enter Forum Discussion</a></div>
+						<div class="evoke text-glow forums category-title">
+							<?= $forumCategory['ForumCategory']['title'] ?>
+						</div>
+						<div class="forums category-description">
+							<?= $forumCategory['ForumCategory']['description'] ?>
+						</div>
+						<a class="button thin" href="/evoke/forum_categories/view/<?php echo $forumCategory['ForumCategory']['id']?>">
+							Enter Forum Discussion
+						</a>
 					</div>
 					<?php endforeach; ?>
 				</div>
@@ -55,8 +61,8 @@
 
 	<!-- PAGING -->
 	<div class="forums paging">
-		<?= $this->Paginator->prev('<<') ?>
-		<?= $this->Paginator->numbers(array('separator' => ' ')) ?>
-		<?= $this->Paginator->next('>>') ?>
+		<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
+		<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
+		<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
 	</div>
 </div>
