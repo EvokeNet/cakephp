@@ -6,19 +6,26 @@ class PermissionComponent extends Component {
 
 	public $components = array('Session');
 
-    public $scores = array(
-        ADMIN   => 0,
-        USER    => 10
-    );
+    public $scores = array();
     
 
     public function startup(Controller $controller) {
-      $this->Controller = $controller;
+        $role_class = ClassRegistry::init('Role');
+        
+        $scores = array(
+            ADMIN => $role_class->find('first',array('name' => 'ADMIN'))['Role']['score'],
+            USER => $role_class->find('first',array('name' => 'USER'))['Role']['score']
+        );
+
+        $this->Controller = $controller;
     }
 
     public function role() {
+        $role_class = ClassRegistry::init('Role');
+
         if ($this->role == null) {
-            $role = $this->Session->read('Auth.User.role');
+            $roleid = $this->Session->read('Auth.User.role_id');
+            $role = $role_class->find('first', array('conditions' => array('id' => $roleid)))['Role']['score'];
             if (isset($role)) {
                 $this->role = $role;
             }
@@ -26,31 +33,68 @@ class PermissionComponent extends Component {
         return $this->role;
     }
 
-    public function hasPrivilege($id, $object){
+/**
+ *  hasPrivilege
+ *  Checks if user has privilege
+ *  @param array $options
+ *      minimumRole - score - mininum role expected
+ *      object - string - page's controller name that the user tries to access
+ *      moderatorPrivilege - bool - true if higher privilege user can access a lower privilege user's private content
+ *  @return bool Access
+ */
+    public function hasPrivilege($options){
 
-        $role = $this->Session->read('Auth.User.role');
+        $role = $this->role();
 
-        if($role == ADMIN) return true;
+        if(isset($options['minimumRole'])){
+            $minimumRole = $options['minimumRole'];
+        }else{
+            return false;
+        }
 
-        if($role == USER) {
+        if(isset($options['moderatorPrivilege'])){
+            $moderatorPrivilege = $options['moderatorPrivilege'];
+        }
+
+        if(isset( $options['object'])){
+            $object = $options['object'];
+        }
+
+        //CHECKS IF USER HAS MININUM ROLE
+        if($role <= $minimumRole){
+
+            if(isset($moderatorPrivilege)){
+                if($moderatorPrivilege){
+                    //CHECKS IF USER HAS MODERATOR PRIVILEGE
+                    if($role < $minimumRole){
+                        return true;
+                    }
+                }
+            }
 
             if(isset($object)){
-                return $this->userHasObjectPrivilege($id, $object);
+                return $this->userHasObjectPrivilege($object);
             }
+
+            return true;
         }
         
         return false;
-    }
+    }   
 
-    public function userHasObjectPrivilege($id, $object) {
 
-		$object = ClassRegistry::init($object);
+    //CHECKS IF USER HAS PRIVILEGE IN A SPECIFIC PAGE
+    public function userHasObjectPrivilege($object) {
 
-       	$owner = $object->field('user_id', array('id' => $id));
+		$class = ClassRegistry::init($object['class']);
+
+       	$owner = $class->field('user_id', array('id' => $object['id']));
        	$user = $this->Session->read('Auth.User.id');
 
        	//CHECK IF USER IS OBJECT'S OWNER
-		if($user == $owner) return true;
+		if($user == $owner){
+            return true;
+        }
 
         return false;
     }

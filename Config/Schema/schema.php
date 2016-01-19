@@ -717,6 +717,7 @@ class EvokeSchema extends CakeSchema {
 	public $roles = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => false, 'key' => 'primary'),
 		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'score' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => false, 'key' => 'primary'),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
 		),
@@ -878,7 +879,7 @@ class EvokeSchema extends CakeSchema {
 
 	public $users = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => false, 'key' => 'primary'),
-		'role' => array('type' => 'integer', 'null' => false, 'default' => '10', 'length' => 16, 'unsigned' => true),
+		'role_id' => array('type' => 'integer', 'null' => false, 'default' => '10', 'length' => 16, 'unsigned' => true),
 		'username' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'firstname' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),

@@ -183,7 +183,7 @@ class User extends AppModel {
 
 	public function getUsers() {
 		return $this->find('all', array(
-			'order' => array('User.role ASC', 'User.name ASC'))
+			'order' => array('User.role_id ASC', 'User.name ASC'))
 		);
 	}
 

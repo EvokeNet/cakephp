@@ -70,8 +70,18 @@ class ForumTopicsController extends AppController {
 
 		$forumTopic = $this->ForumTopic->find('first',$options);
 
+		//OPTIONS FOR CHECK PRIVILEGE
+		$options = array(
+			'minimumRole' => USER,
+			'moderatorPrivilege' => false,
+			'object' => array(
+				'id' => $id,
+				'class' => 'ForumTopic'
+			)
+		);
+
 		//CHECK OWNER
-		if (!$this->Permission->hasPrivilege($id,'ForumTopic')){
+		if (!$this->Permission->hasPrivilege($options)){
 			//COUNT VIEW
 			$updateForumTopic['ForumTopic']['view_count'] = $updateForumTopic['ForumTopic']['view_count']+1;
 			$this->ForumTopic->save($updateForumTopic);
@@ -267,8 +277,18 @@ class ForumTopicsController extends AppController {
 		$forumTopic = $this->ForumTopic->find('first', $options);
 
 
-		//CHECK PRIVILEGE
-		if (!$this->Permission->hasPrivilege($id,'ForumTopic')){
+		//OPTIONS FOR CHECK PRIVILEGE
+		$options = array(
+			'minimumRole' => USER,
+			'moderatorPrivilege' => true,
+			'object' => array(
+				'id' => $id,
+				'class' => 'ForumTopic'
+			)
+		);
+
+		//REDIRECT IF USER HASN'T PRIVILEGE
+		if (!$this->Permission->hasPrivilege($options)){
 			return $this->redirect( 
 				array(
 					'controller' => 'ForumTopics',
@@ -316,8 +336,18 @@ class ForumTopicsController extends AppController {
 
 		$forumTopic = $this->ForumTopic->find('first',array('conditions' => array('ForumTopic.id ='.$id)));
 
-		//CHECK PERMISSION
-		if (!$this->Permission->hasPrivilege($id,'ForumTopic')){
+		//OPTIONS FOR CHECK PRIVILEGE
+		$options = array(
+			'minimumRole' => USER,
+			'moderatorPrivilege' => true,
+			'object' => array(
+				'id' => $id,
+				'class' => 'ForumTopic'
+			)
+		);
+
+		//REDIRECT IF USER HASN'T PERMISSION
+		if (!$this->Permission->hasPrivilege($options)){
 			return $this->redirect( 
 				array(
 					'controller' => 'ForumTopics',

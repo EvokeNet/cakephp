@@ -88,7 +88,8 @@
 				</div>
 			</li>
 
-			<?php if ($loggedInUser['role'] != 'user'){ ?>
+			<?php if ($loggedInUser['role'] <= ADMIN){ 
+			?>
 			<li>
 				<div class="column">
 					<a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main')); ?>" class="text-glow-on-hover text-color-highlight"><?php echo __('Admin'); ?></a>

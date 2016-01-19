@@ -137,8 +137,18 @@ public function redirectToPostPage($id = null){
 			
 		$forumPost = $this->ForumPost->find('first', $options);
 
-		//CHECK PERMISSION
-		if (!$this->Permission->hasPrivilege($id,'ForumPost')){
+		//OPTIONS FOR CHECK PRIVILEGE
+		$options = array(
+			'minimumRole' => USER,
+			'moderatorPrivilege' => true,
+			'object' => array(
+				'id' => $id,
+				'class' => 'ForumPost'
+			)
+		);
+
+		//REDIRECT IF USER HASN'T PERMISSION
+		if (!$this->Permission->hasPrivilege($options)){
 			$this->redirectToPostPage($id);
 		}
 
@@ -172,8 +182,18 @@ public function redirectToPostPage($id = null){
 
 		$forumPost = $this->ForumPost->find('first',array('conditions' => array('ForumPost.id ='.$id)));
 
-		//CHECK PERMISSION
-		if (!$this->Permission->hasPrivilege($id,'ForumPost')){
+		//OPTIONS FOR CHECK PRIVILEGE
+		$options = array(
+			'minimumRole' => USER,
+			'moderatorPrivilege' => true,
+			'object' => array(
+				'id' => $id,
+				'class' => 'ForumPost'
+			)
+		);
+
+		//REDIRECT IF USER HASN'T PERMISSION
+		if (!$this->Permission->hasPrivilege($options)){
 			$this->redirectToPostPage($id);
 		}
 

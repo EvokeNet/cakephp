@@ -34,8 +34,7 @@ class AppController extends Controller {
 		'Auth' => array(
 			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
 				'authError' => 'Você não tem permissão para ver essa página'
-		),
-		'UserRole'
+		)
 	);
 
 	public $helpers = array(
@@ -65,6 +64,11 @@ class AppController extends Controller {
 		$this->set('loggedIn', $this->Auth->loggedIn());
 		$cuser = $this->Auth->user();
 		$loggedInUser = $this->Auth->user();
+
+		$this->loadModel('Role');
+
+		$role = $this->Role->find('first', array('conditions' => array('id' => $loggedInUser['role_id'])))['Role']['score'];
+		$loggedInUser['role'] = $role;
 
 		//User definitions
 		$userPoints = $this->getPoints($this->getUserId());
@@ -310,7 +314,13 @@ class AppController extends Controller {
 
 	public function getUserRole() {
 		$currentuser = $this->Auth->user();
-		if(isset($currentuser['role'])) return $currentuser['role'];
-		return $currentuser['User']['role'];
+		if(isset($currentuser['role'])){
+
+			return $currentuser['role'];	
+		} 
+
+		$role_score = $this->Role->find('first',array('id' => $currentuser['role_id']))['Role']['score'];
+
+		return $role_score;
 	}
 }
