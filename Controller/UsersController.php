@@ -968,6 +968,8 @@ class UsersController extends AppController {
 		//save user's superhero identity id
 		$user['User']['superhero_identity_id'] = $superhero['SuperheroIdentity']['id'];
 		unset($user['User']['password']);
+		//update session user
+		$this->Session->write('Auth.User.superhero_identity_id',$superhero['SuperheroIdentity']['id']);
 		$this->User->save($user);
 
 		$this->loadModel('SocialInnovatorQuality');
