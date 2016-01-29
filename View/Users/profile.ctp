@@ -122,22 +122,6 @@
   <!-- CENTER -->
   <div class="small-12 medium-7 large-9 columns padding top-2 bottom-2 left-2 right-2" data-equalizer-watch>
     <div class="row standard-width">
-      <!-- PSYCHOMETRIC ANALYSIS -->
-      <div class="large-6 medium-12 columns">
-        <h3><?= __('Psychometric Analysis') ?></h3>
-        <p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
-        <p><?= __('You have the heart of a Local Leader!') ?></p>
-        <p><?= __('Your Entrepreneurship and Local Insight are key to you. Embrace your qualities and use them for the better.') ?></p>
-      </div>
-
-      <!-- RADAR GRAPH FOR MATCHING RESULTS -->
-      <div class="large-6 medium-12 columns centering-block">
-        <div class="text-center vertical-align-middle centered-block">
-          <div>
-            <?php echo $this->element('matching_graph', array('height' => '550', 'width' => '550')); ?>
-          </div>
-        </div>
-      </div>
       <div class="columns">
         <div class = "row">
           <div class="columns text-center">
@@ -206,7 +190,8 @@
 
       </div>
     </div>
-
+    <br>
+    <br>
     <!-- BIOGRAPHY -->
     <div class="row border-top-divisor">
       <div class="small-12 columns margin top-2 bottom-2">
@@ -310,7 +295,6 @@
       </div>
     </div>
   </div>
->>>>>>> jg-user_dashboard
 </div>
 
 <?php

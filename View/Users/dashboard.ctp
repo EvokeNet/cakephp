@@ -250,30 +250,74 @@
 
     <div class="row standard-width">
       <!-- PSYCHOMETRIC ANALYSIS -->
-      <div class="large-6 medium-12 columns">
-        <h3><?= __('Psychometric Analysis') ?></h3>
-        <p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
-        <p><?= __('You have the heart of a Local Leader!') ?></p>
-        <p><?= __('Your Entrepreneurship and Local Insight are key to you. Embrace your qualities and use them for the better.') ?></p>
-        <!-- Badges -->
-        <div>
-          <h3><?= __('Badges earned') ?>&nbsp;&nbsp;(<?= count($badges) ?>)</h3>
-          <?php echo $this->element('badges'); ?>
-        </div>
-        <!-- End Badges -->
-      </div>
-
-      <!-- RADAR GRAPH FOR MATCHING RESULTS -->
-      <div class="large-6 medium-12 columns centering-block">
-        <div class="text-center vertical-align-middle centered-block">
-          <div>
-            <?php echo $this->element('matching_graph', array('height' => '550', 'width' => '550')); ?>
+      <div class="columns">
+        <div class = "row">
+          <div class="columns text-center">
+            <h3><?= __('You are: %s agent!', $superhero['SuperheroIdentity']['name']) ?></h3>
+            <p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
           </div>
         </div>
-      </div>
-      <!-- End Radar Graph -->
-    </div>
+        <div class="medium-6 columns">
+          <?php
+            $icons = array(1 => 'fa-puzzle-piece', 2 => 'fa-users', 3 => 'fa-cogs', 4 => 'fa-comments');
+            $id = $first_quality['SocialInnovatorQuality']['id'];
+            $icon = $icons[$id];
+          ?>
+          <div class='row'>
+            <div class="medium-12 columns text-center">
+              <i class="fa <?= $icon ?> fa-5x"></i>
+            </div>
+          </div>
 
+          <div class='row'>
+            <div class="medium-12 columns">
+
+              <p><h4><?= $first_quality['SocialInnovatorQuality']['name'] ?></h4></p>
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class="medium-12 columns">
+              <p><?= $first_quality['SocialInnovatorQuality']['description'] ?></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="large-6 medium-6 columns">
+          <?php
+            $id = $second_quality['SocialInnovatorQuality']['id'];
+            $icon = $icons[$id];
+          ?>
+
+          <div class='row'>
+            <div class="medium-12 columns text-center">
+              <i class="fa <?= $icon ?> fa-5x"></i>
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class="medium-12 columns">
+
+              <p><h4><?= $second_quality['SocialInnovatorQuality']['name'] ?></h4></p>
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class="medium-12 columns">
+              <p><?= $second_quality['SocialInnovatorQuality']['description'] ?></p>
+            </div>
+          </div>
+
+        </div>
+        <br>
+        <br>
+        <p><?= __('Continue to explore who you are, who you could be, on your profile page. Or start your mission. Or begin to think about your world chanding idea!') ?></p>
+        <div class="text-center">
+          <a class="button" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site')); ?>"><?php echo __('Explore evoke!'); ?></a>
+        </div>
+
+      </div>
+    </div>
     <!-- BIOGRAPHY -->
     <div class="row border-top-divisor">
       <div class="small-12 columns margin top-2 bottom-2">
@@ -361,6 +405,19 @@
             <?= __('You have no allies! Get started looking at people similar to you!') ?>
           </div><?php
         endif; ?>
+      </div>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div class="row border-top-divisor">
+      <div class="large-6 columns padding top-2 right-2 border-right-divisor">
+        <h3><?= __('Leaderboard') ?></h3>
+        <?php echo $this->element('leaderboard'); ?>
+      </div>
+
+      <div class="large-6 columns padding top-2">
+        <h3><?= __('Badges earned') ?>&nbsp;&nbsp;(<?= count($badges) ?>)</h3>
+        <?php echo $this->element('badges'); ?>
       </div>
     </div>
   </div>
