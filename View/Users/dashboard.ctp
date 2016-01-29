@@ -25,24 +25,6 @@
       <!-- NAME -->
       <h4 class="text-color-highlight text-center margin top-1"><?= $user['User']['name'] ?></h4>
 
-      <!-- ALLIANCE -->
-      <div class="padding top-1 text-center">
-        <!-- ADD AS AN ALLY -->
-        <?php if(empty($is_friend) && ($user['User']['id'] != $users['User']['id'])): ?>
-          <a class="button small" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $user['User']['id'], $loggedInUser['id'], false)); ?>">
-            <i class="fa fa-plus"></i>
-            <?= __('Add as ally') ?>
-          </a>
-
-        <!-- ALREADY AN ALLY -->
-        <?php elseif(!empty($is_friend) && ($user['User']['id'] != $users['User']['id'])): ?>
-          <a class="button small disabled">
-            <i class="fa fa-check"></i>
-            <?= __('Your ally') ?>
-          </a>
-        <?php endif; ?>
-      </div>
-
       <!-- BIOGRAPHY -->
       <div>
         <p class="text-center">
@@ -63,14 +45,39 @@
       <?php echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
     </div>
 
+    <!-- Available Missions -->
+    <div class="available-missions">
+      <h4><?php echo __('Available Missions'); ?></h4>
+      <?php foreach($available_missions as $index => $available_mission): ?>
+        <?php  $available_mission_url = $this->Html->url(array('controller' => 'missions', 'action' => 'view_mission', $available_mission['Mission']['id'])); ?>
+        <!-- Mission Link -->
+        <div data-mission="mission<?php echo $available_mission['Mission']['id']; ?>" class="view view-first available-mission <?php if($index==0){echo 'selected-mission';} ?>">
+          <a>
+            <?php if(!is_null($available_mission['Mission']['cover_dir'])) :?>
+              <img src="<?= $this->webroot.'files/attachment/attachment/'.$available_mission['Mission']['cover_dir'].'/'.$available_mission['Mission']['cover_attachment'] ?>">
+            <?php else :?>
+              <img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+            <?php endif ?>
+
+              <div class="mask">
+                  <h4><?php echo $available_mission['Mission']['title'] ?></h4>
+                  <p><?php echo $this->Text->getExcerpt($available_mission['Mission']['description'], 25, "...") ?></p>
+              </div>
+            </a>
+        </div>
+        <!-- End Mission Link -->
+      <?php endforeach; ?>
+    </div>
+    <!-- End Available Missions -->
+
     <!-- POTENTIAL ALLIES -->
     <?php
     //Show only in my profile
     if ($user['User']['id'] == $users['User']['id']): ?>
-      <div class="row hide-for-small-only padding top-1 bottom-1 left-2 right-2 border-top-divisor">
+      <div class="row hide-for-small-only padding top-1 bottom-1 left-2 border-top-divisor">
         <h4><?= __('Potential allies') ?></h4>
 
-        <ul class="full-width small-block-grid-1">
+        <ul class="full-width small-block-grid-1 potential-allies-list">
           <?php
           $counter = 0;
           foreach($similar_users as $similar_user): ?>
@@ -117,10 +124,130 @@
       <?php
     endif;
     ?>
+    <!-- End Potential Allies -->
+    <!-- LEADERBOARD -->
+    <div class="row hide-for-small-only padding top-1 bottom-1 left-2 border-top-divisor">
+        <h3><?= __('Leaderboard') ?></h3>
+        <div class="leaderboard">
+          <?php echo $this->element('leaderboard'); ?>
+        </div>
+    </div>
+    <!-- End Leaderboard -->
   </div>
 
   <!-- CENTER -->
   <div class="small-12 medium-7 large-9 columns padding top-2 bottom-2 left-2 right-2" data-equalizer-watch>
+
+    <!-- Current Mission -->
+    <?php foreach($available_missions as $index => $mission): ?>
+      <div id="mission<?php echo $mission['Mission']['id'] ?>" class="row current-mission <?php if($index==0){echo 'selected-mission';} ?>">
+        <h2 class="display-inline"> <?= strtoupper(__('Current Mission')) ?> - </h2>
+        <h3 class="text-color-highlight display-inline"><?= strtoupper($mission['Mission']['title']) ?></h3>
+
+
+        <?php  $mission_url = $this->Html->url(array('controller' => 'missions', 'action' => 'view_mission', $mission['Mission']['id'])); ?>
+        <!-- Mission Link -->
+        <div class="view view-first">
+          <a href="<?= $mission_url ?>">
+            <?php if(!is_null($mission['Mission']['cover_dir'])) :?>
+              <img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
+            <?php else :?>
+              <img src = '<?= $this->webroot.'img/E01G01P02.jpg' ?>'>
+            <?php endif ?>
+
+              <div class="mask">
+                  <p><?= $this->Text->getExcerpt($mission['Mission']['description'], 200, "...") ?></p>
+              </div>
+            </a>
+        </div>
+        <!-- End Mission Link -->
+        <!-- Available Quests -->
+        <?php $mission_phase_icons = $this->Phase->getPhaseIcons(); ?>
+        <div class="phase-quest">
+          <div class="row">
+            <span class="section-title small-4 medium-3 large-3 columns"><?php echo __('Current Phase'); ?></span>
+            <span class="section-title small-8 medium-9 large-9 columns"><?php echo __('Available Quests'); ?></span>
+          </div>
+          <div class="row">
+            <div class="button-bar phases-bar small-4 medium-3 large-3 columns">
+              <span class="button current">
+                <i class="fa <?= $mission_phase_icons[$current_phases[$index]['position']] ?> fa-lg"></i>
+                <?php echo $current_phases[$index]['name'] ?>
+              </span>
+            </div>
+            <ul class="quest-list small-8 medium-9 large-9 columns">
+              <?php foreach($quests[$index] as $quest): ?>
+                <li class="quest-link text-glow-on-hover">
+                  <a href="<?= $mission_url ?>" data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover='false' title="<?php echo $this->Text->getExcerpt($quest['Quest']['description'], 50, '...'); ?>">
+                    <span>
+                      <?php echo $quest['Quest']['title'] ?>
+                    </span>
+                    <span class="points">pts. <?php echo $quest['Quest']['points'] ?></span>
+                  </a>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        </div>
+        <!-- End Available Quests -->
+      </div>
+    <?php endforeach; ?>
+    <!-- End Current Mission -->
+    <!-- Allies' Activity -->
+    <div class="row border-top-divisor">
+      <div class="small-12 columns margin top-2">
+
+        <div class="row margins-0">
+          <h3 class="left margin right-2"><?= __("Allies' Recent Activity") ?></h3>
+        </div>
+
+
+        <!-- ALLIES GRID -->
+        <?php
+        //Has allies
+        if (count($friends) > 0): ?>
+          <ul class="large-block-grid-6 medium-block-grid-3 small-block-grid-2 no-marker">
+
+          <?php
+            foreach($friends as $index=>$ally):
+               ?>
+              <?php if(!empty($allies_evidences[$index]['Evidence'])): ?>
+                <li class="text-center">
+                  <!-- PICTURE -->
+
+                  <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'view_mission', $allies_evidences[$index]['Evidence']['mission_id'])); ?>">
+
+                    <?= $this->Picture->showUserCircularPicture(
+                      $ally['Friend'],
+                      'square-60px',
+                      __("%s's profile picture",$ally['Friend']['name'])
+                    ); ?>
+
+                    <p class="text-center text-glow-on-hover">
+                      <?php
+                        if(!empty($allies_evidences[$index]['Evidence']['title'])) {
+                          echo __("Submitted Evidence: ");
+                          echo $allies_evidences[$index]['Evidence']['title'];
+                        }
+                      ?>
+                    </p>
+                  </a>
+                </li>
+            <?php
+              endif;
+            endforeach;
+            ?>
+
+          </ul> <?php
+        else: ?>
+          <div data-alert="" class="alert-box radius">
+            <?= __('You have no allies! Get started looking at people similar to you!') ?>
+          </div><?php
+        endif; ?>
+      </div>
+    </div>
+    <!-- End Allies' Activity -->
+
     <div class="row standard-width">
       <!-- PSYCHOMETRIC ANALYSIS -->
       <div class="large-6 medium-12 columns">
@@ -128,6 +255,12 @@
         <p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
         <p><?= __('You have the heart of a Local Leader!') ?></p>
         <p><?= __('Your Entrepreneurship and Local Insight are key to you. Embrace your qualities and use them for the better.') ?></p>
+        <!-- Badges -->
+        <div class="large-6 columns padding top-2">
+          <h3><?= __('Badges earned') ?>&nbsp;&nbsp;(<?= count($badges) ?>)</h3>
+          <?php echo $this->element('badges'); ?>
+        </div>
+        <!-- End Badges -->
       </div>
 
       <!-- RADAR GRAPH FOR MATCHING RESULTS -->
@@ -138,73 +271,7 @@
           </div>
         </div>
       </div>
-      <div class="columns">
-        <div class = "row">
-          <div class="columns text-center">
-            <h3><?= __('You are: %s agent!', $superhero['SuperheroIdentity']['name']) ?></h3>
-            <p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
-          </div>
-        </div>
-        <div class="medium-6 columns">
-          <?php
-            $icons = array(1 => 'fa-puzzle-piece', 2 => 'fa-users', 3 => 'fa-cogs', 4 => 'fa-comments');
-            $id = $first_quality['SocialInnovatorQuality']['id'];
-            $icon = $icons[$id];
-          ?>
-          <div class='row'>
-            <div class="medium-12 columns text-center">
-              <i class="fa <?= $icon ?> fa-5x"></i>
-            </div>
-          </div>
-
-          <div class='row'>
-            <div class="medium-12 columns">
-
-              <p><h4><?= $first_quality['SocialInnovatorQuality']['name'] ?></h4></p>
-            </div>
-          </div>
-
-          <div class='row'>
-            <div class="medium-12 columns">
-              <p><?= $first_quality['SocialInnovatorQuality']['description'] ?></p>
-            </div>
-          </div>
-
-        </div>
-        <div class="large-6 medium-6 columns">
-          <?php
-            $id = $second_quality['SocialInnovatorQuality']['id'];
-            $icon = $icons[$id];
-          ?>
-
-          <div class='row'>
-            <div class="medium-12 columns text-center">
-              <i class="fa <?= $icon ?> fa-5x"></i>
-            </div>
-          </div>
-
-          <div class='row'>
-            <div class="medium-12 columns">
-
-              <p><h4><?= $second_quality['SocialInnovatorQuality']['name'] ?></h4></p>
-            </div>
-          </div>
-
-          <div class='row'>
-            <div class="medium-12 columns">
-              <p><?= $second_quality['SocialInnovatorQuality']['description'] ?></p>
-            </div>
-          </div>
-
-        </div>
-        <br>
-        <br>
-        <p><?= __('Continue to explore who you are, who you could be, on your profile page. Or start your mission. Or begin to think about your world chanding idea!') ?></p>
-        <div class="text-center">
-          <a class="button" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site')); ?>"><?php echo __('Explore evoke!'); ?></a>
-        </div>
-
-      </div>
+      <!-- End Radar Graph -->
     </div>
 
     <!-- BIOGRAPHY -->
@@ -296,21 +363,7 @@
         endif; ?>
       </div>
     </div>
-
-    <!-- LEADERBOARD -->
-    <div class="row border-top-divisor">
-      <div class="large-6 columns padding top-2 right-2 border-right-divisor">
-        <h3><?= __('Leaderboard') ?></h3>
-        <?php echo $this->element('leaderboard'); ?>
-      </div>
-
-      <div class="large-6 columns padding top-2">
-        <h3><?= __('Badges earned') ?>&nbsp;&nbsp;(<?= count($badges) ?>)</h3>
-        <?php echo $this->element('badges'); ?>
-      </div>
-    </div>
   </div>
->>>>>>> jg-user_dashboard
 </div>
 
 <?php
@@ -322,6 +375,7 @@
 
   //SCRIPT
   $this->Html->script('requirejs/app/Users/profile.js', array('inline' => false));
+  $this->Html->script('requirejs/app/Users/dashboard.js', array('inline' => false));
 ?>
 
 <?php

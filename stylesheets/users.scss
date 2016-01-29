@@ -1,0 +1,185 @@
+/* --------------------------- */
+/* LOGIN */
+/* --------------------------- */
+@import 'compass/css3';
+@import 'evoke_variables';
+
+.evoke .login .fullpage {
+  z-index: 0;
+}
+
+.login-button-wrapper {
+  margin-top: -3px;
+}
+
+.login-social-networks {
+  margin-top: 4px;
+}
+
+.tabs-content {
+  width: 90%;
+  margin: auto;
+}
+
+@media all and (min-width: 650px) {
+  .tabs-content {
+    width: 70%;
+  }
+}
+
+.evoke {
+  /* Slide */
+  &.slide.background-cover.active .img-caption-bottom {
+    width: 50%;
+  }
+  /* --------------------------- */
+  /* MATCHING RESULTS AND PROFILE */
+  /* --------------------------- */
+  #radar-graph {
+    margin-top: -50px;
+  }
+  .profile-sidebar {
+    font-size: 0.9rem;
+    .p {
+      font-size: 0.9rem;
+    }
+
+    .leaderboard {
+      max-height: 20rem;
+      overflow-y: scroll;
+
+      .other-leaders {
+        margin: 0;
+        width: 90%;
+      }
+    }
+  }
+
+  /* Profile picture */
+  .profile-picture {
+    height: 150px;
+    width: 125px;
+    &.small {
+      height: 100px;
+      width: 80px;
+    }
+    &.smallest {
+      height: 50px;
+      width: 40px;
+    }
+  }
+
+  /* User panel leaderboard */
+
+  /* --------------------------- */
+  /* LEADERBOARD */
+  /* --------------------------- */
+  .user-panel-leaderboard {
+    .profile-picture {
+      margin: -125px auto 0px auto;
+    }
+    .profile-content {
+      margin-top: 100px;
+    }
+  }
+
+  .login .tabs {
+    line-height: 92px;
+  }
+}
+
+/**
+ * Current Mission Section
+ */
+.current-mission {
+  display: none;
+
+  &.selected-mission {
+    display: block;
+  }
+  .section-title {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  .quest-list {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+
+    .quest-link {
+      width: 19%; //allows for extra padding on end
+      height: 4.5rem;
+      display: inline-block;
+      border-right: 1px solid $dark-gray-border;
+      vertical-align: top;
+      position: relative;
+
+      .has-tip {
+        color: $text-color;
+      }
+
+      .points {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+
+      a {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    }
+  }
+}
+
+/**
+ * Available Missions
+ */
+.available-missions {
+ .view-first {
+   &.selected-mission {
+    border: 5px solid $highlight-color;
+
+    .mask {
+      @include opacity(1);
+
+      p {
+        @include transform(translateY(0));
+        @include opacity(1);
+      }
+
+     }
+   }
+
+   .mask{
+     p {
+       margin-top: 0;
+     }
+   }
+ }
+}
+
+/**
+ * Potential Allies
+ */
+.potential-allies-list {
+  max-height: 20rem;
+  overflow-y: scroll;
+}
+
+
+
+.icon-medal-stack {
+  .icon-medal2 {
+    color: $text-dark-color;
+  }
+  .fa-circle {
+    margin-top: 0.3em;
+  }
+  .medal-text {
+    margin-top: 0.6em;
+    font-size: 0.6em;
+  }
+}

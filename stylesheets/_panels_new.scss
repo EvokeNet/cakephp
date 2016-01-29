@@ -1,0 +1,73 @@
+.menu-column {
+  background-color: #2F3540;
+  height: 600px;
+}
+
+.paginated {
+  width: 100%;
+  input[type="checkbox"] {
+    margin: 0;
+  }
+}
+
+div.pager a.active {
+  background: #333;
+  color: #ccc;
+}
+
+.smart-forms {
+  line-height: 1.231;
+  font-weight: 400;
+  font-size: 14px;
+  color: #34495e;
+  .prepend-icon {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 100%;
+  }
+  .gui-input {
+    &:focus {
+      border-color: #1abc9c;
+      color: #3c3c3c;
+      box-shadow: none;
+    }
+    background: #fff;
+    position: relative;
+    vertical-align: top;
+    border: 2px solid #bdc3c7;
+    display: -moz-inline-stack;
+    display: inline-block;
+    color: #34495e;
+    outline: 0;
+    height: 42px;
+    width: 100%;
+    border-radius: 3px;
+  }
+  .header-primary {
+    background-color: #1abc9c;
+    border-top: 1px solid #23e0ba;
+    border-bottom: 5px solid #16a085;
+  }
+  .form-header {
+    overflow: hidden;
+    position: relative;
+    padding: 25px 30px;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -o-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+  }
+}
+
+.overall-info-icon {
+  color: #2DE0E8;
+  background-color: #2F3540;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
+  i {
+    padding-top: 30px;
+  }
+}

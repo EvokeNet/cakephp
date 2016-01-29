@@ -1,0 +1,18 @@
+// This is the main style sheet for evoke
+// Import any styles that are needed on all pages here
+@import 'compass/css3';
+@import 'evoke_variables';
+
+//foundation
+@import 'settings';
+@import '../webroot/components/foundation/scss/foundation';
+@import 'foundation_overrides';
+
+//custom styles
+@import 'badge_round';
+@import 'badges';
+@import 'evoke';
+@import 'mission_hover';
+@import 'missions';
+@import 'panels_new';
+// @import 'users';
