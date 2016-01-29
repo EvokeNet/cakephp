@@ -21,9 +21,6 @@ class UserRoleComponent extends Component {
     }
 
     public function is($role) {
-        // debug($this->score[$this->role()].' user');
-        // debug($this->score[$role].' admin');
-        // debug($this->score[$this->role()] >= $this->score[$role]);
         return $this->score[$this->role()] >= $this->score[$role];
     }
 

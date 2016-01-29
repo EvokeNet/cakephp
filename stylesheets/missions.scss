@@ -1,0 +1,241 @@
+@charset "utf-8";
+
+/* --------------------------- */
+/* MISSIONS */
+/* --------------------------- */
+/* Main section */
+
+.evoke {
+  .main-section {
+    margin-left: 4.725rem;
+    /* space for left offcanvas */
+  }
+  .missions-submenu {
+    background-color: transparent;
+    z-index: 5;
+    /*margin-left: 4.725rem;*/
+    /* space for left offcanvas */
+  }
+  .mission-description {
+    font-size: larger;
+    color: #fff;
+  }
+  .phases-bar {
+    button.small, .button.small {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      font-size: 0.7rem;
+    }
+    a, .radius a {
+      border-color: #26dee0;
+      margin: 0;
+    }
+    a {
+      &:not(.disabled):hover {
+        -webkit-box-shadow: 0px 0px 4px 2px #26dee0;
+        -moz-box-shadow: 0px 0px 4px 2px #26dee0;
+        box-shadow: 0px 0px 4px 2px #26dee0;
+        filter: progid:DXImageTransform.Microsoft.Glow(color='#26dee0', Strength='4');
+        filter: glow(color = white, strength = 4) blur(add = false, direction = 0, strength = 4) blur(add = false, direction = 180, strength = 4) blur(add = false, direction = 270, strength = 4) blur(add = false, direction = 90, strength = 4);
+      }
+      border-color: #26dee0;
+      margin: 0;
+    }
+    .radius a {
+      border-color: #26dee0;
+      margin: 0;
+    }
+    .available {
+      background-color: #275761;
+      color: #ccc;
+      i {
+        color: #ccc;
+      }
+    }
+    .current {
+      background-color: #26dee0;
+      cursor: default;
+      color: #000;
+      i {
+        color: #000;
+      }
+    }
+  }
+  #navigationBar {
+    top: 90%;
+  }
+}
+
+/* Submenu */
+
+/* NAVIGATION BAR */
+
+/* Loading */
+
+#loading {
+  position: absolute;
+  top: 15rem;
+  left: 50%;
+  /*z-index: 2;*/
+}
+
+/* --------------------------- */
+/* OFF CANVAS */
+/* --------------------------- */
+
+#missionSidebar {
+  z-index: 13;
+}
+
+#missionMenuContent {
+  z-index: 2;
+}
+
+/* Missions graphic novel content */
+
+.missions-graphic-novel {
+  margin-right: 1.725rem;
+}
+
+/* Left off canvas */
+
+.evoke .missions {
+  .left-off-canvas-menu {
+    width: 45rem;
+  }
+  .left-small {
+    transition: transform 500ms ease 0s;
+    border: none;
+    position: fixed;
+    top: 50%;
+    height: initial;
+  }
+  .menu-icon-label {
+    font-size: 0.8em;
+    line-height: 1.5em;
+  }
+  .right-small.open {
+    right: 30em;
+  }
+}
+
+/* Menu icon */
+
+/* Right offcanvas menu needs margin when sidr is open */
+
+@media only screen and (min-width: 76em) {
+  .evoke .missions .right-small.open {
+    right: 38em;
+  }
+}
+
+#missions-content-overlay {
+  z-index: 14;
+}
+
+/* Content overlay button */
+
+#close-content-overlay-button {
+  z-index: 6;
+}
+
+/* Tab Menu */
+
+.evoke {
+  .tabMenuContent {
+    ul {
+      margin-left: 0;
+    }
+    li {
+      height: 33%;
+    }
+  }
+  .tabDossierContent {
+    .content {
+      padding: 0;
+    }
+    ul {
+      margin-left: 0.2em;
+    }
+  }
+}
+
+/* Tab Dossier */
+
+/* --------------------------- */
+/* CREATE AN EVIDENCE */
+/* --------------------------- */
+
+.evidence .full-height-vh {
+  height: 100vh;
+}
+
+.quest-sidebar {
+  font-size: 80%;
+}
+
+a.evidence-type {
+  display: block;
+}
+
+#new-evidence-type {
+  .active {
+    h4 {
+      color: #26dee0;
+    }
+    i {
+      color: #26dee0;
+      border-color: #26dee0;
+    }
+  }
+  .inactive {
+    h4 {
+      color: #707070;
+    }
+    i {
+      color: #707070;
+      border-color: #707070;
+    }
+  }
+}
+
+/* --------------------------- */
+/* JOYRIDE */
+/* --------------------------- */
+
+.joyride-content-wrapper {
+  background-color: #fff;
+  color: #252525;
+  .button {
+    background-color: #c65862;
+  }
+  p {
+    font-size: 1.3em;
+  }
+  h4 {
+    color: #252525;
+  }
+}
+
+.joyride-tip-guide .joyride-nub.top {
+  border-color: #fff;
+  top: -18px;
+}
+
+/* --------------------------- */
+/* FORUM */
+/* --------------------------- */
+
+.evoke {
+  #tabForum, #tabGroupForum {
+    z-index: 3;
+  }
+}
+
+/* --------------------------- */
+/* TESTE - BRAINSTORM */
+/* --------------------------- */
+
+.horizontal_timeline .states .circle {
+  cursor: pointer;
+}
