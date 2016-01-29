@@ -256,7 +256,7 @@
         <p><?= __('You have the heart of a Local Leader!') ?></p>
         <p><?= __('Your Entrepreneurship and Local Insight are key to you. Embrace your qualities and use them for the better.') ?></p>
         <!-- Badges -->
-        <div class="large-6 columns padding top-2">
+        <div>
           <h3><?= __('Badges earned') ?>&nbsp;&nbsp;(<?= count($badges) ?>)</h3>
           <?php echo $this->element('badges'); ?>
         </div>
