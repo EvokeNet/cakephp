@@ -946,9 +946,10 @@ class UsersController extends AppController {
       if (isset($this->request->data['UserMatchingAnswer']['matching_answer'])) {
         $this->loadModel('MatchingAnswer');
         $matching_answers = $this->MatchingAnswer->find('all');
-        $qualities = array(); // each position represents on of the social innovator qualities [0] is nothing
+        $qualities = $this->build_qualities_array(); // each position represents on of the social innovator qualities [0] is nothing
         $user_answers = array();
         $user_id = $this->request->data['UserMatchingAnswer']['user_id'];
+
         foreach($this->request->data['UserMatchingAnswer']['matching_answer'] as $question_id => $u) {
           //ESSAY
           if (isset($u['description'])) {
@@ -988,6 +989,7 @@ class UsersController extends AppController {
           }
           //this array represents the weights for each answer in the order quastions
           $weights = array( 1 => 3, 2 => 2, 3 => 1, 4 => 0);
+
           foreach ($user_answers as $ua_id => $ua) {
 
             foreach($matching_answers as $ma){
@@ -1404,5 +1406,14 @@ class UsersController extends AppController {
         'Mission.basic_training' => 0
       )
     ));
+  }
+
+  private function build_qualities_array() {
+    $qualities = array();
+
+    for($i = 0; $i <= 6; $i++) {
+      $qualities[] = 0;
+    }
+    return $qualities;
   }
 }
