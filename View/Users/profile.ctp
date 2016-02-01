@@ -311,7 +311,6 @@
       </div>
     </div>
   </div>
->>>>>>> jg-user_dashboard
 </div>
 
 <?php
