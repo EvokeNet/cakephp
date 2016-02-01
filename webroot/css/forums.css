@@ -1,0 +1,230 @@
+.forums .link-title{
+    padding-left: 20px;
+    text-align: left;
+}
+
+.forums .title{
+    text-align: left;
+}
+
+.forums .description{
+    text-align: justify;
+    font-size: 14px;
+    padding: 0px 0px 20px 0px;
+}
+
+.evoke .forums.table{
+    margin: auto;
+    width: 60%;
+    background-color: transparent;
+    border: 1px solid #26dee0;
+    border-collapse: collapse;
+}
+
+.evoke .forums.table .head{
+    background-color: white;
+}
+
+.evoke .forums.table .head-cell{
+    font-size: 22px;
+}
+
+.evoke .forums.table .cell{
+    font-size: 18px;
+    padding: 20px 10px 20px 10px;
+}
+
+.evoke .forums.table .gray-cell{
+    color: #ccc;
+}
+
+.evoke .forums.table .centered{
+    text-align: center;
+}
+
+.evoke .forums.table .left{
+    text-align: left;
+}
+
+.evoke .forums.table .size1{
+    width: 10%;
+}
+
+.evoke .forums.table .size2{
+    width: 20%;
+}
+
+.evoke .forums.table .size3{
+    width: 30%;
+}
+
+.evoke .forums.table tbody:hover{
+    background-color: #26dee0;
+}
+
+.evoke .forums.table tr{
+    border-bottom: 1px solid #26dee0;
+}
+
+.forums.paging{
+    padding: 5px;
+}
+
+.forums.paging .button.thin{
+    padding: 5px;
+    vertical-align: -40px;
+    width: 30px;
+}
+
+.forums.paging .float{
+    float: left;
+}
+
+.forums .accordion-navigation{
+    width: 40%;
+    max-width: 60%;
+    margin: auto;
+    padding: 10px;
+}
+
+.forums .content{
+    padding: 5px;
+}
+
+.forums .category{
+    padding: 0px;
+    border-style: groove;
+ 	border-width: 1px;
+ 	border-color: white;
+
+}
+
+.forums .category-title{
+    padding-top: 15px;
+    padding-bottom: 5px;
+    font-size: 26px;
+}
+
+.forums .category-description{
+    padding: 10px 15px 15px 10px;
+    font-size: 14px;
+    text-align: justify;
+}
+
+.forums .category-link{
+    padding-bottom: 15px;
+}
+
+.forums.post.padding{
+    padding-bottom: 20px;
+}
+
+.forums.post.icon{
+    text-align: right;
+    width: 100%;
+    margin: inherit;
+    margin: 0px;
+    padding: 0px;
+}
+
+.forums.post.title{
+    text-align: left;
+    margin: inherit;
+    margin-left: 10px;
+    margin-right: 0px;
+    width: 100%;
+}
+
+.forums.post.author{
+    text-align: left;
+    margin: inherit;
+    padding-top: 7px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.forums.post.time{
+    width: 100%;
+    color: black;
+    padding-top: 5px;
+    font-size: 14px;
+}
+
+.forums.post{
+    width: 75%;
+    margin: auto;
+}
+
+.forums.post.content{
+    text-align: justify;
+    color: black;
+    margin: inherit;
+    margin: 0px;
+    width: 100%;
+    font-size: 20px;
+}
+
+.forums.post-link.centering{    
+    margin: auto;
+    width: 56%;
+}
+
+.forums.post-link.float{    
+    text-align: right;
+    height: 50px;
+    margin-bottom: 24px;
+}
+
+.forums.post-edit-link.float{    
+    text-align: right;
+}
+
+.forums.post-link.box{   
+    text-align: center; 
+    display: inline-block;
+    font-size: 24px;
+    padding: 12px;
+}
+
+.forums.post-edit-link.box{   
+    text-align: center; 
+    display: inline-block;
+    font-size: 14px;
+}
+
+.forums.newpost-form .input.text label,
+.forums.newpost-form .input.textarea label{
+    font-size: 26px;
+    text-align: left;
+    color: white;
+}
+
+.forums.newpost-form .input.textarea label{
+    font-size: 26px;
+    text-align: left;
+    color: white;
+}
+
+.forums.newpost-form textarea{
+    height: 400px;
+}
+
+.forums.newpost-form{
+    width: 75%;
+    margin: auto;
+}
+
+.forums.newpost-legend{
+    background-color: transparent;
+    font-size: 26px;
+}
+
+.forums.newpost-form .button.thin{
+    font-size: 35px;
+    float: right;
+}
+
+.user_picture{
+    float: left;
+    margin-right: 15px;
+}

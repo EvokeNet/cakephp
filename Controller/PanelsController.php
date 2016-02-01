@@ -15,14 +15,6 @@ class PanelsController extends AppController {
 	public $user = null;
 	public $helpers = array('Chosen.Chosen');
 
-	public $components = array('UserRole');
-
-	public $accessLevels = array(
-		'*' => 'admin',
-		'*' => 'manager',
-		'' => 'user'
-	);
-
 /**
 *
 * beforeFilter method
@@ -35,41 +27,21 @@ class PanelsController extends AppController {
 
     $this->user = array();
         //get user data into public var
-		$this->user['role_id'] = $this->getUserRole();
+		$this->user['role'] = $this->getUserRole();
 		$this->user['id'] = $this->getUserId();
 		$this->user['name'] = $this->getUserName();
 
-		//there was some problem in retrieving user's info concerning his/her role : send him home
-		// if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
-		// 	$this->redirect(array('controller' => 'users', 'action' => 'login'));
-		// }
+		$options = array(
+			'moderatorPrivilege' => false,
+			'minimumRole' => ADMIN,
+			'object' => null
+		);
 
-		//checking Acl permission
-//		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
-//			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."), 'flash_message');
-//			$this->redirect($this->referer());
-//		}
+		if(!$this->Permission->hasPrivilege($options)){
+			$this->redirect(array('controller' => 'users', 'action' => 'profile', $this->getUserId()));
+		}
+
 	}
-
-	public function isAuthorized($user = null) {
-			if (parent::isAuthorized($user)) {
-			    return true;
-			}
-
-			// Authorised actions
-		// if (in_array($this->action, array('changePassword'))) {
-	 //        $id = $this->request->params['pass'][0];
-
-  //           if($this->{$this->modelClass}->field('user_id', array('user_id' => $id)) == $this->Auth->user('user_id'))
-  //               return true;
-	 //    }
-
-		// Will break out on this call
-		$this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
-		$this->redirect(array('controller' => 'users', 'action' => 'profile', $this->getUserId()));
-
-		return false;
-  }
 
 /*
 * index method

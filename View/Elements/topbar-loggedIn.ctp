@@ -25,7 +25,7 @@
 			<!-- USER PROFILE PICTURE WITH DROPDOWN MENU -->
 			<li class="has-dropdown">
 				<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>" class="button-icon">
-					
+
 						<?= $this->Picture->showUserCircularPicture(
 							$loggedInUser,
 							'square-40px',
@@ -66,6 +66,14 @@
 
 			<li>
 				<div class="column">
+					<a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index')); ?>" class="text-glow-on-hover text-color-highlight">
+						<?php echo __('Forum'); ?>
+					</a>
+				</div>
+			</li>
+
+			<li>
+				<div class="column">
 					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard')); ?>" class="text-glow-on-hover text-color-highlight">
 						<?php echo __('Leaderboard'); ?>
 					</a>
@@ -79,8 +87,9 @@
 					</a>
 				</div>
 			</li>
-			
-			<?php if ($loggedInUser['role'] != 'user'){ ?>
+
+			<?php if ($loggedInUser['role'] <= ADMIN){ 
+			?>
 			<li>
 				<div class="column">
 					<a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main')); ?>" class="text-glow-on-hover text-color-highlight"><?php echo __('Admin'); ?></a>

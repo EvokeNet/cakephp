@@ -1,12 +1,12 @@
 <?php
 
-require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
+// require APP.'Vendor'.DS.'facebook'.DS.'php-sdk'.DS.'src'.DS.'facebook.php';
 
 // require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'Google_Client.php';
 // require_once APP.'Vendor'.DS.'google-login'.DS.'src'.DS.'contrib'.DS.'Google_Oauth2Service.php';
 
-require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Client.php';
-require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Service'.DS.'Oauth2.php';
+// require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Client.php';
+// require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Service'.DS.'Oauth2.php';
 
 App::uses('AppController', 'Controller');
 
@@ -25,9 +25,7 @@ class UsersController extends AppController {
  */
   //public $components = array('MathCaptcha', 'Visit');
 
-  public $components = array('UserRole');
-
-  public $uses = array('User', 'Friend');
+	public $uses = array('User', 'Friend');
 
   public $user = null;
 
@@ -116,6 +114,7 @@ class UsersController extends AppController {
     //TRANSLATION
 
     $lang = $this->getCurrentLanguage();
+
 
     if ($lang == 'es') {
       $video_url = 'http://player.vimeo.com/video/93164917';
@@ -273,6 +272,7 @@ class UsersController extends AppController {
 
       }
 
+
     } else if ($this->Auth->login()) {
 
       $date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
@@ -282,6 +282,7 @@ class UsersController extends AppController {
     } else if(isset($this->request->data['User']['username'])){
 
       $user2 = $this->User->find('first', array('conditions' => array('User.username' => $this->request->data['User']['username'])));
+
 
       if(empty($user2)){
         $this->Session->setFlash(__('Your login and/or password was incorrect. Please try again.'));
@@ -919,6 +920,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
+
   public function matching($id = null) {
 
     //debug($this->request->data);
@@ -1012,12 +1014,14 @@ class UsersController extends AppController {
     $this->set(compact('matching_questions', 'user_id', 'issues', 'selectedIssues'));
   }
 
+
 /**
  *
  * matching results
  *
  * @return void
  */
+
   public function matching_results($id = null, $quality_1, $quality_2) {
     // find superhero and prepare the text for the qualities
     $this->loadModel('SuperheroIdentity');
@@ -1075,6 +1079,7 @@ class UsersController extends AppController {
 
     $this->set(compact('similar_users', 'friends_ids', 'superhero', 'first_quality', 'second_quality'));
   }
+
 
 /**
  *

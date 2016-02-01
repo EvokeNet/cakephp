@@ -10,6 +10,7 @@
 ?>
 
 <div class="evoke row background-color-standard full-width" data-equalizer data-equalizer-mq="large-up">
+
   <!-- LEFT SIDEBAR -->
   <div class="small-12 medium-5 large-3 columns gradient-on-right profile-sidebar" data-equalizer-watch>
     <!-- PROFILE -->

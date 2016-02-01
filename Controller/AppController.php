@@ -27,14 +27,14 @@ class AppController extends Controller {
  * Global Components
  *
  * @var array
- */	
+ */
 	public $components = array(
 		'Session',
+		'Permission',
 		'Auth' => array(
 			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
 				'authError' => 'Você não tem permissão para ver essa página'
-		),
-		'UserRole'
+		)
 	);
 
 	public $helpers = array(
@@ -66,7 +66,12 @@ class AppController extends Controller {
 		$this->set('loggedIn', $this->Auth->loggedIn());
 		$cuser = $this->Auth->user();
 		$loggedInUser = $this->Auth->user();
-		
+
+		$this->loadModel('Role');
+
+		$role = $this->Role->find('first', array('conditions' => array('id' => $loggedInUser['role_id'])))['Role']['score'];
+		$loggedInUser['role'] = $role;
+
 		//User definitions
 		$userPoints = $this->getPoints($this->getUserId());
 		$userLevel = $this->getLevel($userPoints); //level ID
@@ -103,14 +108,14 @@ class AppController extends Controller {
 
 /**
  * If no language was defined, read the browser language and sets the website language to it if available
- * 
+ *
  */
 	protected function _checkBrowserLanguage(){
 		if (!$this->Session->check('Config.language')){
 			//Languages supported in Evoke
 			$supported_languages = Configure::read('Config.supported_languages');
 
-			//Language(s) registered in the user's browser 
+			//Language(s) registered in the user's browser
 			$languageHeader = $this->request->header('Accept-language');
 
 			$lang = 'en';
@@ -216,16 +221,16 @@ class AppController extends Controller {
 			'conditions' => array(
 				'Notification.user_id' => $user_id,
 				'Notification.status' => 0,
-			), 
+			),
 			'order' => array(
 				'Notification.created DESC'
 			)
 		));
 
 		$count = array();
-		
+
 		foreach($all as $a => $n){
-			if(($n['Notification']['origin'] == 'like') || ($n['Notification']['origin'] == 'commentEvidence') 
+			if(($n['Notification']['origin'] == 'like') || ($n['Notification']['origin'] == 'commentEvidence')
 				|| ($n['Notification']['origin'] == 'commentEvokation') || ($n['Notification']['origin'] == 'voteEvokation')
 				|| ($n['Notification']['origin'] == 'gritBadge')):
 				array_push($count, array('Notification.id' => $n['Notification']['id']));
@@ -236,21 +241,21 @@ class AppController extends Controller {
 
 	}
 
-	public function saveNotifications($notes, $user_id){		
+	public function saveNotifications($notes, $user_id){
 		$this->loadModel('Notification');
 
 		$all = $this->Notification->find('all', array(
 			'conditions' => array(
 				'Notification.user_id' => $user_id,
 				'OR' => $notes
-			), 
+			),
 			'order' => array(
 				'Notification.created DESC'
 			)
 		));
 
 		$count = array();
-		
+
 		foreach($all as $n){
 			$this->Notification->id = $n['Notification']['id'];
 			$this->Notification->saveField('status', 1);
@@ -272,13 +277,13 @@ class AppController extends Controller {
 
 	/**
 	 * Gets the level (just the number) that corresponds to a certain number of points
-	 * @param int $userPoints Number of points 
+	 * @param int $userPoints Number of points
 	 * @return int Level
 	 */
 	public function getLevel($userPoints){
 		$this->loadModel('Level');
 		$level = $this->Level->getLevel($userPoints);
-		return $level['Level']['level'];
+		// return $level['Level']['level'];
 	}
 
 	/**
@@ -298,7 +303,7 @@ class AppController extends Controller {
 			return null;
 	}
 
-	
+
 
 
 	public function getUserImage($userid) {
@@ -311,12 +316,14 @@ class AppController extends Controller {
 
 		$thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
 
-		if(!empty($thisLevel))
+		/*if(!empty($thisLevel))
 			$percentage = round(($userPoints/$thisLevel['Level']['points']) * 100);
 		else
 			$percentage = 0;
+			*/
 
-		return $percentage;
+		//return $percentage;
+			return 0;
 	}
 
 	public function getUserId() {
@@ -328,12 +335,18 @@ class AppController extends Controller {
 	public function getUserName() {
 		$currentuser = $this->Auth->user();
 		if(isset($currentuser['name'])) return $currentuser['name'];
-		return $currentuser['User']['name'];   
+		return $currentuser['User']['name'];
 	}
 
 	public function getUserRole() {
 		$currentuser = $this->Auth->user();
-		if(isset($currentuser['role_id'])) return $currentuser['role_id'];
-		return $currentuser['User']['role_id'];
+		if(isset($currentuser['role'])){
+
+			return $currentuser['role'];	
+		} 
+
+		$role_score = $this->Role->find('first',array('id' => $currentuser['role_id']))['Role']['score'];
+
+		return $role_score;
 	}
 }

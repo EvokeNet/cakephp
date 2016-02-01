@@ -16,8 +16,8 @@ class Group extends AppModel {
  */
 	public $actsAs = array(
 		'Containable',
-		'BrainstormSessionEvoke.ActPhaseBrainstorm',
-		'Optimum.ForumFilterable'
+		// 'BrainstormSessionEvoke.ActPhaseBrainstorm',
+		// 'Optimum.ForumFilterable'
 	);
 
 /**
@@ -109,7 +109,7 @@ class Group extends AppModel {
 
 
 	public function afterSave($created, $options = array()) {
-	   
+
 		// if($created){
 			// $event = new CakeEvent('Model.Group.create', $this, array(
 			// 	'points' => $value
@@ -118,11 +118,11 @@ class Group extends AppModel {
 			// $this->getEventManager()->dispatch($event);
 
 		// 	return true;
-		// }   
+		// }
 	}
 
-	
-	
+
+
 /**
  * belongsTo associations
  *
