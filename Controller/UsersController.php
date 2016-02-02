@@ -607,6 +607,17 @@ class UsersController extends AppController {
 
     $users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
+
+    $user_id = $this->getUserId();
+
+    if($id = $user_id){
+      $is_current_user = true;
+    }else{
+      $is_current_user = false;
+    }
+
+    
+
     /**
     *
     *get superhero id, get the social innovators ids, find them in the DB and send them to the view to put in place of the psychometric analisys
@@ -637,7 +648,7 @@ class UsersController extends AppController {
 
     $otherLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $level+1)));
 
-    if(!empty($otherLevel))
+    if(!empty($otherLevel) && $otherLevel['Level']['points'] > 0)
       $percentage = round(($sumPoints / $otherLevel['Level']['points']) * 100);
     else
       $percentage = 0;
