@@ -69,8 +69,10 @@ class AppController extends Controller {
 
 		$this->loadModel('Role');
 
-		$role = $this->Role->find('first', array('conditions' => array('id' => $loggedInUser['role_id'])))['Role']['score'];
-		$loggedInUser['role'] = $role;
+		if(isset($loggedInUser)){
+			$role = $this->Role->find('first', array('conditions' => array('id' => $loggedInUser['role_id'])))['Role']['score'];
+			$loggedInUser['role'] = $role;	
+		}
 
 		//User definitions
 		$userPoints = $this->getPoints($this->getUserId());

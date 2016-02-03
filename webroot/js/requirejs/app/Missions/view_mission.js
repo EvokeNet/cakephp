@@ -116,6 +116,23 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				});
 				event.preventDefault();
 			});
+
+			//--------------------------------------------//
+			//REMOVE LOADING DIVS
+			//--------------------------------------------//
+			//AFTER THE PAGE IS LOADED, LOADING IMAGES ARE REMOVED
+			// WAIT 0.5 SECONDS BEFORE IMAGES ARE REMOVED
+			setTimeout(function () {
+		        var elements = document.getElementsByClassName('loading-circle-outside');
+	   			while(elements.length > 0){
+	        		elements[0].parentNode.removeChild(elements[0]);
+	    		}
+
+	    		elements = document.getElementsByClassName('loading-circle-inside');
+	   			while(elements.length > 0){
+	        		elements[0].parentNode.removeChild(elements[0]);
+	    		}
+	    	},500);
 		});
 	});
 });
