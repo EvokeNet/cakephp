@@ -2,6 +2,7 @@
 @import 'partials/admin_panel';
 @import 'partials/profile';
 @import 'partials/fullpage_plugin';
+@import 'partials/forum';
 
 $bg-color: #28282C;
 $default-green: #2FCCCB;
@@ -119,6 +120,14 @@ body > .container {
 
 .centralize-content-30{
   padding: 0 30%;
+}
+
+.text-align-left{
+	text-align: left;
+}
+
+.text-align-right{
+	text-align: right;
 }
 
 .evoke .row{

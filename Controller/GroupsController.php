@@ -177,7 +177,7 @@ public function addGroup() {
 		if ($quest_id == null) {
 			$quest_id = $this->request->data['Group']['quest_id'];
 		}
-		
+
 		//MISSION
 		$quest = $this->Group->Quest->findById($quest_id);
 		$mission_id = $quest['Quest']['mission_id'];
@@ -204,7 +204,7 @@ public function addGroup() {
 		if (!$this->Group->exists($id)) {
 			throw new NotFoundException(__('Invalid group'));
 		}
-		
+
 		$me = $this->getUserId();
 
 		if(!$this->isOwner($me, $id) && !$this->isMember($me, $id)) {
@@ -224,7 +224,7 @@ public function addGroup() {
 		));
 
 		$group = $this->Group->find('first', array('conditions' => array('Group.' . $this->Group->primaryKey => $id)));
-		
+
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Group->createWithAttachments($this->request->data, true, $id)) {
@@ -235,7 +235,7 @@ public function addGroup() {
 				return $this->redirect(array('action' => 'view', $id));
 			}
 		}
-		
+
 		$this->set(compact('users', 'group', 'group_img'));
 	}
 

@@ -89,9 +89,9 @@ $title = __('Evoke Network');
 		echo $this->fetch('content');
 
 		//FOOTER
-		if ($this->fetch('footer')) {
-			echo $this->fetch('footer');
-		}
+		// if ($this->fetch('footer')) {
+		// 	echo $this->fetch('footer');
+		// }
 		?>
 	</section>
 
@@ -141,8 +141,6 @@ $title = __('Evoke Network');
   	  });
 */
 	</script>
-
-	<?= $this->element('footer') ?>
 	
 </body>
 </html>
