@@ -33,6 +33,8 @@ class UsersController extends AppController {
 
   public $paginate;
 
+  public $components = array('Paginator');
+
 /**
 *
 * beforeFilter method
@@ -1326,12 +1328,7 @@ class UsersController extends AppController {
     // return $this->redirect(array('action' => 'index'));
     return $this->redirect($this->referer());
   }
-/**
- * Components
- *
- * @var array
- */
-  public $components = array('Paginator');
+
 
 /**
  * admin_index method

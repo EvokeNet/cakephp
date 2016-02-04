@@ -32,7 +32,7 @@ class AppController extends Controller {
 		'Session',
 		'Permission',
 		'Auth' => array(
-			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+			'logoutRedirect' => array('controller' => 'users', 'action' => 'login','admin' => false),
 				'authError' => 'Você não tem permissão para ver essa página'
 		)
 	);
@@ -43,9 +43,6 @@ class AppController extends Controller {
 
 	public $user = null;
 	public $lang = null;
-
-
-
 
 /**
 * beforeFilter method
@@ -67,6 +64,19 @@ class AppController extends Controller {
 		if(isset($loggedInUser)){
 			$role = $this->Role->find('first', array('conditions' => array('id' => $loggedInUser['role_id'])))['Role']['score'];
 			$loggedInUser['role'] = $role;	
+		}
+
+		// CHECK IF USER TRIES TO ACCESS ADMIN PAGE
+			if(isset($this->request->params['admin']) && $this->request->params['admin']){
+				$options = array(
+				'moderatorPrivilege' => false,
+				'minimumRole' => ADMIN,
+				'object' => null
+			);
+
+			if(!$this->Permission->hasPrivilege($options)){
+				$this->redirect(array('controller' => 'users', 'action' => 'profile', $this->getUserId(),'admin' => false));
+			}
 		}
 
 		//User definitions
@@ -96,7 +106,7 @@ class AppController extends Controller {
 							 && $this->request->params['action'] != 'register' // also if user is registering
 							 && $this->request->params['action'] != 'matching_results'){
 		
-			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId())); 
+			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId(),'admin' => false)); 
 		}
 
 		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language'));
@@ -162,12 +172,6 @@ class AppController extends Controller {
 		$this->redirect($this->referer()); //in order to redirect the user to the page from which it was called
 	}
 
-
-
-
-
-
-
 	public function isAuthorized($user = null) {
 
 		if (!empty ($this->accessLevels)) {
@@ -194,7 +198,7 @@ class AppController extends Controller {
 
 			// Will break out on this call
 			$this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
-			$this->redirect(array('controller' => 'users', 'action' => 'changePassword', $user['user_id']));
+			$this->redirect(array('controller' => 'users', 'action' => 'changePassword', $user['user_id'],'admin' => false));
 			return false;
 
 		}
@@ -203,13 +207,6 @@ class AppController extends Controller {
 		return false;
 
 	}
-
-
-
-
-
-
-
 
 	public function getNotificationsNumber($user_id){
 

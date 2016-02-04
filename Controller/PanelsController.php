@@ -31,16 +31,6 @@ class PanelsController extends AppController {
 		$this->user['id'] = $this->getUserId();
 		$this->user['name'] = $this->getUserName();
 
-		$options = array(
-			'moderatorPrivilege' => false,
-			'minimumRole' => ADMIN,
-			'object' => null
-		);
-
-		if(!$this->Permission->hasPrivilege($options)){
-			$this->redirect(array('controller' => 'users', 'action' => 'profile', $this->getUserId()));
-		}
-
 	}
 
 /*
