@@ -38,8 +38,8 @@ class PermissionComponent extends Component {
  *  Checks if user has privilege
  *  @param array $options
  *      minimumRole - score - mininum role expected
- *      object - string - page's controller name that the user tries to access
- *      moderatorPrivilege - bool - true if higher privilege user can access a lower privilege user's private content
+ *      object - string - optional - page's controller name that the user tries to access
+ *      moderatorPrivilege - bool - optional - true if higher privilege user can access a lower privilege user's private content
  *  @return bool Access
  */
     public function hasPrivilege($options){

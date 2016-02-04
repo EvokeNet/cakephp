@@ -44,11 +44,6 @@ class AppController extends Controller {
 	public $user = null;
 	public $lang = null;
 
-	public $accessLevels = array(
-		'*' => 'admin',
-		'*' => 'manager',
-				'*' => 'user'
-	);
 
 
 

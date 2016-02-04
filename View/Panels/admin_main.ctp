@@ -5,6 +5,8 @@
 	echo $this->element('topbar');
 	$this->end();
 
+	
+
 	/* Image header */
 	$this->start('image_header');
 	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false));
@@ -46,31 +48,12 @@
 ?>
 
 <div class="row full-width" data-equalizer>
-	<div class="large-2 columns padding left-0 top-1 gradient-on-right" data-equalizer-watch>
+	
+	<?php
+		echo $this->element('panel/admin_sidebar');
+		$this->end();
+	?>
 
-		<div class="side-menu">
-		    <ul id="links" class="side-menu side-nav">
-				<li id="statisticsLink" class ="active">
-					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'new_main')) ?>">
-						<?= __('Statistics') ?>
-					</a>
-				</li>
-				<li id="usersLink" class="">
-					<a id="btnShowUserMenu">
-						<?= __('Users') ?>
-					</a>
-				</li>
-			<?php foreach($organizations as $o): ?>
-				<li>
-					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'organization', $o['Organization']['id'])) ?>">
-						<?= __('Organization ').$o['Organization']['name'] ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
-
-		    </ul>
-		</div>
-	</div>
   	<div class="large-10 columns" data-equalizer-watch>
   		
 		<div id="content">

@@ -25,7 +25,7 @@ class UsersController extends AppController {
  */
   //public $components = array('MathCaptcha', 'Visit');
 
-	public $uses = array('User', 'Friend');
+  public $uses = array('User', 'Friend');
 
   public $user = null;
 
@@ -45,20 +45,20 @@ class UsersController extends AppController {
   }
 
   // public function createTempPassword($len) {
-  // 		$pass = '';
-  // 		$lchar = 0;
-  // 		$char = 0;
-  // 		for($i = 0; $i < $len; $i++) {
-  // 			while($char == $lchar) {
-  // 				$char = rand(48, 109);
-  // 				if($char > 57) $char += 7;
-  // 				if($char > 90) $char += 6;
-  // 			}
-  // 			$pass .= chr($char);
-  // 			$lchar = $char;
-  // 		}
-  // 		return $pass;
-  // 	}
+  //    $pass = '';
+  //    $lchar = 0;
+  //    $char = 0;
+  //    for($i = 0; $i < $len; $i++) {
+  //      while($char == $lchar) {
+  //        $char = rand(48, 109);
+  //        if($char > 57) $char += 7;
+  //        if($char > 90) $char += 6;
+  //      }
+  //      $pass .= chr($char);
+  //      $lchar = $char;
+  //    }
+  //    return $pass;
+  //  }
 
   public function changeLanguage($lang){
     parent::changeLanguage($lang);
@@ -559,36 +559,36 @@ class UsersController extends AppController {
  * @return void
  */
   // public function allies($id) {
-  // 	if (!$this->User->exists($id)) {
-  // 		throw new NotFoundException(__('Invalid user'));
-  // 	}
+  //  if (!$this->User->exists($id)) {
+  //    throw new NotFoundException(__('Invalid user'));
+  //  }
 
-  // 	$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
+  //  $user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
 
-  // 	$users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+  //  $users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-  // 	$allies = array();
+  //  $allies = array();
 
-  // 	$friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
+  //  $friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
 
-  // 	$are_friends = array();
-  // 	//$allies = array();
+  //  $are_friends = array();
+  //  //$allies = array();
 
-  // 	foreach($friends as $friend){
-  // 		array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
-  // 	}
+  //  foreach($friends as $friend){
+  //    array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
+  //  }
 
-  // 	if(!empty($are_friends)){
-  // 		$allies = $this->User->find('all', array(
-  // 			'conditions' => array(
-  // 				'OR' => $are_friends
-  // 		)));
-  // 	} else{
-  // 		$allies = array();
-  // 		//$notifies = array();
-  // 	}
+  //  if(!empty($are_friends)){
+  //    $allies = $this->User->find('all', array(
+  //      'conditions' => array(
+  //        'OR' => $are_friends
+  //    )));
+  //  } else{
+  //    $allies = array();
+  //    //$notifies = array();
+  //  }
 
-  // 	$this->set(compact('user', 'users', 'friends', 'allies'));
+  //  $this->set(compact('user', 'users', 'friends', 'allies'));
   // }
 
 /**
@@ -633,8 +633,8 @@ class UsersController extends AppController {
 
     // // check if the user has answered the asessment questionnaire
     // if(empty($superhero)){
-    // 	// redirect to the questionnaire
-    // 	return $this->redirect(array('action' => 'matching', $id));
+    //  // redirect to the questionnaire
+    //  return $this->redirect(array('action' => 'matching', $id));
     // }
 
     //LEVEL AND POINTS
@@ -1326,7 +1326,57 @@ class UsersController extends AppController {
     // return $this->redirect(array('action' => 'index'));
     return $this->redirect($this->referer());
   }
+/**
+ * Components
+ *
+ * @var array
+ */
+  public $components = array('Paginator');
 
+/**
+ * admin_index method
+ *
+ * @return void
+ */
+  public function admin_index() {
+    $this->User->recursive = 0;
+    $this->set('users', $this->Paginator->paginate());
+
+    $this->loadModel('Organization');
+    $organizations =
+      $this->Organization->find('all', array(
+      'order' => array(
+        'Organization.name ASC'
+      ),
+    ));
+
+   $this->set('organizations',$organizations);
+  }
+
+/**
+ * admin_view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+  public function admin_view($id = null) {
+    if (!$this->User->exists($id)) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+    $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+    $this->set('user', $this->User->find('first', $options));
+
+    $this->loadModel('Organization');
+    $organizations =
+      $this->Organization->find('all', array(
+      'order' => array(
+        'Organization.name ASC'
+      ),
+    ));
+
+   $this->set('organizations',$organizations);
+  }
 
 /**
  * admin_add method
@@ -1334,17 +1384,24 @@ class UsersController extends AppController {
  * @return void
  */
   public function admin_add() {
-    $this->autoRender = false;
-
     if ($this->request->is('post')) {
       $this->User->create();
       if ($this->User->save($this->request->data)) {
-        $this->Session->setFlash(__('The user has been saved.'));
-        return $this->redirect(array('action' => 'index'));
-      } else {
-        $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+        return $this->flash(__('The user has been saved.'), array('action' => 'index'));
       }
     }
+    $groups = $this->User->Group->find('list');
+    $this->set(compact('groups'));
+
+    $this->loadModel('Organization');
+    $organizations =
+      $this->Organization->find('all', array(
+      'order' => array(
+        'Organization.name ASC'
+      ),
+    ));
+
+   $this->set('organizations',$organizations);
   }
 
 /**
@@ -1355,22 +1412,29 @@ class UsersController extends AppController {
  * @return void
  */
   public function admin_edit($id = null) {
-    $this->autoRender = false;
-
     if (!$this->User->exists($id)) {
       throw new NotFoundException(__('Invalid user'));
     }
     if ($this->request->is(array('post', 'put'))) {
       if ($this->User->save($this->request->data)) {
-        $this->Session->setFlash(__('The user has been saved.'));
-        return $this->redirect(array('action' => 'index'));
-      } else {
-        $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+        return $this->flash(__('The user has been saved.'), array('action' => 'index'));
       }
     } else {
       $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
       $this->request->data = $this->User->find('first', $options);
     }
+    $groups = $this->User->Group->find('list');
+    $this->set(compact('groups'));
+
+    $this->loadModel('Organization');
+    $organizations =
+      $this->Organization->find('all', array(
+      'order' => array(
+        'Organization.name ASC'
+      ),
+    ));
+
+   $this->set('organizations',$organizations);
   }
 
 /**
@@ -1381,20 +1445,27 @@ class UsersController extends AppController {
  * @return void
  */
   public function admin_delete($id = null) {
-    $this->autoRender = false;
-
     $this->User->id = $id;
     if (!$this->User->exists()) {
       throw new NotFoundException(__('Invalid user'));
     }
-    $this->request->onlyAllow('post', 'delete');
+    $this->request->allowMethod('post', 'delete');
     if ($this->User->delete()) {
-      $this->Session->setFlash(__('The user has been deleted.'));
+      return $this->flash(__('The user has been deleted.'), array('action' => 'index'));
     } else {
-      $this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
+      return $this->flash(__('The user could not be deleted. Please, try again.'), array('action' => 'index'));
     }
-  }
 
+    $this->loadModel('Organization');
+    $organizations =
+      $this->Organization->find('all', array(
+      'order' => array(
+        'Organization.name ASC'
+      ),
+    ));
+
+   $this->set('organizations',$organizations);
+  }
   /**
    * Gets User from ID
    * @param  [type] $id [description]
