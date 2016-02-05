@@ -1,9 +1,9 @@
 <!-- ADMIN PANEL SIDE BAR -->
 	<div class="large-2 columns padding left-0 top-1 gradient-on-right" data-equalizer-watch>
 
-		<div class="side-menu">
+		<div class="side-menu hidden" id="side-menu">
 		    <ul id="links" class="side-menu side-nav">
-				<li id="statisticsLink" class ="active">
+				<li id="statisticsLink" class ="">
 					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'admin_main')) ?>">
 						<?= __('Statistics') ?>
 					</a>
@@ -23,3 +23,7 @@
 		    </ul>
 		</div>
 	</div>
+<?php
+	//SCRIPT
+  	$this->Html->script('requirejs/app/Panels/side-menu.js', array('inline' => false));
+?>

@@ -9,7 +9,7 @@
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false));
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => true, 'hidden' => true));
 	$this->end();
 
 	echo $this->Html->css(
@@ -27,12 +27,12 @@
 		echo $this->element('panel/admin_sidebar');
 		$this->end();
 	?>
-  <div class="large-10 columns">
-  	
-  	<br>
+
+  <div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>
+
+  	<h2 class="evoke text-glow"><?= $organization['Organization']['name'] ?></h2>
 
 	<ul class="small-block-grid-3 padding-top-2">
-	  
 	  <li>
 	  	<input type="search" class="light-table-filter" data-table="order-table-missions" placeholder="<?= __('Search missions') ?>">
 		<table class="order-table-missions paginated" id = "missionsTable">
@@ -100,7 +100,7 @@
 					));
 					echo $this->Form->input('organization_id', array(
 							'label' => __('Created by'),
-							'options' => $organizations
+							'options' => $organizationsNames
 					));
 				?>
 				

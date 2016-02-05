@@ -1143,8 +1143,9 @@ class UsersController extends AppController {
 
     //USERS ORDERED BY NUMBER OF POINTS
     $this->User->virtualFields['total_points'] = 'SUM(Points.value)';
-    $this->paginate = $this->User->getLeaderboardQuery();
-    $points_users = $this->paginate('User');
+    $alias = $this->User->alias;
+    $this->Paginator->settings = $this->User->getLeaderboardQuery();
+    $points_users = $this->paginate($alias);
 
     $this->set(compact('userid', 'user', 'user_position', 'points_users'));
   }

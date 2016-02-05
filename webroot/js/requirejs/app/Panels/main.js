@@ -1,5 +1,6 @@
 require([webroot+'js/requirejs/bootstrap'], function () {
 	require(['jquery','jqueryui'], function ($) {
+
 		$(document).ready(function(){
 			//on click
 			$("#btnShowUserMenu").on("click", function(){

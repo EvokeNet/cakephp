@@ -573,6 +573,13 @@ class PanelsController extends AppController {
 			)
 		));
 
+		$organizations =
+			$this->Organization->find('all', array(
+			'order' => array(
+				'Organization.name ASC'
+			),
+		));
+
 		$missions_issues =
 			$this->MissionIssue->Mission->find('all', array(
 			'order' => array(
@@ -634,18 +641,19 @@ class PanelsController extends AppController {
 			}
 		}
 
-		//OPTIONS TO CHECK PRIVILEGE
+		//OPTIONS FOR CHECK PRIVILEGE
 		$options = array(
 			'minimumRole' => ADMIN
 		);
 
+		//CHECK IF USER IS ADMIN
 		if($this->Permission->hasPrivilege($options)){
 			$flags = array(
 				'_admin' => true
 			);
 
 			//as admin, he can set any organization as responsable for this mission
-			$organizations = $this->Organization->find('list', array(
+			$organizationsNames = $this->Organization->find('list', array(
 				'order' => array(
 					'Organization.name ASC'
 				)
@@ -671,7 +679,7 @@ class PanelsController extends AppController {
 				$k++;
 			}
 
-			$organizations = $this->Organization->find('list', array(
+			$organizationsNames = $this->Organization->find('list', array(
 				'order' => array('Organization.name ASC'),
 				'conditions' => array(
 					'OR' => $my_orgs_id
@@ -679,7 +687,7 @@ class PanelsController extends AppController {
 			));
 		}
 
-		$this->set(compact('mypp', 'me', 'badges', 'issues', 'mission', 'missions', 'missions_issues', 'roles', 'roles_list', 'users', 'organization', 'organizations'));
+		$this->set(compact('mypp', 'me', 'badges', 'issues', 'mission', 'missions', 'missions_issues', 'roles', 'roles_list', 'users', 'organization', 'organizations','organizationsNames'));
 
 	}
 
@@ -691,12 +699,7 @@ class PanelsController extends AppController {
 		$this->loadModel('User');
 		$this->loadModel('Organization');
 
-	    $organizations =
-	      $this->Organization->find('all', array(
-	      'order' => array(
-	        'Organization.name ASC'
-	      ),
-	    ));
+	    
 
 		$organization = $this->Organization->find('first', array(
 			'conditions' => array(

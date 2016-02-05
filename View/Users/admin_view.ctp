@@ -8,7 +8,7 @@
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false));
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
 	$this->end();
 
 	echo $this->Html->css(
@@ -28,7 +28,7 @@
 		$this->end();
 	?>
 
-	<div class="large-10 columns" data-equalizer-watch>
+	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>
 		<div class="users view">
 		<h2><?php echo __('User'); ?></h2>
 			<dl>

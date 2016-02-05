@@ -66,15 +66,15 @@ class AppController extends Controller {
 			$loggedInUser['role'] = $role;	
 		}
 
-		// CHECK IF USER TRIES TO ACCESS ADMIN PAGE
-			if(isset($this->request->params['admin']) && $this->request->params['admin']){
-				$options = array(
-				'moderatorPrivilege' => false,
-				'minimumRole' => ADMIN,
-				'object' => null
+		// CHECK IF USER TRIES TO ACCESS ADMIN PANEL
+		if(isset($this->request->params['admin']) && $this->request->params['admin']){
+			$options = array(
+			'moderatorPrivilege' => false,
+			'minimumRole' => ADMIN,
+			'object' => null
 			);
 
-			if(!$this->Permission->hasPrivilege($options)){
+			if(!isset($loggedInUser) || !$this->Permission->hasPrivilege($options)){
 				$this->redirect(array('controller' => 'users', 'action' => 'profile', $this->getUserId(),'admin' => false));
 			}
 		}
