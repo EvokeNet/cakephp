@@ -108,7 +108,7 @@ class ForumsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
+	
 /**
  * admin_index method
  *
@@ -117,6 +117,17 @@ class ForumsController extends AppController {
 	public function admin_index() {
 		$this->Forum->recursive = 0;
 		$this->set('forums', $this->Paginator->paginate());
+		
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
+		
 	}
 
 /**
@@ -130,9 +141,40 @@ class ForumsController extends AppController {
 		if (!$this->Forum->exists($id)) {
 			throw new NotFoundException(__('Invalid forum'));
 		}
-		$options = array('conditions' => array('Forum.' . $this->Forum->primaryKey => $id));
+		$options = array(
+			'fields' => array(
+				'Forum.*',
+				'User.name',
+				'User.id'
+			),
+			'joins' => array(
+				array(
+					'table' => 'users',
+					'alias' => 'User',
+					'type' => 'INNER',
+					'conditions' => array(
+						'Forum.user_id = User.id'
+					)
+				)
+			),
+			'conditions' => array(
+				'Forum.' . $this->Forum->primaryKey => $id
+			)
+		);
 		$this->set('forum', $this->Forum->find('first', $options));
+		
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
+		
 	}
+
 
 /**
  * admin_add method
@@ -143,12 +185,22 @@ class ForumsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Forum->create();
 			if ($this->Forum->save($this->request->data)) {
-				$this->Session->setFlash(__('The forum has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The forum could not be saved. Please, try again.'));
+				return $this->flash(__('The forum has been saved.'), array('action' => 'index'));
 			}
 		}
+		$users = $this->Forum->User->find('list');
+		$this->set(compact('users'));
+		
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
+		
 	}
 
 /**
@@ -164,15 +216,25 @@ class ForumsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Forum->save($this->request->data)) {
-				$this->Session->setFlash(__('The forum has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The forum could not be saved. Please, try again.'));
+				return $this->flash(__('The forum has been saved.'), array('action' => 'index'));
 			}
 		} else {
 			$options = array('conditions' => array('Forum.' . $this->Forum->primaryKey => $id));
 			$this->request->data = $this->Forum->find('first', $options);
 		}
+		$users = $this->Forum->User->find('list');
+		$this->set(compact('users'));
+		
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
+		
 	}
 
 /**
@@ -189,10 +251,11 @@ class ForumsController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Forum->delete()) {
-			$this->Session->setFlash(__('The forum has been deleted.'));
+			return $this->flash(__('The forum has been deleted.'), array('action' => 'index'));
 		} else {
-			$this->Session->setFlash(__('The forum could not be deleted. Please, try again.'));
+			return $this->flash(__('The forum could not be deleted. Please, try again.'), array('action' => 'index'));
 		}
-		return $this->redirect(array('action' => 'index'));
-	}
+
+	}	
+
 }

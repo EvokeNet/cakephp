@@ -1,4 +1,3 @@
-
 <?php
 	// TOPBAR MENU -->
 	$this->start('topbar');
@@ -14,8 +13,8 @@
 
 	echo $this->Html->css(
 		array(
-			'evoke-new',
-			'panels-new',
+			'evoke',
+			'panels',
 			'circle'
 		)
 	);

@@ -1024,6 +1024,23 @@ button, .button {
 	margin-right: 10px;
 }
 
+/* --------------------------- */
+/* SIDE-MENU */
+/* --------------------------- */
+
+.evoke .side-menu{
+	width: 220px;
+	max-height: 300px;
+	text-align: start;
+	line-height: 0px;
+	margin-bottom: auto;
+	font-size: 15px;
+	white-space: nowrap;
+}
+
+.evoke .side-menu span{
+	width: 30px;
+}
 
 /* Padding of divs and links */
 .evoke .top-bar-section ul li:not(.has-form) a {

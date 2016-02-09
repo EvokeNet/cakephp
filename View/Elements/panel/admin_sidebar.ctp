@@ -3,23 +3,66 @@
 
 		<div class="side-menu hidden" id="side-menu">
 		    <ul id="links" class="side-menu side-nav">
-				<li id="statisticsLink" class ="">
-					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'admin_main')) ?>">
+				<li class="evoke side-menu">
+					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'admin_main')) ?>" 
+						class="evoke side-menu button split">
 						<?= __('Statistics') ?>
 					</a>
 				</li>
-				<li id="usersLink" class="">
-					<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'index')) ?>">
+				<li class="evoke side-menu">
+					<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'index')) ?>" 
+						class="evoke side-menu button split">
 						<?= __('Users') ?>
+						<span data-dropdown="users_hover"></span>
 					</a>
+					<ul id="users_hover" class='f-dropdown' data-dropdown-content>
+						<li id="usersLink">
+							<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'index')) ?>">
+								<?= __('Index') ?>
+							</a>
+						</li>
+						<li id="usersLink">
+							<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'add')) ?>">
+								<?= __('New User') ?>
+							</a>
+						</li>
+					</ul>	
 				</li>
+				<li class="evoke side-menu">
+					<a href="<?= $this->Html->url(array('controller' => 'forums', 'action' => 'index')) ?>" 
+						class="button split evoke side-menu">
+						<?= __('Forums') ?>
+						<span data-dropdown="forums_hover"></span>
+					</a>
+					<ul id="forums_hover" class='f-dropdown' data-dropdown-content>
+						<li id="forumsLink">
+							<a href="<?= $this->Html->url(array('controller' => 'forums', 'action' => 'index')) ?>">
+								<?= __('Index') ?>
+							</a>
+						</li>
+						<li id="forumsLink">
+							<a href="<?= $this->Html->url(array('controller' => 'forums', 'action' => 'add')) ?>">
+								<?= __('New Forum') ?>
+							</a>
+						</li>
+					</ul>	
+				</li>
+				<li class="evoke side-menu">
+					<a href="#" 
+						class="evoke side-menu button split">
+						<?= __('Organizations') ?>
+						<span data-dropdown="organizations_hover"></span>
+					</a>
+					<ul id="organizations_hover" class='f-dropdown' data-dropdown-content>
 			<?php foreach($organizations as $o): ?>
-				<li>
-					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'organization', $o['Organization']['id'])) ?>">
-						<?= __('Organization ').$o['Organization']['name'] ?>
-					</a>
-				</li>
+						<li>
+							<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'organization', $o['Organization']['id'])) ?>">
+								<?= $o['Organization']['name'] ?>
+							</a>
+						</li>
 			<?php endforeach; ?>
+					</ul>	
+				</li>
 		    </ul>
 		</div>
 	</div>
