@@ -1,14 +1,15 @@
-@import 'partials/topbar';
-@import 'partials/admin_panel';
-@import 'partials/profile';
-@import 'partials/fullpage_plugin';
-@import 'partials/forum';
-
 $bg-color: #28282C;
 $default-green: #2FCCCB;
 $font-dosis: 'Dosis', 'Open-Sans', sans-serif;
 $font-off-white: #FCFCFC;
 $top-bar-bg: #2B2C31;
+
+@import 'partials/topbar';
+@import 'partials/admin_panel';
+@import 'partials/profile';
+@import 'partials/fullpage_plugin';
+@import 'partials/forum';
+@import 'partials/timeline';
 
 /* GENERAL STYLES */
 html {
@@ -130,6 +131,17 @@ body > .container {
 	text-align: right;
 }
 
+.gray-block{
+	background-color:#202023;
+	border-radius:7px;
+	padding: 20px;
+	margin-bottom:2em
+}
+
+.block-green-border{
+	border: 2px solid #2FCCCB;
+}
+
 .evoke .row{
     max-width: none;
 }
@@ -167,6 +179,11 @@ body > .container {
 // }
 
 /* Visibility */
+
+.hidden {
+	display: none;
+}
+
 .evoke .hidden {
 	display: none;
 }
