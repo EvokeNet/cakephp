@@ -37,12 +37,23 @@
 					<ul id="forums_hover" class='f-dropdown' data-dropdown-content>
 						<li id="forumsLink">
 							<a href="<?= $this->Html->url(array('controller' => 'forums', 'action' => 'index')) ?>">
-								<?= __('Index') ?>
+								<?= __('Forums') ?>
 							</a>
 						</li>
 						<li id="forumsLink">
 							<a href="<?= $this->Html->url(array('controller' => 'forums', 'action' => 'add')) ?>">
 								<?= __('New Forum') ?>
+							</a>
+						</li>
+						<hr class="evoke margins-0">
+						<li id="forumsLink">
+							<a href="<?= $this->Html->url(array('controller' => 'forum_categories', 'action' => 'index')) ?>">
+								<?= __('Forum Categories') ?>
+							</a>
+						</li>
+						<li id="forumsLink">
+							<a href="<?= $this->Html->url(array('controller' => 'forum_categories', 'action' => 'add')) ?>">
+								<?= __('New Forum Category') ?>
 							</a>
 						</li>
 					</ul>	

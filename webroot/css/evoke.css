@@ -1025,6 +1025,20 @@ button, .button {
 }
 
 /* --------------------------- */
+/* PAGING */
+/* --------------------------- */
+
+.evoke.paging{
+    padding: 5px;
+}
+
+.evoke.paging .button.thin{
+    padding: 5px;
+    width: 30px;
+}
+
+
+/* --------------------------- */
 /* SIDE-MENU */
 /* --------------------------- */
 
