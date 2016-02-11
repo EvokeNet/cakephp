@@ -5,8 +5,6 @@
 	echo $this->element('topbar');
 	$this->end();
 
-	
-
 	/* Image header */
 	$this->start('image_header');
 	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
@@ -21,6 +19,16 @@
 	);
 
 ?>
+
+<?php
+    echo $this->element(
+      "Uploader.uploader",
+      array(
+        "label" => __("UPLOAD PICTURE"),
+        "origin" => __("file-app")
+      )
+    );
+  ?>
 
 <div class="row full-width" data-equalizer>
 	

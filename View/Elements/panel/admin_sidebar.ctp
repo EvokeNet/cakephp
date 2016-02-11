@@ -28,6 +28,26 @@
 						</li>
 					</ul>	
 				</li>
+				<!-- BADGES -->
+				<li class="evoke side-menu">
+					<a href="<?= $this->Html->url(array('controller' => 'badges', 'action' => 'index')) ?>" 
+						class="button split evoke side-menu">
+						<?= __('Badges') ?>
+						<span data-dropdown="badges_hover"></span>
+					</a>
+					<ul id="badges_hover" class='f-dropdown' data-dropdown-content>
+						<li id="badgesLink">
+							<a href="<?= $this->Html->url(array('controller' => 'badges', 'action' => 'index')) ?>">
+								<?= __('Badges') ?>
+							</a>
+						</li>
+						<li id="badgesLink">
+							<a href="<?= $this->Html->url(array('controller' => 'badges', 'action' => 'add')) ?>">
+								<?= __('New Badge') ?>
+							</a>
+						</li>
+					</ul>	
+				</li>
 				<li class="evoke side-menu">
 					<a href="<?= $this->Html->url(array('controller' => 'forums', 'action' => 'index')) ?>" 
 						class="button split evoke side-menu">
