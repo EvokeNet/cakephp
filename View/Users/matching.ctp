@@ -114,7 +114,7 @@
 
 					<div class="field-<?= $counter ?> <?= $hidden ?>">
 
-						<h3 class = "margin-top-1em text-center font-green font-weight-bold"><?= sprintf(__('Scenario %s'), $counter) ?></h3>
+						<h3 class = "margin-top-1em text-center font-green font-weight-bold margin-bottom-1em"><?= sprintf(__('Scenario %s'), $counter) ?></h3>
 
 						<div class="row" data-equalizer>
 
@@ -137,19 +137,43 @@
 
 									<div class="large-6 large-centered columns">
 										<div id = "matchingInfo">
-											<h5 class="text-color-highlight"><?= $question['description'] ?></h5>
+											<h4 class="text-color-highlight margin-bottom-15em"><?= $question['description'] ?></h4>
 										</div>
 
-										<?php //show radio buttons
-										echo $this->Form->input('matching_answer]['.$question['id'].'][matching_answer_id', array('type' => 'radio',
-											'options' => $matching_question['MatchingAnswer'],
-											'required' => true,
-											'fieldset' => false,
-											'legend' => false,
-											'div' => 'gray-block block-green-border',
-											'separator' => '<br />',
-											'after' => '<small class="error">'.__('Required field.').'</small>'
-										)); ?>
+										<div class = "matching_questions">
+											<?php foreach($matching_question['MatchingAnswer'] as $key => $m): ?>
+												<!--<li class = "question-block block-green-border margin-bottom-1em" id = "matching_answer_<?php echo $m; ?>" style = "font-size:1.2em">
+													<a href = 'javascript:;' onclick='selectMatchingAnswer(this);'><?= $m ?></a>
+												</li>-->
+
+													<?php //show radio buttons
+														echo $this->Form->input('matching_answer]['.$question['id'].'][matching_answer_id', array('type' => 'radio',
+															'options' => $m,
+															'label' => array('class' => "question-block block-green-border margin-bottom-1em", 'id' => "matching_answer_".$key."0"),
+															'required' => true,
+															'fieldset' => false,
+															'legend' => false,
+															'id' => 'matching_answer_'.$key,
+															'style' => 'display:none',
+															'after' => '<small class="error">'.__('Required field.').'</small>'
+														));
+													?>
+													<!-- <label for = "matching_answer_<?=$key?>0" id = "matching_answer_<?=$key?>0" class = "question-block block-green-border margin-bottom-1em"><?= $m ?></label> -->
+											<?php endforeach; ?>
+										</div>
+
+										<!--<label class = "question-block block-green-border margin-bottom-1em">
+											<?php //show radio buttons
+											echo $this->Form->input('matching_answer]['.$question['id'].'][matching_answer_id', array('type' => 'radio',
+												'options' => $matching_question['MatchingAnswer'],
+												'required' => true,
+												'fieldset' => false,
+												'legend' => false,
+												'style' => 'display:none',
+												'separator' => '<br />',
+												'after' => '<small class="error">'.__('Required field.').'</small>'
+											)); ?>
+										</label>-->
 									</div>
 
 									<?php
@@ -157,8 +181,16 @@
 
 								<div class="large-6 large-centered columns">
 									<div class = "gray-block block-green-border" id = "matchingInfo">
-										<h5 class="text-color-highlight"><?= $question['description'] ?></h5>
+										<h4 class="text-color-highlight margin-bottom-15em"><?= $question['description'] ?></h4>
 									</div>
+
+									<ul>
+										<?php foreach($matching_question['MatchingAnswer'] as $key => $m): ?>
+											<li class = "gray-block block-green-border margin-bottom-1em" id = "<?php echo $key; ?>">
+												<?= $m ?>
+											</li>
+										<?php endforeach; ?>
+									</ul>
 
 									<?php //show checkboxes
 									echo $this->Form->input('matching_answer]['.$question['id'].'][matching_answer_id', array('multiple' => 'checkbox',
@@ -187,7 +219,7 @@
 									<div class="large-6 columns" data-equalizer-watch>
 										<ul id="sortable" class="sortable no-marker margins-0">
 											<?php foreach ($matching_question['MatchingAnswer'] as $mqIndex => $answer): ?>
-												<li class = "gray-block block-green-border" data-sort="<?= $mqIndex ?>">
+												<li class = "gray-block block-green-border margin-bottom-15em" data-sort="<?= $mqIndex ?>" style = "font-size:0.9em">
 													<?= $answer ?>
 												</li>
 											<?php endforeach; ?>

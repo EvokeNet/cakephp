@@ -29,11 +29,16 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$('#questionsForm').trigger('submit');
 			});
 
+			$("input[type=radio]").on( "click", function(){
+				console.log($(this).attr("id"))
+				$("label").removeClass('question-block-selected').addClass('question-block');
+				$("label[id='"+$(this).attr("id")+"']").removeClass('question-block').addClass('question-block-selected');
+			});
 
 			$('#questionsForm')
 		  		.on('invalid', function () {
 
-		  			console.log('invalid434!');
+		  			console.log('invalid!');
 		    		if( $('div[class|="field"]:not(.hidden)').find('[data-invalid]').length == 0){
 		    			$('div[class|="field"]:not(.hidden)').addClass('hidden').next().removeClass('hidden');
 		    			$('small.error').css('display', 'none');
@@ -47,10 +52,26 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						console.log($("ul#timeline").children('li').length)
 						console.log(counter)
 
+						// Shows current quetsion in timeline
 						for(var i = 1; i <= counter; i++){
 							$('#circle-'+counter).addClass('complete')
 							console.log(counter)
 						}
+
+						$( "input" ).on( "click", function() {
+						  alert( $( "input:checked" ).val() + " is checked!" );
+						});
+
+						//var elems = $( "input[id^='UserMatchingAnswerMatchingAnswer")
+
+						/*elems.each( function() {
+							console.log($(this.id).prop("checked"))
+							console.log(this.id)
+								if($(this.id).prop("checked")){
+									console.log('ioueriuotreuioertuiorteuio')
+									$(this.id).removeClass('question-block').addClass('question-block-selected')
+								}
+						});*/
 
 						// increase progress bar
 						$('#questionsModal .meter').css('width', (parseFloat(counter-1)/total*100)+'%');

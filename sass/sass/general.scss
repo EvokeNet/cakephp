@@ -9,6 +9,7 @@ $top-bar-bg: #2B2C31;
 @import 'partials/profile';
 @import 'partials/fullpage_plugin';
 @import 'partials/forum';
+@import 'partials/matching';
 @import 'partials/timeline';
 
 /* GENERAL STYLES */
@@ -67,9 +68,18 @@ body > .container {
   margin-top: 1em;
 }
 
+.margin-top-15em{
+  margin-top: 1.5em;
+}
+
 .margin-bottom-1em{
   margin-bottom: 1em;
 }
+
+.margin-bottom-15em{
+  margin-bottom: 1.5em;
+}
+
 
 .margin-left-1em{
   margin-left:1em;
@@ -134,8 +144,8 @@ body > .container {
 .gray-block{
 	background-color:#202023;
 	border-radius:7px;
-	padding: 20px;
-	margin-bottom:2em
+	//padding: 20px;
+	padding: 10px 20px;
 }
 
 .block-green-border{
