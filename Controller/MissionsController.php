@@ -870,6 +870,11 @@ class MissionsController extends AppController {
     }
   }
 
+  public function admin_index() {
+    $this->Mission->recursive = 0;
+    $this->set('missions', $this->Paginator->paginate());
+  }
+
 /**
  * admin_add method
  *

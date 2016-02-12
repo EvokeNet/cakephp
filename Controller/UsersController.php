@@ -618,7 +618,7 @@ class UsersController extends AppController {
       $is_current_user = false;
     }
 
-    
+
 
     /**
     *
@@ -936,8 +936,6 @@ class UsersController extends AppController {
 
   public function matching($id = null) {
 
-    //debug($this->request->data);
-    //die();
     //List issues (all, and already saved)
     $issues = $this->User->UserIssue->Issue->find('list');
     $selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
@@ -1038,6 +1036,7 @@ class UsersController extends AppController {
   public function matching_results($id = null, $quality_1, $quality_2) {
     // find superhero and prepare the text for the qualities
     $this->loadModel('SuperheroIdentity');
+
     $superhero = $this->SuperheroIdentity->find('first', array(
       'conditions' => array(
         'quality_1' => $quality_1,
