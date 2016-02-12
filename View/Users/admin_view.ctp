@@ -14,7 +14,6 @@
 	echo $this->Html->css(
 		array(
 			'evoke',
-			'panels',
 			'circle'
 		)
 	);
@@ -29,7 +28,7 @@
 	?>
 
 	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>
-		<div class="users view">
+		<div class="users">
 		<h2><?php echo __('User'); ?></h2>
 			<dl>
 				<dt><?php echo __('Id'); ?></dt>

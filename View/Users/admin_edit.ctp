@@ -14,7 +14,6 @@
 	echo $this->Html->css(
 		array(
 			'evoke',
-			'panels',
 			'circle'
 		)
 	);
@@ -50,7 +49,6 @@
 				echo $this->Form->input('biography');
 				echo $this->Form->input('mini_biography');
 				echo $this->Form->input('username');
-				echo $this->Form->input('password');
 				echo $this->Form->input('level');
 				echo $this->Form->input('facebook');
 				echo $this->Form->input('twitter');

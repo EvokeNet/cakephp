@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 	echo $this->Html->css('/components/jquery-ui/themes/smoothness/jquery-ui.css');
 

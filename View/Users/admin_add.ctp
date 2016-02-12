@@ -14,7 +14,6 @@
 	echo $this->Html->css(
 		array(
 			'evoke',
-			'panels',
 			'circle'
 		)
 	);

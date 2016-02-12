@@ -1420,18 +1420,14 @@ class UsersController extends AppController {
       $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
       $this->request->data = $this->User->find('first', $options);
     }
-    $groups = $this->User->Group->find('list');
-    $this->set(compact('groups'));
-
+    $groups = $this->User->Group->find('list'); 
     $this->loadModel('Organization');
-    $organizations =
-      $this->Organization->find('all', array(
-      'order' => array(
-        'Organization.name ASC'
-      ),
-    ));
-
-   $this->set('organizations',$organizations);
+    $organizations = $this->Organization->find('list');
+    $this->loadModel('SuperheroIdentity');
+    $roles = $this->Role->find('list');
+    $this->loadModel('Role');
+    $superheroIdentities = $this->SuperheroIdentity->find('list',array('fields' => 'name','id'));
+    $this->set(compact('organizations', 'groups','superheroIdentities','roles'));
   }
 
 /**

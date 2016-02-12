@@ -203,7 +203,27 @@ class BadgesController extends AppController {
 		if (!$this->Badge->exists($id)) {
 			throw new NotFoundException(__('Invalid badge'));
 		}
-		$options = array('conditions' => array('Badge.' . $this->Badge->primaryKey => $id));
+
+		$options = array(
+			'fields' => array(
+				'Badge.*',
+				'Organization.name',
+				'Organization.id'
+			),
+			'joins' => array(
+				array(
+					'table' => 'organizations',
+					'alias' => 'Organization',
+					'type' => 'INNER',
+					'conditions' => array(
+						'Badge.organization_id = Organization.id'
+					)
+				)
+			),
+			'conditions' => array(
+				'Badge.' . $this->Badge->primaryKey => $id
+			)
+		);
 		$this->set('badge', $this->Badge->find('first', $options));
 
 		$this->loadModel('Organization');
