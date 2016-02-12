@@ -75,10 +75,14 @@ require APP . '/Vendor/autoload.php';
 spl_autoload_unregister(array('App', 'load'));
 spl_autoload_register(array('App', 'load'), true, true);
 
-CakePlugin::loadAll(array(
+/*CakePlugin::loadAll(array(
 	'bootstrap' => true,
 	// 'Optimum' => array('routes' => true)
 ));
+*/
+
+CakePlugin::loadAll(); 
+CakePlugin::load('Uploader');
 
 /**
  * Events

@@ -477,6 +477,28 @@ button, .button {
 }
 
 /* --------------------------- */
+/* FIXED TABLE  */
+/* --------------------------- */
+.evoke .fixed-table{
+	table-layout: fixed;
+}
+
+.evoke .fixed-table tbody{
+	display: block;
+    overflow: scroll;
+}
+
+.evoke .fixed-table th{
+	width: 1px;
+    white-space: nowrap;
+}
+
+.evoke .fixed-table td{
+	word-break: initial;
+	text-align: initial;
+}
+
+/* --------------------------- */
 /* ALIGNMENT */
 /* --------------------------- */
 /* Align with table and table-cell */
