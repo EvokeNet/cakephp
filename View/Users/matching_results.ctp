@@ -14,7 +14,7 @@
 	<div class="large-8 small-centered columns form-evoke-style">
 		<h3 class = "text-center margin-top-1em margin-bottom-1em"><?= __('And your Superhero Identity is:') ?></h3>
 
-		<div class = "row">
+		<div class = "row" data-equalizer>
 			<div class="large-6 columns text-center" data-equalizer-watch>
 				<i class="fa fa-lightbulb-o fa-5x"></i>
 			</div>
@@ -29,15 +29,16 @@
 			</div>
 		</div>
 
-		<div class = "row">
+		<br><br>
+		<div class = "row" data-equalizer>
 			<div class="large-6 columns" data-equalizer-watch>
-				<div class = "gray-block block-green-border margin-top-2em" id = "matchingInfo">
+				<div class = "full-height gray-block block-green-border" id = "matchingInfo">
 					<h4><?= $first_quality['SocialInnovatorQuality']['name'] ?></h4>
 					<p class="text-color-highlight"><?= $first_quality['SocialInnovatorQuality']['description'] ?></p>
 				</div>
 			</div>
 			<div class="large-6 columns" data-equalizer-watch>
-				<div class = "gray-block block-green-border margin-top-2em" id = "matchingInfo">
+				<div class = "full-height gray-block block-green-border" id = "matchingInfo">
 					<h4><?= $second_quality['SocialInnovatorQuality']['name'] ?></h4>
 					<p class="text-color-highlight"><?= $second_quality['SocialInnovatorQuality']['description'] ?></p>
 				</div>
@@ -47,8 +48,8 @@
 	</div>
 </div>
 
-<div class="text-center margin-top-3em">
-	<a class="button" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'newprofile')); ?>"><?php echo __("Great! What's next?"); ?></a>
+<div class="text-center">
+	<a class="button margin-top-3em" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'newprofile')); ?>"><?php echo __("Great! What's next?"); ?></a>
 </div>
 
 <?php

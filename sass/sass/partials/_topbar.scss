@@ -7,6 +7,11 @@
   position: relative;
 }
 
+.top-bar .button:hover, .top-bar button:hover{
+	background-color: $default-green-selected;
+	color: $font-off-white;
+}
+
 .evoke .top-bar input {
 	  top: 10px;
 }
@@ -23,14 +28,18 @@
   font-family: 'Dosis', 'Open-Sans', sans-serif;
 }
 
-.evoke .top-bar-section ul li > a.button{
+.top-bar .button, .top-bar button, .evoke .top-bar-section ul li > a.button{
 	font-size: 0.8rem;
-	background-color: #2FCCCB;
-	border-color: #2FCCCB;
 	border-radius: 2px;
 	color: #FCFCFC;
 	padding-right: 15px;
 	padding-left: 15px;
+  font-family: 'Dosis', 'Open-Sans', sans-serif;
+  font-size: 0.8rem;
+  position: relative;
+  background-color: $default-green;
+	border-color: $default-green;
+	color: $font-off-white;
 }
 
 .evoke .top-bar-section ul li,

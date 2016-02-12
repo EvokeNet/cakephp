@@ -31,9 +31,9 @@
                     <h5><?= $user['User']['country'] ?></h5>
                 </label>
             </div>
-            <div class = "left margin-left-3em">
+            <!-- <div class = "left margin-left-3em">
                 <?php echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
-            </div>
+            </div> -->
 
             <div class = "right margin-left-2em">
                 <!-- IF NOT AN ALLY -->

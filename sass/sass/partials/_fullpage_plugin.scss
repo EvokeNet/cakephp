@@ -138,13 +138,14 @@ ul, li {
 
 .footer-bottom-fullpage {
 	background: #2B2C31;
-	/*height: 70px;*/
 	/*padding: 0 10px;*/
 	/*position: fixed;*/
 	/*top: 0;*/
   bottom:0;
-  height: 70px;
-  padding: 10px 0;
+  // height: 70px;
+  height: 60px;
+  // padding: 10px 0;
+  padding: 7px 0 10px;
 	width: 100%;
 	z-index: 12;
 	box-sizing: border-box;
@@ -166,8 +167,8 @@ h1 a {
 /* SECTION STYLES - fullPage.js
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-section {
-	//text-align: center;
+.first_page section {
+	text-align: center;
   /*background: url('https://unsplash.it/1910/1221?image=626') no-repeat center / cover;*/
 }
 

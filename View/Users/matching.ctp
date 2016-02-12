@@ -116,24 +116,25 @@
 
 						<h3 class = "margin-top-1em text-center font-green font-weight-bold margin-bottom-15em"><?= sprintf(__('Scenario %s'), $counter) ?></h3>
 
-						<div class="row" data-equalizer>
-
 								<?php
 
 								if ($question['type'] == 'essay'): ?>
 
-								<div class="large-6 columns" data-equalizer-watch>
-									<div class = "gray-block block-green-border" id = "matchingInfo">
-										<p class="text-color-highlight"><?= $question['description'] ?></p>
+								<div class="row" data-equalizer>
+									<div class="large-6 columns" data-equalizer-watch>
+										<div class = "gray-block block-green-border" id = "matchingInfo">
+											<p class="text-color-highlight"><?= $question['description'] ?></p>
+										</div>
 									</div>
-								</div>
-				        <div class="large-6 columns text-center" data-equalizer-watch>
-									<?php echo $this->Form->input('matching_answer]['.$question['id'].'][description', array('textarea','required' => true, 'label' => false)); ?>
+					        <div class="large-6 columns text-center" data-equalizer-watch>
+										<?php echo $this->Form->input('matching_answer]['.$question['id'].'][description', array('textarea','required' => true, 'label' => false)); ?>
+									</div>
 								</div>
 
 									<?php
 								elseif ($question['type'] == 'single-choice'): ?>
 
+								<div class="row">
 									<div class="large-6 large-centered columns text-center">
 										<div id = "matchingInfo">
 											<h4 class="text-color-highlight margin-bottom-15em"><?= $question['description'] ?></h4>
@@ -157,10 +158,12 @@
 											endforeach; ?>
 										</div>
 									</div>
+								</div>
 
 									<?php
 								elseif($question['type'] == 'multiple-choice'): ?>
 
+								<div class="row">
 								<div class="large-6 large-centered columns">
 									<div class = "gray-block block-green-border" id = "matchingInfo">
 										<h4 class="text-color-highlight margin-bottom-15em"><?= $question['description'] ?></h4>
@@ -185,27 +188,27 @@
 										'after' => '<small class="error">'.__('Required field.').'</small>'
 									)); ?>
 								</div>
-
+							</div>
 								<?php
 								elseif($question['type'] == 'order'):
 									//show list of fields to drag and drop in order
 									?>
 
-									<div class="large-6 columns" data-equalizer-watch>
-										<div style = "margin:auto">
-											<div class = "gray-block block-green-border" id = "matchingInfo">
+									<div class="row" data-equalizer>
+										<div class="large-6 columns" data-equalizer-watch>
+											<div class = "full-height gray-block block-green-border" id = "matchingInfo">
 												<p class="text-color-highlight"><?= $question['description'] ?></p>
 											</div>
 										</div>
-									</div>
-									<div class="large-6 columns" data-equalizer-watch>
-										<ul id="sortable" class="sortable no-marker margins-0">
-											<?php foreach ($matching_question['MatchingAnswer'] as $mqIndex => $answer): ?>
-												<li class = "gray-block block-green-border margin-bottom-15em" data-sort="<?= $mqIndex ?>" style = "font-size:0.9em">
-													<?= $answer ?>
-												</li>
-											<?php endforeach; ?>
-										</ul>
+										<div class="large-6 columns" data-equalizer-watch>
+											<ul id="sortable" class="sortable no-marker margins-0">
+												<?php foreach ($matching_question['MatchingAnswer'] as $mqIndex => $answer): ?>
+													<li class = "gray-block block-green-border margin-bottom-15em" data-sort="<?= $mqIndex ?>" style = "font-size:0.9em">
+														<?= $answer ?>
+													</li>
+												<?php endforeach; ?>
+											</ul>
+										</div>
 									</div>
 
 									<?php
@@ -221,9 +224,12 @@
 								if( $total_questions == $counter ){
 									?>
 									<div class="text-right">
+
+										<button type="submit" class="full-width"><?php echo __('Submit'); ?></button>
+
 										<?php
 
-										echo $this->Form->input('submit', array('type' => 'submit', 'class' => 'radius button', 'value' => __('Submit'), 'label' => false));
+										//echo $this->Form->input('submit', array('type' => 'submit', 'class' => 'radius button', 'value' => __('Submit'), 'label' => false));
 										echo $this->Form->end();
 
 										?>
@@ -238,8 +244,6 @@
 								}
 
 								?>
-
-			      </div>
 
 					</div>
 

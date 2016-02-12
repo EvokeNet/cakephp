@@ -56,7 +56,7 @@
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'newprofile', AuthComponent::user('id'))); ?>" class="font-green uppercase font-weight-bold">
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', AuthComponent::user('id'))); ?>" class="font-green uppercase font-weight-bold">
           <?php echo __('Profile'); ?>
         </a>
       </li>
