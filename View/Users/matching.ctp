@@ -14,13 +14,13 @@
 		  <div class="large-6 small-centered columns form-evoke-style">
 
 			<div class = "gray-block block-green-border" style = "margin-top: 12%" id = "matchingInfo">
-				<h3 class = "margin-top-1em text-center font-green font-weight-bold"><?= __("About You") ?></h3>
+				<h3 class = "margin-top-1em text-center font-green font-weight-bold margin-bottom-1em"><?= __("About You") ?></h3>
 
-				<p><?= __('Congratulations, you have ventured further than most by answering this call.  <br><br>
+				<p class = "text-center"><?= __('Congratulations, you have ventured further than most by answering this call.  <br><br>
 				Now, it’s time to find out what type of Evoke agent are you? What do you know? What are the strengths, passions, and abilities you will bring to the Evoke network? <br><br>
 				Answer the following and find out what type of Super Hero is hiding inside you!') ?> </p>
 
-				<p><a href="#" data-reveal-id="questionsModal" class="radius button" id = "matchingStart"><?= __("Start Identification") ?></a></p>
+				<div class = "margin-top-2em text-center"><a href="#" data-reveal-id="questionsModal" class="radius button" id = "matchingStart"><?= __("Start Identification") ?></a></div>
 
 			</div>
 		</div>
@@ -41,11 +41,11 @@
 				$total_questions = count($matching_questions);
 				$hidden = '';
 				?>
-				<div id="questionsModal" class = "hidden">
+				<div id="questionsModal" class = "hidden margin-top-1em">
 
-					<div class="evoke row">
-		        <div class="large-1 columns">1</div>
-		        <div class="large-8 large-offset-3 columns">
+					<div class="row">
+		        <div class="large-1 columns"></div>
+		        <div class="large-5 large-offset-6 columns">
 
 							<ul class="timeline" id="timeline" style = "margin-top:30px">
 								<li class="li complete" id = "circle-1">
@@ -114,7 +114,7 @@
 
 					<div class="field-<?= $counter ?> <?= $hidden ?>">
 
-						<h3 class = "margin-top-1em text-center font-green font-weight-bold margin-bottom-1em"><?= sprintf(__('Scenario %s'), $counter) ?></h3>
+						<h3 class = "margin-top-1em text-center font-green font-weight-bold margin-bottom-15em"><?= sprintf(__('Scenario %s'), $counter) ?></h3>
 
 						<div class="row" data-equalizer>
 
@@ -127,53 +127,35 @@
 										<p class="text-color-highlight"><?= $question['description'] ?></p>
 									</div>
 								</div>
-				        <div class="large-6 columns" data-equalizer-watch>
-									//show text area
+				        <div class="large-6 columns text-center" data-equalizer-watch>
 									<?php echo $this->Form->input('matching_answer]['.$question['id'].'][description', array('textarea','required' => true, 'label' => false)); ?>
 								</div>
 
 									<?php
 								elseif ($question['type'] == 'single-choice'): ?>
 
-									<div class="large-6 large-centered columns">
+									<div class="large-6 large-centered columns text-center">
 										<div id = "matchingInfo">
 											<h4 class="text-color-highlight margin-bottom-15em"><?= $question['description'] ?></h4>
 										</div>
 
 										<div class = "matching_questions">
-											<?php foreach($matching_question['MatchingAnswer'] as $key => $m): ?>
-												<!--<li class = "question-block block-green-border margin-bottom-1em" id = "matching_answer_<?php echo $m; ?>" style = "font-size:1.2em">
-													<a href = 'javascript:;' onclick='selectMatchingAnswer(this);'><?= $m ?></a>
-												</li>-->
+											<?php foreach($matching_question['MatchingAnswer'] as $key => $m):
 
-													<?php //show radio buttons
-														echo $this->Form->input('matching_answer]['.$question['id'].'][matching_answer_id', array('type' => 'radio',
-															'options' => $m,
-															'label' => array('class' => "question-block block-green-border margin-bottom-1em", 'id' => "matching_answer_".$key."0"),
-															'required' => true,
-															'fieldset' => false,
-															'legend' => false,
-															'id' => 'matching_answer_'.$key,
-															'style' => 'display:none',
-															'after' => '<small class="error">'.__('Required field.').'</small>'
-														));
-													?>
-													<!-- <label for = "matching_answer_<?=$key?>0" id = "matching_answer_<?=$key?>0" class = "question-block block-green-border margin-bottom-1em"><?= $m ?></label> -->
-											<?php endforeach; ?>
+												echo $this->Form->input('matching_answer]['.$question['id'].'][matching_answer_id', array('type' => 'radio',
+													'options' => $m,
+													'label' => array('class' => "question-block block-green-border margin-bottom-1em", 'id' => "matching_answer_".$key."0"),
+													'required' => true,
+													'fieldset' => false,
+													'legend' => false,
+													'id' => 'matching_answer_'.$key,
+													'style' => 'display:none',
+													'div' => 'margin-bottom-1em',
+													'after' => '<small class="error">'.__('Required field.').'</small>'
+												));
+
+											endforeach; ?>
 										</div>
-
-										<!--<label class = "question-block block-green-border margin-bottom-1em">
-											<?php //show radio buttons
-											echo $this->Form->input('matching_answer]['.$question['id'].'][matching_answer_id', array('type' => 'radio',
-												'options' => $matching_question['MatchingAnswer'],
-												'required' => true,
-												'fieldset' => false,
-												'legend' => false,
-												'style' => 'display:none',
-												'separator' => '<br />',
-												'after' => '<small class="error">'.__('Required field.').'</small>'
-											)); ?>
-										</label>-->
 									</div>
 
 									<?php
@@ -273,11 +255,6 @@
 	</div>
 
 <?php
-	/* Footer */
-	$this->start('footer');
-	echo $this->element('footer');
-	$this->end();
-
 	//SCRIPT
 	$this->Html->script('requirejs/app/Users/matching.js', array('inline' => false));
 ?>
