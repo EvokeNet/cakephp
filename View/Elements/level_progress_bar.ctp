@@ -1,21 +1,15 @@
-<div class="row collapse <?= (isset($class) && ($class)) ? $class : '' ?>">
-	<div class="row">
-		<!-- LEVEL -->
-		<span class="left text-glow uppercase padding right-2"><?= __('Level') ?>&nbsp;&nbsp;<?= $userLevel ?></span>
+<?php
+  $nextLevelPoints = isset($userNextLevel) ? ' / '.$userNextLevel['points'] : '';
+?>
 
-		<!-- POINTS -->
-		<?php 
-		//show by default
-		if ((!isset($show_points)) || (isset($show_points) && ($show_points))): ?>
-			<div class="right">
-				<?= $userPoints ?> <span class="text-color-gray"><?= isset($userNextLevel) ? '/'.$userNextLevel['points'] : '' ?></span>
-			</div>
-		<?php endif; ?>
-	</div>
-	<div class="row margin top-05">
-		<!-- PROGRESS BAR -->
-		<div class="progress level-bar radius">
-			<span class="meter" style="width: <?= $userLevelPercentage ?>%"></span>
-		</div>
-	</div>
+<div class = "points-bar-width">
+  <div>
+    <label class = "font-green uppercase font-weight-bold left"><?= __('Level') ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <label class = "font-green uppercase font-weight-bold right"><?php echo $userPoints . $nextLevelPoints; ?></label>
+  </div>
+
+  <div class="points-bar">
+      <span class="meter" style="width: <?= $userLevelPercentage ?>%"></span>
+  </div>
+
 </div>

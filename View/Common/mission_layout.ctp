@@ -131,20 +131,11 @@
         <?php foreach ($novels as $novel) :
           //Reserve height space for image before HTML loads it
           //IMPORTANT: This is only fast when the image is in the same server!!!
-        $fileUrl = './files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'];
-
-        $fileExists = file_exists($fileUrl);
-
-        if($fileExists){
-          list($width_img, $height_img) = getimagesize($fileUrl);
-        }
-
+          list($width_img, $height_img) = getimagesize('./files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment']);
         ?>
-        <?php if ($fileExists): ?>
           <div>
             <img data-lazy="<?= $this->webroot.'files/attachment/attachment/'.$novel['Novel']['page_dir'].'/'.$novel['Novel']['page_attachment'] ?>" height="<?= $height_img ?>px" class="full-width" />
           </div>
-        <?php endif; ?>  
         <?php endforeach; ?>
 
         <?php

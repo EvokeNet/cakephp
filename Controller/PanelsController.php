@@ -15,6 +15,14 @@ class PanelsController extends AppController {
 	public $user = null;
 	public $helpers = array('Chosen.Chosen');
 
+	public $components = array('UserRole');
+
+	public $accessLevels = array(
+		'*' => 'admin',
+		'*' => 'manager',
+		'' => 'user'
+	);
+
 /**
 *
 * beforeFilter method
@@ -27,11 +35,41 @@ class PanelsController extends AppController {
 
     $this->user = array();
         //get user data into public var
-		$this->user['role'] = $this->getUserRole();
+		$this->user['role_id'] = $this->getUserRole();
 		$this->user['id'] = $this->getUserId();
 		$this->user['name'] = $this->getUserName();
 
+		//there was some problem in retrieving user's info concerning his/her role : send him home
+		// if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
+		// 	$this->redirect(array('controller' => 'users', 'action' => 'login'));
+		// }
+
+		//checking Acl permission
+//		if(!$this->Access->check($this->user['role_id'],'controllers/'. $this->name .'/'.$this->action)) {
+//			$this->Session->setFlash(__("You don't have permission to access this area. If needed, contact the administrator."), 'flash_message');
+//			$this->redirect($this->referer());
+//		}
 	}
+
+	public function isAuthorized($user = null) {
+			if (parent::isAuthorized($user)) {
+			    return true;
+			}
+
+			// Authorised actions
+		// if (in_array($this->action, array('changePassword'))) {
+	 //        $id = $this->request->params['pass'][0];
+
+  //           if($this->{$this->modelClass}->field('user_id', array('user_id' => $id)) == $this->Auth->user('user_id'))
+  //               return true;
+	 //    }
+
+		// Will break out on this call
+		$this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
+		$this->redirect(array('controller' => 'users', 'action' => 'profile', $this->getUserId()));
+
+		return false;
+  }
 
 /*
 * index method
@@ -338,7 +376,7 @@ class PanelsController extends AppController {
 		// $this->render('main');
 	}
 
-	public function admin_main(){
+	public function new_main(){
 		$this->main(1);
 	}
 
@@ -554,142 +592,10 @@ class PanelsController extends AppController {
 
 		$this->set(compact('badges', 'missions_issues', 'organizations'));
 		if($args == 1){
-			$this->render('admin_main');
+			$this->render('new_main');
 		}else{
 			$this->render('main');
 		}	}
-
-	public function admin_organization($org_id = null){
-		
-
-		$this->loadModel('Badges');
-		$this->loadModel('Organization');
-		$this->loadModel('MissionIssue');
-		$this->loadModel('User');
-
-		$organization = $this->Organization->find('first', array(
-			'conditions' => array(
-				'Organization.id' => $org_id
-			)
-		));
-
-		$organizations =
-			$this->Organization->find('all', array(
-			'order' => array(
-				'Organization.name ASC'
-			),
-		));
-
-		$missions_issues =
-			$this->MissionIssue->Mission->find('all', array(
-			'order' => array(
-				'Mission.title ASC'
-			)
-		));
-
-		$missions =
-			$this->MissionIssue->Mission->find('all', array(
-			'order' => array(
-				'Mission.title DESC'
-			),
-			'conditions' => array(
-				'Mission.organization_id' => $org_id
-			)
-		));
-
-		$badges =
-			$this->Badge->find('all', array(
-			'order' => array(
-				'Badge.name DESC'
-			),
-			'conditions' => array(
-				'Badge.organization_id' => $org_id
-			)
-		));
-
-		$users = $this->User->find('all', array(
-			'order' => array(
-				'User.created DESC'
-			),
-			'conditions' => array(
-				'User.organization_id' => $org_id
-			)
-		));
-
-		$issues = $this->Issue->getIssues();
-
-		$mission = null;
-
-		if ($this->request->is('post')) {
-
-			//it's a new mission, so let's add it.. creating it with possible attachments (mission img)
-			if ($mission = $this->Mission->createWithAttachments($this->request->data)) {
-
-				$id = $mission['Mission']['id'];
-				//saves the issue related to it..
-				$this->request->data['MissionIssue']['mission_id'] = $id;
-				if($this->MissionIssue->save($this->request->data)) {
-					$this->Session->setFlash(__('mission issue saved'));
-
-					//redirects to the same page, but with the tab phase activated
-					$this->redirect(array('action' => 'edit_mission', $id, 'phase'));
-				} else {
-					$this->Session->setFlash(__('mission issue failed saving.'));
-				}
-			} else {
-				$this->Session->setFlash(__('The mission could not be saved. Please, try again.'));
-			}
-		}
-
-		//OPTIONS FOR CHECK PRIVILEGE
-		$options = array(
-			'minimumRole' => ADMIN
-		);
-
-		//CHECK IF USER IS ADMIN
-		if($this->Permission->hasPrivilege($options)){
-			$flags = array(
-				'_admin' => true
-			);
-
-			//as admin, he can set any organization as responsable for this mission
-			$organizationsNames = $this->Organization->find('list', array(
-				'order' => array(
-					'Organization.name ASC'
-				)
-			));
-		} else {
-			$flags = array(
-				'_admin' => false
-			);
-
-			//the possible organizations to be responsable for this mission are his own
-			$my_orgs = $this->UserOrganization->find('all', array(
-				'conditions' => array(
-					array(
-						'UserOrganization.user_id' => $this->user['id']
-					)
-				)
-			));
-
-			$my_orgs_id = array();
-			$k = 0;
-			foreach ($my_orgs as $my_org) {
-				$my_orgs_id[$k] = array('id' => $my_org['Organization']['id']);
-				$k++;
-			}
-
-			$organizationsNames = $this->Organization->find('list', array(
-				'order' => array('Organization.name ASC'),
-				'conditions' => array(
-					'OR' => $my_orgs_id
-				)
-			));
-		}
-
-		$this->set(compact('mypp', 'me', 'badges', 'issues', 'mission', 'missions', 'missions_issues', 'roles', 'roles_list', 'users', 'organization', 'organizations','organizationsNames'));
-
-	}
 
 	public function organization($org_id = null){
 
@@ -697,9 +603,6 @@ class PanelsController extends AppController {
 		$this->loadModel('Organization');
 		$this->loadModel('MissionIssue');
 		$this->loadModel('User');
-		$this->loadModel('Organization');
-
-	    
 
 		$organization = $this->Organization->find('first', array(
 			'conditions' => array(

@@ -22,11 +22,6 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-// PERMISSIONS
-define('ADMIN', 0);
-define('USER', 10);
-
-
 // Setup a 'default' cache configuration for use in the application.
 Cache::config('default', array('engine' => 'File'));
 
@@ -75,14 +70,10 @@ require APP . '/Vendor/autoload.php';
 spl_autoload_unregister(array('App', 'load'));
 spl_autoload_register(array('App', 'load'), true, true);
 
-/*CakePlugin::loadAll(array(
+CakePlugin::loadAll(array(
 	'bootstrap' => true,
 	// 'Optimum' => array('routes' => true)
 ));
-*/
-
-CakePlugin::loadAll(); 
-CakePlugin::load('Uploader');
 
 /**
  * Events

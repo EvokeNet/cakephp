@@ -19,12 +19,12 @@
 
 			<!-- USER NAME -->
 			<li class="active">
-				<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'], 'admin' => false)); ?>"><?= __('Agent ').$loggedInUser['firstname'] ?></a>
+				<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>"><?= __('Agent ').$loggedInUser['firstname'] ?></a>
 			</li>
 
 			<!-- USER PROFILE PICTURE WITH DROPDOWN MENU -->
 			<li class="has-dropdown">
-				<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'], 'admin' => false)); ?>" class="button-icon">
+				<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $loggedInUser['id'])); ?>" class="button-icon">
 
 						<?= $this->Picture->showUserCircularPicture(
 							$loggedInUser,
@@ -37,14 +37,14 @@
 				<ul class="dropdown">
 					<!-- EDIT PROFILE -->
 					<li>
-						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', $loggedInUser['id'], 'admin' => false)); ?>" class="text-glow-on-hover text-color-highlight">
+						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', $loggedInUser['id'])); ?>" class="text-glow-on-hover text-color-highlight">
 							<?php echo __('Edit profile'); ?>
 						</a>
 					</li>
 
 					<!-- SIGN OUT -->
 					<li>
-						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout', 'admin' => false)); ?>" class="text-glow-on-hover text-color-highlight">
+						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>" class="text-glow-on-hover text-color-highlight">
 							<?php echo __('Sign out'); ?>
 						</a>
 					</li>
@@ -58,7 +58,7 @@
 		<ul class="left">
 			<li>
 				<div class="column">
-					<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index', 'admin' => false)); ?>" class="text-glow-on-hover text-color-highlight">
+					<a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class="text-glow-on-hover text-color-highlight">
 						<?php echo __('Missions'); ?>
 					</a>
 				</div>
@@ -66,7 +66,7 @@
 
 			<li>
 				<div class="column">
-					<a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index', 'admin' => false)); ?>" class="text-glow-on-hover text-color-highlight">
+					<a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index')); ?>" class="text-glow-on-hover text-color-highlight">
 						<?php echo __('Forum'); ?>
 					</a>
 				</div>
@@ -74,7 +74,7 @@
 
 			<li>
 				<div class="column">
-					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard', 'admin' => false)); ?>" class="text-glow-on-hover text-color-highlight">
+					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard')); ?>" class="text-glow-on-hover text-color-highlight">
 						<?php echo __('Leaderboard'); ?>
 					</a>
 				</div>
@@ -82,17 +82,16 @@
 
 			<li>
 				<div class="column">
-					<a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index', 'admin' => false)); ?>" class="text-glow-on-hover text-color-highlight">
+					<a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index')); ?>" class="text-glow-on-hover text-color-highlight">
 						<?php echo __('Badges'); ?>
 					</a>
 				</div>
 			</li>
 
-			<?php if ($loggedInUser['role'] <= ADMIN){ 
-			?>
+			<?php if ($loggedInUser['role'] != 'user'){ ?>
 			<li>
 				<div class="column">
-					<a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main', 'admin' => true)); ?>" class="text-glow-on-hover text-color-highlight"><?php echo __('Admin'); ?></a>
+					<a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main')); ?>" class="text-glow-on-hover text-color-highlight"><?php echo __('Admin'); ?></a>
 				</div>
 			</li>
 			<?php } ?>

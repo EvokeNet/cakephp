@@ -1,7 +1,6 @@
 <!-- Add new user form -->
-<div id="myModalEditUser<?= $m['User']['id'] ?>" class="reveal-modal small" data-reveal>
+<div id="myModalEditUser<?= $m['User']['id'] ?>" class="reveal-modal tiny" data-reveal>
   	<?php echo $this->Form->create('User', array(
-  		'data-abide',
    		'url' => array(
    			'controller' => 'users',
    			'action' => 'panel_edit',
@@ -25,10 +24,7 @@
 	</div>
 	<div class="row">
 		<div class="large-6 columns">
-			<?= $this->Form->input('password', array('id' => 'password', 'required' => false, 'label' => __('New Password'))) ?>
-		</div>
-		<div class="large-6 columns">
-			<?= $this->Form->input('password', array('data-equalto' => 'password', 'required' => false, 'label' => __('Confirm New Password'))) ?>
+			<?= $this->Form->input('password', array('required' => true, 'label' => __('Password'), 'value' => $m['User']['password'])) ?>
 		</div>
 	</div>
 	<div class="row">
@@ -316,15 +312,9 @@
 	</div>
 	<div class="row">
 		<div class="large-12 columns">
-			<?= $this->Form->input('biography', array('label' => __('Description'), 'value' => $m['User']['biography'], 'type' => 'textarea', 'required' => false)) ?>
+			<?= $this->Form->input('biography', array('label' => __('Description'), 'value' => $m['User']['biography'], 'type' => 'textarea', 'required' => true)) ?>
 		</div>
 	</div>
-	<div class="row text-right">
-		<?php
-			echo $this->Form->submit(__('Edit User'), array('type' => 'submit', 'class' => 'radius button', 'value' => __('Edit User'), 'label' => false));
-		?>
-		<?= $this->Form->end();	?>
-	</div>
+	<?php echo $this->Form->end('Edit User'); ?>
 
-	<a class="close-reveal-modal">&#215;</a>
-</div>
+<a class="close-reveal-modal">&#215;</a>

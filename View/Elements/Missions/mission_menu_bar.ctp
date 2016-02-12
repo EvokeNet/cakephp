@@ -6,7 +6,7 @@ if (!isset($menu_buttons)) {
 ?>
 
 
-<nav class="tab-bar" id="tab-bar-off-canvas"><?php 
+<nav class="tab-bar" id="tab-bar-off-canvas"><?php
 	//BACK BUTTON
 	if (in_array('Back', $menu_buttons)): ?>
 		<div class="close-sidebar-button fixed left-small text-center hidden">
@@ -77,8 +77,8 @@ if (!isset($menu_buttons)) {
 			//FORUM
 			if (in_array('Forum', $menu_buttons)):
 				if (isset($forum)): ?>
-				
-					<a class="menu-icon forum" id="menu-icon-tabForum" data-forum-url="<?php echo rawurldecode($this->Html->url(array(
+
+					<!-- <a class="menu-icon forum" id="menu-icon-tabForum" data-forum-url="<?php echo rawurldecode($this->Html->url(array(
 							'plugin' => 'optimum',
 							'controller' => 'forum',
 							'action' => 'view',
@@ -91,7 +91,8 @@ if (!isset($menu_buttons)) {
 						<div class="row menu-icon-label">
 							<span><?= __('Discuss') ?></span>
 						</div>
-					</a><?php
+					</a> -->
+					<?php
 
 				endif;
 			endif;
@@ -100,7 +101,7 @@ if (!isset($menu_buttons)) {
 			//GROUP FORUM
 			if (in_array('GroupForum', $menu_buttons)):
 				if (isset($group_forum)): ?>
-				
+
 					<a class="menu-icon forum" id="menu-icon-tabGroupForum"
 						data-forum-url="<?php echo rawurldecode($this->Html->url(array(
 								'plugin' => 'optimum',

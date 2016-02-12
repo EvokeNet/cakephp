@@ -29,7 +29,9 @@ requirejs.config({
     sidr: 'sidr/jquery.sidr.min',
     slickcarousel: 'slick-carousel/slick/slick.min',
     stickykit: 'sticky-kit/jquery.sticky-kit.min',
-    sweetalert: 'sweetalert/dist/sweetalert.min'
+    sweetalert: 'sweetalert/dist/sweetalert.min',
+
+    multiscroll: 'multiscroll.js/jquery.multiscroll.min',
   },
   shim: {
     // EVOKE SPECIFIC MODULES
@@ -42,7 +44,10 @@ requirejs.config({
       exports: 'Foundation'
     },
     froala: { deps: ['jquery'] },
-    fullpage: { deps: ['jquery', 'jqueryui', 'jqueryslimscroll'] },
+
+    multiscroll: { deps: ['jquery'] },
+
+    // fullpage: { deps: ['jquery', 'jqueryui', 'jqueryslimscroll'] },
     handlebars: { exports: 'Handlebars' },
     jqueryui: { deps: ['jquery'] },
     jqueryslimscroll: { deps: ['jquery'] },
@@ -50,6 +55,9 @@ requirejs.config({
     modernizr: { exports: 'Modernizr' },
     sidr: { deps: ['jquery'] },
     slickcarousel: { deps: ['jquery'] },
+
+    fullpage: { deps: ['jquery', 'jqueryui', 'jqueryslimscroll'] },
+    
     stickykit: { deps: ['jquery'] },
     sweetalert: { exports: 'swal' }
   }

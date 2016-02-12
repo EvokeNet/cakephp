@@ -30,11 +30,11 @@ class AppController extends Controller {
  */
 	public $components = array(
 		'Session',
-		'Permission',
 		'Auth' => array(
-			'logoutRedirect' => array('controller' => 'users', 'action' => 'login','admin' => false),
+			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
 				'authError' => 'Você não tem permissão para ver essa página'
-		)
+		),
+		'UserRole'
 	);
 
 	public $helpers = array(
@@ -43,6 +43,12 @@ class AppController extends Controller {
 
 	public $user = null;
 	public $lang = null;
+
+	public $accessLevels = array(
+		'*' => 'admin',
+		'*' => 'manager',
+				'*' => 'user'
+	);
 
 /**
 * beforeFilter method
@@ -59,55 +65,11 @@ class AppController extends Controller {
 		$cuser = $this->Auth->user();
 		$loggedInUser = $this->Auth->user();
 
-		$this->loadModel('Role');
-
-		if(isset($loggedInUser)){
-			$role = $this->Role->find('first', array('conditions' => array('id' => $loggedInUser['role_id'])))['Role']['score'];
-			$loggedInUser['role'] = $role;	
-		}
-
-		// CHECK IF USER TRIES TO ACCESS ADMIN PANEL
-		if(isset($this->request->params['admin']) && $this->request->params['admin']){
-			$options = array(
-			'moderatorPrivilege' => false,
-			'minimumRole' => ADMIN,
-			'object' => null
-			);
-
-			if(!isset($loggedInUser) || !$this->Permission->hasPrivilege($options)){
-				$this->redirect(array('controller' => 'users', 'action' => 'profile', $this->getUserId(),'admin' => false));
-			}
-		}
-
 		//User definitions
 		$userPoints = $this->getPoints($this->getUserId());
 		$userLevel = $this->getLevel($userPoints); //level ID
 		$userNextLevel = $this->getNextLevel($userLevel); //next level object
 		$userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
-
-		//Check if the user has answered the assessment questionnaire and redirect to it, if not
-		$this->loadModel('SuperheroIdentity');
-
-		$superhero = $this->SuperheroIdentity->find('first', array(
-			'conditions' => array(
-				'id' => $cuser['superhero_identity_id']
-			)
-		));
-
-		// debug($cuser);
-		// debug($superhero);
-		// debug($this->request->params['action']);
-		// die();
-		
-		// check if the user has answered the asessment questionnaire and isn't doing it right now
-		if(empty($superhero) && $this->request->params['action'] != 'matching' 
-							 && $this->request->params['action'] != 'login'  //also, if  the user is loging in or out
-							 && $this->request->params['action'] != 'logout' // we have to allow it
-							 && $this->request->params['action'] != 'register' // also if user is registering
-							 && $this->request->params['action'] != 'matching_results'){
-		
-			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId(),'admin' => false)); 
-		}
 
 		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language'));
 	}
@@ -172,6 +134,12 @@ class AppController extends Controller {
 		$this->redirect($this->referer()); //in order to redirect the user to the page from which it was called
 	}
 
+
+
+
+
+
+
 	public function isAuthorized($user = null) {
 
 		if (!empty ($this->accessLevels)) {
@@ -198,7 +166,7 @@ class AppController extends Controller {
 
 			// Will break out on this call
 			$this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
-			$this->redirect(array('controller' => 'users', 'action' => 'changePassword', $user['user_id'],'admin' => false));
+			$this->redirect(array('controller' => 'users', 'action' => 'changePassword', $user['user_id']));
 			return false;
 
 		}
@@ -207,6 +175,13 @@ class AppController extends Controller {
 		return false;
 
 	}
+
+
+
+
+
+
+
 
 	public function getNotificationsNumber($user_id){
 
@@ -306,6 +281,18 @@ class AppController extends Controller {
 
 	public function getLevelPercentage($userPoints, $userLevel){
 
+
+		// $this->loadModel('Level');
+		//
+		// $thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
+		//
+		// if(!empty($thisLevel))
+		// 	$percentage = round(($userPoints/$thisLevel['Level']['points']) * 100);
+		// else
+		// 	$percentage = 0;
+		//
+		// return $percentage;
+
 		$this->loadModel('Level');
 
 		$thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
@@ -318,6 +305,7 @@ class AppController extends Controller {
 
 		//return $percentage;
 			return 0;
+
 	}
 
 	public function getUserId() {
@@ -334,13 +322,7 @@ class AppController extends Controller {
 
 	public function getUserRole() {
 		$currentuser = $this->Auth->user();
-		if(isset($currentuser['role'])){
-
-			return $currentuser['role'];	
-		} 
-
-		$role_score = $this->Role->find('first',array('id' => $currentuser['role_id']))['Role']['score'];
-
-		return $role_score;
+		if(isset($currentuser['role_id'])) return $currentuser['role_id'];
+		return $currentuser['User']['role_id'];
 	}
 }

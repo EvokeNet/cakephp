@@ -1,4 +1,3 @@
-
 <?php
 App::uses('AppController', 'Controller');
 /**
@@ -173,56 +172,12 @@ class BadgesController extends AppController {
 
 
 /**
- * admin_index method
- *
- * @return void
- */
-	public function admin_index() {
-		$this->Badge->recursive = 0;
-		$this->set('badges', $this->Paginator->paginate());
-
-		$this->loadModel('Organization');
-	    $organizations =
-	      $this->Organization->find('all', array(
-	      'order' => array(
-	        'Organization.name ASC'
-	      ),
-	    ));
-
-	   $this->set('organizations',$organizations);
-	}
-
-/**
- * admin_view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function admin_view($id = null) {
-		if (!$this->Badge->exists($id)) {
-			throw new NotFoundException(__('Invalid badge'));
-		}
-		$options = array('conditions' => array('Badge.' . $this->Badge->primaryKey => $id));
-		$this->set('badge', $this->Badge->find('first', $options));
-
-		$this->loadModel('Organization');
-	    $organizations =
-	      $this->Organization->find('all', array(
-	      'order' => array(
-	        'Organization.name ASC'
-	      ),
-	    ));
-
-	   $this->set('organizations',$organizations);
-	}
-
-/**
  * admin_add method
  *
  * @return void
  */
 	public function admin_add() {
+		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->Badge->create();
 			if ($this->Badge->save($this->request->data)) {
@@ -232,9 +187,6 @@ class BadgesController extends AppController {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
 			}
 		}
-		$organizations = $this->Badge->Organization->find('list');
-		$missions = $this->Badge->Mission->find('list');
-		$this->set(compact('organizations', 'missions'));
 	}
 
 /**
@@ -245,6 +197,7 @@ class BadgesController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
+		$this->autoRender = false;
 		if (!$this->Badge->exists($id)) {
 			throw new NotFoundException(__('Invalid badge'));
 		}
@@ -259,9 +212,6 @@ class BadgesController extends AppController {
 			$options = array('conditions' => array('Badge.' . $this->Badge->primaryKey => $id));
 			$this->request->data = $this->Badge->find('first', $options);
 		}
-		$organizations = $this->Badge->Organization->find('list');
-		$missions = $this->Badge->Mission->find('list');
-		$this->set(compact('organizations', 'missions'));
 	}
 
 /**
@@ -272,16 +222,16 @@ class BadgesController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
+		$this->autoRender = false;
 		$this->Badge->id = $id;
 		if (!$this->Badge->exists()) {
 			throw new NotFoundException(__('Invalid badge'));
 		}
-		$this->request->allowMethod('post', 'delete');
+		$this->request->onlyAllow('post', 'delete');
 		if ($this->Badge->delete()) {
 			$this->Session->setFlash(__('The badge has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The badge could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}
-}
+	}}

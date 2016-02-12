@@ -141,7 +141,7 @@
 
 				</ul>
 			</div>
-			
+
 	<div class="large-4 columns"  >
 		<h5>Level</h5>
   		<div class="row">

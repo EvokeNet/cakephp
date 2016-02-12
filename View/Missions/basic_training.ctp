@@ -269,7 +269,7 @@
         </div>
         </div>
 
-        <div class="small-3 medium-3 large-3 columns padding top-2">
+        <!-- <div class="small-3 medium-3 large-3 columns padding top-2">
 
           <div class = "evoke todo-list content">
             <h1><?= strtoupper(__('To-Do List')) ?></h1>
@@ -278,10 +278,10 @@
                   foreach($checklists as $check):?>
                 <li><h2><?= $check['PhaseChecklist']['item'] ?></h2></li>
               <?php endforeach; endif;?>
-              </ul>
-                  </div>
+            </ul>
+          </div>
 
-        </div>
+        </div> -->
       </div>
 
     </div>

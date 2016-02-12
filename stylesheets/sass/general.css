@@ -1,0 +1,278 @@
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+/* Toggle Styles */
+/* line 9, ../../sass/sass/partials/_admin_panel.scss */
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+/* line 17, ../../sass/sass/partials/_admin_panel.scss */
+#wrapper.toggled {
+  padding-left: 250px;
+}
+
+/* line 21, ../../sass/sass/partials/_admin_panel.scss */
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+/* line 36, ../../sass/sass/partials/_admin_panel.scss */
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px;
+}
+
+/* line 40, ../../sass/sass/partials/_admin_panel.scss */
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding: 15px;
+}
+
+/* line 46, ../../sass/sass/partials/_admin_panel.scss */
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
+}
+
+/* Sidebar Styles */
+/* line 53, ../../sass/sass/partials/_admin_panel.scss */
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* line 62, ../../sass/sass/partials/_admin_panel.scss */
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
+
+/* line 67, ../../sass/sass/partials/_admin_panel.scss */
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999999;
+}
+
+/* line 73, ../../sass/sass/partials/_admin_panel.scss */
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* line 79, ../../sass/sass/partials/_admin_panel.scss */
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+/* line 84, ../../sass/sass/partials/_admin_panel.scss */
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+/* line 90, ../../sass/sass/partials/_admin_panel.scss */
+.sidebar-nav > .sidebar-brand a {
+  color: #999999;
+}
+
+/* line 94, ../../sass/sass/partials/_admin_panel.scss */
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+@media (min-width: 768px) {
+  /* line 100, ../../sass/sass/partials/_admin_panel.scss */
+  #wrapper {
+    padding-left: 250px;
+  }
+
+  /* line 104, ../../sass/sass/partials/_admin_panel.scss */
+  #wrapper.toggled {
+    padding-left: 0;
+  }
+
+  /* line 108, ../../sass/sass/partials/_admin_panel.scss */
+  #sidebar-wrapper {
+    width: 250px;
+  }
+
+  /* line 112, ../../sass/sass/partials/_admin_panel.scss */
+  #wrapper.toggled #sidebar-wrapper {
+    width: 0;
+  }
+
+  /* line 116, ../../sass/sass/partials/_admin_panel.scss */
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+
+  /* line 121, ../../sass/sass/partials/_admin_panel.scss */
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
+/* GENERAL STYLES */
+/* line 10, ../../sass/sass/general.scss */
+html {
+  background-color: #28282C;
+  overflow: auto;
+}
+
+/* line 14, ../../sass/sass/general.scss */
+body {
+  background-color: #28282C;
+  /*overflow: auto;*/
+}
+
+/* line 19, ../../sass/sass/general.scss */
+*, html, body,
+div, p, span, a {
+  font-family: "Dosis", "Open-Sans", sans-serif;
+  font-size: 100%;
+  -webkit-text-stroke: 0.1px;
+  -webkit-font-smoothing: antialiased;
+  word-break: break-word;
+}
+
+/* line 28, ../../sass/sass/general.scss */
+*, html, body, div, p {
+  color: #cccccc;
+}
+
+/* line 39, ../../sass/sass/general.scss */
+.margin-top-1em {
+  margin-top: 1em;
+}
+
+/* line 43, ../../sass/sass/general.scss */
+.margin-bottom-1em {
+  margin-bottom: 1em;
+}
+
+/* line 47, ../../sass/sass/general.scss */
+.margin-left-1em {
+  margin-left: 1em;
+}
+
+/* line 51, ../../sass/sass/general.scss */
+.margin-right-1em {
+  margin-left: 1em;
+}
+
+/* line 55, ../../sass/sass/general.scss */
+.margin-left-2em {
+  margin-left: 2em;
+}
+
+/* line 59, ../../sass/sass/general.scss */
+.margin-right-2em {
+  margin-left: 2em;
+}
+
+/* line 63, ../../sass/sass/general.scss */
+.margin-left-3em {
+  margin-left: 3em;
+}
+
+/* line 67, ../../sass/sass/general.scss */
+.margin-right-3em {
+  margin-left: 3em;
+}
+
+/* line 71, ../../sass/sass/general.scss */
+.evoke .font-green {
+  color: #2FCCCB;
+}
+
+/* line 75, ../../sass/sass/general.scss */
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* line 79, ../../sass/sass/general.scss */
+.font-weight-bold {
+  font-weight: bold;
+}
+
+/* line 83, ../../sass/sass/general.scss */
+.centralize-content {
+  padding: 0 20%;
+}
+
+/* line 87, ../../sass/sass/general.scss */
+.centralize-content-30 {
+  padding: 0 30%;
+}
+
+/* line 91, ../../sass/sass/general.scss */
+.evoke .row {
+  max-width: none;
+}
+
+/* line 95, ../../sass/sass/general.scss */
+.evoke .row .row {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+/* line 100, ../../sass/sass/general.scss */
+.noscroll {
+  overflow: 'hidden';
+}
+
+/* Headings */
+/* line 105, ../../sass/sass/general.scss */
+.evoke h1, .evoke h1 a, .evoke h2, .evoke h2 a, .evoke h3, .evoke h3 a,
+.evoke h4, .evoke h4 a, .evoke h5, .evoke h5 a, .evoke h6, .evoke h6 a {
+  font-family: "Dosis", "Open-Sans", sans-serif;
+}
+
+/* line 110, ../../sass/sass/general.scss */
+.evoke h1, .evoke h2, .evoke h3, .evoke h4, .evoke h5, .evoke h6 {
+  color: #FCFCFC;
+}
+
+/* line 114, ../../sass/sass/general.scss */
+.evoke h3, .evoke h4, .evoke h5, .evoke h6 {
+  text-transform: uppercase;
+}
+
+/* Visibility */
+/* line 119, ../../sass/sass/general.scss */
+.evoke .hidden {
+  display: none;
+}
+
+/* line 122, ../../sass/sass/general.scss */
+.evoke .overflow-hidden {
+  overflow: hidden;
+}

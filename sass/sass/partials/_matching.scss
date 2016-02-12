@@ -1,0 +1,40 @@
+.question-block{
+	background-color:#202023;
+	border-radius:7px;
+}
+
+li.question-block a:hover, li.question-block a:focus, .question-block-selected{
+	background-color:#2FCCCB;
+	border-radius:7px;
+	color: #fff;
+}
+
+li.question-block a, .question-block a{
+  display: block;
+  padding: 10px 20px;
+}
+
+label.question-block:hover, label.question-block:focus, label.question-block-selected{
+	background-color:#2FCCCB;
+	border-radius:7px;
+	color: #fff;
+}
+
+label.question-block, .question-block, label.question-block-selected, .question-block-selected{
+  display: block;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+ul.matching_questions label{
+  color: #fff;
+  font-size: 1.1em;
+}
+
+input[type="radio"] + label.question-block, input[type="radio"] + label.question-block-selected{
+  display:block
+}
+
+input[type="radio"]:checked > label.question-block:hover{
+	 background-color:#2FCCCB;
+}

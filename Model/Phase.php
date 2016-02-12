@@ -27,7 +27,7 @@ class Phase extends AppModel {
 		'Containable',
 		'Enumerable',
 		// 'BrainstormSessionEvoke.ActPhaseBrainstorm',
-		'Optimum.ForumFilterable'
+		// 'Optimum.ForumFilterable'
 		// 'Translate' => array(
 		//     'name' => 'phaseName',
 		//     'description' => 'phaseDescription'
@@ -241,19 +241,19 @@ class Phase extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'PhaseChecklist' => array(
-			'className' => 'PhaseChecklist',
-			'foreignKey' => 'phase_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
+		// 'PhaseChecklist' => array(
+		// 	'className' => 'PhaseChecklist',
+		// 	'foreignKey' => 'phase_id',
+		// 	'dependent' => false,
+		// 	'conditions' => '',
+		// 	'fields' => '',
+		// 	'order' => '',
+		// 	'limit' => '',
+		// 	'offset' => '',
+		// 	'exclusive' => '',
+		// 	'finderQuery' => '',
+		// 	'counterQuery' => ''
+		// ),
 		'Quest' => array(
 			'className' => 'Quest',
 			'foreignKey' => 'phase_id',
