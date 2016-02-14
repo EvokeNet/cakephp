@@ -15,8 +15,9 @@
       <li class="has-dropdown">
         <a href="#" class = "uppercase"><?php echo sprintf(__('Agent %s'), AuthComponent::user('name')); ?></a>
         <ul class="dropdown">
-          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit','admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('Edit profile'); ?></a></li>
-          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout','admin' => false)); ?>"><?php echo __('Log out'); ?></a></li>
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('View profile'); ?></a></li>
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', 'admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('Edit profile'); ?></a></li>
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout', 'admin' => false)); ?>"><?php echo __('Log out'); ?></a></li>
         </ul>
       </li>
       <li class="divider"></li>
@@ -44,7 +45,7 @@
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'leaderboard', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
           <?php echo __('Leaderboard'); ?>
         </a>
       </li>

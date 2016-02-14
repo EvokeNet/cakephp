@@ -24,4 +24,7 @@
     </ul>
 </div>
 
-<?php $this->Html->script('requirejs/app/Panels/side-menu.js', array('inline' => false)); ?>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script> 
+    $("li#<?=$this->params['controller']?>").addClass("selected");
+</script>

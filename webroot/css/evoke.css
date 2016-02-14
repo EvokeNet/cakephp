@@ -98,7 +98,7 @@ button, .button {
 }
 
 /* FONT FAMILY */
-.evoke .font-highlight {
+/*.evoke .font-highlight {
 	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
 }
 
@@ -113,7 +113,7 @@ button, .button {
 
 .evoke .icon-brankic {
 	font-family: 'Brankic';
-}
+}*/
 
 /* --------------------------- */
 /* OTHER TEXT-RELATED STYLES */
@@ -579,7 +579,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 }
 
 .evoke .form-evoke-style label {
-	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	/* font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif; */
 	text-transform: uppercase;
 }
 
@@ -1099,7 +1099,7 @@ button, .button {
 
 .evoke .top-bar-section ul li, .evoke .top-bar-section ul li a, .evoke .top-bar-section ul li > a,
 .evoke .top-bar-section ul li > a:hover, .evoke .top-bar-section ul li > a:active {
-	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	/*font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;*/
 	font-size: 0.8rem;
 }
 

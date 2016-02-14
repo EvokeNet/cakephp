@@ -6,9 +6,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					document.getElementById('side-menu').style.display = "inline";
 					document.getElementById('panel-content').style.display = "inline";
 			},50);
-
-			$("li#<?=$this->params['controller']?>").addClass("active");
-
+            
+            $("li#<?=$this->params['controller']?>").addClass("selected");
+            
 		});
 	});
 });

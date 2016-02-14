@@ -9,7 +9,9 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 				$("#btnShowUserMenu").parent().parent().find('li.active').removeClass('active'); 
 				$("#usersLink").addClass('active');
 			});
-
+        
+            $("li#<?=$this->params['controller']?>").addClass("selected");
+            
 		});
 	});
 });
