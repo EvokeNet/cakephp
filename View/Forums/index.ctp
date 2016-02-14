@@ -10,22 +10,6 @@
 
 <div class="centering-block">
 
-	<!-- HEAD -->
-	<div class="forums index">
-
-		<div>
-			<h2 class="evoke text-glow"><?php echo __('Forums'); ?></h2>
-
-			<!-- PAGING -->
-			<div class="forums paging">
-				<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
-				<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
-				<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
-			</div>
-		</div>
-
-	</div>	
-
 	<!-- FORUMS -->
 	<d1 class="accordion forums accordion" data-accordion>
 
