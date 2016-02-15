@@ -72,11 +72,7 @@
 				<div class="large-6 columns">
 					<?php
 						echo $this->Form->input('language', array(
-							'options' => array(
-								'es' => __('Spanish'),
-								'pt_BR' => __('Portuguese'),
-								'en' => __('English')
-							),
+							'options' => $languages,
 							'empty' => '(choose one)'
 						));
 
@@ -95,15 +91,7 @@
 				<div class="large-6 columns">
 					<?php
 						echo $this->Form->input('country', array(
-								'options' => array(
-									'Colombia' => __('Colombia'),
-									'Brasil' => __('Brasil'),
-									'USA' => __('USA'),
-									'South Africa' => __('South Africa'),
-									'China' => __('China'),
-									'Sweden' => __('Sweden'),
-									'' => __('Other')
-								),
+								'options' => $countries,
 								'empty' => '(choose one)'
 						));
 					?>

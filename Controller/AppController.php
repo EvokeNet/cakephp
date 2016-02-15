@@ -44,9 +44,20 @@ class AppController extends Controller {
 	public $user = null;
 	public $lang = null;
 
+      public $sex = array(
+            0 => 'Male',
+            1 => 'Female'
+      );
+
+      public $languages = array(
+            'pt_BR' => 'Português',
+            'en' => 'English',
+            'es' => 'Español'
+      );
+
 	public $countries = array(
-  	  'BR' => 'Brasil',
-  	  'US' => 'United States',
+  	'BR' => 'Brasil',
+  	'US' => 'United States',
       'AF' => 'Afganistan',
       'AL' => 'Albania',
       'DZ' => 'Algeria',

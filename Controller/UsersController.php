@@ -1286,6 +1286,11 @@ class UsersController extends AppController {
     } else {
       $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
       $user = $this->User->find('first', $options);
+      $countries = $this->countries;
+      $languages = $this->languages;
+      $this->set('countries', $countries);
+      $this->set('languages', $languages);
+      $this->set('sex', $sex);
       $this->set('user', $user['User']);
       $this->request->data = $user;
     }
@@ -1390,15 +1395,17 @@ class UsersController extends AppController {
     $groups = $this->User->Group->find('list');
     $this->set(compact('groups'));
 
+    $groups = $this->User->Group->find('list'); 
     $this->loadModel('Organization');
-    $organizations =
-      $this->Organization->find('all', array(
-      'order' => array(
-        'Organization.name ASC'
-      ),
-    ));
-
-   $this->set('organizations',$organizations);
+    $organizations = $this->Organization->find('list');
+    $this->loadModel('SuperheroIdentity');
+    $roles = $this->Role->find('list');
+    $this->loadModel('Role');
+    $superheroIdentities = $this->SuperheroIdentity->find('list',array('fields' => 'name','id'));
+    $countries = $this->countries;
+    $languages = $this->languages;
+    $sexes = $this->sex;
+    $this->set(compact('organizations', 'groups','superheroIdentities','roles','countries','languages','sexes'));
   }
 
 /**
@@ -1427,7 +1434,10 @@ class UsersController extends AppController {
     $roles = $this->Role->find('list');
     $this->loadModel('Role');
     $superheroIdentities = $this->SuperheroIdentity->find('list',array('fields' => 'name','id'));
-    $this->set(compact('organizations', 'groups','superheroIdentities','roles'));
+    $countries = $this->countries;
+    $languages = $this->languages;
+    $sexes = $this->sex;
+    $this->set(compact('organizations', 'groups','superheroIdentities','roles','countries','languages','sexes'));
   }
 
 /**
