@@ -1,9 +1,13 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Answer Model
+ * SuperheroIdentity Model
  *
- * @property Question $Question
+ * @property Social Innovator Quality $hasQuality1
+ * @property Social Innovator Quality $hasQuality2
+ * @property Power $hasPower1
+ * @property Power $hasPower2
+ * @property User $User
  */
 class SuperheroIdentity extends AppModel {
 
@@ -12,24 +16,38 @@ class SuperheroIdentity extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'description';
+	public $displayField = 'name';
+
+
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * Behaviors
+ * hasOne associations
  *
  * @var array
  */
-	public $actsAs = array('Containable');
-
-/**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'superhero_identity_id',
+	public $hasOne = array(
+		'Quality1' => array(
+			'className' => 'social_innovator_qualities',
+			'conditions' => array('social_innovator_qualities.id = SuperheroIdentity.quality_1')
+		),
+		'Quality2' => array(
+			'className' => 'social_innovator_qualities',
+			'foreignKey' => 'quality_2',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Power1' => array(
+			'className' => 'Power',
+			'foreignKey' => 'primaryPower',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Power2' => array(
+			'className' => 'Power',
+			'foreignKey' => 'secondaryPower',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -42,12 +60,19 @@ class SuperheroIdentity extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'SocialInnovatorQuality' => array(
+		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'superhero_identity_id',
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => ''
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
+
 }

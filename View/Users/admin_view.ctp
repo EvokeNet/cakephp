@@ -1,10 +1,9 @@
+
 <?php
 	// TOPBAR MENU -->
 	$this->start('topbar');
 	echo $this->element('topbar');
 	$this->end();
-
-	
 
 	/* Image header */
 	$this->start('image_header');
@@ -21,14 +20,14 @@
 ?>
 
 <div class="row full-width" data-equalizer>
-
+	
 	<?php
 		echo $this->element('panel/admin_sidebar');
 		$this->end();
 	?>
 
-	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>
-		<div class="users">
+	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>	
+		<div class="users ">
 		<h2><?php echo __('User'); ?></h2>
 			<dl>
 				<dt><?php echo __('Id'); ?></dt>
@@ -186,6 +185,16 @@
 					<?php echo h($user['User']['superhero_identity_id']); ?>
 					&nbsp;
 				</dd>
+				<dt><?php echo __('Primary Power Quantity'); ?></dt>
+				<dd>
+					<?php echo h($user['User']['primary_power_quantity']); ?>
+					&nbsp;
+				</dd>
+				<dt><?php echo __('Secondary Power Quantity'); ?></dt>
+				<dd>
+					<?php echo h($user['User']['secondary_power_quantity']); ?>
+					&nbsp;
+				</dd>
 				<dt><?php echo __('Created'); ?></dt>
 				<dd>
 					<?php echo h($user['User']['created']); ?>
@@ -198,5 +207,6 @@
 				</dd>
 			</dl>
 		</div>
+		
 	</div>
-</div>	
+</div>
