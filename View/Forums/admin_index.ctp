@@ -1,10 +1,6 @@
 <?php
-	// TOPBAR MENU -->
-	$this->start('topbar');
-	echo $this->element('top-bar');
-	$this->end();
-
 	
+    $this->extend('/Common/admin_panel');
 
 	/* Image header */
 	$this->start('image_header');
@@ -21,14 +17,11 @@
 
 ?>
 
-<div class="row full-width" data-equalizer>
-	
-	<?php
-		echo $this->element('panel/admin_sidebar');
-		$this->end();
-	?>
+<?php $this->start('page_content'); ?>
 
-	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>			
+<div class="row full-width" data-equalizer>
+
+	<div class="large-10 columns" id="panel-content" data-equalizer-watch>			
 		<div class="forums index">
 			<h2><?php echo __('Forums'); ?></h2>
 			<table cellpadding="0" cellspacing="0">
@@ -80,3 +73,5 @@
 		</div>
 	</div>	
 </div>
+
+<?php $this->end(); ?>

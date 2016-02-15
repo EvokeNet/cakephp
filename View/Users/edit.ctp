@@ -4,17 +4,41 @@
 	echo $this->element('top-bar');
 	$this->end();
 
-	/* Image header */
-	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => __('Edit Profile'), 'imgSrc' => ($this->webroot.'img/header-registering.jpg')));
-	$this->end();
 ?>
 
 <div class="evoke row standard-width">
 	<div class="form-evoke-style">
 		<?php echo $this->Form->create('User', array('type' => 'file', 'url' => array('controller' => 'users', 'action' => 'edit'), 'data-abide')); ?>
-
+                    
 		<div class="medium-6 columns">
+            
+            <div class="row">
+				<div class="large-6 columns">
+					<div class="pass">
+                        <?php
+                            echo $this->Form->input('file', array(
+                                'accept' => 'image/jpeg,image/png',
+                                'type'   => 'file',
+                                'label'  => __('Profile picture'),
+                                'class'  => 'hidden upload-file-input',
+                                'div'    => false,
+                                'name' => 'data[Attachment][][attachment]',
+                                'id' => 'upload-profile-img-fileinput'
+                            ));
+                        ?>
+
+                        <a type="button" class="button thin upload-file-button" id="upload-profile-img-button" data-file-input-id="upload-profile-img-fileinput">
+                            <i class="fa fa-user"></i>
+                            <?php echo __('Upload'); ?>
+                        </a>
+
+                        <span id="upload-profile-img-fileinput-filename"> <?= (isset($user['photo_attachment']) ? $user['photo_attachment'] : '') ?></span>
+                    </div>
+				</div>
+				<div class="large-6 columns">
+				</div>
+			</div>
+            
 			<!-- NAME -->
 			<div class="row">
 				<div class="large-6 columns">
@@ -38,27 +62,17 @@
 					?>
 				</div>
 				<div class="large-6 columns">
-					<!-- PROFILE PICTURE UPLOAD -->
-					<div class="pass">
-						<?php
-							echo $this->Form->input('file', array(
-								'accept' => 'image/jpeg,image/png',
-								'type'   => 'file',
-								'label'  => __('Profile picture'),
-								'class'  => 'hidden upload-file-input',
-								'div'    => false,
-								'name' => 'data[Attachment][][attachment]',
-								'id' => 'upload-profile-img-fileinput'
-							));
-						?>
-
-						<a type="button" class="button thin upload-file-button" id="upload-profile-img-button" data-file-input-id="upload-profile-img-fileinput">
-							<i class="fa fa-user"></i>
-							<?php echo __('Upload'); ?>
-						</a>
-
-						<span id="upload-profile-img-fileinput-filename"> <?= (isset($user['photo_attachment']) ? $user['photo_attachment'] : '') ?></span>
-					</div>
+					<?php
+                        echo $this->Form->input('birthdate', array(
+								'label' => 'Date of birth',
+								'dateFormat' => 'DMY',
+								'minYear' => date('Y') - 130,
+								'maxYear' => date('Y'),
+								'empty'=> true,
+								'separator' => '&nbsp;&nbsp;',
+								'style' => 'width:auto'
+						));
+                    ?>
 				</div>
 			</div>
 
@@ -71,16 +85,6 @@
 						echo $this->Form->input('language', array(
 							'options' => $languages,
 							'empty' => '(choose one)'
-						));
-
-						echo $this->Form->input('birthdate', array(
-								'label' => 'Date of birth',
-								'dateFormat' => 'DMY',
-								'minYear' => date('Y') - 130,
-								'maxYear' => date('Y'),
-								'empty'=> true,
-								'separator' => '&nbsp;&nbsp;',
-								'style' => 'width:auto'
 						));
 
 					?>
@@ -131,7 +135,7 @@
 					?>
 				</div>
 			</div>
-
+            
 			<?php
 				echo $this->Form->input('website', array('label' => __('Personal Site')));
 				echo $this->Form->input('blog', array('label' => __('Blog')));
