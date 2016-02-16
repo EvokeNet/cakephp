@@ -7,6 +7,8 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 					document.getElementById('panel-content').style.display = "inline";
 			},50);
 
+			$("li#<?=$this->params['controller']?>").addClass("active");
+
 		});
 	});
 });
