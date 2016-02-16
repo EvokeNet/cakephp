@@ -44,13 +44,6 @@
 				<div id="questionsModal" class = "hidden margin-top-1em">
 
 					<div class="row">
-<<<<<<< HEAD
-						<h2 class="text-glow"><?= __('Assessment questionnaire:') ?></h2>
-					</div>
-					<!-- PROGRESS BAR -->
-					<div class="row collapse text-right padding top-2">
-						<div class="row">
-=======
 		        <div class="large-1 columns"></div>
 		        <div class="large-5 large-offset-6 columns">
 
@@ -88,8 +81,6 @@
 							    </div>
 							  </li>
 							 </ul>
-
->>>>>>> permissions_branch
 							<!-- QUESTIONS -->
 							<!-- <span class="left text-glow uppercase padding right-2"><?= __('Questions') ?></span> -->
 
@@ -197,11 +188,6 @@
 									)); ?>
 								</div>
 							</div>
-<<<<<<< HEAD
-							<?php
-							$counter++;
-						}
-=======
 								<?php
 								elseif($question['type'] == 'order'):
 									//show list of fields to drag and drop in order
@@ -237,7 +223,6 @@
 								if( $total_questions == $counter ){
 									?>
 									<div class="text-right">
->>>>>>> permissions_branch
 
 										<button type="submit" class="full-width"><?php echo __('Submit'); ?></button>
 
@@ -262,13 +247,9 @@
 					</div>
 
 					<?php
-<<<<<<< HEAD
-					
-				}
-=======
+
 					$counter++;
 				endforeach;
->>>>>>> permissions_branch
 				?>
 				</div>
 			<?php

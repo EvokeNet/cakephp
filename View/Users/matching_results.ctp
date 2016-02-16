@@ -23,8 +23,8 @@
 				<p><?= $superhero['SuperheroIdentity']['description'] ?></p>
 				<p><?= __('You get:') ?></p>
 				<ul>
-					<li>2x Communication power</li>
-					<li>1x Innovation Power</li>
+					<li>2x <?= $primary_power['Power']['name'] ?></li>
+					<li>1x <?= $secondary_power['Power']['name'] ?></li>
 				</ul>
 			</div>
 		</div>
@@ -49,7 +49,7 @@
 </div>
 
 <div class="text-center">
-	<a class="button margin-top-3em" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'newprofile')); ?>"><?php echo __("Great! What's next?"); ?></a>
+	<a class="button margin-top-3em" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', AuthComponent::user('id'))); ?>"><?php echo __("Great! What's next?"); ?></a>
 </div>
 
 <?php
