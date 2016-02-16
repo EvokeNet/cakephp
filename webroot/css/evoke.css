@@ -10,7 +10,7 @@ body {
 
 *, html, body,
 div, p, span, a {
-	font-family: 'Raleway', 'Arial', sans-serif;
+	font-family: 'Dosis', sans-serif;
 	font-size: 100%;
 	-webkit-text-stroke: 0.1px;
 	-webkit-font-smoothing: antialiased;
@@ -22,7 +22,7 @@ div, p, span, a {
 }
 
 button, .button {
-	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	font-family: 'Dosis', sans-serif;
 	font-size: 100%;
 	-webkit-text-stroke: 0.1px;
 	-webkit-font-smoothing: antialiased;
@@ -35,7 +35,7 @@ button, .button {
 /* Headings */
 .evoke h1, .evoke h1 a, .evoke h2, .evoke h2 a, .evoke h3, .evoke h3 a,
 .evoke h4, .evoke h4 a, .evoke h5, .evoke h5 a, .evoke h6, .evoke h6 a {
-	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	font-family: 'Dosis', sans-serif;
 }
 
 .evoke h1, .evoke h2, .evoke h3, .evoke h4, .evoke h5, .evoke h6 {
@@ -697,9 +697,9 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 }
 
 /* Solid */
-.evoke .background-color-standard {
+/*.evoke .background-color-standard {
 	background-color: #333;
-}
+}*/
 
 .evoke .background-color-light-dark {
 	background-color: #292929;

@@ -536,7 +536,7 @@ class UsersController extends AppController {
         $this->User->createWithAttachments($this->request->data);
 
         if ($this->User->save($this->request->data)) {
-          $this->Session->setFlash(__('O usuário foi salvo com sucesso.'));
+          $this->Session->setFlash(__('O usuÃ¡rio foi salvo com sucesso.'));
 
           $user = $this->User->find('first', array('conditions' => array('User.id' => $this->User->id)));
           $this->Auth->login($user['User']);
@@ -545,7 +545,7 @@ class UsersController extends AppController {
           return $this->redirect(array('action' => 'matching', $this->User->id));
         }
         else {
-          $this->Session->setFlash(__('O usuário não pôde ser salvo. Por favor, tente novamente.'));
+          $this->Session->setFlash(__('O usuÃ¡rio nÃ£o pÃ´de ser salvo. Por favor, tente novamente.'));
         }
       }
       else {
@@ -609,36 +609,6 @@ class UsersController extends AppController {
 
     $users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
-
-    $user_id = $this->getUserId();
-
-    if($id = $user_id){
-      $is_current_user = true;
-    }else{
-      $is_current_user = false;
-    }
-
-
-
-    /**
-    *
-    *get superhero id, get the social innovators ids, find them in the DB and send them to the view to put in place of the psychometric analisys
-    *
-    */
-    $this->loadModel('SuperheroIdentity');
-
-    $superhero = $this->SuperheroIdentity->find('first', array(
-      'conditions' => array(
-        'id' => $user['User']['superhero_identity_id']
-      )
-    ));
-
-    // // check if the user has answered the asessment questionnaire
-    // if(empty($superhero)){
-    //  // redirect to the questionnaire
-    //  return $this->redirect(array('action' => 'matching', $id));
-    // }
-
     //LEVEL AND POINTS
     $this->loadModel('Level');
 
@@ -648,41 +618,13 @@ class UsersController extends AppController {
 
     $level = $this->getLevel($sumPoints);
 
-    $otherLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $level+1)));
+    $otherLevel = 0; //$this->Level->find('first', array('conditions' => array('Level.level' => $level+1)));
 
-    if(!empty($otherLevel) && $otherLevel['Level']['points'] > 0)
+    if(!empty($otherLevel))
       $percentage = round(($sumPoints / $otherLevel['Level']['points']) * 100);
     else
       $percentage = 0;
 
-    // MISSIONS
-    if ($is_current_user) {
-      $this->loadModel('Mission');
-      $this->loadModel('UserMission');
-      $this->loadModel('Phase');
-      $this->loadModel('Quest');
-
-      $available_missions = array();
-      $current_phases = array();
-      $quests = array();
-
-      if (!$user['User']['basic_training']) {
-        $available_missions[]= $this->Mission->find('first', array('conditions' => array('Mission.basic_training' => 1)));
-      } else {
-        $available_missions = $this->get_available_missions($id);
-      }
-
-      foreach($available_missions as $available_mission) {
-        $current_phases[]= $this->Phase->getCurrentPhase($user_id, $available_mission['Mission']['id'])['Phase'];
-      }
-
-      foreach($current_phases as $current_phase) {
-        $quests[]= $this->Quest->find('all',array(
-          'conditions' => array('phase_id' => $current_phase['id']),
-          'limit' => 5
-        ));
-      }
-    }
 
     //LEADERBOARD
     $max_leaderboard_users = 6; //Total of leaders on the leaderboard (including the top ones)
@@ -865,6 +807,10 @@ class UsersController extends AppController {
       )
     ));
 
+    // debug($user);
+    // debug($superhero);
+    // die();
+
     $this->loadModel('SocialInnovatorQuality');
     $first_quality = $this->SocialInnovatorQuality->find('first', array(
       'conditions' => array(
@@ -880,51 +826,10 @@ class UsersController extends AppController {
 
 
 
-    $this->set(compact(
-      'superhero',
-      'first_quality',
-      'second_quality',
-      'myevokations',
-      'user', 'users',
-      'is_friend',
-      'friends',
-      'followers',
-      'evidence',
-      'myevidences',
-      'evokations',
-      'evokationsFollowing',
-      'myEvokations',
-      'missions',
-      'missionIssues',
-      'issues',
-      'imgs',
-      'sumPoints',
-      'sumMyPoints',
-      'level',
-      'myLevel',
-      'similar_users',
-      'current_mission',
-      'current_phases',
-      'quests',
-      'available_missions',
-      'completed_missions',
-      'allies',
-      'allusers',
-      'viewerEvokation',
-      'points_users',
-      'leaderboard_users',
-      'percentage',
-      'percentageOtherUser',
-      'basic_training',
-      'notifies',
-      'badges',
-      'show_basic_training',
-      'similar_users'
-    ));
+    $this->set(compact('superhero', 'first_quality', 'second_quality', 'myevokations', 'user', 'users', 'is_friend', 'friends', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
+      'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'viewerEvokation',
+      'points_users', 'leaderboard_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'similar_users'));
 
-    if ($is_current_user) {
-      $this->render('dashboard');
-    }
   }
 
 /**

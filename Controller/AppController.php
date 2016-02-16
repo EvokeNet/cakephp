@@ -559,6 +559,18 @@ class AppController extends Controller {
 
 	public function getLevelPercentage($userPoints, $userLevel){
 
+
+		// $this->loadModel('Level');
+		//
+		// $thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
+		//
+		// if(!empty($thisLevel))
+		// 	$percentage = round(($userPoints/$thisLevel['Level']['points']) * 100);
+		// else
+		// 	$percentage = 0;
+		//
+		// return $percentage;
+
 		$this->loadModel('Level');
 
 		$thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
@@ -571,6 +583,7 @@ class AppController extends Controller {
 
 		//return $percentage;
 			return 0;
+
 	}
 
 	public function getUserId() {

@@ -1,4 +1,3 @@
-
 <?php
 	// TOPBAR MENU -->
 	$this->start('topbar');

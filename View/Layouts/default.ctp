@@ -18,6 +18,9 @@ $title = __('Evoke Network');
   <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Dosis&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
   <?php echo $this->Html->charset(); ?>
   <title>
@@ -36,6 +39,9 @@ $title = __('Evoke Network');
 
     echo $this->Html->css('/css/font/font-brankic'); //Icon font - brankic 1979
 
+    echo $this->Html->css('/components/foundation/css/foundation');
+    echo $this->Html->css('/css/plugins/foundation'); //Overriding some of the foundation css
+
     echo $this->Html->css('/components/mrmrs-colors/css/colors.min');
 
     echo $this->Html->css('/components/FroalaWysiwygEditor/css/froala_style.min.css'); //Froala - rendering text
@@ -46,7 +52,9 @@ $title = __('Evoke Network');
     echo $this->Html->css('/css/plugins/sweetalert.css'); //Overriding some of the sweet alert css
 
     //EVOKE CSS
-    echo $this->Html->css('styles');
+    // echo $this->Html->css('evoke');
+
+    echo $this->Html->css('general');
 
     //FILE-SPECIFIC CSS
     if(file_exists(WWW_ROOT.$cssBaseUrl.$cssFileName)) {
@@ -67,23 +75,24 @@ $title = __('Evoke Network');
 <body class="evoke">
   <section role="main body" class="full-height">
     <?php
+    
     //TOPBAR
     if ($this->fetch('topbar')) {
       echo $this->fetch('topbar');
     }
 
     //IMAGE HEADER
-    if ($this->fetch('image_header')) {
+     if ($this->fetch('image_header')) {
       echo $this->fetch('image_header');
-    }
+     }
 
     //CONTENT
     echo $this->fetch('content');
 
     //FOOTER
-    if ($this->fetch('footer')) {
-      echo $this->fetch('footer');
-    }
+    // if ($this->fetch('footer')) {
+    //  echo $this->fetch('footer');
+    // }
     ?>
   </section>
 
@@ -133,6 +142,6 @@ $title = __('Evoke Network');
       });
 */
   </script>
-
+  
 </body>
 </html>

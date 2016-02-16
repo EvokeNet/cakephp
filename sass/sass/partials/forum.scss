@@ -14,8 +14,7 @@
 }
 
 .evoke .forums.table{
-    margin: auto;
-    width: 60%;
+    width: 100%;
     background-color: transparent;
     border: 1px solid #26dee0;
     border-collapse: collapse;
@@ -164,30 +163,30 @@
     font-size: 20px;
 }
 
-.forums.post-link.centering{    
+.forums.post-link.centering{
     margin: auto;
     width: 56%;
 }
 
-.forums.post-link.float{    
+.forums.post-link.float{
     text-align: right;
     height: 50px;
     margin-bottom: 24px;
 }
 
-.forums.post-edit-link.float{    
+.forums.post-edit-link.float{
     text-align: right;
 }
 
-.forums.post-link.box{   
-    text-align: center; 
+.forums.post-link.box{
+    text-align: center;
     display: inline-block;
     font-size: 24px;
     padding: 12px;
 }
 
-.forums.post-edit-link.box{   
-    text-align: center; 
+.forums.post-edit-link.box{
+    text-align: center;
     display: inline-block;
     font-size: 14px;
 }
