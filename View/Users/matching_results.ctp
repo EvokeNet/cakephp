@@ -1,7 +1,7 @@
 <?php
 	/* Top bar */
 	$this->start('topbar');
-	echo $this->element('topbar');
+	echo $this->element('top-bar');
 	$this->end();
 
 	/* Image header */
@@ -10,167 +10,49 @@
 	$this->end();
 ?>
 
-<div class="row standard-width">
-	<div class="row">
-		<div class="medium-12 columns">
-			<div class = "row">
-				<div class="columns text-center">
-					<h3><?= __('You are: %s agent!', $superhero['SuperheroIdentity']['name']) ?></h3>
-					<p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
-				</div>
+<div class="evoke row">
+	<div class="large-8 small-centered columns form-evoke-style">
+		<h3 class = "text-center margin-top-1em margin-bottom-1em"><?= __('And your Superhero Identity is:') ?></h3>
+
+		<div class = "row" data-equalizer>
+			<div class="large-6 columns text-center" data-equalizer-watch>
+				<i class="fa fa-lightbulb-o fa-5x"></i>
 			</div>
-			<div class="medium-6 columns">
-				<?php 
-					$icons = array(1 => 'fa-puzzle-piece', 2 => 'fa-users', 3 => 'fa-cogs', 4 => 'fa-comments'); 
-					$id = $first_quality['SocialInnovatorQuality']['id'];
-					$icon = $icons[$id];
-				?>
-				<div class='row'>
-					<div class="medium-12 columns text-center">
-						<i class="fa <?= $icon ?> fa-5x"></i>
-					</div>
-				</div>	
-
-				<div class='row'>
-					<div class="medium-12 columns">
-
-						<p><h4><?= $first_quality['SocialInnovatorQuality']['name'] ?></h4></p>
-					</div>
-				</div>
-				
-				<div class='row'>
-					<div class="medium-12 columns">
-						<p><?= $first_quality['SocialInnovatorQuality']['description'] ?></p>
-					</div>
-				</div>
-
-			</div>
-			<div class="large-6 medium-6 columns">
-				<?php 
-					$id = $second_quality['SocialInnovatorQuality']['id'];
-					$icon = $icons[$id];
-				?>
-				
-				<div class='row'>
-					<div class="medium-12 columns text-center">
-						<i class="fa <?= $icon ?> fa-5x"></i>
-					</div>
-				</div>	
-
-				<div class='row'>
-					<div class="medium-12 columns">
-
-						<p><h4><?= $second_quality['SocialInnovatorQuality']['name'] ?></h4></p>
-					</div>
-				</div>
-				
-				<div class='row'>
-					<div class="medium-12 columns">
-						<p><?= $second_quality['SocialInnovatorQuality']['description'] ?></p>
-					</div>
-				</div>
-					
-			</div>
-			<br>
-			<br>
-			<p><?= __('Continue to explore who you are, who you could be, on your profile page. Or start your mission. Or begin to think about your world chanding idea!') ?></p>
-			<div class="text-center">
-				<a class="button" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site')); ?>"><?php echo __('Explore evoke!'); ?></a>
+			<div class="large-6 columns" data-equalizer-watch>
+				<h3 class = "font-green font-weight-bold"><?= $superhero['SuperheroIdentity']['name'] ?></h3>
+				<p><?= $superhero['SuperheroIdentity']['description'] ?></p>
+				<p><?= __('You get:') ?></p>
+				<ul>
+					<li>2x Communication power</li>
+					<li>1x Innovation Power</li>
+				</ul>
 			</div>
 		</div>
 
-		<!-- RADAR GRAPH FOR MATCHING RESULTS -->
-		<!-- <div class="medium-6 columns centering-block">
-			<div class="text-center vertical-align-middle centered-block">
-				<h4><?= __('Assessment') ?></h4>
-				<?php //echo $this->element('matching_graph', array('height' => '450', 'width' => '500')); ?>
+		<br><br>
+		<div class = "row" data-equalizer>
+			<div class="large-6 columns" data-equalizer-watch>
+				<div class = "full-height gray-block block-green-border" id = "matchingInfo">
+					<h4><?= $first_quality['SocialInnovatorQuality']['name'] ?></h4>
+					<p class="text-color-highlight"><?= $first_quality['SocialInnovatorQuality']['description'] ?></p>
+				</div>
 			</div>
-		</div> -->
-	</div>
-
-	<div class="row">
-		<!-- SIMILAR AGENTS TITLE -->
-		<div class="small-12 columns margin top-2 bottom-2">
-			<?php if (count($similar_users) > 0): ?>
-			<h3><?= __('These are agents with a profile similar to yours') ?></h3>
-			<p> <?= __('Get started following them: add them as allies!') ?> </p>
-			<?php endif; ?>
+			<div class="large-6 columns" data-equalizer-watch>
+				<div class = "full-height gray-block block-green-border" id = "matchingInfo">
+					<h4><?= $second_quality['SocialInnovatorQuality']['name'] ?></h4>
+					<p class="text-color-highlight"><?= $second_quality['SocialInnovatorQuality']['description'] ?></p>
+				</div>
+			</div>
 		</div>
 
-		<!-- SIMILAR AGENTS -->
-		<ul class="user-panel large-block-grid-4 medium-block-grid-3 small-block-grid-2" data-equalizer>
-			<?php
-				$counter = 0;
-				foreach($similar_users as $similar_user):
-			?>
-			<li>
-				<!-- PANEL -->
-				<!-- <a href="#" data-reveal-id="modalProfile<?= $counter ?>"> -->
-				
-					<div class="profile-content panel radius text-center margin right-05" data-equalizer-watch>
-						<!-- USER PICTURE -->
-						<?= $this->Picture->showUserCircularPicture(
-							$similar_user['User'],
-							'square-150px',
-							__("%s's profile picture",$similar_user['User']['name'])
-						); ?>
-
-						<!-- USER SHORT BIOGRAPHY -->
-						<h4 class="text-color-highlight"><?= $similar_user['User']['name'] ?></h4>
-
-						<?php
-						//Has mini_biography
-						if (!empty($similar_user['User']['mini_biography'])): ?>
-							<p><?= $similar_user['User']['mini_biography'] ?></p>
-						<?php
-						//Has biography
-						elseif (!empty($similar_user['User']['biography'])): ?>
-							<p><?= $this->Text->getExcerpt($similar_user['User']['biography'], 30, '...') ?></p>
-						<?php
-						//Doesn't have anything
-						else: ?>
-							<div data-alert="" class="alert-box radius">
-								<?= __('This user has not added a biography yet.') ?>
-							</div> <?php
-						endif;
-						?>
-
-						<!-- ADD AS AN ALLY -->
-						<?php if(!in_array($similar_user['User']['id'], $friends_ids) && ($similar_user['User']['id'] != $loggedInUser['id'])): ?>
-							<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $similar_user['User']['id'], $loggedInUser['id'], false)); ?>" target="_blank" onclick="location.reload()">
-								<i class="fa fa-plus"></i>
-								<?= __('Add as ally') ?>
-							</a>
-						
-						<!-- ALREADY AN ALLY -->
-						<?php elseif(in_array($similar_user['User']['id'], $friends_ids) && ($similar_user['User']['id'] != $loggedInUser['id'])): ?>
-							<a class="button small disabled">
-								<i class="fa fa-check"></i>
-								<?= __('Your ally') ?>
-							</a>
-						<?php endif; ?>
-
-						<!-- <button class="submit small "><?php echo __('View Agent'); ?></button> -->
-					</div>
-				<!-- </a> -->
-
-				<!-- VIEW AGENT DETAILS MODAL -->
-				<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $similar_user, 'add_button' => true)); ?>
-			</li>
-			<?php
-					$counter++;
-				endforeach;
-			?>
-		</ul>
 	</div>
 </div>
 
-<?php
-	/* Footer */
-	$this->start('footer');
-	echo $this->element('footer');
-	$this->end();
+<div class="text-center">
+	<a class="button margin-top-3em" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'newprofile')); ?>"><?php echo __("Great! What's next?"); ?></a>
+</div>
 
+<?php
 	//SCRIPT
 	$this->Html->script('requirejs/app/Users/matching_results.js', array('inline' => false));
 ?>

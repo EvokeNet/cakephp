@@ -402,6 +402,7 @@ class UsersController extends AppController {
 	}
 
 
+
 /**
  * allies method
  *
@@ -446,6 +447,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
+
 	public function profile($id = null) {
 
 		if (!$this->User->exists($id)) {
@@ -678,8 +680,6 @@ class UsersController extends AppController {
 			'points_users', 'leaderboard_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'similar_users'));
 
 	}
-
-
 
 /**
  *
@@ -1155,18 +1155,64 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function admin_delete($id = null) {
-		$this->autoRender = false;
 
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$this->request->onlyAllow('post', 'delete');
-		if ($this->User->delete()) {
-			$this->Session->setFlash(__('The user has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
-		}
-	}
+  public function admin_delete($id = null) {
+    $this->User->id = $id;
+    if (!$this->User->exists()) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+    $this->request->allowMethod('post', 'delete');
+    if ($this->User->delete()) {
+      return $this->flash(__('The user has been deleted.'), array('action' => 'index'));
+    } else {
+      return $this->flash(__('The user could not be deleted. Please, try again.'), array('action' => 'index'));
+    }
+
+    $this->loadModel('Organization');
+    $organizations =
+      $this->Organization->find('all', array(
+      'order' => array(
+        'Organization.name ASC'
+      ),
+    ));
+
+   $this->set('organizations',$organizations);
+  }
+  /**
+   * Gets User from ID
+   * @param  [type] $id [description]
+   * @return [type]     [description]
+   */
+  private function get_user($id = null) {
+    return $this->User->find('first', array('conditions' => array('User.id' => $id)));
+  }
+
+  private function get_available_missions($user_id) {
+    return $this->Mission->find('all', array(
+      'joins' => array(
+        array(
+          'table' => 'user_missions',
+          'alias' => 'UserMission',
+          'type' => 'LEFT',
+          'foreign_key' => false,
+          'conditions' => array(
+            'UserMission.user_id' => $user_id,
+            'UserMission.completed' => 0
+          )
+        )
+      ),
+      'conditions' => array(
+        'Mission.basic_training' => 0
+      )
+    ));
+  }
+
+  private function build_qualities_array() {
+    $qualities = array();
+
+    for($i = 0; $i <= 6; $i++) {
+      $qualities[] = 0;
+    }
+    return $qualities;
+  }
 }

@@ -59,7 +59,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
 						}
 
 						$( "input" ).on( "click", function() {
-						  alert( $( "input:checked" ).val() + " is checked!" );
+						  //alert( $( "input:checked" ).val() + " is checked!" );
 						});
 
 						//var elems = $( "input[id^='UserMatchingAnswerMatchingAnswer")

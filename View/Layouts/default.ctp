@@ -81,9 +81,9 @@ $title = __('Evoke Network');
 		}
 
 		//IMAGE HEADER
-		// if ($this->fetch('image_header')) {
-		// 	echo $this->fetch('image_header');
-		// }
+		 if ($this->fetch('image_header')) {
+			echo $this->fetch('image_header');
+		 }
 
 		//CONTENT
 		echo $this->fetch('content');
@@ -141,6 +141,6 @@ $title = __('Evoke Network');
   	  });
 */
 	</script>
-	
+
 </body>
 </html>
