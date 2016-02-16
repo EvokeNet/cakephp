@@ -43,9 +43,9 @@
 				?>
 				<div id="questionsModal" class = "hidden">
 
-					<div class="evoke row">
-		        <div class="large-1 columns">1</div>
-		        <div class="large-8 large-offset-3 columns">
+					<div class="row">
+		        <div class="large-1 columns"></div>
+		        <div class="large-5 large-offset-6 columns">
 
 							<ul class="timeline" id="timeline" style = "margin-top:30px">
 								<li class="li complete" id = "circle-1">
@@ -204,6 +204,7 @@
 									)); ?>
 								</div>
 
+							</div>
 								<?php
 								elseif($question['type'] == 'order'):
 									//show list of fields to drag and drop in order
@@ -239,9 +240,12 @@
 								if( $total_questions == $counter ){
 									?>
 									<div class="text-right">
+
+										<button type="submit" class="full-width"><?php echo __('Submit'); ?></button>
+
 										<?php
 
-										echo $this->Form->input('submit', array('type' => 'submit', 'class' => 'radius button', 'value' => __('Submit'), 'label' => false));
+									//	echo $this->Form->input('submit', array('type' => 'submit', 'class' => 'radius button', 'value' => __('Submit'), 'label' => false));
 										echo $this->Form->end();
 
 										?>
@@ -262,6 +266,7 @@
 					</div>
 
 					<?php
+
 					$counter++;
 				endforeach;
 				?>

@@ -1,28 +1,38 @@
+
 <?php
+	// TOPBAR MENU -->
+	$this->start('topbar');
+	echo $this->element('top-bar');
+	$this->end();
+
+	
+
+	/* Image header */
+	$this->start('image_header');
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => true, 'hidden' => true));
+	$this->end();
 
 	echo $this->Html->css(
 		array(
-			'evoke-new',
-			'panels-new'
+			'evoke',
+			'panels',
+			'circle'
 		)
 	);
 
 ?>
 
-<!-- TOPBAR MENU -->
-<div id="missions-menu" class="sticky fixed">
-	<?php echo $this->element('topbar', array('sticky' => '', 'fixed' => '')); ?>
-</div>
+<div class="row full-width" data-equalizer>
+  	<?php
+		echo $this->element('panel/admin_sidebar');
+		$this->end();
+	?>
 
-<div class="evoke row row-full-width padding top-4">
-  <div class="large-2 columns padding-left-0">
-	  <div class = "menu-column">
-	  </div>
-  </div>
-  <div class="large-10 columns">
+  <div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>
+
+  	<h2 class="evoke text-glow"><?= $organization['Organization']['name'] ?></h2>
 
 	<ul class="small-block-grid-3 padding-top-2">
-	  
 	  <li>
 	  	<input type="search" class="light-table-filter" data-table="order-table-missions" placeholder="<?= __('Search missions') ?>">
 		<table class="order-table-missions paginated" id = "missionsTable">

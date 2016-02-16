@@ -784,69 +784,79 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function matching_results($id = null, $quality_1, $quality_2) {
-		// find superhero and prepare the text for the qualities
 
-		$this->loadModel('SuperheroIdentity');
-		$superhero = $this->SuperheroIdentity->find('first', array(
-			'conditions' => array(
-				'quality_1' => $quality_1,
-				'quality_2' => $quality_2
-			),
-		));
+  public function matching_results($id = null, $quality_1, $quality_2) {
+    // find superhero and prepare the text for the qualities
+    $this->loadModel('SuperheroIdentity');
 
-		$user = $this->User->find('first', array(
-			'conditions' => array(
-				'id' => $id
-			),
-		));
-		// debug($superhero);
-		// die();
-		//save user's superhero identity id
-		$user['User']['superhero_identity_id'] = $superhero['SuperheroIdentity']['id'];
-		unset($user['User']['password']);
-		$this->User->save($user);
+    $superhero = $this->SuperheroIdentity->find('first', array(
+      'conditions' => array(
+        'quality_1' => $quality_1,
+        'quality_2' => $quality_2
+      ),
+    ));
 
-		$this->loadModel('SocialInnovatorQuality');
+    $user = $this->User->find('first', array(
+      'conditions' => array(
+        'id' => $id
+      ),
+    ));
 
-		$first_quality = $this->SocialInnovatorQuality->find('first', array(
-			'conditions' => array(
-				'id' => $quality_1
-			),
-		));
+    //save user's superhero identity id
+    $user['User']['superhero_identity_id'] = $superhero['SuperheroIdentity']['id'];
+    unset($user['User']['password']);
+    //update session user
+    $this->Session->write('Auth.User.superhero_identity_id',$superhero['SuperheroIdentity']['id']);
+    $this->User->save($user);
 
-		$second_quality = $this->SocialInnovatorQuality->find('first', array(
-			'conditions' => array(
-				'id' => $quality_2
-			),
-		));
+    $this->loadModel('SocialInnovatorQuality');
 
-		// debug($quality_1." ".$quality_2);
-		// debug($superhero);
-		// debug($first_quality);
-		// debug($second_quality);
-		// die();
+    $first_quality = $this->SocialInnovatorQuality->find('first', array(
+      'conditions' => array(
+        'id' => $quality_1
+      ),
+    ));
 
-		//List of similar users (same superhero identity for now)
-		$similar_users = $this->User->find('all', array(
-			'conditions' => array(
-				'User.id != '.$this->getUserId(),
-				'User.superhero_identity_id' => $superhero['SuperheroIdentity']['id']
-			),
-			'limit' => 4,
-			'order' => 'rand()'
-		));
+    $second_quality = $this->SocialInnovatorQuality->find('first', array(
+      'conditions' => array(
+        'id' => $quality_2
+      ),
+    ));
 
-		//FRIENDS
-		$friends_ids = $this->User->UserFriend->find('list', array(
-			'fields' => 'UserFriend.friend_id',
-			'conditions' => array(
-				'UserFriend.user_id' => $this->getUserId()
-			)
-		));
+    $this->loadModel('Power');
 
-		$this->set(compact('similar_users', 'friends_ids', 'superhero', 'first_quality', 'second_quality'));
-	}
+    $primary_power = $this->Power->find('first', array(
+      'conditions' => array(
+        'id' => $superhero['SuperheroIdentity']['primary_power']
+      ),
+    ));
+
+    $secondary_power = $this->Power->find('first', array(
+      'conditions' => array(
+        'id' => $superhero['SuperheroIdentity']['secondary_power']
+      ),
+    ));
+
+    //List of similar users (same superhero identity for now)
+    $similar_users = $this->User->find('all', array(
+      'conditions' => array(
+        'User.id != '.$this->getUserId(),
+        'User.superhero_identity_id' => $superhero['SuperheroIdentity']['id']
+      ),
+      'limit' => 4,
+      'order' => 'rand()'
+    ));
+
+    //FRIENDS
+    $friends_ids = $this->User->UserFriend->find('list', array(
+      'fields' => 'UserFriend.friend_id',
+      'conditions' => array(
+        'UserFriend.user_id' => $this->getUserId()
+      )
+    ));
+
+    $this->set(compact('similar_users', 'friends_ids', 'superhero', 'first_quality', 'second_quality','primary_power','secondary_power'));
+  }
 
 /**
  *
@@ -1041,6 +1051,7 @@ class UsersController extends AppController {
       $user = $this->User->find('first', $options);
       $countries = $this->countries;
       $languages = $this->languages;
+      $sex = $this->sex;
       $this->set('countries', $countries);
       $this->set('languages', $languages);
       $this->set('sex', $sex);
