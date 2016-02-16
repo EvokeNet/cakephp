@@ -3,10 +3,10 @@ App::uses('AppModel', 'Model');
 /**
  * SuperheroIdentity Model
  *
- * @property Social Innovator Quality $hasQuality1
- * @property Social Innovator Quality $hasQuality2
- * @property Power $hasPower1
- * @property Power $hasPower2
+ * @property social_innovator_qualities $Quality1
+ * @property social_innovator_qualities $Quality2
+ * @property Power $Power1
+ * @property Power $Power2
  * @property User $User
  */
 class SuperheroIdentity extends AppModel {
@@ -29,25 +29,28 @@ class SuperheroIdentity extends AppModel {
 	public $hasOne = array(
 		'Quality1' => array(
 			'className' => 'social_innovator_qualities',
-			'conditions' => array('social_innovator_qualities.id = SuperheroIdentity.quality_1')
+			'foreignKey' => 'id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		),
 		'Quality2' => array(
 			'className' => 'social_innovator_qualities',
-			'foreignKey' => 'quality_2',
+			'foreignKey' => 'id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'Power1' => array(
 			'className' => 'Power',
-			'foreignKey' => 'primaryPower',
+			'foreignKey' => 'id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
 		'Power2' => array(
 			'className' => 'Power',
-			'foreignKey' => 'secondaryPower',
+			'foreignKey' => 'id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

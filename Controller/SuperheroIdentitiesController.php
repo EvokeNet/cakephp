@@ -24,6 +24,16 @@ class SuperheroIdentitiesController extends AppController {
 	public function admin_index() {
 		$this->SuperheroIdentity->recursive = 0;
 		$this->set('superheroIdentities', $this->Paginator->paginate());
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
 	}
 
 /**
@@ -39,6 +49,16 @@ class SuperheroIdentitiesController extends AppController {
 		}
 		$options = array('conditions' => array('SuperheroIdentity.' . $this->SuperheroIdentity->primaryKey => $id));
 		$this->set('superheroIdentity', $this->SuperheroIdentity->find('first', $options));
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);		
 	}
 
 /**
@@ -56,6 +76,16 @@ class SuperheroIdentitiesController extends AppController {
 				$this->Session->setFlash(__('The superhero identity could not be saved. Please, try again.'));
 			}
 		}
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);	
 	}
 
 /**
@@ -80,6 +110,20 @@ class SuperheroIdentitiesController extends AppController {
 			$options = array('conditions' => array('SuperheroIdentity.' . $this->SuperheroIdentity->primaryKey => $id));
 			$this->request->data = $this->SuperheroIdentity->find('first', $options);
 		}
+
+		$this->loadModel('SocialInnovatorQuality');
+  		$qualities = $this->SocialInnovatorQuality->find('list');
+  		$this->loadModel('Power');
+  		$powers = $this->Power->find('list');
+  		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+	      
+  		$this->set(compact('powers','qualities','organizations'));
 	}
 
 /**
