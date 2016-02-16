@@ -161,6 +161,17 @@ class ForumCategoriesController extends AppController {
 	public function admin_index() {
 		$this->ForumCategory->recursive = 0;
 		$this->set('forumCategories', $this->Paginator->paginate());
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
+
 	}
 
 /**
@@ -174,8 +185,48 @@ class ForumCategoriesController extends AppController {
 		if (!$this->ForumCategory->exists($id)) {
 			throw new NotFoundException(__('Invalid forum category'));
 		}
-		$options = array('conditions' => array('ForumCategory.' . $this->ForumCategory->primaryKey => $id));
+		$options = array(
+			'fields' => array(
+				'ForumCategory.*',
+				'User.name',
+				'User.id',
+				'Forum.id',
+				'Forum.title'
+			),
+			'joins' => array(
+				array(
+					'table' => 'users',
+					'alias' => 'User',
+					'type' => 'INNER',
+					'conditions' => array(
+						'ForumCategory.user_id = User.id'
+					)
+				),
+				array(
+					'table' => 'forums',
+					'alias' => 'Forum',
+					'type' => 'INNER',
+					'conditions' => array(
+						'ForumCategory.forum_id = Forum.id'
+					)
+				)
+			),
+			'conditions' => array(
+				'ForumCategory.' . $this->ForumCategory->primaryKey => $id
+			)
+		);
+
 		$this->set('forumCategory', $this->ForumCategory->find('first', $options));
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
 	}
 
 /**
@@ -196,6 +247,16 @@ class ForumCategoriesController extends AppController {
 		$users = $this->ForumCategory->User->find('list');
 		$forums = $this->ForumCategory->Forum->find('list');
 		$this->set(compact('users', 'forums'));
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
 	}
 
 /**
@@ -223,6 +284,16 @@ class ForumCategoriesController extends AppController {
 		$users = $this->ForumCategory->User->find('list');
 		$forums = $this->ForumCategory->Forum->find('list');
 		$this->set(compact('users', 'forums'));
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
 	}
 
 /**

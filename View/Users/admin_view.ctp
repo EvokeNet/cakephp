@@ -19,13 +19,13 @@
 ?>
 
 <div class="row full-width" data-equalizer>
-
+	
 	<?php
 		echo $this->element('panel/admin_sidebar');
 		$this->end();
 	?>
 
-	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>
+	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>	
 		<div class="users ">
 		<h2><?php echo __('User'); ?></h2>
 			<dl>
@@ -206,6 +206,6 @@
 				</dd>
 			</dl>
 		</div>
-
+		
 	</div>
 </div>

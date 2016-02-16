@@ -560,7 +560,7 @@ class PanelsController extends AppController {
 		}	}
 
 	public function admin_organization($org_id = null){
-
+		
 
 		$this->loadModel('Badges');
 		$this->loadModel('Organization');
@@ -699,7 +699,7 @@ class PanelsController extends AppController {
 		$this->loadModel('User');
 		$this->loadModel('Organization');
 
-
+	    
 
 		$organization = $this->Organization->find('first', array(
 			'conditions' => array(

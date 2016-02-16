@@ -19,13 +19,13 @@
 ?>
 
 <div class="row full-width" data-equalizer>
-
+	
 	<?php
 		echo $this->element('panel/admin_sidebar');
 		$this->end();
 	?>
 
-	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>
+	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>	
 		<div class="users index">
 			<h2><?php echo __('Users'); ?></h2>
 			<table cellpadding="0" cellspacing="0">

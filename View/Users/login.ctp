@@ -65,7 +65,7 @@
   <section class="vertical-scrolling">
     <h2 class = "margin-top-05em font-green uppercase font-weight-bold"><?php echo ('Welcome to the Evoke network!'); ?></h2>
     <div class = "centralize-content">
-			<h4><?php echo ('If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the worldâ€™s greatest challenges. As an Evoke agent, you will choose your mission, develop your powers, and together with agents around the world create your <strong>own world changing idea</strong>.'); ?></h4>
+			<h4><?php echo ('If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges. As an Evoke agent, you will choose your mission, develop your powers, and together with agents around the world create your <strong>own world changing idea</strong>.'); ?></h4>
 		</div>
   </section>
 

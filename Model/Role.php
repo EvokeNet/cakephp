@@ -1,37 +1,21 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Forum Model
+ * Role Model
  *
  * @property User $User
- * @property ForumCategory $ForumCategory
  */
-class Forum extends AppModel {
+class Role extends AppModel {
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'title';
+	public $displayField = 'name';
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
 
 /**
  * hasMany associations
@@ -39,9 +23,9 @@ class Forum extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'ForumCategory' => array(
-			'className' => 'ForumCategory',
-			'foreignKey' => 'forum_id',
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'role_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

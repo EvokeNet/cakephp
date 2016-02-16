@@ -8,11 +8,7 @@
 	<div class = "bg" style = "height: 450px">
 <!--		<img src = '<?= $this->webroot.'img/user_avatar.jpg' ?>' style = "height:150px; border-radius:50%; margin-top:30px">-->
 
-<<<<<<< HEAD
-        <div class="row">
-=======
         <div class="row text-center">
->>>>>>> f63bae596dcba1c1730540de60261c3c84616c4d
           <div class="large-4 small-centered columns">
             <img src = '<?= $this->webroot.'img/user_avatar.jpg' ?>' style = "height:150px; border-radius:50%; margin-top:30px" class = "text-center">
             <h3 class = "margin-top-1em text-center font-green font-weight-bold"><?= $user['User']['name'] ?></h3>
@@ -35,15 +31,9 @@
                     <h5><?= $user['User']['country'] ?></h5>
                 </label>
             </div>
-<<<<<<< HEAD
-            <div class = "left margin-left-3em">
-                <?php echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
-            </div>
-=======
             <!-- <div class = "left margin-left-3em">
                 <?php echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?>
             </div> -->
->>>>>>> f63bae596dcba1c1730540de60261c3c84616c4d
 
             <div class = "right margin-left-2em">
                 <!-- IF NOT AN ALLY -->
@@ -73,9 +63,6 @@
     <div class="row">
         <div class="large-3 columns">
 
-<<<<<<< HEAD
-            <div class = "gray-block">
-=======
 					<div class = "gray-block margin-bottom-1em">
 							<h3 class = "font-green uppercase font-weight-bold"><?= __('My Allies') ?></h3>
 
@@ -127,7 +114,6 @@
 				</div>
 
             <div class = "gray-block margin-bottom-1em">
->>>>>>> f63bae596dcba1c1730540de60261c3c84616c4d
                 <h3 class = "font-green uppercase font-weight-bold"><?= __('Potential Allies') ?></h3>
                 <ul class="full-width small-block-grid-1">
 
@@ -164,19 +150,11 @@
 										<?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'PotentialAllies'.$counter, 'user' => $similar_user, 'add_button' => true)); ?>
 									</li>
 
-<<<<<<< HEAD
-					<?php
-						$counter++;
-					endforeach;
-					?>
-				</ul>
-=======
 								<?php
 									$counter++;
 								endforeach;
 								?>
 							</ul>
->>>>>>> f63bae596dcba1c1730540de60261c3c84616c4d
 
               <a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'view_all')); ?>"><?php echo __('SEE ALL USERS'); ?></a>
 
@@ -185,21 +163,12 @@
         </div>
         <div class="large-6 columns">
 
-<<<<<<< HEAD
-            <div class = "gray-block">
-                <h3 class = "font-green uppercase font-weight-bold"><?= __('You are: %s agent!', $superhero['SuperheroIdentity']['name']) ?></h3>
-                <p><?= __('Congratulations, Agent! Most do not make it this far. Your profile shows great promise.') ?></p>
-            </div>
-
-            <div class = "gray-block">
-=======
             <div class = "gray-block margin-bottom-1em">
                 <h3 class = "font-green uppercase font-weight-bold"><?= __('Your Superhero Identity is: %s ', $superhero['SuperheroIdentity']['name']) ?></h3>
                 <p><?= $superhero['SuperheroIdentity']['description'] ?></p>
             </div>
 
             <div class = "gray-block margin-bottom-1em">
->>>>>>> f63bae596dcba1c1730540de60261c3c84616c4d
                 <h3 class = "font-green uppercase font-weight-bold"><?= __('About me') ?></h3>
                 <p><?= $user['User']['biography'] ?></p>
             </div>
@@ -207,20 +176,12 @@
         </div>
         <div class="large-3 columns">
 
-<<<<<<< HEAD
-            <div class = "gray-block">
-=======
             <div class = "gray-block margin-bottom-1em">
->>>>>>> f63bae596dcba1c1730540de60261c3c84616c4d
                 <h3 class = "font-green uppercase font-weight-bold"><?= __('Badges') ?></h3>
 								<?php echo $this->element('badges'); ?>
             </div>
 
-<<<<<<< HEAD
-            <div class = "gray-block">
-=======
             <div class = "gray-block margin-bottom-1em">
->>>>>>> f63bae596dcba1c1730540de60261c3c84616c4d
                 <h3 class = "font-green uppercase font-weight-bold"><?= __('Leaderboard') ?></h3>
                 <?php echo $this->element('leaderboard'); ?>
             </div>

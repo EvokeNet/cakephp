@@ -19,13 +19,13 @@
 ?>
 
 <div class="row full-width" data-equalizer>
-
+	
 	<?php
 		echo $this->element('panel/admin_sidebar');
 		$this->end();
 	?>
 
-	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>
+	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>	
 		<div class="users form">
 		<?php echo $this->Form->create('User'); ?>
 			<fieldset>
