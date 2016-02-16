@@ -1,10 +1,7 @@
 <?php
 
-	echo $this->Html->css('/components/jquery-ui/themes/smoothness/jquery-ui.css');
-
-	/* Top bar */
 	$this->start('topbar');
-	echo $this->element('topbar');
+	echo $this->element('top-bar');
 	$this->end();
 
 	/* Image header */
@@ -32,7 +29,7 @@
 				</div>
 			</div>
 
-			
+
 			<div class="row">
 				<!-- USERNAME -->
 				<div class="large-6 columns">
@@ -42,7 +39,7 @@
 				</div>
 				<div class="large-6 columns">
 					<!-- PROFILE PICTURE UPLOAD -->
-					<div class="pass"> 
+					<div class="pass">
 						<?php
 							echo $this->Form->input('file', array(
 								'accept' => 'image/jpeg,image/png',

@@ -49,7 +49,7 @@
                     </a>
 
                 <?php elseif($user['User']['id'] == $users['User']['id']): ?>
-					<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'UserFriends', 'action' => 'add', $user['User']['id'], $loggedInUser['id'], false)); ?>">
+					<a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', $user['User']['id'])); ?>">
                         <?php echo __('Edit profile'); ?>
                     </a>
 
