@@ -1193,6 +1193,7 @@ class UsersController extends AppController {
       $user = $this->User->find('first', $options);
       $countries = $this->countries;
       $languages = $this->languages;
+      $sex = $this->sex;
       $this->set('countries', $countries);
       $this->set('languages', $languages);
       $this->set('sex', $sex);

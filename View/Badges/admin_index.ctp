@@ -1,7 +1,7 @@
 <?php
 	// TOPBAR MENU -->
 	$this->start('topbar');
-	echo $this->element('topbar');
+	echo $this->element('top-bar');
 	$this->end();
 
 	/* Image header */
