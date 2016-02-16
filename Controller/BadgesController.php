@@ -25,7 +25,7 @@ class BadgesController extends AppController {
 		$this->user['role_id'] = $this->getUserRole();
 		$this->user['id'] = $this->getUserId();
 		$this->user['name'] = $this->getUserName();
-		
+
 		//there was some problem in retrieving user's info concerning his/her role : send him home
 		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
 			$this->redirect(array('controller' => 'users', 'action' => 'login'));
@@ -58,7 +58,7 @@ class BadgesController extends AppController {
 				)
 			));
 			if(!empty($badge_img)) {
-				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
+				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir'];
 				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
 			}
 
@@ -73,7 +73,7 @@ class BadgesController extends AppController {
 			//PROGRESS
 			$badges[$b]['Badge']['UserPercentage'] = rand(0,100); // ($badgeCurrent / $badgeGoal) * 100;
 		}
-		
+
 		$this->loadModel('User');
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
@@ -170,6 +170,71 @@ class BadgesController extends AppController {
 		}
 	}
 
+
+/**
+ * admin_index method
+ *
+ * @return void
+ */
+	public function admin_index() {
+		$this->Badge->recursive = 0;
+		$this->set('badges', $this->Paginator->paginate());
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
+	}
+
+/**
+ * admin_view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function admin_view($id = null) {
+		if (!$this->Badge->exists($id)) {
+			throw new NotFoundException(__('Invalid badge'));
+		}
+
+		$options = array(
+			'fields' => array(
+				'Badge.*',
+				'Organization.name',
+				'Organization.id'
+			),
+			'joins' => array(
+				array(
+					'table' => 'organizations',
+					'alias' => 'Organization',
+					'type' => 'INNER',
+					'conditions' => array(
+						'Badge.organization_id = Organization.id'
+					)
+				)
+			),
+			'conditions' => array(
+				'Badge.' . $this->Badge->primaryKey => $id
+			)
+		);
+		$this->set('badge', $this->Badge->find('first', $options));
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
+	}
 
 /**
  * admin_add method
