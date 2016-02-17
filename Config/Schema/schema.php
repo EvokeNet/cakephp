@@ -1,5 +1,5 @@
 <?php
-class EvokeSchema extends CakeSchema {
+class DevEvokeM00ComBrSchema extends CakeSchema {
 
   public function before($event = array()) {
     return true;

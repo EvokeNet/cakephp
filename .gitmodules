@@ -17,3 +17,6 @@
 [submodule "Plugin/Evoke-Uploader"]
 	path = Plugin/Evoke-Uploader
 	url = git@bitbucket.org:quantica/evoke-uploader.git
+[submodule "Plugin/Uploader"]
+	path = Plugin/Uploader
+	url = git@bitbucket.org:quantica/evoke-uploader.git
