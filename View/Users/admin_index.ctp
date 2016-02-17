@@ -1,6 +1,9 @@
 <?php
 	
-    $this->extend('/Common/admin_panel');
+    // TOPBAR MENU -->
+	$this->start('topbar');
+	echo $this->element('top-bar');
+	$this->end();
 
 	/* Image header */
 	$this->start('image_header');
@@ -16,8 +19,14 @@
 
 ?>
 
-<?php $this->start('page_content'); ?>
+<div class="row full-width" data-equalizer>
+	
+	<?php
+		echo $this->element('panel/admin_sidebar');
+		$this->end();
+	?>
 
+	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>	
     <div>
         <h2><?php echo __('Users'); ?></h2>
         <table cellpadding="0" cellspacing="0">
@@ -87,5 +96,5 @@
             <li><?php echo $this->Html->link(__('New Attachment'), array('controller' => 'attachments', 'action' => 'add')); ?> </li>
         </ul>
      </div>
-
-<?php $this->end(); ?>
+     </div>
+     </div>

@@ -1,82 +1,75 @@
-<!-- TOP-BAR -->
-<div id="top-bar-login"
-	 class="evoke login-top-bar row full-width padding top-05 bottom-05 vertical-align-middle
-			<?php echo isset($sticky) ? $sticky : 'sticky'; ?> <?php echo isset($fixed) ? $fixed : 'fixed'; ?>" >
-	<nav class="top-bar" data-topbar role="navigation">
-		<ul class="title-area">
-			<li class="name">
-				<h1>
-					<?php  ?>
-					<a href="<?php
-						if (isset($loggedIn) && ($loggedIn)) {
-							echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site', 'admin' => false));
-						}
-						else {
-							echo $this->Html->url(array('controller' => 'users', 'action' => 'login', 'admin' => false));
-						} ?>">
-						<span>
-							<!-- Logo -->
-							<div class="left"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>'></div>
-						</span>
-					</a>
-				</h1>
-			</li>
-			
-	    	<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-		</ul>
+<nav class="top-bar header-top" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>' width = "125px"></a></h1>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
 
-	
-		<section class="top-bar-section">
- 			
-			<?php 
-			//MENU BEFORE SIGN IN
-			if (isset($loggedIn) && (!$loggedIn)) {
-				echo $this->element('topbar-login', array('ulClass' => 'right'));
-			}
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li class = "margin-right-1em"><?php //echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?></li>
+      <li class = "divider"></li>
+      <li class="has-dropdown">
+        <a href="#" class = "uppercase"><?php echo sprintf(__('Agent %s'), AuthComponent::user('name')); ?></a>
+        <ul class="dropdown">
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('View profile'); ?></a></li>
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', 'admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('Edit profile'); ?></a></li>
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout', 'admin' => false)); ?>"><?php echo __('Log out'); ?></a></li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li class="has-dropdown">
+        <a href="#"><?php echo __('LANGUAGE'); ?></a>
+        <ul class="dropdown">
+          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'en')) ?>"><?php echo __('ENGLISH'); ?></a></li>
+          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'es')) ?>"><?php echo __('SPANISH'); ?></a></li>
+        </ul>
+      </li>
+    </ul>
 
-			//MENU AFTER SIGN IN
-			if (!isset($topBarCustomMenu)) {
-				$topBarCustomMenu = 'topbar-loggedIn';
-			}
-			if (!isset($canShowIfNotLoggedIn)) {
-				$canShowIfNotLoggedIn = false;
-			}
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li>
+        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index', 'admin' => false)); ?>" class="font-green font-weight-bold uppercase">
+          <?php echo __('Missions'); ?>
+        </a>
+      </li>
 
-			if (($loggedIn) || ($canShowIfNotLoggedIn)) {
-				echo $this->element($topBarCustomMenu, array('ulClass' => 'right'));
-			}
-			?>
+      <li>
+        <a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
+          <?php echo __('Forum'); ?>
+        </a>
+      </li>
 
-		</section>
-	</nav>
-</div>
+      <li>
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
+          <?php echo __('Leaderboard'); ?>
+        </a>
+      </li>
 
-<!-- EVOKE REGISTRATION (NOT USED FOR NOW) -->
-<!--
-<div id="myModal" class="reveal-modal tiny evoke login-lightbox" data-reveal>
-	<h2><?= __('Evoke Registration') ?></h2>
-	<?php //echo $this->Form->create('User'); ?>
-	<?php
-		//echo $this->Form->input('name', array('required' => true, 'label' => __('Name')));
-		//echo $this->Form->input('username', array('required' => true, 'label' => __('Username')));
-		//echo $this->Form->input('email', array('type' => 'email', 'required' => true));
-		//echo $this->Form->input('password', array('required' => true, 'label' => __('Password')));
-	?>
-	<?php //echo $this->Form->end(__('Submit')); ?>
-	<button class="evoke button general" type="submit"><?php //echo __('Register') ?></button>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
--->
+      <li>
+        <a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
+          <?php echo __('Badges'); ?>
+        </a>
+      </li>
 
-<!-- commented so flash messages do not appear anymore -->
+      <li>
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id'))); ?>" class="font-green uppercase font-weight-bold">
+          <?php echo __('Profile'); ?>
+        </a>
+      </li>
+      <?php if ($loggedInUser['role'] <= $scores['ADMIN']): ?>
+      
+          <li>
+            <a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main', 'admin' => true)); ?>" class="font-green uppercase font-weight-bold">
+              <?php echo __('Admin Panel'); ?>
+            </a>
+          </li>
+    <?php endif; ?>
 
-<!-- Flash messages -->
-<!--<?php
-//if($this->Session->check('Message.flash')): ?>
-	<div data-alert="" class="alert-box radius">
-		<?php //echo $this->Session->flash(); ?>
-		<a href="" class="close">×</a>
-	</div>
-<?php //endif; ?> -->
-
-<?php echo $this->fetch('content'); ?>
+    </ul>
+  </section>
+</nav>

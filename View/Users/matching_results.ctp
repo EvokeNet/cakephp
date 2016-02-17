@@ -33,14 +33,14 @@
 		<div class = "row" data-equalizer>
 			<div class="large-6 columns" data-equalizer-watch>
 				<div class = "full-height gray-block block-green-border" id = "matchingInfo">
-					<h4><?= $first_quality['SocialInnovatorQuality']['name'] ?></h4>
-					<p class="text-color-highlight"><?= $first_quality['SocialInnovatorQuality']['description'] ?></p>
+					<h4><?= $primary_power['Power']['name'] ?></h4>
+					<p class="text-color-highlight"><?= $primary_power['Power']['description'] ?></p>
 				</div>
 			</div>
 			<div class="large-6 columns" data-equalizer-watch>
 				<div class = "full-height gray-block block-green-border" id = "matchingInfo">
-					<h4><?= $second_quality['SocialInnovatorQuality']['name'] ?></h4>
-					<p class="text-color-highlight"><?= $second_quality['SocialInnovatorQuality']['description'] ?></p>
+					<h4><?= $secondary_power['Power']['name'] ?></h4>
+					<p class="text-color-highlight"><?= $secondary_power['Power']['description'] ?></p>
 				</div>
 			</div>
 		</div>
