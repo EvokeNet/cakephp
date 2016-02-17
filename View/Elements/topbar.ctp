@@ -9,10 +9,10 @@
 					<?php  ?>
 					<a href="<?php
 						if (isset($loggedIn) && ($loggedIn)) {
-							echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site'));
+							echo $this->Html->url(array('controller' => 'users', 'action' => 'enter_site', 'admin' => false));
 						}
 						else {
-							echo $this->Html->url(array('controller' => 'users', 'action' => 'login'));
+							echo $this->Html->url(array('controller' => 'users', 'action' => 'login', 'admin' => false));
 						} ?>">
 						<span>
 							<!-- Logo -->

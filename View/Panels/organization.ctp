@@ -90,7 +90,7 @@
 					));
 					echo $this->Form->input('organization_id', array(
 							'label' => __('Created by'),
-							'options' => $organizations
+							'options' => $organizationsNames
 					));
 				?>
 				

@@ -16,8 +16,14 @@ Plugin/*
 tmp/
 dbv/data/meta/revision
 
+sass/.sass-cache
+sass/.sass-cache/*
+
 # editor Visual Studio Code
 .settings
 
 # Nodejs
 node_modules
+
+# Sass
+.sass-cache

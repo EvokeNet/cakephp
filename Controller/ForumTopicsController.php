@@ -70,9 +70,18 @@ class ForumTopicsController extends AppController {
 
 		$forumTopic = $this->ForumTopic->find('first',$options);
 
-		//CHECK AUTH
-		if($this->Auth->user('id') != $forumTopic['User']['id']){
+		//OPTIONS FOR CHECK PRIVILEGE
+		$options = array(
+			'minimumRole' => USER,
+			'moderatorPrivilege' => false,
+			'object' => array(
+				'id' => $id,
+				'class' => 'ForumTopic'
+			)
+		);
 
+		//CHECK OWNER
+		if (!$this->Permission->hasPrivilege($options)){
 			//COUNT VIEW
 			$updateForumTopic['ForumTopic']['view_count'] = $updateForumTopic['ForumTopic']['view_count']+1;
 			$this->ForumTopic->save($updateForumTopic);
@@ -267,15 +276,39 @@ class ForumTopicsController extends AppController {
 			
 		$forumTopic = $this->ForumTopic->find('first', $options);
 
-		//CHECK AUTH
-		if($this->Auth->user('id') != $forumTopic['User']['id']){
-			return $this->redirect(array('action' => '../forum_topics/view/'.$forumTopic['ForumTopic']['id']));
+
+		//OPTIONS FOR CHECK PRIVILEGE
+		$options = array(
+			'minimumRole' => USER,
+			'moderatorPrivilege' => true,
+			'object' => array(
+				'id' => $id,
+				'class' => 'ForumTopic'
+			)
+		);
+
+		//REDIRECT IF USER HASN'T PRIVILEGE
+		if (!$this->Permission->hasPrivilege($options)){
+			return $this->redirect( 
+				array(
+					'controller' => 'ForumTopics',
+					'action' => 'view',
+					$forumTopic['ForumTopic']['id'],
+				)
+			);
 		}
 
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->ForumTopic->save($this->request->data)) {
 				$this->Session->setFlash(__('The forum topic has been saved.'));
-				return $this->redirect(array('action' => '../forum_topics/view/'.$forumTopic['ForumTopic']['id']));
+				return $this->redirect( 
+					array(
+						'controller' => 'ForumTopics',
+						'action' => 'view',
+						$forumTopic['ForumTopic']['id'],
+					)
+				);
+
 			} else {
 				$this->Session->setFlash(__('The forum topic could not be saved. Please, try again.'));
 			}
@@ -303,9 +336,25 @@ class ForumTopicsController extends AppController {
 
 		$forumTopic = $this->ForumTopic->find('first',array('conditions' => array('ForumTopic.id ='.$id)));
 
-		//CHECK AUTH
-		if($this->Auth->user('id') != $forumTopic['ForumTopic']['user_id']){
-			return $this->redirect(array('action' => '../forum_topics/view/'.$forumTopic['ForumTopic']['id']));
+		//OPTIONS FOR CHECK PRIVILEGE
+		$options = array(
+			'minimumRole' => USER,
+			'moderatorPrivilege' => true,
+			'object' => array(
+				'id' => $id,
+				'class' => 'ForumTopic'
+			)
+		);
+
+		//REDIRECT IF USER HASN'T PERMISSION
+		if (!$this->Permission->hasPrivilege($options)){
+			return $this->redirect( 
+				array(
+					'controller' => 'ForumTopics',
+					'action' => 'view',
+					$forumTopic['ForumTopic']['id'],
+				)
+			);
 		}
 
 		$this->request->allowMethod('post', 'delete');
@@ -334,7 +383,13 @@ class ForumTopicsController extends AppController {
 			}
 
 			$this->Session->setFlash(__('The forum topic has been deleted.'));
-			return $this->redirect(array('action' => '../forum_categories/view/'.$forumTopic['ForumTopic']['forum_categorie_id']));
+			return $this->redirect( 
+				array(
+					'controller' => 'ForumCategories',
+					'action' => 'view',
+					$forumTopic['ForumTopic']['forum_categorie_id'],
+				)
+			);
 
 		} else {
 			$this->Session->setFlash(__('The forum topic could not be deleted. Please, try again.'));

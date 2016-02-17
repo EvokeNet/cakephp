@@ -8,7 +8,7 @@
 	<!-- USERNAME, PASSWORD, AND SUBMIT BUTTON -->
 	<li class="has-form">
 		<!-- Form with Foundation validation -->
-		<?php echo $this->Form->create('User', array('data-abide', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
+		<?php echo $this->Form->create('User', array('data-abide', 'url' => array('controller' => 'users', 'action' => 'login', 'admin' => false))); ?>
 
 		<div class="row collapse">
 			<div class="small-6 medium-3 large-3 columns">
@@ -35,7 +35,7 @@
 				<div class="small-only-text-center login-button-wrapper">
 					<span class="show-for-small-only  margin top-1"></span>
 
-					<a class="button thin full-width" href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'register')) ?>">
+					<a class="button thin full-width" href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'register', 'admin' => false)) ?>">
 						<?= __('Sign up') ?>
 					</a>
 				</div>

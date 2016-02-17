@@ -98,7 +98,7 @@ button, .button {
 }
 
 /* FONT FAMILY */
-.evoke .font-highlight {
+/*.evoke .font-highlight {
 	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
 }
 
@@ -113,7 +113,7 @@ button, .button {
 
 .evoke .icon-brankic {
 	font-family: 'Brankic';
-}
+}*/
 
 /* --------------------------- */
 /* OTHER TEXT-RELATED STYLES */
@@ -477,6 +477,28 @@ button, .button {
 }
 
 /* --------------------------- */
+/* FIXED TABLE  */
+/* --------------------------- */
+.evoke .fixed-table{
+	table-layout: fixed;
+}
+
+.evoke .fixed-table tbody{
+	display: block;
+    overflow: scroll;
+}
+
+.evoke .fixed-table th{
+	width: 1px;
+    white-space: nowrap;
+}
+
+.evoke .fixed-table td{
+	word-break: initial;
+	text-align: initial;
+}
+
+/* --------------------------- */
 /* ALIGNMENT */
 /* --------------------------- */
 /* Align with table and table-cell */
@@ -557,7 +579,7 @@ input[type=password]:focus, input[type=search]:focus, input[type=url]:focus, tex
 }
 
 .evoke .form-evoke-style label {
-	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	/* font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif; */
 	text-transform: uppercase;
 }
 
@@ -1024,6 +1046,37 @@ button, .button {
 	margin-right: 10px;
 }
 
+/* --------------------------- */
+/* PAGING */
+/* --------------------------- */
+
+.evoke.paging{
+    padding: 5px;
+}
+
+.evoke.paging .button.thin{
+    padding: 5px;
+    width: 30px;
+}
+
+
+/* --------------------------- */
+/* SIDE-MENU */
+/* --------------------------- */
+
+.evoke .side-menu{
+	width: 220px;
+	max-height: 300px;
+	text-align: start;
+	line-height: 0px;
+	margin-bottom: auto;
+	font-size: 15px;
+	white-space: nowrap;
+}
+
+.evoke .side-menu span{
+	width: 30px;
+}
 
 /* Padding of divs and links */
 .evoke .top-bar-section ul li:not(.has-form) a {
@@ -1046,7 +1099,7 @@ button, .button {
 
 .evoke .top-bar-section ul li, .evoke .top-bar-section ul li a, .evoke .top-bar-section ul li > a,
 .evoke .top-bar-section ul li > a:hover, .evoke .top-bar-section ul li > a:active {
-	font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;
+	/*font-family: 'Orbitron', 'Open Sans', 'Helvetica', 'Courier New', sans-serif;*/
 	font-size: 0.8rem;
 }
 

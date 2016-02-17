@@ -1,12 +1,7 @@
 <?php
 	/* Top bar */
 	$this->start('topbar');
-	echo $this->element('topbar');
-	$this->end();
-
-	/* Image header */
-	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => __('Leaderboard'), 'imgSrc' => ($this->webroot.'img/header-leaderboard.jpg')));
+	echo $this->element('top-bar');
 	$this->end();
 
 	/* Paginator */
@@ -22,11 +17,7 @@
 				<!-- MEDAL WITH POSITION -->
 				<div class="small-6 medium-4 columns text-right padding bottom-1 top-1">
 
-					<span class="fa-stack fa-5x text-center icon-medal-stack margin right-05">
-						<i class="fa fa-stack-2x icon-brankic icon-medal2 text-glow"></i>
-
-						<i class="fa fa-circle fa-stack-1x text-color-dark"></i>
-
+					<span class="fa-stack fa-5x text-center margin right-05">
 						<strong class="fa-stack-1x text-color-highlight medal-text"><?= $user_position['rank'] ?></strong>
 					</span>
 				</div>

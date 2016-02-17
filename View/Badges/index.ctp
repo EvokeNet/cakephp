@@ -4,13 +4,9 @@
 
 	/* Top bar */
 	$this->start('topbar');
-	echo $this->element('topbar');
+	echo $this->element('top-bar');
 	$this->end();
 
-	/* Image header */
-	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => 'Badges', 'imgSrc' => ($this->webroot.'img/header-leaderboard-3.jpg')));
-	$this->end();
 ?>
 <div class="row standard-width">
 	<div class="small-12 columns margin top-2 bottom-5">

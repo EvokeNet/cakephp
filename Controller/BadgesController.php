@@ -1,3 +1,4 @@
+
 <?php
 App::uses('AppController', 'Controller');
 /**
@@ -25,7 +26,7 @@ class BadgesController extends AppController {
 		$this->user['role_id'] = $this->getUserRole();
 		$this->user['id'] = $this->getUserId();
 		$this->user['name'] = $this->getUserName();
-
+		
 		//there was some problem in retrieving user's info concerning his/her role : send him home
 		if(!isset($this->user['role_id']) || is_null($this->user['role_id'])) {
 			$this->redirect(array('controller' => 'users', 'action' => 'login'));
@@ -58,7 +59,7 @@ class BadgesController extends AppController {
 				)
 			));
 			if(!empty($badge_img)) {
-				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir'];
+				$badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir']; 
 				$badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
 			}
 
@@ -73,7 +74,7 @@ class BadgesController extends AppController {
 			//PROGRESS
 			$badges[$b]['Badge']['UserPercentage'] = rand(0,100); // ($badgeCurrent / $badgeGoal) * 100;
 		}
-
+		
 		$this->loadModel('User');
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
 
@@ -242,7 +243,6 @@ class BadgesController extends AppController {
  * @return void
  */
 	public function admin_add() {
-		$this->autoRender = false;
 		if ($this->request->is('post')) {
 			$this->Badge->create();
 			if ($this->Badge->save($this->request->data)) {
@@ -252,6 +252,9 @@ class BadgesController extends AppController {
 				$this->Session->setFlash(__('The badge could not be saved. Please, try again.'));
 			}
 		}
+		$organizations = $this->Badge->Organization->find('list');
+		$missions = $this->Badge->Mission->find('list');
+		$this->set(compact('organizations', 'missions'));
 	}
 
 /**
@@ -262,7 +265,6 @@ class BadgesController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
-		$this->autoRender = false;
 		if (!$this->Badge->exists($id)) {
 			throw new NotFoundException(__('Invalid badge'));
 		}
@@ -277,6 +279,9 @@ class BadgesController extends AppController {
 			$options = array('conditions' => array('Badge.' . $this->Badge->primaryKey => $id));
 			$this->request->data = $this->Badge->find('first', $options);
 		}
+		$organizations = $this->Badge->Organization->find('list');
+		$missions = $this->Badge->Mission->find('list');
+		$this->set(compact('organizations', 'missions'));
 	}
 
 /**
@@ -287,16 +292,16 @@ class BadgesController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
-		$this->autoRender = false;
 		$this->Badge->id = $id;
 		if (!$this->Badge->exists()) {
 			throw new NotFoundException(__('Invalid badge'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+		$this->request->allowMethod('post', 'delete');
 		if ($this->Badge->delete()) {
 			$this->Session->setFlash(__('The badge has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The badge could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}

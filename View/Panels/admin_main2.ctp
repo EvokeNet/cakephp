@@ -1,26 +1,21 @@
-<!-- TOPBAR MENU -->
+
 <?php
+	// TOPBAR MENU -->
 	$this->start('topbar');
-<<<<<<< HEAD:View/Panels/new_main.ctp
 	echo $this->element('topbar', array('sticky' => '', 'fixed' => ''));
-=======
-	echo $this->element('top-bar');
 	$this->end();
 
-	
+
 
 	/* Image header */
 	$this->start('image_header');
 	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => true, 'hidden' => true));
->>>>>>> d3ace6dc863b027790b02707636363d830b94f9d:View/Panels/admin_main.ctp
 	$this->end();
-?>
 
-<?php
 	echo $this->Html->css(
 		array(
-			'evoke-new',
-			'panels-new',
+			'evoke',
+			'panels',
 			'circle'
 		)
 	);
@@ -52,39 +47,14 @@
 
 ?>
 
-<div class="row">
-	<div class="columns">
-		<h2 class="text-glow"><?=__("Admin Panel")?></h2>
-	</div>
-</div>
 <div class="row full-width" data-equalizer>
-	<div class="large-2 columns padding-left-0 gradient-on-right" data-equalizer-watch>
 
-		<div class="side-menu">
-		    <ul id="links" class="side-menu side-nav">
-				<li id="statisticsLink" class ="active">
-					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'new_main')) ?>">
-						<?= __('Statistics') ?>
-					</a>
-				</li>
-				<li id="usersLink" class="">
-					<a id="btnShowUserMenu">
-						<?= __('Users') ?>
-					</a>
-				</li>
-			<?php foreach($organizations as $o): ?>
-				<li>
-					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'organization', $o['Organization']['id'])) ?>">
-						<?= __('Organization ').$o['Organization']['name'] ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
+	<?php
+		echo $this->element('panel/admin_sidebar');
+	?>
 
-		    </ul>
-		</div>
-	</div>
-  	<div class="large-10 columns" data-equalizer-watch>
-  		
+  	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>
+
 		<div id="content">
 			<div id="statistics" class="row padding-top-1"  >
 				<div class="large-12 columns"  >
@@ -170,9 +140,9 @@
 					</ul>
 				</div>
 			</div>
-			<div id="userMenu" class="row padding-top-1 hidden">
+			<div id="userMenu" class="row padding top-2 hidden">
 				<div class="large-12 columns"  >
-					<ul class="small-block-grid-3">
+					<ul class="small-block-grid-1">
 						<li>
 							<input type="search" class="light-table-filter" data-table="order-table-users" placeholder="<?= __('Search user') ?>">
 							<table class="order-table-users paginated" id = "usersTable">
@@ -190,7 +160,7 @@
 							  		  <td><input type="checkbox" name="chkbox[]"></td>
 								      <td><?= $m['User']['name'] ?></td>
 								      <td><a href="#" data-reveal-id="myModalEditUser<?= $m['User']['id'] ?>"><i class="fa fa-pencil-square-o fa-lg"></i></a></td>
-								      <td><a href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'panel_delete', $m['User']['id'])); ?>"><i class="fa fa-times fa-lg"></i></a></td>
+								      <td><a class='deleteUser' href="<?php echo $this->Html->url(array('controller'=>'users', 'action' => 'panel_delete', $m['User']['id'])); ?>"><i class="fa fa-times fa-lg"></i></a></td>
 								    </tr>
 
 								    <?= $this->element('panel/edit_user', array('m' => $m)) ?>
@@ -205,7 +175,7 @@
 					</ul>
 				</div>
 			</div>
-		</div>		
+		</div>
 	</div>
 </div>
 <?php

@@ -52,7 +52,7 @@ $title = __('Evoke Network');
     echo $this->Html->css('/css/plugins/sweetalert.css'); //Overriding some of the sweet alert css
 
     //EVOKE CSS
-    // echo $this->Html->css('evoke');
+    echo $this->Html->css('evoke');
 
     echo $this->Html->css('general');
 
@@ -75,7 +75,7 @@ $title = __('Evoke Network');
 <body class="evoke">
   <section role="main body" class="full-height">
     <?php
-    
+
     //TOPBAR
     if ($this->fetch('topbar')) {
       echo $this->fetch('topbar');
@@ -142,6 +142,6 @@ $title = __('Evoke Network');
       });
 */
   </script>
-  
+
 </body>
 </html>

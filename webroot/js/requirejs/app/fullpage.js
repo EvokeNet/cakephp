@@ -33,9 +33,11 @@ $('#fullpage').fullpage({
   afterLoad: function(anchorLink, index) {
     // $header_top.css('background', 'rgba(0, 47, 77, .3)');
     // $nav.css('background', 'rgba(0, 47, 77, .25)');
+
     //if (index == 5) {
       //  $('#fp-nav').hide();
       //}
+
   },
 
   onLeave: function(index, nextIndex, direction) {

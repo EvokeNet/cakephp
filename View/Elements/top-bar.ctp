@@ -15,13 +15,9 @@
       <li class="has-dropdown">
         <a href="#" class = "uppercase"><?php echo sprintf(__('Agent %s'), AuthComponent::user('name')); ?></a>
         <ul class="dropdown">
-<<<<<<< HEAD
-          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', AuthComponent::user('id'))); ?>"><?php echo __('Edit profile'); ?></a></li>
-          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>"><?php echo __('Log out'); ?></a></li>
-=======
-          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit','admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('Edit profile'); ?></a></li>
-          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout','admin' => false)); ?>"><?php echo __('Log out'); ?></a></li>
->>>>>>> d3ace6dc863b027790b02707636363d830b94f9d
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('View profile'); ?></a></li>
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', 'admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('Edit profile'); ?></a></li>
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout', 'admin' => false)); ?>"><?php echo __('Log out'); ?></a></li>
         </ul>
       </li>
       <li class="divider"></li>
@@ -49,7 +45,7 @@
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'leaderboard', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
           <?php echo __('Leaderboard'); ?>
         </a>
       </li>
