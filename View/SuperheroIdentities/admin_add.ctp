@@ -33,10 +33,14 @@
 			<?php
 				echo $this->Form->input('name');
 				echo $this->Form->input('description');
-				echo $this->Form->input('quality_1');
-				echo $this->Form->input('quality_2');
-				echo $this->Form->input('primary_power');
-				echo $this->Form->input('secondary_power');
+				echo $this->Form->input('quality_1', array('type'=>'select','label' => 'Quality 1',
+		   'options' => $qualities,'empty' => '(choose one)'));
+				echo $this->Form->input('quality_2', array('type'=>'select','label' => 'Quality 2',
+		   'options' => $qualities,'empty' => '(choose one)'));
+				echo $this->Form->input('primary_power', array('type'=>'select','label' => 'Primary Power',
+		   'options' => $powers,'empty' => '(choose one)'));
+				echo $this->Form->input('secondary_power', array('type'=>'select','label' => 'Secondary Power',
+		   'options' => $powers,'empty' => '(choose one)'));
 			?>
 			</fieldset>
 		<?php echo $this->Form->end(__('Submit')); ?>

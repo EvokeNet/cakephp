@@ -42,14 +42,24 @@
 					<th class="actions"><?php echo __('Actions'); ?></th>
 			</tr>
 			<?php foreach ($superheroIdentities as $superheroIdentity): ?>
+
+			
 			<tr>
 				<td><?php echo h($superheroIdentity['SuperheroIdentity']['id']); ?>&nbsp;</td>
 				<td><?php echo h($superheroIdentity['SuperheroIdentity']['name']); ?>&nbsp;</td>
 				<td><?php echo h($superheroIdentity['SuperheroIdentity']['description']); ?>&nbsp;</td>
-				<td><?php echo h($superheroIdentity['SuperheroIdentity']['quality_1']); ?>&nbsp;</td>
-				<td><?php echo h($superheroIdentity['SuperheroIdentity']['quality_2']); ?>&nbsp;</td>
-				<td><?php echo h($superheroIdentity['SuperheroIdentity']['primary_power']); ?>&nbsp;</td>
-				<td><?php echo h($superheroIdentity['SuperheroIdentity']['secondary_power']); ?>&nbsp;</td>
+				<td>
+					<?php echo $this->Html->link($superheroIdentity['Quality1']['name'], array('controller' => 'SocialInnovatorQualities', 'action' => 'view', $superheroIdentity['Quality1']['id'])); ?>
+				</td>
+				<td>
+					<?php echo $this->Html->link($superheroIdentity['Quality2']['name'], array('controller' => 'SocialInnovatorQualities', 'action' => 'view', $superheroIdentity['Quality2']['id'])); ?>
+				</td>
+				<td>
+					<?php echo $this->Html->link($superheroIdentity['Power1']['name'], array('controller' => 'powers', 'action' => 'view', $superheroIdentity['Power1']['id'])); ?>
+				</td>
+				<td>
+					<?php echo $this->Html->link($superheroIdentity['Power2']['name'], array('controller' => 'powers', 'action' => 'view', $superheroIdentity['Power2']['id'])); ?>
+				</td>
 				<td><?php echo h($superheroIdentity['SuperheroIdentity']['created']); ?>&nbsp;</td>
 				<td><?php echo h($superheroIdentity['SuperheroIdentity']['modified']); ?>&nbsp;</td>
 				<td class="actions">

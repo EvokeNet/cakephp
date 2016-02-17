@@ -40,7 +40,7 @@
 		   'options' => $qualities,'empty' => '(choose one)'));
 				echo $this->Form->input('primary_power', array('type'=>'select','label' => 'Primary Power',
 		   'options' => $powers,'empty' => '(choose one)'));
-				echo $this->Form->input('primary_power', array('type'=>'select','label' => 'Secondary Power',
+				echo $this->Form->input('secondary_power', array('type'=>'select','label' => 'Secondary Power',
 		   'options' => $powers,'empty' => '(choose one)'));
 			?>
 			</fieldset>

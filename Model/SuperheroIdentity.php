@@ -29,29 +29,29 @@ class SuperheroIdentity extends AppModel {
 	public $hasOne = array(
 		'Quality1' => array(
 			'className' => 'social_innovator_qualities',
-			'foreignKey' => 'id',
-			'conditions' => '',
+			'foreignKey' => false,
+			'conditions' => array('Quality1.id = SuperheroIdentity.quality_1'),
 			'fields' => '',
 			'order' => ''
 		),
 		'Quality2' => array(
 			'className' => 'social_innovator_qualities',
-			'foreignKey' => 'id',
-			'conditions' => '',
+			'foreignKey' => false,
+			'conditions' => array('Quality2.id = SuperheroIdentity.quality_2'),
 			'fields' => '',
 			'order' => ''
 		),
 		'Power1' => array(
 			'className' => 'Power',
-			'foreignKey' => 'id',
-			'conditions' => '',
+			'foreignKey' => false,
+			'conditions' => array('Power1.id = SuperheroIdentity.primary_power'),
 			'fields' => '',
 			'order' => ''
 		),
 		'Power2' => array(
 			'className' => 'Power',
-			'foreignKey' => 'id',
-			'conditions' => '',
+			'foreignKey' => false,
+			'conditions' => array('Power2.id = SuperheroIdentity.secondary_power'),
 			'fields' => '',
 			'order' => ''
 		)

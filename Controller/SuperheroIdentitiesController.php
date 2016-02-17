@@ -77,15 +77,19 @@ class SuperheroIdentitiesController extends AppController {
 			}
 		}
 
-		$this->loadModel('Organization');
+		$this->loadModel('SocialInnovatorQuality');
+  		$qualities = $this->SocialInnovatorQuality->find('list');
+  		$this->loadModel('Power');
+  		$powers = $this->Power->find('list');
+  		$this->loadModel('Organization');
 	    $organizations =
 	      $this->Organization->find('all', array(
 	      'order' => array(
 	        'Organization.name ASC'
 	      ),
 	    ));
-
-	   $this->set('organizations',$organizations);	
+	      
+  		$this->set(compact('powers','qualities','organizations'));
 	}
 
 /**
