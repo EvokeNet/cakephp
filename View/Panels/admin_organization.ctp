@@ -1,20 +1,4 @@
-<?php
-	
-    $this->extend('/Common/admin_panel');
-
-	/* Image header */
-	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
-	$this->end();
-
-	echo $this->Html->css(
-		array(
-			'evoke',
-			'circle'
-		)
-	);
-
-?>
+<?php $this->extend('/Common/admin_panel'); ?>
 
 <?php $this->start('page_content'); ?>
 

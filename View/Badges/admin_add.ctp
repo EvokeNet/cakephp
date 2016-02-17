@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 <?php $this->extend('/Common/admin_panel'); ?>
 
 <?php $this->start('page_content'); ?>
+=======
+<?php
+	
+    $this->extend('/Common/admin_panel');
+>>>>>>> df5fc7cf806321277e6458ec61cff6a85daba3be
 
 <?php echo $this->Form->create('Badge'); ?>
 
@@ -54,9 +60,15 @@
 
 <?php $this->end(); ?>
 
+<?php $this->start('page_content'); ?>
+
 <div class="row full-width" data-equalizer>
 
+<<<<<<< HEAD
 	<div class="large-10 columns" id="panel-content" data-equalizer-watch>	
+=======
+	<div class="large-10 columns" id="panel-content" data-equalizer-watch>			
+>>>>>>> df5fc7cf806321277e6458ec61cff6a85daba3be
 		<div class="badges form">
 		<?php echo $this->Form->create('Badge'); ?>
 			<fieldset>

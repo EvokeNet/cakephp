@@ -19,6 +19,4 @@
     
 </div>
 
-<?php echo $this->Form->end(__('Submit')); ?>
-
 <?php $this->end(); ?>

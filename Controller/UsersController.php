@@ -84,15 +84,13 @@ class UsersController extends AppController {
           $insert['User']['id'] = $this->getUserId();
           $insert['User']['password'] = $this->request->data['User']['tmp'];
           $this->User->save($insert);
-          $this->Session->setFlash(__("Your password was changed."), 'flash_message');
-          $this->redirect(array('action' => 'dashboard'));
+          $this->Session->setFlash(__(""), 'flash_message');
+          return $this->flash(__('Your password was changed.'), array('action' => 'profile','admin' => false, AuthComponent::user('id')));   
         } else {
-          $this->Session->setFlash(__("The new passwords do not match."), 'flash_message');
-          $this->redirect(array('action' => 'change_password'));
+          return $this->flash(__('The new passwords do not match.'), array('action' => 'change_password'));  
         }
       } else {
-        $this->Session->setFlash(__("The current password does not match."), 'flash_message');
-        $this->redirect(array('action' => 'change_password'));
+        return $this->flash(__('The current password does not match.'), array('action' => 'change_password'));  
       }
     }
 
@@ -520,6 +518,25 @@ class UsersController extends AppController {
     return $str.$data;
   }
 
+  /**
+  * 
+  * generates a random password
+  * 
+  * @return string
+  */
+  function randomPassword($size) {
+    $alphabet = '!#abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    $password = array(); 
+    $alphabetLength = strlen($alphabet) - 1; 
+
+    for ($i = 0; $i < $size; $i++) {
+        $char = rand(0, $alphabetLength);
+        $password[] = $alphabet[$char];
+    }
+
+    return implode($password); 
+  }
+
 /**
  *
  * recover method
@@ -532,15 +549,27 @@ class UsersController extends AppController {
       App::uses('CakeEmail', 'Network/Email');
       $email = new CakeEmail('smtp');
 
+      $new_password = $this->randomPassword(8);
+      $user = $this->User->find('first',array(
+        'conditions' => array('email' => $this->request->data['User']['email'])    
+      ));
+
+      if(empty($user)){
+        return $this->flash(__('Email not found.'), array('controller' => 'users', 'action' => 'recover_password', 'admin' => false));       
+      }
+
+      $insert['User']['id'] = $user['User']['id'];
+      $insert['User']['password'] = $new_password;
+      $this->User->save($insert);
+
       $email->template('default', 'default')
                       ->emailFormat('both')
                       ->to($this->request->data['User']['email'])
                       ->from('no-reply@quanti.ca')
-                      ->subject(__('A subject'))
-                      ->send('Test'); 
+                      ->subject(__('New Password'))
+                      ->send('Hello, '.$user['User']['name'].'<br><br><div>Your new password is <div style="color:#26dee0;">'.$new_password.'</div><br>Please change your password on first login.</div><br>Evoke'); 
 
-      $this->Session->setFlash(__('It was sent an email with a new password.'));                    
-      $this->redirect(array('controller' => 'users', 'action' => 'login', 'admin' => false));                
+      return $this->flash(__('It was sent an email with a new password.'), array('controller' => 'users', 'action' => 'login', 'admin' => false));       
     }     
   }
 

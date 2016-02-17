@@ -9949,7 +9949,7 @@ table > tbody > tr > td a {
 }
 
 /* line 235, ../../../../foundation_compass/scss/app.scss */
-table > tbody > tr > td a:hover {
+table > thead > tr > th a:hover {
   color: #2FCCCB;
 }
 

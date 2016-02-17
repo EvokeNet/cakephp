@@ -15,21 +15,21 @@
         </div>
         <table cellpadding="0" cellspacing="0" class="table table-td-valign-middle" style = "width:100%">
             <thead>
-							<th><?php echo $this->Paginator->sort('name'); ?></th>
-							<th><?php echo $this->Paginator->sort('short_name'); ?></th>
-							<th class="actions"><?php echo __('Actions'); ?></th>
+                <th><?php echo $this->Paginator->sort('name'); ?></th>
+                <th><?php echo $this->Paginator->sort('short_name'); ?></th>
+                <th class="actions"><?php echo __('Actions'); ?></th>
             </thead>
-						<?php foreach ($socialInnovatorQualities as $socialInnovatorQuality): ?>
-							<tr>
-								<td><?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['name']); ?>&nbsp;</td>
-								<td><?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['short_name']); ?>&nbsp;</td>
-								<td class="actions">
-									<?php echo $this->Html->link(__('View'), array('action' => 'view', $socialInnovatorQuality['SocialInnovatorQuality']['id'])); ?>
-									<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $socialInnovatorQuality['SocialInnovatorQuality']['id'])); ?>
-									<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $socialInnovatorQuality['SocialInnovatorQuality']['id']), array(), __('Are you sure you want to delete # %s?', $socialInnovatorQuality['SocialInnovatorQuality']['id'])); ?>
-								</td>
-							</tr>
-						<?php endforeach; ?>
+            <?php foreach ($socialInnovatorQualities as $socialInnovatorQuality): ?>
+                <tr>
+                    <td><?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['name']); ?>&nbsp;</td>
+                    <td><?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['short_name']); ?>&nbsp;</td>
+                    <td class="actions">
+                        <?php echo $this->Html->link(__('View'), array('action' => 'view', $socialInnovatorQuality['SocialInnovatorQuality']['id'])); ?>
+                        <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $socialInnovatorQuality['SocialInnovatorQuality']['id'])); ?>
+                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $socialInnovatorQuality['SocialInnovatorQuality']['id']), array(), __('Are you sure you want to delete # %s?', $socialInnovatorQuality['SocialInnovatorQuality']['id'])); ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
         </table>
     </div>
 

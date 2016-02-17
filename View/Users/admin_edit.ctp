@@ -48,7 +48,6 @@
                     'options' => $languages,
                     'empty' => '(choose one)'
                 ));
-
             ?>
         </div>
         <div class="large-4 columns">
@@ -78,7 +77,6 @@
     
 <div class = "section padding-top-1em">
     <div class="row" data-equalizer>
-
 	    <div class="large-12 columns" id="panel-content" data-equalizer-watch>
              
             <?php
@@ -110,7 +108,7 @@
         
     </div> 
 </div>
-    
+
 <div class = "section padding-top-1em">
     
     <div class="row">

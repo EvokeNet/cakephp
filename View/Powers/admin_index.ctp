@@ -15,21 +15,21 @@
         </div>
         <table cellpadding="0" cellspacing="0" class="table table-td-valign-middle" style = "width:100%">
             <thead>
-							<th><?php echo $this->Paginator->sort('name'); ?></th>
-							<th><?php echo $this->Paginator->sort('description'); ?></th>
-							<th class="actions"><?php echo __('Actions'); ?></th>
+                <th><?php echo $this->Paginator->sort('name'); ?></th>
+                <th><?php echo $this->Paginator->sort('description'); ?></th>
+                <th class="actions"><?php echo __('Actions'); ?></th>
             </thead>
-						<?php foreach ($powers as $power): ?>
-							<tr>
-								<td><?php echo h($power['Power']['name']); ?>&nbsp;</td>
-								<td><?php echo h($power['Power']['description']); ?>&nbsp;</td>
-								<td class="actions">
-									<?php echo $this->Html->link(__('View'), array('action' => 'view', $power['Power']['id'])); ?>
-									<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $power['Power']['id'])); ?>
-									<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $power['Power']['id']), array(), __('Are you sure you want to delete # %s?', $power['Power']['id'])); ?>
-								</td>
-							</tr>
-						<?php endforeach; ?>
+            <?php foreach ($powers as $power): ?>
+                <tr>
+                    <td><?php echo h($power['Power']['name']); ?>&nbsp;</td>
+                    <td><?php echo h($power['Power']['description']); ?>&nbsp;</td>
+                    <td class="actions">
+                        <?php echo $this->Html->link(__('View'), array('action' => 'view', $power['Power']['id'])); ?>
+                        <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $power['Power']['id'])); ?>
+                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $power['Power']['id']), array(), __('Are you sure you want to delete # %s?', $power['Power']['id'])); ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
         </table>
     </div>
 
