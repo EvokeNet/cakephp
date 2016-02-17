@@ -18,10 +18,8 @@
 
 <?php $this->start('page_content'); ?>
 
-<div class="row full-width" data-equalizer>
-
-<div class="large-10 columns" id="panel-content" data-equalizer-watch>	
-    <div class="users index">
+	
+    <div>
         <h2><?php echo __('Users'); ?></h2>
         <table cellpadding="0" cellspacing="0">
         <tr>
@@ -89,7 +87,6 @@
             <li><?php echo $this->Html->link(__('List Attachments'), array('controller' => 'attachments', 'action' => 'index')); ?> </li>
             <li><?php echo $this->Html->link(__('New Attachment'), array('controller' => 'attachments', 'action' => 'add')); ?> </li>
         </ul>
-    </div>
-</div>
+
 
 <?php $this->end(); ?>

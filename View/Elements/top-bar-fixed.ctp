@@ -65,7 +65,7 @@
       <?php if (AuthComponent::user('role') != 'user'): ?>
           <li>
             <a href="<?php echo $this->Html->url(array('controller' => 'admin_dashboards', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
-              <?php echo __('Admin Dashboard'); ?>
+              <?php echo __('Admin Panel'); ?>
             </a>
           </li>
     <?php endif; ?>
