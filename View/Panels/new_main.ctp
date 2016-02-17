@@ -1,7 +1,18 @@
 <!-- TOPBAR MENU -->
 <?php
 	$this->start('topbar');
+<<<<<<< HEAD:View/Panels/new_main.ctp
 	echo $this->element('topbar', array('sticky' => '', 'fixed' => ''));
+=======
+	echo $this->element('top-bar');
+	$this->end();
+
+	
+
+	/* Image header */
+	$this->start('image_header');
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => true, 'hidden' => true));
+>>>>>>> d3ace6dc863b027790b02707636363d830b94f9d:View/Panels/admin_main.ctp
 	$this->end();
 ?>
 

@@ -382,12 +382,18 @@ class UsersController extends AppController {
 
 				$this->User->createWithAttachments($this->request->data);
 
+<<<<<<< HEAD
 				if ($this->User->save($this->request->data)) {
 					$this->Session->setFlash(__('O usuário foi salvo com sucesso.'));
+=======
+        if ($this->User->save($this->request->data)) {
+          $this->Session->setFlash(__('O usuÃ¡rio foi salvo com sucesso.'));
+>>>>>>> d3ace6dc863b027790b02707636363d830b94f9d
 
 					$user = $this->User->find('first', array('conditions' => array('User.id' => $this->User->id)));
 					$this->Auth->login($user['User']);
 
+<<<<<<< HEAD
 					// REDIRECT TO THE MATCHING PAGE
 					return $this->redirect(array('action' => 'matching', $this->User->id));
 				}
@@ -400,6 +406,20 @@ class UsersController extends AppController {
 			}
 		}
 	}
+=======
+          // REDIRECT TO THE MATCHING PAGE
+          return $this->redirect(array('action' => 'matching', $this->User->id));
+        }
+        else {
+          $this->Session->setFlash(__('O usuÃ¡rio nÃ£o pÃ´de ser salvo. Por favor, tente novamente.'));
+        }
+      }
+      else {
+        $this->Session->setFlash(__("Typed passwords don't match"));
+      }
+    }
+  }
+>>>>>>> d3ace6dc863b027790b02707636363d830b94f9d
 
 
 /**
@@ -446,6 +466,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
+<<<<<<< HEAD
 	public function profile($id = null) {
 
 		if (!$this->User->exists($id)) {
@@ -678,8 +699,242 @@ class UsersController extends AppController {
 			'points_users', 'leaderboard_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'similar_users'));
 
 	}
+=======
+  public function profile($id = null) {
+
+    if (!$this->User->exists($id)) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+
+    $user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
+
+    $users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
+
+    //LEVEL AND POINTS
+    $this->loadModel('Level');
+>>>>>>> d3ace6dc863b027790b02707636363d830b94f9d
 
 
+<<<<<<< HEAD
+=======
+    $sumPoints = $this->getPoints($id);
+
+    $level = $this->getLevel($sumPoints);
+
+    $otherLevel = 0; //$this->Level->find('first', array('conditions' => array('Level.level' => $level+1)));
+
+    if(!empty($otherLevel))
+      $percentage = round(($sumPoints / $otherLevel['Level']['points']) * 100);
+    else
+      $percentage = 0;
+
+
+    //LEADERBOARD
+    $max_leaderboard_users = 6; //Total of leaders on the leaderboard (including the top ones)
+
+    $leaderboard_users = $this->User->find('all', array(
+      'joins' => array(
+        array(
+          'table' => 'points',
+          'alias' => 'Points',
+          'type' => 'left',  //join of your choice left, right, or inner
+          'conditions' => array(
+            'Points.user_id = User.id'
+          )
+        ),
+      ),
+      'fields' => array(
+        'User.*',
+        'sum(Points.value) as total_points'
+      ),
+      'group' => 'Points.user_id',
+      'order' => array('total_points DESC'),
+      'limit' => 60
+    ));
+
+    //FRIENDS
+    $is_friend = $this->User->UserFriend->find('first', array(
+      'conditions' => array(
+        'UserFriend.user_id' => $this->getUserId(),
+        'UserFriend.friend_id' => $id
+      )
+    ));
+
+    $allies = array();
+
+    $friends = $this->User->UserFriend->find('all', array(
+      'conditions' => array('UserFriend.user_id' => $id),
+      'contain' => 'Friend'
+    ));
+
+    //EVIDENCES
+    $myevidences = $this->User->Evidence->find('all', array(
+      'order' => array(
+        'Evidence.modified DESC'
+      ),
+      'conditions' => array(
+        'Evidence.user_id' => $id,
+        'Evidence.title != ' => ''
+      ),
+      'limit' => 8 // CHANGE 8
+    ));
+
+    //GROUPS AND EVOKATION
+    $this->loadModel('Group');
+    $this->loadModel('GroupsUser');
+    $users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $id)));
+
+    $mygroups_id = array();
+
+    foreach($users_groups as $g):
+      array_push($mygroups_id, array('Evokation.group_id' => $g['GroupsUser']['group_id']));
+    endforeach;
+
+    $myevokations = array();
+
+    if(!empty($mygroups_id)) {
+      //retrieve all organizations I am part of as a list to be displayed in a combobox
+      $myevokations = $this->Group->Evokation->find('all', array(
+        'order' => array(
+          'Evokation.created DESC'
+        ),
+        'conditions' => array(
+          'Evokation.sent' => 1,
+          'OR' => $mygroups_id
+        )
+      ));
+    }
+
+    $this->loadModel('Evokation');
+    $evokations = $this->Evokation->find('all', array(
+      'recursive' => 0,
+      'order' => array(
+        'Evokation.created DESC'
+      ),
+      'conditions' => array(
+        'Evokation.sent' => 1
+      ),
+      'limit' => 8 // CHANGE 8
+    ));
+
+
+    $evokationsFollowing = $this->User->EvokationFollower->find('all', array(
+      'recursive' => 0,
+      'conditions' => array(
+        'EvokationFollower.user_id' => $this->getUserId()
+      )
+    ));
+
+    $viewerEvokation = array();
+    $myEvokations = array();
+    foreach ($evokations as $evokation) {
+      $his = false;
+      $mine = false;
+      if($evokation['Group']['user_id'] == $id)
+        $his = true;
+
+      if($evokation['Group']['user_id'] == $this->getUserId())
+        $mine = true;
+
+      $op = array('GroupsUser.user_id' => $id, 'GroupsUser.user_id' => $this->getUserId());
+
+      $this->loadModel('Group');
+      $group_evokation = $this->Group->GroupsUser->find('first', array(
+        'conditions' => array(
+          'GroupsUser.group_id' => $evokation['Group']['id'],
+          'OR' => $op
+        )
+      ));
+
+      if(!empty($group_evokation) && $group_evokation['GroupsUser']['user_id'] == $id)
+        $his = true;
+
+      if(!empty($group_evokation) && $group_evokation['GroupsUser']['user_id'] == $this->getUserId())
+        $mine = true;
+
+      if($his){
+        array_push($myEvokations, $evokation);
+      }
+
+      if($mine){
+        array_push($viewerEvokation, $evokation);
+      }
+    }
+
+    //BADGES
+    $this->loadModel('Badge');
+
+    $badges = $this->User->UserBadge->find('all', array(
+      'recursive' => 0,
+      'conditions' => array(
+        'UserBadge.user_id' => $id
+      )
+    ));
+
+    foreach ($badges as $b => $badge) {
+
+      $this->loadModel('Attachment');
+      $badge_img = $this->Attachment->find('first', array(
+        'conditions' => array(
+          'Attachment.model' => 'Badge',
+          'Attachment.foreign_key' => $badge['Badge']['id']
+        )
+      ));
+      if(!empty($badge_img)) {
+        $badges[$b]['Badge']['img_dir'] = $badge_img['Attachment']['dir'];
+        $badges[$b]['Badge']['img_attachment'] = $badge_img['Attachment']['attachment'];
+      } else {
+
+      }
+
+    }
+
+    //SIMILAR USERS
+    //List of similar users (for now, any 4 users; later, matching results)
+    $similar_users = $this->User->find('all', array(
+      'conditions' => 'User.id != '.$this->getUserId(),
+      'limit' => 6,
+      'order' => 'rand()'
+    ));
+
+    /**
+    *
+    *get superhero id, get the social innovators ids, find them in the DB and send them to the view to put in place of the psychometric analisys
+    *
+    */
+    $this->loadModel('SuperheroIdentity');
+
+    $superhero = $this->SuperheroIdentity->find('first', array(
+      'conditions' => array(
+        'id' => $user['User']['superhero_identity_id']
+      )
+    ));
+
+    // debug($user);
+    // debug($superhero);
+    // die();
+
+    $this->loadModel('SocialInnovatorQuality');
+    $first_quality = $this->SocialInnovatorQuality->find('first', array(
+      'conditions' => array(
+        'id' => $superhero['SuperheroIdentity']['quality_1']
+      )
+    ));
+
+    $second_quality = $this->SocialInnovatorQuality->find('first', array(
+      'conditions' => array(
+        'id' => $superhero['SuperheroIdentity']['quality_2']
+      )
+    ));
+
+
+
+    $this->set(compact('superhero', 'first_quality', 'second_quality', 'myevokations', 'user', 'users', 'is_friend', 'friends', 'followers', 'evidence', 'myevidences', 'evokations', 'evokationsFollowing', 'myEvokations', 'missions',
+      'missionIssues', 'issues', 'imgs', 'sumPoints', 'sumMyPoints', 'level', 'myLevel', 'allies', 'allusers', 'viewerEvokation',
+      'points_users', 'leaderboard_users', 'percentage', 'percentageOtherUser', 'basic_training', 'notifies',  'badges', 'show_basic_training', 'similar_users'));
+
+  }
+>>>>>>> d3ace6dc863b027790b02707636363d830b94f9d
 
 /**
  *
@@ -784,6 +1039,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
+<<<<<<< HEAD
 	public function matching_results($id = null, $quality_1, $quality_2) {
 		// find superhero and prepare the text for the qualities
 
@@ -847,6 +1103,82 @@ class UsersController extends AppController {
 
 		$this->set(compact('similar_users', 'friends_ids', 'superhero', 'first_quality', 'second_quality'));
 	}
+=======
+
+  public function matching_results($id = null, $quality_1, $quality_2) {
+    // find superhero and prepare the text for the qualities
+    $this->loadModel('SuperheroIdentity');
+
+    $superhero = $this->SuperheroIdentity->find('first', array(
+      'conditions' => array(
+        'quality_1' => $quality_1,
+        'quality_2' => $quality_2
+      ),
+    ));
+
+    $user = $this->User->find('first', array(
+      'conditions' => array(
+        'id' => $id
+      ),
+    ));
+
+    //save user's superhero identity id
+    $user['User']['superhero_identity_id'] = $superhero['SuperheroIdentity']['id'];
+    unset($user['User']['password']);
+    //update session user
+    $this->Session->write('Auth.User.superhero_identity_id',$superhero['SuperheroIdentity']['id']);
+    $this->User->save($user);
+
+    $this->loadModel('SocialInnovatorQuality');
+
+    $first_quality = $this->SocialInnovatorQuality->find('first', array(
+      'conditions' => array(
+        'id' => $quality_1
+      ),
+    ));
+
+    $second_quality = $this->SocialInnovatorQuality->find('first', array(
+      'conditions' => array(
+        'id' => $quality_2
+      ),
+    ));
+
+    $this->loadModel('Power');
+
+    $primary_power = $this->Power->find('first', array(
+      'conditions' => array(
+        'id' => $superhero['SuperheroIdentity']['primary_power']
+      ),
+    ));
+
+    $secondary_power = $this->Power->find('first', array(
+      'conditions' => array(
+        'id' => $superhero['SuperheroIdentity']['secondary_power']
+      ),
+    ));
+
+    //List of similar users (same superhero identity for now)
+    $similar_users = $this->User->find('all', array(
+      'conditions' => array(
+        'User.id != '.$this->getUserId(),
+        'User.superhero_identity_id' => $superhero['SuperheroIdentity']['id']
+      ),
+      'limit' => 4,
+      'order' => 'rand()'
+    ));
+
+    //FRIENDS
+    $friends_ids = $this->User->UserFriend->find('list', array(
+      'fields' => 'UserFriend.friend_id',
+      'conditions' => array(
+        'UserFriend.user_id' => $this->getUserId()
+      )
+    ));
+
+    $this->set(compact('similar_users', 'friends_ids', 'superhero', 'first_quality', 'second_quality','primary_power','secondary_power'));
+  }
+
+>>>>>>> d3ace6dc863b027790b02707636363d830b94f9d
 
 /**
  *
@@ -1041,6 +1373,7 @@ class UsersController extends AppController {
       $user = $this->User->find('first', $options);
       $countries = $this->countries;
       $languages = $this->languages;
+      $sex = $this->sex;
       $this->set('countries', $countries);
       $this->set('languages', $languages);
       $this->set('sex', $sex);
@@ -1155,6 +1488,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
+<<<<<<< HEAD
 	public function admin_delete($id = null) {
 		$this->autoRender = false;
 
@@ -1170,3 +1504,65 @@ class UsersController extends AppController {
 		}
 	}
 }
+=======
+  public function admin_delete($id = null) {
+    $this->User->id = $id;
+    if (!$this->User->exists()) {
+      throw new NotFoundException(__('Invalid user'));
+    }
+    $this->request->allowMethod('post', 'delete');
+    if ($this->User->delete()) {
+      return $this->flash(__('The user has been deleted.'), array('action' => 'index'));
+    } else {
+      return $this->flash(__('The user could not be deleted. Please, try again.'), array('action' => 'index'));
+    }
+
+    $this->loadModel('Organization');
+    $organizations =
+      $this->Organization->find('all', array(
+      'order' => array(
+        'Organization.name ASC'
+      ),
+    ));
+
+   $this->set('organizations',$organizations);
+  }
+  /**
+   * Gets User from ID
+   * @param  [type] $id [description]
+   * @return [type]     [description]
+   */
+  private function get_user($id = null) {
+    return $this->User->find('first', array('conditions' => array('User.id' => $id)));
+  }
+
+  private function get_available_missions($user_id) {
+    return $this->Mission->find('all', array(
+      'joins' => array(
+        array(
+          'table' => 'user_missions',
+          'alias' => 'UserMission',
+          'type' => 'LEFT',
+          'foreign_key' => false,
+          'conditions' => array(
+            'UserMission.user_id' => $user_id,
+            'UserMission.completed' => 0
+          )
+        )
+      ),
+      'conditions' => array(
+        'Mission.basic_training' => 0
+      )
+    ));
+  }
+
+  private function build_qualities_array() {
+    $qualities = array();
+
+    for($i = 0; $i <= 6; $i++) {
+      $qualities[] = 0;
+    }
+    return $qualities;
+  }
+}
+>>>>>>> d3ace6dc863b027790b02707636363d830b94f9d

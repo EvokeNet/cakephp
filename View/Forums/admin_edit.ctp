@@ -1,7 +1,35 @@
+<<<<<<< HEAD
 <div class="forums form">
 <?php echo $this->Form->create('Forum'); ?>
 	<fieldset>
 		<legend><?php echo __('Admin Edit Forum'); ?></legend>
+=======
+<?php
+	// TOPBAR MENU -->
+	$this->start('topbar');
+	echo $this->element('top-bar');
+	$this->end();
+
+	
+
+	/* Image header */
+	$this->start('image_header');
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
+	$this->end();
+
+	echo $this->Html->css(
+		array(
+			'evoke',
+			'panels-',
+			'circle'
+		)
+	);
+
+?>
+
+<div class="row full-width" data-equalizer>
+	
+>>>>>>> d3ace6dc863b027790b02707636363d830b94f9d
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('title');

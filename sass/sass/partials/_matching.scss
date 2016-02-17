@@ -6,7 +6,7 @@
 li.question-block a:hover, li.question-block a:focus, .question-block-selected{
 	background-color:#2FCCCB;
 	border-radius:7px;
-	color: #fff;
+	color: $font-off-white;
 }
 
 li.question-block a, .question-block a{
@@ -17,22 +17,24 @@ li.question-block a, .question-block a{
 label.question-block:hover, label.question-block:focus, label.question-block-selected{
 	background-color:#2FCCCB;
 	border-radius:7px;
-	color: #fff;
+	color: $font-off-white;
 }
 
 label.question-block, .question-block, label.question-block-selected, .question-block-selected{
   display: block;
   padding: 10px 20px;
-  color: #fff;
+  color: $font-off-white;
+	font-size: 1.1em;
 }
 
 ul.matching_questions label{
-  color: #fff;
+  color: $font-off-white;
   font-size: 1.1em;
 }
 
 input[type="radio"] + label.question-block, input[type="radio"] + label.question-block-selected{
-  display:block
+  display:block;
+	font-size: 1.1em;
 }
 
 input[type="radio"]:checked > label.question-block:hover{

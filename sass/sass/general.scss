@@ -1,5 +1,6 @@
 $bg-color: #28282C;
 $default-green: #2FCCCB;
+$default-green-selected: #009393;
 $font-dosis: 'Dosis', 'Open-Sans', sans-serif;
 $font-off-white: #FCFCFC;
 $top-bar-bg: #2B2C31;
@@ -64,12 +65,24 @@ body > .container {
 // 	-webkit-font-smoothing: antialiased;
 // }
 
+.margin-top-05em{
+  margin-top: 0.5em;
+}
+
 .margin-top-1em{
   margin-top: 1em;
 }
 
 .margin-top-15em{
   margin-top: 1.5em;
+}
+
+.margin-top-2em{
+  margin-top:2em;
+}
+
+.margin-top-3em{
+  margin-top:3em;
 }
 
 .margin-bottom-1em{
@@ -80,17 +93,12 @@ body > .container {
   margin-bottom: 1.5em;
 }
 
-
 .margin-left-1em{
   margin-left:1em;
 }
 
 .margin-right-1em{
   margin-right:1em;
-}
-
-.margin-top-2em{
-  margin-top:2em;
 }
 
 .margin-bottom-2em{
@@ -184,10 +192,6 @@ body > .container {
 	color: $font-off-white;
 }
 
-// .evoke h3, .evoke h4, .evoke h5, .evoke h6 {
-// 	text-transform: uppercase;
-// }
-
 /* Visibility */
 
 .hidden {
@@ -216,4 +220,19 @@ body > .container {
 	background-color: #5C636B;
 	border-radius: 3px;
 	margin-top: .5em;
+}
+
+.button, button{
+	background-color: $default-green;
+	border-color: $default-green;
+	color: $font-off-white;
+}
+
+.button:hover, button:hover{
+	background-color: $default-green-selected;
+	color: $font-off-white;
+}
+
+.full-height{
+	height:100%;
 }

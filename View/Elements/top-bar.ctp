@@ -15,16 +15,21 @@
       <li class="has-dropdown">
         <a href="#" class = "uppercase"><?php echo sprintf(__('Agent %s'), AuthComponent::user('name')); ?></a>
         <ul class="dropdown">
+<<<<<<< HEAD
           <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', AuthComponent::user('id'))); ?>"><?php echo __('Edit profile'); ?></a></li>
           <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>"><?php echo __('Log out'); ?></a></li>
+=======
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit','admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('Edit profile'); ?></a></li>
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout','admin' => false)); ?>"><?php echo __('Log out'); ?></a></li>
+>>>>>>> d3ace6dc863b027790b02707636363d830b94f9d
         </ul>
       </li>
       <li class="divider"></li>
       <li class="has-dropdown">
         <a href="#"><?php echo __('LANGUAGE'); ?></a>
         <ul class="dropdown">
-          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'en')) ?>"><?php echo __('ENGLISH'); ?></a></li>
-          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'es')) ?>"><?php echo __('SPANISH'); ?></a></li>
+          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'en')) ?>"><?php echo __('ENGLISH'); ?></a></li>
+          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'es')) ?>"><?php echo __('SPANISH'); ?></a></li>
         </ul>
       </li>
     </ul>
@@ -32,38 +37,38 @@
     <!-- Left Nav Section -->
     <ul class="left">
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index')); ?>" class="font-green font-weight-bold uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index', 'admin' => false)); ?>" class="font-green font-weight-bold uppercase">
           <?php echo __('Missions'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index')); ?>" class="font-green uppercase font-weight-bold">
+        <a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
           <?php echo __('Forum'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'leaderboard', 'action' => 'index')); ?>" class="font-green uppercase font-weight-bold">
+        <a href="<?php echo $this->Html->url(array('controller' => 'leaderboard', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
           <?php echo __('Leaderboard'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index')); ?>" class="font-green uppercase font-weight-bold">
+        <a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
           <?php echo __('Badges'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'newprofile', AuthComponent::user('id'))); ?>" class="font-green uppercase font-weight-bold">
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id'))); ?>" class="font-green uppercase font-weight-bold">
           <?php echo __('Profile'); ?>
         </a>
       </li>
 
       <?php if (AuthComponent::user('role') != 'user'): ?>
           <li>
-            <a href="<?php echo $this->Html->url(array('controller' => 'admin_dashboards', 'action' => 'index')); ?>" class="font-green uppercase font-weight-bold">
+            <a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main', 'admin' => true)); ?>" class="font-green uppercase font-weight-bold">
               <?php echo __('Admin Panel'); ?>
             </a>
           </li>

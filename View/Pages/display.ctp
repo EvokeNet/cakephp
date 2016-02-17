@@ -4,17 +4,6 @@
 	echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
 ?>
 
-<!-- <header>
-  <div class="header-top clearfix">
-    <div class = "left" style = "margin-top:1.7em"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>'></div>
-    <a class="l-right toggle-menu" href="#">
-      <i></i>
-      <i></i>
-      <i></i>
-    </a>
-  </div>
-</header> -->
-
 <div>
 	<nav class="top-bar header-top-fullpage" data-topbar role="navigation">
 		<ul class="title-area">
@@ -51,34 +40,52 @@
 	</nav>
 </div>
 
-<div id="fullpage">
+<div class = "first_page" id="fullpage">
 
   <section class="vertical-scrolling section1" id = "section1">
     <!-- <h2><?php echo __('EVOKE'); ?></h2> -->
     <img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>' width = "200px" class = "margin-bottom-1em">
     <h2 class = "uppercase font-weight-bold"><?php echo __('A crash course in changing the world'); ?></h2>
     <div class="scroll-icon">
-    <p class = "font-green uppercase font-weight-bold"><?php echo __('Discover Evoke'); ?></p>
-    <a href="#secondSection" class="icon-up-open-big"></a>
+    	<p class = "font-green uppercase font-weight-bold"><?php echo __('Discover Evoke'); ?></p>
+    	<a href="#secondSection" class="icon-up-open-big"></a>
     </div>
   </section>
 
   <section class="vertical-scrolling">
-    <h2 class = "margin-bottom-1em font-green uppercase font-weight-bold"><?php echo ('Welcome to the Evoke network!'); ?></h2>
-    <h3 class = "centralize-content">
-			<p><?php echo ('If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the world’s greatest challenges.'); ?></p>
-			<p><?php echo ('As an Evoke agent, you will choose your mission, develop your powers, and together with agents around the world create your <strong>own world changing idea</strong>.'); ?></p>
-		</h3>
+    <h2 class = "margin-top-05em font-green uppercase font-weight-bold"><?php echo ('Welcome to the Evoke network!'); ?></h2>
+    <div class = "centralize-content">
+			<h4><?php echo ('If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the worldâ€™s greatest challenges.'); ?></h4>
+			<h4><?php echo ('As an Evoke agent, you will choose your mission, develop your powers, and together with agents around the world create your <strong>own world changing idea</strong>.'); ?></h4>
+		</div>
   </section>
 
   <section class="vertical-scrolling">
-    <h2 class = "margin-bottom-1em font-green uppercase font-weight-bold"><?php echo ('What is Evoke?'); ?></h2>
+    <h2 class = "margin-top-05em font-green uppercase font-weight-bold"><?php echo ('What is Evoke?'); ?></h2>
     <iframe src="<?= $video_url ?>" width="70%" height="70%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
   </section>
 
+	<section class="vertical-scrolling">
+		<h2 class = "margin-top-05em font-green uppercase font-weight-bold"><?php echo ('Why was Evoke created?'); ?></h2>
+    <div class = "centralize-content">
+			<h4><?php echo ('The Evoke network was created to identify voices that are not heard and to give them the tools and support to change their community, their world.  The network believes that every individual can make a difference and when connected to others, change the world.'); ?></h4>
+		</div>
+
+		<h2 class = "margin-top-2em margin-top-05em font-green uppercase font-weight-bold"><?php echo ('Who is behind Evoke?'); ?></h2>
+    <div class = "centralize-content">
+			<h4><?php echo ('Evoke is an innovation project of the World Bank in collaboration with partners around the world.'); ?></h4>
+		</div>
+
+  </section>
+
   <section class="vertical-scrolling">
-    <h2>fullPage.js</h2>
-    <h3>This is the fourth section</h3>
+		<h2 class = "margin-top-05em font-green uppercase font-weight-bold"><?php echo ('How to become an agent?'); ?></h2>
+    <div class = "centralize-content">
+			<h4><?php echo ('To start your journey towards becoming an Evoke Agent, you simply need to sign up.'); ?></h4>
+			<a class="button margin-top-2em" href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'register')) ?>">
+			 <?= __('Sign up') ?>
+			</a>
+		</div>
 
     <nav class="top-bar footer-bottom-fullpage" data-topbar role="navigation">
       <ul class="title-area">

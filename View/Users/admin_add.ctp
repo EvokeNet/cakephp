@@ -1,7 +1,25 @@
-<div class="users form">
-<?php echo $this->Form->create('User'); ?>
-	<fieldset>
-		<legend><?php echo __('Admin Add User'); ?></legend>
+<?php
+	// TOPBAR MENU -->
+	$this->start('topbar');
+	echo $this->element('top-bar');
+	$this->end();
+
+	/* Image header */
+	$this->start('image_header');
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
+	$this->end();
+
+	echo $this->Html->css(
+		array(
+			'evoke',
+			'circle'
+		)
+	);
+
+?>
+
+<div class="row full-width" data-equalizer>
+	
 	<?php
 		echo $this->Form->input('role_id');
 		echo $this->Form->input('role');
