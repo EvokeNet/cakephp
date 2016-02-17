@@ -923,7 +923,7 @@ class UsersController extends AppController {
         // sort in decreasing order
         arsort($qualities);
       }
-
+      //debug($qualities);
       return $this->redirect(array('controller' => 'users', 'action' => 'matching_results', $id, array_keys($qualities)[0], array_keys($qualities)[1]));
     }
 
