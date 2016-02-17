@@ -175,3 +175,56 @@
 .section{
     border-top: 2px solid #ebeced;
 }
+
+.widget {
+    border: none;
+    box-shadow: 0 2px 0 rgba(0,0,0,.07);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    display: block;
+}
+
+.widget-stat-icon {
+    width: 50px;
+    float: left;
+    font-size: 40px;
+    color: #000;
+    opacity: .5;
+}
+
+.widget-stat-info {
+    margin-left: 70px;
+    text-align: left;
+}
+
+.widget-stat-text, .widget-stat-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.widget-stat-number {
+    font-size: 26px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.widget-stat-text, .widget-stat-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bg-inverse {
+    background: #3C454D;
+}
+
+.bg-warning-light {
+    background: #FCBF67!important;
+}

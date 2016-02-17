@@ -33,38 +33,38 @@
     <!-- Left Nav Section -->
     <ul class="left">
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index', 'admin' => false)); ?>" class="font-green font-weight-bold uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase">
           <?php echo __('Missions'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
+        <a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase">
           <?php echo __('Forum'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard', 'admin' => false)); ?>" class="font-green uppercase">
           <?php echo __('Leaderboard'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase font-weight-bold">
+        <a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase">
           <?php echo __('Badges'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id'))); ?>" class="font-green uppercase font-weight-bold">
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id'))); ?>" class="font-green uppercase">
           <?php echo __('Profile'); ?>
         </a>
       </li>
       <?php if ($loggedInUser['role'] <= $scores['ADMIN']): ?>
       
           <li>
-            <a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main', 'admin' => true)); ?>" class="font-green uppercase font-weight-bold">
+            <a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main', 'admin' => true)); ?>" class="font-green uppercase">
               <?php echo __('Admin Panel'); ?>
             </a>
           </li>
