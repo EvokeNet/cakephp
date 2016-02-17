@@ -2,7 +2,7 @@
 <?php
 	// TOPBAR MENU -->
 	$this->start('topbar');
-	echo $this->element('topbar', array('sticky' => '', 'fixed' => ''));
+	echo $this->element('top-bar', array('sticky' => '', 'fixed' => ''));
 	$this->end();
 
 

@@ -88,7 +88,7 @@
 				</div>
 			</li>
 
-			<?php if ($loggedInUser['role'] <= ADMIN){ 
+			<?php if ($loggedInUser['role'] <= 'ADMIN'){ 
 			?>
 			<li>
 				<div class="column">
