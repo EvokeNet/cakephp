@@ -9,6 +9,7 @@
 						<?= __('Statistics') ?>
 					</a>
 				</li>
+				<!-- USERS -->
 				<li class="evoke side-menu">
 					<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'index')) ?>" 
 						class="evoke side-menu button split">
@@ -24,6 +25,66 @@
 						<li id="usersLink">
 							<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'add')) ?>">
 								<?= __('New User') ?>
+							</a>
+						</li>
+					</ul>	
+				</li>
+				<!-- SUPER HERO IDENTITIES -->
+				<li class="evoke side-menu">
+					<a href="<?= $this->Html->url(array('controller' => 'SuperheroIdentities', 'action' => 'index')) ?>" 
+						class="evoke side-menu button split">
+						<?= __('Super Hero Identities') ?>
+						<span data-dropdown="superhero_hover"></span>
+					</a>
+					<ul id="superhero_hover" class='f-dropdown' data-dropdown-content>
+						<li id="superheroLink">
+							<a href="<?= $this->Html->url(array('controller' => 'SuperheroIdentities', 'action' => 'index')) ?>">
+								<?= __('Index') ?>
+							</a>
+						</li>
+						<li id="superheroLink">
+							<a href="<?= $this->Html->url(array('controller' => 'SuperheroIdentities', 'action' => 'add')) ?>">
+								<?= __('New Super Hero Identity') ?>
+							</a>
+						</li>
+					</ul>	
+				</li>
+				<!-- SOCIAL INNOVATOR QUALITIES -->
+				<li class="evoke side-menu">
+					<a href="<?= $this->Html->url(array('controller' => 'SocialInnovatorQualities', 'action' => 'index')) ?>" 
+						class="evoke side-menu button split">
+						<?= __('Qualities') ?>
+						<span data-dropdown="qualities_hover"></span>
+					</a>
+					<ul id="qualities_hover" class='f-dropdown' data-dropdown-content>
+						<li id="qualitiesLink">
+							<a href="<?= $this->Html->url(array('controller' => 'SocialInnovatorQualities', 'action' => 'index')) ?>">
+								<?= __('Index') ?>
+							</a>
+						</li>
+						<li id="qualitiesLink">
+							<a href="<?= $this->Html->url(array('controller' => 'SocialInnovatorQualities', 'action' => 'add')) ?>">
+								<?= __('New Quality') ?>
+							</a>
+						</li>
+					</ul>	
+				</li>
+				<!-- POWERS -->
+				<li class="evoke side-menu">
+					<a href="<?= $this->Html->url(array('controller' => 'powers', 'action' => 'index')) ?>" 
+						class="evoke side-menu button split">
+						<?= __('Powers') ?>
+						<span data-dropdown="powers_hover"></span>
+					</a>
+					<ul id="powers_hover" class='f-dropdown' data-dropdown-content>
+						<li id="powersLink">
+							<a href="<?= $this->Html->url(array('controller' => 'powers', 'action' => 'index')) ?>">
+								<?= __('Index') ?>
+							</a>
+						</li>
+						<li id="powersLink">
+							<a href="<?= $this->Html->url(array('controller' => 'powers', 'action' => 'add')) ?>">
+								<?= __('New Power') ?>
 							</a>
 						</li>
 					</ul>	
