@@ -14,6 +14,12 @@
     transition: all 0.5s ease;
 }
 
+#wrapper html, body, div, p, span, label, a, a i, h1, h2, h3, h4, h5, h6 {
+	// color: #cccccc;
+    color: $bg-color;
+    // font-family: $font-roboto;
+}
+
 #wrapper.toggled {
     padding-left: 250px;
 }
@@ -44,7 +50,7 @@
     position: absolute;
     padding: 15px;
     background-color: #D5D8DA; //#EEEEEE;
-    height:100vh;
+    min-height:100vh;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -53,7 +59,7 @@
 }
 
 .container-fluid{
-    margin-top: 70px;
+    margin-top: 45px;
 }
 
 /* Sidebar Styles */
@@ -136,4 +142,36 @@
         position: relative;
         margin-right: 0;
     }
+}
+
+.panels {
+    margin-bottom: 20px;
+    background-color: $font-off-white;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+	border:none;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px
+}
+
+.panels .panels-heading {
+	-webkit-border-radius:5px 5px 0 0;
+	-moz-border-radius:5px 5px 0 0;
+	border-radius:5px 5px 0 0;
+	padding:10px 20px 5px;
+	border:none;
+}
+
+.panels.panels-default .panels-heading {
+	background:#ebeced;
+}
+
+.panels .panels-heading .panels-heading-btn, .panels .panels-heading-btn {
+    float: right;
+    margin-top: 8px;
+}
+
+.section{
+    border-top: 2px solid #ebeced;
 }

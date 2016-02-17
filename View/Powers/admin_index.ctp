@@ -1,61 +1,54 @@
-<?php
-	
-    $this->extend('/Common/admin_panel');
-
-	/* Image header */
-	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
-	$this->end();
-
-	echo $this->Html->css(
-		array(
-			'evoke',
-			'circle'
-		)
-	);
-
-?>
+<?php $this->extend('/Common/admin_panel'); ?>
 
 <?php $this->start('page_content'); ?>
 
-<div class="row full-width" data-equalizer>
-	<div class="large-10 columns" id="panel-content" data-equalizer-watch>	
-		<div class="powers index">
-			<h2><?php echo __('Powers'); ?></h2>
-			<table cellpadding="0" cellspacing="0">
-			<tr>
-					<th><?php echo $this->Paginator->sort('id'); ?></th>
-					<th><?php echo $this->Paginator->sort('name'); ?></th>
-					<th><?php echo $this->Paginator->sort('description'); ?></th>
-					<th class="actions"><?php echo __('Actions'); ?></th>
-			</tr>
-			<?php foreach ($powers as $power): ?>
-			<tr>
-				<td><?php echo h($power['Power']['id']); ?>&nbsp;</td>
-				<td><?php echo h($power['Power']['name']); ?>&nbsp;</td>
-				<td><?php echo h($power['Power']['description']); ?>&nbsp;</td>
-				<td class="actions">
-					<?php echo $this->Html->link(__('View'), array('action' => 'view', $power['Power']['id'])); ?>
-					<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $power['Power']['id'])); ?>
-					<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $power['Power']['id']), array(), __('Are you sure you want to delete # %s?', $power['Power']['id'])); ?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-			</table>
-			<!-- PAGING -->
-			<div class="evoke paging">
-				<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
-				<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
-				<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
-			</div>
-		</div>
-		<div class="actions">
-			<h3><?php echo __('Actions'); ?></h3>
-			<ul>
-				<li><?php echo $this->Html->link(__('New Power'), array('action' => 'add')); ?></li>
-			</ul>
-		</div>
-	</div>	
+<div style = "padding:1em">
+
+    <div class="panels">
+        <div class="panels-heading">
+            <div class="panels-heading-btn">
+                <a title="" data-original-title="" href="<?php echo $this->Html->url(array('action' => 'add')); ?>" class="font-gray" data-click="panels-expand">
+                    <i class="fa fa-plus-circle fa-lg"></i>
+                </a>
+            </div>
+            <h4 class="uppercase font-gray font-weight-bold"><?php echo __('Powers'); ?></h4>
+        </div>
+        <table cellpadding="0" cellspacing="0" class="table table-td-valign-middle" style = "width:100%">
+            <thead>
+							<th><?php echo $this->Paginator->sort('name'); ?></th>
+							<th><?php echo $this->Paginator->sort('description'); ?></th>
+							<th class="actions"><?php echo __('Actions'); ?></th>
+            </thead>
+						<?php foreach ($powers as $power): ?>
+							<tr>
+								<td><?php echo h($power['Power']['name']); ?>&nbsp;</td>
+								<td><?php echo h($power['Power']['description']); ?>&nbsp;</td>
+								<td class="actions">
+									<?php echo $this->Html->link(__('View'), array('action' => 'view', $power['Power']['id'])); ?>
+									<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $power['Power']['id'])); ?>
+									<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $power['Power']['id']), array(), __('Are you sure you want to delete # %s?', $power['Power']['id'])); ?>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+        </table>
+    </div>
+
+    <div class = "margin-top-2">
+        <p class = "left">
+            <?php
+                echo $this->Paginator->counter(array(
+                    'format' => __('Mostrando {:start} a {:end} de {:count} registros') // 'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+                ));
+            ?>
+        </p>
+        <div class="paging right">
+            <?php
+                echo $this->Paginator->prev('< ' . __('Anterior') . ' ', array(), null, array('class' => 'prev disabled'));
+                echo $this->Paginator->numbers(array('separator' => ''));
+                echo $this->Paginator->next(' ' . __('Próximo') . ' >', array(), null, array('class' => 'next disabled'));
+            ?>
+        </div>
+    </div>
 </div>
 
 <?php $this->end(); ?>

@@ -1,32 +1,24 @@
-<?php
-	
-    $this->extend('/Common/admin_panel');
-
-?>
+<?php $this->extend('/Common/admin_panel'); ?>
 
 <?php $this->start('page_content'); ?>
 
-<div class="row full-width" data-equalizer>
-	<div class="large-10 columns" id="panel-content" data-equalizer-watch>
-		<div class="powers form">
-		<?php echo $this->Form->create('Power'); ?>
-			<fieldset>
-				<legend><?php echo __('Admin Add Power'); ?></legend>
-			<?php
-				echo $this->Form->input('name');
-				echo $this->Form->input('description');
-			?>
-			</fieldset>
-		<?php echo $this->Form->end(__('Submit')); ?>
-		</div>
-		<div class="actions">
-			<h3><?php echo __('Actions'); ?></h3>
-			<ul>
+<?php echo $this->Form->create('Power'); ?>
 
-				<li><?php echo $this->Html->link(__('List Powers'), array('action' => 'index')); ?></li>
-			</ul>
-		</div>
-	</div>	
+<h3 class = "uppercase font-weight-bold font-gray margin-bottom-05em"><?= __('Add Power') ?></h3>
+<div class = "section padding-top-1em padding-bottom-1em">
+ 
+    <div class="row" data-equalizer>
+
+	    <div class="large-12 columns" id="panel-content" data-equalizer-watch>
+            <?php 
+                echo $this->Form->input('name');
+				echo $this->Form->input('description');
+             ?>
+        </div>
+    </div>
+    
 </div>
+
+<?php echo $this->Form->end(__('Submit')); ?>
 
 <?php $this->end(); ?>

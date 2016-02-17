@@ -1,76 +1,21 @@
-<?php
-	
-    $this->extend('/Common/admin_panel');
-
-	/* Image header */
-	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
-	$this->end();
-
-	echo $this->Html->css(
-		array(
-			'evoke',
-			'circle'
-		)
-	);
-
-?>
+<?php $this->extend('/Common/admin_panel'); ?>
 
 <?php $this->start('page_content'); ?>
 
-<div class="row full-width" data-equalizer>
-	<div class="large-10 columns" id="panel-content" data-equalizer-watch>		
-		<div class="superheroIdentities">
-		<h2><?php echo __('Superhero Identity'); ?></h2>
-			<dl>
-				<dt><?php echo __('Id'); ?></dt>
-				<dd>
-					<?php echo h($superheroIdentity['SuperheroIdentity']['id']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Name'); ?></dt>
-				<dd>
-					<?php echo h($superheroIdentity['SuperheroIdentity']['name']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Description'); ?></dt>
-				<dd>
-					<?php echo h($superheroIdentity['SuperheroIdentity']['description']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Quality 1'); ?></dt>
-				<dd>
-					<?php echo h($superheroIdentity['SuperheroIdentity']['quality_1']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Quality 2'); ?></dt>
-				<dd>
-					<?php echo h($superheroIdentity['SuperheroIdentity']['quality_2']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Primary Power'); ?></dt>
-				<dd>
-					<?php echo h($superheroIdentity['SuperheroIdentity']['primary_power']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Secondary Power'); ?></dt>
-				<dd>
-					<?php echo h($superheroIdentity['SuperheroIdentity']['secondary_power']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Created'); ?></dt>
-				<dd>
-					<?php echo h($superheroIdentity['SuperheroIdentity']['created']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Modified'); ?></dt>
-				<dd>
-					<?php echo h($superheroIdentity['SuperheroIdentity']['modified']); ?>
-					&nbsp;
-				</dd>
-			</dl>
-		</div>
-	</div>
+<h3 class = "uppercase font-weight-bold font-gray margin-bottom-05em"><?= __('View Superhero Identity') ?></h3>
+<div class = "section padding-top-1em padding-bottom-1em">
+    <div class="row">
+        <div class="large-10 centered columns">
+            <p><span class = "font-weight-bold"><?= __('Name:') ?></span>&nbsp;&nbsp;<?= $superheroIdentity['SuperheroIdentity']['name'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Description:') ?></span>&nbsp;&nbsp;<?= $superheroIdentity['SuperheroIdentity']['description'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Quality 1:') ?></span>&nbsp;&nbsp;<?= $superheroIdentity['SuperheroIdentity']['quality_1'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Quality 2:') ?></span>&nbsp;&nbsp;<?= $superheroIdentity['SuperheroIdentity']['quality_2'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Primary Power:') ?></span>&nbsp;&nbsp;<?= $superheroIdentity['SuperheroIdentity']['primary_power'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Secondary Power:') ?></span>&nbsp;&nbsp;<?= $superheroIdentity['SuperheroIdentity']['secondary_power'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Created:') ?></span>&nbsp;&nbsp;<?= $superheroIdentity['SuperheroIdentity']['created'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Modified:') ?></span>&nbsp;&nbsp;<?= $superheroIdentity['SuperheroIdentity']['modified'] ?></p>
+        </div>
+    </div>
 </div>
 
 <?php $this->end(); ?>

@@ -49,11 +49,7 @@
         </div>
     </div>
     
-    <?php
-    
-        echo $this->Form->input('username', array('required' => true, 'label' => __('Username')));
-        
-    ?>
+    <?php echo $this->Form->input('username', array('required' => true, 'label' => __('Username'))); ?>
        
     <div class="row">
         <div class="large-6 columns">

@@ -9923,25 +9923,57 @@ label {
 /* line 193, ../../../../foundation_compass/scss/app.scss */
 table {
   background-color: #FCFCFC;
-  padding: 1em;
-  border-radius: 5px;
+  border-radius: 10px;
+  background: #FFFFFF;
+  border: none;
+  margin-bottom: 1.25rem;
+  table-layout: auto;
 }
-/* line 198, ../../../../foundation_compass/scss/app.scss */
-table tr {
+/* line 203, ../../../../foundation_compass/scss/app.scss */
+table thead tr {
   background: #FCFCFC;
   border-bottom: 1px solid #28282C;
+  padding: 10px 20px 8px;
+  font-weight: 400;
 }
 
-/* line 209, ../../../../foundation_compass/scss/app.scss */
-td, th {
-  padding: 15px 5px;
-  display: table-cell;
-  text-align: left;
-  vertical-align: middle;
-  border-radius: 2px;
+/* line 226, ../../../../foundation_compass/scss/app.scss */
+table > tbody > tr > td, table > thead > tr > th {
+  border-color: #ebeced !important;
+  border-width: 1px;
 }
-/* line 216, ../../../../foundation_compass/scss/app.scss */
-td a, th a {
+
+/* line 231, ../../../../foundation_compass/scss/app.scss */
+table > tbody > tr > td a {
   color: #28282C;
-  text-transform: uppercase;
+}
+
+/* line 235, ../../../../foundation_compass/scss/app.scss */
+table > tbody > tr > td a:hover {
+  color: #2FCCCB;
+}
+
+/* line 243, ../../../../foundation_compass/scss/app.scss */
+table > tbody > tr.even, table > tbody > tr.alt, table > tbody > tr:nth-of-type(2n) {
+  background: #f9f9f9;
+  border-right: 1px solid #ddd;
+}
+
+/* line 248, ../../../../foundation_compass/scss/app.scss */
+table > thead > tr > th {
+  color: #fff;
+  background-color: #30373e !important;
+  border-color: #181c1f !important;
+}
+
+/* line 254, ../../../../foundation_compass/scss/app.scss */
+table tr th, table tr td,
+table > tbody > tr > td {
+  color: #222222;
+  font-size: 0.875rem;
+  padding: 10px 20px;
+  text-align: center;
+  border-color: #ddd;
+  border-style: solid;
+  border-width: 0px 1px 1px 1px;
 }

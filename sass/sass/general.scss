@@ -1,7 +1,9 @@
 $bg-color: #28282C;
 $default-green: #2FCCCB;
 $default-green-selected: #009393;
-$font-dosis: 'Dosis', 'Open-Sans', sans-serif;
+$font-dosis: 'Dosis', 'Source Sans Pro', sans-serif;
+$font-source: 'Source Sans Pro', sans-serif;
+$font-roboto: 'Roboto', sans-serif;
 $font-off-white: #FCFCFC;
 $top-bar-bg: #2B2C31;
 
@@ -33,7 +35,8 @@ $top-bar-bg: #2B2C31;
 // }
 
 *, html, body, div, p {
-	color: #cccccc;
+	// color: #cccccc;
+    color: $font-off-white;
 }
 
 .footer {
@@ -120,6 +123,18 @@ body > .container {
   margin-right:3em;
 }
 
+.padding-top-1em{
+  padding-top: 1em;
+}
+
+.padding-bottom-1em{
+  padding-bottom: 1em;
+}
+
+.font-gray{
+    color: $bg-color;
+}
+
 .font-green, .evoke .font-green{
   color: #2FCCCB;
 }
@@ -181,16 +196,6 @@ body > .container {
 	width: 0;
 }
 
-/* Headings */
-// .evoke h1, .evoke h1 a, .evoke h2, .evoke h2 a, .evoke h3, .evoke h3 a,
-// .evoke h4, .evoke h4 a, .evoke h5, .evoke h5 a, .evoke h6, .evoke h6 a {
-// 	font-family: $font-dosis;
-// }
-
-// .evoke h1, .evoke h2, .evoke h3, .evoke h4, .evoke h5, .evoke h6 {
-// 	color: $font-off-white;
-// }
-
 /* Visibility */
 
 .hidden {
@@ -220,17 +225,6 @@ body > .container {
 	border-radius: 3px;
 	margin-top: .5em;
 }
-
-// .button, button{
-// 	background-color: $default-green;
-// 	border-color: $default-green;
-// 	color: $font-off-white;
-// }
-
-// .button:hover, button:hover{
-// 	background-color: $default-green-selected;
-// 	color: $font-off-white;
-// }
 
 .full-height{
 	height:100%;

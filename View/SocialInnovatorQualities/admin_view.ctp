@@ -1,61 +1,18 @@
-<?php
-	
-    $this->extend('/Common/admin_panel');
-
-	/* Image header */
-	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
-	$this->end();
-
-	echo $this->Html->css(
-		array(
-			'evoke',
-			'circle'
-		)
-	);
-
-?>
+<?php $this->extend('/Common/admin_panel'); ?>
 
 <?php $this->start('page_content'); ?>
 
-<div class="row full-width" data-equalizer>
-	<div class="large-10 columns" id="panel-content" data-equalizer-watch>
-		<div class="socialInnovatorQualities">
-		<h2><?php echo __('Social Innovator Quality'); ?></h2>
-			<dl>
-				<dt><?php echo __('Id'); ?></dt>
-				<dd>
-					<?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['id']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Name'); ?></dt>
-				<dd>
-					<?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['name']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Short Name'); ?></dt>
-				<dd>
-					<?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['short_name']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Description'); ?></dt>
-				<dd>
-					<?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['description']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Created'); ?></dt>
-				<dd>
-					<?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['created']); ?>
-					&nbsp;
-				</dd>
-				<dt><?php echo __('Modified'); ?></dt>
-				<dd>
-					<?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['modified']); ?>
-					&nbsp;
-				</dd>
-			</dl>
-		</div>
-	</div>
+<h3 class = "uppercase font-weight-bold font-gray margin-bottom-05em"><?= __('View Social Innovator Quality') ?></h3>
+<div class = "section padding-top-1em padding-bottom-1em">
+    <div class="row">
+        <div class="large-10 centered columns">
+            <p><span class = "font-weight-bold"><?= __('Name:') ?></span>&nbsp;&nbsp;<?= $socialInnovatorQuality['SocialInnovatorQuality']['name'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Short name:') ?></span>&nbsp;&nbsp;<?= $socialInnovatorQuality['SocialInnovatorQuality']['short_name'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Description:') ?></span>&nbsp;&nbsp;<?= $socialInnovatorQuality['SocialInnovatorQuality']['description'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Created:') ?></span>&nbsp;&nbsp;<?= $socialInnovatorQuality['SocialInnovatorQuality']['created'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Modified:') ?></span>&nbsp;&nbsp;<?= $socialInnovatorQuality['SocialInnovatorQuality']['modified'] ?></p>
+        </div>
+    </div>
 </div>
 
 <?php $this->end(); ?>
