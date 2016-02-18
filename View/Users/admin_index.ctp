@@ -24,13 +24,15 @@
     <div>
         <h2><?php echo __('Users'); ?></h2>
         <table cellpadding="0" cellspacing="0">
-        <tr>
-                <th><?php echo $this->Paginator->sort('id'); ?></th>
-                <th><?php echo $this->Paginator->sort('name'); ?></th>
-                <th><?php echo $this->Paginator->sort('created'); ?></th>
-                <th><?php echo $this->Paginator->sort('modified'); ?></th>
-                <th class="actions"><?php echo __('Actions'); ?></th>
-        </tr>
+            <thead>
+                <tr>
+                        <th><?php echo $this->Paginator->sort('id'); ?></th>
+                        <th><?php echo $this->Paginator->sort('name'); ?></th>
+                        <th><?php echo $this->Paginator->sort('created'); ?></th>
+                        <th><?php echo $this->Paginator->sort('modified'); ?></th>
+                        <th class="actions"><?php echo __('Actions'); ?></th>
+                </tr>
+            </thead>
         <?php foreach ($users as $user): ?>
         <tr>
             <td><?php echo h($user['User']['id']); ?>&nbsp;</td>

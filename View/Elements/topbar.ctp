@@ -1,4 +1,4 @@
-<nav class="top-bar header-top" data-topbar role="navigation">
+<nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
       <h1><a href="#"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>' width = "125px"></a></h1>
@@ -22,7 +22,8 @@
       </li>
       <li class="divider"></li>
       <li class="has-dropdown">
-        <a href="#"><?php echo __('LANGUAGE'); ?></a>
+        <!--<a href="#"><?php echo __('LANGUAGE'); ?></a>-->
+        <a href="#"><i class="fa fa-language fa-lg"></i></a>
         <ul class="dropdown">
           <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'en')) ?>"><?php echo __('ENGLISH'); ?></a></li>
           <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'es')) ?>"><?php echo __('SPANISH'); ?></a></li>

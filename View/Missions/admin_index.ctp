@@ -1,32 +1,22 @@
 <?php
-  // TOPBAR MENU -->
-  $this->start('topbar');
-  echo $this->element('topbar');
-  $this->end();
+	
+    $this->extend('/Common/admin_panel');
 
+	/* Image header */
+	$this->start('image_header');
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
+	$this->end();
 
-
-  /* Image header */
-  $this->start('image_header');
-  echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
-  $this->end();
-
-  echo $this->Html->css(
-    array(
-      'evoke',
-      'panels',
-      'circle'
-    )
-  );
+	echo $this->Html->css(
+		array(
+			'evoke',
+			'circle'
+		)
+	);
 
 ?>
 
-<div class="row full-width" data-equalizer>
-
-  <?php
-    echo $this->element('panel/admin_sidebar');
-    $this->end();
-  ?>
+<?php $this->start('page_content'); ?>
 
 <div class="missions index">
 	<h2><?php echo __('Missions'); ?></h2>
@@ -121,3 +111,5 @@
 	</ul>
 
 </div>
+
+<?php $this->end(); ?>

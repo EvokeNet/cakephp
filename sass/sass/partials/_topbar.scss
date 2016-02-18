@@ -2,86 +2,86 @@
 /* TOP BAR */
 /* --------------------------- */
 
-.evoke .top-bar input, .top-bar .button, .top-bar button {
-  font-size: 0.8rem;
-  position: relative;
-}
+// .evoke .top-bar input, .top-bar .button, .top-bar button {
+//   font-size: 0.8rem;
+//   position: relative;
+// }
 
-.top-bar .button:hover, .top-bar button:hover{
-	background-color: $default-green-selected;
-	color: $font-off-white;
-}
+// .top-bar .button:hover, .top-bar button:hover{
+// 	background-color: $default-green-selected;
+// 	color: $font-off-white;
+// }
 
-.evoke .top-bar input {
-	  top: 10px;
-}
+// .evoke .top-bar input {
+// 	  top: 10px;
+// }
 
-.evoke .top-bar .button, .top-bar button{
-		top: 9px;
-}
+// .evoke .top-bar .button, .top-bar button{
+// 		top: 9px;
+// }
 
-.evoke .top-bar-section .input.text{
-	margin-right: 1em;
-}
+// .evoke .top-bar-section .input.text{
+// 	margin-right: 1em;
+// }
 
-.top-bar-section ul li > a{
-  font-family: 'Dosis', 'Open-Sans', sans-serif;
-}
+// .top-bar-section ul li > a{
+//   font-family: 'Dosis', 'Open-Sans', sans-serif;
+// }
 
-.top-bar .button, .top-bar button, .evoke .top-bar-section ul li > a.button{
-	font-size: 0.8rem;
-	border-radius: 2px;
-	color: #FCFCFC;
-	padding-right: 15px;
-	padding-left: 15px;
-  font-family: 'Dosis', 'Open-Sans', sans-serif;
-  font-size: 0.8rem;
-  position: relative;
-  background-color: $default-green;
-	border-color: $default-green;
-	color: $font-off-white;
-}
+// .top-bar .button, .top-bar button, .evoke .top-bar-section ul li > a.button{
+// 	font-size: 0.8rem;
+// 	border-radius: 2px;
+// 	color: #FCFCFC;
+// 	padding-right: 15px;
+// 	padding-left: 15px;
+//   font-family: 'Dosis', 'Open-Sans', sans-serif;
+//   font-size: 0.8rem;
+//   position: relative;
+//   background-color: $default-green;
+// 	border-color: $default-green;
+// 	color: $font-off-white;
+// }
 
-.evoke .top-bar-section ul li,
-.evoke .top-bar-section li:not(.has-form) a:not(.button) {
-  background: #2B2C31;
-}
+// .evoke .top-bar-section ul li,
+// .evoke .top-bar-section li:not(.has-form) a:not(.button) {
+//   background: #2B2C31;
+// }
 
-.evoke .top-bar-section ul li > a.button:hover{
-	background-color: #1E7F7F;
-	border-color: #1E7F7F;
-	padding-right: 15px;
-	padding-left: 15px;
-}
+// .evoke .top-bar-section ul li > a.button:hover{
+// 	background-color: #1E7F7F;
+// 	border-color: #1E7F7F;
+// 	padding-right: 15px;
+// 	padding-left: 15px;
+// }
 
-.top-bar-section li.active:not(.has-form) a:not(.button), .top-bar-section li.active:not(.has-form) a:not(.button):hover {
-	background-color: inherit;
-	text-transform: none;
-}
+// .top-bar-section li.active:not(.has-form) a:not(.button), .top-bar-section li.active:not(.has-form) a:not(.button):hover {
+// 	background-color: inherit;
+// 	text-transform: none;
+// }
 
-.top-bar-section li:not(.has-form) a.button:hover, .top-bar-section li:not(.has-form) a.button-icon:hover {
-	background-color: inherit;
-}
+// .top-bar-section li:not(.has-form) a.button:hover, .top-bar-section li:not(.has-form) a.button-icon:hover {
+// 	background-color: inherit;
+// }
 
-.top-bar-section li:not(.has-form) a:not(.button):not(.button-icon):hover {
-	background-color: #2BB9B8;
-}
+// .top-bar-section li:not(.has-form) a:not(.button):not(.button-icon):hover {
+// 	background-color: #2BB9B8;
+// }
 
-.header-top {
-	background: #2B2C31;
-	/*height: 70px;*/
-	/*padding: 0 10px;*/
-	/*position: fixed;*/
-	/*top: 0;*/
-  // height: 70px;
-  /*padding: 10px 0;*/
-  height: 65px;
-	// padding: 12px 0 10px;
-  padding: 10px 0px 0px;
-	width: 100%;
-	z-index: 12;
-	box-sizing: border-box;
-}
+// .header-top {
+// 	background: #2B2C31;
+// 	/*height: 70px;*/
+// 	/*padding: 0 10px;*/
+// 	/*position: fixed;*/
+// 	/*top: 0;*/
+//   // height: 70px;
+//   /*padding: 10px 0;*/
+//   height: 65px;
+// 	// padding: 12px 0 10px;
+//   padding: 10px 0px 0px;
+// 	width: 100%;
+// 	z-index: 12;
+// 	box-sizing: border-box;
+// }
 
 .header-top-fixed {
 	background: #2B2C31;
@@ -89,9 +89,9 @@
 	/*padding: 0 10px;*/
 	position: fixed;
 	/*top: 0;*/
-  height: 70px;
-  /*padding: 10px 0;*/
-	padding: 12px 0 10px;
+//   height: 70px;
+//   /*padding: 10px 0;*/
+// 	padding: 12px 0 10px;
 	width: 100%;
 	z-index: 12;
 	box-sizing: border-box;
@@ -103,11 +103,11 @@
 	/*padding: 0 10px;*/
 	/*position: fixed;*/
 	/*top: 0;*/
-  bottom:0;
-  height: 70px;
-  padding: 10px 0;
-	width: 100%;
-	z-index: 12;
-	box-sizing: border-box;
-  position: absolute;
+    bottom:0;
+    height: 70px;
+    padding: 10px 0;
+    width: 100%;
+    z-index: 12;
+    box-sizing: border-box;
+    position: absolute;
 }

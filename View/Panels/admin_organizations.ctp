@@ -1,34 +1,26 @@
-
 <?php
-	// TOPBAR MENU -->
-	$this->start('topbar');
-	echo $this->element('top-bar', array('sticky' => '', 'fixed' => ''));
-	$this->end();
-
-
+	
+    $this->extend('/Common/admin_panel');
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => true, 'hidden' => true));
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
 	$this->end();
 
 	echo $this->Html->css(
 		array(
 			'evoke',
-			'panels',
 			'circle'
 		)
 	);
 
 ?>
 
+<?php $this->start('page_content'); ?>
+
 <div class="row full-width" data-equalizer>
 
-	<?php
-		echo $this->element('panel/admin_sidebar');
-	?>
-
-  	<div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>
+	<div class="large-10 columns" id="panel-content" data-equalizer-watch>	
 
 		<div id="content">
 			<div id="organizations" class="row padding-top-1"  >
@@ -55,3 +47,5 @@
 		</div>
 	</div>
 </div>
+
+<?php $this->end(); ?>

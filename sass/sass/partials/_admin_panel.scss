@@ -31,7 +31,8 @@
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    margin-top: 70px;
+    // margin-top: 70px;
+    margin-top: 45px;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -42,6 +43,8 @@
     width: 100%;
     position: absolute;
     padding: 15px;
+    background-color: #D5D8DA; //#EEEEEE;
+    height:100vh;
 }
 
 #wrapper.toggled #page-content-wrapper {

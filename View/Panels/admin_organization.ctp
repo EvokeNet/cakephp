@@ -1,34 +1,26 @@
-
 <?php
-	// TOPBAR MENU -->
-	$this->start('topbar');
-	echo $this->element('topbar');
-	$this->end();
-
 	
+    $this->extend('/Common/admin_panel');
 
 	/* Image header */
 	$this->start('image_header');
-	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => true, 'hidden' => true));
+	echo $this->element('image_header',array('imgHeaderTitle' => __('Admin Panel'), 'imgSrc' => ($this->webroot.'img/header-leaderboard-2.jpg'), 'margin' => false, 'hidden' => true));
 	$this->end();
 
 	echo $this->Html->css(
 		array(
 			'evoke',
-			'panels',
 			'circle'
 		)
 	);
 
 ?>
 
-<div class="row full-width" data-equalizer>
-  	<?php
-		echo $this->element('panel/admin_sidebar');
-		$this->end();
-	?>
+<?php $this->start('page_content'); ?>
 
-  <div class="large-10 columns hidden" id="panel-content" data-equalizer-watch>
+<div class="row full-width" data-equalizer>
+
+	<div class="large-10 columns" id="panel-content" data-equalizer-watch>
 
   	<h2 class="evoke text-glow"><?= $organization['Organization']['name'] ?></h2>
 
@@ -354,3 +346,5 @@
 	});
 
 </script>
+
+<?php $this->end(); ?>
