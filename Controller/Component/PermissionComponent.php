@@ -10,15 +10,26 @@ class PermissionComponent extends Component {
 
 
     public function startup(Controller $controller) {
-        $role_class = ClassRegistry::init('Role');
-
-        $scores = array(
-            'ADMIN'=> $role_class->find('first',array('conditions' => array('name' => 'ADMIN')))['Role']['score'],
-            'USER' => $role_class->find('first',array('conditions' => array('name' => 'USER')))['Role']['score']
-        );
-
+        
+        $scores = $this->scores();
 
         $this->Controller = $controller;
+    }
+
+    public function scores(){
+        if(isset($scores)){
+            return $scores;
+        }else{
+           $role_class = ClassRegistry::init('Role');
+
+            $scores = array(
+                'ADMIN'=> $role_class->find('first',array('conditions' => array('name' => 'ADMIN')))['Role']['score'],
+                'USER' => $role_class->find('first',array('conditions' => array('name' => 'USER')))['Role']['score']
+            );
+
+           return $scores;
+        }
+        
     }
 
     public function role() {
@@ -46,9 +57,10 @@ class PermissionComponent extends Component {
     public function hasPrivilege($options){
 
         $role = $this->role();
+        $scores = $this->scores();
 
         if(isset($options['minimumRole'])){
-            $minimumRole = $options['minimumRole'];
+            $minimumRole = $scores[$options['minimumRole']];
         }else{
             return false;
         }

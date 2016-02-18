@@ -44,16 +44,16 @@ class AppController extends Controller {
 	public $user = null;
 	public $lang = null;
 
-    public $sex = array(
+      public $sex = array(
         0 => 'Male',
         1 => 'Female'
-    );
+      );
 
-    public $languages = array(
+      public $languages = array(
         'pt_BR' => 'Português',
         'en' => 'English',
         'es' => 'Español'
-    );
+      );
 
 	public $countries = array(
   	'BR' => 'Brasil',
@@ -312,6 +312,8 @@ class AppController extends Controller {
 		$cuser = $this->Auth->user();
 		$loggedInUser = $this->Auth->user();
 
+            $scores = $this->Permission->scores();
+
 		$this->loadModel('Role');
 
 		if(isset($loggedInUser)){
@@ -362,7 +364,7 @@ class AppController extends Controller {
 			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId(),'admin' => false));
 		}
 
-		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language'));
+		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language','scores'));
 	}
 
 
