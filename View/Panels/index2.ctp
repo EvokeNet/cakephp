@@ -63,7 +63,7 @@
 					<a href ="#" class="button general" data-reveal-id="myModalOrganization" data-reveal><?php echo __('New Organization');?></a>
 
 					<div id="myModalOrganization" class="reveal-modal tiny" data-reveal>
-						<?php echo $this->Form->create('Organization', array(
+						<?php echo $this->Form->create('Organization', array( 
  						   		'url' => array(
  						   			'controller' => 'panels',
  						   			'action' => 'add_org')
