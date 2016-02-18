@@ -2,7 +2,7 @@
 
 <?php $this->start('page_content'); ?>
 
-<?php echo $this->Form->create('Organization'); ?>
+<?php echo $this->Form->create('Organization'); echo $this->Form->input('id'); ?>
 
 <h3 class = "uppercase font-weight-bold font-gray margin-bottom-05em"><?= __('Edit Organization') ?></h3>
 <div class = "section padding-top-1em padding-bottom-1em">

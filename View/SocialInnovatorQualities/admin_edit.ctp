@@ -2,7 +2,7 @@
 
 <?php $this->start('page_content'); ?>
 
-<?php echo $this->Form->create('SocialInnovatorQuality'); ?>
+<?php echo $this->Form->create('SocialInnovatorQuality'); echo $this->Form->input('id'); ?>
 
 <h3 class = "uppercase font-weight-bold font-gray margin-bottom-05em"><?= __('Edit Social Innovator Quality') ?></h3>
 <div class = "section padding-top-1em padding-bottom-1em">

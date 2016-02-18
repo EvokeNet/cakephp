@@ -13,31 +13,35 @@
             </div>
             <h4 class="uppercase font-gray font-weight-bold"><?php echo __('Forums'); ?></h4>
         </div>
-        <table cellpadding="0" cellspacing="0" class="table table-td-valign-middle" style = "width:100%">
+        <table cellpadding="0" cellspacing="0" style = "width:100%">
             <thead>
-                <th><?php echo $this->Paginator->sort('title'); ?></th>
-                <th><?php echo $this->Paginator->sort('slug'); ?></th>
-                <th><?php echo $this->Paginator->sort('user_id'); ?></th>
-                <th><?php echo $this->Paginator->sort('created'); ?></th>
-                <th><?php echo $this->Paginator->sort('modified'); ?></th>
-                <th class="actions"><?php echo __('Actions'); ?></th>
-            </thead>
-            <?php foreach ($forums as $forum): ?>
                 <tr>
-                    <td><?php echo h($forum['Forum']['title']); ?>&nbsp;</td>
-                    <td><?php echo h($forum['Forum']['slug']); ?>&nbsp;</td>
-                    <td>
-                        <?php echo $this->Html->link($forum['User']['name'], array('controller' => 'users', 'action' => 'view', $forum['User']['id'])); ?>
-                    </td>
-                    <td><?php echo h($forum['Forum']['created']); ?>&nbsp;</td>
-                    <td><?php echo h($forum['Forum']['modified']); ?>&nbsp;</td>
-                    <td class="actions">
-                        <?php echo $this->Html->link(__('View'), array('action' => 'view', $forum['Forum']['id'])); ?>
-                        <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $forum['Forum']['id'])); ?>
-                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $forum['Forum']['id']), array(), __('Are you sure you want to delete # %s?', $forum['Forum']['id'])); ?>
-                    </td>
+                    <th><?php echo $this->Paginator->sort('title'); ?></th>
+                    <th><?php echo $this->Paginator->sort('slug'); ?></th>
+                    <th><?php echo $this->Paginator->sort('user_id'); ?></th>
+                    <th><?php echo $this->Paginator->sort('created'); ?></th>
+                    <th><?php echo $this->Paginator->sort('modified'); ?></th>
+                    <th class="actions"><?php echo __('Actions'); ?></th>
                 </tr>
-            <?php endforeach; ?>
+            </thead>
+            <tbody>
+                <?php foreach ($forums as $forum): ?>
+                    <tr>
+                        <td><?php echo h($forum['Forum']['title']); ?>&nbsp;</td>
+                        <td><?php echo h($forum['Forum']['slug']); ?>&nbsp;</td>
+                        <td>
+                            <?php echo $this->Html->link($forum['User']['name'], array('controller' => 'users', 'action' => 'view', $forum['User']['id'])); ?>
+                        </td>
+                        <td><?php echo h($forum['Forum']['created']); ?>&nbsp;</td>
+                        <td><?php echo h($forum['Forum']['modified']); ?>&nbsp;</td>
+                        <td class="actions">
+                            <?php echo $this->Html->link(__('View'), array('action' => 'view', $forum['Forum']['id'])); ?>
+                            <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $forum['Forum']['id'])); ?>
+                            <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $forum['Forum']['id']), array(), __('Are you sure you want to delete # %s?', $forum['Forum']['id'])); ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
     </div>
 

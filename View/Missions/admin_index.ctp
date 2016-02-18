@@ -13,29 +13,33 @@
             </div>
             <h4 class="uppercase font-gray font-weight-bold"><?php echo __('Missions'); ?></h4>
         </div>
-        <table cellpadding="0" cellspacing="0" class="table table-td-valign-middle" style = "width:100%">
+        <table cellpadding="0" cellspacing="0" style = "width:100%">
             <thead>
-                <th><?php echo $this->Paginator->sort('organization_id'); ?></th>
-                <th><?php echo $this->Paginator->sort('title'); ?></th>
-                <th><?php echo $this->Paginator->sort('language'); ?></th>
-                <th><?php echo $this->Paginator->sort('video_link'); ?></th>
-                <th><?php echo $this->Paginator->sort('basic_training'); ?></th>
-                <th class="actions"><?php echo __('Actions'); ?></th>
-            </thead>
-            <?php foreach ($missions as $mission): ?>
                 <tr>
-                    <td><?php echo h($mission['Mission']['organization_id']); ?>&nbsp;</td>
-                    <td><?php echo h($mission['Mission']['title']); ?>&nbsp;</td>
-                    <td><?php echo h($mission['Mission']['language']); ?>&nbsp;</td>
-                    <td><?php echo h($mission['Mission']['video_link']); ?>&nbsp;</td>
-                    <td><?php echo h($mission['Mission']['basic_training']); ?>&nbsp;</td>
-                    <td class="actions">
-                        <?php echo $this->Html->link(__('View'), array('action' => 'view', $mission['Mission']['id'])); ?>
-                        <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $mission['Mission']['id'])); ?>
-                        <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $mission['Mission']['id']), array(), __('Are you sure you want to delete # %s?', $mission['Mission']['id'])); ?>
-                    </td>
+                    <th><?php echo $this->Paginator->sort('organization_id'); ?></th>
+                    <th><?php echo $this->Paginator->sort('title'); ?></th>
+                    <th><?php echo $this->Paginator->sort('language'); ?></th>
+                    <th><?php echo $this->Paginator->sort('video_link'); ?></th>
+                    <th><?php echo $this->Paginator->sort('basic_training'); ?></th>
+                    <th class="actions"><?php echo __('Actions'); ?></th>
                 </tr>
-            <?php endforeach; ?>
+            </thead>
+            <tbody>
+                <?php foreach ($missions as $mission): ?>
+                    <tr>
+                        <td><?php echo h($mission['Mission']['organization_id']); ?>&nbsp;</td>
+                        <td><?php echo h($mission['Mission']['title']); ?>&nbsp;</td>
+                        <td><?php echo h($mission['Mission']['language']); ?>&nbsp;</td>
+                        <td><?php echo h($mission['Mission']['video_link']); ?>&nbsp;</td>
+                        <td><?php echo h($mission['Mission']['basic_training']); ?>&nbsp;</td>
+                        <td class="actions">
+                            <?php echo $this->Html->link(__('View'), array('action' => 'view', $mission['Mission']['id'])); ?>
+                            <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $mission['Mission']['id'])); ?>
+                            <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $mission['Mission']['id']), array(), __('Are you sure you want to delete # %s?', $mission['Mission']['id'])); ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
     </div>
 

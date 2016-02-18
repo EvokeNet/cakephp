@@ -2,7 +2,7 @@
 
 <?php $this->start('page_content'); ?>
 
-<?php echo $this->Form->create('SuperheroIdentity'); ?>
+<?php echo $this->Form->create('SuperheroIdentity'); echo $this->Form->input('id'); ?>
 
 <h3 class = "uppercase font-weight-bold font-gray margin-bottom-05em"><?= __('Edit Superhero Identity') ?></h3>
 <div class = "section padding-top-1em padding-bottom-1em">
