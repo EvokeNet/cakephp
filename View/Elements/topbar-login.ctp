@@ -1,77 +1,44 @@
-<?php //Facebook login URL comes from session
-	$fbLoginUrl = $this->Session->read('fbLoginUrl');
-?>
+<?php echo $this->Form->create('User', array('data-abide', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
 
+<div>
+	<nav class="top-bar header-top-fullpage" data-topbar role="navigation">
+		<ul class="title-area">
+			<li class="name">
+				<h1><a href="#"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>' width = "150px"></a></h1>
+			</li>
+			 <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+		</ul>
 
+		<section class="top-bar-section">
+			<!-- Right Nav Section -->
+			<ul class="right">
+				<li class="active">
+					<?php	echo $this->Form->input('username', array('label' => false, 'type' => 'text', 'placeholder' =>  __('username'), 'class' => 'radius', 'required' => true, 'autofocus', 'class' => 'margin-right-1em'));	?>
+				</li>
+				<li class="active">
+					<?php	echo $this->Form->input('password', array('label' => false, 'type' => 'password', 'placeholder' =>  __('password'), 'class' => 'radius', 'required' => true, 'autofocus'));	?>
+				</li>
+				<li class="has-form">
+					<button type="submit" class="full-width uppercase"><?php echo __('Sign In'); ?></button>
+					<!-- <a href = "#" id = "user_login" class="button uppercase"><?php echo __('Sign In'); ?></a> -->
+				</li>
+				<li class="divider"></li>
+				<li class="has-form">
+					<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'register')) ?>" class="button uppercase"><?php echo __('Sign Up'); ?></a>
+				</li>
+				<li class="divider"></li>
+				<li class="has-dropdown">
+					<a href="#"><?php echo __('LANGUAGE'); ?></a>
+					<ul class="dropdown">
+						<li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'en')) ?>"><?php echo __('ENGLISH'); ?></a></li>
+						<li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'es')) ?>"><?php echo __('SPANISH'); ?></a></li>
+					</ul>
+				</li>
+			</ul>
 
-<ul class="<?php echo isset($ulClass) ? $ulClass : ''; ?>">
-	<!-- USERNAME, PASSWORD, AND SUBMIT BUTTON -->
-	<li class="has-form">
-		<!-- Form with Foundation validation -->
-		<?php echo $this->Form->create('User', array('data-abide', 'url' => array('controller' => 'users', 'action' => 'login', 'admin' => false))); ?>
+		</section>
+	</nav>
+</div>
 
-		<div class="row collapse">
-			<div class="small-6 medium-3 large-3 columns">
-				<?php 
-					echo $this->Form->input('username', array('label' => false, 'type' => 'text', 'placeholder' =>  __('username'), 'class' => 'radius', 'required' => true, 'autofocus'));
-				?>
-			</div>
-			<div class="small-6 medium-3 large-3 columns">
-				<?php 
-					echo $this->Form->input('password', array('label' => false, 'type' => 'password', 'placeholder' =>  __('password'), 'class' => 'radius', 'required'));
-				?>
-			</div>
-			<div class="small-6 medium-3 large-3 columns">
-				<div class="small-only-text-center login-button-wrapper">
-					<span class="show-for-small-only  margin top-1"></span>
-
-					<button type="submit" class="thin full-width">
-						<?php echo __('Sign in'); ?>
-					</button>
-				</div>
-			</div>
-
-			<div class="small-6 medium-3 large-3 columns">
-				<div class="small-only-text-center login-button-wrapper">
-					<span class="show-for-small-only  margin top-1"></span>
-
-					<a class="button thin full-width" href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'register', 'admin' => false)) ?>">
-						<?= __('Sign up') ?>
-					</a>
-				</div>
-			</div>
-
-			<!-- OTHER SIGN IN METHODS -->
-			<!-- <div class="small-12 medium-3 large-3 columns">
-				<div class="text-center login-social-networks">
-					<?php echo __('OR'); ?>
-
-					<a href="<?php echo $fbLoginUrl; ?>" class="button-icon">
-						<span class="fa-stack fa-lg">
-							<i class="fa fa-square fa-stack-2x evoke login facebook-icon"></i>
-							<i class="fa fa-facebook fa-stack-1x fa-inverse "></i>
-						</span>
-					</a>
-
-					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'google_login')); ?>" class="button-icon">
-						<span class="fa-stack fa-lg">
-							<i class="fa fa-square fa-stack-2x evoke login google-icon"></i>
-							<i class="fa fa-google-plus fa-stack-1x fa-inverse "></i>
-						</span>
-					</a>
-				</div>
-			</div> -->
-		</div>
-		
-		<?php echo $this->Form->end(); ?>
-	</li>
-
-
-
-	<!-- LANGUAGE -->
-	<?php echo $this->element('language_switcher'); ?>
-
-	<!-- FORGOT PASSWORD (NOT USED FOR NOW) -->
-	<!--<a href = "#" class = "evoke login password"><?php //echo __('Forgot your password?');?></a> -->
-	<!--send to correct address-->
-</ul>
+<?php echo $this->Form->end(); ?>

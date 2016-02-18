@@ -3,52 +3,9 @@
 	$cssBaseUrl = Configure::read('App.cssBaseUrl');
 	echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
 
-	echo $this->Form->create('User', array('data-abide', 'url' => array('controller' => 'users', 'action' => 'login')));
-
+    echo $this->element('topbar-login');    
+        
 ?>
-
-<div>
-	<nav class="top-bar header-top-fullpage" data-topbar role="navigation">
-		<ul class="title-area">
-			<li class="name">
-				<h1><a href="#"><img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>' width = "150px"></a></h1>
-			</li>
-			 <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-		</ul>
-
-		<section class="top-bar-section">
-			<!-- Right Nav Section -->
-			<ul class="right">
-				<li class="active">
-					<?php	echo $this->Form->input('username', array('label' => false, 'type' => 'text', 'placeholder' =>  __('username'), 'class' => 'radius', 'required' => true, 'autofocus', 'class' => 'margin-right-1em'));	?>
-				</li>
-				<li class="active">
-					<?php	echo $this->Form->input('password', array('label' => false, 'type' => 'password', 'placeholder' =>  __('password'), 'class' => 'radius', 'required' => true, 'autofocus'));	?>
-				</li>
-				<li class="has-form">
-					<button type="submit" class="full-width uppercase"><?php echo __('Sign In'); ?></button>
-					<!-- <a href = "#" id = "user_login" class="button uppercase"><?php echo __('Sign In'); ?></a> -->
-				</li>
-				<li class="divider"></li>
-				<li class="has-form">
-					<a href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'register')) ?>" class="button uppercase"><?php echo __('Sign Up'); ?></a>
-				</li>
-				<li class="divider"></li>
-				<li class="has-dropdown">
-					<a href="#"><?php echo __('LANGUAGE'); ?></a>
-					<ul class="dropdown">
-						<li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'en')) ?>"><?php echo __('ENGLISH'); ?></a></li>
-						<li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'es')) ?>"><?php echo __('SPANISH'); ?></a></li>
-					</ul>
-				</li>
-			</ul>
-
-		</section>
-	</nav>
-</div>
-
-<?php echo $this->Form->end(); ?>
 
 <div class = "first_page" id="fullpage">
 
