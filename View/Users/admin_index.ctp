@@ -13,7 +13,7 @@
             </div>
             <h4 class="uppercase font-gray font-weight-bold"><?php echo __('Users'); ?></h4>
         </div>
-        <table cellpadding="0" cellspacing="0" class="table table-td-valign-middle" style = "width:100%">
+        <table cellpadding="0" cellspacing="0" style = "width:100%">
             <thead>
                 <th><?php echo $this->Paginator->sort('name'); ?></th>
                 <th><?php echo $this->Paginator->sort('created'); ?></th>

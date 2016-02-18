@@ -77,8 +77,10 @@ input[type="file"], input[type="checkbox"], input[type="radio"], select{
 }
 
 button.small, .button.small {
-    padding: 0.875rem 1.75rem 0.9375rem 1.75rem;
-    font-size: 0.9rem;
+    // padding: 0.875rem 1.75rem 0.9375rem 1.75rem;
+    // font-size: 0.9rem;
+    padding: 0.775rem 1.25rem 0.8375rem 1.25rem;
+    font-size: 0.8rem;
 }
 
 .button:hover, button:hover,
