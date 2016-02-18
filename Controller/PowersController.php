@@ -24,6 +24,16 @@ class PowersController extends AppController {
 	public function admin_index() {
 		$this->Power->recursive = 0;
 		$this->set('powers', $this->Paginator->paginate());
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
 	}
 
 /**
@@ -39,6 +49,16 @@ class PowersController extends AppController {
 		}
 		$options = array('conditions' => array('Power.' . $this->Power->primaryKey => $id));
 		$this->set('power', $this->Power->find('first', $options));
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
 	}
 
 /**
@@ -56,6 +76,16 @@ class PowersController extends AppController {
 				$this->Session->setFlash(__('The power could not be saved. Please, try again.'));
 			}
 		}
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
 	}
 
 /**
@@ -80,6 +110,16 @@ class PowersController extends AppController {
 			$options = array('conditions' => array('Power.' . $this->Power->primaryKey => $id));
 			$this->request->data = $this->Power->find('first', $options);
 		}
+
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
 	}
 
 /**

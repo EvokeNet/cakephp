@@ -559,6 +559,18 @@ class PanelsController extends AppController {
 			$this->render('main');
 		}	}
 
+	public function admin_organizations(){
+		$this->loadModel('Organization');
+	    $organizations =
+	      $this->Organization->find('all', array(
+	      'order' => array(
+	        'Organization.name ASC'
+	      ),
+	    ));
+
+	   $this->set('organizations',$organizations);
+	}
+
 	public function admin_organization($org_id = null){
 		
 
@@ -643,7 +655,7 @@ class PanelsController extends AppController {
 
 		//OPTIONS FOR CHECK PRIVILEGE
 		$options = array(
-			'minimumRole' => ADMIN
+			'minimumRole' => 'ADMIN'
 		);
 
 		//CHECK IF USER IS ADMIN

@@ -43,7 +43,7 @@ class UsersController extends AppController {
 */
   public function beforeFilter() {
     parent::beforeFilter();
-    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage');
+    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage','recover_password');
   }
 
   // public function createTempPassword($len) {
@@ -66,7 +66,7 @@ class UsersController extends AppController {
     parent::changeLanguage($lang);
   }
 
-  public function changePassword() {
+  public function change_password() {
     $usr = $this->User->find('first', array(
       'conditions' => array(
         'User.id' => $this->getUserId()
@@ -82,18 +82,17 @@ class UsersController extends AppController {
         if($this->request->data['User']['tmp'] == $this->request->data['User']['tmp2']) {
           $this->User->id = $this->getUserId();
           $insert['User']['id'] = $this->getUserId();
-          $insert['User']['role_id'] = $this->getUserRole();
           $insert['User']['password'] = $this->request->data['User']['tmp'];
           $this->User->save($insert);
           $this->Session->setFlash(__("Your password was changed."), 'flash_message');
           $this->redirect(array('action' => 'dashboard'));
         } else {
           $this->Session->setFlash(__("The new passwords do not match."), 'flash_message');
-          $this->redirect(array('action' => 'changePassword'));
+          $this->redirect(array('action' => 'change_password'));
         }
       } else {
         $this->Session->setFlash(__("The current password does not match."), 'flash_message');
-        $this->redirect(array('action' => 'changePassword'));
+        $this->redirect(array('action' => 'change_password'));
       }
     }
 
@@ -521,7 +520,29 @@ class UsersController extends AppController {
     return $str.$data;
   }
 
+/**
+ *
+ * recover method
+ *
+ * @return void
+ */
+  public function recover_password() {
 
+    if ($this->request->is('post')) {
+      App::uses('CakeEmail', 'Network/Email');
+      $email = new CakeEmail('smtp');
+
+      $email->template('default', 'default')
+                      ->emailFormat('both')
+                      ->to($this->request->data['User']['email'])
+                      ->from('no-reply@quanti.ca')
+                      ->subject(__('A subject'))
+                      ->send('Test'); 
+
+      $this->Session->setFlash(__('It was sent an email with a new password.'));                    
+      $this->redirect(array('controller' => 'users', 'action' => 'login', 'admin' => false));                
+    }     
+  }
 
 /**
  *
