@@ -7,7 +7,9 @@
 <div class = "evoke profile">
 	<div class = "bg" style = "height: 450px">
 <!--		<img src = '<?= $this->webroot.'img/user_avatar.jpg' ?>' style = "height:150px; border-radius:50%; margin-top:30px">-->
-
+        
+        <div id="example"></div>
+        
         <div class="row text-center">
           <div class="large-4 small-centered columns">
             <img src = '<?= $this->webroot.'img/user_avatar.jpg' ?>' style = "height:150px; border-radius:50%; margin-top:30px" class = "text-center">
@@ -186,3 +188,16 @@
         </div>
     </div>
 </div>
+
+<!-- The core React library -->
+<script src="https://fb.me/react-0.14.7.js"></script>
+<!-- The ReactDOM Library -->
+<script src="https://fb.me/react-dom-0.14.7.js"></script>
+
+<script type="text/jsx">
+    
+    var Counter = React.createClass({  incrementCount: function(){    this.setState({      count: this.state.count + 1    });  },  getInitialState: function(){     return {       count: 0     }  },  render: function(){    return (      <div className="counter">        <h1>{this.state.count}</h1>        <button type="button" onClick={this.incrementCount}>Increment</button>      </div>    );  }});React.renderComponent(<Counter/>, document.getElementById('example'));
+);
+
+    
+</script>

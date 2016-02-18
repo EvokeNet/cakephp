@@ -103,6 +103,8 @@ $title = __('Evoke Network');
     <?php
       //REQUIREJS BOOTSTRAP
       echo $this->Html->script("/components/requirejs/require", array('data-main' => $this->webroot.'js/requirejs/bootstrap'));
+      
+      echo $this->Html->script("node_modules/react");
 
       //EVOKEDATA MODULE: FETCH JAVASCRIPT VARIABLES FROM VIEWS
     $this->Html->scriptStart(array('inline' => false)); ?>
