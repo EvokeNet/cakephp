@@ -990,6 +990,20 @@ class UsersController extends AppController {
       ),
     ));
 
+        $this->loadModel('Power');
+
+    $primary_power = $this->Power->find('first', array(
+      'conditions' => array(
+        'id' => $superhero['SuperheroIdentity']['primary_power']
+      ),
+    ));
+
+    $secondary_power = $this->Power->find('first', array(
+      'conditions' => array(
+        'id' => $superhero['SuperheroIdentity']['secondary_power']
+      ),
+    ));
+
     //List of similar users (same superhero identity for now)
     $similar_users = $this->User->find('all', array(
       'conditions' => array(

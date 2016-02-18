@@ -62,7 +62,7 @@
         </a>
       </li>
 
-      <?php if (AuthComponent::user('role') != 'user'): ?>
+      <?php if ($loggedInUser['role'] <= 'ADMIN'): ?>
           <li>
             <a href="<?php echo $this->Html->url(array('controller' => 'panels', 'action' => 'main', 'admin' => true)); ?>" class="font-green uppercase font-weight-bold">
               <?php echo __('Admin Panel'); ?>
