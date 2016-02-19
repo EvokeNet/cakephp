@@ -31,8 +31,8 @@
             
             <div>
                 <?php
-                        echo $this->Form->input('firstname', array('required' => true, 'label' => __('First name')));
-                        echo $this->Form->input('lastname', array('required' => true, 'label' => __('Last name')));
+                        echo $this->Form->input('username', array('required' => true, 'label' => false, 'placeholder' => __('Username')));
+                        echo $this->Form->input('password', array('required' => true, 'label' => false, 'placeholder' => __('Password')));
                 ?>
                 
                 <button type="submit" class="full-width uppercase"><?php echo __('Sign In'); ?></button>
