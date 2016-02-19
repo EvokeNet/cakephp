@@ -3,7 +3,7 @@
 <?php echo $this->Form->create('User', array('data-abide', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
 
 <div class = "login-align">
-    <div class="row margin-top-2em">
+    <div class="row">
     <div class="large-4 large-centered columns">
         <!--<div style = "background-color:#222327">-->
             
