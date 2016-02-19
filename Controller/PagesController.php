@@ -30,7 +30,7 @@ class PagesController extends AppController {
 
 	public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('terms', 'reportissue');
+        $this->Auth->allow('*');
     }
 
   public function display(){

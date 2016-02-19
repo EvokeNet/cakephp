@@ -1,82 +1,47 @@
-<?php
-	//CSS overriding fullpage.js plugin
-	$cssBaseUrl = Configure::read('App.cssBaseUrl');
-	echo $this->Html->css('/components/fullpage.js/jquery.fullPage.css'); //FullPage plugin para fazer scroll em secoes
+<?php echo $this->element('topbar-login'); ?>
 
-    echo $this->element('topbar-login');    
+<?php echo $this->Form->create('User', array('data-abide', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
+
+<div class = "login-align">
+    <div class="row margin-top-2em">
+    <div class="large-4 large-centered columns">
+        <!--<div style = "background-color:#222327">-->
+            
+            <div class="fb-login-button text-align-center margin-bottom-1em">
+                <div class = "login-button-default"><i class="fa fa-facebook fa-3x"></i>
+                </div>
+                <div>
+                    <div class="widget-stat-title text-align-center"><?= strtoupper(__('Sign In with Facebook')) ?></div>
+                </div>
+            </div>
+            
+            <div class="google-login-button text-align-center">
+                <div class = "login-button-default"><i class="fa fa-google fa-3x"></i>
+                </div>
+                <div>
+                    <div class="widget-stat-title text-align-center"><?= strtoupper(__('Sign In with Google')) ?></div>
+                </div>
+            </div>
         
-?>
-
-<div class = "first_page" id="fullpage">
-
-  <section class="vertical-scrolling section1" id = "section1">
-    <!-- <h2><?php echo __('EVOKE'); ?></h2> -->
-    <img src = '<?= $this->webroot.'img/Logo-Evoke-Atualizado.png' ?>' width = "200px" class = "margin-bottom-1em">
-    <h2 class = "uppercase font-weight-bold"><?php echo __('A crash course in changing the world'); ?></h2>
-    <div class="scroll-icon">
-    	<p class = "font-green uppercase font-weight-bold"><?php echo __('Discover Evoke'); ?></p>
-    	<a href="#secondSection" class="icon-up-open-big"></a>
+            <div class = "separate-tag margin-top-2em margin-bottom-1em">
+                <div class="container">
+                    <span><?= __('OR') ?></span>
+                </div>
+            </div>
+            
+            <div>
+                <?php
+                        echo $this->Form->input('firstname', array('required' => true, 'label' => __('First name')));
+                        echo $this->Form->input('lastname', array('required' => true, 'label' => __('Last name')));
+                ?>
+                
+                <button type="submit" class="full-width uppercase"><?php echo __('Sign In'); ?></button>
+                
+            </div>
     </div>
-  </section>
-
-  <section class="vertical-scrolling">
-    <h2 class = "margin-top-05em font-green uppercase font-weight-bold"><?php echo ('Welcome to the Evoke network!'); ?></h2>
-    <div class = "centralize-content">
-			<h4><?php echo ('If you have found this message, it is your destiny to join us. Evoke is your gateway to solving the worldâ€™s greatest challenges. As an Evoke agent, you will choose your mission, develop your powers, and together with agents around the world create your <strong>own world changing idea</strong>.'); ?></h4>
-		</div>
-  </section>
-
-  <section class="vertical-scrolling">
-    <h2 class = "margin-top-05em font-green uppercase font-weight-bold"><?php echo ('What is Evoke?'); ?></h2>
-    <iframe src="<?= $video_url ?>" width="70%" height="70%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-  </section>
-
-	<section class="vertical-scrolling">
-		<h2 class = "margin-top-05em font-green uppercase font-weight-bold"><?php echo ('Why was Evoke created?'); ?></h2>
-    <div class = "centralize-content">
-			<h4><?php echo ('The Evoke network was created to identify voices that are not heard and to give them the tools and support to change their community, their world.  The network believes that every individual can make a difference and when connected to others, change the world.'); ?></h4>
-		</div>
-
-		<h2 class = "margin-top-2em margin-top-05em font-green uppercase font-weight-bold"><?php echo ('Who is behind Evoke?'); ?></h2>
-    <div class = "centralize-content">
-			<h4><?php echo ('Evoke is an innovation project of the World Bank in collaboration with partners around the world.'); ?></h4>
-		</div>
-
-  </section>
-
-  <section class="vertical-scrolling">
-		<h2 class = "margin-top-05em font-green uppercase font-weight-bold"><?php echo ('How to become an agent?'); ?></h2>
-    <div class = "centralize-content">
-			<h4><?php echo ('To start your journey towards becoming an Evoke Agent, you simply need to sign up.'); ?></h4>
-			<a class="button margin-top-2em" href="<?= $this->Html->url(array('controller' => 'users', 'action' => 'register')) ?>">
-			 <?= __('Sign up') ?>
-			</a>
-		</div>
-
-    <nav class="top-bar footer-bottom-fullpage" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href = "http://www.worldbank.org/" target="_blank"><img src = '<?= $this->webroot.'img/wblogo.png' ?>'></a></h1>
-        </li>
-         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-      </ul>
-
-      <section class="top-bar-section">
-        <!-- Right Nav Section -->
-        <ul class="right">
-            <li><a href="#">&copy;&nbsp;&nbsp;<?= __('2016') ?> <?php echo strtoupper(__('Evoke'));?></a></li>
-            <li class="divider"></li>
-            <li><a href = "<?= $this->Html->url(array('controller' => 'pages', 'action' => 'reportissue'))?>" target="_blank" class = "uppercase"><?= __('Report an issue') ?></a></li>
-            <li class="divider"></li>
-            <li><a href = "<?= $this->Html->url(array('controller' => 'pages', 'action' => 'terms'))?>" target="_blank" class = "uppercase"><?= __('Terms of Service') ?></a></li>
-        </ul>
-
-      </section>
-    </nav>
-
-  </section>
-
+    </div>
 </div>
+
+<?php echo $this->Form->end(); ?>
 
 <?php echo $this->Html->script('requirejs/app/fullpage.js', array('inline' => false)); ?>

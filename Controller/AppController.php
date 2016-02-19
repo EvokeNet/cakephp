@@ -32,7 +32,9 @@ class AppController extends Controller {
 		'Session',
 		'Permission',
 		'Auth' => array(
-			'logoutRedirect' => array('controller' => 'users', 'action' => 'login','admin' => false),
+            'loginAction' => array('controller' => 'pages', 'action' => 'display', 'home', 'admin' => false),
+            'loginRedirect' => array('controller' => 'users', 'action' => 'login', 'admin' => false),
+			'logoutRedirect' => array('controller' => 'users', 'action' => 'login', 'admin' => false),
 				'authError' => 'Você não tem permissão para ver essa página'
 		)
 	);
@@ -359,10 +361,12 @@ class AppController extends Controller {
 							 && $this->request->params['action'] != 'login'  //also, if  the user is loging in or out
 							 && $this->request->params['action'] != 'logout' // we have to allow it
 							 && $this->request->params['action'] != 'register' // also if user is registering
-                                           && $this->request->params['action'] != 'recover_password' // also if user is trying to recover password
+                             && $this->request->params['action'] != 'display' // also if user is registering
+                             && $this->request->params['action'] != 'terms' // also if user is registering
+                             && $this->request->params['action'] != 'recover_password' // also if user is trying to recover password
 							 && $this->request->params['action'] != 'matching_results'){
 
-			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId(),'admin' => false));
+			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId(), 'admin' => false));
 		}
 
 		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language','scores'));

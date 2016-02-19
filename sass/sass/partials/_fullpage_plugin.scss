@@ -47,13 +47,13 @@
 }
 
 .scroll-icon {
-	position: absolute;
- 	left: 50%;
-  bottom: 30px;
-  padding: 0 10px;
-  	-webkit-transform: translateX(-50%);
-  	    -ms-transform: translateX(-50%);
-  	        transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    bottom: 5em;
+    padding: 0 10px;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 
 .scroll-icon p{
