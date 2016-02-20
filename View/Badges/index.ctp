@@ -1,437 +1,70 @@
-<?php
-	/* CSS */
-	echo $this->Html->css('badge_round');
-
-	/* Top bar */
-	$this->start('topbar');
-	echo $this->element('topbar');
-	$this->end();
-
-?>
-<div class="row standard-width">
-	<div class="small-12 columns margin top-2 bottom-5">
-		<!-- BADGE LIST -->
-		<div class="row text-center badge">
-			<?php 
-			foreach($badges as $b => $badge):
-				$badge_id = $badge['Badge']['id'];
-			?>
-				<div id="<?= $badge_id ?>" class="centered-block margin right-5 view closed" data-progress="<?= $badge['Badge']['UserPercentage'] ?>">
-					<!-- BADGE IMAGE -->
-					<div class="badge-image loader">
-						<?php
-							$image_url = $this->webroot.'img/badge.png';
-							if(isset($badge['Badge']['img_dir'])) {
-								$image_url = $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'];
-							}
-						?>
-						<div class="img-circular img-glow-on-hover background-cover background-center full-height full-width" data-interchange="['<?= $image_url ?>',(default)]">
-							<noscript>
-								<img src="<?= $image_url ?>" alt="<?= 'Badge '.$badge['Badge']['name'].' icon' ?>" />
-							</noscript>
-						
-
-							<!-- PROGRESS CIRCLE -->
-							<div class="loader-bg"></div>
-							
-							<div class="spiner-holder-one animate-0-25-a">
-								<?php if($badge['Badge']['UserPercentage'] != 0):?>
-									<div class="spiner-holder-two animate-0-25-b">
-										<div class="loader-spiner" style=""></div>
-									</div>
-								<?php endif?>
-							</div>
-							<div class="spiner-holder-one animate-25-50-a">
-								<?php if($badge['Badge']['UserPercentage'] != 0):?>
-									<div class="spiner-holder-two animate-25-50-b">
-										<div class="loader-spiner"></div>
-									</div>
-								<?php endif?>
-							</div>
-							<div class="spiner-holder-one animate-50-75-a">
-								<?php if($badge['Badge']['UserPercentage'] != 0):?>
-									<div class="spiner-holder-two animate-50-75-b">
-										<div class="loader-spiner"></div>
-									</div>
-								<?php endif?>
-							</div>
-							<div class="spiner-holder-one animate-75-100-a">
-								<?php if($badge['Badge']['UserPercentage'] != 0):?>
-									<div class="spiner-holder-two animate-75-100-b">
-										<div class="loader-spiner"></div>
-									</div>
-								<?php endif?>
-							</div>
-						</div>
-					</div>
-					
-					<!-- BADGE TITLE -->
-					<p class="font-highlight badge-title text-color-highlight">
-						<?= $badge['Badge']['name'] ?>
-					</p>
-				</div>
-			<?php
-			endforeach;
-			?>
-		</div>
-		
-		<!-- BADGE CONTENT -->
-		<div class="row text-center">
-				<?php 
-					$skills_and_achievements_es = array(
-						'0' => array( //Badge Creative Visionary
-							'Commandes the World of Ideas' => array(
-								'achievements' => array(
-									'Generates lots of new ideas',
-									'Simplifies complex ideas',
-									'Synthesizes ideas'
-								)
-							),
-							'Is Open and Flexible' => array(
-								'achievements' => array(
-									'Embraces new ideas from different cultures and perspectives',
-									'Engages with increasingly complex ideas',
-									'Sees issues of social injustice as problems to be solved'
-								)
-							),
-							'Applies the imagination.  Is original' => array(
-								'achievements' => array(
-									'Presents unique view of the world',
-									'Frames issues in new ways',
-									'Presents ideas in a diversity of ways'
-								)
-							),
-							'Displays clarity of vision' => array(
-								'achievements' => array(
-									'Develops ideas with clear evidence',
-									'Inspires deeper thinking',
-									'Moves a concept to reality'
-								)
-							)
-						),
-						'1' => array( //Deep Collaborator
-							'Understands an issue and communicates it clearly' => array(
-								'achievements' => array(
-									'Seeks Understanding',
-									'Engages other agents',
-									'Presents ideas in a compelling way'
-								)
-							),
-							'Participates in Diverse Teams' => array(
-								'achievements' => array(
-									'Collaborates with distant agents',
-									'Works on teams with diversity of views',
-									'Gets things done by working with others'
-								)
-							),
-							'Engages actively in networks' => array(
-								'achievements' => array(
-									'Constructively assesses other agents',
-									'Comments on other agents evidence',
-									'Provides respectful feedback to other agents'
-								)
-							),
-							'Never gives up' => array(
-								'achievements' => array(
-									'Shows relentless engagement',
-									'Reflects on what it means to be gritty',
-									'Creates world changing ideas'
-								)
-							)
-						),
-						'2' => array( //Systems Thinker
-							'Solves problems' => array(
-								'achievements' => array(
-									'Takes on unfamiliar problems',
-									'Poses important questions',
-									'Clearly specifies the problem'
-								)
-							),
-							'Reveals systems' => array(
-								'achievements' => array(
-									'Articulates a hypothesis about a system',
-									'Illuminates the interconnectedness of ideas',
-									'Models a system'
-								)
-							),
-							'Intensly curious' => array(
-								'achievements' => array(
-									'Displays critical reflection',
-									'Is not afraid to consistently question to seek answers',
-									'Shares reasoning with others through visualizations'
-								)
-							),
-							'Connects to multiple sources of information and knowledge' => array(
-								'achievements' => array(
-									'Researches many sources of information',
-									'Connects disparate disciplines',
-									'Understands through self reflection'
-								)
-							)
-						),
-						'3' => array( //Social Activist
-							'Ventures into the unknown' => array(
-								'achievements' => array(
-									'Takes on unfamiliar problems',
-									'Poses intriguing questions',
-									'Seeks answers from the network'
-								)
-							),
-							'Displays a generosity of spirit' => array(
-								'achievements' => array(
-									'Engages with other agents',
-									'Shares resources freely',
-									'Collaborates with others'
-								)
-							),
-							'Inspires' => array(
-								'achievements' => array(
-									'Motivates others to take action',
-									'Tells compelling stories',
-									'Starts movements'
-								)
-							),
-							'Displays passion and empathy' => array(
-								'achievements' => array(
-									'Understands how others feel',
-									'Is passionate about making a difference',
-									'Displays a sense of belonging'
-								)
-							)
-						)
-					);
-					
-
-
-					$skills_and_achievements = array(
-						'0' => array( //Badge Creative Visionary
-							'Domina el mundo de ideas' => array(
-								'achievements' => array(
-									'Generar muchas ideas nuevas',
-									'Simplificar ideas complejas',
-									'Sintetizar las ideas'
-								)
-							),
-							'Es abierto y flexible' => array(
-								'achievements' => array(
-									'Abraza nuevas ideas de diferentes culturas y perspectivas',
-									'Interactúa con ideas cada vez más complejas',
-									'Ve problemas de injusticia social como problemas a resolver'
-								)
-							),
-							'APLICA LA IMAGINACIÓN. Es original' => array(
-								'achievements' => array(
-									'Presenta una vista única del mundo',
-									'Presenta asuntos en nuevas maneras',
-									'Presenta ideas en una diversidad de formas'
-								)
-							),
-							'Demonstra una claridad de visión' => array(
-								'achievements' => array(
-									'Desarrolla ideas con evidencia clara',
-									'Inspira pensamiento profundo',
-									'Mueve un concepto a la realidad'
-								)
-							)
-						),
-						'1' => array( //Deep Collaborator
-							'ENTIENDE un problema y lo comunica claramente' => array(
-								'achievements' => array(
-									'Busca entendimiento',
-									'Participa con otros agentes',
-									'Presenta ideas en una forma convincente'
-								)
-							),
-							'PARTICIPA EN EQUIPOS DIVERSOS' => array(
-								'achievements' => array(
-									'Colabora con agentes distantes',
-									'Trabaja en equipos con diversidad de opiniones',
-									'Cumple las cosas por trabajar con otros'
-								)
-							),
-							'Participa activamente en redes' => array(
-								'achievements' => array(
-									'Evalúa constructiva otros agentes',
-									'Hace comentarios en la evidencia de otros agentes',
-									'Proporciona retroalimentación respetuosa a otros agentes'
-								)
-							),
-							'Nunca se rinde' => array(
-								'achievements' => array(
-									'Muestra compromiso implacable',
-									'Reflexiona sobre lo que significa ser valiente',
-									'Crea las ideas para cambiar el mundo'
-								)
-							)
-						),
-						'2' => array( //Systems Thinker
-							'Resuelve problemas' => array(
-								'achievements' => array(
-									'Aborda problemas no familiares',
-									'Plantea preguntas importantes',
-									'Identifica el problema claramente'
-								)
-							),
-							'REVELA LOS SISTEMAS' => array(
-								'achievements' => array(
-									'Articula una hipótesis sobre un sistema',
-									'Se ilumina la interconexión de las ideas',
-									'Modela un sistema'
-								)
-							),
-							'Intensamente CURIOSO' => array(
-								'achievements' => array(
-									'Muestra reflexión crítica',
-									'No tiene miedo de cuestionar constantemente para buscar respuestas',
-									'Comparta razonamiento con los demás a través de visualizaciones'
-								)
-							),
-							'CONECTA A FUENTES MÚLTIPLES DE LA INFORMACIÓN Y DEL CONOCIMIENTO' => array(
-								'achievements' => array(
-									'Investiga muchas fuentes de información',
-									'Conecta disciplinas dispares',
-									'Entiende a través de la auto-reflexión'
-								)
-							)
-						),
-						'3' => array( //Social Activist
-							'Se Aventura AL DESCONOCIDO' => array(
-								'achievements' => array(
-									'Dedicarse a los problemas no familiares',
-									'Plantea preguntas intrigantes',
-									'Busca respuestas de la red'
-								)
-							),
-							'Muestra una generosidad de espíritu' => array(
-								'achievements' => array(
-									'Participa con otros agentes',
-									'Comparta recursos libremente',
-									'Colabora con los demás'
-								)
-							),
-							'INSPIRA' => array(
-								'achievements' => array(
-									'Motiva a otros a tomar accion',
-									'Narra historias convincentes',
-									'Inicia movimientos'
-								)
-							),
-							'Muestra PASIÓN Y EMPATÍA' => array(
-								'achievements' => array(
-									'Entiende cómo otros se sienten',
-									'Es un apasionado de hacer una diferencia',
-									'Muestra un sentido de pertenencia'
-								)
-							)
-						)
-					);
-
-				$badge_count = -1;
-				foreach($badges as $b => $badge):
-					$badge_count++;
-
-					$badge_id = $badge['Badge']['id'];
-				?>
-					<div id="badge-content-<?= $badge_id ?>" class="hide margin top-2 right-5">
-						<!-- BADGE IMAGE -->
-						<?php
-							$image_url = $this->webroot.'img/badge.png';
-							if(isset($badge['Badge']['img_dir'])) {
-								$image_url = $this->webroot.'files/attachment/attachment/'.$badge['Badge']['img_dir'].'/'.$badge['Badge']['img_attachment'];
-							}
-						?>
-						<div class="img-circular background-cover background-center badge-main-image" data-interchange="['<?= $image_url ?>',(default)]">
-							<noscript>
-								<img src="<?= $image_url ?>" alt="<?= 'Badge '.$badge['Badge']['name'].' icon' ?>" />
-							</noscript>
-						</div>
-
-						<!-- BADGE TITLE -->
-						<h3 class="text-color-highlight">
-							<?= $badge['Badge']['name'] ?>
-						</h3>
-					
-						<!-- BADGE DESCRIPTION -->
-						<div id="badge-description-<?= $badge_id ?>" class="badge-description">
-							<p><?= $badge['Badge']['description']?></p>
-						</div>
-
-						<!-- BADGE SKILLS (tabs) -->
-						<div id="badge-skills-<?= $badge_id ?>" class="row badge-skills standard-width margins-auto full-height centering-block table text-center">
-							<!-- SKILLS (TAB LINKS) -->
-							<div class="evoke small-block-grid-5 tabs-style-linetriangle full-width margins-0 centered-block show-for-large-up">
-								<ul id="tabs-skills" class="tabs full-width show-for-large-up" data-tab role="tablist">
-									<?php
-										$badge_skills_and_achievements = $skills_and_achievements[$badge_count];
-										$skill_count = 0;
-										foreach ($badge_skills_and_achievements as $skill_name => $skill_content):
-											$skill_count++;
-									?>
-										<li class="tab-title text-glow-on-hover <?= ($skill_count == 1) ? 'active' : ''?> text-glow" role="presentational">
-											<a href="#panelBadge<?= $badge_id ?>Skill<?= $skill_count ?>" role="tab" aria-selected="true" controls="panelBadge<?= $badge_id ?>Skill<?= $skill_count ?>">
-												<i class="fa fa-bolt fa-4x text-color-highlight"></i>
-												<h6 class="text-color-highlight text-glow-on-hover"><?= $skill_name ?></h6>
-											</a>
-										</li>
-									<?php
-										endforeach;
-									?>
-								</ul>
-							</div>
-
-							<!-- ACHIEVEMENTS (TAB CONTENT) -->
-							<div class="tabs-content">
-								<dl class="accordion" data-accordion>
-									<dd class="accordion-navigation">
-										<?php
-											$badge_skills_and_achievements = $skills_and_achievements[$badge_count];
-											$skill_count = 0;
-											foreach ($badge_skills_and_achievements as $skill_name => $skill_content):
-												$skill_count++;
-													?>
-													<!-- Accordion link for small and medium screens -->
-													<a href="#panelBadge<?= $badge_id ?>Skill<?= $skill_count ?>" class="text-left hide-for-large-up">
-														<i class="fa fa-bolt fa-2x text-color-highlight padding right-1"></i>
-														<?= $skill_name ?>
-													</a>
-
-													<!-- SKILL -->
-													<section role="tabpanel" aria-hidden="false" class="content radius <?= ($skill_count == 1) ? 'active' : ''?>" id="panelBadge<?= $badge_id ?>Skill<?= $skill_count ?>">
-														<h6 class="margin top-2 bottom-2"><?= __('Necessary achievements:') ?></h6>
-														<ul class="badge-achievements inline-block text-left">
-															<?php
-																foreach ($skill_content['achievements'] as $achievement):
-															?>
-																<li>
-																	<p class="font-size-important"><?= $achievement ?></p>
-																</li>
-															<?php
-																endforeach;
-															?>
-														</ul>
-													</section>
-										<?php
-											endforeach;
-										?>
-
-										
-									</dd>
-								</dl>
-							</div>
-						</div>
-					</div>
-				<?php endforeach;?>
-		</div>
-
+<div class="badges index">
+	<h2><?php echo __('Badges'); ?></h2>
+	<table cellpadding="0" cellspacing="0">
+	<thead>
+	<tr>
+			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<th><?php echo $this->Paginator->sort('organization_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('mission_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('name'); ?></th>
+			<th><?php echo $this->Paginator->sort('name_es'); ?></th>
+			<th><?php echo $this->Paginator->sort('description'); ?></th>
+			<th><?php echo $this->Paginator->sort('description_es'); ?></th>
+			<th><?php echo $this->Paginator->sort('power_points_only'); ?></th>
+			<th><?php echo $this->Paginator->sort('trigger'); ?></th>
+			<th><?php echo $this->Paginator->sort('language'); ?></th>
+			<th class="actions"><?php echo __('Actions'); ?></th>
+	</tr>
+	</thead>
+	<tbody>
+	<?php foreach ($badges as $badge): ?>
+	<tr>
+		<td><?php echo h($badge['Badge']['id']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($badge['Organization']['name'], array('controller' => 'organizations', 'action' => 'view', $badge['Organization']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($badge['Mission']['title'], array('controller' => 'missions', 'action' => 'view', $badge['Mission']['id'])); ?>
+		</td>
+		<td><?php echo h($badge['Badge']['name']); ?>&nbsp;</td>
+		<td><?php echo h($badge['Badge']['name_es']); ?>&nbsp;</td>
+		<td><?php echo h($badge['Badge']['description']); ?>&nbsp;</td>
+		<td><?php echo h($badge['Badge']['description_es']); ?>&nbsp;</td>
+		<td><?php echo h($badge['Badge']['power_points_only']); ?>&nbsp;</td>
+		<td><?php echo h($badge['Badge']['trigger']); ?>&nbsp;</td>
+		<td><?php echo h($badge['Badge']['language']); ?>&nbsp;</td>
+		<td class="actions">
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $badge['Badge']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $badge['Badge']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $badge['Badge']['id']), array(), __('Are you sure you want to delete # %s?', $badge['Badge']['id'])); ?>
+		</td>
+	</tr>
+<?php endforeach; ?>
+	</tbody>
+	</table>
+	<p>
+	<?php
+	echo $this->Paginator->counter(array(
+	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+	));
+	?>	</p>
+	<div class="paging">
+	<?php
+		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+		echo $this->Paginator->numbers(array('separator' => ''));
+		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+	?>
 	</div>
 </div>
-
-<?php
-	/* Footer */
-	$this->start('footer');
-	echo $this->element('footer');
-	$this->end();
-
-	//SCRIPT
-	$this->Html->script('requirejs/app/Badges/index.js', array('inline' => false));
-?>
+<div class="actions">
+	<h3><?php echo __('Actions'); ?></h3>
+	<ul>
+		<li><?php echo $this->Html->link(__('New Badge'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Organizations'), array('controller' => 'organizations', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Organization'), array('controller' => 'organizations', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Missions'), array('controller' => 'missions', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Mission'), array('controller' => 'missions', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Badge Power Points'), array('controller' => 'badge_power_points', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Badge Power Point'), array('controller' => 'badge_power_points', 'action' => 'add')); ?> </li>
+	</ul>
+</div>

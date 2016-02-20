@@ -62,11 +62,7 @@ class PanelsController extends AppController {
 
 		$levels = $this->Level->find('all');
 
-		$badges = $this->Badge->getBadges(array(
-			'order' => array(
-				'Badge.name ASC'
-			)
-		));
+		$badges = $this->Badge->->find('all');
 
 		$missions_issues = $this->MissionIssue->Mission->find('all', array(
 			'order' => array(
