@@ -890,14 +890,6 @@ public function googleLogin() {
       'limit' => 8 // CHANGE 8
     ));
 
-
-    $evokationsFollowing = $this->User->EvokationFollower->find('all', array(
-      'recursive' => 0,
-      'conditions' => array(
-        'EvokationFollower.user_id' => $this->getUserId()
-      )
-    ));
-
     $viewerEvokation = array();
     $myEvokations = array();
     foreach ($evokations as $evokation) {
@@ -1016,10 +1008,6 @@ public function googleLogin() {
  */
 
   public function matching($id = null) {
-
-    //List issues (all, and already saved)
-    $issues = $this->User->UserIssue->Issue->find('list');
-    $selectedIssues = $this->User->UserIssue->find('list', array('fields' => array('UserIssue.issue_id'), 'conditions' => array('UserIssue.user_id' => $id)));
 
     //List all matching questions
     $this->loadModel('MatchingQuestion');

@@ -17,14 +17,6 @@
 		$allies_user = number_format($allies_user, 2);
 	}
 
-	$chosenIssues = array();
-
-	foreach ($pickedIssues as $issue) {
-		$chosenIssues[$issue['quantity']][] = $issue['issue'];
-	}
-
-	krsort($chosenIssues);
-
 	$pe = $ae = 0;
 
 	if (isset($groups) && (sizeof($groups) > 0)) {
@@ -42,7 +34,7 @@
         <div class="widget-stat-icon"><i class="fa fa-users"></i></div>
         <div class="widget-stat-info">
             <div class="widget-stat-title"><?= strtoupper(__('Missions Created')) ?></div>
-            <div class="widget-stat-number"><?= sizeof($missions_issues) ?></div>
+            <div class="widget-stat-number"><?= sizeof($missions) ?></div>
             <!--<div class="widget-stat-text">(3.10% better than last week)</div>-->
         </div>
     </div>
@@ -52,7 +44,7 @@
         <div class="widget-stat-icon"><i class="fa fa-users"></i></div>
         <div class="widget-stat-info">
             <div class="widget-stat-title"><?= strtoupper(__('Organizations')) ?></div>
-            <div class="widget-stat-number"><?= sizeof($missions_issues) ?></div>
+            <div class="widget-stat-number"><?= sizeof($organizations) ?></div>
             <!--<div class="widget-stat-text">(3.10% better than last week)</div>-->
         </div>
     </div>

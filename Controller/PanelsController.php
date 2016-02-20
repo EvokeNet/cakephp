@@ -8,8 +8,8 @@ class PanelsController extends AppController {
 * @var array
 */
 //	public $components = array('Access');
-	public $uses = array('User', 'UserIssue', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Issue', 'Badge', 'Role', 'Group',
-		'DossierLink', 'UserFriend', 'DossierVideo', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire',
+	public $uses = array('User', 'Organization', 'UserOrganization', 'UserBadge', 'UserMission', 'Badge', 'Role', 'Group',
+		'UserFriend', 'DossierVideo', 'GroupsUser', 'MissionIssue', 'Mission', 'Phase', 'Evokation', 'Quest', 'Questionnaire',
 		'Question', 'Answer', 'Attachment', 'Dossier', 'PointsDefinition', 'Level',
 		'AdminNotification', 'Novel', 'Launcher');
 	public $user = null;
@@ -48,7 +48,6 @@ class PanelsController extends AppController {
 		$this->loadModel('Organization');
 		$this->loadModel('PointsDefinition');
 		$this->loadModel('Group');
-		$this->loadModel('UserIssue');
 		$this->loadModel('UserFriend');
 
 		$user = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
@@ -63,14 +62,6 @@ class PanelsController extends AppController {
 		$levels = $this->Level->find('all');
 
 		$badges = $this->Badge->find('all');
-
-		$missions_issues = $this->MissionIssue->Mission->find('all', array(
-			'order' => array(
-				'Mission.title ASC'
-			)
-		));
-
-		$issues = $this->MissionIssue->Issue->find('all');
 
 		$admin_notifications = $this->AdminNotification->find('all', array(
 			'conditions' => array(
@@ -99,7 +90,9 @@ class PanelsController extends AppController {
 				'User.created DESC'
 			)
 		));
-
+        
+        $missions = $this->Mission->find('all');
+        
 		$users_of_my_missions = $this->User->UserMission->find('all', array(
 				'order' => array(
 					'user_id ASC'
@@ -208,19 +201,7 @@ class PanelsController extends AppController {
 				}
 			}
 
-		$allPickedIssues = $this->UserIssue->find('all', array('contain' => 'Issue'));
-		$pickedIssues = array();
-		foreach ($allPickedIssues as $key => $pickedIssue) {
-			if(isset($pickedIssues[$pickedIssue['Issue']['id']])) {
-				$pickedIssues[$pickedIssue['Issue']['id']]['issue'] = $pickedIssue['Issue']['name'];
-				$pickedIssues[$pickedIssue['Issue']['id']]['quantity']++;
-			} else {
-				$pickedIssues[$pickedIssue['Issue']['id']]['issue'] = $pickedIssue['Issue']['name'];
-				$pickedIssues[$pickedIssue['Issue']['id']]['quantity'] = 1;
-			}
-		}
-
-		$groups = $this->Group->getGroups();
+		$groups = $this->Group->find('all');
 
 		$pending_evokations = $this->Evokation->find('all', array(
 			'conditions' => array(
@@ -236,8 +217,8 @@ class PanelsController extends AppController {
 			)
 		));
 
-		$this->set(compact('user', 'users', 'all_evokations', 'flags', 'userLevels', 'allRelations', 'pickedIssues', 'username', 'userid', 'userrole', 'user', 'organizations',
-			'organizations_list', 'issues','badges','roles', 'roles_list','possible_managers','groups', 'unknown_countries', 'countries',
+		$this->set(compact('user', 'users', 'all_evokations', 'flags', 'userLevels', 'allRelations', 'username', 'userid', 'userrole', 'user', 'organizations',
+			'organizations_list', 'issues','badges', 'missions', 'roles', 'roles_list','possible_managers','groups', 'unknown_countries', 'countries',
 			'all_users', 'users_of_my_missions','missions_issues', 'parentIssues', 'levels', 'pending_evokations', 'approved_evokations', 'admin_notifications', 'notifications',
 			'register_points', 'allies_points', 'like_points', 'vote_points', 'evidenceComment_points', 'evokationComment_points', 'evokationFollow_points', 'basicTraining_points',
 			'organizations_tab', 'missions_tab', 'issues_tab', 'levels_tab', 'badges_tab', 'users_tab', 'pending_tab', 'media_tab', 'statistics_tab', 'settings_tab'));
