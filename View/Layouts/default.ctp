@@ -79,9 +79,9 @@ $title = __('Evoke Network');
     <?php
 
     //TOPBAR
-    // if ($this->fetch('topbar')) {
-    //   echo $this->fetch('topbar');
-    // }
+    if ($this->fetch('topbar')) {
+      echo $this->fetch('topbar');
+    }
 
     //CONTENT
     echo $this->fetch('content');
