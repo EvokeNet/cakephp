@@ -33,13 +33,6 @@ class Evokation extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'GdriveFile' => array(
-			'className' => 'GdriveFile',
-			'foreignKey' => 'gdrive_file_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		)
 	);
 
