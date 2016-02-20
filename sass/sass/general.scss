@@ -38,7 +38,7 @@ $google-bg-color: #DD4F43;
 // 	word-break: break-word;
 // }
 
-*, html, body, div, p {
+*, html, body, div, p, span {
 	// color: #cccccc;
     color: $font-off-white;
 }
@@ -89,6 +89,10 @@ body > .container {
 
 .margin-top-3em{
   margin-top:3em;
+}
+
+.margin-bottom-05em{
+  margin-bottom: .5em;
 }
 
 .margin-bottom-1em{
@@ -234,25 +238,39 @@ body > .container {
 	height:100%;
 }
 
+.full-width{
+    width:100%;
+}
+
 .paging span{
     margin: 0 .2em;
 }
 
+.fb-login-button, .google-login-button{
+    padding: .7em .75em;
+    // margin: 1.5em;
+    //margin: 1em 3em;
+    margin: 1em auto;
+    width: 70%;
+    
+    span{
+        font-size:.9em;
+    }
+}
+
 .fb-login-button{
     background-color: $fb-bg-color;
-    padding: .9em .75em;
 }
 
 .google-login-button{
     background-color: $google-bg-color;
-    padding: .9em .75em;
 }
 
-.login-button-default{
+.login-button-icon{
     float: left;
     left: 50%;
     opacity: .5;
-    left: 25%;
+    left: 10%;
     margin-top: -5px;
     position: relative;
 }
@@ -264,8 +282,48 @@ body > .container {
     right: 0;
     bottom: 0;
     left: 0;
-    height: 50vh;
+    height: 70vh;
     border-radius: 3px;
+    
+    button, .button{
+        width:70%;
+    }
+}
+
+.ui.vertical.divider{
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 50%;
+    line-height: 0;
+    text-align: center;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.ui.vertical.divider:after, .ui.vertical.divider:before{
+    position: absolute;
+    left: 50%;
+    content: '';
+    z-index: 3;
+    border-left: 1px solid #ddd; //rgba(34,36,38,.15);
+    border-right: 1px solid #ddd; //rgba(255,255,255,.1);
+    width: 0;
+    height: calc(100% - 1rem);
+}
+
+.ui.vertical.divider:after {
+    top: auto;
+    bottom: 0;
+}
+
+.ui.vertical.divider:before {
+    top: -100%;
 }
 
 .separate-tag {
@@ -300,4 +358,14 @@ body > .container {
         text-align: center;
     }
 
+}
+
+.recover-password{
+    position: relative;
+    height: 30px;
+    
+    a{
+        position: absolute;
+        right: 0;
+    }
 }

@@ -76,6 +76,12 @@ input[type="file"], input[type="checkbox"], input[type="radio"], select{
     // padding-right: 0.9375rem;
 }
 
+.button, button{
+    // border: 3px solid $default-green-selected;
+    padding: 0.575rem 1.2rem;
+    font-size: 1em;
+}
+
 button.small, .button.small {
     // padding: 0.875rem 1.75rem 0.9375rem 1.75rem;
     // font-size: 0.9rem;
@@ -136,7 +142,7 @@ label {
 }
 
 .top-bar .has-form > .button, .top-bar .has-form > button{
-    font-size: 0.8rem;
+    // font-size: 0.8rem;
 }
 
 .top-bar-section ul li,
@@ -265,4 +271,10 @@ table > tbody > tr > td{
     border-width: 0px 1px 1px 1px;
     // border-right: 1px solid #ddd;
     // border-bottom: 1px solid #ddd;
+}
+
+input:not([type]), input[type="text"], input[type="password"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"], input[type="email"], input[type="number"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="color"], textarea, input[type="file"], input[type="checkbox"], input[type="radio"], select {
+    border-radius: 2em;
+    padding: .5em 1em;
+    margin-bottom:1em;
 }

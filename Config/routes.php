@@ -32,6 +32,11 @@
     Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
     
 	Router::connect(
+			'/login',
+			array('controller' => 'users', 'action' => 'login')
+	);
+    
+    Router::connect(
 			'/register',
 			array('controller' => 'users', 'action' => 'register')
 	);

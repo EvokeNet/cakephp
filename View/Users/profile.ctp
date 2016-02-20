@@ -77,7 +77,6 @@
 											 ?>
 											<li class="text-center">
 												<!-- PICTURE -->
-
 												<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $ally['Friend']['id'], false)); ?>">
 
 													<?= $this->Picture->showUserCircularPicture(
@@ -88,9 +87,6 @@
 
 													<p class="text-center text-glow-on-hover"><?= $ally['Friend']['name'] ?></p>
 												</a>
-
-												<!-- MODAL USER BIOGRAPHY -->
-												<?php echo $this->element('user_biography', array('modal' => true, 'counter' => $counter, 'user' => $ally, 'add_button' => false)); ?>
 											</li>
 										<?php
 											$counter++;
@@ -117,46 +113,7 @@
 
             <div class = "gray-block margin-bottom-1em">
                 <h3 class = "font-green uppercase font-weight-bold"><?= __('Potential Allies') ?></h3>
-                <ul class="full-width small-block-grid-1">
-
-								<?php
-									$counter = 0;
-									foreach($similar_users as $similar_user): ?>
-
-									<li>
-										<!-- PANEL -->
-										<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', $similar_user['User']['id'], false)); ?>">
-
-											<div class="table full-width profile-content padding top-1">
-												<!-- USER PICTURE -->
-						          	<div class="table-cell vertical-align-middle square-40px">
-													<?= $this->Picture->showUserCircularPicture(
-														$similar_user['User'],
-														'square-40px',
-														__("%s's profile picture",$similar_user['User']['name'])
-													); ?>
-												</div>
-
-												<!-- USER INFO -->
-												<div class="table-cell vertical-align-middle padding left-1">
-													<?= $similar_user['User']['name'] ?>
-													<small>Level <?= $similar_user['User']['level'] ?></small>
-												</div>
-											</div>
-										</a>
-
-										<!-- VIEW AGENT DETAILS MODAL -->
-										<?php echo $this->element('user_biography', array('modal' => true, 'counter' => 'PotentialAllies'.$counter, 'user' => $similar_user, 'add_button' => true)); ?>
-									</li>
-
-								<?php
-									$counter++;
-								endforeach;
-								?>
-							</ul>
-
-              <a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'view_all')); ?>"><?php echo __('SEE ALL USERS'); ?></a>
-
+                <a class="button small" href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'view_all')); ?>"><?php echo __('SEE ALL USERS'); ?></a>
           </div>
 
         </div>
@@ -169,7 +126,6 @@
 
             <div class = "gray-block margin-bottom-1em">
                 <h3 class = "font-green uppercase font-weight-bold"><?= __('About me') ?></h3>
-                <p><?= $user['User']['biography'] ?></p>
             </div>
 
         </div>
@@ -177,12 +133,10 @@
 
             <div class = "gray-block margin-bottom-1em">
                 <h3 class = "font-green uppercase font-weight-bold"><?= __('Badges') ?></h3>
-								<?php echo $this->element('badges'); ?>
             </div>
 
             <div class = "gray-block margin-bottom-1em">
                 <h3 class = "font-green uppercase font-weight-bold"><?= __('Leaderboard') ?></h3>
-                <?php echo $this->element('leaderboard'); ?>
             </div>
 
         </div>

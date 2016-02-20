@@ -29,6 +29,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.fullpage-plugin h1, h2, h3, h4, h5, h6{
+    color: $font-off-white;
+}
+
 .icon-up-open-big { display: inline-block; }
 
 .icon-up-open-big:after {

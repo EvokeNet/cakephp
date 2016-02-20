@@ -8,20 +8,6 @@ class EvokeSchema extends CakeSchema {
   public function after($event = array()) {
   }
 
-  // public $acos = array(
-  //  'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'),
-  //  'parent_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 10, 'unsigned' => false),
-  //  'model' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-  //  'foreign_key' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 10, 'unsigned' => false),
-  //  'alias' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-  //  'lft' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 10, 'unsigned' => false),
-  //  'rght' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 10, 'unsigned' => false),
-  //  'indexes' => array(
-  //    'PRIMARY' => array('column' => 'id', 'unique' => 1)
-  //  ),
-  //  'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  // );
-
   public $admin_notifications = array(
     'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
     'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
@@ -59,35 +45,6 @@ class EvokeSchema extends CakeSchema {
     ),
     'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
   );
-
-  // public $aros = array(
-  //  'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'),
-  //  'parent_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 10, 'unsigned' => false),
-  //  'model' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-  //  'foreign_key' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 10, 'unsigned' => false),
-  //  'alias' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-  //  'lft' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 10, 'unsigned' => false),
-  //  'rght' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 10, 'unsigned' => false),
-  //  'indexes' => array(
-  //    'PRIMARY' => array('column' => 'id', 'unique' => 1)
-  //  ),
-  //  'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  // );
-  //
-  // public $aros_acos = array(
-  //  'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'),
-  //  'aro_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'index'),
-  //  'aco_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false),
-  //  '_create' => array('type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-  //  '_read' => array('type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-  //  '_update' => array('type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-  //  '_delete' => array('type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-  //  'indexes' => array(
-  //    'PRIMARY' => array('column' => 'id', 'unique' => 1),
-  //    'ARO_ACO_KEY' => array('column' => array('aro_id', 'aco_id'), 'unique' => 1)
-  //  ),
-  //  'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  // );
 
   public $attachments = array(
     'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
@@ -151,47 +108,6 @@ class EvokeSchema extends CakeSchema {
     'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
   );
 
-  public $dossier_links = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-    'title' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'description' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'link' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'mission_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'language' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
-    'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
-  public $dossier_videos = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-    'title' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'description' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'video_link' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'mission_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'language' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
-    'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
-  public $dossiers = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-    'mission_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
   public $evidence_tags = array(
     'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
     'evidence_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
@@ -224,30 +140,6 @@ class EvokeSchema extends CakeSchema {
     'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
   );
 
-  public $evokation_followers = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-    'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'evokation_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
-  public $evokation_tags = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-    'evokation_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'tag_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
   public $evokations = array(
     'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
     'group_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
@@ -260,30 +152,6 @@ class EvokeSchema extends CakeSchema {
     'approved' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 2, 'unsigned' => true),
     'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
     'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
-  public $evokations_updates = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-    'evokation_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'description' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'content' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
-  public $group_quest_statuses = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-    'group_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'quest_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'status' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
     'indexes' => array(
       'PRIMARY' => array('column' => 'id', 'unique' => 1)
     ),
@@ -325,7 +193,7 @@ class EvokeSchema extends CakeSchema {
     'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
   );
 
-  public $groups_users = array(
+  public $group_members = array(
     'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
     'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
     'group_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
@@ -350,20 +218,6 @@ class EvokeSchema extends CakeSchema {
       'model' => array('column' => 'model', 'unique' => 0),
       'row_id' => array('column' => 'foreign_key', 'unique' => 0),
       'field' => array('column' => 'field', 'unique' => 0)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
-  public $issues = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-    'parent_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'slug' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'comment' => 'This is just the sanitized name', 'charset' => 'utf8'),
-    'language' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1)
     ),
     'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
   );
@@ -430,18 +284,6 @@ class EvokeSchema extends CakeSchema {
     'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
   );
 
-  public $launchers = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-    'mission_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'phase_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
   public $levels = array(
     'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
     'level' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
@@ -491,17 +333,6 @@ class EvokeSchema extends CakeSchema {
     ),
     'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
   );
-
-  public $mission_issues = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-    'mission_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'issue_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
 
   public $mission_subscriptions = array(
     'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
@@ -576,42 +407,6 @@ class EvokeSchema extends CakeSchema {
     'facebook' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
     'twitter' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
     'blog' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
-  public $phase_translations = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'primary'),
-    'locale' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 6, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'model' => array('type' => 'string', 'null' => false, 'default' => null, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'foreign_key' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => false, 'key' => 'index'),
-    'field' => array('type' => 'string', 'null' => false, 'default' => null, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'content' => array('type' => 'text', 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'indexes' => array(
-      'PRIMARY' => array('column' => 'id', 'unique' => 1),
-      'locale' => array('column' => 'locale', 'unique' => 0),
-      'model' => array('column' => 'model', 'unique' => 0),
-      'row_id' => array('column' => 'foreign_key', 'unique' => 0),
-      'field' => array('column' => 'field', 'unique' => 0)
-    ),
-    'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-  );
-
-  public $phases = array(
-    'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true, 'key' => 'primary'),
-    'name' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'name_es' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 120, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'description' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'description_es' => array('type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-    'mission_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'position' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'type' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 2, 'unsigned' => true, 'comment' => 'Phase type: Individual = 0, Group = 1, Evokation = 2'),
-    'show_dossier' => array('type' => 'integer', 'null' => false, 'default' => '1', 'length' => 2, 'unsigned' => false),
-    'points' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 16, 'unsigned' => true),
-    'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
-    'modified' => array('type' => 'datetime', 'null' => false, 'default' => null),
     'indexes' => array(
       'PRIMARY' => array('column' => 'id', 'unique' => 1)
     ),

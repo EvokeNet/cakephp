@@ -4,6 +4,10 @@ App::uses('AppModel', 'Model');
  * Evokation Model
  *
  * @property Group $Group
+ * @property GdriveFile $GdriveFile
+ * @property Comment $Comment
+ * @property Evidence $Evidence
+ * @property Vote $Vote
  */
 class Evokation extends AppModel {
 
@@ -14,23 +18,10 @@ class Evokation extends AppModel {
  */
 	public $displayField = 'title';
 
+
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
 /**
- * Checks if the evokation has been completed
- *
- * @param int Evokation ID
- * @return boolean True if the evokation has been marked complete, false otherwise
- */
-	public function isComplete($evokation_id) {
-		if (!$this->exists($evokation_id)) {
-			throw new NotFoundException(__('Invalid evokation'));
-		}
-
-		$evokation = $this->findById($evokation_id);
-
-		return $evokation['Evokation']['final_sent'];
-	}
-
-/*
  * belongsTo associations
  *
  * @var array
@@ -42,25 +33,24 @@ class Evokation extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'GdriveFile' => array(
+			'className' => 'GdriveFile',
+			'foreignKey' => 'gdrive_file_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
 	public $hasMany = array(
 		'Comment' => array(
 			'className' => 'Comment',
-			'foreignKey' => 'evokation_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Vote' => array(
-			'className' => 'Vote',
 			'foreignKey' => 'evokation_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -85,21 +75,8 @@ class Evokation extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'EvokationFollower' => array(
-			'className' => 'EvokationFollower',
-			'foreignKey' => 'evokation_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'EvokationsUpdate' => array(
-			'className' => 'EvokationsUpdate',
+		'Vote' => array(
+			'className' => 'Vote',
 			'foreignKey' => 'evokation_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -112,4 +89,5 @@ class Evokation extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+
 }

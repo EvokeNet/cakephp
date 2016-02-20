@@ -27,7 +27,7 @@
         </h1>
       </div>
       <div class="evoke default view view-first">
-        <a href="<?= $mission_url ?>">
+        <!--<a href="<?= $mission_url ?>">
           <?php if(!is_null($mission['Mission']['cover_dir'])) :?>
             <img src="<?= $this->webroot.'files/attachment/attachment/'.$mission['Mission']['cover_dir'].'/'.$mission['Mission']['cover_attachment'] ?>">
           <?php else :?>
@@ -37,17 +37,13 @@
             <div class="mask">
                 <p><?= $this->Text->getExcerpt($mission['Mission']['description'], 200, "...") ?></p>
             </div>
-          </a>
+          </a>-->
       </div>
 
     <?php endforeach; ?>
 
   </div>
 </section>
-
-<?php
-  echo $this->Html->script('image_hover', array('inline' => false));
-?>
 
 <?php
   /* Footer */

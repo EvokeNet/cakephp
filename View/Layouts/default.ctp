@@ -15,18 +15,17 @@ $title = __('Evoke Network');
   <meta http-equiv="X-UA-Compatible" content="IE=edge;" /> <!-- Forces IE to use the last compatible version -->
 
   <!-- FONTS -->
-  <!--<link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>-->
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Dosis&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 
   <?php echo $this->Html->charset(); ?>
+  
   <title>
     <?php echo $title; ?>
   </title>
+  
   <?php
     $cssInclude = strtolower($this->name);
     $cssFileName = strtolower($this->name).'.css';
@@ -80,14 +79,9 @@ $title = __('Evoke Network');
     <?php
 
     //TOPBAR
-    if ($this->fetch('topbar')) {
-      echo $this->fetch('topbar');
-    }
-
-    //IMAGE HEADER
-     if ($this->fetch('image_header')) {
-      echo $this->fetch('image_header');
-     }
+    // if ($this->fetch('topbar')) {
+    //   echo $this->fetch('topbar');
+    // }
 
     //CONTENT
     echo $this->fetch('content');
