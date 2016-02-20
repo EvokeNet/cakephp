@@ -11,10 +11,10 @@
             <p><span class = "font-weight-bold"><?= __('Lastname:') ?></span>&nbsp;&nbsp;<?= $user['User']['lastname'] ?></p>
             <p><span class = "font-weight-bold"><?= __('Birthdate:') ?></span>&nbsp;&nbsp;<?= $user['User']['birthdate'] ?></p>
             <p><span class = "font-weight-bold"><?= __('Email:') ?></span>&nbsp;&nbsp;<?= $user['User']['email'] ?></p>
-            <p><span class = "font-weight-bold"><?= __('Role:') ?></span>&nbsp;&nbsp;<?= $user['User']['role_id'] ?></p>
-            <p><span class = "font-weight-bold"><?= __('Sex:') ?></span>&nbsp;&nbsp;<?= $user['User']['sex'] ?></p>
-            <p><span class = "font-weight-bold"><?= __('Country:') ?></span>&nbsp;&nbsp;<?= $user['User']['country'] ?></p>
-            <p><span class = "font-weight-bold"><?= __('Language:') ?></span>&nbsp;&nbsp;<?= $user['User']['language'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Role:') ?></span>&nbsp;&nbsp;<?= $role['Role']['name'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Sex:') ?></span>&nbsp;&nbsp;<?= $sexes[$user['User']['sex']] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Country:') ?></span>&nbsp;&nbsp;<?= $countries[$user['User']['country']] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Language:') ?></span>&nbsp;&nbsp;<?= $languages[$user['User']['language']] ?></p>
             <p><span class = "font-weight-bold"><?= __('Created:') ?></span>&nbsp;&nbsp;<?= $user['User']['created'] ?></p>
             <p><span class = "font-weight-bold"><?= __('Modified:') ?></span>&nbsp;&nbsp;<?= $user['User']['modified'] ?></p>
         </div>
@@ -29,9 +29,9 @@
         <div class="large-4 columns">
             <p><span class = "font-weight-bold"><?= __('Biography:') ?></span>&nbsp;&nbsp;<?= $user['User']['biography'] ?></p>
             <p><span class = "font-weight-bold"><?= __('Mini Biography:') ?></span>&nbsp;&nbsp;<?= $user['User']['mini_biography'] ?></p>
-            <p><span class = "font-weight-bold"><?= __('Superhero Identity:') ?></span>&nbsp;&nbsp;<?= $user['User']['superhero_identity_id'] ?></p>
-            <p><span class = "font-weight-bold"><?= __('Primary Power:') ?></span>&nbsp;&nbsp;<?= $user['User']['primary_power_quantity'] ?></p>
-            <p><span class = "font-weight-bold"><?= __('Secondary Power:') ?></span>&nbsp;&nbsp;<?= $user['User']['secondary_power_quantity'] ?></p>
+            <p><span class = "font-weight-bold"><?= __('Superhero Identity:') ?></span>&nbsp;&nbsp;<?= $superHeroIdentity['SuperheroIdentity']['name'] ?></p>
+            <p><span class = "font-weight-bold"><?= $powers[1].__(' Points:') ?></span>&nbsp;&nbsp;<?= $user['User']['primary_power_quantity'] ?></p>
+            <p><span class = "font-weight-bold"><?= $powers[2].__(' Points:') ?></span>&nbsp;&nbsp;<?= $user['User']['secondary_power_quantity'] ?></p>
         </div>
     </div>
 </div>

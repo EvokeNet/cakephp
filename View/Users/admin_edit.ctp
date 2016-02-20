@@ -7,6 +7,9 @@
 <h3 class = "uppercase font-weight-bold font-gray margin-bottom-05em"><?= __('Edit User') ?></h3>
 <div class = "section padding-top-1em padding-bottom-1em">
     <div class="row">
+        <div>
+            <?php echo $this->Form->input('id'); ?>
+        </div>
         <div class="large-4 columns">
             <?php echo $this->Form->input('firstname', array('label' => __('First name'))); ?>
         </div>

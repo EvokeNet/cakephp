@@ -47,6 +47,16 @@
 	);
 
 	Router::connect(
+    	'/fbLogin',
+    	array('controller' => 'users', 'action' => 'fbLogin')
+	);
+
+	Router::connect(
+    	'/googleLogin',
+    	array('controller' => 'users', 'action' => 'googleLogin')
+	);
+
+	Router::connect(
     	'/terms',
     	array('controller' => 'pages', 'action' => 'terms')
 	);
