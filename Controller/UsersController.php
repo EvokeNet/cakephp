@@ -66,7 +66,7 @@ class UsersController extends AppController {
     parent::changeLanguage($lang);
   }
 
-  public function changePassword() {
+  public function change_password() {
     $usr = $this->User->find('first', array(
       'conditions' => array(
         'User.id' => $this->getUserId()
@@ -82,18 +82,17 @@ class UsersController extends AppController {
         if($this->request->data['User']['tmp'] == $this->request->data['User']['tmp2']) {
           $this->User->id = $this->getUserId();
           $insert['User']['id'] = $this->getUserId();
-          $insert['User']['role_id'] = $this->getUserRole();
           $insert['User']['password'] = $this->request->data['User']['tmp'];
           $this->User->save($insert);
           $this->Session->setFlash(__("Your password was changed."), 'flash_message');
           $this->redirect(array('action' => 'dashboard'));
         } else {
           $this->Session->setFlash(__("The new passwords do not match."), 'flash_message');
-          $this->redirect(array('action' => 'changePassword'));
+          $this->redirect(array('action' => 'change_password'));
         }
       } else {
         $this->Session->setFlash(__("The current password does not match."), 'flash_message');
-        $this->redirect(array('action' => 'changePassword'));
+        $this->redirect(array('action' => 'change_password'));
       }
     }
 

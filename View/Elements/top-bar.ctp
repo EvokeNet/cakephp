@@ -13,9 +13,10 @@
       <li class = "margin-right-1em"><?php //echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?></li>
       <li class = "divider"></li>
       <li class="has-dropdown">
-        <a href="#" class = "uppercase"><?php echo sprintf(__('Agent %s'), AuthComponent::user('name')); ?></a>
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id'))); ?>" class = "uppercase"><?php echo sprintf(__('Agent %s'), AuthComponent::user('name')); ?></a>
         <ul class="dropdown">
           <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('View profile'); ?></a></li>
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'change_password', 'admin' => false)); ?>"><?php echo __('Change password'); ?></a></li>
           <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', 'admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('Edit profile'); ?></a></li>
           <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout', 'admin' => false)); ?>"><?php echo __('Log out'); ?></a></li>
         </ul>
