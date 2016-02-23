@@ -140,7 +140,7 @@
 					</ul>	
 				</li>
 				<li class="evoke side-menu">
-					<a href="#" 
+					<a href="<?= $this->Html->url(array('controller' => 'panels', 'action' => 'organizations'))?>" 
 						class="evoke side-menu button split">
 						<?= __('Organizations') ?>
 						<span data-dropdown="organizations_hover"></span>
