@@ -359,6 +359,7 @@ class AppController extends Controller {
 							 && $this->request->params['action'] != 'login'  //also, if  the user is loging in or out
 							 && $this->request->params['action'] != 'logout' // we have to allow it
 							 && $this->request->params['action'] != 'register' // also if user is registering
+                                           && $this->request->params['action'] != 'recover_password' // also if user is trying to recover password
 							 && $this->request->params['action'] != 'matching_results'){
 
 			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId(),'admin' => false));

@@ -43,7 +43,7 @@ class UsersController extends AppController {
 */
   public function beforeFilter() {
     parent::beforeFilter();
-    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage');
+    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage','recover_password');
   }
 
   // public function createTempPassword($len) {
@@ -520,7 +520,29 @@ class UsersController extends AppController {
     return $str.$data;
   }
 
+/**
+ *
+ * recover method
+ *
+ * @return void
+ */
+  public function recover_password() {
 
+    if ($this->request->is('post')) {
+      App::uses('CakeEmail', 'Network/Email');
+      $email = new CakeEmail('smtp');
+
+      $email->template('default', 'default')
+                      ->emailFormat('both')
+                      ->to($this->request->data['User']['email'])
+                      ->from('no-reply@quanti.ca')
+                      ->subject(__('A subject'))
+                      ->send('Test'); 
+
+      $this->Session->setFlash(__('It was sent an email with a new password.'));                    
+      $this->redirect(array('controller' => 'users', 'action' => 'login', 'admin' => false));                
+    }     
+  }
 
 /**
  *

@@ -36,6 +36,11 @@
 	);
 
 	Router::connect(
+    	'/recover_password',
+    	array('controller' => 'users', 'action' => 'recover_password')
+	);
+
+	Router::connect(
     	'/terms',
     	array('controller' => 'pages', 'action' => 'terms')
 	);
