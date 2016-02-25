@@ -553,6 +553,11 @@ class UsersController extends AppController {
       $user = $this->User->find('first',array(
         'conditions' => array('email' => $this->request->data['User']['email'])    
       ));
+
+      if(empty($user)){
+        return $this->flash(__('Email not found.'), array('controller' => 'users', 'action' => 'recover_password', 'admin' => false));       
+      }
+
       $insert['User']['id'] = $user['User']['id'];
       $insert['User']['password'] = $new_password;
       $this->User->save($insert);
