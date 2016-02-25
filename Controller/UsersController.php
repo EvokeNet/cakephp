@@ -125,6 +125,7 @@ class UsersController extends AppController {
       }
     }
 
+    /*   
     $client = new Google_Client();
     $client->setApplicationName('Evoke');
     $client->setClientId(Configure::read('google_client_id'));
@@ -136,6 +137,9 @@ class UsersController extends AppController {
 
     $client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
     $client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
+    */
+
+    /*
 
     if (isset($this->params['url']['code'])) {
       $client->authenticate($this->params['url']['code']);
@@ -204,6 +208,8 @@ class UsersController extends AppController {
       'allowSignedRequest' => false,
 
     ));
+
+    */
 
     if(isset($this->params['url']['code'])) {
 
@@ -289,9 +295,9 @@ class UsersController extends AppController {
       }
 
     } else {
-      $fbLoginUrl = $facebook->getLoginUrl();
+      //$fbLoginUrl = $facebook->getLoginUrl();
       $this->set(compact('fbLoginUrl'));
-      $this->Session->write('fbLoginUrl', $fbLoginUrl); //Stores facebook URL in session to be accessed by other views/controllers
+      //$this->Session->write('fbLoginUrl', $fbLoginUrl); //Stores facebook URL in session to be accessed by other views/controllers
     }
 
     $this->set(compact('missions','video_url'));

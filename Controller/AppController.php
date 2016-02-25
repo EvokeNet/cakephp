@@ -297,6 +297,12 @@ class AppController extends Controller {
       'ZW' => 'Zimbabwe'
       );
 
+      // Facebook Config
+      //session_start(); // para o SDK do Facebook funcionar
+      //use Facebook\FacebookSession;
+      //use Facebook\FacebookRedirectLoginHelper;
+      public $facebook;
+
 /**
 * beforeFilter method
 *
