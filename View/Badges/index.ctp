@@ -4,7 +4,7 @@
 
 	/* Top bar */
 	$this->start('topbar');
-	echo $this->element('top-bar');
+	echo $this->element('topbar');
 	$this->end();
 
 ?>

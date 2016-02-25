@@ -1,0 +1,2431 @@
+[33mcommit ca15540b0ce20b37ed8d467fa89f13b106ab0cc9[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Sun Feb 14 04:21:08 2016 -0200
+
+    view para os admin falta por nos outros
+
+[33mcommit ea90e95cb396fd3e09eb491c4b8f4b79d3f8c218[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Sun Feb 14 04:06:08 2016 -0200
+
+    view para os admin falta por nos outros
+
+[33mcommit 8a2b23cb695a8d8865abc28caec56cf9cb25af40[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Tue Feb 16 19:14:18 2016 -0200
+
+    layout para admin
+
+[33mcommit 3a96d16ee5d6a8c5f0cff9ef81891c1276dd7c6b[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Tue Feb 16 18:07:37 2016 -0200
+
+    merge
+
+[33mcommit d683b8fcefb74489c9210d40eceb1bedd51fe601[m
+Merge: 6493711 fb8083f
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Tue Feb 16 17:23:49 2016 -0200
+
+    merge com dev
+
+[33mcommit fb8083f01f2d1a239664ccc7d7790ab6212510d9[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Tue Feb 16 16:40:24 2016 -0200
+
+    Powers added to matching results page
+
+[33mcommit 64937113dcea9285cd9aa862dc14af369e65f0be[m
+Merge: 6e7887b f63bae5
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Tue Feb 16 16:02:20 2016 -0200
+
+    merge com dev
+
+[33mcommit cb7f10b80b4802ddcd96141ddb451869fe45f699[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Tue Feb 16 15:50:52 2016 -0200
+
+    new topbar added to admin panel pages. Schema conflict fixed. Topbar link issues fixed.
+
+[33mcommit f63bae596dcba1c1730540de60261c3c84616c4d[m
+Merge: 762caa3 504b0c6
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Tue Feb 16 15:25:39 2016 -0200
+
+    Merge permissions_branch with dev
+
+[33mcommit 6e7887b2cd8d2c10bbcaafb77e14fe621ae967e9[m
+Merge: a17a095 762caa3
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Tue Feb 16 14:58:09 2016 -0200
+
+    Merge
+
+[33mcommit 504b0c6c751d61942416b5d7162179aef62be253[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Tue Feb 16 12:12:07 2016 -0200
+
+    mudancas nos layout
+
+[33mcommit 762caa33eecba17ca450f7fe9b8ef3aa656b2af8[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Mon Feb 15 18:16:12 2016 -0200
+
+    started super hero identity powers
+
+[33mcommit c30e4e354049ea2e11328d0a481ce096efb67ba7[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Mon Feb 15 13:25:55 2016 -0200
+
+    BADDGE and USER crud pages for admin panel finished.
+
+[33mcommit d888ad25f93c1aff50959b91c8fc90ba0e25ce9b[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Fri Feb 12 19:29:29 2016 -0200
+
+    mudancxa layout
+
+[33mcommit 899e12c6e6b783a2e8c49298c0e30612cc1c5509[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Fri Feb 12 18:08:16 2016 -0200
+
+    Working on Badge CRUD and started User CRUD. Almost finished, requires only certain details to be fixed.
+
+[33mcommit a17a095a070cf3f449c568315df69dbfdb3ed71a[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Fri Feb 12 13:13:33 2016 -0200
+
+    superhero pronto
+
+[33mcommit 6ff194b144bfbe8f8eb03050faddb6c2cab7f743[m
+Merge: 6b8b5f6 8b77c4f
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Feb 12 01:09:43 2016 -0500
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit 6b8b5f6d131fbe04935d45b1fa49803c30ca6811[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Feb 12 01:09:38 2016 -0500
+
+    add admin_index to missions
+
+[33mcommit 88e82e45597714e6aa821e90880e8b80d9897ac3[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Fri Feb 12 03:01:13 2016 -0200
+
+    superhero identity pronto
+
+[33mcommit 8b77c4fce0be35ea842b8ad3a94edc9a04dfe5a5[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Thu Feb 11 15:38:36 2016 -0200
+
+    Badge CRUD for admin panel started. Uploader plugin added and started to customize it to fit Evoke.
+
+[33mcommit 325073984237674620b18ebfa67f637bb534213b[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Thu Feb 11 10:28:12 2016 -0200
+
+    Forum Category CRUD for admin panel finished. Admin side-menu element updated.
+
+[33mcommit 9922adcebe72a4f8a221990323a302cdaf1dc12e[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Wed Feb 10 22:23:07 2016 -0200
+
+    superhero identity quase pronto
+
+[33mcommit 13d426fee9a14083e3a9fba7e389c8eb53a644d3[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Wed Feb 10 00:59:01 2016 -0200
+
+    mudancas no matching
+
+[33mcommit 1690e16babfab70e445f4d9dfa80d613beb9e83b[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Tue Feb 9 17:06:34 2016 -0200
+
+    Admin side-menu bar updated. Menu links changed to foundation split buttons. Forum Model issues fixed.
+
+[33mcommit 9433eaa7dd0153ff2fbf6fb8e544d1b22eead04d[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Fri Feb 5 17:36:36 2016 -0200
+
+    Leaderboard page problem fixed: sql syntax. Admin Panel's and side-menu element's functionality finished, TODO design. Admin pages loading optimized.
+
+[33mcommit a55918ff062674afbd546b5f77b5944c0e1dba5b[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Thu Feb 4 17:50:23 2016 -0200
+
+    User is redirected if isn't an admin now applied to all admin pages.
+
+[33mcommit 86dac73f52faf6daa28d2364a3f5e49c69c02a0f[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Thu Feb 4 17:07:29 2016 -0200
+
+    Started new admin panel that supports admin route and cakephp CRUD pages. Created sidemenu element, it's unfinished. Started User CRUD pages.
+
+[33mcommit cc8398e7b012b47ab44c97d8c261ef9a76a78561[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Wed Feb 3 13:25:46 2016 -0200
+
+    minor bug fixes: warnings (variable 'role' undefined when logged off and images not found on view mission).
+
+[33mcommit 741a6258be59c591adac1131bcae2f46905c78ee[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Wed Feb 3 00:07:36 2016 -0200
+
+    novo painel admin
+
+[33mcommit d7ab226e8b8129ce98f27b6b6d3673802f03f549[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Tue Feb 2 14:38:58 2016 -0500
+
+    remove key=>primary from roles_score
+
+[33mcommit 788dc9575fe1703a41396c59aa4f52cc7ab4bcc5[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Tue Feb 2 14:26:21 2016 -0200
+
+    fixed some bugs: undefined variable is_current_user and division by zero.
+
+[33mcommit bb62790a6acb712152ecc96b8054a5435842b26c[m
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Mon Feb 1 16:37:04 2016 -0200
+
+    Merge branch 'gf-dev_forum' into dev
+
+[33mcommit 8bf2e5d747cfe6babd074db3d8f6b56138adc067[m
+Merge: 164fcbd af446f1
+Author: guilherme_fernandes <gfernandes@quanti.ca>
+Date:   Mon Feb 1 16:36:45 2016 -0200
+
+    Merge branch 'gf-dev_forum' into dev
+
+[33mcommit 164fcbd1d20ef73473ba29e0119db84d53d02ee7[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Jan 29 13:35:01 2016 -0500
+
+    fixed undefined offset for questionaire
+
+[33mcommit f730bc27e99bb02f907bf64e9c31ca93df7d6d9f[m
+Merge: c7aa573 3584ecc
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Jan 29 12:55:09 2016 -0500
+
+    Merge branch 'jg-psychometric_questions_fixes' into dev
+    
+    Conflicts:
+    	Controller/UsersController.php
+
+[33mcommit 3584eccd66e08623c5f7412602b1a7a13ebf267b[m
+Merge: 21b748a 4dbe2df
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Jan 29 12:39:51 2016 -0500
+
+    Merge branch 'jg-user_dashboard' into jg-psychometric_questions_fixes
+    
+    Conflicts:
+    	Controller/UsersController.php
+    	View/Users/profile.ctp
+
+[33mcommit c7aa57392467b4bef444f01c2903045f9b6b377e[m
+Author: gfernandes <gfernandes@quanti.ca>
+Date:   Thu Jan 28 13:27:24 2016 -0200
+
+    Superhero profile fixes: description of quality, register bug, incorrect encoding, superhero identity not being saved on session
+
+[33mcommit 4dbe2df626df6abf17ab087a487c511bde659c23[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Tue Jan 19 15:18:51 2016 -0500
+
+    remove debugs
+
+[33mcommit af446f1e3e1f3d67581cdbf6ffa269725dff6283[m
+Author: gfernandes <gfernandes@quanti.ca>
+Date:   Tue Jan 19 16:51:53 2016 -0200
+
+    permissions system updated, admin permission updated to work with the new system
+
+[33mcommit 6f0881864c6df451f21f35bc961934b83e8e7059[m
+Author: gfernandes <gfernandes@quanti.ca>
+Date:   Mon Jan 18 17:16:08 2016 -0200
+
+    started permissions system, permission for edit/delete posts and topics were updated
+
+[33mcommit a2620eee4257f41bf9b87dc18b5d164cc378013b[m
+Merge: 33c78a1 c78d615
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Mon Jan 18 16:03:48 2016 -0200
+
+    Merge branch 'forum_branch' of bitbucket.org:quantica/evoke2014 into permissions_branch
+
+[33mcommit 33c78a1e0048d4a6bc7ff916e1fdd81bad28f25f[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Mon Jan 18 16:01:58 2016 -0200
+
+    mudanca no plogin, profile e admin
+
+[33mcommit c78d615d9e6c1ad9470a3a8081f4e981cc3c0687[m
+Author: gfernandes <gfernandes@quanti.ca>
+Date:   Mon Jan 18 12:40:42 2016 -0200
+
+    forums page design problem fixed (button design)
+
+[33mcommit 75fac1985f2b9043bd7bc082dfa46d3a7b8a8338[m
+Author: gfernandes <gfernandes@quanti.ca>
+Date:   Fri Jan 15 16:43:11 2016 -0200
+
+    forum: edit/delete topic started, permission for edit/delete topic working, creation date added to posts page, view count system working and forums page design improved
+
+[33mcommit 21b748aae4b85832492778bc998df38b94e68e76[m
+Author: deckert <deckert@quanti.ca>
+Date:   Fri Jan 15 12:19:51 2016 -0500
+
+    edit user in admin panel updated
+
+[33mcommit fc8d14088f94e16e3d5f7ac1273d717fea577d11[m
+Author: gfernandes <gfernandes@quanti.ca>
+Date:   Thu Jan 14 18:57:58 2016 -0200
+
+    forum topics page design improved
+
+[33mcommit f1534067a718d7b4c7b264e571cd17fdb87afb97[m
+Author: gfernandes <gfernandes@quanti.ca>
+Date:   Thu Jan 14 17:00:58 2016 -0200
+
+    forum: edit/delete post started, permission for edit/delete post working, posts page design improved
+
+[33mcommit bca20a0b2e4d68d5fdc3f53b57922323e4a7d455[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Jan 13 17:06:47 2016 -0500
+
+    deleting user with confirmation in admin panel
+
+[33mcommit 442f986ce99ed64c96a4a27ea1a30235b823a2ea[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Jan 13 14:57:17 2016 -0500
+
+    redirecting page in case the user has not answered the questionnaire
+
+[33mcommit 41c11c3e591a3c46e93db211f9535027a3fa354e[m
+Author: gfernandes <gfernandes@quanti.ca>
+Date:   Wed Jan 13 15:07:05 2016 -0200
+
+    forum new post started, minor bugs fixed, forum posts page design improved
+
+[33mcommit b7f44273981e34673618331c66ae8066c1fa13be[m
+Author: gfernandes <gfernandes@quanti.ca>
+Date:   Tue Jan 12 16:39:26 2016 -0200
+
+    forum posts page started
+
+[33mcommit e420ef08e2702b1f7136c0714836bf3e363ba694[m
+Author: gfernandes <gfernandes@quanti.ca>
+Date:   Tue Jan 12 15:15:42 2016 -0200
+
+    forum topics page started
+
+[33mcommit 71954280ad017aeaafe229c1669eda5dcff01610[m
+Author: gfernandes <gfernandes@quanti.ca>
+Date:   Mon Jan 11 14:46:21 2016 -0200
+
+    forum initial page started
+
+[33mcommit be5f0ae9c5bb4a1f354b13567f44cd87dd97f5ce[m
+Merge: 5ad606e fc8d140
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Sun Jan 10 17:24:56 2016 -0200
+
+    Merge branch 'forum_branch' of bitbucket.org:quantica/evoke2014 into permissions_branch
+
+[33mcommit 5ad606e23898271afb8d7346f1c618baeefa59d5[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Sun Jan 10 17:24:39 2016 -0200
+
+    mudancas no layout
+
+[33mcommit c5f50faf693ce3191f5c0ae9a81ee9870d3c6510[m
+Merge: d09290d f9cb1c4
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Sun Jan 10 03:54:18 2016 -0200
+
+    Merge branch 'permissions_branch' of bitbucket.org:quantica/evoke2014 into permissions_branch
+
+[33mcommit f9cb1c4c00d91ef92fa3cbdd330f3b93ff9a4f28[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Tue Jan 12 17:51:45 2016 -0200
+
+    sass
+
+[33mcommit a949071372e105e6115c816c8aec4a3a97d663bb[m
+Merge: 1d40aa5 d9688dd
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Tue Jan 12 14:14:17 2016 -0200
+
+    Merge branch 'permissions_branch' of bitbucket.org:quantica/evoke2014 into permissions_branch
+
+[33mcommit 1d40aa58e742c4aa747c2bdabee0c23f604294e0[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Tue Jan 12 14:12:47 2016 -0200
+
+    sass
+
+[33mcommit d09290df6d186944fee793eedb3f773931d608ad[m
+Merge: d9688dd 7195428
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Sun Jan 10 03:54:05 2016 -0200
+
+    mudancas css
+
+[33mcommit d9688dd2853041a891ed874429c310fe30567f72[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Sat Jan 9 20:16:06 2016 -0200
+
+    remodelagem da pagina principal e profile, alem de css organizado
+
+[33mcommit d2e9073664997d89a1632dad77c3713aa78c863c[m
+Merge: 8171bd7 37f7a12
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Fri Jan 8 17:13:11 2016 -0200
+
+    merge dev
+
+[33mcommit 37f7a12ca00e6d24d28055af3a9cbc0a0fad1742[m
+Author: deckert <deckert@quanti.ca>
+Date:   Fri Jan 8 13:36:31 2016 -0500
+
+    corrected git bug, now matching answears works
+
+[33mcommit 8171bd7bb116e4230ae35dcc5a01e2b8628e44a2[m
+Merge: 52266a3 781c8a3
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Fri Jan 8 16:11:10 2016 -0200
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into permissions_branch
+
+[33mcommit 781c8a3213ff27149f6d5308432028483a71f4d9[m
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Jan 7 15:48:27 2016 -0500
+
+    user menu in admin panel created
+
+[33mcommit 52266a323b298bd1ad34f2b4eb34894d46f4f27d[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Thu Jan 7 18:31:27 2016 -0200
+
+    forum baked
+
+[33mcommit 8e4191359af12157972ac0f480a0d1c10a024892[m
+Merge: 9390e64 64e8c6a
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Jan 7 15:19:16 2016 -0500
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit 9390e64687e6dbf4c08cdf676ae8b50ca1a8d2e5[m
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Jan 7 15:18:27 2016 -0500
+
+    started admin panel
+
+[33mcommit 6d0fd4e1fa83717bd70646644733f873856ee8e5[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Thu Jan 7 18:14:06 2016 -0200
+
+    tirar login do facebook e google
+
+[33mcommit 2a74b9f812aa522a73ba4778642612bd03a3c284[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Thu Jan 7 18:04:12 2016 -0200
+
+    forum começado
+
+[33mcommit 0cee8eea4f0efc586f09546482bf049a0482ccd7[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Thu Jan 7 17:29:40 2016 -0200
+
+    facebook e google removidos
+
+[33mcommit 30dc35a70d420cb927452e69b9e6529fa0163169[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Thu Jan 7 17:23:20 2016 -0200
+
+    brainstorm session removed
+
+[33mcommit 4a8c3e8ba21161453112ac55308d606c65258a0a[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Thu Jan 7 16:57:47 2016 -0200
+
+    optimum plugin removed
+
+[33mcommit b1447337be9f27b46931e9ece3f8f0162eebde74[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Thu Jan 7 16:52:49 2016 -0200
+
+    backup de plugin de forum, facebook sdk, etc
+
+[33mcommit 75f31f13dd7ca0f13475a60b9af2ab6ab5aa7c22[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Jan 6 14:15:15 2016 -0500
+
+    corrected i18next version
+
+[33mcommit 64e8c6ac39a075893850db6b06417464c84795fe[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Jan 5 13:04:24 2016 -0500
+
+    corrected i18next version on bower
+
+[33mcommit 27e6eacb3f15655106f24c91a49bd26b3a952ea9[m
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Dec 10 19:12:08 2015 -0200
+
+    matching results page ready, profile page updated with superhero type and powers
+
+[33mcommit fdf4f3c82790dbda90abf0b4d546196b79edb777[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Dec 8 19:05:44 2015 -0200
+
+    saving superhero id in user and finding allies with same superhero id
+
+[33mcommit f722cb971fcf17c481a403a803193cfe44685360[m
+Author: deckert <deckert@quanti.ca>
+Date:   Mon Dec 7 17:00:02 2015 -0200
+
+    mathing results almost ready
+
+[33mcommit 9d02222aa186c9100fb2b3a9c6417ded96a34490[m
+Author: deckert <deckert@quanti.ca>
+Date:   Fri Dec 4 18:00:20 2015 -0200
+
+    mathing results page under construction
+
+[33mcommit d889fe3492211f5a4b22ff14ce29b676454c6bbe[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Dec 2 19:46:58 2015 -0200
+
+    score calculated and passed to matching results
+
+[33mcommit e3c148ababf1b0f8d3f3a3b3c3ed7522d299072e[m
+Merge: 3a035a2 8a72108
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Dec 2 14:21:52 2015 -0200
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit 3a035a2bf1e920254fb2a85cffaf4175ed7ea2bc[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Dec 2 14:21:15 2015 -0200
+
+    added new models for score counting
+
+[33mcommit 8a721086b8c3b8cfb794d888733e7568d773ff72[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Dec 1 16:50:19 2015 -0200
+
+    created new models to compute points from questionare
+
+[33mcommit 7affbab37c8546c556428acbd020f798ea6fa7ac[m
+Author: deckert <deckert@quanti.ca>
+Date:   Mon Nov 30 19:29:30 2015 -0200
+
+    order question being saved
+
+[33mcommit a604ea7d0cf4bbe6281a3615e3dcc28da2e4316d[m
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Nov 26 19:30:48 2015 -0200
+
+    assessment order quantions in progress
+
+[33mcommit 607f6973e67ba874f66902958685e6fd8687f30f[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Nov 25 19:21:19 2015 -0200
+
+    Progress bar working
+
+[33mcommit e0469a6af307225520cdbe59121b009d5468e4ae[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Nov 25 15:26:22 2015 -0200
+
+    Assessment questionare ready
+
+[33mcommit bab21bf622016402f0fd2e8d490b15f57188cddd[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Sun Nov 22 18:56:25 2015 -0500
+
+    move left column up to have more space
+
+[33mcommit 9d8765e3b4049e35d2f832829b958a5f2d095ce0[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Sun Nov 22 18:52:09 2015 -0500
+
+    only show basic training if not complete
+
+[33mcommit df663af243a07ba835a61fcacd973f35aa399892[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Sun Nov 22 18:47:17 2015 -0500
+
+    allow user to switch between missions
+
+[33mcommit 12c7757f0e03767f355ea16948acf80a3d2001f4[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Sun Nov 22 17:53:26 2015 -0500
+
+    separated dash from profile
+
+[33mcommit b76f7c4fd7f73290f808291be2f3a283bce8e120[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Sun Nov 22 17:01:44 2015 -0500
+
+    available missions
+
+[33mcommit 99d0aa1255ab18d0ab831a35e6eb9f5c330734c1[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Sun Nov 22 16:04:14 2015 -0500
+
+    tooltips for quests
+
+[33mcommit 932db29d5ad95eb1572b417ad864ddf3dbc73da1[m
+Merge: a0fcb0c ee21953
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Sun Nov 22 15:44:42 2015 -0500
+
+    Merge branch 'dev' into jg-user_dashboard
+    
+    Conflicts:
+    	Controller/UsersController.php
+
+[33mcommit a0fcb0c735244e0dac2ac5934dc63196d4f6ef01[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Sun Nov 22 15:42:07 2015 -0500
+
+    allies recent activity
+
+[33mcommit e33577689ec1ff081b6d4a89f3fa6b1fad91cccc[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Nov 20 15:35:15 2015 -0500
+
+    added phase helper and mission styles to user dash
+
+[33mcommit 9cf1528fdbbda888446e6c30a9f1187f2512d909[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Nov 20 13:05:16 2015 -0500
+
+    get current mission on dash
+
+[33mcommit ee219531a7f562b2dc333d0452d750062cbe8fc7[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Nov 17 16:51:58 2015 -0200
+
+    enable evoke phase after creating a group
+
+[33mcommit a68a8fb33c5356d2624e4019a329a910ceaca45d[m
+Author: deckert <deckert@quanti.ca>
+Date:   Mon Nov 16 18:52:04 2015 -0200
+
+    user can go from act to evoke after creating a group
+
+[33mcommit 775832f2637796804dadea0c3ff6ca83518f3543[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Nov 10 18:58:01 2015 -0200
+
+    Switch phase from alert and from phases bar working!
+
+[33mcommit d34e56f7366a17be67fb91f87c846e535a593e02[m
+Author: deckert <deckert@quanti.ca>
+Date:   Mon Nov 9 16:12:11 2015 -0200
+
+    Change Language on fisrt page working
+
+[33mcommit b492861ad0501c6713b1f90281051640ea9887be[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Nov 6 17:23:21 2015 -0500
+
+    made things alot sassier
+
+[33mcommit e0abb3da0e5759c3386b37accf64ff507e816327[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Nov 6 16:27:04 2015 -0500
+
+    removed a console log
+
+[33mcommit ecd3ce6548f26dfed45753238d44d8ad1cfe3826[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Nov 6 16:25:48 2015 -0500
+
+    got rid of old foundation.css and moved to override file
+
+[33mcommit 1cfd99e84b51cb8b29d20b75226ad7c8824bc3f0[m
+Merge: 35da767 3ed7db1
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Nov 6 16:03:29 2015 -0500
+
+    Merge branch 'dev' into jg-add_compass_and_sass
+    
+    Conflicts:
+    	webroot/css/plugins/foundation.css
+
+[33mcommit 35da767036804aa8900517f1261b909c61d683f0[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Nov 6 15:59:22 2015 -0500
+
+    more settings
+
+[33mcommit 5b5dad13d52ecea780e98f12e70f25167d40cf7c[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Nov 6 15:48:21 2015 -0500
+
+    begin using settings.scss for foundation overrides
+
+[33mcommit 3ed7db12781fbeddccf08981e0f0283c160e9832[m
+Merge: f0ce07d 2011d69
+Author: deckert <deckert@quanti.ca>
+Date:   Fri Nov 6 17:34:27 2015 -0200
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit f0ce07dc14b78878348928f4ca0523a3ec190a6c[m
+Author: deckert <deckert@quanti.ca>
+Date:   Fri Nov 6 17:33:21 2015 -0200
+
+    progression between act and evoke phase working
+
+[33mcommit 8bea50b4e672fd83b5e127732be9957627085bab[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Nov 6 13:11:42 2015 -0500
+
+    got rid of old dir
+
+[33mcommit 2011d69c081c38583774f4b8b87cfb9957dd0d45[m
+Merge: 8f10033 edcc2df
+Author: msoledade <msoledade@quanti.ca>
+Date:   Thu Nov 5 09:07:12 2015 -0200
+
+    Merged in jg-git_remerge (pull request #2)
+    
+    This should bring back basic_training
+
+[33mcommit edcc2dfb4103565e974a036309814eb6341a0a8a[m
+Merge: 8512ac3 8f10033
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Wed Nov 4 19:47:07 2015 -0500
+
+    Merge branch 'dev' into jg-add_basic_training
+    
+    Conflicts:
+    	Controller/MissionsController.php
+    	View/Common/view-mission.ctp
+    	View/Elements/Missions/basic_training_tour.ctp
+    	View/Missions/basic_training.ctp
+    	View/Missions/index.ctp
+    	View/Missions/view_mission.ctp
+    	webroot/css/plugins/foundation.css
+    	webroot/js/requirejs/app/Elements/Missions/basic_training_tour.js
+    	webroot/js/requirejs/bootstrap.js
+
+[33mcommit 8512ac32b345d915b6b9a48d54d34d67fef89d3f[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Wed Nov 4 19:26:21 2015 -0500
+
+    tabs -> spaces
+
+[33mcommit da945360d4828f79087b35444b81abbf7a55b6d0[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Wed Nov 4 14:13:02 2015 -0500
+
+    got rid of redundant css files
+
+[33mcommit 298b66aafab370c1d6ab4b4e2bad922422e0aa59[m
+Merge: ed85edd 8f10033
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Wed Nov 4 14:12:04 2015 -0500
+
+    merging in dev
+
+[33mcommit ed85edd7287a55c4682b25230e51d5a26aacb1fc[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Wed Nov 4 14:08:37 2015 -0500
+
+    Added gasic grunt to project
+
+[33mcommit 7e308a7f9a8b21a3ff87498f19164487dc45da2c[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Wed Nov 4 13:44:57 2015 -0500
+
+    partialize some sass
+
+[33mcommit 88c7e859a4c69785b5262ce2fa4c9131825f2916[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Wed Nov 4 13:38:19 2015 -0500
+
+    created separate stylesheets directory
+
+[33mcommit 2eb1b945ab43d42b6976b3525fbb5f5294141903[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Wed Nov 4 13:37:45 2015 -0500
+
+    ignore sass-cache
+
+[33mcommit 6a91d71aa94d6c4e6b4b280dd6c3f4825e8d0681[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Wed Nov 4 12:55:32 2015 -0500
+
+    added scss directory
+
+[33mcommit 8f100339bb1a2ef4704a2377d5df89e36166c6d6[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Nov 4 15:47:29 2015 -0200
+
+    error on submitting evidence, corrected
+
+[33mcommit 481d6f0c747c1c445410de1883e94049e1308c03[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Nov 3 17:55:32 2015 -0200
+
+    correcting merged content
+
+[33mcommit 8664f35b403e8aa2edd3d2dbca3a7e5f3c93e743[m
+Merge: 993bfe3 49071a6
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Nov 3 17:18:10 2015 -0200
+
+    still working on git error
+
+[33mcommit 49071a6aff1308aca376db9b6f6e85cd3b393f4e[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Nov 3 17:06:26 2015 -0200
+
+    more on git error
+
+[33mcommit 993bfe3346fa7de4870686e4e0ed9262b44e48d3[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Nov 3 17:03:36 2015 -0200
+
+    correct git error loose object
+
+[33mcommit 4ecadb6f484b437a5975e124dceff915d694d05a[m
+Merge: 224ab40 1e7617a
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 16:02:37 2015 -0400
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into jg-add_compass_and_sass
+
+[33mcommit 1e7617a5273eca2c6dc7362f3a43235ed4e19718[m
+Merge: cce21cf 695373a
+Author: Jayant Gandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 15:56:07 2015 -0400
+
+    Merged in jg-add_basic_training (pull request #1)
+    
+    Jg add_basic_training
+
+[33mcommit 695373ae3800a756a4e07805f879e29e0b017d1e[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 15:55:39 2015 -0400
+
+    forgot one unclosed php tag
+
+[33mcommit ff14ad59a77730b90cd62c1092625f62a30c4724[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 15:50:04 2015 -0400
+
+    final indent fix
+
+[33mcommit 28fc4ee55efc070b589084e420eb65f7ca6cc948[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 15:47:10 2015 -0400
+
+    found an old joyride!
+
+[33mcommit 32c6f85a9a9dcda6f12e87b2e1c4a04b37a16d56[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 15:44:00 2015 -0400
+
+    more cleanup...I dont think we need this file though...
+
+[33mcommit 1bc7f69958199dfd184939aebf8292214129ba17[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 15:41:48 2015 -0400
+
+    more cleanup
+
+[33mcommit 3fce8274acfcc7a620c9ece1ec6dc6a5ea06dccb[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 15:38:13 2015 -0400
+
+    fix more indentation
+
+[33mcommit deac571c96fe6281bd9131340c511d698e28ed41[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 15:36:34 2015 -0400
+
+    undo some changes I forgot about
+
+[33mcommit 6cbb8f283ac955f1fd2f3d1c7ed858403ac18b14[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 15:35:06 2015 -0400
+
+    fix some indentation
+
+[33mcommit 46a3251ed5f1e42f171ecf768105ab698764cf44[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 15:32:54 2015 -0400
+
+    changed some text
+
+[33mcommit 62fccbc22c0557109dfab19ff0850e575e850ae2[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 15:20:59 2015 -0400
+
+    use i18n
+
+[33mcommit 723206dffd521f737270bf0fa842d077c291361f[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 14:39:44 2015 -0400
+
+    added comments
+
+[33mcommit 64d79d15f760ffe58f79b4880bc174285f4f1e91[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 14:25:33 2015 -0400
+
+    typo
+
+[33mcommit 224ab4050157cb6a73597bf4138bb9f3ff16ca42[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 14:24:11 2015 -0400
+
+    added a config.rb for compass
+
+[33mcommit e4f37185e9444a3a1612d052be23b50428978d05[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Fri Oct 30 14:19:40 2015 -0400
+
+    got the full ride working
+
+[33mcommit 96aaa6f112ddfe56b9ec19dcfa31cf960fbaeb12[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Thu Oct 29 17:43:41 2015 -0400
+
+    joyride minus scrolling
+
+[33mcommit 67a4a4f3017314c0bae82153f57d8891d4a67c3c[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Thu Oct 29 17:27:59 2015 -0400
+
+    got joyride working, now to tweak it around
+
+[33mcommit c9a7f77d408c8b8315dba0c27d42914fb17e8119[m
+Author: JayantGandhi <jayant.gandhi127@gmail.com>
+Date:   Wed Oct 28 16:52:20 2015 -0400
+
+    include basic training in the missions array
+
+[33mcommit aebf7404fe1a94a50ae57eee7fd35282b63c17e3[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Oct 28 16:13:37 2015 -0200
+
+    evokation part with images and links ready, youtube under construction
+
+[33mcommit cce21cf7cd9060a3eb19c12eae58a4d3ea98b5a1[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Oct 9 16:30:26 2015 -0300
+
+    Cleaning up a little code
+
+[33mcommit 077b29b24d0c13a773b73f22be1ebe47c483d57f[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Oct 9 13:55:29 2015 -0300
+
+    Cleaned up comments
+
+[33mcommit 2c33e937a80c8e88a1624fbeea855cc5d7c2f151[m
+Merge: ba66ce5 dd1e733
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Oct 8 20:14:02 2015 -0300
+
+    Merge branch 'cleaningup' into dev
+
+[33mcommit dd1e733e38a3187ba853e93e0d7ff0e128e467ea[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Oct 8 20:13:29 2015 -0300
+
+    Removed comments in models
+
+[33mcommit ba66ce5c76b1331246b07f98c636d5b3f7229203[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Oct 7 19:49:46 2015 -0300
+
+    Changed size of the login buttons -- now it fits the content!
+
+[33mcommit d2cb259e3e7a7e9387a45bd5fbf92153cc99b464[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Oct 7 19:48:19 2015 -0300
+
+    Changed view-mission's name to mission_layout
+
+[33mcommit d1e3efe4f42f36ed6761bdc64282e9a622a66deb[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Oct 7 19:18:50 2015 -0300
+
+    view other group's evokations  ready
+
+[33mcommit 7254ab6f59f1b120c33da38de02734717fe02647[m
+Merge: b02f69c 472e86e
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Oct 6 19:02:17 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit b02f69ca34e2637195a86f550fef6cd327dbb723[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Oct 6 19:01:13 2015 -0300
+
+    evokations list started
+
+[33mcommit 472e86e99d9cf51967bda8219b7c9d541b1259a7[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Oct 6 17:22:36 2015 -0300
+
+    Cleaning up most views (comments, old things
+
+[33mcommit bcb8876388aa40569da5397bd50b2255ab5911d4[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Oct 6 17:00:22 2015 -0300
+
+    Cleaning up controllers (commented code)
+
+[33mcommit 850b1134df7680b292b9d2ab616ce16c21828b3a[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Oct 6 16:46:38 2015 -0300
+
+    Improved click in buttons to choose evidence type
+
+[33mcommit 058da2a535d83e97c8fe56685549112c5c185160[m
+Merge: ca96646 daff69a
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Oct 6 16:28:26 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into cleaningup
+
+[33mcommit ca966467109e1738c549f4fb925f21d2faa461f3[m
+Merge: 0174bbb 67c704f
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Oct 6 16:27:24 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into cleaningup
+
+[33mcommit 0174bbb2aa702f913fac95c4133499d931f69b7f[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Oct 6 16:25:22 2015 -0300
+
+    Removed all references to powerpoints, came back with the panels used in the Admin area, and removed some console.log functions in js files
+
+[33mcommit daff69a087b384cdb812cb7d2664d916a042c765[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Oct 6 15:31:55 2015 -0300
+
+    mission bar for evokation changed
+
+[33mcommit a33126371e1f6110c221b5ecea13b85d210cb9b8[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Oct 6 15:24:23 2015 -0300
+
+    Revert "recovering from loose object"
+    
+    This reverts commit 67c704fea30f199150b0f4de99233020e49e49d7.
+
+[33mcommit 67c704fea30f199150b0f4de99233020e49e49d7[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Oct 6 15:09:52 2015 -0300
+
+    recovering from loose object
+
+[33mcommit 31ccda7b6b1c3bafa75b8f9a4c59e4693a538156[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Oct 5 19:52:21 2015 -0300
+
+    Cleaned up all the views, then deleted corresponding controllers, controller actions, and models. Did not test yet - do not merge with dev!
+
+[33mcommit ee38f01fa4af280f2dc7138375e7d2e8e4688527[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Oct 5 17:59:49 2015 -0300
+
+    Removed old, unused JS files
+
+[33mcommit 97b7df6d85591a3f632a760ccbbcd6c821a0fd30[m
+Merge: 0cf9a9f aa597da
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Oct 5 17:33:19 2015 -0300
+
+    Merge branch 'cleaningup' into dev
+    
+    Conflicts:
+    	Plugin/BrainstormSession
+
+[33mcommit 0cf9a9f8f65a229a0b141b49f26b071031596b64[m
+Author: deckert <deckert@quanti.ca>
+Date:   Mon Oct 5 16:59:28 2015 -0300
+
+    page Evokation Sent ready
+
+[33mcommit aa597dacd89f56a1ac099da1bc74bd48ea20464a[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Oct 5 16:57:35 2015 -0300
+
+    Deleted all the unused images and css, and changed path for css that overrides the css of plugins.
+
+[33mcommit 9f92cd2529c5adadcb9302b5ecb07012f08c41a6[m
+Author: deckert <deckert@quanti.ca>
+Date:   Fri Oct 2 17:25:38 2015 -0300
+
+    evokation preview and send working!
+
+[33mcommit 0f24ed122de8ac3eb0cff50bb02994872932ffca[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Oct 2 15:54:05 2015 -0300
+
+    Git ignore includes core.php
+
+[33mcommit 21b68c0ddc9382c022ca15e91c929a88d80031d2[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Oct 2 14:54:47 2015 -0300
+
+    Back with the matching questions and results
+
+[33mcommit a801f2c4cdc395a2a9f24e943b3c274ff07d3b31[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Oct 2 14:22:53 2015 -0300
+
+    Updated Spanish translation
+
+[33mcommit 28cacfc5f7de397ebd103ae7b64c74ec6a7ce39b[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Oct 2 14:06:41 2015 -0300
+
+    Open panels by default fixed(the problem was just a strict test instead of a normal one for a bool variable)
+
+[33mcommit e1408cb76cd289afcca11e14e6405d4e8f2eda6e[m
+Merge: 84b394c 348ff02
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Oct 2 14:01:26 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit 84b394c83e2ef9d90de1c784928009d77767198f[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Oct 2 14:01:07 2015 -0300
+
+    Loading more button in evidence list
+
+[33mcommit 348ff02bec82ac4581ea3dab79cb26c10fcbbeb7[m
+Merge: ef14da2 ab3ed29
+Author: deckert <deckert@quanti.ca>
+Date:   Fri Oct 2 12:30:32 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit ef14da24b1a0f63e9789430a8fdeaeba84bb3d7e[m
+Author: deckert <deckert@quanti.ca>
+Date:   Fri Oct 2 12:28:49 2015 -0300
+
+    testing image submission
+
+[33mcommit ab3ed29771c50eef0355dccd5d19fbed98b8ae62[m
+Merge: 6461cf7 8ff22e9
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Oct 1 19:50:27 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into bugs2015
+
+[33mcommit 8ff22e9655991f69f9bfc6fab6de6ecda70bc0ac[m
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Oct 1 19:07:53 2015 -0300
+
+    testing video evidence
+
+[33mcommit 6461cf77f6492b27df764b8f938ec7d7dad6d49a[m
+Merge: c45663c 6a5cb82
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Oct 1 19:06:22 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into bugs2015
+
+[33mcommit c45663cdd119712813f0b3f408239d57fb1369ca[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Oct 1 19:05:49 2015 -0300
+
+    In the last step of the brainstorm process, display top 3 ideas
+
+[33mcommit 6a5cb8217ac041f800573d04b405f157258a1df5[m
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Oct 1 18:31:31 2015 -0300
+
+    evokation part edit video/image testing 2
+
+[33mcommit ce338444cd0a60ed1581a2cc89a91fd0f8da68ce[m
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Oct 1 16:38:13 2015 -0300
+
+    evokation part edit video/image testing
+
+[33mcommit 3fc8aa5defc27dfbe1911dbd933e1d202d29d852[m
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Oct 1 16:25:55 2015 -0300
+
+    evokation part query corrected
+
+[33mcommit 2650fc9f4d26cebed07dd7ceaa34232e13bca637[m
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Oct 1 16:06:30 2015 -0300
+
+    Debug query evokation edit
+
+[33mcommit c2503bd42948a0741aa35b9d4f05b598956ba597[m
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Oct 1 15:26:16 2015 -0300
+
+    edit evokaiton part working
+
+[33mcommit 344c0883cd795d559817a0f163f93b80dc02f378[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Sep 29 15:53:17 2015 -0300
+
+    After sending an evokaiton part, user is redirected to preview evokation page
+
+[33mcommit b00b884932f86f0065cdcbeec541cd2aaa89bd20[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Sep 29 11:22:56 2015 -0300
+
+    Dossier tabs links fixed -- this change had been overwritten in previous commits
+
+[33mcommit 5b037ef34946265ede3e7c7c17bcc616db43684e[m
+Author: deckert <deckert@quanti.ca>
+Date:   Fri Sep 25 18:07:31 2015 -0300
+
+    Evokation preview almost done.
+
+[33mcommit e08299a0d6d5d075f6191fc9bd4937961f81ba37[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Sep 23 19:17:13 2015 -0300
+
+    Styling for evokation part fixed
+
+[33mcommit 14e3b6db4ed8e310c327a40b1b7c3a3c54cbbc4c[m
+Merge: b8a0f65 1b45840
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Sep 22 14:12:32 2015 -0300
+
+    Merge branch 'evokationPart' into dev
+
+[33mcommit 1b458405ef831a3f0da03a224f0277f459e76960[m
+Author: deckert <deckert@quanti.ca>
+Date:   Tue Sep 22 14:02:25 2015 -0300
+
+    show evidence main content in evokation part
+
+[33mcommit f1e0afc5a8d0d3a9866dd9b7db6496f7bf908876[m
+Author: deckert <deckert@quanti.ca>
+Date:   Fri Sep 18 16:52:38 2015 -0300
+
+    Evokation part creation page almost done
+
+[33mcommit b8a0f65c1a74cb5c25cc172a446374fe99cb807e[m
+Merge: 1db442f ca16b17
+Author: Gabriela <gscardine@quanti.ca>
+Date:   Thu Sep 17 18:09:44 2015 -0400
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit ca16b17f13818c52acb88cce1f518470000f8df4[m
+Merge: a61c955 f6e4752
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Sep 17 18:45:52 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit a61c955f9dab68e48b4006827d40f733d043f49f[m
+Author: deckert <deckert@quanti.ca>
+Date:   Thu Sep 17 18:45:22 2015 -0300
+
+    commit after several deckert's cahnges
+
+[33mcommit 1db442f5acb025cd2e6ffbba60a63ec1d2108222[m
+Author: Gabriela <gscardine@quanti.ca>
+Date:   Thu Sep 17 11:36:51 2015 -0400
+
+    following branch master in evoke submodules
+
+[33mcommit f6e47522dee85c1e716c3c1b5afa47d3fcdcdeef[m
+Author: Gabriela <gscardine@quanti.ca>
+Date:   Thu Sep 17 10:21:28 2015 -0400
+
+    INSTALL script for evoke, based on silabe's
+
+[33mcommit 5c6a7991713f67d53c9d10e3e82a77c592585f8a[m
+Merge: c9079b8 d963954
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Sep 11 16:43:53 2015 -0300
+
+    merge evidence form
+
+[33mcommit d9639549e8e376161d306bbec96d7b26741003de[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Sep 11 16:35:55 2015 -0300
+
+    Dossier tabs links fixed
+
+[33mcommit aff9a75c7149080e7b7da806a0f289bb3ef570bb[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Sep 11 15:21:07 2015 -0300
+
+    Fixed variable that switches the language of the badges text
+
+[33mcommit 10f90948f002c7928fc132b8c7ac1d5c260eee07[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Sep 10 19:47:35 2015 -0300
+
+    Badges depending on language
+
+[33mcommit c9079b8512988b8e0064a91311db287663c32e45[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Sep 2 19:10:28 2015 -0300
+
+    Alert fadout inserted at evoke.js
+
+[33mcommit 2482855a0b3aa442b54547f4b7f750843d3190e9[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Sep 2 16:51:37 2015 -0300
+
+    translation for groups menagement added, trad_js tested
+
+[33mcommit 4cdcc34c3bfbe20cd01b036f5139c48a6fa3a6ee[m
+Merge: 11f21d8 03281f6
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Sep 2 15:17:20 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit 11f21d8f21847a960cfdbd75602f69340bd376f3[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Sep 2 15:12:01 2015 -0300
+
+    Improved code clarity for unlocking phase message
+
+[33mcommit fa5dc088a57d26defea1addbd42b4c554c102a13[m
+Author: deckert <deckert@quanti.ca>
+Date:   Wed Sep 2 14:34:24 2015 -0300
+
+    all alert boxes localized (english and spanish)
+
+[33mcommit 7f266771723a0e3ab9f9da30b894f2028ae94be4[m
+Author: deckert <deckert@quanti.ca>
+Date:   Mon Aug 31 18:56:08 2015 -0300
+
+    i18next being initialized at evoke.js
+
+[33mcommit d438f850c5ae8d2f66dd246532731e822e94f916[m
+Author: deckert <deckert@quanti.ca>
+Date:   Mon Aug 31 18:29:12 2015 -0300
+
+    started localizing alert boxes' text
+
+[33mcommit 03281f68dbd829ec7b9d2a30d58d0ad0420e14a8[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Aug 24 07:12:58 2015 +0000
+
+    Badge descriptions in spanish
+
+[33mcommit b755bbe5c9a761f2e7353f0c948a7600fb98ba5b[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat Aug 22 22:18:49 2015 -0300
+
+    maioria dos bugs de grupos resolvidos. a verificacao se tem algum request pending eh temporaria (precisa colocar mission_id e phase_id redundantes na tabela group_requests
+
+[33mcommit f72c11d6e125b1dae7ac2cbfd5c1a9abb8d7c37e[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat Aug 22 19:49:20 2015 -0300
+
+    dossier per language
+
+[33mcommit e06b544040dedcf04fea604540ac26af2d367da7[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat Aug 22 18:09:41 2015 -0300
+
+    Fixed country in the db
+
+[33mcommit e0c53c63cf014e1501e6dc870003f8a9374d096a[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat Aug 22 18:09:01 2015 -0300
+
+    Fixed country in the db
+
+[33mcommit ca502bdeec46821259e0a13c678d2bd5e42aad6f[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat Aug 22 18:03:50 2015 -0300
+
+    edit profile with country and language working. also updated register form
+
+[33mcommit d2ad31e0511fb6e8a2cb04f9cd9db91fc42d6edf[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat Aug 22 17:49:39 2015 -0300
+
+    added back the element flash_message, because in some occasions it is used (don't know why). it's empty.
+
+[33mcommit e5298dcca2ec411f67d464afcbe67912a34dc11f[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat Aug 22 17:41:34 2015 -0300
+
+    landing page - some items in spanish now
+
+[33mcommit 76b7d638e91cd2f521ccb6f884b5649a826d6171[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat Aug 22 17:29:51 2015 -0300
+
+    view all css fixed
+
+[33mcommit fbd973a7d033c937066cfa9289d88f7dd891aeda[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat Aug 22 17:20:33 2015 -0300
+
+    adjustments in profile, added 'all users' page
+
+[33mcommit 43ac09733a68f77695d294fd9dbdfb503467e02a[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat Aug 22 16:28:12 2015 -0300
+
+    default language: spanish (for the playtest)
+
+[33mcommit 431f5e82df31d484f52e392b76a92ee4eaff2ea8[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat Aug 22 16:10:12 2015 -0300
+
+    user pictures padronizadas, leaderboard mais bonita, modal add allies no matching_results agora nao aparece
+
+[33mcommit 6e639d6c1caf542be5cc3d933a8453b0b1406693[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Aug 20 17:47:16 2015 -0300
+
+    Css: link nao eh mais cinza por padrao, bootstrap nao chama EventListeners antigos, Comment nao chama event listeners, pasta etherpad deletada
+
+[33mcommit 8a5bcb16a6783cdb3016171fa4455ed7946d74c9[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Aug 19 20:42:52 2015 -0300
+
+    updated translation
+
+[33mcommit 4b20f143c59437373416de2476aa7fa2bb0f0440[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Aug 19 20:13:21 2015 -0300
+
+    redirect from registering to matching results directly
+
+[33mcommit 586b1f18b3789970072de5212981cd5807b71813[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Aug 19 20:06:11 2015 -0300
+
+    input autofocus first page
+
+[33mcommit 413899ecb46626c92845c6681fa56abf70cde489[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Aug 19 19:59:06 2015 -0300
+
+    sign up button on topbar
+
+[33mcommit df3e4be046f5c49c6b1fc63b9eb610b31c19edeb[m
+Merge: 1ff71b2 1dd90ab
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Aug 19 19:05:57 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into bugs-gabi
+
+[33mcommit 1ff71b2fbce7aac568e353e630d0dbcc53cb3190[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Aug 19 19:04:45 2015 -0300
+
+    Leaderboard in profile does not show modal anymore
+
+[33mcommit 1dd90ab03074f29ed42bb514bd2dccf6006ab64f[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Aug 14 18:44:42 2015 -0300
+
+    potential allies only in my own profile, and in random order
+
+[33mcommit 3c29f86d814fdc501d991e786e4fc01ea58a9035[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Aug 14 18:39:13 2015 -0300
+
+    social networks bar updated
+
+[33mcommit f1992f5203fb49b6d2caea8de0778bedec8315e0[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Aug 14 18:29:45 2015 -0300
+
+    token iput plugin added, also profile adding allies now is beautiful
+
+[33mcommit db2d9b23665991a1355a4e7c2a74234f8aac3d56[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Aug 14 17:33:29 2015 -0300
+
+    updating the request tabs in group area, overriden by merge
+
+[33mcommit adcab4a0a7594defc081b8d96bf253d46a25807d[m
+Merge: 7391a25 ce67f7c
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Fri Aug 14 14:22:21 2015 -0300
+
+    merge with bugs
+
+[33mcommit 7391a251c3685f2fd5f6ae8bd0211f7f7e4f5111[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Fri Aug 14 12:38:11 2015 -0300
+
+    Bug in group area (act phase panel): requests pending are not displayed
+
+[33mcommit 8e317a58b2ca17005e88c1435b20c293dc54e1b8[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Fri Aug 14 12:10:16 2015 -0300
+
+    modal de adicionar usuario removido do profile.ctp, falta apagar o arquivo do element
+
+[33mcommit df901b8ccd335909ed32a59b28a58a566be91719[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Fri Aug 14 11:54:10 2015 -0300
+
+    modal de adicionar usuario removido do profile.ctp, falta apagar o arquivo do element
+
+[33mcommit ce67f7caf064911fab27c24dca58789cbab6e632[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Aug 13 16:50:00 2015 -0300
+
+    Panel group area now does everything with ajax -- remove group members, accept or decline user requests to join group.
+
+[33mcommit a7ea48841e82ab72051c302fe56a18914f958106[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Aug 12 20:23:40 2015 -0300
+
+    voltei com as cores do plugin mrmrs-colors, agora o bug no requestspending ja funciona, porem nao pra pagina individual da evidence, e tbm nao ta com ajax na pag de missao
+
+[33mcommit 946674bd6cf1aa666a8d902da81e0a564a4168ba[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Aug 12 19:02:11 2015 -0300
+
+    Ajax no like esta funcionando. EvokeData pra passar do php pro js ficou muito melhor!
+
+[33mcommit 7f9cbd9fbc5567d9137aa9c00539e64e0abc3c19[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Aug 11 19:14:02 2015 -0300
+
+    Comentarios em view-evidence consertados (apenas na versao ajax -- nao da pra comentar mais na pagina individual...
+
+[33mcommit 1f056a731513d228f63611a007a92c7e4c666327[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Aug 11 15:05:23 2015 -0300
+
+    Fixed evidence breadcrumbs
+
+[33mcommit ec54e923f299008f5c2883d1f02465f15a4b0026[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Aug 11 14:55:09 2015 -0300
+
+    Escondidos botoes de login com facebook/google
+
+[33mcommit 698032b934ecacbe7ee09c6e2f2fc814bf392fbf[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Aug 11 14:34:28 2015 -0300
+
+    New translation files
+
+[33mcommit f0704e62abe1f8349d69b4a760f671c39600aafe[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Aug 10 20:09:11 2015 -0300
+
+    autorender false antes do return
+
+[33mcommit 243c375c1b6313a51ba634035111a3876ba64a97[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Aug 10 20:07:52 2015 -0300
+
+    Changed delete evidence ico
+
+[33mcommit 177b810bd07a410e60a5e1db13c1ec2569a919ce[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Aug 10 19:56:47 2015 -0300
+
+    changed URL
+
+[33mcommit 3f870f96890f09f42810b91cbb6d57a1a936e586[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Aug 10 19:53:52 2015 -0300
+
+    All emails regarding group requests are done and beautiful
+
+[33mcommit c7396f6559f61c48655af7f53455a422e8a8aeb1[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Aug 7 18:20:12 2015 -0300
+
+    Algumas alteracoes no envio de email, mas ainda falta coisa
+
+[33mcommit eadffe2f6d0a9861fd876d1eb60a8b69b7e49cf3[m
+Merge: 7bd9f8f 3367ae9
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Aug 7 15:08:43 2015 -0300
+
+    Merge branch 'check_phase' into traducao
+
+[33mcommit 3367ae994aa3c283bd27ff0c5d6995028fd83df3[m
+Author: Renata Japur <rjapur@quanti.ca>
+Date:   Fri Aug 7 16:09:04 2015 -0300
+
+    parte de email pra grupo e alert box
+
+[33mcommit 7bd9f8f7b2a175bc4397e9478edecd9af4779cf8[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Aug 7 15:05:17 2015 -0300
+
+    Language switcher in different order now
+
+[33mcommit d9407a331208750759f9e0b392154cec6cce3aeb[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Aug 6 20:43:51 2015 -0300
+
+    Translation of platform content (po files) and mission content (quests, novels etc.) now works
+
+[33mcommit b42a77f9a651a6721a5e969547b44f31eaf768ab[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Aug 6 15:04:40 2015 -0300
+
+    Atualizacoes para a re desenvolver
+
+[33mcommit 7bfbae6729f858d7111d375474c48462e1e612e9[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jul 29 19:54:39 2015 -0300
+
+    Added dropdown for languages. Clicking does not work yet -- check if session variables are being set or not
+
+[33mcommit 95c60254f3190f3466b1103def80dc01ff4d9e8e[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jul 29 19:30:50 2015 -0300
+
+    Language support in CakePHP config and appcontroller. Checks language from browser in case none has been set yet
+
+[33mcommit e38aecf2b897921466aaa21ef4c649bfd3945a92[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jul 28 18:43:14 2015 -0300
+
+    Removing mrmrs-colors from layout
+
+[33mcommit b799b3a609dea751db72dda1702d280b5caf1038[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jul 28 18:27:39 2015 -0300
+
+    Removing unused plugins
+
+[33mcommit 981c8bd1de78d84610671961e4dd93923240cbd9[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jul 21 16:45:21 2015 -0300
+
+    removido etherpad, redis etc
+
+[33mcommit f336d6a7919bd496c920d7e13db78dc16d3f2348[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 30 17:48:13 2015 -0300
+
+    bug fixed when editing existing evokation part, bug fixed when emptying div mission-overlay-body (undefined getAttribute) -- error persists in other cases.
+
+[33mcommit 19b1f9373834f9a8cf49002c8456582cddd9fd89[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Jun 26 19:51:05 2015 -0300
+
+    evokation status with add and edit buttons working
+
+[33mcommit 9adcd9f5f71cfec7ccc63c176361d3f749f59757[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Jun 25 18:51:24 2015 -0300
+
+    evokation status com link pra adicionar e editar. adicionar funciona, editar ainda nao, pq pra cada quest eh preciso pegar a evidencia correspondente, criada pelo grupo
+
+[33mcommit 7cc30c34952a5cb6b8b00ea12ca1a4dee7826f75[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 24 21:45:23 2015 -0300
+
+    evokation status list is now more real
+
+[33mcommit c8de62b22820ea2d0f41759834d2ce65919e8a44[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 24 17:48:05 2015 -0300
+
+    profile page adjusted
+
+[33mcommit 916d811fb9dfdc0aaa858245d885e83f66fada87[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 24 17:38:24 2015 -0300
+
+    id with question id
+
+[33mcommit 8005d7a99a5dd804eeccdc06ce1bf22da78cf744[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 24 17:37:45 2015 -0300
+
+    sortable is class, not id, so many can stay in the same page
+
+[33mcommit 56a18e556074359c7dc54511671b2a858a61bc22[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 24 16:27:00 2015 -0300
+
+    ordering questions
+
+[33mcommit 0674b3d5f1eb0a0c23441775504cfc578efc4428[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 24 14:50:03 2015 -0300
+
+    matching questions ready
+
+[33mcommit fe631ec04ec9bd396278336da9712697404cc64b[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 23 19:28:17 2015 -0300
+
+    matching questions and dossier updated
+
+[33mcommit 70fa5083bf89b9948bbd4b69589634d5ab1c458a[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Jun 18 11:34:06 2015 -0300
+
+    evokation_part is a type of evidence
+
+[33mcommit ccfac6916f9487c3bdd81d7742c2512a2d6fdf93[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 17 15:43:12 2015 -0300
+
+    full-height main content panel
+
+[33mcommit 552c0210941da5d1ee4542fdd955c690cc0f6f77[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 17 15:40:38 2015 -0300
+
+    throttle fixed
+
+[33mcommit d2e39e02ff70d8041e3fa8678fdf12a24695fe71[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 17 12:28:15 2015 -0300
+
+    fixed error because of Group array divergence with View
+
+[33mcommit 0d73123df64a34ac1f6e889dc6d9e34fbc61b60e[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 17 11:47:26 2015 -0300
+
+    now it does not generate errors when checking if group phase has been completed
+
+[33mcommit 20bf56d0a27c143fe48c803e96040e5a5b22b21e[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 17 11:23:42 2015 -0300
+
+    loading animation adicionada, e retirado console log do link preview
+
+[33mcommit 4f65475d2ea3a86d2488f27e6ac0db4b02f48879[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 17 11:05:42 2015 -0300
+
+    sweet alert color not overriden by normal h2 color anymore
+
+[33mcommit bbb845c2fea5aa0d380f6a3fa9b8fea3ad9f998c[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 16 18:13:58 2015 -0300
+
+    fases em grupo: todos no grupo precisam ter terminado todas as quests
+
+[33mcommit 51923cbc5db9c6a835c5464b7deeafb3f468ba8b[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 16 14:25:58 2015 -0300
+
+    group box com titulo quando vc ve na tab quests
+
+[33mcommit d9426b16a0a7b0a13652f0c71f3f5c5127533582[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 16 11:58:14 2015 -0300
+
+    Phase progression - main content updating
+
+[33mcommit bae3831b35efa1708685f933ac85390519407eec[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 15 10:24:28 2015 -0300
+
+    phases almost complete
+
+[33mcommit d3599b1c955a5b226738127f3fb4edf58a46442a[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 15 09:24:02 2015 -0300
+
+    sample form flag
+
+[33mcommit d97dcda0f6045706c587bc6343f6e72bf7e5a4f9[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 15 09:16:10 2015 -0300
+
+    preview evidence submit button not clickable
+
+[33mcommit 48daf14fae89ac96fe8577c8dfc06c492bc4762d[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 15 09:11:21 2015 -0300
+
+    sample form - no subimitting but seeing form
+
+[33mcommit 73f20d8da70a6292f1da3d037f4a0b4f82ac1e26[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 15 01:33:10 2015 -0300
+
+    enter site steps updated
+
+[33mcommit 03442d07f2298880cec4453271f51ca35ce36a1d[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 15 01:25:32 2015 -0300
+
+    retirado botao de ver discussao do grupo da group area
+
+[33mcommit da7ac8ff9e3b0fc6b7c7115da4952442695dcafe[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 15 01:15:43 2015 -0300
+
+    fixed webroot to be the absolute path in global variable defined in layout
+
+[33mcommit ccef678b70034aa79113d405cafb2a10bf3b7375[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 15 01:08:31 2015 -0300
+
+    teste com url absolute
+
+[33mcommit 8d418378858bc959fd7ae79a2e6cc39586246469[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 15 01:03:25 2015 -0300
+
+    Link para forum consertado com url absolute
+
+[33mcommit cce9a74a3c6094518a7ed9907588d201172de1c7[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sun Jun 14 20:42:36 2015 -0300
+
+    fixed view_sample
+
+[33mcommit 4e76817fbcba72062c45ed230540384e0db81b3c[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri Jun 12 12:18:05 2015 -0300
+
+    group forum in phases with groups
+
+[33mcommit 1bf84205acff7233cccb3fc8e13ba7eb44a18c32[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Jun 11 21:11:22 2015 -0300
+
+    Forum do grupo x forum do evoke geral
+
+[33mcommit 0766f303aaaadbf266429a1fed3b56641e71b2fa[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Jun 11 16:03:00 2015 -0300
+
+    Usando behavior ForumFilterable do ForumOptimum, assim fica bem facil encontrar foruns relacionados a um model qualquer do Evoke
+
+[33mcommit 8d3b54a64344d9381f9f85ad669a1b714a1922e6[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Jun 11 14:55:39 2015 -0300
+
+    consertado aparecer mission description in phase 1
+
+[33mcommit 25725cd8f48c41c030eca786cc02c3e3de8d2d86[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 9 18:59:58 2015 -0300
+
+    message after group creation
+
+[33mcommit e2ffb127549a4cc8cf9620b0392031e485225e89[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 9 18:49:43 2015 -0300
+
+    removing edit evidence button for a while
+
+[33mcommit 7af337d8cbdfaecdc511c9df41919dd90022b7ab[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 9 18:06:52 2015 -0300
+
+    Resolvidos erros com jqueryui e easings quando usava a funcao show vs removeClass hidden
+
+[33mcommit 25173c04fc44ddbce781c2968b348f0274dc011b[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 9 14:27:40 2015 -0300
+
+    group leader in request tabs
+
+[33mcommit fb5736d7540ca2623042788c3072582d77eb8a9e[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 9 14:19:36 2015 -0300
+
+    delete groups user working and group view as well
+
+[33mcommit 68e7627947ef082818bfef3a4c2d08ba7f368fc5[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 9 14:18:38 2015 -0300
+
+    delete groups user working and group view as well
+
+[33mcommit 80b17c5868f15fdce306f6ccfff6d2d2f52e8fc4[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 9 14:12:16 2015 -0300
+
+    Remove user from group working
+
+[33mcommit 0720f7b0df93590f8b9294499a93945bf9c23e2a[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 9 13:47:03 2015 -0300
+
+    Show mission info when user has no group
+
+[33mcommit 0680ee851889a1c0b2da60b59865583216e54d59[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 9 13:36:14 2015 -0300
+
+    teste para subir pro evokenet
+
+[33mcommit 6e31a3e8cd659dab2a33a645445915a21eb78ba4[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 9 13:15:40 2015 -0300
+
+    Mudanca de versao do sweetalert
+
+[33mcommit 5196a9a33d3ebbbe0df8334b9055db47a03d86c7[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 8 17:50:09 2015 -0300
+
+    panels opening by default in advanced phases
+
+[33mcommit 7c2199b63fe5a18cfbd8d62e9da10afdbaa47d6a[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 8 16:52:28 2015 -0300
+
+    Forum query fixed to show forum link in the menu
+
+[33mcommit bc8c57b45a492e0dcb6fff826522fa5220406d3e[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 8 16:08:04 2015 -0300
+
+    Mudados os relacionamentosos de Group com Users para identificar Leader e Members. Atualizadas queries em view_mission no missions controller pra procurarem detalhes soh dos grupos que faco parte.
+
+[33mcommit 56dd398c04ff50ff40feb1c1b970e64b6a93cd39[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 8 13:59:49 2015 -0300
+
+    Group related to a missioion in BD and models
+
+[33mcommit 754928e9fa8a332e20c6938e029a498aba1298f1[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Jun 4 21:18:51 2015 -0300
+
+    testing if group can be associated with mission and not phase
+
+[33mcommit 9f92691b7e339ae55c04dbf8bcfec65333723189[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Jun 4 20:58:58 2015 -0300
+
+    Profile page fixed finally
+
+[33mcommit a05c1e6e55ad6e6939501fca1dadd658b2d7c20f[m
+Merge: f4a54c1 799642e
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Jun 4 19:18:09 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit f4a54c1e1bcdb659054e4dba8ee2d4d3b641ad03[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu Jun 4 19:17:32 2015 -0300
+
+    Fixing git repository after loose object problem
+
+[33mcommit 799642e386ca4a80c5c8b24e40512cfe0e6e19a3[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 3 19:06:43 2015 -0300
+
+    Tentanto pegar o grupo na fase evokation
+
+[33mcommit f786f7345d508ea7abd59b41a4203f89b91e1874[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 3 16:49:33 2015 -0300
+
+    Evidence type link fixed for main_evidence instead of main-evidence
+
+[33mcommit 9a26c7c5568ac90e6b1bd1465e40daa089f222fb[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed Jun 3 16:42:24 2015 -0300
+
+    Mudanca no schema para git status
+
+[33mcommit fd0b0d38dcb92c73ace3a3db3f6980ae6b36ac38[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue Jun 2 19:29:33 2015 -0300
+
+    Group area is now much more organized and legible
+
+[33mcommit 719c5062518751b60d362987ca4457ecb79203e4[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 1 20:11:25 2015 -0300
+
+    evokation area marked
+
+[33mcommit 76943159cefdaf3d5ea6fab8d3740216ab34acd1[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 1 20:09:25 2015 -0300
+
+    Group area in ACT phase
+
+[33mcommit 9da98ac6ca58b8bb78f38f1504111bc302777adf[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon Jun 1 16:09:36 2015 -0300
+
+    Got rid of a million unused elements, created an element for loading animation, created a view for phase explore, changed rating/share bar in view-evidence so that it does not cover any of the evidence content
+
+[33mcommit 0fdb4adaf4de902c4b56c55c96063dc27fe87c1f[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 29 19:39:54 2015 -0300
+
+    View group is working (ugly ut working)
+
+[33mcommit 32007fef86dbaac443149a5e9448f91cc1e228e8[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 29 18:03:25 2015 -0300
+
+    Improved comments
+
+[33mcommit 0948b1fdb076954cc70ddcab13821ac10a5511cd[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 29 17:58:42 2015 -0300
+
+    Ajax requests trying 3 times by default
+
+[33mcommit 5d34c55f2f088764c86d63fe266bf4fde1fcad4f[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 29 15:49:34 2015 -0300
+
+    quest type evokation in view
+
+[33mcommit 08f2f45ff43e54dc4571c551d7c9e55f5a49ea71[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 29 15:27:59 2015 -0300
+
+    Adicionados comentarios as no schema quando as colunas sao int pra representar alguma informacao obscura, e utilizado o enumerable behavior para Phase
+
+[33mcommit 56dd787de005728b0136b417417a37ada2da3949[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon May 25 18:04:45 2015 -0300
+
+    Adding group shows link to group forum in the left menu with icons -- but for now there's no way to retrieve group forums in the controller
+
+[33mcommit 6bdddfb07d531662fadf9e707aff31b106dba9e8[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon May 25 11:47:28 2015 -0300
+
+    Fixed error - email template had wrong server name
+
+[33mcommit 4bdd4cf25239443b00d2ef8a9336a752710fc626[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon May 25 11:42:16 2015 -0300
+
+    Fixed mistake -- action send to join a group received wrong variable
+
+[33mcommit 0627ec1546461c8998c53e943d303bf0fc131c27[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon May 25 11:15:37 2015 -0300
+
+    Topbar login com botoes melhor alinhados
+
+[33mcommit d982e6fafadf9fd592ffa7339223e7f84558bda6[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 22 21:50:20 2015 -0300
+
+    join to test group_creation fixed
+
+[33mcommit 29773c80e0eb6107ec1ffa2436f3b217b62b13b0[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 22 21:42:40 2015 -0300
+
+    tentando identificar problema
+
+[33mcommit 63b4a8b92972079ab5134a44d9312bf8860a3172[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 22 21:37:42 2015 -0300
+
+    groups controller add groupsuser nao funcionando no evokenet
+
+[33mcommit 0b89f705c93242f16e0dec617bdeab51b933eca4[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 22 21:28:19 2015 -0300
+
+    no redirecting after group is created
+
+[33mcommit 34d36b0e11a7e2abfc1534c633baabaffd1d38e5[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 22 21:10:21 2015 -0300
+
+    no redirecting after group is created
+
+[33mcommit e432b5288b3adca9d1e3ea81168086fce8e00594[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 22 21:01:47 2015 -0300
+
+    add group button with moree space, button.small style changed
+
+[33mcommit 4c9f0cfef467923660a812c4e207dbb2bdc0626e[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 22 21:00:44 2015 -0300
+
+    add group button with moree space, button.small style changed
+
+[33mcommit 1425e909e9a5667d22c21ec09c91b7e31f4dbfcf[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 22 20:47:42 2015 -0300
+
+    quest type group creation is now 3, because that's how it was before
+
+[33mcommit 1b2303146e2261b4f87976ef94598d431fee082f[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 22 20:32:44 2015 -0300
+
+    git submodules com brainstorm session evoke
+
+[33mcommit 1856fb412bcd083f31841cc8cc6b49f05b82efc0[m
+Merge: ff595ae acf9889
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 22 20:10:53 2015 -0300
+
+    merged
+
+[33mcommit acf98890d556e88dbdd1fd6a19938e1b5b4da413[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 22 20:03:33 2015 -0300
+
+    finalizadas respostas a diferentes tipos de quest (evidencias, criacao de grupos, brainstorm etc.). Also adjusted buttons that redirect to other pages while they should stay in the mission panels
+
+[33mcommit c63c3bcb5b2942fc05f73826e591d1a86aecf154[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu May 21 01:11:02 2015 -0300
+
+    When group is created, brainstorm and associations are created as well. When the tab quests is reloaded, the same tab is made active again. The workflow between adding a group and completing a brainstorm now works completely -- only have to adjust buttons that redirect to other pages while they should stay in the mission panels
+
+[33mcommit 512d3dc5df4c0809d41e2db97d630fc46eceefda[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 19 19:23:22 2015 -0300
+
+    Variaveis javascript printadas no PHP como um modulo do require, varias coisas do tipo de quest response
+
+[33mcommit 4b62715e158bd795ed6c519402fdcab07945c68c[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon May 18 16:03:26 2015 -0300
+
+    Mudanca no schema para que as quests tenham ordem definida (assim como phases, elas agora tem um campo position, e tambem sao ordenadas por ele por default). O conteudo do painel quests dapagina view_mission agora eh carregado dinamicamente, assim ele pode ser tambem atualizado dinamicamente quando o usuario envia um request para entrar num grupo (e tambem num caso que falta fazer: quando o usuario completa um passo do brainstorm). O request para entrar num grupo ja funciona com adaptacao do codigo antigo e envia um email com layout reconfigurado. Falta soh arrumar a view index dos grupos, e tambem no painel de quests soh mostrar os grupos em que nao estou
+
+[33mcommit 4de0674bac75e8ac0593bb3a67d449dd5a31b85f[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 15 18:29:19 2015 -0300
+
+    quest type agora eh enum, eh um tipo diferente de quest pra evidence, brainstorm, evokation, ou criacao de grupo, e ja esta mostrando algumas coisas dos grupos na tab quests
+
+[33mcommit 9e5ef78580c7660c478c062a1ad09d8e46aa21ad[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 15 12:21:23 2015 -0300
+
+    added  const PENDING = 0;
+
+[33mcommit 74d811bff2b4b49f18aa7b22ad017836e83ec0fe[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu May 14 19:58:42 2015 -0300
+
+    Retiradas configuracoes da view-mission e inseridas em brainstorm-session-evoke
+
+[33mcommit ff595ae6bd8cbf7598da1493b289b013c937bead[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu May 14 02:58:25 2015 -0300
+
+    resize foundation grid for mission
+
+[33mcommit 2082c2f05604f98c093f4cf0fe5ef66ccf4c01fe[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu May 14 02:46:17 2015 -0300
+
+    Mudancas no esquema, controllers, models, e views para mostrar o brainstorm
+
+[33mcommit 32c6e0b7b7eb2f8c033feb5533f48edc97fca622[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 12 15:25:10 2015 -0300
+
+    voltei a usar o brainstorm component no missions controller
+
+[33mcommit e73f3b3c99ced4c4d2ab7f97186ad20139ec1706[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 12 12:34:07 2015 -0300
+
+    botoes clicaveis fake para o bob ver como ficaria
+
+[33mcommit 0105d0008158924e7eafe119b43e224bda1ab8db[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 12 11:14:01 2015 -0300
+
+    Teste apos git loose objects problem (meu carma)
+
+[33mcommit ed0f5c88f4cec5378f0d30012595def3110796d0[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon May 11 20:53:41 2015 -0300
+
+    Using component from BrainstormSessionEvoke to generate timeline states
+
+[33mcommit 9089ae8cf3b40b7184511ce01eb0eb6aa741fd99[m
+Merge: 6a69736 bf06dc7
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon May 11 16:59:32 2015 -0300
+
+    Merge branch 'dev' of bitbucket.org:quantica/evoke2014 into brainstorm
+
+[33mcommit bf06dc70ee705bd74846d256901a3c14a208c6a0[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon May 11 16:59:14 2015 -0300
+
+    Disabled buttons in phases menu bar do have tooltips now (before they were not appearing because a disabled button has pointer-events disabled as well)
+
+[33mcommit 6a69736f95d9c967d90c4c938a30324f5dd11b76[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon May 11 16:14:05 2015 -0300
+
+    changes in plugin brainstorm-session
+
+[33mcommit 0ff74e6cb262e91c36b065dd95c2cdab64216719[m
+Merge: 705041e dea9fba
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat May 9 01:06:16 2015 -0300
+
+    Merge branch 'brainstorm' of bitbucket.org:quantica/evoke2014 into dev
+
+[33mcommit dea9fba4ac0d37b1f1e4469b1db2e0f10411b8d0[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Sat May 9 00:40:14 2015 -0300
+
+    view-mission chamando action add do plugin BrainstormSession, que ja esta funcionando (mas com dados de group e brainstorm falsos)
+
+[33mcommit 29bec36ce8b1e36b92d3d37db9477f68c1315623[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 8 14:12:17 2015 -0300
+
+    Displaying Brainstorm timeline from brainstormsession plugin
+
+[33mcommit eac5177890b4576cfd43e629749adeb7b79944c7[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Fri May 8 10:46:42 2015 -0300
+
+    Added submodule as ./Plugin/BrainstormSession
+
+[33mcommit 705041eff8eb8cdead41ce383f45b47dce10d6e7[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu May 7 19:48:53 2015 -0300
+
+    active certo
+
+[33mcommit 22aab82addf7d43828b0f0636103b664fdb2ef79[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu May 7 19:48:17 2015 -0300
+
+    active certo
+
+[33mcommit 70cffbbf704de75745fcd0ddd7e7f8f4a2e79bee[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu May 7 19:46:46 2015 -0300
+
+    badges page now with content so that bob sees it
+
+[33mcommit 431d529f099872341f6e41adcb67d358c06d1ca6[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Thu May 7 19:11:54 2015 -0300
+
+    borda do menu badges nao estava indo ate o final
+
+[33mcommit 95a2bb9e9be595fe2f87170b0be41788ae658972[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed May 6 21:19:08 2015 -0300
+
+    event prevent default on click, and smooth scroll to achievements
+
+[33mcommit 9425bf208568d6ff7cb7ecd486263ffdcba3bdbe[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed May 6 18:26:44 2015 -0300
+
+    nao tem mais glow on hover na imagem na descricao da badge
+
+[33mcommit 6aecb6da588e44eb0d53b9f7e4a354e4e625fe83[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed May 6 18:25:41 2015 -0300
+
+    nao eh mais cor diferente caso a pessoa ja tenha a badge
+
+[33mcommit 936b10c07b319fb02ef9c8c8c3750fab1a9b07a9[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Wed May 6 18:18:38 2015 -0300
+
+    Badges com melhor visual, efefeitos, e funcionando responsivamente
+
+[33mcommit aaa952381e8e9fb5fc0b10107446661f71a6aa56[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 5 16:50:36 2015 -0300
+
+    badge click effect changed
+
+[33mcommit 95aae0775aa5cd59020775105cbe9ddff28deba6[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 5 12:18:08 2015 -0300
+
+    removing panelscontroller output
+
+[33mcommit 34010b07ed2f5764af6bbe6628f7d8b14e7552e5[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 5 12:17:06 2015 -0300
+
+    usermission containable
+
+[33mcommit 8dd30c9d754c11d75b6fecd058efd76821c8454a[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 5 12:16:10 2015 -0300
+
+    panel controller UserMission query updated
+
+[33mcommit 6cd2072a62ab02e74f9ba4ea7e4a628b016efdd8[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 5 12:15:29 2015 -0300
+
+    panel controller UserMission query updated
+
+[33mcommit b7aed6981722b682aa678ab1b4b14f57ba39da0c[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 5 12:14:09 2015 -0300
+
+    panel controller updated
+
+[33mcommit 7c078b30f827e6048c1a083dd584e9e61b46ad12[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 5 12:05:06 2015 -0300
+
+    make all other badges small
+
+[33mcommit 6cbad122e1c266627daf93da44448d5d1862fdb6[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 5 12:03:07 2015 -0300
+
+    make all other badges small
+
+[33mcommit dcc85e793d1080938d0894cde8220c4be8a2b88d[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 5 11:58:31 2015 -0300
+
+    atualizando index.js
+
+[33mcommit d09c548092b8f55482a13a42c9d5d4ab2bf6619d[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Tue May 5 11:55:34 2015 -0300
+
+    gave up on code
+
+[33mcommit 3cb07a2899b81f075d6d01547a34820f5e8a2c16[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon May 4 18:17:21 2015 -0300
+
+    badges funcionando
+
+[33mcommit 67000842c821b2e4a7a2d11880ac90cdd02f60fb[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Mon May 4 18:38:50 2015 -0300
+
+    Visual studio code setup
+
+[33mcommit 4a812b70c82b75c371a45ff303de326d7735c7cf[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Mon May 4 15:52:08 2015 -0300
+
+    Visual studio code setup
+
+[33mcommit 2aab4d732e7acacfa876ef92310c6da21abe7357[m
+Author: gscardine <gscardine@quanti.ca>
+Date:   Mon May 4 15:22:52 2015 -0300
+
+    console git commit
+
+[33mcommit 70f2dbf1cf70f1cdecd1e81aac26b4507cc86b6d[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Mon May 4 15:42:28 2015 -0300
+
+    Gitignore node_modules
+
+[33mcommit 44739f1dbeafc1d3b97225b9cb7ab8bc5904cab5[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Mon May 4 15:34:21 2015 -0300
+
+    Setting up visual studio code
+
+[33mcommit 56bb40d9f39ce9a960226354fa3410327df5d1e4[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Mon May 4 15:33:09 2015 -0300
+
+    Configurando visual studio code (nao deveria ter nenhuma mudanca)
+
+[33mcommit 10128341899986382a1d2a62dc641f1c346f32d6[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Mon May 4 15:20:04 2015 -0300
+
+    Setting up visual studio code (shouldn't have any impact)
+
+[33mcommit 74fb5775ca46b0ddd3bb33918170eda73e1404ba[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Mon May 4 11:37:00 2015 -0300
+
+    Create evidence of type link brings http;// as default, so that the user only completes the website address
+
+[33mcommit 94645496ee48bca27696ea8f644646e160f4c492[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Wed Apr 29 19:15:47 2015 -0300
+
+    badges with a little javascript to open skills and achievements
+
+[33mcommit 34c8ffa39d29b5af1f553cc2e516686068b54115[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Wed Apr 29 17:04:44 2015 -0300
+
+    leaderboard graph changed
+
+[33mcommit 1d74c71524dcd4c2c992d5a555665b89fd78686c[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Wed Apr 29 16:18:31 2015 -0300
+
+    consertado nao poder colocar foto de perfil ao se cadastrar
+
+[33mcommit 1bdd82f121f7ae7d69c076b30f22871e01a5aed8[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Wed Apr 29 16:05:48 2015 -0300
+
+    fixed requirejs bootstrap call error, fixed error when showing result of adding user
+
+[33mcommit e0931bcb42627c75c684a75442769526d72c07f0[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Tue Apr 28 17:33:05 2015 -0300
+
+    pagina badges mostrando alguma coisa, menu com leaderboard e badges
+
+[33mcommit 65222a62eebeafde3eb214d1a83044fc7fa0edc4[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Tue Apr 28 15:32:36 2015 -0300
+
+    go to my rank link working
+
+[33mcommit 5ab9eb3419364e565e54bd1cd8011d73c2551f32[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Tue Apr 28 14:36:19 2015 -0300
+
+    nao eh mais necessario fazer update all levels, era uma vez apenas. agora eh feito toda vez que adiciona-se pontos ao usuario
+
+[33mcommit 2f528104e7952e96176c56fdbc3bd1393ce1b585[m
+Author: Gabi <gscardine@quanti.ca>
+Date:   Tue Apr 28 14:32:45 2015 -0300
+
+    retirados testes

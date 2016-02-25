@@ -36,7 +36,7 @@
 
 <?php
   $this->start('topbar');
-  echo $this->element('top-bar-fixed');
+  echo $this->element('topbar-fixed');
   $this->end();
 ?>
 

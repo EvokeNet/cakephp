@@ -1,12 +1,12 @@
 <?php
   $this->start('topbar');
-  echo $this->element('top-bar-fixed');
+  echo $this->element('topbar-fixed');
   $this->end();
 ?>
 
 <div id="wrapper">
 
-		<?php echo $this->element('adminsidebar'); ?>
+		<?php echo $this->element('admin_sidebar'); ?>
 
     <!-- Page Content -->
     <div id="page-content-wrapper">

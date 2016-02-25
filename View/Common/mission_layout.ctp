@@ -11,7 +11,7 @@
 <!-- TOPBAR MENU -->
 <?php $this->start('topbar'); ?>
 <div id="missions-menu" class="sticky fixed">
-  <?php echo $this->element('top-bar'); ?>
+  <?php echo $this->element('topbar'); ?>
 </div>
 <?php $this->end(); ?>
 <!-- TOPBAR MENU -->

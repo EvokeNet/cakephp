@@ -1,7 +1,7 @@
 <?php 
 	/* Top bar */
 	$this->start('topbar');
-	echo $this->element('top-bar-login');
+	echo $this->element('topbar-login');
 	$this->end();
 
 	/* Image header */
@@ -10,7 +10,7 @@
 	$this->end();
 ?>
 
-<div class="row">
+<div class="row standard-width">
 	<div class="small-12 columns margin top-2 body-padding">
 		<h3 class="margin bottom-1"><?= strtoupper(__('Recover Password')) ?></h3>
 
