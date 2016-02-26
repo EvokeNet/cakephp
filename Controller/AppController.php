@@ -12,6 +12,11 @@
 
 App::uses('Controller', 'Controller');
 
+// Facebook Config
+session_start(); // para o SDK do Facebook funcionar
+use Facebook\FacebookSession;
+use Facebook\FacebookRedirectLoginHelper;
+
 /**
  * Application Controller
  *
@@ -237,7 +242,7 @@ class AppController extends Controller {
       'RU' => 'Russian Federation',
       'RW' => 'Rwanda',
       'KN' => 'Saint Kitts and Nevis',
-      'LC' => 'Saint LUCIA',
+      'LC' => 'Saint LUCIA',  
       'VC' => 'Saint Vincent and the Grenadines',
       'WS' => 'Samoa',
       'SM' => 'San Marino',
@@ -297,10 +302,6 @@ class AppController extends Controller {
       'ZW' => 'Zimbabwe'
       );
 
-      // Facebook Config
-      //session_start(); // para o SDK do Facebook funcionar
-      //use Facebook\FacebookSession;
-      //use Facebook\FacebookRedirectLoginHelper;
       public $facebook;
 
 /**
@@ -309,6 +310,16 @@ class AppController extends Controller {
 * @return void
 */
 	public function beforeFilter() {
+
+            FacebookSession::setDefaultApplication(
+                  Configure::read('FB_APP_ID'),
+                  Configure::read('FB_APP_SECRET')
+            );
+
+            $this->facebook = new FacebookRedirectLoginHelper(Router::url(array('controller' => 'users', 'action' => 'fbLogin'), true));
+            // if(empty($this->facebook)) $this->facebook = new FacebookRedirectLoginHelper(Configure::read('FB_REDIRECT_URL'));
+
+
 		//Determine language if not already determined
 		$this->_checkBrowserLanguage();
 		$this->language = $language = $this->getCurrentLanguage();
@@ -366,6 +377,7 @@ class AppController extends Controller {
 							 && $this->request->params['action'] != 'logout' // we have to allow it
 							 && $this->request->params['action'] != 'register' // also if user is registering
                                            && $this->request->params['action'] != 'recover_password' // also if user is trying to recover password
+                                           && $this->request->params['action'] != 'fbLogin' // also if user is trying to loging in by facebook
 							 && $this->request->params['action'] != 'matching_results'){
 
 			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId(),'admin' => false));
@@ -374,6 +386,12 @@ class AppController extends Controller {
 		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language','scores'));
 	}
 
+      public function beforeRender() {
+    
+            $facebook_login_url = $this->facebook->getLoginUrl(Configure::read('FB_SCOPES'));
+            $this->set(compact('facebook_login_url'));
+    
+      }
 
 /**
  * If no language was defined, read the browser language and sets the website language to it if available

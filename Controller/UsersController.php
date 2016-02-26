@@ -9,6 +9,10 @@
 // require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Service'.DS.'Oauth2.php';
 
 App::uses('AppController', 'Controller');
+use Facebook\FacebookRequest;
+use Facebook\FacebookRequestException;
+use Facebook\FacebookSession;
+use Facebook\GraphUser;
 
 /**
  * Users Controller
@@ -43,7 +47,7 @@ class UsersController extends AppController {
 */
   public function beforeFilter() {
     parent::beforeFilter();
-    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage','recover_password');
+    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage','recover_password','fbLogin');
   }
 
   // public function createTempPassword($len) {
@@ -97,6 +101,109 @@ class UsersController extends AppController {
     $this->set(compact('usr'));
     // die();
   }
+
+
+
+public function fbLogin() {
+    $this->autoRender = false;
+    $session = null;
+
+    try {
+      //debug($this->request);
+        if ($this->request->query('code')) {
+            $session = $this->facebook->getSessionFromRedirect();
+            //debug($this->facebook->getSessionFromRedirect());
+        }
+    } catch (FacebookRequestException $e) {
+    }
+
+
+
+
+    if ($session) {
+    $facebook_logout_url = $this->facebook->getLogoutUrl(
+      $session,
+      Router::url(array('controller' => 'users', 'action' => 'login'), true)
+    );
+
+
+
+    $this->Session->write('facebook_logout_url', $facebook_logout_url);
+        $request = new FacebookRequest($session, 'GET', '/me');
+        $profile = null;
+        try {
+            $response = $request->execute();
+            $profile = $response->getGraphObject(GraphUser::className());
+        } catch (FacebookRequestException $e) {
+        }
+
+        $user_fb = $this->User->find('first', array(
+            'conditions' => array(
+                'OR' => array(
+                    'facebook_id' => $profile->getId(),
+                    'email' => $profile->getEmail()
+                )
+            )
+        ));
+
+        if (!empty($user_fb)) {
+
+            if (empty($user_fb['User']['facebook_id'])) {
+                $user_fb['User']['facebook_id'] = $profile->getId();
+            }
+            // if (empty($user_fb['User']['photo'])) {
+            //     $user_fb['User']['photo'] = "http://graph.facebook.com/{$profile->getId()}/picture?type=large";
+            // }
+            if (empty($user_fb['User']['biography'])) {
+                $user_fb['User']['biography'] = $profile->getProperty('bio');
+            }
+            $this->User->save($user_fb['User']);
+
+            //FAZER LOGIN
+
+            if ($this->Auth->login()) {                
+                
+                
+                //LOG DE SUCESSO
+
+                // DAR REDIRECT
+
+
+            } else {
+                // LOG DE FALHA
+            }
+        } else {
+            $user_fb = array(
+                'User' => array(
+                    'facebook_id' => $profile->getId(),
+                    'name'        => $profile->getName(),
+                    'firstname'   => $profile->getProperty('first_name'),
+                    'lastname'    => $profile->getProperty('last_name'),
+                    'username'    => $profile->getProperty('first_name').$profile->getId(),
+                    'email'       => $profile->getProperty('email'),
+                    'password'    => AuthComponent::password(uniqid(md5(mt_rand()))),
+                    'birthday'    => date("Y-m-d", strtotime($profile->getProperty('birthday'))),
+                    //'photo'       => "http://graph.facebook.com/{$profile->getId()}/picture?type=large",
+                    'biography'   => "",
+                    'role'        => $this->Permission->scores_id()['USER']
+                )
+            );
+          
+          $this->Session->write('User', $user_fb);
+          $this->User->save($user_fb['User']);
+          
+          $user = $this->User->find('first', array('conditions' => array('User.id' => $this->User->id)));
+          
+          $this->Auth->login($user['User']);
+
+          // REDIRECT TO THE MATCHING PAGE
+          $this->redirect(array('action' => 'matching', $user['User']['id']));
+        }
+    }else{
+        $this->Session->setFlash(__('Houve um erro ao tentar se conectar com o Facebook. Por favor, tente novamente.'),'flash_failure');
+        debug("erro conexão facebook");
+    }
+}
 
 /**
  * login method

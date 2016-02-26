@@ -30,6 +30,10 @@
 				</li>
 				<li class="divider"></li>
 				<li>
+					<a href="<?= $this->Html->url($facebook_login_url) ?>">Login with facebook</a>
+				</li>
+				<li class="divider"></li>
+				<li>
 					<a href="<?= $this->Html->url(array('action'=>'recover_password')) ?>">Forgot password?</a>
 				</li>
 				<li class="divider"></li>
