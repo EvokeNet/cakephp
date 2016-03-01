@@ -76,6 +76,11 @@ CakePlugin::loadAll(array(
 ));
 
 /**
+ * Evoke Config
+ */
+Configure::load('evoke');
+
+/**
  * Events
  */
 App::uses('CakeEventManager', 'Event');

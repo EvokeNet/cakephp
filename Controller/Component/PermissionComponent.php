@@ -32,6 +32,22 @@ class PermissionComponent extends Component {
         
     }
 
+    public function scores_id(){
+        if(isset($scores)){
+            return $scores;
+        }else{
+           $role_class = ClassRegistry::init('Role');
+
+            $scores = array(
+                'ADMIN'=> $role_class->find('first',array('conditions' => array('name' => 'ADMIN')))['Role']['id'],
+                'USER' => $role_class->find('first',array('conditions' => array('name' => 'USER')))['Role']['id']
+            );
+
+           return $scores;
+        }
+        
+    }
+
     public function role() {
         $role_class = ClassRegistry::init('Role');
 

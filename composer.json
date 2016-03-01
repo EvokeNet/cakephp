@@ -21,7 +21,8 @@
         "markstory/acl_extras": "dev-master",
         "paulredmond/chosen-cakephp": "*",
         "ceeram/cakepdf": "1.0.1",
-        "aws/aws-sdk-php": "2.*"
+        "aws/aws-sdk-php": "2.*",
+        "facebook/php-sdk-v4" : "4.0.*"
     },
     "config": {
         "vendor-dir": "Vendor/"

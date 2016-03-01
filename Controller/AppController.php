@@ -12,14 +12,19 @@
 
 App::uses('Controller', 'Controller');
 
+// Facebook Config
+session_start(); // para o SDK do Facebook funcionar
+use Facebook\FacebookSession;
+use Facebook\FacebookRedirectLoginHelper;
+
 /**
  * Application Controller
  *
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
  *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
+ * @package       app.Controller
+ * @link          http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
 
@@ -28,36 +33,36 @@ class AppController extends Controller {
  *
  * @var array
  */
-	public $components = array(
-		'Session',
-		'Permission',
-		'Auth' => array(
-			'logoutRedirect' => array('controller' => 'users', 'action' => 'login','admin' => false),
-				'authError' => 'Você não tem permissão para ver essa página'
-		)
-	);
+      public $components = array(
+            'Session',
+            'Permission',
+            'Auth' => array(
+                  'logoutRedirect' => array('controller' => 'users', 'action' => 'login','admin' => false),
+                        'authError' => 'Você não tem permissão para ver essa página'
+            )
+      );
 
-	public $helpers = array(
-		'Chosen.Chosen', 'Text'
-	);
+      public $helpers = array(
+            'Chosen.Chosen', 'Text'
+      );
 
-	public $user = null;
-	public $lang = null;
+      public $user = null;
+      public $lang = null;
 
       public $sex = array(
-        0 => 'Male',
-        1 => 'Female'
+        0 => 'male',
+        1 => 'female'
       );
 
       public $languages = array(
         'pt_BR' => 'Português',
-        'en' => 'English',
+        'en_US' => 'English (US)',
         'es' => 'Español'
       );
 
-	public $countries = array(
-  	'BR' => 'Brasil',
-  	'US' => 'United States',
+      public $countries = array(
+      'BR' => 'Brazil',
+      'US' => 'United States',
       'AF' => 'Afganistan',
       'AL' => 'Albania',
       'DZ' => 'Algeria',
@@ -237,7 +242,7 @@ class AppController extends Controller {
       'RU' => 'Russian Federation',
       'RW' => 'Rwanda',
       'KN' => 'Saint Kitts and Nevis',
-      'LC' => 'Saint LUCIA',
+      'LC' => 'Saint LUCIA',  
       'VC' => 'Saint Vincent and the Grenadines',
       'WS' => 'Samoa',
       'SM' => 'San Marino',
@@ -297,114 +302,130 @@ class AppController extends Controller {
       'ZW' => 'Zimbabwe'
       );
 
+      public $facebook;
+
 /**
 * beforeFilter method
 *
 * @return void
 */
-	public function beforeFilter() {
-		//Determine language if not already determined
-		$this->_checkBrowserLanguage();
-		$this->language = $language = $this->getCurrentLanguage();
+      public function beforeFilter() {
 
-		//Info from the user that is currently logged in
-		$this->set('loggedIn', $this->Auth->loggedIn());
-		$cuser = $this->Auth->user();
-		$loggedInUser = $this->Auth->user();
+            FacebookSession::setDefaultApplication(
+                  Configure::read('FB_APP_ID'),
+                  Configure::read('FB_APP_SECRET')
+            );
+
+            $this->facebook = new FacebookRedirectLoginHelper(Router::url(array('controller' => 'users', 'action' => 'fbLogin'), true));
+
+
+            //Determine language if not already determined
+            $this->_checkBrowserLanguage();
+            $this->language = $language = $this->getCurrentLanguage();
+
+            //Info from the user that is currently logged in
+            $this->set('loggedIn', $this->Auth->loggedIn());
+            $cuser = $this->Auth->user();
+            $loggedInUser = $this->Auth->user();
 
             $scores = $this->Permission->scores();
 
-		$this->loadModel('Role');
+            $this->loadModel('Role');
 
-		if(isset($loggedInUser)){
-			$role = $this->Role->find('first', array('conditions' => array('id' => $loggedInUser['role_id'])))['Role']['score'];
-			$loggedInUser['role'] = $role;
-		}
+            if(isset($loggedInUser)){
+                  $role = $this->Role->find('first', array('conditions' => array('id' => $loggedInUser['role_id'])))['Role']['score'];
+                  $loggedInUser['role'] = $role;
+            }
 
-		// CHECK IF USER TRIES TO ACCESS ADMIN PANEL
-		if(isset($this->request->params['admin']) && $this->request->params['admin']){
-			$options = array(
-			'moderatorPrivilege' => false,
-			'minimumRole' => 'ADMIN',
-			'object' => null
-			);
+            // CHECK IF USER TRIES TO ACCESS ADMIN PANEL
+            if(isset($this->request->params['admin']) && $this->request->params['admin']){
+                  $options = array(
+                  'moderatorPrivilege' => false,
+                  'minimumRole' => 'ADMIN',
+                  'object' => null
+                  );
 
-			if(!isset($loggedInUser) || !$this->Permission->hasPrivilege($options)){
-				$this->redirect(array('controller' => 'users', 'action' => 'profile', $this->getUserId(),'admin' => false));
-			}
-		}
+                  if(!isset($loggedInUser) || !$this->Permission->hasPrivilege($options)){
+                        $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->getUserId(),'admin' => false));
+                  }
+            }
 
-		//User definitions
-		$userPoints = $this->getPoints($this->getUserId());
-		$userLevel = $this->getLevel($userPoints); //level ID
-		$userNextLevel = $this->getNextLevel($userLevel); //next level object
-		$userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
+            //User definitions
+            $userPoints = $this->getPoints($this->getUserId());
+            $userLevel = $this->getLevel($userPoints); //level ID
+            $userNextLevel = $this->getNextLevel($userLevel); //next level object
+            $userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
 
-		//Check if the user has answered the assessment questionnaire and redirect to it, if not
-		$this->loadModel('SuperheroIdentity');
+            //Check if the user has answered the assessment questionnaire and redirect to it, if not
+            $this->loadModel('SuperheroIdentity');
 
-		$superhero = $this->SuperheroIdentity->find('first', array(
-			'conditions' => array(
-				'id' => $cuser['superhero_identity_id']
-			)
-		));
+            $superhero = $this->SuperheroIdentity->find('first', array(
+                  'conditions' => array(
+                        'id' => $cuser['superhero_identity_id']
+                  )
+            ));
 
-		// debug($cuser);
-		// debug($superhero);
-		// debug($this->request->params['action']);
-		// die();
+            // debug($cuser);
+            // debug($superhero);
+            // debug($this->request->params['action']);
+            // die();
 
-		// check if the user has answered the asessment questionnaire and isn't doing it right now
-		if(empty($superhero) && $this->request->params['action'] != 'matching'
-							 && $this->request->params['action'] != 'login'  //also, if  the user is loging in or out
-							 && $this->request->params['action'] != 'logout' // we have to allow it
-							 && $this->request->params['action'] != 'register' // also if user is registering
+            // check if the user has answered the asessment questionnaire and isn't doing it right now
+            if(empty($superhero) && $this->request->params['action'] != 'matching'
+                                           && $this->request->params['action'] != 'login'  //also, if  the user is loging in or out
+                                           && $this->request->params['action'] != 'logout' // we have to allow it
+                                           && $this->request->params['action'] != 'register' // also if user is registering
                                            && $this->request->params['action'] != 'recover_password' // also if user is trying to recover password
-							 && $this->request->params['action'] != 'matching_results'){
+                                           && $this->request->params['action'] != 'fbLogin' // also if user is trying to loging in by facebook
+                                           && $this->request->params['action'] != 'matching_results'){
 
-			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId(),'admin' => false));
-		}
+                  return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId(),'admin' => false));
+            }
 
-		$this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language','scores'));
-	}
+            $this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language','scores'));
+      }
 
+      public function beforeRender() {
+            $facebook_login_url = $this->facebook->getLoginUrl(Configure::read('FB_SCOPES'));
+            $this->set(compact('facebook_login_url'));
+      }
 
 /**
  * If no language was defined, read the browser language and sets the website language to it if available
  *
  */
-	protected function _checkBrowserLanguage(){
-		if (!$this->Session->check('Config.language')){
-			//Languages supported in Evoke
-			$supported_languages = Configure::read('Config.supported_languages');
+      protected function _checkBrowserLanguage(){
+            if (!$this->Session->check('Config.language')){
+                  //Languages supported in Evoke
+                  $supported_languages = Configure::read('Config.supported_languages');
 
-			//Language(s) registered in the user's browser
-			$languageHeader = $this->request->header('Accept-language');
+                  //Language(s) registered in the user's browser
+                  $languageHeader = $this->request->header('Accept-language');
 
-			$lang = 'en';
-			if ($languageHeader) {
-				//Get just 1st language
-				$languages = explode(',', $languageHeader);
-				if (count($languages) > 0) {
-					$lang = $languages[0];
-				}
-				else {
-					$lang = substr($languageHeader, 0, 2);
-				}
-			}
+                  $lang = 'en';
+                  if ($languageHeader) {
+                        //Get just 1st language
+                        $languages = explode(',', $languageHeader);
+                        if (count($languages) > 0) {
+                              $lang = $languages[0];
+                        }
+                        else {
+                              $lang = substr($languageHeader, 0, 2);
+                        }
+                  }
 
-			//Browser language if it is supported
-			if (in_array($lang, $supported_languages)) {
-				$this->Session->write('Config.language', $lang);
-			}
-			//Default: spanish (for the playtest)
-			else {
-				$this->Session->write('Config.language', 'en');
-			}
-		}
+                  //Browser language if it is supported
+                  if (in_array($lang, $supported_languages)) {
+                        $this->Session->write('Config.language', $lang);
+                  }
+                  //Default: spanish (for the playtest)
+                  else {
+                        $this->Session->write('Config.language', 'en');
+                  }
+            }
 
-		Configure::write('Config.language', $this->Session->read('Config.language'));
-	}
+            Configure::write('Config.language', $this->Session->read('Config.language'));
+      }
 
 
 /**
@@ -412,206 +433,219 @@ class AppController extends Controller {
  *
  * @return string Current language registered in CakeSession
  */
-	public function getCurrentLanguage(){
-		return CakeSession::read('Config.language');
-	}
+      public function getCurrentLanguage(){
+            return CakeSession::read('Config.language');
+      }
 
 /**
  * Change current language in the platform
  *
  * @param string Language to be registered as current language in CakeSession
  */
-	public function changeLanguage ($lang) {
-		$this->autoRender = false;
-		$this->Session->write('Config.language', $lang);
+      public function changeLanguage ($lang) {
+            $this->autoRender = false;
+            $this->Session->write('Config.language', $lang);
 
-		$this->redirect($this->referer()); //in order to redirect the user to the page from which it was called
-	}
+            $this->redirect($this->referer()); //in order to redirect the user to the page from which it was called
+      }
 
-	public function isAuthorized($user = null) {
+      public function isAuthorized($user = null) {
 
-		if (!empty ($this->accessLevels)) {
+            if (!empty ($this->accessLevels)) {
 
-			$currentAction = $this->params['action'];
+                  $currentAction = $this->params['action'];
 
-			if(!empty ($this->accessLevels[$currentAction])) {
-				$accessLevel = $this->accessLevels[$currentAction];
-			} else if(!empty ($this->accessLevels['*'])) {
-				$accessLevel = $this->accessLevels['*'];
-			}
+                  if(!empty ($this->accessLevels[$currentAction])) {
+                        $accessLevel = $this->accessLevels[$currentAction];
+                  } else if(!empty ($this->accessLevels['*'])) {
+                        $accessLevel = $this->accessLevels['*'];
+                  }
 
-			if(!empty ($accessLevel)) {
-				return $this->UserRole->is($accessLevel);
-			}
+                  if(!empty ($accessLevel)) {
+                        return $this->UserRole->is($accessLevel);
+                  }
 
-			// Authorised actions
-			if (in_array($this->action, array('changePassword'))) {
-				$id = $this->request->params['pass'][0];
+                  // Authorised actions
+                  if (in_array($this->action, array('changePassword'))) {
+                        $id = $this->request->params['pass'][0];
 
-				if($this->{$this->modelClass}->field('user_id', array('user_id' => $id)) == $this->Auth->user('user_id'))
-					return true;
-			}
+                        if($this->{$this->modelClass}->field('user_id', array('user_id' => $id)) == $this->Auth->user('user_id'))
+                              return true;
+                  }
 
-			// Will break out on this call
-			$this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
-			$this->redirect(array('controller' => 'users', 'action' => 'changePassword', $user['user_id'],'admin' => false));
-			return false;
+                  // Will break out on this call
+                  $this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
+                  $this->redirect(array('controller' => 'users', 'action' => 'changePassword', $user['user_id'],'admin' => false));
+                  return false;
 
-		}
+            }
 
-		$this->setFlash(__('Você não tem permissão para ver essa página.'));
-		return false;
+            $this->setFlash(__('Você não tem permissão para ver essa página.'));
+            return false;
 
-	}
+      }
 
-	public function getNotificationsNumber($user_id){
+      public function getNotificationsNumber($user_id){
 
-		$this->loadModel('Notification');
-		$all = $this->Notification->find('all', array(
-			'conditions' => array(
-				'Notification.user_id' => $user_id,
-				'Notification.status' => 0,
-			),
-			'order' => array(
-				'Notification.created DESC'
-			)
-		));
+            $this->loadModel('Notification');
+            $all = $this->Notification->find('all', array(
+                  'conditions' => array(
+                        'Notification.user_id' => $user_id,
+                        'Notification.status' => 0,
+                  ),
+                  'order' => array(
+                        'Notification.created DESC'
+                  )
+            ));
 
-		$count = array();
+            $count = array();
 
-		foreach($all as $a => $n){
-			if(($n['Notification']['origin'] == 'like') || ($n['Notification']['origin'] == 'commentEvidence')
-				|| ($n['Notification']['origin'] == 'commentEvokation') || ($n['Notification']['origin'] == 'voteEvokation')
-				|| ($n['Notification']['origin'] == 'gritBadge')):
-				array_push($count, array('Notification.id' => $n['Notification']['id']));
-			endif;
-		}
+            foreach($all as $a => $n){
+                  if(($n['Notification']['origin'] == 'like') || ($n['Notification']['origin'] == 'commentEvidence')
+                        || ($n['Notification']['origin'] == 'commentEvokation') || ($n['Notification']['origin'] == 'voteEvokation')
+                        || ($n['Notification']['origin'] == 'gritBadge')):
+                        array_push($count, array('Notification.id' => $n['Notification']['id']));
+                  endif;
+            }
 
-		return $count;
+            return $count;
 
-	}
+      }
 
-	public function saveNotifications($notes, $user_id){
-		$this->loadModel('Notification');
+      public function saveNotifications($notes, $user_id){
+            $this->loadModel('Notification');
 
-		$all = $this->Notification->find('all', array(
-			'conditions' => array(
-				'Notification.user_id' => $user_id,
-				'OR' => $notes
-			),
-			'order' => array(
-				'Notification.created DESC'
-			)
-		));
+            $all = $this->Notification->find('all', array(
+                  'conditions' => array(
+                        'Notification.user_id' => $user_id,
+                        'OR' => $notes
+                  ),
+                  'order' => array(
+                        'Notification.created DESC'
+                  )
+            ));
 
-		$count = array();
+            $count = array();
 
-		foreach($all as $n){
-			$this->Notification->id = $n['Notification']['id'];
-			$this->Notification->saveField('status', 1);
-		}
+            foreach($all as $n){
+                  $this->Notification->id = $n['Notification']['id'];
+                  $this->Notification->saveField('status', 1);
+            }
 
-	}
+      }
 
-	/**
-	 * Gets the total number of points of a user
-	 * Uses a function in the User model
-	 * @param int $user_id User id
-	 * @return int Number of points
-	 */
-	public function getPoints($user_id){
-		$this->loadModel('User');
-		$userPoints = $this->User->getTotalPoints($user_id);
-		return $userPoints;
-	}
+      /**
+       * Gets the total number of points of a user
+       * Uses a function in the User model
+       * @param int $user_id User id
+       * @return int Number of points
+       */
+      public function getPoints($user_id){
+            $this->loadModel('User');
+            $userPoints = $this->User->getTotalPoints($user_id);
+            return $userPoints;
+      }
 
-	/**
-	 * Gets the level (just the number) that corresponds to a certain number of points
-	 * @param int $userPoints Number of points
-	 * @return int Level
-	 */
-	public function getLevel($userPoints){
-		$this->loadModel('Level');
-		$level = $this->Level->getLevel($userPoints);
-		// return $level['Level']['level'];
-	}
+      /**
+       * Gets the level (just the number) that corresponds to a certain number of points
+       * @param int $userPoints Number of points
+       * @return int Level
+       */
+      public function getLevel($userPoints){
+            $this->loadModel('Level');
+            $level = $this->Level->getLevel($userPoints);
+            // return $level['Level']['level'];
+      }
 
-	/**
-	 * Gets the next level
-	 * @param int $userLevel Id of the current level
-	 * @return object Next level (if there is one - else null)
-	 */
-	public function getNextLevel($userLevel){
-		$this->loadModel('Level');
+      /**
+       * Gets the next level
+       * @param int $userLevel Id of the current level
+       * @return object Next level (if there is one - else null)
+       */
+      public function getNextLevel($userLevel){
+            $this->loadModel('Level');
 
-		$nextLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
+            $nextLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
 
-		//There is a next level
-		if (isset($nextLevel['Level']))
-			return $nextLevel['Level'];
-		else
-			return null;
-	}
-
-
+            //There is a next level
+            if (isset($nextLevel['Level']))
+                  return $nextLevel['Level'];
+            else
+                  return null;
+      }
 
 
-	public function getUserImage($userid) {
-
-	}
-
-	public function getLevelPercentage($userPoints, $userLevel){
 
 
-		// $this->loadModel('Level');
-		//
-		// $thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
-		//
-		// if(!empty($thisLevel))
-		// 	$percentage = round(($userPoints/$thisLevel['Level']['points']) * 100);
-		// else
-		// 	$percentage = 0;
-		//
-		// return $percentage;
+      public function getUserImage($userid) {
 
-		$this->loadModel('Level');
+      }
 
-		$thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
+      public function getLevelPercentage($userPoints, $userLevel){
 
-		/*if(!empty($thisLevel))
-			$percentage = round(($userPoints/$thisLevel['Level']['points']) * 100);
-		else
-			$percentage = 0;
-			*/
 
-		//return $percentage;
-			return 0;
+            // $this->loadModel('Level');
+            //
+            // $thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
+            //
+            // if(!empty($thisLevel))
+            //    $percentage = round(($userPoints/$thisLevel['Level']['points']) * 100);
+            // else
+            //    $percentage = 0;
+            //
+            // return $percentage;
 
-	}
+            $this->loadModel('Level');
 
-	public function getUserId() {
-		$currentuser = $this->Auth->user();
-		if(isset($currentuser['id'])) return $currentuser['id'];
-		return $currentuser['User']['id'];
-	}
+            $thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
 
-	public function getUserName() {
-		$currentuser = $this->Auth->user();
-		if(isset($currentuser['name'])) return $currentuser['name'];
-		return $currentuser['User']['name'];
-	}
+            /*if(!empty($thisLevel))
+                  $percentage = round(($userPoints/$thisLevel['Level']['points']) * 100);
+            else
+                  $percentage = 0;
+                  */
 
-	public function getUserRole() {
-		$currentuser = $this->Auth->user();
-		if(isset($currentuser['role'])){
+            //return $percentage;
+                  return 0;
 
-			return $currentuser['role'];
-		}
+      }
 
-		$role_score = $this->Role->find('first',array('id' => $currentuser['role_id']))['Role']['score'];
+      public function getUserId() {
+            $currentuser = $this->Auth->user();
+            if(isset($currentuser['id'])) return $currentuser['id'];
+            return $currentuser['User']['id'];
+      }
 
-		return $role_score;
-	}
+      public function getUserName() {
+            $currentuser = $this->Auth->user();
+            if(isset($currentuser['name'])) return $currentuser['name'];
+            return $currentuser['User']['name'];
+      }
+
+      public function getUserRole() {
+            $currentuser = $this->Auth->user();
+            if(isset($currentuser['role'])){
+
+                  return $currentuser['role'];
+            }
+
+            $role_score = $this->Role->find('first',array('id' => $currentuser['role_id']))['Role']['score'];
+
+            return $role_score;
+      }
+
+
+/**
+* getSex method
+*
+* @return array
+*
+* returns id related to sex
+*
+*/
+  function getSex($sex){
+      return array_search($sex, $this->sex);
+  }      
 
 /**
 * getCountries method
@@ -622,7 +656,7 @@ class AppController extends Controller {
 *
 */
   function getCountry($country){
-	return array_search($country, $this->countries);
+      return array_search($country, $this->countries);
   }
 
 /**
@@ -634,7 +668,7 @@ class AppController extends Controller {
 *
 */
   function getCountryValue($country){
-  	return $this->countries[$country];
+      return $this->countries[$country];
   }
 
 }

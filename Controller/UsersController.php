@@ -9,6 +9,11 @@
 // require_once APP.'Vendor'.DS.'google'.DS. 'apiclient'.DS.'src'.DS.'Google'.DS.'Service'.DS.'Oauth2.php';
 
 App::uses('AppController', 'Controller');
+use Facebook\FacebookRequest;
+use Facebook\FacebookRequestException;
+use Facebook\FacebookSession;
+use Facebook\FacebookRedirectLoginHelper;
+use Facebook\GraphUser;
 
 /**
  * Users Controller
@@ -43,7 +48,7 @@ class UsersController extends AppController {
 */
   public function beforeFilter() {
     parent::beforeFilter();
-    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage','recover_password');
+    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage','recover_password','fbLogin');
   }
 
   // public function createTempPassword($len) {
@@ -98,6 +103,119 @@ class UsersController extends AppController {
     // die();
   }
 
+
+
+public function fbLogin() {
+    $this->autoRender = false;
+    $session = null;
+
+    try {
+        if ($this->request->query('code')) {
+            $session = $this->facebook->getSessionFromRedirect();    
+        }
+    } catch (FacebookRequestException $e) {
+
+    }
+
+    if ($session) {
+
+    $facebook_logout_url = $this->facebook->getLogoutUrl(
+      $session,
+      Router::url(array('controller' => 'users', 'action' => 'login'), true)
+    );
+
+    $this->Session->write('facebook_logout_url', $facebook_logout_url);
+        $request = new FacebookRequest($session, 'GET', '/me');
+        $profile = null;
+        try {
+            $response = $request->execute();
+            $profile = $response->getGraphObject(GraphUser::className());
+        } catch (FacebookRequestException $e) {
+        }
+
+        $user_fb = $this->User->find('first', array(
+            'conditions' => array(
+                'OR' => array(
+                    'facebook_id' => $profile->getId(),
+                    'email' => $profile->getEmail()
+                )
+            )
+        ));
+
+        if (!empty($user_fb)) {
+          $save_bool = false;
+
+          if (empty($user_fb['User']['facebook_id'])) {
+            $user_fb['User']['facebook_id'] = $profile->getId();
+            $save_bool = true;
+          }
+            // if (empty($user_fb['User']['photo'])) {
+            //     $user_fb['User']['photo'] = "http://graph.facebook.com/{$profile->getId()}/picture?type=large";
+            //    $save_bool = true;
+            // }
+
+          if (empty($user_fb['User']['biography'])) {
+            $user_fb['User']['biography'] = $profile->getProperty('bio');
+            $save_bool = true;
+          }
+
+          if($save_bool){
+            $this->User->save($user_fb['User']);
+          }
+
+          if ($this->Auth->login($user_fb['User'])) {                
+                       
+            return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->Auth->user('id')));
+
+          } else {
+              $this->flash(__("Houve um erro ao tentar se conectar com o Facebook. Por favor, tente novamente."), array("action" => "login"));
+          }
+
+        } else {
+
+          //GET COUNTRY NAME
+          $hometown = $profile->getProperty('hometown');
+          $hometownName = $hometown->getProperty('name');
+          $locales = explode(', ',$hometownName);
+          $country = $this->getCountry($locales[1]);
+
+          $sex = $profile->getProperty('gender');
+          $sex_id = $this->getSex($sex);
+
+          $user_fb = array(
+              'User' => array(
+                'facebook_id' => $profile->getId(),
+                'name'        => $profile->getName(),
+                'firstname'   => $profile->getProperty('first_name'),
+                'lastname'    => $profile->getProperty('last_name'),
+                'username'    => $profile->getProperty('first_name').$profile->getId(),
+                'email'       => $profile->getProperty('email'),
+                'password'    => AuthComponent::password(uniqid(md5(mt_rand()))),
+                'birthdate'    => date("Y-m-d H:i:s", strtotime($profile->getProperty('birthday'))),
+                'language'    => $profile->getProperty('locale'),
+                'country'     => $country,
+                'sex'         => $sex_id,
+                //'photo'       => "http://graph.facebook.com/{$profile->getId()}/picture?type=large",
+                'biography'   => "",
+                'role'        => $this->Permission->scores_id()['USER']
+              )
+            );
+          
+          $this->Session->write('User', $user_fb);
+          $this->User->save($user_fb['User']);
+          
+          $user = $this->User->find('first', array('conditions' => array('User.id' => $this->User->id)));
+          
+          $this->Auth->login($user['User']);
+
+          // REDIRECT TO THE MATCHING PAGE
+          $this->redirect(array('action' => 'matching', $user['User']['id']));
+        }
+    }else{
+        $this->flash(__("Houve um erro ao tentar se conectar com o Facebook. Por favor, tente novamente."), array("action" => "login"));
+    }
+}
+
 /**
  * login method
  *
@@ -125,6 +243,7 @@ class UsersController extends AppController {
       }
     }
 
+    /*   
     $client = new Google_Client();
     $client->setApplicationName('Evoke');
     $client->setClientId(Configure::read('google_client_id'));
@@ -136,6 +255,9 @@ class UsersController extends AppController {
 
     $client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
     $client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
+    */
+
+    /*
 
     if (isset($this->params['url']['code'])) {
       $client->authenticate($this->params['url']['code']);
@@ -205,93 +327,16 @@ class UsersController extends AppController {
 
     ));
 
-    if(isset($this->params['url']['code'])) {
+    */
 
-      $token = $facebook->getAccessToken();
-
-      if (!empty($token)) {
-
-        $userFbData = $facebook->getUser();
-        $user_profile = '';
-
-        try {
-          $user_profile = $facebook->api('/me');
-          $this->Session->write('User', $user_profile);
-        } catch (FacebookApiException $e) {
-          error_log($e);
-          $userFbData = null;
-        }
-
-        $user = $this->User->find('first', array('conditions' => array('facebook_id' => $user_profile['id'])));
-
-        if(empty($user)) {
-
-          // User does not exist in DB, so we are going to create
-
-          $this->User->create();
-          $user['User']['facebook_id'] = $user_profile['id'];
-          $user['User']['facebook_token'] = $token;
-          $user['User']['name'] = $user_profile['name'];
-          $user['User']['sex'] = $user_profile['gender'];
-          $user['User']['login'] = $user_profile['username'];
-          $user['User']['facebook'] = $user_profile['link'];
-          $user['User']['role_id'] = 3;
-
-          if($this->User->save($user)) {
-            $user['User']['id'] = $this->User->id;
-            $this->Auth->login($user);
-            $this->Session->setFlash('', 'opening_lightbox_message');
-
-            $date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-            return $this->redirect(array('action' => 'edit', $this->User->id));
-          } else {
-            $this->Session->setFlash(__('There was some interference in your connection.'), 'error');
-            return $this->redirect(array('action' => 'login'));
-          }
-
-        } else {
-
-          // User exists, so we just force login
-          // TODO: check if any data changed since last Facebook login, then update in our table
-
-          // We need to update the Facebook token, once web tokens are short-term only
-          $this->User->id = $user['User']['id'];
-          $this->User->set('facebook_token', $token);
-          $this->User->save();
-
-          $user['User']['id'] = $this->User->id;
-          $this->Auth->login($user);
-
-          $date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-          return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->User->id));
-
-        }
-
-      }
-
-
-    } else if ($this->Auth->login()) {
+    if ($this->Auth->login()) {
 
       $date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
 
       return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->Auth->user('id')));
 
     } else if(isset($this->request->data['User']['username'])){
-
-      $user2 = $this->User->find('first', array('conditions' => array('User.username' => $this->request->data['User']['username'])));
-
-
-      if(empty($user2)){
-        $this->Session->setFlash(__('Your login and/or password was incorrect. Please try again.'));
-        return $this->redirect(array('action' => 'login'));
-      }
-
-    } else {
-      $fbLoginUrl = $facebook->getLoginUrl();
-      $this->set(compact('fbLoginUrl'));
-      $this->Session->write('fbLoginUrl', $fbLoginUrl); //Stores facebook URL in session to be accessed by other views/controllers
+      $this->flash(__("Your login and/or password was incorrect. Please try again."), array("action" => "login"));
     }
 
     $this->set(compact('missions','video_url'));
