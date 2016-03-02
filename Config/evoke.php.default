@@ -1,8 +1,12 @@
 <?php 
 
-$config['FB_REDIRECT_URL'] = '';
 $config['FB_APP_ID'] = '';
 $config['FB_APP_SECRET'] = '';
 $config['FB_SCOPES'] = array(
-	''
+    'email',
+    'public_profile',
+    'user_birthday',
+    'user_hometown'
 );
+$config['GOOGLE_APP_ID'] = '';
+$config['GOOGLE_APP_SECRET'] = '';

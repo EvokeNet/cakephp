@@ -316,7 +316,25 @@ class AppController extends Controller {
                   Configure::read('FB_APP_SECRET')
             );
 
+            // FACEBOOK CONFIG
             $this->facebook = new FacebookRedirectLoginHelper(Router::url(array('controller' => 'users', 'action' => 'fbLogin'), true));
+
+
+            // GOOGLE CONFIG
+            if(empty($googleClient)){
+                  $googleClient = new Google_Client();
+                  $googleClient->setClientId(Configure::read('GOOGLE_APP_ID'));
+                  $googleClient->setClientSecret(Configure::read('GOOGLE_APP_SECRET'));
+                  $googleClient->setRedirectUri(Router::url(array('controller' => 'users', 'action' => 'googleLogin'), true));
+                  $googleClient->addScope("email");
+                  $googleClient->addScope("profile");
+            }
+
+            //debug($googleClient);
+
+            $service = new Google_Service_Oauth2($googleClient);
+
+            debug($service);
 
 
             //Determine language if not already determined

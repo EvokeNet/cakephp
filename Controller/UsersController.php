@@ -48,7 +48,7 @@ class UsersController extends AppController {
 */
   public function beforeFilter() {
     parent::beforeFilter();
-    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage','recover_password','fbLogin');
+    $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage','recover_password','fbLogin','googleLogin');
   }
 
   // public function createTempPassword($len) {
