@@ -13,19 +13,20 @@
       <li class = "margin-right-1em"><?php //echo $this->element('level_progress_bar', array('class' => 'margin left-1 right-1 top-05')); ?></li>
       <li class = "divider"></li>
       <li class="has-dropdown">
-        <a href="#" class = "uppercase"><?php echo sprintf(__('Agent %s'), AuthComponent::user('name')); ?></a>
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id'))); ?>" class = "uppercase"><?php echo sprintf(__('Agent %s'), AuthComponent::user('name')); ?></a>
         <ul class="dropdown">
           <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('View profile'); ?></a></li>
+          <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'change_password', 'admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('Change Password'); ?></a></li>
           <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit', 'admin' => false, AuthComponent::user('id'))); ?>"><?php echo __('Edit profile'); ?></a></li>
           <li><a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout', 'admin' => false)); ?>"><?php echo __('Log out'); ?></a></li>
         </ul>
       </li>
       <li class="divider"></li>
       <li class="has-dropdown">
-        <a href="#"><?php echo __('LANGUAGE'); ?></a>
+        <a href="#"><?php echo __('LANGUAGE'); ?> <i class="fa fa-language fa-lg"></i></a>
         <ul class="dropdown">
-          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'en')) ?>"><?php echo __('ENGLISH'); ?></a></li>
-          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'es')) ?>"><?php echo __('SPANISH'); ?></a></li>
+          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'en')) ?>"><?php echo __('ENGLISH'); ?></a></li>
+          <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'es')) ?>"><?php echo __('SPANISH'); ?></a></li>
         </ul>
       </li>
     </ul>

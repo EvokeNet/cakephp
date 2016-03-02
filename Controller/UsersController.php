@@ -1449,6 +1449,7 @@ public function fbLogin() {
       throw new NotFoundException(__('Invalid user'));
     }
     if ($this->request->is(array('post', 'put'))) {
+      //debug($this->request->data);
       if ($this->User->save($this->request->data)) {
         return $this->flash(__('The user has been saved.'), array('action' => 'index'));
       }

@@ -10,6 +10,7 @@
     <div class="row">
         <div class="large-6 columns">
             <?php
+                echo $this->Form->input('id');
                 echo $this->Form->input('name');
             ?>
         </div>

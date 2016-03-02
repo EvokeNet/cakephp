@@ -50,7 +50,11 @@ class SuperheroIdentitiesController extends AppController {
 		$options = array('conditions' => array('SuperheroIdentity.' . $this->SuperheroIdentity->primaryKey => $id));
 		$this->set('superheroIdentity', $this->SuperheroIdentity->find('first', $options));
 
-		$this->loadModel('Organization');
+		$this->loadModel('SocialInnovatorQuality');
+  		$qualities = $this->SocialInnovatorQuality->find('list');
+  		$this->loadModel('Power');
+  		$powers = $this->Power->find('list');
+  		$this->loadModel('Organization');
 	    $organizations =
 	      $this->Organization->find('all', array(
 	      'order' => array(
@@ -58,7 +62,10 @@ class SuperheroIdentitiesController extends AppController {
 	      ),
 	    ));
 
-	   $this->set('organizations',$organizations);		
+	    $qualities[0] = 'Undefined';
+	    $powers[0] = 'Undefined';
+	      
+  		$this->set(compact('powers','qualities','organizations'));	
 	}
 
 /**

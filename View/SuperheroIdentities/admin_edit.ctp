@@ -10,6 +10,7 @@
 
 	    <div class="large-12 columns" id="panel-content" data-equalizer-watch>
             <?php 
+                echo $this->Form->input('id');
                 echo $this->Form->input('name');
 				echo $this->Form->input('description');
              ?>
