@@ -46,6 +46,11 @@
 	);
 
 	Router::connect(
+    	'/googleLogin',
+    	array('controller' => 'users', 'action' => 'googleLogin')
+	);
+
+	Router::connect(
     	'/terms',
     	array('controller' => 'pages', 'action' => 'terms')
 	);

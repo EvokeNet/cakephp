@@ -34,6 +34,10 @@
 				</li>
 				<li class="divider"></li>
 				<li>
+					<a href="<?= $this->Html->url($google_login_url) ?>">Login with google</a>
+				</li>
+				<li class="divider"></li>
+				<li>
 					<a href="<?= $this->Html->url(array('action'=>'recover_password')) ?>">Forgot password?</a>
 				</li>
 				<li class="divider"></li>

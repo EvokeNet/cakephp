@@ -103,8 +103,11 @@ class UsersController extends AppController {
     // die();
   }
 
-
-
+/**
+ * login with facebook method
+ *
+ * @return void
+ */
 public function fbLogin() {
     $this->autoRender = false;
     $session = null;
@@ -143,11 +146,10 @@ public function fbLogin() {
         ));
 
         if (!empty($user_fb)) {
-          $save_bool = false;
+          $this->User->id = $user_fb['User']['id'];
 
           if (empty($user_fb['User']['facebook_id'])) {
-            $user_fb['User']['facebook_id'] = $profile->getId();
-            $save_bool = true;
+             $this->User->saveField('facebook_id',$profile->getId());
           }
             // if (empty($user_fb['User']['photo'])) {
             //     $user_fb['User']['photo'] = "http://graph.facebook.com/{$profile->getId()}/picture?type=large";
@@ -155,12 +157,7 @@ public function fbLogin() {
             // }
 
           if (empty($user_fb['User']['biography'])) {
-            $user_fb['User']['biography'] = $profile->getProperty('bio');
-            $save_bool = true;
-          }
-
-          if($save_bool){
-            $this->User->save($user_fb['User']);
+            $this->User->saveField('biography',$profile->getProperty('bio'));
           }
 
           if ($this->Auth->login($user_fb['User'])) {                
@@ -168,7 +165,7 @@ public function fbLogin() {
             return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->Auth->user('id')));
 
           } else {
-              $this->flash(__("Houve um erro ao tentar se conectar com o Facebook. Por favor, tente novamente."), array("action" => "login"));
+              $this->flash(__("An error occurred. Please try again."), array("action" => "login"));
           }
 
         } else {
@@ -212,8 +209,92 @@ public function fbLogin() {
           $this->redirect(array('action' => 'matching', $user['User']['id']));
         }
     }else{
-        $this->flash(__("Houve um erro ao tentar se conectar com o Facebook. Por favor, tente novamente."), array("action" => "login"));
+        $this->flash(__("An error occurred. Please try again."), array("action" => "login"));
     }
+}
+
+/**
+ * login with google method
+ *
+ * @return void
+ */
+public function googleLogin() {
+  $this->autoRender = false;
+  $session = null;
+
+  if ($this->request->query('code')) {
+    $this->googleClient->authenticate($_GET['code']);
+    $session = $this->googleClient->getAccessToken();
+  }
+
+  if($session){
+    $profile = $this->googleService->userinfo->get(); 
+
+    $user_google = $this->User->find('first', array(
+            'conditions' => array(
+                'OR' => array(
+                    'google_id' => $profile['id'],
+                    'email' => $profile['email']
+                )
+            )
+        ));
+
+
+    if(!empty($user_google)){
+      $this->User->id = $user_google['User']['id'];
+
+      if (empty($user_google['User']['google_id'])) {
+        $this->User->saveField('google_id', $profile['id']);
+      }
+
+      if (empty($user_fb['User']['biography'])) {
+        $this->User->saveField('biography', $profile['bio']);
+      }
+
+      if ($this->Auth->login($user_google['User'])) {                                 
+        return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->Auth->user('id')));
+      } else {
+        $this->flash(__("An error occurred. Please try again."), array("action" => "login"));
+      }
+
+    }else{
+
+      $country = substr($profile['locale'], -2);
+      $language = str_replace('-', '_', $profile['locale']);
+
+      $user_google = array(
+              'User' => array(
+                'google_id'   => $profile['id'],
+                'name'        => $profile['name'],
+                'firstname'   => $profile['givenName'],
+                'lastname'    => $profile['familyName'],
+                'username'    => $profile['givenName'].$profile['id'],
+                'email'       => $profile['email'],
+                'password'    => AuthComponent::password(uniqid(md5(mt_rand()))),
+                'language'    => $language,
+                'country'     => $country,
+                //'photo'       => $profile['picture'],
+                'biography'   => "",
+                'role'        => $this->Permission->scores_id()['USER']
+              )
+            );
+
+      $this->Session->write('User', $user_google);
+      $this->User->save($user_google['User']);
+        
+      $user = $this->User->find('first', array('conditions' => array('User.id' => $this->User->id)));
+          
+      $this->Auth->login($user['User']);
+
+      // REDIRECT TO THE MATCHING PAGE
+      $this->redirect(array('action' => 'matching', $user['User']['id']));
+
+    }  
+
+  }else{
+    $this->flash(__("An error occurred. Please try again."), array("action" => "login"));
+  }
+
 }
 
 /**

@@ -303,6 +303,8 @@ class AppController extends Controller {
       );
 
       public $facebook;
+      public $googleClient;
+      public $googleService;
 
 /**
 * beforeFilter method
@@ -317,25 +319,22 @@ class AppController extends Controller {
             );
 
             // FACEBOOK CONFIG
-            $this->facebook = new FacebookRedirectLoginHelper(Router::url(array('controller' => 'users', 'action' => 'fbLogin'), true));
-
-
-            // GOOGLE CONFIG
-            if(empty($googleClient)){
-                  $googleClient = new Google_Client();
-                  $googleClient->setClientId(Configure::read('GOOGLE_APP_ID'));
-                  $googleClient->setClientSecret(Configure::read('GOOGLE_APP_SECRET'));
-                  $googleClient->setRedirectUri(Router::url(array('controller' => 'users', 'action' => 'googleLogin'), true));
-                  $googleClient->addScope("email");
-                  $googleClient->addScope("profile");
+            if(empty($this->facebook)){
+                  $this->facebook = new FacebookRedirectLoginHelper(Router::url(array('controller' => 'users', 'action' => 'fbLogin'), true));      
             }
 
-            //debug($googleClient);
+            // GOOGLE CONFIG
+            if(empty($this->googleClient)){
+                  $this->googleClient = new Google_Client();
+                  $this->googleClient->setClientId(Configure::read('GOOGLE_APP_ID'));
+                  $this->googleClient->setClientSecret(Configure::read('GOOGLE_APP_SECRET'));
+                  $this->googleClient->setRedirectUri(Router::url(array('controller' => 'users', 'action' => 'googleLogin'), true));
+                  $this->googleClient->addScope("email");
+                  $this->googleClient->addScope("profile");
+            }
+            
 
-            $service = new Google_Service_Oauth2($googleClient);
-
-            debug($service);
-
+            $this->googleService = new Google_Service_Oauth2($this->googleClient);
 
             //Determine language if not already determined
             $this->_checkBrowserLanguage();
@@ -395,6 +394,7 @@ class AppController extends Controller {
                                            && $this->request->params['action'] != 'register' // also if user is registering
                                            && $this->request->params['action'] != 'recover_password' // also if user is trying to recover password
                                            && $this->request->params['action'] != 'fbLogin' // also if user is trying to loging in by facebook
+                                           && $this->request->params['action'] != 'googleLogin' // also if user is trying to loging in by google
                                            && $this->request->params['action'] != 'matching_results'){
 
                   return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId(),'admin' => false));
@@ -405,7 +405,8 @@ class AppController extends Controller {
 
       public function beforeRender() {
             $facebook_login_url = $this->facebook->getLoginUrl(Configure::read('FB_SCOPES'));
-            $this->set(compact('facebook_login_url'));
+            $google_login_url = $this->googleClient->createAuthUrl();
+            $this->set(compact('facebook_login_url','google_login_url'));
       }
 
 /**
