@@ -57,6 +57,7 @@ class AppController extends Controller {
       public $languages = array(
         'pt_BR' => 'Português',
         'en_US' => 'English (US)',
+        'en' => 'English',
         'es' => 'Español'
       );
 

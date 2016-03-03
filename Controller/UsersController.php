@@ -1477,17 +1477,32 @@ public function googleLogin() {
       throw new NotFoundException(__('Invalid user'));
     }
     $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-    $this->set('user', $this->User->find('first', $options));
+    $user = $this->User->find('first', $options);
+    $this->set('user', $user);
 
     $this->loadModel('Organization');
-    $organizations =
-      $this->Organization->find('all', array(
-      'order' => array(
-        'Organization.name ASC'
-      ),
-    ));
+    $organizations = $this->Organization->find('list');
 
-   $this->set('organizations',$organizations);
+    $this->loadModel('SuperheroIdentity');
+    $this->loadModel('Power');
+    $superHeroIdentity = $this->SuperheroIdentity->find('first',array('conditions' => array('id' => $user['User']['superhero_identity_id'])));
+
+    if(empty($superHeroIdentity)){
+      $superHeroIdentity['SuperheroIdentity']['name'] = 'Undefined';
+      $powers[1] = 'Primary Power';
+      $powers[2] = 'Secondary Power';
+    }else{
+      $powers[1] = $this->Power->find("first",array('conditions' => array('id' => $superHeroIdentity['SuperheroIdentity']['primary_power'])))['Power']['name'];
+      $powers[2] = $this->Power->find("first",array('conditions' => array('id' => $superHeroIdentity['SuperheroIdentity']['secondary_power'])))['Power']['name'];
+    }
+
+    $this->loadModel('Role');
+    $role = $this->Role->find('first',array('conditions' => array('id' => $user['User']['role_id'])));
+
+    $countries = $this->countries;
+    $languages = $this->languages;
+    $sexes = $this->sex;
+    $this->set(compact('organizations', 'groups','superHeroIdentity','role','countries','languages','sexes','powers'));
   }
 
 /**
