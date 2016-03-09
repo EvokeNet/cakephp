@@ -51,22 +51,6 @@ class UsersController extends AppController {
     $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage','recover_password','fbLogin','googleLogin');
   }
 
-  // public function createTempPassword($len) {
-  //    $pass = '';
-  //    $lchar = 0;
-  //    $char = 0;
-  //    for($i = 0; $i < $len; $i++) {
-  //      while($char == $lchar) {
-  //        $char = rand(48, 109);
-  //        if($char > 57) $char += 7;
-  //        if($char > 90) $char += 6;
-  //      }
-  //      $pass .= chr($char);
-  //      $lchar = $char;
-  //    }
-  //    return $pass;
-  //  }
-
   public function changeLanguage($lang){
     parent::changeLanguage($lang);
   }
@@ -323,92 +307,6 @@ public function googleLogin() {
         $mission['Mission']['description'] = $mission['Mission']['description_es'];
       }
     }
-
-    /*   
-    $client = new Google_Client();
-    $client->setApplicationName('Evoke');
-    $client->setClientId(Configure::read('google_client_id'));
-    $client->setClientSecret(Configure::read('google_client_secret'));
-    $client->setRedirectUri(Configure::read('google_redirect_uri'));
-    $client->setDeveloperKey(Configure::read('google_developer_key'));
-
-    $google_oauthV2 = new Google_Service_Oauth2($client);
-
-    $client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
-    $client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
-    */
-
-    /*
-
-    if (isset($this->params['url']['code'])) {
-      $client->authenticate($this->params['url']['code']);
-      $_SESSION['access_token'] = $client->getAccessToken();
-
-    if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-      $user_profile = $google_oauthV2->userinfo->get();
-      $_SESSION['user']['name'] = $user_profile['name'];
-      $_SESSION['user']['google_id'] = $user_profile['id'];
-      $_SESSION['user']['email'] = $user_profile['email'];
-
-      $user_google = $this->User->find('first', array('conditions' => array('User.id' => $_SESSION['user']['email'])));
-
-      if(empty($user_google)) {
-
-        // User does not exist in DB, so we are going to create
-        $this->User->create();
-        $user_google['User']['google_id'] = $user_profile['id'];
-        $user_google['User']['google_token'] = $client->getAccessToken();
-        $user_google['User']['name'] = $user_profile['name'];
-        $user_google['User']['email'] = $user_profile['email'];
-        $user_google['User']['role_id'] = 3;
-
-        if($this->User->save($user_google)) {
-          $user_google['User']['id'] = $this->User->id;
-          $this->Auth->login($user_google);
-          $date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-          return $this->redirect(array('action' => 'edit', $this->User->id));
-        } else {
-          $this->Session->setFlash(__('There was some interference in your connection.'), 'error');
-          return $this->redirect(array('action' => 'login'));
-        }
-
-      } else {
-
-        // User exists, so we just force login
-        // TODO: check if any data changed since last Facebook login, then update in our table
-
-        // We need to update the Facebook token, once web tokens are short-term only
-        $this->User->id = $user_google['User']['id'];
-        $this->User->set('google_token', $client->getAccessToken());
-        $this->User->save();
-
-        $user_google['User']['id'] = $this->User->id;
-        $this->Auth->login($user_google);
-
-        $date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-        return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->User->id));
-
-      }
-    }
-    }else {
-      $authUrl = $client->createAuthUrl();
-
-      if(isset($authUrl)) { //user is not logged in, show login button
-        $this->set('authUrl', $authUrl);
-      }
-    }
-
-    //debug($this->Auth);
-    $facebook = new Facebook(array(
-      'appId' => Configure::read('fb_app_id'),
-      'secret' => Configure::read('fb_app_secret'),
-      'allowSignedRequest' => false,
-
-    ));
-
-    */
 
     if ($this->Auth->login()) {
 
@@ -730,44 +628,6 @@ public function googleLogin() {
     }
   }
 
-
-/**
- * allies method
- *
- * @return void
- */
-  // public function allies($id) {
-  //  if (!$this->User->exists($id)) {
-  //    throw new NotFoundException(__('Invalid user'));
-  //  }
-
-  //  $user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
-
-  //  $users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-  //  $allies = array();
-
-  //  $friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
-
-  //  $are_friends = array();
-  //  //$allies = array();
-
-  //  foreach($friends as $friend){
-  //    array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
-  //  }
-
-  //  if(!empty($are_friends)){
-  //    $allies = $this->User->find('all', array(
-  //      'conditions' => array(
-  //        'OR' => $are_friends
-  //    )));
-  //  } else{
-  //    $allies = array();
-  //    //$notifies = array();
-  //  }
-
-  //  $this->set(compact('user', 'users', 'friends', 'allies'));
-  // }
 
 /**
  *

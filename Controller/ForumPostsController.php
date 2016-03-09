@@ -32,26 +32,6 @@ class ForumPostsController extends AppController {
 	}
 
 /**
- * add method
- *
- * @return void
- */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->ForumPost->create();
-			if ($this->ForumPost->save($this->request->data)) {
-				$this->Session->setFlash(__('The forum post has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The forum post could not be saved. Please, try again.'));
-			}
-		}
-		$users = $this->ForumPost->User->find('list');
-		$forumTopics = $this->ForumPost->ForumTopic->find('list');
-		$this->set(compact('users', 'forumTopics'));
-	}
-
-/**
  * redirect to post page method
  *
  * @throws NotFoundException
@@ -139,7 +119,7 @@ public function redirectToPostPage($id = null){
 
 		//OPTIONS FOR CHECK PRIVILEGE
 		$options = array(
-			'minimumRole' => USER,
+			'minimumRole' => 'USER',
 			'moderatorPrivilege' => true,
 			'object' => array(
 				'id' => $id,
@@ -174,6 +154,7 @@ public function redirectToPostPage($id = null){
  * @return void
  */
 	public function delete($id = null) {
+		$this->autoRender = false;
 
 		$this->ForumPost->id = $id;
 		if (!$this->ForumPost->exists()) {
@@ -184,13 +165,15 @@ public function redirectToPostPage($id = null){
 
 		//OPTIONS FOR CHECK PRIVILEGE
 		$options = array(
-			'minimumRole' => USER,
+			'minimumRole' => 'USER',
 			'moderatorPrivilege' => true,
 			'object' => array(
 				'id' => $id,
 				'class' => 'ForumPost'
 			)
 		);
+
+
 
 		//REDIRECT IF USER HASN'T PERMISSION
 		if (!$this->Permission->hasPrivilege($options)){
@@ -212,11 +195,11 @@ public function redirectToPostPage($id = null){
 
 		$lastForumPost = $this->ForumPost->find('first', $options);
 
-		$this->request->allowMethod('post', 'delete');
 		if ($this->ForumPost->delete()) {
 			$this->Session->setFlash(__('The forum post has been deleted.'));
 
 			if(isset($lastForumPost['ForumPost']['id'])){
+
 				return $this->redirectToPostPage($lastForumPost['ForumPost']['id']);	
 			}else{
 				return $this->redirect(

@@ -33,21 +33,6 @@ class ForumsController extends AppController {
 	}
 
 /**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->Forum->exists($id)) {
-			throw new NotFoundException(__('Invalid forum'));
-		}
-		$options = array('conditions' => array('Forum.' . $this->Forum->primaryKey => $id));
-		$this->set('forum', $this->Forum->find('first', $options));
-	}
-
-/**
  * add method
  *
  * @return void
@@ -61,30 +46,6 @@ class ForumsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The forum could not be saved. Please, try again.'));
 			}
-		}
-	}
-
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function edit($id = null) {
-		if (!$this->Forum->exists($id)) {
-			throw new NotFoundException(__('Invalid forum'));
-		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->Forum->save($this->request->data)) {
-				$this->Session->setFlash(__('The forum has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The forum could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Forum.' . $this->Forum->primaryKey => $id));
-			$this->request->data = $this->Forum->find('first', $options);
 		}
 	}
 
