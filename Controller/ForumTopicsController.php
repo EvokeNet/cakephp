@@ -17,16 +17,6 @@ class ForumTopicsController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->ForumTopic->recursive = 0;
-		$this->set('forumTopics', $this->Paginator->paginate());
-	}
-
-/**
  * view method
  *
  * @throws NotFoundException

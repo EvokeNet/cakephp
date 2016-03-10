@@ -16,20 +16,6 @@ class ForumPostsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function view($id = null) {
-		if (!$this->ForumPost->exists($id)) {
-			throw new NotFoundException(__('Invalid forum post'));
-		}
-		$options = array('conditions' => array('ForumPost.' . $this->ForumPost->primaryKey => $id));
-		$this->set('forumPost', $this->ForumPost->find('first', $options));
-	}
 
 /**
  * redirect to post page method

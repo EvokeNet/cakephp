@@ -34,25 +34,25 @@
     <!-- Left Nav Section -->
     <ul class="left">
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index', 'admin' => false)); ?>" class="link-disabled font-green uppercase">
           <?php echo __('Missions'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index', 'admin' => false)); ?>" class="link-disabled font-green uppercase">
           <?php echo __('Forum'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard', 'admin' => false)); ?>" class="font-green uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard', 'admin' => false)); ?>" class="link-disabled font-green uppercase">
           <?php echo __('Leaderboard'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index', 'admin' => false)); ?>" class="link-disabled font-green uppercase">
           <?php echo __('Badges'); ?>
         </a>
       </li>
