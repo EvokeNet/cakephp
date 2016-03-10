@@ -26,10 +26,10 @@
 							<tr>
 								<td><?php echo h($superheroIdentity['SuperheroIdentity']['name']); ?>&nbsp;</td>
 								<td>
-									<?php echo $this->Html->link($superheroIdentity['Quality1']['name'], array('controller' => 'SocialInnovatorQualities', 'action' => 'view', $superheroIdentity['Quality1']['id'])); ?>
+									<?php echo $this->Html->link($superheroIdentity['Quality1']['name'], array('controller' => 'qualities', 'action' => 'view', $superheroIdentity['Quality1']['id'])); ?>
 								</td>
 								<td>
-									<?php echo $this->Html->link($superheroIdentity['Quality2']['name'], array('controller' => 'SocialInnovatorQualities', 'action' => 'view', $superheroIdentity['Quality2']['id'])); ?>
+									<?php echo $this->Html->link($superheroIdentity['Quality2']['name'], array('controller' => 'qualities', 'action' => 'view', $superheroIdentity['Quality2']['id'])); ?>
 								</td>
 								<td>
 									<?php echo $this->Html->link($superheroIdentity['Power1']['name'], array('controller' => 'powers', 'action' => 'view', $superheroIdentity['Power1']['id'])); ?>

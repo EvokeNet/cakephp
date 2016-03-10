@@ -13,7 +13,7 @@
             <a href="<?= $this->Html->url(array('controller' => 'SuperheroIdentities', 'action' => 'index', 'admin' => true))?>" class = "uppercase"><?= __('Superhero Identities') ?></a>
         </li>
         <li id = "SocialInnovatorQualities">
-            <a href="<?= $this->Html->url(array('controller' => 'SocialInnovatorQualities', 'action' => 'index', 'admin' => true))?>" class = "uppercase"><?= __('Qualities') ?></a>
+            <a href="<?= $this->Html->url(array('controller' => 'qualities', 'action' => 'index', 'admin' => true))?>" class = "uppercase"><?= __('Qualities') ?></a>
         </li>
         <li id = "powers">
             <a href="<?= $this->Html->url(array('controller' => 'powers', 'action' => 'index', 'admin' => true))?>" class = "uppercase"><?= __('Powers') ?></a>

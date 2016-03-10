@@ -2,6 +2,16 @@
 
 <?php echo $this->Form->create('User', array('data-abide', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
 
+<div id="content"></div>
+<div id="example"></div>
+
+    <script type="text/jsx">
+        ReactDOM.render(
+            <h1>Hello, world!</h1>,
+            document.getElementById('example')
+        );
+    </script>
+    
 <!--<div class = "login-align">
     
     <div class="row" data-equalizer>
@@ -73,6 +83,8 @@
                         <span class="text-align-center"><a href="<?= $this->Html->url($google_login_url) ?>"><?= strtoupper(__('Sign In with Google')) ?></a></span>
                     </div>
                 </div>
+                
+                <a class="btn btn-default facebook" href="<?php echo BASE_PATH.'fblogin'; ?>"> <i class="fa fa-facebook modal-icons"></i> Signin with Facebook </a>
                 
                 <div class = "separate-tag margin-top-2em margin-bottom-2em">
                     <div class="container">

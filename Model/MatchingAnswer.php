@@ -34,9 +34,9 @@ class MatchingAnswer extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'SocialInnovatorQuality' => array(
-			'className' => 'SocialInnovatorQuality',
-			'foreignKey' => 'social_innovator_quality_id',
+		'Quality' => array(
+			'className' => 'Quality',
+			'foreignKey' => 'quality_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

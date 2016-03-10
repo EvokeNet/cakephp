@@ -22,14 +22,14 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($socialInnovatorQualities as $socialInnovatorQuality): ?>
+                <?php foreach ($qualities as $quality): ?>
                     <tr>
-                        <td><?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['name']); ?>&nbsp;</td>
-                        <td><?php echo h($socialInnovatorQuality['SocialInnovatorQuality']['short_name']); ?>&nbsp;</td>
+                        <td><?php echo h($quality['Quality']['name']); ?>&nbsp;</td>
+                        <td><?php echo h($quality['Quality']['short_name']); ?>&nbsp;</td>
                         <td class="actions">
-                            <?php echo $this->Html->link(__('View'), array('action' => 'view', $socialInnovatorQuality['SocialInnovatorQuality']['id'])); ?>
-                            <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $socialInnovatorQuality['SocialInnovatorQuality']['id'])); ?>
-                            <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $socialInnovatorQuality['SocialInnovatorQuality']['id']), array(), __('Are you sure you want to delete # %s?', $socialInnovatorQuality['SocialInnovatorQuality']['id'])); ?>
+                            <?php echo $this->Html->link(__('View'), array('action' => 'view', $quality['Quality']['id'])); ?>
+                            <?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $quality['Quality']['id'])); ?>
+                            <?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $quality['Quality']['id']), array(), __('Are you sure you want to delete # %s?', $quality['Quality']['id'])); ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

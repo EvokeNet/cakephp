@@ -8,7 +8,9 @@
  */
 
 $title = __('Evoke Network');
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +21,12 @@ $title = __('Evoke Network');
   <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Dosis&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-
+  
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.js"></script>-->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    
   <?php echo $this->Html->charset(); ?>
   
   <title>
@@ -70,6 +77,9 @@ $title = __('Evoke Network');
     echo $this->fetch('meta');
     echo $this->fetch('social-metatags');
 
+    echo $this->Html->script("/webroot/components/react/react.js");
+    echo $this->Html->script("/webroot/components/react/react-dom.js");
+    
   ?>
   <!--<script src="http://localhost:8000/socket.io/socket.io.js"></script>
   <script src="http://localhost:3000/socket.io/socket.io.js"></script>-->

@@ -50,8 +50,8 @@ class SuperheroIdentitiesController extends AppController {
 		$options = array('conditions' => array('SuperheroIdentity.' . $this->SuperheroIdentity->primaryKey => $id));
 		$this->set('superheroIdentity', $this->SuperheroIdentity->find('first', $options));
 
-		$this->loadModel('SocialInnovatorQuality');
-  		$qualities = $this->SocialInnovatorQuality->find('list');
+		$this->loadModel('Quality');
+  		$qualities = $this->Quality->find('list');
   		$this->loadModel('Power');
   		$powers = $this->Power->find('list');
   		$this->loadModel('Organization');
@@ -84,8 +84,8 @@ class SuperheroIdentitiesController extends AppController {
 			}
 		}
 
-		$this->loadModel('SocialInnovatorQuality');
-  		$qualities = $this->SocialInnovatorQuality->find('list');
+		$this->loadModel('Quality');
+  		$qualities = $this->Quality->find('list');
   		$this->loadModel('Power');
   		$powers = $this->Power->find('list');
   		$this->loadModel('Organization');
@@ -122,8 +122,8 @@ class SuperheroIdentitiesController extends AppController {
 			$this->request->data = $this->SuperheroIdentity->find('first', $options);
 		}
 
-		$this->loadModel('SocialInnovatorQuality');
-  		$qualities = $this->SocialInnovatorQuality->find('list');
+		$this->loadModel('Quality');
+  		$qualities = $this->Quality->find('list');
   		$this->loadModel('Power');
   		$powers = $this->Power->find('list');
   		$this->loadModel('Organization');
