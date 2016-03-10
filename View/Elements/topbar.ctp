@@ -24,7 +24,7 @@
       <li class="divider"></li>
       <li class="has-dropdown">
         <!--<a href="#"><?php echo __('LANGUAGE'); ?></a>-->
-        <a href="#"><i class="fa fa-language fa-lg"></i></a>
+        <a href="#"><?php echo __('LANGUAGE'); ?> <i class="fa fa-language fa-lg"></i></a>
         <ul class="dropdown">
           <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'en')) ?>"><?php echo __('ENGLISH'); ?></a></li>
           <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'es')) ?>"><?php echo __('SPANISH'); ?></a></li>

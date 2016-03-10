@@ -1167,53 +1167,6 @@ public function googleLogin() {
     }
   }
 
-/**
- * admin_edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-  public function panel_edit($id = null) {
-    if (!$this->User->exists($id)) {
-      throw new NotFoundException(__('Invalid user'));
-    }
-
-    $this->User->id = $id;
-    if ($this->request->is(array('post', 'put'))) {
-      if ($this->User->save($this->request->data)) {
-        $this->Session->setFlash(__('The user has been saved.'));
-        return $this->redirect($this->referer());
-      } else {
-        $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-      }
-    } else {
-      $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-      $this->request->data = $this->User->find('first', $options);
-      unset($this->request->data['User']['password']);
-    }
-  }
-
-/**
- * admin_delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-  public function panel_delete($id = null) {
-    $this->User->id = $id;
-    if (!$this->User->exists()) {
-      throw new NotFoundException(__('Invalid user'));
-    }
-    //$this->request->onlyAllow('post', 'delete');
-    if ($this->User->delete()) {
-      $this->Session->setFlash(__('The user has been deleted.'));
-    } else {
-      $this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
-    }
-    return $this->redirect($this->referer());
-  }
 
 /**
 * admin_edit method
@@ -1252,44 +1205,6 @@ public function googleLogin() {
       $this->set('user', $user['User']);
       $this->request->data = $user;
     }
-  }
-
-
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-  public function delete($id = null) {
-    if(is_null($id)){
-      $id = $this->getUserId();
-    }
-
-    //check to see if user is an admin
-    //if so, he can delete whoever he likes
-    //otherwise, you are not allowed to edit agents but
-    // yourself and will be redirected home
-    if($this->getUserRole() != 1) {
-      if($id != $this->getUserId()) {
-        $this->Session->setFlash(__("You can't delete other users. Permission denied."));
-        $this->redirect($this->referer());
-      }
-    }
-
-    $this->User->id = $id;
-    if (!$this->User->exists()) {
-      throw new NotFoundException(__('Invalid user'));
-    }
-    $this->request->onlyAllow('post', 'delete');
-    if ($this->User->delete()) {
-      $this->Session->setFlash(__('The user has been deleted.'));
-    } else {
-      $this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
-    }
-    // return $this->redirect(array('action' => 'index'));
-    return $this->redirect($this->referer());
   }
 
 
@@ -1450,26 +1365,6 @@ public function googleLogin() {
    */
   private function get_user($id = null) {
     return $this->User->find('first', array('conditions' => array('User.id' => $id)));
-  }
-
-  private function get_available_missions($user_id) {
-    return $this->Mission->find('all', array(
-      'joins' => array(
-        array(
-          'table' => 'user_missions',
-          'alias' => 'UserMission',
-          'type' => 'LEFT',
-          'foreign_key' => false,
-          'conditions' => array(
-            'UserMission.user_id' => $user_id,
-            'UserMission.completed' => 0
-          )
-        )
-      ),
-      'conditions' => array(
-        'Mission.basic_training' => 0
-      )
-    ));
   }
 
   private function build_qualities_array() {

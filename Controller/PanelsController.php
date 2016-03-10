@@ -30,14 +30,10 @@ class PanelsController extends AppController {
 		$this->user['role'] = $this->getUserRole();
 		$this->user['id'] = $this->getUserId();
 		$this->user['name'] = $this->getUserName();
-
-	}
-    
-    public function admin_main(){
-		$this->main(1);
 	}
 
-	public function main($args = 0){
+
+	public function admin_main(){
 
 		$this->loadModel('Badge');
 		$this->loadModel('Level');
@@ -225,10 +221,8 @@ class PanelsController extends AppController {
 
 
 		$this->set(compact('badges', 'missions_issues', 'organizations'));
-		if($args == 1){
-			$this->render('admin_main');
-		}else{
-			$this->render('main');
-		}	
+		
+		$this->render('admin_main');
+		
        }
 }

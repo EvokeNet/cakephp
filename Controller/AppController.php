@@ -37,6 +37,7 @@ class AppController extends Controller {
 	public $components = array(
 		'Session',
 		'Permission',
+            'BasicData',
 		'Auth' => array(
             'loginAction' => array('controller' => 'pages', 'action' => 'display', 'home', 'admin' => false),
             'loginRedirect' => array('controller' => 'users', 'action' => 'login', 'admin' => false),
@@ -52,259 +53,9 @@ class AppController extends Controller {
 	public $user = null;
 	public $lang = null;
 
-      public $sex = array(
-        0 => 'male',
-        1 => 'female'
-      );
-
-      public $languages = array(
-        'pt_BR' => 'Português',
-        'en_US' => 'English (US)',
-        'en' => 'English',
-        'es' => 'Español'
-      );
-
-      public $countries = array(
-      'BR' => 'Brazil',
-      'US' => 'United States',
-      'AF' => 'Afganistan',
-      'AL' => 'Albania',
-      'DZ' => 'Algeria',
-      'AS' => 'American Samoa',
-      'AD' => 'Andorra',
-      'AO' => 'Angola',
-      'AI' => 'Anguilla',
-      'AQ' => 'Antarctica',
-      'AG' => 'Antigua and Barbuda',
-      'AR' => 'Argentina',
-      'AM' => 'Armenia',
-      'AW' => 'Aruba',
-      'AU' => 'Australia',
-      'AT' => 'Austria',
-      'AZ' => 'Azerbaijan',
-      'BS' => 'Bahamas',
-      'BH' => 'Bahrain',
-      'BD' => 'Bangladesh',
-      'BB' => 'Barbados',
-      'BY' => 'Belarus',
-      'BE' => 'Belgium',
-      'BZ' => 'Belize',
-      'BJ' => 'Benin',
-      'BM' => 'Bermuda',
-      'BT' => 'Bhutan',
-      'BO' => 'Bolivia',
-      'BA' => 'Bosnia and Herzegowina',
-      'BW' => 'Botswana',
-      'BV' => 'Bouvet Island',
-      'IO' => 'British Indian Ocean Territory',
-      'BN' => 'Brunei Darussalam',
-      'BG' => 'Bulgaria',
-      'BF' => 'Burkina Faso',
-      'BI' => 'Burundi',
-      'KH' => 'Cambodia',
-      'CM' => 'Cameroon',
-      'CA' => 'Canada',
-      'CV' => 'Cape Verde',
-      'KY' => 'Cayman Islands',
-      'CF' => 'Central African Republic',
-      'TD' => 'Chad',
-      'CL' => 'Chile',
-      'CN' => 'China',
-      'CX' => 'Christmas Island',
-      'CC' => 'Cocos (Keeling) Islands',
-      'CO' => 'Colombia',
-      'KM' => 'Comoros',
-      'CG' => 'Congo',
-      'CD' => 'Congo, the Democratic Republic of the',
-      'CK' => 'Cook Islands',
-      'CR' => 'Costa Rica',
-      'CI' => 'Cote d\'Ivoire',
-      'HR' => 'Croatia (Hrvatska)',
-      'CU' => 'Cuba',
-      'CY' => 'Cyprus',
-      'CZ' => 'Czech Republic',
-      'DK' => 'Denmark',
-      'DJ' => 'Djibouti',
-      'DM' => 'Dominica',
-      'DO' => 'Dominican Republic',
-      'TP' => 'East Timor',
-      'EC' => 'Ecuador',
-      'EG' => 'Egypt',
-      'SV' => 'El Salvador',
-      'GQ' => 'Equatorial Guinea',
-      'ER' => 'Eritrea',
-      'EE' => 'Estonia',
-      'ET' => 'Ethiopia',
-      'FK' => 'Falkland Islands (Malvinas)',
-      'FO' => 'Faroe Islands',
-      'FJ' => 'Fiji',
-      'FI' => 'Finland',
-      'FR' => 'France',
-      'FX' => 'France, Metropolitan',
-      'GF' => 'French Guiana',
-      'PF' => 'French Polynesia',
-      'TF' => 'French Southern Territories',
-      'GA' => 'Gabon',
-      'GM' => 'Gambia',
-      'GE' => 'Georgia',
-      'DE' => 'Germany',
-      'GH' => 'Ghana',
-      'GI' => 'Gibraltar',
-      'GR' => 'Greece',
-      'GL' => 'Greenland',
-      'GD' => 'Grenada',
-      'GP' => 'Guadeloupe',
-      'GU' => 'Guam',
-      'GT' => 'Guatemala',
-      'GN' => 'Guinea',
-      'GW' => 'Guinea-Bissau',
-      'GY' => 'Guyana',
-      'HT' => 'Haiti',
-      'HM' => 'Heard and Mc Donald Islands',
-      'VA' => 'Holy See (Vatican City State)',
-      'HN' => 'Honduras',
-      'HK' => 'Hong Kong',
-      'HU' => 'Hungary',
-      'IS' => 'Iceland',
-      'IN' => 'India',
-      'ID' => 'Indonesia',
-      'IR' => 'Iran (Islamic Republic of)',
-      'IQ' => 'Iraq',
-      'IE' => 'Ireland',
-      'IL' => 'Israel',
-      'IT' => 'Italy',
-      'JM' => 'Jamaica',
-      'JP' => 'Japan',
-      'JO' => 'Jordan',
-      'KZ' => 'Kazakhstan',
-      'KE' => 'Kenya',
-      'KI' => 'Kiribati',
-      'KP' => 'Korea, Democratic People\'s Republic of',
-      'KR' => 'Korea, Republic of',
-      'KW' => 'Kuwait',
-      'KG' => 'Kyrgyzstan',
-      'LA' => 'Lao People\'s Democratic Republic',
-      'LV' => 'Latvia',
-      'LB' => 'Lebanon',
-      'LS' => 'Lesotho',
-      'LR' => 'Liberia',
-      'LY' => 'Libyan Arab Jamahiriya',
-      'LI' => 'Liechtenstein',
-      'LT' => 'Lithuania',
-      'LU' => 'Luxembourg',
-      'MO' => 'Macau',
-      'MK' => 'Macedonia, The Former Yugoslav Republic of',
-      'MG' => 'Madagascar',
-      'MW' => 'Malawi',
-      'MY' => 'Malaysia',
-      'MV' => 'Maldives',
-      'ML' => 'Mali',
-      'MT' => 'Malta',
-      'MH' => 'Marshall Islands',
-      'MQ' => 'Martinique',
-      'MR' => 'Mauritania',
-      'MU' => 'Mauritius',
-      'YT' => 'Mayotte',
-      'MX' => 'Mexico',
-      'FM' => 'Micronesia, Federated States of',
-      'MD' => 'Moldova, Republic of',
-      'MC' => 'Monaco',
-      'MN' => 'Mongolia',
-      'MS' => 'Montserrat',
-      'MA' => 'Morocco',
-      'MZ' => 'Mozambique',
-      'MM' => 'Myanmar',
-      'NA' => 'Namibia',
-      'NR' => 'Nauru',
-      'NP' => 'Nepal',
-      'NL' => 'Netherlands',
-      'AN' => 'Netherlands Antilles',
-      'NC' => 'New Caledonia',
-      'NZ' => 'New Zealand',
-      'NI' => 'Nicaragua',
-      'NE' => 'Niger',
-      'NG' => 'Nigeria',
-      'NU' => 'Niue',
-      'NF' => 'Norfolk Island',
-      'MP' => 'Northern Mariana Islands',
-      'NO' => 'Norway',
-      'OM' => 'Oman',
-      'PK' => 'Pakistan',
-      'PW' => 'Palau',
-      'PA' => 'Panama',
-      'PG' => 'Papua New Guinea',
-      'PY' => 'Paraguay',
-      'PE' => 'Peru',
-      'PH' => 'Philippines',
-      'PN' => 'Pitcairn',
-      'PL' => 'Poland',
-      'PT' => 'Portugal',
-      'PR' => 'Puerto Rico',
-      'QA' => 'Qatar',
-      'RE' => 'Reunion',
-      'RO' => 'Romania',
-      'RU' => 'Russian Federation',
-      'RW' => 'Rwanda',
-      'KN' => 'Saint Kitts and Nevis',
-      'LC' => 'Saint LUCIA',  
-      'VC' => 'Saint Vincent and the Grenadines',
-      'WS' => 'Samoa',
-      'SM' => 'San Marino',
-      'ST' => 'Sao Tome and Principe',
-      'SA' => 'Saudi Arabia',
-      'SN' => 'Senegal',
-      'SC' => 'Seychelles',
-      'SL' => 'Sierra Leone',
-      'SG' => 'Singapore',
-      'SK' => 'Slovakia (Slovak Republic)',
-      'SI' => 'Slovenia',
-      'SB' => 'Solomon Islands',
-      'SO' => 'Somalia',
-      'ZA' => 'South Africa',
-      'GS' => 'South Georgia and the South Sandwich Islands',
-      'ES' => 'Spain',
-      'LK' => 'Sri Lanka',
-      'SH' => 'St. Helena',
-      'PM' => 'St. Pierre and Miquelon',
-      'SD' => 'Sudan',
-      'SR' => 'Suriname',
-      'SJ' => 'Svalbard and Jan Mayen Islands',
-      'SZ' => 'Swaziland',
-      'SE' => 'Sweden',
-      'CH' => 'Switzerland',
-      'SY' => 'Syrian Arab Republic',
-      'TW' => 'Taiwan, Province of China',
-      'TJ' => 'Tajikistan',
-      'TZ' => 'Tanzania, United Republic of',
-      'TH' => 'Thailand',
-      'TG' => 'Togo',
-      'TK' => 'Tokelau',
-      'TO' => 'Tonga',
-      'TT' => 'Trinidad and Tobago',
-      'TN' => 'Tunisia',
-      'TR' => 'Turkey',
-      'TM' => 'Turkmenistan',
-      'TC' => 'Turks and Caicos Islands',
-      'TV' => 'Tuvalu',
-      'UG' => 'Uganda',
-      'UA' => 'Ukraine',
-      'AE' => 'United Arab Emirates',
-      'GB' => 'United Kingdom',
-      'UM' => 'United States Minor Outlying Islands',
-      'UY' => 'Uruguay',
-      'UZ' => 'Uzbekistan',
-      'VU' => 'Vanuatu',
-      'VE' => 'Venezuela',
-      'VN' => 'Viet Nam',
-      'VG' => 'Virgin Islands (British)',
-      'VI' => 'Virgin Islands (U.S.)',
-      'WF' => 'Wallis and Futuna Islands',
-      'EH' => 'Western Sahara',
-      'YE' => 'Yemen',
-      'YU' => 'Yugoslavia',
-      'ZM' => 'Zambia',
-      'ZW' => 'Zimbabwe'
-      );
+      public $sex;
+      public $languages;
+      public $countries;
 
       public $facebook;
       public $googleClient;
@@ -317,13 +68,16 @@ class AppController extends Controller {
 */
       public function beforeFilter() {
 
-            FacebookSession::setDefaultApplication(
-                  Configure::read('FB_APP_ID'),
-                  Configure::read('FB_APP_SECRET')
-            );
+            // BASIC DATA CONFIG
+            $this->initializeBasicData();
 
             // FACEBOOK CONFIG
             if(empty($this->facebook)){
+                  FacebookSession::setDefaultApplication(
+                        Configure::read('FB_APP_ID'),
+                        Configure::read('FB_APP_SECRET')
+                  );
+
                   $this->facebook = new FacebookRedirectLoginHelper(Router::url(array('controller' => 'users', 'action' => 'fbLogin'), true));      
             }
 
@@ -335,10 +89,8 @@ class AppController extends Controller {
                   $this->googleClient->setRedirectUri(Router::url(array('controller' => 'users', 'action' => 'googleLogin'), true));
                   $this->googleClient->addScope("email");
                   $this->googleClient->addScope("profile");
+                  $this->googleService = new Google_Service_Oauth2($this->googleClient);
             }
-            
-
-            $this->googleService = new Google_Service_Oauth2($this->googleClient);
 
             //Determine language if not already determined
             $this->_checkBrowserLanguage();
@@ -371,12 +123,6 @@ class AppController extends Controller {
 			}
 		}
 
-		//User definitions
-		$userPoints = $this->getPoints($this->getUserId());
-		$userLevel = $this->getLevel($userPoints); //level ID
-		$userNextLevel = $this->getNextLevel($userLevel); //next level object
-		$userLevelPercentage = $this->getLevelPercentage($userPoints, $userLevel);
-
 		//Check if the user has answered the assessment questionnaire and redirect to it, if not
 		$this->loadModel('SuperheroIdentity');
 
@@ -386,23 +132,18 @@ class AppController extends Controller {
 			)
 		));
 
-		// debug($cuser);
-		// debug($superhero);
-		// debug($this->request->params['action']);
-		// die();
-
 		// check if the user has answered the asessment questionnaire and isn't doing it right now
 		if(empty($superhero) && $this->request->params['action'] != 'matching'
-							 && $this->request->params['action'] != 'login'  //also, if  the user is loging in or out
-							 && $this->request->params['action'] != 'logout' // we have to allow it
-							 && $this->request->params['action'] != 'register' // also if user is registering
-                             && $this->request->params['action'] != 'recover_password' // also if user is trying to recover password
-                             && $this->request->params['action'] != 'fbLogin' // also if user is trying to loging in by facebook
-                             && $this->request->params['action'] != 'googleLogin' // also if user is trying to loging in by google
-                             && $this->request->params['action'] != 'display' // also if user is registering
-                             && $this->request->params['action'] != 'terms' // also if user is registering
-                             && $this->request->params['action'] != 'recover_password' // also if user is trying to recover password
-							 && $this->request->params['action'] != 'matching_results'){
+							&& $this->request->params['action'] != 'login'  //also, if  the user is loging in or out
+							&& $this->request->params['action'] != 'logout' // we have to allow it
+							&& $this->request->params['action'] != 'register' // also if user is registering
+                                          && $this->request->params['action'] != 'recover_password' // also if user is trying to recover password
+                                          && $this->request->params['action'] != 'fbLogin' // also if user is trying to loging in by facebook
+                                          && $this->request->params['action'] != 'googleLogin' // also if user is trying to loging in by google
+                                          && $this->request->params['action'] != 'display' // also if user is registering
+                                          && $this->request->params['action'] != 'terms' // also if user is registering
+                                          && $this->request->params['action'] != 'recover_password' // also if user is trying to recover password
+							&& $this->request->params['action'] != 'matching_results'){
 
 			return $this->redirect(array('controller' => 'users', 'action' => 'matching', $this->getUserId(), 'admin' => false));
 		}
@@ -473,42 +214,6 @@ class AppController extends Controller {
             $this->Session->write('Config.language', $lang);
 
             $this->redirect($this->referer()); //in order to redirect the user to the page from which it was called
-      }
-
-      public function isAuthorized($user = null) {
-
-            if (!empty ($this->accessLevels)) {
-
-                  $currentAction = $this->params['action'];
-
-                  if(!empty ($this->accessLevels[$currentAction])) {
-                        $accessLevel = $this->accessLevels[$currentAction];
-                  } else if(!empty ($this->accessLevels['*'])) {
-                        $accessLevel = $this->accessLevels['*'];
-                  }
-
-                  if(!empty ($accessLevel)) {
-                        return $this->UserRole->is($accessLevel);
-                  }
-
-                  // Authorised actions
-                  if (in_array($this->action, array('changePassword'))) {
-                        $id = $this->request->params['pass'][0];
-
-                        if($this->{$this->modelClass}->field('user_id', array('user_id' => $id)) == $this->Auth->user('user_id'))
-                              return true;
-                  }
-
-                  // Will break out on this call
-                  $this->Session->setFlash(__('Você não está autorizado a visualizar esta página'));
-                  $this->redirect(array('controller' => 'users', 'action' => 'changePassword', $user['user_id'],'admin' => false));
-                  return false;
-
-            }
-
-            $this->setFlash(__('Você não tem permissão para ver essa página.'));
-            return false;
-
       }
 
       public function getNotificationsNumber($user_id){
@@ -600,40 +305,8 @@ class AppController extends Controller {
                   return null;
       }
 
-
-
-
       public function getUserImage($userid) {
-
-      }
-
-      public function getLevelPercentage($userPoints, $userLevel){
-
-
-            // $this->loadModel('Level');
-            //
-            // $thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
-            //
-            // if(!empty($thisLevel))
-            //    $percentage = round(($userPoints/$thisLevel['Level']['points']) * 100);
-            // else
-            //    $percentage = 0;
-            //
-            // return $percentage;
-
-            $this->loadModel('Level');
-
-            $thisLevel = $this->Level->find('first', array('conditions' => array('Level.level' => $userLevel+1)));
-
-            /*if(!empty($thisLevel))
-                  $percentage = round(($userPoints/$thisLevel['Level']['points']) * 100);
-            else
-                  $percentage = 0;
-                  */
-
-            //return $percentage;
-                  return 0;
-
+            // TODO
       }
 
       public function getUserId() {
@@ -660,6 +333,26 @@ class AppController extends Controller {
             return $role_score;
       }
 
+/**
+* initializeBasicData method
+*
+* @return void
+*
+*
+*/
+function initializeBasicData(){
+      if(empty($this->sex)){
+            $this->sex = $this->BasicData->sex;
+      }
+
+      if(empty($this->languages)){
+            $this->languages = $this->BasicData->languages;
+      }
+
+      if(empty($this->countries)){
+            $this->countries = $this->BasicData->countries;
+      }
+}
 
 /**
 * getSex method
