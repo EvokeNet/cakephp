@@ -11,12 +11,12 @@
                     <i class="fa fa-plus-circle fa-lg"></i>
                 </a>
             </div>
-            <h4 class="uppercase font-gray font-weight-bold"><?php echo __('Forums'); ?></h4>
+            <h4 class="uppercase font-gray font-weight-bold"><?php echo __('Matching Questions'); ?></h4>
         </div>
 		<table cellpadding="0" cellspacing="0" class="table table-td-valign-middle" style="width:100%">
 			<thead>
 				<tr>
-					<th><?php echo $this->Paginator->sort('description'); ?></th>
+					<th class = "width-500"><?php echo $this->Paginator->sort('description'); ?></th>
 					<th><?php echo $this->Paginator->sort('type'); ?></th>
 					<th class="actions"><?php echo __('Actions'); ?></th>
 				</tr>
@@ -24,7 +24,7 @@
 			<tbody>
 				<?php foreach ($matchingQuestions as $matchingQuestion): ?>
 					<tr>
-						<td><?php echo h($matchingQuestion['MatchingQuestion']['description']); ?>&nbsp;</td>
+						<td><p style="color: #222222" class="ellipsis-content width-500"><?php echo h($matchingQuestion['MatchingQuestion']['description']); ?>&nbsp;</p></td>
 						<td><?php echo h($matchingQuestion['MatchingQuestion']['type']); ?>&nbsp;</td>
 						<td class="actions">
 							<?php echo $this->Html->link(__('View'), array('action' => 'view', $matchingQuestion['MatchingQuestion']['id'])); ?>

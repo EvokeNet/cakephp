@@ -228,3 +228,13 @@
 .bg-warning-light {
     background: #FCBF67!important;
 }
+
+.width-500{
+    width: 500px;
+}
+
+.ellipsis-content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
