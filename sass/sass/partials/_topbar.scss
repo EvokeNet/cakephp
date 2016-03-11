@@ -111,3 +111,9 @@
     box-sizing: border-box;
     position: absolute;
 }
+
+.link-disabled{
+	pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+}

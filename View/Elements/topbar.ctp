@@ -24,7 +24,7 @@
       <li class="divider"></li>
       <li class="has-dropdown">
         <!--<a href="#"><?php echo __('LANGUAGE'); ?></a>-->
-        <a href="#"><i class="fa fa-language fa-lg"></i></a>
+        <a href="#"><?php echo __('LANGUAGE'); ?> <i class="fa fa-language fa-lg"></i></a>
         <ul class="dropdown">
           <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'en')) ?>"><?php echo __('ENGLISH'); ?></a></li>
           <li><a href="<?= $this->Html->url(array('action'=>'changeLanguage', 'admin' => false, 'es')) ?>"><?php echo __('SPANISH'); ?></a></li>
@@ -35,25 +35,25 @@
     <!-- Left Nav Section -->
     <ul class="left">
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'missions', 'action' => 'index', 'admin' => false)); ?>" class="link-disabled font-green uppercase">
           <?php echo __('Missions'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index', 'admin' => false)); ?>" class="link-disabled font-green uppercase">
           <?php echo __('Forum'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard', 'admin' => false)); ?>" class="font-green uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'leaderboard', 'admin' => false)); ?>" class="link-disabled font-green uppercase">
           <?php echo __('Leaderboard'); ?>
         </a>
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'badges', 'action' => 'index', 'admin' => false)); ?>" class="link-disabled font-green uppercase">
           <?php echo __('Badges'); ?>
         </a>
       </li>

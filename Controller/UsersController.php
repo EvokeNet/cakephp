@@ -40,6 +40,10 @@ class UsersController extends AppController {
 
   public $components = array('Paginator');
 
+  public $facebook;
+  public $googleClient;
+  public $googleService;
+
 /**
 *
 * beforeFilter method
@@ -49,23 +53,34 @@ class UsersController extends AppController {
   public function beforeFilter() {
     parent::beforeFilter();
     $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage','recover_password','fbLogin','googleLogin');
+
+    // FACEBOOK CONFIG
+    if(empty($this->facebook)){
+          FacebookSession::setDefaultApplication(
+                Configure::read('FB_APP_ID'),
+                Configure::read('FB_APP_SECRET')
+          );
+
+          $this->facebook = new FacebookRedirectLoginHelper(Router::url(array('controller' => 'users', 'action' => 'fbLogin'), true));      
+    }
+
+    // GOOGLE CONFIG
+    if(empty($this->googleClient)){
+      $this->googleClient = new Google_Client();
+      $this->googleClient->setClientId(Configure::read('GOOGLE_APP_ID'));
+      $this->googleClient->setClientSecret(Configure::read('GOOGLE_APP_SECRET'));
+      $this->googleClient->setRedirectUri(Router::url(array('controller' => 'users', 'action' => 'googleLogin'), true));
+      $this->googleClient->addScope("email");
+      $this->googleClient->addScope("profile");
+      $this->googleService = new Google_Service_Oauth2($this->googleClient);
+    }
   }
 
-  // public function createTempPassword($len) {
-  //    $pass = '';
-  //    $lchar = 0;
-  //    $char = 0;
-  //    for($i = 0; $i < $len; $i++) {
-  //      while($char == $lchar) {
-  //        $char = rand(48, 109);
-  //        if($char > 57) $char += 7;
-  //        if($char > 90) $char += 6;
-  //      }
-  //      $pass .= chr($char);
-  //      $lchar = $char;
-  //    }
-  //    return $pass;
-  //  }
+  public function beforeRender() {
+    $facebook_login_url = $this->facebook->getLoginUrl(Configure::read('FB_SCOPES'));
+    $google_login_url = $this->googleClient->createAuthUrl();
+    $this->set(compact('facebook_login_url','google_login_url'));
+  }
 
   public function changeLanguage($lang){
     parent::changeLanguage($lang);
@@ -323,92 +338,6 @@ public function googleLogin() {
         $mission['Mission']['description'] = $mission['Mission']['description_es'];
       }
     }
-
-    /*   
-    $client = new Google_Client();
-    $client->setApplicationName('Evoke');
-    $client->setClientId(Configure::read('google_client_id'));
-    $client->setClientSecret(Configure::read('google_client_secret'));
-    $client->setRedirectUri(Configure::read('google_redirect_uri'));
-    $client->setDeveloperKey(Configure::read('google_developer_key'));
-
-    $google_oauthV2 = new Google_Service_Oauth2($client);
-
-    $client->addScope(Google_Service_Oauth2::USERINFO_EMAIL);
-    $client->addScope(Google_Service_Oauth2::USERINFO_PROFILE);
-    */
-
-    /*
-
-    if (isset($this->params['url']['code'])) {
-      $client->authenticate($this->params['url']['code']);
-      $_SESSION['access_token'] = $client->getAccessToken();
-
-    if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-      $user_profile = $google_oauthV2->userinfo->get();
-      $_SESSION['user']['name'] = $user_profile['name'];
-      $_SESSION['user']['google_id'] = $user_profile['id'];
-      $_SESSION['user']['email'] = $user_profile['email'];
-
-      $user_google = $this->User->find('first', array('conditions' => array('User.id' => $_SESSION['user']['email'])));
-
-      if(empty($user_google)) {
-
-        // User does not exist in DB, so we are going to create
-        $this->User->create();
-        $user_google['User']['google_id'] = $user_profile['id'];
-        $user_google['User']['google_token'] = $client->getAccessToken();
-        $user_google['User']['name'] = $user_profile['name'];
-        $user_google['User']['email'] = $user_profile['email'];
-        $user_google['User']['role_id'] = 3;
-
-        if($this->User->save($user_google)) {
-          $user_google['User']['id'] = $this->User->id;
-          $this->Auth->login($user_google);
-          $date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-          return $this->redirect(array('action' => 'edit', $this->User->id));
-        } else {
-          $this->Session->setFlash(__('There was some interference in your connection.'), 'error');
-          return $this->redirect(array('action' => 'login'));
-        }
-
-      } else {
-
-        // User exists, so we just force login
-        // TODO: check if any data changed since last Facebook login, then update in our table
-
-        // We need to update the Facebook token, once web tokens are short-term only
-        $this->User->id = $user_google['User']['id'];
-        $this->User->set('google_token', $client->getAccessToken());
-        $this->User->save();
-
-        $user_google['User']['id'] = $this->User->id;
-        $this->Auth->login($user_google);
-
-        $date = date('Y:m:d', $_SERVER['REQUEST_TIME']);
-
-        return $this->redirect(array('controller' => 'users', 'action' => 'profile', $this->User->id));
-
-      }
-    }
-    }else {
-      $authUrl = $client->createAuthUrl();
-
-      if(isset($authUrl)) { //user is not logged in, show login button
-        $this->set('authUrl', $authUrl);
-      }
-    }
-
-    //debug($this->Auth);
-    $facebook = new Facebook(array(
-      'appId' => Configure::read('fb_app_id'),
-      'secret' => Configure::read('fb_app_secret'),
-      'allowSignedRequest' => false,
-
-    ));
-
-    */
 
     if ($this->Auth->login()) {
 
@@ -741,44 +670,6 @@ public function googleLogin() {
 
 
 /**
- * allies method
- *
- * @return void
- */
-  // public function allies($id) {
-  //  if (!$this->User->exists($id)) {
-  //    throw new NotFoundException(__('Invalid user'));
-  //  }
-
-  //  $user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
-
-  //  $users = $this->User->find('first', array('conditions' => array('User.id' => $this->getUserId())));
-
-  //  $allies = array();
-
-  //  $friends = $this->User->UserFriend->find('all', array('conditions' => array('UserFriend.user_id' => $id))); //this->getUserId()
-
-  //  $are_friends = array();
-  //  //$allies = array();
-
-  //  foreach($friends as $friend){
-  //    array_push($are_friends, array('User.id' => $friend['UserFriend']['friend_id']));
-  //  }
-
-  //  if(!empty($are_friends)){
-  //    $allies = $this->User->find('all', array(
-  //      'conditions' => array(
-  //        'OR' => $are_friends
-  //    )));
-  //  } else{
-  //    $allies = array();
-  //    //$notifies = array();
-  //  }
-
-  //  $this->set(compact('user', 'users', 'friends', 'allies'));
-  // }
-
-/**
  *
  * profile method
  *
@@ -863,14 +754,16 @@ public function googleLogin() {
 
     //GROUPS AND EVOKATION
     $this->loadModel('Group');
-    $this->loadModel('GroupsUser');
-    $users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $id)));
+    //TODO
+    //$this->loadModel('GroupsUser');
+    //$users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $id)));
 
-    $mygroups_id = array();
+    //$mygroups_id = array();
 
-    foreach($users_groups as $g):
+    /*foreach($users_groups as $g):
       array_push($mygroups_id, array('Evokation.group_id' => $g['GroupsUser']['group_id']));
     endforeach;
+    */
 
     $myevokations = array();
 
@@ -1128,6 +1021,16 @@ public function googleLogin() {
       ),
     ));
 
+    // if user doesn't exist, redirect
+    if($user == null){
+      return $this->redirect(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id')));
+    }
+
+    // if user already has a super hero identity id, redirect
+    if($user['User']['superhero_identity_id']!=0){
+      return $this->redirect(array('action' => 'profile', $id));
+    }
+
     //save user's superhero identity id
     $user['User']['superhero_identity_id'] = $superhero['SuperheroIdentity']['id'];
     unset($user['User']['password']);
@@ -1316,53 +1219,6 @@ public function googleLogin() {
     }
   }
 
-/**
- * admin_edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-  public function panel_edit($id = null) {
-    if (!$this->User->exists($id)) {
-      throw new NotFoundException(__('Invalid user'));
-    }
-
-    $this->User->id = $id;
-    if ($this->request->is(array('post', 'put'))) {
-      if ($this->User->save($this->request->data)) {
-        $this->Session->setFlash(__('The user has been saved.'));
-        return $this->redirect($this->referer());
-      } else {
-        $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-      }
-    } else {
-      $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-      $this->request->data = $this->User->find('first', $options);
-      unset($this->request->data['User']['password']);
-    }
-  }
-
-/**
- * admin_delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-  public function panel_delete($id = null) {
-    $this->User->id = $id;
-    if (!$this->User->exists()) {
-      throw new NotFoundException(__('Invalid user'));
-    }
-    //$this->request->onlyAllow('post', 'delete');
-    if ($this->User->delete()) {
-      $this->Session->setFlash(__('The user has been deleted.'));
-    } else {
-      $this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
-    }
-    return $this->redirect($this->referer());
-  }
 
 /**
 * admin_edit method
@@ -1401,44 +1257,6 @@ public function googleLogin() {
       $this->set('user', $user['User']);
       $this->request->data = $user;
     }
-  }
-
-
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-  public function delete($id = null) {
-    if(is_null($id)){
-      $id = $this->getUserId();
-    }
-
-    //check to see if user is an admin
-    //if so, he can delete whoever he likes
-    //otherwise, you are not allowed to edit agents but
-    // yourself and will be redirected home
-    if($this->getUserRole() != 1) {
-      if($id != $this->getUserId()) {
-        $this->Session->setFlash(__("You can't delete other users. Permission denied."));
-        $this->redirect($this->referer());
-      }
-    }
-
-    $this->User->id = $id;
-    if (!$this->User->exists()) {
-      throw new NotFoundException(__('Invalid user'));
-    }
-    $this->request->onlyAllow('post', 'delete');
-    if ($this->User->delete()) {
-      $this->Session->setFlash(__('The user has been deleted.'));
-    } else {
-      $this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
-    }
-    // return $this->redirect(array('action' => 'index'));
-    return $this->redirect($this->referer());
   }
 
 
@@ -1599,26 +1417,6 @@ public function googleLogin() {
    */
   private function get_user($id = null) {
     return $this->User->find('first', array('conditions' => array('User.id' => $id)));
-  }
-
-  private function get_available_missions($user_id) {
-    return $this->Mission->find('all', array(
-      'joins' => array(
-        array(
-          'table' => 'user_missions',
-          'alias' => 'UserMission',
-          'type' => 'LEFT',
-          'foreign_key' => false,
-          'conditions' => array(
-            'UserMission.user_id' => $user_id,
-            'UserMission.completed' => 0
-          )
-        )
-      ),
-      'conditions' => array(
-        'Mission.basic_training' => 0
-      )
-    ));
   }
 
   private function build_qualities_array() {

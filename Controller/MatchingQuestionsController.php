@@ -17,68 +17,28 @@ class MatchingQuestionsController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * add method
+ * admin_index method
  *
  * @return void
  */
-	public function add() {
-		$this->autoRender = false;
-
-		if ($this->request->is('post')) {
-			$this->MatchingQuestion->create();
-			if ($this->MatchingQuestion->save($this->request->data)) {
-				$this->Session->setFlash(__('The matching question has been saved.'));
-			} else {
-				$this->Session->setFlash(__('The matching question could not be saved. Please, try again.'));
-			}
-		}
+	public function admin_index() {
+		$this->MatchingQuestion->recursive = 0;
+		$this->set('matchingQuestions', $this->Paginator->paginate());
 	}
 
 /**
- * edit method
+ * admin_view method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
-		$this->autoRender = false;
-
+	public function admin_view($id = null) {
 		if (!$this->MatchingQuestion->exists($id)) {
 			throw new NotFoundException(__('Invalid matching question'));
 		}
-		if ($this->request->is(array('post', 'put'))) {
-			if ($this->MatchingQuestion->save($this->request->data)) {
-				$this->Session->setFlash(__('The matching question has been saved.'));
-			} else {
-				$this->Session->setFlash(__('The matching question could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('MatchingQuestion.' . $this->MatchingQuestion->primaryKey => $id));
-			$this->request->data = $this->MatchingQuestion->find('first', $options);
-		}
-	}
-
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function delete($id = null) {
-		$this->autoRender = false;
-
-		$this->MatchingQuestion->id = $id;
-		if (!$this->MatchingQuestion->exists()) {
-			throw new NotFoundException(__('Invalid matching question'));
-		}
-		$this->request->allowMethod('post', 'delete');
-		if ($this->MatchingQuestion->delete()) {
-			$this->Session->setFlash(__('The matching question has been deleted.'));
-		} else {
-			$this->Session->setFlash(__('The matching question could not be deleted. Please, try again.'));
-		}
+		$options = array('conditions' => array('MatchingQuestion.' . $this->MatchingQuestion->primaryKey => $id));
+		$this->set('matchingQuestion', $this->MatchingQuestion->find('first', $options));
 	}
 
 /**
@@ -87,8 +47,6 @@ class MatchingQuestionsController extends AppController {
  * @return void
  */
 	public function admin_add() {
-		$this->autoRender = false;
-
 		if ($this->request->is('post')) {
 			$this->MatchingQuestion->create();
 			if ($this->MatchingQuestion->save($this->request->data)) {
@@ -108,14 +66,13 @@ class MatchingQuestionsController extends AppController {
  * @return void
  */
 	public function admin_edit($id = null) {
-		$this->autoRender = false;
-
 		if (!$this->MatchingQuestion->exists($id)) {
 			throw new NotFoundException(__('Invalid matching question'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->MatchingQuestion->save($this->request->data)) {
 				$this->Session->setFlash(__('The matching question has been saved.'));
+				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The matching question could not be saved. Please, try again.'));
 			}
@@ -133,8 +90,6 @@ class MatchingQuestionsController extends AppController {
  * @return void
  */
 	public function admin_delete($id = null) {
-		$this->autoRender = false;
-
 		$this->MatchingQuestion->id = $id;
 		if (!$this->MatchingQuestion->exists()) {
 			throw new NotFoundException(__('Invalid matching question'));
@@ -145,5 +100,6 @@ class MatchingQuestionsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The matching question could not be deleted. Please, try again.'));
 		}
+		return $this->redirect(array('action' => 'index'));
 	}
 }

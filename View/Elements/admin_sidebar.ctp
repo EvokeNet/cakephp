@@ -27,6 +27,9 @@
         <li id = "missions">
             <a href="<?= $this->Html->url(array('controller' => 'missions', 'action' => 'admin_index', 'admin' => true))?>" class = "uppercase"><?= __('Missions') ?></a>
         </li>
+        <li id = "matching_questions">
+            <a href="<?= $this->Html->url(array('controller' => 'MatchingQuestions', 'action' => 'admin_index', 'admin' => true))?>" class = "uppercase"><?= __('Matching Questions') ?></a>
+        </li>
         <li id = "organizations">
             <a href="<?= $this->Html->url(array('controller' => 'organizations', 'action' => 'admin_index', 'admin' => true))?>" class = "uppercase"><?= __('Organizations') ?></a>
         </li>

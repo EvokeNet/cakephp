@@ -226,113 +226,6 @@
 	Configure::write('Security.cipherSeed', '353865393630643863356465346338');
 
 /**
- * Configure session to redis
- */
-	// Configure::write('Session.save', 'redis_session');
-
-/**
- * Apply timestamps with the last modified time to static assets (js, css, images).
- * Will append a query string parameter containing the time the file was modified. This is
- * useful for invalidating browser caches.
- *
- * Set to `true` to apply timestamps when debug > 0. Set to 'force' to always enable
- * timestamping regardless of debug value.
- */
-	//Configure::write('Asset.timestamp', true);
-
-/**
- * Compress CSS output by removing comments, whitespace, repeating tags, etc.
- * This requires a/var/cache directory to be writable by the web server for caching.
- * and /vendors/csspp/csspp.php
- *
- * To use, prefix the CSS link URL with '/ccss/' instead of '/css/' or use HtmlHelper::css().
- */
-	//Configure::write('Asset.filter.css', 'css.php');
-
-/**
- * Plug in your own custom JavaScript compressor by dropping a script in your webroot to handle the
- * output, and setting the config below to the name of the script.
- *
- * To use, prefix your JavaScript link URLs with '/cjs/' instead of '/js/' or use JsHelper::link().
- */
-	//Configure::write('Asset.filter.js', 'custom_javascript_output_filter.php');
-
-/**
- * The class name and database used in CakePHP's
- * access control lists.
- */
-	// Configure::write('Acl.classname', 'DbAcl');
-	// Configure::write('Acl.database', 'default');
-
-/**
- * Uncomment this line and correct your server timezone to fix
- * any date & time related errors.
- */
-	//date_default_timezone_set('UTC');
-
-/**
- *
- * Cache Engine Configuration
- * Default settings provided below
- *
- * File storage engine.
- *
- * 	 Cache::config('default', array(
- *		'engine' => 'File', //[required]
- *		'duration' => 3600, //[optional]
- *		'probability' => 100, //[optional]
- * 		'path' => CACHE, //[optional] use system tmp directory - remember to use absolute path
- * 		'prefix' => 'cake_', //[optional]  prefix every cache file with this string
- * 		'lock' => false, //[optional]  use file locking
- * 		'serialize' => true, //[optional]
- * 		'mask' => 0664, //[optional]
- *	));
- *
- * APC (http://pecl.php.net/package/APC)
- *
- * 	 Cache::config('default', array(
- *		'engine' => 'Apc', //[required]
- *		'duration' => 3600, //[optional]
- *		'probability' => 100, //[optional]
- * 		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
- *	));
- *
- * Xcache (http://xcache.lighttpd.net/)
- *
- * 	 Cache::config('default', array(
- *		'engine' => 'Xcache', //[required]
- *		'duration' => 3600, //[optional]
- *		'probability' => 100, //[optional]
- *		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
- *		'user' => 'user', //user from xcache.admin.user settings
- *		'password' => 'password', //plaintext password (xcache.admin.pass)
- *	));
- *
- * Memcache (http://www.danga.com/memcached/)
- *
- * 	 Cache::config('default', array(
- *		'engine' => 'Memcache', //[required]
- *		'duration' => 3600, //[optional]
- *		'probability' => 100, //[optional]
- * 		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
- * 		'servers' => array(
- * 			'127.0.0.1:11211' // localhost, default port 11211
- * 		), //[optional]
- * 		'persistent' => true, // [optional] set this to false for non-persistent connections
- * 		'compress' => false, // [optional] compress data in Memcache (slower, but uses less memory)
- *	));
- *
- *  Wincache (http://php.net/wincache)
- *
- * 	 Cache::config('default', array(
- *		'engine' => 'Wincache', //[required]
- *		'duration' => 3600, //[optional]
- *		'probability' => 100, //[optional]
- *		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
- *	));
- */
-
-/**
  * Configure the cache handlers that CakePHP will use for internal
  * metadata like class maps, and model schema.
  *
@@ -376,14 +269,5 @@ Cache::config('_cake_model_', array(
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
 ));
-
-Configure::write('fb_app_id', '666636333396015');
-Configure::write('fb_app_secret', '8f56121cd2840b321cf64d8aa156f3ce');
-Configure::write('fb_app_requests', '');
-
-Configure::write('google_client_id', '502819941527.apps.googleusercontent.com');
-Configure::write('google_client_secret', 'Eg7BI26namI0pQflwYNW8oA7');
-Configure::write('google_redirect_uri', 'http://localhost/evoke/users/login');
-Configure::write('google_developer_key', 'AIzaSyAOS7NDW3LgpeSbHnogXdqxKSFTXDkbPNE');
 Configure::write('APPROVAL_PROMPT', 'auto');
 Configure::write('ACCESS_TYPE', 'offline');

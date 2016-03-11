@@ -17,16 +17,6 @@ class ForumTopicsController extends AppController {
 	public $components = array('Paginator', 'Session');
 
 /**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->ForumTopic->recursive = 0;
-		$this->set('forumTopics', $this->Paginator->paginate());
-	}
-
-/**
  * view method
  *
  * @throws NotFoundException
@@ -72,7 +62,7 @@ class ForumTopicsController extends AppController {
 
 		//OPTIONS FOR CHECK PRIVILEGE
 		$options = array(
-			'minimumRole' => USER,
+			'minimumRole' => 'USER',
 			'moderatorPrivilege' => false,
 			'object' => array(
 				'id' => $id,
@@ -205,29 +195,7 @@ class ForumTopicsController extends AppController {
 
 	}	
 
-/**
- * add method
- *
- * @return void
- */
-	public function add() {
-		if ($this->request->is('post')) {
-			
-			$this->ForumTopic->create();
-			if ($this->ForumTopic->save($this->request->data)) {
-				$this->Session->setFlash(__('The forum topic has been saved.'));
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The forum topic could not be saved. Please, try again.'));
-			}
-			
-		}
-
-		$users = $this->ForumTopic->User->find('list');
-		$forumCategories = $this->ForumTopic->ForumCategorie->find('list');
-		$this->set(compact('users', 'forumCategories'));
-	}
-
+	
 /**
  * edit method
  *
@@ -279,7 +247,7 @@ class ForumTopicsController extends AppController {
 
 		//OPTIONS FOR CHECK PRIVILEGE
 		$options = array(
-			'minimumRole' => USER,
+			'minimumRole' => 'USER',
 			'moderatorPrivilege' => true,
 			'object' => array(
 				'id' => $id,
