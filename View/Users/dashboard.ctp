@@ -1,4 +1,4 @@
-<?php echo $this->element('topbar-login'); ?>
+<?php echo $this->element('topbar'); ?>
 
 <div id="example"></div>
 <div id="appContainer"></div>
@@ -127,7 +127,7 @@ var App = React.createClass({
       items: newItems
     });
     
-    swal("Oops... Something went wrong!");
+    swal("Let's start this mission!");
   },
   
   undo: function() {
