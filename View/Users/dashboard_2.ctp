@@ -37,7 +37,7 @@
    )*/     
     
 ReactDOM.render(
-  React.createElement('h1', null, 'GAMEBOARD'),
+  React.createElement('h1', null, 'Hello, world!'),
   document.getElementById('example')
 );
 
@@ -86,7 +86,7 @@ var Row = React.createClass({
         
         return (
           <div className='gridRow'>
-            <div id={this.props.row.get('id')}></div>
+            <div className='title grid' id={this.props.row.get('id')}>{this.props.row.get('title')}</div>
             {columns}
           </div>
         );

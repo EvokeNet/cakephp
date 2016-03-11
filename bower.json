@@ -23,7 +23,9 @@
     "sweetalert": "*",
     "tinyscrollbar": "git://github.com/wieringen/tinyscrollbar",
     "multiscroll.js": "~0.1.7",
-    "react": "^0.14.7"
+    "react": "^0.14.7",
+    "immutable": "^3.7.6",
+    "lodash": "^4.6.1"
   },
   "resolutions": {
     "jquery": "2.2.0",

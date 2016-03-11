@@ -29,12 +29,11 @@ requirejs.config({
     slickcarousel: 'slick-carousel/slick/slick.min',
     stickykit: 'sticky-kit/jquery.sticky-kit.min',
     sweetalert: 'sweetalert/dist/sweetalert.min',
-
-    multiscroll: 'multiscroll.js/jquery.multiscroll.min',
     
-    "react": 'react/react',
-    "reactdom": 'react/react-dom',
-    "reactaddons": 'react/react-with-addons'
+    immutable: 'immutable/dist/immutable',
+    
+    lodash: 'lodash/dist/lodash',
+
   },
   shim: {
     // EVOKE SPECIFIC MODULES
@@ -56,12 +55,7 @@ requirejs.config({
     jqueryslimscroll: { deps: ['jquery'] },
     list: { exports: 'List' },
     modernizr: { exports: 'Modernizr' },
-    
-    'react':        {
-      exports: 'React',
-      dps:['reactdom', 'reactaddons']
-    },
-    
+
     sidr: { deps: ['jquery'] },
     slickcarousel: { deps: ['jquery'] },
 
