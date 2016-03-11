@@ -434,6 +434,15 @@ public function googleLogin() {
   }
 
 /**
+ * dashboard method
+ *
+ * @return void
+ */
+  public function dashboard() {
+    
+  }
+  
+/**
  * index method
  *
  * @return void
