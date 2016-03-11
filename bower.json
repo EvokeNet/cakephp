@@ -2,12 +2,10 @@
   "name": "Evoke",
   "dependencies": {
     "chartjs": "~0.2.0",
-    "ember": "~1.10.0",
     "font-awesome": "v4.1",
     "foundation": "~5.4.7",
     "FroalaWysiwygEditor": "1.2.3",
     "fullpage.js": "fullpage#~2.7.6",
-    "handlebars": "*",
     "i18next": "1.11.2",
     "jquery-ajax-retry": "*",
     "jquery-ui": "*",

@@ -7,17 +7,16 @@ requirejs.config({
     ajax_retry: '../js/requirejs/modules/ajax_retry',
     missionpanels: '../js/requirejs/modules/mission_panels',
     brainstormlanguages: webroot+'brainstorm_session/js/languages',
-    // COMPONENTS (ALPHABETICAL ORDER PLEASE)
+    // COMPONENTS (ALPHABETICAL ORDER)
     chartjs : 'chartjs/Chart.min',
-    ember: 'ember/ember.min',
-    embertemplatecompiler: 'ember/ember-template-compiler',
+    
     facebook: '//connect.facebook.net/en_US/all',
     foundation: 'foundation/js/foundation.min',
     foundationjoyride: 'foundation/js/foundation/foundation.joyride',
     foundationtopbar: 'foundation/js/foundation/foundation.topbar',
     froala: 'FroalaWysiwygEditor/js/froala_editor.min',
     fullpage: 'fullpage.js/jquery.fullPage.min',
-    handlebars: 'handlebars/handlebars.min',
+    
     i18next: 'i18next/i18next.min',
     jquery : 'jquery/dist/jquery.min',
     jqueryajaxretry: 'jquery-ajax-retry/dist/jquery.ajax-retry.min',
@@ -32,6 +31,10 @@ requirejs.config({
     sweetalert: 'sweetalert/dist/sweetalert.min',
 
     multiscroll: 'multiscroll.js/jquery.multiscroll.min',
+    
+    "react": 'react/react',
+    "reactdom": 'react/react-dom',
+    "reactaddons": 'react/react-with-addons'
   },
   shim: {
     // EVOKE SPECIFIC MODULES
@@ -53,6 +56,12 @@ requirejs.config({
     jqueryslimscroll: { deps: ['jquery'] },
     list: { exports: 'List' },
     modernizr: { exports: 'Modernizr' },
+    
+    'react':        {
+      exports: 'React',
+      dps:['reactdom', 'reactaddons']
+    },
+    
     sidr: { deps: ['jquery'] },
     slickcarousel: { deps: ['jquery'] },
 
