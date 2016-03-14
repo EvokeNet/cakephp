@@ -57,9 +57,6 @@ class AppController extends Controller {
       public $languages;
       public $countries;
 
-      public $facebook;
-      public $googleClient;
-      public $googleService;
 
 /**
 * beforeFilter method
@@ -70,27 +67,6 @@ class AppController extends Controller {
 
             // BASIC DATA CONFIG
             $this->initializeBasicData();
-
-            // FACEBOOK CONFIG
-            if(empty($this->facebook)){
-                  FacebookSession::setDefaultApplication(
-                        Configure::read('FB_APP_ID'),
-                        Configure::read('FB_APP_SECRET')
-                  );
-
-                  $this->facebook = new FacebookRedirectLoginHelper(Router::url(array('controller' => 'users', 'action' => 'fbLogin'), true));      
-            }
-
-            // GOOGLE CONFIG
-            if(empty($this->googleClient)){
-                  $this->googleClient = new Google_Client();
-                  $this->googleClient->setClientId(Configure::read('GOOGLE_APP_ID'));
-                  $this->googleClient->setClientSecret(Configure::read('GOOGLE_APP_SECRET'));
-                  $this->googleClient->setRedirectUri(Router::url(array('controller' => 'users', 'action' => 'googleLogin'), true));
-                  $this->googleClient->addScope("email");
-                  $this->googleClient->addScope("profile");
-                  $this->googleService = new Google_Service_Oauth2($this->googleClient);
-            }
 
             //Determine language if not already determined
             $this->_checkBrowserLanguage();
@@ -151,11 +127,6 @@ class AppController extends Controller {
             $this->set(compact('userNotifications', 'userPoints', 'userLevel', 'userNextLevel', 'userLevelPercentage', 'cuser', 'loggedInUser', 'language','scores'));
       }
 
-      public function beforeRender() {
-            $facebook_login_url = $this->facebook->getLoginUrl(Configure::read('FB_SCOPES'));
-            $google_login_url = $this->googleClient->createAuthUrl();
-            $this->set(compact('facebook_login_url','google_login_url'));
-      }
 
 /**
  * If no language was defined, read the browser language and sets the website language to it if available

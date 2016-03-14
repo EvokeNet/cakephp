@@ -40,6 +40,10 @@ class UsersController extends AppController {
 
   public $components = array('Paginator');
 
+  public $facebook;
+  public $googleClient;
+  public $googleService;
+
 /**
 *
 * beforeFilter method
@@ -49,6 +53,33 @@ class UsersController extends AppController {
   public function beforeFilter() {
     parent::beforeFilter();
     $this->Auth->allow('add', 'login', 'logout', 'register', 'forgot', 'changelanguage','recover_password','fbLogin','googleLogin');
+
+    // FACEBOOK CONFIG
+    if(empty($this->facebook)){
+          FacebookSession::setDefaultApplication(
+                Configure::read('FB_APP_ID'),
+                Configure::read('FB_APP_SECRET')
+          );
+
+          $this->facebook = new FacebookRedirectLoginHelper(Router::url(array('controller' => 'users', 'action' => 'fbLogin'), true));      
+    }
+
+    // GOOGLE CONFIG
+    if(empty($this->googleClient)){
+      $this->googleClient = new Google_Client();
+      $this->googleClient->setClientId(Configure::read('GOOGLE_APP_ID'));
+      $this->googleClient->setClientSecret(Configure::read('GOOGLE_APP_SECRET'));
+      $this->googleClient->setRedirectUri(Router::url(array('controller' => 'users', 'action' => 'googleLogin'), true));
+      $this->googleClient->addScope("email");
+      $this->googleClient->addScope("profile");
+      $this->googleService = new Google_Service_Oauth2($this->googleClient);
+    }
+  }
+
+  public function beforeRender() {
+    $facebook_login_url = $this->facebook->getLoginUrl(Configure::read('FB_SCOPES'));
+    $google_login_url = $this->googleClient->createAuthUrl();
+    $this->set(compact('facebook_login_url','google_login_url'));
   }
 
   public function changeLanguage($lang){
