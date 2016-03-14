@@ -714,14 +714,16 @@ public function googleLogin() {
 
     //GROUPS AND EVOKATION
     $this->loadModel('Group');
-    $this->loadModel('GroupsUser');
-    $users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $id)));
+    //TODO
+    //$this->loadModel('GroupsUser');
+    //$users_groups = $this->GroupsUser->find('all', array('conditions' => array('GroupsUser.user_id' => $id)));
 
-    $mygroups_id = array();
+    //$mygroups_id = array();
 
-    foreach($users_groups as $g):
+    /*foreach($users_groups as $g):
       array_push($mygroups_id, array('Evokation.group_id' => $g['GroupsUser']['group_id']));
     endforeach;
+    */
 
     $myevokations = array();
 
