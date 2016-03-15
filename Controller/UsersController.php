@@ -1012,6 +1012,16 @@ public function googleLogin() {
       ),
     ));
 
+    // if user doesn't exist, redirect
+    if($user == null){
+      return $this->redirect(array('controller' => 'users', 'action' => 'profile', 'admin' => false, AuthComponent::user('id')));
+    }
+
+    // if user already has a super hero identity id, redirect
+    if($user['User']['superhero_identity_id']!=0){
+      return $this->redirect(array('action' => 'profile', $id));
+    }
+
     //save user's superhero identity id
     $user['User']['superhero_identity_id'] = $superhero['SuperheroIdentity']['id'];
     unset($user['User']['password']);

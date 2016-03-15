@@ -154,12 +154,7 @@ class User extends AppModel {
 
 
 	public function afterSave($created, $options = array()) {
-		if($created){ 
-
-			$this->getEventManager()->dispatch($event);
-
-			return true;
-		}
+		
 	}
 
 
