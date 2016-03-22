@@ -100,8 +100,8 @@ $title = __('Evoke Network');
     echo $this->Html->script("/webroot/components/react/react-dom.js");
     echo $this->Html->script("/webroot/components/react/react-with-addons.js");
     
-    echo $this->Html->script("/webroot/components/immutable/dist/immutable.js");
-    echo $this->Html->script("/webroot/components/lodash/dist/lodash.js");
+    // echo $this->Html->script("/webroot/components/immutable/dist/immutable.js");
+    // echo $this->Html->script("/webroot/components/lodash/dist/lodash.js");
     
     // echo $this->Html->script("//node_modules/react/dist/react.js");
     // echo $this->Html->script("//node_modules/react/dist/react-with-addons.js");

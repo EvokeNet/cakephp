@@ -4,19 +4,9 @@
 <div id="appContainer"></div>
 
 <script type="text/jsx">
-// require([webroot+'js/requirejs/bootstrap'], function () {
-//     require(['react'], function (ReactDOM) {
-        
-//         ReactDOM.render(
-//             React.createElement('h1', null, 'Hello, world1!'),
-//             document.getElementById('content')
-//         );
-    
-//     });
-// });
 
-// var React = require('react');
-// var ReactDOM = require('reactdom');
+require([webroot+'js/requirejs/bootstrap'], function () {
+	require(['immutable', 'lodash', 'sweetalert'], function (Immutable) {
 
 // ReactDOM.render(
 //   React.createElement('h1', null, 'Hello, world!'),
@@ -160,5 +150,8 @@ var App = React.createClass({
 });
 
 ReactDOM.render(<App/>, window.appContainer);
+
+    });
+});
 
 </script>

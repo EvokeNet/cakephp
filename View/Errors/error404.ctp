@@ -1,6 +1,6 @@
 <style>
 #full-screen-background-image {
-  z-index: -999;
+  /*z-index: -999;*/
   min-height: 100%;
   min-width: 1024px;
   width: 100%;
@@ -16,6 +16,7 @@
   min-height: 400px;
   margin: 100px auto;
   color: #333;
+  z-index: 10;
 }
 </style>
 <?php
