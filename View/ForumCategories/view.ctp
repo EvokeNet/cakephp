@@ -6,24 +6,26 @@
 	$this->end();
 ?>
 
-	<div class="row">
+	<div class="row forums background-color">
       <div class="large-8 small-centered columns">
 
       	<a class="forums post-link box button thin" href="/evoke/forum_topics/new_topic/<?= $forumCategory['ForumCategory']['id'] ?>">
 			NEW TOPIC
 		</a>
 
-		<h2 class = "margin-top-1em font-green text-align-left font-weight-bold uppercase"><?= $forumCategory['ForumCategory']['title'] ?></h2>
+		<h2 class = "margin-top-1em text-align-left uppercase">
+			<?= $forumCategory['ForumCategory']['title'] ?>
+		</h2>
 
         <!-- TOPICS -->
 		<table class="forums table">
-			<!-- <thead class="head">
-				<th class="left head-cell"><?php echo $this->Paginator->sort('title','Topic'); ?></th>
-				<th class="centered head-cell size1"><?php echo $this->Paginator->sort('answers','Answers'); ?></th>
-				<th class="centered head-cell size1"><?php echo $this->Paginator->sort('view_count','Views'); ?></th>
-				<th class="centered head-cell size2"><?php echo $this->Paginator->sort('User.name','Created By'); ?></th>
-				<th class="centered head-cell size2"><?php echo $this->Paginator->sort('created','Date'); ?></th>
-			</thead> -->
+			 <thead class="head">
+				<th class=""><?php echo $this->Paginator->sort('title','Topic'); ?></th>
+				<th class=""><?php echo $this->Paginator->sort('answers','Answers'); ?></th>
+				<th class=""><?php echo $this->Paginator->sort('view_count','Views'); ?></th>
+				<th class=""><?php echo $this->Paginator->sort('User.name','Created By'); ?></th>
+				<th class=""><?php echo $this->Paginator->sort('created','Date'); ?></th>
+			</thead> 
 
 			<?php foreach ($forumTopics as $topic): ?>
 				<?php if(isset($topic['ForumTopic']['title'])):?>

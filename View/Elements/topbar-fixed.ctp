@@ -40,7 +40,7 @@
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index', 'admin' => false)); ?>" class="link-disabled font-green uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'forums', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase">
           <?php echo __('Forum'); ?>
         </a>
       </li>

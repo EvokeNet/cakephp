@@ -1,3 +1,9 @@
+$bg-color-2: #3C454D;
+$bg-color-3: #B7B7B7;
+$font-white: #FFFFFF;
+$forum-bg: #28282C;
+$forum-bg-white: #ECFAFF;
+
 .forums .link-title{
     padding-left: 20px;
     text-align: left;
@@ -7,21 +13,40 @@
     text-align: left;
 }
 
+.forums .title.main{
+    font-family: $font-dosis !important;
+    color: white !important;
+    background-color: $default-green !important;
+    font-size: 22px !important;
+}
+
+.forums .title.main:hover{
+    background-color: $default-green-selected !important;
+}
+
 .forums .description{
     text-align: justify;
-    font-size: 14px;
+    font-size: 18px;
     padding: 0px 0px 20px 0px;
+    color: black;
+    font-family: $font-source;
 }
 
 .evoke .forums.table{
     width: 100%;
-    background-color: transparent;
-    border: 1px solid #26dee0;
-    border-collapse: collapse;
+    background-color: $forum-bg-white;
 }
 
-.evoke .forums.table .head{
-    background-color: white;
+.evoke .forums.table .head th{
+    background-color: #C1FBFF !important;
+    border-style: none !important;
+    border: 0px !important;
+}
+
+.evoke .forums.table .head a{
+    color: black !important;
+    font-size: 18px;
+    -webkit-text-stroke: 0px;
 }
 
 .evoke .forums.table .head-cell{
@@ -31,6 +56,12 @@
 .evoke .forums.table .cell{
     font-size: 18px;
     padding: 20px 10px 20px 10px;
+    border-style: none !important;
+    color: black !important;
+}
+
+.evoke .forums.table .cell a{
+    color: black !important;
 }
 
 .evoke .forums.table .gray-cell{
@@ -58,7 +89,7 @@
 }
 
 .evoke .forums.table tbody:hover{
-    background-color: #26dee0;
+    background-color: #C1FBFF;
 }
 
 .evoke .forums.table tr{
@@ -79,6 +110,10 @@
     float: left;
 }
 
+.forums.paging.centered{
+    text-align: center;
+}
+
 .forums .accordion-navigation{
     width: 40%;
     max-width: 60%;
@@ -90,28 +125,42 @@
     padding: 5px;
 }
 
+.forums .content.main{
+    background-color: white !important;
+}
+
 .forums .category{
     padding: 0px;
     border-style: groove;
  	border-width: 1px;
- 	border-color: white;
-
+ 	border-color: $font-white;
+    background-color: $bg-color;
+    text-align: center;
 }
 
 .forums .category-title{
     padding-top: 15px;
     padding-bottom: 5px;
     font-size: 26px;
+    color: $font-white;
+    text-align: center;
+    font-family: $font-dosis;
+    text-transform: uppercase;
 }
 
 .forums .category-description{
     padding: 10px 15px 15px 10px;
     font-size: 14px;
     text-align: justify;
+    color: $font-white;
 }
 
 .forums .category-link{
     padding-bottom: 15px;
+}
+
+.forums.category .button.thin{
+    font-size: 20px;
 }
 
 .forums.post.padding{
@@ -195,13 +244,13 @@
 .forums.newpost-form .input.textarea label{
     font-size: 26px;
     text-align: left;
-    color: white;
+    color: $font-white;
 }
 
 .forums.newpost-form .input.textarea label{
     font-size: 26px;
     text-align: left;
-    color: white;
+    color: $font-white;
 }
 
 .forums.newpost-form textarea{
@@ -224,6 +273,31 @@
 }
 
 .user_picture{
-    float: left;
+    float: right;
     margin-right: 15px;
+}
+
+.forums.main-title.container{
+    height: 12vh;
+}
+
+.forums.main-title{
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: $font-source;
+    padding: 5px;
+}
+
+.forums.quote{
+    color: white;
+}
+
+.forums.background-color{
+    background-color: $forum-bg;
+    min-height: 93vh;
+}
+
+.forums .bg-color{
+    color: $bg-color;
 }

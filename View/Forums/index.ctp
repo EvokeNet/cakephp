@@ -1,6 +1,4 @@
 <?php
-/* CSS */
-	echo $this->Html->css('forums');
 
 /* Top bar */
 	$this->start('topbar');
@@ -8,17 +6,23 @@
 	$this->end();
 ?>
 
-<div class="centering-block">
+<div class="centering-block forums background-color">
+
+	<div class="forums main-title container">
+		<div class="forums main-title">
+			Forum
+		</div>
+	</div>
 
 	<!-- FORUMS -->
 	<d1 class="accordion forums accordion" data-accordion>
 
 	<?php foreach ($forums as $forum): ?>
 		<dd class="accordion-navigation">
-			<a class = "forums title" href="#forum<?= $forum['Forum']['id'] ?>">
-				<i class="fa fa-quote-right fa-2x text-color-highlight padding right-1"></i><?= $forum['Forum']['title'] ?>
+			<a class = "forums title main" href="#forum<?= $forum['Forum']['id'] ?>">
+				<i class="forums quote fa fa-quote-right fa-2x text-color-highlight padding-right-10px "></i><?= $forum['Forum']['title'] ?>
 			</a>
-			<div class="content forums content" id="forum<?= $forum['Forum']['id'] ?>">
+			<div class="content forums content main" id="forum<?= $forum['Forum']['id'] ?>">
 				<div class="forums description"><?= $forum['Forum']['description'] ?> </div>
 
 				<!-- FORUM'S CATEGORIES -->
@@ -44,7 +48,7 @@
 	</d1>
 
 	<!-- PAGING -->
-	<div class="forums paging">
+	<div class="forums paging centered">
 		<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
 		<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
 		<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>

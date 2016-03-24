@@ -1,4 +1,6 @@
 $bg-color: #28282C;
+$bg-color-2: #3C454D;
+$bg-color-gray: #D5D8DA;
 $default-green: #2FCCCB;
 $default-green-selected: #009393;
 $font-dosis: 'Dosis', 'Source Sans Pro', sans-serif;
@@ -133,6 +135,18 @@ body > .container {
 
 .padding-top-1em{
   padding-top: 1em;
+}
+
+.padding-right-1em{
+  padding-right: 1em;
+}
+
+.padding-right-5px{
+  padding-right: 5px;
+}
+
+.padding-right-10px{
+  padding-right: 10px;
 }
 
 .padding-bottom-1em{
