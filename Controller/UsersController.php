@@ -363,6 +363,15 @@ public function googleLogin() {
   }
 
 /**
+ * dashboard method
+ *
+ * @return void
+ */
+  public function dashboard() {
+    
+  }
+  
+/**
  * index method
  *
  * @return void
@@ -872,14 +881,14 @@ public function googleLogin() {
     // debug($superhero);
     // die();
 
-    $this->loadModel('SocialInnovatorQuality');
-    $first_quality = $this->SocialInnovatorQuality->find('first', array(
+    $this->loadModel('Quality');
+    $first_quality = $this->Quality->find('first', array(
       'conditions' => array(
         'id' => $superhero['SuperheroIdentity']['quality_1']
       )
     ));
 
-    $second_quality = $this->SocialInnovatorQuality->find('first', array(
+    $second_quality = $this->Quality->find('first', array(
       'conditions' => array(
         'id' => $superhero['SuperheroIdentity']['quality_2']
       )
@@ -1029,15 +1038,15 @@ public function googleLogin() {
     $this->Session->write('Auth.User.superhero_identity_id',$superhero['SuperheroIdentity']['id']);
     $this->User->save($user);
 
-    $this->loadModel('SocialInnovatorQuality');
+    $this->loadModel('Quality');
 
-    $first_quality = $this->SocialInnovatorQuality->find('first', array(
+    $first_quality = $this->Quality->find('first', array(
       'conditions' => array(
         'id' => $quality_1
       ),
     ));
 
-    $second_quality = $this->SocialInnovatorQuality->find('first', array(
+    $second_quality = $this->Quality->find('first', array(
       'conditions' => array(
         'id' => $quality_2
       ),

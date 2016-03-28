@@ -5,7 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property Question $Question
  */
-class Answer extends AppModel {
+class Quality extends AppModel {
 
 /**
  * Display field
@@ -27,9 +27,18 @@ class Answer extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Question' => array(
-			'className' => 'Question',
-			'foreignKey' => 'question_id',
+		
+	);
+
+/**
+ * hasMany associations
+ *
+ * @var array
+ */
+	public $hasMany = array(
+		'MatchingAnswer' => array(
+			'className' => 'MatchingAnswer',
+			'foreignKey' => 'matching_answer_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

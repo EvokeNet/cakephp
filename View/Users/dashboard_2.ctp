@@ -1,12 +1,22 @@
-<?php echo $this->element('topbar'); ?>
+<?php echo $this->element('topbar-login'); ?>
 
 <div id="example"></div>
 <div id="appContainer"></div>
 
 <script type="text/jsx">
+// require([webroot+'js/requirejs/bootstrap'], function () {
+//     require(['react'], function (ReactDOM) {
+        
+//         ReactDOM.render(
+//             React.createElement('h1', null, 'Hello, world1!'),
+//             document.getElementById('content')
+//         );
+    
+//     });
+// });
 
-require([webroot+'js/requirejs/bootstrap'], function () {
-	require(['immutable', 'lodash', 'sweetalert'], function (Immutable) {
+// var React = require('react');
+// var ReactDOM = require('reactdom');
 
 // ReactDOM.render(
 //   React.createElement('h1', null, 'Hello, world!'),
@@ -27,7 +37,7 @@ require([webroot+'js/requirejs/bootstrap'], function () {
    )*/     
     
 ReactDOM.render(
-  React.createElement('h1', null, 'GAMEBOARD'),
+  React.createElement('h1', null, 'Hello, world!'),
   document.getElementById('example')
 );
 
@@ -76,7 +86,7 @@ var Row = React.createClass({
         
         return (
           <div className='gridRow'>
-            <div id={this.props.row.get('id')}></div>
+            <div className='title grid' id={this.props.row.get('id')}>{this.props.row.get('title')}</div>
             {columns}
           </div>
         );
@@ -117,7 +127,7 @@ var App = React.createClass({
       items: newItems
     });
     
-    swal("Let's start this mission!");
+    swal("Oops... Something went wrong!");
   },
   
   undo: function() {
@@ -150,8 +160,5 @@ var App = React.createClass({
 });
 
 ReactDOM.render(<App/>, window.appContainer);
-
-    });
-});
 
 </script>

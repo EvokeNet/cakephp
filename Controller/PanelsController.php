@@ -102,8 +102,9 @@ class PanelsController extends AppController {
 			$userLevels['allP'] = 0;
 			$countries = array();
 			$unknown_countries = 0;
+
 			foreach ($users_of_my_missions as $usr) {
-				$userPoints = $this->getPoints($usr['User']['id']);
+				$userPoints = $this->getPoints($usr['UserMission']['id']);
 	        	$userLevels['allP'] += $userPoints;
 	        	// debug($usr['User']['name'] . ' '.$userPoints);
 	        	if($userLevels['maxP'] < $userPoints) {
@@ -117,7 +118,7 @@ class PanelsController extends AppController {
 	        		$userLevels['max'] = $userLevel;
 	        	}
 
-				if(!is_null($usr['User']['country']) && $usr['User']['country'] != '' && $usr['User']['country'] != ' ') {
+				/*if(!is_null($usr['UserMission']['country']) && $usr['User']['country'] != '' && $usr['User']['country'] != ' ') {
 					$currentcountry = $usr['User']['country'];
 					if(isset($countries[$currentcountry])) {
 						$countries[$currentcountry]++;
@@ -127,6 +128,7 @@ class PanelsController extends AppController {
 				} else {
 					$unknown_countries++;
 				}
+				*/
 
 			}
 

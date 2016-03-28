@@ -1,7 +1,7 @@
 <?php echo $this->element('topbar-login'); ?>
 
 <?php echo $this->Form->create('User', array('data-abide', 'url' => array('controller' => 'users', 'action' => 'login'))); ?>
-
+    
 <!--<div class = "login-align">
     
     <div class="row" data-equalizer>

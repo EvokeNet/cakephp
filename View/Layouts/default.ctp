@@ -8,7 +8,9 @@
  */
 
 $title = __('Evoke Network');
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +21,31 @@ $title = __('Evoke Network');
   <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Dosis&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-
+  
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>-->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>-->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/6.1.19/browser.js"></script>-->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.15.0-alpha.1/react.js"></script>-->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.15.0-alpha.1/react-with-addons.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+  
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>-->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  
+  <!--<link data-require="bootstrap@3.3.2" data-semver="3.3.2" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />-->
+    <!--<script data-require="jquery@2.1.3" data-semver="2.1.3" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>-->
+    <!--<script data-require="bootstrap@3.3.2" data-semver="3.3.2" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>-->
+    <!--<script data-require="immutable.js@3.0.3" data-semver="3.0.3" src="//cdnjs.cloudflare.com/ajax/libs/immutable/3.0.3/immutable.js"></script>
+    <script data-require="lodash.js@3.8.0" data-semver="3.8.0" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.8.0/lodash.js"></script>-->
+    <!--<script data-require="react-with-addons@0.12.2" data-semver="0.12.2" src="http://fb.me/react-with-addons-0.12.2.js"></script>-->
+    
   <?php echo $this->Html->charset(); ?>
   
   <title>
@@ -70,7 +96,25 @@ $title = __('Evoke Network');
     echo $this->fetch('meta');
     echo $this->fetch('social-metatags');
 
+    echo $this->Html->script("/webroot/components/react/react.js");
+    echo $this->Html->script("/webroot/components/react/react-dom.js");
+    echo $this->Html->script("/webroot/components/react/react-with-addons.js");
+    
+    // echo $this->Html->script("/webroot/components/immutable/dist/immutable.js");
+    // echo $this->Html->script("/webroot/components/lodash/dist/lodash.js");
+    
+    // echo $this->Html->script("//node_modules/react/dist/react.js");
+    // echo $this->Html->script("//node_modules/react/dist/react-with-addons.js");
+    // echo $this->Html->script("//node_modules/react-dom/dist/react-dom.js");
+    
   ?>
+  
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>-->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>-->
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>-->
+  
   <!--<script src="http://localhost:8000/socket.io/socket.io.js"></script>
   <script src="http://localhost:3000/socket.io/socket.io.js"></script>-->
 </head>
@@ -101,7 +145,7 @@ $title = __('Evoke Network');
       //REQUIREJS BOOTSTRAP
       echo $this->Html->script("/components/requirejs/require", array('data-main' => $this->webroot.'js/requirejs/bootstrap'));
       
-      echo $this->Html->script("node_modules/react");
+    //   echo $this->Html->script("node_modules/react");
 
       //EVOKEDATA MODULE: FETCH JAVASCRIPT VARIABLES FROM VIEWS
     $this->Html->scriptStart(array('inline' => false)); ?>
