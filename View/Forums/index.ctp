@@ -35,7 +35,7 @@
 						<div class="forums category-description">
 							<?= $forumCategory['ForumCategory']['description'] ?>
 						</div>
-						<a class="button thin" href="/evoke/forum_categories/view/<?php echo $forumCategory['ForumCategory']['id']?>">
+						<a class="button thin" href="<?php echo $this->Html->url(array('controller' => 'ForumCategories', 'action' => 'view', 'admin' => false, $forumCategory['ForumCategory']['id'])); ?>">
 							Enter Forum Discussion
 						</a>
 					</div>

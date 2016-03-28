@@ -12,7 +12,8 @@
 	<!-- HEAD -->
 	<div class="forums index">
 		<!-- TOPICS LINK -->
-		<a href="/evoke/forum_categories/view/<?= $forumTopic['ForumTopic']['forum_categorie_id'] ?>"><h4 class="evoke text-glow forums link-title"><?php echo __('Topics'); ?></h4></a>
+		<a href="<?php echo $this->Html->url(array('controller' => 'ForumCategories', 'action' => 'view', 'admin' => false, $forumTopic['ForumTopic']['forum_categorie_id'])); ?>"><h4 class="evoke text-glow forums link-title"><?php echo __('Topics'); ?></h4></a>
+
 	</div>
 
 	<div class="forums post-link centering">
@@ -27,7 +28,7 @@
 
 		<!-- NEW POST BUTTON -->
 		<div class="forums post-link float">
-			<a class="forums post-link box button thin" href="/evoke/forum_topics/post/<?= $forumTopic['ForumTopic']['id'] ?>">
+			<a class="forums post-link box button thin" href="<?php echo $this->Html->url(array('controller' => 'ForumTopics', 'action' => 'post', 'admin' => false, $forumTopic['ForumTopic']['id'])); ?>">
 				REPLY
 			</a>
 		</div>
@@ -42,12 +43,13 @@
 			<?php if($forumTopic['User']['id'] == $loggedInUser['id']): ?>
 			<div class="forums post-edit-link float">
 				<!-- EDIT BUTTON -->
-				<a class="forums post-edit-link box button thin" href="/evoke/forum_topics/edit/<?= $forumTopic['ForumTopic']['id'] ?>">
+				<a class="forums post-edit-link box button thin" href="<?php echo $this->Html->url(array('controller' => 'ForumTopics', 'action' => 'edit', 'admin' => false, $forumTopic['ForumTopic']['id'])); ?>">
 					EDIT
 				</a>
 
 				<!-- DELETE BUTTON -->
-				<form action="/evoke/forum_topics/delete/<?=$forumTopic['ForumTopic']['id']?>" name="delete<?=$forumTopic['ForumTopic']['id']?>" id="delete<?=$forumTopic['ForumTopic']['id']?>" style="display:none;" method="post">
+				<form action="<?php echo $this->Html->url(array('controller' => 'ForumTopics', 'action' => 'delete', 'admin' => false, $forumTopic['ForumTopic']['id'])); ?>" name="delete<?=$forumTopic['ForumTopic']['id']?>" id="delete<?=$forumTopic['ForumTopic']['id']?>" style="display:none;" method="post">
+
 					<input type="hidden" name="_method" value="POST">
 				</form>
 				<a class="forums post-edit-link box button thin" href="#" onclick="if (confirm('Are you sure you want to delete # 1?')) { document.delete<?=$forumTopic['ForumTopic']['id']?>.submit(); } event.returnValue = false; return false;">
@@ -61,8 +63,8 @@
 			</h2>
 			<h5 class="forums post author">
 				By
-				<a href="/evoke/users/profile/<?= $forumTopic['User']['id'] ?>">
-					<?= $forumTopic['User']['name'] ?>		
+				<a href="<?php echo $this->Html->url(array('controller' => 'Users', 'action' => 'profile', 'admin' => false, $forumTopic['User']['id'])); ?>">
+					<?= $forumTopic['User']['name'] ?>	
 				</a>
 				<div class="forums post time">
 					<?= gmdate("Y-m-d h:i:s \G\M\T", strtotime($forumTopic['ForumTopic']['created'])) ?>
@@ -85,12 +87,14 @@
 			<?php if($post['User']['id'] == $loggedInUser['id']): ?>
 			<div class="forums post-edit-link float">
 				<!-- EDIT BUTTON -->
-				<a class="forums post-edit-link box button thin" href="/evoke/forum_posts/edit/<?= $post['ForumPost']['id'] ?>">
+				<a class="forums post-edit-link box button thin" href="<?php echo $this->Html->url(array('controller' => 'ForumPosts', 'action' => 'edit', 'admin' => false, $post['ForumPost']['id'])); ?>">
+
 					EDIT
 				</a>
 
 				<!-- DELETE BUTTON -->
-				<form action="/evoke/forum_posts/delete/<?=$post['ForumPost']['id']?>" name="delete<?=$post['ForumPost']['id']?>" id="delete<?=$post['ForumPost']['id']?>" style="display:none;" method="post">
+				<form action="<?php echo $this->Html->url(array('controller' => 'ForumPosts', 'action' => 'delete', 'admin' => false, $post['ForumPost']['id'])); ?>" name="delete<?=$post['ForumPost']['id']?>" id="delete<?=$post['ForumPost']['id']?>" style="display:none;" method="post">
+
 					<input type="hidden" name="_method" value="POST">
 				</form>
 				<a class="forums post-edit-link box button thin" href="#" onclick="if (confirm('Are you sure you want to delete # 1?')) { document.delete<?=$post['ForumPost']['id']?>.submit(); } event.returnValue = false; return false;">
@@ -104,7 +108,7 @@
 			</h2>
 			<h5 class="forums post author">
 				By 
-				<a href="/evoke/users/profile/<?= $post['User']['id'] ?>">
+				<a href="<?php echo $this->Html->url(array('controller' => 'Users', 'action' => 'profile', 'admin' => false, $post['User']['id'])); ?>">
 					<?= $post['User']['name'] ?>		
 				</a>
 				<div class="forums post time">
@@ -131,7 +135,7 @@
 		</div>
 		
 		<div class="forums post-link float">
-			<a class="forums post-link box button thin" href="/evoke/forum_topics/post/<?= $forumTopic['ForumTopic']['id'] ?>">
+			<a class="forums post-link box button thin" href="<?php echo $this->Html->url(array('controller' => 'ForumTopics', 'action' => 'post', 'admin' => false, $forumTopic['ForumTopic']['id'])); ?>">
 				REPLY
 			</a>
 		</div>

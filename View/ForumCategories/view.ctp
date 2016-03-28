@@ -32,7 +32,7 @@
 				<tbody>
 					<tr>
 						<td class="left cell">
-							<a href="/evoke/forum_topics/view/<?= $topic['ForumTopic']['id'] ?>">
+							<a href="<?php echo $this->Html->url(array('controller' => 'ForumTopics', 'action' => 'view', 'admin' => false, $topic['ForumTopic']['id'])); ?>">
 								<?= $topic['ForumTopic']['title'] ?>
 							</a>
 						</td>
@@ -43,11 +43,11 @@
 							<?= $topic['ForumTopic']['view_count'] ?>
 						</td>
 						<td class="left cell">
-							<a href="/evoke/users/profile/<?= $topic['ForumTopic']['user_id'] ?>">
+							<a href="<?php echo $this->Html->url(array('controller' => 'Users', 'action' => 'profile', 'admin' => false, $topic['ForumTopic']['user_id'])); ?>">
 								<div class="user_picture centered-block square-30px background-cover background-center img-circular" style="background-image: url('/evoke/webroot/img/user_avatar.jpg');">
 								</div>
 							</a>
-							<a href="/evoke/users/profile/<?= $topic['ForumTopic']['user_id'] ?>">
+							<a href="<?php echo $this->Html->url(array('controller' => 'Users', 'action' => 'profile', 'admin' => false, $topic['ForumTopic']['user_id'])); ?>">
 								<?= $topic['User']['name'] ?>
 							</a>
 						</td>
