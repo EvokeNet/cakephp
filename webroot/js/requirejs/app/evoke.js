@@ -10,7 +10,7 @@ define(['modernizr', 'foundation', 'evokedata','i18next'], function(Modernizr, F
 			//Initialize foundation
 			$(document).foundation({
 				equalizer : {
-					Specify if Equalizer should make elements equal height once they become stacked.
+					// Specify if Equalizer should make elements equal height once they become stacked.
 					equalize_on_stack: true
 				}
 			});
