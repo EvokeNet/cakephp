@@ -12,7 +12,11 @@
 	<!-- HEAD -->
 	<div class="forums index">
 		<!-- TOPIC LINK -->
-		<a href="/evoke/forum_categories/view/<?= $forumCategory['ForumCategory']['id'] ?>"><h4 class="evoke text-glow forums link-title"><?= $forumCategory['ForumCategory']['title'] ?></h4></a>
+		<a href="<?php echo $this->Html->url(array('controller' => 'ForumCategories', 'action' => 'view', 'admin' => false, $forumCategory['ForumCategory']['id'])); ?>">
+			<h4 class="evoke text-glow forums link-title">
+				<?= $forumCategory['ForumCategory']['title'] ?>
+			</h4>
+		</a>
 	</div>
 
 	<div class="forums newpost-form">

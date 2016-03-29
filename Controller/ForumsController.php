@@ -23,11 +23,19 @@ class ForumsController extends AppController {
  */
 	public function index() {
 		$this->Forum->recursive = 0;
+		$this->Paginator->settings = array('order' => array('Forum.created' => 'desc'));
 		$this->set('forums', $this->Paginator->paginate());
 
 		//Forum's categories
 		foreach ($this->Paginator->paginate() as $forum){
-			$forumCategories[$forum['Forum']['id']] = $this->Forum->ForumCategory->find('all',array('conditions' => array('ForumCategory.forum_id' => $forum['Forum']['id'])));
+			$forumCategoryList = $this->Forum->ForumCategory->find('all',array('conditions' => array('ForumCategory.forum_id' => $forum['Forum']['id'])));
+			
+			if(empty($forumCategoryList)){
+				$forumCategoryList[0]['ForumCategory']['title'] = "Empty";
+				$forumCategoryList[0]['ForumCategory']['description'] = "This forum is currently empty.";
+			}
+
+			$forumCategories[$forum['Forum']['id']] = $forumCategoryList;
 		}
 		$this->set('forumCategories',$forumCategories);
 	}

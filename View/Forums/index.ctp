@@ -35,9 +35,11 @@
 						<div class="forums category-description">
 							<?= $forumCategory['ForumCategory']['description'] ?>
 						</div>
-						<a class="button thin" href="<?php echo $this->Html->url(array('controller' => 'ForumCategories', 'action' => 'view', 'admin' => false, $forumCategory['ForumCategory']['id'])); ?>">
-							Enter Forum Discussion
-						</a>
+						<?php if(isset($forumCategory['ForumCategory']['id'])): ?>
+							<a class="button thin" href="<?php echo $this->Html->url(array('controller' => 'ForumCategories', 'action' => 'view', 'admin' => false, $forumCategory['ForumCategory']['id'])); ?>">
+								Enter Forum Discussion
+							</a>
+						<?php endif; ?>
 					</div>
 					<?php endforeach; ?>
 				</div>

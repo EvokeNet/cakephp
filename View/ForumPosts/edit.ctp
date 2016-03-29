@@ -12,7 +12,7 @@
 	<!-- HEAD -->
 	<div class="forums index">
 		<!-- TOPIC LINK -->
-		<a href="/evoke/forum_topics/view/<?= $forumPost['ForumTopic']['id'] ?>">
+		<a href="<?php echo $this->Html->url(array('controller' => 'ForumTopics', 'action' => 'view', 'admin' => false, $forumPost['ForumTopic']['id'])); ?>">
 			<h4 class="evoke text-glow forums link-title">
 				<?= $forumPost['ForumTopic']['title'] ?>
 			</h4>

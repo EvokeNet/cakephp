@@ -9,7 +9,7 @@
 	<div class="row forums background-color">
       <div class="large-8 small-centered columns">
 
-      	<a class="forums post-link box button thin" href="/evoke/forum_topics/new_topic/<?= $forumCategory['ForumCategory']['id'] ?>">
+      	<a class="forums post-link box button thin" href="<?php echo $this->Html->url(array('controller' => 'ForumTopics', 'action' => 'new_topic', 'admin' => false, $forumCategory['ForumCategory']['id'])); ?>">      		
 			NEW TOPIC
 		</a>
 
