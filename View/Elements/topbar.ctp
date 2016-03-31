@@ -63,6 +63,13 @@
           <?php echo __('Profile'); ?>
         </a>
       </li>
+
+      <li>
+        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard_prototype', 'admin' => false)); ?>" class="font-green uppercase">
+          <?php echo __('Gameboard Prototype'); ?>
+        </a>
+      </li>
+
       <?php if ($loggedInUser['role'] <= $scores['ADMIN']): ?>
       
           <li>

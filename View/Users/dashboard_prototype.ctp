@@ -5,129 +5,174 @@
 
   <script src="http://cdn.graphalchemist.com/alchemy.min.js"></script>
 
-      <script type="text/javascript">
+  <script type="text/javascript">
 
-      var width = 1920;
-      var height = 905;
-      var svgWidth = 0;
-      var svgHeight = 0;
+    var width = 1920;
+    var height = 905;
+    var svgWidth = 0;
+    var svgHeight = 0;
 
+    function resize() {
+	 	  svg = document.getElementsByTagName("svg")[0];
+	 	  console.log("interval");
+	 	  if(typeof svg !== 'undefined' && (svgWidth!=width || svgHeight!=height)) {
+	 	    console.log("teste");
+	 	    svgWidth = width;
+	      svgHeight = height;
+		    svg.style.width = svgWidth.toString()+"px";
+        svg.style.height = svgHeight.toString()+"px";
+		 	  clearInterval(checkSize);
+		 	  nodes = document.getElementsByClassName("node");
+	 	  }
+	  }
 
-     function resize() {
-	 	svg = document.getElementsByTagName("svg")[0];
-	 	console.log("interval");
-	 	if(typeof svg !== 'undefined' && (svgWidth!=width || svgHeight!=height)) {
-	 		console.log("teste");
-	 		svgWidth = width;
-	 		svgHeight = height;
-		 	svg.style.width = svgWidth.toString()+"px";
-		 	svg.style.height = svgHeight.toString()+"px";
-		 	clearInterval(checkSize);
-		 	nodes = document.getElementsByClassName("node");
-	 	}
-	}
-
-	var checkSize = setInterval(function() {
+	  var checkSize = setInterval(function() {
 	  		resize();
 		}, 50);
 
 	
 
     var config = {
-      dataSource: '<?= $this->webroot.'charlize.json' ?>',
+      dataSource: '<?= $this->webroot.'dashboard.json' ?>',
       forceLocked: true,
       graphHeight: function(){ return height; },
       afterLoad: resize(),
-      graphWidth: function(){ return width; },    
+      graphWidth: function(){ return width; },
+      nodeClick: function(node){
+        problemName = node._nodeType;
+        swal("Let's start this mission!",problemName);
+      },
       fixNodes: true,
       fixRootNodes: true,  
       linkDistance: function(){ return 40; },
       nodeCaption: function(node){ 
-        return node.caption + " " + node.fun_fact;},
+        return node.caption;
+      },
+      nodeTypes: { "role": 
+          ["opression", "conflict", "apathy", "misunderstanding"] 
+      }, 
+      edgeStyle: {
+        "all" : {
+          "width": 4,
+          "color": "#CCC",
+          "opacity": 0.5,
+          "selected": {
+              "opacity": 0.5
+          },
+          "highlighted": {
+              "opacity": 0.5
+          },
+          "hidden": {
+              "opacity": 0
+          }
+        }
+      },
       nodeStyle: {
-      	"all": {
-      		"radius": 20,
-      		"color"  : "#68B9FE",
+      	"opression": {
+        		"radius": 20,
+        		"color"  : "yellow",
             "borderColor": "white",
-			"captionColor": "gray",
-			"captionSize": 20,
-            "selected": {
-                "color" : "#68B9FE",
+              "selected": {
+                "color" : "green",
                 "borderColor": "white"
-            },
+              },
             "highlighted": {
-                "color" : "#EEEEFF",
-                "borderColor": "#127DC1"
-            },
+                "color" : "white",
+                "borderColor": "white"
+              },
             "hidden": {
                 "color": "none",
                 "borderColor": "none"
-            }
-      	}
-      }};
+              }
+      	},
+        "conflict": {
+            "radius": 20,
+            "color"  : "red",
+            "borderColor": "white",
+              "selected": {
+                "color" : "green",
+                "borderColor": "white"
+              },
+            "highlighted": {
+                "color" : "white",
+                "borderColor": "white"
+              },
+            "hidden": {
+                "color": "none",
+                "borderColor": "none"
+              }
+        },
+        "apathy": {
+            "radius": 20,
+            "color"  : "black",
+            "borderColor": "white",
+              "selected": {
+                "color" : "green",
+                "borderColor": "white"
+              },
+            "highlighted": {
+                "color" : "white",
+                "borderColor": "white"
+              },
+            "hidden": {
+                "color": "none",
+                "borderColor": "none"
+              }
+        },
+        "misunderstanding": {
+            "radius": 20,
+            "color"  : "white",
+            "borderColor": "gray",
+              "selected": {
+                "color" : "green",
+                "borderColor": "white"
+              },
+            "highlighted": {
+                "color" : "white",
+                "borderColor": "white"
+              },
+            "hidden": {
+                "color": "none",
+                "borderColor": "none"
+              }
+        }
+      }
+    };
 
     alchemy = new Alchemy(config);
-
-	
-
   </script>
 
 
 
 <style>
-  circle {
-          fill: white;
-          fill-opacity: .5;
-          stroke-width: 3;
-          stroke-opacity: 1;
-          stroke: black;
-      }
 
-      circle.root {
-          stroke-width: 5;
-          fill: lightblue;
-          fill-opacity: 1;
-      }
+  .node{
+    font-size: 24px;
+    cursor: pointer;
+  }
 
-      circle.award {
-          stroke: yellow;
-          stroke-width: 1;
-      }
+  .node.opression{
+    fill: black;
+  }
 
-      circle.person {
-          stroke: lightblue;
-          stroke-width: 1;
-      }
-      .selected circle{
-          fill-opacity: 1;
-          stroke-width: 4;
-          stroke: lightblue;
-      }
+  .node.conflict{
+    fill: white;
+  }
 
-      .edge {
-          stroke-linecap: round;
-          stroke: lightblue;
-          stroke-opacity: 0.4;
-          stroke-width: 2;
-      }
+  .node.conflict:hover{
+    fill: black;
+  }
 
-      .edge.NOMINATED {
-          stroke: lightblue;
-      }
+  .node.apathy{
+    fill: white;
+  } 
 
-      .edge.RECEIVED {
-          stroke-dasharray: 10,5,2,2,2,5;
-          stroke: yellow;
-          stroke-opacity: 1;
-      }
+  .node.apathy:hover{
+    fill: black;
+  } 
 
-      .edge.ACTED_IN {
-          stroke: green;
-      }
+  .node.misunderstanding{
+    fill: black;
+  }
 
-      .edge.selected {
-          stroke: lightblue;
-          stroke-opacity: 1;
-          stroke-dasharray: none;
-      }
 </style>
