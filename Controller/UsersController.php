@@ -370,6 +370,15 @@ public function googleLogin() {
   public function dashboard() {
     
   }
+
+  /**
+ * dashboard method
+ *
+ * @return void
+ */
+  public function dashboard_prototype() {
+    
+  }
   
 /**
  * index method
