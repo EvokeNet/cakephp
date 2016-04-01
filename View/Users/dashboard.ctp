@@ -3,6 +3,60 @@
 <div id="example"></div>
 <div id="appContainer"></div>
 
+
+<div class="row">
+  <div class="large-6 columns"></div>
+  <div class="large-6 columns">
+    
+    <div>
+        <span class = "font-green margin-bottom-05em">POINTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500/1000</span>
+        <div class="progress success" style = "width:300px">
+            <span class="meter" style="width: 50%"></span>
+        </div>
+    </div>
+    
+    <div style = "margin-top:10em">
+        <ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">
+            <li><h5 class = "font-green"><?= strtoupper(__("Position")) ?></h5></li>
+            <li><h5 class = "font-green"><?= strtoupper(__("Agent name")) ?></h5></li>
+            <li><h5 class = "font-green"><?= strtoupper(__("Points")) ?></h5></li>
+	    </ul>
+        
+        <ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">
+            <li><h6><?= strtoupper(__("#1")) ?></h6></li>
+            <li><h6><?= strtoupper(__("Berenice Ferreira")) ?></h6></li>
+            <li><h6><?= strtoupper(__("500")) ?></h6></li>
+	    </ul>
+        
+        <ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">
+            <li><h6><?= strtoupper(__("#2")) ?></h6></li>
+            <li><h6><?= strtoupper(__("Pedro Delgado")) ?></h6></li>
+            <li><h6><?= strtoupper(__("400")) ?></h6></li>
+	    </ul>
+        
+        <ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">
+            <li><h6><?= strtoupper(__("#3")) ?></h6></li>
+            <li><h6><?= strtoupper(__("Humberto Valencia")) ?></h6></li>
+            <li><h6><?= strtoupper(__("300")) ?></h6></li>
+	    </ul>
+        
+        <ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">
+            <li><h6><?= strtoupper(__("#4")) ?></h6></li>
+            <li><h6><?= strtoupper(__("Antonio Pires")) ?></h6></li>
+            <li><h6><?= strtoupper(__("200")) ?></h6></li>
+	    </ul>
+        
+        <ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">
+            <li><h6><?= strtoupper(__("#5")) ?></h6></li>
+            <li><h6><?= strtoupper(__("Rita Silva")) ?></h6></li>
+            <li><h6><?= strtoupper(__("100")) ?></h6></li>
+	    </ul>
+              
+    </div>
+    
+  </div>
+</div>
+
 <script type="text/jsx">
 
 require([webroot+'js/requirejs/bootstrap'], function () {
@@ -117,33 +171,13 @@ var App = React.createClass({
       items: newItems
     });
     
-    swal("Let's start this mission!");
-  },
-  
-  undo: function() {
-    if (this.state.history.size < 1) return;
-    this.setState({
-      history: this.state.history.pop(),
-      future: this.state.future.push(this.state.items),
-      items: this.state.history.last()
-    });
-  },
-  
-  redo: function() {
-    if (this.state.future.size < 1) return;
-    this.setState({
-      items: this.state.future.last(),
-      history: this.state.history.push(this.state.items),
-      future: this.state.future.pop()
-    });
+    swal("Let's start this mission! Click ok to tackle a new challenge");
   },
   
   render: function() {
     return (
       <div>
         <Sequencer onClick={this.onClick} grid={this.state.items} />
-        <button className="btn btn-default" disabled={this.state.history.size < 1} onClick={this.undo}>Undo</button>
-        <button className="btn btn-default" disabled={this.state.future.size < 1} onClick={this.redo}>Redo</button>
       </div>
     );
   }
