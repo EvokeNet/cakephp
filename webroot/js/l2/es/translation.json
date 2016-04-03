@@ -1,0 +1,113 @@
+{
+	"app":{
+		"elements":{
+			"evidences":{
+				"evidence_form":{
+					"msg_change_type": {
+						"title": "¿Estás seguro?",
+						"text": "Si cambia el tipo de evidencia ahora, perderá el contenido especial de enfoque de su evidencia.",
+						"confirmButtonText": "Sí, cambiar mi tipo de evidencia!",
+						"cancelButtonText": "Cancelar"
+					},
+					"msg_phase_unlocked":{
+						"title": "Fase abierto!",
+						"text": "Felicidades, acaba de desbloquear una fase! Puede seguir trabajando en esta fase, pero también se puede echar un vistazo a la siguiente."
+					},
+					"btn_next_phase":{
+						"text": "¡Ir a la siguiente fase!"
+					},
+					"btn_stay_phase":{
+						"text": "¡Permanezca en esta fase!"
+					},
+					"msg_success":{
+						"title": "Felicidades!",
+						"text": "Su evidencia ha sido enviado!"
+					}
+				},
+				"view_evidence":{
+					"msg_delete_evidence": {
+						"title": "¿Estás seguro?",
+						"text": "Usted no será capaz de recuperar su evidencia.",
+						"confirmButtonText": "Sí, eliminarla!",
+						"cancelButtonText": "Cancelar"
+					},
+					"msg_evidence_deleted": {
+						"title": "Eliminado!",
+						"text": "Su evidencia ha sido eliminado."
+					},
+					"msg_error_delete": {
+						"title": "Error!",
+						"text": "Lo sentimos, la evidencia no se pudo eliminar."
+					},
+					"msg_delete_comment": {
+						"title": "¿Estás seguro?",
+						"text": "Usted no será capaz de recuperar su comentario.",
+						"confirmButtonText": "Sí, eliminarlo!",
+						"cancelButtonText": "Cancelar"
+					}
+				}
+			},
+			"evokations":{
+				"evokation_form":{
+					"msg_change_type": {
+						"title": "¿Estás seguro?",
+						"text": "Si cambia el tipo de Evokation Part ahora, perderá el contenido especial de enfoque de su Evokation Part.",
+						"confirmButtonText": "Sí, cambiar mi tipo de Evokation Part!",
+						"cancelButtonText": "Cancelar"
+					},
+					"msg_empty_link":{
+						"title": "Campo do Hipervinculo vacio!",
+						"text": "Usted tiene que llenar el campo de Hipervinculo para enviar este tipo de Evokation Part."
+					},
+					"msg_success":{
+						"title": "Felicidades!",
+						"text": "Su Evokation Part ha sido enviado!"
+					}
+				}
+			},
+			"missions": {
+				"panel_group_area": {
+					"msg_remove_group_member": {
+						"title": "¿Estás seguro?",
+						"text": "Este usuario ya no será parte de su grupo.",
+						"confirmButtonText": "Sí, estoy seguro",
+						"cancelButtonText": "Cancelar"
+					},
+					"msg_member_removed": {
+						"title": "¡Hecho!",
+						"text": "El usuario ha sido removido de su grupo."
+					},
+					"msg_error_remove": {
+						"title": "Error",
+						"text": "Lo sentimos, este usuario no puede ser eliminado."
+					},
+					"msg_acc_request": {
+						"title": "¡Hecho!",
+						"text": "¡Solicitud aceptada!"
+					},
+					"msg_refuse_request": {
+						"title": "¡Hecho!",
+						"text": "¡Solicitud rechazada!"
+					}
+
+				},
+				"evokation_quests": {
+					"msg_evokation_saved": {
+						"title": "¡Hecho!",
+						"text": "¡Your Evokation was successfully sent!"
+					}
+				}
+			},
+			"groups": {
+				"add_group": {
+					"msg_group_created":{
+						"title": "Ha creado el grupo!",
+						"text_invite": "Invita a tus amigos y aceptar sus solicitudes para unirse al grupo!",
+						"text_important": "Importante: ",
+						"text_warning": "sólo después de que su grupo está completo usted debe comenzar a una lluvia de ideas sus pruebas!"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,114 @@
+{
+	"app":{
+		"elements":{
+			"evidences":{
+				"evidence_form":{
+					"msg_change_type": {
+						"title": "Are you sure?",
+						"text": "If you change your evidence type now, you will lose the special content of your evidence's focus.",
+						"confirmButtonText": "Yes, change my evidence type!",
+						"cancelButtonText": "Cancel"
+					},
+					"msg_phase_unlocked":{
+						"title": "Phase unlocked!",
+						"text": "Congratulations, you just unlocked a phase! You can keep working on this phase, but you can also take a look on the next one."
+					},
+					"btn_next_phase":{
+						"text": "Go to the next phase!"
+					},
+					"btn_stay_phase":{
+						"text": "Stay on this phase!"
+					},
+					"msg_success":{
+						"title": "Congratulations!",
+						"text": "Your evidence has been submitted!"
+					}
+					
+				},
+				"view_evidence":{
+					"msg_delete_evidence": {
+						"title": "Are you sure?",
+						"text": "You will not be able to recover your evidence.",
+						"confirmButtonText": "Yes, delete it!",
+						"cancelButtonText": "Cancel"
+					},
+					"msg_evidence_deleted": {
+						"title": "Deleted!",
+						"text": "Your evidence has been deleted."
+					},
+					"msg_error_delete": {
+						"title": "Error!",
+						"text": "Sorry, your evidence could not be deleted."
+					},
+					"msg_delete_comment": {
+						"title": "Are you sure?",
+						"text": "You will not be able to recover your comment.",
+						"confirmButtonText": "Yes, delete it!",
+						"cancelButtonText": "Cancel"
+					}
+				}
+			},
+			"evokations":{
+				"evokation_form":{
+					"msg_change_type": {
+						"title": "Are you sure?",
+						"text": "If you change your Evokation Part type now, you will lose the special content of your Evokation Part's focus.",
+						"confirmButtonText": "Yes, change my Evokation Part type!",
+						"cancelButtonText": "Cancel"
+					},
+					"msg_empty_link":{
+						"title": "Empty link!",
+						"text": "You have to fill the link field to submit this kind of Evokation part."
+					},
+					"msg_success":{
+						"title": "Congratulations!",
+						"text": "Your Evokation Part has been submitted!"
+					}
+				}
+			},
+			"missions": {
+				"panel_group_area": {
+					"msg_remove_group_member": {
+						"title": "Are you sure?",
+						"text": "This user will no longer be part of your group.",
+						"confirmButtonText": "Yes, I'm sure",
+						"cancelButtonText": "Cancel"
+					},
+					"msg_member_removed": {
+						"title": "Done!",
+						"text": "The user has been removed from your group."
+					},
+					"msg_error_remove": {
+						"title": "Error",
+						"text": "Sorry, this user could not be removed."
+					},
+					"msg_acc_request": {
+						"title": "Done!",
+						"text": "Request accepted!"
+					},
+					"msg_refuse_request": {
+						"title": "Done!",
+						"text": "Request refused!"
+					}
+
+				},
+				"evokation_quests": {
+					"msg_evokation_saved": {
+						"title": "Done!",
+						"text": "Your Evokation was successfully sent!"
+					}
+				}
+			},
+			"groups": {
+				"add_group": {
+					"msg_group_created":{
+						"title": "You created a group!",
+						"text_invite": "Invite your friends and accept their requests to join the group!",
+						"text_important": "Important: ",
+						"text_warning": "only after your group is complete you should start to brainstorm your evidence!"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,52 +1,30 @@
 <?php
-/* CSS */
-	echo $this->Html->css('forums');
-
 /* Top bar */
 	$this->start('topbar');
 	echo $this->element('topbar');
 	$this->end();
-?>
-
-<div class="centering-block">
-
-	<!-- FORUMS -->
-	<d1 class="accordion forums accordion" data-accordion>
-
+?>   
+ 
+<div class="row margin-top-2em">
+    <div class="large-12 large-centered columns">
+        
 	<?php foreach ($forums as $forum): ?>
-		<dd class="accordion-navigation">
-			<a class = "forums title" href="#forum<?= $forum['Forum']['id'] ?>">
-				<i class="fa fa-quote-right fa-2x text-color-highlight padding right-1"></i><?= $forum['Forum']['title'] ?>
-			</a>
-			<div class="content forums content" id="forum<?= $forum['Forum']['id'] ?>">
-				<div class="forums description"><?= $forum['Forum']['description'] ?> </div>
-
-				<!-- FORUM'S CATEGORIES -->
-				<div>
-					<?php foreach ($forumCategories[$forum['Forum']['id']] as $forumCategory): ?>
-					<div class="forums category">
-						<div class="evoke text-glow forums category-title">
-							<?= $forumCategory['ForumCategory']['title'] ?>
-						</div>
-						<div class="forums category-description">
-							<?= $forumCategory['ForumCategory']['description'] ?>
-						</div>
-						<a class="button thin" href="/evoke/forum_categories/view/<?php echo $forumCategory['ForumCategory']['id']?>">
-							Enter Forum Discussion
-						</a>
-					</div>
-					<?php endforeach; ?>
-				</div>
-			</div>
-		</dd>
+		
+        <h2 class = "font-green uppercase"><?= $forum['Forum']['title'] ?></h2>
+        
+        <p><?= $forum['Forum']['description'] ?></p>
+        
+        <?php foreach ($forumCategories[$forum['Forum']['id']] as $forumCategory): ?>
+            <div class="forum-category">
+                <a href="/evoke/forum_categories/view/<?php echo $forumCategory['ForumCategory']['id']?>">
+                    <h4 class = "font-green"><?= $forumCategory['ForumCategory']['title'] ?></h4>
+                </a>
+                <span><?= $forumCategory['ForumCategory']['description'] ?></span>
+            </div>
+        <?php endforeach; ?>
+		
 	<?php endforeach; ?>
 
-	</d1>
-
-	<!-- PAGING -->
-	<div class="forums paging">
-		<?= $this->Paginator->prev('<<',array('class' => 'button thin')) ?>
-		<?= $this->Paginator->numbers(array('separator' => ' ','class' => 'button thin')) ?>
-		<?= $this->Paginator->next('>>',array('class' => 'button thin')) ?>
-	</div>
+    </div>
 </div>
+

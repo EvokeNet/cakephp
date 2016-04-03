@@ -4,39 +4,36 @@ requirejs.config({
     // EVOKE SPECIFIC MODULES
     evoke: '../js/requirejs/app/evoke',
     evokedata: '../js/requirejs/app/evoke_data',
-    ajax_retry: '../js/requirejs/modules/ajax_retry',
-    missionpanels: '../js/requirejs/modules/mission_panels',
-    brainstormlanguages: webroot+'brainstorm_session/js/languages',
-    // COMPONENTS (ALPHABETICAL ORDER PLEASE)
+
+    // COMPONENTS (ALPHABETICAL ORDER)
     chartjs : 'chartjs/Chart.min',
-    ember: 'ember/ember.min',
-    embertemplatecompiler: 'ember/ember-template-compiler',
+    
     facebook: '//connect.facebook.net/en_US/all',
     foundation: 'foundation/js/foundation.min',
     foundationjoyride: 'foundation/js/foundation/foundation.joyride',
     foundationtopbar: 'foundation/js/foundation/foundation.topbar',
     froala: 'FroalaWysiwygEditor/js/froala_editor.min',
     fullpage: 'fullpage.js/jquery.fullPage.min',
-    handlebars: 'handlebars/handlebars.min',
+    
     i18next: 'i18next/i18next.min',
+    
+    immutable: 'immutable/dist/immutable',
+    lodash: 'lodash/dist/lodash',
+    
     jquery : 'jquery/dist/jquery.min',
+    ajax_retry: '../js/requirejs/modules/ajax_retry',
     jqueryajaxretry: 'jquery-ajax-retry/dist/jquery.ajax-retry.min',
     jqueryui : 'jquery-ui/jquery-ui.min',
-    jqueryslimscroll : 'jquery.slimscroll/jquery.slimscroll.min',
-    linkpreview: 'linkpreview/library/js/bootstrap-linkpreview.min',
-    list: 'list.js/dist/list.min',
+ 
     modernizr: 'foundation/js/vendor/modernizr',
-    sidr: 'sidr/jquery.sidr.min',
-    slickcarousel: 'slick-carousel/slick/slick.min',
-    stickykit: 'sticky-kit/jquery.sticky-kit.min',
-    sweetalert: 'sweetalert/dist/sweetalert.min',
 
-    multiscroll: 'multiscroll.js/jquery.multiscroll.min',
+    sweetalert: 'sweetalert/dist/sweetalert.min'
+
   },
   shim: {
     // EVOKE SPECIFIC MODULES
     evoke: { exports: 'evoke' },
-    missionpanels: { exports: 'missionPanels' },
+    
     // COMPONENTS (ALPHABETICAL ORDER PLEASE)
     facebook: { exports: 'FB' },
     foundation: {
@@ -44,21 +41,22 @@ requirejs.config({
       exports: 'Foundation'
     },
     froala: { deps: ['jquery'] },
-
+    
     multiscroll: { deps: ['jquery'] },
+    
+    immutable: { exports: 'immutable'},
+    
+    lodash: { exports: 'lodash'},
 
     // fullpage: { deps: ['jquery', 'jqueryui', 'jqueryslimscroll'] },
-    handlebars: { exports: 'Handlebars' },
+
     jqueryui: { deps: ['jquery'] },
     jqueryslimscroll: { deps: ['jquery'] },
     list: { exports: 'List' },
     modernizr: { exports: 'Modernizr' },
-    sidr: { deps: ['jquery'] },
-    slickcarousel: { deps: ['jquery'] },
 
     fullpage: { deps: ['jquery', 'jqueryui', 'jqueryslimscroll'] },
     
-    stickykit: { deps: ['jquery'] },
     sweetalert: { exports: 'swal' }
   }
 });
