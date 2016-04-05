@@ -3,58 +3,58 @@
   "nodes": [
     {
       "id": 0,
-      "caption": "1",
+      "caption": "opression",
       "role" : "opression",
       "root": true
     },
     {
       "id": 1,
-      "caption": "2",
+      "caption": "opression 2",
       "role" : "opression"
     },
     {
       "id": 2,
-      "caption": "3",
+      "caption": "conflict",
       "role" : "conflict"
     },
     {
       "id": 3,
-      "caption": "4",
+      "caption": "apathy",
       "role" : "apathy"
     },
     {
       "id": 4,
-      "caption": "5",
+      "caption": "misunderstanding",
       "role" : "misunderstanding"
     },
     {
       "id": 5,
-      "caption": "6",
+      "caption": "opression 3",
       "role" : "opression"
     },
     {
       "id": 6,
-      "caption": "7",
+      "caption": "misunderstanding 2",
       "role" : "misunderstanding"
     },
     {
       "id": 7,
-      "caption": "8",
+      "caption": "conflict 2",
       "role" : "conflict"
     },
     {
       "id": 8,
-      "caption": "9",
+      "caption": "opression 4",
       "role" : "opression"
     },
     {
       "id": 9,
-      "caption": "10",
+      "caption": "conflict 3",
       "role" : "conflict"
     },
     {
       "id": 10,
-      "caption": "11",
+      "caption": "apathy 2",
       "role" : "apathy"
     }
 

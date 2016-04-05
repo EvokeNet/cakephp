@@ -63,7 +63,7 @@ $title = __('Evoke Network');
     echo $this->Html->css('/components/font-awesome/css/font-awesome.min'); //Icon font - font-awesome
     echo $this->Html->css('/css/plugins/font-awesome'); //Overriding some of the font-awesome css
 
-    echo $this->Html->css('/css/font/font-brankic'); //Icon font - brankic 1979
+    //echo $this->Html->css('/css/font/font-brankic'); //Icon font - brankic 1979
 
     //echo $this->Html->css('/components/foundation/css/foundation');
     //echo $this->Html->css('/css/plugins/foundation'); //Overriding some of the foundation css
@@ -78,6 +78,9 @@ $title = __('Evoke Network');
 
     echo $this->Html->css('/components/sweetalert/dist/sweetalert.css'); //Sweet alert - alert boxes
     echo $this->Html->css('/css/plugins/sweetalert.css'); //Overriding some of the sweet alert css
+
+    // ALCHEMY JS
+    echo $this->Html->css("/alchemyjs/alchemy.css");
 
     //EVOKE CSS
     // echo $this->Html->css('evoke');
@@ -95,6 +98,11 @@ $title = __('Evoke Network');
     //META
     echo $this->fetch('meta');
     echo $this->fetch('social-metatags');
+
+    // ALCHEMY JS
+    echo $this->Html->script("/webroot/alchemyjs/scripts/vendor.js");
+    echo $this->Html->script("/webroot/alchemyjs/alchemy.min.js");
+    echo $this->Html->script("/webroot/alchemyjs/alchemy.js");
 
     echo $this->Html->script("/webroot/components/react/react.js");
     echo $this->Html->script("/webroot/components/react/react-dom.js");

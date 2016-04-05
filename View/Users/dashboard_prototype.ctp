@@ -1,22 +1,19 @@
 <?php echo $this->element('topbar'); ?>
 
-<div class="alchemy" id="alchemy"></div>
+<div class="alchemy" id="alchemy"></div>  
 
-
-  <script src="http://cdn.graphalchemist.com/alchemy.min.js"></script>
 
   <script type="text/javascript">
 
-    var width = 1920;
-    var height = 905;
+    var width = 1366;
+    var height = 590;
     var svgWidth = 0;
     var svgHeight = 0;
 
     function resize() {
 	 	  svg = document.getElementsByTagName("svg")[0];
-	 	  console.log("interval");
+	 	  
 	 	  if(typeof svg !== 'undefined' && (svgWidth!=width || svgHeight!=height)) {
-	 	    console.log("teste");
 	 	    svgWidth = width;
 	      svgHeight = height;
 		    svg.style.width = svgWidth.toString()+"px";
@@ -33,12 +30,22 @@
 	
 
     var config = {
-      dataSource: '<?= $this->webroot.'dashboard.json' ?>',
+      dataSource: '<?= $this->Html->url(array('controller' => 'users', 'action' => 'gameboard_layout', 'admin' => false)) ?>',
       forceLocked: true,
       graphHeight: function(){ return height; },
       afterLoad: resize(),
       graphWidth: function(){ return width; },
+      initialScale: 1,
       nodeClick: function(node){
+        allNodes = alchemy.get.nodes().all();
+
+        for(n = 0; n < allNodes.length; n++){
+            
+            if(allNodes[n]!=node){
+              allNodes[n].toggleSelected(false);
+            }
+        }
+
         problemName = node._nodeType;
         swal("Let's start this mission!",problemName);
       },
@@ -51,6 +58,7 @@
       nodeTypes: { "role": 
           ["opression", "conflict", "apathy", "misunderstanding"] 
       }, 
+      scaleExtent: [1, 1],
       edgeStyle: {
         "all" : {
           "width": 4,

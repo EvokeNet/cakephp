@@ -368,16 +368,37 @@ public function googleLogin() {
  * @return void
  */
   public function dashboard() {
-    
+   
   }
 
-  /**
+/**
  * dashboard method
  *
  * @return void
  */
   public function dashboard_prototype() {
     
+  }
+  
+/**
+ * gameboard json method
+ *
+ * @return void
+ */
+  public function gameboard_layout() {
+     $this->autoRender = false;
+
+    $teste = array(
+      'nodes' => array(
+        array('id' => 0,'caption' => 'opression', 'role' => 'opression', 'root' => true),
+        array('id' => 1,'caption' => 'opression', 'role' => 'opression')
+      ),
+      'edges' => array(
+        array('source' => 1, 'target' => 0)
+      ),
+    );
+
+    return json_encode($teste);
   }
   
 /**

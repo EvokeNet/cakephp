@@ -14,8 +14,7 @@
     "sweetalert": "*",
     "react": "^0.14.7",
     "immutable": "^3.7.6",
-    "lodash": "^4.6.1",
-    "alchemyjs": "^0.4.2"
+    "lodash": "^4.6.1"
   },
   "resolutions": {
     "jquery": "2.2.0"
