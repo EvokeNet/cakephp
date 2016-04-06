@@ -36,6 +36,7 @@
       afterLoad: resize(),
       graphWidth: function(){ return width; },
       initialScale: 1,
+      curvedEdges: false,
       nodeClick: function(node){
         allNodes = alchemy.get.nodes().all();
 
@@ -61,7 +62,7 @@
       scaleExtent: [1, 1],
       edgeStyle: {
         "all" : {
-          "width": 4,
+          "width": 3,
           "color": "#CCC",
           "opacity": 0.5,
           "selected": {
@@ -76,70 +77,75 @@
         }
       },
       nodeStyle: {
+        "all" : {
+          "radius": 12,
+          "color"  : "blue",
+          "borderColor": "white",
+              "selected": {
+                "color" : "green",
+                "borderColor": "white"
+              },
+        },
       	"opression": {
-        		"radius": 20,
         		"color"  : "yellow",
             "borderColor": "white",
               "selected": {
                 "color" : "green",
                 "borderColor": "white"
               },
-            "highlighted": {
+              "highlighted": {
                 "color" : "white",
                 "borderColor": "white"
               },
-            "hidden": {
+              "hidden": {
                 "color": "none",
                 "borderColor": "none"
               }
       	},
         "conflict": {
-            "radius": 20,
             "color"  : "red",
             "borderColor": "white",
               "selected": {
                 "color" : "green",
                 "borderColor": "white"
               },
-            "highlighted": {
+              "highlighted": {
                 "color" : "white",
                 "borderColor": "white"
               },
-            "hidden": {
+              "hidden": {
                 "color": "none",
                 "borderColor": "none"
               }
         },
         "apathy": {
-            "radius": 20,
             "color"  : "black",
             "borderColor": "white",
               "selected": {
                 "color" : "green",
                 "borderColor": "white"
               },
-            "highlighted": {
+              "highlighted": {
                 "color" : "white",
                 "borderColor": "white"
               },
-            "hidden": {
+              "hidden": {
                 "color": "none",
                 "borderColor": "none"
               }
         },
         "misunderstanding": {
-            "radius": 20,
             "color"  : "white",
             "borderColor": "gray",
               "selected": {
                 "color" : "green",
                 "borderColor": "white"
               },
-            "highlighted": {
+              "highlighted": {
                 "color" : "white",
                 "borderColor": "white"
               },
-            "hidden": {
+              "hidden": {
                 "color": "none",
                 "borderColor": "none"
               }

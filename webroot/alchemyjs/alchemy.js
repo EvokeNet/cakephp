@@ -1061,9 +1061,9 @@
         };
         this._linkStrength = function(edge) {
           if (nodes[edge.source.id].getProperties('root') || nodes[edge.target.id].getProperties('root')) {
-            return 1;
+            return 7;
           } else {
-            return 0.9;
+            return 6;
           }
         };
       }
@@ -1073,7 +1073,7 @@
         };
       } else if (conf.linkDistancefn === 'default') {
         this._linkDistancefn = function(edge) {
-          return 1 / (this.k * 50);
+          return 1 / (this.k * 500);
         };
       } else if (typeof conf.linkDistancefn === 'number') {
         this._linkDistancefn = function(edge) {
@@ -1178,7 +1178,7 @@
     };
 
     Layout.prototype.chargeDistance = function() {
-      return 500;
+      return 180;
     };
 
     Layout.prototype.linkDistancefn = function(edge) {
