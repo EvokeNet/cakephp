@@ -395,7 +395,7 @@ public function googleLogin() {
       'misunderstanding'
     );
 
-    $gameboard = $this->create_gameboard(48, $regions, 3);
+    $gameboard = $this->create_gameboard(48, $regions, 4);
 
     return json_encode($gameboard);
   }
@@ -407,18 +407,26 @@ public function googleLogin() {
  * @return gameboard
  */
   public function create_gameboard($size, $regions, $levels){
-      $nodes = array($this->create_node(0, '', true));
+      $nodes = array($this->create_node(0, '', true, 0));
       $edges = array();
       $region_size =  $size / sizeof($regions);
       $level_size = $region_size / $levels;
       $count = 0;
+
+      $problem_points = array(3,3,3,2,2,2,1,1,1);
+
+      for($x = sizeof($problem_points); $x < $size; $x++){
+        array_push($problem_points, 0);
+      }
+
+      shuffle($problem_points);
 
       foreach($regions as $region){
 
         for($x = 0; $x < $region_size; $x++){
           $count++;
           $root = false;
-          array_push($nodes,$this->create_node($count, $region, $root));
+          array_push($nodes,$this->create_node($count, $region, $root, $problem_points[$count-1]));
 
           // connect to root
           if($x < $level_size){
@@ -442,8 +450,6 @@ public function googleLogin() {
               $dist = $region_size - $level_size + 1;
 
               $source_node = $count <= $dist ? $count - $dist + $size : $count - $dist;
-
-              //debug($this->create_edge($source_node, $count, false));
 
               array_push($edges,$this->create_edge($source_node, $count, false));
             }
@@ -478,8 +484,8 @@ public function googleLogin() {
  *
  * @return node
  */
-  public function create_node($id, $role, $root) {
-    return array('id' => $id,'caption' => $id, 'role' => $role, 'root' => $root);
+  public function create_node($id, $role, $root, $points) {
+    return array('id' => $id,'caption' => $points, 'role' => $role, 'root' => $root, 'problem_points' => $points);
   } 
 
 

@@ -2937,11 +2937,11 @@
         });
       };
 
-      Node.prototype.toggleSelected = function(selected) {
+      Node.prototype.setSelected = function(selected) {
         var param;
-        param = selected ? "selected" : "param";
+        param = selected ? "selected" : "active";
 
-        this._state = this._state === "selected" ? param : param;
+        this._state = param;
         return this.setStyles();
       };
 

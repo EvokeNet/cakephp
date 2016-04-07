@@ -131,7 +131,7 @@ svg {
 }
 
 .node text {
-  display: none;
+  display: block;
   fill: white;
   font-weight: 200;
   text-anchor: middle;
