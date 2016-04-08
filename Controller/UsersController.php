@@ -485,7 +485,7 @@ public function googleLogin() {
  * @return node
  */
   public function create_node($id, $role, $root, $points) {
-    return array('id' => $id,'caption' => $points, 'role' => $role, 'root' => $root, 'problem_points' => $points);
+    return array('id' => $id,'caption' => $points, 'role' => $role, 'root' => $root, 'problem_points' => $points, "severity_counter" => 2);
   } 
 
 

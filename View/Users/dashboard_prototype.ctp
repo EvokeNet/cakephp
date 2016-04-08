@@ -1,16 +1,93 @@
 <?php echo $this->element('topbar'); ?>
 
+<div style="margin: auto; text-align: center;font-size: 26px;padding-top: 10px">
+  <button id="simulateButton"  style="" onclick="simulateGame()">Simulate Problems</button>
+  <div style='height:35px' id="message"></div>
+</div>
+
 <div class="alchemy" id="alchemy"></div>  
 
 
   <script type="text/javascript">
 
+    var topBarHeight = 45;
+    var buttonHeight = 70;
+    var message = 50;
     var width = $(window).width();
-    var height = $(window).height() - 45;
+    var height = $(window).height() - (topBarHeight + buttonHeight + message);
     var svgWidth = 0;
     var svgHeight = 0;
     var selectedNode = -1;
 
+    function updateGameMessage(message){
+      document.getElementById("message").innerHTML = message;
+    }
+
+    function increaseSeverityCounter(node){
+      counter = node._properties.severity_counter;
+      counter = counter == 4 ? 4 : counter + 1;
+      return node.setProperty("severity_counter", counter);
+    }
+
+    function increaseNodeProblemPoints(node, chainEffectException){
+      
+      problemPoints = node._properties.problem_points;
+
+      if(problemPoints == 3){
+        increaseSeverityCounter(node);
+        currentNodeAdjacentNodes = accessibleNodes(node);
+        allNodes = alchemy.get.nodes().all();
+
+        for(x = 0; x < currentNodeAdjacentNodes.length; x++){
+
+          if(currentNodeAdjacentNodes[x] != 0 && currentNodeAdjacentNodes[x] != chainEffectException){
+            increaseNodeProblemPoints(allNodes[currentNodeAdjacentNodes[x]], node.id);
+          }
+
+        }
+        
+        if(countCrisis() >= 8){
+          updateGameMessage("Game over");
+          return document.getElementById("simulateButton").disabled = true;
+        }
+
+        return updateGameMessage("New Crisis!");
+
+      }else{
+
+        problemPoints = problemPoints + 1;
+        updateNodeProblemPoints(node, problemPoints);
+
+      }
+
+      return updateGameMessage("");
+    }
+
+    function updateNodeProblemPoints(node, problemPoints){
+      var nodeId = "text-" + node.id;
+      node.setProperty("problem_points", problemPoints);
+      node.setProperty("caption", problemPoints);
+      return document.getElementById(nodeId).innerHTML = node._properties.problem_points;
+    }
+
+    function countCrisis(){
+      crisisNumber = 0;
+      allNodes = alchemy.get.nodes().all();
+
+      for(x = 0; x < allNodes.length; x++){
+        nodeSeverityCounter = allNodes[x]._properties.severity_counter;
+        crisisNumber = nodeSeverityCounter >= 3 ? crisisNumber + 1 : crisisNumber;
+      }
+
+      return crisisNumber;
+    }
+
+    function simulateGame(){
+      var nodeId = Math.floor(Math.random() * 48) + 1;
+      node = alchemy.get.nodes().all()[nodeId];
+      increaseNodeProblemPoints(node, -1);
+      return nodeId;
+    }
 
     function accessibleNodes(node){
       acessibleNodes = [];
@@ -72,6 +149,7 @@
           }
 
           allNodes[selectedNode].setSelected(false);
+          problemPoints = allNodes[selectedNode]._properties.problem_points;
         }
 
         selectedNode = node.id;
