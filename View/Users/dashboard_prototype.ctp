@@ -120,7 +120,7 @@
 		}, 50);
 
     var config = {
-      dataSource: '<?= $this->Html->url(array('controller' => 'users', 'action' => 'gameboard_layout', 'admin' => false)) ?>',
+      dataSource: '<?= $this->Html->url(array('controller' => 'gameboards', 'action' => 'gameboard_layout_id', 'admin' => false, $id)) ?>',
       forceLocked: true,
       graphHeight: function(){ return height; },
       afterLoad: resize(),

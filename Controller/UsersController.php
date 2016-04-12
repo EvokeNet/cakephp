@@ -376,8 +376,8 @@ public function googleLogin() {
  *
  * @return void
  */
-  public function dashboard_prototype() {
-    
+  public function dashboard_prototype($id) {
+    $this->set('id',$id);
   }
   
 /**
@@ -400,7 +400,7 @@ public function googleLogin() {
     return json_encode($gameboard);
   }
   
-  /**
+/**
  * 
  * GAMEBOARD
  *
@@ -467,6 +467,8 @@ public function googleLogin() {
 
       return $gameboard;
   }
+
+
 
 /**
  * 
