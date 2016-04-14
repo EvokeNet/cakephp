@@ -39,7 +39,6 @@
               var updated = response == 'updated';
 
               if(!updated){
-                console.log('teste');
                 return node.setSelected(false);
 
               }else{
@@ -61,6 +60,7 @@
                 }
 
                 selectedNode = node.id;
+                node.setSelected(true);
 
                 if(node._nodeType != ""){
                   problemName = node._nodeType.charAt(0).toUpperCase() + node._nodeType.slice(1);
@@ -218,6 +218,7 @@
           return node.setSelected(!true);
         }
 
+        node.setSelected(!false);
         updatePosition(node);
         
       },
