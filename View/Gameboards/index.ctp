@@ -23,6 +23,75 @@
       document.getElementById("message").innerHTML = message;
     }
 
+    function updatePosition(node){ 
+
+      $.ajax({
+          type: 'get',
+          url: '<?= $this->Html->url(array('controller' => 'gameboards', 'action' => 'updatePosition', 'admin' => false, $id)) ?>'+'/'+node.id,
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+          },
+          success: function(response) {
+            if (response.error) {
+              alert(response.error);
+              console.log(response.error);
+            }else if (response) {
+              var updated = response == 'updated';
+
+              if(!updated){
+                console.log('teste');
+                return node.setSelected(false);
+
+              }else{
+
+                allNodes = alchemy.get.nodes().all();
+
+                // if something is selected
+                if(selectedNode >= 0){
+                  accessibleNodesList = accessibleNodes(allNodes[selectedNode]);
+
+                  // if node isn't accessible
+                  if($.inArray(node.id, accessibleNodesList) < 0){
+                    swal("You can't access here.");
+                    return node.setSelected(false);
+                  }
+
+                  allNodes[selectedNode].setSelected(false);
+                  problemPoints = allNodes[selectedNode]._properties.problem_points;
+                }
+
+                selectedNode = node.id;
+
+                if(node._nodeType != ""){
+                  problemName = node._nodeType.charAt(0).toUpperCase() + node._nodeType.slice(1);
+                  mission_title = node._properties.mission_title;
+                  mission_description = node._properties.mission_description;
+
+                  swal(mission_title, mission_description);
+                }else{
+                  swal("There's no mission here");
+                }
+              }
+            }
+          },
+          error: function(e) {
+            alert("An error occurred: " + e.responseText.message);
+            console.log(e);
+          }
+      });
+    }
+
+    function setPlayerInitialPosition(){
+        allNodes = alchemy.get.nodes().all();
+
+        for(x = 0; x < allNodes.length; x++){
+          if(allNodes[x]._properties.player){
+            selectedNode = allNodes[x]._properties.id;
+            return allNodes[x].setSelected(true);
+          }
+        }
+    }
+
     function increaseSeverityCounter(node){
       counter = node._properties.severity_counter;
       counter = counter == 4 ? 4 : counter + 1;
@@ -102,7 +171,7 @@
       return acessibleNodes;
     }
 
-    function resize() {
+    function fixGameboard() {
 	 	  svg = document.getElementsByTagName("svg")[0];
 	 	  
 	 	  if(typeof svg !== 'undefined' && (svgWidth!=width || svgHeight!=height)) {
@@ -110,20 +179,24 @@
 	      svgHeight = height;
 		    svg.style.width = svgWidth.toString()+"px";
         svg.style.height = svgHeight.toString()+"px";
-		 	  clearInterval(checkSize);
+        svg.style.backgroundImage  = "url('http://www.ssp.sp.gov.br/img/estatisticas/mapas/regioes2.gif')";
+        svg.style.backgroundRepeat = "no-repeat";
+        svg.style.backgroundPosition = "center"; 
+		 	  clearInterval(checkFixGameboard);
 		 	  nodes = document.getElementsByClassName("node");
+        setPlayerInitialPosition();
 	 	  }
 	  }
 
-	  var checkSize = setInterval(function() {
-	  		resize();
+	  var checkFixGameboard = setInterval(function() {
+	  		fixGameboard();
 		}, 50);
 
     var config = {
-      dataSource: '<?= $this->Html->url(array('controller' => 'gameboards', 'action' => 'gameboard_layout_id', 'admin' => false, $id)) ?>',
+      dataSource: '<?= $this->Html->url(array('controller' => 'gameboards', 'action' => 'gameboard_layout', 'admin' => false, $id)) ?>',
       forceLocked: true,
       graphHeight: function(){ return height; },
-      afterLoad: resize(),
+      afterLoad: fixGameboard(),
       graphWidth: function(){ return width; },
       initialScale: 1,
       curvedEdges: false,
@@ -135,34 +208,7 @@
           return node.setSelected(!true);
         }
 
-        allNodes = alchemy.get.nodes().all();
-
-        // if something is selected
-        if(selectedNode >= 0){
-          accessibleNodesList = accessibleNodes(allNodes[selectedNode]);
-
-          // if node isn't accessible
-          if($.inArray(node.id, accessibleNodesList) < 0){
-            swal("You can't access here.");
-            //nodeClick toggles the node state, then 'selected' parameter must be inverted
-            return node.setSelected(!false);
-          }
-
-          allNodes[selectedNode].setSelected(false);
-          problemPoints = allNodes[selectedNode]._properties.problem_points;
-        }
-
-        selectedNode = node.id;
-
-        if(node._nodeType != ""){
-          problemName = node._nodeType.charAt(0).toUpperCase() + node._nodeType.slice(1);
-          mission_title = node._properties.mission_title;
-          mission_description = node._properties.mission_description;
-
-          swal(mission_title, mission_description);
-        }else{
-          swal("There's no mission here");
-        }
+        updatePosition(node);
         
       },
       fixNodes: true,

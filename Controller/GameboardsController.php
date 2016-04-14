@@ -16,6 +16,28 @@ class GameboardsController extends AppController {
  */
 	public $components = array('Paginator', 'Session');
 
+  public function updatePosition($gameboard_id, $pos){
+    $this->autoRender = false;
+    $this->request->onlyAllow('ajax');
+
+    // TODO verifiy if user can access node
+    $this->loadModel('GameboardPlayer');
+
+    $player = $this->GameboardPlayer->find('first', array(
+        'conditions' => array(
+          'gameboard_id' => $gameboard_id,
+          'user_id' => AuthComponent::user('id')
+        ),
+    ));
+
+    $player['GameboardPlayer']['node_pos'] = $pos;
+
+    if($this->GameboardPlayer->save($player)){
+      return 'updated';
+    }else{
+      return 'error';
+    }; 
+  }
 
 /**
  * gameboard method
@@ -32,33 +54,25 @@ class GameboardsController extends AppController {
     ));
 
     if(isset($gameboard) && !empty($gameboard)){
-      $this->set('id',$gameboard['GameboardPlayer']['gameboard_id']);
+      return $this->set('id',$gameboard['GameboardPlayer']['gameboard_id']);
     }else{
-      debug("teste");
+
+      $users = array(
+        AuthComponent::user('id')
+      ); 
+
+      $regions = array(
+        'opression',
+        'conflict',
+        'apathy',
+        'misunderstanding'
+      );
+
+      $this->create_gameboard(48, $regions, 4, $users);
+
+      return $this->index();
     }
   }
-
-
-/**
- * gameboard json method
- *
- * @return void
- */
-  public function gameboard_layout() {
-    $this->autoRender = false;
-
-    $regions = array(
-      'opression',
-      'conflict',
-      'apathy',
-      'misunderstanding'
-    );
-
-    $gameboard = $this->create_gameboard(48, $regions, 4);
-
-    return json_encode($gameboard);
-  }  
-
 
   public function lastInsertedGameboardId(){
   	$gameboard = $gameboardId = $this->Gameboard->find('first', array(
@@ -73,19 +87,39 @@ class GameboardsController extends AppController {
   	return -1;
   }
 
-  public function gameboard_layout_id($id){
+  public function gameboard_layout($id){
     $this->autoRender = false;
 
     if(!$this->Gameboard->exists($id)){
       return "Invalid id";
     }
 
+    $nodes = $this->select_nodes($id);
+    $players = $this->select_players($id);
+
+    foreach($players as $player){
+      $nodes[$player['GameboardPlayer']['node_pos']]['player'] = $player['GameboardPlayer']['user_id'];
+    }
+
     $gameboard = array(
-        'nodes' => $this->select_nodes($id),
+        'nodes' => $nodes,
         'edges' => $this->select_edges($id)
     );
 
     return json_encode($gameboard);
+  }
+
+  public function select_players($gameboard_id){
+    $this->loadModel('GameboardPlayer');
+
+    $players = $this->GameboardPlayer->find('all', array(
+        'conditions' => array(
+          'gameboard_id' => $gameboard_id
+        ),
+    ));
+
+
+    return $players;
   }
 
 
@@ -165,11 +199,11 @@ class GameboardsController extends AppController {
 
  /**
  * 
- * GAMEBOARD
+ * create a new gameboard
  *
- * @return gameboard
+ * @return void
  */
-  public function create_gameboard($size, $regions, $levels){
+  public function create_gameboard($size, $regions, $levels, $users){
 
   	  $this->loadModel('Gameboard');
 
@@ -183,8 +217,8 @@ class GameboardsController extends AppController {
 
 	    $gameboard_id = $this->lastInsertedGameboardId();
 
-      $nodes = array($this->create_node(0, '', true, 0, $gameboard_id,0));
-      $edges = array();
+      //root node
+      $this->create_node(0, '', true, 0, $gameboard_id,0);
       $region_size =  $size / sizeof($regions);
       $level_size = $region_size / $levels;
       $missions = $this->allMissions();
@@ -205,19 +239,19 @@ class GameboardsController extends AppController {
           $root = false;
           $mission = $count % sizeof($missions);
           $mission_id = $missions[$mission]['Mission']['id'];
-          array_push($nodes,$this->create_node($count, $region, $root, $problem_points[$count-1], $gameboard_id, $mission_id));
+          $this->create_node($count, $region, $root, $problem_points[$count-1], $gameboard_id, $mission_id);
 
           // connect to root
           if($x < $level_size){
-            array_push($edges,$this->create_edge(0, $count, $gameboard_id));
+            $this->create_edge(0, $count, $gameboard_id);
           }else{
             // connect to lower level node
-            array_push($edges,$this->create_edge($count - $level_size, $count, $gameboard_id));
+            $this->create_edge($count - $level_size, $count, $gameboard_id);
           }
 
           // connect to level nodes
           if($level_size > 1 && $x % $level_size > 0){
-            array_push($edges,$this->create_edge($count-1, $count, $gameboard_id));
+            $this->create_edge($count-1, $count, $gameboard_id);
           }
 
           // connect to another region
@@ -230,36 +264,35 @@ class GameboardsController extends AppController {
 
               $source_node = $count <= $dist ? $count - $dist + $size : $count - $dist;
 
-              array_push($edges,$this->create_edge($source_node, $count, $gameboard_id));
+              $this->create_edge($source_node, $count, $gameboard_id);
             }
 
           }
-
-
         }
       }
 
-      $gameboard = array(
-        'nodes' => $nodes,
-        'edges' => $edges
-      );
-
-      return $gameboard;
+      foreach($users as $userId){
+        $this->create_player($userId, -1, $gameboard_id);
+      }
   }
 
-
+/**
+ * 
+ * Return all existing missions
+ *
+ * @return array
+ */
   public function allMissions(){
     $this->loadModel('Mission');
     $missions = $this->Mission->find('all');
     return $missions;
   }
-
-
+  
 /**
  * 
- * GAMEBOARD
+ * Save new edge on database
  *
- * @return edge
+ * @return void
  */
   public function create_edge($source, $target, $gameboard_id) {
     $this->loadModel('GameboardEdge');
@@ -274,11 +307,14 @@ class GameboardsController extends AppController {
 
    $this->GameboardEdge->create();
    $this->GameboardEdge->save($gameboardEdge); 
-
-   return array('source' => $source,'target' => $target);
   }  
 
-
+/**
+ * 
+ * Save new node on database
+ *
+ * @return void
+ */
   public function create_node($id, $role, $root, $points, $gameboard_id, $mission_id) {
   	$default_severity_counter = 2;
 
@@ -296,10 +332,30 @@ class GameboardsController extends AppController {
   		)
   	);
 
-  $this->GameboardNode->create();
-	$this->GameboardNode->save($gameboardNode);	
-
-	return array('id' => $id,'caption' => $points, 'role' => $role, 'root' => $root, 'problem_points' => $points, "severity_counter" => $default_severity_counter);
+    $this->GameboardNode->create();
+  	$this->GameboardNode->save($gameboardNode);	
   }   
+
+
+/**
+ * 
+ * Save new gameboard-player on database
+ *
+ * @return void
+ */
+  public function create_player($userId, $pos, $gameboard_id) {
+    $this->loadModel('GameboardPlayer');
+
+    $gameboardPlayer = array('GameboardPlayer' => 
+      array(
+        'gameboard_id' => $gameboard_id, 
+        'node_pos' => $pos,
+        'user_id' => $userId
+      )
+    );
+
+   $this->GameboardPlayer->create();
+   $this->GameboardPlayer->save($gameboardPlayer); 
+  }    
 
 }
