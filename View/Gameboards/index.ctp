@@ -171,6 +171,15 @@
       return acessibleNodes;
     }
 
+    function fixStrokeWidth(){
+        //fix strokeWidth
+        // raise 50%
+        circles = document.getElementsByTagName("circle");
+        for(x =0; x < circles.length; x++){
+          circles[x].style.strokeWidth = circles[x].style.strokeWidth * 1.25;
+        } 
+    }
+
     function fixGameboard() {
 	 	  svg = document.getElementsByTagName("svg")[0];
 	 	  
@@ -185,6 +194,7 @@
 		 	  clearInterval(checkFixGameboard);
 		 	  nodes = document.getElementsByClassName("node");
         setPlayerInitialPosition();
+        fixStrokeWidth();
 	 	  }
 	  }
 
@@ -227,8 +237,8 @@
       scaleExtent: [1, 1],
       edgeStyle: {
         "all" : {
-          "width": 3,
-          "color": "#CCC",
+          "width": 2,
+          "color": "#808080",
           "opacity": 0.5,
           "selected": {
               "opacity": 0.5
@@ -244,19 +254,19 @@
       nodeStyle: {
         "all" : {
           "radius": 12,
-          "color"  : "blue",
-          "borderColor": "white",
+          "color"  : "#6A5ACD",
+          "borderColor": "#483D8B",
               "selected": {
-                "color" : "green",
-                "borderColor": "white"
+                "color" : "#008000",
+                "borderColor": "#32CD32"
               },
         },
       	"opression": {
-        		"color"  : "yellow",
-            "borderColor": "white",
+        		"color"  : "#FFFF00",
+            "borderColor": "#FFD700",
               "selected": {
-                "color" : "green",
-                "borderColor": "white"
+                "color" : "#008000",
+                "borderColor": "#32CD32"
               },
               "highlighted": {
                 "color" : "white",
@@ -268,11 +278,11 @@
               }
       	},
         "conflict": {
-            "color"  : "red",
-            "borderColor": "white",
+            "color"  : "#B22222",
+            "borderColor": "#8B0000",
               "selected": {
-                "color" : "green",
-                "borderColor": "white"
+                "color" : "#008000",
+                "borderColor": "#32CD32"
               },
               "highlighted": {
                 "color" : "white",
@@ -284,11 +294,11 @@
               }
         },
         "apathy": {
-            "color"  : "black",
-            "borderColor": "white",
+            "color"  : "#000000",
+            "borderColor": "#696969",
               "selected": {
-                "color" : "green",
-                "borderColor": "white"
+                "color" : "#008000",
+                "borderColor": "#32CD32"
               },
               "highlighted": {
                 "color" : "white",
@@ -300,11 +310,11 @@
               }
         },
         "misunderstanding": {
-            "color"  : "white",
-            "borderColor": "gray",
+            "color"  : "#FFF0F5",
+            "borderColor": "#C0C0C0",
               "selected": {
-                "color" : "green",
-                "borderColor": "white"
+                "color" : "#008000",
+                "borderColor": "#32CD32"
               },
               "highlighted": {
                 "color" : "white",
@@ -328,6 +338,7 @@
   .node{
     font-size: 24px;
     cursor: pointer;
+    stroke-width: 12px;
   }
 
   .node.opression{
