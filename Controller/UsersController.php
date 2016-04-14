@@ -371,14 +371,6 @@ public function googleLogin() {
    
   }
 
-/**
- * dashboard method
- *
- * @return void
- */
-  public function dashboard_prototype($id) {
-    $this->set('id',$id);
-  }
   
 /**
  * gameboard json method
@@ -400,96 +392,6 @@ public function googleLogin() {
     return json_encode($gameboard);
   }
   
-/**
- * 
- * GAMEBOARD
- *
- * @return gameboard
- */
-  public function create_gameboard($size, $regions, $levels){
-      $nodes = array($this->create_node(0, '', true, 0));
-      $edges = array();
-      $region_size =  $size / sizeof($regions);
-      $level_size = $region_size / $levels;
-      $count = 0;
-
-      $problem_points = array(3,3,3,2,2,2,1,1,1);
-
-      for($x = sizeof($problem_points); $x < $size; $x++){
-        array_push($problem_points, 0);
-      }
-
-      shuffle($problem_points);
-
-      foreach($regions as $region){
-
-        for($x = 0; $x < $region_size; $x++){
-          $count++;
-          $root = false;
-          array_push($nodes,$this->create_node($count, $region, $root, $problem_points[$count-1]));
-
-          // connect to root
-          if($x < $level_size){
-            array_push($edges,$this->create_edge(0, $count, false));
-          }else{
-            // connect to lower level node
-            array_push($edges,$this->create_edge($count - $level_size, $count, false));
-          }
-
-          // connect to level nodes
-          if($level_size > 1 && $x % $level_size > 0){
-            array_push($edges,$this->create_edge($count-1, $count, false));
-          }
-
-          // connect to another region
-          if(sizeof($regions) > 1){
-
-            // if first node
-            if($x % $level_size == 0){
-
-              $dist = $region_size - $level_size + 1;
-
-              $source_node = $count <= $dist ? $count - $dist + $size : $count - $dist;
-
-              array_push($edges,$this->create_edge($source_node, $count, false));
-            }
-
-          }
-
-
-        }
-      }
-
-      $gameboard = array(
-        'nodes' => $nodes,
-        'edges' => $edges
-      );
-
-      return $gameboard;
-  }
-
-
-
-/**
- * 
- * GAMEBOARD
- *
- * @return edge
- */
-  public function create_edge($source, $target) {
-    return array('source' => $source,'target' => $target);
-  }  
-
-/**
- * 
- * GAMEBOARD
- *
- * @return node
- */
-  public function create_node($id, $role, $root, $points) {
-    return array('id' => $id,'caption' => $points, 'role' => $role, 'root' => $root, 'problem_points' => $points, "severity_counter" => 2);
-  } 
-
 
 /**
  * index method

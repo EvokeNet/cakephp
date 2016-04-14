@@ -14,7 +14,7 @@ class GameboardPlayer extends AppModel {
  *
  * @var mixed False or table name
  */
-	public $useTable = 'gameboards_player';
+	public $useTable = 'gameboard_players';
 
 /**
  * Display field
@@ -42,13 +42,6 @@ class GameboardPlayer extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Node' => array(
-			'className' => 'Node',
-			'foreignKey' => 'node_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

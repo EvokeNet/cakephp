@@ -18,6 +18,28 @@ class GameboardsController extends AppController {
 
 
 /**
+ * gameboard method
+ *
+ * @return void
+ */
+  public function index() {
+    $this->loadModel('GameboardPlayer');
+
+    $gameboard = $this->GameboardPlayer->find('first', array(
+        'conditions' => array(
+          'user_id' => AuthComponent::user('id')
+        ),
+    ));
+
+    if(isset($gameboard) && !empty($gameboard)){
+      $this->set('id',$gameboard['GameboardPlayer']['gameboard_id']);
+    }else{
+      debug("teste");
+    }
+  }
+
+
+/**
  * gameboard json method
  *
  * @return void
@@ -71,6 +93,22 @@ class GameboardsController extends AppController {
     $this->loadModel('GameboardNode');
 
     $nodes = $this->GameboardNode->find('all', array(
+        'fields' => array(
+          'GameboardNode.*',
+          'Mission.id',
+          'Mission.title',
+          'Mission.description'
+        ),
+        'joins' => array(
+          array(
+            'table' => 'missions',
+            'alias' => 'Mission',
+            'type' => 'LEFT',
+            'conditions' => array(
+              'GameboardNode.mission_id = Mission.id'
+            ),
+          ),
+        ),
         'conditions' => array(
           'gameboard_id' => $gameboard_id
         ),
@@ -110,7 +148,10 @@ class GameboardsController extends AppController {
       'role' => $node['GameboardNode']['role'],
       'root' => $node['GameboardNode']['root'], 
       'problem_points' => (int) $node['GameboardNode']['problem_points'], 
-      "severity_counter" => (int) $node['GameboardNode']['severity_counter']
+      "severity_counter" => (int) $node['GameboardNode']['severity_counter'],
+      'mission_id' => (int) $node['Mission']['id'],
+      'mission_title' => $node['Mission']['title'],
+      'mission_description' => $node['Mission']['description']
     );
   }
 
@@ -142,10 +183,11 @@ class GameboardsController extends AppController {
 
 	    $gameboard_id = $this->lastInsertedGameboardId();
 
-      $nodes = array($this->create_node(0, '', true, 0, $gameboard_id));
+      $nodes = array($this->create_node(0, '', true, 0, $gameboard_id,0));
       $edges = array();
       $region_size =  $size / sizeof($regions);
       $level_size = $region_size / $levels;
+      $missions = $this->allMissions();
       $count = 0;
 
       $problem_points = array(3,3,3,2,2,2,1,1,1);
@@ -161,7 +203,9 @@ class GameboardsController extends AppController {
         for($x = 0; $x < $region_size; $x++){
           $count++;
           $root = false;
-          array_push($nodes,$this->create_node($count, $region, $root, $problem_points[$count-1], $gameboard_id));
+          $mission = $count % sizeof($missions);
+          $mission_id = $missions[$mission]['Mission']['id'];
+          array_push($nodes,$this->create_node($count, $region, $root, $problem_points[$count-1], $gameboard_id, $mission_id));
 
           // connect to root
           if($x < $level_size){
@@ -204,6 +248,12 @@ class GameboardsController extends AppController {
   }
 
 
+  public function allMissions(){
+    $this->loadModel('Mission');
+    $missions = $this->Mission->find('all');
+    return $missions;
+  }
+
 
 /**
  * 
@@ -229,7 +279,7 @@ class GameboardsController extends AppController {
   }  
 
 
-  public function create_node($id, $role, $root, $points, $gameboard_id) {
+  public function create_node($id, $role, $root, $points, $gameboard_id, $mission_id) {
   	$default_severity_counter = 2;
 
   	$this->loadModel('GameboardNode');
@@ -237,7 +287,7 @@ class GameboardsController extends AppController {
   	$gameboardNode = array('GameboardNode' => 
   		array(
   			'gameboard_id' => $gameboard_id, 
-  			'mission_id' => 1,
+  			'mission_id' => $mission_id,
   			'position' => $id,
   			'role' => $role,
   			'root' => $root, 

@@ -65,7 +65,7 @@
       </li>
 
       <li>
-        <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'dashboard_prototype', 'admin' => false)); ?>" class="font-green uppercase">
+        <a href="<?php echo $this->Html->url(array('controller' => 'gameboards', 'action' => 'index', 'admin' => false)); ?>" class="font-green uppercase">
           <?php echo __('Gameboard Prototype'); ?>
         </a>
       </li>
